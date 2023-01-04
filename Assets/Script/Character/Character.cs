@@ -38,7 +38,7 @@ public class Character : MonoBehaviour
     // 캐릭터 초기화
     void Init()
     {
-        GameManager.Instance.BattleMNG.CharEnter(GetComponent<Character>());
+        GameManager.Instance.DataMNG.BCL_CharEnter(GetComponent<Character>());
 
         // sprite를 배치했다면 변경하기
         if (characterSO.sprite != null)
@@ -109,7 +109,7 @@ public class Character : MonoBehaviour
         if(CurHP <= 0)
         {
             // 죽었을 때 처리할 것들
-            GameManager.Instance.BattleMNG.CharExit(GetComponent<Character>());
+            GameManager.Instance.DataMNG.BCL_CharExit(GetComponent<Character>());
             Tiles[LocY, LocX].ExitTile();
 
             Destroy(gameObject);

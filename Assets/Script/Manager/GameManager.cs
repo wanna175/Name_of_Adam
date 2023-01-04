@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleManager _battleMNG;
     public BattleManager BattleMNG => _battleMNG;
     #endregion
+    #region DataManger
+    DataManager _DataMNG;
+    public DataManager DataMNG => _DataMNG;
+    #endregion
+
 
     void Awake()
     {
@@ -34,6 +39,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        _DataMNG = new DataManager();
     }
 
     private void Update()

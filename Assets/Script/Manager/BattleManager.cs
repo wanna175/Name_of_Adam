@@ -16,72 +16,7 @@ public class BattleManager : MonoBehaviour
     public Field BattleField => _BattleField;
     #endregion
 
-    // 전투를 진행중인 캐릭터가 들어있는 리스트
-    List<Character> BattleCharList = new List<Character>();
-
     bool CanTurnStart = true;
-
-    // 리스트에 캐릭터를 추가 / 제거
-    #region CharEnter / Exit
-    public void CharEnter(Character ch)
-    {
-        BattleCharList.Add(ch);
-    }
-    public void CharExit(Character ch)
-    {
-        BattleCharList.Remove(ch);
-    }
-    #endregion
-
-    #region OrderSort
-
-    void CharTurnReplace()
-    {
-        SpeedSort();
-    }
-
-    // 일단 선택 정렬으로 정렬, 나중에 바꾸기
-    void SpeedSort()
-    {
-        for(int i = 0; i < BattleCharList.Count; i++)
-        {
-            Character max = null;
-            for(int j = i; j < BattleCharList.Count; j++)
-            {
-                if (i == j)
-                {
-                    max = BattleCharList[j];
-                }
-                else if (BattleCharList[j].GetSpeed() > max.GetSpeed())
-                {
-                    CharSwap(i, j);
-                }
-                else if(BattleCharList[j].GetSpeed() == max.GetSpeed())
-                {
-                    if(BattleCharList[j].LocX < max.LocX)
-                    {
-                        CharSwap(i, j);
-                    }
-                    else if(BattleCharList[j].LocX == max.LocX)
-                    {
-                        if(BattleCharList[j].LocY < max.LocY)
-                        {
-                            CharSwap(i, j);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    void CharSwap(int a, int b)
-    {
-        Character dump = BattleCharList[a];
-        BattleCharList[a] = BattleCharList[b];
-        BattleCharList[b] = dump;
-    }
-
-    #endregion
 
     // 턴 진행
     public void TurnStart()
@@ -89,7 +24,7 @@ public class BattleManager : MonoBehaviour
         if (CanTurnStart)
         {
             CanTurnStart = false;
-            CharTurnReplace();
+            GameManager.Instance.DataMNG.BattleOrderReplace();
 
             StartCoroutine(CharUse());
         }
@@ -97,6 +32,8 @@ public class BattleManager : MonoBehaviour
     //턴에 딜레이 주기(어떻게 줘야할까?)
     IEnumerator CharUse()
     {
+        List<Character> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
+
         for (int i = 0; i < BattleCharList.Count; i++)
         {
             BattleCharList[i].use();
