@@ -34,6 +34,7 @@ public class Field : MonoBehaviour
                 tile.transform.position = new Vector3(vec.x + x, vec.y + y);
 
                 TileArray[i + 1, j + 4] = tile.GetComponent<Tile>();
+                TileArray[i + 1, j + 4].GetLocate(i + 1, j + 4);
             }
         }
 
@@ -51,5 +52,16 @@ public class Field : MonoBehaviour
         vec.y += sizeY;
 
         return vec;
+    }
+
+    public void CanSelectClear()
+    {
+        for(int i = 0; i < MaxY; i++)
+        {
+            for(int j = 0; j < MaxX; j++)
+            {
+                TileArray[i, j].SetCanSelect(false);
+            }
+        }
     }
 }

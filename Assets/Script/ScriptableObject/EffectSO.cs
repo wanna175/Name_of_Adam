@@ -5,4 +5,6 @@ using UnityEngine;
 public abstract class EffectSO : ScriptableObject
 {
     public abstract void Effect(Character ch);
+
+    public virtual List<Vector2> GetRange() => null;
 }

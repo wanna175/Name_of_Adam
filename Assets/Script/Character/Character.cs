@@ -12,12 +12,14 @@ public class Character : MonoBehaviour
 
     Tile[,] Tiles;
 
+    [SerializeField] float MaxHP, CurHP;
     #region Loc X, Y
     [SerializeField] int locX, locY;
     public int LocX => locX;
     public int LocY => locY;
     #endregion
-    [SerializeField] float MaxHP, CurHP;
+
+    public Vector2 SelectTile;
 
 
     void Start()
@@ -38,7 +40,7 @@ public class Character : MonoBehaviour
     // 캐릭터 초기화
     void Init()
     {
-        GameManager.Instance.BattleMNG.CharEnter(GetComponent<Character>());
+        GameManager.Instance.DataMNG.BCL_CharEnter(GetComponent<Character>());
 
         // sprite를 배치했다면 변경하기
         if (characterSO.sprite != null)
@@ -54,6 +56,8 @@ public class Character : MonoBehaviour
     {
         characterSO.use(GetComponent<Character>());
     }
+
+    #region Character Move
 
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
@@ -89,7 +93,9 @@ public class Character : MonoBehaviour
         // 현재 타일에 내가 들어왔다고 알려줌 
         Tiles[LocY, LocX].EnterTile(GetComponent<Character>());
     }
+    #endregion
 
+    #region Hit & Destroy
     // 데미지를 받을 때
     public void GetDamage(float DMG)
     {
@@ -108,6 +114,7 @@ public class Character : MonoBehaviour
     {
         if(CurHP <= 0)
         {
+            GameManager.Instance.DataMNG.BCL_CharExit(GetComponent<Character>());
             // 죽었을 때 처리할 것들
             GameManager.Instance.BattleMNG.CharExit(GetComponent<Character>());
             Tiles[LocY, LocX].ExitTile();
@@ -115,6 +122,11 @@ public class Character : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
+
+
+
+    public void TileSelected(int x, int y) => SelectTile = new Vector2(x, y);
 
     public int GetSpeed() => characterSO.stat.SPD;
 

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,5 +33,15 @@ public class CharacterSO : ScriptableObject
     public void use(Character ch)
     {
         skill.use(ch);
+    }
+
+    public List<Vector2> HaveTargeting()
+    {
+        for (int i = 0; i < skill.EffectList.Count; i++)
+        {
+            if (skill.EffectList[i].GetType() == typeof(Effect_Attack))
+                return skill.EffectList[i].GetRange();
+        }
+        return null;
     }
 }

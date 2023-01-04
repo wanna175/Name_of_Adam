@@ -766,6 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerMana: {fileID: 576041147}
   _BattleField: {fileID: 1345308805}
+  SelectedChar: {fileID: 0}
 --- !u!4 &938167656
 Transform:
   m_ObjectHideFlags: 0
@@ -1004,7 +1005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: locX
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: locY
@@ -1335,7 +1336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: locX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: locY

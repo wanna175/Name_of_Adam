@@ -6,7 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Skill", menuName = "Scriptable Object/Skill", order = 1)]
 public class SkillSO : ScriptableObject
 {
-    [SerializeField] List<EffectSO> EffectList;
+    [SerializeField] public List<EffectSO> EffectList;
+    //public List<EffectSO> EffectList => _EffectList;
 
     // 이펙트리스트 안의 이펙트들을 순서대로 실행
     public void use(Character ch)
