@@ -12,6 +12,8 @@ public class Tile : MonoBehaviour
     public bool isOnTile => _isOnTile;
     #endregion
 
+    public int LocX, LocY;
+
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();

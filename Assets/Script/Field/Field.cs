@@ -34,6 +34,8 @@ public class Field : MonoBehaviour
                 tile.transform.position = new Vector3(vec.x + x, vec.y + y);
 
                 TileArray[i + 1, j + 4] = tile.GetComponent<Tile>();
+                TileArray[i + 1, j + 4].LocX = i + 1;
+                TileArray[i + 1, j + 4].LocY = j + 4;
             }
         }
 
