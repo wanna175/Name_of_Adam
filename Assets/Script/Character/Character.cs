@@ -129,6 +129,10 @@ public class Character : MonoBehaviour
         else if (gauge > maxGauge)
         {
             characterSO.IsFall = true;
+            if (characterSO.team == Team.Enemy)
+                characterSO.team = Team.Player;
+            else
+                characterSO.team = Team.Enemy;
             gauge = 0;
         }
 
