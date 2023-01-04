@@ -35,12 +35,4 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            BattleMNG.TurnStart();
-        }
-    }
 }
