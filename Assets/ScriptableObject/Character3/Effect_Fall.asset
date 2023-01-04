@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3139528fff342a84094cde77488d2c69, type: 3}
   m_Name: Effect_Fall
   m_EditorClassIdentifier: 
-  range: {fileID: 0}
+  range: {fileID: 11400000, guid: b93f1e6ca214d1b4bb9f4aa4028e4ee4, type: 2}
   DMG: 0
