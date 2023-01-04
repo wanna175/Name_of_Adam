@@ -114,9 +114,8 @@ public class Character : MonoBehaviour
     {
         if(CurHP <= 0)
         {
-            GameManager.Instance.DataMNG.BCL_CharExit(GetComponent<Character>());
             // 죽었을 때 처리할 것들
-            GameManager.Instance.BattleMNG.CharExit(GetComponent<Character>());
+            GameManager.Instance.DataMNG.BCL_CharExit(GetComponent<Character>());
             Tiles[LocY, LocX].ExitTile();
 
             Destroy(gameObject);

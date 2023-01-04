@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleManager _battleMNG;
     public BattleManager BattleMNG => _battleMNG;
     #endregion
+    #region StageManager
+    [SerializeField] StageManager _StageMNG;
+    public StageManager StageMNG => _StageMNG;
+    #endregion
     #region DataManger
     DataManager _DataMNG;
     public DataManager DataMNG => _DataMNG;
@@ -48,6 +52,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             BattleMNG.TurnStart();
+        }
+        else if (Input.GetMouseButtonDown(2))
+        {
+            StageMNG.StageSign.SetNextStageSign();
         }
     }
 }
