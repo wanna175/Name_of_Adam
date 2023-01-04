@@ -18,6 +18,9 @@ public class BattleManager : MonoBehaviour
 
     bool CanTurnStart = true;
 
+    // 스킬의 타겟 지정을 위한 임시 변수
+    public Character SelectedChar;
+
     // 턴 진행
     public void TurnStart()
     {

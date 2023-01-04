@@ -11,8 +11,12 @@ public class Tile : MonoBehaviour
     bool _isOnTile;
     public bool isOnTile => _isOnTile;
     #endregion
-
-    public int LocX, LocY;
+    #region Loc X, Y
+    int _LocX, _LocY;
+    public int LocX => _LocX;
+    public int LocY => _LocY;
+    #endregion
+    public bool CanSelect = false;
 
     void Start()
     {
@@ -21,6 +25,12 @@ public class Tile : MonoBehaviour
 
         _isOnTile = false;
         chara = null;
+    }
+
+    public void GetLocate(int x, int y)
+    {
+        _LocX = x;
+        _LocY = y;
     }
 
     public void EnterTile(Character ch)
@@ -35,6 +45,58 @@ public class Tile : MonoBehaviour
         chara = null;
     }
 
+    public void SetCanSelect(bool bo)
+    {
+        if (bo) {
+            CanSelect = true;
+            SR.color = Color.yellow;
+        }
+        else
+        {
+            CanSelect = false;
+            SR.color = Color.gray;
+        }
+
+    }
+
+    private void OnMouseDown()
+    {
+        if (CanSelect)
+        {
+            GameManager.Instance.BattleMNG.BattleField.CanSelectClear();
+            GameManager.Instance.BattleMNG.SelectedChar.TileSelected(LocY, LocX);
+            return;
+        }
+        if(chara != null)
+        {
+            if (chara.characterSO.team == Team.Player)
+            {
+                GameManager.Instance.BattleMNG.SelectedChar = chara;
+
+                List<Vector2> vecList = chara.characterSO.HaveTargeting();
+                if (vecList != null)
+                {
+                    GameManager.Instance.BattleMNG.BattleField.CanSelectClear();
+                    Tile[,] tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
+
+                    for(int i = 0; i < vecList.Count; i++)
+                    {
+                        int x = chara.LocX - (int)vecList[i].x;
+                        int y = chara.LocY - (int)vecList[i].y;
+                        Debug.Log(y + ", " + x);
+                        if (0 <= x && x < 8)
+                        {
+                            if (0 <= y && y < 3)
+                            {
+                                tiles[y, x].SetCanSelect(true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     #region OnAttack
     public void OnAttack(Character ch)
     {
@@ -42,7 +104,7 @@ public class Tile : MonoBehaviour
     }
     IEnumerator CoOnAttack(Character AttackChar)
     {
-        SR.color = Color.red;
+        SR.color = Color.white;
 
         if (chara != null)
         {

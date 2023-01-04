@@ -12,12 +12,14 @@ public class Character : MonoBehaviour
 
     Tile[,] Tiles;
 
+    [SerializeField] float MaxHP, CurHP;
     #region Loc X, Y
     [SerializeField] int locX, locY;
     public int LocX => locX;
     public int LocY => locY;
     #endregion
-    [SerializeField] float MaxHP, CurHP;
+
+    public Vector2 SelectTile;
 
 
     void Start()
@@ -55,6 +57,7 @@ public class Character : MonoBehaviour
         characterSO.use(GetComponent<Character>());
     }
 
+    #region Character Move
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
@@ -86,10 +89,12 @@ public class Character : MonoBehaviour
         Vector3 vec = GameManager.Instance.BattleMNG.BattleField.GetTileLocate(LocX, LocY);
         transform.position = vec;
 
-        // 현재 타일에 내가 들어왔다고 알려줌 
+        // 현재 타일에 내가 들어왔다고 알려줌  
         Tiles[LocY, LocX].EnterTile(GetComponent<Character>());
     }
+    #endregion
 
+    #region Hit & Destroy
     // 데미지를 받을 때
     public void GetDamage(float DMG)
     {
@@ -115,6 +120,11 @@ public class Character : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
+
+
+
+    public void TileSelected(int x, int y) => SelectTile = new Vector2(x, y);
 
     public int GetSpeed() => characterSO.stat.SPD;
 }
