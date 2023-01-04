@@ -80,4 +80,28 @@ public class Tile : MonoBehaviour
 
     }
     #endregion
+
+    #region OnFall
+    public void OnFall(Character ch)
+    {
+        StartCoroutine(CoOnFall(ch));
+    }
+    IEnumerator CoOnFall(Character AttackChar)
+    {
+        SR.color = Color.yellow;
+
+        if (chara != null)
+        {
+            if (AttackChar.characterSO.team != chara.characterSO.team)
+            {
+                chara.SetFallGauge(1);
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        SR.color = Color.gray;
+
+    }
+    #endregion
 }

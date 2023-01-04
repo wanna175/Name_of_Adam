@@ -9,7 +9,6 @@ public class Character : MonoBehaviour
 {
     SpriteRenderer SR;
     [SerializeField] public CharacterSO characterSO;
-    [SerializeField] private int _maxGauge;
 
     Tile[,] Tiles;
 
@@ -119,18 +118,22 @@ public class Character : MonoBehaviour
 
     public int GetSpeed() => characterSO.stat.SPD;
 
+    // 타락 게이지가 늘어나거나 줄어들 때
     public void SetFallGauge(int value)
     {
         int gauge = characterSO.FallGauge;
+        int maxGauge = 3;
 
         gauge += value;
         if (gauge < 0) gauge = 0;
-        else if (gauge > _maxGauge)
+        else if (gauge > maxGauge)
         {
             characterSO.IsFall = true;
             gauge = 0;
         }
 
         characterSO.FallGauge = gauge;
+
+        Debug.Log($"Fall Gauge : {gauge}, Is Fall? : {characterSO.IsFall}");
     }
 }
