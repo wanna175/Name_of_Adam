@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ÇÊµå À§¿¡ ¿Ã·ÁÁø Ä³¸¯ÅÍÀÇ ½ºÅ©¸³Æ®
-// ½ºÅ³ »ç¿ë, ÀÌµ¿, µ¥¹ÌÁö¿Í »ç¸ÁÆÇÁ¤À» Ã³¸®
+// í•„ë“œ ìœ„ì— ì˜¬ë ¤ì§„ ìºë¦­í„°ì˜ ìŠ¤í¬ë¦½íŠ¸
+// ìŠ¤í‚¬ ì‚¬ìš©, ì´ë™, ë°ë¯¸ì§€ì™€ ì‚¬ë§íŒì •ì„ ì²˜ë¦¬
 
 public class Character : MonoBehaviour
 {
@@ -31,34 +31,35 @@ public class Character : MonoBehaviour
         SetLotate();
     }
 
-    // ÀÎ½ºÆåÅÍ¿¡¼­ À§Ä¡ ÀÌµ¿½ÃÅ°±â À§ÇØ ÀÓ½Ã·Î ¹èÄ¡
+    // ì¸ìŠ¤í™í„°ì—ì„œ ìœ„ì¹˜ ì´ë™ì‹œí‚¤ê¸° ìœ„í•´ ì„ì‹œë¡œ ë°°ì¹˜
     private void Update()
     {
         SetLotate();
     }
 
-    // Ä³¸¯ÅÍ ÃÊ±âÈ­
+    // ìºë¦­í„° ì´ˆê¸°í™”
     void Init()
     {
         GameManager.Instance.DataMNG.BCL_CharEnter(GetComponent<Character>());
 
-        // sprite¸¦ ¹èÄ¡Çß´Ù¸é º¯°æÇÏ±â
+        // spriteë¥¼ ë°°ì¹˜í–ˆë‹¤ë©´ ë³€ê²½í•˜ê¸°
         if (characterSO.sprite != null)
             SR.sprite = characterSO.sprite;
 
-        // Àû±ºÀÏ °æ¿ì xÃà µÚÁı±â
+        // ì êµ°ì¼ ê²½ìš° xì¶• ë’¤ì§‘ê¸°
         SR.flipX = (characterSO.team == Team.Enemy) ? true : false;
         MaxHP = CurHP = characterSO.stat.HP;
     }
 
-    // ½ºÅ³ »ç¿ë
+    // ìŠ¤í‚¬ ì‚¬ìš©
     public void use()
     {
         characterSO.use(GetComponent<Character>());
     }
 
     #region Character Move
-    // ÀÌµ¿ °æ·Î¸¦ ¹Ş¾Æ¿Í ÀÌµ¿½ÃÅ²´Ù
+
+    // ì´ë™ ê²½ë¡œë¥¼ ë°›ì•„ì™€ ì´ë™ì‹œí‚¨ë‹¤
     public void MoveLotate(int x, int y)
     {
         Tiles[LocY, LocX].ExitTile();
@@ -66,13 +67,13 @@ public class Character : MonoBehaviour
         int dumpX = locX;
         int dumpY = locY;
 
-        // Å¸ÀÏ ¹üÀ§¸¦ ¹ş¾î³­ ÀÌµ¿ÀÌ¸é ÀÌµ¿ÇÏÁö ¾ÊÀ½
+        // íƒ€ì¼ ë²”ìœ„ë¥¼ ë²—ì–´ë‚œ ì´ë™ì´ë©´ ì´ë™í•˜ì§€ ì•ŠìŒ
         if(0 <= locX + x && locX + x < 8)
             dumpX += x;
         if (0 <= locY + y && locY + y < 3)
             dumpY += y;
 
-        // ÀÌµ¿ÇÒ °÷ÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é ÀÌµ¿ÇÏÁö ¾ÊÀ½
+        // ì´ë™í•  ê³³ì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ ì´ë™í•˜ì§€ ì•ŠìŒ
         if(!Tiles[dumpY, dumpX].isOnTile)
         {
             locX = dumpX;
@@ -83,19 +84,19 @@ public class Character : MonoBehaviour
         SetLotate();
     }
 
-    // Å¸ÀÏ À§·Î ÀÌµ¿
+    // íƒ€ì¼ ìœ„ë¡œ ì´ë™
     public void SetLotate()
     {
         Vector3 vec = GameManager.Instance.BattleMNG.BattleField.GetTileLocate(LocX, LocY);
         transform.position = vec;
 
-        // ÇöÀç Å¸ÀÏ¿¡ ³»°¡ µé¾î¿Ô´Ù°í ¾Ë·ÁÁÜ  
+        // í˜„ì¬ íƒ€ì¼ì— ë‚´ê°€ ë“¤ì–´ì™”ë‹¤ê³  ì•Œë ¤ì¤Œ 
         Tiles[LocY, LocX].EnterTile(GetComponent<Character>());
     }
     #endregion
 
     #region Hit & Destroy
-    // µ¥¹ÌÁö¸¦ ¹ŞÀ» ¶§
+    // ë°ë¯¸ì§€ë¥¼ ë°›ì„ ë•Œ
     public void GetDamage(float DMG)
     {
         CurHP -= DMG;
@@ -108,13 +109,14 @@ public class Character : MonoBehaviour
         DeadCheck();
     }
 
-    // Ä³¸¯ÅÍ°¡ »ç¸ÁÇß´ÂÁö È®ÀÎ
+    // ìºë¦­í„°ê°€ ì‚¬ë§í–ˆëŠ”ì§€ í™•ì¸
     void DeadCheck()
     {
         if(CurHP <= 0)
         {
-            // Á×¾úÀ» ¶§ Ã³¸®ÇÒ °Íµé
             GameManager.Instance.DataMNG.BCL_CharExit(GetComponent<Character>());
+            // ì£½ì—ˆì„ ë•Œ ì²˜ë¦¬í•  ê²ƒë“¤
+            GameManager.Instance.BattleMNG.CharExit(GetComponent<Character>());
             Tiles[LocY, LocX].ExitTile();
 
             Destroy(gameObject);
@@ -127,4 +129,27 @@ public class Character : MonoBehaviour
     public void TileSelected(int x, int y) => SelectTile = new Vector2(x, y);
 
     public int GetSpeed() => characterSO.stat.SPD;
+
+    // íƒ€ë½ ê²Œì´ì§€ê°€ ëŠ˜ì–´ë‚˜ê±°ë‚˜ ì¤„ì–´ë“¤ ë•Œ
+    public void SetFallGauge(int value)
+    {
+        int gauge = characterSO.FallGauge;
+        int maxGauge = 3;
+
+        gauge += value;
+        if (gauge < 0) gauge = 0;
+        else if (gauge > maxGauge)
+        {
+            characterSO.IsFall = true;
+            if (characterSO.team == Team.Enemy)
+                characterSO.team = Team.Player;
+            else
+                characterSO.team = Team.Enemy;
+            gauge = 0;
+        }
+
+        characterSO.FallGauge = gauge;
+
+        Debug.Log($"Fall Gauge : {gauge}, Is Fall? : {characterSO.IsFall}");
+    }
 }

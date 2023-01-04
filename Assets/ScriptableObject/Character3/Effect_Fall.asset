@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cde895ae31ebd54cbe32db0fd1f32e9, type: 3}
-  m_Name: Skill_1
+  m_Script: {fileID: 11500000, guid: 3139528fff342a84094cde77488d2c69, type: 3}
+  m_Name: Effect_Fall
   m_EditorClassIdentifier: 
-  EffectList:
-  - {fileID: 11400000, guid: 3cb1987f55484354dbc4eb0ec385d802, type: 2}
+  range: {fileID: 11400000, guid: b93f1e6ca214d1b4bb9f4aa4028e4ee4, type: 2}
+  DMG: 0

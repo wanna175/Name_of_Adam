@@ -11,12 +11,11 @@ enum AttackType
 [CreateAssetMenu(fileName = "Effect_Attack", menuName = "Scriptable Object/Effect_Attack", order = 3)]
 public class Effect_Attack : EffectSO
 {
-    [SerializeField] AttackType attackType; // °ø°İ Å¸ÀÔ
-    [SerializeField] RangeSO range;    // °ø°İ ¹üÀ§
-    [SerializeField] float DMG;        // µ¥¹ÌÁö ¹èÀ²
+    [SerializeField] AttackType attackType; // ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
+    [SerializeField] RangeSO range;    // ê³µê²© ë²”ìœ„
+    [SerializeField] float DMG;        // ë°ë¯¸ì§€ ë°°ìœ¨
 
-
-    // °ø°İ ½ÇÇà
+    // ê³µê²© ì‹¤í–‰
     public override void Effect(Character caster)
     {
         float CharATK = caster.characterSO.stat.ATK;
@@ -25,16 +24,15 @@ public class Effect_Attack : EffectSO
 
         List<Vector2> RangeList = GetRange();
 
-        // °ø°İÀÌ ¹üÀ§°ø°İÀÏ ½Ã
         if (attackType == AttackType.rangeAttack)
+        // ê³µê²© ë²”ìœ„ë¥¼ í–¥í•´ ê³µê²©
+        for(int i = 0; i < RangeList.Count; i++)
         {
-            // °ø°İ ¹üÀ§¸¦ ÇâÇØ °ø°İ
             for (int i = 0; i < RangeList.Count; i++)
             {
                 int x = caster.LocX - (int)RangeList[i].x;
                 int y = caster.LocY - (int)RangeList[i].y;
 
-                // °ø°İ ¹üÀ§°¡ ÇÊµå¸¦ ¹ş¾î³ªÁö ¾ÊÀº °æ¿ì °ø°İ
                 if (0 <= x && x < 8)
                 {
                     if (0 <= y && y < 3)
@@ -44,14 +42,13 @@ public class Effect_Attack : EffectSO
                 }
             }
         }
-        // Å¸°Ù ÁöÁ¤ °ø°İÀÏ °æ¿ì
         else if(attackType == AttackType.targeting)
         {
             int x = (int)caster.SelectTile.x;
             int y = (int)caster.SelectTile.y;
             Debug.Log(x + ", " + y);
-            // °ø°İ ¹üÀ§°¡ ÇÊµå¸¦ ¹ş¾î³ªÁö ¾ÊÀº °æ¿ì °ø°İ
-            if (0 <= x && x < 8)
+            // ê³µê²© ë²”ìœ„ê°€ í•„ë“œë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šì€ ê²½ìš° ê³µê²©
+            if(0 <= x && x < 8)
             {
                 if (0 <= y && y < 3)
                 {

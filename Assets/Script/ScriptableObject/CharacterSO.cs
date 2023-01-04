@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Ä³¸¯ÅÍÀÇ ½ºÅÈ
+// ìºë¦­í„°ì˜ ìŠ¤íƒ¯
 [Serializable]
 public struct Stat
 {
@@ -11,7 +11,7 @@ public struct Stat
     public int SPD;
 }
 
-// Ä³¸¯ÅÍÀÇ ÆÀ
+// ìºë¦­í„°ì˜ íŒ€
 [Serializable]
 public enum Team
 {
@@ -25,9 +25,11 @@ public class CharacterSO : ScriptableObject
     [SerializeField] public Team team;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
+    [SerializeField] public int FallGauge;
+    [SerializeField] public bool IsFall;
     [SerializeField] SkillSO skill;
 
-    // Ä³¸¯ÅÍÀÇ ½ºÅ³ »ç¿ë
+    // ìºë¦­í„°ì˜ ìŠ¤í‚¬ ì‚¬ìš©
     public void use(Character ch)
     {
         skill.use(ch);
