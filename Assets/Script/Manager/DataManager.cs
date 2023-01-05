@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DataManager
 {
-    // ÀüÅõ¸¦ ÁøÇàÁßÀÎ Ä³¸¯ÅÍ°¡ µé¾îÀÖ´Â ¸®½ºÆ®
+    // ì „íˆ¬ë¥¼ ì§„í–‰ì¤‘ì¸ ìºë¦­í„°ê°€ ë“¤ì–´ìˆëŠ” ë¦¬ìŠ¤íŠ¸
     #region BattleCharList
     
     #region BattleCharList  
@@ -12,7 +12,7 @@ public class DataManager
     public List<Character> BattleCharList => _BattleCharList;
     #endregion  
 
-    // ¸®½ºÆ®¿¡ Ä³¸¯ÅÍ¸¦ Ãß°¡ / Á¦°Å
+    // ë¦¬ìŠ¤íŠ¸ì— ìºë¦­í„°ë¥¼ ì¶”ê°€ / ì œê±°
     #region CharEnter / Exit
     public void BCL_CharEnter(Character ch)
     {
@@ -31,7 +31,7 @@ public class DataManager
         BCL_SpeedSort();
     }
 
-    // ÀÏ´Ü ¼±ÅÃ Á¤·ÄÀ¸·Î Á¤·Ä, ³ªÁß¿¡ ¹Ù²Ù±â
+    // ì¼ë‹¨ ì„ íƒ ì •ë ¬ìœ¼ë¡œ ì •ë ¬, ë‚˜ì¤‘ì— ë°”ê¾¸ê¸°
     void BCL_SpeedSort()
     {
         for (int i = 0; i < BattleCharList.Count; i++)
@@ -74,5 +74,28 @@ public class DataManager
 
     #endregion
 
+    #endregion
+
+    #region DeckCharList
+    List<Character> _DeckCharList = new List<Character>();
+    public List<Character> DeckCharList => _DeckCharList;
+
+    public void AddCharToDeck(Character ch) {
+        DeckCharList.Add(ch);
+    }
+
+    public void RemoveCharFromDeck(Character ch) {
+        DeckCharList.Remove(ch);
+    }
+
+    public Character RandomChar() {
+        int randNum = Random.Range(0, DeckCharList.Count+1);
+        
+        Character ch = DeckCharList[randNum];
+        DeckCharList.RemoveAt(randNum);
+
+        return ch;
+    }
+    
     #endregion
 }
