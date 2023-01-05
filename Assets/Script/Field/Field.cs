@@ -11,11 +11,11 @@ public class Field : MonoBehaviour
 
     public Tile[,] TileArray = new Tile[MaxY, MaxX];
 
-    void Awake()
+    public void Init()
     {
         FieldSet();
     }
-    
+
     void FieldSet()
     {
         Vector3 vec = transform.position;
@@ -37,12 +37,13 @@ public class Field : MonoBehaviour
                 TileArray[i + 1, j + 4].GetLocate(i + 1, j + 4);
             }
         }
-
+        Debug.Log('a');
         //transform.eulerAngles = new Vector3(30, 0, 0);
     }
 
     public Vector3 GetTileLocate(int x, int y)
     {
+        //Debug.Log(TileArray);
         Vector3 vec =TileArray[y, x].transform.position;
 
         float sizeX = TileArray[y, x].transform.localScale.x * 0.5f;

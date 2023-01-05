@@ -28,17 +28,14 @@ public class Effect_Attack : EffectSO
         // 공격 범위를 향해 공격
         for(int i = 0; i < RangeList.Count; i++)
         {
-            for (int i = 0; i < RangeList.Count; i++)
-            {
-                int x = caster.LocX - (int)RangeList[i].x;
-                int y = caster.LocY - (int)RangeList[i].y;
+            int x = caster.LocX - (int)RangeList[i].x;
+            int y = caster.LocY - (int)RangeList[i].y;
 
-                if (0 <= x && x < 8)
+            if (0 <= x && x < 8)
+            {
+                if (0 <= y && y < 3)
                 {
-                    if (0 <= y && y < 3)
-                    {
-                        Tiles[y, x].OnAttack(caster);
-                    }
+                    Tiles[y, x].OnAttack(caster);
                 }
             }
         }
