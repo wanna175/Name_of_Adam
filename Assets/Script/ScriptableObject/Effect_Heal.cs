@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Effect_Heal", menuName = "Scriptable Object/Effect_Heal", order = 4)]
 public class Effect_Heal : EffectSO
 {
-    [SerializeField] RangeSO range;    // °ø°İ ¹üÀ§
-    [SerializeField] float DMG;        // µ¥¹ÌÁö ¹èÀ²
+    [SerializeField] RangeSO range;    // ê³µê²© ë²”ìœ„
+    [SerializeField] float DMG;        // ë°ë¯¸ì§€ ë°°ìœ¨
 
-    // °ø°İ ½ÇÇà
+    // ê³µê²© ì‹¤í–‰
     public override void Effect(Character caster)
     {
         float CharHeal = caster.characterSO.stat.ATK;
@@ -17,13 +17,13 @@ public class Effect_Heal : EffectSO
 
         List<Vector2> RangeList = GetRange();
 
-        // °ø°İ ¹üÀ§¸¦ ÇâÇØ °ø°İ
+        // ê³µê²© ë²”ìœ„ë¥¼ í–¥í•´ ê³µê²©
         for (int i = 0; i < RangeList.Count; i++)
         {
             int x = caster.LocX - (int)RangeList[i].x;
             int y = caster.LocY - (int)RangeList[i].y;
 
-            // °ø°İ ¹üÀ§°¡ ÇÊµå¸¦ ¹ş¾î³ªÁö ¾ÊÀº °æ¿ì °ø°İ
+            // ê³µê²© ë²”ìœ„ê°€ í•„ë“œë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šì€ ê²½ìš° ê³µê²©
             if (0 <= x && x < 8)
             {
                 if (0 <= y && y < 3)
