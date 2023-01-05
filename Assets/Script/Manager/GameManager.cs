@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            BattleMNG.TurnStart();
+            
         }
         else if (Input.GetMouseButtonDown(2))
         {
