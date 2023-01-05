@@ -15,10 +15,12 @@ public class NextStageEventSystem : EventTrigger
 
             if (!clickedBox.CompareTag("StageSelectBox"))
                 return;
-
+            
             int index = Int32.Parse(clickedBox.name.Split("_")[1]);
 
-            GameManager.Instance.StageMNG.StageSign.StageSelect(index);
+            // 클릭했다는 정보를 어딘가로 줘야함
+            // StageManager로 전달하는 것이 베스트
+            GameManager.Instance.StageMNG.StageSelect(index);
         }
     }
 }

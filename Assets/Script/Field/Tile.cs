@@ -61,6 +61,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log(LocX + ", " + LocY);
         if (CanSelect)
         {
             GameManager.Instance.BattleMNG.BattleField.CanSelectClear();
@@ -83,7 +84,7 @@ public class Tile : MonoBehaviour
                     {
                         int x = chara.LocX - (int)vecList[i].x;
                         int y = chara.LocY - (int)vecList[i].y;
-                        Debug.Log(y + ", " + x);
+
                         if (0 <= x && x < 8)
                         {
                             if (0 <= y && y < 3)

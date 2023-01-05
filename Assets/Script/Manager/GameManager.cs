@@ -23,12 +23,16 @@ public class GameManager : MonoBehaviour
     public BattleManager BattleMNG => _battleMNG;
     #endregion
     #region StageManager
-    [SerializeField] StageManager _StageMNG;
+    StageManager _StageMNG;
     public StageManager StageMNG => _StageMNG;
     #endregion
     #region DataManger
     DataManager _DataMNG;
     public DataManager DataMNG => _DataMNG;
+    #endregion
+    #region SceneChanger
+    SceneChanger _SceneChanger;
+    public SceneChanger SceneChanger => _SceneChanger;
     #endregion
 
 
@@ -37,14 +41,17 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
         }
 
+        BattleMNG.BattleField.Init();
+        _StageMNG = new StageManager();
         _DataMNG = new DataManager();
+        _SceneChanger = new SceneChanger();
     }
 
     private void Update()
@@ -55,7 +62,15 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(2))
         {
-            StageMNG.StageSign.SetNextStageSign();
+
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneChanger.SceneChange("StageSelectScene");
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            SceneChanger.SceneChange("SampleScene");
         }
     }
 }
