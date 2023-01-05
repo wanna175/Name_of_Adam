@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour
         Debug.Log(LocX + ", " + LocY);
         if (CanSelect)
         {
-            GameManager.Instance.BattleMNG.BattleField.CanSelectClear();
+            GameManager.Instance.DataMNG.CanSelectClear();
             GameManager.Instance.BattleMNG.SelectedChar.TileSelected(LocY, LocX);
             return;
         }
@@ -77,8 +77,8 @@ public class Tile : MonoBehaviour
                 List<Vector2> vecList = chara.characterSO.HaveTargeting();
                 if (vecList != null)
                 {
-                    GameManager.Instance.BattleMNG.BattleField.CanSelectClear();
-                    Tile[,] tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
+                    GameManager.Instance.DataMNG.CanSelectClear();
+                    Tile[,] tiles = GameManager.Instance.DataMNG.TileArray;
 
                     for(int i = 0; i < vecList.Count; i++)
                     {

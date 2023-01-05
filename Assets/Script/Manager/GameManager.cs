@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #region BattleManager
-    [SerializeField] BattleManager _battleMNG;
+    BattleManager _battleMNG;
     public BattleManager BattleMNG => _battleMNG;
     #endregion
     #region StageManager
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        BattleMNG.BattleField.Init();
+        _battleMNG = new BattleManager();
         _StageMNG = new StageManager();
         _DataMNG = new DataManager();
         _SceneChanger = new SceneChanger();

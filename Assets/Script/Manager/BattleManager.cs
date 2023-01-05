@@ -6,7 +6,7 @@ using UnityEngine;
 // 필드와 턴의 관리
 // 필드에 올라와있는 캐릭터의 제어를 배틀매니저에서 담당
 
-public class BattleManager : MonoBehaviour
+public class BattleManager
 {
     // 마나 UI
     [SerializeField] ManaGuage PlayerMana;
@@ -29,11 +29,13 @@ public class BattleManager : MonoBehaviour
             CanTurnStart = false;
             GameManager.Instance.DataMNG.BattleOrderReplace();
 
-            StartCoroutine(CharUse());
+            //StartCoroutine(CharUse());
+            CharUse();
         }
     }
     //턴에 딜레이 주기(어떻게 줘야할까?)
-    IEnumerator CharUse()
+    //IEnumerator CharUse()
+    void CharUse()
     {
         List<Character> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
 
@@ -41,7 +43,7 @@ public class BattleManager : MonoBehaviour
         {
             BattleCharList[i].use();
 
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(1f);
         }
 
         TurnEnd();
@@ -49,7 +51,7 @@ public class BattleManager : MonoBehaviour
 
     void TurnEnd()
     {
-        PlayerMana.AddMana(2);
+        GameManager.Instance.DataMNG.AddMana(2);
         CanTurnStart = true;
     }
 }

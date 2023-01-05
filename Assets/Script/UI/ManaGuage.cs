@@ -8,23 +8,18 @@ public class ManaGuage : MonoBehaviour
     [SerializeField] Image ManaGauge;
     [SerializeField] Text ManaText;
 
-    const int MaxManaCost = 10;
-    [SerializeField] int ManaCost = 0;
-
     private void Start()
     {
-        ManaCost = 0;
-        AddMana(4);
+        GameManager.Instance.DataMNG.InitMana();
+        GameManager.Instance.DataMNG.AddMana(4);
     }
 
-    public void AddMana(int value)
+    private void Update()
     {
-        if (10 <= ManaCost + value)
-            ManaCost = 10;
-        else
-            ManaCost += value;
+        float MaxManaCost = (float)GameManager.Instance.DataMNG.MaxManaCost;
+        float ManaCost = (float)GameManager.Instance.DataMNG.ManaCost;
 
-        ManaGauge.fillAmount = (float)ManaCost / (float)MaxManaCost;
+        ManaGauge.fillAmount = ManaCost / MaxManaCost;
         ManaText.text = ManaCost.ToString();
     }
 }

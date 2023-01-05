@@ -25,7 +25,8 @@ public class Character : MonoBehaviour
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
-        Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
+
+        Tiles = GameManager.Instance.DataMNG.TileArray;
 
         Init();
         SetLotate();
@@ -87,7 +88,7 @@ public class Character : MonoBehaviour
     // 타일 위로 이동
     public void SetLotate()
     {
-        Vector3 vec = GameManager.Instance.BattleMNG.BattleField.GetTileLocate(LocX, LocY);
+        Vector3 vec = GameManager.Instance.DataMNG.GetTileLocate(LocX, LocY);
         transform.position = vec;
 
         // 현재 타일에 내가 들어왔다고 알려줌 

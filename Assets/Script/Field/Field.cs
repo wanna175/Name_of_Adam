@@ -11,58 +11,8 @@ public class Field : MonoBehaviour
 
     public Tile[,] TileArray = new Tile[MaxY, MaxX];
 
-    public void Init()
+    private void Awake()
     {
-        FieldSet();
-    }
-
-    void FieldSet()
-    {
-        Vector3 vec = transform.position;
-
-        float disX = transform.localScale.x / MaxX;
-        float disY = transform.localScale.y / MaxY;
-
-        for (int i = -1; i < 2; i++)
-        {
-            for (int j = -4; j < 4; j++)
-            {
-                float x = (disX * j) + (disX * 0.5f);
-                float y = disY * i;
-
-                GameObject tile = GameObject.Instantiate(TilePrefabs, gameObject.transform);
-                tile.transform.position = new Vector3(vec.x + x, vec.y + y);
-
-                TileArray[i + 1, j + 4] = tile.GetComponent<Tile>();
-                TileArray[i + 1, j + 4].GetLocate(i + 1, j + 4);
-            }
-        }
-        Debug.Log('a');
-        //transform.eulerAngles = new Vector3(30, 0, 0);
-    }
-
-    public Vector3 GetTileLocate(int x, int y)
-    {
-        //Debug.Log(TileArray);
-        Vector3 vec =TileArray[y, x].transform.position;
-
-        float sizeX = TileArray[y, x].transform.localScale.x * 0.5f;
-        float sizeY = TileArray[y, x].transform.localScale.y * 0.5f;
-
-        vec.x += sizeX;
-        vec.y += sizeY;
-
-        return vec;
-    }
-
-    public void CanSelectClear()
-    {
-        for(int i = 0; i < MaxY; i++)
-        {
-            for(int j = 0; j < MaxX; j++)
-            {
-                TileArray[i, j].SetCanSelect(false);
-            }
-        }
+        GameManager.Instance.DataMNG.FieldSet(transform, TilePrefabs);
     }
 }
