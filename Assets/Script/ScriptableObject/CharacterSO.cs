@@ -44,4 +44,6 @@ public class CharacterSO : ScriptableObject
         }
         return null;
     }
+
+    public int SkillLength() => skill.EffectList.Count;
 }

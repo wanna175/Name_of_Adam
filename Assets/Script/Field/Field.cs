@@ -5,14 +5,12 @@ using UnityEngine;
 public class Field : MonoBehaviour
 {
     [SerializeField] GameObject TilePrefabs;
-
-    const int MaxX = 8;
-    const int MaxY = 3;
-
-    public Tile[,] TileArray = new Tile[MaxY, MaxX];
-
+    
     private void Awake()
     {
         GameManager.Instance.DataMNG.FieldSet(transform, TilePrefabs);
+
+        transform.position = GameManager.Instance.DataMNG.FieldPosition;
+        transform.eulerAngles = new Vector3(30, 0, 0);
     }
 }

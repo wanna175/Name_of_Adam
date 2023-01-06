@@ -13,11 +13,6 @@ public enum EncountStage
 
 public class StageManager
 {
-    //#region StageSign
-    //[SerializeField] NextStageSign _StageSign;
-    //public NextStageSign StageSign => _StageSign;
-    //#endregion
-
     public EncountStage[] StageArray;
 
     // 이 데이터들을 어디에다가 관리할까?
@@ -64,9 +59,13 @@ public class StageManager
             for (int i = 0; i < encountElite; i++)
                 EncountList.Add(EncountStage.Elite);
         }
-        if (encountEvent < 2)
+        if (encountEvent <= 2)
         {
-            for (int i = 0; i < 2; i++)
+            int eve = 2;
+            if (flag == EncountStage.Event)
+                eve = 3;
+
+            for (int i = 0; i < eve; i++)
                 EncountList.Add(EncountStage.Event);
         }
         else
@@ -109,7 +108,12 @@ public class StageManager
     void StageInit(EncountStage stage)
     {
         // 새로 만들어지는 방의 정보
-        // 여기서 방을 생성
+
+        // 전 스테이지에서 사용된 데이터를 모두 초기화
+        GameManager.Instance.DataMNG.BattleCharList.Clear();
+
+        // 방 생성은 여기서? 아니면 배틀매니저에서?
+
         Debug.Log("Monster : " + encountMonster + ", Elite : " + encountElite + ", Event : " + encountEvent);
     }
 

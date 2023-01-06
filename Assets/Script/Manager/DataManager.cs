@@ -81,12 +81,14 @@ public class DataManager
     const int MaxFieldX = 8;
     const int MaxFieldY = 3;
 
-    public Tile[,] TileArray = new Tile[MaxFieldY, MaxFieldX];
+    Tile[,] _TileArray;
+    public Tile[,] TileArray => _TileArray;
 
+    public Vector3 FieldPosition => new Vector3(0, 2, 0);
 
     public void FieldSet(Transform trans, GameObject TilePrefabs)
     {
-        TileArray = new Tile[MaxFieldY, MaxFieldX];
+        _TileArray = new Tile[MaxFieldY, MaxFieldX];
 
         Vector3 vec = trans.position;
 
@@ -103,18 +105,19 @@ public class DataManager
                 GameObject tile = GameObject.Instantiate(TilePrefabs, trans);
                 tile.transform.position = new Vector3(vec.x + x, vec.y + y);
 
-                TileArray[i + 1, j + 4] = tile.GetComponent<Tile>();
-                TileArray[i + 1, j + 4].GetLocate(i + 1, j + 4);
+                _TileArray[i + 1, j + 4] = tile.GetComponent<Tile>();
+                _TileArray[i + 1, j + 4].Init();
+                _TileArray[i + 1, j + 4].GetLocate(i + 1, j + 4);
             }
         }
     }
 
     public Vector3 GetTileLocate(int x, int y)
     {
-        Vector3 vec = TileArray[y, x].transform.position;
+        Vector3 vec = _TileArray[y, x].transform.position;
 
-        float sizeX = TileArray[y, x].transform.localScale.x * 0.5f;
-        float sizeY = TileArray[y, x].transform.localScale.y * 0.5f;
+        float sizeX = _TileArray[y, x].transform.localScale.x * 0.5f;
+        float sizeY = _TileArray[y, x].transform.localScale.y * 0.5f;
 
         vec.x += sizeX;
         vec.y += sizeY;
@@ -128,7 +131,7 @@ public class DataManager
         {
             for (int j = 0; j < MaxFieldX; j++)
             {
-                TileArray[i, j].SetCanSelect(false);
+                _TileArray[i, j].SetCanSelect(false);
             }
         }
     }

@@ -7,14 +7,14 @@ public class Tile : MonoBehaviour
     SpriteRenderer SR;
 
     Character chara;
-    #region isOnTile
-    bool _isOnTile;
-    public bool isOnTile => _isOnTile;
-    #endregion
     #region Loc X, Y
     int _LocX, _LocY;
     public int LocX => _LocX;
     public int LocY => _LocY;
+    #endregion
+    #region isOnTile
+    bool _isOnTile;
+    public bool isOnTile => _isOnTile;
     #endregion
     public bool CanSelect = false;
 
@@ -25,6 +25,13 @@ public class Tile : MonoBehaviour
 
         _isOnTile = false;
         chara = null;
+    }
+
+    public void Init()
+    {
+        chara = null;
+        _isOnTile = false;
+        CanSelect = false;
     }
 
     public void GetLocate(int x, int y)
@@ -109,9 +116,12 @@ public class Tile : MonoBehaviour
 
         if (chara != null)
         {
+
             if (AttackChar.characterSO.team != chara.characterSO.team)
             {
+                GameManager.Instance.BattleMNG.BattleCutScene(transform.parent, AttackChar, chara);
                 chara.GetDamage(AttackChar.characterSO.stat.ATK);
+
             }
         }
 

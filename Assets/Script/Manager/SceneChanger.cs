@@ -9,10 +9,4 @@ public class SceneChanger
     {
         SceneManager.LoadScene(SceneName);
     }
-
-    public void LoadSceneAddtive(string SceneName)
-    {
-        SceneManager.LoadScene(SceneName, LoadSceneMode.Additive);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("SceneName"));
-    }
 }

@@ -11,7 +11,7 @@ enum AttackType
 [CreateAssetMenu(fileName = "Effect_Attack", menuName = "Scriptable Object/Effect_Attack", order = 3)]
 public class Effect_Attack : EffectSO
 {
-    [SerializeField] AttackType attackType; // ��� Ÿ��
+    [SerializeField] AttackType attackType;
     [SerializeField] RangeSO range;    // 공격 범위
     [SerializeField] float DMG;        // 데미지 배율
 
@@ -43,7 +43,7 @@ public class Effect_Attack : EffectSO
         {
             int x = (int)caster.SelectTile.x;
             int y = (int)caster.SelectTile.y;
-            Debug.Log(x + ", " + y);
+                
             // 공격 범위가 필드를 벗어나지 않은 경우 공격
             if(0 <= x && x < 8)
             {
