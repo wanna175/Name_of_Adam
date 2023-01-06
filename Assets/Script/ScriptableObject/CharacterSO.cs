@@ -26,7 +26,7 @@ public class CharacterSO : ScriptableObject
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
     [SerializeField] public int FallGauge;
-    [SerializeField] public bool IsFall;
+    [SerializeField] public bool Fall;
     [SerializeField] SkillSO skill;
 
     // 캐릭터의 스킬 사용

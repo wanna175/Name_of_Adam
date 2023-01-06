@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
 {
     SpriteRenderer SR;
     [SerializeField] public CharacterSO characterSO;
+    Stigma _stigma;
 
     Tile[,] Tiles;
 
@@ -25,6 +26,7 @@ public class Character : MonoBehaviour
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
+        _stigma = GetComponent<Stigma>();
         Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
 
         Init();
@@ -123,7 +125,15 @@ public class Character : MonoBehaviour
     }
     #endregion
 
+    public Stat GetStat(bool buff = true)
+    {
+        Stat stat = characterSO.stat;
 
+        if (buff == false)
+            return stat;
+
+        return _stigma.Use(stat);
+    }
 
     public void TileSelected(int x, int y) => SelectTile = new Vector2(x, y);
 
@@ -137,18 +147,21 @@ public class Character : MonoBehaviour
 
         gauge += value;
         if (gauge < 0) gauge = 0;
-        else if (gauge > maxGauge)
+        else if (gauge >= maxGauge)
         {
-            characterSO.IsFall = true;
-            if (characterSO.team == Team.Enemy)
-                characterSO.team = Team.Player;
-            else
-                characterSO.team = Team.Enemy;
+            Fall();
             gauge = 0;
         }
 
         characterSO.FallGauge = gauge;
+    }
 
-        Debug.Log($"Fall Gauge : {gauge}, Is Fall? : {characterSO.IsFall}");
+    public void Fall()
+    {
+        characterSO.Fall = true;
+        if (characterSO.team == Team.Enemy)
+            characterSO.team = Team.Player;
+        else
+            characterSO.team = Team.Enemy;
     }
 }
