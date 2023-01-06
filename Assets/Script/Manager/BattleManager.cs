@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ÀüÅõ¸¦ ´ã´çÇÏ´Â ¸Å´ÏÀú
-// ÇÊµå¿Í ÅÏÀÇ °ü¸®
-// ÇÊµå¿¡ ¿Ã¶ó¿ÍÀÖ´Â Ä³¸¯ÅÍÀÇ Á¦¾î¸¦ ¹èÆ²¸Å´ÏÀú¿¡¼­ ´ã´ç
+// ì „íˆ¬ë¥¼ ë‹´ë‹¹í•˜ëŠ” ë§¤ë‹ˆì €
+// í•„ë“œì™€ í„´ì˜ ê´€ë¦¬
+// í•„ë“œì— ì˜¬ë¼ì™€ìˆëŠ” ìºë¦­í„°ì˜ ì œì–´ë¥¼ ë°°í‹€ë§¤ë‹ˆì €ì—ì„œ ë‹´ë‹¹
 
 public class BattleManager : MonoBehaviour
 {
-    // ¸¶³ª UI
+    // ë§ˆë‚˜ UI
     [SerializeField] ManaGuage PlayerMana;
-    // ÀüÅõ°¡ ÁøÇàµÇ´Â ÇÊµå
+    // ì „íˆ¬ê°€ ì§„í–‰ë˜ëŠ” í•„ë“œ
     #region BattleField
     [SerializeField] Field _BattleField;
     public Field BattleField => _BattleField;
@@ -18,10 +18,10 @@ public class BattleManager : MonoBehaviour
 
     bool CanTurnStart = true;
 
-    // ½ºÅ³ÀÇ Å¸°Ù ÁöÁ¤À» À§ÇÑ ÀÓ½Ã º¯¼ö
+    // ìŠ¤í‚¬ì˜ íƒ€ê²Ÿ ì§€ì •ì„ ìœ„í•œ ì„ì‹œ ë³€ìˆ˜
     public Character SelectedChar;
 
-    // ÅÏ ÁøÇà
+    // í„´ ì§„í–‰
     public void TurnStart()
     {
         if (CanTurnStart)
@@ -32,7 +32,7 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(CharUse());
         }
     }
-    //ÅÏ¿¡ µô·¹ÀÌ ÁÖ±â(¾î¶»°Ô Áà¾ßÇÒ±î?)
+    //í„´ì— ë”œë ˆì´ ì£¼ê¸°(ì–´ë–»ê²Œ ì¤˜ì•¼í• ê¹Œ?)
     IEnumerator CharUse()
     {
         List<Character> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
@@ -51,5 +51,11 @@ public class BattleManager : MonoBehaviour
     {
         PlayerMana.AddMana(2);
         CanTurnStart = true;
+    }
+
+    //ë§ˆë‚˜ ì†Œëª¨
+    public bool UseMana(int value)
+    {
+        return PlayerMana.UseMana(value);
     }
 }

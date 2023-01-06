@@ -89,7 +89,11 @@ public class DataManager
     }
 
     public Character RandomChar() {
-        int randNum = Random.Range(0, DeckCharList.Count+1);
+        if (DeckCharList.Count == 0)
+        {
+            return null;
+        }
+        int randNum = Random.Range(0, DeckCharList.Count);
         
         Character ch = DeckCharList[randNum];
         DeckCharList.RemoveAt(randNum);

@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     public SceneChanger SceneChanger => _SceneChanger;
     #endregion
 
+    #region InputManager
+    [SerializeField] InputManager _inputMNG;
+    public InputManager InputMNG => _inputMNG;
+    #endregion
 
     void Awake()
     {
