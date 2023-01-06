@@ -86,7 +86,7 @@ public class DataManager
     public Tile[,] TileArray => _TileArray;
 
     // 필드의 생성을 위한 필드의 위치
-    public Vector3 FieldPosition => new Vector3(0, 2, 0);
+    public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
 
     // 필드 생성
     public void FieldSet(Transform trans, GameObject TilePrefabs)

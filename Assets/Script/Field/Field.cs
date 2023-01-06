@@ -12,6 +12,6 @@ public class Field : MonoBehaviour
         GameManager.Instance.DataMNG.FieldSet(transform, TilePrefabs);
 
         transform.position = GameManager.Instance.DataMNG.FieldPosition;
-        transform.eulerAngles = new Vector3(30, 0, 0);
+        transform.eulerAngles = new Vector3(16, 0, 0);
     }
 }
