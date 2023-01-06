@@ -15,6 +15,7 @@ public class StageManager
 {
     public EncountStage[] StageArray;
 
+    // 각 종류의 스테이지가 얼마나 남았는지 관리
     // 이 데이터들을 어디에다가 관리할까?
     public int encountMonster = 4;
     public int encountElite = 2;
@@ -26,6 +27,7 @@ public class StageManager
         return StageArray;
     }
 
+    // 등장할 수 있는 스테이지를 반환
     EncountStage CheckEncount()
     {
         EncountStage flag = new EncountStage();
@@ -40,6 +42,7 @@ public class StageManager
         return flag;
     }
 
+    // 등장 가능한 스테이지를 남은 갯수만큼 리스트에 넣고 반환
     public List<EncountStage> GetStage()
     {
         List<EncountStage> EncountList = new List<EncountStage>();
@@ -59,6 +62,7 @@ public class StageManager
             for (int i = 0; i < encountElite; i++)
                 EncountList.Add(EncountStage.Elite);
         }
+        // 이벤트는 등장가능 횟수를 모두 소모해도 계속 등장한다.
         if (encountEvent <= 2)
         {
             int eve = 2;
@@ -78,10 +82,12 @@ public class StageManager
         return EncountList;
     }
 
+    // 선택된 박스에 들어있는 스테이지로 진입
     public void StageSelect(int index)
     {
+        // 박스에 들어있는 스테이지를 encount에 할당
         EncountStage encount = GameManager.Instance.StageMNG.StageArray[index];
-
+        
         switch (encount)
         {
             case EncountStage.Monster:

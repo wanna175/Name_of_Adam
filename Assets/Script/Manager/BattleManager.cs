@@ -37,6 +37,7 @@ public class BattleManager : MonoBehaviour
     // 턴 진행
     public void TurnStart()
     {
+        // 턴 시작이 가능한 상태라면
         if (CanTurnStart)
         {
             CanTurnStart = false;
@@ -49,6 +50,7 @@ public class BattleManager : MonoBehaviour
     {
         List<Character> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
 
+        // 필드 위에 올라와있는 캐릭터들의 스킬을 순차적으로 사용한다
         for (int i = 0; i < BattleCharList.Count; i++)
         {
             if (BattleCharList[i] == null)
@@ -56,6 +58,9 @@ public class BattleManager : MonoBehaviour
 
             BattleCharList[i].use();
 
+            // 각 스킬의 사용시간은 0.5초로 가정
+            // 다음 캐릭터의 행동까지 대기시간은 0.5 X 이펙트 갯수
+            // 여기에 컷씬을 넣으려면 다른 식을 사용해야함
             yield return new WaitForSeconds(BattleCharList[i].characterSO.SkillLength() * 0.5f);
         }
 
@@ -72,15 +77,17 @@ public class BattleManager : MonoBehaviour
 
     #region CutScene
 
+    // 배틀 컷씬을 시작
     public void BattleCutScene(Transform ZoomLocation, Character AttackChar, Character HitChar)
     {
         // 줌 인, 줌 아웃하는데 들어가는 시간
-        float zoomTime = 0.5f;
+        float zoomTime = 0.2f;
 
         // 어느 캐릭터가 어느 방향에 있나 확인 후 각 위치에 할당
         Character LeftChar, RightChar;
 
         #region Set Char LR
+        // 왼쪽에 배치될 캐릭터와 오른쪽에 배치될 캐릭터를 구분
         if(AttackChar.LocX < HitChar.LocX)
         {
             LeftChar = AttackChar;
@@ -93,6 +100,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            // 둘이 x값이 같을 경우 플레이어쪽이 왼쪽으로
             if(AttackChar.characterSO.team == Team.Player)
             {
                 LeftChar = AttackChar;
@@ -124,6 +132,7 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(ZoomIn(CSData, zoomTime));
     }
     
+    // 화면 줌 인
     IEnumerator ZoomIn(CutSceneData CSData, float duration)
     {
         float time = 0;
@@ -139,6 +148,7 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PlayCutScene(CSData, duration));
     }
 
+    // 확대 후 컷씬
     IEnumerator PlayCutScene(CutSceneData CSData, float duration)
     {
         // 공격하고 모션바뀌고 기타 등등 여기서 처리
@@ -149,6 +159,7 @@ public class BattleManager : MonoBehaviour
 
     }
 
+    // 컷씬 후 화면 줌 아웃
     IEnumerator ZoomOut(CutSceneData CSData, float duration)
     {
         float time = 0;

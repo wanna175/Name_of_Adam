@@ -43,7 +43,13 @@ public class Effect_Attack : EffectSO
         {
             int x = (int)caster.SelectTile.x;
             int y = (int)caster.SelectTile.y;
-                
+
+            if(x == -1 && y == -1)
+            {
+                x = caster.LocX;
+                y = caster.LocY;
+            }
+
             // 공격 범위가 필드를 벗어나지 않은 경우 공격
             if(0 <= x && x < 8)
             {

@@ -19,7 +19,8 @@ public class Character : MonoBehaviour
     public int LocY => locY;
     #endregion
 
-    public Vector2 SelectTile;
+    Vector2 _SelectTile = new Vector2(-1, -1);
+    public Vector2 SelectTile => _SelectTile;
 
 
     void Start()
@@ -126,7 +127,7 @@ public class Character : MonoBehaviour
 
 
 
-    public void TileSelected(int x, int y) => SelectTile = new Vector2(x, y);
+    public void TileSelected(int x, int y) => _SelectTile = new Vector2(x, y);
 
     public int GetSpeed() => characterSO.stat.SPD;
 

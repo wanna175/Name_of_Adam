@@ -78,14 +78,17 @@ public class DataManager
 
     #region FieldData
 
+    // 필드의 최대 넓이
     const int MaxFieldX = 8;
     const int MaxFieldY = 3;
 
     Tile[,] _TileArray;
     public Tile[,] TileArray => _TileArray;
 
+    // 필드의 생성을 위한 필드의 위치
     public Vector3 FieldPosition => new Vector3(0, 2, 0);
 
+    // 필드 생성
     public void FieldSet(Transform trans, GameObject TilePrefabs)
     {
         _TileArray = new Tile[MaxFieldY, MaxFieldX];
@@ -112,6 +115,7 @@ public class DataManager
         }
     }
 
+    // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTileLocate(int x, int y)
     {
         Vector3 vec = _TileArray[y, x].transform.position;
