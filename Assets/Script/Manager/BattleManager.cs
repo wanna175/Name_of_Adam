@@ -3,41 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//ÄÆ¾À¿¡ »ç¿ëµÉ µ¥ÀÌÅÍ¸¦ ¸ğ¾ÆµĞ Å¬·¡½º
+//ì»·ì”¬ì— ì‚¬ìš©ë  ë°ì´í„°ë¥¼ ëª¨ì•„ë‘” í´ë˜ìŠ¤
 class CutSceneData
 {
-    // È®´ë ÇÒ ´ë»ó
+    // í™•ëŒ€ í•  ëŒ€ìƒ
     public Vector3 ZoomLocation;
-    // ¾ó¸¶³ª ÁÜÇÒ °ÍÀÎÁö
+    // ì–¼ë§ˆë‚˜ ì¤Œí•  ê²ƒì¸ì§€
     public float DefaultZoomSize = 60;
     public float ZoomSize;
-    // ¾î´À Ä³¸¯ÅÍ°¡ ¾î´À À§Ä¡¿¡ ÀÖ´ÂÁö
+    // ì–´ëŠ ìºë¦­í„°ê°€ ì–´ëŠ ìœ„ì¹˜ì— ìˆëŠ”ì§€
     public Character LeftChar;
     public Character RightChar;
-    // ¾î´À Ä³¸¯ÅÍ°¡ °ø°İÀÚÀÎÁö
+    // ì–´ëŠ ìºë¦­í„°ê°€ ê³µê²©ìì¸ì§€
     public Character AttackChar;
     public Character HitChar;
 }
 
-// ÀüÅõ¸¦ ´ã´çÇÏ´Â ¸Å´ÏÀú
-// ÇÊµå¿Í ÅÏÀÇ °ü¸®
-// ÇÊµå¿¡ ¿Ã¶ó¿ÍÀÖ´Â Ä³¸¯ÅÍÀÇ Á¦¾î¸¦ ¹èÆ²¸Å´ÏÀú¿¡¼­ ´ã´ç
+// ì „íˆ¬ë¥¼ ë‹´ë‹¹í•˜ëŠ” ë§¤ë‹ˆì €
+// í•„ë“œì™€ í„´ì˜ ê´€ë¦¬
+// í•„ë“œì— ì˜¬ë¼ì™€ìˆëŠ” ìºë¦­í„°ì˜ ì œì–´ë¥¼ ë°°í‹€ë§¤ë‹ˆì €ì—ì„œ ë‹´ë‹¹
 
 public class BattleManager : MonoBehaviour
 {
-    // ÅÏ ½ÃÀÛÀÌ °¡´ÉÇÑ »óÅÂÀÎ°¡?
+    // í„´ ì‹œì‘ì´ ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€?
     bool CanTurnStart = true;
-    // ÄÆ¾ÀÀÌ ½ÇÇàÁßÀÎ°¡?
+    // ì»·ì”¬ì´ ì‹¤í–‰ì¤‘ì¸ê°€?
     bool isCutScene = false;
 
-    // ½ºÅ³ÀÇ Å¸°Ù ÁöÁ¤À» À§ÇÑ ÀÓ½Ã º¯¼ö
+    // ìŠ¤í‚¬ì˜ íƒ€ê²Ÿ ì§€ì •ì„ ìœ„í•œ ì„ì‹œ ë³€ìˆ˜
     public Character SelectedChar;
 
     #region TurnFlow
-    // ÅÏ ÁøÇà
+    // í„´ ì§„í–‰
     public void TurnStart()
     {
-        // ÅÏ ½ÃÀÛÀÌ °¡´ÉÇÑ »óÅÂ¶ó¸é
+        // í„´ ì‹œì‘ì´ ê°€ëŠ¥í•œ ìƒíƒœë¼ë©´
         if (CanTurnStart)
         {
             CanTurnStart = false;
@@ -50,7 +50,7 @@ public class BattleManager : MonoBehaviour
     {
         List<Character> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
 
-        // ÇÊµå À§¿¡ ¿Ã¶ó¿ÍÀÖ´Â Ä³¸¯ÅÍµéÀÇ ½ºÅ³À» ¼øÂ÷ÀûÀ¸·Î »ç¿ëÇÑ´Ù
+        // í•„ë“œ ìœ„ì— ì˜¬ë¼ì™€ìˆëŠ” ìºë¦­í„°ë“¤ì˜ ìŠ¤í‚¬ì„ ìˆœì°¨ì ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤
         for (int i = 0; i < BattleCharList.Count; i++)
         {
             if (BattleCharList[i] == null)
@@ -58,9 +58,9 @@ public class BattleManager : MonoBehaviour
 
             BattleCharList[i].use();
 
-            // °¢ ½ºÅ³ÀÇ »ç¿ë½Ã°£Àº 0.5ÃÊ·Î °¡Á¤
-            // ´ÙÀ½ Ä³¸¯ÅÍÀÇ Çàµ¿±îÁö ´ë±â½Ã°£Àº 0.5 X ÀÌÆåÆ® °¹¼ö
-            // ¿©±â¿¡ ÄÆ¾ÀÀ» ³ÖÀ¸·Á¸é ´Ù¸¥ ½ÄÀ» »ç¿ëÇØ¾ßÇÔ
+            // ê° ìŠ¤í‚¬ì˜ ì‚¬ìš©ì‹œê°„ì€ 0.5ì´ˆë¡œ ê°€ì •
+            // ë‹¤ìŒ ìºë¦­í„°ì˜ í–‰ë™ê¹Œì§€ ëŒ€ê¸°ì‹œê°„ì€ 0.5 X ì´í™íŠ¸ ê°¯ìˆ˜
+            // ì—¬ê¸°ì— ì»·ì”¬ì„ ë„£ìœ¼ë ¤ë©´ ë‹¤ë¥¸ ì‹ì„ ì‚¬ìš©í•´ì•¼í•¨
             yield return new WaitForSeconds(BattleCharList[i].characterSO.SkillLength() * 0.5f);
         }
 
@@ -77,17 +77,17 @@ public class BattleManager : MonoBehaviour
 
     #region CutScene
 
-    // ¹èÆ² ÄÆ¾ÀÀ» ½ÃÀÛ
+    // ë°°í‹€ ì»·ì”¬ì„ ì‹œì‘
     public void BattleCutScene(Transform ZoomLocation, Character AttackChar, Character HitChar)
     {
-        // ÁÜ ÀÎ, ÁÜ ¾Æ¿ôÇÏ´Âµ¥ µé¾î°¡´Â ½Ã°£
+        // ì¤Œ ì¸, ì¤Œ ì•„ì›ƒí•˜ëŠ”ë° ë“¤ì–´ê°€ëŠ” ì‹œê°„
         float zoomTime = 0.2f;
 
-        // ¾î´À Ä³¸¯ÅÍ°¡ ¾î´À ¹æÇâ¿¡ ÀÖ³ª È®ÀÎ ÈÄ °¢ À§Ä¡¿¡ ÇÒ´ç
+        // ì–´ëŠ ìºë¦­í„°ê°€ ì–´ëŠ ë°©í–¥ì— ìˆë‚˜ í™•ì¸ í›„ ê° ìœ„ì¹˜ì— í• ë‹¹
         Character LeftChar, RightChar;
 
         #region Set Char LR
-        // ¿ŞÂÊ¿¡ ¹èÄ¡µÉ Ä³¸¯ÅÍ¿Í ¿À¸¥ÂÊ¿¡ ¹èÄ¡µÉ Ä³¸¯ÅÍ¸¦ ±¸ºĞ
+        // ì™¼ìª½ì— ë°°ì¹˜ë  ìºë¦­í„°ì™€ ì˜¤ë¥¸ìª½ì— ë°°ì¹˜ë  ìºë¦­í„°ë¥¼ êµ¬ë¶„
         if(AttackChar.LocX < HitChar.LocX)
         {
             LeftChar = AttackChar;
@@ -100,7 +100,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            // µÑÀÌ x°ªÀÌ °°À» °æ¿ì ÇÃ·¹ÀÌ¾îÂÊÀÌ ¿ŞÂÊÀ¸·Î
+            // ë‘˜ì´ xê°’ì´ ê°™ì„ ê²½ìš° í”Œë ˆì´ì–´ìª½ì´ ì™¼ìª½ìœ¼ë¡œ
             if(AttackChar.characterSO.team == Team.Player)
             {
                 LeftChar = AttackChar;
@@ -121,7 +121,7 @@ public class BattleManager : MonoBehaviour
         CSData.ZoomLocation = ZoomLocation.position;
         CSData.ZoomLocation.z = Camera.main.transform.position.z;
         CSData.DefaultZoomSize = Camera.main.fieldOfView;
-        CSData.ZoomSize = 30; // ¾ê´Â ³ªÁß¿¡ À¯µ¿ÀûÀ¸·Î ¹Ş±â
+        CSData.ZoomSize = 30; // ì–˜ëŠ” ë‚˜ì¤‘ì— ìœ ë™ì ìœ¼ë¡œ ë°›ê¸°
         CSData.LeftChar = LeftChar;
         CSData.RightChar = RightChar;
         CSData.AttackChar = AttackChar;
@@ -132,7 +132,7 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(ZoomIn(CSData, zoomTime));
     }
     
-    // È­¸é ÁÜ ÀÎ
+    // í™”ë©´ ì¤Œ ì¸
     IEnumerator ZoomIn(CutSceneData CSData, float duration)
     {
         float time = 0;
@@ -148,10 +148,10 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PlayCutScene(CSData, duration));
     }
 
-    // È®´ë ÈÄ ÄÆ¾À
+    // í™•ëŒ€ í›„ ì»·ì”¬
     IEnumerator PlayCutScene(CutSceneData CSData, float duration)
     {
-        // °ø°İÇÏ°í ¸ğ¼Ç¹Ù²î°í ±âÅ¸ µîµî ¿©±â¼­ Ã³¸®
+        // ê³µê²©í•˜ê³  ëª¨ì…˜ë°”ë€Œê³  ê¸°íƒ€ ë“±ë“± ì—¬ê¸°ì„œ ì²˜ë¦¬
 
         yield return new WaitForSeconds(1);
 
@@ -159,7 +159,7 @@ public class BattleManager : MonoBehaviour
 
     }
 
-    // ÄÆ¾À ÈÄ È­¸é ÁÜ ¾Æ¿ô
+    // ì»·ì”¬ í›„ í™”ë©´ ì¤Œ ì•„ì›ƒ
     IEnumerator ZoomOut(CutSceneData CSData, float duration)
     {
         float time = 0;

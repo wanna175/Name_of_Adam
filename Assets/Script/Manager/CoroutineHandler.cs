@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// MonoBehavior°¡ ¾ø´Â Å¬·¡½ºµµ ÄÚ·çÆ¾À» »ç¿ëÇÒ ¼ö ÀÖ°Ô Áö¿øÇÏ´Â Å¬·¡½º
+// MonoBehaviorê°€ ì—†ëŠ” í´ë˜ìŠ¤ë„ ì½”ë£¨í‹´ì„ ì‚¬ìš©í•  ìˆ˜ ìˆê²Œ ì§€ì›í•˜ëŠ” í´ë˜ìŠ¤
 public class CoroutineHandler : MonoBehaviour
 {
     IEnumerator enumerator = null;
@@ -13,7 +13,7 @@ public class CoroutineHandler : MonoBehaviour
     {
         enumerator = coro;
 
-        // Àü´Ş¹ŞÀº ÄÚ·çÆ¾°ú ÀÌ °´Ã¼¸¦ ÆÄ±«ÇÏ±â À§ÇÑ ÄÚ·çÆ¾À» »ı¼º
+        // ì „ë‹¬ë°›ì€ ì½”ë£¨í‹´ê³¼ ì´ ê°ì²´ë¥¼ íŒŒê´´í•˜ê¸° ìœ„í•œ ì½”ë£¨í‹´ì„ ìƒì„±
         StartCoroutine(coro);
         StartCoroutine(StopCoroutine(delay));
     }
@@ -37,14 +37,14 @@ public class CoroutineHandler : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Áö¼Ó½Ã°£ÀÌ ´Ù µÇ¸é ÀÌ °´Ã¼¸¦ ÆÄ±«ÇÒ ¼ö ÀÖ°Ô ¸¸µê
+    // ì§€ì†ì‹œê°„ì´ ë‹¤ ë˜ë©´ ì´ ê°ì²´ë¥¼ íŒŒê´´í•  ìˆ˜ ìˆê²Œ ë§Œë“¦
     IEnumerator StopCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
         isActive = false;
     }
     
-    // ½ÃÀÛÇÒ ÄÚ·çÆ¾°ú ±× ÄÚ·çÆ¾ÀÇ Áö¼Ó½Ã°£À» ÀÎÀÚ·Î Àü´Ş
+    // ì‹œì‘í•  ì½”ë£¨í‹´ê³¼ ê·¸ ì½”ë£¨í‹´ì˜ ì§€ì†ì‹œê°„ì„ ì¸ìë¡œ ì „ë‹¬
     public static CoroutineHandler Start_Coroutine(IEnumerator coro, float delay)
     {
         GameObject obj = new GameObject("CoroutineHandler");

@@ -15,6 +15,7 @@ public class Effect_Attack : EffectSO
     [SerializeField] RangeSO range;    // 공격 범위
     [SerializeField] float DMG;        // 데미지 배율
 
+
     // 공격 실행
     public override void Effect(Character caster)
     {

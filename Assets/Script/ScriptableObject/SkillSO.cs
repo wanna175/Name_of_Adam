@@ -9,7 +9,7 @@ public class SkillSO : ScriptableObject
     [SerializeField] public List<EffectSO> EffectList;
     //public List<EffectSO> EffectList => _EffectList;
 
-    // ÀÌÆåÆ®¸®½ºÆ® ¾ÈÀÇ ÀÌÆåÆ®µéÀ» ¼ø¼­´ë·Î ½ÇÇà
+    // ì´í™íŠ¸ë¦¬ìŠ¤íŠ¸ ì•ˆì˜ ì´í™íŠ¸ë“¤ì„ ìˆœì„œëŒ€ë¡œ ì‹¤í–‰
     public void use(Character ch)
     {
         CoroutineHandler.Start_Coroutine(EffectUse(ch), EffectList.Count * 0.5f);

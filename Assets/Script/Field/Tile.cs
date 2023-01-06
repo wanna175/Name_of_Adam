@@ -18,6 +18,7 @@ public class Tile : MonoBehaviour
     #endregion
     public bool CanSelect = false;
 
+
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();

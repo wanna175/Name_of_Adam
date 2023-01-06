@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    SpriteRenderer SR;
     [SerializeField] public CharacterSO characterSO;
+    SpriteRenderer SR;
 
     Tile[,] Tiles;
 

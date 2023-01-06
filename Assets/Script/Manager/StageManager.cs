@@ -15,8 +15,8 @@ public class StageManager
 {
     public EncountStage[] StageArray;
 
-    // °¢ Á¾·ùÀÇ ½ºÅ×ÀÌÁö°¡ ¾ó¸¶³ª ³²¾Ò´ÂÁö °ü¸®
-    // ÀÌ µ¥ÀÌÅÍµéÀ» ¾îµğ¿¡´Ù°¡ °ü¸®ÇÒ±î?
+    // ê° ì¢…ë¥˜ì˜ ìŠ¤í…Œì´ì§€ê°€ ì–¼ë§ˆë‚˜ ë‚¨ì•˜ëŠ”ì§€ ê´€ë¦¬
+    // ì´ ë°ì´í„°ë“¤ì„ ì–´ë””ì—ë‹¤ê°€ ê´€ë¦¬í• ê¹Œ?
     public int encountMonster = 4;
     public int encountElite = 2;
     public int encountEvent = 4;
@@ -27,7 +27,7 @@ public class StageManager
         return StageArray;
     }
 
-    // µîÀåÇÒ ¼ö ÀÖ´Â ½ºÅ×ÀÌÁö¸¦ ¹İÈ¯
+    // ë“±ì¥í•  ìˆ˜ ìˆëŠ” ìŠ¤í…Œì´ì§€ë¥¼ ë°˜í™˜
     EncountStage CheckEncount()
     {
         EncountStage flag = new EncountStage();
@@ -42,7 +42,7 @@ public class StageManager
         return flag;
     }
 
-    // µîÀå °¡´ÉÇÑ ½ºÅ×ÀÌÁö¸¦ ³²Àº °¹¼ö¸¸Å­ ¸®½ºÆ®¿¡ ³Ö°í ¹İÈ¯
+    // ë“±ì¥ ê°€ëŠ¥í•œ ìŠ¤í…Œì´ì§€ë¥¼ ë‚¨ì€ ê°¯ìˆ˜ë§Œí¼ ë¦¬ìŠ¤íŠ¸ì— ë„£ê³  ë°˜í™˜
     public List<EncountStage> GetStage()
     {
         List<EncountStage> EncountList = new List<EncountStage>();
@@ -62,7 +62,7 @@ public class StageManager
             for (int i = 0; i < encountElite; i++)
                 EncountList.Add(EncountStage.Elite);
         }
-        // ÀÌº¥Æ®´Â µîÀå°¡´É È½¼ö¸¦ ¸ğµÎ ¼Ò¸ğÇØµµ °è¼Ó µîÀåÇÑ´Ù.
+        // ì´ë²¤íŠ¸ëŠ” ë“±ì¥ê°€ëŠ¥ íšŸìˆ˜ë¥¼ ëª¨ë‘ ì†Œëª¨í•´ë„ ê³„ì† ë“±ì¥í•œë‹¤.
         if (encountEvent <= 2)
         {
             int eve = 2;
@@ -82,10 +82,10 @@ public class StageManager
         return EncountList;
     }
 
-    // ¼±ÅÃµÈ ¹Ú½º¿¡ µé¾îÀÖ´Â ½ºÅ×ÀÌÁö·Î ÁøÀÔ
+    // ì„ íƒëœ ë°•ìŠ¤ì— ë“¤ì–´ìˆëŠ” ìŠ¤í…Œì´ì§€ë¡œ ì§„ì…
     public void StageSelect(int index)
     {
-        // ¹Ú½º¿¡ µé¾îÀÖ´Â ½ºÅ×ÀÌÁö¸¦ encount¿¡ ÇÒ´ç
+        // ë°•ìŠ¤ì— ë“¤ì–´ìˆëŠ” ìŠ¤í…Œì´ì§€ë¥¼ encountì— í• ë‹¹
         EncountStage encount = GameManager.Instance.StageMNG.StageArray[index];
         
         switch (encount)
@@ -113,12 +113,12 @@ public class StageManager
 
     void StageInit(EncountStage stage)
     {
-        // »õ·Î ¸¸µé¾îÁö´Â ¹æÀÇ Á¤º¸
+        // ìƒˆë¡œ ë§Œë“¤ì–´ì§€ëŠ” ë°©ì˜ ì •ë³´
 
-        // Àü ½ºÅ×ÀÌÁö¿¡¼­ »ç¿ëµÈ µ¥ÀÌÅÍ¸¦ ¸ğµÎ ÃÊ±âÈ­
+        // ì „ ìŠ¤í…Œì´ì§€ì—ì„œ ì‚¬ìš©ëœ ë°ì´í„°ë¥¼ ëª¨ë‘ ì´ˆê¸°í™”
         GameManager.Instance.DataMNG.BattleCharList.Clear();
 
-        // ¹æ »ı¼ºÀº ¿©±â¼­? ¾Æ´Ï¸é ¹èÆ²¸Å´ÏÀú¿¡¼­?
+        // ë°© ìƒì„±ì€ ì—¬ê¸°ì„œ? ì•„ë‹ˆë©´ ë°°í‹€ë§¤ë‹ˆì €ì—ì„œ?
 
         Debug.Log("Monster : " + encountMonster + ", Elite : " + encountElite + ", Event : " + encountEvent);
     }

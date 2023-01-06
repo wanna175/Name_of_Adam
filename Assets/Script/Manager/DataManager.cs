@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DataManager
 {
-    // ÀüÅõ¸¦ ÁøÇàÁßÀÎ Ä³¸¯ÅÍ°¡ µé¾îÀÖ´Â ¸®½ºÆ®
+    // ì „íˆ¬ë¥¼ ì§„í–‰ì¤‘ì¸ ìºë¦­í„°ê°€ ë“¤ì–´ìˆëŠ” ë¦¬ìŠ¤íŠ¸
     #region BattleCharList
 
     #region BattleCharList  
@@ -12,7 +12,7 @@ public class DataManager
     public List<Character> BattleCharList => _BattleCharList;
     #endregion  
 
-    // ¸®½ºÆ®¿¡ Ä³¸¯ÅÍ¸¦ Ãß°¡ / Á¦°Å
+    // ë¦¬ìŠ¤íŠ¸ì— ìºë¦­í„°ë¥¼ ì¶”ê°€ / ì œê±°
     #region CharEnter / Exit
     public void BCL_CharEnter(Character ch)
     {
@@ -31,7 +31,7 @@ public class DataManager
         BCL_SpeedSort();
     }
 
-    // ÀÏ´Ü ¼±ÅÃ Á¤·ÄÀ¸·Î Á¤·Ä, ³ªÁß¿¡ ¹Ù²Ù±â
+    // ì¼ë‹¨ ì„ íƒ ì •ë ¬ìœ¼ë¡œ ì •ë ¬, ë‚˜ì¤‘ì— ë°”ê¾¸ê¸°
     void BCL_SpeedSort()
     {
         for (int i = 0; i < BattleCharList.Count; i++)
@@ -78,17 +78,17 @@ public class DataManager
 
     #region FieldData
 
-    // ÇÊµåÀÇ ÃÖ´ë ³ĞÀÌ
+    // í•„ë“œì˜ ìµœëŒ€ ë„“ì´
     const int MaxFieldX = 8;
     const int MaxFieldY = 3;
 
     Tile[,] _TileArray;
     public Tile[,] TileArray => _TileArray;
 
-    // ÇÊµåÀÇ »ı¼ºÀ» À§ÇÑ ÇÊµåÀÇ À§Ä¡
+    // í•„ë“œì˜ ìƒì„±ì„ ìœ„í•œ í•„ë“œì˜ ìœ„ì¹˜
     public Vector3 FieldPosition => new Vector3(0, 2, 0);
 
-    // ÇÊµå »ı¼º
+    // í•„ë“œ ìƒì„±
     public void FieldSet(Transform trans, GameObject TilePrefabs)
     {
         _TileArray = new Tile[MaxFieldY, MaxFieldX];
@@ -115,7 +115,7 @@ public class DataManager
         }
     }
 
-    // ÁöÁ¤ÇÑ À§Ä¡¿¡ ÀÖ´Â Å¸ÀÏÀÇ ÁÂÇ¥¸¦ ¹İÈ¯
+    // ì§€ì •í•œ ìœ„ì¹˜ì— ìˆëŠ” íƒ€ì¼ì˜ ì¢Œí‘œë¥¼ ë°˜í™˜
     public Vector3 GetTileLocate(int x, int y)
     {
         Vector3 vec = _TileArray[y, x].transform.position;

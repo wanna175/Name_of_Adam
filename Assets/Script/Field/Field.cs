@@ -6,6 +6,7 @@ public class Field : MonoBehaviour
 {
     [SerializeField] GameObject TilePrefabs;
     
+
     private void Awake()
     {
         GameManager.Instance.DataMNG.FieldSet(transform, TilePrefabs);
