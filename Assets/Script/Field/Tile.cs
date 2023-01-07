@@ -62,6 +62,35 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log(LocX + ", " + LocY);
+        //핸드를 누르고 타일을 누를 때
+        if (GameManager.Instance.InputMNG.ClickedHand != 0)
+        {
+            //범위 외
+            if (LocX > 3 && LocY > 2) {
+                Debug.Log("out of range");
+            }
+            else
+            {
+                if (GameManager.Instance.BattleMNG.UseMana(2))
+                {
+                    //조건문이 참이라면 이미 마나가 소모됨
+                    GameManager.Instance.InputMNG.ClickedChar.setLocate(LocX, LocY);
+
+                    Instantiate(GameManager.Instance.InputMNG.ClickedChar);
+                    
+                    GameManager.Instance.InputMNG.DeleteHand(GameManager.Instance.InputMNG.ClickedHand);
+                    GameManager.Instance.InputMNG.ClearHand();
+
+                    GameManager.Instance.DataMNG.BattleCharList.Add(GameManager.Instance.InputMNG.ClickedChar);
+                }
+                else
+                {
+                //마나 부족
+                Debug.Log("not enough mana");
+                }
+            }
+        }
+
         if (CanSelect)
         {
             GameManager.Instance.BattleMNG.BattleField.CanSelectClear();

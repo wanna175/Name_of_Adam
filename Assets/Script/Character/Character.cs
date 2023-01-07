@@ -61,6 +61,12 @@ public class Character : MonoBehaviour
 
     #region Character Move
 
+    //오브젝트 생성 이전, 최초 위치 설정
+    public void setLocate(int x, int y) {
+        locX = x;
+        locY = y;
+    }
+
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
