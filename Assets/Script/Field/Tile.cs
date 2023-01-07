@@ -111,7 +111,8 @@ public class Tile : MonoBehaviour
         {
             if (AttackChar.characterSO.team != chara.characterSO.team)
             {
-                chara.GetDamage(AttackChar.characterSO.stat.ATK);
+                chara.GetDamage(AttackChar.GetStat().ATK);
+                Debug.Log($"{AttackChar.gameObject.name}' ATK : {AttackChar.GetStat().ATK}");
             }
         }
 
@@ -135,7 +136,7 @@ public class Tile : MonoBehaviour
         {
             if (AttackChar.characterSO.team == chara.characterSO.team)
             {
-                chara.GetDamage(-AttackChar.characterSO.stat.ATK);
+                chara.GetDamage(-AttackChar.GetStat().ATK);
             }
         }
 
