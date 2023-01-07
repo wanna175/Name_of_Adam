@@ -14,7 +14,7 @@ public class Effect_Fall : EffectSO
     {
         float CharATK = caster.characterSO.stat.ATK;
 
-        Tile[,] Tiles = GameManager.Instance.DataMNG.TileArray;
+        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.TileArray;
 
         List<Vector2> RangeList = GetRange();
 
@@ -29,7 +29,7 @@ public class Effect_Fall : EffectSO
             {
                 if (0 <= y && y < 3)
                 {
-                    Tiles[y, x].OnFall(caster);
+                    Tiles[y][x].OnFall(caster);
                 }
             }
         }

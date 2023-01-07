@@ -23,19 +23,4 @@ public class ManaGuage : MonoBehaviour
         ManaText.text = ManaCost.ToString();
     }
 
-    public bool UseMana(int value)
-    {
-        if (ManaCost >= value)
-        {
-            ManaCost -= value;
-            ManaGauge.fillAmount = (float)ManaCost / (float)MaxManaCost;
-            ManaText.text = ManaCost.ToString();
-        
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }

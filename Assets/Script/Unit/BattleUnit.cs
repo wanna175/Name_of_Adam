@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
 {
-    [SerializeField] public CharacterSO characterSO;
+    [SerializeField] public BattleUnitSO characterSO;
     SpriteRenderer SR;
     Stigma _stigma;
 
@@ -27,9 +27,7 @@ public class BattleUnit : MonoBehaviour
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
-        DataMNG = GameManager.Instance.DataMNG;
         _stigma = GetComponent<Stigma>();
-        Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
 
         Init();
         SetLotate();
@@ -72,7 +70,7 @@ public class BattleUnit : MonoBehaviour
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
-        DataMNG.EnterTile(GetComponent<BattleUnit>(), LocX, LocY);
+        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.EnterTile(GetComponent<BattleUnit>(), LocX, LocY);
 
         int dumpX = locX;
         int dumpY = locY;
@@ -84,7 +82,7 @@ public class BattleUnit : MonoBehaviour
             dumpY += y;
 
         // 이동할 곳이 비어있지 않다면 이동하지 않음
-        if(!Tiles[dumpY, dumpX].isOnTile)
+        if (!GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.GetIsOnTile(dumpX, dumpY))
         {
             locX = dumpX;
             locY = dumpY;
@@ -97,11 +95,11 @@ public class BattleUnit : MonoBehaviour
     // 타일 위로 이동
     public void SetLotate()
     {
-        Vector3 vec = GameManager.Instance.DataMNG.GetTileLocate(LocX, LocY);
+        Vector3 vec = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.GetTileLocate(LocX, LocY);
         transform.position = vec;
 
         // 현재 타일에 내가 들어왔다고 알려줌 
-        Tiles[LocY, LocX].EnterTile(GetComponent<BattleUnit>());
+        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.EnterTile(GetComponent<BattleUnit>(), LocX, LocY);
     }
     #endregion
 
@@ -126,7 +124,7 @@ public class BattleUnit : MonoBehaviour
         {
             // 죽었을 때 처리할 것들
             GameManager.Instance.DataMNG.BCL_CharExit(GetComponent<BattleUnit>());
-            Tiles[LocY, LocX].ExitTile();
+            GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.ExitTile(LocX, LocY);
 
             Destroy(gameObject);
         }

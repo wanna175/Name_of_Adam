@@ -26,11 +26,11 @@ class CutSceneData
 
 public class BattleManager : MonoBehaviour
 {
-    // 전투가 진행되는 필드
-    #region BattleField
-    [SerializeField] Field _BattleField;
-    public Field BattleField => _BattleField;
+    #region BattleDataManager
+    private BattleDataManager _BattleDataMNG;
+    public BattleDataManager BattleDataMNG;
     #endregion
+
     // 턴 시작이 가능한 상태인가?
     bool CanTurnStart = true;
     // 컷씬이 실행중인가?
@@ -38,6 +38,12 @@ public class BattleManager : MonoBehaviour
 
     // 스킬의 타겟 지정을 위한 임시 변수
     public BattleUnit SelectedChar;
+
+    private void Awake()
+    {
+        BattleDataMNG = new BattleDataManager();
+        BattleDataMNG.Init();
+    }
 
     #region TurnFlow
     // 턴 진행
@@ -188,6 +194,6 @@ public class BattleManager : MonoBehaviour
     //마나 소모
     public bool UseMana(int value)
     {
-        return PlayerMana.UseMana(value);
+        return GameManager.Instance.DataMNG.UseMana(value);
     }
 }

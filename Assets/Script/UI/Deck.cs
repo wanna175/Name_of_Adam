@@ -36,10 +36,10 @@ public class Deck : MonoBehaviour
             }
         }
     }
-    public Character HandDel(int handIndex)
+    public BattleUnit HandDel(int handIndex)
     {
         //handIndex는 1부터 시작하기에 -1 해야함
-        Character returnChar;
+        BattleUnit returnChar;
 
         returnChar = HandList[handIndex-1].DelCharacter();
 

@@ -20,7 +20,7 @@ public enum Team
 }
 
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
-public class CharacterSO : ScriptableObject
+public class BattleUnitSO : ScriptableObject
 {
     [SerializeField] public Team team;
     [SerializeField] public Sprite sprite;
