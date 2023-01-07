@@ -9,9 +9,9 @@ public class InputManager : MonoBehaviour
     
     #region Deck
     public int ClickedHand = 0;
-    public Character ClickedChar = null;
+    public BattleUnit ClickedChar = null;
 
-    public void setHand(int handIndex, Character ch)
+    public void setHand(int handIndex, BattleUnit ch)
     {
         ClickedHand = handIndex;
         ClickedChar = ch;

@@ -17,10 +17,10 @@ public class StigmaSO : ScriptableObject
     [SerializeField] StatType Type;
     [SerializeField] int Value;
 
-    public void Use(Character chara)
+    public void Use(BattleUnit unit)
     {
         foreach (EffectSO effect in Effects)
-            effect.Effect(chara);
+            effect.Effect(unit);
     }
 
     public Stat Use(Stat stat)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Test_CharacterAdder : MonoBehaviour
 {
-    [SerializeField] Character add;
+    [SerializeField] BattleUnit add;
 
     void OnMouseDown()
     {

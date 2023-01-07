@@ -8,14 +8,14 @@ public class Hand : MonoBehaviour
 
     SpriteRenderer SR;
 
-    public Character HandChar = null;
+    public BattleUnit HandChar = null;
 
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
     }
 
-    public void SetCharacter(Character ch)
+    public void SetCharacter(BattleUnit ch)
     {
         Debug.Log("Hand " + handIndex + " set");
         HandChar = ch;
@@ -27,10 +27,10 @@ public class Hand : MonoBehaviour
 
     }
 
-    public Character DelCharacter()
+    public BattleUnit DelCharacter()
     {
         Debug.Log("Hand " + handIndex + " clear");
-        Character returnChar = HandChar;
+        BattleUnit returnChar = HandChar;
         HandChar = null;
         
         GetComponent<Renderer>().enabled = false;
