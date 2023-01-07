@@ -174,4 +174,31 @@ public class DataManager
     }
 
     #endregion
+
+    #region DeckCharList
+    List<Character> _DeckCharList = new List<Character>();
+    public List<Character> DeckCharList => _DeckCharList;
+
+    public void AddCharToDeck(Character ch) {
+        DeckCharList.Add(ch);
+    }
+
+    public void RemoveCharFromDeck(Character ch) {
+        DeckCharList.Remove(ch);
+    }
+
+    public Character RandomChar() {
+        if (DeckCharList.Count == 0)
+        {
+            return null;
+        }
+        int randNum = Random.Range(0, DeckCharList.Count);
+        
+        Character ch = DeckCharList[randNum];
+        DeckCharList.RemoveAt(randNum);
+
+        return ch;
+    }
+    
+    #endregion
 }

@@ -19,12 +19,18 @@ class CutSceneData
     public BattleUnit HitChar;
 }
 
+
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
 // 필드에 올라와있는 캐릭터의 제어를 배틀매니저에서 담당
 
 public class BattleManager : MonoBehaviour
 {
+    // 전투가 진행되는 필드
+    #region BattleField
+    [SerializeField] Field _BattleField;
+    public Field BattleField => _BattleField;
+    #endregion
     // 턴 시작이 가능한 상태인가?
     bool CanTurnStart = true;
     // 컷씬이 실행중인가?
@@ -46,6 +52,8 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(CharUse());
         }
     }
+
+    //턴에 딜레이 주기(어떻게 줘야할까?)
     IEnumerator CharUse()
     {
         List<BattleUnit> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
@@ -176,4 +184,10 @@ public class BattleManager : MonoBehaviour
     }
 
     #endregion
+
+    //마나 소모
+    public bool UseMana(int value)
+    {
+        return PlayerMana.UseMana(value);
+    }
 }

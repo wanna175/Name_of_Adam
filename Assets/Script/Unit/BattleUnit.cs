@@ -9,6 +9,7 @@ public class BattleUnit : MonoBehaviour
 {
     [SerializeField] public CharacterSO characterSO;
     SpriteRenderer SR;
+    Stigma _stigma;
 
     DataManager DataMNG;
     
@@ -27,6 +28,8 @@ public class BattleUnit : MonoBehaviour
     {
         SR = GetComponent<SpriteRenderer>();
         DataMNG = GameManager.Instance.DataMNG;
+        _stigma = GetComponent<Stigma>();
+        Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
 
         Init();
         SetLotate();
@@ -59,6 +62,12 @@ public class BattleUnit : MonoBehaviour
     }
 
     #region Character Move
+
+    //오브젝트 생성 이전, 최초 위치 설정
+    public void setLocate(int x, int y) {
+        locX = x;
+        locY = y;
+    }
 
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
@@ -124,7 +133,15 @@ public class BattleUnit : MonoBehaviour
     }
     #endregion
 
+    public Stat GetStat(bool buff = true)
+    {
+        Stat stat = characterSO.stat;
 
+        if (buff == false)
+            return stat;
+
+        return _stigma.Use(stat);
+    }
 
     public void TileSelected(int x, int y) => _SelectTile = new Vector2(x, y);
 
@@ -138,18 +155,21 @@ public class BattleUnit : MonoBehaviour
 
         gauge += value;
         if (gauge < 0) gauge = 0;
-        else if (gauge > maxGauge)
+        else if (gauge >= maxGauge)
         {
-            characterSO.IsFall = true;
-            if (characterSO.team == Team.Enemy)
-                characterSO.team = Team.Player;
-            else
-                characterSO.team = Team.Enemy;
+            Fall();
             gauge = 0;
         }
 
         characterSO.FallGauge = gauge;
+    }
 
-        Debug.Log($"Fall Gauge : {gauge}, Is Fall? : {characterSO.IsFall}");
+    public void Fall()
+    {
+        characterSO.Fall = true;
+        if (characterSO.team == Team.Enemy)
+            characterSO.team = Team.Player;
+        else
+            characterSO.team = Team.Enemy;
     }
 }
