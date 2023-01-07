@@ -9,11 +9,11 @@ public class Effect_Heal : EffectSO
     [SerializeField] float DMG;        // 데미지 배율
 
     // 공격 실행
-    public override void Effect(Character caster)
+    public override void Effect(BattleUnit caster)
     {
         float CharHeal = caster.characterSO.stat.ATK;
 
-        Tile[,] Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
+        Tile[,] Tiles = GameManager.Instance.DataMNG.TileArray;
 
         List<Vector2> RangeList = GetRange();
 

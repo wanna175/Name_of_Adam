@@ -6,25 +6,35 @@ public class Tile : MonoBehaviour
 {
     SpriteRenderer SR;
 
-    Character chara;
-    #region isOnTile
-    bool _isOnTile;
-    public bool isOnTile => _isOnTile;
-    #endregion
+    BattleUnit chara;
     #region Loc X, Y
     int _LocX, _LocY;
     public int LocX => _LocX;
     public int LocY => _LocY;
     #endregion
+    #region isOnTile
+    bool _isOnTile;
+    public bool isOnTile => _isOnTile;
+    #endregion
+    Field field;
     public bool CanSelect = false;
+
 
     void Start()
     {
+        field = transform.parent.GetComponent<Field>();
         SR = GetComponent<SpriteRenderer>();
         SR.color = Color.gray;
 
         _isOnTile = false;
         chara = null;
+    }
+
+    public void Init()
+    {
+        chara = null;
+        _isOnTile = false;
+        CanSelect = false;
     }
 
     public void GetLocate(int x, int y)
@@ -33,7 +43,7 @@ public class Tile : MonoBehaviour
         _LocY = y;
     }
 
-    public void EnterTile(Character ch)
+    public void EnterTile(BattleUnit ch)
     {
         _isOnTile = true;
         chara = ch;
@@ -93,7 +103,7 @@ public class Tile : MonoBehaviour
 
         if (CanSelect)
         {
-            GameManager.Instance.BattleMNG.BattleField.CanSelectClear();
+            GameManager.Instance.DataMNG.CanSelectClear();
             GameManager.Instance.BattleMNG.SelectedChar.TileSelected(LocY, LocX);
             return;
         }
@@ -106,8 +116,8 @@ public class Tile : MonoBehaviour
                 List<Vector2> vecList = chara.characterSO.HaveTargeting();
                 if (vecList != null)
                 {
-                    GameManager.Instance.BattleMNG.BattleField.CanSelectClear();
-                    Tile[,] tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
+                    GameManager.Instance.DataMNG.CanSelectClear();
+                    Tile[,] tiles = GameManager.Instance.DataMNG.TileArray;
 
                     for(int i = 0; i < vecList.Count; i++)
                     {
@@ -128,18 +138,20 @@ public class Tile : MonoBehaviour
     }
 
     #region OnAttack
-    public void OnAttack(Character ch)
+    public void OnAttack(BattleUnit ch)
     {
         StartCoroutine(CoOnAttack(ch));
     }
-    IEnumerator CoOnAttack(Character AttackChar)
+    IEnumerator CoOnAttack(BattleUnit AttackChar)
     {
         SR.color = Color.white;
 
         if (chara != null)
         {
+
             if (AttackChar.characterSO.team != chara.characterSO.team)
             {
+                GameManager.Instance.BattleMNG.BattleCutScene(transform.parent, AttackChar, chara);
                 chara.GetDamage(AttackChar.GetStat().ATK);
                 Debug.Log($"{AttackChar.gameObject.name}' ATK : {AttackChar.GetStat().ATK}");
             }
@@ -153,11 +165,11 @@ public class Tile : MonoBehaviour
     #endregion
 
     #region OnHeal
-    public void OnHeal(Character ch)
+    public void OnHeal(BattleUnit ch)
     {
         StartCoroutine(CoOnHeal(ch));
     }
-    IEnumerator CoOnHeal(Character AttackChar)
+    IEnumerator CoOnHeal(BattleUnit AttackChar)
     {
         SR.color = Color.white;
 
@@ -177,11 +189,11 @@ public class Tile : MonoBehaviour
     #endregion
 
     #region OnFall
-    public void OnFall(Character ch)
+    public void OnFall(BattleUnit ch)
     {
         StartCoroutine(CoOnFall(ch));
     }
-    IEnumerator CoOnFall(Character AttackChar)
+    IEnumerator CoOnFall(BattleUnit AttackChar)
     {
         SR.color = Color.yellow;
 

@@ -33,7 +33,7 @@ public class NextStageSign : MonoBehaviour
         else
         {
             // boss
-            Debug.Log("º¸½º µîÀå");
+            Debug.Log("ë³´ìŠ¤ ë“±ìž¥");
             StageArray[1] = EncountStage.Boss;
             DrawSign(true);
         }

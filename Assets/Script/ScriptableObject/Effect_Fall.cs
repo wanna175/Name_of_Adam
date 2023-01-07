@@ -8,12 +8,13 @@ public class Effect_Fall : EffectSO
     [SerializeField] RangeSO range;    // 공격 범위
     [SerializeField] float DMG;        // 데미지 배율
 
+
     // 공격 실행
-    public override void Effect(Character caster)
+    public override void Effect(BattleUnit caster)
     {
         float CharATK = caster.characterSO.stat.ATK;
 
-        Tile[,] Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
+        Tile[,] Tiles = GameManager.Instance.DataMNG.TileArray;
 
         List<Vector2> RangeList = GetRange();
 

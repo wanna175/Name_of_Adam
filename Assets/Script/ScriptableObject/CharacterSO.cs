@@ -30,7 +30,7 @@ public class CharacterSO : ScriptableObject
     [SerializeField] SkillSO skill;
 
     // 캐릭터의 스킬 사용
-    public void use(Character ch)
+    public void use(BattleUnit ch)
     {
         skill.use(ch);
     }
@@ -44,4 +44,6 @@ public class CharacterSO : ScriptableObject
         }
         return null;
     }
+
+    public int SkillLength() => skill.EffectList.Count;
 }

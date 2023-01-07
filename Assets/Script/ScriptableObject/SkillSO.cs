@@ -9,12 +9,19 @@ public class SkillSO : ScriptableObject
     [SerializeField] public List<EffectSO> EffectList;
     //public List<EffectSO> EffectList => _EffectList;
 
-    // ÀÌÆåÆ®¸®½ºÆ® ¾ÈÀÇ ÀÌÆåÆ®µéÀ» ¼ø¼­´ë·Î ½ÇÇà
-    public void use(Character ch)
+    // ì´í™íŠ¸ë¦¬ìŠ¤íŠ¸ ì•ˆì˜ ì´í™íŠ¸ë“¤ì„ ìˆœì„œëŒ€ë¡œ ì‹¤í–‰
+    public void use(BattleUnit ch)
     {
-        for(int i = 0; i < EffectList.Count; i++)
+        CoroutineHandler.Start_Coroutine(EffectUse(ch), EffectList.Count * 0.5f);
+    }
+
+    IEnumerator EffectUse(BattleUnit ch)
+    {
+        for (int i = 0; i < EffectList.Count; i++)
         {
             EffectList[i].Effect(ch);
+
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

@@ -18,8 +18,7 @@ public class NextStageEventSystem : EventTrigger
             
             int index = Int32.Parse(clickedBox.name.Split("_")[1]);
 
-            // Å¬¸¯Çß´Ù´Â Á¤º¸¸¦ ¾îµò°¡·Î Áà¾ßÇÔ
-            // StageManager·Î Àü´ŞÇÏ´Â °ÍÀÌ º£½ºÆ®
+            // ì…ë ¥ëœ ì •ë³´ë¥¼ StageManagerë¡œ ì „ì†¡
             GameManager.Instance.StageMNG.StageSelect(index);
         }
     }

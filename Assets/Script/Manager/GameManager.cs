@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        BattleMNG.BattleField.Init();
         _StageMNG = new StageManager();
         _DataMNG = new DataManager();
         _SceneChanger = new SceneChanger();
@@ -71,10 +70,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SceneChanger.SceneChange("StageSelectScene");
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            SceneChanger.SceneChange("SampleScene");
         }
     }
 }
