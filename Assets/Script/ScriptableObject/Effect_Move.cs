@@ -17,7 +17,7 @@ public class Effect_Move : EffectSO
     [SerializeField] Dictionary<string, Vector2> dic = new Dictionary<string, Vector2>();
 
     // 이동 실행
-    public override void Effect(Character caster)
+    public override void Effect(BattleUnit caster)
     {
         for (int i = 0; i < MoveDir.Count; i++)
         {

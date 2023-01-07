@@ -8,17 +8,17 @@ public class DataManager
     #region BattleCharList
 
     #region BattleCharList  
-    List<Character> _BattleCharList = new List<Character>();
-    public List<Character> BattleCharList => _BattleCharList;
+    List<BattleUnit> _BattleCharList = new List<BattleUnit>();
+    public List<BattleUnit> BattleCharList => _BattleCharList;
     #endregion  
 
     // 리스트에 캐릭터를 추가 / 제거
     #region CharEnter / Exit
-    public void BCL_CharEnter(Character ch)
+    public void BCL_CharEnter(BattleUnit ch)
     {
         BattleCharList.Add(ch);
     }
-    public void BCL_CharExit(Character ch)
+    public void BCL_CharExit(BattleUnit ch)
     {
         BattleCharList.Remove(ch);
     }
@@ -36,7 +36,7 @@ public class DataManager
     {
         for (int i = 0; i < BattleCharList.Count; i++)
         {
-            Character max = null;
+            BattleUnit max = null;
             for (int j = i; j < BattleCharList.Count; j++)
             {
                 if (i == j)
@@ -67,7 +67,7 @@ public class DataManager
 
     void CharSwap(int a, int b)
     {
-        Character dump = BattleCharList[a];
+        BattleUnit dump = BattleCharList[a];
         BattleCharList[a] = BattleCharList[b];
         BattleCharList[b] = dump;
     }
@@ -138,6 +138,18 @@ public class DataManager
                 _TileArray[i, j].SetCanSelect(false);
             }
         }
+    }
+
+
+    public void EnterTile(BattleUnit ch, int x, int y)
+    {
+        _TileArray[y, x].EnterTile(ch);
+    }
+
+    public void ExitTile()
+    {
+        _isOnTile = false;
+        chara = null;
     }
 
     #endregion

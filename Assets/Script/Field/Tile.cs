@@ -6,7 +6,7 @@ public class Tile : MonoBehaviour
 {
     SpriteRenderer SR;
 
-    Character chara;
+    BattleUnit chara;
     #region Loc X, Y
     int _LocX, _LocY;
     public int LocX => _LocX;
@@ -16,11 +16,13 @@ public class Tile : MonoBehaviour
     bool _isOnTile;
     public bool isOnTile => _isOnTile;
     #endregion
+    Field field;
     public bool CanSelect = false;
 
 
     void Start()
     {
+        field = transform.parent.GetComponent<Field>();
         SR = GetComponent<SpriteRenderer>();
         SR.color = Color.gray;
 
@@ -41,7 +43,7 @@ public class Tile : MonoBehaviour
         _LocY = y;
     }
 
-    public void EnterTile(Character ch)
+    public void EnterTile(BattleUnit ch)
     {
         _isOnTile = true;
         chara = ch;
@@ -107,11 +109,11 @@ public class Tile : MonoBehaviour
     }
 
     #region OnAttack
-    public void OnAttack(Character ch)
+    public void OnAttack(BattleUnit ch)
     {
         StartCoroutine(CoOnAttack(ch));
     }
-    IEnumerator CoOnAttack(Character AttackChar)
+    IEnumerator CoOnAttack(BattleUnit AttackChar)
     {
         SR.color = Color.white;
 
@@ -134,11 +136,11 @@ public class Tile : MonoBehaviour
     #endregion
 
     #region OnHeal
-    public void OnHeal(Character ch)
+    public void OnHeal(BattleUnit ch)
     {
         StartCoroutine(CoOnHeal(ch));
     }
-    IEnumerator CoOnHeal(Character AttackChar)
+    IEnumerator CoOnHeal(BattleUnit AttackChar)
     {
         SR.color = Color.white;
 
@@ -158,11 +160,11 @@ public class Tile : MonoBehaviour
     #endregion
 
     #region OnFall
-    public void OnFall(Character ch)
+    public void OnFall(BattleUnit ch)
     {
         StartCoroutine(CoOnFall(ch));
     }
-    IEnumerator CoOnFall(Character AttackChar)
+    IEnumerator CoOnFall(BattleUnit AttackChar)
     {
         SR.color = Color.yellow;
 

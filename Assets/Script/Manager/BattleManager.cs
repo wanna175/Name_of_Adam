@@ -12,11 +12,11 @@ class CutSceneData
     public float DefaultZoomSize = 60;
     public float ZoomSize;
     // 어느 캐릭터가 어느 위치에 있는지
-    public Character LeftChar;
-    public Character RightChar;
+    public BattleUnit LeftChar;
+    public BattleUnit RightChar;
     // 어느 캐릭터가 공격자인지
-    public Character AttackChar;
-    public Character HitChar;
+    public BattleUnit AttackChar;
+    public BattleUnit HitChar;
 }
 
 // 전투를 담당하는 매니저
@@ -31,7 +31,7 @@ public class BattleManager : MonoBehaviour
     bool isCutScene = false;
 
     // 스킬의 타겟 지정을 위한 임시 변수
-    public Character SelectedChar;
+    public BattleUnit SelectedChar;
 
     #region TurnFlow
     // 턴 진행
@@ -48,7 +48,7 @@ public class BattleManager : MonoBehaviour
     }
     IEnumerator CharUse()
     {
-        List<Character> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
+        List<BattleUnit> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
 
         // 필드 위에 올라와있는 캐릭터들의 스킬을 순차적으로 사용한다
         for (int i = 0; i < BattleCharList.Count; i++)
@@ -78,13 +78,13 @@ public class BattleManager : MonoBehaviour
     #region CutScene
 
     // 배틀 컷씬을 시작
-    public void BattleCutScene(Transform ZoomLocation, Character AttackChar, Character HitChar)
+    public void BattleCutScene(Transform ZoomLocation, BattleUnit AttackChar, BattleUnit HitChar)
     {
         // 줌 인, 줌 아웃하는데 들어가는 시간
         float zoomTime = 0.2f;
 
         // 어느 캐릭터가 어느 방향에 있나 확인 후 각 위치에 할당
-        Character LeftChar, RightChar;
+        BattleUnit LeftChar, RightChar;
 
         #region Set Char LR
         // 왼쪽에 배치될 캐릭터와 오른쪽에 배치될 캐릭터를 구분

@@ -10,12 +10,12 @@ public class SkillSO : ScriptableObject
     //public List<EffectSO> EffectList => _EffectList;
 
     // 이펙트리스트 안의 이펙트들을 순서대로 실행
-    public void use(Character ch)
+    public void use(BattleUnit ch)
     {
         CoroutineHandler.Start_Coroutine(EffectUse(ch), EffectList.Count * 0.5f);
     }
 
-    IEnumerator EffectUse(Character ch)
+    IEnumerator EffectUse(BattleUnit ch)
     {
         for (int i = 0; i < EffectList.Count; i++)
         {
