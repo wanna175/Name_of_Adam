@@ -13,7 +13,7 @@ public class Effect_Heal : EffectSO
     {
         float CharHeal = caster.characterSO.stat.ATK;
 
-        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.TileArray;
+        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.TileArray;
 
         List<Vector2> RangeList = GetRange();
 

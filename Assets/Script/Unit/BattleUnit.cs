@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
 {
+    BattleDataManager _BattleDataMNG;
+
     [SerializeField] public BattleUnitSO characterSO;
     SpriteRenderer SR;
     Stigma _stigma;
@@ -26,6 +28,8 @@ public class BattleUnit : MonoBehaviour
 
     void Start()
     {
+        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+
         SR = GetComponent<SpriteRenderer>();
         _stigma = GetComponent<Stigma>();
 
@@ -42,7 +46,7 @@ public class BattleUnit : MonoBehaviour
     // 캐릭터 초기화
     void Init()
     {
-        GameManager.Instance.DataMNG.BCL_CharEnter(GetComponent<BattleUnit>());
+        _BattleDataMNG.BattleUnitMNG.BattleUnitEnter(this);
 
         // sprite를 배치했다면 변경하기
         if (characterSO.sprite != null)
@@ -56,7 +60,7 @@ public class BattleUnit : MonoBehaviour
     // 스킬 사용
     public void use()
     {
-        characterSO.use(GetComponent<BattleUnit>());
+        characterSO.use(this);
     }
 
     #region Character Move
@@ -70,7 +74,7 @@ public class BattleUnit : MonoBehaviour
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
-        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.EnterTile(GetComponent<BattleUnit>(), LocX, LocY);
+        _BattleDataMNG.FieldMNG.EnterTile(this, LocX, LocY);
 
         int dumpX = locX;
         int dumpY = locY;
@@ -82,7 +86,7 @@ public class BattleUnit : MonoBehaviour
             dumpY += y;
 
         // 이동할 곳이 비어있지 않다면 이동하지 않음
-        if (!GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.GetIsOnTile(dumpX, dumpY))
+        if (!GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.GetIsOnTile(dumpX, dumpY))
         {
             locX = dumpX;
             locY = dumpY;
@@ -95,11 +99,11 @@ public class BattleUnit : MonoBehaviour
     // 타일 위로 이동
     public void SetLotate()
     {
-        Vector3 vec = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.GetTileLocate(LocX, LocY);
+        Vector3 vec = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.GetTileLocate(LocX, LocY);
         transform.position = vec;
 
         // 현재 타일에 내가 들어왔다고 알려줌 
-        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.EnterTile(GetComponent<BattleUnit>(), LocX, LocY);
+        GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.EnterTile(this, LocX, LocY);
     }
     #endregion
 
@@ -123,8 +127,8 @@ public class BattleUnit : MonoBehaviour
         if(CurHP <= 0)
         {
             // 죽었을 때 처리할 것들
-            GameManager.Instance.DataMNG.BCL_CharExit(GetComponent<BattleUnit>());
-            GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.ExitTile(LocX, LocY);
+            _BattleDataMNG.BattleUnitMNG.BattleUnitExit(this);
+            GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.ExitTile(LocX, LocY);
 
             Destroy(gameObject);
         }

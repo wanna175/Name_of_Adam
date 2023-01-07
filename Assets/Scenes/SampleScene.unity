@@ -1084,6 +1084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleMNG: {fileID: 1589663945}
+  _inputMNG: {fileID: 0}
 --- !u!4 &1932546685
 Transform:
   m_ObjectHideFlags: 0

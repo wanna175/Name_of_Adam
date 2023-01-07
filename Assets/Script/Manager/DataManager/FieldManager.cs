@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldDataManager
+public class FieldManager
 {
-    // ÇÊµåÀÇ ÃÖ´ë ³ĞÀÌ
+    // í•„ë“œì˜ ìµœëŒ€ ë„“ì´
     const int MaxFieldX = 8;
     const int MaxFieldY = 3;
 
@@ -12,10 +12,10 @@ public class FieldDataManager
     public List<List<Tile>> TileArray => _TileArray;
 
 
-    // ÇÊµåÀÇ »ı¼ºÀ» À§ÇÑ ÇÊµåÀÇ À§Ä¡
+    // í•„ë“œì˜ ìƒì„±ì„ ìœ„í•œ í•„ë“œì˜ ìœ„ì¹˜
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
 
-    // ÇÊµå »ı¼º
+    // í•„ë“œ ìƒì„±
     public void FieldSet(Transform trans, GameObject TilePrefabs)
     {
         _TileArray = new List<List<Tile>>();
@@ -28,6 +28,7 @@ public class FieldDataManager
         for (int i = -1; i < 2; i++)
         {
             _TileArray.Add(new List<Tile>());
+
             for (int j = -4; j < 4; j++)
             {
                 float x = (disX * j) + (disX * 0.5f);
@@ -36,15 +37,12 @@ public class FieldDataManager
                 GameObject tile = GameObject.Instantiate(TilePrefabs, trans);
                 tile.transform.position = new Vector3(vec.x + x, vec.y + y);
 
-                Tile tileScript = tile.GetComponent<Tile>();
-
-                _TileArray[i+1].Add(tileScript);
-                tileScript.Init();
+                _TileArray[i+1].Add(tile.GetComponent<Tile>());
             }
         }
     }
 
-    // ÁöÁ¤ÇÑ À§Ä¡¿¡ ÀÖ´Â Å¸ÀÏÀÇ ÁÂÇ¥¸¦ ¹İÈ¯
+    // ì§€ì •í•œ ìœ„ì¹˜ì— ìˆëŠ” íƒ€ì¼ì˜ ì¢Œí‘œë¥¼ ë°˜í™˜
     public Vector3 GetTileLocate(int x, int y)
     {
         Vector3 vec = _TileArray[y][x].transform.position;
@@ -60,11 +58,11 @@ public class FieldDataManager
 
     public void CanSelectClear()
     {
-        for (int i = 0; i < MaxFieldY; i++)
-        {
-            for (int j = 0; j < MaxFieldX; j++)
+        foreach(List<Tile> list in TileArray)
+        { 
+            foreach(Tile tile in list)
             {
-                _TileArray[i][j].SetCanSelect(false);
+                tile.SetCanSelect(false);
             }
         }
     }

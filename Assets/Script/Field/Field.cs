@@ -7,21 +7,21 @@ public class Field : MonoBehaviour
 {
     [SerializeField] GameObject TilePrefabs;
 
-    FieldDataManager _FieldMNG;
+    FieldManager _FieldMNG;
 
     private void Awake()
     {
-        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.FieldSet(transform, TilePrefabs);
+        _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
 
-        _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG;
+        _FieldMNG.FieldSet(transform, TilePrefabs);
 
-        transform.position = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.FieldPosition;
+        transform.position = _FieldMNG.FieldPosition;
         transform.eulerAngles = new Vector3(16, 0, 0);
     }
 
     public void TileClick(Tile tile)
     {
-        List<List<Tile>> tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.TileArray;
+        List<List<Tile>> tiles = _FieldMNG.TileArray;
         int tileX, tileY;
         
         for(int i = 0; i < tiles.Count; i++)
@@ -36,14 +36,14 @@ public class Field : MonoBehaviour
             }
         }
 
-        // «ˆ¿Á ≈¨∏Ø ªÛ≈¬∞° æÓ∂≤ ªÛ≈¬¿Œ¡ˆ, ≈¨∏Ø ∞°¥…«—¡ˆ √º≈©«œ¥¬ ≈¨∑°Ω∫ ª˝º∫ « ø‰
+        // ÌòÑÏû¨ ÌÅ¥Î¶≠ ÏÉÅÌÉúÍ∞Ä Ïñ¥Îñ§ ÏÉÅÌÉúÏù∏ÏßÄ, ÌÅ¥Î¶≠ Í∞ÄÎä•ÌïúÏßÄ Ï≤¥ÌÅ¨ÌïòÎäî ÌÅ¥ÎûòÏä§ ÏÉùÏÑ± ÌïÑÏöî
 
 
         
-        //«⁄µÂ∏¶ ¥©∏£∞Ì ≈∏¿œ¿ª ¥©∏¶ ∂ß
+        //Ìï∏ÎìúÎ•º ÎàÑÎ•¥Í≥† ÌÉÄÏùºÏùÑ ÎàÑÎ•º Îïå
         //    if (GameManager.Instance.InputMNG.ClickedHand != 0)
         //    {
-        //        //π¸¿ß ø‹
+        //        //Î≤îÏúÑ Ïô∏
         //        if (LocX > 3 && LocY > 2)
         //        {
         //            Debug.Log("out of range");
@@ -52,7 +52,7 @@ public class Field : MonoBehaviour
         //        {
         //            if (GameManager.Instance.BattleMNG.UseMana(2))
         //            {
-        //                //¡∂∞«πÆ¿Ã ¬¸¿Ã∂Û∏È ¿ÃπÃ ∏∂≥™∞° º“∏µ 
+        //                //Ï°∞Í±¥Î¨∏Ïù¥ Ï∞∏Ïù¥ÎùºÎ©¥ Ïù¥ÎØ∏ ÎßàÎÇòÍ∞Ä ÏÜåÎ™®Îê®
         //                GameManager.Instance.InputMNG.ClickedChar.setLocate(LocX, LocY);
 
         //                Instantiate(GameManager.Instance.InputMNG.ClickedChar);
@@ -64,7 +64,7 @@ public class Field : MonoBehaviour
         //            }
         //            else
         //            {
-        //                //∏∂≥™ ∫Œ¡∑
+        //                //ÎßàÎÇò Î∂ÄÏ°±
         //                Debug.Log("not enough mana");
         //            }
         //        }
@@ -72,7 +72,7 @@ public class Field : MonoBehaviour
 
         //    if (CanSelect)
         //    {
-        //        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.CanSelectClear();
+        //        _FieldMNG.CanSelectClear();
         //        GameManager.Instance.BattleMNG.SelectedChar.TileSelected(LocY, LocX);
         //        return;
         //    }
@@ -85,8 +85,8 @@ public class Field : MonoBehaviour
         //            List<Vector2> vecList = _TileUnit.characterSO.HaveTargeting();
         //            if (vecList != null)
         //            {
-        //                GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.CanSelectClear();
-        //                Tile[,] tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.TileArray;
+        //                _FieldMNG.CanSelectClear();
+        //                Tile[,] tiles = _FieldMNG.TileArray;
 
         //                for (int i = 0; i < vecList.Count; i++)
         //                {

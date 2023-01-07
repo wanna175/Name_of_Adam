@@ -26,17 +26,12 @@ public class Tile : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
         SR.color = Color.gray;
 
-        _isOnTile = false;
-        _TileUnit = null;
-    }
-
-    public void Init()
-    {
         _TileUnit = null;
         _isOnTile = false;
         CanSelect = false;
     }
 
+    #region Enter & Exit Tile
     public void EnterTile(BattleUnit ch)
     {
         _isOnTile = true;
@@ -48,6 +43,7 @@ public class Tile : MonoBehaviour
         _isOnTile = false;
         _TileUnit = null;
     }
+    #endregion
 
     public void SetCanSelect(bool bo)
     {
@@ -72,17 +68,18 @@ public class Tile : MonoBehaviour
         return _TileUnit;
     }
 
-    // 
-    // 
-    // 지워질 것들
-    // ↓↓↓↓↓↓↓↓
-
     private void OnMouseDown()
     {
         // 필드에 자신이 클릭되었다는 정보를 준다.
         // 그러면 필드가 내가 어디에 위치해있는 타일인지 찾을 것
         _field.TileClick(this);
     }
+
+    
+    // 
+    // 지워질 것들
+    // 캐릭터 컴포넌트 분리시킬 때 얘들도 같이 수정하기
+    // ↓↓↓↓↓↓↓↓
 
     #region OnAttack
     public void OnAttack(BattleUnit ch)

@@ -59,9 +59,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // 디버그용 입력기
         if (Input.GetMouseButtonDown(1))
         {
-            
+            BattleMNG.BattleDataMNG.BattleUnitMNG.BattleOrderReplace();
         }
         else if (Input.GetMouseButtonDown(2))
         {

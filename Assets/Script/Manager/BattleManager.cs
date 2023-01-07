@@ -53,7 +53,7 @@ public class BattleManager : MonoBehaviour
         if (CanTurnStart)
         {
             CanTurnStart = false;
-            GameManager.Instance.DataMNG.BattleOrderReplace();
+            BattleDataMNG.BattleUnitMNG.BattleOrderReplace();
 
             StartCoroutine(CharUse());
         }
@@ -62,20 +62,20 @@ public class BattleManager : MonoBehaviour
     //턴에 딜레이 주기(어떻게 줘야할까?)
     IEnumerator CharUse()
     {
-        List<BattleUnit> BattleCharList = GameManager.Instance.DataMNG.BattleCharList;
+        List<BattleUnit> BattleUnitList = GameManager.Instance.BattleMNG.BattleDataMNG.BattleUnitMNG.BattleUnitList;
 
         // 필드 위에 올라와있는 캐릭터들의 스킬을 순차적으로 사용한다
-        for (int i = 0; i < BattleCharList.Count; i++)
+        for (int i = 0; i < BattleUnitList.Count; i++)
         {
-            if (BattleCharList[i] == null)
+            if (BattleUnitList[i] == null)
                 break;
 
-            BattleCharList[i].use();
+            BattleUnitList[i].use();
 
             // 각 스킬의 사용시간은 0.5초로 가정
             // 다음 캐릭터의 행동까지 대기시간은 0.5 X 이펙트 갯수
             // 여기에 컷씬을 넣으려면 다른 식을 사용해야함
-            yield return new WaitForSeconds(BattleCharList[i].characterSO.SkillLength() * 0.5f);
+            yield return new WaitForSeconds(BattleUnitList[i].characterSO.SkillLength() * 0.5f);
         }
 
         TurnEnd();
@@ -83,7 +83,7 @@ public class BattleManager : MonoBehaviour
 
     void TurnEnd()
     {
-        GameManager.Instance.DataMNG.AddMana(2);
+        BattleDataMNG.ManaMNG.AddMana(2);
         CanTurnStart = true;
     }
 
@@ -194,6 +194,6 @@ public class BattleManager : MonoBehaviour
     //마나 소모
     public bool UseMana(int value)
     {
-        return GameManager.Instance.DataMNG.UseMana(value);
+        return BattleDataMNG.ManaMNG.UseMana(value);
     }
 }

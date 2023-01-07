@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class BattleDataManager
 {
-    private FieldDataManager _FieldDataMNG;
-    public FieldDataManager FieldDataMNG => _FieldDataMNG;
+    #region FieldMNG
+    private FieldManager _FieldMNG;
+    public FieldManager FieldMNG => _FieldMNG;
+    #endregion
+    #region BattleUnitMNG
+    private BattleUnitManager _BattleUnitManager;
+    public BattleUnitManager BattleUnitMNG => _BattleUnitManager;
+    #endregion
+    #region
+    private ManaManager _ManaMNG;
+    public ManaManager ManaMNG => _ManaMNG;
+    #endregion
 
     public void Init()
     {
-        _FieldDataMNG = new FieldDataManager();
+        _FieldMNG = new FieldManager();
+        _BattleUnitManager = new BattleUnitManager();
+        _ManaMNG = new ManaManager();
     }
 }
