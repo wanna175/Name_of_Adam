@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         // 디버그용 입력기
         if (Input.GetMouseButtonDown(1))
         {
-            BattleMNG.BattleDataMNG.BattleUnitMNG.BattleOrderReplace();
+            BattleMNG.TurnStart();
         }
         else if (Input.GetMouseButtonDown(2))
         {

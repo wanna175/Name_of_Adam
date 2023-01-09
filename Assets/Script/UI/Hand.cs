@@ -22,7 +22,7 @@ public class Hand : MonoBehaviour
         if (HandChar != null)
         {
             GetComponent<Renderer>().enabled = true;
-            SR.sprite = HandChar.characterSO.sprite;
+            SR.sprite = HandChar.BattleUnitSO.sprite;
         }
 
     }

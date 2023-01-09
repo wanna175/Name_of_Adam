@@ -19,7 +19,7 @@ public class Effect_Attack : EffectSO
     // 공격 실행
     public override void Effect(BattleUnit caster)
     {
-        float CharATK = caster.characterSO.stat.ATK;
+        float CharATK = caster.BattleUnitSO.stat.ATK;
 
         List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.TileArray;
 
@@ -29,8 +29,8 @@ public class Effect_Attack : EffectSO
         // 공격 범위를 향해 공격
         for(int i = 0; i < RangeList.Count; i++)
         {
-            int x = caster.LocX - (int)RangeList[i].x;
-            int y = caster.LocY - (int)RangeList[i].y;
+            int x = caster.UnitMove.LocX - (int)RangeList[i].x;
+            int y = caster.UnitMove.LocY - (int)RangeList[i].y;
 
             if (0 <= x && x < 8)
             {
@@ -47,8 +47,8 @@ public class Effect_Attack : EffectSO
 
             if(x == -1 && y == -1)
             {
-                x = caster.LocX;
-                y = caster.LocY;
+                x = caster.UnitMove.LocX;
+                y = caster.UnitMove.LocY;
             }
 
             // 공격 범위가 필드를 벗어나지 않은 경우 공격
