@@ -50,6 +50,9 @@ public class StageManager
 
         foreach (EncountStage es in Enum.GetValues(typeof(EncountStage)))
         {
+            if (es == EncountStage.Boss)
+                continue;
+
             // Event는 남은 갯수가 없어도 2개는 있어야 한다
             if(es == EncountStage.Event)
             {
@@ -89,6 +92,8 @@ public class StageManager
 
         foreach (EncountStage es in Enum.GetValues(typeof(EncountStage)))
         {
+            if (es == EncountStage.Boss)
+                continue;
             if (0 < _encountDic[es])
             {
                 flag |= es;

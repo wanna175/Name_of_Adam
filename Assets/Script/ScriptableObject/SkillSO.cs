@@ -7,21 +7,13 @@ using UnityEngine;
 public class SkillSO : ScriptableObject
 {
     [SerializeField] public List<EffectSO> EffectList;
-    //public List<EffectSO> EffectList => _EffectList;
 
-    // 이펙트리스트 안의 이펙트들을 순서대로 실행
+    // 이펙트 리스트 안의 모든 이펙트가 하나의 이펙트로 묶여서 사용된다.
     public void use(BattleUnit ch)
-    {
-        CoroutineHandler.Start_Coroutine(EffectUse(ch), EffectList.Count * 0.5f);
-    }
-
-    IEnumerator EffectUse(BattleUnit ch)
     {
         for (int i = 0; i < EffectList.Count; i++)
         {
             EffectList[i].Effect(ch);
-
-            yield return new WaitForSeconds(0.5f);
         }
     }
 }

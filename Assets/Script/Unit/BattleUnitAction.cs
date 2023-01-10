@@ -5,8 +5,9 @@ using UnityEngine;
 public class BattleUnitAction : MonoBehaviour
 {
     BattleUnit _BattleUnit;
-    BattleUnitSO BattleUnitSO;
+    BattleUnitSO _BattleUnitSO;
     BattleDataManager _BattleDataMNG;
+    BattleCutSceneManager _CutSceneMNG;
 
     #region HP
     [SerializeField] float _MaxHP, _CurHP;
@@ -16,7 +17,7 @@ public class BattleUnitAction : MonoBehaviour
         get { return _CurHP; }
         set
         {
-            _CurHP += value;
+            _CurHP = value;
 
             if (MaxHP < _CurHP)
                 _CurHP = MaxHP;
@@ -29,11 +30,13 @@ public class BattleUnitAction : MonoBehaviour
     private void Awake()
     {
         _BattleUnit = GetComponent<BattleUnit>();
+        _BattleUnitSO = _BattleUnit.BattleUnitSO;
     }
 
     private void Start()
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+        _CutSceneMNG = GameManager.Instance.BattleMNG.CutSceneMNG;
     }
 
 
@@ -41,6 +44,25 @@ public class BattleUnitAction : MonoBehaviour
     {
         _MaxHP = _CurHP = _hp;
     }
+
+
+    #region Attack
+    
+    public void OnAttackRange(List<BattleUnit> _HitUnits)
+    {
+        // 현재 광역공격은 공격처리 안됨
+
+        _CutSceneMNG.BattleCutScene(_BattleUnit, _HitUnits);
+        // Debug.Log($"{_BattleUnit.gameObject.name}' ATK : {_BattleUnit.GetStat().ATK}");
+    }
+
+    public void OnAttackTarget(BattleUnit _HitUnit)
+    {
+        _CutSceneMNG.BattleCutScene(_BattleUnit, _HitUnit);
+        // Debug.Log($"{_BattleUnit.gameObject.name}' ATK : {_BattleUnit.GetStat().ATK}");
+    }
+
+    #endregion
 
     #region Hit & Destroy
 
@@ -73,10 +95,13 @@ public class BattleUnitAction : MonoBehaviour
     #endregion
 
 
+
+
+
     // 타락 게이지가 늘어나거나 줄어들 때
     public void SetFallGauge(int value)
     {
-        int gauge = BattleUnitSO.FallGauge;
+        int gauge = _BattleUnitSO.FallGauge;
         int maxGauge = 3;
 
         gauge += value;
@@ -92,10 +117,10 @@ public class BattleUnitAction : MonoBehaviour
 
     void Fall()
     {
-        BattleUnitSO.Fall = true;
-        if (BattleUnitSO.team == Team.Enemy)
-            BattleUnitSO.team = Team.Player;
+        _BattleUnitSO.Fall = true;
+        if (_BattleUnitSO.team == Team.Enemy)
+            _BattleUnitSO.team = Team.Player;
         else
-            BattleUnitSO.team = Team.Enemy;
+            _BattleUnitSO.team = Team.Enemy;
     }
 }

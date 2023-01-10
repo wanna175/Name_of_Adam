@@ -18,8 +18,8 @@ public class Field : MonoBehaviour
         _BattleDataMNG = _BattleMNG.BattleDataMNG;
         _FieldMNG = _BattleMNG.BattleDataMNG.FieldMNG;
         _InputMNG = GameManager.Instance.InputMNG;
-
-        _FieldMNG.FieldSet(transform, TilePrefabs);
+        
+        _FieldMNG.FieldSet(this, TilePrefabs);
 
         transform.position = _FieldMNG.FieldPosition;
         transform.eulerAngles = new Vector3(16, 0, 0);
@@ -74,8 +74,6 @@ public class Field : MonoBehaviour
                     {
                         int x = SelectUnit.UnitMove.LocX - (int)vecList[i].x;
                         int y = SelectUnit.UnitMove.LocY - (int)vecList[i].y;
-
-                        Debug.Log(x + ", " + y);
 
                         if (0 <= x && x < 8)
                         {

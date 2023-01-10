@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class FieldManager
 {
+    List<List<Tile>> _TileArray;
+    public List<List<Tile>> TileArray => _TileArray;
+
+    // 게임에 펼쳐져있는 필드의 스크립트
+    Field _GameField;
+    public Field GameField => _GameField;
+
     // 필드의 최대 넓이
     const int MaxFieldX = 8;
     const int MaxFieldY = 3;
 
-    List<List<Tile>> _TileArray;
-    public List<List<Tile>> TileArray => _TileArray;
-
-
+    
     // 필드의 생성을 위한 필드의 위치
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
 
     // 필드 생성
-    public void FieldSet(Transform trans, GameObject TilePrefabs)
+    public void FieldSet(Field gameField, GameObject TilePrefabs)
     {
+        _GameField = gameField;
+        Transform trans = gameField.transform;
+
         _TileArray = new List<List<Tile>>();
 
         Vector3 vec = trans.position;
