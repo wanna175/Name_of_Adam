@@ -18,14 +18,11 @@ public class Effect_Attack : EffectSO
     [SerializeField] float DMG;        // 데미지 배율
 
 
-
     // 공격 실행
     public override void Effect(BattleUnit caster)
     {
-        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.TileArray;
+        FieldManager _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
         List<Vector2> RangeList = GetRange();
-
-        float CharATK = caster.BattleUnitSO.stat.ATK;
 
         if (attackType == AttackType.rangeAttack)
         {
@@ -34,25 +31,16 @@ public class Effect_Attack : EffectSO
             // 공격 범위를 향해 공격
             for (int i = 0; i < RangeList.Count; i++)
             {
+                BattleUnit _unit = null;
                 int x = caster.UnitMove.LocX - (int)RangeList[i].x;
                 int y = caster.UnitMove.LocY - (int)RangeList[i].y;
+                
+                _unit = _FieldMNG.RangeCheck(caster, x, y);
 
-                if (0 <= x && x < 8)
-                {
-                    if (0 <= y && y < 3)
-                    {
-                        Tiles[y][x].SetColor(Color.red);
-
-                        if (Tiles[y][x].isOnTile)
-                        {
-                            if (caster.BattleUnitSO.team != Tiles[y][x].TileUnit.BattleUnitSO.team)
-                            {
-                                _BattleUnits.Add(Tiles[y][x].TileUnit);
-                            }
-                        }
-                    }
-                }
+                if (_unit != null)
+                    _BattleUnits.Add(_unit);
             }
+
             caster.UnitAction.OnAttackRange(_BattleUnits);
         }
         else if (attackType == AttackType.targeting)
@@ -67,24 +55,11 @@ public class Effect_Attack : EffectSO
                 y = caster.UnitMove.LocY;
             }
 
-            BattleUnit unit = null;
+            BattleUnit _unit = null;
+            
+            _unit = _FieldMNG.RangeCheck(caster, x, y);
 
-            // 공격 범위가 필드를 벗어나지 않은 경우 공격
-            if (0 <= x && x < 8)
-            {
-                if (0 <= y && y < 3)
-                {
-                    Tiles[y][x].SetColor(Color.red);
-
-                    if (Tiles[y][x].isOnTile)
-                    {
-                        if (caster.BattleUnitSO.team != Tiles[y][x].TileUnit.BattleUnitSO.team)
-                            unit = Tiles[y][x].TileUnit;
-                    }
-
-                }
-            }
-            caster.UnitAction.OnAttackTarget(unit);
+            caster.UnitAction.OnAttackTarget(_unit);
         }
     }
 

@@ -10,13 +10,8 @@ public class Tile : MonoBehaviour
     private BattleUnit _TileUnit;
     public BattleUnit TileUnit => _TileUnit;
     #endregion
-    #region Loc X, Y
-    int _LocX, _LocY;
-    public int LocX => _LocX;
-    public int LocY => _LocY;
-    #endregion
     #region isOnTile
-    bool _isOnTile;
+    public bool _isOnTile;
     public bool isOnTile => _isOnTile;
     #endregion
     private Field _field;
@@ -32,11 +27,13 @@ public class Tile : MonoBehaviour
         _TileUnit = null;
         _isOnTile = false;
         CanSelect = false;
+        Debug.Log('b');
     }
 
     #region Enter & Exit Tile
     public void EnterTile(BattleUnit _unit)
     {
+        Debug.Log('a');
         _isOnTile = true;
         _TileUnit = _unit;
     }

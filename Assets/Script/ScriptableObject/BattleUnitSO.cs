@@ -48,6 +48,7 @@ public class BattleUnitSO : ScriptableObject
         return AttackType.none;
     }
 
+    // 타겟팅 스킬을 가진 경우, 범위를 반환한다.
     public List<Vector2> GetTargetingRange()
     {
         foreach(EffectSO sk in skill.EffectList)

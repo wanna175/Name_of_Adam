@@ -85,11 +85,14 @@ public class BattleUnitAction : MonoBehaviour
         if (CurHP <= 0)
         {
             // 죽었을 때 처리할 것들
-            _BattleDataMNG.BattleUnitMNG.BattleUnitExit(_BattleUnit);
-            _BattleDataMNG.FieldMNG.ExitTile(_BattleUnit.UnitMove.LocX, _BattleUnit.UnitMove.LocY);
-
-            Destroy(gameObject);
+            _BattleUnit.UnitMove.MoveLotate(-1, -1);
         }
+    }
+
+    public void UnitDestroy()
+    {
+        _BattleDataMNG.BattleUnitMNG.BattleUnitExit(_BattleUnit);
+        Destroy(gameObject);
     }
 
     #endregion
