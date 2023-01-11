@@ -6,6 +6,6 @@ public class TurnChange : MonoBehaviour
 {
     void OnMouseDown()
     {
-        GameManager.Instance.BattleMNG.TurnStart();
+        GameManager.Instance.BattleMNG.EngageMNG.TurnStart();
     }
 }

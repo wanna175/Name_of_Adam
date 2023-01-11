@@ -6,7 +6,10 @@ public class Tile : MonoBehaviour
 {
     SpriteRenderer SR;
 
+    #region TileUnit
     private BattleUnit _TileUnit;
+    public BattleUnit TileUnit => _TileUnit;
+    #endregion
     #region Loc X, Y
     int _LocX, _LocY;
     public int LocX => _LocX;
@@ -19,28 +22,23 @@ public class Tile : MonoBehaviour
     private Field _field;
     public bool CanSelect = false;
 
-
-    void Start()
+    
+    private void Start()
     {
         _field = transform.parent.GetComponent<Field>();
         SR = GetComponent<SpriteRenderer>();
-        SR.color = Color.gray;
+        SR.color = Color.white;
 
-        _isOnTile = false;
-        _TileUnit = null;
-    }
-
-    public void Init()
-    {
         _TileUnit = null;
         _isOnTile = false;
         CanSelect = false;
     }
 
-    public void EnterTile(BattleUnit ch)
+    #region Enter & Exit Tile
+    public void EnterTile(BattleUnit _unit)
     {
         _isOnTile = true;
-        _TileUnit = ch;
+        _TileUnit = _unit;
     }
 
     public void ExitTile()
@@ -48,94 +46,72 @@ public class Tile : MonoBehaviour
         _isOnTile = false;
         _TileUnit = null;
     }
+    #endregion
 
     public void SetCanSelect(bool bo)
     {
         if (bo)
         {
             CanSelect = true;
-            SR.color = Color.yellow;
+            SetColor(Color.yellow);
         }
         else
         {
             CanSelect = false;
-            SR.color = Color.gray;
+            SetColor(Color.white);
         }
+    }
+
+    public void SetColor(Color color)
+    {
+        SR.color = color;
     }
 
     // 유닛에서 실행하는 메서드
     public BattleUnit OnAttack()
     {
         // 타일이 공격범위 내에 있을 시
-        // 타일에 대한 공격 처리
+        // 타일에 대한 이펙트 등의 공격 처리
 
         return _TileUnit;
     }
-
-    // 
-    // 
-    // 지워질 것들
-    // ↓↓↓↓↓↓↓↓
 
     private void OnMouseDown()
     {
         // 필드에 자신이 클릭되었다는 정보를 준다.
         // 그러면 필드가 내가 어디에 위치해있는 타일인지 찾을 것
+
         _field.TileClick(this);
     }
 
-    #region OnAttack
-    public void OnAttack(BattleUnit ch)
-    {
-        StartCoroutine(CoOnAttack(ch));
-    }
-    IEnumerator CoOnAttack(BattleUnit AttackChar)
-    {
-        SR.color = Color.white;
-
-        if (_TileUnit != null)
-        {
-
-            if (AttackChar.characterSO.team != _TileUnit.characterSO.team)
-            {
-                GameManager.Instance.BattleMNG.BattleCutScene(transform.parent, AttackChar, _TileUnit);
-                _TileUnit.GetDamage(AttackChar.GetStat().ATK);
-                Debug.Log($"{AttackChar.gameObject.name}' ATK : {AttackChar.GetStat().ATK}");
-            }
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        SR.color = Color.gray;
-
-    }
-    #endregion
-
-    #region OnHeal
+    
+    // 
+    // 지워질 것들
+    // 캐릭터 컴포넌트 분리시킬 때 얘들도 같이 수정하기
+    // ↓↓↓↓↓↓↓↓
+    
     public void OnHeal(BattleUnit ch)
     {
         StartCoroutine(CoOnHeal(ch));
     }
     IEnumerator CoOnHeal(BattleUnit AttackChar)
     {
-        SR.color = Color.white;
+        SR.color = Color.blue;
 
         if (_TileUnit != null)
         {
-            if (AttackChar.characterSO.team == _TileUnit.characterSO.team)
+            if (AttackChar.BattleUnitSO.team == _TileUnit.BattleUnitSO.team)
             {
-                _TileUnit.GetDamage(-AttackChar.GetStat().ATK);
+                _TileUnit.UnitAction.GetDamage(-AttackChar.GetStat().ATK);
             }
         }
 
         yield return new WaitForSeconds(0.5f);
 
-        SR.color = Color.gray;
+        SR.color = Color.white;
 
     }
-    #endregion
-
-    #region OnFall
+    
     public void OnFall(BattleUnit ch)
     {
         StartCoroutine(CoOnFall(ch));
@@ -146,16 +122,15 @@ public class Tile : MonoBehaviour
 
         if (_TileUnit != null)
         {
-            if (AttackChar.characterSO.team != _TileUnit.characterSO.team)
+            if (AttackChar.BattleUnitSO.team != _TileUnit.BattleUnitSO.team)
             {
-                _TileUnit.SetFallGauge(1);
+                _TileUnit.UnitAction.SetFallGauge(1);
             }
         }
 
         yield return new WaitForSeconds(0.5f);
 
-        SR.color = Color.gray;
+        SR.color = Color.white;
 
     }
-    #endregion
 }

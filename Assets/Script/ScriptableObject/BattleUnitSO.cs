@@ -35,13 +35,30 @@ public class BattleUnitSO : ScriptableObject
         skill.use(ch);
     }
 
-    public List<Vector2> HaveTargeting()
+    public AttackType GetAttackType()
     {
-        for (int i = 0; i < skill.EffectList.Count; i++)
+        foreach (EffectSO sk in skill.EffectList)
         {
-            if (skill.EffectList[i].GetType() == typeof(Effect_Attack))
-                return skill.EffectList[i].GetRange();
+            if (sk.GetType() == typeof(Effect_Attack))
+            {
+                Effect_Attack ea = sk as Effect_Attack;
+                return ea.attackType;
+            }
         }
+        return AttackType.none;
+    }
+
+    public List<Vector2> GetTargetingRange()
+    {
+        foreach(EffectSO sk in skill.EffectList)
+        {
+            if (sk.GetType() == typeof(Effect_Attack))
+            {
+                Effect_Attack ea = sk as Effect_Attack;
+                return ea.GetRange();
+            }
+        }
+
         return null;
     }
 

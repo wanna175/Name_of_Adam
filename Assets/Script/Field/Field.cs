@@ -7,22 +7,29 @@ public class Field : MonoBehaviour
 {
     [SerializeField] GameObject TilePrefabs;
 
-    FieldDataManager _FieldMNG;
+    BattleManager _BattleMNG;
+    BattleDataManager _BattleDataMNG;
+    FieldManager _FieldMNG;
+    InputManager _InputMNG;
 
     private void Awake()
     {
-        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.FieldSet(transform, TilePrefabs);
+        _BattleMNG = GameManager.Instance.BattleMNG;
+        _BattleDataMNG = _BattleMNG.BattleDataMNG;
+        _FieldMNG = _BattleMNG.BattleDataMNG.FieldMNG;
+        _InputMNG = GameManager.Instance.InputMNG;
+        
+        _FieldMNG.FieldSet(this, TilePrefabs);
 
-        _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG;
-
-        transform.position = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.FieldPosition;
+        transform.position = _FieldMNG.FieldPosition;
         transform.eulerAngles = new Vector3(16, 0, 0);
     }
 
     public void TileClick(Tile tile)
     {
-        List<List<Tile>> tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.TileArray;
-        int tileX, tileY;
+        List<List<Tile>> tiles = _FieldMNG.TileArray;
+        int tileX = 0,
+            tileY = 0;
         
         for(int i = 0; i < tiles.Count; i++)
         {
@@ -36,74 +43,81 @@ public class Field : MonoBehaviour
             }
         }
 
-        // ÇöÀç Å¬¸¯ »óÅÂ°¡ ¾î¶² »óÅÂÀÎÁö, Å¬¸¯ °¡´ÉÇÑÁö Ã¼Å©ÇÏ´Â Å¬·¡½º »ı¼º ÇÊ¿ä
 
+        // í˜„ì¬ í´ë¦­ ìƒíƒœê°€ ì–´ë–¤ ìƒíƒœì¸ì§€, í´ë¦­ ê°€ëŠ¥í•œì§€ ì²´í¬í•˜ëŠ” í´ë˜ìŠ¤ ìƒì„± í•„ìš”
 
-        
-        //ÇÚµå¸¦ ´©¸£°í Å¸ÀÏÀ» ´©¸¦ ¶§
-        //    if (GameManager.Instance.InputMNG.ClickedHand != 0)
-        //    {
-        //        //¹üÀ§ ¿Ü
-        //        if (LocX > 3 && LocY > 2)
-        //        {
-        //            Debug.Log("out of range");
-        //        }
-        //        else
-        //        {
-        //            if (GameManager.Instance.BattleMNG.UseMana(2))
-        //            {
-        //                //Á¶°Ç¹®ÀÌ ÂüÀÌ¶ó¸é ÀÌ¹Ì ¸¶³ª°¡ ¼Ò¸ğµÊ
-        //                GameManager.Instance.InputMNG.ClickedChar.setLocate(LocX, LocY);
+        // ìœ ë‹›ì´ ê³µê²©í•  íƒ€ê²Ÿì„ ì„ íƒì¤‘ì´ë¼ë©´
+        if (tile.CanSelect)
+        {
+            _BattleMNG.PrepareMNG.SelectedUnit.TileSelected(tileX, tileY);
+            _FieldMNG.FieldClear();
+            return;
+        }
+        // í´ë¦­í•œ íƒ€ì¼ì— ìœ ë‹›ì´ ìˆì„ ì‹œ
+        else if (tile.TileUnit != null)
+        {
+            BattleUnit SelectUnit = tile.TileUnit;
+            _FieldMNG.FieldClear();
 
-        //                Instantiate(GameManager.Instance.InputMNG.ClickedChar);
+            // ê·¸ ìœ ë‹›ì´ ì•„êµ°ì´ë¼ë©´
+            if (tile.TileUnit.BattleUnitSO.team == Team.Player)
+            {
+                _BattleMNG.PrepareMNG.SelectedUnit = SelectUnit;
 
-        //                GameManager.Instance.InputMNG.DeleteHand(GameManager.Instance.InputMNG.ClickedHand);
-        //                GameManager.Instance.InputMNG.ClearHand();
+                // ìœ ë‹›ì´ ë³´ìœ í•œ ìŠ¤í‚¬ì´ íƒ€ê²ŸíŒ… í˜•ì‹ì¸ì§€ í™•ì¸í•œë‹¤.
+                List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
+                if (vecList != null)
+                {
 
-        //                GameManager.Instance.DataMNG.BattleCharList.Add(GameManager.Instance.InputMNG.ClickedChar);
-        //            }
-        //            else
-        //            {
-        //                //¸¶³ª ºÎÁ·
-        //                Debug.Log("not enough mana");
-        //            }
-        //        }
-        //    }
+                    // íƒ€ê²ŸíŒ…ì´ ë§ë‹¤ë©´ ë²”ìœ„ í‘œì‹œ
+                    for (int i = 0; i < vecList.Count; i++)
+                    {
+                        int x = SelectUnit.UnitMove.LocX - (int)vecList[i].x;
+                        int y = SelectUnit.UnitMove.LocY - (int)vecList[i].y;
 
-        //    if (CanSelect)
-        //    {
-        //        GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.CanSelectClear();
-        //        GameManager.Instance.BattleMNG.SelectedChar.TileSelected(LocY, LocX);
-        //        return;
-        //    }
-        //    if (_TileUnit != null)
-        //    {
-        //        if (_TileUnit.characterSO.team == Team.Player)
-        //        {
-        //            GameManager.Instance.BattleMNG.SelectedChar = _TileUnit;
+                        if (0 <= x && x < 8)
+                        {
+                            if (0 <= y && y < 3)
+                                tiles[y][x].SetCanSelect(true);
+                        }
+                    }
+                }
+            }
+        }
+        // í´ë¦­í•œ íƒ€ì¼ì— ìœ ë‹›ì´ ì—†ì„ ì‹œ
+        else
+        {
+            // ë‹¹ì¥ì€ í•¸ë“œê°€ ì—†ì–´ì„œ ì•„ë˜ëŠ” ì£¼ì„ì²˜ë¦¬
 
-        //            List<Vector2> vecList = _TileUnit.characterSO.HaveTargeting();
-        //            if (vecList != null)
-        //            {
-        //                GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.CanSelectClear();
-        //                Tile[,] tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldDataMNG.TileArray;
+            ////í•¸ë“œë¥¼ ëˆ„ë¥´ê³  íƒ€ì¼ì„ ëˆ„ë¥¼ ë•Œ
+            //if (GameManager.Instance.InputMNG.ClickedHand != 0)
+            //{
+            //    //ë²”ìœ„ ì™¸
+            //    if (tileX > 3 && tileY > 2)
+            //    {
+            //        Debug.Log("out of range");
+            //    }
+            //    else
+            //    {
+            //        if (_BattleDataMNG.ManaMNG.UseMana(2))
+            //        {
+            //            //ì¡°ê±´ë¬¸ì´ ì°¸ì´ë¼ë©´ ì´ë¯¸ ë§ˆë‚˜ê°€ ì†Œëª¨ë¨
+            //            _InputMNG.ClickedChar.UnitMove.setLocate(tileX, tileY);
 
-        //                for (int i = 0; i < vecList.Count; i++)
-        //                {
-        //                    int x = _TileUnit.LocX - (int)vecList[i].x;
-        //                    int y = _TileUnit.LocY - (int)vecList[i].y;
+            //            Instantiate(_InputMNG.ClickedChar);
 
-        //                    if (0 <= x && x < 8)
-        //                    {
-        //                        if (0 <= y && y < 3)
-        //                        {
-        //                            tiles[y, x].SetCanSelect(true);
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+            //            _InputMNG.DeleteHand(GameManager.Instance.InputMNG.ClickedHand);
+            //            _InputMNG.ClearHand();
+
+            //            _BattleDataMNG.BattleUnitMNG.BattleUnitList.Add(_InputMNG.ClickedChar);
+            //        }
+            //        else
+            //        {
+            //            //ë§ˆë‚˜ ë¶€ì¡±
+            //            Debug.Log("not enough mana");
+            //        }
+            //    }
+            //}
+        }
     }
 }
