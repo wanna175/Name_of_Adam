@@ -27,4 +27,9 @@ public class BattleUnitRenderer : MonoBehaviour
         // 적군일 경우 x축 뒤집기
         _SR.flipX = (_BattleUnitSO.team == Team.Enemy) ? true : false;
     }
+
+    public void SetUnitLayer(int num)
+    {
+        _SR.sortingOrder = num;
+    }
 }

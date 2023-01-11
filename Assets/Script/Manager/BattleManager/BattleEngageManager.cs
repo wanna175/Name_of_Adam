@@ -48,8 +48,16 @@ public class BattleEngageManager : MonoBehaviour
         // index가 리스트의 범위를 넘지 않는다면 use를 실행
         if (_unitListIndex < _BattleUnitList.Count)
         {
-            _BattleUnitList[_unitListIndex].use();
-            _unitListIndex++;
+            if (0 < _BattleUnitList[_unitListIndex].UnitAction.CurHP)
+            {
+                _BattleUnitList[_unitListIndex].use();
+                _unitListIndex++;
+            }
+            else
+            {
+                _unitListIndex++;
+                UseUnitSkill();
+            }
         }
         else
         {
@@ -60,7 +68,19 @@ public class BattleEngageManager : MonoBehaviour
 
     void TurnEnd()
     {
+        DestroyDeadUnit();
         _BattleDataMNG.ManaMNG.AddMana(2);
         CanTurnStart = true;
+    }
+
+    void DestroyDeadUnit()
+    {
+        foreach (BattleUnit unit in _BattleUnitList)
+        {
+            if (unit.UnitAction.CurHP <= 0)
+            {
+                unit.UnitAction.UnitDestroy();
+            }
+        }
     }
 }

@@ -15,10 +15,13 @@ public class CutSceneData
     // 얼마나 줌할 것인지
     public float DefaultZoomSize = 65;
     public float ZoomSize;
-    // 어느 캐릭터가 어느 위치에 있는지
+    // 어느 유닛이 어느 위치에 있는지
     public BattleUnit LeftUnit;
     public BattleUnit RightUnit;
-    // 어느 캐릭터가 공격자인지
+    // 유닛들이 어느 위치에 있었는지
+    public Vector3 LeftPosition;
+    public Vector3 RightPosition;
+    // 어느 유니이 공격자인지
     public BattleUnit AttackUnit;
     public BattleUnit HitUnit;
     public List<BattleUnit> HitUnits;
@@ -120,6 +123,7 @@ public class BattleCutSceneManager : MonoBehaviour
 
         #region Create CutSceneData
 
+        CSData.ATKType = _atkUnit.BattleUnitSO.GetAttackType();
         CSData.ZoomTime = _zoomTime;
         CSData.ZoomLocation = _FieldMNG.GameField.transform.position;
         CSData.ZoomLocation.z = Camera.main.transform.position.z;
@@ -127,13 +131,26 @@ public class BattleCutSceneManager : MonoBehaviour
         CSData.ZoomSize = 30; // 얘는 나중에 유동적으로 받기
         CSData.LeftUnit = LeftUnit;
         CSData.RightUnit = RightUnit;
+        CSData.LeftPosition = LeftUnit.transform.position;
+        CSData.RightPosition = RightUnit.transform.position;
         CSData.AttackUnit = _atkUnit;
 
         #endregion
     }
 
+    // 컷씬 지점으로 이동
+    public void MoveUnitZoomIn(CutSceneData CSData, float t)
+    {
+        Vector3 leftVec = new Vector3(-2, -1.4f, 0);
+        Vector3 rightVec = new Vector3(2, -1.4f, 0);
+
+        CSData.LeftUnit.transform.position = Vector3.Lerp(CSData.LeftPosition, leftVec, t);
+        CSData.RightUnit.transform.position = Vector3.Lerp(CSData.RightPosition, rightVec, t);
+    }
+
     #endregion
 
+    #region Attack & Animation
 
     // 확대 후 컷씬
     public IEnumerator RangeCutScene(CutSceneData CSData)
@@ -157,6 +174,18 @@ public class BattleCutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
+    }
+
+    #endregion
+
+    // 컷씬 지점으로 이동
+    public void MoveUnitZoomOut(CutSceneData CSData, float t)
+    {
+        Vector3 leftVec = new Vector3(-2, -1.4f, 0);
+        Vector3 rightVec = new Vector3(2, -1.4f, 0);
+
+        CSData.LeftUnit.transform.position = Vector3.Lerp(leftVec, CSData.LeftPosition, t);
+        CSData.RightUnit.transform.position = Vector3.Lerp(rightVec, CSData.RightPosition, t);
     }
 
     public void NextUnitSkill()

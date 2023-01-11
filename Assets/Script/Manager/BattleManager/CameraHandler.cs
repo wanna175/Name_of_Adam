@@ -16,7 +16,6 @@ public class CameraHandler : MonoBehaviour
 
         _CutSceneMNG = GameManager.Instance.BattleMNG.CutSceneMNG;
         _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
-
         _CutSceneMNG.CameraHandler = this;
 
         SetMainCamera();
@@ -50,12 +49,14 @@ public class CameraHandler : MonoBehaviour
         while (time <= CSData.ZoomTime)
         {
             time += Time.deltaTime;
-            
-            CutSceneCamera.transform.position = Vector3.Lerp(new Vector3(0, 0, CutSceneCamera.transform.position.z), CSData.ZoomLocation, time / CSData.ZoomTime);
-            CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.DefaultZoomSize, CSData.ZoomSize, time / CSData.ZoomTime);
+            float t = time / CSData.ZoomTime;
+
+            CutSceneCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, CSData.ZoomLocation, t);
+            CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.DefaultZoomSize, CSData.ZoomSize, t);
+            _CutSceneMNG.MoveUnitZoomIn(CSData, t);
             yield return null;
         }
-
+        Debug.Log(CSData.ATKType);
         if (CSData.ATKType == AttackType.rangeAttack)
             StartCoroutine(_CutSceneMNG.RangeCutScene(CSData));
         else if (CSData.ATKType == AttackType.targeting)
@@ -65,16 +66,16 @@ public class CameraHandler : MonoBehaviour
     // 컷씬 후 화면 줌 아웃
     public IEnumerator CutSceneZoomOut(CutSceneData CSData)
     {
-        Debug.Log('a');
         float time = 0;
 
         while (time <= CSData.ZoomTime)
         {
             time += Time.deltaTime;
+            float t = time / CSData.ZoomTime;
 
-            CutSceneCamera.transform.position = Vector3.Lerp(CSData.ZoomLocation, new Vector3(0, 0, CutSceneCamera.transform.position.z), time / CSData.ZoomTime);
-            CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, time / +CSData.ZoomTime);
-
+            CutSceneCamera.transform.position = Vector3.Lerp(CSData.ZoomLocation, MainCamera.transform.position, t);
+            CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, t);
+            _CutSceneMNG.MoveUnitZoomOut(CSData, t);
             yield return null;
         }
         SetMainCamera();

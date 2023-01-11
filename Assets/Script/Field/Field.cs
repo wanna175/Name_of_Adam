@@ -44,7 +44,6 @@ public class Field : MonoBehaviour
             }
         }
 
-
         // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
 
         // 유닛이 공격할 타겟을 선택중이라면
@@ -59,7 +58,7 @@ public class Field : MonoBehaviour
         {
             BattleUnit SelectUnit = tile.TileUnit;
             _FieldMNG.FieldClear();
-
+            
             // 그 유닛이 아군이라면
             if (tile.TileUnit.BattleUnitSO.team == Team.Player)
             {
@@ -69,7 +68,6 @@ public class Field : MonoBehaviour
                 List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
                 if (vecList != null)
                 {
-
                     // 타겟팅이 맞다면 범위 표시
                     for (int i = 0; i < vecList.Count; i++)
                     {
