@@ -47,13 +47,12 @@ public class BattleUnit : MonoBehaviour
 
         _BattleDataMNG.BattleUnitMNG.BattleUnitEnter(this);
         _UnitAction.GetMaxHP(GetStat().HP);
-        _UnitMove.SetLotate();
     }
 
     private void Update()
     {
         // 인스펙터에서 위치 이동시키기 위해 임시로 배치
-        _UnitMove.SetLotate();
+        //_UnitMove.SetLotate();
     }
 
 

@@ -12,14 +12,14 @@ public class BattleUnitManager
     #endregion  
 
     // 리스트에 캐릭터를 추가 / 제거
-    #region CharEnter / Exit
-    public void BattleUnitEnter(BattleUnit ch)
+    #region UnitEnter / Exit
+    public void BattleUnitEnter(BattleUnit unit)
     {
-        BattleUnitList.Add(ch);
+        BattleUnitList.Add(unit);
     }
-    public void BattleUnitExit(BattleUnit ch)
+    public void BattleUnitExit(BattleUnit unit)
     {
-        BattleUnitList.Remove(ch);
+        BattleUnitList.Remove(unit);
     }
     #endregion
 
@@ -42,5 +42,20 @@ public class BattleUnitManager
         //{
         //    Debug.Log("Speed : " + t.GetSpeed() + ", Y : " + t.LocY + ", X : " + t.LocX);
         //}
+    }
+
+    //필드에 유닛을 생성
+    public void CreatBattleUnit(DeckUnit unit, int x, int y)
+    {
+        /*
+        BattleUnit BattleUnit = new BattleUnit();
+        BattleUnit.BattleUnitSO =  unit.GetUnitSO();
+        BattleUnit.UnitMove.setLocate(x, y);
+
+        BattleUnitEnter(BattleUnit);
+        Instantiate(BattleUnit);
+
+        GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.EnterTile(BattleUnit, x, y);
+        */
     }
 }

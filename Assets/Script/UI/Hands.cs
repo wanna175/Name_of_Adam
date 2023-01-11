@@ -29,7 +29,7 @@ public class Hands : MonoBehaviour
         //1,2,3,4 순으로 Hand의 Unit이 null이면 1개 추가
         foreach (Hand h in HandList)
         {
-            if (h.GetHandDeckUnit() == null)
+            if (h.isHandNull())
             {
                 h.SetHandDeckUnit(GameManager.Instance.BattleMNG.BattleDataMNG.GetRandomDeckUnit());
                 break;

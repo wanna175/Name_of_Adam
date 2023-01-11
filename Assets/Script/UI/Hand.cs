@@ -33,6 +33,18 @@ public class Hand : MonoBehaviour
         return HandUnit;
     }
 
+    public bool isHandNull()
+    {
+        if (HandUnit == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public DeckUnit RemoveHandDeckUnit()
     {
         Debug.Log("Hand " + handIndex + " clear");
