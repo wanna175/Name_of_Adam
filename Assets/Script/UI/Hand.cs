@@ -1,46 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Hand : MonoBehaviour
 {
     [SerializeField] int handIndex;
 
-    SpriteRenderer SR;
+    private SpriteRenderer SR;
 
-    public BattleUnit HandChar = null;
+    private DeckUnit HandUnit = null;
 
-    void Start()
+    void Awake()
     {
         SR = GetComponent<SpriteRenderer>();
     }
 
-    public void SetCharacter(BattleUnit ch)
+    public void SetHandDeckUnit(DeckUnit unit)
     {
         Debug.Log("Hand " + handIndex + " set");
-        HandChar = ch;
-        if (HandChar != null)
+        HandUnit = unit;
+        if (HandUnit != null)
         {
             GetComponent<Renderer>().enabled = true;
-            SR.sprite = HandChar.BattleUnitSO.sprite;
+            SR.sprite = HandUnit.GetUnitSO().sprite;
         }
 
     }
 
-    public BattleUnit DelCharacter()
+    public DeckUnit GetHandDeckUnit()
     {
-        Debug.Log("Hand " + handIndex + " clear");
-        BattleUnit returnChar = HandChar;
-        HandChar = null;
+        return HandUnit;
+    }
+
+    public bool isHandNull()
+    {
+        if (HandUnit == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public DeckUnit RemoveHandDeckUnit()
+    {
+        DeckUnit returnUnit = HandUnit;
+        HandUnit = null;
         
         GetComponent<Renderer>().enabled = false;
         
-        return returnChar;
+        return returnUnit;
     }
 
     void OnMouseDown() 
     {
         Debug.Log("Hand: " + handIndex);
-        GameManager.Instance.InputMNG.setHand(handIndex, HandChar);
+        GameManager.Instance.InputMNG.SetHand(handIndex, HandUnit);
     }
 }

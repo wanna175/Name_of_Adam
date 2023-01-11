@@ -5,27 +5,25 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     //UI들의 상호작용 관련 변수 관리
-    [SerializeField] Deck deck;
+    [SerializeField] public Hands Hands;
     
-    #region Deck
-    public int ClickedHand = 0;
-    public BattleUnit ClickedChar = null;
+    #region Hands
+    private int _ClickedHand = 0;
+    public int ClickedHand => _ClickedHand;
 
-    public void setHand(int handIndex, BattleUnit ch)
-    {
-        ClickedHand = handIndex;
-        ClickedChar = ch;
-    }
+    private DeckUnit _ClickedUnit = null;
+    public DeckUnit ClickedUnit => _ClickedUnit;
 
-    public void DeleteHand(int handIndex)
+    public void SetHand(int handIndex, DeckUnit unit)
     {
-        deck.HandDel(handIndex);
+        _ClickedHand = handIndex;
+        _ClickedUnit = unit;
     }
 
     public void ClearHand()
     {
-        ClickedHand = 0;
-        ClickedChar = null;
+        _ClickedHand = 0;
+        _ClickedUnit = null;
     }
 
     #endregion

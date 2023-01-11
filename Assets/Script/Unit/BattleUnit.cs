@@ -52,7 +52,6 @@ public class BattleUnit : MonoBehaviour
     private void Update()
     {
         // 인스펙터에서 위치 이동시키기 위해 임시로 배치
-        // _UnitMove.SetLotate();
     }
 
 

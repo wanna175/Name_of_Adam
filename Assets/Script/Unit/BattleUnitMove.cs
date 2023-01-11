@@ -65,9 +65,9 @@ public class BattleUnitMove : MonoBehaviour
 
     // 타일 위로 이동
     public void SetLotate()
-    {
+    {        
         Vector3 vec = _BattleDataMNG.FieldMNG.GetTileLocate(LocX, LocY);
-
+        
         if (vec.x == -1 && vec.y == -1)
         {
             _BattleUnit.UnitRenderer.SetUnitLayer(-10);
