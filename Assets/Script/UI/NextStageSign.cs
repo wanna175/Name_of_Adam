@@ -37,7 +37,7 @@ public class NextStageSign : MonoBehaviour
             StageArray[1] = EncountStage.Boss;
             DrawSign(true);
 
-            GetComponent<PlayerPrefs>
+            //GetComponent<PlayerPrefs>
         }
     }
 
