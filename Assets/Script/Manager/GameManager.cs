@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     StageManager _StageMNG;
     public StageManager StageMNG => _StageMNG;
     #endregion
-    #region DataManger
+    #region DataManager
     DataManager _DataMNG;
     public DataManager DataMNG => _DataMNG;
     #endregion

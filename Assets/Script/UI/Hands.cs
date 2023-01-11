@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour
+public class Hands : MonoBehaviour
 {
     [SerializeField] List<Hand> HandList;
 
@@ -10,7 +10,7 @@ public class Deck : MonoBehaviour
     {
         //전투 시작 후 초기 멀리건 4장
         for (int i = 0; i < 4; i++) {
-            AddCharacter();
+            AddUnitToHand();
         }
     }
 
@@ -19,37 +19,38 @@ public class Deck : MonoBehaviour
     {
         //전투 시작 후 초기 멀리건 4장
         for (int i = 0; i < 4; i++) {
-            AddCharacter();
+            AddUnitToHand();
         }
     }
     */
 
-    public void AddCharacter()
+    public void AddUnitToHand()
     {
-        //1,2,3,4 순으로 Hand의 Character가 null이면 1개 추가
+        //1,2,3,4 순으로 Hand의 Unit이 null이면 1개 추가
         foreach (Hand h in HandList)
         {
-            if (h.HandChar == null)
+            if (h.GetHandDeckUnit() == null)
             {
-                h.SetCharacter(GameManager.Instance.DataMNG.RandomChar());
+                h.SetHandDeckUnit(GameManager.Instance.BattleMNG.BattleDataMNG.GetRandomDeckUnit());
                 break;
             }
         }
     }
-    public BattleUnit HandDel(int handIndex)
+    public DeckUnit RemoveHand(int handIndex)
     {
         //handIndex는 1부터 시작하기에 -1 해야함
-        BattleUnit returnChar;
+        DeckUnit returnUnit;
 
-        returnChar = HandList[handIndex-1].DelCharacter();
+        returnUnit = HandList[handIndex-1].RemoveHandDeckUnit();
 
         for (int i = (handIndex-1)+1; i < 4; i++)
         {
-            HandList[i-1].SetCharacter(HandList[i].DelCharacter());
+            HandList[i-1].SetHandDeckUnit(HandList[i].RemoveHandDeckUnit());
         }
 
-        AddCharacter();
+        //빈 공간이 있으면 1개 추가
+        AddUnitToHand();
 
-        return returnChar;
+        return returnUnit;
     }
 }

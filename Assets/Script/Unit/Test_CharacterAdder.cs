@@ -8,6 +8,6 @@ public class Test_CharacterAdder : MonoBehaviour
 
     void OnMouseDown()
     {
-        GameManager.Instance.DataMNG.AddCharToDeck(add);
+        //GameManager.Instance.DataMNG.AddCharToDeck(add);
     }
 }
