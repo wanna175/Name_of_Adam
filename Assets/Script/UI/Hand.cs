@@ -47,7 +47,6 @@ public class Hand : MonoBehaviour
 
     public DeckUnit RemoveHandDeckUnit()
     {
-        Debug.Log("Hand " + handIndex + " clear");
         DeckUnit returnUnit = HandUnit;
         HandUnit = null;
         

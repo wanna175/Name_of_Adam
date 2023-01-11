@@ -21,9 +21,7 @@ public class BattleUnitMove : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("스타트");
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
-        Debug.Log("스타트2");
         SetLotate();
     }
 
@@ -63,15 +61,10 @@ public class BattleUnitMove : MonoBehaviour
 
     // 타일 위로 이동
     public void SetLotate()
-    {
-        Debug.Log("검사 1");
-        Debug.Log(_BattleDataMNG);
-        Debug.Log(_BattleDataMNG.FieldMNG);
-        
+    {        
         Vector3 vec = _BattleDataMNG.FieldMNG.GetTileLocate(LocX, LocY);
-        Debug.Log("검사 2");
+        
         transform.position = vec;
-        Debug.Log("검사 3");
         // 현재 타일에 내가 들어왔다고 알려줌 
         _BattleDataMNG.FieldMNG.EnterTile(_BattleUnit, LocX, LocY);
     }

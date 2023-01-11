@@ -53,4 +53,15 @@ public class Hands : MonoBehaviour
 
         return returnUnit;
     }
+
+    public void ReturnHand()
+    {
+        foreach (Hand h in HandList)
+        {
+            if (!h.isHandNull())
+            {
+                GameManager.Instance.BattleMNG.BattleDataMNG.AddDeckUnit(h.RemoveHandDeckUnit());
+            }
+        }
+    }
 }

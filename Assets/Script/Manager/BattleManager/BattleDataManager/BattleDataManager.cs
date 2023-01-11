@@ -31,6 +31,16 @@ public class BattleDataManager
         _DataMNG = GameManager.Instance.DataMNG;
     }
 
+    #region Turn
+    private int _Turn;
+    public int Turn => _Turn;
+
+    public void TurnPlus()
+    {
+        _Turn++;
+    }
+    #endregion
+
     #region DeckUnitList
     private List<DeckUnit> _DeckUnitList = new List<DeckUnit>();
     public List<DeckUnit> DeckUnitList => _DeckUnitList;

@@ -52,7 +52,6 @@ public class FieldManager
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTileLocate(int x, int y)
     {
-        Debug.Log("실행됨?");
         Vector3 vec = _TileArray[y][x].transform.position;
 
         float sizeX = _TileArray[y][x].transform.localScale.x * 0.5f;

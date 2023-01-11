@@ -45,17 +45,17 @@ public class BattleUnitManager
     }
 
     //필드에 유닛을 생성
-    public void CreatBattleUnit(DeckUnit unit, int x, int y)
-    {
-        /*
-        BattleUnit BattleUnit = new BattleUnit();
-        BattleUnit.BattleUnitSO =  unit.GetUnitSO();
+    public void CreatBattleUnit(GameObject BattleUnitPrefab, int x, int y)
+    {                   
+        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+
+        BattleUnit.BattleUnitSO = GameManager.Instance.InputMNG.ClickedUnit.GetUnitSO();
         BattleUnit.UnitMove.setLocate(x, y);
 
         BattleUnitEnter(BattleUnit);
-        Instantiate(BattleUnit);
-
         GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.EnterTile(BattleUnit, x, y);
-        */
+                        
+        
     }
+
 }
