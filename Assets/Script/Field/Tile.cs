@@ -6,78 +6,131 @@ public class Tile : MonoBehaviour
 {
     SpriteRenderer SR;
 
-    Character chara;
+    #region TileUnit
+    private BattleUnit _TileUnit;
+    public BattleUnit TileUnit => _TileUnit;
+    #endregion
+    #region Loc X, Y
+    int _LocX, _LocY;
+    public int LocX => _LocX;
+    public int LocY => _LocY;
+    #endregion
     #region isOnTile
     bool _isOnTile;
     public bool isOnTile => _isOnTile;
     #endregion
+    private Field _field;
+    public bool CanSelect = false;
 
-    void Start()
+    
+    private void Start()
     {
+        _field = transform.parent.GetComponent<Field>();
         SR = GetComponent<SpriteRenderer>();
-        SR.color = Color.gray;
+        SR.color = Color.white;
 
+        _TileUnit = null;
         _isOnTile = false;
-        chara = null;
+        CanSelect = false;
     }
 
-    public void EnterTile(Character ch)
+    #region Enter & Exit Tile
+    public void EnterTile(BattleUnit _unit)
     {
         _isOnTile = true;
-        chara = ch;
+        _TileUnit = _unit;
     }
 
     public void ExitTile()
     {
         _isOnTile = false;
-        chara = null;
-    }
-
-    #region OnAttack
-    public void OnAttack(Character ch)
-    {
-        StartCoroutine(CoOnAttack(ch));
-    }
-    IEnumerator CoOnAttack(Character AttackChar)
-    {
-        SR.color = Color.red;
-
-        if (chara != null)
-        {
-            if (AttackChar.characterSO.team != chara.characterSO.team)
-            {
-                chara.GetDamage(AttackChar.characterSO.stat.ATK);
-            }
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        SR.color = Color.gray;
-
+        _TileUnit = null;
     }
     #endregion
 
-    #region OnHeal
-    public void OnHeal(Character ch)
+    public void SetCanSelect(bool bo)
+    {
+        if (bo)
+        {
+            CanSelect = true;
+            SetColor(Color.yellow);
+        }
+        else
+        {
+            CanSelect = false;
+            SetColor(Color.white);
+        }
+    }
+
+    public void SetColor(Color color)
+    {
+        SR.color = color;
+    }
+
+    // 유닛에서 실행하는 메서드
+    public BattleUnit OnAttack()
+    {
+        // 타일이 공격범위 내에 있을 시
+        // 타일에 대한 이펙트 등의 공격 처리
+
+        return _TileUnit;
+    }
+
+    private void OnMouseDown()
+    {
+        // 필드에 자신이 클릭되었다는 정보를 준다.
+        // 그러면 필드가 내가 어디에 위치해있는 타일인지 찾을 것
+
+        _field.TileClick(this);
+    }
+
+    
+    // 
+    // 지워질 것들
+    // 캐릭터 컴포넌트 분리시킬 때 얘들도 같이 수정하기
+    // ↓↓↓↓↓↓↓↓
+    
+    public void OnHeal(BattleUnit ch)
     {
         StartCoroutine(CoOnHeal(ch));
     }
-    IEnumerator CoOnHeal(Character AttackChar)
+    IEnumerator CoOnHeal(BattleUnit AttackChar)
     {
-        SR.color = Color.white;
+        SR.color = Color.blue;
 
-        if (chara != null)
+        if (_TileUnit != null)
         {
-            if (AttackChar.characterSO.team == chara.characterSO.team)
+            if (AttackChar.BattleUnitSO.team == _TileUnit.BattleUnitSO.team)
             {
-                chara.GetDamage(-AttackChar.characterSO.stat.ATK);
+                _TileUnit.UnitAction.GetDamage(-AttackChar.GetStat().ATK);
             }
         }
 
         yield return new WaitForSeconds(0.5f);
 
-        SR.color = Color.gray;
+        SR.color = Color.white;
 
     }
-    #endregion
+    
+    public void OnFall(BattleUnit ch)
+    {
+        StartCoroutine(CoOnFall(ch));
+    }
+    IEnumerator CoOnFall(BattleUnit AttackChar)
+    {
+        SR.color = Color.yellow;
+
+        if (_TileUnit != null)
+        {
+            if (AttackChar.BattleUnitSO.team != _TileUnit.BattleUnitSO.team)
+            {
+                _TileUnit.UnitAction.SetFallGauge(1);
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        SR.color = Color.white;
+
+    }
 }

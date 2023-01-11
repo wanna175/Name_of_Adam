@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class EffectSO : ScriptableObject
 {
-    public abstract void Effect(Character ch);
+    public abstract void Effect(BattleUnit ch);
 }

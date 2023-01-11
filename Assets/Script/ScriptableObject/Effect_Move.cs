@@ -4,10 +4,10 @@ using UnityEngine;
 
 enum Dir
 {
-    Left,
-    Right,
-    Up,
-    Down
+    Left  =  -1,
+    Right =   1,
+    Up    =  10,
+    Down  = -10
 }
 
 [CreateAssetMenu(fileName = "Effect_Move", menuName = "Scriptable Object/Effect_Move", order = 2)]
@@ -16,26 +16,15 @@ public class Effect_Move : EffectSO
     [SerializeField] List<Dir> MoveDir;
     [SerializeField] Dictionary<string, Vector2> dic = new Dictionary<string, Vector2>();
 
-    // ¿Ãµø Ω««‡
-    public override void Effect(Character caster)
+    // Ïù¥Îèô Ïã§Ìñâ
+    public override void Effect(BattleUnit caster)
     {
         for (int i = 0; i < MoveDir.Count; i++)
         {
-            switch (MoveDir[i])
-            {
-                case Dir.Left:
-                    caster.MoveLotate(-1, 0);
-                    break;
-                case Dir.Right:
-                    caster.MoveLotate(1, 0);
-                    break;
-                case Dir.Up:
-                    caster.MoveLotate(0, 1);
-                    break;
-                case Dir.Down:
-                    caster.MoveLotate(0, -1);
-                    break;
-            }
+            int x = (int)MoveDir[i];
+            int y = (int)MoveDir[i] / 10;
+
+            caster.UnitMove.MoveLotate(x, y);
         }
     }
 }

@@ -2,35 +2,89 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackType
+{
+    targeting,
+    rangeAttack,
+
+    none
+}
+
 [CreateAssetMenu(fileName = "Effect_Attack", menuName = "Scriptable Object/Effect_Attack", order = 3)]
 public class Effect_Attack : EffectSO
 {
-    [SerializeField] RangeSO range;    // °ø°İ ¹üÀ§
-    [SerializeField] float DMG;        // µ¥¹ÌÁö ¹èÀ²
+    [SerializeField] public AttackType attackType;
+    [SerializeField] RangeSO range;    // ê³µê²© ë²”ìœ„
+    [SerializeField] float DMG;        // ë°ë¯¸ì§€ ë°°ìœ¨
 
-    // °ø°İ ½ÇÇà
-    public override void Effect(Character caster)
+
+
+    // ê³µê²© ì‹¤í–‰
+    public override void Effect(BattleUnit caster)
     {
-        float CharATK = caster.characterSO.stat.ATK;
-
-        Tile[,] Tiles = GameManager.Instance.BattleMNG.BattleField.TileArray;
-
+        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.TileArray;
         List<Vector2> RangeList = GetRange();
 
-        // °ø°İ ¹üÀ§¸¦ ÇâÇØ °ø°İ
-        for(int i = 0; i < RangeList.Count; i++)
-        {
-            int x = caster.LocX - (int)RangeList[i].x;
-            int y = caster.LocY - (int)RangeList[i].y;
+        float CharATK = caster.BattleUnitSO.stat.ATK;
 
-            // °ø°İ ¹üÀ§°¡ ÇÊµå¸¦ ¹ş¾î³ªÁö ¾ÊÀº °æ¿ì °ø°İ
-            if(0 <= x && x < 8)
+        if (attackType == AttackType.rangeAttack)
+        {
+            List<BattleUnit> _BattleUnits = new List<BattleUnit>();
+
+            // ê³µê²© ë²”ìœ„ë¥¼ í–¥í•´ ê³µê²©
+            for (int i = 0; i < RangeList.Count; i++)
             {
-                if(0 <= y && y < 3)
+                int x = caster.UnitMove.LocX - (int)RangeList[i].x;
+                int y = caster.UnitMove.LocY - (int)RangeList[i].y;
+
+                if (0 <= x && x < 8)
                 {
-                    Tiles[y, x].OnAttack(caster);
+                    if (0 <= y && y < 3)
+                    {
+                        Tiles[y][x].SetColor(Color.red);
+
+                        if (Tiles[y][x].isOnTile)
+                        {
+                            if (caster.BattleUnitSO.team != Tiles[y][x].TileUnit.BattleUnitSO.team)
+                            {
+                                _BattleUnits.Add(Tiles[y][x].TileUnit);
+                            }
+                        }
+                    }
                 }
             }
+            caster.UnitAction.OnAttackRange(_BattleUnits);
+        }
+        else if (attackType == AttackType.targeting)
+        {
+
+            int x = (int)caster.SelectTile.x;
+            int y = (int)caster.SelectTile.y;
+
+            if (x == -1 && y == -1)
+            {
+                x = caster.UnitMove.LocX;
+                y = caster.UnitMove.LocY;
+            }
+
+            BattleUnit unit = null;
+
+            // ê³µê²© ë²”ìœ„ê°€ í•„ë“œë¥¼ ë²—ì–´ë‚˜ì§€ ì•Šì€ ê²½ìš° ê³µê²©
+            if (0 <= x && x < 8)
+            {
+                if (0 <= y && y < 3)
+                {
+                    Tiles[y][x].SetColor(Color.red);
+
+                    if (Tiles[y][x].isOnTile)
+                    {
+                        if (caster.BattleUnitSO.team != Tiles[y][x].TileUnit.BattleUnitSO.team)
+                            unit = Tiles[y][x].TileUnit;
+                    }
+
+                }
+            }
+            caster.UnitAction.OnAttackTarget(unit);
         }
     }
 
