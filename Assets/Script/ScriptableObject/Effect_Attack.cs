@@ -4,16 +4,26 @@ using UnityEngine;
 
 public enum AttackType
 {
-    targeting,
-    rangeAttack,
+    none,
 
-    none
+    targeting,
+    rangeAttack
+}
+
+public enum RangeType
+{
+    none,
+
+    noneMove,
+    tracking,
+    center
 }
 
 [CreateAssetMenu(fileName = "Effect_Attack", menuName = "Scriptable Object/Effect_Attack", order = 3)]
 public class Effect_Attack : EffectSO
 {
     [SerializeField] public AttackType attackType;
+    [SerializeField] public RangeType rangeType;
     [SerializeField] RangeSO range;    // 공격 범위
     [SerializeField] float DMG;        // 데미지 배율
 

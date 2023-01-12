@@ -80,7 +80,7 @@ public class CameraHandler : MonoBehaviour
         {
             t += Time.deltaTime;
 
-            Vector3 vec = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(0, 0, 3), t);
+            Vector3 vec = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(0, 0, 2), t);
             CutSceneCamera.transform.rotation = Quaternion.Euler(vec);
 
             yield return null;
@@ -101,7 +101,7 @@ public class CameraHandler : MonoBehaviour
             CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, t);
             _CutSceneMNG.MoveUnitZoomOut(CSData, t);
 
-            Vector3 vec = Vector3.Lerp(new Vector3(0, 0, 3), new Vector3(0, 0, 0), t);
+            Vector3 vec = Vector3.Lerp(new Vector3(0, 0, 2), new Vector3(0, 0, 0), t);
             CutSceneCamera.transform.rotation = Quaternion.Euler(vec);
             yield return null;
         }
