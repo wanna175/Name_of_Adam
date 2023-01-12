@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 // 컷씬에 사용될 데이터를 모아둔 클래스
+// 사용되는 변수들 둘러보고 구조체로 바꿀지 봐보자
 // 범위용이랑 타겟용으로 분리해야 할 듯
 public class CutSceneData
 {
@@ -55,6 +56,7 @@ public class BattleCutSceneManager : MonoBehaviour
     #region Start CutScene
 
     // 광역공격의 경우
+    // 제네릭으로 받으면 분량을 줄일 수 있을 듯?
     public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
         if (HitUnits.Count == 0)
@@ -158,12 +160,14 @@ public class BattleCutSceneManager : MonoBehaviour
 
         #endregion
     }
+    // 배틀을 진행하는 유닛들의 집결 장소를 반환
     Vector3 GetMoveLocation(BattleUnit atkUnit, List<BattleUnit> hitUnits)
     {
         if(atkUnit.BattleUnitSO.GetAttackType() == AttackType.rangeAttack)
         {
             RangeType range = atkUnit.BattleUnitSO.GetRangeType();
 
+            // 움직이지 않는 광역공격
             if(range == RangeType.noneMove)
             {
                 Vector3 vec = atkUnit.transform.position;
@@ -171,6 +175,7 @@ public class BattleCutSceneManager : MonoBehaviour
 
                 return vec;
             }
+            // 공격자가 적을 추적
             else if(range == RangeType.tracking)
             {
                 Vector3 vec = default;
@@ -191,6 +196,7 @@ public class BattleCutSceneManager : MonoBehaviour
                 }
                 return vec;
             }
+            // 가운데로
             else if(range == RangeType.center)
             {
                 return _FieldMNG.GameField.transform.position;
@@ -206,7 +212,7 @@ public class BattleCutSceneManager : MonoBehaviour
         Vector3 rightVec = CSData.MovePosition;
         leftVec.x += -2;
         rightVec.x += 2;
-
+        
         if (CSData.ATKType == AttackType.targeting)
         {
             if (CSData.AttackUnit == CSData.LeftUnit)
@@ -224,6 +230,7 @@ public class BattleCutSceneManager : MonoBehaviour
             float Yrange = hitUnitcount * r;
             Yrange = (Yrange * 0.5f) - Yrange;
 
+            // 여기도 줄일 수 있을 듯
             if (CSData.AttackUnit == CSData.LeftUnit)
             {
                 CSData.AttackUnit.transform.position = Vector3.Lerp(CSData.LeftPosition, leftVec, t);
@@ -256,6 +263,7 @@ public class BattleCutSceneManager : MonoBehaviour
     #region Attack & Animation
 
     // 확대 후 컷씬
+    // 여기도 겹치는게 많음, 합칠 수 있을거같은데
     public IEnumerator RangeCutScene(CutSceneData CSData)
     {
         float CutSceneTime = 1;
@@ -282,7 +290,6 @@ public class BattleCutSceneManager : MonoBehaviour
 
         StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
     }
-
     public IEnumerator TargetingCutScene(CutSceneData CSData)
     {
         float CutSceneTime = 1;
@@ -313,6 +320,7 @@ public class BattleCutSceneManager : MonoBehaviour
         leftVec.x -= 2;
         rightVec.x += 2;
 
+        // 여기도 줄여야지
         if (CSData.ATKType == AttackType.targeting)
         {
             CSData.RightUnit.transform.position = Vector3.Lerp(rightVec, CSData.RightPosition, t);
