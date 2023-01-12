@@ -15,7 +15,9 @@ MonoBehaviour:
   team: 1
   sprite: {fileID: 896847838, guid: eb7ad12398d922046acaedb62cbaed67, type: 3}
   stat:
-    HP: 50
+    HP: 500
     ATK: 10
     SPD: 30
+  FallGauge: 0
+  Fall: 0
   skill: {fileID: 11400000, guid: dbd4a30e71b13a1419c6fe24696ceb51, type: 2}

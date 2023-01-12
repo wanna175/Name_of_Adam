@@ -31,8 +31,9 @@ public class BattleEngageManager : MonoBehaviour
         {
             CanTurnStart = false;
             _unitListIndex = 0;
-            
+
             // 턴 시작 전에 다시한번 순서를 정렬한다.
+            _BattleUnitList = _BattleDataMNG.BattleUnitMNG.BattleUnitList;
             _BattleDataMNG.BattleUnitMNG.BattleOrderReplace();
             _BattleDataMNG.FieldMNG.FieldClear();
 

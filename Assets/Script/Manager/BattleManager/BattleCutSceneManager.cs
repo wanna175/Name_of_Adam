@@ -57,9 +57,7 @@ public class BattleCutSceneManager : MonoBehaviour
             StartCoroutine(ExitCutScene());
             return;
         }
-
-        // 일단 첫번째로 맞은 애를 대려온다.
-        // 광역공격은 어떻게 보일까? 기획에게 물어볼 필요 있음
+        
         SetCSData(AttackUnit, HitUnits[0]);
         CSData.HitUnits = HitUnits;
 
@@ -128,12 +126,18 @@ public class BattleCutSceneManager : MonoBehaviour
         CSData.ZoomLocation = _FieldMNG.GameField.transform.position;
         CSData.ZoomLocation.z = Camera.main.transform.position.z;
         CSData.DefaultZoomSize = Camera.main.fieldOfView;
-        CSData.ZoomSize = 30; // 얘는 나중에 유동적으로 받기
         CSData.LeftUnit = LeftUnit;
         CSData.RightUnit = RightUnit;
         CSData.LeftPosition = LeftUnit.transform.position;
         CSData.RightPosition = RightUnit.transform.position;
         CSData.AttackUnit = _atkUnit;
+
+        // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
+        // 일단 타입에 따라 임의로 부여함
+        if(CSData.ATKType == AttackType.rangeAttack)
+            CSData.ZoomSize = 50;
+        if (CSData.ATKType == AttackType.targeting)
+            CSData.ZoomSize = 35;
 
         #endregion
     }
@@ -141,11 +145,14 @@ public class BattleCutSceneManager : MonoBehaviour
     // 컷씬 지점으로 이동
     public void MoveUnitZoomIn(CutSceneData CSData, float t)
     {
-        Vector3 leftVec = new Vector3(-2, -1.4f, 0);
-        Vector3 rightVec = new Vector3(2, -1.4f, 0);
+        //Vector3 leftVec = new Vector3(-2, -1.4f, 0);
+        //Vector3 rightVec = new Vector3(2, -1.4f, 0);
+        Vector3 leftVec = new Vector3(-2, 0, 0);
+        Vector3 rightVec = new Vector3(2, 0, 0);
 
+        if (CSData.ATKType == AttackType.targeting)
+            CSData.RightUnit.transform.position = Vector3.Lerp(CSData.RightPosition, rightVec, t);
         CSData.LeftUnit.transform.position = Vector3.Lerp(CSData.LeftPosition, leftVec, t);
-        CSData.RightUnit.transform.position = Vector3.Lerp(CSData.RightPosition, rightVec, t);
     }
 
     #endregion
@@ -155,37 +162,62 @@ public class BattleCutSceneManager : MonoBehaviour
     // 확대 후 컷씬
     public IEnumerator RangeCutScene(CutSceneData CSData)
     {
-        foreach(BattleUnit unit in CSData.HitUnits)
-        {
-            Debug.Log(CSData.AttackUnit.GetStat().ATK);
-            unit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
-        }
-        // 공격하고 모션바뀌고 기타 등등 여기서 처리
+        float CutSceneTime = 1;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
+        // 공격하고 모션바뀌고 기타 등등 여기서 처리
+        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(true);
+
+        foreach(BattleUnit unit in CSData.HitUnits)
+            unit.UnitRenderer.HitAnim(true);
+
+        StartCoroutine(CameraHandler.CameraLotate(CutSceneTime));
+
+        yield return new WaitForSeconds(CutSceneTime);
+
+
+        foreach (BattleUnit unit in CSData.HitUnits)
+        {
+            unit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
+            unit.UnitRenderer.HitAnim(false);
+        }
+        
+        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(false);
 
         StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
     }
     public IEnumerator TargetingCutScene(CutSceneData CSData)
     {
-        CSData.HitUnit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
-        // 공격하고 모션바뀌고 기타 등등 여기서 처리
+        float CutSceneTime = 1;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
+        // 공격하고 모션바뀌고 기타 등등 여기서 처리
+        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(true);
+        CSData.HitUnit.UnitRenderer.HitAnim(true);
+        
+        StartCoroutine(CameraHandler.CameraLotate(CutSceneTime));
+
+        yield return new WaitForSeconds(CutSceneTime);
+
+        CSData.HitUnit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
+        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(false);
+        CSData.HitUnit.UnitRenderer.HitAnim(false);
 
         StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
     }
 
     #endregion
 
-    // 컷씬 지점으로 이동
+    // 원래 위치로 이동
     public void MoveUnitZoomOut(CutSceneData CSData, float t)
     {
         Vector3 leftVec = new Vector3(-2, -1.4f, 0);
         Vector3 rightVec = new Vector3(2, -1.4f, 0);
 
+        if (CSData.ATKType == AttackType.targeting)
+            CSData.RightUnit.transform.position = Vector3.Lerp(rightVec, CSData.RightPosition, t);
         CSData.LeftUnit.transform.position = Vector3.Lerp(leftVec, CSData.LeftPosition, t);
-        CSData.RightUnit.transform.position = Vector3.Lerp(rightVec, CSData.RightPosition, t);
+
     }
 
     public void NextUnitSkill()
