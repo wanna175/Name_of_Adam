@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,9 +47,6 @@ public class BattleUnitManager
         BattleUnit.UnitMove.setLocate(x, y);
 
         BattleUnitEnter(BattleUnit);
-        GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.EnterTile(BattleUnit, x, y);
-                        
-        
+        GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.EnterTile(BattleUnit, x, y);   
     }
-
 }
