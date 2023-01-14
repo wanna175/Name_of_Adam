@@ -6,9 +6,17 @@ public class WatingLine : MonoBehaviour
 {
     [SerializeField] List<WatingUnit> WatingUnitList;
     
+    private BattleEngageManager _EngageMNG;
+
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitOrderList;
     #endregion
+
+    public void Start()
+    {
+        _EngageMNG = GameManager.Instance.BattleMNG.EngageMNG;
+        _EngageMNG.SetWatingLine(this);
+    }
 
     public void SetBattleUnitList(List<BattleUnit> list)
     {
@@ -17,15 +25,19 @@ public class WatingLine : MonoBehaviour
 
     public void SetWatingLine()
     {
-        int num;
-        if (_BattleUnitOrderList.Count < 5)
-            num = _BattleUnitOrderList.Count;
-        else
-            num = 5;
-
-        for (int i = 0; i < num; i++)
-        {
-            WatingUnitList[i].SetUnit(_BattleUnitOrderList[i].BattleUnitSO.sprite);
+        for (int i = 0; i < 8; i++)
+        {   
+            if (i < _BattleUnitOrderList.Count)
+            {
+                Debug.Log("WatingLine 1");
+                WatingUnitList[i].SetUnit(_BattleUnitOrderList[i].BattleUnitSO.sprite);
+            }
+            else
+            {
+                Debug.Log("WatingLine 2");
+                WatingUnitList[i].RemoveUnit();
+            }
+            
         }
     }
 }

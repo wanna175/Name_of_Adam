@@ -9,8 +9,8 @@ public class BattleEngageManager : MonoBehaviour
     private BattleDataManager _BattleDataMNG;
 
     private List<BattleUnit> _BattleUnitOrderList;
-    
-    int _unitListIndex = 0;
+
+    private WatingLine _WatingLine;
 
     private void Start()
     {
@@ -18,6 +18,11 @@ public class BattleEngageManager : MonoBehaviour
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
 
         _BattleUnitOrderList = new List<BattleUnit>();
+    }
+
+    public void SetWatingLine(WatingLine w)
+    {
+        _WatingLine = w;
     }
 
     public void EngageStart()
@@ -35,6 +40,9 @@ public class BattleEngageManager : MonoBehaviour
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
         _BattleDataMNG.FieldMNG.FieldClear();
+
+        _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
+        _WatingLine.SetWatingLine();
 
         UseUnitSkill();
     }
@@ -61,7 +69,8 @@ public class BattleEngageManager : MonoBehaviour
     public void UseUnitSkill()
     {
         DestroyDeadUnit();
-
+        _WatingLine.SetWatingLine();
+        
         if (_BattleUnitOrderList.Count <= 0)
         {
             EngageEnd();
