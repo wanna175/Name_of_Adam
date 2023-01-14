@@ -31,8 +31,6 @@ public class BattleUnitMove : MonoBehaviour
     {
         _LocX = x;
         _LocY = y;
-
-        MoveOnTile();
     }
 
 
@@ -67,7 +65,9 @@ public class BattleUnitMove : MonoBehaviour
 
     // 타일 위로 이동
     public void MoveOnTile()
-    {        
+    {
+        Debug.Log(_BattleDataMNG);
+        Debug.Log(_BattleDataMNG.FieldMNG);
         Vector3 vec = _BattleDataMNG.FieldMNG.GetTileLocate(LocX, LocY);
         
         if (vec.x == -1 && vec.y == -1)

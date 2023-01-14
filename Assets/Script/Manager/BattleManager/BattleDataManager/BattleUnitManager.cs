@@ -36,7 +36,6 @@ public class BattleUnitManager
         BattleUnit.BattleUnitSO = GameManager.Instance.InputMNG.ClickedUnit.GetUnitSO();
         BattleUnit.UnitMove.setLocate(x, y);
 
-        BattleUnitEnter(BattleUnit);
         GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.EnterTile(BattleUnit, x, y);   
     }
 }
