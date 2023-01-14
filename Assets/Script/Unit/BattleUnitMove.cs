@@ -22,7 +22,7 @@ public class BattleUnitMove : MonoBehaviour
     private void Start()
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
-        SetLotate();
+        MoveOnTile();
     }
 
 
@@ -31,6 +31,8 @@ public class BattleUnitMove : MonoBehaviour
     {
         _LocX = x;
         _LocY = y;
+
+        MoveOnTile();
     }
 
 
@@ -60,11 +62,11 @@ public class BattleUnitMove : MonoBehaviour
             _LocY = dumpY;
         }
 
-        SetLotate();
+        MoveOnTile();
     }
 
     // 타일 위로 이동
-    public void SetLotate()
+    public void MoveOnTile()
     {        
         Vector3 vec = _BattleDataMNG.FieldMNG.GetTileLocate(LocX, LocY);
         

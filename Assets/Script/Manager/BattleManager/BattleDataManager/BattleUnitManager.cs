@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleUnitManager
-{
+{   
     // 전투를 진행중인 캐릭터가 들어있는 리스트
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitList = new List<BattleUnit>();
@@ -37,11 +37,6 @@ public class BattleUnitManager
                                         .ThenByDescending(unit => unit.UnitMove.LocY)
                                         .ThenBy(unit => unit.UnitMove.LocX)
                                         .ToList();
-
-        //foreach(BattleUnit t in BattleUnitList)
-        //{
-        //    Debug.Log("Speed : " + t.GetSpeed() + ", Y : " + t.LocY + ", X : " + t.LocX);
-        //}
     }
 
     //필드에 유닛을 생성

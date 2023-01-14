@@ -48,17 +48,9 @@ public class BattleUnitAction : MonoBehaviour
 
     #region Attack
     
-    public void OnAttackRange(List<BattleUnit> _HitUnits)
+    public void OnAttack(List<BattleUnit> _HitUnits)
     {
-        // 현재 광역공격은 공격처리 안됨
-
         _CutSceneMNG.BattleCutScene(_BattleUnit, _HitUnits);
-        // Debug.Log($"{_BattleUnit.gameObject.name}' ATK : {_BattleUnit.GetStat().ATK}");
-    }
-
-    public void OnAttackTarget(BattleUnit _HitUnit)
-    {
-        _CutSceneMNG.BattleCutScene(_BattleUnit, _HitUnit);
         // Debug.Log($"{_BattleUnit.gameObject.name}' ATK : {_BattleUnit.GetStat().ATK}");
     }
 

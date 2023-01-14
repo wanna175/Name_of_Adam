@@ -64,11 +64,8 @@ public class CameraHandler : MonoBehaviour
 
             yield return null;
         }
-
-        if (CSData.ATKType == AttackType.rangeAttack)
-            StartCoroutine(_CutSceneMNG.RangeCutScene(CSData));
-        else if (CSData.ATKType == AttackType.targeting)
-            StartCoroutine(_CutSceneMNG.TargetingCutScene(CSData));
+        
+        StartCoroutine(_CutSceneMNG.AttackCutScene(CSData));
     }
 
     // 컷씬 중 카메라 회전

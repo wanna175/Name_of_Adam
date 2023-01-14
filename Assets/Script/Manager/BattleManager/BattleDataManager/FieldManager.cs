@@ -80,7 +80,7 @@ public class FieldManager
 
             float sizeX = _TileArray[y][x].transform.localScale.x * 0.5f;
             float sizeY = _TileArray[y][x].transform.localScale.y * 0.5f;
-            sizeY += _TileArray[y][x].transform.localScale.y * 0.5f;
+            sizeY += _TileArray[y][x].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
 
             vec.x += sizeX;
             vec.y += sizeY;
