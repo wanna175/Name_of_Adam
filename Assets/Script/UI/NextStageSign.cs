@@ -36,8 +36,6 @@ public class NextStageSign : MonoBehaviour
             Debug.Log("보스 등장");
             StageArray[1] = EncountStage.Boss;
             DrawSign(true);
-
-            //GetComponent<PlayerPrefs>;
         }
     }
 

@@ -63,7 +63,7 @@ public class BattleEngageManager : MonoBehaviour
         {
             _CanBattle = false;
             _unitListIndex = 0;
-            
+
             // 턴 시작 전에 다시한번 순서를 정렬한다.
             _BattleUnitList = _BattleDataMNG.BattleUnitMNG.BattleUnitList;
             _BattleDataMNG.BattleUnitMNG.BattleOrderReplace();
@@ -75,7 +75,6 @@ public class BattleEngageManager : MonoBehaviour
 
     // BattleUnitList의 첫 번째 요소부터 순회
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
-    // 나중에 죽이는 로직 구현 필요
     public void UseUnitSkill()
     {
         // index가 리스트의 범위를 넘지 않는다면 use를 실행

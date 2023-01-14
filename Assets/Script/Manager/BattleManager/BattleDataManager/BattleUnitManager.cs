@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleUnitManager
-{
+{   
     // 전투를 진행중인 캐릭터가 들어있는 리스트
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitList = new List<BattleUnit>();
@@ -26,6 +26,16 @@ public class BattleUnitManager
     public void UnitListClear()
     {
         BattleUnitList.Clear();
+    }
+    
+    // BattleUnitList를 정렬
+    // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
+    public void BattleOrderReplace()
+    {
+        _BattleUnitList = BattleUnitList.OrderByDescending(unit => unit.GetSpeed())
+                                        .ThenByDescending(unit => unit.UnitMove.LocY)
+                                        .ThenBy(unit => unit.UnitMove.LocX)
+                                        .ToList();
     }
 
     //필드에 유닛을 생성

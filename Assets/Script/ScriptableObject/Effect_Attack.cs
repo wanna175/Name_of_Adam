@@ -4,18 +4,27 @@ using UnityEngine;
 
 public enum AttackType
 {
-    targeting,
-    rangeAttack,
+    none,
 
-    none
+    targeting,
+    rangeAttack
+}
+
+public enum RangeType
+{
+    none,
+
+    noneMove,
+    tracking,
+    center
 }
 
 [CreateAssetMenu(fileName = "Effect_Attack", menuName = "Scriptable Object/Effect_Attack", order = 3)]
 public class Effect_Attack : EffectSO
 {
     [SerializeField] public AttackType attackType;
+    [SerializeField] public RangeType rangeType;
     [SerializeField] RangeSO range;    // 공격 범위
-    [SerializeField] float DMG;        // 데미지 배율
 
 
     // 공격 실행
@@ -23,25 +32,23 @@ public class Effect_Attack : EffectSO
     {
         FieldManager _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
         List<Vector2> RangeList = GetRange();
+        List<BattleUnit> _BattleUnits = new List<BattleUnit>();
 
         if (attackType == AttackType.rangeAttack)
         {
-            List<BattleUnit> _BattleUnits = new List<BattleUnit>();
-
-            // 공격 범위를 향해 공격
+            // 공격범위 안에 있는 모든 대상을 리스트에 넣는다.
             for (int i = 0; i < RangeList.Count; i++)
             {
                 BattleUnit _unit = null;
                 int x = caster.UnitMove.LocX - (int)RangeList[i].x;
                 int y = caster.UnitMove.LocY - (int)RangeList[i].y;
                 
+                // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
                 _unit = _FieldMNG.RangeCheck(caster, x, y);
 
                 if (_unit != null)
                     _BattleUnits.Add(_unit);
             }
-
-            caster.UnitAction.OnAttackRange(_BattleUnits);
         }
         else if (attackType == AttackType.targeting)
         {
@@ -59,8 +66,10 @@ public class Effect_Attack : EffectSO
             
             _unit = _FieldMNG.RangeCheck(caster, x, y);
 
-            caster.UnitAction.OnAttackTarget(_unit);
+            if (_unit != null)
+                _BattleUnits.Add(_unit);
         }
+        caster.UnitAction.OnAttack(_BattleUnits);
     }
 
     public List<Vector2> GetRange() => range.GetRange();

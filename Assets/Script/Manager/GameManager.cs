@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(2))
         {
-            BattleMNG.BattleDataMNG.BattleUnitMNG.BattleUnitList[0].UnitMove.SetLotate();
+            BattleMNG.BattleDataMNG.BattleUnitMNG.BattleUnitList[0].UnitMove.MoveOnTile();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

@@ -86,32 +86,32 @@ public class Field : MonoBehaviour
         // 클릭한 타일에 유닛이 없을 시
         else
         {
-            //핸드를 누르고 타일을 누를 때
-            if (_InputMNG.ClickedHand != 0)
-            {
-               //범위 외
-               if (tileX > 3 && tileY > 2)
-               {
-                   Debug.Log("out of range");
-               }
-               else
-               {
-                   if (_BattleDataMNG.ManaMNG.UseMana(2)) //조건문이 참이라면 이미 마나가 소모된 후
-                   {
-                        GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
+            ////핸드를 누르고 타일을 누를 때
+            //if (_InputMNG.ClickedHand != 0)
+            //{
+            //   //범위 외
+            //   if (tileX > 3 && tileY > 2)
+            //   {
+            //       Debug.Log("out of range");
+            //   }
+            //   else
+            //   {
+            //       if (_BattleDataMNG.ManaMNG.UseMana(2)) //조건문이 참이라면 이미 마나가 소모된 후
+            //       {
+            //            GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
 
-                        _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
+            //            _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
                         
-                       _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
-                       _InputMNG.ClearHand();
-                   }
-                   else
-                   {
-                       //마나 부족
-                       Debug.Log("not enough mana");
-                   }
-               }
-            }
+            //           _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
+            //           _InputMNG.ClearHand();
+            //       }
+            //       else
+            //       {
+            //           //마나 부족
+            //           Debug.Log("not enough mana");
+            //       }
+            //   }
+            //}
         }
     }
 }

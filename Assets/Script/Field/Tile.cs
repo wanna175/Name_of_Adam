@@ -27,13 +27,11 @@ public class Tile : MonoBehaviour
         _TileUnit = null;
         _isOnTile = false;
         CanSelect = false;
-        Debug.Log('b');
     }
 
     #region Enter & Exit Tile
     public void EnterTile(BattleUnit _unit)
     {
-        Debug.Log('a');
         _isOnTile = true;
         _TileUnit = _unit;
     }

@@ -12,8 +12,6 @@ public class CameraHandler : MonoBehaviour
 
     private void Start()
     {
-        //SetMainCamera();
-
         _CutSceneMNG = GameManager.Instance.BattleMNG.CutSceneMNG;
         _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
         _CutSceneMNG.CameraHandler = this;
@@ -21,6 +19,9 @@ public class CameraHandler : MonoBehaviour
         SetMainCamera();
     }
 
+    #region MainCameraSet
+
+    // 컷씬 전용 카메라로 전환
     void SetCutSceneCamera()
     {
         CutSceneCamera.enabled = true;
@@ -29,12 +30,18 @@ public class CameraHandler : MonoBehaviour
         CutSceneCamera.transform.position = MainCamera.transform.position;
         CutSceneCamera.fieldOfView = MainCamera.fieldOfView;
     }
+    // 메인카메라로 전환
     void SetMainCamera()
     {
         MainCamera.enabled = true;
         CutSceneCamera.enabled = false;
     }
 
+    #endregion
+
+    #region BattleCutScene
+
+    // 배틀 컷씬 시작
     public void CutSceneZoomIn(CutSceneData CSData)
     {
         SetCutSceneCamera();
@@ -54,13 +61,27 @@ public class CameraHandler : MonoBehaviour
             CutSceneCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, CSData.ZoomLocation, t);
             CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.DefaultZoomSize, CSData.ZoomSize, t);
             _CutSceneMNG.MoveUnitZoomIn(CSData, t);
+
             yield return null;
         }
-        Debug.Log(CSData.ATKType);
-        if (CSData.ATKType == AttackType.rangeAttack)
-            StartCoroutine(_CutSceneMNG.RangeCutScene(CSData));
-        else if (CSData.ATKType == AttackType.targeting)
-            StartCoroutine(_CutSceneMNG.TargetingCutScene(CSData));
+        
+        StartCoroutine(_CutSceneMNG.AttackCutScene(CSData));
+    }
+
+    // 컷씬 중 카메라 회전
+    public IEnumerator CameraLotate(float time)
+    {
+        float t = 0;
+
+        while (t < time)
+        {
+            t += Time.deltaTime;
+
+            Vector3 vec = Vector3.Lerp(new Vector3(0, 0, 0), new Vector3(0, 0, 2), t);
+            CutSceneCamera.transform.rotation = Quaternion.Euler(vec);
+
+            yield return null;
+        }
     }
 
     // 컷씬 후 화면 줌 아웃
@@ -76,6 +97,9 @@ public class CameraHandler : MonoBehaviour
             CutSceneCamera.transform.position = Vector3.Lerp(CSData.ZoomLocation, MainCamera.transform.position, t);
             CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, t);
             _CutSceneMNG.MoveUnitZoomOut(CSData, t);
+
+            Vector3 vec = Vector3.Lerp(new Vector3(0, 0, 2), new Vector3(0, 0, 0), t);
+            CutSceneCamera.transform.rotation = Quaternion.Euler(vec);
             yield return null;
         }
         SetMainCamera();
@@ -85,4 +109,6 @@ public class CameraHandler : MonoBehaviour
 
         _CutSceneMNG.NextUnitSkill();
     }
+
+    #endregion
 }
