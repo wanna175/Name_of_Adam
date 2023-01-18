@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Hand : MonoBehaviour
 {
     [SerializeField] int handIndex;
 
-    private SpriteRenderer SR;
-
+    private Image _Image;
     private DeckUnit HandUnit = null;
 
     void Start()
     {
-        SR = GetComponent<SpriteRenderer>();
+        _Image = GetComponent<Image>();
     }
 
     public void SetHandDeckUnit(DeckUnit unit)
@@ -22,8 +22,8 @@ public class Hand : MonoBehaviour
         HandUnit = unit;
         if (HandUnit != null)
         {
-            GetComponent<Renderer>().enabled = true;
-            SR.sprite = HandUnit.GetUnitSO().sprite;
+            GetComponent<Image>().enabled = true;
+            _Image.sprite = HandUnit.GetUnitSO().sprite;
         }
 
     }
@@ -36,13 +36,9 @@ public class Hand : MonoBehaviour
     public bool isHandNull()
     {
         if (HandUnit == null)
-        {
             return true;
-        }
         else
-        {
             return false;
-        }
     }
 
     public DeckUnit RemoveHandDeckUnit()
@@ -50,7 +46,7 @@ public class Hand : MonoBehaviour
         DeckUnit returnUnit = HandUnit;
         HandUnit = null;
         
-        GetComponent<Renderer>().enabled = false;
+        GetComponent<Image>().enabled = false;
         
         return returnUnit;
     }
@@ -58,6 +54,12 @@ public class Hand : MonoBehaviour
     void OnMouseDown() 
     {
         Debug.Log("Hand: " + handIndex);
-        GameManager.Instance.InputMNG.SetHand(handIndex, HandUnit);
+        if (GameManager.Instance.BattleMNG.BattleDataMNG.CanUseMana(HandUnit.GetUnitSO().ManaCost)){
+            GameManager.Instance.UIMNG.Hands.SetHand(handIndex, HandUnit);
+        }
+        else
+        {
+            //shake
+        }
     }
 }

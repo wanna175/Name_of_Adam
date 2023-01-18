@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
 
 
     #region InputManager
-    [SerializeField] InputManager _inputMNG;
-    public InputManager InputMNG => _inputMNG;
+    [SerializeField] UIManager _UIMNG;
+    public UIManager UIMNG => _UIMNG;
     #endregion
 
     void Awake()

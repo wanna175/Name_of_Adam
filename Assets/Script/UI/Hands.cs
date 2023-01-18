@@ -71,6 +71,26 @@ public class Hands : MonoBehaviour
         }
     }
 
+    #region Hand Click
+    private int _ClickedHand = 0;
+    public int ClickedHand => _ClickedHand;
+
+    private DeckUnit _ClickedUnit = null;
+    public DeckUnit ClickedUnit => _ClickedUnit;
+
+    public void SetHand(int handIndex, DeckUnit unit)
+    {
+        _ClickedHand = handIndex;
+        _ClickedUnit = unit;
+    }
+
+    public void ClearHand()
+    {
+        _ClickedHand = 0;
+        _ClickedUnit = null;
+    }
+    #endregion
+
     //테스트용입니다.
     public void begoneHands()
     {

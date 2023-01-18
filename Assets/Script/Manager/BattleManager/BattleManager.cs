@@ -20,9 +20,9 @@ public class BattleManager : MonoBehaviour
     private void Awake()
     {
         _BattleDataMNG = new BattleDataManager();
-
+        
         _BattleUnitOrderList = new List<BattleUnit>();
-        _WatingLine = GameManager.Instance.InputMNG.WatingLine;
+        _WatingLine = GameManager.Instance.UIMNG.WatingLine;
 
         PrepareStart();
 
