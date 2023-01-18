@@ -25,6 +25,7 @@ public class BattleUnitSO : ScriptableObject
     [SerializeField] public Team team;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
+    [SerializeField] public int ManaCost;
     [SerializeField] public int FallGauge;
     [SerializeField] public bool Fall;
     [SerializeField] SkillSO skill;

@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class WatingUnit : MonoBehaviour
 {
-    SpriteRenderer SR;
+    private SpriteRenderer SR;
 
-    void start()
+    void Start()
     {
         SR = GetComponent<SpriteRenderer>();
     }
 
     public void SetUnit(Sprite s)
     {
-            GetComponent<Renderer>().enabled = true;
-            SR.sprite = s;
+        GetComponent<Renderer>().enabled = true;
+        SR.sprite = s;
     }
 
     public void RemoveUnit()
     {
-            GetComponent<Renderer>().enabled = false;
+        GetComponent<Renderer>().enabled = false;
     }
 }

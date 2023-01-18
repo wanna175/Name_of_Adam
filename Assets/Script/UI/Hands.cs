@@ -8,7 +8,19 @@ public class Hands : MonoBehaviour
     
     BattleDataManager _BattleDataMNG;
 
+    /*
     void Awake()
+    {
+        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+
+        //전투 시작 후 초기 멀리건 4장
+        for (int i = 0; i < 4; i++) {
+            AddUnitToHand();
+        }
+    }
+    */
+
+    void OnMouseDown()
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
 
