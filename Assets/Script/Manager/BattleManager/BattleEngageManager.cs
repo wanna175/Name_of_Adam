@@ -70,6 +70,7 @@ public class BattleEngageManager : MonoBehaviour
     {
         DestroyDeadUnit();
         _WatingLine.SetWatingLine();
+        
         if (_BattleUnitOrderList.Count <= 0)
         {
             EngageEnd();
@@ -90,15 +91,6 @@ public class BattleEngageManager : MonoBehaviour
     void DestroyDeadUnit()
     {
         List<BattleUnit> units = _BattleDataMNG.BattleUnitMNG.BattleUnitList;
-
-        //foreach (BattleUnit unit in units)
-        //{
-        //    if (unit.UnitAction.CurHP <= 0)
-        //    {
-        //        _BattleUnitOrderList.Remove(unit);
-        //        unit.UnitAction.UnitDestroy();
-        //    }
-        //}
 
         for(int i = units.Count-1; 0 <= i; i--)
         {
