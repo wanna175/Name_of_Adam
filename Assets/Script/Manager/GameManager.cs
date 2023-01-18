@@ -62,11 +62,11 @@ public class GameManager : MonoBehaviour
         // 디버그용 입력기
         if (Input.GetMouseButtonDown(1))
         {
-            BattleMNG.TurnStart();
+            BattleMNG.EngageStart();
         }
         else if (Input.GetMouseButtonDown(2))
         {
-
+            BattleMNG.BattleDataMNG.BattleUnitMNG.BattleUnitList[0].UnitMove.MoveOnTile();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

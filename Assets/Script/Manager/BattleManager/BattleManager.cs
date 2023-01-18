@@ -32,12 +32,42 @@ public class BattleManager : MonoBehaviour
         _BattleDataMNG = new BattleDataManager();
 
         _PrepareMNG = GetComponent<BattlePrepareManager>();
-        _EngageMNG = GetComponent < BattleEngageManager>();
+        _EngageMNG = GetComponent<BattleEngageManager>();
         _CutSceneMNG = GetComponent<BattleCutSceneManager>();
+
+        PrepareStart();
     }
 
-    public void TurnStart()
+    #region StageControl
+    const bool EngageStage = true;
+    const bool PrepareStage = false;
+
+    public void PrepareStart()
     {
-        EngageMNG.TurnStart();
+        Debug.Log("Prepare Start");
+        _BattleDataMNG.SetEngageStage(PrepareStage);
+        PrepareMNG.PrepareStart();
     }
+
+    public void EngageStart()
+    {
+        Debug.Log("Engage Start");
+        _BattleDataMNG.SetEngageStage(EngageStage);
+        EngageMNG.EngageStart();
+    }
+
+    public void PrepareEnd()
+    {
+        Debug.Log("Prepare End");
+        _BattleDataMNG.SetEngageStage(PrepareStage);
+        PrepareMNG.PrepareEnd();
+    }
+
+    public void EngageEnd()
+    {
+        Debug.Log("Engage End");
+        _BattleDataMNG.SetEngageStage(EngageStage);
+        EngageMNG.EngageEnd();
+    }
+    #endregion
 }

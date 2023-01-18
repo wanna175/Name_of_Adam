@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeckUnit
 {
-    BattleUnitSO _unitSO = null;
+    private BattleUnitSO _unitSO = null;
 
     public BattleUnitSO GetUnitSO()
     {

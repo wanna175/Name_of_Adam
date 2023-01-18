@@ -25,6 +25,7 @@ public class BattleUnitSO : ScriptableObject
     [SerializeField] public Team team;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
+    [SerializeField] public int ManaCost;
     [SerializeField] public int FallGauge;
     [SerializeField] public bool Fall;
     [SerializeField] SkillSO skill;
@@ -34,7 +35,7 @@ public class BattleUnitSO : ScriptableObject
     {
         skill.use(ch);
     }
-
+    
     public AttackType GetAttackType()
     {
         foreach (EffectSO sk in skill.EffectList)
@@ -47,7 +48,20 @@ public class BattleUnitSO : ScriptableObject
         }
         return AttackType.none;
     }
+    public RangeType GetRangeType()
+    {
+        foreach (EffectSO sk in skill.EffectList)
+        {
+            if (sk.GetType() == typeof(Effect_Attack))
+            {
+                Effect_Attack ea = sk as Effect_Attack;
+                return ea.rangeType;
+            }
+        }
+        return RangeType.none;
+    }
 
+    // 타겟팅 스킬을 가진 경우, 범위를 반환한다.
     public List<Vector2> GetTargetingRange()
     {
         foreach(EffectSO sk in skill.EffectList)

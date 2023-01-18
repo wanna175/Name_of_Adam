@@ -48,17 +48,9 @@ public class BattleUnitAction : MonoBehaviour
 
     #region Attack
     
-    public void OnAttackRange(List<BattleUnit> _HitUnits)
+    public void OnAttack(List<BattleUnit> _HitUnits)
     {
-        // 현재 광역공격은 공격처리 안됨
-
         _CutSceneMNG.BattleCutScene(_BattleUnit, _HitUnits);
-        // Debug.Log($"{_BattleUnit.gameObject.name}' ATK : {_BattleUnit.GetStat().ATK}");
-    }
-
-    public void OnAttackTarget(BattleUnit _HitUnit)
-    {
-        _CutSceneMNG.BattleCutScene(_BattleUnit, _HitUnit);
         // Debug.Log($"{_BattleUnit.gameObject.name}' ATK : {_BattleUnit.GetStat().ATK}");
     }
 
@@ -85,11 +77,14 @@ public class BattleUnitAction : MonoBehaviour
         if (CurHP <= 0)
         {
             // 죽었을 때 처리할 것들
-            _BattleDataMNG.BattleUnitMNG.BattleUnitExit(_BattleUnit);
-            _BattleDataMNG.FieldMNG.ExitTile(_BattleUnit.UnitMove.LocX, _BattleUnit.UnitMove.LocY);
-
-            Destroy(gameObject);
+            _BattleUnit.UnitMove.MoveLotate(-1, -1);
         }
+    }
+
+    public void UnitDestroy()
+    {
+        _BattleDataMNG.BattleUnitMNG.BattleUnitExit(_BattleUnit);
+        Destroy(gameObject);
     }
 
     #endregion

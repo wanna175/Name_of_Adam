@@ -49,18 +49,48 @@ public class FieldManager
         }
     }
 
+    // 공격범위가 타일을 넘어섰는지 확인
+    public BattleUnit RangeCheck(BattleUnit caster, int x, int y)
+    {
+        if (0 <= x && x < 8)
+        {
+            if (0 <= y && y < 3)
+            {
+                TileArray[y][x].SetColor(Color.red);
+
+                if (TileArray[y][x].isOnTile)
+                {
+                    if (caster.BattleUnitSO.team != TileArray[y][x].TileUnit.BattleUnitSO.team)
+                    {
+                        // 넘지 않았다면 타일 위에 있는 유닛을 반환
+                        return TileArray[y][x].TileUnit;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTileLocate(int x, int y)
     {
-        Vector3 vec = _TileArray[y][x].transform.position;
+        try
+        {
+            Vector3 vec = _TileArray[y][x].transform.position;
 
-        float sizeX = _TileArray[y][x].transform.localScale.x * 0.5f;
-        float sizeY = _TileArray[y][x].transform.localScale.y * 0.5f;
+            float sizeX = _TileArray[y][x].transform.localScale.x * 0.5f;
+            float sizeY = _TileArray[y][x].transform.localScale.y * 0.5f;
+            sizeY += _TileArray[y][x].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
 
-        vec.x += sizeX;
-        vec.y += sizeY;
+            vec.x += sizeX;
+            vec.y += sizeY;
 
-        return vec;
+            return vec;
+        }
+        catch
+        {
+            return new Vector3(-1, -1, -1);
+        }
     }
 
     public void FieldClear()

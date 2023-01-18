@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 2851540894343092552}
   - component: {fileID: 2883676365963939127}
   - component: {fileID: 8359312610010072388}
+  - component: {fileID: -7966313646847388461}
   m_Layer: 0
-  m_Name: Char
+  m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleUnitSO: {fileID: 0}
+  _SelectTile: {x: -1, y: -1}
 --- !u!114 &2053965210876766257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,3 +157,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4249948c2a0bb644d937609922cd7fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &-7966313646847388461
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4662580368106312543}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

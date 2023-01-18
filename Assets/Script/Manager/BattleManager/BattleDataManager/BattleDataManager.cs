@@ -31,6 +31,27 @@ public class BattleDataManager
         _DataMNG = GameManager.Instance.DataMNG;
     }
 
+    #region Turn
+    private int _Turn;
+    public int Turn => _Turn;
+
+    public void TurnPlus()
+    {
+        _Turn++;
+    }
+    #endregion
+
+    #region Prepare / Engage Stage
+    private bool _EngageStage;
+    public bool EngageStage => _EngageStage;
+    //즉 현재 상태가 전투 단계면 참이니
+    //거짓을 반환시 준비 단계이다.
+    public void SetEngageStage(bool stage)
+    {
+        _EngageStage = stage;
+    }
+    #endregion
+
     #region DeckUnitList
     private List<DeckUnit> _DeckUnitList = new List<DeckUnit>();
     public List<DeckUnit> DeckUnitList => _DeckUnitList;

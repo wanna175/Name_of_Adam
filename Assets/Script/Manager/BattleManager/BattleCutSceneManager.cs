@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//컷씬에 사용될 데이터를 모아둔 클래스
+// 컷씬에 사용될 데이터를 모아둔 클래스
+// 사용되는 변수들 둘러보고 구조체로 바꿀지 봐보자
+// 범위용이랑 타겟용으로 분리해야 할 듯
 public class CutSceneData
 {
     // 공격 타입
@@ -15,10 +17,10 @@ public class CutSceneData
     // 얼마나 줌할 것인지
     public float DefaultZoomSize = 65;
     public float ZoomSize;
-    // 어느 캐릭터가 어느 위치에 있는지
-    public BattleUnit LeftUnit;
-    public BattleUnit RightUnit;
-    // 어느 캐릭터가 공격자인지
+    // 유닛들이 어디로 이동해야 하는지
+    public Vector3 DefaultPosition;
+    public Vector3 MovePosition;
+    // 어느 유니이 공격자인지
     public BattleUnit AttackUnit;
     public BattleUnit HitUnit;
     public List<BattleUnit> HitUnits;
@@ -45,8 +47,7 @@ public class BattleCutSceneManager : MonoBehaviour
 
     // 배틀 컷씬을 시작
     #region Start CutScene
-
-    // 광역공격의 경우
+        
     public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
         if (HitUnits.Count == 0)
@@ -54,27 +55,169 @@ public class BattleCutSceneManager : MonoBehaviour
             StartCoroutine(ExitCutScene());
             return;
         }
-
-        // 일단 첫번째로 맞은 애를 대려온다.
-        // 광역공격은 어떻게 보일까? 기획에게 물어볼 필요 있음
-        SetCSData(AttackUnit, HitUnits[0]);
+        
+        SetCSData(AttackUnit, HitUnits);
         CSData.HitUnits = HitUnits;
 
         CameraHandler.CutSceneZoomIn(CSData);
     }
-    // 타겟팅의 경우
-    public void BattleCutScene(BattleUnit AttackUnit, BattleUnit HitUnit)
+
+    void SetCSData(BattleUnit _atkUnit, List<BattleUnit> _hitUnits)
     {
-        if (HitUnit == null)
+        #region Create CutSceneData
+
+        CSData.ATKType = _atkUnit.BattleUnitSO.GetAttackType();
+        CSData.ZoomTime = _zoomTime;
+
+        CSData.ZoomLocation = _FieldMNG.GameField.transform.position;
+        CSData.ZoomLocation.z = Camera.main.transform.position.z;
+
+        CSData.DefaultZoomSize = Camera.main.fieldOfView;
+
+        CSData.DefaultPosition = _atkUnit.transform.position;
+        CSData.MovePosition = GetMoveLocation(_atkUnit, _hitUnits);
+
+        CSData.AttackUnit = _atkUnit;
+
+        // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
+        // 일단 타입에 따라 임의로 부여함
+        if(CSData.ATKType == AttackType.rangeAttack)
+            CSData.ZoomSize = 50;
+        if (CSData.ATKType == AttackType.targeting)
+            CSData.ZoomSize = 35;
+
+        #endregion
+    }
+    
+    // 공격자의 위치를 지정
+    // 공격범위 내의 적을 추적하는 것보다 한 지점에서 공격을 하는 것이 좋지 않을까?
+    Vector3 GetMoveLocation(BattleUnit atkUnit, List<BattleUnit> hitUnits)
+    {
+        RangeType range = atkUnit.BattleUnitSO.GetRangeType();
+
+        // 공격자가 적을 추적
+        if(range == RangeType.tracking)
         {
-            StartCoroutine(ExitCutScene());
-            return;
+            // y축을 우선으로 가까운 곳에 있는 적을 찾는다.
+            Vector3 vec = default;
+            int num;
+            BattleUnit target = null;
+
+            if (!atkUnit.UnitRenderer.GetFlipX())
+            {
+                num = 999;
+
+                foreach (BattleUnit unit in hitUnits)
+                {
+                    int dump = unit.UnitMove.LocX;
+                    dump += Mathf.Abs(atkUnit.UnitMove.LocY - unit.UnitMove.LocY) * 100;
+
+                    if (dump < num)
+                    {
+                        num = dump;
+                        target = unit;
+                    }
+                }
+            }
+            else
+            {
+                num = 999;
+
+                foreach (BattleUnit unit in hitUnits)
+                {
+                    int dump = -unit.UnitMove.LocX;
+                    dump += Mathf.Abs(atkUnit.UnitMove.LocY - unit.UnitMove.LocY) * 100;
+
+                    if (dump < num)
+                    {
+                        num = dump;
+                        target = unit;
+                    }
+                }
+            }
+
+            vec = target.transform.position;
+
+            return vec;
+        }
+        // 움직이지 않는 공격
+        else if (range == RangeType.noneMove)
+            return atkUnit.transform.position;
+
+        return default;
+    }
+
+    // 컷씬 지점으로 이동
+    public void MoveUnitZoomIn(CutSceneData CSData, float t)
+    {
+        Vector3 moveLoc = CSData.MovePosition;
+
+        if (CSData.AttackUnit.BattleUnitSO.GetRangeType() == RangeType.tracking)
+        {
+            if (CSData.AttackUnit.UnitRenderer.GetFlipX())
+                moveLoc.x += 2;
+            else
+                moveLoc.x -= 2;
+        }
+        
+        CSData.AttackUnit.transform.position = Vector3.Lerp(CSData.DefaultPosition, moveLoc, t);
+    }
+
+    #endregion
+
+    #region Attack & Animation
+
+    // 확대 후 컷씬
+    // 여기도 겹치는게 많음, 합칠 수 있을거같은데
+    public IEnumerator AttackCutScene(CutSceneData CSData)
+    {
+        float CutSceneTime = 1;
+
+        yield return new WaitForSeconds(0.1f);
+        // 공격하고 모션바뀌고 기타 등등 여기서 처리
+        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(true);
+
+        foreach(BattleUnit unit in CSData.HitUnits)
+            unit.UnitRenderer.HitAnim(true);
+
+        StartCoroutine(CameraHandler.CameraLotate(CutSceneTime));
+
+        yield return new WaitForSeconds(CutSceneTime);
+
+
+        foreach (BattleUnit unit in CSData.HitUnits)
+        {
+            unit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
+            unit.UnitRenderer.HitAnim(false);
+        }
+        
+        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(false);
+
+        StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
+    }
+
+    #endregion
+
+    #region End CutScene
+
+    // 원래 위치로 이동
+    public void MoveUnitZoomOut(CutSceneData CSData, float t)
+    {
+        Vector3 moveLoc = CSData.MovePosition;
+        if (CSData.AttackUnit.BattleUnitSO.GetRangeType() == RangeType.tracking)
+        {
+            if (CSData.AttackUnit.UnitRenderer.GetFlipX())
+                moveLoc.x += 2;
+            else
+                moveLoc.x -= 2;
         }
 
-        SetCSData(AttackUnit, HitUnit);
-        CSData.HitUnit = HitUnit;
+        CSData.AttackUnit.transform.position = Vector3.Lerp(moveLoc, CSData.DefaultPosition, t);
+    }
 
-        CameraHandler.CutSceneZoomIn(CSData);
+    public void NextUnitSkill()
+    {
+        _EngageMNG.UseUnitSkill();
     }
 
     IEnumerator ExitCutScene()
@@ -85,82 +228,5 @@ public class BattleCutSceneManager : MonoBehaviour
         _EngageMNG.UseUnitSkill();
     }
 
-    void SetCSData(BattleUnit _atkUnit, BattleUnit _hitUnit)
-    {
-        // 어느 캐릭터가 어느 방향에 있나 확인 후 각 위치에 할당
-        BattleUnit LeftUnit, RightUnit;
-
-        #region Set Char LR
-        // 왼쪽에 배치될 캐릭터와 오른쪽에 배치될 캐릭터를 구분
-        if (_atkUnit.UnitMove.LocX < _hitUnit.UnitMove.LocX)
-        {
-            LeftUnit = _atkUnit;
-            RightUnit = _hitUnit;
-        }
-        else if (_hitUnit.UnitMove.LocX < _atkUnit.UnitMove.LocX)
-        {
-            LeftUnit = _hitUnit;
-            RightUnit = _atkUnit;
-        }
-        else
-        {
-            // 둘이 x값이 같을 경우 플레이어쪽이 왼쪽으로
-            if (_atkUnit.BattleUnitSO.team == Team.Player)
-            {
-                LeftUnit = _atkUnit;
-                RightUnit = _hitUnit;
-            }
-            else
-            {
-                LeftUnit = _hitUnit;
-                RightUnit = _atkUnit;
-            }
-        }
-        #endregion
-
-        #region Create CutSceneData
-
-        CSData.ZoomTime = _zoomTime;
-        CSData.ZoomLocation = _FieldMNG.GameField.transform.position;
-        CSData.ZoomLocation.z = Camera.main.transform.position.z;
-        CSData.DefaultZoomSize = Camera.main.fieldOfView;
-        CSData.ZoomSize = 30; // 얘는 나중에 유동적으로 받기
-        CSData.LeftUnit = LeftUnit;
-        CSData.RightUnit = RightUnit;
-        CSData.AttackUnit = _atkUnit;
-
-        #endregion
-    }
-
     #endregion
-
-
-    // 확대 후 컷씬
-    public IEnumerator RangeCutScene(CutSceneData CSData)
-    {
-        foreach(BattleUnit unit in CSData.HitUnits)
-        {
-            Debug.Log(CSData.AttackUnit.GetStat().ATK);
-            unit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
-        }
-        // 공격하고 모션바뀌고 기타 등등 여기서 처리
-
-        yield return new WaitForSeconds(1);
-
-        StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
-    }
-    public IEnumerator TargetingCutScene(CutSceneData CSData)
-    {
-        CSData.HitUnit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
-        // 공격하고 모션바뀌고 기타 등등 여기서 처리
-
-        yield return new WaitForSeconds(1);
-
-        StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
-    }
-
-    public void NextUnitSkill()
-    {
-        _EngageMNG.UseUnitSkill();
-    }
 }

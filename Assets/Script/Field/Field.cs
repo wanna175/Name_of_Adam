@@ -6,7 +6,8 @@ using UnityEngine;
 public class Field : MonoBehaviour
 {
     [SerializeField] GameObject TilePrefabs;
-
+    [SerializeField] GameObject UnitPrefabs;
+    
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
     FieldManager _FieldMNG;
@@ -43,7 +44,6 @@ public class Field : MonoBehaviour
             }
         }
 
-
         // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
 
         // 유닛이 공격할 타겟을 선택중이라면
@@ -58,7 +58,7 @@ public class Field : MonoBehaviour
         {
             BattleUnit SelectUnit = tile.TileUnit;
             _FieldMNG.FieldClear();
-
+            
             // 그 유닛이 아군이라면
             if (tile.TileUnit.BattleUnitSO.team == Team.Player)
             {
@@ -68,7 +68,6 @@ public class Field : MonoBehaviour
                 List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
                 if (vecList != null)
                 {
-
                     // 타겟팅이 맞다면 범위 표시
                     for (int i = 0; i < vecList.Count; i++)
                     {
@@ -87,37 +86,32 @@ public class Field : MonoBehaviour
         // 클릭한 타일에 유닛이 없을 시
         else
         {
-            // 당장은 핸드가 없어서 아래는 주석처리
+            //핸드를 누르고 타일을 누를 때
+            if (_InputMNG.ClickedHand != 0)
+            {
+              //범위 외
+              if (tileX > 3 && tileY > 2)
+              {
+                  Debug.Log("out of range");
+              }
+              else
+              {
+                  if (_BattleDataMNG.ManaMNG.UseMana(2)) //조건문이 참이라면 이미 마나가 소모된 후
+                  {
+                       GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
 
-            ////핸드를 누르고 타일을 누를 때
-            //if (GameManager.Instance.InputMNG.ClickedHand != 0)
-            //{
-            //    //범위 외
-            //    if (tileX > 3 && tileY > 2)
-            //    {
-            //        Debug.Log("out of range");
-            //    }
-            //    else
-            //    {
-            //        if (_BattleDataMNG.ManaMNG.UseMana(2))
-            //        {
-            //            //조건문이 참이라면 이미 마나가 소모됨
-            //            _InputMNG.ClickedChar.UnitMove.setLocate(tileX, tileY);
-
-            //            Instantiate(_InputMNG.ClickedChar);
-
-            //            _InputMNG.DeleteHand(GameManager.Instance.InputMNG.ClickedHand);
-            //            _InputMNG.ClearHand();
-
-            //            _BattleDataMNG.BattleUnitMNG.BattleUnitList.Add(_InputMNG.ClickedChar);
-            //        }
-            //        else
-            //        {
-            //            //마나 부족
-            //            Debug.Log("not enough mana");
-            //        }
-            //    }
-            //}
+                       _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
+                        
+                      _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
+                      _InputMNG.ClearHand();
+                  }
+                  else
+                  {
+                      //마나 부족
+                      Debug.Log("not enough mana");
+                  }
+              }
+            }
         }
     }
 }

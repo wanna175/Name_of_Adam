@@ -22,6 +22,7 @@ public class BattleUnitMove : MonoBehaviour
     private void Start()
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+        MoveOnTile();
     }
 
 
@@ -36,7 +37,7 @@ public class BattleUnitMove : MonoBehaviour
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
-        _BattleDataMNG.FieldMNG.EnterTile(_BattleUnit, LocX, LocY);
+        _BattleDataMNG.FieldMNG.ExitTile(LocX, LocY);
 
         int dumpX = _LocX;
         int dumpY = _LocY;
@@ -47,24 +48,37 @@ public class BattleUnitMove : MonoBehaviour
         if (0 <= _LocY + y && _LocY + y < 3)
             dumpY += y;
 
+        // x와 y가 -1 이라면(유닛이 사망한 상태라면)
+        if(x == -1 && y == -1)
+        {
+            _LocX = _LocY = -1;
+        }
         // 이동할 곳이 비어있지 않다면 이동하지 않음
-        if (!GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.GetIsOnTile(dumpX, dumpY))
+        else if (!GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.GetIsOnTile(dumpX, dumpY))
         {
             _LocX = dumpX;
             _LocY = dumpY;
         }
 
-
-        SetLotate();
+        MoveOnTile();
     }
 
     // 타일 위로 이동
-    public void SetLotate()
+    public void MoveOnTile()
     {
+        Debug.Log(_BattleDataMNG);
+        Debug.Log(_BattleDataMNG.FieldMNG);
         Vector3 vec = _BattleDataMNG.FieldMNG.GetTileLocate(LocX, LocY);
-        transform.position = vec;
-
-        // 현재 타일에 내가 들어왔다고 알려줌 
-        _BattleDataMNG.FieldMNG.EnterTile(_BattleUnit, LocX, LocY);
+        
+        if (vec.x == -1 && vec.y == -1)
+        {
+            _BattleUnit.UnitRenderer.SetUnitLayer(-10);
+        }
+        else
+        {
+            // 현재 타일에 내가 들어왔다고 알려줌 
+            transform.position = vec;
+            _BattleDataMNG.FieldMNG.EnterTile(_BattleUnit, LocX, LocY);
+        }
     }
 }

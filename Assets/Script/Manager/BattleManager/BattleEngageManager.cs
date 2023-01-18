@@ -1,66 +1,104 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BattleEngageManager : MonoBehaviour
 {
-    BattleCutSceneManager _CutSceneMNG;
-    BattleDataManager _BattleDataMNG;
+    private BattleCutSceneManager _CutSceneMNG;
+    private BattleDataManager _BattleDataMNG;
 
-    List<BattleUnit> _BattleUnitList;
+    private List<BattleUnit> _BattleUnitOrderList;
 
-    // 턴 시작이 가능한 상태인가?
-    bool CanTurnStart = true;
-    int _unitListIndex = 0;
-
+    private WatingLine _WatingLine;
 
     private void Start()
     {
         _CutSceneMNG = GameManager.Instance.BattleMNG.CutSceneMNG;
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
 
-        _BattleUnitList = _BattleDataMNG.BattleUnitMNG.BattleUnitList;
+        _BattleUnitOrderList = new List<BattleUnit>();
     }
 
-
-    // 턴 진행
-    public void TurnStart()
+    public void SetWatingLine(WatingLine w)
     {
-        // 턴 시작이 가능한 상태라면
-        if (CanTurnStart)
-        {
-            CanTurnStart = false;
-            _unitListIndex = 0;
-            
-            // 턴 시작 전에 다시한번 순서를 정렬한다.
-            _BattleDataMNG.BattleUnitMNG.BattleOrderReplace();
-            _BattleDataMNG.FieldMNG.FieldClear();
+        _WatingLine = w;
+    }
 
-            UseUnitSkill();
+    public void EngageStart()
+    {
+        //UI 튀어나옴
+        //UI가 작동할 수 있게 해줌
+
+        _BattleUnitOrderList.Clear();
+
+        foreach(BattleUnit unit in _BattleDataMNG.BattleUnitMNG.BattleUnitList)
+        {
+            _BattleUnitOrderList.Add(unit);
         }
+
+        // 턴 시작 전에 다시한번 순서를 정렬한다.
+        BattleOrderReplace();
+        _BattleDataMNG.FieldMNG.FieldClear();
+
+        _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
+        _WatingLine.SetWatingLine();
+
+        UseUnitSkill();
+    }
+
+    public void EngageEnd()
+    {
+        //UI 들어감
+        //UI 사용 불가
+        _BattleDataMNG.ManaMNG.AddMana(2);
+    }
+
+    // BattleUnitList를 정렬
+    // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
+    public void BattleOrderReplace()
+    {
+        _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetSpeed())
+            .ThenByDescending(unit => unit.UnitMove.LocY)
+            .ThenBy(unit => unit.UnitMove.LocX)
+            .ToList();
     }
 
     // BattleUnitList의 첫 번째 요소부터 순회
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
-    // 나중에 죽이는 로직 구현 필요
     public void UseUnitSkill()
     {
-        // index가 리스트의 범위를 넘지 않는다면 use를 실행
-        if (_unitListIndex < _BattleUnitList.Count)
+        DestroyDeadUnit();
+        _WatingLine.SetWatingLine();
+        
+        if (_BattleUnitOrderList.Count <= 0)
         {
-            _BattleUnitList[_unitListIndex].use();
-            _unitListIndex++;
+            EngageEnd();
+            return;
+        }
+
+        if (0 < _BattleUnitOrderList[0].UnitAction.CurHP)
+        {
+            _BattleUnitOrderList[0].use();
+            _BattleUnitOrderList.RemoveAt(0);
         }
         else
         {
-            TurnEnd();
+            UseUnitSkill();
         }
-
     }
 
-    void TurnEnd()
+    void DestroyDeadUnit()
     {
-        _BattleDataMNG.ManaMNG.AddMana(2);
-        CanTurnStart = true;
+        List<BattleUnit> units = _BattleDataMNG.BattleUnitMNG.BattleUnitList;
+
+        for(int i = units.Count-1; 0 <= i; i--)
+        {
+            if(units[i].UnitAction.CurHP <= 0)
+            {
+                _BattleUnitOrderList.Remove(units[i]);
+                units[i].UnitAction.UnitDestroy();
+            }
+        }
     }
 }

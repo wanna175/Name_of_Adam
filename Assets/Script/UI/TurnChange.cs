@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TurnChange : MonoBehaviour
+public class TurnChange : EventTrigger
 {
-    void OnMouseDown()
+    public override void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.Instance.BattleMNG.EngageMNG.TurnStart();
+        Debug.Log("Button On");
+        GameManager.Instance.BattleMNG.PrepareEnd();
+        GameManager.Instance.BattleMNG.EngageStart();
     }
 }
