@@ -1,24 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WatingUnit : MonoBehaviour
 {
-    private SpriteRenderer SR;
+    private Image _Image;
 
     void Start()
     {
-        SR = GetComponent<SpriteRenderer>();
+        _Image = GetComponent<Image>();
     }
 
     public void SetUnit(Sprite s)
     {
-        GetComponent<Renderer>().enabled = true;
-        SR.sprite = s;
+        GetComponent<Image>().enabled = true;
+        _Image.sprite = s;
     }
 
     public void RemoveUnit()
     {
-        GetComponent<Renderer>().enabled = false;
+        GetComponent<Image>().enabled = false;
     }
 }

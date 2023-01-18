@@ -26,12 +26,10 @@ public class BattleManager : MonoBehaviour
     {
         _BattleDataMNG = new BattleDataManager();
 
-        _PrepareMNG = GetComponent<BattlePrepareManager>();
-        _EngageMNG = GetComponent<BattleEngageManager>();
         _CutSceneMNG = GetComponent<CutSceneManager>();
 
         _BattleUnitOrderList = new List<BattleUnit>();
-        _WatingLine = GameManager.Instance.InputMNG.WatingLine;
+        _WatingLine = GameManager.Instance.UIMNG.WatingLine;
 
         PrepareStart();
 

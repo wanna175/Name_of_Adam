@@ -11,14 +11,14 @@ public class Field : MonoBehaviour
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
     FieldManager _FieldMNG;
-    InputManager _InputMNG;
+    UIManager _UIMNG;
 
     private void Awake()
     {
         _BattleMNG = GameManager.Instance.BattleMNG;
         _BattleDataMNG = _BattleMNG.BattleDataMNG;
         _FieldMNG = _BattleMNG.BattleDataMNG.FieldMNG;
-        _InputMNG = GameManager.Instance.InputMNG;
+        _UIMNG = GameManager.Instance.UIMNG;
         
         _FieldMNG.FieldSet(this, TilePrefabs);
 
@@ -49,7 +49,7 @@ public class Field : MonoBehaviour
         // 유닛이 공격할 타겟을 선택중이라면
         if (tile.CanSelect)
         {
-            _InputMNG.SelectedUnit.TileSelected(tileX, tileY);
+            _UIMNG.SelectedUnit.TileSelected(tileX, tileY);
             _FieldMNG.FieldClear();
             return;
         }
@@ -62,7 +62,7 @@ public class Field : MonoBehaviour
             // 그 유닛이 아군이라면
             if (tile.TileUnit.BattleUnitSO.MyTeam)
             {
-                _InputMNG.SelectedUnit = SelectUnit;
+                _UIMNG.SelectedUnit = SelectUnit;
 
                 // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
                 List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
@@ -87,7 +87,7 @@ public class Field : MonoBehaviour
         else
         {
             //핸드를 누르고 타일을 누를 때
-            if (_InputMNG.ClickedHand != 0)
+            if (_UIMNG.Hands.ClickedHand != 0)
             {
               //범위 외
               if (tileX > 3 && tileY > 2)
@@ -96,15 +96,15 @@ public class Field : MonoBehaviour
               }
               else
               {
-                  if (_BattleDataMNG.CanUseMana(_InputMNG.ClickedUnit.GetUnitSO().ManaCost)) //조건문이 참이라면 이미 마나가 소모된 후
+                  if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost)) //조건문이 참이라면 이미 마나가 소모된 후
                   {
-                        _BattleDataMNG.ChangeMana(-1 * _InputMNG.ClickedUnit.GetUnitSO().ManaCost);
+                        _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
                         GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
 
                         _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
                         
-                        _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
-                        _InputMNG.ClearHand();
+                        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+                        _UIMNG.Hands.ClearHand();
                   }
                   else
                   {

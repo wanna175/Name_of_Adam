@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388468ddf8550394ab24930191eb3e09, type: 3}
   m_Name: Character
   m_EditorClassIdentifier: 
-  team: 0
+  MyTeam: 1
   sprite: {fileID: -869484043, guid: 2f6ccb51f1605eb43ab8b5a35c95392f, type: 3}
   stat:
     HP: 100
