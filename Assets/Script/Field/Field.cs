@@ -16,7 +16,7 @@ public class Field : MonoBehaviour
     {
         _BattleMNG = GameManager.Instance.BattleMNG;
         _BattleDataMNG = _BattleMNG.BattleDataMNG;
-        _FieldMNG = _BattleMNG.BattleDataMNG.FieldMNG;
+        _FieldMNG = GameManager.Instance.FieldMNG;
         _UIMNG = GameManager.Instance.UIMNG;
         
         _FieldMNG.FieldSet(this);
