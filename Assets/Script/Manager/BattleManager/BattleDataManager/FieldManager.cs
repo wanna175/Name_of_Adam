@@ -60,7 +60,7 @@ public class FieldManager
 
                 if (TileArray[y][x].isOnTile)
                 {
-                    if (caster.BattleUnitSO.team != TileArray[y][x].TileUnit.BattleUnitSO.team)
+                    if (caster.BattleUnitSO.MyTeam != TileArray[y][x].TileUnit.BattleUnitSO.MyTeam)
                     {
                         // 넘지 않았다면 타일 위에 있는 유닛을 반환
                         return TileArray[y][x].TileUnit;
@@ -95,32 +95,15 @@ public class FieldManager
 
     public void FieldClear()
     {
-        CanSelectClear();
-        FieldColorClear();
-    }
-
-    void CanSelectClear()
-    {
-        foreach(List<Tile> list in TileArray)
-        { 
-            foreach(Tile tile in list)
+        foreach (List<Tile> list in TileArray)
+        {
+            foreach (Tile tile in list)
             {
                 tile.SetCanSelect(false);
-            }
-        }
-    }
-
-    void FieldColorClear()
-    {
-        foreach(List<Tile> tiles in TileArray)
-        {
-            foreach(Tile tile in tiles)
-            {
                 tile.SetColor(Color.white);
             }
         }
     }
-
 
     public void EnterTile(BattleUnit ch, int x, int y)
     {

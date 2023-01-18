@@ -16,8 +16,8 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region CutSceneMNG
-    private BattleCutSceneManager _CutSceneMNG;
-    public BattleCutSceneManager CutSceneMNG => _CutSceneMNG;
+    private CutSceneManager _CutSceneMNG;
+    public CutSceneManager CutSceneMNG => _CutSceneMNG;
     #endregion
 
     private WatingLine _WatingLine;
@@ -25,7 +25,10 @@ public class BattleManager : MonoBehaviour
     private void Awake()
     {
         _BattleDataMNG = new BattleDataManager();
-        _CutSceneMNG = GetComponent<BattleCutSceneManager>();
+
+        _PrepareMNG = GetComponent<BattlePrepareManager>();
+        _EngageMNG = GetComponent<BattleEngageManager>();
+        _CutSceneMNG = GetComponent<CutSceneManager>();
 
         _BattleUnitOrderList = new List<BattleUnit>();
         _WatingLine = GameManager.Instance.InputMNG.WatingLine;

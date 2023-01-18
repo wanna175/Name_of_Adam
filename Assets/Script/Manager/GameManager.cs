@@ -23,16 +23,16 @@ public class GameManager : MonoBehaviour
     public BattleManager BattleMNG => _battleMNG;
     #endregion
     #region StageManager
-    StageManager _StageMNG;
-    public StageManager StageMNG => _StageMNG;
+    StageManager _stageMNG;
+    public StageManager StageMNG => _stageMNG;
     #endregion
     #region DataManager
-    DataManager _DataMNG;
-    public DataManager DataMNG => _DataMNG;
+    DataManager _dataMNG;
+    public DataManager DataMNG => _dataMNG;
     #endregion
     #region SceneChanger
-    SceneChanger _SceneChanger;
-    public SceneChanger SceneChanger => _SceneChanger;
+    SceneChanger _sceneChanger;
+    public SceneChanger SceneChanger => _sceneChanger;
     #endregion
 
     #region InputManager
@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        _StageMNG = new StageManager();
-        _DataMNG = new DataManager();
-        _SceneChanger = new SceneChanger();
+        _stageMNG = new StageManager();
+        _dataMNG = new DataManager();
+        _sceneChanger = new SceneChanger();
     }
 
     private void Update()

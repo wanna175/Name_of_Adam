@@ -25,7 +25,7 @@ public class BattleDataManager
         _BattleUnitManager = new BattleUnitManager();
         _DataMNG = GameManager.Instance.DataMNG;
     }
-
+     
     #region Turn
     private int _Turn;
     public int Turn => _Turn;

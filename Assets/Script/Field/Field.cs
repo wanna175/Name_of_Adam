@@ -60,7 +60,7 @@ public class Field : MonoBehaviour
             _FieldMNG.FieldClear();
             
             // 그 유닛이 아군이라면
-            if (tile.TileUnit.BattleUnitSO.team == Team.Player)
+            if (tile.TileUnit.BattleUnitSO.MyTeam)
             {
                 _InputMNG.SelectedUnit = SelectUnit;
 
