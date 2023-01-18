@@ -96,14 +96,15 @@ public class Field : MonoBehaviour
               }
               else
               {
-                  if (_BattleDataMNG.ManaMNG.UseMana(_InputMNG.ClickedUnit.GetUnitSO().ManaCost)) //조건문이 참이라면 이미 마나가 소모된 후
+                  if (_BattleDataMNG.CanUseMana(_InputMNG.ClickedUnit.GetUnitSO().ManaCost)) //조건문이 참이라면 이미 마나가 소모된 후
                   {
-                       GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
+                        _BattleDataMNG.ChangeMana(-1 * _InputMNG.ClickedUnit.GetUnitSO().ManaCost);
+                        GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
 
-                       _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
+                        _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
                         
-                      _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
-                      _InputMNG.ClearHand();
+                        _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
+                        _InputMNG.ClearHand();
                   }
                   else
                   {

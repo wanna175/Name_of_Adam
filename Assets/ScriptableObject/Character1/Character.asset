@@ -18,4 +18,7 @@ MonoBehaviour:
     HP: 100
     ATK: 10
     SPD: 50
+  ManaCost: 2
+  FallGauge: 0
+  Fall: 0
   skill: {fileID: 11400000, guid: 2bf249cb224e9ac498ca25f6957035ca, type: 2}

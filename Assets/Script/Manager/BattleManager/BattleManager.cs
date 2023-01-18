@@ -94,7 +94,7 @@ public class BattleManager : MonoBehaviour
 
         //UI 들어감
         //UI 사용 불가
-        _BattleDataMNG.ManaMNG.AddMana(2);
+        _BattleDataMNG.ChangeMana(2);
     }
 
         // BattleUnitList를 정렬
