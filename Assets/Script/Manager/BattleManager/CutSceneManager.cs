@@ -29,7 +29,7 @@ public class CutSceneData
 
 public class CutSceneManager : MonoBehaviour
 {
-    BattleEngageManager _EngageMNG;
+    BattleManager _BattleMNG;
     FieldManager _FieldMNG;
     public CameraHandler CameraHandler;
 
@@ -39,7 +39,7 @@ public class CutSceneManager : MonoBehaviour
 
     private void Start()
     {
-        _EngageMNG = GameManager.Instance.BattleMNG.EngageMNG;
+        _BattleMNG = GameManager.Instance.BattleMNG;
         _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
         CSData = new CutSceneData();
     }
@@ -217,7 +217,7 @@ public class CutSceneManager : MonoBehaviour
 
     public void NextUnitSkill()
     {
-        _EngageMNG.UseUnitSkill();
+        _BattleMNG.UseUnitSkill();
     }
 
     IEnumerator ExitCutScene()
@@ -225,7 +225,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _FieldMNG.FieldClear();
         yield return new WaitForSeconds(0.2f);
-        _EngageMNG.UseUnitSkill();
+        _BattleMNG.UseUnitSkill();
     }
 
     #endregion

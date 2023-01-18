@@ -12,10 +12,6 @@ public class BattleDataManager
     private BattleUnitManager _BattleUnitManager;
     public BattleUnitManager BattleUnitMNG => _BattleUnitManager;
     #endregion
-    #region ManaMNG
-    private ManaManager _ManaMNG;
-    public ManaManager ManaMNG => _ManaMNG;
-    #endregion
     #region DataMNG
     private DataManager _DataMNG;
     public DataManager DataMNG => _DataMNG;
@@ -27,7 +23,6 @@ public class BattleDataManager
     {
         _FieldMNG = new FieldManager();
         _BattleUnitManager = new BattleUnitManager();
-        _ManaMNG = new ManaManager();
         _DataMNG = GameManager.Instance.DataMNG;
     }
      
@@ -84,5 +79,45 @@ public class BattleDataManager
         return unit;
     }
     
+    #endregion
+
+    #region Mana
+
+    #region ManaCost
+    private int _ManaCost = 0;
+    public int ManaCost => _ManaCost;
+    #endregion
+
+    ManaGuage _manaGuage;
+
+        public void InitMana()
+    {
+        _ManaCost = 0;
+    }
+
+    public void SetManaGuage(ManaGuage _guage)
+    {
+        _manaGuage = _guage;
+    }
+
+    public void ChangeMana(int value)
+    {
+        _ManaCost += value;
+
+        if (10 <= _ManaCost)
+            _ManaCost = 10;
+        else if (_ManaCost < 0)
+            _ManaCost = 0;
+        
+        _manaGuage.DrawGauge();
+    }
+
+    public bool CanUseMana(int value)
+    {
+        if (_ManaCost >= value)
+            return true;
+        else
+            return false;
+    }
     #endregion
 }

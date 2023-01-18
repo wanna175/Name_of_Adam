@@ -6,16 +6,13 @@ public class WatingLine : MonoBehaviour
 {
     [SerializeField] List<WatingUnit> WatingUnitList;
     
-    private BattleEngageManager _EngageMNG;
-
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitOrderList;
     #endregion
 
     public void Start()
     {
-        _EngageMNG = GameManager.Instance.BattleMNG.EngageMNG;
-        _EngageMNG.SetWatingLine(this);
+
     }
 
     public void SetBattleUnitList(List<BattleUnit> list)

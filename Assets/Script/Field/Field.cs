@@ -49,7 +49,7 @@ public class Field : MonoBehaviour
         // 유닛이 공격할 타겟을 선택중이라면
         if (tile.CanSelect)
         {
-            _BattleMNG.PrepareMNG.SelectedUnit.TileSelected(tileX, tileY);
+            _InputMNG.SelectedUnit.TileSelected(tileX, tileY);
             _FieldMNG.FieldClear();
             return;
         }
@@ -62,7 +62,7 @@ public class Field : MonoBehaviour
             // 그 유닛이 아군이라면
             if (tile.TileUnit.BattleUnitSO.MyTeam)
             {
-                _BattleMNG.PrepareMNG.SelectedUnit = SelectUnit;
+                _InputMNG.SelectedUnit = SelectUnit;
 
                 // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
                 List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
@@ -96,14 +96,15 @@ public class Field : MonoBehaviour
               }
               else
               {
-                  if (_BattleDataMNG.ManaMNG.UseMana(2)) //조건문이 참이라면 이미 마나가 소모된 후
+                  if (_BattleDataMNG.CanUseMana(_InputMNG.ClickedUnit.GetUnitSO().ManaCost)) //조건문이 참이라면 이미 마나가 소모된 후
                   {
-                       GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
+                        _BattleDataMNG.ChangeMana(-1 * _InputMNG.ClickedUnit.GetUnitSO().ManaCost);
+                        GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
 
-                       _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
+                        _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
                         
-                      _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
-                      _InputMNG.ClearHand();
+                        _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
+                        _InputMNG.ClearHand();
                   }
                   else
                   {

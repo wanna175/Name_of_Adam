@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour
 {
     //UI들의 상호작용 관련 변수 관리
     [SerializeField] public Hands Hands;
+    [SerializeField] public WatingLine WatingLine;
     
     #region Hands
     private int _ClickedHand = 0;
@@ -27,4 +28,11 @@ public class InputManager : MonoBehaviour
     }
 
     #endregion
+
+    private BattleUnit _SelectedUnit;
+    public BattleUnit SelectedUnit
+    {
+        get { return _SelectedUnit; }
+        set { _SelectedUnit = value; }
+    }
 }
