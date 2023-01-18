@@ -6,7 +6,7 @@ using UnityEngine;
 // 컷씬에 사용될 데이터를 모아둔 클래스
 // 사용되는 변수들 둘러보고 구조체로 바꿀지 봐보자
 // 범위용이랑 타겟용으로 분리해야 할 듯
-public class CutSceneData
+public struct CutSceneData
 {
     // 공격 타입
     public AttackType ATKType;
@@ -15,7 +15,7 @@ public class CutSceneData
     // 확대 할 대상
     public Vector3 ZoomLocation;
     // 얼마나 줌할 것인지
-    public float DefaultZoomSize = 65;
+    public float DefaultZoomSize;
     public float ZoomSize;
     // 유닛들이 어디로 이동해야 하는지
     public Vector3 DefaultPosition;
@@ -40,7 +40,7 @@ public class CutSceneManager : MonoBehaviour
     private void Start()
     {
         _BattleMNG = GameManager.Instance.BattleMNG;
-        _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
+        _FieldMNG = GameManager.Instance.FieldMNG;
         CSData = new CutSceneData();
     }
 
@@ -64,8 +64,6 @@ public class CutSceneManager : MonoBehaviour
 
     void SetCSData(BattleUnit _atkUnit, List<BattleUnit> _hitUnits)
     {
-        #region Create CutSceneData
-
         CSData.ATKType = _atkUnit.BattleUnitSO.GetAttackType();
         CSData.ZoomTime = _zoomTime;
 
@@ -79,14 +77,13 @@ public class CutSceneManager : MonoBehaviour
 
         CSData.AttackUnit = _atkUnit;
 
+        CSData.DefaultZoomSize = 65;
         // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
         // 일단 타입에 따라 임의로 부여함
-        if(CSData.ATKType == AttackType.rangeAttack)
+        if (CSData.ATKType == AttackType.rangeAttack)
             CSData.ZoomSize = 50;
         if (CSData.ATKType == AttackType.targeting)
             CSData.ZoomSize = 35;
-
-        #endregion
     }
     
     // 공격자의 위치를 지정
@@ -99,7 +96,7 @@ public class CutSceneManager : MonoBehaviour
         if(range == RangeType.tracking)
         {
             // y축을 우선으로 가까운 곳에 있는 적을 찾는다.
-            Vector3 vec = default;
+            Vector3 vec = new Vector3();
             int num;
             BattleUnit target = null;
 
@@ -144,7 +141,7 @@ public class CutSceneManager : MonoBehaviour
         else if (range == RangeType.noneMove)
             return atkUnit.transform.position;
 
-        return default;
+        return new Vector3();
     }
 
     // 컷씬 지점으로 이동

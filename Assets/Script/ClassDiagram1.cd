@@ -14,22 +14,8 @@
       <FileName>Assets\Script\Field\Tile.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CutSceneData" Collapsed="true">
-    <Position X="23.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABAAEgAAAAAAAAAAAAAAAgAEIAJAAEAAAQAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\BattleManager\BattleCutSceneManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CutSceneManager" Collapsed="true">
-    <Position X="13" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAQAKCAAgIQgQAAAAAAAAAAEAAAAAIQAAAAAAg=</HashCode>
-      <FileName>Assets\Script\Manager\BattleManager\BattleCutSceneManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BattleDataManager">
-    <Position X="11.25" Y="4" Width="1.5" />
+    <Position X="4" Y="11.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AhKAQAAAACEAEACgEAASQGEAACAAAAAIAAAAABAAAAA=</HashCode>
       <FileName>Assets\Script\Manager\BattleManager\BattleDataManager\BattleDataManager.cs</FileName>
@@ -70,13 +56,6 @@
       <FileName>Assets\Script\Manager\BattleManager\BattleManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BattlePrepareManager" Collapsed="true">
-    <Position X="2.25" Y="11.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>IAAAAAAAACQAAAAABAAAAAAAEAAAAAAACAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\BattleManager\BattlePrepareManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CameraHandler" Collapsed="true">
     <Position X="20" Y="1.5" Width="1.5" />
     <TypeIdentifier>
@@ -101,7 +80,7 @@
   <Class Name="GameManager">
     <Position X="0.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAEAAgEAAIQAAAAARAgABAQIAABAAAAEA=</HashCode>
+      <HashCode>AAQAAAAAAAAAEAAAEAAAQACAAARAAABASIAABAAgAEA=</HashCode>
       <FileName>Assets\Script\Manager\GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -220,7 +199,7 @@
   <Class Name="ManaGuage" Collapsed="true">
     <Position X="14.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAABAAEAAAAAAAAIAABAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACQAAAAAAAABAAAAAAAAAAAIAABAAAAAAAA=</HashCode>
       <FileName>Assets\Script\UI\ManaGuage.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -248,7 +227,7 @@
   <Class Name="WatingLine" Collapsed="true">
     <Position X="14.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAgAAAIAAAAIAAgAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAgAAAIAAAAIAAgAAAAAAAAAA=</HashCode>
       <FileName>Assets\Script\UI\WatingLine.cs</FileName>
     </TypeIdentifier>
   </Class>

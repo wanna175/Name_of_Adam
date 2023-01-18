@@ -14,7 +14,7 @@ public class Effect_Fall : EffectSO
     {
         float CharATK = caster.BattleUnitSO.stat.ATK;
 
-        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.TileArray;
+        List<List<Tile>> Tiles = GameManager.Instance.FieldMNG.TileArray;
 
         List<Vector2> RangeList = GetRange();
 

@@ -38,27 +38,31 @@ public class BattleUnitSO : ScriptableObject
     
     public AttackType GetAttackType()
     {
+        AttackType atkType = AttackType.targeting;
+
         foreach (EffectSO sk in skill.EffectList)
         {
             if (sk.GetType() == typeof(Effect_Attack))
             {
                 Effect_Attack ea = sk as Effect_Attack;
-                return ea.attackType;
+                atkType = ea.attackType;
             }
         }
-        return AttackType.none;
+        return atkType;
     }
     public RangeType GetRangeType()
     {
+        RangeType rangeType = RangeType.tracking;
+
         foreach (EffectSO sk in skill.EffectList)
         {
             if (sk.GetType() == typeof(Effect_Attack))
             {
                 Effect_Attack ea = sk as Effect_Attack;
-                return ea.rangeType;
+                rangeType = ea.rangeType;
             }
         }
-        return RangeType.none;
+        return rangeType;
     }
 
     // 타겟팅 스킬을 가진 경우, 범위를 반환한다.

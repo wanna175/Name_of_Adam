@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Field : MonoBehaviour
 {
-    [SerializeField] GameObject TilePrefabs;
     [SerializeField] GameObject UnitPrefabs;
     
     BattleManager _BattleMNG;
@@ -20,7 +19,7 @@ public class Field : MonoBehaviour
         _FieldMNG = _BattleMNG.BattleDataMNG.FieldMNG;
         _UIMNG = GameManager.Instance.UIMNG;
         
-        _FieldMNG.FieldSet(this, TilePrefabs);
+        _FieldMNG.FieldSet(this);
 
         transform.position = _FieldMNG.FieldPosition;
         transform.eulerAngles = new Vector3(16, 0, 0);
@@ -101,7 +100,7 @@ public class Field : MonoBehaviour
                         _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
                         GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
 
-                        _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
+                        _BattleDataMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
                         
                         _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
                         _UIMNG.Hands.ClearHand();

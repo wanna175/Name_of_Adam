@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldManager
+public class FieldManager : MonoBehaviour
 {
+    [SerializeField] GameObject TilePrefabs;
+
     List<List<Tile>> _TileArray;
     public List<List<Tile>> TileArray => _TileArray;
 
@@ -20,33 +22,38 @@ public class FieldManager
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
 
     // 필드 생성
-    public void FieldSet(Field gameField, GameObject TilePrefabs)
+    public void FieldSet(Field fieldObject)
     {
-        _GameField = gameField;
-        Transform trans = gameField.transform;
+        _GameField = fieldObject;
+        Transform fieldTransform = fieldObject.transform;
 
         _TileArray = new List<List<Tile>>();
+        
+        for (int i = 0; i < MaxFieldY; i++)
+        {
+            _TileArray.Add(new List<Tile>());   
 
-        Vector3 vec = trans.position;
+            for (int j = 0; j < MaxFieldX; j++)
+            {
+                _TileArray[i].Add(CreateTile(fieldTransform, j, i));
+            }
+        }
+    }
+    Tile CreateTile(Transform trans, int x, int y)
+    {
+        x -= MaxFieldX / 2;
+        y -= MaxFieldY / 2;
 
         float disX = trans.localScale.x / MaxFieldX;
         float disY = trans.localScale.y / MaxFieldY;
 
-        for (int i = -1; i < 2; i++)
-        {
-            _TileArray.Add(new List<Tile>());
+        float locX = (disX * x) + (disX * 0.5f);
+        float locY = disY * y;
 
-            for (int j = -4; j < 4; j++)
-            {
-                float x = (disX * j) + (disX * 0.5f);
-                float y = disY * i;
+        GameObject tile = GameObject.Instantiate(TilePrefabs, trans);
+        tile.transform.position = new Vector3(locX, trans.position.y + locY);
 
-                GameObject tile = GameObject.Instantiate(TilePrefabs, trans);
-                tile.transform.position = new Vector3(vec.x + x, vec.y + y);
-
-                _TileArray[i+1].Add(tile.GetComponent<Tile>());
-            }
-        }
+        return tile.GetComponent<Tile>();
     }
 
     // 공격범위가 타일을 넘어섰는지 확인

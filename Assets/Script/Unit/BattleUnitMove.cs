@@ -6,6 +6,7 @@ public class BattleUnitMove : MonoBehaviour
 {
     BattleUnit _BattleUnit;
     BattleDataManager _BattleDataMNG;
+    FieldManager _FieldMNG;
 
     #region Loc X, Y
     [SerializeField] int _LocX, _LocY;
@@ -17,6 +18,7 @@ public class BattleUnitMove : MonoBehaviour
     private void Awake()
     {
         _BattleUnit = GetComponent<BattleUnit>();
+        _FieldMNG = GameManager.Instance.FieldMNG;
     }
 
     private void Start()
@@ -37,7 +39,7 @@ public class BattleUnitMove : MonoBehaviour
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
-        _BattleDataMNG.FieldMNG.ExitTile(LocX, LocY);
+        _FieldMNG.ExitTile(LocX, LocY);
 
         int dumpX = _LocX;
         int dumpY = _LocY;
@@ -54,7 +56,7 @@ public class BattleUnitMove : MonoBehaviour
             _LocX = _LocY = -1;
         }
         // 이동할 곳이 비어있지 않다면 이동하지 않음
-        else if (!GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG.GetIsOnTile(dumpX, dumpY))
+        else if (!_FieldMNG.GetIsOnTile(dumpX, dumpY))
         {
             _LocX = dumpX;
             _LocY = dumpY;
@@ -66,9 +68,7 @@ public class BattleUnitMove : MonoBehaviour
     // 타일 위로 이동
     public void MoveOnTile()
     {
-        Debug.Log(_BattleDataMNG);
-        Debug.Log(_BattleDataMNG.FieldMNG);
-        Vector3 vec = _BattleDataMNG.FieldMNG.GetTileLocate(LocX, LocY);
+        Vector3 vec = _FieldMNG.GetTileLocate(LocX, LocY);
         
         if (vec.x == -1 && vec.y == -1)
         {
@@ -78,7 +78,7 @@ public class BattleUnitMove : MonoBehaviour
         {
             // 현재 타일에 내가 들어왔다고 알려줌 
             transform.position = vec;
-            _BattleDataMNG.FieldMNG.EnterTile(_BattleUnit, LocX, LocY);
+            _FieldMNG.EnterTile(_BattleUnit, LocX, LocY);
         }
     }
 }

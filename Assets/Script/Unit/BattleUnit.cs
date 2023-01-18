@@ -45,7 +45,7 @@ public class BattleUnit : MonoBehaviour
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
 
-        _BattleDataMNG.BattleUnitMNG.BattleUnitEnter(this);
+        _BattleDataMNG.BattleUnitEnter(this);
         _UnitAction.GetMaxHP(GetStat().HP);
     }
     

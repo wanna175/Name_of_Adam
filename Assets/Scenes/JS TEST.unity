@@ -679,6 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hands: {fileID: 732453714}
+  WatingLine: {fileID: 0}
 --- !u!1 &345967556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,7 +2131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TilePrefabs: {fileID: 4304800747469416708, guid: aa232f776c3596b4c82c22fd6c42aeb5, type: 3}
-  UnitPrefabs: {fileID: 0}
+  UnitPrefabs: {fileID: 4662580368106312543, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
 --- !u!1001 &1550510725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2230,8 +2231,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1589663946}
   - component: {fileID: 1589663945}
-  - component: {fileID: 1589663949}
-  - component: {fileID: 1589663948}
   - component: {fileID: 1589663950}
   m_Layer: 0
   m_Name: BattleManager
@@ -2267,30 +2266,6 @@ Transform:
   m_Father: {fileID: 1932546685}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1589663948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589663944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf83b8e4d55377a44b9fbcb82757a472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1589663949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589663944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebaff73ee55581a4f8ec0ae99572995d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1589663950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2765,7 +2740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleMNG: {fileID: 1589663945}
-  _inputMNG: {fileID: 0}
+  _inputMNG: {fileID: 208691656}
 --- !u!4 &1932546685
 Transform:
   m_ObjectHideFlags: 0

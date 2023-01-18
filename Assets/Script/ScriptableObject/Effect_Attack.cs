@@ -4,16 +4,12 @@ using UnityEngine;
 
 public enum AttackType
 {
-    none,
-
     targeting,
     rangeAttack
 }
 
 public enum RangeType
 {
-    none,
-
     noneMove,
     tracking,
     center
@@ -30,7 +26,7 @@ public class Effect_Attack : EffectSO
     // 공격 실행
     public override void Effect(BattleUnit caster)
     {
-        FieldManager _FieldMNG = GameManager.Instance.BattleMNG.BattleDataMNG.FieldMNG;
+        FieldManager _FieldMNG = GameManager.Instance.FieldMNG;
         List<Vector2> RangeList = GetRange();
         List<BattleUnit> _BattleUnits = new List<BattleUnit>();
 
