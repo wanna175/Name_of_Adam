@@ -22,9 +22,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleManager _battleMNG;
     public BattleManager BattleMNG => _battleMNG;
     #endregion
+    #region CutSceneMNG
+    [SerializeField] private CutSceneManager _CutSceneMNG;
+    public CutSceneManager CutSceneMNG => _CutSceneMNG;
+    #endregion
     #region StageManager
     StageManager _stageMNG;
     public StageManager StageMNG => _stageMNG;
+    #endregion
+    #region FieldMNG
+    [SerializeField] private FieldManager _FieldMNG;
+    public FieldManager FieldMNG => _FieldMNG;
     #endregion
     #region DataManager
     DataManager _dataMNG;
@@ -34,6 +42,7 @@ public class GameManager : MonoBehaviour
     SceneChanger _sceneChanger;
     public SceneChanger SceneChanger => _sceneChanger;
     #endregion
+
 
     #region InputManager
     [SerializeField] InputManager _inputMNG;
@@ -66,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(2))
         {
-            BattleMNG.BattleDataMNG.BattleUnitMNG.BattleUnitList[0].UnitMove.MoveOnTile();
+            BattleMNG.BattleDataMNG.BattleUnitList[0].UnitMove.MoveOnTile();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

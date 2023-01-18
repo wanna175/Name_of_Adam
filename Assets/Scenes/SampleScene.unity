@@ -2865,9 +2865,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1589663946}
   - component: {fileID: 1589663945}
-  - component: {fileID: 1589663949}
-  - component: {fileID: 1589663948}
-  - component: {fileID: 1589663947}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -2902,43 +2899,6 @@ Transform:
   m_Father: {fileID: 1932546685}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1589663947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589663944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1761cca371ef31b4cb3f704b046ece94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraHandler: {fileID: 0}
---- !u!114 &1589663948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589663944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf83b8e4d55377a44b9fbcb82757a472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1589663949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589663944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebaff73ee55581a4f8ec0ae99572995d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1648463539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3502,6 +3462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleMNG: {fileID: 1589663945}
+  _CutSceneMNG: {fileID: 2039661333}
   _inputMNG: {fileID: 208691656}
 --- !u!4 &1932546685
 Transform:
@@ -3517,6 +3478,7 @@ Transform:
   m_Children:
   - {fileID: 1589663946}
   - {fileID: 208691655}
+  - {fileID: 2039661334}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3724,6 +3686,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2039661332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039661334}
+  - component: {fileID: 2039661333}
+  m_Layer: 0
+  m_Name: CutSceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2039661333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039661332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1761cca371ef31b4cb3f704b046ece94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraHandler: {fileID: 0}
+--- !u!4 &2039661334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039661332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1932546685}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042668736
 GameObject:
   m_ObjectHideFlags: 0

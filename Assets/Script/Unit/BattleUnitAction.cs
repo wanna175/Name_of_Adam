@@ -36,7 +36,7 @@ public class BattleUnitAction : MonoBehaviour
     private void Start()
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
-        _CutSceneMNG = GameManager.Instance.BattleMNG.CutSceneMNG;
+        _CutSceneMNG = GameManager.Instance.CutSceneMNG;
     }
 
 
@@ -83,7 +83,7 @@ public class BattleUnitAction : MonoBehaviour
 
     public void UnitDestroy()
     {
-        _BattleDataMNG.BattleUnitMNG.BattleUnitExit(_BattleUnit);
+        _BattleDataMNG.BattleUnitExit(_BattleUnit);
         Destroy(gameObject);
     }
 
@@ -118,4 +118,9 @@ public class BattleUnitAction : MonoBehaviour
         else
             _BattleUnitSO.MyTeam = false; // 아군이면 적으로
     }
+}
+
+public class ABC : MonoBehaviour
+{
+    [SerializeField] GameObject ab;
 }

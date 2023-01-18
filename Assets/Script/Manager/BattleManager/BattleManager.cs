@@ -15,20 +15,11 @@ public class BattleManager : MonoBehaviour
     public BattleDataManager BattleDataMNG => _BattleDataMNG;
     #endregion
 
-    #region CutSceneMNG
-    private CutSceneManager _CutSceneMNG;
-    public CutSceneManager CutSceneMNG => _CutSceneMNG;
-    #endregion
-
     private WatingLine _WatingLine;
 
     private void Awake()
     {
         _BattleDataMNG = new BattleDataManager();
-
-        _PrepareMNG = GetComponent<BattlePrepareManager>();
-        _EngageMNG = GetComponent<BattleEngageManager>();
-        _CutSceneMNG = GetComponent<CutSceneManager>();
 
         _BattleUnitOrderList = new List<BattleUnit>();
         _WatingLine = GameManager.Instance.InputMNG.WatingLine;
@@ -75,14 +66,14 @@ public class BattleManager : MonoBehaviour
 
         _BattleUnitOrderList.Clear();
 
-        foreach(BattleUnit unit in _BattleDataMNG.BattleUnitMNG.BattleUnitList)
+        foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
             _BattleUnitOrderList.Add(unit);
         }
 
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
-        _BattleDataMNG.FieldMNG.FieldClear();
+        GameManager.Instance.FieldMNG.FieldClear();
 
         _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
         _WatingLine.SetWatingLine();
@@ -136,7 +127,7 @@ public class BattleManager : MonoBehaviour
 
     void DestroyDeadUnit()
     {
-        List<BattleUnit> units = _BattleDataMNG.BattleUnitMNG.BattleUnitList;
+        List<BattleUnit> units = _BattleDataMNG.BattleUnitList;
 
         for(int i = units.Count-1; 0 <= i; i--)
         {

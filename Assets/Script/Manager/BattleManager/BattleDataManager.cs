@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class BattleDataManager
 {
-    #region FieldMNG
-    private FieldManager _FieldMNG;
-    public FieldManager FieldMNG => _FieldMNG;
-    #endregion
-    #region BattleUnitMNG
-    private BattleUnitManager _BattleUnitManager;
-    public BattleUnitManager BattleUnitMNG => _BattleUnitManager;
-    #endregion
     #region DataMNG
     private DataManager _DataMNG;
     public DataManager DataMNG => _DataMNG;
@@ -21,8 +13,6 @@ public class BattleDataManager
 
     public BattleDataManager()
     {
-        _FieldMNG = new FieldManager();
-        _BattleUnitManager = new BattleUnitManager();
         _DataMNG = GameManager.Instance.DataMNG;
     }
      
@@ -78,7 +68,46 @@ public class BattleDataManager
 
         return unit;
     }
+
+    #endregion
+
+    #region BattleUnitList
     
+    // 전투를 진행중인 캐릭터가 들어있는 리스트
+    #region BattleUnitList  
+    List<BattleUnit> _BattleUnitList = new List<BattleUnit>();
+    public List<BattleUnit> BattleUnitList => _BattleUnitList;
+    #endregion  
+
+    // 리스트에 캐릭터를 추가 / 제거
+    #region UnitEnter / Exit
+    public void BattleUnitEnter(BattleUnit unit)
+    {
+        BattleUnitList.Add(unit);
+    }
+    public void BattleUnitExit(BattleUnit unit)
+    {
+        BattleUnitList.Remove(unit);
+    }
+    #endregion
+
+    // 현재 리스트를 초기화
+    public void UnitListClear()
+    {
+        BattleUnitList.Clear();
+    }
+
+    //필드에 유닛을 생성
+    public void CreatBattleUnit(GameObject BattleUnitPrefab, int x, int y)
+    {
+        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+
+        BattleUnit.BattleUnitSO = GameManager.Instance.InputMNG.ClickedUnit.GetUnitSO();
+        BattleUnit.UnitMove.setLocate(x, y);
+
+        GameManager.Instance.FieldMNG.EnterTile(BattleUnit, x, y);
+    }
+
     #endregion
 
     #region Mana

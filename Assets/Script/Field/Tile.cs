@@ -85,28 +85,6 @@ public class Tile : MonoBehaviour
     // 캐릭터 컴포넌트 분리시킬 때 얘들도 같이 수정하기
     // ↓↓↓↓↓↓↓↓
     
-    public void OnHeal(BattleUnit ch)
-    {
-        StartCoroutine(CoOnHeal(ch));
-    }
-    IEnumerator CoOnHeal(BattleUnit AttackChar)
-    {
-        SR.color = Color.blue;
-
-        if (_TileUnit != null)
-        {
-            if (AttackChar.BattleUnitSO.MyTeam == _TileUnit.BattleUnitSO.MyTeam)
-            {
-                _TileUnit.UnitAction.GetDamage(-AttackChar.GetStat().ATK);
-            }
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        SR.color = Color.white;
-
-    }
-    
     public void OnFall(BattleUnit ch)
     {
         StartCoroutine(CoOnFall(ch));
