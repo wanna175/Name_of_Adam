@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hands: {fileID: 732453714}
+  WatingLine: {fileID: 570394791}
 --- !u!1 &345967556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,7 +2109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2851540894343092552, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: _LocY
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032269360319001554, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: m_RootOrder
