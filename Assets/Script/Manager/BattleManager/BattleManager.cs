@@ -23,8 +23,8 @@ public class BattleManager : MonoBehaviour
     public BattleEngageManager EngageMNG => _EngageMNG;
     #endregion
     #region CutSceneMNG
-    private BattleCutSceneManager _CutSceneMNG;
-    public BattleCutSceneManager CutSceneMNG => _CutSceneMNG;
+    private CutSceneManager _CutSceneMNG;
+    public CutSceneManager CutSceneMNG => _CutSceneMNG;
     #endregion
 
     private void Awake()
@@ -33,7 +33,7 @@ public class BattleManager : MonoBehaviour
 
         _PrepareMNG = GetComponent<BattlePrepareManager>();
         _EngageMNG = GetComponent<BattleEngageManager>();
-        _CutSceneMNG = GetComponent<BattleCutSceneManager>();
+        _CutSceneMNG = GetComponent<CutSceneManager>();
 
         PrepareStart();
     }

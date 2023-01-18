@@ -27,7 +27,7 @@ public class CutSceneData
 }
 
 
-public class BattleCutSceneManager : MonoBehaviour
+public class CutSceneManager : MonoBehaviour
 {
     BattleEngageManager _EngageMNG;
     FieldManager _FieldMNG;

@@ -95,7 +95,7 @@ public class Tile : MonoBehaviour
 
         if (_TileUnit != null)
         {
-            if (AttackChar.BattleUnitSO.team == _TileUnit.BattleUnitSO.team)
+            if (AttackChar.BattleUnitSO.MyTeam == _TileUnit.BattleUnitSO.MyTeam)
             {
                 _TileUnit.UnitAction.GetDamage(-AttackChar.GetStat().ATK);
             }
@@ -117,7 +117,7 @@ public class Tile : MonoBehaviour
 
         if (_TileUnit != null)
         {
-            if (AttackChar.BattleUnitSO.team != _TileUnit.BattleUnitSO.team)
+            if (AttackChar.BattleUnitSO.MyTeam != _TileUnit.BattleUnitSO.MyTeam)
             {
                 _TileUnit.UnitAction.SetFallGauge(1);
             }

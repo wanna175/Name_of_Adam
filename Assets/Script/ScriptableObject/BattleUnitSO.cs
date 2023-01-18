@@ -22,7 +22,7 @@ public enum Team
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
 public class BattleUnitSO : ScriptableObject
 {
-    [SerializeField] public Team team;
+    [SerializeField] public bool MyTeam;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
     [SerializeField] public int ManaCost;

@@ -30,7 +30,7 @@ public class BattleDataManager
         _ManaMNG = new ManaManager();
         _DataMNG = GameManager.Instance.DataMNG;
     }
-
+     
     #region Turn
     private int _Turn;
     public int Turn => _Turn;

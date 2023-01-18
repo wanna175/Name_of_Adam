@@ -7,7 +7,7 @@ public class CameraHandler : MonoBehaviour
     [SerializeField] Camera MainCamera;
     [SerializeField] Camera CutSceneCamera;
 
-    BattleCutSceneManager _CutSceneMNG;
+    CutSceneManager _CutSceneMNG;
     FieldManager _FieldMNG;
 
     private void Start()

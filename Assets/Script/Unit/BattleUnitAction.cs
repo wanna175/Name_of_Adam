@@ -7,7 +7,7 @@ public class BattleUnitAction : MonoBehaviour
     BattleUnit _BattleUnit;
     BattleUnitSO _BattleUnitSO;
     BattleDataManager _BattleDataMNG;
-    BattleCutSceneManager _CutSceneMNG;
+    CutSceneManager _CutSceneMNG;
 
     #region HP
     [SerializeField] float _MaxHP, _CurHP;
@@ -113,9 +113,9 @@ public class BattleUnitAction : MonoBehaviour
     void Fall()
     {
         _BattleUnitSO.Fall = true;
-        if (_BattleUnitSO.team == Team.Enemy)
-            _BattleUnitSO.team = Team.Player;
+        if (!_BattleUnitSO.MyTeam) // 적이라면
+            _BattleUnitSO.MyTeam = true; // 아군으로
         else
-            _BattleUnitSO.team = Team.Enemy;
+            _BattleUnitSO.MyTeam = false; // 아군이면 적으로
     }
 }

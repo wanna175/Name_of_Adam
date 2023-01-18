@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BattleEngageManager : MonoBehaviour
 {
-    private BattleCutSceneManager _CutSceneMNG;
+    private CutSceneManager _CutSceneMNG;
     private BattleDataManager _BattleDataMNG;
 
     private List<BattleUnit> _BattleUnitOrderList;
