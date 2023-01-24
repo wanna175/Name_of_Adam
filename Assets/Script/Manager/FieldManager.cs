@@ -5,28 +5,32 @@ using UnityEngine;
 public class FieldManager : MonoBehaviour
 {
     [SerializeField] GameObject TilePrefabs;
+    [SerializeField] GameObject UnitPrefabs;
+
+    BattleDataManager _BattleDataMNG;
+    UIManager _UIMNG;
 
     List<List<Tile>> _TileArray;
     public List<List<Tile>> TileArray => _TileArray;
 
-    // 게임에 펼쳐져있는 필드의 스크립트
-    Field _GameField;
-    public Field GameField => _GameField;
-
     // 필드의 최대 넓이
     const int MaxFieldX = 8;
     const int MaxFieldY = 3;
-
     
     // 필드의 생성을 위한 필드의 위치
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
 
-    // 필드 생성
-    public void FieldSet(Field fieldObject)
-    {
-        _GameField = fieldObject;
-        Transform fieldTransform = fieldObject.transform;
 
+    private void Start()
+    {
+        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+        _UIMNG = GameManager.Instance.UIMNG;
+    }
+
+    #region FieldCreate
+    // 필드 생성
+    public void FieldSet(Transform fieldTransform)
+    {
         _TileArray = new List<List<Tile>>();
         
         for (int i = 0; i < MaxFieldY; i++)
@@ -56,6 +60,8 @@ public class FieldManager : MonoBehaviour
         return tile.GetComponent<Tile>();
     }
 
+    #endregion
+
     // 공격범위가 타일을 넘어섰는지 확인
     public BattleUnit RangeCheck(BattleUnit caster, int x, int y)
     {
@@ -70,7 +76,7 @@ public class FieldManager : MonoBehaviour
                     if (caster.BattleUnitSO.MyTeam != TileArray[y][x].TileUnit.BattleUnitSO.MyTeam)
                     {
                         // 넘지 않았다면 타일 위에 있는 유닛을 반환
-                        return TileArray[y][x].TileUnit;
+                        return TileArray[y][x].OnAttack();
                     }
                 }
             }
@@ -81,6 +87,7 @@ public class FieldManager : MonoBehaviour
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTileLocate(int x, int y)
     {
+        // TileArray의 인덱스를 벗어나는지 확인
         try
         {
             Vector3 vec = _TileArray[y][x].transform.position;
@@ -93,7 +100,7 @@ public class FieldManager : MonoBehaviour
             vec.y += sizeY;
 
             return vec;
-        }
+        } // 인덱스를 넘어가면 위치를 뒤로 옮긴다
         catch
         {
             return new Vector3(-1, -1, -1);
@@ -112,6 +119,8 @@ public class FieldManager : MonoBehaviour
         }
     }
 
+    #region TileEvent
+
     public void EnterTile(BattleUnit ch, int x, int y)
     {
         _TileArray[y][x].EnterTile(ch);
@@ -123,5 +132,102 @@ public class FieldManager : MonoBehaviour
     }
 
     public bool GetIsOnTile(int x, int y) => _TileArray[y][x].isOnTile;
-    
+
+
+
+    public void TileClick(Tile tile)
+    {
+        int tileX = 0,
+            tileY = 0;
+
+        for (int i = 0; i < TileArray.Count; i++)
+        {
+            for (int j = 0; j < TileArray[i].Count; j++)
+            {
+                if (ReferenceEquals(tile, TileArray[i][j]))
+                {
+                    tileX = j;
+                    tileY = i;
+                }
+            }
+        }
+
+        // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
+
+        // 유닛이 공격할 타겟을 선택중이라면
+        if (tile.CanSelect)
+        {
+            _UIMNG.SelectedUnit.TileSelected(tileX, tileY);
+            FieldClear();
+            return;
+        }
+        // 클릭한 타일에 유닛이 있을 시
+        else if (tile.TileUnit != null)
+        {
+            BattleUnit SelectUnit = tile.TileUnit;
+            FieldClear();
+
+            // 그 유닛이 아군이라면
+            if (tile.TileUnit.BattleUnitSO.MyTeam)
+            {
+                _UIMNG.SelectedUnit = SelectUnit;
+
+                // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
+                List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
+                if (vecList != null)
+                {
+                    // 타겟팅이 맞다면 범위 표시
+                    for (int i = 0; i < vecList.Count; i++)
+                    {
+                        int x = SelectUnit.UnitMove.LocX - (int)vecList[i].x;
+                        int y = SelectUnit.UnitMove.LocY - (int)vecList[i].y;
+
+                        if (0 <= x && x < 8)
+                        {
+                            if (0 <= y && y < 3)
+                                TileArray[y][x].SetCanSelect(true);
+                        }
+                    }
+                }
+            }
+        }
+        // 클릭한 타일에 유닛이 없을 시
+        else
+        {
+            //핸드를 누르고 타일을 누를 때
+            if (_UIMNG.Hands.ClickedHand != 0)
+            {
+                //범위 외
+                if (tileX > 3 && tileY > 2)
+                {
+                    Debug.Log("out of range");
+                }
+                else
+                {
+                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost)) //조건문이 참이라면 이미 마나가 소모된 후
+                    {
+                        _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
+                        GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
+
+                        _BattleDataMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
+
+                        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+                        _UIMNG.Hands.ClearHand();
+                    }
+                    else
+                    {
+                        //마나 부족
+                        Debug.Log("not enough mana");
+                    }
+                }
+            }
+        }
+    }
+
+    #endregion 
 }
+
+// 23.01.23 김종석 - 수정된 사항
+// GameField 제거
+// FieldSet가 인자를 GameObject에서 Transform으로 받게 됨
+// 타일 클릭 이벤트를 Field에서 FieldManager로 옮김
