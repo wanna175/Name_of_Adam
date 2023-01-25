@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Hand : MonoBehaviour
+public class UI_Hand : MonoBehaviour
 {
     [SerializeField] int handIndex;
 
@@ -55,7 +55,7 @@ public class Hand : MonoBehaviour
     {
         Debug.Log("Hand: " + handIndex);
         if (GameManager.Instance.BattleMNG.BattleDataMNG.CanUseMana(HandUnit.GetUnitSO().ManaCost)){
-            GameManager.Instance.UIMNG.Hands.SetHand(handIndex, HandUnit);
+            GameManager.Instance.UIMNG.Hands.SetHand(handIndex);
         }
         else
         {

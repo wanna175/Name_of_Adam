@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManaGuage : MonoBehaviour
+public class UI_ManaGuage : MonoBehaviour
 {
     [SerializeField] Image ManaGauge;
     [SerializeField] Text ManaText;

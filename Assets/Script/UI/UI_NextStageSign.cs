@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NextStageSign : MonoBehaviour
+public class UI_NextStageSign : MonoBehaviour
 {
     public int a = 0;
     [SerializeField] List<Image> Container;
