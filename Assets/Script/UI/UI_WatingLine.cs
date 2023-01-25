@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WatingLine : MonoBehaviour
+public class UI_WatingLine : MonoBehaviour
 {
-    [SerializeField] List<WatingUnit> WatingUnitList;
+    [SerializeField] List<UI_WatingUnit> WatingUnitList;
     
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitOrderList;

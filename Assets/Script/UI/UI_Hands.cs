@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hands : MonoBehaviour
+public class UI_Hands : MonoBehaviour
 {
-    [SerializeField] List<Hand> HandList;
+    [SerializeField] List<UI_Hand> HandList;
     
     BattleDataManager _BattleDataMNG;
 
     /*
-    void Awake()
+    void Start()
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
 
@@ -33,7 +33,7 @@ public class Hands : MonoBehaviour
     public void AddUnitToHand()
     {
         //1,2,3,4 순으로 Hand의 Unit이 null이면 1개 추가
-        foreach (Hand h in HandList)
+        foreach (UI_Hand h in HandList)
         {
             if (h.isHandNull())
             {
@@ -62,7 +62,7 @@ public class Hands : MonoBehaviour
 
     public void ReturnHand()
     {
-        foreach (Hand h in HandList)
+        foreach (UI_Hand h in HandList)
         {
             if (!h.isHandNull())
             {
@@ -78,10 +78,10 @@ public class Hands : MonoBehaviour
     private DeckUnit _ClickedUnit = null;
     public DeckUnit ClickedUnit => _ClickedUnit;
 
-    public void SetHand(int handIndex, DeckUnit unit)
+    public void SetHand(int handIndex)
     {
         _ClickedHand = handIndex;
-        _ClickedUnit = unit;
+        _ClickedUnit = HandList[handIndex].GetHandDeckUnit();
     }
 
     public void ClearHand()

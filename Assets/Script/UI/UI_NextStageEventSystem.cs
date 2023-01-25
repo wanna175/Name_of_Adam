@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class NextStageEventSystem : EventTrigger
+public class UI_NextStageEventSystem : EventTrigger
 {
     public override void OnPointerClick(PointerEventData data)
     {
