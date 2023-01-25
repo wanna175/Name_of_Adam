@@ -117,14 +117,14 @@ public class BattleDataManager
     public int ManaCost => _ManaCost;
     #endregion
 
-    ManaGuage _manaGuage;
+    UI_ManaGuage _manaGuage;
 
         public void InitMana()
     {
         _ManaCost = 0;
     }
 
-    public void SetManaGuage(ManaGuage _guage)
+    public void SetManaGuage(UI_ManaGuage _guage)
     {
         _manaGuage = _guage;
     }

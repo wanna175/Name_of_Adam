@@ -15,7 +15,7 @@ public class BattleManager : MonoBehaviour
     public BattleDataManager BattleDataMNG => _BattleDataMNG;
     #endregion
 
-    private WatingLine _WatingLine;
+    private UI_WatingLine _WatingLine;
 
     private void Awake()
     {
