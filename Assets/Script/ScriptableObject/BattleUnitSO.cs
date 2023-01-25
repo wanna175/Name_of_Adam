@@ -19,10 +19,18 @@ public enum Team
     Enemy
 }
 
+public enum RangeType
+{
+    Melee,
+    Ranged
+}
+
+
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
 public class BattleUnitSO : ScriptableObject
 {
     [SerializeField] public bool MyTeam;
+    [SerializeField] public RangeType RType;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
     [SerializeField] public int ManaCost;
@@ -35,49 +43,17 @@ public class BattleUnitSO : ScriptableObject
     {
         skill.use(ch);
     }
-    
-    public AttackType GetAttackType()
-    {
-        AttackType atkType = AttackType.targeting;
 
-        foreach (EffectSO sk in skill.EffectList)
-        {
-            if (sk.GetType() == typeof(Effect_Attack))
-            {
-                Effect_Attack ea = sk as Effect_Attack;
-                atkType = ea.attackType;
-            }
-        }
-        return atkType;
-    }
-    public RangeType GetRangeType()
-    {
-        RangeType rangeType = RangeType.tracking;
-
-        foreach (EffectSO sk in skill.EffectList)
-        {
-            if (sk.GetType() == typeof(Effect_Attack))
-            {
-                Effect_Attack ea = sk as Effect_Attack;
-                rangeType = ea.rangeType;
-            }
-        }
-        return rangeType;
-    }
+    public AttackType GetAttackType() => skill.attackType;
+    public CutSceneType GetCutSceneType() => skill.CSType;
 
     // 타겟팅 스킬을 가진 경우, 범위를 반환한다.
     public List<Vector2> GetTargetingRange()
     {
-        foreach(EffectSO sk in skill.EffectList)
-        {
-            if (sk.GetType() == typeof(Effect_Attack))
-            {
-                Effect_Attack ea = sk as Effect_Attack;
-                return ea.GetRange();
-            }
-        }
+        if (skill.attackType == AttackType.targeting)
+            return null;
 
-        return null;
+        return skill.GetRange();
     }
 
     public int SkillLength() => skill.EffectList.Count;

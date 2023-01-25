@@ -4,5 +4,7 @@ using UnityEngine;
 
 public abstract class EffectSO : ScriptableObject
 {
-    public abstract void Effect(BattleUnit ch);
+    public virtual void Effect(BattleUnit caster) { }
+
+    public virtual void Effect(BattleUnit caster, List<BattleUnit> battleUnits) { }
 }

@@ -174,6 +174,7 @@ public class FieldManager : MonoBehaviour
 
                 // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
                 List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
+
                 if (vecList != null)
                 {
                     // 타겟팅이 맞다면 범위 표시

@@ -10,7 +10,7 @@ public class Effect_Fall : EffectSO
 
 
     // 공격 실행
-    public override void Effect(BattleUnit caster)
+    public override void Effect(BattleUnit caster, List<BattleUnit> hitUnits)
     {
         float CharATK = caster.BattleUnitSO.stat.ATK;
 
