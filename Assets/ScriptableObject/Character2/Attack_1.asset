@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Attack_1
   m_EditorClassIdentifier: 
   attackType: 1
+  rangeType: 1
   range: {fileID: 11400000, guid: 41a049d9cd3e2b947a171d34ef7ee2a7, type: 2}
-  DMG: 1

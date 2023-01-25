@@ -77,25 +77,15 @@ public class BattleDataManager
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitList = new List<BattleUnit>();
     public List<BattleUnit> BattleUnitList => _BattleUnitList;
-    #endregion  
-
-    // 리스트에 캐릭터를 추가 / 제거
-    #region UnitEnter / Exit
-    public void BattleUnitEnter(BattleUnit unit)
-    {
-        BattleUnitList.Add(unit);
-    }
-    public void BattleUnitExit(BattleUnit unit)
-    {
-        BattleUnitList.Remove(unit);
-    }
     #endregion
 
     // 현재 리스트를 초기화
-    public void UnitListClear()
-    {
-        BattleUnitList.Clear();
-    }
+    public void UnitListClear() => BattleUnitList.Clear();
+
+    // 리스트에 캐릭터를 추가 / 제거
+    public void BattleUnitEnter(BattleUnit unit) => BattleUnitList.Add(unit);
+
+    public void BattleUnitExit(BattleUnit unit) => BattleUnitList.Remove(unit);
 
     //필드에 유닛을 생성
     public void CreatBattleUnit(GameObject BattleUnitPrefab, int x, int y)
@@ -113,16 +103,15 @@ public class BattleDataManager
     #region Mana
 
     #region ManaCost
+    private const int _MaxManaCost = 10;
+
     private int _ManaCost = 0;
     public int ManaCost => _ManaCost;
     #endregion
 
     UI_ManaGuage _manaGuage;
 
-        public void InitMana()
-    {
-        _ManaCost = 0;
-    }
+    public void InitMana(int _defaultMana = 0) => _ManaCost = _defaultMana;
 
     public void SetManaGuage(UI_ManaGuage _guage)
     {
@@ -133,8 +122,8 @@ public class BattleDataManager
     {
         _ManaCost += value;
 
-        if (10 <= _ManaCost)
-            _ManaCost = 10;
+        if (_MaxManaCost <= _ManaCost)
+            _ManaCost = _MaxManaCost;
         else if (_ManaCost < 0)
             _ManaCost = 0;
         
@@ -150,3 +139,8 @@ public class BattleDataManager
     }
     #endregion
 }
+
+// 23.01.23 김종석 - 수정된 사항
+// Mana : 
+// _MaxManaCost 추가 - 최대 마나값을 상수로 지정
+//                     최대 마나를 확인하는 곳에서 _MaxManaCost로 확인하게 함

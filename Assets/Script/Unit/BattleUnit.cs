@@ -68,4 +68,34 @@ public class BattleUnit : MonoBehaviour
     public void TileSelected(int x, int y) => _SelectTile = new Vector2(x, y);
 
     public int GetSpeed() => BattleUnitSO.stat.SPD;
+
+
+
+
+
+
+
+
+
+
+    #region Prepare
+
+    void Prepare_Start()
+    {
+
+    }
+
+    #endregion
+
+    #region Turn
+
+    #endregion
+
+    #region Move
+
+    #endregion
+
+    #region Attack
+
+    #endregion
 }

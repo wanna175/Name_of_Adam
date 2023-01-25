@@ -31,7 +31,13 @@ public class CutSceneManager : MonoBehaviour
 {
     BattleManager _BattleMNG;
     FieldManager _FieldMNG;
-    public CameraHandler CameraHandler;
+    #region CameraHandler
+    private CameraHandler _CameraHandler;
+    public CameraHandler CameraHandler
+    {
+        set { _CameraHandler = value; }
+    }
+    #endregion
 
     CutSceneData CSData;
     // 줌 인, 줌 아웃하는데 들어가는 시간
@@ -59,7 +65,7 @@ public class CutSceneManager : MonoBehaviour
         SetCSData(AttackUnit, HitUnits);
         CSData.HitUnits = HitUnits;
 
-        CameraHandler.CutSceneZoomIn(CSData);
+        _CameraHandler.CutSceneZoomIn(CSData);
     }
 
     void SetCSData(BattleUnit _atkUnit, List<BattleUnit> _hitUnits)
@@ -67,17 +73,15 @@ public class CutSceneManager : MonoBehaviour
         CSData.ATKType = _atkUnit.BattleUnitSO.GetAttackType();
         CSData.ZoomTime = _zoomTime;
 
-        CSData.ZoomLocation = _FieldMNG.GameField.transform.position;
+        CSData.ZoomLocation = _FieldMNG.FieldPosition;
         CSData.ZoomLocation.z = Camera.main.transform.position.z;
-
-        CSData.DefaultZoomSize = Camera.main.fieldOfView;
-
+        
         CSData.DefaultPosition = _atkUnit.transform.position;
         CSData.MovePosition = GetMoveLocation(_atkUnit, _hitUnits);
 
         CSData.AttackUnit = _atkUnit;
 
-        CSData.DefaultZoomSize = 65;
+        CSData.DefaultZoomSize = Camera.main.fieldOfView;
         // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
         // 일단 타입에 따라 임의로 부여함
         if (CSData.ATKType == AttackType.rangeAttack)
@@ -97,39 +101,27 @@ public class CutSceneManager : MonoBehaviour
         {
             // y축을 우선으로 가까운 곳에 있는 적을 찾는다.
             Vector3 vec = new Vector3();
-            int num;
             BattleUnit target = null;
+            int num = 999;
 
-            if (!atkUnit.UnitRenderer.GetFlipX())
+            foreach (BattleUnit unit in hitUnits)
             {
-                num = 999;
-
-                foreach (BattleUnit unit in hitUnits)
+                int dump = 999;
+                if (!atkUnit.UnitRenderer.GetFlipX())
                 {
-                    int dump = unit.UnitMove.LocX;
+                    dump = unit.UnitMove.LocX;
                     dump += Mathf.Abs(atkUnit.UnitMove.LocY - unit.UnitMove.LocY) * 100;
-
-                    if (dump < num)
-                    {
-                        num = dump;
-                        target = unit;
-                    }
                 }
-            }
-            else
-            {
-                num = 999;
-
-                foreach (BattleUnit unit in hitUnits)
+                else
                 {
-                    int dump = -unit.UnitMove.LocX;
+                    dump = unit.UnitMove.LocX * -1;
                     dump += Mathf.Abs(atkUnit.UnitMove.LocY - unit.UnitMove.LocY) * 100;
+                }
 
-                    if (dump < num)
-                    {
-                        num = dump;
-                        target = unit;
-                    }
+                if (dump < num)
+                {
+                    num = dump;
+                    target = unit;
                 }
             }
 
@@ -137,7 +129,7 @@ public class CutSceneManager : MonoBehaviour
 
             return vec;
         }
-        // 움직이지 않는 공격
+        // 제자리에서 공격
         else if (range == RangeType.noneMove)
             return atkUnit.transform.position;
 
@@ -168,29 +160,32 @@ public class CutSceneManager : MonoBehaviour
     // 여기도 겹치는게 많음, 합칠 수 있을거같은데
     public IEnumerator AttackCutScene(CutSceneData CSData)
     {
+        // 줌 시간 제외, 확대하는 시간은 총 1초
         float CutSceneTime = 1;
 
         yield return new WaitForSeconds(0.1f);
-        // 공격하고 모션바뀌고 기타 등등 여기서 처리
-        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(true);
 
-        foreach(BattleUnit unit in CSData.HitUnits)
-            unit.UnitRenderer.HitAnim(true);
+        StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
+        SetUnitAnim(true);
 
-        StartCoroutine(CameraHandler.CameraLotate(CutSceneTime));
-
+        
         yield return new WaitForSeconds(CutSceneTime);
 
 
         foreach (BattleUnit unit in CSData.HitUnits)
-        {
             unit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
-            unit.UnitRenderer.HitAnim(false);
-        }
-        
-        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(false);
 
-        StartCoroutine(CameraHandler.CutSceneZoomOut(CSData));
+        StartCoroutine(_CameraHandler.CutSceneZoomOut(CSData));
+        SetUnitAnim(false);
+    }
+
+    // 유닛 애니메이션 처리
+    void SetUnitAnim(bool _active)
+    {
+        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(_active);
+
+        foreach (BattleUnit unit in CSData.HitUnits)
+            unit.UnitRenderer.HitAnim(_active);
     }
 
     #endregion
@@ -201,6 +196,7 @@ public class CutSceneManager : MonoBehaviour
     public void MoveUnitZoomOut(CutSceneData CSData, float t)
     {
         Vector3 moveLoc = CSData.MovePosition;
+
         if (CSData.AttackUnit.BattleUnitSO.GetRangeType() == RangeType.tracking)
         {
             if (CSData.AttackUnit.UnitRenderer.GetFlipX())
@@ -227,3 +223,7 @@ public class CutSceneManager : MonoBehaviour
 
     #endregion
 }
+
+// 23.01.23 김종석 - 수정된 사항
+// GetMoveLocation 함수 중복부분 제거
+// SetUnitAnim 추가 - 유닛의 애니메이션을 SetUnitAnim에서 처리

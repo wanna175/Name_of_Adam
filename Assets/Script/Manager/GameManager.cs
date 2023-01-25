@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SceneChanger.SceneChange("StageSelectScene");
+            //  SceneChanger.SceneChange("StageSelectScene");
         }
     }
 }

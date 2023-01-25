@@ -19,7 +19,7 @@ public class CameraHandler : MonoBehaviour
         SetMainCamera();
     }
 
-    #region MainCameraSet
+    #region ActiveCameraSet
 
     // 컷씬 전용 카메라로 전환
     void SetCutSceneCamera()

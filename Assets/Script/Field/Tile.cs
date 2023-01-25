@@ -14,13 +14,13 @@ public class Tile : MonoBehaviour
     public bool _isOnTile;
     public bool isOnTile => _isOnTile;
     #endregion
-    private Field _field;
+    private FieldManager _FieldMNG;
     public bool CanSelect = false;
 
     
     private void Start()
     {
-        _field = transform.parent.GetComponent<Field>();
+        _FieldMNG = GameManager.Instance.FieldMNG;
         SR = GetComponent<SpriteRenderer>();
         SR.color = Color.white;
 
@@ -30,6 +30,7 @@ public class Tile : MonoBehaviour
     }
 
     #region Enter & Exit Tile
+
     public void EnterTile(BattleUnit _unit)
     {
         _isOnTile = true;
@@ -41,6 +42,7 @@ public class Tile : MonoBehaviour
         _isOnTile = false;
         _TileUnit = null;
     }
+
     #endregion
 
     public void SetCanSelect(bool bo)
@@ -76,13 +78,12 @@ public class Tile : MonoBehaviour
         // 필드에 자신이 클릭되었다는 정보를 준다.
         // 그러면 필드가 내가 어디에 위치해있는 타일인지 찾을 것
 
-        _field.TileClick(this);
+        _FieldMNG.TileClick(this);
     }
 
     
     // 
     // 지워질 것들
-    // 캐릭터 컴포넌트 분리시킬 때 얘들도 같이 수정하기
     // ↓↓↓↓↓↓↓↓
     
     public void OnFall(BattleUnit ch)
