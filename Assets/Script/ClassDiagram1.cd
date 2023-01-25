@@ -3,22 +3,22 @@
   <Class Name="Field" Collapsed="true">
     <Position X="16.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAKAAIAAAAQAAAAAAAAAAAAAAAAFAAAEAAAAAAAAAEA=</HashCode>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>Assets\Script\Field\Field.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tile" Collapsed="true">
     <Position X="23.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQADAAgACAAAoCgAAEgABAAAQAIAgAAEAAAEA=</HashCode>
+      <HashCode>AACAAAAQADAAgACAAAoAAAAAgABAAAQAIAgAAEAAAEA=</HashCode>
       <FileName>Assets\Script\Field\Tile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleDataManager">
     <Position X="4" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AhKAQAAAACEAEACgEAASQGEAACAAAAAIAAAAABAAAAA=</HashCode>
-      <FileName>Assets\Script\Manager\BattleManager\BattleDataManager\BattleDataManager.cs</FileName>
+      <HashCode>AAIQUAEEACEIGAWgEAACQMAAACAAAAgIIAAAAhAAgAA=</HashCode>
+      <FileName>Assets\Script\Manager\BattleManager\BattleDataManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleUnitManager" Collapsed="true">
@@ -31,8 +31,8 @@
   <Class Name="FieldManager" Collapsed="true">
     <Position X="18.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAgAQAAAAAAAAAAiACBAAAAEAgEAAACAQAAAAAEA=</HashCode>
-      <FileName>Assets\Script\Manager\BattleManager\BattleDataManager\FieldManager.cs</FileName>
+      <HashCode>AAIEAoAQACQAAAAAAAiACAAACAEBgEAAACAQAAAAAEA=</HashCode>
+      <FileName>Assets\Script\Manager\FieldManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ManaManager" Collapsed="true">
@@ -52,7 +52,7 @@
   <Class Name="BattleManager">
     <Position X="2.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAgQACAAAAAAAAGAAEAAABAAQCEQAAAAAAEg=</HashCode>
+      <HashCode>AAAAACAAAAQACAAAAAAAAGAEEBAAAIAQCEAAgAAAAEA=</HashCode>
       <FileName>Assets\Script\Manager\BattleManager\BattleManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -60,7 +60,7 @@
     <Position X="20" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AISAAAIAAiAAAgAAAAAAAAAAAAAAAEAQABAAAAAAAQA=</HashCode>
-      <FileName>Assets\Script\Manager\BattleManager\CameraHandler.cs</FileName>
+      <FileName>Assets\Script\Manager\CameraHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CoroutineHandler" Collapsed="true">
@@ -80,7 +80,7 @@
   <Class Name="GameManager">
     <Position X="0.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAEAAAEAAAQACAAARAAABASIAABAAgAEA=</HashCode>
+      <HashCode>ABSAAAAAAgAAGAAAEAAAQACACARABABASAAAAAAgAEA=</HashCode>
       <FileName>Assets\Script\Manager\GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -108,14 +108,14 @@
   <Class Name="BattleUnitSO" Collapsed="true">
     <Position X="18.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAIABAAAAAAAAAABAAAAAgAABAAAgQABAAAggAAAAA=</HashCode>
+      <HashCode>AEAIABAAEAAAAAAABAAAAAgAIBAAAgAABAAAggAAAAA=</HashCode>
       <FileName>Assets\Script\ScriptableObject\BattleUnitSO.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Effect_Attack" Collapsed="true">
     <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAgACAAAAAAAAAAAAAAAAAAAAAgAAAAAAEA=</HashCode>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Script\ScriptableObject\Effect_Attack.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -164,7 +164,7 @@
   <Class Name="SkillSO" Collapsed="true">
     <Position X="14.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAAAAAAAA=</HashCode>
+      <HashCode>CAAAAAAIAAAACAAAAAAAAAAAAAAAAAAABAhAAAAAAAA=</HashCode>
       <FileName>Assets\Script\ScriptableObject\SkillSO.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -241,7 +241,7 @@
   <Class Name="BattleUnit" Collapsed="true">
     <Position X="21.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IDCAAAAAACQAAAEAAAgAAAAAAAGAAAACBAFAAIIAAEA=</HashCode>
+      <HashCode>IDCAAAAAACQAAAEAAAgCAAAAAAWAAAAGFAFAAIIAAEA=</HashCode>
       <FileName>Assets\Script\Unit\BattleUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -255,7 +255,7 @@
   <Class Name="BattleUnitMove" Collapsed="true">
     <Position X="14.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>DAAAAAAAACUAAAAAAAAAQAAAABAAAASAAAAAAAACAEA=</HashCode>
+      <HashCode>DACAAAAAACUAAAAAAAAAQAAAABAAAASAAAAAAAACAEA=</HashCode>
       <FileName>Assets\Script\Unit\BattleUnitMove.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -294,25 +294,18 @@
       <FileName>Assets\Script\Manager\StageManager.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Team">
-    <Position X="9.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\BattleUnitSO.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Enum Name="AttackType">
     <Position X="0.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\Effect_Attack.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\ScriptableObject\SkillSO.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="RangeType">
+  <Enum Name="CutSceneType">
     <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
-      <FileName>Assets\Script\ScriptableObject\Effect_Attack.cs</FileName>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Script\ScriptableObject\RangeSO.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Dir">

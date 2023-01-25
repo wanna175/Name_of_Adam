@@ -11,14 +11,6 @@ public struct Stat
     public int SPD;
 }
 
-// 캐릭터의 팀
-[Serializable]
-public enum Team
-{
-    Player,
-    Enemy
-}
-
 public enum RangeType
 {
     Melee,

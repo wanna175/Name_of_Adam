@@ -18,8 +18,10 @@ public class SkillSO : ScriptableObject
     [SerializeField] RangeSO range;    // 공격 범위
 
     [SerializeField] public List<EffectSO> EffectList;
-
-    // 이펙트 리스트 안의 모든 이펙트가 하나의 이펙트로 묶여서 사용된다.
+    
+    
+    // 현재 알고리즘은 범위 내의 적을 찾는 알고리즘
+    // 힐같이 아군을 찾는 알고리즘은 나중에 따로 설정해야한다
     public void use(BattleUnit caster)
     {
         FieldManager _FieldMNG = GameManager.Instance.FieldMNG;
@@ -61,7 +63,7 @@ public class SkillSO : ScriptableObject
             if (_unit != null)
                 _HitUnits.Add(_unit);
         }
-
+        
         foreach (EffectSO es in EffectList)
         {
             es.Effect(caster, _HitUnits);
