@@ -12,3 +12,6 @@ public class Effect_Attack : EffectSO
         caster.UnitAction.OnAttack(battleUnits);
     }
 }
+
+// 23.01.25 김종석
+// Effect_Attack에서 처리하던 타겟 서칭을 SkillSO로 이동

@@ -19,10 +19,18 @@ public enum Team
     Enemy
 }
 
+public enum RangeType
+{
+    Melee,
+    Ranged
+}
+
+
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
 public class BattleUnitSO : ScriptableObject
 {
     [SerializeField] public bool MyTeam;
+    [SerializeField] public RangeType RType;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
     [SerializeField] public int ManaCost;
@@ -37,7 +45,7 @@ public class BattleUnitSO : ScriptableObject
     }
 
     public AttackType GetAttackType() => skill.attackType;
-    public RangeType GetRangeType() => skill.rangeType;
+    public CutSceneType GetCutSceneType() => skill.CSType;
 
     // 타겟팅 스킬을 가진 경우, 범위를 반환한다.
     public List<Vector2> GetTargetingRange()

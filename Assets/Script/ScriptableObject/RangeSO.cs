@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-public enum RangeType
+public enum CutSceneType
 {
     noneMove,
     tracking,

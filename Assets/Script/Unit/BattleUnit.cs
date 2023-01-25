@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 필드 위에 올려진 캐릭터의 스크립트
-// 스킬 사용, 이동, 데미지와 사망판정을 처리
+
+enum BattleUnitState
+{
+    Idle,
+    Move,
+    Attack
+}
 
 public class BattleUnit : MonoBehaviour
 {
@@ -32,6 +37,7 @@ public class BattleUnit : MonoBehaviour
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
 
+    BattleUnitState state;
 
     private void Awake()
     {
@@ -47,6 +53,8 @@ public class BattleUnit : MonoBehaviour
 
         _BattleDataMNG.BattleUnitEnter(this);
         _UnitAction.GetMaxHP(GetStat().HP);
+
+        state = BattleUnitState.Idle;
     }
     
     // 스킬 사용
@@ -76,26 +84,32 @@ public class BattleUnit : MonoBehaviour
 
 
 
+    
+    // 대기중인 상태, 아무것도 안하고있으면 이곳에 들어옴
+    #region Idle
 
-
-    #region Prepare
-
-    void Prepare_Start()
+    void Idle_Start()
     {
-
+        state = BattleUnitState.Idle;
     }
-
-    #endregion
-
-    #region Turn
 
     #endregion
 
     #region Move
 
+    void Move_Start()
+    {
+        state = BattleUnitState.Move;
+    }
+
     #endregion
 
     #region Attack
+
+    void Attack_Start()
+    {
+        state = BattleUnitState.Attack;
+    }
 
     #endregion
 }

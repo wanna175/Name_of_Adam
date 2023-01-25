@@ -94,10 +94,10 @@ public class CutSceneManager : MonoBehaviour
     // 공격범위 내의 적을 추적하는 것보다 한 지점에서 공격을 하는 것이 좋지 않을까?
     Vector3 GetMoveLocation(BattleUnit atkUnit, List<BattleUnit> hitUnits)
     {
-        RangeType range = atkUnit.BattleUnitSO.GetRangeType();
+        CutSceneType range = atkUnit.BattleUnitSO.GetCutSceneType();
 
         // 공격자가 적을 추적
-        if(range == RangeType.tracking)
+        if(range == CutSceneType.tracking)
         {
             // y축을 우선으로 가까운 곳에 있는 적을 찾는다.
             Vector3 vec = new Vector3();
@@ -130,7 +130,7 @@ public class CutSceneManager : MonoBehaviour
             return vec;
         }
         // 제자리에서 공격
-        else if (range == RangeType.noneMove)
+        else if (range == CutSceneType.noneMove)
             return atkUnit.transform.position;
 
         return new Vector3();
@@ -141,7 +141,7 @@ public class CutSceneManager : MonoBehaviour
     {
         Vector3 moveLoc = CSData.MovePosition;
 
-        if (CSData.AttackUnit.BattleUnitSO.GetRangeType() == RangeType.tracking)
+        if (CSData.AttackUnit.BattleUnitSO.GetCutSceneType() == CutSceneType.tracking)
         {
             if (CSData.AttackUnit.UnitRenderer.GetFlipX())
                 moveLoc.x += 2;
@@ -197,7 +197,7 @@ public class CutSceneManager : MonoBehaviour
     {
         Vector3 moveLoc = CSData.MovePosition;
 
-        if (CSData.AttackUnit.BattleUnitSO.GetRangeType() == RangeType.tracking)
+        if (CSData.AttackUnit.BattleUnitSO.GetCutSceneType() == CutSceneType.tracking)
         {
             if (CSData.AttackUnit.UnitRenderer.GetFlipX())
                 moveLoc.x += 2;
