@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        _stageMNG = new StageManager();
         _dataMNG = new DataManager();
-        _sceneChanger = new SceneChanger();
+        // _stageMNG = new StageManager();
+        // _sceneChanger = new SceneChanger();
     }
 
     private void Update()

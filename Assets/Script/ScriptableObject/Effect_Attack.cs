@@ -2,29 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AttackType
-{
-    targeting,
-    rangeAttack
-}
-
-public enum RangeType
-{
-    noneMove,
-    tracking,
-    center
-}
-
 [CreateAssetMenu(fileName = "Effect_Attack", menuName = "Scriptable Object/Effect_Attack", order = 3)]
 public class Effect_Attack : EffectSO
 {
-    [SerializeField] public AttackType attackType;
-    [SerializeField] public RangeType rangeType;
-    [SerializeField] RangeSO range;    // 공격 범위
-
 
     // 공격 실행
-    public override void Effect(BattleUnit caster)
+    public override void Effect(BattleUnit caster, List<BattleUnit> battleUnits)
     {
         FieldManager _FieldMNG = GameManager.Instance.FieldMNG;
         List<Vector2> RangeList = GetRange();
@@ -62,6 +45,7 @@ public class Effect_Attack : EffectSO
         }
         caster.UnitAction.OnAttack(targetUnits);
     }
-
-    public List<Vector2> GetRange() => range.GetRange();
 }
+
+// 23.01.25 김종석
+// Effect_Attack에서 처리하던 타겟 서칭을 SkillSO로 이동
