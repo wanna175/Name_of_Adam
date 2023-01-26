@@ -28,22 +28,20 @@ public class Effect_Attack : EffectSO
     {
         FieldManager _FieldMNG = GameManager.Instance.FieldMNG;
         List<Vector2> RangeList = GetRange();
-        List<BattleUnit> _BattleUnits = new List<BattleUnit>();
+        List<BattleUnit> targetUnits = new List<BattleUnit>();
 
         if (attackType == AttackType.rangeAttack)
         {
             // 공격범위 안에 있는 모든 대상을 리스트에 넣는다.
             for (int i = 0; i < RangeList.Count; i++)
             {
-                BattleUnit _unit = null;
                 int x = caster.UnitMove.LocX - (int)RangeList[i].x;
                 int y = caster.UnitMove.LocY - (int)RangeList[i].y;
-                
-                // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
-                _unit = _FieldMNG.RangeCheck(caster, x, y);
 
-                if (_unit != null)
-                    _BattleUnits.Add(_unit);
+                // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
+                BattleUnit unit = _FieldMNG.GetTargetUnit(x, y);
+                if(unit != null && caster.BattleUnitSO.MyTeam != unit.BattleUnitSO.MyTeam)
+                    targetUnits.Add(unit); 
             }
         }
         else if (attackType == AttackType.targeting)
@@ -58,14 +56,11 @@ public class Effect_Attack : EffectSO
                 y = caster.UnitMove.LocY;
             }
 
-            BattleUnit _unit = null;
-            
-            _unit = _FieldMNG.RangeCheck(caster, x, y);
-
-            if (_unit != null)
-                _BattleUnits.Add(_unit);
+            BattleUnit unit = _FieldMNG.GetTargetUnit(x, y);
+            if (unit != null && caster.BattleUnitSO.MyTeam != unit.BattleUnitSO.MyTeam)
+                targetUnits.Add(unit);
         }
-        caster.UnitAction.OnAttack(_BattleUnits);
+        caster.UnitAction.OnAttack(targetUnits);
     }
 
     public List<Vector2> GetRange() => range.GetRange();
