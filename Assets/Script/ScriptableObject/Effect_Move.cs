@@ -24,7 +24,7 @@ public class Effect_Move : EffectSO
             int x = (int)MoveDir[i];
             int y = (int)MoveDir[i] / 10;
 
-            caster.UnitMove.MoveLotate(x, y);
+            caster.MoveLotate(x, y);
         }
     }
 }

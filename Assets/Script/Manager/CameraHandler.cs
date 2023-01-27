@@ -107,7 +107,7 @@ public class CameraHandler : MonoBehaviour
         _FieldMNG.FieldClear();
         yield return new WaitForSeconds(0.2f);
 
-        _CutSceneMNG.NextUnitSkill();
+        _CutSceneMNG.EndAttack();
     }
 
     #endregion

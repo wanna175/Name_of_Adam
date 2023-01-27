@@ -34,8 +34,8 @@ public class SkillSO : ScriptableObject
             for (int i = 0; i < RangeList.Count; i++)
             {
                 BattleUnit _unit = null;
-                int x = caster.UnitMove.LocX - (int)RangeList[i].x;
-                int y = caster.UnitMove.LocY - (int)RangeList[i].y;
+                int x = caster.LocX - (int)RangeList[i].x;
+                int y = caster.LocY - (int)RangeList[i].y;
 
                 // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
                 _unit = _FieldMNG.RangeCheck(caster, x, y);
@@ -52,8 +52,8 @@ public class SkillSO : ScriptableObject
 
             if (x == -1 && y == -1)
             {
-                x = caster.UnitMove.LocX;
-                y = caster.UnitMove.LocY;
+                x = caster.LocX;
+                y = caster.LocY;
             }
 
             BattleUnit _unit = null;

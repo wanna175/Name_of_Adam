@@ -73,10 +73,6 @@ public class GameManager : MonoBehaviour
         {
             BattleMNG.EngageStart();
         }
-        else if (Input.GetMouseButtonDown(2))
-        {
-            BattleMNG.BattleDataMNG.BattleUnitList[0].UnitMove.MoveOnTile();
-        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //  SceneChanger.SceneChange("StageSelectScene");

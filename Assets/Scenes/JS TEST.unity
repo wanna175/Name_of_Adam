@@ -2203,6 +2203,22 @@ PrefabInstance:
       value: Char (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _LocX
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _LocY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _CurHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _MaxHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: BattleUnitSO
       value: 
       objectReference: {fileID: 11400000, guid: 390bc2acadce76644b68722865daab0e, type: 2}
@@ -2375,6 +2391,22 @@ PrefabInstance:
     - target: {fileID: 4662580368106312543, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: m_Name
       value: Char
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _LocX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _LocY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _CurHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _MaxHP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: BattleUnitSO
@@ -2901,6 +2933,22 @@ PrefabInstance:
     - target: {fileID: 4662580368106312543, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: m_Name
       value: Char (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _LocX
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _LocY
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _CurHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _MaxHP
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: BattleUnitSO
@@ -3793,6 +3841,18 @@ PrefabInstance:
     - target: {fileID: 4662580368106312543, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: m_Name
       value: Char (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _LocX
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _CurHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
+      propertyPath: _MaxHP
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: BattleUnitSO

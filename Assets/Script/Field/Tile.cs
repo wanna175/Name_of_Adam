@@ -47,6 +47,7 @@ public class Tile : MonoBehaviour
 
     public void SetCanSelect(bool bo)
     {
+
         if (bo)
         {
             CanSelect = true;
@@ -98,7 +99,7 @@ public class Tile : MonoBehaviour
         {
             if (AttackChar.BattleUnitSO.MyTeam != _TileUnit.BattleUnitSO.MyTeam)
             {
-                _TileUnit.UnitAction.SetFallGauge(1);
+                _TileUnit.SetFallGauge(1);
             }
         }
 

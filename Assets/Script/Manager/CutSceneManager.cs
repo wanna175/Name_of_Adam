@@ -63,23 +63,23 @@ public class CutSceneManager : MonoBehaviour
         }
         
         SetCSData(AttackUnit, HitUnits);
-        CSData.HitUnits = HitUnits;
 
         _CameraHandler.CutSceneZoomIn(CSData);
     }
 
     void SetCSData(BattleUnit _atkUnit, List<BattleUnit> _hitUnits)
     {
+        CSData.AttackUnit = _atkUnit;
+        CSData.HitUnits = _hitUnits;
+
         CSData.ATKType = _atkUnit.BattleUnitSO.GetAttackType();
         CSData.ZoomTime = _zoomTime;
-
-        CSData.ZoomLocation = _FieldMNG.FieldPosition;
-        CSData.ZoomLocation.z = Camera.main.transform.position.z;
         
         CSData.DefaultPosition = _atkUnit.transform.position;
         CSData.MovePosition = GetMoveLocation(_atkUnit, _hitUnits);
 
-        CSData.AttackUnit = _atkUnit;
+        CSData.ZoomLocation = GetZoomLocation(CSData);
+        CSData.ZoomLocation.z = Camera.main.transform.position.z;
 
         CSData.DefaultZoomSize = Camera.main.fieldOfView;
         // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
@@ -89,7 +89,7 @@ public class CutSceneManager : MonoBehaviour
         if (CSData.ATKType == AttackType.targeting)
             CSData.ZoomSize = 35;
     }
-    
+
     // 공격자의 위치를 지정
     // 공격범위 내의 적을 추적하는 것보다 한 지점에서 공격을 하는 것이 좋지 않을까?
     Vector3 GetMoveLocation(BattleUnit atkUnit, List<BattleUnit> hitUnits)
@@ -107,15 +107,15 @@ public class CutSceneManager : MonoBehaviour
             foreach (BattleUnit unit in hitUnits)
             {
                 int dump = 999;
-                if (!atkUnit.UnitRenderer.GetFlipX())
+                if (!atkUnit.GetFlipX())
                 {
-                    dump = unit.UnitMove.LocX;
-                    dump += Mathf.Abs(atkUnit.UnitMove.LocY - unit.UnitMove.LocY) * 100;
+                    dump = unit.LocX;
+                    dump += Mathf.Abs(atkUnit.LocY - unit.LocY) * 100;
                 }
                 else
                 {
-                    dump = unit.UnitMove.LocX * -1;
-                    dump += Mathf.Abs(atkUnit.UnitMove.LocY - unit.UnitMove.LocY) * 100;
+                    dump = unit.LocX * -1;
+                    dump += Mathf.Abs(atkUnit.LocY - unit.LocY) * 100;
                 }
 
                 if (dump < num)
@@ -136,6 +136,21 @@ public class CutSceneManager : MonoBehaviour
         return new Vector3();
     }
 
+    Vector3 GetZoomLocation(CutSceneData CSData)
+    {
+        if (CSData.ATKType == AttackType.rangeAttack)
+            return _FieldMNG.FieldPosition;
+
+        Vector3 zoomLoc = CSData.MovePosition;
+
+        if (CSData.AttackUnit.GetFlipX())
+            zoomLoc.x += 1;
+        else
+            zoomLoc.x -= 1;
+
+        return zoomLoc;
+    }
+
     // 컷씬 지점으로 이동
     public void MoveUnitZoomIn(CutSceneData CSData, float t)
     {
@@ -143,7 +158,7 @@ public class CutSceneManager : MonoBehaviour
 
         if (CSData.AttackUnit.BattleUnitSO.GetCutSceneType() == CutSceneType.tracking)
         {
-            if (CSData.AttackUnit.UnitRenderer.GetFlipX())
+            if (CSData.AttackUnit.GetFlipX())
                 moveLoc.x += 2;
             else
                 moveLoc.x -= 2;
@@ -165,27 +180,25 @@ public class CutSceneManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
-        SetUnitAnim(true);
 
-        
+        StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
+
+        CSData.AttackUnit.SetState(BattleUnitState.Attack);
+        foreach (BattleUnit unit in CSData.HitUnits)
+            unit.SetState(BattleUnitState.Hit);
+
+
         yield return new WaitForSeconds(CutSceneTime);
 
 
         foreach (BattleUnit unit in CSData.HitUnits)
-            unit.UnitAction.GetDamage(CSData.AttackUnit.GetStat().ATK);
+            unit.Hit_GetDamage(CSData.AttackUnit.GetStat().ATK);
 
         StartCoroutine(_CameraHandler.CutSceneZoomOut(CSData));
-        SetUnitAnim(false);
-    }
 
-    // 유닛 애니메이션 처리
-    void SetUnitAnim(bool _active)
-    {
-        CSData.AttackUnit.UnitRenderer.SetIsAttackAnim(_active);
-
+        CSData.AttackUnit.SetState(BattleUnitState.Idle);
         foreach (BattleUnit unit in CSData.HitUnits)
-            unit.UnitRenderer.HitAnim(_active);
+            unit.SetState(BattleUnitState.Idle);
     }
 
     #endregion
@@ -199,7 +212,7 @@ public class CutSceneManager : MonoBehaviour
 
         if (CSData.AttackUnit.BattleUnitSO.GetCutSceneType() == CutSceneType.tracking)
         {
-            if (CSData.AttackUnit.UnitRenderer.GetFlipX())
+            if (CSData.AttackUnit.GetFlipX())
                 moveLoc.x += 2;
             else
                 moveLoc.x -= 2;
@@ -208,9 +221,10 @@ public class CutSceneManager : MonoBehaviour
         CSData.AttackUnit.transform.position = Vector3.Lerp(moveLoc, CSData.DefaultPosition, t);
     }
 
-    public void NextUnitSkill()
+    public void EndAttack()
     {
-        _BattleMNG.UseUnitSkill();
+        CSData.AttackUnit.SetState(BattleUnitState.Idle);
+        _BattleMNG.UseNextUnit();
     }
 
     IEnumerator ExitCutScene()
@@ -218,7 +232,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _FieldMNG.FieldClear();
         yield return new WaitForSeconds(0.2f);
-        _BattleMNG.UseUnitSkill();
+        EndAttack();
     }
 
     #endregion

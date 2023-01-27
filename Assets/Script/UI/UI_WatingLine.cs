@@ -26,12 +26,10 @@ public class UI_WatingLine : MonoBehaviour
         {   
             if (i < _BattleUnitOrderList.Count)
             {
-                Debug.Log("WatingLine 1");
                 WatingUnitList[i].SetUnit(_BattleUnitOrderList[i].BattleUnitSO.sprite);
             }
             else
             {
-                Debug.Log("WatingLine 2");
                 WatingUnitList[i].RemoveUnit();
             }
             

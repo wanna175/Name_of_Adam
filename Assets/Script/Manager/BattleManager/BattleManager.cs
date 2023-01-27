@@ -96,8 +96,8 @@ public class BattleManager : MonoBehaviour
     public void BattleOrderReplace()
     {
         _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetSpeed())
-            .ThenByDescending(unit => unit.UnitMove.LocY)
-            .ThenBy(unit => unit.UnitMove.LocX)
+            .ThenByDescending(unit => unit.LocY)
+            .ThenBy(unit => unit.LocX)
             .ToList();
     }
 
@@ -105,7 +105,6 @@ public class BattleManager : MonoBehaviour
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
     public void UseUnitSkill()
     {
-        DestroyDeadUnit();
         _WatingLine.SetWatingLine();
         
         if (_BattleUnitOrderList.Count <= 0)
@@ -114,29 +113,22 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (0 < _BattleUnitOrderList[0].UnitAction.CurHP)
+        if (0 < _BattleUnitOrderList[0].CurHP)
         {
-            _BattleUnitOrderList[0].use();
-            _BattleUnitOrderList.RemoveAt(0);
+            _BattleUnitOrderList[0].SetState(BattleUnitState.Move);
         }
         else
         {
-            UseUnitSkill();
+            UseNextUnit();
         }
     }
 
-    void DestroyDeadUnit()
+    public void UseNextUnit()
     {
-        List<BattleUnit> units = _BattleDataMNG.BattleUnitList;
-
-        for(int i = units.Count-1; 0 <= i; i--)
-        {
-            if(units[i].UnitAction.CurHP <= 0)
-            {
-                _BattleUnitOrderList.Remove(units[i]);
-                units[i].UnitAction.UnitDestroy();
-            }
-        }
+        _BattleUnitOrderList.RemoveAt(0);
+        UseUnitSkill();
     }
     #endregion
+
+    public BattleUnit GetNowUnit() => _BattleUnitOrderList[0];
 }

@@ -93,7 +93,7 @@ public class BattleDataManager
         BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
         BattleUnit.BattleUnitSO = GameManager.Instance.UIMNG.Hands.ClickedUnit.GetUnitSO();
-        BattleUnit.UnitMove.setLocate(x, y);
+        BattleUnit.setLocate(x, y);
 
         GameManager.Instance.FieldMNG.EnterTile(BattleUnit, x, y);
     }
