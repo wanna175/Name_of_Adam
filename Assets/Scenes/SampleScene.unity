@@ -153,7 +153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1932546685}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &20967190
 MonoBehaviour:
@@ -547,7 +547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65702bfd82ccc104e8ff5b8bad54b6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handIndex: 0
 --- !u!212 &198785279
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -672,7 +671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65702bfd82ccc104e8ff5b8bad54b6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handIndex: 0
 --- !u!212 &205028028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1209,7 +1207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65702bfd82ccc104e8ff5b8bad54b6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handIndex: 0
 --- !u!212 &504382437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1574,7 +1571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0d33aaae85e6b4ca7f506898b35d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandList: []
+  HandPrefabs: {fileID: 9037217407852231977, guid: bf27dc6fa9a3dc44896d9cb58014d4a7, type: 3}
 --- !u!212 &732453715
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2516,51 +2513,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206566094}
   m_CullTransparentMesh: 1
---- !u!1 &1285395878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1285395880}
-  - component: {fileID: 1285395879}
-  m_Layer: 0
-  m_Name: FieldManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1285395879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285395878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeb043a8439249b439f1bdc4ba12d592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TilePrefabs: {fileID: 4304800747469416708, guid: aa232f776c3596b4c82c22fd6c42aeb5, type: 3}
---- !u!4 &1285395880
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285395878}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1932546685}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345308802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40056deb24fe06b4589620233ca52342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TilePrefabs: {fileID: 4304800747469416708, guid: aa232f776c3596b4c82c22fd6c42aeb5, type: 3}
+  UnitPrefabs: {fileID: 4662580368106312543, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
 --- !u!1 &1457268377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,15 +2656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43a539cba95e4343915a4dbfa63379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WatingUnitList:
-  - {fileID: 1657509819}
-  - {fileID: 865785771}
-  - {fileID: 390093964}
-  - {fileID: 848348797}
-  - {fileID: 1592917561}
-  - {fileID: 1069770660}
-  - {fileID: 1488959822}
-  - {fileID: 251416128}
+  WatingLinePrefabs: {fileID: 6803179689649879520, guid: 95b4af97962c4c84eb487dc2cf2a1dfc, type: 3}
 --- !u!1 &1488959818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,7 +3453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65702bfd82ccc104e8ff5b8bad54b6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handIndex: 0
 --- !u!212 &1716011003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3692,7 +3637,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleMNG: {fileID: 1589663945}
   _CutSceneMNG: {fileID: 49041952}
-  _FieldMNG: {fileID: 1285395879}
   _UIMNG: {fileID: 20967190}
 --- !u!4 &1932546685
 Transform:
@@ -3709,7 +3653,6 @@ Transform:
   - {fileID: 1589663946}
   - {fileID: 208691655}
   - {fileID: 49041953}
-  - {fileID: 1285395880}
   - {fileID: 20967189}
   m_Father: {fileID: 0}
   m_RootOrder: 1

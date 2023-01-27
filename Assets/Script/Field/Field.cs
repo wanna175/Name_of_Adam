@@ -29,6 +29,17 @@ public class Field : MonoBehaviour
             for (int j = 0; j < MaxFieldX; j++)
                 _tileDict.Add(new Vector2(j, i), CreateTile(j, i));
 
+        // Legacy
+        for (int i = 0; i < MaxFieldY; i++)
+        {
+            TileArray.Add(new List<Tile>());
+
+            for (int j = 0; j < MaxFieldX; j++)
+            {
+                TileArray[i].Add(CreateTile(j, i));
+            }
+        }
+
         transform.position = FieldPosition;
         transform.eulerAngles = FieldRotation;
     }
