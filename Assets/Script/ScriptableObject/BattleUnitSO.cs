@@ -52,4 +52,9 @@ public class BattleUnitSO : ScriptableObject
     public List<Vector2> GetRange() => skill.GetRange();
 
     public int SkillLength() => skill.EffectList.Count;
+
+    public List<Vector2> GetRange()
+    {
+        return skill.GetRange();
+    }
 }

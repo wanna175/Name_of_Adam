@@ -29,7 +29,7 @@ public class Effect_Fall : EffectSO
             {
                 if (0 <= y && y < 3)
                 {
-                    Tiles[y][x].OnFall(caster);
+                    caster.UnitAction.SetFallGauge(1);
                 }
             }
         }
