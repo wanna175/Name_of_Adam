@@ -8,7 +8,7 @@ public class Effect_Attack : EffectSO
     // 공격 실행
     public override void Effect(BattleUnit caster, List<BattleUnit> battleUnits)
     {
-        caster.UnitAction.OnAttack(battleUnits);
+        caster.Attack_OnAttack(battleUnits);
     }
 }
 

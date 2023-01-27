@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   MyTeam: 1
+  RType: 0
   sprite: {fileID: -869484043, guid: 2f6ccb51f1605eb43ab8b5a35c95392f, type: 3}
   stat:
     HP: 100
     ATK: 10
     SPD: 50
+  MoveDistance: 2
   ManaCost: 2
   FallGauge: 0
   Fall: 0

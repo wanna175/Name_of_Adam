@@ -9,8 +9,9 @@ public class FieldManager : MonoBehaviour
     private const int MaxFieldX = 8;
     private const int MaxFieldY = 3;
 
-    private BattleDataManager _BattleDataMNG;
-    private UIManager _UIMNG;
+    BattleManager _BattleMNG;
+    BattleDataManager _BattleDataMNG;
+    UIManager _UIMNG;
 
     List<List<Tile>> _TileArray = new List<List<Tile>>();
     public List<List<Tile>> TileArray => _TileArray;
@@ -22,7 +23,8 @@ public class FieldManager : MonoBehaviour
 
     private void Start()
     {
-        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+        _BattleMNG = GameManager.Instance.BattleMNG;
+        _BattleDataMNG = _BattleMNG.BattleDataMNG;
         _UIMNG = GameManager.Instance.UIMNG;
     }
 
@@ -67,6 +69,7 @@ public class FieldManager : MonoBehaviour
 
             return TileArray[y][x].UnitOnTile;
         }
+
         return null;
     }
 
@@ -82,24 +85,16 @@ public class FieldManager : MonoBehaviour
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTileLocate(int x, int y)
     {
-        // TileArray의 인덱스를 벗어나는지 확인
-        try
-        {
-            Vector3 vec = TileArray[y][x].transform.position;
+        Vector3 vec = _TileArray[y][x].transform.position;
 
-            float sizeX = TileArray[y][x].transform.localScale.x * 0.5f;
-            float sizeY = TileArray[y][x].transform.localScale.y * 0.5f;
-            sizeY += TileArray[y][x].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
+        float sizeX = _TileArray[y][x].transform.localScale.x * 0.5f;
+        float sizeY = _TileArray[y][x].transform.localScale.y * 0.5f;
+        sizeY += _TileArray[y][x].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
 
-            vec.x += sizeX;
-            vec.y += sizeY;
+        vec.x += sizeX;
+        vec.y += sizeY;
 
-            return vec;
-        } // 인덱스를 넘어가면 위치를 뒤로 옮긴다
-        catch
-        {
-            return new Vector3(-1, -1, -1);
-        }
+        return vec;
     }
 
     public void FieldClear()
@@ -150,40 +145,23 @@ public class FieldManager : MonoBehaviour
         // 유닛이 공격할 타겟을 선택중이라면
         if (tile.CanSelect)
         {
-            _UIMNG.SelectedUnit.TileSelected(tileX, tileY);
             FieldClear();
+            _BattleMNG.GetNowUnit().TileSelected(tileX, tileY);
             return;
         }
         // 클릭한 타일에 유닛이 있을 시
         else if (tile.UnitOnTile != null)
         {
-            BattleUnit SelectUnit = tile.UnitOnTile;
-            FieldClear();
+            //BattleUnit SelectUnit = tile.TileUnit;
+            //FieldClear();
 
-            // 그 유닛이 아군이라면
-            if (tile.UnitOnTile.BattleUnitSO.MyTeam)
-            {
-                _UIMNG.SelectedUnit = SelectUnit;
-
-                // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
-                List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
-
-                if (vecList != null)
-                {
-                    // 타겟팅이 맞다면 범위 표시
-                    for (int i = 0; i < vecList.Count; i++)
-                    {
-                        int x = SelectUnit.UnitMove.LocX - (int)vecList[i].x;
-                        int y = SelectUnit.UnitMove.LocY - (int)vecList[i].y;
-
-                        if (0 <= x && x < 8)
-                        {
-                            if (0 <= y && y < 3)
-                                TileArray[y][x].SetCanSelect(true);
-                        }
-                    }
-                }
-            }
+            //// 그 유닛이 아군이라면
+            //if (tile.TileUnit.BattleUnitSO.MyTeam)
+            //{
+            //    // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
+            //    List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
+            //    SetCanSelect(vecList, SelectUnit);
+            //}
         }
         // 클릭한 타일에 유닛이 없을 시
         else
@@ -213,6 +191,25 @@ public class FieldManager : MonoBehaviour
                         //마나 부족
                         Debug.Log("not enough mana");
                     }
+                }
+            }
+        }
+    }
+
+    public void SetCanSelect(List<Vector2> vecList, BattleUnit SelectUnit)
+    {
+        if (vecList != null)
+        {
+            // 타겟팅이 맞다면 범위 표시
+            for (int i = 0; i < vecList.Count; i++)
+            {
+                int x = SelectUnit.LocX - (int)vecList[i].x;
+                int y = SelectUnit.LocY - (int)vecList[i].y;
+
+                if (0 <= x && x < 8)
+                {
+                    if (0 <= y && y < 3)
+                        TileArray[y][x].SetCanSelect(true);
                 }
             }
         }

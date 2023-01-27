@@ -11,14 +11,6 @@ public struct Stat
     public int SPD;
 }
 
-// 캐릭터의 팀
-[Serializable]
-public enum Team
-{
-    Player,
-    Enemy
-}
-
 public enum RangeType
 {
     Melee,
@@ -33,6 +25,7 @@ public class BattleUnitSO : ScriptableObject
     [SerializeField] public RangeType RType;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
+    [SerializeField] public int MoveDistance;
     [SerializeField] public int ManaCost;
     [SerializeField] public int FallGauge;
     [SerializeField] public bool Fall;
@@ -55,6 +48,8 @@ public class BattleUnitSO : ScriptableObject
 
         return skill.GetRange();
     }
+
+    public List<Vector2> GetRange() => skill.GetRange();
 
     public int SkillLength() => skill.EffectList.Count;
 

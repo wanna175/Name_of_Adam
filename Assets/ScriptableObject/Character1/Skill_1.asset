@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cde895ae31ebd54cbe32db0fd1f32e9, type: 3}
   m_Name: Skill_1
   m_EditorClassIdentifier: 
+  attackType: 1
+  CSType: 0
+  range: {fileID: 11400000, guid: 2fc62f1413856234999570a12ea3a5e5, type: 2}
   EffectList:
   - {fileID: 11400000, guid: d28b12824ea62414ab7f60bb668253d3, type: 2}

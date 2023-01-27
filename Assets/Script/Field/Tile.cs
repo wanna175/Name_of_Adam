@@ -37,6 +37,7 @@ public class Tile : MonoBehaviour
 
     public void SetCanSelect(bool bo)
     {
+
         if (bo)
         {
             CanSelect = true;
