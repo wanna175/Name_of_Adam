@@ -14,8 +14,6 @@ public class Effect_Fall : EffectSO
     {
         float CharATK = caster.BattleUnitSO.stat.ATK;
 
-        List<List<Tile>> Tiles = GameManager.Instance.BattleMNG.Field.TileArray;
-
         List<Vector2> RangeList = GetRange();
 
         // 공격 범위를 향해 공격

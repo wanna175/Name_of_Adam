@@ -137,7 +137,7 @@ public class BattleUnit : MonoBehaviour
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
-        _field.ExitTile(LocX, LocY);
+        _field.ExitTile(new Vector2(LocX, LocY));
 
         int dumpX = _LocX;
         int dumpY = _LocY;
@@ -149,7 +149,7 @@ public class BattleUnit : MonoBehaviour
             dumpY += y;
         
         // 이동할 곳이 비어있지 않다면 이동하지 않음
-        if (!_field.GetIsOnTile(dumpX, dumpY))
+        if (!_field.GetIsOnTile(new Vector2(dumpX, dumpY)))
         {
             _LocX = dumpX;
             _LocY = dumpY;
@@ -201,11 +201,11 @@ public class BattleUnit : MonoBehaviour
     // 타일 위로 이동
     void MoveOnTile()
     {
-        Vector3 vec = _field.GetTileLocate(LocX, LocY);
+        Vector3 vec = _field.GetTilePosition(new Vector2(LocX, LocY));
 
         // 현재 타일에 내가 들어왔다고 알려줌 
         transform.position = vec;
-        _field.EnterTile(this, LocX, LocY);
+        _field.EnterTile(this, new Vector2(LocX, LocY));
     }
 
     #endregion

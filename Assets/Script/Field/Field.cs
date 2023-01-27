@@ -15,11 +15,17 @@ public class Field : MonoBehaviour
     BattleDataManager _BattleDataMNG;
     UIManager _UIMNG;
 
-    List<List<Tile>> _TileArray = new List<List<Tile>>();
-    public List<List<Tile>> TileArray => _TileArray;
     private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
+    public Dictionary<Vector2, Tile> TileDict => _tileDict;
+    public Vector2 FindCoordByTile(Tile tile)
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+            if (items.Value == tile)
+                return items.Key;
+        return default;
+    }
 
-    // ÇÊµåÀÇ »ı¼ºÀ» À§ÇÑ ÇÊµåÀÇ À§Ä¡
+    // í•„ë“œì˜ ìƒì„±ì„ ìœ„í•œ í•„ë“œì˜ ìœ„ì¹˜
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
     public Vector3 FieldRotation => new Vector3(16, 0, 0);
 
@@ -28,17 +34,6 @@ public class Field : MonoBehaviour
         for (int i = 0; i < MaxFieldY; i++)
             for (int j = 0; j < MaxFieldX; j++)
                 _tileDict.Add(new Vector2(j, i), CreateTile(j, i));
-
-        // Legacy
-        for (int i = 0; i < MaxFieldY; i++)
-        {
-            TileArray.Add(new List<Tile>());
-
-            for (int j = 0; j < MaxFieldX; j++)
-            {
-                TileArray[i].Add(CreateTile(j, i));
-            }
-        }
 
         transform.position = FieldPosition;
         transform.eulerAngles = FieldRotation;
@@ -49,6 +44,17 @@ public class Field : MonoBehaviour
         _BattleMNG = GameManager.Instance.BattleMNG;
         _BattleDataMNG = _BattleMNG.BattleDataMNG;
         _UIMNG = GameManager.Instance.UIMNG;
+    }
+
+    public BattleUnit GetTargetUnit(Vector2 coord)
+    {
+        if (IsInRange(coord))
+        {
+            TileDict[coord].SetColor(Color.red);
+            return TileDict[coord].UnitOnTile;
+        }
+
+        return null;
     }
 
     private Tile CreateTile(int x, int y)
@@ -68,120 +74,92 @@ public class Field : MonoBehaviour
         return tile.GetComponent<Tile>();
     }
 
-    public BattleUnit GetTargetUnit(int x, int y)
+    private bool IsInRange(Vector2 coord)
     {
-        if (RangeOverCheck(x, y))
-        {
-            TileArray[y][x].SetColor(Color.red);
-
-            return TileArray[y][x].UnitOnTile;
-        }
-
-        return null;
-    }
-
-    private bool RangeOverCheck(int x, int y)
-    {
-        if (0 <= x && 0 <= y && x < MaxFieldX && y < MaxFieldY)
-        {
+        if (TileDict.ContainsKey(coord))
             return true;
-        }
         return false;
     }
 
-    // ÁöÁ¤ÇÑ À§Ä¡¿¡ ÀÖ´Â Å¸ÀÏÀÇ ÁÂÇ¥¸¦ ¹İÈ¯
-    public Vector3 GetTileLocate(int x, int y)
+    // ì§€ì •í•œ ìœ„ì¹˜ì— ìˆëŠ” íƒ€ì¼ì˜ ì¢Œí‘œë¥¼ ë°˜í™˜
+    public Vector3 GetTilePosition(Vector2 coord)
     {
-        Vector3 vec = _TileArray[y][x].transform.position;
+        Vector3 position = TileDict[coord].transform.position;
 
-        float sizeX = _TileArray[y][x].transform.localScale.x * 0.5f;
-        float sizeY = _TileArray[y][x].transform.localScale.y * 0.5f;
-        sizeY += _TileArray[y][x].transform.localScale.y * 0.5f; // ½ºÇÁ¶óÀÌÆ® º¯°æÀ¸·Î ÀÎÇÑ ÀÓ½ÃÁ¶Ä¡
+        float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
+        float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
+        sizeY += TileDict[coord].transform.localScale.y * 0.5f; // ìŠ¤í”„ë¼ì´íŠ¸ ë³€ê²½ìœ¼ë¡œ ì¸í•œ ì„ì‹œì¡°ì¹˜
 
-        vec.x += sizeX;
-        vec.y += sizeY;
+        position.x += sizeX;
+        position.y += sizeY;
 
-        return vec;
+        return position;
     }
 
     public void ClearAllColor()
     {
-        foreach (List<Tile> list in TileArray)
+        foreach(KeyValuePair<Vector2, Tile> items in TileDict)
         {
-            foreach (Tile tile in list)
-            {
-                tile.SetCanSelect(false);
-                tile.SetColor(Color.white);
-            }
+            items.Value.SetCanSelect(false);
+            items.Value.SetColor(Color.white);
         }
-    }
+    } 
 
-    public void EnterTile(BattleUnit ch, int x, int y)
+    public void EnterTile(BattleUnit unit, Vector2 coord)
     {
-        TileArray[y][x].EnterTile(ch);
+        TileDict[coord].EnterTile(unit);
     }
 
-    public void ExitTile(int x, int y)
+    public void ExitTile(Vector2 coord)
     {
-        TileArray[y][x].ExitTile();
+        TileDict[coord].ExitTile();
     }
 
-    public bool GetIsOnTile(int x, int y) => TileArray[y][x].IsOnTile;
+    public bool GetIsOnTile(Vector2 coord) => TileDict[coord].IsOnTile;
 
     public void TileClick(Tile tile)
     {
         int tileX = 0,
             tileY = 0;
+        Vector2 coord = FindCoordByTile(tile);
 
-        for (int i = 0; i < TileArray.Count; i++)
-        {
-            for (int j = 0; j < TileArray[i].Count; j++)
-            {
-                if (ReferenceEquals(tile, TileArray[i][j]))
-                {
-                    tileX = j;
-                    tileY = i;
-                }
-            }
-        }
+        // í˜„ì¬ í´ë¦­ ìƒíƒœê°€ ì–´ë–¤ ìƒíƒœì¸ì§€, í´ë¦­ ê°€ëŠ¥í•œì§€ ì²´í¬í•˜ëŠ” í´ë˜ìŠ¤ ìƒì„± í•„ìš”
 
-        // ÇöÀç Å¬¸¯ »óÅÂ°¡ ¾î¶² »óÅÂÀÎÁö, Å¬¸¯ °¡´ÉÇÑÁö Ã¼Å©ÇÏ´Â Å¬·¡½º »ı¼º ÇÊ¿ä
-
-        // À¯´ÖÀÌ °ø°İÇÒ Å¸°ÙÀ» ¼±ÅÃÁßÀÌ¶ó¸é
+        // ìœ ë‹›ì´ ê³µê²©í•  íƒ€ê²Ÿì„ ì„ íƒì¤‘ì´ë¼ë©´
         if (tile.CanSelect)
         {
             ClearAllColor();
             _BattleMNG.GetNowUnit().TileSelected(tileX, tileY);
             return;
         }
-        // Å¬¸¯ÇÑ Å¸ÀÏ¿¡ À¯´ÖÀÌ ÀÖÀ» ½Ã
+        // í´ë¦­í•œ íƒ€ì¼ì— ìœ ë‹›ì´ ìˆì„ ì‹œ
         else if (tile.UnitOnTile != null)
         {
             //BattleUnit SelectUnit = tile.TileUnit;
             //FieldClear();
 
-            //// ±× À¯´ÖÀÌ ¾Æ±ºÀÌ¶ó¸é
+            //// ê·¸ ìœ ë‹›ì´ ì•„êµ°ì´ë¼ë©´
             //if (tile.TileUnit.BattleUnitSO.MyTeam)
             //{
-            //    // À¯´ÖÀÌ º¸À¯ÇÑ ½ºÅ³ÀÌ Å¸°ÙÆÃ Çü½ÄÀÎÁö È®ÀÎÇÑ´Ù.
+            //    // ìœ ë‹›ì´ ë³´ìœ í•œ ìŠ¤í‚¬ì´ íƒ€ê²ŸíŒ… í˜•ì‹ì¸ì§€ í™•ì¸í•œë‹¤.
             //    List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
             //    SetCanSelect(vecList, SelectUnit);
             //}
         }
-        // Å¬¸¯ÇÑ Å¸ÀÏ¿¡ À¯´ÖÀÌ ¾øÀ» ½Ã
+        // í´ë¦­í•œ íƒ€ì¼ì— ìœ ë‹›ì´ ì—†ì„ ì‹œ
         else
         {
-            //ÇÚµå¸¦ ´©¸£°í Å¸ÀÏÀ» ´©¸¦ ¶§
+            //í•¸ë“œë¥¼ ëˆ„ë¥´ê³  íƒ€ì¼ì„ ëˆ„ë¥¼ ë•Œ
             if (_UIMNG.Hands.ClickedHand != 0)
             {
-                //¹üÀ§ ¿Ü
+                //ë²”ìœ„ ì™¸
                 if (tileX > 3 && tileY > 2)
                 {
                     Debug.Log("out of range");
                 }
                 else
                 {
-                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost)) //Á¶°Ç¹®ÀÌ ÂüÀÌ¶ó¸é ÀÌ¹Ì ¸¶³ª°¡ ¼Ò¸ğµÈ ÈÄ
+                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost)) //ì¡°ê±´ë¬¸ì´ ì°¸ì´ë¼ë©´ ì´ë¯¸ ë§ˆë‚˜ê°€ ì†Œëª¨ëœ í›„
                     {
                         _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
                         GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
@@ -193,7 +171,7 @@ public class Field : MonoBehaviour
                     }
                     else
                     {
-                        //¸¶³ª ºÎÁ·
+                        //ë§ˆë‚˜ ë¶€ì¡±
                         Debug.Log("not enough mana");
                     }
                 }
@@ -205,7 +183,7 @@ public class Field : MonoBehaviour
     {
         if (vecList != null)
         {
-            // Å¸°ÙÆÃÀÌ ¸Â´Ù¸é ¹üÀ§ Ç¥½Ã
+            // íƒ€ê²ŸíŒ…ì´ ë§ë‹¤ë©´ ë²”ìœ„ í‘œì‹œ
             for (int i = 0; i < vecList.Count; i++)
             {
                 int x = SelectUnit.LocX - (int)vecList[i].x;
@@ -214,7 +192,7 @@ public class Field : MonoBehaviour
                 if (0 <= x && x < 8)
                 {
                     if (0 <= y && y < 3)
-                        TileArray[y][x].SetCanSelect(true);
+                        TileDict[new Vector2(y, x)].SetCanSelect(true);
                 }
             }
         }
