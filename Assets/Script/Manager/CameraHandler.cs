@@ -104,7 +104,7 @@ public class CameraHandler : MonoBehaviour
         }
         SetMainCamera();
 
-        _FieldMNG.FieldClear();
+        _FieldMNG.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
 
         _CutSceneMNG.EndAttack();

@@ -97,7 +97,7 @@ public class FieldManager : MonoBehaviour
         return vec;
     }
 
-    public void FieldClear()
+    public void ClearAllColor()
     {
         foreach (List<Tile> list in TileArray)
         {
@@ -145,7 +145,7 @@ public class FieldManager : MonoBehaviour
         // 유닛이 공격할 타겟을 선택중이라면
         if (tile.CanSelect)
         {
-            FieldClear();
+            ClearAllColor();
             _BattleMNG.GetNowUnit().TileSelected(tileX, tileY);
             return;
         }

@@ -73,7 +73,7 @@ public class BattleManager : MonoBehaviour
 
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
-        GameManager.Instance.FieldMNG.FieldClear();
+        GameManager.Instance.FieldMNG.ClearAllColor();
 
         _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
         _WatingLine.SetWatingLine();

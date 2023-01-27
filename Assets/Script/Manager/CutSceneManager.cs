@@ -230,7 +230,7 @@ public class CutSceneManager : MonoBehaviour
     IEnumerator ExitCutScene()
     {
         yield return new WaitForSeconds(0.5f);
-        _FieldMNG.FieldClear();
+        _FieldMNG.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
         EndAttack();
     }
