@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class UI_Hands : MonoBehaviour
 {
-    [SerializeField] List<UI_Hand> HandList;
+    [SerializeField] GameObject HandPrefabs;
+    private List<UI_Hand> _HandList;
     
     BattleDataManager _BattleDataMNG;
 
-    /*
     void Start()
     {
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
 
-        //전투 시작 후 초기 멀리건 4장
-        for (int i = 0; i < 4; i++) {
-            AddUnitToHand();
+        _HandList = new List<UI_Hand>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject obj = Instantiate(HandPrefabs, transform);
+            obj.transform.position = new Vector3(3 + 2 * i, -5.3f);
+
+            _HandList.Add(obj.GetComponent<UI_Hand>());
         }
     }
-    */
 
     void OnMouseDown()
     {
-        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
-
+        Debug.Log("?");
         //전투 시작 후 초기 멀리건 4장
         for (int i = 0; i < 4; i++) {
             AddUnitToHand();
@@ -33,9 +36,9 @@ public class UI_Hands : MonoBehaviour
     public void AddUnitToHand()
     {
         //1,2,3,4 순으로 Hand의 Unit이 null이면 1개 추가
-        foreach (UI_Hand h in HandList)
+        foreach (UI_Hand h in _HandList)
         {
-            if (h.isHandNull())
+            if (h.IsHandNull())
             {
                 h.SetHandDeckUnit(_BattleDataMNG.GetRandomDeckUnit());
                 break;
@@ -47,11 +50,11 @@ public class UI_Hands : MonoBehaviour
         //handIndex는 1부터 시작하기에 -1 해야함
         DeckUnit returnUnit;
 
-        returnUnit = HandList[handIndex-1].RemoveHandDeckUnit();
+        returnUnit = _HandList[handIndex-1].RemoveHandDeckUnit();
 
         for (int i = (handIndex-1)+1; i < 4; i++)
         {
-            HandList[i-1].SetHandDeckUnit(HandList[i].RemoveHandDeckUnit());
+            _HandList[i-1].SetHandDeckUnit(_HandList[i].RemoveHandDeckUnit());
         }
 
         //빈 공간이 있으면 1개 추가
@@ -62,13 +65,15 @@ public class UI_Hands : MonoBehaviour
 
     public void ReturnHand()
     {
-        foreach (UI_Hand h in HandList)
+        foreach (UI_Hand h in _HandList)
         {
-            if (!h.isHandNull())
+            if (!h.IsHandNull())
             {
                 _BattleDataMNG.AddDeckUnit(h.RemoveHandDeckUnit());
             }
         }
+
+        _HandList = null;
     }
 
     #region Hand Click
@@ -78,10 +83,18 @@ public class UI_Hands : MonoBehaviour
     private DeckUnit _ClickedUnit = null;
     public DeckUnit ClickedUnit => _ClickedUnit;
 
-    public void SetHand(int handIndex)
+    public void OnHandClick(UI_Hand hand)
     {
-        _ClickedHand = handIndex;
-        _ClickedUnit = HandList[handIndex].GetHandDeckUnit();
+        _ClickedHand = _HandList.IndexOf(hand);
+        _ClickedUnit = hand.GetHandDeckUnit();
+
+        if (_BattleDataMNG.CanUseMana(_ClickedUnit.GetUnitSO().ManaCost)){
+
+        }
+        else
+        {
+            ClearHand();
+        }
     }
 
     public void ClearHand()
@@ -90,15 +103,4 @@ public class UI_Hands : MonoBehaviour
         _ClickedUnit = null;
     }
     #endregion
-
-    //테스트용입니다.
-    public void begoneHands()
-    {
-        transform.position = new Vector3(180, -200, 0);
-    }
-    
-    public void comebackHands()
-    {
-        transform.position = new Vector3(180, -150, 0);
-    }
 }
