@@ -10,13 +10,13 @@ public class Tile : MonoBehaviour
     public BattleUnit UnitOnTile => _unitOnTile;
     public bool IsOnTile { get { if (UnitOnTile == null) return false; return true; } }
 
-    private FieldManager _FieldMNG;
+    private Field _field;
     public bool CanSelect = false;
 
     
     private void Start()
     {
-        _FieldMNG = GameManager.Instance.FieldMNG;
+        _field = GameManager.Instance.BattleMNG.Field;
         SR = GetComponent<SpriteRenderer>();
         SR.color = Color.white;
 
@@ -60,6 +60,6 @@ public class Tile : MonoBehaviour
         // 필드에 자신이 클릭되었다는 정보를 준다.
         // 그러면 필드가 내가 어디에 위치해있는 타일인지 찾을 것
 
-        _FieldMNG.TileClick(this);
+        _field.TileClick(this);
     }
 }

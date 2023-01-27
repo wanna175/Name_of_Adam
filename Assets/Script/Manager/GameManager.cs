@@ -30,10 +30,6 @@ public class GameManager : MonoBehaviour
     StageManager _stageMNG;
     public StageManager StageMNG => _stageMNG;
     #endregion
-    #region FieldMNG
-    [SerializeField] private FieldManager _FieldMNG;
-    public FieldManager FieldMNG => _FieldMNG;
-    #endregion
     #region DataManager
     DataManager _dataMNG;
     public DataManager DataMNG => _dataMNG;
@@ -42,8 +38,6 @@ public class GameManager : MonoBehaviour
     SceneChanger _sceneChanger;
     public SceneChanger SceneChanger => _sceneChanger;
     #endregion
-
-
     #region InputManager
     [SerializeField] UIManager _UIMNG;
     public UIManager UIMNG => _UIMNG;

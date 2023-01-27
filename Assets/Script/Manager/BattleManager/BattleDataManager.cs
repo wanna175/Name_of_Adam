@@ -95,7 +95,7 @@ public class BattleDataManager
         BattleUnit.BattleUnitSO = GameManager.Instance.UIMNG.Hands.ClickedUnit.GetUnitSO();
         BattleUnit.setLocate(x, y);
 
-        GameManager.Instance.FieldMNG.EnterTile(BattleUnit, x, y);
+        GameManager.Instance.BattleMNG.Field.EnterTile(BattleUnit, x, y);
     }
 
     #endregion

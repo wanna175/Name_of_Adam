@@ -16,6 +16,8 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     private UI_WatingLine _WatingLine;
+    private Field _field;
+    public Field Field => _field;
 
     private void Awake()
     {
@@ -23,6 +25,7 @@ public class BattleManager : MonoBehaviour
         
         _BattleUnitOrderList = new List<BattleUnit>();
         _WatingLine = GameManager.Instance.UIMNG.WatingLine;
+        _field = GameObject.Find("Field").GetComponent<Field>();
 
         PrepareStart();
 
@@ -73,7 +76,7 @@ public class BattleManager : MonoBehaviour
 
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
-        GameManager.Instance.FieldMNG.ClearAllColor();
+        GameManager.Instance.BattleMNG.Field.ClearAllColor();
 
         _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
         _WatingLine.SetWatingLine();

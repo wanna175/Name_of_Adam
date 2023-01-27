@@ -20,7 +20,7 @@ public class BattleUnit : MonoBehaviour
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
     CutSceneManager _CutSceneMNG;
-    FieldManager _FieldMNG;
+    Field _field;
 
     SpriteRenderer _SR;
     Animator _Animator;
@@ -59,7 +59,7 @@ public class BattleUnit : MonoBehaviour
         _BattleMNG = GameManager.Instance.BattleMNG;
         _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
         _CutSceneMNG = GameManager.Instance.CutSceneMNG;
-        _FieldMNG = GameManager.Instance.FieldMNG;
+        _field = GameManager.Instance.BattleMNG.Field;
 
         _SR = GetComponent<SpriteRenderer>();
         _Animator = GetComponent<Animator>();
@@ -98,7 +98,7 @@ public class BattleUnit : MonoBehaviour
                 break;
 
             case BattleUnitState.AttackWait:
-                _FieldMNG.SetCanSelect(BattleUnitSO.GetRange(), this);
+                _field.SetCanSelect(BattleUnitSO.GetRange(), this);
 
                 break;
 
@@ -131,13 +131,13 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        _FieldMNG.SetCanSelect(vecList, this);
+        _field.SetCanSelect(vecList, this);
     }
 
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
-        _FieldMNG.ExitTile(LocX, LocY);
+        _field.ExitTile(LocX, LocY);
 
         int dumpX = _LocX;
         int dumpY = _LocY;
@@ -149,7 +149,7 @@ public class BattleUnit : MonoBehaviour
             dumpY += y;
         
         // 이동할 곳이 비어있지 않다면 이동하지 않음
-        if (!_FieldMNG.GetIsOnTile(dumpX, dumpY))
+        if (!_field.GetIsOnTile(dumpX, dumpY))
         {
             _LocX = dumpX;
             _LocY = dumpY;
@@ -201,11 +201,11 @@ public class BattleUnit : MonoBehaviour
     // 타일 위로 이동
     void MoveOnTile()
     {
-        Vector3 vec = _FieldMNG.GetTileLocate(LocX, LocY);
+        Vector3 vec = _field.GetTileLocate(LocX, LocY);
 
         // 현재 타일에 내가 들어왔다고 알려줌 
         transform.position = vec;
-        _FieldMNG.EnterTile(this, LocX, LocY);
+        _field.EnterTile(this, LocX, LocY);
     }
 
     #endregion
