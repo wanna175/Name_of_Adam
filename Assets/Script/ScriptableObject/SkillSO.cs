@@ -24,7 +24,7 @@ public class SkillSO : ScriptableObject
     // 힐같이 아군을 찾는 알고리즘은 나중에 따로 설정해야한다
     public void use(BattleUnit caster)
     {
-        Field _field = GameManager.Instance.BattleMNG.Field;
+        Field _field = GameManager.BattleMNG.Field;
         List<Vector2> RangeList = GetRange();
         List<BattleUnit> _HitUnits = new List<BattleUnit>();
 

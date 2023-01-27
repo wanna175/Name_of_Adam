@@ -41,9 +41,9 @@ public class Field : MonoBehaviour
 
     private void Start()
     {
-        _BattleMNG = GameManager.Instance.BattleMNG;
+        _BattleMNG = GameManager.BattleMNG;
         _BattleDataMNG = _BattleMNG.BattleDataMNG;
-        _UIMNG = GameManager.Instance.UIMNG;
+        _UIMNG = GameManager.UIMNG;
     }
 
     public BattleUnit GetTargetUnit(Vector2 coord)
@@ -131,20 +131,6 @@ public class Field : MonoBehaviour
             ClearAllColor();
             _BattleMNG.GetNowUnit().TileSelected(tileX, tileY);
             return;
-        }
-        // 클릭한 타일에 유닛이 있을 시
-        else if (tile.UnitOnTile != null)
-        {
-            //BattleUnit SelectUnit = tile.TileUnit;
-            //FieldClear();
-
-            //// 그 유닛이 아군이라면
-            //if (tile.TileUnit.BattleUnitSO.MyTeam)
-            //{
-            //    // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
-            //    List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
-            //    SetCanSelect(vecList, SelectUnit);
-            //}
         }
         // 클릭한 타일에 유닛이 없을 시
         else

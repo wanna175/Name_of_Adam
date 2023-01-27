@@ -4,60 +4,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    #region Instance
-    static GameManager instance = null;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                return null;
-            }
-            return instance;
-        }
-    }
-    #endregion
-    #region BattleManager
+    private static GameManager s_instance;
+    private static GameManager Instance { get { Init(); return s_instance; } }
+
+    
     [SerializeField] BattleManager _battleMNG;
-    public BattleManager BattleMNG => _battleMNG;
-    #endregion
-    #region CutSceneMNG
+    public static BattleManager BattleMNG => Instance._battleMNG;
+    
     [SerializeField] private CutSceneManager _CutSceneMNG;
-    public CutSceneManager CutSceneMNG => _CutSceneMNG;
-    #endregion
-    #region StageManager
+    public static CutSceneManager CutSceneMNG => Instance._CutSceneMNG;
+
     StageManager _stageMNG;
-    public StageManager StageMNG => _stageMNG;
-    #endregion
-    #region DataManager
+    public static StageManager StageMNG => Instance._stageMNG;
+
     DataManager _dataMNG;
-    public DataManager DataMNG => _dataMNG;
-    #endregion
-    #region SceneChanger
+    public static DataManager DataMNG => Instance._dataMNG;
+
     SceneChanger _sceneChanger;
-    public SceneChanger SceneChanger => _sceneChanger;
-    #endregion
-    #region InputManager
+    public static SceneChanger SceneChanger => Instance._sceneChanger;
+
     [SerializeField] UIManager _UIMNG;
-    public UIManager UIMNG => _UIMNG;
-    #endregion
+    public static UIManager UIMNG => Instance._UIMNG;
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        Init();
 
         _dataMNG = new DataManager();
-        // _stageMNG = new StageManager();
-        // _sceneChanger = new SceneChanger();
     }
 
     private void Update()
@@ -70,6 +43,23 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //  SceneChanger.SceneChange("StageSelectScene");
+        }
+    }
+
+    private static void Init()
+    {
+        if (s_instance == null)
+        {
+            GameObject go = GameObject.Find("GameManager");
+
+            if (go == null)
+            {
+                go = new GameObject("GameManager");
+                go.AddComponent<GameManager>();
+            }
+
+            DontDestroyOnLoad(go);
+            s_instance = go.GetComponent<GameManager>();
         }
     }
 }

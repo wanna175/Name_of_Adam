@@ -15,8 +15,8 @@ public class UI_NextStageSign : MonoBehaviour
 
     public void SetNextStageSign()
     {
-        List<EncountStage> StageList = GameManager.Instance.StageMNG.GetStage();
-        EncountStage[] StageArray = GameManager.Instance.StageMNG.GetStageArray();
+        List<EncountStage> StageList = GameManager.StageMNG.GetStage();
+        EncountStage[] StageArray = GameManager.StageMNG.GetStageArray();
 
         if(StageList.Count != 0)
         {
@@ -54,7 +54,7 @@ public class UI_NextStageSign : MonoBehaviour
 
         for (int i = 0; i < Container.Count; i++)
         {
-            switch (GameManager.Instance.StageMNG.StageArray[i])
+            switch (GameManager.StageMNG.StageArray[i])
             {
                 case EncountStage.Monster:
                     Container[i].color = Color.red;

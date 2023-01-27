@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
     
     private void Start()
     {
-        _field = GameManager.Instance.BattleMNG.Field;
+        _field = GameManager.BattleMNG.Field;
         SR = GetComponent<SpriteRenderer>();
         SR.color = Color.white;
 

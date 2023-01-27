@@ -56,10 +56,10 @@ public class BattleUnit : MonoBehaviour
 
     private void Awake()
     {
-        _BattleMNG = GameManager.Instance.BattleMNG;
-        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
-        _CutSceneMNG = GameManager.Instance.CutSceneMNG;
-        _field = GameManager.Instance.BattleMNG.Field;
+        _BattleMNG = GameManager.BattleMNG;
+        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
+        _CutSceneMNG = GameManager.CutSceneMNG;
+        _field = GameManager.BattleMNG.Field;
 
         _SR = GetComponent<SpriteRenderer>();
         _Animator = GetComponent<Animator>();

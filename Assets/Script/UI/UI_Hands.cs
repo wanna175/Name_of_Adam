@@ -11,7 +11,7 @@ public class UI_Hands : MonoBehaviour
 
     void Start()
     {
-        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
 
         _HandList = new List<UI_Hand>();
 

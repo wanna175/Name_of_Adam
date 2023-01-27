@@ -45,8 +45,8 @@ public class CutSceneManager : MonoBehaviour
 
     private void Start()
     {
-        _BattleMNG = GameManager.Instance.BattleMNG;
-        _field = GameManager.Instance.BattleMNG.Field;
+        _BattleMNG = GameManager.BattleMNG;
+        _field = GameManager.BattleMNG.Field;
         CSData = new CutSceneData();
     }
 
