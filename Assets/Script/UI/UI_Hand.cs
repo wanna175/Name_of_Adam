@@ -13,7 +13,7 @@ public class UI_Hand : MonoBehaviour
 
     void Start()
     {
-        _Hands = GameManager.Instance.UIMNG.Hands;
+        _Hands = GameManager.UIMNG.Hands;
         _Image = GetComponent<Image>();
     }
 

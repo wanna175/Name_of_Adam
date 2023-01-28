@@ -24,7 +24,7 @@ public class SkillSO : ScriptableObject
     // 힐같이 아군을 찾는 알고리즘은 나중에 따로 설정해야한다
     public void use(BattleUnit caster)
     {
-        FieldManager _FieldMNG = GameManager.Instance.FieldMNG;
+        Field _field = GameManager.BattleMNG.Field;
         List<Vector2> RangeList = GetRange();
         List<BattleUnit> _HitUnits = new List<BattleUnit>();
 
@@ -38,7 +38,7 @@ public class SkillSO : ScriptableObject
                 int y = caster.LocY - (int)RangeList[i].y;
 
                 // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
-                _unit = _FieldMNG.GetTargetUnit(x, y);
+                _unit = _field.GetTargetUnit(new Vector2(x, y));
 
                 if (_unit != null)
                     _HitUnits.Add(_unit);
@@ -58,7 +58,7 @@ public class SkillSO : ScriptableObject
 
             BattleUnit _unit = null;
 
-            _unit = _FieldMNG.GetTargetUnit(x, y);
+            _unit = _field.GetTargetUnit(new Vector2(x, y));
 
             if (_unit != null)
                 _HitUnits.Add(_unit);

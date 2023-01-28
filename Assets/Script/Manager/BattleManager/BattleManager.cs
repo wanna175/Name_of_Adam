@@ -16,13 +16,16 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     private UI_WatingLine _WatingLine;
+    private Field _field;
+    public Field Field => _field;
 
     private void Awake()
     {
         _BattleDataMNG = new BattleDataManager();
         
         _BattleUnitOrderList = new List<BattleUnit>();
-        _WatingLine = GameManager.Instance.UIMNG.WatingLine;
+        _WatingLine = GameManager.UIMNG.WatingLine;
+        _field = GameObject.Find("Field").GetComponent<Field>();
 
         PrepareStart();
 
@@ -42,7 +45,7 @@ public class BattleManager : MonoBehaviour
         _BattleDataMNG.SetEngageStage(PrepareStage);
 
         //UI 튀어나옴
-        //GameManager.Instance.InputMNG.Hands.comebackHands();
+        //GameManager.InputMNG.Hands.comebackHands();
         //UI가 작동할 수 있게 해줌
     }
 
@@ -52,7 +55,7 @@ public class BattleManager : MonoBehaviour
         _BattleDataMNG.SetEngageStage(PrepareStage);
         
         //UI 들어감
-        //GameManager.Instance.InputMNG.Hands.begoneHands();
+        //GameManager.InputMNG.Hands.begoneHands();
         //UI 사용 불가
     }
 
@@ -73,7 +76,7 @@ public class BattleManager : MonoBehaviour
 
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
-        GameManager.Instance.FieldMNG.FieldClear();
+        GameManager.BattleMNG.Field.ClearAllColor();
 
         _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
         _WatingLine.SetWatingLine();

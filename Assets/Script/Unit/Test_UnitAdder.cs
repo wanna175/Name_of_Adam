@@ -11,6 +11,6 @@ public class Test_UnitAdder : MonoBehaviour
         Debug.Log("ADD");
         DeckUnit d1 = new DeckUnit();
         d1.SetUnitSO(unit[0]); 
-        GameManager.Instance.BattleMNG.BattleDataMNG.AddDeckUnit(d1);
+        GameManager.BattleMNG.BattleDataMNG.AddDeckUnit(d1);
     }
 }

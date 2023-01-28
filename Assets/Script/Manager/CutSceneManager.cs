@@ -30,7 +30,7 @@ public struct CutSceneData
 public class CutSceneManager : MonoBehaviour
 {
     BattleManager _BattleMNG;
-    FieldManager _FieldMNG;
+    Field _field;
     #region CameraHandler
     private CameraHandler _CameraHandler;
     public CameraHandler CameraHandler
@@ -45,8 +45,8 @@ public class CutSceneManager : MonoBehaviour
 
     private void Start()
     {
-        _BattleMNG = GameManager.Instance.BattleMNG;
-        _FieldMNG = GameManager.Instance.FieldMNG;
+        _BattleMNG = GameManager.BattleMNG;
+        _field = GameManager.BattleMNG.Field;
         CSData = new CutSceneData();
     }
 
@@ -139,7 +139,7 @@ public class CutSceneManager : MonoBehaviour
     Vector3 GetZoomLocation(CutSceneData CSData)
     {
         if (CSData.ATKType == AttackType.rangeAttack)
-            return _FieldMNG.FieldPosition;
+            return _field.FieldPosition;
 
         Vector3 zoomLoc = CSData.MovePosition;
 
@@ -230,7 +230,7 @@ public class CutSceneManager : MonoBehaviour
     IEnumerator ExitCutScene()
     {
         yield return new WaitForSeconds(0.5f);
-        _FieldMNG.FieldClear();
+        _field.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
         EndAttack();
     }

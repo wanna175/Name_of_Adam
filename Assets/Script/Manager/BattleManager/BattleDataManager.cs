@@ -13,7 +13,7 @@ public class BattleDataManager
 
     public BattleDataManager()
     {
-        _DataMNG = GameManager.Instance.DataMNG;
+        _DataMNG = GameManager.DataMNG;
     }
      
     #region Turn
@@ -92,10 +92,10 @@ public class BattleDataManager
     {
         BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-        BattleUnit.BattleUnitSO = GameManager.Instance.UIMNG.Hands.ClickedUnit.GetUnitSO();
+        BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
         BattleUnit.setLocate(x, y);
 
-        GameManager.Instance.FieldMNG.EnterTile(BattleUnit, x, y);
+        GameManager.BattleMNG.Field.EnterTile(BattleUnit, new Vector2(x, y));
     }
 
     #endregion
