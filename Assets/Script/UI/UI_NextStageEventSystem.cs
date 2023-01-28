@@ -19,7 +19,7 @@ public class UI_NextStageEventSystem : EventTrigger
             int index = Int32.Parse(clickedBox.name.Split("_")[1]);
 
             // 입력된 정보를 StageManager로 전송
-            GameManager.Instance.StageMNG.StageSelect(index);
+            GameManager.StageMNG.StageSelect(index);
         }
     }
 }

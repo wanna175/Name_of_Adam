@@ -8,7 +8,7 @@ public class UI_TurnChange : EventTrigger
     public override void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Button On");
-        GameManager.Instance.BattleMNG.PrepareEnd();
-        GameManager.Instance.BattleMNG.EngageStart();
+        GameManager.BattleMNG.PrepareEnd();
+        GameManager.BattleMNG.EngageStart();
     }
 }

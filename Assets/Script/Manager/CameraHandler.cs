@@ -8,12 +8,12 @@ public class CameraHandler : MonoBehaviour
     [SerializeField] Camera CutSceneCamera;
 
     CutSceneManager _CutSceneMNG;
-    FieldManager _FieldMNG;
+    Field _field;
 
     private void Start()
     {
-        _CutSceneMNG = GameManager.Instance.CutSceneMNG;
-        _FieldMNG = GameManager.Instance.FieldMNG;
+        _CutSceneMNG = GameManager.CutSceneMNG;
+        _field = GameManager.BattleMNG.Field;
         _CutSceneMNG.CameraHandler = this;
 
         SetMainCamera();
@@ -104,7 +104,7 @@ public class CameraHandler : MonoBehaviour
         }
         SetMainCamera();
 
-        _FieldMNG.FieldClear();
+        _field.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
 
         _CutSceneMNG.EndAttack();
