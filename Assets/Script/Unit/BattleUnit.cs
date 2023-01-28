@@ -201,6 +201,7 @@ public class BattleUnit : MonoBehaviour
     // 타일 위로 이동
     void MoveOnTile()
     {
+        Debug.Log("MoveOnTile : " + LocX + ", " + LocY);
         Vector3 vec = _field.GetTilePosition(new Vector2(LocX, LocY));
 
         // 현재 타일에 내가 들어왔다고 알려줌 
