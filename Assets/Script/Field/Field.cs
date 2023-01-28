@@ -11,10 +11,6 @@ public class Field : MonoBehaviour
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
-    BattleManager _BattleMNG;
-    BattleDataManager _BattleDataMNG;
-    UIManager _UIMNG;
-
     private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
     public Dictionary<Vector2, Tile> TileDict => _tileDict;
     public Vector2 FindCoordByTile(Tile tile)
@@ -42,13 +38,6 @@ public class Field : MonoBehaviour
 
         transform.position = FieldPosition;
         transform.eulerAngles = FieldRotation;
-    }
-
-    private void Start()
-    {
-        _BattleMNG = GameManager.BattleMNG;
-        _BattleDataMNG = _BattleMNG.BattleDataMNG;
-        _UIMNG = GameManager.UIMNG;
     }
 
     public BattleUnit GetTargetUnit(Vector2 coord)
@@ -108,7 +97,6 @@ public class Field : MonoBehaviour
     {
         foreach(KeyValuePair<Vector2, Tile> items in TileDict)
         {
-            items.Value.SetCanSelect(false);
             items.Value.SetColor(Color.white);
         }
     } 
@@ -123,14 +111,13 @@ public class Field : MonoBehaviour
         TileDict[coord].ExitTile();
     }
 
-    public bool GetIsOnTile(Vector2 coord) => TileDict[coord].IsOnTile;
-
     public void TileClick(Tile tile)
     {
         Vector2 coord = FindCoordByTile(tile);
 
         // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
 
+        /*
         // 유닛이 공격할 타겟을 선택중이라면
         if (tile.CanSelect)
         {
@@ -169,24 +156,6 @@ public class Field : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void SetCanSelect(List<Vector2> vecList, BattleUnit SelectUnit)
-    {
-        if (vecList != null)
-        {
-            // 타겟팅이 맞다면 범위 표시
-            for (int i = 0; i < vecList.Count; i++)
-            {
-                int x = SelectUnit.LocX - (int)vecList[i].x;
-                int y = SelectUnit.LocY - (int)vecList[i].y;
-                Vector2 coord = new Vector2(x, y);
-
-                if(IsInRange(coord))
-                { 
-                        TileDict[coord].SetCanSelect(true);
-                }
-            }
-        }
+        */
     }
 }
