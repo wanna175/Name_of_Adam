@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class BattleDataManager
 {
-    #region DataMNG
     private DataManager _DataMNG;
     public DataManager DataMNG => _DataMNG;
-    #endregion
 
     // 필드와 배틀유닛, 마나의 정보 및 관리는 각 매니저로 분할
 

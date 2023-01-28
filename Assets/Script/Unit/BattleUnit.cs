@@ -98,7 +98,7 @@ public class BattleUnit : MonoBehaviour
                 break;
 
             case BattleUnitState.AttackWait:
-                _field.SetCanSelect(BattleUnitSO.GetRange(), this);
+                //_field.SetCanSelect(BattleUnitSO.GetRange(), this);
 
                 break;
 
@@ -131,7 +131,7 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        _field.SetCanSelect(vecList, this);
+        //_field.SetCanSelect(vecList, this);
     }
 
     // 이동 경로를 받아와 이동시킨다
@@ -149,7 +149,7 @@ public class BattleUnit : MonoBehaviour
             dumpY += y;
         
         // 이동할 곳이 비어있지 않다면 이동하지 않음
-        if (!_field.GetIsOnTile(new Vector2(dumpX, dumpY)))
+        if (!_field.TileDict[new Vector2(dumpX, dumpY)].IsOnTile)
         {
             _LocX = dumpX;
             _LocY = dumpY;
