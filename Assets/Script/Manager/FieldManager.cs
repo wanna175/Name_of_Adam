@@ -6,7 +6,7 @@ public class FieldManager : MonoBehaviour
 {
     [SerializeField] GameObject TilePrefabs;
     [SerializeField] GameObject UnitPrefabs;
-    private const int MaxFieldX = 8;
+    private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
     BattleManager _BattleMNG;
@@ -81,6 +81,7 @@ public class FieldManager : MonoBehaviour
         }
         return false;
     }
+
 
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTileLocate(int x, int y)

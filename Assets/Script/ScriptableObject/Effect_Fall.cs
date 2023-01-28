@@ -29,7 +29,7 @@ public class Effect_Fall : EffectSO
             {
                 if (0 <= y && y < 3)
                 {
-                    caster.UnitAction.SetFallGauge(1);
+                    caster.SetFallGauge(1);
                 }
             }
         }

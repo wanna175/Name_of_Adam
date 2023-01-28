@@ -185,7 +185,7 @@ public class CutSceneManager : MonoBehaviour
 
         CSData.AttackUnit.SetState(BattleUnitState.Attack);
         foreach (BattleUnit unit in CSData.HitUnits)
-            unit.SetState(BattleUnitState.Hit);
+            unit.SetState(BattleUnitState.HitWait);
 
 
         yield return new WaitForSeconds(CutSceneTime);

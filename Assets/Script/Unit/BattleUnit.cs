@@ -9,7 +9,7 @@ public enum BattleUnitState
     Move,
     AttackWait,
     Attack,
-    Hit
+    HitWait
 }
 
 
@@ -107,7 +107,7 @@ public class BattleUnit : MonoBehaviour
 
                 break;
 
-            case BattleUnitState.Hit:
+            case BattleUnitState.HitWait:
                 _Animator.SetBool("isHit", true);
 
                 break;
@@ -276,7 +276,11 @@ public class BattleUnit : MonoBehaviour
 
             case BattleUnitState.AttackWait:
                 _SelectTile = new Vector2(x, y);
-                BattleUnitSO.use(this);
+
+                if (_SelectTile == new Vector2(LocX, LocY))
+                    _BattleMNG.UseNextUnit();
+                else
+                    BattleUnitSO.use(this);
 
                 break;
         }
