@@ -216,6 +216,7 @@ public class BattleUnit : MonoBehaviour
     void UnitDestroy()
     {
         _BattleDataMNG.BattleUnitExit(this);
+        _BattleMNG.BattleOrderRemove(this);
         Destroy(gameObject);
     }
 

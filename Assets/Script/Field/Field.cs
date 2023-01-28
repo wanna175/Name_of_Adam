@@ -8,7 +8,7 @@ public class Field : MonoBehaviour
 
     [SerializeField] GameObject TilePrefabs;
     [SerializeField] GameObject UnitPrefabs;
-    private const int MaxFieldX = 8;
+    private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
     BattleManager _BattleMNG;
@@ -180,11 +180,11 @@ public class Field : MonoBehaviour
             {
                 int x = SelectUnit.LocX - (int)vecList[i].x;
                 int y = SelectUnit.LocY - (int)vecList[i].y;
+                Vector2 coord = new Vector2(x, y);
 
-                if (0 <= x && x < 8)
-                {
-                    if (0 <= y && y < 3)
-                        TileDict[new Vector2(x, y)].SetCanSelect(true);
+                if(IsInRange(coord))
+                { 
+                        TileDict[coord].SetCanSelect(true);
                 }
             }
         }

@@ -41,7 +41,10 @@ public class SkillSO : ScriptableObject
                 _unit = _field.GetTargetUnit(new Vector2(x, y));
 
                 if (_unit != null)
-                    _HitUnits.Add(_unit);
+                {
+                    if(_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
+                        _HitUnits.Add(_unit);
+                }
             }
         }
         else if (attackType == AttackType.targeting)

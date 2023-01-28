@@ -93,6 +93,11 @@ public class BattleManager : MonoBehaviour
             .ToList();
     }
 
+    public void BattleOrderRemove(BattleUnit _unit)
+    {
+        _BattleUnitOrderList.Remove(_unit);
+    }
+
     // BattleUnitList의 첫 번째 요소부터 순회
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
     public void UseUnitSkill()
