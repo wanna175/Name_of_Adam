@@ -21,8 +21,13 @@ public class Field : MonoBehaviour
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
             if (items.Value == tile)
+            {
+                Debug.Log("Key found" + items.Key);
                 return items.Key;
-        return default;
+            }
+
+        Debug.Log("nope");
+        return new Vector2();
     }
 
     // 필드의 생성을 위한 필드의 위치
@@ -86,6 +91,9 @@ public class Field : MonoBehaviour
     {
         Vector3 position = TileDict[coord].transform.position;
 
+        Debug.Log(coord);
+        Debug.Log(position);
+
         float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
         float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
         sizeY += TileDict[coord].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
@@ -119,8 +127,6 @@ public class Field : MonoBehaviour
 
     public void TileClick(Tile tile)
     {
-        int tileX = 0,
-            tileY = 0;
         Vector2 coord = FindCoordByTile(tile);
 
         // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
@@ -129,7 +135,7 @@ public class Field : MonoBehaviour
         if (tile.CanSelect)
         {
             ClearAllColor();
-            _BattleMNG.GetNowUnit().TileSelected(tileX, tileY);
+            _BattleMNG.GetNowUnit().TileSelected((int)coord.x, (int)coord.y);
             return;
         }
         // 클릭한 타일에 유닛이 없을 시
@@ -139,7 +145,7 @@ public class Field : MonoBehaviour
             if (_UIMNG.Hands.ClickedHand != 0)
             {
                 //범위 외
-                if (tileX > 3 && tileY > 2)
+                if ((int)coord.x > 3 && (int)coord.y > 2)
                 {
                     Debug.Log("out of range");
                 }
@@ -150,7 +156,7 @@ public class Field : MonoBehaviour
                         _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
                         GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
 
-                        _BattleDataMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
+                        _BattleDataMNG.CreatBattleUnit(BattleUnitPrefab, (int)coord.x, (int)coord.y);
 
                         _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
                         _UIMNG.Hands.ClearHand();
@@ -178,7 +184,7 @@ public class Field : MonoBehaviour
                 if (0 <= x && x < 8)
                 {
                     if (0 <= y && y < 3)
-                        TileDict[new Vector2(y, x)].SetCanSelect(true);
+                        TileDict[new Vector2(x, y)].SetCanSelect(true);
                 }
             }
         }

@@ -1770,8 +1770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb043a8439249b439f1bdc4ba12d592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TilePrefabs: {fileID: 4304800747469416708, guid: aa232f776c3596b4c82c22fd6c42aeb5, type: 3}
-  UnitPrefabs: {fileID: 4662580368106312543, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
 --- !u!4 &1285395880
 Transform:
   m_ObjectHideFlags: 0
@@ -1831,6 +1829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40056deb24fe06b4589620233ca52342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TilePrefabs: {fileID: 4304800747469416708, guid: aa232f776c3596b4c82c22fd6c42aeb5, type: 3}
+  UnitPrefabs: {fileID: 4662580368106312543, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
 --- !u!1 &1457268377
 GameObject:
   m_ObjectHideFlags: 0
@@ -2420,7 +2420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleMNG: {fileID: 1589663945}
   _CutSceneMNG: {fileID: 49041952}
-  _FieldMNG: {fileID: 1285395879}
   _UIMNG: {fileID: 20967190}
 --- !u!4 &1932546685
 Transform:
