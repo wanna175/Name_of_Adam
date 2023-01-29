@@ -2,12 +2,14 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Field : MonoBehaviour
 {
 
     [SerializeField] GameObject TilePrefabs;
     [SerializeField] GameObject UnitPrefabs;
+
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
@@ -18,14 +20,13 @@ public class Field : MonoBehaviour
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
             if (items.Value == tile)
                 return items.Key;
-
-        Debug.Log("nope");
         return new Vector2();
     }
 
     // 필드의 생성을 위한 필드의 위치
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
     public Vector3 FieldRotation => new Vector3(16, 0, 0);
+    public Action<Vector2, Tile> OnClickAction;
 
     private void Awake()
     {
@@ -37,14 +38,19 @@ public class Field : MonoBehaviour
         transform.eulerAngles = FieldRotation;
     }
 
-    public BattleUnit GetTargetUnit(Vector2 coord)
+    public Field SetClickEvent(Action<Vector2, Tile> action)
+    {
+        OnClickAction = action;
+        return this;
+    }
+
+    public BattleUnit GetUnit(Vector2 coord)
     {
         if (IsInRange(coord))
         {
             TileDict[coord].SetColor(Color.red);
             return TileDict[coord].Unit;
         }
-
         return null;
     }
 
@@ -59,12 +65,8 @@ public class Field : MonoBehaviour
         float locX = (disX * x) + (disX * 0.5f);
         float locY = disY * y;
 
-        GameObject tile = GameObject.Instantiate(TilePrefabs, transform);
-        tile.transform.position = new Vector3(locX, transform.position.y + locY);
-        Tile tileComp = tile.GetComponent<Tile>();
-        tileComp.OnClickAction = TileClick;
-
-        return tileComp;
+        Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
+        return Instantiate(TilePrefabs, transform).GetComponent<Tile>().Init(tilePos, TileClick);
     }
 
     private bool IsInRange(Vector2 coord)
@@ -78,9 +80,6 @@ public class Field : MonoBehaviour
     public Vector3 GetTilePosition(Vector2 coord)
     {
         Vector3 position = TileDict[coord].transform.position;
-
-        Debug.Log(coord);
-        Debug.Log(position);
 
         float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
         float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
@@ -113,6 +112,8 @@ public class Field : MonoBehaviour
     public void TileClick(Tile tile)
     {
         Vector2 coord = FindCoordByTile(tile);
+
+        OnClickAction(coord, tile);
 
         // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
 

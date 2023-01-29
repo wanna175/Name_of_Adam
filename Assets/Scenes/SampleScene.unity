@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0d33aaae85e6b4ca7f506898b35d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandPrefabs: {fileID: 9037217407852231977, guid: bf27dc6fa9a3dc44896d9cb58014d4a7, type: 3}
+  HandPrefabs: {fileID: 0}
 --- !u!212 &732453715
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43a539cba95e4343915a4dbfa63379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WatingLinePrefabs: {fileID: 6803179689649879520, guid: 95b4af97962c4c84eb487dc2cf2a1dfc, type: 3}
+  WatingLinePrefabs: {fileID: 0}
 --- !u!1001 &1550510725
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,6 +17,13 @@ public class Tile : MonoBehaviour
         _renderer.color = Color.white;
     }
 
+    public Tile Init(Vector3 position, Action<Tile> action)
+    {
+        transform.position = position;
+        OnClickAction = action;
+        return this;
+    }
+
     public void EnterTile(BattleUnit _unit)
     {
         this._unit = _unit;

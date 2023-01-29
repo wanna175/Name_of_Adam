@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+// Memo : Enum일 필요 없을듯 (bool)
 public enum AttackType
 {
     targeting,
@@ -25,25 +26,25 @@ public class SkillSO : ScriptableObject
     public void use(BattleUnit caster)
     {
         Field _field = GameManager.BattleMNG.Field;
-        List<Vector2> RangeList = GetRange();
-        List<BattleUnit> _HitUnits = new List<BattleUnit>();
+        List<Vector2> rangeList = GetRange();
+        List<BattleUnit> hitUnits = new List<BattleUnit>();
 
         if (attackType == AttackType.rangeAttack)
         {
             // 공격범위 안에 있는 모든 대상을 리스트에 넣는다.
-            for (int i = 0; i < RangeList.Count; i++)
+            for (int i = 0; i < rangeList.Count; i++)
             {
                 BattleUnit _unit = null;
-                int x = caster.LocX - (int)RangeList[i].x;
-                int y = caster.LocY - (int)RangeList[i].y;
+                int x = caster.LocX - (int)rangeList[i].x;
+                int y = caster.LocY - (int)rangeList[i].y;
 
                 // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
-                _unit = _field.GetTargetUnit(new Vector2(x, y));
+                _unit = _field.GetUnit(new Vector2(x, y));
 
                 if (_unit != null)
                 {
                     if(_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
-                        _HitUnits.Add(_unit);
+                        hitUnits.Add(_unit);
                 }
             }
         }
@@ -61,18 +62,18 @@ public class SkillSO : ScriptableObject
 
             BattleUnit _unit = null;
 
-            _unit = _field.GetTargetUnit(new Vector2(x, y));
+            _unit = _field.GetUnit(new Vector2(x, y));
 
             if(_unit != null)
             {
                 if (_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
-                    _HitUnits.Add(_unit);
+                    hitUnits.Add(_unit);
             }
         }
         
         foreach (EffectSO es in EffectList)
         {
-            es.Effect(caster, _HitUnits);
+            es.Effect(caster, hitUnits);
         }
     }
 
