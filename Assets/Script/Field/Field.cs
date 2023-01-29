@@ -17,10 +17,7 @@ public class Field : MonoBehaviour
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
             if (items.Value == tile)
-            {
-                Debug.Log("Key found" + items.Key);
                 return items.Key;
-            }
 
         Debug.Log("nope");
         return new Vector2();
@@ -45,7 +42,7 @@ public class Field : MonoBehaviour
         if (IsInRange(coord))
         {
             TileDict[coord].SetColor(Color.red);
-            return TileDict[coord].UnitOnTile;
+            return TileDict[coord].Unit;
         }
 
         return null;
@@ -64,8 +61,10 @@ public class Field : MonoBehaviour
 
         GameObject tile = GameObject.Instantiate(TilePrefabs, transform);
         tile.transform.position = new Vector3(locX, transform.position.y + locY);
+        Tile tileComp = tile.GetComponent<Tile>();
+        tileComp.OnClickAction = TileClick;
 
-        return tile.GetComponent<Tile>();
+        return tileComp;
     }
 
     private bool IsInRange(Vector2 coord)
