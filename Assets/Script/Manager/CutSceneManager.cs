@@ -110,13 +110,13 @@ public class CutSceneManager : MonoBehaviour
                 int dump = 999;
                 if (!atkUnit.GetFlipX())
                 {
-                    dump = unit.LocX;
-                    dump += Mathf.Abs(atkUnit.LocY - unit.LocY) * 100;
+                    dump = (int)unit.Location.x;
+                    dump += Mathf.Abs((int)atkUnit.Location.y - (int)unit.Location.y) * 100;
                 }
                 else
                 {
-                    dump = unit.LocX * -1;
-                    dump += Mathf.Abs(atkUnit.LocY - unit.LocY) * 100;
+                    dump = (int)unit.Location.x * -1;
+                    dump += Mathf.Abs((int)atkUnit.Location.y - (int)unit.Location.y) * 100;
                 }
 
                 if (dump < num)
