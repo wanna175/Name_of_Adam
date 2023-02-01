@@ -41,17 +41,12 @@ public class BattleManager : MonoBehaviour
         else
         {
             _field.ClearAllColor();
-            GetNowUnit().TileSelected((int)coord.x, (int)coord.y);
+            GetNowUnit().TileSelected(coord);
             return;
         }
     }
 
     #region Prepare / Engage Phase
-    public enum Phase
-    {
-        Prepare,
-        Engage
-    }
 
     #region Phase Control
     public enum Phase
@@ -189,8 +184,8 @@ public class BattleManager : MonoBehaviour
     public void BattleOrderReplace()
     {
         _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetSpeed())
-            .ThenByDescending(unit => unit.LocY)
-            .ThenBy(unit => unit.LocX)
+            .ThenByDescending(unit => unit.Location.y)
+            .ThenBy(unit => unit.Location.x)
             .ToList();
     }
 
@@ -230,15 +225,15 @@ public class BattleManager : MonoBehaviour
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(BattleUnit caster, int x, int y)
     {
-        Vector2 current = new Vector2(caster.LocX, caster.LocY);
+        Vector2 current = caster.Location;
         Vector2 dest = current + new Vector2(x, y);
 
         Field.MoveUnit(current, dest);
     }
 
-    public void SetUnit(BattleUnit unit, int x, int y)
+    public void SetUnit(BattleUnit unit, Vector2 coord)
     {
-        Field.EnterTile(unit, new Vector2(x, y));
+        Field.EnterTile(unit, coord);
     }
 
     public BattleUnit GetNowUnit() => _BattleUnitOrderList[0];
@@ -254,12 +249,11 @@ public class BattleManager : MonoBehaviour
         //전달받은 범위에서 유닛을 찾는다.
         foreach (Vector2 arl in AttackRangeList)
         {
-            int vecX = _BattleUnitOrderList[0].LocX + (int)arl.x;
-            int vecY = _BattleUnitOrderList[0].LocY + (int)arl.y;
+            Vector2 vector = _BattleUnitOrderList[0].Location;
 
-            if (0 <= vecX && vecX < 6/*MaxFieldX*/ && 0 <= vecY && vecY < 3/*MaxFieldY*/)
+            if (Field.IsInRange(vector))
             {
-                Vector2 vec = new Vector2(vecY ,vecX);
+                Vector2 vec = vector;
                 if (_field.TileDict[vec].IsOnTile)
                 {
                     FindTileList.Add(vec);
@@ -301,16 +295,14 @@ public class BattleManager : MonoBehaviour
                 {
                     foreach (Vector2 arl in AttackRangeList)
                     {
-                        int vecX = unit.LocX - (int)arl.x;
-                        int vecY = unit.LocY - (int)arl.y;
-                        float vecZ;
+                        Vector3 vector = unit.Location - arl;
                         if (unit.BattleUnitSO.RType == RangeType.Ranged)
-                            vecZ = 0f;//원거리면 0
+                            vector.z = 0f;//원거리면 0
                         else
-                            vecZ = 0.1f;//근거리면 0.1
+                            vector.z = 0.1f;//근거리면 0.1
 
 
-                        AttackTileSet.Add(new Vector3(vecX, vecY, vecZ));
+                        AttackTileSet.Add(vector);
                     }
                 }
             }
@@ -321,13 +313,13 @@ public class BattleManager : MonoBehaviour
             {
                 for (float j = 0; j <= 0.1f; j += 0.1f)
                 {
-                    Vector3 vec1 = new Vector3(_BattleUnitOrderList[0].LocX + i, _BattleUnitOrderList[0].LocY, j);
+                    Vector3 vec1 = new Vector3(_BattleUnitOrderList[0].Location.x + i, _BattleUnitOrderList[0].Location.y, j);
                     if (AttackTileSet.Contains(vec1))
                     {
                         FindTileList.Add(vec1);
                     }
 
-                    Vector3 vec2 = new Vector3(_BattleUnitOrderList[0].LocX, _BattleUnitOrderList[0].LocY + i, j);
+                    Vector3 vec2 = new Vector3(_BattleUnitOrderList[0].Location.x, _BattleUnitOrderList[0].Location.y + i, j);
                     if (AttackTileSet.Contains(vec2))
                     {
                         FindTileList.Add(vec2);
@@ -360,7 +352,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                Vector3 MyPosition =  new Vector3(_BattleUnitOrderList[0].LocX, _BattleUnitOrderList[0].LocY, 0);
+                Vector3 MyPosition = _BattleUnitOrderList[0].Location;
 
                 float dis = 100f;
                 Vector3 minVec = new Vector3();

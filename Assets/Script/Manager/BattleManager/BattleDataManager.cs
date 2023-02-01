@@ -75,12 +75,14 @@ public class BattleDataManager
     public void BattleUnitExit(BattleUnit unit) => BattleUnitList.Remove(unit);
 
     //필드에 유닛을 생성
-    public void CreateBattleUnit(GameObject BattleUnitPrefab, int x, int y)
+    public void CreatBattleUnit(GameObject BattleUnitPrefab, Vector2 coord)
     {
         BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
         BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
-        BattleUnit.setLocate(x, y);
+        BattleUnit.setLocate(coord);
+
+        GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
     }
 
     #endregion

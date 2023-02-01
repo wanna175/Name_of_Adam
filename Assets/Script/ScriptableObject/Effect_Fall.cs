@@ -19,17 +19,18 @@ public class Effect_Fall : EffectSO
         // 공격 범위를 향해 공격
         for (int i = 0; i < RangeList.Count; i++)
         {
-            int x = caster.LocX - (int)RangeList[i].x;
-            int y = caster.LocY - (int)RangeList[i].y;
+            //int x = caster.LocX - (int)RangeList[i].x;
+            //int y = caster.LocY - (int)RangeList[i].y;
+            //Vector2 location = caster.Location;
 
             // 공격 범위가 필드를 벗어나지 않은 경우 공격
-            if (0 <= x && x < 8)
-            {
-                if (0 <= y && y < 3)
-                {
-                    caster.SetFallGauge(1);
-                }
-            }
+            //if (0 <= x && x < 8)
+            //{
+            //    if (0 <= y && y < 3)
+            //    {
+            //        caster.SetFallGauge(1);
+            //    }
+            //}
         }
     }
 
