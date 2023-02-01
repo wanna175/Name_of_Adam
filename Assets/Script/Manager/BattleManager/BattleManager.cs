@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour
     public BattleDataManager BattleDataMNG => _BattleDataMNG;
 
     private UI_WatingLine _WatingLine;
+    private UIManager _UIMNG;
     private Field _field;
     public Field Field => _field;
 
@@ -25,6 +26,7 @@ public class BattleManager : MonoBehaviour
         
         _BattleUnitOrderList = new List<BattleUnit>();
         _WatingLine = GameManager.UIMNG.WatingLine;
+        _UIMNG = GameManager.UIMNG;
         _field = GameObject.Find("Field").GetComponent<Field>().SetClickEvent(OnClickTile);
 
         StartEnter();
@@ -38,19 +40,46 @@ public class BattleManager : MonoBehaviour
         {
 
         }
+        else if (CurrentPhase == Phase.Start)
+        {
+                //범위 외
+                if ((int)coord.x > 3 && (int)coord.y > 2)
+                {
+                    Debug.Log("out of range");
+                }
+                else
+                {
+                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost))
+                    {
+                        _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
+
+                        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+                        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+
+                        BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
+                        BattleUnit.setLocate((int)coord.x, (int)coord.y);
+
+                        GameManager.BattleMNG.Field.EnterTile(BattleUnit, new Vector2((int)coord.x, (int)coord.y));
+
+                        BattleUnit.Init();
+
+                        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+                        _UIMNG.Hands.ClearHand();
+                    }
+                    else
+                    {
+                        //마나 부족
+                        Debug.Log("not enough mana");
+                    }
+                }
+
+        }
         else
         {
             _field.ClearAllColor();
             GetNowUnit().TileSelected((int)coord.x, (int)coord.y);
             return;
         }
-    }
-
-    #region Prepare / Engage Phase
-    public enum Phase
-    {
-        Prepare,
-        Engage
     }
 
     #region Phase Control
@@ -225,7 +254,6 @@ public class BattleManager : MonoBehaviour
         _WatingLine.SetWatingLine();
         UseUnitSkill();
     }
-    #endregion
     
     // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(BattleUnit caster, int x, int y)

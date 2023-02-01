@@ -50,9 +50,9 @@ public class UI_Hands : MonoBehaviour
         //handIndex는 1부터 시작하기에 -1 해야함
         DeckUnit returnUnit;
 
-        returnUnit = _HandList[handIndex-1].RemoveHandDeckUnit();
+        returnUnit = _HandList[handIndex].RemoveHandDeckUnit();
 
-        for (int i = (handIndex-1)+1; i < 4; i++)
+        for (int i = handIndex+1; i < 4; i++)
         {
             _HandList[i-1].SetHandDeckUnit(_HandList[i].RemoveHandDeckUnit());
         }
@@ -88,11 +88,8 @@ public class UI_Hands : MonoBehaviour
         _ClickedHand = _HandList.IndexOf(hand);
         _ClickedUnit = hand.GetHandDeckUnit();
 
-        if (_BattleDataMNG.CanUseMana(_ClickedUnit.GetUnitSO().ManaCost)){
-
-        }
-        else
-        {
+        if (!_BattleDataMNG.CanUseMana(_ClickedUnit.GetUnitSO().ManaCost)){
+            Debug.Log("not enough mana");
             ClearHand();
         }
     }

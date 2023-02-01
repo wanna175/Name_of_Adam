@@ -74,17 +74,6 @@ public class BattleDataManager
 
     public void BattleUnitExit(BattleUnit unit) => BattleUnitList.Remove(unit);
 
-    //필드에 유닛을 생성
-    public void CreatBattleUnit(GameObject BattleUnitPrefab, int x, int y)
-    {
-        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
-
-        BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
-        BattleUnit.setLocate(x, y);
-
-        GameManager.BattleMNG.Field.EnterTile(BattleUnit, new Vector2(x, y));
-    }
-
     #endregion
 
     #region Mana
