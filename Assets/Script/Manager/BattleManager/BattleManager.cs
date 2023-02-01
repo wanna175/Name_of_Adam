@@ -10,10 +10,8 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    #region BattleDataManager
     private BattleDataManager _BattleDataMNG;
     public BattleDataManager BattleDataMNG => _BattleDataMNG;
-    #endregion
 
     private UI_WatingLine _WatingLine;
     private Field _field;
@@ -27,9 +25,14 @@ public class BattleManager : MonoBehaviour
         
         _BattleUnitOrderList = new List<BattleUnit>();
         _WatingLine = GameManager.UIMNG.WatingLine;
-        _field = GameObject.Find("Field").GetComponent<Field>();
+        _field = GameObject.Find("Field").GetComponent<Field>().SetClickEvent(OnClickTile);
 
         PrepareStart();
+    }
+
+    private void OnClickTile(Vector2 coord, Tile tile)
+    {
+        Debug.Log($"{coord} Click");
     }
 
     #region StageControl
@@ -156,7 +159,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (Vector2 ftl in FindTileList)
             {
-                if (_field.TileDict[ftl].UnitOnTile.BattleUnitSO.RType == RangeType.Ranged)
+                if (_field.TileDict[ftl].Unit.BattleUnitSO.RType == RangeType.Ranged)
                 {
                     RangedVectorList.Add(ftl);
                 }
