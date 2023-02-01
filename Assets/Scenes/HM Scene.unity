@@ -2010,7 +2010,7 @@ GameObject:
   - component: {fileID: 1615848895}
   - component: {fileID: 1615848894}
   m_Layer: 5
-  m_Name: TurnButton
+  m_Name: PhaseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
