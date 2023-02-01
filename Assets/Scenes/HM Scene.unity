@@ -1527,11 +1527,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: _CurHP
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: _MaxHP
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4677962708059299424, guid: 43615bbb940720a4dbd941c28225a831, type: 3}
       propertyPath: BattleUnitSO
@@ -2420,7 +2420,7 @@ GameObject:
   - component: {fileID: 1932546685}
   - component: {fileID: 1932546684}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: '@GameManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

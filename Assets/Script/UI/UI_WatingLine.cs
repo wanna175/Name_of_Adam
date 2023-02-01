@@ -15,7 +15,6 @@ public class UI_WatingLine : MonoBehaviour
     public void Start()
     {
         _WatingUnitList = new List<UI_WatingUnit>();
-        //임시입니다. 진짜 임시입니다 
 
         for (int i = 0; i < 8; i++)
         {
