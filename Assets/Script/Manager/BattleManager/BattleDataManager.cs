@@ -73,7 +73,6 @@ public class BattleDataManager
     public void BattleUnitEnter(BattleUnit unit) => BattleUnitList.Add(unit);
 
     public void BattleUnitExit(BattleUnit unit) => BattleUnitList.Remove(unit);
-
     #endregion
 
     #region Mana

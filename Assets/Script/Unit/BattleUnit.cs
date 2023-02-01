@@ -27,10 +27,9 @@ public class BattleUnit : MonoBehaviour
 
     BattleUnitState state;
 
-    #region Loc X, Y
-    [SerializeField] int _LocX, _LocY;
-    public int LocX => _LocX;
-    public int LocY => _LocY;
+    #region Location
+    [SerializeField] Vector2 _location;
+    public Vector2 Location => _location;
     #endregion
     #region HP
     [SerializeField] float _MaxHP, _CurHP;
@@ -73,7 +72,7 @@ public class BattleUnit : MonoBehaviour
 
         // 적군일 경우 x축 뒤집기
         _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
-        setLocate(LocX, LocY);
+        setLocate(Location);
     }
 
     public void Init()
@@ -178,9 +177,9 @@ public class BattleUnit : MonoBehaviour
     #region SetMove
 
     //오브젝트 생성 시, 최초 위치 설정
-    public void setLocate(int x, int y)
+    public void setLocate(Vector2 coord)
     {
-        _BattleMNG.SetUnit(this, x, y);
+        _BattleMNG.SetUnit(this, coord);
     }
 
     #endregion
@@ -192,36 +191,6 @@ public class BattleUnit : MonoBehaviour
         _BattleDataMNG.BattleUnitExit(this);
         _BattleMNG.BattleOrderRemove(this);
         Destroy(gameObject);
-    }
-
-    #endregion
-
-    #region Fall
-
-    // 타락 게이지가 늘어나거나 줄어들 때
-    public void SetFallGauge(int value)
-    {
-        int gauge = BattleUnitSO.FallGauge;
-        int maxGauge = 3;
-
-        gauge += value;
-        if (gauge < 0) gauge = 0;
-        else if (gauge >= maxGauge)
-        {
-            Fall();
-            gauge = 0;
-        }
-
-        BattleUnitSO.FallGauge = gauge;
-    }
-
-    void Fall()
-    {
-        BattleUnitSO.Fall = true;
-        if (!BattleUnitSO.MyTeam) // 적이라면
-            BattleUnitSO.MyTeam = true; // 아군으로
-        else
-            BattleUnitSO.MyTeam = false; // 아군이면 적으로
     }
 
     #endregion
@@ -242,13 +211,12 @@ public class BattleUnit : MonoBehaviour
         transform.position = dest;
     }
 
-    public void TileSelected(int x, int y)
+    public void TileSelected(Vector2 coord)
     {
         switch (state)
         {
             case BattleUnitState.Move:
-                x -= LocX;
-                y -= LocY;
+                coord -= Location;
             
                 //_BattleMNG.MoveLotate(this, x, y);
                 SetState(BattleUnitState.AttackWait);
@@ -256,9 +224,9 @@ public class BattleUnit : MonoBehaviour
                 break;
 
             case BattleUnitState.AttackWait:
-                _SelectTile = new Vector2(x, y);
+                _SelectTile = coord;
 
-                if (_SelectTile == new Vector2(LocX, LocY))
+                if (_SelectTile == Location)
                     _BattleMNG.UseNextUnit();
                 else
                     BattleUnitSO.use(this);

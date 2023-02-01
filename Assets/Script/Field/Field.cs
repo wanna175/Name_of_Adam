@@ -68,7 +68,7 @@ public class Field : MonoBehaviour
     }
 
     // 타일이 최대 범위를 벗어났는지 확인
-    private bool IsInRange(Vector2 coord)
+    public bool IsInRange(Vector2 coord)
     {
         if (TileDict.ContainsKey(coord))
             return true;
@@ -110,7 +110,7 @@ public class Field : MonoBehaviour
 
     public void SetTileColor(List<Vector2> _vecList, BattleUnit _unit, Color clr)
     {
-        Vector2 unitVec = new Vector2(_unit.LocX, _unit.LocY);
+        Vector2 unitVec = _unit.Location;
 
         foreach (Vector2 vec in _vecList)
         {

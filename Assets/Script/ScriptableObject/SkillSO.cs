@@ -35,11 +35,10 @@ public class SkillSO : ScriptableObject
             for (int i = 0; i < rangeList.Count; i++)
             {
                 BattleUnit _unit = null;
-                int x = caster.LocX - (int)rangeList[i].x;
-                int y = caster.LocY - (int)rangeList[i].y;
+                Vector2 location = caster.Location;
 
                 // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
-                _unit = _field.GetUnit(new Vector2(x, y));
+                _unit = _field.GetUnit(location);
 
                 if (_unit != null)
                 {
@@ -53,12 +52,6 @@ public class SkillSO : ScriptableObject
 
             int x = (int)caster.SelectTile.x;
             int y = (int)caster.SelectTile.y;
-
-            if (x == -1 && y == -1)
-            {
-                x = caster.LocX;
-                y = caster.LocY;
-            }
 
             BattleUnit _unit = null;
 
