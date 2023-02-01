@@ -57,7 +57,7 @@ public class BattleManager : MonoBehaviour
                         BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
                         BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
-                        BattleUnit.setLocate((int)coord.x, (int)coord.y);
+                        BattleUnit.setLocate(coord);
 
                         GameManager.BattleMNG.Field.EnterTile(BattleUnit, new Vector2((int)coord.x, (int)coord.y));
 

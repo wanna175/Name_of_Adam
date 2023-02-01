@@ -83,7 +83,7 @@ public class BattleUnit : MonoBehaviour
 
         // 적군일 경우 x축 뒤집기
         _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
-        setLocate(LocX, LocY);
+        setLocate(Location);
     }
 
 
@@ -180,6 +180,7 @@ public class BattleUnit : MonoBehaviour
     public void setLocate(Vector2 coord)
     {
         _BattleMNG.SetUnit(this, coord);
+        _location = coord;
     }
 
     #endregion
