@@ -33,7 +33,40 @@ public class BattleManager : MonoBehaviour
     private void OnClickTile(Vector2 coord, Tile tile)
     {
         Debug.Log($"{coord} Click");
+
+        if (CurrentPhase == Phase.Prepare)
+        {
+
+        }
+        else
+        {
+            _field.ClearAllColor();
+            GetNowUnit().TileSelected((int)coord.x, (int)coord.y);
+            return;
+        }
     }
+
+    #region Prepare / Engage Phase
+    public enum Phase
+    {
+        Prepare,
+        Engage
+    }
+
+    public Phase CurrentPhase = Phase.Prepare;
+
+    public void PhaseChange()
+    {
+        if (CurrentPhase == Phase.Prepare)
+        {
+            CurrentPhase = Phase.Engage;
+        }
+        else
+        {
+            CurrentPhase = Phase.Prepare;
+        }
+    }
+    #endregion
 
     #region StageControl
     public void PrepareStart()
@@ -47,7 +80,7 @@ public class BattleManager : MonoBehaviour
     public void PrepareEnd()
     {
         Debug.Log("Prepare End");
-        _BattleDataMNG.PhaseChange();     
+        PhaseChange();     
         //UI 들어감
         //GameManager.InputMNG.Hands.begoneHands();
         //UI 사용 불가
@@ -80,7 +113,7 @@ public class BattleManager : MonoBehaviour
     public void EngageEnd()
     {
         Debug.Log("Engage End");
-        _BattleDataMNG.PhaseChange();
+        PhaseChange();
         //UI 들어감
         //UI 사용 불가
         _BattleDataMNG.ChangeMana(2);
@@ -128,6 +161,20 @@ public class BattleManager : MonoBehaviour
         UseUnitSkill();
     }
     #endregion
+    
+    // 이동 경로를 받아와 이동시킨다
+    public void MoveLotate(BattleUnit caster, int x, int y)
+    {
+        Vector2 current = new Vector2(caster.LocX, caster.LocY);
+        Vector2 dest = current + new Vector2(x, y);
+
+        Field.MoveUnit(current, dest);
+    }
+
+    public void SetUnit(BattleUnit unit, int x, int y)
+    {
+        Field.EnterTile(unit, new Vector2(x, y));
+    }
 
     public BattleUnit GetNowUnit() => _BattleUnitOrderList[0];
 

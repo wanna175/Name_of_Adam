@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         // 디버그용 입력기
         if (Input.GetMouseButtonDown(1))
         {
+            BattleMNG.PrepareEnd();
             BattleMNG.EngageStart();
         }
         if (Input.GetKeyDown(KeyCode.Q))

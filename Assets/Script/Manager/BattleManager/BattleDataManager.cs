@@ -24,28 +24,6 @@ public class BattleDataManager
     }
     #endregion
 
-    #region Prepare / Engage Phase
-    public enum Phase
-    {
-        Prepare,
-        Engage
-    }
-
-    public Phase CurrentPhase = Phase.Prepare;
-
-    public void PhaseChange()
-    {
-        if (CurrentPhase == Phase.Prepare)
-        {
-            CurrentPhase = Phase.Engage;
-        }
-        else
-        {
-            CurrentPhase = Phase.Prepare;
-        }
-    }
-    #endregion
-
     #region DeckUnitList
     private List<DeckUnit> _DeckUnitList = new List<DeckUnit>();
     public List<DeckUnit> DeckUnitList => _DeckUnitList;

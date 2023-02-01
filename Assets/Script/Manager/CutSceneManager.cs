@@ -82,6 +82,7 @@ public class CutSceneManager : MonoBehaviour
         CSData.ZoomLocation.z = Camera.main.transform.position.z;
 
         CSData.DefaultZoomSize = Camera.main.fieldOfView;
+
         // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
         // 일단 타입에 따라 임의로 부여함
         if (CSData.ATKType == AttackType.rangeAttack)
@@ -172,7 +173,6 @@ public class CutSceneManager : MonoBehaviour
     #region Attack & Animation
 
     // 확대 후 컷씬
-    // 여기도 겹치는게 많음, 합칠 수 있을거같은데
     public IEnumerator AttackCutScene(CutSceneData CSData)
     {
         // 줌 시간 제외, 확대하는 시간은 총 1초

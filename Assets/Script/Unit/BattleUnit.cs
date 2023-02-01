@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class BattleUnit : MonoBehaviour
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
     CutSceneManager _CutSceneMNG;
-    Field _field;
 
     SpriteRenderer _SR;
     Animator _Animator;
@@ -53,13 +53,13 @@ public class BattleUnit : MonoBehaviour
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
 
+    public event Action<List<Vector2>, BattleUnit, Color> SetTIleColor;
 
     private void Awake()
     {
         _BattleMNG = GameManager.BattleMNG;
         _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
         _CutSceneMNG = GameManager.CutSceneMNG;
-        _field = GameManager.BattleMNG.Field;
 
         _SR = GetComponent<SpriteRenderer>();
         _Animator = GetComponent<Animator>();
@@ -73,7 +73,7 @@ public class BattleUnit : MonoBehaviour
 
         // 적군일 경우 x축 뒤집기
         _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
-        MoveOnTile();
+        setLocate(LocX, LocY);
     }
 
     // 상태 바꾸는 애를 하나로 통합, 애니메이션 바꾸는애도 동일하게
@@ -98,7 +98,7 @@ public class BattleUnit : MonoBehaviour
                 break;
 
             case BattleUnitState.AttackWait:
-                //_field.SetCanSelect(BattleUnitSO.GetRange(), this);
+                //_field.SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
 
                 break;
 
@@ -117,7 +117,7 @@ public class BattleUnit : MonoBehaviour
     #region MoveState
 
     // 이동가능한 범위를 가져온다.
-    void GetCanMoveRange()
+    public List<Vector2> GetCanMoveRange()
     {
         List<Vector2> vecList = new List<Vector2>();
         vecList.Add(new Vector2(0, 0));
@@ -131,31 +131,7 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        //_field.SetCanSelect(vecList, this);
-    }
-
-    // 이동 경로를 받아와 이동시킨다
-    public void MoveLotate(int x, int y)
-    {
-        _field.ExitTile(new Vector2(LocX, LocY));
-
-        int dumpX = _LocX;
-        int dumpY = _LocY;
-
-        // 타일 범위를 벗어난 이동이면 이동하지 않음
-        if (0 <= _LocX + x && _LocX + x < 8)
-            dumpX += x;
-        if (0 <= _LocY + y && _LocY + y < 3)
-            dumpY += y;
-        
-        // 이동할 곳이 비어있지 않다면 이동하지 않음
-        if (!_field.TileDict[new Vector2(dumpX, dumpY)].IsOnTile)
-        {
-            _LocX = dumpX;
-            _LocY = dumpY;
-        }
-
-        MoveOnTile();
+        return vecList;
     }
 
     #endregion
@@ -192,21 +168,7 @@ public class BattleUnit : MonoBehaviour
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(int x, int y)
     {
-        _LocX = x;
-        _LocY = y;
-
-        MoveOnTile();
-    }
-
-    // 타일 위로 이동
-    void MoveOnTile()
-    {
-        Debug.Log("MoveOnTile : " + LocX + ", " + LocY);
-        Vector3 vec = _field.GetTilePosition(new Vector2(LocX, LocY));
-
-        // 현재 타일에 내가 들어왔다고 알려줌 
-        transform.position = vec;
-        _field.EnterTile(this, new Vector2(LocX, LocY));
+        _BattleMNG.SetUnit(this, x, y);
     }
 
     #endregion
@@ -263,6 +225,11 @@ public class BattleUnit : MonoBehaviour
         //return _stigma.Use(stat);
     }
 
+    public void SetPosition(Vector3 dest)
+    {
+        transform.position = dest;
+    }
+
     public void TileSelected(int x, int y)
     {
         switch (state)
@@ -270,8 +237,8 @@ public class BattleUnit : MonoBehaviour
             case BattleUnitState.Move:
                 x -= LocX;
                 y -= LocY;
-
-                MoveLotate(x, y);
+            
+                //_BattleMNG.MoveLotate(this, x, y);
                 SetState(BattleUnitState.AttackWait);
 
                 break;
