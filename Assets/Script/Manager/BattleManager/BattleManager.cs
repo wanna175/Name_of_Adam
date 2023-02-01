@@ -47,11 +47,6 @@ public class BattleManager : MonoBehaviour
     }
 
     #region Prepare / Engage Phase
-    public enum Phase
-    {
-        Prepare,
-        Engage
-    }
 
     #region Phase Control
     public enum Phase
