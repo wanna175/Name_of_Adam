@@ -6,7 +6,6 @@ using System;
 
 public class Field : MonoBehaviour
 {
-
     [SerializeField] GameObject TilePrefabs;
     [SerializeField] GameObject UnitPrefabs;
 
@@ -26,6 +25,7 @@ public class Field : MonoBehaviour
     // 필드의 생성을 위한 필드의 위치
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
     public Vector3 FieldRotation => new Vector3(16, 0, 0);
+
     public Action<Vector2, Tile> OnClickAction;
 
     private void Awake()
@@ -47,10 +47,8 @@ public class Field : MonoBehaviour
     public BattleUnit GetUnit(Vector2 coord)
     {
         if (IsInRange(coord))
-        {
-            TileDict[coord].SetColor(Color.red);
             return TileDict[coord].Unit;
-        }
+
         return null;
     }
 
@@ -69,11 +67,22 @@ public class Field : MonoBehaviour
         return Instantiate(TilePrefabs, transform).GetComponent<Tile>().Init(tilePos, TileClick);
     }
 
+    // 타일이 최대 범위를 벗어났는지 확인
     private bool IsInRange(Vector2 coord)
     {
         if (TileDict.ContainsKey(coord))
             return true;
         return false;
+    }
+
+    public void MoveUnit(Vector2 current, Vector2 dest)
+    {
+        if (IsInRange(dest) == false)
+            return;
+
+        BattleUnit unit = TileDict[current].Unit;
+        ExitTile(current);
+        EnterTile(unit, dest);
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
@@ -99,9 +108,25 @@ public class Field : MonoBehaviour
         }
     } 
 
+    public void SetTileColor(List<Vector2> _vecList, BattleUnit _unit, Color clr)
+    {
+        Vector2 unitVec = new Vector2(_unit.LocX, _unit.LocY);
+
+        foreach (Vector2 vec in _vecList)
+        {
+            Vector2 dump = unitVec - vec;
+
+            if(IsInRange(dump))
+                TileDict[dump].SetColor(clr);
+        }
+    }
+
+
     public void EnterTile(BattleUnit unit, Vector2 coord)
     {
         TileDict[coord].EnterTile(unit);
+
+        unit.SetPosition(GetTilePosition(coord));
     }
 
     public void ExitTile(Vector2 coord)

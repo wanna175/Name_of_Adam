@@ -33,6 +33,24 @@ public class BattleManager : MonoBehaviour
     private void OnClickTile(Vector2 coord, Tile tile)
     {
         Debug.Log($"{coord} Click");
+
+        if (CurrentPhase == Phase.Prepare)
+        {
+
+        }
+        else
+        {
+            _field.ClearAllColor();
+            GetNowUnit().TileSelected((int)coord.x, (int)coord.y);
+            return;
+        }
+    }
+
+    #region Prepare / Engage Phase
+    public enum Phase
+    {
+        Prepare,
+        Engage
     }
 
     #region Phase Control
@@ -206,6 +224,21 @@ public class BattleManager : MonoBehaviour
         _BattleUnitOrderList.RemoveAt(0);
         _WatingLine.SetWatingLine();
         UseUnitSkill();
+    }
+    #endregion
+    
+    // 이동 경로를 받아와 이동시킨다
+    public void MoveLotate(BattleUnit caster, int x, int y)
+    {
+        Vector2 current = new Vector2(caster.LocX, caster.LocY);
+        Vector2 dest = current + new Vector2(x, y);
+
+        Field.MoveUnit(current, dest);
+    }
+
+    public void SetUnit(BattleUnit unit, int x, int y)
+    {
+        Field.EnterTile(unit, new Vector2(x, y));
     }
 
     public BattleUnit GetNowUnit() => _BattleUnitOrderList[0];
