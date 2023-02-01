@@ -27,7 +27,7 @@ public class BattleManager : MonoBehaviour
         _WatingLine = GameManager.UIMNG.WatingLine;
         _field = GameObject.Find("Field").GetComponent<Field>().SetClickEvent(OnClickTile);
 
-        PrepareStart();
+        StartEnter();
     }
 
     private void OnClickTile(Vector2 coord, Tile tile)
@@ -53,43 +53,72 @@ public class BattleManager : MonoBehaviour
         Engage
     }
 
-    public Phase CurrentPhase = Phase.Prepare;
-
-    public void PhaseChange()
+    #region Phase Control
+    public enum Phase
     {
-        if (CurrentPhase == Phase.Prepare)
+        Start,
+        Prepare,
+        Engage
+    }
+
+    private Phase _CurrentPhase;
+    public Phase CurrentPhase => _CurrentPhase;
+
+    public void PhaseUpdate()
+    {
+        if (_CurrentPhase == Phase.Prepare)
         {
-            CurrentPhase = Phase.Engage;
+            PrepareExit();
+            EngageEnter();
         }
-        else
+        else if (_CurrentPhase == Phase.Engage)
         {
-            CurrentPhase = Phase.Prepare;
+            EngageExit();
+            PrepareEnter();
+        }
+        else if(_CurrentPhase == Phase.Start)
+        {
+            StartExit();
+            EngageEnter();
         }
     }
-    #endregion
 
-    #region StageControl
-    public void PrepareStart()
+    private void PhaseChanger(Phase phase)
     {
-        Debug.Log("Prepare Start");
+        _CurrentPhase = phase;
+    }
+
+    public void StartEnter()
+    {
+        //전투시 맨 처음 Prepare 단계
+        Debug.Log("Start Enter");
+        PhaseChanger(Phase.Start);
+    }
+
+    public void StartExit()
+    {
+        Debug.Log("Start Exit");
+    }
+
+    public void PrepareEnter()
+    {
+        Debug.Log("Prepare Enter");
+        PhaseChanger(Phase.Prepare);
         //UI 튀어나옴
-        //GameManager.InputMNG.Hands.comebackHands();
         //UI가 작동할 수 있게 해줌
     }
 
-    public void PrepareEnd()
+    public void PrepareExit()
     {
-        Debug.Log("Prepare End");
-        PhaseChange();     
+        Debug.Log("Prepare Exit");
         //UI 들어감
-        //GameManager.InputMNG.Hands.begoneHands();
         //UI 사용 불가
     }
 
-    public void EngageStart()
+    public void EngageEnter()
     {
-        Debug.Log("Engage Start");
-        
+        Debug.Log("Engage Enter");
+        PhaseChanger(Phase.Engage);
         //UI 튀어나옴
         //UI가 작동할 수 있게 해줌
 
@@ -110,16 +139,52 @@ public class BattleManager : MonoBehaviour
         UseUnitSkill();
     }
 
-    public void EngageEnd()
+    public void EngageExit()
     {
-        Debug.Log("Engage End");
-        PhaseChange();
+        Debug.Log("Engage Exit");
         //UI 들어감
         //UI 사용 불가
         _BattleDataMNG.ChangeMana(2);
+        BattleOverCheck();
+    }
+    #endregion
+
+    public void BattleOverCheck()
+    {
+        int MyUnit = 0;
+        int EnemyUnit = 0;
+        foreach(BattleUnit BUnit in BattleDataMNG.BattleUnitList)
+        {
+            if (BUnit.BattleUnitSO.MyTeam)//아군이면
+                MyUnit++;
+            else
+                EnemyUnit++;
+        }
+
+        MyUnit += BattleDataMNG.DeckUnitList.Count;
+        //EnemyUnit 대기 중인 리스트만큼 추가하기
+
+        if (MyUnit == 0)
+        {
+            GameOver();
+        }
+        else if(EnemyUnit == 0)
+        {
+            BattleOver();
+        }
     }
 
-        // BattleUnitList를 정렬
+    public void BattleOver()
+    {
+        Debug.Log("YOU WIN");
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("YOU LOSE");
+    }
+
+    // BattleUnitList를 정렬
     // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
     public void BattleOrderReplace()
     {
@@ -140,7 +205,7 @@ public class BattleManager : MonoBehaviour
     {
         if (_BattleUnitOrderList.Count <= 0)
         {
-            EngageEnd();
+            PhaseUpdate();
             return;
         }
 
@@ -178,6 +243,7 @@ public class BattleManager : MonoBehaviour
 
     public BattleUnit GetNowUnit() => _BattleUnitOrderList[0];
 
+    #region AI
     public void BattleUnitAI()
     {
         List<Vector2> FindTileList = new List<Vector2>();
@@ -331,4 +397,5 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+    #endregion
 }

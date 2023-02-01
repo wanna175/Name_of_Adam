@@ -61,7 +61,7 @@ public class Field : MonoBehaviour
         float disY = transform.localScale.y / MaxFieldY;
 
         float locX = (disX * x) + (disX * 0.5f);
-        float locY = disY * y;
+        float locY = disY * y + 1.5f;
 
         Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
         return Instantiate(TilePrefabs, transform).GetComponent<Tile>().Init(tilePos, TileClick);
