@@ -168,6 +168,8 @@ public class BattleUnit : MonoBehaviour
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(int x, int y)
     {
+        _LocX = x; _LocY = y;
+
         _BattleMNG.SetUnit(this, x, y);
     }
 
