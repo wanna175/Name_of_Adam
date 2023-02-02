@@ -52,7 +52,7 @@ public class BattleUnit : MonoBehaviour
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
 
-    public event Action<List<Vector2>, BattleUnit, Color> SetTIleColor;
+    public Action<List<Vector2>, BattleUnit, Color> SetTileColor;
 
     private void Awake()
     {
@@ -104,12 +104,12 @@ public class BattleUnit : MonoBehaviour
                 break;
 
             case BattleUnitState.Move:
-                GetCanMoveRange();
+                SetTileColor(GetCanMoveRange(), this, Color.yellow);
 
                 break;
 
             case BattleUnitState.AttackWait:
-                //_field.SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
+                SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
 
                 break;
 
@@ -179,8 +179,8 @@ public class BattleUnit : MonoBehaviour
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(Vector2 coord)
     {
-        _BattleMNG.SetUnit(this, coord);
         _location = coord;
+        _BattleMNG.SetUnit(this, coord);
     }
 
     #endregion
@@ -218,13 +218,27 @@ public class BattleUnit : MonoBehaviour
         {
             case BattleUnitState.Move:
                 coord -= Location;
+
+                if (!GetCanMoveRange().Contains(coord))
+                {
+                    SetTileColor(GetCanMoveRange(), this, Color.yellow);
+                    break;
+                }
             
-                //_BattleMNG.MoveLotate(this, x, y);
+                _BattleMNG.MoveLotate(this, coord);
                 SetState(BattleUnitState.AttackWait);
 
                 break;
 
             case BattleUnitState.AttackWait:
+                Vector2 dump = coord - Location;
+                Debug.Log(dump);
+                if (!BattleUnitSO.GetRange().Contains(dump))
+                {
+                    SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
+                    break;
+                }
+
                 _SelectTile = coord;
 
                 if (_SelectTile == Location)

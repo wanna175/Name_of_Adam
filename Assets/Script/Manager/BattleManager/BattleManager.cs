@@ -112,7 +112,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void PhaseChanger(Phase phase)
+    public void PhaseChanger(Phase phase)
     {
         _CurrentPhase = phase;
     }
@@ -262,10 +262,10 @@ public class BattleManager : MonoBehaviour
     }
     
     // 이동 경로를 받아와 이동시킨다
-    public void MoveLotate(BattleUnit caster, int x, int y)
+    public void MoveLotate(BattleUnit caster, Vector2 coord)
     {
         Vector2 current = caster.Location;
-        Vector2 dest = current + new Vector2(x, y);
+        Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
     }

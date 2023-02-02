@@ -79,10 +79,13 @@ public class Field : MonoBehaviour
     {
         if (IsInRange(dest) == false)
             return;
+        if (TileDict[dest].IsOnTile)
+            return;
 
         BattleUnit unit = TileDict[current].Unit;
         ExitTile(current);
-        EnterTile(unit, dest);
+        unit.setLocate(dest);
+        //EnterTile(unit, dest);
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
@@ -114,7 +117,7 @@ public class Field : MonoBehaviour
 
         foreach (Vector2 vec in _vecList)
         {
-            Vector2 dump = unitVec - vec;
+            Vector2 dump = unitVec + vec;
 
             if(IsInRange(dump))
                 TileDict[dump].SetColor(clr);
