@@ -92,16 +92,22 @@ public class BattleManager : MonoBehaviour
         {
             PrepareExit();
             EngageEnter();
+
+            PhaseChanger(Phase.Engage);
         }
         else if (_CurrentPhase == Phase.Engage)
         {
             EngageExit();
             PrepareEnter();
+
+            PhaseChanger(Phase.Prepare);
         }
         else if(_CurrentPhase == Phase.Start)
         {
             StartExit();
             EngageEnter();
+
+            PhaseChanger(Phase.Engage);
         }
     }
 
@@ -239,7 +245,8 @@ public class BattleManager : MonoBehaviour
 
         if (0 < _BattleUnitOrderList[0].CurHP)
         {
-            _BattleUnitOrderList[0].SetState(BattleUnitState.Move);
+            _BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
+            _BattleUnitOrderList[0].UpdateState();
         }
         else
         {

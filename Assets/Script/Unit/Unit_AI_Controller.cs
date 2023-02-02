@@ -34,7 +34,7 @@ public class Unit_AI_Controller : MonoBehaviour
     #region AISet
     protected void SetFindTileList()
     {
-        //현재 위치에서 공격범위 내의 유닛을 찾는다.
+        // 移 怨듦꺽踰 댁  李얜.
 
         FindTileList.Clear();
         RangedVectorList.Clear();
@@ -50,7 +50,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 if (_field.TileDict[vec].IsOnTile)
                 {
                     FindTileList.Add(vec);
-                    // 만약 if 한번 더 넣어도 되면 여기서 원거리 판별
+                    // 留 if 踰  ｌ대 硫 ш린 嫄곕━ 蹂
                 }
             }
         }
@@ -63,12 +63,12 @@ public class Unit_AI_Controller : MonoBehaviour
             }
         }
 
-        // 유닛 내용은 FindTileList에 저장 및 원거리 리스트 저장
+        //  댁⑹ FindTileList � 諛 嫄곕━ 由ъㅽ �
     }
 
     protected bool IsUnitExist()
     {
-        // 유닛이 범위내에 있는지 확인
+        //  踰댁 吏 
         return FindTileList.Count > 0;
     }
 
@@ -79,6 +79,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void SetDistance()
     {
+        //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         foreach (BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
             if (unit.BattleUnitSO.Team == Team.Player)
@@ -87,9 +88,9 @@ public class Unit_AI_Controller : MonoBehaviour
                 {
                     Vector3 vector = unit.Location - arl;
                     if (unit.BattleUnitSO.RType == RangeType.Ranged)
-                        vector.z = 0f;//원거리면 0
+                        vector.z = 0f;//嫄곕━硫 0
                     else
-                        vector.z = 0.1f;//근거리면 0.1
+                        vector.z = 0.1f;//洹쇨굅由щ㈃ 0.1
 
 
                     AttackTileSet.Add(vector);
@@ -100,8 +101,6 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void SearchAttackableTile()
     {
-
-        //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         //유닛을 때릴 수 있는 타일이 이동 범위 내에 있는 지 확인한다.
         //단 위, 아래, 왼, 오른쪽만 이동 가능하다고 가정
 
@@ -151,9 +150,9 @@ public class Unit_AI_Controller : MonoBehaviour
                 minVec = v;
             }
         }
-        //가장 가까운 타일 = minVec으로 이동
+        //媛 媛源  = minVec쇰 대
 
-        dis = 100f;//재활용
+        dis = 100f;//ы
         Vector3 moveVec = new Vector3();
         for (int i = -1; i <= 1; i += 2)
         {
@@ -179,8 +178,7 @@ public class Common_Unit_AI_Controller : Unit_AI_Controller
 {
     public override void AI_Action()
     {
-
-        //전달받은 범위에서 유닛을 찾는다.
+        //�щ 踰  李얜.
         foreach (Vector2 arl in AttackRangeList)
         {
             Vector2 vector = caster.Location;
@@ -194,52 +192,45 @@ public class Common_Unit_AI_Controller : Unit_AI_Controller
                 }
             }
         }
+        //전달받은 범위에서 유닛을 찾는다.
+        SetFindTileList();
 
         //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
-        if (FindTileList.Count > 0)
+        if (IsUnitExist())
         {
-            foreach (Vector2 ftl in FindTileList)
+            if (IsRangedUnitExist())
             {
-                if (_field.TileDict[ftl].Unit.BattleUnitSO.RType == RangeType.Ranged)
-                {
-                    RangedVectorList.Add(ftl);
-                }
-            }
-
-            if (RangedVectorList.Count > 0)
-            {
-                //원거리 유닛이 있을 경우
+                //嫄곕━   寃쎌
                 //Random.Range(0, RangeList.Count);
             }
             else
             {
-                //근거리 유닛만 있을 경우
+                //洹쇨굅由 留  寃쎌
                 //Random.Range(0, findUnitList.Count);
             }
         }
         else
         {
-            //공격 범위 내에서 찾은 유닛이 없으면 이동하고 공격한다
+            //怨듦꺽 踰 댁 李얠  쇰㈃ 대怨 怨듦꺽
             SetDistance();
             SearchAttackableTile();
             if (IsUnitExist())
             {
                 if (IsRangedUnitExist())
                 {
-                    //원거리가 있음
+                    //嫄곕━媛 
                     //Random.Range(0, RangedVectorList.Count);
-                    
                 }
                 else
                 {
-                    //근거리만 있음
+                    //洹쇨굅由щ 
                     //Random.Range(0, FindTileList.Count);
                 }
             }
             else
             {
                 OrderbyDistance();
-                //moveVec으로 이동
+                //moveVec쇰 대
             }
         }
     }
