@@ -75,6 +75,18 @@ public class BattleUnit : MonoBehaviour
         setLocate(Location);
     }
 
+    public void Init()
+    {
+        _BattleDataMNG.BattleUnitEnter(this);
+
+        SetState(BattleUnitState.Idle);
+
+        // 적군일 경우 x축 뒤집기
+        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
+        setLocate(Location);
+    }
+
+
     // 상태 바꾸는 애를 하나로 통합, 애니메이션 바꾸는애도 동일하게
     // switch로 state를 받아서 변환을 시키는 식
 
@@ -169,6 +181,7 @@ public class BattleUnit : MonoBehaviour
     {
         _location = coord;
         _BattleMNG.SetUnit(this, coord);
+        _location = coord;
     }
 
     #endregion
