@@ -79,6 +79,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void SetDistance()
     {
+        //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         foreach (BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
             if (unit.BattleUnitSO.MyTeam)
@@ -100,8 +101,6 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void SearchAttackableTile()
     {
-
-        //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         //유닛을 때릴 수 있는 타일이 이동 범위 내에 있는 지 확인한다.
         //단 위, 아래, 왼, 오른쪽만 이동 가능하다고 가정
 
@@ -179,34 +178,13 @@ public class Common_Unit_AI_Controller : Unit_AI_Controller
 {
     public override void AI_Action()
     {
-
         //전달받은 범위에서 유닛을 찾는다.
-        foreach (Vector2 arl in AttackRangeList)
-        {
-            Vector2 vector = caster.Location;
-
-            if (_field.IsInRange(vector))
-            {
-                Vector2 vec = vector;
-                if (_field.TileDict[vec].IsOnTile)
-                {
-                    FindTileList.Add(vec);
-                }
-            }
-        }
+        SetFindTileList();
 
         //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
-        if (FindTileList.Count > 0)
+        if (IsUnitExist())
         {
-            foreach (Vector2 ftl in FindTileList)
-            {
-                if (_field.TileDict[ftl].Unit.BattleUnitSO.RType == RangeType.Ranged)
-                {
-                    RangedVectorList.Add(ftl);
-                }
-            }
-
-            if (RangedVectorList.Count > 0)
+            if (IsRangedUnitExist())
             {
                 //원거리 유닛이 있을 경우
                 //Random.Range(0, RangeList.Count);
@@ -228,7 +206,6 @@ public class Common_Unit_AI_Controller : Unit_AI_Controller
                 {
                     //원거리가 있음
                     //Random.Range(0, RangedVectorList.Count);
-                    
                 }
                 else
                 {
