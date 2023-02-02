@@ -14,15 +14,14 @@ public class UnitSpawner : MonoBehaviour
 {
     [SerializeField] List<SpawnData> SpawnMonsters;
 
-    BattleDataManager battleDataMNG = GameManager.BattleMNG.BattleDataMNG;
-
     void Start()
     {
         foreach(SpawnData data in SpawnMonsters)
         {
             GameObject newEnemy = GameObject.Instantiate(data.prefab, transform);
             BattleUnit newUnit = newEnemy.GetComponent<BattleUnit>();
-            newUnit.setLocate((int)data.location.x, (int)data.location.y);
+            newUnit.setLocate(data.location);
+            newUnit.SetTileColor = GameManager.BattleMNG.Field.SetTileColor;
         }
     }
 }
