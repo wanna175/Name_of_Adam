@@ -71,7 +71,7 @@ public class BattleUnit : MonoBehaviour
         SetState(BattleUnitState.Idle);
 
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
+        _SR.flipX = (BattleUnitSO.Team == Team.Enemy) ? true : false;
         setLocate(Location);
     }
 
@@ -82,7 +82,7 @@ public class BattleUnit : MonoBehaviour
         SetState(BattleUnitState.Idle);
 
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
+        _SR.flipX = (BattleUnitSO.Team == Team.Enemy) ? true : false;
         setLocate(Location);
     }
 
@@ -90,7 +90,10 @@ public class BattleUnit : MonoBehaviour
     // 상태 바꾸는 애를 하나로 통합, 애니메이션 바꾸는애도 동일하게
     // switch로 state를 받아서 변환을 시키는 식
 
-    
+    public bool MyTeam(BattleUnit someone)
+    {
+        return someone.BattleUnitSO.Team == BattleUnitSO.Team;
+    }
     public void SetState(BattleUnitState _st)
     {
         state = _st;
