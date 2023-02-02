@@ -112,7 +112,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void PhaseChanger(Phase phase)
+    public void PhaseChanger(Phase phase)
     {
         _CurrentPhase = phase;
     }

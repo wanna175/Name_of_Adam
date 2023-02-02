@@ -181,7 +181,6 @@ public class BattleUnit : MonoBehaviour
     {
         _location = coord;
         _BattleMNG.SetUnit(this, coord);
-        _location = coord;
     }
 
     #endregion
@@ -219,6 +218,12 @@ public class BattleUnit : MonoBehaviour
         {
             case BattleUnitState.Move:
                 coord -= Location;
+
+                if (!GetCanMoveRange().Contains(coord))
+                {
+                    SetTileColor(GetCanMoveRange(), this, Color.yellow);
+                    break;
+                }
             
                 _BattleMNG.MoveLotate(this, coord);
                 SetState(BattleUnitState.AttackWait);
@@ -226,6 +231,14 @@ public class BattleUnit : MonoBehaviour
                 break;
 
             case BattleUnitState.AttackWait:
+                Vector2 dump = coord - Location;
+                Debug.Log(dump);
+                if (!BattleUnitSO.GetRange().Contains(dump))
+                {
+                    SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
+                    break;
+                }
+
                 _SelectTile = coord;
 
                 if (_SelectTile == Location)

@@ -32,10 +32,10 @@ public class SkillSO : ScriptableObject
         if (attackType == AttackType.rangeAttack)
         {
             // 공격범위 안에 있는 모든 대상을 리스트에 넣는다.
-            for (int i = 0; i < rangeList.Count; i++)
+            foreach(Vector2 vec in rangeList)
             {
                 BattleUnit _unit = null;
-                Vector2 location = caster.Location;
+                Vector2 location = caster.Location + vec;
 
                 // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
                 _unit = _field.GetUnit(location);
@@ -63,7 +63,7 @@ public class SkillSO : ScriptableObject
                     hitUnits.Add(_unit);
             }
         }
-        
+
         foreach (EffectSO es in EffectList)
         {
             es.Effect(caster, hitUnits);
