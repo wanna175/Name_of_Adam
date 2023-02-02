@@ -215,6 +215,12 @@ public class BattleManager : MonoBehaviour
 
     // BattleUnitList를 정렬
     // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
+
+    public BattleUnit GetUnitbyOrder(int i)
+    {
+        return _BattleUnitOrderList[i];
+    }
+
     public void BattleOrderReplace()
     {
         _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetSpeed())
