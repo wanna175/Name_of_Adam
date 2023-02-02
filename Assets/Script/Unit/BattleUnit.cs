@@ -25,7 +25,7 @@ public class BattleUnit : MonoBehaviour
     SpriteRenderer _SR;
     Animator _Animator;
 
-    BattleUnitState state;
+    BattleUnitState curr_state;
 
     #region Location
     [SerializeField] Vector2 _location;
@@ -67,8 +67,8 @@ public class BattleUnit : MonoBehaviour
     private void Start()
     {
         _BattleDataMNG.BattleUnitEnter(this);
-
-        SetState(BattleUnitState.Idle);
+        ChangeState(BattleUnitState.Idle);
+        UpdateState();
 
         // 적군일 경우 x축 뒤집기
         _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
@@ -79,8 +79,8 @@ public class BattleUnit : MonoBehaviour
     {
         _BattleDataMNG.BattleUnitEnter(this);
 
-        SetState(BattleUnitState.Idle);
-
+        ChangeState(BattleUnitState.Idle);
+        UpdateState();
         // 적군일 경우 x축 뒤집기
         _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
         setLocate(Location);
@@ -91,11 +91,19 @@ public class BattleUnit : MonoBehaviour
     // switch로 state를 받아서 변환을 시키는 식
 
     
-    public void SetState(BattleUnitState _st)
+    public void ChangeState(BattleUnitState _st)
     {
-        state = _st;
+        curr_state = _st;
+    }
 
-        switch (state)
+    public BattleUnitState GetState()
+    {
+        return curr_state;
+    }
+
+    public void UpdateState()
+    {
+        switch (curr_state)
         {
             case BattleUnitState.Idle:
                 _Animator.SetBool("isAttack", false);
@@ -105,6 +113,8 @@ public class BattleUnit : MonoBehaviour
 
             case BattleUnitState.Move:
                 SetTileColor(GetCanMoveRange(), this, Color.yellow);
+
+
 
                 break;
 
@@ -214,7 +224,7 @@ public class BattleUnit : MonoBehaviour
 
     public void TileSelected(Vector2 coord)
     {
-        switch (state)
+        switch (curr_state)
         {
             case BattleUnitState.Move:
                 coord -= Location;
@@ -227,7 +237,8 @@ public class BattleUnit : MonoBehaviour
                 }
             
                 _BattleMNG.MoveLotate(this, coord);
-                SetState(BattleUnitState.AttackWait);
+                ChangeState(BattleUnitState.AttackWait);
+                UpdateState();
 
                 break;
 
@@ -251,6 +262,11 @@ public class BattleUnit : MonoBehaviour
                 break;
         }
     }
+
+
+
+
+
 
     public int GetSpeed() => BattleUnitSO.stat.SPD;
 

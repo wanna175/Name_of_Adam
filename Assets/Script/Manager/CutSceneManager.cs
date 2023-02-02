@@ -189,9 +189,14 @@ public class CutSceneManager : MonoBehaviour
 
         StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
 
-        CSData.AttackUnit.SetState(BattleUnitState.Attack);
+        CSData.AttackUnit.ChangeState(BattleUnitState.Attack);
+        CSData.AttackUnit.UpdateState();
         foreach (BattleUnit unit in CSData.HitUnits)
-            unit.SetState(BattleUnitState.HitWait);
+        {
+            unit.ChangeState(BattleUnitState.HitWait);
+            unit.UpdateState();
+        }
+            
 
 
         yield return new WaitForSeconds(CutSceneTime);
@@ -202,9 +207,14 @@ public class CutSceneManager : MonoBehaviour
 
         StartCoroutine(_CameraHandler.CutSceneZoomOut(CSData));
 
-        CSData.AttackUnit.SetState(BattleUnitState.Idle);
+        CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
+        CSData.AttackUnit.UpdateState();
         foreach (BattleUnit unit in CSData.HitUnits)
-            unit.SetState(BattleUnitState.Idle);
+        {
+            unit.ChangeState(BattleUnitState.Idle);
+            unit.UpdateState();
+        }
+            
     }
 
     #endregion
@@ -229,7 +239,8 @@ public class CutSceneManager : MonoBehaviour
 
     public void EndAttack()
     {
-        CSData.AttackUnit.SetState(BattleUnitState.Idle);
+        CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
+        CSData.AttackUnit.UpdateState();
         _BattleMNG.UseNextUnit();
     }
 
