@@ -110,7 +110,10 @@ public class BattleDataManager
         if (_ManaCost >= value)
             return true;
         else
+        {
+            Debug.Log("not enough mana");
             return false;
+        }   
     }
     #endregion
 }

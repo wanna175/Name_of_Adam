@@ -19,7 +19,9 @@ public class Field : MonoBehaviour
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
             if (items.Value == tile)
                 return items.Key;
-        return new Vector2();
+
+        Debug.Log("Can't find target tile");
+        return default;
     }
 
     // 필드의 생성을 위한 필드의 위치
@@ -140,6 +142,9 @@ public class Field : MonoBehaviour
     public void TileClick(Tile tile)
     {
         Vector2 coord = FindCoordByTile(tile);
+
+        if (coord == null)
+            return;
 
         OnClickAction(coord, tile);
 
