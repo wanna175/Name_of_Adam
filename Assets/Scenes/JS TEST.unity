@@ -1701,7 +1701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentPhase: 0
 --- !u!4 &1589663946
 Transform:
   m_ObjectHideFlags: 0
@@ -1972,6 +1971,8 @@ MonoBehaviour:
     location: {x: 3, y: 1}
   - prefab: {fileID: 7878141515298345572, guid: cd506301ad379ce4488d427b0f7457e1, type: 3}
     location: {x: 3, y: 2}
+  - prefab: {fileID: 5478994756703592717, guid: 5d5faf96e2005694fa5188717458e001, type: 3}
+    location: {x: 1, y: 2}
 --- !u!4 &1736975053
 Transform:
   m_ObjectHideFlags: 0

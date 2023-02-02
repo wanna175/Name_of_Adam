@@ -219,6 +219,7 @@ public class BattleUnit : MonoBehaviour
             case BattleUnitState.Move:
                 coord -= Location;
 
+                // 이동범위 밖을 선택했다면 다시 선택하기
                 if (!GetCanMoveRange().Contains(coord))
                 {
                     SetTileColor(GetCanMoveRange(), this, Color.yellow);
@@ -232,7 +233,8 @@ public class BattleUnit : MonoBehaviour
 
             case BattleUnitState.AttackWait:
                 Vector2 dump = coord - Location;
-                Debug.Log(dump);
+                
+                // 공격범위 밖을 선택했으면 다시 선택하기
                 if (!BattleUnitSO.GetRange().Contains(dump))
                 {
                     SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
