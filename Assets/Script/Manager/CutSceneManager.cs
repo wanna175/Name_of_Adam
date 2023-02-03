@@ -38,7 +38,7 @@ public class CutSceneManager : MonoBehaviour
         set { _CameraHandler = value; }
     }
     #endregion
-    private GameObject ClickCover;
+    //private GameObject ClickCover;
 
     CutSceneData CSData;
     // 줌 인, 줌 아웃하는데 들어가는 시간
@@ -51,7 +51,7 @@ public class CutSceneManager : MonoBehaviour
         CSData = new CutSceneData();
 
         CameraHandler = GameObject.Find("Camera").GetComponent<CameraHandler>();
-        ClickCover = GameObject.Find("ClickCover");
+        //ClickCover = GameObject.Find("ClickCover");
     }
 
 
@@ -60,7 +60,7 @@ public class CutSceneManager : MonoBehaviour
         
     public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
-        ClickCover.SetActive(true);
+        //ClickCover.SetActive(true);
 
         if (HitUnits.Count == 0)
         {
@@ -249,7 +249,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _field.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
-        ClickCover.SetActive(false);
+        //ClickCover.SetActive(false);
         EndAttack();
     }
 
