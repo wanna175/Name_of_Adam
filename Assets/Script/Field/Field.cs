@@ -118,12 +118,10 @@ public class Field : MonoBehaviour
 
         List<Vector2> RangeList;
 
-        if (_unit.GetState() == BattleUnitState.Move)
+        if (_unit.IsMove)
             RangeList = _unit.GetCanMoveRange();
-        else if (_unit.GetState() == BattleUnitState.AttackWait)
-            RangeList = _unit.BattleUnitSO.GetRange();
         else
-            return null;
+            RangeList = _unit.BattleUnitSO.GetRange();
 
         foreach (Vector2 vec in RangeList)
         {

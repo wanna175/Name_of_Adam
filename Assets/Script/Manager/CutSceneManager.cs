@@ -189,12 +189,12 @@ public class CutSceneManager : MonoBehaviour
 
         StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
 
-        CSData.AttackUnit.ChangeState(BattleUnitState.Attack);
-        CSData.AttackUnit.UpdateState();
+        //CSData.AttackUnit.ChangeState(BattleUnitState.Attack);
+        //CSData.AttackUnit.UpdateState();
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            unit.ChangeState(BattleUnitState.HitWait);
-            unit.UpdateState();
+            //unit.ChangeState(BattleUnitState.HitWait);
+            //unit.UpdateState();
         }
             
 
@@ -207,12 +207,12 @@ public class CutSceneManager : MonoBehaviour
 
         StartCoroutine(_CameraHandler.CutSceneZoomOut(CSData));
 
-        CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
-        CSData.AttackUnit.UpdateState();
+        //CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
+        //CSData.AttackUnit.UpdateState();
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            unit.ChangeState(BattleUnitState.Idle);
-            unit.UpdateState();
+            //unit.ChangeState(BattleUnitState.Idle);
+            //unit.UpdateState();
         }
             
     }
@@ -239,8 +239,8 @@ public class CutSceneManager : MonoBehaviour
 
     public void EndAttack()
     {
-        CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
-        CSData.AttackUnit.UpdateState();
+        //CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
+        //CSData.AttackUnit.UpdateState();
         _BattleMNG.UseNextUnit();
     }
 

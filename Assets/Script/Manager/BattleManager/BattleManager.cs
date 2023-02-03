@@ -225,7 +225,7 @@ public class BattleManager : MonoBehaviour
     // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
     public void BattleOrderReplace()
     {
-        _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetSpeed())
+        _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetStat().SPD)
             .ThenByDescending(unit => unit.Location.y)
             .ThenBy(unit => unit.Location.x)
             .ToList();
@@ -253,8 +253,8 @@ public class BattleManager : MonoBehaviour
 
         if (0 < _BattleUnitOrderList[0].CurHP)
         {
-            _BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
-            _BattleUnitOrderList[0].UpdateState();
+            //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
+            //_BattleUnitOrderList[0].UpdateState();
         }
         else
         {
