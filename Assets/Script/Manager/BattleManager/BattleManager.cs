@@ -37,38 +37,44 @@ public class BattleManager : MonoBehaviour
         Vector2 coord = _field.FindCoordByTile(tile);
 
         Debug.Log($"{coord} Click");
+
         if (CurrentPhase == Phase.Prepare)
         {
 
         }
         else if (CurrentPhase == Phase.Start)
         {
-            //범위 외
-            if ((int)coord.x > 3 && (int)coord.y > 2)
-            {
-                Debug.Log("out of range");
-                return;
-            }
+                //범위 외
+                if ((int)coord.x > 3 && (int)coord.y > 2)
+                {
+                    Debug.Log("out of range");
+                }
+                else
+                {
+                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost))
+                    {
+                        _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
 
-            BattleUnitSO clickedUnit = _UIMNG.Hands.ClickedUnit.GetUnitSO();
+                        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+                        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-            if (_BattleDataMNG.CanUseMana(clickedUnit.ManaCost))
-            {
-                _BattleDataMNG.ChangeMana(-1 * clickedUnit.ManaCost);
+                        BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
+                        BattleUnit.setLocate(coord);
 
-                GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-                BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+                        GameManager.BattleMNG.Field.EnterTile(BattleUnit, new Vector2((int)coord.x, (int)coord.y));
 
-                BattleUnit.BattleUnitSO = clickedUnit;
-                BattleUnit.setLocate(coord);
+                        BattleUnit.Init();
 
-                GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
+                        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+                        _UIMNG.Hands.ClearHand();
+                    }
+                    else
+                    {
+                        //마나 부족
+                        Debug.Log("not enough mana");
+                    }
+                }
 
-                BattleUnit.Init();
-
-                _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-                _UIMNG.Hands.ClearHand();
-            }
         }
         else
         {
@@ -186,7 +192,7 @@ public class BattleManager : MonoBehaviour
         int EnemyUnit = 0;
         foreach(BattleUnit BUnit in BattleDataMNG.BattleUnitList)
         {
-            if (BUnit.BattleUnitSO.Team == Team.Player)//아군이면
+            if (BUnit.BattleUnitSO.MyTeam)//아군이면
                 MyUnit++;
             else
                 EnemyUnit++;
@@ -339,7 +345,7 @@ public class BattleManager : MonoBehaviour
             //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
             foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
             {
-                if (unit.BattleUnitSO.Team == Team.Player)
+                if (unit.BattleUnitSO.MyTeam)
                 {
                     foreach (Vector2 arl in AttackRangeList)
                     {
