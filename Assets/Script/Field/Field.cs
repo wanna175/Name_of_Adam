@@ -26,7 +26,7 @@ public class Field : MonoBehaviour
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
     public Vector3 FieldRotation => new Vector3(16, 0, 0);
 
-    public Action<Tile> OnClickAction;
+    public Action<Vector2, Tile> OnClickAction;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class Field : MonoBehaviour
         transform.eulerAngles = FieldRotation;
     }
 
-    public Field SetClickEvent(Action<Tile> action)
+    public Field SetClickEvent(Action<Vector2, Tile> action)
     {
         OnClickAction = action;
         return this;
@@ -111,39 +111,19 @@ public class Field : MonoBehaviour
         }
     } 
 
-    public List<Vector2> Get_Abs_Pos(BattleUnit _unit)
+    public void SetTileColor(List<Vector2> _vecList, BattleUnit _unit, Color clr)
     {
-        _unit.GetCanMoveRange();
-        List<Vector2> ResultVector = new List<Vector2>();
+        Vector2 unitVec = _unit.Location;
 
-        List<Vector2> RangeList;
-
-        if (_unit.GetState() == BattleUnitState.Move)
-            RangeList = _unit.GetCanMoveRange();
-        else if (_unit.GetState() == BattleUnitState.AttackWait)
-            RangeList = _unit.BattleUnitSO.GetRange();
-        else
-            return null;
-
-        foreach (Vector2 vec in RangeList)
+        foreach (Vector2 vec in _vecList)
         {
-            Vector2 dump = _unit.Location + vec;
+            Vector2 dump = unitVec + vec;
+
             if(IsInRange(dump))
-            {
-                ResultVector.Add(dump);
-            }
-        }
-
-        return ResultVector;
-    }
-
-    public void SetTileColor(List<Vector2> vector, Color clr)
-    {
-        foreach (Vector2 vec in vector)
-        {
-            TileDict[vec].SetColor(clr);
+                TileDict[dump].SetColor(clr);
         }
     }
+
 
     public void EnterTile(BattleUnit unit, Vector2 coord)
     {
@@ -159,6 +139,51 @@ public class Field : MonoBehaviour
 
     public void TileClick(Tile tile)
     {
-        OnClickAction(tile);
+        Vector2 coord = FindCoordByTile(tile);
+
+        OnClickAction(coord, tile);
+
+        // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
+
+        /*
+        // 유닛이 공격할 타겟을 선택중이라면
+        if (tile.CanSelect)
+        {
+            ClearAllColor();
+            _BattleMNG.GetNowUnit().TileSelected((int)coord.x, (int)coord.y);
+            return;
+        }
+        // 클릭한 타일에 유닛이 없을 시
+        else
+        {
+            //핸드를 누르고 타일을 누를 때
+            if (_UIMNG.Hands.ClickedHand != 0)
+            {
+                //범위 외
+                if ((int)coord.x > 3 && (int)coord.y > 2)
+                {
+                    Debug.Log("out of range");
+                }
+                else
+                {
+                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost)) //조건문이 참이라면 이미 마나가 소모된 후
+                    {
+                        _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
+                        GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
+
+                        _BattleDataMNG.CreatBattleUnit(BattleUnitPrefab, (int)coord.x, (int)coord.y);
+
+                        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+                        _UIMNG.Hands.ClearHand();
+                    }
+                    else
+                    {
+                        //마나 부족
+                        Debug.Log("not enough mana");
+                    }
+                }
+            }
+        }
+        */
     }
 }

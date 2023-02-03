@@ -32,10 +32,8 @@ public class BattleManager : MonoBehaviour
         StartEnter();
     }
 
-    private void OnClickTile(Tile tile)
+    private void OnClickTile(Vector2 coord, Tile tile)
     {
-        Vector2 coord = _field.FindCoordByTile(tile);
-
         Debug.Log($"{coord} Click");
 
         if (CurrentPhase == Phase.Prepare)
@@ -223,17 +221,18 @@ public class BattleManager : MonoBehaviour
 
     // BattleUnitList를 정렬
     // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
+
+    public BattleUnit GetUnitbyOrder(int i)
+    {
+        return _BattleUnitOrderList[i];
+    }
+
     public void BattleOrderReplace()
     {
         _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetSpeed())
             .ThenByDescending(unit => unit.Location.y)
             .ThenBy(unit => unit.Location.x)
             .ToList();
-    }
-
-    public BattleUnit GetUnitbyOrder(int i)
-    {
-        return _BattleUnitOrderList[i];
     }
 
     public void BattleOrderRemove(BattleUnit _unit)
@@ -276,13 +275,6 @@ public class BattleManager : MonoBehaviour
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
-    }
-
-    
-    public void SetTileColor(Color clr)
-    {
-        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit());
-        Field.SetTileColor(rangeList, clr);
     }
 
     public void SetUnit(BattleUnit unit, Vector2 coord)
