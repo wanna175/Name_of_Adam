@@ -21,7 +21,6 @@ public class UnitSpawner : MonoBehaviour
             GameObject newEnemy = GameObject.Instantiate(data.prefab, transform);
             BattleUnit newUnit = newEnemy.GetComponent<BattleUnit>();
             newUnit.setLocate(data.location);
-            newUnit.SetTileColor = GameManager.BattleMNG.Field.SetTileColor;
         }
     }
 }

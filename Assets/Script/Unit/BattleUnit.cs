@@ -52,7 +52,8 @@ public class BattleUnit : MonoBehaviour
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
 
-    public Action<List<Vector2>, BattleUnit, Color> SetTileColor;
+    public event EventHandler StateEvent;
+
 
     private void Awake()
     {
@@ -112,14 +113,17 @@ public class BattleUnit : MonoBehaviour
                 break;
 
             case BattleUnitState.Move:
-                SetTileColor(GetCanMoveRange(), this, Color.yellow);
+                _BattleMNG.SetTileColor(Color.yellow);
 
 
 
                 break;
 
             case BattleUnitState.AttackWait:
-                SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
+                _BattleMNG.SetTileColor(Color.yellow);
+
+
+
 
                 break;
 
@@ -133,6 +137,8 @@ public class BattleUnit : MonoBehaviour
 
                 break;
         }
+
+        //StateEvent(this, EventArgs.Empty);
     }
 
     #region MoveState
@@ -232,7 +238,7 @@ public class BattleUnit : MonoBehaviour
                 // 이동범위 밖을 선택했다면 다시 선택하기
                 if (!GetCanMoveRange().Contains(coord))
                 {
-                    SetTileColor(GetCanMoveRange(), this, Color.yellow);
+                    _BattleMNG.SetTileColor(Color.yellow);
                     break;
                 }
             
@@ -248,7 +254,7 @@ public class BattleUnit : MonoBehaviour
                 // 공격범위 밖을 선택했으면 다시 선택하기
                 if (!BattleUnitSO.GetRange().Contains(dump))
                 {
-                    SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
+                    _BattleMNG.SetTileColor(Color.yellow);
                     break;
                 }
 
