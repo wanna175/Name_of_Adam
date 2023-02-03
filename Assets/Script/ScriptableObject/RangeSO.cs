@@ -68,7 +68,7 @@ public class RangeEditor : Editor
 [Serializable]
 [CreateAssetMenu(fileName = "Attack_Range", menuName = "Scriptable Object/Attack_Range", order = 4)]
 public class RangeSO : ScriptableObject
-{
+{    
     const int row = 5;
     const int column = 15;
 
@@ -93,5 +93,15 @@ public class RangeSO : ScriptableObject
         }
 
         return RangeList;
+    }
+
+    public List<Vector2> GetRange(Vector2 coord)
+    {
+        List<Vector2> rangeList = new List<Vector2>();
+
+        foreach(Vector2 range in GetRange())
+            rangeList.Add(range + coord);
+
+        return rangeList;
     }
 }
