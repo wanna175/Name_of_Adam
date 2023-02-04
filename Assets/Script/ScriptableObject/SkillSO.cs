@@ -41,6 +41,9 @@ public class SkillSO : ScriptableObject
             {
                 BattleUnit unit = _field.GetUnit(vec);
 
+                if (unit == null)
+                    return;
+
                 if (unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
                     hitUnits.Add(unit);
             }
