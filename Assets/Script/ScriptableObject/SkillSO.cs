@@ -51,11 +51,9 @@ public class SkillSO : ScriptableObject
         else if (attackType == AttackType.targeting)
         {
             BattleUnit unit = _field.GetUnit(caster.SelectTile);
+            
 
-            if (unit == null)
-                return;
-
-            if (unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
+            if (unit != null && unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
                 hitUnits.Add(unit);
         }
 
