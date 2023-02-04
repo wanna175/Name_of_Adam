@@ -179,20 +179,6 @@ public class Common_Unit_AI_Controller : Unit_AI_Controller
     public override void AI_Action()
     {
         //전달받은 범위에서 유닛을 찾는다.
-        foreach (Vector2 arl in AttackRangeList)
-        {
-            Vector2 vector = caster.Location;
-
-            if (_field.IsInRange(vector))
-            {
-                Vector2 vec = vector;
-                if (_field.TileDict[vec].IsOnTile)
-                {
-                    FindTileList.Add(vec);
-                }
-            }
-        }
-        //전달받은 범위에서 유닛을 찾는다.
         SetFindTileList();
 
         //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
