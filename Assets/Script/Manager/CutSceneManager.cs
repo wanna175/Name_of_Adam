@@ -38,6 +38,7 @@ public class CutSceneManager : MonoBehaviour
         set { _CameraHandler = value; }
     }
     #endregion
+    //private GameObject ClickCover;
 
     CutSceneData CSData;
     // 줌 인, 줌 아웃하는데 들어가는 시간
@@ -48,6 +49,9 @@ public class CutSceneManager : MonoBehaviour
         _BattleMNG = GameManager.BattleMNG;
         _field = GameManager.BattleMNG.Field;
         CSData = new CutSceneData();
+
+        CameraHandler = GameObject.Find("Camera").GetComponent<CameraHandler>();
+        //ClickCover = GameObject.Find("ClickCover");
     }
 
 
@@ -56,6 +60,8 @@ public class CutSceneManager : MonoBehaviour
         
     public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
+        //ClickCover.SetActive(true);
+
         if (HitUnits.Count == 0)
         {
             StartCoroutine(ExitCutScene());
@@ -183,12 +189,12 @@ public class CutSceneManager : MonoBehaviour
 
         StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
 
-        CSData.AttackUnit.ChangeState(BattleUnitState.Attack);
-        CSData.AttackUnit.UpdateState();
+        //CSData.AttackUnit.ChangeState(BattleUnitState.Attack);
+        //CSData.AttackUnit.UpdateState();
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            unit.ChangeState(BattleUnitState.HitWait);
-            unit.UpdateState();
+            //unit.ChangeState(BattleUnitState.HitWait);
+            //unit.UpdateState();
         }
             
 
@@ -201,12 +207,12 @@ public class CutSceneManager : MonoBehaviour
 
         StartCoroutine(_CameraHandler.CutSceneZoomOut(CSData));
 
-        CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
-        CSData.AttackUnit.UpdateState();
+        //CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
+        //CSData.AttackUnit.UpdateState();
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            unit.ChangeState(BattleUnitState.Idle);
-            unit.UpdateState();
+            //unit.ChangeState(BattleUnitState.Idle);
+            //unit.UpdateState();
         }
             
     }
@@ -233,8 +239,8 @@ public class CutSceneManager : MonoBehaviour
 
     public void EndAttack()
     {
-        CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
-        CSData.AttackUnit.UpdateState();
+        //CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
+        //CSData.AttackUnit.UpdateState();
         _BattleMNG.UseNextUnit();
     }
 
@@ -243,6 +249,7 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _field.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
+        //ClickCover.SetActive(false);
         EndAttack();
     }
 

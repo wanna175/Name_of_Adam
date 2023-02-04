@@ -4,16 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum BattleUnitState
-{
-    Idle,
-    Move,
-    AttackWait,
-    Attack,
-    HitWait
-}
-
-
 public class BattleUnit : MonoBehaviour
 {
     [SerializeField] public BattleUnitSO BattleUnitSO;
@@ -24,8 +14,7 @@ public class BattleUnit : MonoBehaviour
 
     SpriteRenderer _SR;
     Animator _Animator;
-
-    BattleUnitState curr_state;
+    
 
     #region Location
     [SerializeField] Vector2 _location;
@@ -52,8 +41,9 @@ public class BattleUnit : MonoBehaviour
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
 
-    public Action<List<Vector2>, BattleUnit, Color> SetTileColor;
-
+    // Move인지 Attack인지 확인하기 위한 임시클래스
+    bool isMove = true;
+    public bool IsMove => isMove;
     private void Awake()
     {
         _BattleMNG = GameManager.BattleMNG;
@@ -67,11 +57,11 @@ public class BattleUnit : MonoBehaviour
     private void Start()
     {
         _BattleDataMNG.BattleUnitEnter(this);
-        ChangeState(BattleUnitState.Idle);
-        UpdateState();
+        //ChangeState(BattleUnitState.Idle);
+        //UpdateState();
 
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (BattleUnitSO.Team == Team.Enemy) ? true : false;
+        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
         setLocate(Location);
     }
 
@@ -79,67 +69,51 @@ public class BattleUnit : MonoBehaviour
     {
         _BattleDataMNG.BattleUnitEnter(this);
 
-        ChangeState(BattleUnitState.Idle);
-        UpdateState();
+        //ChangeState(BattleUnitState.Idle);
+        //UpdateState();
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (BattleUnitSO.Team == Team.Enemy) ? true : false;
+        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
         setLocate(Location);
     }
 
-
-    // 상태 바꾸는 애를 하나로 통합, 애니메이션 바꾸는애도 동일하게
-    // switch로 state를 받아서 변환을 시키는 식
-
-    public bool MyTeam(BattleUnit someone)
-    {
-        return someone.BattleUnitSO.Team == BattleUnitSO.Team;
-    }
     
-    public void ChangeState(BattleUnitState _st)
-    {
-        curr_state = _st;
-    }
-
-    public BattleUnitState GetState()
-    {
-        return curr_state;
-    }
-
     public void UpdateState()
     {
-        switch (curr_state)
-        {
-            case BattleUnitState.Idle:
-                _Animator.SetBool("isAttack", false);
-                _Animator.SetBool("isHit", false);
+        //switch (curr_state)
+        //{
+        //    case BattleUnitState.Idle:
+        //        _Animator.SetBool("isAttack", false);
+        //        _Animator.SetBool("isHit", false);
 
-                break;
+        //        break;
 
-            case BattleUnitState.Move:
-                SetTileColor(GetCanMoveRange(), this, Color.yellow);
+        //    case BattleUnitState.Move:
+        //        _BattleMNG.SetTileColor(Color.yellow);
 
 
 
-                break;
+        //        break;
 
-            case BattleUnitState.AttackWait:
-                SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
+        //    case BattleUnitState.AttackWait:
+        //        _BattleMNG.SetTileColor(Color.yellow);
 
-                break;
 
-            case BattleUnitState.Attack:
-                _Animator.SetBool("isAttack", true);
 
-                break;
 
-            case BattleUnitState.HitWait:
-                _Animator.SetBool("isHit", true);
+        //        break;
 
-                break;
-        }
+        //    case BattleUnitState.Attack:
+        //        _Animator.SetBool("isAttack", true);
+
+        //        break;
+
+        //    case BattleUnitState.HitWait:
+        //        _Animator.SetBool("isHit", true);
+
+        //        break;
+        //}
     }
-
-    #region MoveState
+    
 
     // 이동가능한 범위를 가져온다.
     public List<Vector2> GetCanMoveRange()
@@ -159,18 +133,11 @@ public class BattleUnit : MonoBehaviour
         return vecList;
     }
 
-    #endregion
-
-    #region AttackState
 
     public void Attack_OnAttack(List<BattleUnit> _HitUnits)
     {
         _CutSceneMNG.BattleCutScene(this, _HitUnits);
     }
-    
-    #endregion
-
-    #region HitState
     
     public void Hit_GetDamage(float DMG)
     {
@@ -183,12 +150,7 @@ public class BattleUnit : MonoBehaviour
         else if (CurHP <= 0) // 유닛 사망 시
             UnitDestroy();
     }
-
-    #endregion
-
-
-
-    #region SetMove
+    
 
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(Vector2 coord)
@@ -196,11 +158,7 @@ public class BattleUnit : MonoBehaviour
         _location = coord;
         _BattleMNG.SetUnit(this, coord);
     }
-
-    #endregion
-
-    #region Hit & Destroy
-
+    
     void UnitDestroy()
     {
         _BattleDataMNG.BattleUnitExit(this);
@@ -208,7 +166,62 @@ public class BattleUnit : MonoBehaviour
         Destroy(gameObject);
     }
 
-    #endregion
+    public void SetPosition(Vector3 dest)
+    {
+        transform.position = dest;
+    }
+
+
+    public void TileSelected(Vector2 coord)
+    {
+        if (isMove)
+            MoveTileClick(coord);
+        else
+            AttackTileClick(coord);
+    }
+
+    void MoveTileClick(Vector2 coord)
+    {
+        coord -= Location;
+
+        // 이동범위 밖을 선택했다면 다시 선택하기
+        if (!GetCanMoveRange().Contains(coord))
+        {
+            _BattleMNG.SetTileColor(Color.yellow);
+            return;
+        }
+
+        _BattleMNG.MoveLotate(this, coord);
+        //ChangeState(BattleUnitState.AttackWait);
+        //UpdateState();
+
+        isMove = false;
+        return;
+    }
+
+    void AttackTileClick(Vector2 coord)
+    {
+        Vector2 dump = coord - Location;
+
+        // 공격범위 밖을 선택했으면 다시 선택하기
+        if (!BattleUnitSO.GetRange().Contains(dump))
+        {
+            _BattleMNG.SetTileColor(Color.yellow);
+            return;
+        }
+
+        _SelectTile = coord;
+
+        if (_SelectTile == Location)
+            _BattleMNG.UseNextUnit();
+        else
+            BattleUnitSO.use(this);
+
+        isMove = true;
+        return;
+    }
+
+
 
     public Stat GetStat(bool buff = true)
     {
@@ -220,57 +233,6 @@ public class BattleUnit : MonoBehaviour
         return stat;
         //return _stigma.Use(stat);
     }
-
-    public void SetPosition(Vector3 dest)
-    {
-        transform.position = dest;
-    }
-
-    public void TileSelected(Vector2 coord)
-    {
-        switch (curr_state)
-        {
-            case BattleUnitState.Move:
-                coord -= Location;
-
-                if (!GetCanMoveRange().Contains(coord))
-                {
-                    SetTileColor(GetCanMoveRange(), this, Color.yellow);
-                    break;
-                }
-            
-                _BattleMNG.MoveLotate(this, coord);
-                ChangeState(BattleUnitState.AttackWait);
-                UpdateState();
-
-                break;
-
-            case BattleUnitState.AttackWait:
-                Vector2 dump = coord - Location;
-                Debug.Log(dump);
-                if (!BattleUnitSO.GetRange().Contains(dump))
-                {
-                    SetTileColor(BattleUnitSO.GetRange(), this, Color.yellow);
-                    break;
-                }
-
-                _SelectTile = coord;
-
-                if (_SelectTile == Location)
-                    _BattleMNG.UseNextUnit();
-                else
-                    BattleUnitSO.use(this);
-
-                break;
-        }
-    }
-
-
-
-
-
-
-    public int GetSpeed() => BattleUnitSO.stat.SPD;
 
     public bool GetFlipX() => _SR.flipX;
 }

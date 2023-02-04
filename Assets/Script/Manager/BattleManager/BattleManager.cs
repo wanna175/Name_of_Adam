@@ -32,40 +32,49 @@ public class BattleManager : MonoBehaviour
         StartEnter();
     }
 
-    private void OnClickTile(Vector2 coord, Tile tile)
+    private void OnClickTile(Tile tile)
     {
+        Vector2 coord = _field.FindCoordByTile(tile);
+
+        Debug.Log($"{coord} Click");
+
         if (CurrentPhase == Phase.Prepare)
         {
 
         }
         else if (CurrentPhase == Phase.Start)
         {
-            //범위 외
-            if ((int)coord.x > 3 && (int)coord.y > 2)
-            {
-                Debug.Log("out of range");
-                return;
-            }
+                //범위 외
+                if ((int)coord.x > 3 && (int)coord.y > 2)
+                {
+                    Debug.Log("out of range");
+                }
+                else
+                {
+                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost))
+                    {
+                        _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
 
-            BattleUnitSO clickedUnit = _UIMNG.Hands.ClickedUnit.GetUnitSO();
+                        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+                        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-            if (_BattleDataMNG.CanUseMana(clickedUnit.ManaCost))
-            {
-                _BattleDataMNG.ChangeMana(-1 * clickedUnit.ManaCost);
+                        BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
+                        BattleUnit.setLocate(coord);
 
-                GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-                BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+                        GameManager.BattleMNG.Field.EnterTile(BattleUnit, new Vector2((int)coord.x, (int)coord.y));
 
-                BattleUnit.BattleUnitSO = clickedUnit;
-                BattleUnit.setLocate(coord);
+                        BattleUnit.Init();
 
-                GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
+                        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+                        _UIMNG.Hands.ClearHand();
+                    }
+                    else
+                    {
+                        //마나 부족
+                        Debug.Log("not enough mana");
+                    }
+                }
 
-                BattleUnit.Init();
-
-                _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-                _UIMNG.Hands.ClearHand();
-            }
         }
         else
         {
@@ -183,7 +192,7 @@ public class BattleManager : MonoBehaviour
         int EnemyUnit = 0;
         foreach(BattleUnit BUnit in BattleDataMNG.BattleUnitList)
         {
-            if (BUnit.BattleUnitSO.Team == Team.Player)//아군이면
+            if (BUnit.BattleUnitSO.MyTeam)//아군이면
                 MyUnit++;
             else
                 EnemyUnit++;
@@ -214,18 +223,17 @@ public class BattleManager : MonoBehaviour
 
     // BattleUnitList를 정렬
     // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
+    public void BattleOrderReplace()
+    {
+        _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetStat().SPD)
+            .ThenByDescending(unit => unit.Location.y)
+            .ThenBy(unit => unit.Location.x)
+            .ToList();
+    }
 
     public BattleUnit GetUnitbyOrder(int i)
     {
         return _BattleUnitOrderList[i];
-    }
-
-    public void BattleOrderReplace()
-    {
-        _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetSpeed())
-            .ThenByDescending(unit => unit.Location.y)
-            .ThenBy(unit => unit.Location.x)
-            .ToList();
     }
 
     public void BattleOrderRemove(BattleUnit _unit)
@@ -245,8 +253,8 @@ public class BattleManager : MonoBehaviour
 
         if (0 < _BattleUnitOrderList[0].CurHP)
         {
-            _BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
-            _BattleUnitOrderList[0].UpdateState();
+            //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
+            //_BattleUnitOrderList[0].UpdateState();
         }
         else
         {
@@ -268,6 +276,13 @@ public class BattleManager : MonoBehaviour
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
+    }
+
+    
+    public void SetTileColor(Color clr)
+    {
+        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit());
+        Field.SetTileColor(rangeList, clr);
     }
 
     public void SetUnit(BattleUnit unit, Vector2 coord)
@@ -330,7 +345,7 @@ public class BattleManager : MonoBehaviour
             //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
             foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
             {
-                if (unit.BattleUnitSO.Team == Team.Player)
+                if (unit.BattleUnitSO.MyTeam)
                 {
                     foreach (Vector2 arl in AttackRangeList)
                     {
