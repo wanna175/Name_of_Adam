@@ -88,9 +88,9 @@ public class Unit_AI_Controller : MonoBehaviour
                 {
                     Vector3 vector = unit.Location - arl;
                     if (unit.BattleUnitSO.RType == RangeType.Ranged)
-                        vector.z = 0f;//근거리면 0
+                        vector.z = 0f;//원거리면 0
                     else
-                        vector.z = 0.1f;//원거리면 0.1
+                        vector.z = 0.1f;//근거리면 0.1
 
 
                     AttackTileSet.Add(vector);
