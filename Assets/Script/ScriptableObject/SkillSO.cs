@@ -42,7 +42,7 @@ public class SkillSO : ScriptableObject
                 BattleUnit unit = _field.GetUnit(vec);
 
                 if (unit == null)
-                    return;
+                    continue;
 
                 if (unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
                     hitUnits.Add(unit);
@@ -50,11 +50,7 @@ public class SkillSO : ScriptableObject
         }
         else if (attackType == AttackType.targeting)
         {
-
-            int x = (int)caster.SelectTile.x;
-            int y = (int)caster.SelectTile.y;
-
-            BattleUnit unit = _field.GetUnit(new Vector2(x, y));
+            BattleUnit unit = _field.GetUnit(caster.SelectTile);
 
             if (unit == null)
                 return;
