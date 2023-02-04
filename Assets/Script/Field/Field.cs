@@ -26,7 +26,7 @@ public class Field : MonoBehaviour
     public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
     public Vector3 FieldRotation => new Vector3(16, 0, 0);
 
-    public Action<Tile> OnClickAction;
+    public Action<Vector2, Tile> OnClickAction;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class Field : MonoBehaviour
         transform.eulerAngles = FieldRotation;
     }
 
-    public Field SetClickEvent(Action<Tile> action)
+    public Field SetClickEvent(Action<Vector2, Tile> action)
     {
         OnClickAction = action;
         return this;
@@ -157,6 +157,17 @@ public class Field : MonoBehaviour
 
     public void TileClick(Tile tile)
     {
-        OnClickAction(tile);
+        OnClickAction(FindCoordByTile(tile), tile);
+    }
+
+    public bool IsPlayerRange(Vector2 coord)
+    {
+        if ((int)coord.x < MaxFieldX / 2 && (int)coord.y < MaxFieldY)
+            return true;
+        else
+        {
+            Debug.Log("out of range");
+            return false;
+        }
     }
 }
