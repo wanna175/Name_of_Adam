@@ -221,8 +221,6 @@ public class BattleUnit : MonoBehaviour
         return;
     }
 
-
-
     public Stat GetStat(bool buff = true)
     {
         Stat stat = BattleUnitSO.stat;
