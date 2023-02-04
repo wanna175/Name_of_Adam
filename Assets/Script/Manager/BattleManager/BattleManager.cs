@@ -32,49 +32,39 @@ public class BattleManager : MonoBehaviour
         StartEnter();
     }
 
-    private void OnClickTile(Tile tile)
+    private void OnClickTile(Vector2 coord, Tile tile)
     {
-        Vector2 coord = _field.FindCoordByTile(tile);
-
-        Debug.Log($"{coord} Click");
-
         if (CurrentPhase == Phase.Prepare)
         {
 
         }
         else if (CurrentPhase == Phase.Start)
         {
-                //범위 외
-                if ((int)coord.x > 3 && (int)coord.y > 2)
-                {
-                    Debug.Log("out of range");
-                }
-                else
-                {
-                    if (_BattleDataMNG.CanUseMana(_UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost))
-                    {
-                        _BattleDataMNG.ChangeMana(-1 * _UIMNG.Hands.ClickedUnit.GetUnitSO().ManaCost);
+            //범위 외
+            if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) == null)
+                return;
 
-                        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-                        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+            if (clickedUnit == null)
+                return;
 
-                        BattleUnit.BattleUnitSO = GameManager.UIMNG.Hands.ClickedUnit.GetUnitSO();
-                        BattleUnit.setLocate(coord);
+            if (_BattleDataMNG.CanUseMana(clickedUnit.GetUnitSO().ManaCost))
+            {
+                _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
 
-                        GameManager.BattleMNG.Field.EnterTile(BattleUnit, new Vector2((int)coord.x, (int)coord.y));
+                GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+                BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-                        BattleUnit.Init();
+                BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+                BattleUnit.setLocate(coord);
 
-                        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-                        _UIMNG.Hands.ClearHand();
-                    }
-                    else
-                    {
-                        //마나 부족
-                        Debug.Log("not enough mana");
-                    }
-                }
+                GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
 
+                BattleUnit.Init();
+
+                _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+                _UIMNG.Hands.ClearHand();
+            }
         }
         else
         {
