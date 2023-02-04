@@ -12,5 +12,6 @@ public class Test_UnitAdder : MonoBehaviour
         DeckUnit d1 = new DeckUnit();
         d1.SetUnitSO(unit[0]); 
         GameManager.BattleMNG.BattleDataMNG.AddDeckUnit(d1);
+        GameManager.UIMNG.Hands.TEST();
     }
 }
