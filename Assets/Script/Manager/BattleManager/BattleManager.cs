@@ -85,13 +85,14 @@ public class BattleManager : MonoBehaviour
             _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
             _UIMNG.Hands.ClearHand();
             // ------------------------------------------------
-
         }
         //Engage 페이즈
         else
         {
             _field.ClearAllColor();
             GetNowUnit().TileSelected(coord);
+
+            // 코루틴 체크
             return;
         }
     }
@@ -266,6 +267,10 @@ public class BattleManager : MonoBehaviour
 
         if (0 < _BattleUnitOrderList[0].CurHP)
         {
+            SetTileColor(Color.yellow);
+
+            // 입력 대기 코루틴 실행
+
             //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
             //_BattleUnitOrderList[0].UpdateState();
         }
