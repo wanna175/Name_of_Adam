@@ -19,7 +19,9 @@ public class Field : MonoBehaviour
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
             if (items.Value == tile)
                 return items.Key;
-        return new Vector2();
+
+        Debug.Log("Can't find target tile");
+        return default;
     }
 
     // 필드의 생성을 위한 필드의 위치
@@ -157,17 +159,20 @@ public class Field : MonoBehaviour
 
     public void TileClick(Tile tile)
     {
-        OnClickAction(FindCoordByTile(tile), tile);
+        Vector2 coord = FindCoordByTile(tile);
+
+        if (coord == null)
+            return;
+
+        OnClickAction(coord, tile);
     }
 
     public bool IsPlayerRange(Vector2 coord)
     {
-        if ((int)coord.x < MaxFieldX / 2 && (int)coord.y < MaxFieldY)
+        if ((int)coord.x < MaxFieldX / 2)
             return true;
-        else
-        {
-            Debug.Log("out of range");
-            return false;
-        }
+
+        Debug.Log("out of range");
+        return false;
     }
 }

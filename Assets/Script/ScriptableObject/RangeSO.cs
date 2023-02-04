@@ -94,4 +94,14 @@ public class RangeSO : ScriptableObject
 
         return RangeList;
     }
+
+    public List<Vector2> GetRange(Vector2 coord)
+    {
+        List<Vector2> rangeList = new List<Vector2>();
+
+        foreach (Vector2 range in GetRange())
+            rangeList.Add(range + coord);
+
+        return rangeList;
+    }
 }
