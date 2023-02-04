@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MyTeam: 1
   RType: 0
-  sprite: {fileID: -869484043, guid: 2f6ccb51f1605eb43ab8b5a35c95392f, type: 3}
+  sprite: {fileID: 281555520, guid: 9c31076caa3a4f34e92f3be71584c6fc, type: 3}
   stat:
     HP: 100
     ATK: 10
