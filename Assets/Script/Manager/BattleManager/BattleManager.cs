@@ -34,38 +34,60 @@ public class BattleManager : MonoBehaviour
 
     private void OnClickTile(Vector2 coord, Tile tile)
     {
+        //Prepare 페이즈
         if (CurrentPhase == Phase.Prepare)
         {
-
-        }
-        else if (CurrentPhase == Phase.Start)
-        {
-            //범위 외
-            if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) == null)
-                return;
-
+            // ----------------변경 예정------------------------
             DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
             if (clickedUnit == null)
                 return;
 
-            if (_BattleDataMNG.CanUseMana(clickedUnit.GetUnitSO().ManaCost))
-            {
-                _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
+            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
 
-                GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-                BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-                BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
-                BattleUnit.setLocate(coord);
+            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+            BattleUnit.setLocate(coord);
 
-                GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
+            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
 
-                BattleUnit.Init();
+            BattleUnit.Init();
 
-                _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-                _UIMNG.Hands.ClearHand();
-            }
+            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+            _UIMNG.Hands.ClearHand();
+            // ------------------------------------------------
         }
+        //Start 페이즈
+        else if (CurrentPhase == Phase.Start)
+        {
+            //범위 외
+            if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) != null)
+                return;
+
+            // ----------------변경 예정------------------------
+            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+            if (clickedUnit == null)
+                return;
+
+            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
+
+            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+
+            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+            BattleUnit.setLocate(coord);
+
+            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
+
+            BattleUnit.Init();
+
+            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+            _UIMNG.Hands.ClearHand();
+            // ------------------------------------------------
+
+        }
+        //Engage 페이즈
         else
         {
             _field.ClearAllColor();
@@ -153,6 +175,7 @@ public class BattleManager : MonoBehaviour
 
         foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
+            Debug.Log(unit.Location);
             _BattleUnitOrderList.Add(unit);
         }
 
