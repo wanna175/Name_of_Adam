@@ -175,7 +175,6 @@ public class BattleManager : MonoBehaviour
 
         foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
-            Debug.Log(unit.Location);
             _BattleUnitOrderList.Add(unit);
         }
 
