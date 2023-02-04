@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Awake");
         Init();
     }
 

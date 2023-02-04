@@ -27,7 +27,10 @@ public class BattleManager : MonoBehaviour
         _BattleUnitOrderList = new List<BattleUnit>();
         _WatingLine = GameManager.UIMNG.WatingLine;
         _UIMNG = GameManager.UIMNG;
-        _field = GameObject.Find("Field").GetComponent<Field>().SetClickEvent(OnClickTile);
+
+        GameObject fieldTmp = GameObject.Find("Field");
+        if(fieldTmp != null)
+            _field = GetComponent<Field>().SetClickEvent(OnClickTile);
 
         StartEnter();
     }
