@@ -4,9 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BattleUnit : MonoBehaviour
+public class BattleUnit : Unit
 {
+    [SerializeField] public bool MyTeam;
+    [SerializeField] public RangeType RType;
+    [SerializeField] public int FallGauge;
     [SerializeField] public BattleUnitSO BattleUnitSO;
+    [SerializeField] public Sprite sprite;
+    [SerializeField] public Stat stat;
+    [SerializeField] public int MoveDistance;
+    [SerializeField] public int ManaCost;
+    [SerializeField] public bool Fall;
+    [SerializeField] SkillSO skill;
 
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
@@ -75,45 +84,6 @@ public class BattleUnit : MonoBehaviour
         _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
         setLocate(Location);
     }
-
-    
-    public void UpdateState()
-    {
-        //switch (curr_state)
-        //{
-        //    case BattleUnitState.Idle:
-        //        _Animator.SetBool("isAttack", false);
-        //        _Animator.SetBool("isHit", false);
-
-        //        break;
-
-        //    case BattleUnitState.Move:
-        //        _BattleMNG.SetTileColor(Color.yellow);
-
-
-
-        //        break;
-
-        //    case BattleUnitState.AttackWait:
-        //        _BattleMNG.SetTileColor(Color.yellow);
-
-
-
-
-        //        break;
-
-        //    case BattleUnitState.Attack:
-        //        _Animator.SetBool("isAttack", true);
-
-        //        break;
-
-        //    case BattleUnitState.HitWait:
-        //        _Animator.SetBool("isHit", true);
-
-        //        break;
-        //}
-    }
-    
 
     // 이동가능한 범위를 가져온다.
     public List<Vector2> GetCanMoveRange()

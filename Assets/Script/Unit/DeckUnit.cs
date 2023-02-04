@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckUnit
+public class DeckUnit : Unit
 {
     private BattleUnitSO _unitSO = null;
 

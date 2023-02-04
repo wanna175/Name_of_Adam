@@ -5,13 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
 public class BattleUnitSO : ScriptableObject
 {
-    [SerializeField] public bool MyTeam;
-    [SerializeField] public RangeType RType;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
     [SerializeField] public int MoveDistance;
     [SerializeField] public int ManaCost;
-    [SerializeField] public int FallGauge;
     [SerializeField] public bool Fall;
     [SerializeField] SkillSO skill;
 

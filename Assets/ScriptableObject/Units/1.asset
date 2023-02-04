@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: 
+  Name: "\uAC80\uBCD1"
+  Faction: 0
+  BehaviorType: 3
+  Rarity: 0
+  Range: {fileID: 0}
+  TargetType: 0
+  RawStat:
+    HP: 50
+    ATK: 40
+    SPD: 10
+  CostMana: 23
+  FirstCostMana: 15
