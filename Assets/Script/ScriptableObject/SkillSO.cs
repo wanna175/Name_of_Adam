@@ -19,32 +19,30 @@ public class SkillSO : ScriptableObject
     [SerializeField] RangeSO range;    // 공격 범위
 
     [SerializeField] public List<EffectSO> EffectList;
-    
-    
+
+
+    public void Use()
+    {
+
+    }
+
     // 현재 알고리즘은 범위 내의 적을 찾는 알고리즘
     // 힐같이 아군을 찾는 알고리즘은 나중에 따로 설정해야한다
     public void use(BattleUnit caster)
     {
         Field _field = GameManager.BattleMNG.Field;
-        List<Vector2> rangeList = GetRange();
+        List<Vector2> rangeList = range.GetRange(caster.Location);
         List<BattleUnit> hitUnits = new List<BattleUnit>();
 
         if (attackType == AttackType.rangeAttack)
         {
             // 공격범위 안에 있는 모든 대상을 리스트에 넣는다.
-            foreach(Vector2 vec in rangeList)
+            foreach (Vector2 vec in rangeList)
             {
-                BattleUnit _unit = null;
-                Vector2 location = caster.Location + vec;
+                BattleUnit unit = _field.GetUnit(vec);
 
-                // 공격 범위가 필드를 벗어나지 않았다면 범위 위의 적 유닛을 가져온다
-                _unit = _field.GetUnit(location);
-
-                if (_unit != null)
-                {
-                    if(_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
-                        hitUnits.Add(_unit);
-                }
+                if (unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
+                    hitUnits.Add(unit);
             }
         }
         else if (attackType == AttackType.targeting)
@@ -53,15 +51,13 @@ public class SkillSO : ScriptableObject
             int x = (int)caster.SelectTile.x;
             int y = (int)caster.SelectTile.y;
 
-            BattleUnit _unit = null;
+            BattleUnit unit = _field.GetUnit(new Vector2(x, y));
 
-            _unit = _field.GetUnit(new Vector2(x, y));
+            if (unit == null)
+                return;
 
-            if(_unit != null)
-            {
-                if (_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
-                    hitUnits.Add(_unit);
-            }
+            if (unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
+                hitUnits.Add(unit);
         }
 
         foreach (EffectSO es in EffectList)
