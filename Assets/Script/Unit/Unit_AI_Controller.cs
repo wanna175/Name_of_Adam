@@ -34,7 +34,7 @@ public class Unit_AI_Controller : MonoBehaviour
     #region AISet
     protected void SetFindTileList()
     {
-        //ÇöÀç À§Ä¡¿¡¼­ °ø°İ¹üÀ§ ³»ÀÇ À¯´ÖÀ» Ã£´Â´Ù.
+        //í˜„ì¬ ìœ„ì¹˜ì—ì„œ ê³µê²©ë²”ìœ„ ë‚´ì˜ ìœ ë‹›ì„ ì°¾ëŠ”ë‹¤.
 
         FindTileList.Clear();
         RangedVectorList.Clear();
@@ -50,7 +50,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 if (_field.TileDict[vec].IsOnTile)
                 {
                     FindTileList.Add(vec);
-                    // ¸¸¾à if ÇÑ¹ø ´õ ³Ö¾îµµ µÇ¸é ¿©±â¼­ ¿ø°Å¸® ÆÇº°
+                    // ë§Œì•½ if í•œ ë²ˆ ë” ë„£ì–´ë„ ë˜ë©´ ì—¬ê¸°ì„œ ì›ê±°ë¦¬ íŒë³„
                 }
             }
         }
@@ -63,12 +63,12 @@ public class Unit_AI_Controller : MonoBehaviour
             }
         }
 
-        // À¯´Ö ³»¿ëÀº FindTileList¿¡ ÀúÀå ¹× ¿ø°Å¸® ¸®½ºÆ® ÀúÀå
+        // ìœ ë‹› ë‚´ìš©ì€ FindTileListì— ì €ì¥ ë° ì›ê±°ë¦¬ ë¦¬ìŠ¤íŠ¸ ì €ì¥
     }
 
     protected bool IsUnitExist()
     {
-        // À¯´ÖÀÌ ¹üÀ§³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+        // ìœ ë‹›ì´ ë²”ìœ„ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸
         return FindTileList.Count > 0;
     }
 
@@ -79,7 +79,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void SetDistance()
     {
-        //¸ğµç °ø°İ Å¸ÀÏÀ» AttackTileSet¿¡ ÀúÀåÇÑ´Ù. X, Y´Â ÁÂÇ¥, Z´Â ¿ø°Å¸®/±Ù°Å¸® À¯¹«
+        //ëª¨ë“  ê³µê²© íƒ€ì¼ì„ AttackTileSetì— ì €ì¥í•œë‹¤. X, YëŠ” ì¢Œí‘œ, ZëŠ” ì›ê±°ë¦¬/ê·¼ê±°ë¦¬ ìœ ë¬´
         foreach (BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
             if (unit.BattleUnitSO.MyTeam)
@@ -88,9 +88,9 @@ public class Unit_AI_Controller : MonoBehaviour
                 {
                     Vector3 vector = unit.Location - arl;
                     if (unit.BattleUnitSO.RType == RangeType.Ranged)
-                        vector.z = 0f;//¿ø°Å¸®¸é 0
+                        vector.z = 0f;//ì›ê±°ë¦¬ë©´ 0
                     else
-                        vector.z = 0.1f;//±Ù°Å¸®¸é 0.1
+                        vector.z = 0.1f;//ê·¼ê±°ë¦¬ë©´ 0.1
 
 
                     AttackTileSet.Add(vector);
@@ -101,8 +101,8 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void SearchAttackableTile()
     {
-        //À¯´ÖÀ» ¶§¸± ¼ö ÀÖ´Â Å¸ÀÏÀÌ ÀÌµ¿ ¹üÀ§ ³»¿¡ ÀÖ´Â Áö È®ÀÎÇÑ´Ù.
-        //´Ü À§, ¾Æ·¡, ¿Ş, ¿À¸¥ÂÊ¸¸ ÀÌµ¿ °¡´ÉÇÏ´Ù°í °¡Á¤
+        //ìœ ë‹›ì„ ë•Œë¦´ ìˆ˜ ìˆëŠ” íƒ€ì¼ì´ ì´ë™ ë²”ìœ„ ë‚´ì— ìˆëŠ” ì§€ í™•ì¸í•œë‹¤.
+        //ë‹¨ ìœ„, ì•„ë˜, ì™¼, ì˜¤ë¥¸ìª½ë§Œ ì´ë™ ê°€ëŠ¥í•˜ë‹¤ê³  ê°€ì •
 
         FindTileList.Clear();
         RangedVectorList.Clear();
@@ -150,9 +150,9 @@ public class Unit_AI_Controller : MonoBehaviour
                 minVec = v;
             }
         }
-        //°¡Àå °¡±î¿î Å¸ÀÏ = minVecÀ¸·Î ÀÌµ¿
+        //ê°€ì¥ ê°€ê¹Œìš´ íƒ€ì¼ = minVecìœ¼ë¡œ ì´ë™
 
-        dis = 100f;//ÀçÈ°¿ë
+        dis = 100f;//ì¬í™œìš©
         Vector3 moveVec = new Vector3();
         for (int i = -1; i <= 1; i += 2)
         {
@@ -178,45 +178,45 @@ public class Common_Unit_AI_Controller : Unit_AI_Controller
 {
     public override void AI_Action()
     {
-        //Àü´Ş¹ŞÀº ¹üÀ§¿¡¼­ À¯´ÖÀ» Ã£´Â´Ù.
+        //ì „ë‹¬ë°›ì€ ë²”ìœ„ì—ì„œ ìœ ë‹›ì„ ì°¾ëŠ”ë‹¤.
         SetFindTileList();
 
-        //Ã£Àº À¯´ÖÀÌ ÀÖ´ÂÁö È®ÀÎÇÏ°í, ÀÖ´Ù¸é ¿ø°Å¸®ÀÎÁö, ±Ù°Å¸®ÀÎÁö È®ÀÎÇÑ´Ù.
+        //ì°¾ì€ ìœ ë‹›ì´ ìˆëŠ”ì§€ í™•ì¸í•˜ê³ , ìˆë‹¤ë©´ ì›ê±°ë¦¬ì¸ì§€, ê·¼ê±°ë¦¬ì¸ì§€ í™•ì¸í•œë‹¤.
         if (IsUnitExist())
         {
             if (IsRangedUnitExist())
             {
-                //¿ø°Å¸® À¯´ÖÀÌ ÀÖÀ» °æ¿ì
+                ///ì›ê±°ë¦¬ ìœ ë‹›ì´ ìˆì„ ê²½ìš°
                 //Random.Range(0, RangeList.Count);
             }
             else
             {
-                //±Ù°Å¸® À¯´Ö¸¸ ÀÖÀ» °æ¿ì
+                //ê·¼ê±°ë¦¬ ìœ ë‹›ë§Œ ìˆì„ ê²½ìš°
                 //Random.Range(0, findUnitList.Count);
             }
         }
         else
         {
-            //°ø°İ ¹üÀ§ ³»¿¡¼­ Ã£Àº À¯´ÖÀÌ ¾øÀ¸¸é ÀÌµ¿ÇÏ°í °ø°İÇÑ´Ù
+            //ê³µê²© ë²”ìœ„ ë‚´ì—ì„œ ì°¾ì€ ìœ ë‹›ì´ ì—†ìœ¼ë©´ ì´ë™í•˜ê³  ê³µê²©í•œë‹¤
             SetDistance();
             SearchAttackableTile();
             if (IsUnitExist())
             {
                 if (IsRangedUnitExist())
                 {
-                    //¿ø°Å¸®°¡ ÀÖÀ½
+                    //ì›ê±°ë¦¬ê°€ ìˆìŒ
                     //Random.Range(0, RangedVectorList.Count);
                 }
                 else
                 {
-                    //±Ù°Å¸®¸¸ ÀÖÀ½
+                    //ê·¼ê±°ë¦¬ë§Œ ìˆìŒ
                     //Random.Range(0, FindTileList.Count);
                 }
             }
             else
             {
                 OrderbyDistance();
-                //moveVecÀ¸·Î ÀÌµ¿
+                //moveVecìœ¼ë¡œ ì´ë™
             }
         }
     }

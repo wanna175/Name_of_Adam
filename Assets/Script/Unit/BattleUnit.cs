@@ -56,6 +56,7 @@ public class BattleUnit : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("스타트");
         _BattleDataMNG.BattleUnitEnter(this);
         //ChangeState(BattleUnitState.Idle);
         //UpdateState();
@@ -67,8 +68,6 @@ public class BattleUnit : MonoBehaviour
 
     public void Init()
     {
-        _BattleDataMNG.BattleUnitEnter(this);
-
         //ChangeState(BattleUnitState.Idle);
         //UpdateState();
         // 적군일 경우 x축 뒤집기
