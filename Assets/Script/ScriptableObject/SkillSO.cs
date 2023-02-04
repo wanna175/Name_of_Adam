@@ -19,8 +19,13 @@ public class SkillSO : ScriptableObject
     [SerializeField] RangeSO range;    // 공격 범위
 
     [SerializeField] public List<EffectSO> EffectList;
-    
-    
+
+
+    public void Use()
+    {
+
+    }
+
     // 현재 알고리즘은 범위 내의 적을 찾는 알고리즘
     // 힐같이 아군을 찾는 알고리즘은 나중에 따로 설정해야한다
     public void use(BattleUnit caster)
@@ -32,7 +37,7 @@ public class SkillSO : ScriptableObject
         if (attackType == AttackType.rangeAttack)
         {
             // 공격범위 안에 있는 모든 대상을 리스트에 넣는다.
-            foreach(Vector2 vec in rangeList)
+            foreach (Vector2 vec in rangeList)
             {
                 BattleUnit _unit = null;
                 Vector2 location = caster.Location + vec;
@@ -42,7 +47,7 @@ public class SkillSO : ScriptableObject
 
                 if (_unit != null)
                 {
-                    if(_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
+                    if (_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
                         hitUnits.Add(_unit);
                 }
             }
@@ -57,7 +62,7 @@ public class SkillSO : ScriptableObject
 
             _unit = _field.GetUnit(new Vector2(x, y));
 
-            if(_unit != null)
+            if (_unit != null)
             {
                 if (_unit.BattleUnitSO.MyTeam != caster.BattleUnitSO.MyTeam)
                     hitUnits.Add(_unit);

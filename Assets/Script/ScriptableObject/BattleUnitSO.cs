@@ -2,22 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 캐릭터의 스탯
-[Serializable]
-public struct Stat
-{
-    public float HP;
-    public float ATK;
-    public int SPD;
-}
-
-public enum RangeType
-{
-    Melee,
-    Ranged
-}
-
-
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
 public class BattleUnitSO : ScriptableObject
 {
