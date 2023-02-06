@@ -18,7 +18,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
     void Awake()
     {
-        _BattleDataMNG = GameManager.Battle.BattleDataMNG;
+        _BattleDataMNG = GameManager.Battle.Data;
         _field = GameManager.Battle.Field;
     }
 

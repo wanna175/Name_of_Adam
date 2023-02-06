@@ -10,8 +10,8 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private BattleDataManager _BattleDataMNG;
-    public BattleDataManager BattleDataMNG => _BattleDataMNG;
+    private BattleDataManager _battleData;
+    public BattleDataManager Data => _battleData;
 
     private UI_WatingLine _WatingLine;
     private UIManager _UIMNG;
@@ -22,21 +22,22 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        _BattleDataMNG = new BattleDataManager();
+        _battleData = new BattleDataManager();
         
         _BattleUnitOrderList = new List<BattleUnit>();
-        _WatingLine = GameManager.UI.WatingLine;
+        //_WatingLine = GameManager.UI.WatingLine;
         _UIMNG = GameManager.UI;
 
         GameObject fieldTmp = GameObject.Find("Field");
         if(fieldTmp != null)
-            _field = GetComponent<Field>().SetClickEvent(OnClickTile);
+            _field = fieldTmp.GetComponent<Field>().SetClickEvent(OnClickTile);
 
         StartEnter();
     }
 
-    private void OnClickTile(Vector2 coord, Tile tile)
+    public void OnClickTile(Vector2 coord, Tile tile)
     {
+        Debug.Log($"{coord} Click");
         //if (CurrentPhase == Phase.Prepare)
         //{
 
@@ -154,7 +155,7 @@ public class BattleManager : MonoBehaviour
 
         _BattleUnitOrderList.Clear();
 
-        foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
+        foreach(BattleUnit unit in _battleData.BattleUnitList)
         {
             _BattleUnitOrderList.Add(unit);
         }
@@ -174,7 +175,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Engage Exit");
         //UI 들어감
         //UI 사용 불가
-        _BattleDataMNG.ChangeMana(2);
+        _battleData.ChangeMana(2);
         BattleOverCheck();
     }
     #endregion
@@ -183,7 +184,7 @@ public class BattleManager : MonoBehaviour
     {
         int MyUnit = 0;
         int EnemyUnit = 0;
-        foreach(BattleUnit BUnit in BattleDataMNG.BattleUnitList)
+        foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
             if (BUnit.MyTeam)//아군이면
                 MyUnit++;
@@ -191,7 +192,7 @@ public class BattleManager : MonoBehaviour
                 EnemyUnit++;
         }
 
-        MyUnit += BattleDataMNG.DeckUnitList.Count;
+        MyUnit += Data.DeckUnitList.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
@@ -336,7 +337,7 @@ public class BattleManager : MonoBehaviour
             SortedSet<Vector3> AttackTileSet = new SortedSet<Vector3>();
 
             //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
-            foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
+            foreach(BattleUnit unit in _battleData.BattleUnitList)
             {
                 if (unit.MyTeam)
                 {

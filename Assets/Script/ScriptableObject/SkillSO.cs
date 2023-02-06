@@ -62,9 +62,3 @@ public class SkillSO : ScriptableObject
 
     public List<Vector2> GetRange() => range.GetRange();
 }
-
-// 23.01.25 김종석
-// Effect_Attack에서 진행하던 범위 확인을 SkillSO에서 진행하도록 변경
-// 그에 따른 attackType과 CSType을 SkillSO에 이동
-// 지금은 공격처리에 대한 타겟 설정만 되어있으므로
-// 힐러의 타겟 서칭은 따로 해야함

@@ -53,7 +53,7 @@ public class BattleUnit : Unit
     private void Awake()
     {
         _BattleMNG = GameManager.Battle;
-        _BattleDataMNG = GameManager.Battle.BattleDataMNG;
+        _BattleDataMNG = GameManager.Battle.Data;
         _CutSceneMNG = GameManager.CutScene;
 
         _renderer = GetComponent<SpriteRenderer>();

@@ -16,6 +16,12 @@ public class Field : MonoBehaviour
     public Dictionary<Vector2, Tile> TileDict => _tileDict;
     public Vector2 FindCoordByTile(Tile tile)
     {
+        if(tile == null)
+        {
+            Debug.Log("Tile Parameter is Null");
+            return default;
+        }
+
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
             if (items.Value == tile)
                 return items.Key;

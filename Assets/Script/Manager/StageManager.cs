@@ -128,7 +128,7 @@ public class StageManager
         // 새로 만들어지는 방의 정보
 
         // 전 스테이지에서 사용된 데이터를 모두 초기화
-        GameManager.Battle.BattleDataMNG.UnitListClear();
+        GameManager.Battle.Data.UnitListClear();
 
         // 방 생성은 여기서? 아니면 배틀매니저에서?
 

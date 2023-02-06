@@ -12,7 +12,7 @@ public class UI_ManaGuage : MonoBehaviour
 
     private void Start()
     {
-        _BattleDataMNG = GameManager.Battle.BattleDataMNG;
+        _BattleDataMNG = GameManager.Battle.Data;
 
         _BattleDataMNG.SetManaGuage(this);
         _BattleDataMNG.InitMana();
