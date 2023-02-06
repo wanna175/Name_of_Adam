@@ -36,7 +36,7 @@ public class UnitData : ScriptableObject
 
     #region RangeEditor
     const int row = 5;
-    const int column = 15;
+    const int column = 11;
 
     [SerializeField] [HideInInspector] public bool[] AttackRange = new bool[row * column];
 
@@ -66,7 +66,7 @@ public class UnitData : ScriptableObject
 public class RangeEditor : Editor
 {
     const int row = 5;
-    const int column = 15;
+    const int column = 11;
 
     UnitData _range;
     bool[] atkRange;
