@@ -185,7 +185,7 @@ public class BattleManager : MonoBehaviour
         int EnemyUnit = 0;
         foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
-            if (BUnit.MyTeam)//아군이면
+            if (BUnit.Team == Team.Player)//아군이면
                 MyUnit++;
             else
                 EnemyUnit++;
@@ -338,7 +338,7 @@ public class BattleManager : MonoBehaviour
             //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
             foreach(BattleUnit unit in _battleData.BattleUnitList)
             {
-                if (unit.MyTeam)
+                if (unit.Team == Team.Player)
                 {
                     foreach (Vector2 arl in AttackRangeList)
                     {

@@ -8,7 +8,7 @@ public class BattleUnit : Unit
 {
     [SerializeField] private Team _team;
     public Team Team => _team;
-    [SerializeField] public bool MyTeam;
+
     [SerializeField] private int _fallGauge;
     public int FallGauge => _fallGauge;
     private int _moveDistance;
@@ -67,7 +67,7 @@ public class BattleUnit : Unit
         //UpdateState();
 
         // 적군일 경우 x축 뒤집기
-        _renderer.flipX = (!MyTeam) ? true : false;
+        _renderer.flipX = (Team == Team.Enemy) ? true : false;
         setLocate(Location);
     }
 

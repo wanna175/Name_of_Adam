@@ -35,7 +35,7 @@ public class SkillSO : ScriptableObject
                 if (unit == null)
                     return;
 
-                if (unit.MyTeam != caster.MyTeam)
+                if (unit.Team != caster.Team)
                     hitUnits.Add(unit);
             }
         }
@@ -50,7 +50,7 @@ public class SkillSO : ScriptableObject
             if (unit == null)
                 return;
 
-            if (unit.MyTeam != caster.MyTeam)
+            if (unit.Team != caster.Team)
                 hitUnits.Add(unit);
         }
 

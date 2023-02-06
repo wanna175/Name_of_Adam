@@ -82,7 +82,7 @@ public class Unit_AI_Controller : MonoBehaviour
         //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         foreach (BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
-            if (unit.MyTeam)
+            if (unit.Team == Team.Player)
             {
                 foreach (Vector2 arl in caster.GetRange())
                 {
