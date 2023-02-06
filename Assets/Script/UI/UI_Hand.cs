@@ -23,7 +23,7 @@ public class UI_Hand : MonoBehaviour
         if (_HandUnit != null)
         {
             GetComponent<Image>().enabled = true;
-            _Image.sprite = _HandUnit.GetUnitSO().sprite;
+            _Image.sprite = _HandUnit.GetUnitSO().Image;
         }
 
     }

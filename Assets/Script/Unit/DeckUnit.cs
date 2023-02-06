@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DeckUnit : Unit
 {
-    private BattleUnitSO _unitSO = null;
+    private UnitData _unitSO = null;
 
-    public BattleUnitSO GetUnitSO()
+    public UnitData GetUnitSO()
     {
         return _unitSO;
     }
 
-    public void SetUnitSO(BattleUnitSO so)
+    public void SetUnitSO(UnitData so)
     {
         _unitSO = so;
     }

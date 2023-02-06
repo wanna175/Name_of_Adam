@@ -7,6 +7,7 @@ public class UnitData : ScriptableObject
 {
     [SerializeField] private string _name;
     public string Name => _name;
+
     [SerializeField] private Faction _faction;
     public Faction Faction => _faction;
 
@@ -27,11 +28,11 @@ public class UnitData : ScriptableObject
     [SerializeField] private Stat _rawStat;
     public Stat RawStat => _rawStat;
 
-    [SerializeField] private int _costMana;
-    public int CostMana => _costMana;
+    [SerializeField] private int _manaCost;
+    public int ManaCost => _manaCost;
 
-    [SerializeField] private int _firstCostMana;
-    public int FirstCostMana => _firstCostMana;
+    [SerializeField] private int _firstManaCost;
+    public int FirstManaCost => _firstManaCost;
 
     #region RangeEditor
     const int row = 5;
