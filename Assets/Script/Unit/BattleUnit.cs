@@ -62,7 +62,7 @@ public class BattleUnit : Unit
 
     private void Start()
     {
-        _BattleDataMNG.BattleUnitEnter(this);
+        _BattleDataMNG.BattleUnitAdd(this);
         //ChangeState(BattleUnitState.Idle);
         //UpdateState();
 
@@ -117,7 +117,7 @@ public class BattleUnit : Unit
     
     void UnitDestroy()
     {
-        _BattleDataMNG.BattleUnitExit(this);
+        _BattleDataMNG.BattleUnitRemove(this);
         _BattleMNG.BattleOrderRemove(this);
         Destroy(gameObject);
     }
