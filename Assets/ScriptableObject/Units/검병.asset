@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
-  m_Name: 1
+  m_Name: "\uAC80\uBCD1"
   m_EditorClassIdentifier: 
-  _name: 
+  _name: "\uAC80\uBCD1"
   _faction: 0
   _image: {fileID: 0}
-  _behaviorType: 0
+  _behaviorType: 3
   _rarity: 0
   _targetType: 0
   _rawStat:
-    HP: 0
-    ATK: 0
-    SPD: 0
-  _costMana: 0
-  _firstCostMana: 0
+    HP: 50
+    ATK: 40
+    SPD: 10
+  _manaCost: 23
+  _firstManaCost: 15
   AttackRange: 000000000000000000000000000000000000000000000100000000000000000000000000010001000000000000000000000000000100000000000000000000000000000000000000000000
