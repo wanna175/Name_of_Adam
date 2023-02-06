@@ -18,8 +18,8 @@ public class Unit_AI_Controller : MonoBehaviour
 
     void Awake()
     {
-        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
-        _field = GameManager.BattleMNG.Field;
+        _BattleDataMNG = GameManager.Battle.BattleDataMNG;
+        _field = GameManager.Battle.Field;
     }
 
     public virtual void AI_Action()
@@ -57,7 +57,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
         foreach (Vector2 ftl in FindTileList)
         {
-            if (_field.TileDict[ftl].Unit.RType == RangeType.Ranged)
+            if (_field.TileDict[ftl].Unit.Data.BehaviorType == BehaviorType.원거리)
             {
                 RangedVectorList.Add(ftl);
             }
@@ -87,7 +87,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 foreach (Vector2 arl in caster.GetRange())
                 {
                     Vector3 vector = unit.Location - arl;
-                    if (unit.RType == RangeType.Ranged)
+                    if (unit.Data.BehaviorType == BehaviorType.원거리)
                         vector.z = 0f;//원거리면 0
                     else
                         vector.z = 0.1f;//근거리면 0.1

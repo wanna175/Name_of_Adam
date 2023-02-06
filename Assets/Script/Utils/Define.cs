@@ -11,13 +11,6 @@ public struct Stat
 }
 
 [Serializable]
-public enum RangeType
-{
-    Melee,
-    Ranged
-}
-
-[Serializable]
 public enum Team
 {
     Player,

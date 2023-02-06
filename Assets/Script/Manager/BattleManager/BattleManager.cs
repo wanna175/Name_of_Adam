@@ -25,8 +25,8 @@ public class BattleManager : MonoBehaviour
         _BattleDataMNG = new BattleDataManager();
         
         _BattleUnitOrderList = new List<BattleUnit>();
-        _WatingLine = GameManager.UIMNG.WatingLine;
-        _UIMNG = GameManager.UIMNG;
+        _WatingLine = GameManager.UI.WatingLine;
+        _UIMNG = GameManager.UI;
 
         GameObject fieldTmp = GameObject.Find("Field");
         if(fieldTmp != null)
@@ -161,7 +161,7 @@ public class BattleManager : MonoBehaviour
 
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
-        GameManager.BattleMNG.Field.ClearAllColor();
+        GameManager.Battle.Field.ClearAllColor();
 
         _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
         _WatingLine.SetWatingLine();
@@ -313,7 +313,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (Vector2 ftl in FindTileList)
             {
-                if (_field.TileDict[ftl].Unit.RType == RangeType.Ranged)
+                if (_field.TileDict[ftl].Unit.Data.BehaviorType == BehaviorType.원거리)
                 {
                     RangedVectorList.Add(ftl);
                 }
@@ -343,7 +343,7 @@ public class BattleManager : MonoBehaviour
                     foreach (Vector2 arl in AttackRangeList)
                     {
                         Vector3 vector = unit.Location - arl;
-                        if (unit.RType == RangeType.Ranged)
+                        if (unit.Data.BehaviorType == BehaviorType.원거리)
                             vector.z = 0f;//원거리면 0
                         else
                             vector.z = 0.1f;//근거리면 0.1

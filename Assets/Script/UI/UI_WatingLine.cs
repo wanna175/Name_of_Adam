@@ -35,7 +35,7 @@ public class UI_WatingLine : MonoBehaviour
         {   
             if (i < _BattleUnitOrderList.Count)
             {
-                _WatingUnitList[i].SetUnit(_BattleUnitOrderList[i].sprite);
+                _WatingUnitList[i].SetUnit(_BattleUnitOrderList[i].Data.Image);
             }
             else
             {

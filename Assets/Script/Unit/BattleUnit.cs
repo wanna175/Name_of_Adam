@@ -6,22 +6,20 @@ using UnityEngine;
 
 public class BattleUnit : Unit
 {
+    [SerializeField] private Team _team;
+    public Team Team => _team;
     [SerializeField] public bool MyTeam;
-    [SerializeField] public RangeType RType;
-    [SerializeField] public int FallGauge;
-    [SerializeField] public Sprite sprite;
-    [SerializeField] public Stat stat;
-    [SerializeField] public int MoveDistance;
-    [SerializeField] public int ManaCost;
-    [SerializeField] public bool Fall;
+    [SerializeField] private int _fallGauge;
+    public int FallGauge => _fallGauge;
+    private int _moveDistance;
     [SerializeField] SkillSO skill;
 
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
     CutSceneManager _CutSceneMNG;
 
-    SpriteRenderer _SR;
-    Animator _Animator;
+    private SpriteRenderer _renderer;
+    private Animator _animator;
     
 
     #region Location
@@ -54,12 +52,12 @@ public class BattleUnit : Unit
     public bool IsMove => isMove;
     private void Awake()
     {
-        _BattleMNG = GameManager.BattleMNG;
-        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
-        _CutSceneMNG = GameManager.CutSceneMNG;
+        _BattleMNG = GameManager.Battle;
+        _BattleDataMNG = GameManager.Battle.BattleDataMNG;
+        _CutSceneMNG = GameManager.CutScene;
 
-        _SR = GetComponent<SpriteRenderer>();
-        _Animator = GetComponent<Animator>();
+        _renderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -69,18 +67,7 @@ public class BattleUnit : Unit
         //UpdateState();
 
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!MyTeam) ? true : false;
-        setLocate(Location);
-    }
-
-    public void Init()
-    {
-        _BattleDataMNG.BattleUnitEnter(this);
-
-        //ChangeState(BattleUnitState.Idle);
-        //UpdateState();
-        // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!MyTeam) ? true : false;
+        _renderer.flipX = (!MyTeam) ? true : false;
         setLocate(Location);
     }
 
@@ -90,7 +77,7 @@ public class BattleUnit : Unit
         List<Vector2> vecList = new List<Vector2>();
         vecList.Add(new Vector2(0, 0));
         
-        for (int i = 1; i <= MoveDistance; i++)
+        for (int i = 1; i <= _moveDistance; i++)
         {
             for (int j = -1; j <= 1; j += 2)
             {
@@ -195,24 +182,14 @@ public class BattleUnit : Unit
         return Stat;
     }
 
-    public bool GetFlipX() => _SR.flipX;
+    public bool GetFlipX() => _renderer.flipX;
 
     public void use(BattleUnit ch)
     {
         skill.use(ch);
     }
 
-    public AttackType GetAttackType() => skill.attackType;
     public CutSceneType GetCutSceneType() => skill.CSType;
-
-    // 타겟팅 스킬을 가진 경우, 범위를 반환한다.
-    public List<Vector2> GetTargetingRange()
-    {
-        if (skill.attackType == AttackType.targeting)
-            return null;
-
-        return skill.GetRange();
-    }
 
     public List<Vector2> GetRange() => skill.GetRange();
 
