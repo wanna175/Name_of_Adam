@@ -8,6 +8,26 @@ public struct Stat
     public float HP;
     public float ATK;
     public int SPD;
+
+    public static Stat operator +(Stat lhs, Stat rhs)
+    {
+        Stat result = new Stat();
+        result.HP = lhs.HP + rhs.HP;
+        result.ATK = lhs.ATK + rhs.ATK;
+        result.SPD = lhs.SPD + rhs.SPD;
+
+        return result;
+    }
+
+    public static Stat operator -(Stat lhs, Stat rhs)
+    {
+        Stat result = new Stat();
+        result.HP = lhs.HP - rhs.HP;
+        result.ATK = lhs.ATK - rhs.ATK;
+        result.SPD = lhs.SPD - rhs.SPD;
+
+        return result;
+    }
 }
 
 [Serializable]
