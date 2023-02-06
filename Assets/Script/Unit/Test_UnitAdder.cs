@@ -9,8 +9,8 @@ public class Test_UnitAdder : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("ADD");
-        DeckUnit d1 = new DeckUnit();
-        d1.SetUnitSO(unit[0].Data); 
-        GameManager.Battle.Data.AddDeckUnit(d1);
+        Unit d1 = new Unit();
+        //d1.SetUnitSO(unit[0].Data); 
+        GameManager.Battle.Data.AddUnit(d1);
     }
 }

@@ -7,13 +7,13 @@ public class GameManager : MonoBehaviour
     private static GameManager s_instance;
     public static GameManager Instance { get { Init(); return s_instance; } }
     
-    [SerializeField] BattleManager _battle;
+    [SerializeField] private BattleManager _battle;
     public static BattleManager Battle => Instance._battle;
     
     [SerializeField] private CutSceneManager _cutScene;
     public static CutSceneManager CutScene => Instance._cutScene;
 
-    [SerializeField] UIManager _ui;
+    [SerializeField] private UIManager _ui;
     public static UIManager UI => Instance._ui;
 
     private ResourceManager _resource = new ResourceManager();

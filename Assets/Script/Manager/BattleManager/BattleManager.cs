@@ -47,18 +47,18 @@ public class BattleManager : MonoBehaviour
         //    if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) == null)
         //        return;
 
-        //    DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+        //    Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
         //    if (clickedUnit == null)
         //        return;
 
-        //    if (_BattleDataMNG.CanUseMana(clickedUnit.GetUnitSO().ManaCost))
+        //    if (_BattleDataMNG.CanUseMana(clickedUnit.Data.ManaCost))
         //    {
-        //        _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
+        //        _BattleDataMNG.ChangeMana(-1 * clickedUnit.Data.ManaCost);
 
         //        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
         //        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-        //        BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+        //        BattleUnit.BattleUnitSO = clickedUnit.Data;
         //        BattleUnit.setLocate(coord);
 
         //        GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
@@ -191,7 +191,7 @@ public class BattleManager : MonoBehaviour
                 EnemyUnit++;
         }
 
-        MyUnit += Data.DeckUnitList.Count;
+        MyUnit += Data.UnitList.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
