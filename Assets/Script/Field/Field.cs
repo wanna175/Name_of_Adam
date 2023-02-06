@@ -123,7 +123,7 @@ public class Field : MonoBehaviour
         if (_unit.IsMove)
             RangeList = _unit.GetCanMoveRange();
         else
-            RangeList = _unit.BattleUnitSO.GetRange();
+            RangeList = _unit.GetRange();
 
         foreach (Vector2 vec in RangeList)
         {

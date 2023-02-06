@@ -9,7 +9,6 @@ public class BattleUnit : Unit
     [SerializeField] public bool MyTeam;
     [SerializeField] public RangeType RType;
     [SerializeField] public int FallGauge;
-    [SerializeField] public BattleUnitSO BattleUnitSO;
     [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
     [SerializeField] public int MoveDistance;
@@ -70,7 +69,7 @@ public class BattleUnit : Unit
         //UpdateState();
 
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
+        _SR.flipX = (!MyTeam) ? true : false;
         setLocate(Location);
     }
 
@@ -81,7 +80,7 @@ public class BattleUnit : Unit
         //ChangeState(BattleUnitState.Idle);
         //UpdateState();
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
+        _SR.flipX = (!MyTeam) ? true : false;
         setLocate(Location);
     }
 
@@ -91,7 +90,7 @@ public class BattleUnit : Unit
         List<Vector2> vecList = new List<Vector2>();
         vecList.Add(new Vector2(0, 0));
         
-        for (int i = 1; i <= BattleUnitSO.MoveDistance; i++)
+        for (int i = 1; i <= MoveDistance; i++)
         {
             for (int j = -1; j <= 1; j += 2)
             {
@@ -174,7 +173,7 @@ public class BattleUnit : Unit
         Vector2 dump = coord - Location;
 
         // 공격범위 밖을 선택했으면 다시 선택하기
-        if (!BattleUnitSO.GetRange().Contains(dump))
+        if (!GetRange().Contains(dump))
         {
             _BattleMNG.SetTileColor(Color.yellow);
             return;
@@ -185,7 +184,7 @@ public class BattleUnit : Unit
         if (_SelectTile == Location)
             _BattleMNG.UseNextUnit();
         else
-            BattleUnitSO.use(this);
+            use(this);
 
         isMove = true;
         return;
@@ -193,14 +192,29 @@ public class BattleUnit : Unit
 
     public Stat GetStat(bool buff = true)
     {
-        Stat stat = BattleUnitSO.stat;
-
-        if (buff == false)
-            return stat;
-
-        return stat;
-        //return _stigma.Use(stat);
+        return Stat;
     }
 
     public bool GetFlipX() => _SR.flipX;
+
+    public void use(BattleUnit ch)
+    {
+        skill.use(ch);
+    }
+
+    public AttackType GetAttackType() => skill.attackType;
+    public CutSceneType GetCutSceneType() => skill.CSType;
+
+    // 타겟팅 스킬을 가진 경우, 범위를 반환한다.
+    public List<Vector2> GetTargetingRange()
+    {
+        if (skill.attackType == AttackType.targeting)
+            return null;
+
+        return skill.GetRange();
+    }
+
+    public List<Vector2> GetRange() => skill.GetRange();
+
+    public int SkillLength() => skill.EffectList.Count;
 }

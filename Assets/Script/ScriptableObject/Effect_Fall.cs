@@ -12,7 +12,7 @@ public class Effect_Fall : EffectSO
     // 공격 실행
     public override void Effect(BattleUnit caster, List<BattleUnit> hitUnits)
     {
-        float CharATK = caster.BattleUnitSO.stat.ATK;
+        float CharATK = caster.stat.ATK;
 
         List<Vector2> RangeList = GetRange();
 

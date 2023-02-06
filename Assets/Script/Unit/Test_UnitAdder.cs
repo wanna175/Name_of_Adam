@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Test_UnitAdder : MonoBehaviour
 {
-    [SerializeField] List<BattleUnitSO> unit;
+    [SerializeField] List<Unit> unit;
 
     void OnMouseDown()
     {

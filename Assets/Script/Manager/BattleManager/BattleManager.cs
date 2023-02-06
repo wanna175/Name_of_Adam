@@ -37,44 +37,44 @@ public class BattleManager : MonoBehaviour
 
     private void OnClickTile(Vector2 coord, Tile tile)
     {
-        if (CurrentPhase == Phase.Prepare)
-        {
+        //if (CurrentPhase == Phase.Prepare)
+        //{
 
-        }
-        else if (CurrentPhase == Phase.Start)
-        {
-            //범위 외
-            if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) == null)
-                return;
+        //}
+        //else if (CurrentPhase == Phase.Start)
+        //{
+        //    //범위 외
+        //    if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) == null)
+        //        return;
 
-            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
-            if (clickedUnit == null)
-                return;
+        //    DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+        //    if (clickedUnit == null)
+        //        return;
 
-            if (_BattleDataMNG.CanUseMana(clickedUnit.GetUnitSO().ManaCost))
-            {
-                _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
+        //    if (_BattleDataMNG.CanUseMana(clickedUnit.GetUnitSO().ManaCost))
+        //    {
+        //        _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
 
-                GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-                BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+        //        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+        //        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-                BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
-                BattleUnit.setLocate(coord);
+        //        BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+        //        BattleUnit.setLocate(coord);
 
-                GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
+        //        GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
 
-                BattleUnit.Init();
+        //        BattleUnit.Init();
 
-                _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-                _UIMNG.Hands.ClearHand();
-            }
-        }
-        else
-        {
-            _field.ClearAllColor();
-            GetNowUnit().TileSelected(coord);
-            return;
-        }
+        //        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+        //        _UIMNG.Hands.ClearHand();
+        //    }
+        //}
+        //else
+        //{
+        //    _field.ClearAllColor();
+        //    GetNowUnit().TileSelected(coord);
+        //    return;
+        //}
     }
     
     #region Phase Control
@@ -185,7 +185,7 @@ public class BattleManager : MonoBehaviour
         int EnemyUnit = 0;
         foreach(BattleUnit BUnit in BattleDataMNG.BattleUnitList)
         {
-            if (BUnit.BattleUnitSO.MyTeam)//아군이면
+            if (BUnit.MyTeam)//아군이면
                 MyUnit++;
             else
                 EnemyUnit++;
@@ -291,7 +291,7 @@ public class BattleManager : MonoBehaviour
         List<Vector2> FindTileList = new List<Vector2>();
         List<Vector2> RangedVectorList = new List<Vector2>();
 
-        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].BattleUnitSO.GetRange();
+        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].GetRange();
 
         //전달받은 범위에서 유닛을 찾는다.
         foreach (Vector2 arl in AttackRangeList)
@@ -313,7 +313,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (Vector2 ftl in FindTileList)
             {
-                if (_field.TileDict[ftl].Unit.BattleUnitSO.RType == RangeType.Ranged)
+                if (_field.TileDict[ftl].Unit.RType == RangeType.Ranged)
                 {
                     RangedVectorList.Add(ftl);
                 }
@@ -338,12 +338,12 @@ public class BattleManager : MonoBehaviour
             //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
             foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
             {
-                if (unit.BattleUnitSO.MyTeam)
+                if (unit.MyTeam)
                 {
                     foreach (Vector2 arl in AttackRangeList)
                     {
                         Vector3 vector = unit.Location - arl;
-                        if (unit.BattleUnitSO.RType == RangeType.Ranged)
+                        if (unit.RType == RangeType.Ranged)
                             vector.z = 0f;//원거리면 0
                         else
                             vector.z = 0.1f;//근거리면 0.1
