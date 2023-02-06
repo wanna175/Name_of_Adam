@@ -2256,9 +2256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e29baf8a2a665145b45901eeb8117f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _battle: {fileID: 0}
-  _cutScene: {fileID: 0}
-  _ui: {fileID: 0}
+  _battle: {fileID: 1589663945}
+  _cutScene: {fileID: 49041952}
+  _ui: {fileID: 20967190}
 --- !u!4 &1932546685
 Transform:
   m_ObjectHideFlags: 0

@@ -37,7 +37,6 @@ public class BattleManager : MonoBehaviour
 
     public void OnClickTile(Vector2 coord, Tile tile)
     {
-        Debug.Log($"{coord} Click");
         //if (CurrentPhase == Phase.Prepare)
         //{
 
