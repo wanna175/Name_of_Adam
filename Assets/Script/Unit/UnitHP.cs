@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UnitHP : MonoBehaviour
 {
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
+    public UnityEvent UnitDiedEvent;
 
-    public void InitHP(int maxHP)
+    public void Init(int maxHP)
     {
         _maxHP = maxHP;
         _currentHP = maxHP;
@@ -19,7 +21,7 @@ public class UnitHP : MonoBehaviour
         if(_currentHP < 0)
         {
             _currentHP = 0;
-            // Add Die Event
+            UnitDiedEvent.Invoke();
         }
         else if (_currentHP > _maxHP)
         {
@@ -27,6 +29,7 @@ public class UnitHP : MonoBehaviour
         }
 
         // Add HP Change Event
+        Debug.Log("DMG : " + value + ", CurHP ; " + GetCurrentHP());
     }
 
     public int GetCurrentHP()

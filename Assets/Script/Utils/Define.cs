@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public struct Stat
 {
-    public float HP;
-    public float ATK;
+    public int HP;
+    public int ATK;
     public int SPD;
 
     public static Stat operator +(Stat lhs, Stat rhs)

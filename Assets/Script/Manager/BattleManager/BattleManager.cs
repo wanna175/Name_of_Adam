@@ -244,7 +244,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (0 < _BattleUnitOrderList[0].CurHP)
+        if (0 < _BattleUnitOrderList[0].HP.GetCurrentHP())
         {
             //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
             //_BattleUnitOrderList[0].UpdateState();

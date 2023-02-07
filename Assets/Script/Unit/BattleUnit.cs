@@ -30,23 +30,6 @@ public class BattleUnit : Unit
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
     #endregion
-    #region HP
-    [SerializeField] float _MaxHP, _CurHP;
-    public float MaxHP => _MaxHP;
-    public float CurHP
-    {
-        get { return _CurHP; }
-        set
-        {
-            _CurHP = value;
-
-            if (MaxHP < _CurHP)
-                _CurHP = MaxHP;
-            else if (_CurHP < 0)
-                _CurHP = 0;
-        }
-    }
-    #endregion
 
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
@@ -54,6 +37,7 @@ public class BattleUnit : Unit
     // Move인지 Attack인지 확인하기 위한 임시클래스
     bool isMove = true;
     public bool IsMove => isMove;
+    
     private void Awake()
     {
         _BattleMNG = GameManager.Battle;
@@ -67,8 +51,7 @@ public class BattleUnit : Unit
     private void Start()
     {
         _BattleDataMNG.BattleUnitAdd(this);
-        //ChangeState(BattleUnitState.Idle);
-        //UpdateState();
+        HP.Init(Stat.HP);
 
         // 적군일 경우 x축 뒤집기
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
@@ -99,18 +82,10 @@ public class BattleUnit : Unit
         _CutSceneMNG.BattleCutScene(this, _HitUnits);
     }
     
-    public void Hit_GetDamage(float DMG)
+    public void Hit_GetDamage(int DMG)
     {
-        CurHP -= DMG;
-
-        Debug.Log("DMG : " + DMG + ", CurHP ; " + CurHP);
-
-        if (MaxHP <= CurHP)  // 현재 체력이 최대 체력을 넘겼을 시
-            CurHP = MaxHP;
-        else if (CurHP <= 0) // 유닛 사망 시
-            UnitDestroy();
+        HP.ChangeHP(-DMG);
     }
-    
 
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(Vector2 coord)
@@ -119,7 +94,7 @@ public class BattleUnit : Unit
         _BattleMNG.SetUnit(this, coord);
     }
     
-    void UnitDestroy()
+    public void UnitDiedEvent()
     {
         _BattleDataMNG.BattleUnitRemove(this);
         _BattleMNG.BattleOrderRemove(this);
