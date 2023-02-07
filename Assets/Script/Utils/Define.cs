@@ -69,3 +69,9 @@ public enum TargetType
     Select,
     Range,
 }
+
+[SerializeField]
+public enum Scene
+{
+    Battle,
+}
