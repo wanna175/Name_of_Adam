@@ -12,6 +12,8 @@ public class BattleUnit : Unit
     [SerializeField] private int _fallGauge;
     public int FallGauge => _fallGauge;
     private int _moveDistance;
+    private Skill Skill; // Memo : 임시
+
     [SerializeField] SkillSO skill;
 
     BattleManager _BattleMNG;
@@ -20,6 +22,8 @@ public class BattleUnit : Unit
 
     private SpriteRenderer _renderer;
     private Animator _animator;
+
+    [SerializeField] public UnitHP HP;
     
 
     #region Location
