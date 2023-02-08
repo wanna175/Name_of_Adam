@@ -24,7 +24,51 @@ public class Unit_AI_Controller : MonoBehaviour
 
     public virtual void AI_Action()
     {
-        
+        //전달받은 범위에서 유닛을 찾는다.
+        SetFindTileList();
+
+        //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
+        if (IsUnitExist())
+        {
+            if (IsRangedUnitExist())
+            {
+                //원거리 유닛이 있을 경우
+                caster.AttackTileClick(RangedUnitCount());
+            }
+            else
+            {
+                //근거리 유닛만 있을 경우
+                caster.AttackTileClick(UnitCount());
+            }
+        }
+        else
+        {
+            //공격 범위 내에서 찾은 유닛이 없으면 이동하고 공격한다
+            SetDistance();
+            SearchAttackableTile();
+            if (IsUnitExist())
+            {
+                if (IsRangedUnitExist())
+                {
+                    //원거리가 있음
+                    //Random.Range(0, RangedVectorList.Count);
+                    Move(Search_Near_Enemy());
+                    caster.AttackTileClick(RangedUnitCount());
+                }
+                else
+                {
+                    //근거리만 있음
+                    //Random.Range(0, FindTileList.Count);
+                    Move(Search_Near_Enemy());
+                    caster.AttackTileClick(UnitCount());
+                }
+            }
+            else
+            {
+                Move(Search_Near_Enemy());
+                //moveVec으로 이동
+            }
+        }
     }
 
     public void SetCaster(BattleUnit unit)
@@ -51,6 +95,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 {
                     FindTileList.Add(vec);
                     // 만약 if 한번 더 넣어도 되면 여기서 원거리 판별
+                    // 만약 if 한 번 더 넣어도 되면 여기서 원거리 판별
                 }
             }
         }
@@ -69,6 +114,7 @@ public class Unit_AI_Controller : MonoBehaviour
     protected bool IsUnitExist()
     {
         // 유닛이 범위내에 있는지 확인
+        // 유닛이 범위 내에 있는지 확인
         return FindTileList.Count > 0;
     }
 
@@ -76,6 +122,17 @@ public class Unit_AI_Controller : MonoBehaviour
     {
         return RangedVectorList.Count > 0;
     }
+
+    protected Vector2 UnitCount()
+    {
+        return RangedVectorList[Random.Range(0, FindTileList.Count)];
+    }
+
+    protected Vector2 RangedUnitCount()
+    {
+        return RangedVectorList[Random.Range(0, RangedVectorList.Count)];
+    }
+    
 
     protected void SetDistance()
     {
@@ -135,24 +192,33 @@ public class Unit_AI_Controller : MonoBehaviour
 
     }
 
-    protected void OrderbyDistance()
+    protected Vector3 Search_Near_Enemy()
     {
         Vector3 MyPosition = caster.Location;
 
         float dis = 100f;
-        Vector3 minVec = new Vector3();
+
+        List<Vector3> list_minVec = new List<Vector3>();
 
         foreach (Vector3 v in RangedVectorList)
         {
             if (dis > Mathf.Abs(v.x - MyPosition.x) + Mathf.Abs(v.y - MyPosition.y))
             {
                 dis = Mathf.Abs(v.x - MyPosition.x) + Mathf.Abs(v.y - MyPosition.y);
-                minVec = v;
+                list_minVec.Add(v);
             }
         }
-        //가장 가까운 타일 = minVec으로 이동
 
-        dis = 100f;//재활용
+        Vector3 minVec = list_minVec[Random.Range(0, list_minVec.Count)];
+
+        return minVec;
+    }
+
+    public Vector3 Move(Vector3 minVec)
+    {
+        Vector3 MyPosition = caster.Location;
+        float dis = 100f;
+        //가장 가까운 타일 = minVec으로 이동
         Vector3 moveVec = new Vector3();
         for (int i = -1; i <= 1; i += 2)
         {
@@ -162,7 +228,6 @@ public class Unit_AI_Controller : MonoBehaviour
                 dis = (vec1 - minVec).sqrMagnitude;
                 moveVec = vec1;
             }
-
             Vector3 vec2 = new Vector3(MyPosition.x, MyPosition.y + i, 0);
             if (dis > (vec2 - minVec).sqrMagnitude)
             {
@@ -170,6 +235,8 @@ public class Unit_AI_Controller : MonoBehaviour
                 moveVec = vec2;
             }
         }
+
+        return moveVec;
     }
     #endregion
 }
@@ -178,46 +245,8 @@ public class Common_Unit_AI_Controller : Unit_AI_Controller
 {
     public override void AI_Action()
     {
-        //전달받은 범위에서 유닛을 찾는다.
-        SetFindTileList();
-
-        //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
-        if (IsUnitExist())
-        {
-            if (IsRangedUnitExist())
-            {
-                //원거리 유닛이 있을 경우
-                //Random.Range(0, RangeList.Count);
-            }
-            else
-            {
-                //근거리 유닛만 있을 경우
-                //Random.Range(0, findUnitList.Count);
-            }
-        }
-        else
-        {
-            //공격 범위 내에서 찾은 유닛이 없으면 이동하고 공격한다
-            SetDistance();
-            SearchAttackableTile();
-            if (IsUnitExist())
-            {
-                if (IsRangedUnitExist())
-                {
-                    //원거리가 있음
-                    //Random.Range(0, RangedVectorList.Count);
-                }
-                else
-                {
-                    //근거리만 있음
-                    //Random.Range(0, FindTileList.Count);
-                }
-            }
-            else
-            {
-                OrderbyDistance();
-                //moveVec으로 이동
-            }
-        }
+        base.AI_Action();
     }
 }
+
+

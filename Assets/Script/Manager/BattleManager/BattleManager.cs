@@ -52,44 +52,66 @@ public class BattleManager : MonoBehaviour
 
     public void OnClickTile(Vector2 coord, Tile tile)
     {
-        //if (CurrentPhase == Phase.Prepare)
-        //{
+        //Prepare 페이즈
+        if (CurrentPhase == Phase.Prepare)
+        {
+            // ----------------변경 예정------------------------
+            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+            if (clickedUnit == null)
+                return;
 
-        //}
-        //else if (CurrentPhase == Phase.Start)
-        //{
-        //    //범위 외
-        //    if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) == null)
-        //        return;
+            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
 
-        //    Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
-        //    if (clickedUnit == null)
-        //        return;
+            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-        //    if (_BattleDataMNG.CanUseMana(clickedUnit.Data.ManaCost))
-        //    {
-        //        _BattleDataMNG.ChangeMana(-1 * clickedUnit.Data.ManaCost);
+            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+            BattleUnit.setLocate(coord);
 
-        //        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-        //        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
 
-        //        BattleUnit.BattleUnitSO = clickedUnit.Data;
-        //        BattleUnit.setLocate(coord);
+            BattleUnit.Init();
 
-        //        GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
+            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+            _UIMNG.Hands.ClearHand();
+            // ------------------------------------------------
+        }
+        //Start 페이즈
+        else if (CurrentPhase == Phase.Start)
+        {
+            //범위 외
+            if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) != null)
+                return;
 
-        //        BattleUnit.Init();
+            // ----------------변경 예정------------------------
+            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+            if (clickedUnit == null)
+                return;
 
-        //        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-        //        _UIMNG.Hands.ClearHand();
-        //    }
-        //}
-        //else
-        //{
-        //    _field.ClearAllColor();
-        //    GetNowUnit().TileSelected(coord);
-        //    return;
-        //}
+            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
+
+            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+
+            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+            BattleUnit.setLocate(coord);
+
+            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
+
+            BattleUnit.Init();
+
+            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+            _UIMNG.Hands.ClearHand();
+            // ------------------------------------------------
+
+        }
+        //Engage 페이즈
+        else
+        {
+            _field.ClearAllColor();
+            GetNowUnit().TileSelected(coord);
+            return;
+        }
     }
     
     #region Phase Control

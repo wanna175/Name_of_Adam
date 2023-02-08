@@ -135,7 +135,7 @@ public class BattleUnit : Unit
         return;
     }
 
-    void AttackTileClick(Vector2 coord)
+    public void AttackTileClick(Vector2 coord)
     {
         Vector2 dump = coord - Location;
 
