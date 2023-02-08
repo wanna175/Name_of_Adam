@@ -43,11 +43,11 @@ public class SkillSO : ScriptableObject
         {
             BattleUnit unit = _field.GetUnit(caster.SelectTile);
 
-            if (unit == null)
-                return;
-
-            if (unit.Team != caster.Team)
-                hitUnits.Add(unit);
+            if(unit != null)
+            {
+                if (unit.Team != caster.Team)
+                    hitUnits.Add(unit);    
+            }           
         }
 
         foreach (EffectSO es in EffectList)
