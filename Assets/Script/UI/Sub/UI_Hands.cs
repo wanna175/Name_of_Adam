@@ -11,7 +11,7 @@ public class UI_Hands : MonoBehaviour
 
     void Start()
     {
-        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
+        _BattleDataMNG = GameManager.Battle.Data;
 
         _HandList = new List<UI_Hand>();
 
@@ -40,21 +40,21 @@ public class UI_Hands : MonoBehaviour
         {
             if (h.IsHandNull())
             {
-                h.SetHandDeckUnit(_BattleDataMNG.GetRandomDeckUnit());
+                h.SetHandUnit(_BattleDataMNG.GetRandomUnit());
                 break;
             }
         }
     }
-    public DeckUnit RemoveHand(int handIndex)
+    public Unit RemoveHand(int handIndex)
     {
         //handIndex는 1부터 시작하기에 -1 해야함
-        DeckUnit returnUnit;
+        Unit returnUnit;
 
-        returnUnit = _HandList[handIndex].RemoveHandDeckUnit();
+        returnUnit = _HandList[handIndex].RemoveHandUnit();
 
         for (int i = handIndex+1; i < 4; i++)
         {
-            _HandList[i-1].SetHandDeckUnit(_HandList[i].RemoveHandDeckUnit());
+            _HandList[i-1].SetHandUnit(_HandList[i].RemoveHandUnit());
         }
 
         //빈 공간이 있으면 1개 추가
@@ -69,7 +69,7 @@ public class UI_Hands : MonoBehaviour
         {
             if (!h.IsHandNull())
             {
-                _BattleDataMNG.AddDeckUnit(h.RemoveHandDeckUnit());
+                _BattleDataMNG.AddUnit(h.RemoveHandUnit());
             }
         }
 
@@ -80,15 +80,15 @@ public class UI_Hands : MonoBehaviour
     private int _ClickedHand = 0;
     public int ClickedHand => _ClickedHand;
 
-    private DeckUnit _ClickedUnit = null;
-    public DeckUnit ClickedUnit => _ClickedUnit;
+    private Unit _ClickedUnit = null;
+    public Unit ClickedUnit => _ClickedUnit;
 
     public void OnHandClick(UI_Hand hand)
     {
         _ClickedHand = _HandList.IndexOf(hand);
-        _ClickedUnit = hand.GetHandDeckUnit();
+        _ClickedUnit = hand.GetHandUnit();
 
-        if (!_BattleDataMNG.CanUseMana(_ClickedUnit.GetUnitSO().ManaCost)){
+        if (!_BattleDataMNG.CanUseMana(_ClickedUnit.Data.ManaCost)){
             Debug.Log("not enough mana");
             ClearHand();
         }

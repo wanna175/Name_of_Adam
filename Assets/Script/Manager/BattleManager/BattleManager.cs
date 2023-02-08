@@ -10,8 +10,8 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private BattleDataManager _BattleDataMNG;
-    public BattleDataManager BattleDataMNG => _BattleDataMNG;
+    private BattleDataManager _battleData;
+    public BattleDataManager Data => _battleData;
 
     private UI_WatingLine _WatingLine;
     private UIManager _UIMNG;
@@ -20,22 +20,37 @@ public class BattleManager : MonoBehaviour
 
     private List<BattleUnit> _BattleUnitOrderList;
 
+    [SerializeField] private bool TestMode = true;
     private void Awake()
     {
-        _BattleDataMNG = new BattleDataManager();
+        _battleData = new BattleDataManager();
         
         _BattleUnitOrderList = new List<BattleUnit>();
-        _WatingLine = GameManager.UIMNG.WatingLine;
-        _UIMNG = GameManager.UIMNG;
+        //_WatingLine = GameManager.UI.WatingLine;
+        _UIMNG = GameManager.UI;
 
         GameObject fieldTmp = GameObject.Find("Field");
         if(fieldTmp != null)
-            _field = GetComponent<Field>().SetClickEvent(OnClickTile);
+            _field = fieldTmp.GetComponent<Field>().SetClickEvent(OnClickTile);
 
+        if (TestMode)
+            InitSelf();
         StartEnter();
     }
 
-    private void OnClickTile(Vector2 coord, Tile tile)
+    // Test
+    private void InitSelf()
+    {
+        if(_field == null)
+        {
+            _field = GameManager.Resource.Instantiate("Field").GetComponent<Field>();
+            _field.SetClickEvent(OnClickTile);
+        }
+
+        GetComponent<UnitSpawner>().Init();
+    }
+
+    public void OnClickTile(Vector2 coord, Tile tile)
     {
         //Prepare 페이즈
         if (CurrentPhase == Phase.Prepare)
@@ -176,14 +191,14 @@ public class BattleManager : MonoBehaviour
 
         _BattleUnitOrderList.Clear();
 
-        foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
+        foreach(BattleUnit unit in _battleData.BattleUnitList)
         {
             _BattleUnitOrderList.Add(unit);
         }
 
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
-        GameManager.BattleMNG.Field.ClearAllColor();
+        GameManager.Battle.Field.ClearAllColor();
 
         _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
         _WatingLine.SetWatingLine();
@@ -196,7 +211,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Engage Exit");
         //UI 들어감
         //UI 사용 불가
-        _BattleDataMNG.ChangeMana(2);
+        _battleData.ChangeMana(2);
         BattleOverCheck();
     }
     #endregion
@@ -205,15 +220,15 @@ public class BattleManager : MonoBehaviour
     {
         int MyUnit = 0;
         int EnemyUnit = 0;
-        foreach(BattleUnit BUnit in BattleDataMNG.BattleUnitList)
+        foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
-            if (BUnit.BattleUnitSO.MyTeam)//아군이면
+            if (BUnit.Team == Team.Player)//아군이면
                 MyUnit++;
             else
                 EnemyUnit++;
         }
 
-        MyUnit += BattleDataMNG.DeckUnitList.Count;
+        MyUnit += Data.UnitList.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
@@ -266,7 +281,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (0 < _BattleUnitOrderList[0].CurHP)
+        if (0 < _BattleUnitOrderList[0].HP.GetCurrentHP())
         {
             //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
             //_BattleUnitOrderList[0].UpdateState();
@@ -313,7 +328,7 @@ public class BattleManager : MonoBehaviour
         List<Vector2> FindTileList = new List<Vector2>();
         List<Vector2> RangedVectorList = new List<Vector2>();
 
-        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].BattleUnitSO.GetRange();
+        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].GetRange();
 
         //전달받은 범위에서 유닛을 찾는다.
         foreach (Vector2 arl in AttackRangeList)
@@ -335,7 +350,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (Vector2 ftl in FindTileList)
             {
-                if (_field.TileDict[ftl].Unit.BattleUnitSO.RType == RangeType.Ranged)
+                if (_field.TileDict[ftl].Unit.Data.BehaviorType == BehaviorType.원거리)
                 {
                     RangedVectorList.Add(ftl);
                 }
@@ -358,14 +373,14 @@ public class BattleManager : MonoBehaviour
             SortedSet<Vector3> AttackTileSet = new SortedSet<Vector3>();
 
             //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
-            foreach(BattleUnit unit in _BattleDataMNG.BattleUnitList)
+            foreach(BattleUnit unit in _battleData.BattleUnitList)
             {
-                if (unit.BattleUnitSO.MyTeam)
+                if (unit.Team == Team.Player)
                 {
                     foreach (Vector2 arl in AttackRangeList)
                     {
                         Vector3 vector = unit.Location - arl;
-                        if (unit.BattleUnitSO.RType == RangeType.Ranged)
+                        if (unit.Data.BehaviorType == BehaviorType.원거리)
                             vector.z = 0f;//원거리면 0
                         else
                             vector.z = 0.1f;//근거리면 0.1

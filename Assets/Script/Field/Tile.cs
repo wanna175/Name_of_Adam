@@ -24,9 +24,15 @@ public class Tile : MonoBehaviour
         return this;
     }
 
-    public void EnterTile(BattleUnit _unit)
+    public void EnterTile(BattleUnit unit)
     {
-        this._unit = _unit;
+        if (IsOnTile)
+        {
+            Debug.Log("타일에 유닛이 존재합니다.");
+            return;
+        }
+ 
+        _unit = unit;
     }
 
     public void ExitTile()
