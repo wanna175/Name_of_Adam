@@ -21,6 +21,12 @@ public class UnitSpawner : MonoBehaviour
         Debug.Log("Spawner Start");
         foreach(SpawnData data in SpawnMonsters)
         {
+            if (GameManager.Battle.Field.TileDict[data.location].IsOnTile)
+            {
+                Debug.Log("해당 타일에 유닛이 존재합니다.");
+                continue;
+            }
+
             GameObject go = GameObject.Instantiate(data.prefab);
             go.GetComponent<BattleUnit>().Init(data.team, data.location);
             // Stigma 추가
