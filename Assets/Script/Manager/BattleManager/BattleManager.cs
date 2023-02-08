@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
     private BattleDataManager _battleData;
     public BattleDataManager Data => _battleData;
 
-    private UI_WatingLine _WatingLine;
+    private UI_WatingLine _WaitingLine;
     private UIManager _UIMNG;
     private Field _field;
     public Field Field => _field;
@@ -28,6 +28,8 @@ public class BattleManager : MonoBehaviour
         _BattleUnitOrderList = new List<BattleUnit>();
         //_WatingLine = GameManager.UI.WatingLine;
         _UIMNG = GameManager.UI;
+
+        _WaitingLine = _UIMNG.WaitingLine;
 
         GameObject fieldTmp = GameObject.Find("Field");
         if (fieldTmp != null)
@@ -106,13 +108,14 @@ public class BattleManager : MonoBehaviour
             _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
             _UIMNG.Hands.ClearHand();
             // ------------------------------------------------
-
         }
         //Engage 페이즈
         else
         {
             _field.ClearAllColor();
             GetNowUnit().TileSelected(coord);
+
+            // 코루틴 체크
             return;
         }
     }
@@ -203,8 +206,8 @@ public class BattleManager : MonoBehaviour
         BattleOrderReplace();
         GameManager.Battle.Field.ClearAllColor();
 
-        _WatingLine.SetBattleUnitList(_BattleUnitOrderList);
-        _WatingLine.SetWatingLine();
+        _WaitingLine.SetBattleUnitList(_BattleUnitOrderList);
+        _WaitingLine.SetWatingLine();
 
         UseUnitSkill();
     }
@@ -286,6 +289,10 @@ public class BattleManager : MonoBehaviour
 
         if (0 < _BattleUnitOrderList[0].HP.GetCurrentHP())
         {
+            SetTileColor(Color.yellow);
+
+            // 입력 대기 코루틴 실행
+
             //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
             //_BattleUnitOrderList[0].UpdateState();
         }
@@ -298,7 +305,7 @@ public class BattleManager : MonoBehaviour
     public void UseNextUnit()
     {
         _BattleUnitOrderList.RemoveAt(0);
-        _WatingLine.SetWatingLine();
+        _WaitingLine.SetWatingLine();
         UseUnitSkill();
     }
     

@@ -64,6 +64,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: dc6f47b296e832841afed3ce4db4c66d, type: 2}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 11400000, guid: dbd4a30e71b13a1419c6fe24696ceb51, type: 2}
+    - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: _location.x
       value: 1
       objectReference: {fileID: 0}
