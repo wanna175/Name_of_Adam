@@ -11,7 +11,7 @@ public class BattleUnit : Unit
 
     [SerializeField] private int _fallGauge;
     public int FallGauge => _fallGauge;
-    private int _moveDistance;
+    private int _moveDistance =1;
     private Skill Skill; // Memo : 임시
 
     [SerializeField] SkillSO skill;
@@ -171,7 +171,7 @@ public class BattleUnit : Unit
 
     public CutSceneType GetCutSceneType() => skill.CSType;
 
-    public List<Vector2> GetRange() => skill.GetRange();
+    public List<Vector2> GetRange() => Data.GetRange();
 
     public int SkillLength() => skill.EffectList.Count;
 }

@@ -119,6 +119,27 @@ public class BattleManager : MonoBehaviour
             return;
         }
     }
+
+    IEnumerator EngageClickCheck()
+    {
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        RaycastHit[] hits = GameManager.CutScene.CameraHandler.CameraRayCast();
+        
+        foreach(RaycastHit hit in hits)
+        {
+            Tile tile = hit.transform.GetComponent<Tile>();
+
+            if(tile != null)
+            {
+                if (_field.TileDict.ContainsValue(tile))
+                {
+                    //_field.TileDict.
+                }
+                break;
+            }
+        }
+    }
     
     #region Phase Control
     public enum Phase
