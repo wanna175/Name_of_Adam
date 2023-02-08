@@ -316,6 +316,12 @@ public class BattleManager : MonoBehaviour
 
             //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
             //_BattleUnitOrderList[0].UpdateState();
+            if (_BattleUnitOrderList[0].Team == Team.Enemy)
+            {
+                Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
+                ai.SetCaster(_BattleUnitOrderList[0]);
+                ai.AI_Action();    
+            }
         }
         else
         {

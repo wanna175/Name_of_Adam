@@ -11,7 +11,7 @@ public class BattleUnit : Unit
 
     [SerializeField] private int _fallGauge;
     public int FallGauge => _fallGauge;
-    private int _moveDistance =1;
+    private int _moveDistance = 1;
     private Skill Skill; // Memo : 임시
 
     [SerializeField] SkillSO skill;
@@ -154,6 +154,7 @@ public class BattleUnit : Unit
             use(this);
 
         isMove = true;
+//_BattleMNG.UseNextUnit();
         return;
     }
 

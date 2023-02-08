@@ -83,7 +83,7 @@ public class RangeSO : ScriptableObject
         {
             if (AttackRange[i])
             {
-                int x = ((i % column) - (column >> 1));
+                int x = -((i % column) - (column >> 1));
                 int y = (i / column) - (row >> 1);
 
                 Vector2 vec = new Vector2(x, y);
