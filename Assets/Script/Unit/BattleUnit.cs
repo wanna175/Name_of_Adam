@@ -10,7 +10,6 @@ public class BattleUnit : Unit
     public Team Team => _team;
 
     [SerializeField] private int _fallGauge;
-    public int FallGauge => _fallGauge;
     private int _moveDistance;
     private Skill Skill; // Memo : 임시
 
@@ -25,11 +24,8 @@ public class BattleUnit : Unit
 
     [SerializeField] public UnitHP HP;
     
-
-    #region Location
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
-    #endregion
 
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
@@ -46,6 +42,8 @@ public class BattleUnit : Unit
 
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+
+        _renderer.sprite = Data.Image;
     }
 
     public void Init(Team team, Vector2 coord)
