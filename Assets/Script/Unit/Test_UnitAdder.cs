@@ -8,7 +8,7 @@ public class Test_UnitAdder : MonoBehaviour
 
     void OnMouseDown()
     {
-        foreach (BattleUnitSO b in unit)
+        foreach (Unit b in unit)
         {
             Debug.Log("ADD");
             Unit d1 = new Unit();
@@ -16,6 +16,6 @@ public class Test_UnitAdder : MonoBehaviour
             GameManager.Battle.Data.AddUnit(d1);
         }
 
-        GameManager.UIMNG.Hands.TEST();
+        GameManager.UI.Hands.TEST();
     }
 }
