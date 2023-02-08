@@ -56,6 +56,7 @@ public class BattleUnit : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("스타트");
         _BattleDataMNG.BattleUnitEnter(this);
         //ChangeState(BattleUnitState.Idle);
         //UpdateState();
@@ -67,12 +68,14 @@ public class BattleUnit : MonoBehaviour
 
     public void Init()
     {
-        _BattleDataMNG.BattleUnitEnter(this);
-
         //ChangeState(BattleUnitState.Idle);
         //UpdateState();
         // 적군일 경우 x축 뒤집기
         _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
+
+        _MaxHP = BattleUnitSO.stat.HP;
+        _CurHP = _MaxHP;
+
         setLocate(Location);
     }
 
@@ -199,7 +202,7 @@ public class BattleUnit : MonoBehaviour
         return;
     }
 
-    void AttackTileClick(Vector2 coord)
+    public void AttackTileClick(Vector2 coord)
     {
         Vector2 dump = coord - Location;
 

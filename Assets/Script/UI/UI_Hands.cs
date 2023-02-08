@@ -24,7 +24,7 @@ public class UI_Hands : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    public void TEST()
     {
         Debug.Log("?");
         //전투 시작 후 초기 멀리건 4장
