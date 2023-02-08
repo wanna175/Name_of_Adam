@@ -18,8 +18,8 @@ public class Unit_AI_Controller : MonoBehaviour
 
     void Awake()
     {
-        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
-        _field = GameManager.BattleMNG.Field;
+        _BattleDataMNG = GameManager.Battle.Data;
+        _field = GameManager.Battle.Field;
     }
 
     public virtual void AI_Action()
@@ -84,7 +84,7 @@ public class Unit_AI_Controller : MonoBehaviour
         RangedVectorList.Clear();
 
 
-        foreach (Vector2 arl in caster.BattleUnitSO.GetRange())
+        foreach (Vector2 arl in caster.GetRange())
         {
             Vector2 vector = caster.Location;
 
@@ -94,6 +94,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 if (_field.TileDict[vec].IsOnTile)
                 {
                     FindTileList.Add(vec);
+                    // 만약 if 한번 더 넣어도 되면 여기서 원거리 판별
                     // 만약 if 한 번 더 넣어도 되면 여기서 원거리 판별
                 }
             }
@@ -101,7 +102,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
         foreach (Vector2 ftl in FindTileList)
         {
-            if (_field.TileDict[ftl].Unit.BattleUnitSO.RType == RangeType.Ranged)
+            if (_field.TileDict[ftl].Unit.Data.BehaviorType == BehaviorType.원거리)
             {
                 RangedVectorList.Add(ftl);
             }
@@ -112,6 +113,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected bool IsUnitExist()
     {
+        // 유닛이 범위내에 있는지 확인
         // 유닛이 범위 내에 있는지 확인
         return FindTileList.Count > 0;
     }
@@ -137,12 +139,12 @@ public class Unit_AI_Controller : MonoBehaviour
         //모든 공격 타일을 AttackTileSet에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         foreach (BattleUnit unit in _BattleDataMNG.BattleUnitList)
         {
-            if (unit.BattleUnitSO.MyTeam)
+            if (unit.Team == Team.Player)
             {
-                foreach (Vector2 arl in caster.BattleUnitSO.GetRange())
+                foreach (Vector2 arl in caster.GetRange())
                 {
                     Vector3 vector = unit.Location - arl;
-                    if (unit.BattleUnitSO.RType == RangeType.Ranged)
+                    if (unit.Data.BehaviorType == BehaviorType.원거리)
                         vector.z = 0f;//원거리면 0
                     else
                         vector.z = 0.1f;//근거리면 0.1

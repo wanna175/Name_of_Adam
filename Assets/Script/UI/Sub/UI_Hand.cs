@@ -9,26 +9,26 @@ public class UI_Hand : MonoBehaviour
     private UI_Hands _Hands;
 
     private Image _Image;
-    private DeckUnit _HandUnit = null;
+    private Unit _HandUnit = null;
 
     void Start()
     {
-        _Hands = GameManager.UIMNG.Hands;
+        _Hands = GameManager.UI.Hands;
         _Image = GetComponent<Image>();
     }
 
-    public void SetHandDeckUnit(DeckUnit unit)
+    public void SetHandUnit(Unit unit)
     {
         _HandUnit = unit;
         if (_HandUnit != null)
         {
             GetComponent<Image>().enabled = true;
-            _Image.sprite = _HandUnit.GetUnitSO().sprite;
+            _Image.sprite = _HandUnit.Data.Image;
         }
 
     }
 
-    public DeckUnit GetHandDeckUnit()
+    public Unit GetHandUnit()
     {
         return _HandUnit;
     }
@@ -41,9 +41,9 @@ public class UI_Hand : MonoBehaviour
             return false;
     }
 
-    public DeckUnit RemoveHandDeckUnit()
+    public Unit RemoveHandUnit()
     {
-        DeckUnit returnUnit = _HandUnit;
+        Unit returnUnit = _HandUnit;
         _HandUnit = null;
         
         GetComponent<Image>().enabled = false;
