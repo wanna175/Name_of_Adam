@@ -20,6 +20,7 @@ public class BattleManager : MonoBehaviour
 
     private List<BattleUnit> _BattleUnitOrderList;
 
+    [SerializeField] private bool TestMode = true;
     private void Awake()
     {
         _battleData = new BattleDataManager();
@@ -32,7 +33,21 @@ public class BattleManager : MonoBehaviour
         if(fieldTmp != null)
             _field = fieldTmp.GetComponent<Field>().SetClickEvent(OnClickTile);
 
+        if (TestMode)
+            InitSelf();
         StartEnter();
+    }
+
+    // Test
+    private void InitSelf()
+    {
+        if(_field == null)
+        {
+            _field = GameManager.Resource.Instantiate("Field").GetComponent<Field>();
+            _field.SetClickEvent(OnClickTile);
+        }
+
+        GetComponent<UnitSpawner>().Init();
     }
 
     public void OnClickTile(Vector2 coord, Tile tile)

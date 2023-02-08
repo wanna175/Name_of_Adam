@@ -48,14 +48,15 @@ public class BattleUnit : Unit
         _animator = GetComponent<Animator>();
     }
 
-    private void Start()
+    public void Init(Team team, Vector2 coord)
     {
         _BattleDataMNG.BattleUnitAdd(this);
         HP.Init(Stat.HP);
+        _team = team;
 
         // 적군일 경우 x축 뒤집기
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
-        setLocate(Location);
+        setLocate(coord);
     }
 
     // 이동가능한 범위를 가져온다.

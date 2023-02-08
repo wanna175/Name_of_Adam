@@ -75,3 +75,11 @@ public enum Scene
 {
     Battle,
 }
+
+[Serializable]
+public struct TestUnit
+{
+    public GameObject Unit;
+    public Vector2 Location;
+    public Team Team;
+}
