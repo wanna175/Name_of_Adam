@@ -9,7 +9,7 @@ using UnityEngine;
 public struct CutSceneData
 {
     // 공격 타입
-    public AttackType ATKType;
+    public TargetType TargetType;
     // 확대하는 시간
     public float ZoomTime;
     // 확대 할 대상
@@ -46,8 +46,8 @@ public class CutSceneManager : MonoBehaviour
 
     private void Start()
     {
-        _BattleMNG = GameManager.BattleMNG;
-        _field = GameManager.BattleMNG.Field;
+        _BattleMNG = GameManager.Battle;
+        _field = GameManager.Battle.Field;
         CSData = new CutSceneData();
 
         CameraHandler = GameObject.Find("Camera").GetComponent<CameraHandler>();
@@ -78,7 +78,7 @@ public class CutSceneManager : MonoBehaviour
         CSData.AttackUnit = _atkUnit;
         CSData.HitUnits = _hitUnits;
 
-        CSData.ATKType = _atkUnit.BattleUnitSO.GetAttackType();
+        CSData.TargetType = _atkUnit.Data.TargetType;
         CSData.ZoomTime = _zoomTime;
         
         CSData.DefaultPosition = _atkUnit.transform.position;
@@ -91,9 +91,9 @@ public class CutSceneManager : MonoBehaviour
 
         // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
         // 일단 타입에 따라 임의로 부여함
-        if (CSData.ATKType == AttackType.rangeAttack)
+        if (CSData.TargetType == TargetType.Range)
             CSData.ZoomSize = 50;
-        if (CSData.ATKType == AttackType.targeting)
+        if (CSData.TargetType == TargetType.Select)
             CSData.ZoomSize = 35;
     }
 
@@ -101,7 +101,7 @@ public class CutSceneManager : MonoBehaviour
     // 공격범위 내의 적을 추적하는 것보다 한 지점에서 공격을 하는 것이 좋지 않을까?
     Vector3 GetMoveLocation(BattleUnit atkUnit, List<BattleUnit> hitUnits)
     {
-        CutSceneType range = atkUnit.BattleUnitSO.GetCutSceneType();
+        CutSceneType range = atkUnit.GetCutSceneType();
 
         // 공격자가 적을 추적
         if(range == CutSceneType.tracking)
@@ -145,7 +145,7 @@ public class CutSceneManager : MonoBehaviour
 
     Vector3 GetZoomLocation(CutSceneData CSData)
     {
-        if (CSData.ATKType == AttackType.rangeAttack)
+        if (CSData.TargetType == TargetType.Range)
             return _field.FieldPosition;
 
         Vector3 zoomLoc = CSData.MovePosition;
@@ -163,7 +163,7 @@ public class CutSceneManager : MonoBehaviour
     {
         Vector3 moveLoc = CSData.MovePosition;
 
-        if (CSData.AttackUnit.BattleUnitSO.GetCutSceneType() == CutSceneType.tracking)
+        if (CSData.AttackUnit.GetCutSceneType() == CutSceneType.tracking)
         {
             if (CSData.AttackUnit.GetFlipX())
                 moveLoc.x += 2;
@@ -226,7 +226,7 @@ public class CutSceneManager : MonoBehaviour
     {
         Vector3 moveLoc = CSData.MovePosition;
 
-        if (CSData.AttackUnit.BattleUnitSO.GetCutSceneType() == CutSceneType.tracking)
+        if (CSData.AttackUnit.GetCutSceneType() == CutSceneType.tracking)
         {
             if (CSData.AttackUnit.GetFlipX())
                 moveLoc.x += 2;

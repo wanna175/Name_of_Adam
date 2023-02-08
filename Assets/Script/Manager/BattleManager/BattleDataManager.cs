@@ -4,89 +4,50 @@ using UnityEngine;
 
 public class BattleDataManager
 {
-    private DataManager _DataMNG;
-    public DataManager DataMNG => _DataMNG;
+    private List<Unit> _UnitList = new List<Unit>();
+    public List<Unit> UnitList => _UnitList;
 
-    // 필드와 배틀유닛, 마나의 정보 및 관리는 각 매니저로 분할
-
-    public BattleDataManager()
-    {
-        _DataMNG = GameManager.DataMNG;
-    }
-     
-    #region Turn
-    private int _Turn;
-    public int Turn => _Turn;
-
-    public void TurnPlus()
-    {
-        _Turn++;
-    }
-    #endregion
-
-    #region DeckUnitList
-    private List<DeckUnit> _DeckUnitList = new List<DeckUnit>();
-    public List<DeckUnit> DeckUnitList => _DeckUnitList;
-
-    public void CopyDeckList(DeckUnit unit) {
-        foreach (DeckUnit d in DataMNG.DeckUnitList)
-        {
-            AddDeckUnit(d);
-        }
+    public void AddUnit(Unit unit) {
+        UnitList.Add(unit);
     }
 
-    public void AddDeckUnit(DeckUnit unit) {
-        DeckUnitList.Add(unit);
+    public void RemoveUnit(Unit unit) {
+        UnitList.Remove(unit);
     }
 
-    public void RemoveDeckUnit(DeckUnit unit) {
-        DeckUnitList.Remove(unit);
-    }
-
-    public DeckUnit GetRandomDeckUnit() {
-        if (DeckUnitList.Count == 0)
+    public Unit GetRandomUnit() {
+        if (UnitList.Count == 0)
         {
             return null;
         }
-        int randNum = Random.Range(0, DeckUnitList.Count);
+        int randNum = Random.Range(0, UnitList.Count);
         
-        DeckUnit unit = DeckUnitList[randNum];
-        _DeckUnitList.RemoveAt(randNum);
+        Unit unit = UnitList[randNum];
+        _UnitList.RemoveAt(randNum);
 
         return unit;
     }
-
-    #endregion
-
-    #region BattleUnitList
     
     // 전투를 진행중인 캐릭터가 들어있는 리스트
-    #region BattleUnitList  
-    List<BattleUnit> _BattleUnitList = new List<BattleUnit>();
-    public List<BattleUnit> BattleUnitList => _BattleUnitList;
-    #endregion
+    List<BattleUnit> _battleUnitList = new List<BattleUnit>();
+    public List<BattleUnit> BattleUnitList => _battleUnitList;
 
     // 현재 리스트를 초기화
     public void UnitListClear() => BattleUnitList.Clear();
 
     // 리스트에 캐릭터를 추가 / 제거
-    public void BattleUnitEnter(BattleUnit unit) => BattleUnitList.Add(unit);
+    public void BattleUnitAdd(BattleUnit unit) => BattleUnitList.Add(unit);
 
-    public void BattleUnitExit(BattleUnit unit) => BattleUnitList.Remove(unit);
-    #endregion
+    public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
 
-    #region Mana
+    private const int _maxManaCost = 100;
 
-    #region ManaCost
-    private const int _MaxManaCost = 10;
-
-    private int _ManaCost = 0;
-    public int ManaCost => _ManaCost;
-    #endregion
+    private int _manaCost = 0;
+    public int ManaCost => _manaCost;
 
     UI_ManaGuage _manaGuage;
 
-    public void InitMana(int _defaultMana = 0) => _ManaCost = _defaultMana;
+    public void InitMana(int _defaultMana = 0) => _manaCost = _defaultMana;
 
     public void SetManaGuage(UI_ManaGuage _guage)
     {
@@ -95,31 +56,22 @@ public class BattleDataManager
 
     public void ChangeMana(int value)
     {
-        _ManaCost += value;
+        _manaCost += value;
 
-        if (_MaxManaCost <= _ManaCost)
-            _ManaCost = _MaxManaCost;
-        else if (_ManaCost < 0)
-            _ManaCost = 0;
+        if (_maxManaCost <= _manaCost)
+            _manaCost = _maxManaCost;
+        else if (_manaCost < 0)
+            _manaCost = 0;
         
         _manaGuage.DrawGauge();
     }
 
     public bool CanUseMana(int value)
     {
-        if (_ManaCost >= value)
+        if (_manaCost >= value)
             return true;
-        else
-        {
-            //마나 부족
-            Debug.Log("not enough mana");
-            return false;
-        }
-    }
-    #endregion
-}
 
-// 23.01.23 김종석 - 수정된 사항
-// Mana : 
-// _MaxManaCost 추가 - 최대 마나값을 상수로 지정
-//                     최대 마나를 확인하는 곳에서 _MaxManaCost로 확인하게 함
+        Debug.Log("not enough mana");
+        return false;
+    }
+}

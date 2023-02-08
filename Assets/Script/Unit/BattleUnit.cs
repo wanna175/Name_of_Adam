@@ -4,38 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BattleUnit : MonoBehaviour
+public class BattleUnit : Unit
 {
-    [SerializeField] public BattleUnitSO BattleUnitSO;
+    [SerializeField] private Team _team;
+    public Team Team => _team;
+
+    [SerializeField] private int _fallGauge;
+    public int FallGauge => _fallGauge;
+    private int _moveDistance;
+    private Skill Skill; // Memo : 임시
+
+    [SerializeField] SkillSO skill;
 
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
     CutSceneManager _CutSceneMNG;
 
-    SpriteRenderer _SR;
-    Animator _Animator;
+    private SpriteRenderer _renderer;
+    private Animator _animator;
+
+    [SerializeField] public UnitHP HP;
     
 
     #region Location
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
-    #endregion
-    #region HP
-    [SerializeField] float _MaxHP, _CurHP;
-    public float MaxHP => _MaxHP;
-    public float CurHP
-    {
-        get { return _CurHP; }
-        set
-        {
-            _CurHP = value;
-
-            if (MaxHP < _CurHP)
-                _CurHP = MaxHP;
-            else if (_CurHP < 0)
-                _CurHP = 0;
-        }
-    }
     #endregion
 
     public Vector2 _SelectTile = new Vector2(-1, -1);
@@ -44,79 +37,27 @@ public class BattleUnit : MonoBehaviour
     // Move인지 Attack인지 확인하기 위한 임시클래스
     bool isMove = true;
     public bool IsMove => isMove;
+    
     private void Awake()
     {
-        _BattleMNG = GameManager.BattleMNG;
-        _BattleDataMNG = GameManager.BattleMNG.BattleDataMNG;
-        _CutSceneMNG = GameManager.CutSceneMNG;
+        _BattleMNG = GameManager.Battle;
+        _BattleDataMNG = GameManager.Battle.Data;
+        _CutSceneMNG = GameManager.CutScene;
 
-        _SR = GetComponent<SpriteRenderer>();
-        _Animator = GetComponent<Animator>();
+        _renderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
-    private void Start()
+    public void Init(Team team, Vector2 coord)
     {
-        Debug.Log("스타트");
-        _BattleDataMNG.BattleUnitEnter(this);
-        //ChangeState(BattleUnitState.Idle);
-        //UpdateState();
+        _BattleDataMNG.BattleUnitAdd(this);
+        HP.Init(Stat.HP);
+        _team = team;
 
         // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
-        setLocate(Location);
+        _renderer.flipX = (Team == Team.Enemy) ? true : false;
+        setLocate(coord);
     }
-
-    public void Init()
-    {
-        //ChangeState(BattleUnitState.Idle);
-        //UpdateState();
-        // 적군일 경우 x축 뒤집기
-        _SR.flipX = (!BattleUnitSO.MyTeam) ? true : false;
-
-        _MaxHP = BattleUnitSO.stat.HP;
-        _CurHP = _MaxHP;
-
-        setLocate(Location);
-    }
-
-    
-    public void UpdateState()
-    {
-        //switch (curr_state)
-        //{
-        //    case BattleUnitState.Idle:
-        //        _Animator.SetBool("isAttack", false);
-        //        _Animator.SetBool("isHit", false);
-
-        //        break;
-
-        //    case BattleUnitState.Move:
-        //        _BattleMNG.SetTileColor(Color.yellow);
-
-
-
-        //        break;
-
-        //    case BattleUnitState.AttackWait:
-        //        _BattleMNG.SetTileColor(Color.yellow);
-
-
-
-
-        //        break;
-
-        //    case BattleUnitState.Attack:
-        //        _Animator.SetBool("isAttack", true);
-
-        //        break;
-
-        //    case BattleUnitState.HitWait:
-        //        _Animator.SetBool("isHit", true);
-
-        //        break;
-        //}
-    }
-    
 
     // 이동가능한 범위를 가져온다.
     public List<Vector2> GetCanMoveRange()
@@ -124,7 +65,7 @@ public class BattleUnit : MonoBehaviour
         List<Vector2> vecList = new List<Vector2>();
         vecList.Add(new Vector2(0, 0));
         
-        for (int i = 1; i <= BattleUnitSO.MoveDistance; i++)
+        for (int i = 1; i <= _moveDistance; i++)
         {
             for (int j = -1; j <= 1; j += 2)
             {
@@ -142,18 +83,10 @@ public class BattleUnit : MonoBehaviour
         _CutSceneMNG.BattleCutScene(this, _HitUnits);
     }
     
-    public void Hit_GetDamage(float DMG)
+    public void Hit_GetDamage(int DMG)
     {
-        CurHP -= DMG;
-
-        Debug.Log("DMG : " + DMG + ", CurHP ; " + CurHP);
-
-        if (MaxHP <= CurHP)  // 현재 체력이 최대 체력을 넘겼을 시
-            CurHP = MaxHP;
-        else if (CurHP <= 0) // 유닛 사망 시
-            UnitDestroy();
+        HP.ChangeHP(-DMG);
     }
-    
 
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(Vector2 coord)
@@ -162,9 +95,9 @@ public class BattleUnit : MonoBehaviour
         _BattleMNG.SetUnit(this, coord);
     }
     
-    void UnitDestroy()
+    public void UnitDiedEvent()
     {
-        _BattleDataMNG.BattleUnitExit(this);
+        _BattleDataMNG.BattleUnitRemove(this);
         _BattleMNG.BattleOrderRemove(this);
         Destroy(gameObject);
     }
@@ -207,7 +140,7 @@ public class BattleUnit : MonoBehaviour
         Vector2 dump = coord - Location;
 
         // 공격범위 밖을 선택했으면 다시 선택하기
-        if (!BattleUnitSO.GetRange().Contains(dump))
+        if (!GetRange().Contains(dump))
         {
             _BattleMNG.SetTileColor(Color.yellow);
             return;
@@ -218,24 +151,27 @@ public class BattleUnit : MonoBehaviour
         if (_SelectTile == Location)
             _BattleMNG.UseNextUnit();
         else
-            BattleUnitSO.use(this);
+            use(this);
 
         isMove = true;
         return;
     }
 
-
-
     public Stat GetStat(bool buff = true)
     {
-        Stat stat = BattleUnitSO.stat;
-
-        if (buff == false)
-            return stat;
-
-        return stat;
-        //return _stigma.Use(stat);
+        return Stat;
     }
 
-    public bool GetFlipX() => _SR.flipX;
+    public bool GetFlipX() => _renderer.flipX;
+
+    public void use(BattleUnit ch)
+    {
+        skill.use(ch);
+    }
+
+    public CutSceneType GetCutSceneType() => skill.CSType;
+
+    public List<Vector2> GetRange() => skill.GetRange();
+
+    public int SkillLength() => skill.EffectList.Count;
 }

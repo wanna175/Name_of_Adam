@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Test_UnitAdder : MonoBehaviour
 {
-    [SerializeField] List<BattleUnitSO> unit;
+    [SerializeField] List<Unit> unit;
 
     void OnMouseDown()
     {
         foreach (BattleUnitSO b in unit)
         {
-            DeckUnit d1 = new DeckUnit();
-             d1.SetUnitSO(b);
-             GameManager.BattleMNG.BattleDataMNG.AddDeckUnit(d1);
+            Debug.Log("ADD");
+            Unit d1 = new Unit();
+            //d1.SetUnitSO(unit[0].Data); 
+            GameManager.Battle.Data.AddUnit(d1);
         }
 
         GameManager.UIMNG.Hands.TEST();
