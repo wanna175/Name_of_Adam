@@ -3,29 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_ManaGuage : MonoBehaviour
+public class UI_ManaGuage : UI_Base
 {
-    [SerializeField] Image ManaGauge;
-    [SerializeField] Text ManaText;
-
-    private BattleDataManager _BattleDataMNG;
+    enum Objects
+    {
+        ManaGuageSlider,
+        ManaCostText,
+    }
 
     private void Start()
     {
-        _BattleDataMNG = GameManager.Battle.Data;
-
-        _BattleDataMNG.SetManaGuage(this);
-        _BattleDataMNG.InitMana();
-        _BattleDataMNG.ChangeMana(4);
+        Bind<GameObject>(typeof(Objects));
+        GameManager.Battle.Data.SetManaGuage(this);
     }
 
-    public void DrawGauge()
+    public void DrawGauge(int currentMana)
     {
-        float MaxManaCost = 10;
-        float ManaCost = (float)_BattleDataMNG.ManaCost;
-
-        ManaGauge.fillAmount = ManaCost / MaxManaCost;
-        ManaText.text = ManaCost.ToString();
+        GetObject((int)Objects.ManaGuageSlider).GetComponent<Slider>().value = currentMana;
+        GetObject((int)Objects.ManaCostText).GetComponent<Text>().text = currentMana.ToString();
     }
-
 }

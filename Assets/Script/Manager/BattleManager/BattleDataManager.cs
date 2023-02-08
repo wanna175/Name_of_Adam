@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BattleDataManager
 {
+    public BattleDataManager()
+    {
+        InitMana();
+    }
+
     private List<Unit> _UnitList = new List<Unit>();
     public List<Unit> UnitList => _UnitList;
 
@@ -40,35 +45,38 @@ public class BattleDataManager
 
     public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
 
-    private const int _maxManaCost = 100;
 
-    private int _manaCost = 0;
-    public int ManaCost => _manaCost;
+    // Mana Manage
+    private const int _maxManaCost = 200;
+    private int _currentMana;
+    private UI_ManaGuage _manaGuage;
 
-    UI_ManaGuage _manaGuage;
-
-    public void InitMana(int _defaultMana = 0) => _manaCost = _defaultMana;
+    public void InitMana(int _defaultMana = _maxManaCost)
+    {
+        _currentMana = _defaultMana;
+    }
 
     public void SetManaGuage(UI_ManaGuage _guage)
     {
         _manaGuage = _guage;
+        _manaGuage.DrawGauge(_currentMana);
     }
 
     public void ChangeMana(int value)
     {
-        _manaCost += value;
+        _currentMana += value;
 
-        if (_maxManaCost <= _manaCost)
-            _manaCost = _maxManaCost;
-        else if (_manaCost < 0)
-            _manaCost = 0;
+        if (_maxManaCost <= _currentMana)
+            _currentMana = _maxManaCost;
+        else if (_currentMana < 0)
+            _currentMana = 0;
         
-        _manaGuage.DrawGauge();
+        _manaGuage.DrawGauge(_currentMana);
     }
 
     public bool CanUseMana(int value)
     {
-        if (_manaCost >= value)
+        if (_currentMana >= value)
             return true;
 
         Debug.Log("not enough mana");
