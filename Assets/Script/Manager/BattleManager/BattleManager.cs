@@ -30,12 +30,19 @@ public class BattleManager : MonoBehaviour
         _UIMNG = GameManager.UI;
 
         GameObject fieldTmp = GameObject.Find("Field");
-        if(fieldTmp != null)
+        if (fieldTmp != null)
+        {
             _field = fieldTmp.GetComponent<Field>().SetClickEvent(OnClickTile);
+            Debug.Log(_field);
+        }
 
+        StartEnter();
+    }
+
+    private void Start()
+    {
         if (TestMode)
             InitSelf();
-        StartEnter();
     }
 
     // Test
@@ -56,21 +63,19 @@ public class BattleManager : MonoBehaviour
         if (CurrentPhase == Phase.Prepare)
         {
             // ----------------변경 예정------------------------
-            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+            Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
             if (clickedUnit == null)
                 return;
 
-            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
+            Data.ChangeMana(-1 * clickedUnit.Data.ManaCost);
 
             GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
             BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+            BattleUnit.Data = clickedUnit.Data;
             BattleUnit.setLocate(coord);
 
-            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
-
-            BattleUnit.Init();
+            BattleUnit.Init(Team.Player, coord);
 
             _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
             _UIMNG.Hands.ClearHand();
@@ -84,21 +89,19 @@ public class BattleManager : MonoBehaviour
                 return;
 
             // ----------------변경 예정------------------------
-            DeckUnit clickedUnit = _UIMNG.Hands.ClickedUnit;
+            Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
             if (clickedUnit == null)
                 return;
 
-            _BattleDataMNG.ChangeMana(-1 * clickedUnit.GetUnitSO().ManaCost);
+            _battleData.ChangeMana(-1 * clickedUnit.Data.ManaCost);
 
             GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
             BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
-            BattleUnit.BattleUnitSO = clickedUnit.GetUnitSO();
+            BattleUnit.Data = clickedUnit.Data;
             BattleUnit.setLocate(coord);
 
-            GameManager.BattleMNG.Field.EnterTile(BattleUnit, coord);
-
-            BattleUnit.Init();
+            BattleUnit.Init(Team.Player, coord);
 
             _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
             _UIMNG.Hands.ClearHand();
