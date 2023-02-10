@@ -112,33 +112,58 @@ public class BattleManager : MonoBehaviour
         //Engage 페이즈
         else
         {
-            _field.ClearAllColor();
-            GetNowUnit().TileSelected(coord);
+            //_field.ClearAllColor();
+            //GetNowUnit().TileSelected(coord);
 
             // 코루틴 체크
             return;
         }
     }
 
-    IEnumerator EngageClickCheck()
+    public IEnumerator EngageClickCheck()
     {
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-
-        RaycastHit[] hits = GameManager.CutScene.CameraHandler.CameraRayCast();
-        
-        foreach(RaycastHit hit in hits)
+        while (true)
         {
-            Tile tile = hit.transform.GetComponent<Tile>();
+            Debug.Log("while 진입");
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
-            if(tile != null)
+            Debug.Log("Input 진입");
+            RaycastHit2D[] hits = GameManager.CutScene.CameraHandler.CameraRayCast();
+            Vector2 coord = new Vector2(-1, -1);
+            Debug.Log(hits.Length);
+
+            foreach (RaycastHit2D hit in hits)
             {
-                if (_field.TileDict.ContainsValue(tile))
+                Tile tile = hit.collider.transform.GetComponent<Tile>();
+                Debug.Log(tile);
+                if (tile != null)
                 {
-                    //_field.TileDict.
+                    Debug.Log("Tile은 존재함");
+                    if (_field.TileDict.ContainsValue(tile))
+                    {
+                        coord = _field.FindCoordByTile(tile);
+                        Debug.Log("Tile의 좌표는 " + coord);
+                        break;
+                    }
+                    Debug.Log("Tile을 필드에서 찾지 못함");
                 }
+                else
+                {
+                    Debug.Log("타일이 클릭되지 않음");
+                }
+            }
+
+
+            if (coord != new Vector2(-1, -1))
+            {
+                Debug.Log("Tile을 찾고 좌표를 확인함");
+                _field.ClearAllColor();
+                GetNowUnit().TileSelected(coord);
                 break;
             }
         }
+
+        Debug.Log("while 종료");
     }
     
     #region Phase Control
@@ -311,16 +336,16 @@ public class BattleManager : MonoBehaviour
         if (0 < _BattleUnitOrderList[0].HP.GetCurrentHP())
         {
             SetTileColor(Color.yellow);
-
-            // 입력 대기 코루틴 실행
-
-            //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
-            //_BattleUnitOrderList[0].UpdateState();
+            
             if (_BattleUnitOrderList[0].Team == Team.Enemy)
             {
                 Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
                 ai.SetCaster(_BattleUnitOrderList[0]);
                 ai.AI_Action();    
+            }
+            else
+            {
+                StartCoroutine(EngageClickCheck());
             }
         }
         else

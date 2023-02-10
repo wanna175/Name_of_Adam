@@ -132,6 +132,7 @@ public class BattleUnit : Unit
         //UpdateState();
 
         isMove = false;
+        StartCoroutine(_BattleMNG.EngageClickCheck());
         return;
     }
 
