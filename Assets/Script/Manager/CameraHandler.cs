@@ -12,8 +12,8 @@ public class CameraHandler : MonoBehaviour
 
     private void Start()
     {
-        _CutSceneMNG = GameManager.CutSceneMNG;
-        _field = GameManager.BattleMNG.Field;
+        _CutSceneMNG = GameManager.CutScene;
+        _field = GameManager.Battle.Field;
 
         SetMainCamera();
     }
@@ -110,4 +110,14 @@ public class CameraHandler : MonoBehaviour
     }
 
     #endregion
+
+
+    public RaycastHit[] CameraRayCast()
+    {
+        Vector3 mos = Input.mousePosition;
+        mos.z = MainCamera.farClipPlane;
+
+        Vector3 dir = MainCamera.ScreenToWorldPoint(mos);
+        return Physics.RaycastAll(transform.position, dir, 10f);
+    }
 }
