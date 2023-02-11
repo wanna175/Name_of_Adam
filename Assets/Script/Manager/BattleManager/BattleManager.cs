@@ -13,7 +13,6 @@ public class BattleManager : MonoBehaviour
     private BattleDataManager _battleData;
     public BattleDataManager Data => _battleData;
 
-    private UI_WatingLine _WaitingLine;
     private UIManager _UIMNG;
     private Field _field;
     public Field Field => _field;
@@ -42,8 +41,6 @@ public class BattleManager : MonoBehaviour
         _BattleUnitOrderList = new List<BattleUnit>();
         //_WatingLine = GameManager.UI.WatingLine;
         _UIMNG = GameManager.UI;
-
-        _WaitingLine = _UIMNG.WaitingLine;
 
         GameObject fieldTmp = GameObject.Find("Field");
         if (fieldTmp != null)
@@ -266,9 +263,6 @@ public class BattleManager : MonoBehaviour
         BattleOrderReplace();
         GameManager.Battle.Field.ClearAllColor();
 
-        _WaitingLine.SetBattleUnitList(_BattleUnitOrderList);
-        _WaitingLine.SetWatingLine();
-
         UseUnitSkill();
     }
 
@@ -327,6 +321,13 @@ public class BattleManager : MonoBehaviour
             .ToList();
     }
 
+
+    public List<BattleUnit> GetUnitbyOrder()
+    {
+        return _BattleUnitOrderList;
+    }
+
+
     public void BattleOrderRemove(BattleUnit _unit)
     {
         _BattleUnitOrderList.Remove(_unit);
@@ -365,7 +366,6 @@ public class BattleManager : MonoBehaviour
     public void UseNextUnit()
     {
         _BattleUnitOrderList.RemoveAt(0);
-        _WaitingLine.SetWatingLine();
         UseUnitSkill();
     }
     
