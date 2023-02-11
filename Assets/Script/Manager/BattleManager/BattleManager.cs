@@ -20,6 +20,20 @@ public class BattleManager : MonoBehaviour
     private List<BattleUnit> _BattleUnitOrderList;
 
     [SerializeField] private bool TestMode = true;
+    private ClickType _clickType;
+    public void ChangeClickType()
+    {
+        _clickType++;
+
+        if(_clickType > ClickType.Attack)
+        {
+            _clickType = ClickType.Nothing;
+        }
+
+        SetTileColor(Color.yellow);
+        Debug.Log(_clickType);
+    }
+
     private void Awake()
     {
         _battleData = new BattleDataManager();
@@ -110,20 +124,66 @@ public class BattleManager : MonoBehaviour
         else
         {
             _field.ClearAllColor();
-            GetNowUnit().TileSelected(coord);
+
+            if (_clickType == ClickType.Move)
+                GetNowUnit().MoveTileClick(coord);
+            else if (_clickType == ClickType.Attack)
+                GetNowUnit().AttackTileClick(coord);
+
+            //GetNowUnit().TileSelected(coord);
 
             // 코루틴 체크
             return;
         }
     }
+
+    public IEnumerator EngageClickCheck()
+    {
+        while (true)
+        {
+            Debug.Log("while 진입");
+            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+            Debug.Log("Input 진입");
+            RaycastHit2D[] hits = GameManager.CutScene.CameraHandler.CameraRayCast();
+            Vector2 coord = new Vector2(-1, -1);
+            Debug.Log(hits.Length);
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                Tile tile = hit.collider.transform.GetComponent<Tile>();
+                Debug.Log(tile);
+                if (tile != null)
+                {
+                    Debug.Log("Tile은 존재함");
+                    if (_field.TileDict.ContainsValue(tile))
+                    {
+                        coord = _field.FindCoordByTile(tile);
+                        Debug.Log("Tile의 좌표는 " + coord);
+                        break;
+                    }
+                    Debug.Log("Tile을 필드에서 찾지 못함");
+                }
+                else
+                {
+                    Debug.Log("타일이 클릭되지 않음");
+                }
+            }
+
+
+            if (coord != new Vector2(-1, -1))
+            {
+                Debug.Log("Tile을 찾고 좌표를 확인함");
+                _field.ClearAllColor();
+                //GetNowUnit().TileSelected(coord);
+                break;
+            }
+        }
+
+        Debug.Log("while 종료");
+    }
     
     #region Phase Control
-    public enum Phase
-    {
-        Start,
-        Prepare,
-        Engage
-    }
 
     private Phase _CurrentPhase;
     public Phase CurrentPhase => _CurrentPhase;
@@ -261,10 +321,12 @@ public class BattleManager : MonoBehaviour
             .ToList();
     }
 
+
     public List<BattleUnit> GetUnitbyOrder()
     {
         return _BattleUnitOrderList;
     }
+
 
     public void BattleOrderRemove(BattleUnit _unit)
     {
@@ -283,17 +345,16 @@ public class BattleManager : MonoBehaviour
 
         if (0 < _BattleUnitOrderList[0].HP.GetCurrentHP())
         {
-            SetTileColor(Color.yellow);
-
-            // 입력 대기 코루틴 실행
-
-            //_BattleUnitOrderList[0].ChangeState(BattleUnitState.Move);
-            //_BattleUnitOrderList[0].UpdateState();
             if (_BattleUnitOrderList[0].Team == Team.Enemy)
             {
                 Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
                 ai.SetCaster(_BattleUnitOrderList[0]);
                 ai.AI_Action();    
+            }
+            else
+            {
+                //StartCoroutine(EngageClickCheck());
+                _clickType = ClickType.Move;
             }
         }
         else
@@ -320,7 +381,7 @@ public class BattleManager : MonoBehaviour
     
     public void SetTileColor(Color clr)
     {
-        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit());
+        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit(), _clickType);
         Field.SetTileColor(rangeList, clr);
     }
 
@@ -337,7 +398,7 @@ public class BattleManager : MonoBehaviour
         List<Vector2> FindTileList = new List<Vector2>();
         List<Vector2> RangedVectorList = new List<Vector2>();
 
-        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].GetRange();
+        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].GetAttackRange();
 
         //전달받은 범위에서 유닛을 찾는다.
         foreach (Vector2 arl in AttackRangeList)

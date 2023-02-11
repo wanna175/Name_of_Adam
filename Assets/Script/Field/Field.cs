@@ -19,7 +19,7 @@ public class Field : MonoBehaviour
         if(tile == null)
         {
             Debug.Log("Tile Parameter is Null");
-            return default;
+            return new Vector2();
         }
 
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
@@ -27,7 +27,7 @@ public class Field : MonoBehaviour
                 return items.Key;
 
         Debug.Log("Can't find target tile");
-        return default;
+        return new Vector2();
     }
 
     // 필드의 생성을 위한 필드의 위치
@@ -85,15 +85,30 @@ public class Field : MonoBehaviour
 
     public void MoveUnit(Vector2 current, Vector2 dest)
     {
-        if (IsInRange(dest) == false)
-            return;
-        if (TileDict[dest].IsOnTile)
+        if (IsInRange(dest) == false | current == dest)
             return;
 
-        BattleUnit unit = TileDict[current].Unit;
-        ExitTile(current);
-        unit.setLocate(dest);
-        //EnterTile(unit, dest);
+        BattleUnit currentUnit = TileDict[current].Unit;
+        BattleUnit destUnit = TileDict[dest].Unit;
+        
+        if (TileDict[dest].IsOnTile)
+        {
+            if (currentUnit.Team == destUnit.Team)
+            {
+                ExitTile(current);
+                ExitTile(dest);
+
+                currentUnit.setLocate(dest);
+                destUnit.setLocate(current);
+
+                return;
+            }
+        }
+        else
+        {
+            ExitTile(current);
+            currentUnit.setLocate(dest);
+        }
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
@@ -119,17 +134,16 @@ public class Field : MonoBehaviour
         }
     } 
 
-    public List<Vector2> Get_Abs_Pos(BattleUnit _unit)
+    public List<Vector2> Get_Abs_Pos(BattleUnit _unit, ClickType _clickType)
     {
-        _unit.GetCanMoveRange();
         List<Vector2> ResultVector = new List<Vector2>();
 
-        List<Vector2> RangeList;
+        List<Vector2> RangeList = new List<Vector2>();
 
-        if (_unit.IsMove)
-            RangeList = _unit.GetCanMoveRange();
-        else
-            RangeList = _unit.GetRange();
+        if (_clickType == ClickType.Move)
+            RangeList = _unit.GetMoveRange();
+        else if(_clickType == ClickType.Attack)
+            RangeList = _unit.GetAttackRange();
 
         foreach (Vector2 vec in RangeList)
         {
