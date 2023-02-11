@@ -85,26 +85,30 @@ public class Field : MonoBehaviour
 
     public void MoveUnit(Vector2 current, Vector2 dest)
     {
-        if (IsInRange(dest) == false)
-            return;
-        if (TileDict[dest].IsOnTile)
+        if (IsInRange(dest) == false | current == dest)
             return;
 
-        BattleUnit curUnit = TileDict[current].Unit;
+        BattleUnit currentUnit = TileDict[current].Unit;
         BattleUnit destUnit = TileDict[dest].Unit;
+        
+        if (TileDict[dest].IsOnTile)
+        {
+            if (currentUnit.Team == destUnit.Team)
+            {
+                ExitTile(current);
+                ExitTile(dest);
 
-        //// 아군이 들어가있을 경우 스위치
-        //if (TileDict[dest].IsOnTile && curUnit.Team == destUnit.Team)
-        //{
-        //    // 2칸인 경우에 대해서는 나중에
-        //    ExitTile(dest);
-        //    destUnit.setLocate(current);
-        //    EnterTile(destUnit, current);
-        //}
+                currentUnit.setLocate(dest);
+                destUnit.setLocate(current);
 
-        ExitTile(current);
-        curUnit.setLocate(dest);
-        EnterTile(curUnit, dest);
+                return;
+            }
+        }
+        else
+        {
+            ExitTile(current);
+            currentUnit.setLocate(dest);
+        }
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환

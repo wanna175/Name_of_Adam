@@ -5,11 +5,19 @@ using UnityEngine;
 public class Unit_AI_Controller : MonoBehaviour
 {
     protected BattleDataManager _Data;
-
     protected Field _field;
 
     protected BattleUnit caster;
 
+    protected List<Vector2> Unit_in_Attack_Range_TileList = new List<Vector2>();
+    protected List<Vector2> Ranged_Unit_in_Attack_Range_TileList = new List<Vector2>();
+
+    protected List<Vector3> Attackable_Tile_List = new List<Vector3>();
+    
+    protected List<Vector3> Unit_in_Attackable_Range_TileList = new List<Vector3>();
+    protected List<Vector3> Ranged_Unit_in_Attackable_Range_TileList = new List<Vector3>();
+
+    protected List<Vector2> FourWay = new List<Vector2>{new Vector2(-1, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1)};
 
     void Awake()
     {
@@ -22,15 +30,9 @@ public class Unit_AI_Controller : MonoBehaviour
         caster = unit;
     }
 
-    protected List<Vector2> Unit_in_Attack_Range_TileList = new List<Vector2>();
-    protected List<Vector2> Ranged_Unit_in_Attack_Range_TileList = new List<Vector2>();
-
     protected void Find_Unit_in_Attack_Range()
     {
         //현재 위치에서 공격범위 내의 유닛을 찾는다.
-        Unit_in_Attack_Range_TileList.Clear();
-        Ranged_Unit_in_Attack_Range_TileList.Clear();
-
         foreach (Vector2 range in caster.Data.GetAttackRange())
         {
             Vector2 AttackRange = caster.Location + range;
@@ -77,12 +79,9 @@ public class Unit_AI_Controller : MonoBehaviour
         return Ranged_Unit_in_Attack_Range_TileList[Random.Range(0, Ranged_Unit_in_Attack_Range_TileList.Count)];
     }
 
-
-    [SerializeField] protected List<Vector3> Attackable_Tile_List = new List<Vector3>();
-
     protected void Set_Attackable_Tile()
     {
-        //모든 공격 타일을 AttackTileList에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
+        //모든 공격 타일을 Attackable_Tile_List에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         foreach (BattleUnit unit in _Data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
@@ -102,16 +101,11 @@ public class Unit_AI_Controller : MonoBehaviour
         }
     }
 
-    protected List<Vector3> Unit_in_Attackable_Range_TileList = new List<Vector3>();
-    protected List<Vector3> Ranged_Unit_in_Attackable_Range_TileList = new List<Vector3>();
-
     protected void Search_Attackable_Tile()
     {
         //유닛을 때릴 수 있는 타일이 이동 범위 내에 있는 지 확인한다.
         //단 위, 아래, 왼, 오른쪽만 이동 가능하다고 가정
-
-        Unit_in_Attackable_Range_TileList.Clear();
-        Ranged_Unit_in_Attackable_Range_TileList.Clear();
+        List<Vector3> swapList = new List<Vector3>();
 
         for (int i = -1; i <= 1; i += 2)
         {
@@ -120,15 +114,27 @@ public class Unit_AI_Controller : MonoBehaviour
                 Vector3 vec1 = new Vector3(caster.Location.x + i, caster.Location.y, j);
                 if (Attackable_Tile_List.Contains(vec1))
                 {
-                    Unit_in_Attackable_Range_TileList.Add(vec1);
+                    if (_field.TileDict[vec1].IsOnTile)
+                        swapList.Add(vec1);
+                    else
+                        Unit_in_Attackable_Range_TileList.Add(vec1);
                 }
 
                 Vector3 vec2 = new Vector3(caster.Location.x, caster.Location.y + i, j);
                 if (Attackable_Tile_List.Contains(vec2))
                 {
-                    Unit_in_Attackable_Range_TileList.Add(vec2);
+                    if (_field.TileDict[vec2].IsOnTile)
+                        swapList.Add(vec2);
+                    else
+                        Unit_in_Attackable_Range_TileList.Add(vec2);
                 }
             }
+        }
+        //스위치? 스왑?이 필요한지 확인
+        if (Unit_in_Attackable_Range_TileList.Count == 0)
+        {
+            foreach (Vector3 vec in swapList)
+                Unit_in_Attackable_Range_TileList.Add(vec);
         }
 
         foreach (Vector3 v in Unit_in_Attackable_Range_TileList)
@@ -141,9 +147,9 @@ public class Unit_AI_Controller : MonoBehaviour
         }
     }
 
-    protected Vector3 Search_Near_Enemy()
+    protected Vector2 Search_Near_Enemy()
     {
-        Vector3 MyPosition = caster.Location;
+        Vector2 MyPosition = caster.Location;
 
         float dis = 100f;
 
@@ -152,7 +158,6 @@ public class Unit_AI_Controller : MonoBehaviour
         foreach (Vector3 v in Attackable_Tile_List)
         {
             float abs = Mathf.Abs(v.x - MyPosition.x) + Mathf.Abs(v.y - MyPosition.y);
-            Debug.Log(abs);
             if (dis > abs)
             {
                 dis = abs;
@@ -169,28 +174,45 @@ public class Unit_AI_Controller : MonoBehaviour
         return minVec;
     }
 
-    public Vector3 Move(Vector3 minVec)
+    public Vector2 Move_Direction(Vector2 minVec)
     {
-        Vector3 MyPosition = caster.Location;
-        float dis = 100f;
-        //가장 가까운 타일 = minVec으로 이동
-        Vector3 moveVec = new Vector3();
-        for (int i = -1; i <= 1; i += 2)
+        //가야하는 위치 minVec을 받아 상하좌우 중 어디로 갈지를 정해 moveVec으로 리턴한다
+        Vector2 MyPosition = caster.Location;
+        float currntMin = 100f;
+
+        List<Vector2> moveVectorList = new List<Vector2>();
+
+        foreach (Vector2 direction in FourWay)
         {
-            Vector3 vec1 = new Vector3(MyPosition.x + i, MyPosition.y, 0);
-            if (dis > (vec1 - minVec).sqrMagnitude)
+            Vector2 Vec = new Vector2(MyPosition.x + direction.x, MyPosition.y + direction.y);
+            float sqr = (Vec - minVec).sqrMagnitude;
+
+            if (currntMin > sqr)
             {
-                dis = (vec1 - minVec).sqrMagnitude;
-                moveVec = vec1;
+                currntMin = sqr;
+                moveVectorList.Clear();
+                if (!_field.TileDict[Vec].IsOnTile)
+                {
+                    moveVectorList.Add(Vec);
+                }
             }
-            Vector3 vec2 = new Vector3(MyPosition.x, MyPosition.y + i, 0);
-            if (dis > (vec2 - minVec).sqrMagnitude)
+            else if (currntMin == sqr)
             {
-                dis = (vec2 - minVec).sqrMagnitude;
-                moveVec = vec2;
+                if (!_field.TileDict[Vec].IsOnTile)
+                {
+                    moveVectorList.Add(Vec);
+                }
             }
         }
-        return moveVec;
+
+        if (moveVectorList.Count == 0)
+        {
+            return MyPosition;
+        }
+        else
+        {
+            return moveVectorList[Random.Range(0, moveVectorList.Count)];
+        }
     }
 
     protected Vector2 Unit_Coord_2()
@@ -219,6 +241,17 @@ public class Unit_AI_Controller : MonoBehaviour
         }
     }
 
+    protected void List_Clear()
+    {
+        Unit_in_Attack_Range_TileList.Clear();
+        Ranged_Unit_in_Attack_Range_TileList.Clear();
+
+        Attackable_Tile_List.Clear();
+        
+        Unit_in_Attackable_Range_TileList.Clear();
+        Ranged_Unit_in_Attackable_Range_TileList.Clear();
+    }
+
     public virtual void AI_Action()
     {
         //전달받은 범위에서 유닛을 찾는다.
@@ -245,7 +278,7 @@ public class Unit_AI_Controller : MonoBehaviour
                     //원거리가 있음
                     //Random.Range(0, Ranged_Unit_in_Attackable_Range_TileList.Count);
                     
-                    GameManager.Battle.Field.MoveUnit(caster.Location, Ranged_Unit_Coord_2());
+                    _field.MoveUnit(caster.Location, Ranged_Unit_Coord_2());
                     Find_Unit_in_Attack_Range();
                     Attack_Unit_in_Range();
                 }
@@ -253,17 +286,18 @@ public class Unit_AI_Controller : MonoBehaviour
                 {
                     //근거리만 있음
                     //Random.Range(0, Unit_in_Attackable_Range_TileList.Count);
-                    GameManager.Battle.Field.MoveUnit(caster.Location, Unit_Coord_2());
+                    _field.MoveUnit(caster.Location, Unit_Coord_2());
                     Find_Unit_in_Attack_Range();
                     Attack_Unit_in_Range();
                 }
             }
             else
             {
-                GameManager.Battle.Field.MoveUnit(caster.Location, Move(Search_Near_Enemy()));
+                _field.MoveUnit(caster.Location, Move_Direction(Search_Near_Enemy()));
                 GameManager.Battle.UseNextUnit();
             }
         }
+        List_Clear();
     }
 }
 
