@@ -85,11 +85,11 @@ public class Unit_AI_Controller : MonoBehaviour
         //단 위, 아래, 왼, 오른쪽만 이동 가능하다고 가정
         List<Vector3> swapList = new List<Vector3>();
 
-        for (int i = -1; i <= 1; i += 2)
+        foreach(Vector2 vec in caster.Data.GetMoveRange())
         {
-            for (float j = 0; j <= 0.1f; j += 0.1f)
+            for (float i = 0; i <= 0.1f; i += 0.1f)
             {
-                Vector3 vec1 = new Vector3(caster.Location.x + i, caster.Location.y, j);
+                Vector3 vec1 = new Vector3(caster.Location.x + vec.x, caster.Location.y + vec.y, i);
                 if (Attackable_Tile_List.Contains(vec1))
                 {
                     if (_field.TileDict[vec1].IsOnTile)
@@ -97,17 +97,9 @@ public class Unit_AI_Controller : MonoBehaviour
                     else
                         Unit_in_Attackable_Range_TileList.Add(vec1);
                 }
-
-                Vector3 vec2 = new Vector3(caster.Location.x, caster.Location.y + i, j);
-                if (Attackable_Tile_List.Contains(vec2))
-                {
-                    if (_field.TileDict[vec2].IsOnTile)
-                        swapList.Add(vec2);
-                    else
-                        Unit_in_Attackable_Range_TileList.Add(vec2);
-                }
             }
         }
+
         //스왑이 필요한지 확인
         if (Unit_in_Attackable_Range_TileList.Count == 0)
         {
