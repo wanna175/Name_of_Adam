@@ -63,16 +63,17 @@ public class BattleUnit : Unit
     public List<Vector2> GetCanMoveRange()
     {
         List<Vector2> vecList = new List<Vector2>();
-        vecList.Add(new Vector2(0, 0));
-        
-        for (int i = 1; i <= _moveDistance; i++)
-        {
-            for (int j = -1; j <= 1; j += 2)
-            {
-                vecList.Add(new Vector2(i * j, 0));
-                vecList.Add(new Vector2(0, i * j));
-            }
-        }
+        //vecList.Add(new Vector2(0, 0));
+
+        //for (int i = 1; i <= _moveDistance; i++)
+        //{
+        //    for (int j = -1; j <= 1; j += 2)
+        //    {
+        //        vecList.Add(new Vector2(i * j, 0));
+        //        vecList.Add(new Vector2(0, i * j));
+        //    }
+        //}
+        vecList = Data.GetMoveRange();
 
         return vecList;
     }
@@ -124,14 +125,16 @@ public class BattleUnit : Unit
         if (!GetCanMoveRange().Contains(coord))
         {
             _BattleMNG.SetTileColor(Color.yellow);
+            //StartCoroutine(_BattleMNG.EngageClickCheck());
             return;
         }
-
+        
         _BattleMNG.MoveLotate(this, coord);
         //ChangeState(BattleUnitState.AttackWait);
         //UpdateState();
 
         isMove = false;
+        //StartCoroutine(_BattleMNG.EngageClickCheck());
         return;
     }
 
@@ -143,6 +146,7 @@ public class BattleUnit : Unit
         if (!GetRange().Contains(dump))
         {
             _BattleMNG.SetTileColor(Color.yellow);
+            StartCoroutine(_BattleMNG.EngageClickCheck());
             return;
         }
 
@@ -172,7 +176,7 @@ public class BattleUnit : Unit
 
     public CutSceneType GetCutSceneType() => skill.CSType;
 
-    public List<Vector2> GetRange() => Data.GetRange();
+    public List<Vector2> GetRange() => Data.GetAttackRange();
 
     public int SkillLength() => skill.EffectList.Count;
 }

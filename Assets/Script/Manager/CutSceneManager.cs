@@ -35,10 +35,10 @@ public class CutSceneManager : MonoBehaviour
     private CameraHandler _CameraHandler;
     public CameraHandler CameraHandler
     {
+        get { return _CameraHandler; }
         set { _CameraHandler = value; }
     }
     #endregion
-    //private GameObject ClickCover;
 
     CutSceneData CSData;
     // 줌 인, 줌 아웃하는데 들어가는 시간
@@ -60,8 +60,6 @@ public class CutSceneManager : MonoBehaviour
         
     public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
-        //ClickCover.SetActive(true);
-
         if (HitUnits.Count == 0)
         {
             StartCoroutine(ExitCutScene());

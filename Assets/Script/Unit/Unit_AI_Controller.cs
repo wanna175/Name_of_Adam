@@ -33,7 +33,7 @@ public class Unit_AI_Controller : MonoBehaviour
     protected void Find_Unit_in_Attack_Range()
     {
         //현재 위치에서 공격범위 내의 유닛을 찾는다.
-        foreach (Vector2 range in caster.Data.GetRange())
+        foreach (Vector2 range in caster.Data.GetAttackRange())
         {
             Vector2 AttackRange = caster.Location + range;
 
@@ -64,7 +64,7 @@ public class Unit_AI_Controller : MonoBehaviour
         {
             if (unit.Team == Team.Player)
             {
-                foreach (Vector2 arl in caster.Data.GetRange())
+                foreach (Vector2 arl in caster.Data.GetAttackRange())
                 {
                     Vector3 vector = unit.Location - arl;
                     if (unit.Data.BehaviorType == BehaviorType.원거리)

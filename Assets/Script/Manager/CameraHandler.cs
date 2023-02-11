@@ -110,4 +110,29 @@ public class CameraHandler : MonoBehaviour
     }
 
     #endregion
+
+
+    public RaycastHit2D[] CameraRayCast()
+    {
+        Vector3 mos = Input.mousePosition;
+        mos.z = MainCamera.farClipPlane;
+
+        Vector3 dir = MainCamera.ScreenToWorldPoint(mos);
+        StartCoroutine(ray(dir));
+        return Physics2D.RaycastAll(MainCamera.transform.position, dir);
+    }
+
+    IEnumerator ray(Vector3 dir)
+    {
+        float time = 0;
+
+        while (time <= 3)
+        {
+            time += Time.deltaTime;
+
+            Debug.DrawRay(MainCamera.transform.position, dir, Color.red, 100);
+
+            yield return null;
+        }
+    }
 }
