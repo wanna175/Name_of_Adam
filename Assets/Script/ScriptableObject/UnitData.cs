@@ -163,9 +163,9 @@ public class RangeEditor : Editor
                 GUI.color = Color.green;
 
 
-            SerializedProperty a = serializedObject.FindProperty("MoveRange").GetArrayElementAtIndex(i);
+            SerializedProperty b = serializedObject.FindProperty("MoveRange").GetArrayElementAtIndex(i);
             moveRange[i] = EditorGUILayout.Toggle(moveRange[i]);
-            a.boolValue = moveRange[i];
+            b.boolValue = moveRange[i];
 
             if (i % Mcolumn == Mcolumn - 1)
                 GUILayout.EndHorizontal();
