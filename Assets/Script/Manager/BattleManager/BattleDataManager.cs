@@ -40,35 +40,34 @@ public class BattleDataManager
 
     public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
 
-    private const int _maxManaCost = 100;
 
-    private int _manaCost = 0;
-    public int ManaCost => _manaCost;
 
-    UI_ManaGuage _manaGuage;
+    /*================================마나 데이터 관련=================================*/
 
-    public void InitMana(int _defaultMana = 0) => _manaCost = _defaultMana;
+    private const int _maxMana = 100;
 
-    public void SetManaGuage(UI_ManaGuage _guage)
+    private int _mana = 0;
+    
+    public void InitMana(int _defaultMana = 0) => _mana = _defaultMana;
+
+    public int GetMana()
     {
-        _manaGuage = _guage;
+        return _mana;
     }
 
     public void ChangeMana(int value)
     {
-        _manaCost += value;
+        _mana += value;
 
-        if (_maxManaCost <= _manaCost)
-            _manaCost = _maxManaCost;
-        else if (_manaCost < 0)
-            _manaCost = 0;
-        
-        _manaGuage.DrawGauge();
+        if (_maxMana <= _mana)
+            _mana = _maxMana;
+        else if (_mana < 0)
+            _mana = 0;
     }
 
     public bool CanUseMana(int value)
     {
-        if (_manaCost >= value)
+        if (_mana >= value)
             return true;
 
         Debug.Log("not enough mana");
