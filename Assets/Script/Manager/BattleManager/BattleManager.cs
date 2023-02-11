@@ -21,6 +21,20 @@ public class BattleManager : MonoBehaviour
     private List<BattleUnit> _BattleUnitOrderList;
 
     [SerializeField] private bool TestMode = true;
+    private ClickType _clickType;
+    public void ChangeClickType()
+    {
+        _clickType++;
+
+        if(_clickType > ClickType.Attack)
+        {
+            _clickType = ClickType.Nothing;
+        }
+
+        SetTileColor(Color.yellow);
+        Debug.Log(_clickType);
+    }
+
     private void Awake()
     {
         _battleData = new BattleDataManager();
@@ -112,7 +126,13 @@ public class BattleManager : MonoBehaviour
         //Engage 페이즈
         else
         {
-            //_field.ClearAllColor();
+            _field.ClearAllColor();
+
+            if (_clickType == ClickType.Move)
+                GetNowUnit().MoveTileClick(coord);
+            else if (_clickType == ClickType.Attack)
+                GetNowUnit().AttackTileClick(coord);
+
             //GetNowUnit().TileSelected(coord);
 
             // 코루틴 체크
@@ -158,7 +178,7 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log("Tile을 찾고 좌표를 확인함");
                 _field.ClearAllColor();
-                GetNowUnit().TileSelected(coord);
+                //GetNowUnit().TileSelected(coord);
                 break;
             }
         }
@@ -167,12 +187,6 @@ public class BattleManager : MonoBehaviour
     }
     
     #region Phase Control
-    public enum Phase
-    {
-        Start,
-        Prepare,
-        Engage
-    }
 
     private Phase _CurrentPhase;
     public Phase CurrentPhase => _CurrentPhase;
@@ -313,11 +327,6 @@ public class BattleManager : MonoBehaviour
             .ToList();
     }
 
-    public BattleUnit GetUnitbyOrder(int i)
-    {
-        return _BattleUnitOrderList[i];
-    }
-
     public void BattleOrderRemove(BattleUnit _unit)
     {
         _BattleUnitOrderList.Remove(_unit);
@@ -335,8 +344,6 @@ public class BattleManager : MonoBehaviour
 
         if (0 < _BattleUnitOrderList[0].HP.GetCurrentHP())
         {
-            SetTileColor(Color.yellow);
-            
             if (_BattleUnitOrderList[0].Team == Team.Enemy)
             {
                 Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
@@ -345,7 +352,8 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                StartCoroutine(EngageClickCheck());
+                //StartCoroutine(EngageClickCheck());
+                _clickType = ClickType.Move;
             }
         }
         else
@@ -373,7 +381,7 @@ public class BattleManager : MonoBehaviour
     
     public void SetTileColor(Color clr)
     {
-        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit());
+        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit(), _clickType);
         Field.SetTileColor(rangeList, clr);
     }
 
@@ -390,7 +398,7 @@ public class BattleManager : MonoBehaviour
         List<Vector2> FindTileList = new List<Vector2>();
         List<Vector2> RangedVectorList = new List<Vector2>();
 
-        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].GetRange();
+        List<Vector2> AttackRangeList = _BattleUnitOrderList[0].GetAttackRange();
 
         //전달받은 범위에서 유닛을 찾는다.
         foreach (Vector2 arl in AttackRangeList)
