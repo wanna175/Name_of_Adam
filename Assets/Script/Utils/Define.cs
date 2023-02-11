@@ -70,6 +70,20 @@ public enum TargetType
     Range,
 }
 
+public enum Phase
+{
+    Start,
+    Prepare,
+    Engage
+}
+
+public enum ClickType
+{
+    Nothing,
+    Move,
+    Attack
+}
+
 [SerializeField]
 public enum Scene
 {
