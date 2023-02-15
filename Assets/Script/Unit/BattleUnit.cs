@@ -69,44 +69,13 @@ public class BattleUnit : Unit
     {
         transform.position = dest;
     }
-
-    public void MoveTileClick(Vector2 coord)
-    {
-        coord -= Location;
-
-        // 이동범위 밖을 선택했다면 다시 선택하기
-        if (!GetMoveRange().Contains(coord))
-        {
-            _BattleMNG.SetTileColor(Color.yellow);
-            return;
-        }
-        
-        _BattleMNG.MoveLotate(this, coord);
-        
-        _BattleMNG.ChangeClickType();
-        return;
-    }
+    
 
     public void AttackTileClick(Vector2 coord)
     {
-        Vector2 dump = coord - Location;
-
-        // 공격범위 밖을 선택했으면 다시 선택하기
-        if (!GetAttackRange().Contains(dump))
-        {
-            _BattleMNG.SetTileColor(Color.yellow);
-            return;
-        }
-
         _SelectTile = coord;
-
-        if (_SelectTile == Location)
-            _BattleMNG.UseNextUnit();
-        else
-            _skill.Use(this, this); // 수정 필요
         
-        _BattleMNG.ChangeClickType();
-        return;
+        use(this);
     }
 
     public Stat GetStat(bool buff = true)
