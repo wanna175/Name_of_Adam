@@ -278,12 +278,9 @@ public class BattleManager : MonoBehaviour
         _clickType++;
 
         if (_clickType > ClickType.Attack)
-        {
             _clickType = ClickType.Nothing;
-        }
 
         SetTileColor(Color.yellow);
-        Debug.Log(_clickType);
     }
 
     // BattleUnitList의 첫 번째 요소부터 순회
