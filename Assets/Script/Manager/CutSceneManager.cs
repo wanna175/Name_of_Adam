@@ -191,7 +191,7 @@ public class CutSceneManager : MonoBehaviour
 
 
         foreach (BattleUnit unit in CSData.HitUnits)
-            unit.Hit_GetDamage(CSData.AttackUnit.GetStat().ATK);
+            unit.ChangeHP(-CSData.AttackUnit.GetStat().ATK);
 
         StartCoroutine(_CameraHandler.CutSceneZoomOut(CSData));
     }

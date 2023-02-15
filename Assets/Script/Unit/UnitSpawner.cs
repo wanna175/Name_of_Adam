@@ -9,7 +9,7 @@ struct SpawnData
     public GameObject prefab;
     public Vector2 location;
     public Team team;
-    public Stigma[] stigmas;
+    public Passive[] stigmas;
 }
 
 public class UnitSpawner : MonoBehaviour
@@ -18,7 +18,6 @@ public class UnitSpawner : MonoBehaviour
 
     public void Init()
     {
-        Debug.Log("Spawner Start");
         foreach(SpawnData data in SpawnMonsters)
         {
             if (GameManager.Battle.Field.TileDict[data.location].IsOnTile)
@@ -29,7 +28,6 @@ public class UnitSpawner : MonoBehaviour
 
             GameObject go = GameObject.Instantiate(data.prefab);
             go.GetComponent<BattleUnit>().Init(data.team, data.location);
-            // Stigma 추가
         }
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 
 class Skill : MonoBehaviour
 {
-    [SerializeField] List<EffectSO> Effects;
+    [SerializeField] List<Effect> Effects;
 
     public void Use(BattleUnit caster, BattleUnit receiver)
     {
-        
+        foreach (Effect effect in Effects)
+            effect.Use(caster, receiver);
     }
 }

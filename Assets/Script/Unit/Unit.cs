@@ -10,5 +10,5 @@ public class Unit : MonoBehaviour
     [SerializeField] private Stat _stat;
     public Stat Stat => Data.RawStat; // Memo : 나중에 낙인, 버프 추가한 스탯으로 수정
     
-    [SerializeField] private List<Stigma> Stigmas = new List<Stigma>();
+    [SerializeField] private List<Passive> Stigmas = new List<Passive>();
 }

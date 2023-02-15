@@ -11,9 +11,7 @@ public class BattleUnit : Unit
 
     [SerializeField] private int _fallGauge;
     public int FallGauge => _fallGauge;
-    private Skill Skill; // Memo : 임시
-
-    [SerializeField] SkillSO skill;
+    private Skill _skill;
 
     BattleManager _BattleMNG;
     BattleDataManager _BattleDataMNG;
@@ -29,7 +27,6 @@ public class BattleUnit : Unit
 
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
-
     
     private void Awake()
     {
@@ -54,7 +51,6 @@ public class BattleUnit : Unit
         setLocate(coord);
     }
 
-
     public void OnAttack(List<BattleUnit> _HitUnits)
     {
         //_CutSceneMNG.BattleCutScene(this, _HitUnits);
@@ -68,7 +64,7 @@ public class BattleUnit : Unit
     {
         HP.ChangeHP(-DMG);
     }
-
+    
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(Vector2 coord)
     {
@@ -102,12 +98,15 @@ public class BattleUnit : Unit
     }
 
     public bool GetFlipX() => _renderer.flipX;
+    
+    public void ChangeHP(int value)
+    {
+        HP.ChangeHP(value);
+    }
 
-    public CutSceneType GetCutSceneType() => skill.CSType;
-
+    public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
+    
     public List<Vector2> GetAttackRange() => Data.GetAttackRange();
     
     public List<Vector2> GetMoveRange() => Data.GetMoveRange();
-
-    public int SkillLength() => skill.EffectList.Count;
 }

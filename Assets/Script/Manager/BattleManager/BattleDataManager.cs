@@ -9,26 +9,36 @@ public class BattleDataManager
         InitMana();
     }
 
-    private List<Unit> _UnitList = new List<Unit>();
-    public List<Unit> UnitList => _UnitList;
+    #region Turn Count
+    private int _TurnCount = 1;
+    public int TurnCount => _TurnCount;
+
+    public void TurnPlus()
+    {
+        _TurnCount++;
+    }
+    #endregion
+
+    private List<Unit> _playerDeckList = new List<Unit>();
+    public List<Unit> PlayerDeck => _playerDeckList;
 
     public void AddUnit(Unit unit) {
-        UnitList.Add(unit);
+        PlayerDeck.Add(unit);
     }
 
     public void RemoveUnit(Unit unit) {
-        UnitList.Remove(unit);
+        PlayerDeck.Remove(unit);
     }
 
     public Unit GetRandomUnit() {
-        if (UnitList.Count == 0)
+        if (PlayerDeck.Count == 0)
         {
             return null;
         }
-        int randNum = Random.Range(0, UnitList.Count);
+        int randNum = Random.Range(0, PlayerDeck.Count);
         
-        Unit unit = UnitList[randNum];
-        _UnitList.RemoveAt(randNum);
+        Unit unit = PlayerDeck[randNum];
+        _playerDeckList.RemoveAt(randNum);
 
         return unit;
     }

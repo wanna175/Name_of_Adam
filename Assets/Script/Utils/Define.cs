@@ -8,6 +8,7 @@ public struct Stat
     public int HP;
     public int ATK;
     public int SPD;
+    public int Fall;
 
     public static Stat operator +(Stat lhs, Stat rhs)
     {
@@ -15,6 +16,7 @@ public struct Stat
         result.HP = lhs.HP + rhs.HP;
         result.ATK = lhs.ATK + rhs.ATK;
         result.SPD = lhs.SPD + rhs.SPD;
+        result.Fall = lhs.Fall + rhs.Fall;
 
         return result;
     }
@@ -25,6 +27,7 @@ public struct Stat
         result.HP = lhs.HP - rhs.HP;
         result.ATK = lhs.ATK - rhs.ATK;
         result.SPD = lhs.SPD - rhs.SPD;
+        result.Fall = lhs.Fall - rhs.Fall;
 
         return result;
     }
