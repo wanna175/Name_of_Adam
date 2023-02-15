@@ -56,7 +56,11 @@ public class BattleDataManager
         _currentMana = _defaultMana;
     }
 
-    public void SetManaGuage(UI_ManaGuage _guage)
+    private int _mana = 0;
+    
+    public void InitMana(int _defaultMana = 0) => _mana = _defaultMana;
+
+    public int GetMana()
     {
         _manaGuage = _guage;
         _manaGuage.DrawGauge(_currentMana);

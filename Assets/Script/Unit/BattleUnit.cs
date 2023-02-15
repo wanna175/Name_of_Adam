@@ -10,7 +10,8 @@ public class BattleUnit : Unit
     public Team Team => _team;
 
     [SerializeField] private int _fallGauge;
-    private int _moveDistance;
+    public int FallGauge => _fallGauge;
+    private int _moveDistance = 1;
     private Skill Skill; // Memo : 임시
 
     [SerializeField] SkillSO skill;
@@ -57,24 +58,6 @@ public class BattleUnit : Unit
         setLocate(coord);
     }
 
-    // 이동가능한 범위를 가져온다.
-    public List<Vector2> GetCanMoveRange()
-    {
-        List<Vector2> vecList = new List<Vector2>();
-        vecList.Add(new Vector2(0, 0));
-        
-        for (int i = 1; i <= _moveDistance; i++)
-        {
-            for (int j = -1; j <= 1; j += 2)
-            {
-                vecList.Add(new Vector2(i * j, 0));
-                vecList.Add(new Vector2(0, i * j));
-            }
-        }
-
-        return vecList;
-    }
-
 
     public void Attack_OnAttack(List<BattleUnit> _HitUnits)
     {
@@ -106,30 +89,20 @@ public class BattleUnit : Unit
     }
 
 
-    public void TileSelected(Vector2 coord)
-    {
-        if (isMove)
-            MoveTileClick(coord);
-        else
-            AttackTileClick(coord);
-    }
-
-    void MoveTileClick(Vector2 coord)
+    public void MoveTileClick(Vector2 coord)
     {
         coord -= Location;
 
         // 이동범위 밖을 선택했다면 다시 선택하기
-        if (!GetCanMoveRange().Contains(coord))
+        if (!GetMoveRange().Contains(coord))
         {
             _BattleMNG.SetTileColor(Color.yellow);
             return;
         }
-
+        
         _BattleMNG.MoveLotate(this, coord);
-        //ChangeState(BattleUnitState.AttackWait);
-        //UpdateState();
-
-        isMove = false;
+        
+        _BattleMNG.ChangeClickType();
         return;
     }
 
@@ -138,7 +111,7 @@ public class BattleUnit : Unit
         Vector2 dump = coord - Location;
 
         // 공격범위 밖을 선택했으면 다시 선택하기
-        if (!GetRange().Contains(dump))
+        if (!GetAttackRange().Contains(dump))
         {
             _BattleMNG.SetTileColor(Color.yellow);
             return;
@@ -150,8 +123,8 @@ public class BattleUnit : Unit
             _BattleMNG.UseNextUnit();
         else
             use(this);
-
-        isMove = true;
+        
+        _BattleMNG.ChangeClickType();
         return;
     }
 
@@ -169,7 +142,9 @@ public class BattleUnit : Unit
 
     public CutSceneType GetCutSceneType() => skill.CSType;
 
-    public List<Vector2> GetRange() => skill.GetRange();
+    public List<Vector2> GetAttackRange() => Data.GetAttackRange();
+    
+    public List<Vector2> GetMoveRange() => Data.GetMoveRange();
 
     public int SkillLength() => skill.EffectList.Count;
 }

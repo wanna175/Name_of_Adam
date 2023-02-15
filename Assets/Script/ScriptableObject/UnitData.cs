@@ -20,7 +20,7 @@ public class UnitData : ScriptableObject
     [SerializeField] private Rarity _rarity;
     public Rarity Rarity => _rarity;
 
-    public List<Vector2> Range => GetRange();
+    public List<Vector2> Range => GetAttackRange();
 
     [SerializeField] private TargetType _targetType;
     public TargetType TargetType => _targetType;
@@ -35,13 +35,18 @@ public class UnitData : ScriptableObject
     public int FirstManaCost => _firstManaCost;
 
     #region RangeEditor
-    const int row = 5;
-    const int column = 11;
+    const int Arow = 5;
+    const int Acolumn = 11;
 
-    [SerializeField] [HideInInspector] public bool[] AttackRange = new bool[row * column];
+    const int Mrow = 5;
+    const int Mcolumn = 5;
+
+    [SerializeField] [HideInInspector] public bool[] AttackRange = new bool[Arow * Acolumn];
+    [SerializeField] [HideInInspector] public bool[] MoveRange = new bool[Mrow * Mcolumn];
+
 
     // 공격범위를 캐릭터의 위치를 (0, 0)으로 간주하고 리스트로 반환
-    public List<Vector2> GetRange()
+    public List<Vector2> GetAttackRange()
     {
         List<Vector2> RangeList = new List<Vector2>();
 
@@ -49,8 +54,28 @@ public class UnitData : ScriptableObject
         {
             if (AttackRange[i])
             {
-                int x = ((i % column) - (column >> 1));
-                int y = (i / column) - (row >> 1);
+                int x = (i % Acolumn) - (Acolumn >> 1);
+                int y = (i / Acolumn) - (Arow >> 1);
+
+                Vector2 vec = new Vector2(x, y);
+
+                RangeList.Add(vec);
+            }
+        }
+
+        return RangeList;
+    }
+
+    public List<Vector2> GetMoveRange()
+    {
+        List<Vector2> RangeList = new List<Vector2>();
+
+        for (int i = 0; i < MoveRange.Length; i++)
+        {
+            if (MoveRange[i])
+            {
+                int x = (i % Mcolumn) - (Mcolumn >> 1);
+                int y = -((i / Mcolumn) - (Mrow >> 1));
 
                 Vector2 vec = new Vector2(x, y);
 
@@ -65,11 +90,17 @@ public class UnitData : ScriptableObject
 [CustomEditor(typeof(UnitData))]
 public class RangeEditor : Editor
 {
-    const int row = 5;
-    const int column = 11;
+    #region AttackRange
+
+    const int Arow = 5;
+    const int Acolumn = 11;
+
+    const int Mrow = 5;
+    const int Mcolumn = 5;
 
     UnitData _range;
     bool[] atkRange;
+    bool[] moveRange;
 
     private void OnEnable()
     {
@@ -78,36 +109,70 @@ public class RangeEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
+        //base.OnInspectorGUI();
 
-        serializedObject.Update();
+        //serializedObject.Update();
 
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("공격 범위");
+        //EditorGUILayout.Space();
+        //EditorGUILayout.Space();
+        //EditorGUILayout.LabelField("공격 범위");
 
-        atkRange = _range.AttackRange;
+        //atkRange = _range.AttackRange;
 
-        for (int i = 0; i < atkRange.Length; i++)
-        {
-            if (i % column == 0)
-                GUILayout.BeginHorizontal();
+        //for (int i = 0; i < atkRange.Length; i++)
+        //{
+        //    if (i % Acolumn == 0)
+        //        GUILayout.BeginHorizontal();
 
-            GUI.color = Color.white;
-            if (atkRange[i])
-                GUI.color = Color.red;
+        //    GUI.color = Color.white;
+        //    if (atkRange[i])
+        //        GUI.color = Color.red;
 
-            if (i == row * column >> 1)
-                GUI.color = Color.green;
+        //    if (i == Arow * Acolumn >> 1)
+        //        GUI.color = Color.green;
 
 
-            SerializedProperty a = serializedObject.FindProperty("AttackRange").GetArrayElementAtIndex(i);
-            atkRange[i] = EditorGUILayout.Toggle(atkRange[i]);
-            a.boolValue = atkRange[i];
+        //    SerializedProperty a = serializedObject.FindProperty("AttackRange").GetArrayElementAtIndex(i);
+        //    atkRange[i] = EditorGUILayout.Toggle(atkRange[i]);
+        //    a.boolValue = atkRange[i];
 
-            if (i % column == column - 1)
-                GUILayout.EndHorizontal();
-        }
+        //    if (i % Acolumn == Acolumn - 1)
+        //        GUILayout.EndHorizontal();
+        //}
+
+        //#endregion
+
+        //#region MoveRange
+
+        //EditorGUILayout.Space();
+        //EditorGUILayout.Space();
+        //EditorGUILayout.LabelField("이동 범위");
+
+        //moveRange = _range.MoveRange;
+
+        //for (int i = 0; i < moveRange.Length; i++)
+        //{
+        //    if (i % Mcolumn == 0)
+        //        GUILayout.BeginHorizontal();
+
+        //    GUI.color = Color.white;
+        //    if (moveRange[i])
+        //        GUI.color = Color.red;
+
+        //    if (i == Mrow * Mcolumn >> 1)
+        //        GUI.color = Color.green;
+
+
+        //    SerializedProperty b = serializedObject.FindProperty("MoveRange").GetArrayElementAtIndex(i);
+        //    moveRange[i] = EditorGUILayout.Toggle(moveRange[i]);
+        //    b.boolValue = moveRange[i];
+
+        //    if (i % Mcolumn == Mcolumn - 1)
+        //        GUILayout.EndHorizontal();
+        //}
+
+        #endregion
+
         serializedObject.ApplyModifiedProperties();
     }
 }
