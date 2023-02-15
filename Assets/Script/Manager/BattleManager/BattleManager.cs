@@ -91,7 +91,7 @@ public class BattleManager : MonoBehaviour
 
             _battleData.ChangeMana(-1 * clickedUnit.Data.ManaCost);
 
-            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
+            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Units/BaseUnit");
             BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
             BattleUnit.Data = clickedUnit.Data;
@@ -203,8 +203,11 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Engage Exit");
         //UI 들어감
         //UI 사용 불가
-        _battleData.ChangeMana(2);
+        
         BattleOverCheck();
+        _battleData.ChangeMana(2);
+        _battleData.TurnPlus();
+        GameManager.UI.TurnCount.ShowTurn();
     }
     #endregion
 
