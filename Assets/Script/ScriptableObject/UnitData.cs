@@ -109,67 +109,67 @@ public class RangeEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        //base.OnInspectorGUI();
+        base.OnInspectorGUI();
 
-        //serializedObject.Update();
+        serializedObject.Update();
 
-        //EditorGUILayout.Space();
-        //EditorGUILayout.Space();
-        //EditorGUILayout.LabelField("공격 범위");
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("공격 범위");
 
-        //atkRange = _range.AttackRange;
+        atkRange = _range.AttackRange;
 
-        //for (int i = 0; i < atkRange.Length; i++)
-        //{
-        //    if (i % Acolumn == 0)
-        //        GUILayout.BeginHorizontal();
+        for (int i = 0; i < atkRange.Length; i++)
+        {
+            if (i % Acolumn == 0)
+                GUILayout.BeginHorizontal();
 
-        //    GUI.color = Color.white;
-        //    if (atkRange[i])
-        //        GUI.color = Color.red;
+            GUI.color = Color.white;
+            if (atkRange[i])
+                GUI.color = Color.red;
 
-        //    if (i == Arow * Acolumn >> 1)
-        //        GUI.color = Color.green;
-
-
-        //    SerializedProperty a = serializedObject.FindProperty("AttackRange").GetArrayElementAtIndex(i);
-        //    atkRange[i] = EditorGUILayout.Toggle(atkRange[i]);
-        //    a.boolValue = atkRange[i];
-
-        //    if (i % Acolumn == Acolumn - 1)
-        //        GUILayout.EndHorizontal();
-        //}
-
-        //#endregion
-
-        //#region MoveRange
-
-        //EditorGUILayout.Space();
-        //EditorGUILayout.Space();
-        //EditorGUILayout.LabelField("이동 범위");
-
-        //moveRange = _range.MoveRange;
-
-        //for (int i = 0; i < moveRange.Length; i++)
-        //{
-        //    if (i % Mcolumn == 0)
-        //        GUILayout.BeginHorizontal();
-
-        //    GUI.color = Color.white;
-        //    if (moveRange[i])
-        //        GUI.color = Color.red;
-
-        //    if (i == Mrow * Mcolumn >> 1)
-        //        GUI.color = Color.green;
+            if (i == Arow * Acolumn >> 1)
+                GUI.color = Color.green;
 
 
-        //    SerializedProperty b = serializedObject.FindProperty("MoveRange").GetArrayElementAtIndex(i);
-        //    moveRange[i] = EditorGUILayout.Toggle(moveRange[i]);
-        //    b.boolValue = moveRange[i];
+            SerializedProperty a = serializedObject.FindProperty("AttackRange").GetArrayElementAtIndex(i);
+            atkRange[i] = EditorGUILayout.Toggle(atkRange[i]);
+            a.boolValue = atkRange[i];
 
-        //    if (i % Mcolumn == Mcolumn - 1)
-        //        GUILayout.EndHorizontal();
-        //}
+            if (i % Acolumn == Acolumn - 1)
+                GUILayout.EndHorizontal();
+        }
+
+        #endregion
+
+        #region MoveRange
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("이동 범위");
+
+        moveRange = _range.MoveRange;
+
+        for (int i = 0; i < moveRange.Length; i++)
+        {
+            if (i % Mcolumn == 0)
+                GUILayout.BeginHorizontal();
+
+            GUI.color = Color.white;
+            if (moveRange[i])
+                GUI.color = Color.red;
+
+            if (i == Mrow * Mcolumn >> 1)
+                GUI.color = Color.green;
+
+
+            SerializedProperty b = serializedObject.FindProperty("MoveRange").GetArrayElementAtIndex(i);
+            moveRange[i] = EditorGUILayout.Toggle(moveRange[i]);
+            b.boolValue = moveRange[i];
+
+            if (i % Mcolumn == Mcolumn - 1)
+                GUILayout.EndHorizontal();
+        }
 
         #endregion
 

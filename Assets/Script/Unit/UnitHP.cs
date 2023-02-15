@@ -18,7 +18,7 @@ public class UnitHP : MonoBehaviour
     {
         _currentHP += value;
 
-        if(_currentHP < 0)
+        if(_currentHP <= 0)
         {
             _currentHP = 0;
             UnitDiedEvent.Invoke();
