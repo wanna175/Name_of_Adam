@@ -26,7 +26,6 @@ public class BattleManager : MonoBehaviour
         //_WatingLine = GameManager.UI.WatingLine;
         _UIMNG = GameManager.UI;
 
-        _WaitingLine = _UIMNG.WaitingLine;
         SetupField();
     }
 
