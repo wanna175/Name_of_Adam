@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Stigma : MonoBehaviour
+public class Passive : MonoBehaviour
 {
 
     // Use this for initialization
