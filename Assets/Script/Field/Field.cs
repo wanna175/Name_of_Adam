@@ -6,9 +6,6 @@ using System;
 
 public class Field : MonoBehaviour
 {
-    [SerializeField] GameObject TilePrefabs;
-    [SerializeField] GameObject UnitPrefabs;
-
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
@@ -46,10 +43,9 @@ public class Field : MonoBehaviour
         transform.eulerAngles = FieldRotation;
     }
 
-    public Field SetClickEvent(Action<Vector2, Tile> action)
+    public void SetClickEvent(Action<Vector2, Tile> action)
     {
         OnClickAction = action;
-        return this;
     }
 
     public BattleUnit GetUnit(Vector2 coord)
@@ -72,7 +68,8 @@ public class Field : MonoBehaviour
         float locY = disY * y + 1.5f;
 
         Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
-        return Instantiate(TilePrefabs, transform).GetComponent<Tile>().Init(tilePos, TileClick);
+        
+        return GameManager.Resource.Instantiate("Tile", transform).GetComponent<Tile>().Init(tilePos, TileClick);
     }
 
     // 타일이 최대 범위를 벗어났는지 확인

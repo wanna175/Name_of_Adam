@@ -25,11 +25,8 @@ public class BattleUnit : Unit
 
     [SerializeField] public UnitHP HP;
     
-
-    #region Location
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
-    #endregion
 
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
@@ -46,6 +43,8 @@ public class BattleUnit : Unit
 
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+
+        _renderer.sprite = Data.Image;
     }
 
     public void Init(Team team, Vector2 coord)

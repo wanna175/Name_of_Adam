@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BattleDataManager
 {
+    public BattleDataManager()
+    {
+        InitMana();
+    }
+
     private List<Unit> _UnitList = new List<Unit>();
     public List<Unit> UnitList => _UnitList;
 
@@ -41,10 +46,15 @@ public class BattleDataManager
     public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
 
 
+    // Mana Manage
+    private const int _maxManaCost = 200;
+    private int _currentMana;
+    private UI_ManaGuage _manaGuage;
 
-    /*================================마나 데이터 관련=================================*/
-
-    private const int _maxMana = 100;
+    public void InitMana(int _defaultMana = _maxManaCost)
+    {
+        _currentMana = _defaultMana;
+    }
 
     private int _mana = 0;
     
@@ -52,22 +62,25 @@ public class BattleDataManager
 
     public int GetMana()
     {
-        return _mana;
+        _manaGuage = _guage;
+        _manaGuage.DrawGauge(_currentMana);
     }
 
     public void ChangeMana(int value)
     {
-        _mana += value;
+        _currentMana += value;
 
-        if (_maxMana <= _mana)
-            _mana = _maxMana;
-        else if (_mana < 0)
-            _mana = 0;
+        if (_maxManaCost <= _currentMana)
+            _currentMana = _maxManaCost;
+        else if (_currentMana < 0)
+            _currentMana = 0;
+        
+        _manaGuage.DrawGauge(_currentMana);
     }
 
     public bool CanUseMana(int value)
     {
-        if (_mana >= value)
+        if (_currentMana >= value)
             return true;
 
         Debug.Log("not enough mana");
