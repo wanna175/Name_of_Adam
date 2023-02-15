@@ -10,52 +10,47 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private BattleDataManager _battleData;
+    private BattleDataManager _battleData  = new BattleDataManager();
     public BattleDataManager Data => _battleData;
+    private List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
 
     private UIManager _UIMNG;
     private Field _field;
     public Field Field => _field;
-
-    private List<BattleUnit> _BattleUnitOrderList;
 
     [SerializeField] private bool TestMode = true;
     private ClickType _clickType;
 
     private void Awake()
     {
-        _battleData = new BattleDataManager();
-        
-        _BattleUnitOrderList = new List<BattleUnit>();
         //_WatingLine = GameManager.UI.WatingLine;
         _UIMNG = GameManager.UI;
 
-        GameObject fieldTmp = GameObject.Find("Field");
-        if (fieldTmp != null)
-        {
-            _field = fieldTmp.GetComponent<Field>().SetClickEvent(OnClickTile);
-            Debug.Log(_field);
-        }
-
-        StartEnter();
+        SetupField();
     }
 
     private void Start()
     {
         if (TestMode)
-            InitSelf();
+            UnitSpawn();
+
+        StartEnter();
     }
 
-    // Test
-    private void InitSelf()
+    private void UnitSpawn()
     {
-        if(_field == null)
-        {
-            _field = GameManager.Resource.Instantiate("Field").GetComponent<Field>();
-            _field.SetClickEvent(OnClickTile);
-        }
-
         GetComponent<UnitSpawner>().Init();
+    }
+
+    private void SetupField()
+    {
+        GameObject fieldObject = GameObject.Find("Field");
+        
+        if (fieldObject != null)
+            return;
+
+        _field = GameManager.Resource.Instantiate("Field").GetComponent<Field>();
+        _field.SetClickEvent(OnClickTile);
     }
 
     public void OnClickTile(Vector2 coord, Tile tile)

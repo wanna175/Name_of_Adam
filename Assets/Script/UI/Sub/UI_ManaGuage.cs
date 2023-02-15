@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-public class UI_ManaGuage : MonoBehaviour
+
+public class UI_ManaGuage : UI_Base
 {
-    [SerializeField] public TMP_Text ManaText;
-    private BattleDataManager _BattleDataMNG;
+    enum Objects
+    {
+        ManaGuageSlider,
+        ManaCostText,
+    }
 
     private void Start()
     {
-        
+        Bind<GameObject>(typeof(Objects));
+        GameManager.Battle.Data.SetManaGuage(this);
     }
 
-    public void Print_Mana()
+    public void DrawGauge(int currentMana)
     {
-        ManaText.text = _BattleDataMNG.GetMana().ToString();
+        GetObject((int)Objects.ManaGuageSlider).GetComponent<Slider>().value = currentMana;
+        GetObject((int)Objects.ManaCostText).GetComponent<Text>().text = currentMana.ToString();
     }
-
-    
 }

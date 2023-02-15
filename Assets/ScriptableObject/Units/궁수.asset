@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\uAD81\uC218"
   _faction: 0
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: d358ffa185ae7ea4488c690db33d50a8, type: 3}
   _behaviorType: 0
   _rarity: 0
   _targetType: 0
