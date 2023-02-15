@@ -9,6 +9,16 @@ public class BattleDataManager
         InitMana();
     }
 
+    #region Turn Count
+    private int _TurnCount = 1;
+    public int TurnCount => _TurnCount;
+
+    public void TurnPlus()
+    {
+        _TurnCount++;
+    }
+    #endregion
+
     private List<Unit> _playerDeckList = new List<Unit>();
     public List<Unit> PlayerDeck => _playerDeckList;
 
