@@ -125,7 +125,7 @@ public class BattleManager : MonoBehaviour
                 if (coord == nowUnit.Location)
                     UseNextUnit();
                 else
-                    nowUnit.AttackTileClick(coord);
+                    nowUnit.AttackTileClick(dump());
             }
 
             ChangeClickType();
@@ -224,7 +224,6 @@ public class BattleManager : MonoBehaviour
         BattleOverCheck();
         _battleData.ChangeMana(2);
         _battleData.TurnPlus();
-        GameManager.UI.TurnCount.ShowTurn();
     }
     #endregion
 
@@ -368,4 +367,23 @@ public class BattleManager : MonoBehaviour
         return null;
     }
     
+    // 임시 메서드
+    BattleUnit dump()
+    {
+        BattleUnit caster = GetNowUnit();
+
+        List<Vector2> rangeList = caster.Data.GetAttackRange();
+        BattleUnit hitUnits = new BattleUnit();
+        
+        BattleUnit unit = _field.GetUnit(caster.SelectTile);
+
+        if (unit != null)
+        {
+            if (unit.Team != caster.Team)
+                hitUnits = unit;
+        }
+        
+
+        return hitUnits;
+    }
 }

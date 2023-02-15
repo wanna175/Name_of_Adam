@@ -36,6 +36,7 @@ public class BattleUnit : Unit
 
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _skill = GetComponent<Skill>();
 
         _renderer.sprite = Data.Image;
     }
@@ -85,11 +86,11 @@ public class BattleUnit : Unit
     }
     
 
-    public void AttackTileClick(Vector2 coord)
+    public void AttackTileClick(BattleUnit _unit)
     {
-        _SelectTile = coord;
-        
-        skill.use(this);
+
+        _skill.Use(this, _unit);
+        _BattleMNG.UseNextUnit();
     }
 
     public Stat GetStat(bool buff = true)
