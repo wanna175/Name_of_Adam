@@ -6,6 +6,8 @@ public class UnitHP : MonoBehaviour
 {
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
+
+    [Header("사망 이벤트")]
     public UnityEvent UnitDiedEvent;
 
     public void Init(int maxHP)

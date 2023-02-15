@@ -23,14 +23,10 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        //_WatingLine = GameManager.UI.WatingLine;
         _UIMNG = GameManager.UI;
 
         SetupField();
-    }
 
-    private void Start()
-    {
         if (TestMode)
             UnitSpawn();
 
@@ -220,7 +216,7 @@ public class BattleManager : MonoBehaviour
                 EnemyUnit++;
         }
 
-        MyUnit += Data.UnitList.Count;
+        MyUnit += Data.PlayerDeck.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
