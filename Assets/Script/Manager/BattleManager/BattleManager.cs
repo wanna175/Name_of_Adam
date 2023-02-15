@@ -287,6 +287,12 @@ public class BattleManager : MonoBehaviour
 
     public void ChangeClickType()
     {
+        if (GetNowUnit() == null)
+        {
+            _clickType = ClickType.Nothing;
+            return;
+        }
+
         if (GetNowUnit().Team == Team.Enemy)
             return;
 
@@ -329,6 +335,7 @@ public class BattleManager : MonoBehaviour
 
     public void UseNextUnit()
     {
+        Field.ClearAllColor();
         _BattleUnitOrderList.RemoveAt(0);
         UseUnitSkill();
     }
@@ -354,6 +361,11 @@ public class BattleManager : MonoBehaviour
         Field.EnterTile(unit, coord);
     }
 
-    public BattleUnit GetNowUnit() => _BattleUnitOrderList[0];
+    public BattleUnit GetNowUnit()
+    {
+        if (_BattleUnitOrderList.Count != 0)
+            return _BattleUnitOrderList[0];
+        return null;
+    }
     
 }

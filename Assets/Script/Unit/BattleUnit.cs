@@ -51,6 +51,20 @@ public class BattleUnit : Unit
         setLocate(coord);
     }
 
+    public void OnAttack(List<BattleUnit> _HitUnits)
+    {
+        //_CutSceneMNG.BattleCutScene(this, _HitUnits);
+        foreach (BattleUnit unit in _HitUnits)
+            unit.Hit_GetDamage(GetStat().ATK);
+
+        _BattleMNG.UseNextUnit();
+    }
+    
+    public void Hit_GetDamage(int DMG)
+    {
+        HP.ChangeHP(-DMG);
+    }
+    
     //오브젝트 생성 시, 최초 위치 설정
     public void setLocate(Vector2 coord)
     {
@@ -75,7 +89,7 @@ public class BattleUnit : Unit
     {
         _SelectTile = coord;
         
-        use(this);
+        skill.use(this);
     }
 
     public Stat GetStat(bool buff = true)
@@ -84,14 +98,14 @@ public class BattleUnit : Unit
     }
 
     public bool GetFlipX() => _renderer.flipX;
-
+    
     public void ChangeHP(int value)
     {
         HP.ChangeHP(value);
     }
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
-
+    
     public List<Vector2> GetAttackRange() => Data.GetAttackRange();
     
     public List<Vector2> GetMoveRange() => Data.GetMoveRange();
