@@ -7,22 +7,16 @@ using UnityEngine;
 public class SkillSO : ScriptableObject
 {
     [SerializeField] public CutSceneType CSType;
-    [SerializeField] RangeSO range;    // 공격 범위
 
     [SerializeField] public List<EffectSO> EffectList;
-
-
-    public void Use()
-    {
-
-    }
+    
 
     // 현재 알고리즘은 범위 내의 적을 찾는 알고리즘
     // 힐같이 아군을 찾는 알고리즘은 나중에 따로 설정해야한다
     public void use(BattleUnit caster)
     {
         Field _field = GameManager.Battle.Field;
-        List<Vector2> rangeList = range.GetRange(caster.Location);
+        List<Vector2> rangeList = caster.Data.GetAttackRange();
         List<BattleUnit> hitUnits = new List<BattleUnit>();
 
         if (caster.Data.TargetType == TargetType.Range)
@@ -55,6 +49,4 @@ public class SkillSO : ScriptableObject
             es.Effect(caster, hitUnits);
         }
     }
-
-    public List<Vector2> GetRange() => range.GetRange();
 }
