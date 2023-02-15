@@ -9,15 +9,24 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected BattleUnit caster;
 
-    protected List<Vector2> Unit_in_Attack_Range_TileList = new List<Vector2>();
-    protected List<Vector2> Ranged_Unit_in_Attack_Range_TileList = new List<Vector2>();
+    //공격 범위: 움직이지 않고 공격할 수 있는 범위; Attack Range
+    //공격가능 타일: 해당 타일로 이동할 경우 공격할 수 있는 타일; Attackable Tile
+
+    protected List<Vector2> Attack_Range_Unit_List = new List<Vector2>();
+    //공격 범위 내에 있는 일반 유닛의 타일 리스트
+    protected List<Vector2> Attack_Range_Priority_Unit_List = new List<Vector2>();
+    //공격 범위 내에 있는 우선 순위 유닛의 타일 리스트
 
     protected List<Vector3> Attackable_Tile_List = new List<Vector3>();
-    
-    protected List<Vector3> Unit_in_Attackable_Range_TileList = new List<Vector3>();
-    protected List<Vector3> Ranged_Unit_in_Attackable_Range_TileList = new List<Vector3>();
+    //공격가능 타일의 리스트. 맵 위의 모든 리스트가 저장됨
+
+    protected List<Vector3> Unit_Attackable_Tile_List = new List<Vector3>();
+    //일반 유닛을 공격할 수 있는 이동 범위 내에 있는 공격가능 타일
+    protected List<Vector3> Priority_Unit_Attackable_Tile_List = new List<Vector3>();
+    //우선순위 유닛을 공격할 수 있는 이동 범위 내에 있는 공격가능 타일
 
     protected List<Vector2> FourWay = new List<Vector2>{new Vector2(-1, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1)};
+    //상하좌우 foreach용
 
     void Awake()
     {
@@ -30,7 +39,7 @@ public class Unit_AI_Controller : MonoBehaviour
         caster = unit;
     }
 
-    protected void Find_Unit_in_Attack_Range()
+    protected void AttackRangeSearch()
     {
         //현재 위치에서 공격범위 내의 유닛을 찾는다.
         foreach (Vector2 range in caster.Data.GetAttackRange())
@@ -41,45 +50,47 @@ public class Unit_AI_Controller : MonoBehaviour
             {
                 if (_field.TileDict[AttackRange].IsOnTile && _field.TileDict[AttackRange].Unit.Team == Team.Player)
                 {
-                    Unit_in_Attack_Range_TileList.Add(AttackRange);
+                    Attack_Range_Unit_List.Add(AttackRange);
                 }
             }
         }
 
-        foreach (Vector2 unitTile in Unit_in_Attack_Range_TileList)
+        foreach (Vector2 unitTile in Attack_Range_Unit_List)
         {
             if (_field.TileDict[unitTile].Unit.Data.BehaviorType == BehaviorType.원거리)
             {
-                Ranged_Unit_in_Attack_Range_TileList.Add(unitTile);
+                Attack_Range_Priority_Unit_List.Add(unitTile);
             }
         }
-        //Unit_in_Attack_Range_TileList에 유닛이 있는 타일을 모두 저장
-        //Ranged_Unit_in_Attack_Range_TileList엔 원거리 유닛이 있는 타일만 저장
+        //Attack_Range_Unit_List에 유닛이 있는 타일을 모두 저장
+        //Attack_Range_Priority_Unit_List엔 원거리 유닛이 있는 타일만 저장
     }
 
-    protected void Set_Attackable_Tile()
+    protected void SetAttackableTile()
     {
-        //모든 공격 타일을 Attackable_Tile_List에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
+        //모든 공격가능 타일을 Attackable_Tile_List에 저장한다. X, Y는 좌표, Z는 원거리/근거리 유무
         foreach (BattleUnit unit in _Data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
             {
-                foreach (Vector2 arl in caster.Data.GetAttackRange())
+                foreach (Vector2 range in caster.Data.GetAttackRange())
                 {
-                    Vector3 vector = unit.Location - arl;
+                    //공격가능 타일은 공격하는 유닛의 공격 범위의 점 대칭이다. 따라서 -.
+                    
+                    Vector3 vector = unit.Location - range;
+
                     if (unit.Data.BehaviorType == BehaviorType.원거리)
                         vector.z = 0f;//원거리면 0
                     else
                         vector.z = 0.1f;//근거리면 0.1
 
-                    if (!Attackable_Tile_List.Contains(vector))
-                        Attackable_Tile_List.Add(vector);
+                    Attackable_Tile_List.Add(vector);
                 }
             }
         }
     }
 
-    protected void Search_Attackable_Tile()
+    protected void AttackableTileSearch()
     {
         //유닛을 때릴 수 있는 타일이 이동 범위 내에 있는 지 확인한다.
         //단 위, 아래, 왼, 오른쪽만 이동 가능하다고 가정
@@ -95,29 +106,29 @@ public class Unit_AI_Controller : MonoBehaviour
                     if (_field.TileDict[vec1].IsOnTile)
                         swapList.Add(vec1);
                     else
-                        Unit_in_Attackable_Range_TileList.Add(vec1);
+                        Unit_Attackable_Tile_List.Add(vec1);
                 }
             }
         }
 
         //스왑이 필요한지 확인
-        if (Unit_in_Attackable_Range_TileList.Count == 0)
+        if (Unit_Attackable_Tile_List.Count == 0)
         {
             foreach (Vector3 vec in swapList)
-                Unit_in_Attackable_Range_TileList.Add(vec);
+                Unit_Attackable_Tile_List.Add(vec);
         }
 
-        foreach (Vector3 v in Unit_in_Attackable_Range_TileList)
+        foreach (Vector3 v in Unit_Attackable_Tile_List)
         {
             //원거리인지 확인
             if (v.z == 0)
             {
-                Ranged_Unit_in_Attackable_Range_TileList.Add(new Vector3(v.x, v.y, 0));
+                Priority_Unit_Attackable_Tile_List.Add(new Vector3(v.x, v.y, 0));
             }
         }
     }
 
-    protected Vector2 Search_Near_Enemy()
+    protected Vector2 NearestEnemySearch()
     {
         Vector2 MyPosition = caster.Location;
 
@@ -144,7 +155,7 @@ public class Unit_AI_Controller : MonoBehaviour
         return minVec;
     }
 
-    public Vector2 Move_Direction(Vector2 minVec)
+    public Vector2 MoveDirection(Vector2 minVec)
     {
         //가야하는 위치 minVec을 받아 상하좌우 중 어디로 갈지를 정해 moveVec으로 리턴한다
         Vector2 MyPosition = caster.Location;
@@ -185,94 +196,94 @@ public class Unit_AI_Controller : MonoBehaviour
         }
     }
 
-    protected Vector2 Unit_Coord(List<Vector2> UnitList)
+    protected Vector2 UnitCoord(List<Vector2> UnitList)
     {
         return UnitList[Random.Range(0, UnitList.Count)];
     }
 
-    protected Vector2 Unit_Coord(List<Vector3> UnitList)
+    protected Vector2 UnitCoord(List<Vector3> UnitList)
     {
         return UnitList[Random.Range(0, UnitList.Count)];
     }
 
-    protected void Attack_Unit_in_Range()
+    protected void MoveUnit(Vector2 moveVector)
     {
-        if (Ranged_Unit_in_Attack_Range_TileList.Count > 0)
+        _field.MoveUnit(caster.Location, moveVector);
+    }
+
+    protected void Attack()
+    {
+        if (Attack_Range_Priority_Unit_List.Count > 0)
         {
             //원거리 유닛이 있을 경우
-            Debug.Log("범위 내 원거리");
-            caster.AttackTileClick(Unit_Coord(Ranged_Unit_in_Attack_Range_TileList));
+            caster.AttackTileClick(UnitCoord(Attack_Range_Priority_Unit_List));
         }
         else
         {
             //근거리 유닛만 있을 경우
-            Debug.Log("범위 내 근거리");
-            caster.AttackTileClick(Unit_Coord(Unit_in_Attack_Range_TileList));
+            caster.AttackTileClick(UnitCoord(Attack_Range_Unit_List));
         }
     }
 
-    protected void List_Clear()
+    protected void ListClear()
     {
-        Unit_in_Attack_Range_TileList.Clear();
-        Ranged_Unit_in_Attack_Range_TileList.Clear();
+        Attack_Range_Unit_List.Clear();
+        Attack_Range_Priority_Unit_List.Clear();
 
         Attackable_Tile_List.Clear();
         
-        Unit_in_Attackable_Range_TileList.Clear();
-        Ranged_Unit_in_Attackable_Range_TileList.Clear();
+        Unit_Attackable_Tile_List.Clear();
+        Priority_Unit_Attackable_Tile_List.Clear();
     }
 
-    public virtual void AI_Action()
+    public virtual void AIAction()
     {
         //전달받은 범위에서 유닛을 찾는다.
-        Find_Unit_in_Attack_Range();
+        AttackRangeSearch();
 
         //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
-        if (Unit_in_Attack_Range_TileList.Count > 0)
+        if (Attack_Range_Unit_List.Count > 0)
         {
-            Attack_Unit_in_Range();
+            Attack();
         }
         else
         {
             //공격 범위 내에서 찾은 유닛이 없으면 이동하고 공격한다
-            Set_Attackable_Tile();
+            SetAttackableTile();
 
-            Search_Attackable_Tile();
+            AttackableTileSearch();
 
-            if (Unit_in_Attackable_Range_TileList.Count > 0)
+            if (Unit_Attackable_Tile_List.Count > 0)
             {
-                if (Ranged_Unit_in_Attackable_Range_TileList.Count > 0)
+                if (Priority_Unit_Attackable_Tile_List.Count > 0)
                 {
                     //원거리가 있음
-                    //Random.Range(0, Ranged_Unit_in_Attackable_Range_TileList.Count);
-                    
-                    _field.MoveUnit(caster.Location, Unit_Coord(Ranged_Unit_in_Attackable_Range_TileList));
-                    Find_Unit_in_Attack_Range();
-                    Attack_Unit_in_Range();
+                    MoveUnit(UnitCoord(Priority_Unit_Attackable_Tile_List));
+                    AttackRangeSearch();
+                    Attack();
                 }
                 else
                 {
                     //근거리만 있음
-                    //Random.Range(0, Unit_in_Attackable_Range_TileList.Count);
-                    _field.MoveUnit(caster.Location, Unit_Coord(Unit_in_Attackable_Range_TileList));
-                    Find_Unit_in_Attack_Range();
-                    Attack_Unit_in_Range();
+                    MoveUnit(UnitCoord(Unit_Attackable_Tile_List));
+                    AttackRangeSearch();
+                    Attack();
                 }
             }
             else
             {
-                _field.MoveUnit(caster.Location, Move_Direction(Search_Near_Enemy()));
+                MoveUnit(MoveDirection(NearestEnemySearch()));
                 GameManager.Battle.UseNextUnit();
             }
         }
-        List_Clear();
+        ListClear();
     }
 }
 
 public class Common_Unit_AI_Controller : Unit_AI_Controller
 {
-    public override void AI_Action()
+    public override void AIAction()
     {
-        base.AI_Action();
+        base.AIAction();
     }
 }
