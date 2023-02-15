@@ -297,7 +297,7 @@ public class BattleManager : MonoBehaviour
             {
                 Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
                 ai.SetCaster(_BattleUnitOrderList[0]);
-                ai.AI_Action();    
+                ai.AIAction();    
             }
             else
             {
