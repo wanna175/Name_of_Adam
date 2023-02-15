@@ -57,7 +57,11 @@ public class BattleUnit : Unit
 
     public void OnAttack(List<BattleUnit> _HitUnits)
     {
-        _CutSceneMNG.BattleCutScene(this, _HitUnits);
+        //_CutSceneMNG.BattleCutScene(this, _HitUnits);
+        foreach (BattleUnit unit in _HitUnits)
+            unit.Hit_GetDamage(GetStat().ATK);
+
+        _BattleMNG.UseNextUnit();
     }
     
     public void Hit_GetDamage(int DMG)
@@ -89,7 +93,7 @@ public class BattleUnit : Unit
     {
         _SelectTile = coord;
         
-        use(this);
+        skill.use(this);
     }
 
     public Stat GetStat(bool buff = true)
@@ -98,11 +102,6 @@ public class BattleUnit : Unit
     }
 
     public bool GetFlipX() => _renderer.flipX;
-
-    public void use(BattleUnit ch)
-    {
-        skill.use(ch);
-    }
 
     public CutSceneType GetCutSceneType() => skill.CSType;
 

@@ -51,7 +51,6 @@ public class CutSceneManager : MonoBehaviour
         CSData = new CutSceneData();
 
         CameraHandler = GameObject.Find("Camera").GetComponent<CameraHandler>();
-        //ClickCover = GameObject.Find("ClickCover");
     }
 
 
@@ -187,15 +186,6 @@ public class CutSceneManager : MonoBehaviour
 
         StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
 
-        //CSData.AttackUnit.ChangeState(BattleUnitState.Attack);
-        //CSData.AttackUnit.UpdateState();
-        foreach (BattleUnit unit in CSData.HitUnits)
-        {
-            //unit.ChangeState(BattleUnitState.HitWait);
-            //unit.UpdateState();
-        }
-            
-
 
         yield return new WaitForSeconds(CutSceneTime);
 
@@ -204,15 +194,6 @@ public class CutSceneManager : MonoBehaviour
             unit.Hit_GetDamage(CSData.AttackUnit.GetStat().ATK);
 
         StartCoroutine(_CameraHandler.CutSceneZoomOut(CSData));
-
-        //CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
-        //CSData.AttackUnit.UpdateState();
-        foreach (BattleUnit unit in CSData.HitUnits)
-        {
-            //unit.ChangeState(BattleUnitState.Idle);
-            //unit.UpdateState();
-        }
-            
     }
 
     #endregion
@@ -237,8 +218,6 @@ public class CutSceneManager : MonoBehaviour
 
     public void EndAttack()
     {
-        //CSData.AttackUnit.ChangeState(BattleUnitState.Idle);
-        //CSData.AttackUnit.UpdateState();
         _BattleMNG.UseNextUnit();
     }
 
@@ -247,7 +226,6 @@ public class CutSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _field.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
-        //ClickCover.SetActive(false);
         EndAttack();
     }
 
