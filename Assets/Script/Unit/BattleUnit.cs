@@ -11,7 +11,6 @@ public class BattleUnit : Unit
 
     [SerializeField] private int _fallGauge;
     public int FallGauge => _fallGauge;
-    private int _moveDistance = 1;
     private Skill Skill; // Memo : 임시
 
     [SerializeField] SkillSO skill;
@@ -31,9 +30,6 @@ public class BattleUnit : Unit
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
 
-    // Move인지 Attack인지 확인하기 위한 임시클래스
-    bool isMove = true;
-    public bool IsMove => isMove;
     
     private void Awake()
     {
@@ -59,7 +55,7 @@ public class BattleUnit : Unit
     }
 
 
-    public void Attack_OnAttack(List<BattleUnit> _HitUnits)
+    public void OnAttack(List<BattleUnit> _HitUnits)
     {
         _CutSceneMNG.BattleCutScene(this, _HitUnits);
     }
@@ -87,45 +83,13 @@ public class BattleUnit : Unit
     {
         transform.position = dest;
     }
-
-
-    public void MoveTileClick(Vector2 coord)
-    {
-        coord -= Location;
-
-        // 이동범위 밖을 선택했다면 다시 선택하기
-        if (!GetMoveRange().Contains(coord))
-        {
-            _BattleMNG.SetTileColor(Color.yellow);
-            return;
-        }
-        
-        _BattleMNG.MoveLotate(this, coord);
-        
-        _BattleMNG.ChangeClickType();
-        return;
-    }
+    
 
     public void AttackTileClick(Vector2 coord)
     {
-        Vector2 dump = coord - Location;
-
-        // 공격범위 밖을 선택했으면 다시 선택하기
-        if (!GetAttackRange().Contains(dump))
-        {
-            _BattleMNG.SetTileColor(Color.yellow);
-            return;
-        }
-
         _SelectTile = coord;
-
-        if (_SelectTile == Location)
-            _BattleMNG.UseNextUnit();
-        else
-            use(this);
         
-        _BattleMNG.ChangeClickType();
-        return;
+        use(this);
     }
 
     public Stat GetStat(bool buff = true)

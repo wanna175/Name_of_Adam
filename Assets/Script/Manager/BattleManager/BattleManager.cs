@@ -106,12 +106,33 @@ public class BattleManager : MonoBehaviour
         //Engage 페이즈
         else
         {
-            _field.ClearAllColor();
+            BattleUnit nowUnit = GetNowUnit();
+            List<Vector2> RangeList = Field.Get_Abs_Pos(nowUnit, _clickType);
 
+            Field.ClearAllColor();
+
+            // 범위 밖을 클릭했으면 다시 클릭한다.
+            if (!RangeList.Contains(coord))
+            {
+                SetTileColor(Color.yellow);
+                return;
+            }
+            
             if (_clickType == ClickType.Move)
-                GetNowUnit().MoveTileClick(coord);
+            {
+                Vector2 dest = coord - nowUnit.Location;
+                MoveLotate(nowUnit, dest);
+            }
             else if (_clickType == ClickType.Attack)
-                GetNowUnit().AttackTileClick(coord);
+            {
+                // 제자리를 클릭했다면 공격하지 않는다.
+                if (coord == nowUnit.Location)
+                    UseNextUnit();
+                else
+                    nowUnit.AttackTileClick(coord);
+            }
+
+            ChangeClickType();
         }
     }
     
