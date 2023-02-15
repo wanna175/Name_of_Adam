@@ -83,7 +83,7 @@ public class Unit_AI_Controller : MonoBehaviour
                         vector.z = 0f;//원거리면 0
                     else
                         vector.z = 0.1f;//근거리면 0.1
-
+                    
                     Attackable_Tile_List.Add(vector);
                 }
             }
@@ -244,6 +244,7 @@ public class Unit_AI_Controller : MonoBehaviour
         //찾은 유닛이 있는지 확인하고, 있다면 원거리인지, 근거리인지 확인한다.
         if (Attack_Range_Unit_List.Count > 0)
         {
+            Debug.Log("공격 범위 내 유닛");
             Attack();
         }
         else
@@ -258,6 +259,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 if (Priority_Unit_Attackable_Tile_List.Count > 0)
                 {
                     //원거리가 있음
+                    Debug.Log("공격가능 타일에 원거리");
                     MoveUnit(UnitCoord(Priority_Unit_Attackable_Tile_List));
                     AttackRangeSearch();
                     Attack();
@@ -265,6 +267,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 else
                 {
                     //근거리만 있음
+                    Debug.Log("공격가능 타일에 근거리");
                     MoveUnit(UnitCoord(Unit_Attackable_Tile_List));
                     AttackRangeSearch();
                     Attack();
@@ -272,6 +275,7 @@ public class Unit_AI_Controller : MonoBehaviour
             }
             else
             {
+                Debug.Log("공격 불가 이동");
                 MoveUnit(MoveDirection(NearestEnemySearch()));
                 GameManager.Battle.UseNextUnit();
             }
