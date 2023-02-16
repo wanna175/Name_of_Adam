@@ -84,10 +84,10 @@ public class BattleManager : MonoBehaviour
             else if (_clickType == ClickType.Attack)
             {
                 // 제자리를 클릭했다면 공격하지 않는다.
-                if (coord == nowUnit.Location)
-                    UseNextUnit();
-                else
+                if (coord != nowUnit.Location)
                     nowUnit.AttackTileClick(dump());
+                // 공격 실행 후 바로 다음유닛 행동 실행
+                UseNextUnit();
             }
 
             ChangeClickType();
