@@ -79,7 +79,7 @@ public class BattleUnit : Unit
 
     public void SkillUse(BattleUnit _unit) {
         _skill.Use(this, _unit);
-    }
+    }                   
 
     public Stat GetStat(bool buff = true) {
         return Stat;
