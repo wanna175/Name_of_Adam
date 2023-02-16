@@ -217,13 +217,13 @@ public class Unit_AI_Controller : MonoBehaviour
         {
             //원거리 유닛이 있을 경우
             //caster.AttackTileClick(UnitCoord(Attack_Range_Priority_Unit_List));  임시임시임시임시임시
-            caster.AttackTileClick(_field.TileDict[UnitCoord(Attack_Range_Priority_Unit_List)].Unit);
+            caster.SkillUse(_field.TileDict[UnitCoord(Attack_Range_Priority_Unit_List)].Unit);
         }
         else
         {
             //근거리 유닛만 있을 경우
             //caster.AttackTileClick(UnitCoord(Attack_Range_Unit_List));  임시임시임시임시임시임시임시
-            caster.AttackTileClick(_field.TileDict[UnitCoord(Attack_Range_Unit_List)].Unit);
+            caster.SkillUse(_field.TileDict[UnitCoord(Attack_Range_Unit_List)].Unit);
         }
     }
 

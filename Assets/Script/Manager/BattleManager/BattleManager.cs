@@ -85,7 +85,7 @@ public class BattleManager : MonoBehaviour
             {
                 // 제자리를 클릭했다면 공격하지 않는다.
                 if (coord != nowUnit.Location)
-                    nowUnit.AttackTileClick(dump());
+                    nowUnit.SkillUse(dump());
                 // 공격 실행 후 바로 다음유닛 행동 실행
                 UseNextUnit();
             }
@@ -96,6 +96,7 @@ public class BattleManager : MonoBehaviour
 
     // *****
     // 임시임시
+    // 팩토리는 다른곳으로 빼는걸로
     private void BattleUnitFactory(Vector2 coord)
     {
         //범위 외
@@ -113,15 +114,27 @@ public class BattleManager : MonoBehaviour
         BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
 
         BattleUnit.Data = clickedUnit.Data;
-        BattleUnit.setLocate(coord);
+        UnitSetting(BattleUnit, coord);
 
-        _battleData.BattleUnitAdd(BattleUnit);
-
-        BattleUnit.Init(Team.Player, coord);
-        
+        Data.BattleUnitAdd(BattleUnit);
         _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
         _UIMNG.Hands.ClearHand();
         // ------------------------------------------------
+    }
+    public void UnitSetting(BattleUnit _unit, Vector2 coord)
+    {
+        _unit.setLocate(coord);
+        _unit.Init(Team.Player, coord);
+        Field.EnterTile(_unit, coord);
+        _unit.UnitDeadAction = UnitDeadAction;
+
+        Data.BattleUnitAdd(_unit);
+    }
+    // 23.02.16 임시 수정
+    private void UnitDeadAction(BattleUnit _unit)
+    {
+        Data.BattleUnitRemove(_unit);
+        BattleOrderRemove(_unit);
     }
 
     #region Phase Control
@@ -223,6 +236,7 @@ public class BattleManager : MonoBehaviour
     {
         int MyUnit = 0;
         int EnemyUnit = 0;
+        Debug.Log(Data.BattleUnitList.Count);
         foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
             if (BUnit.Team == Team.Player)//아군이면
@@ -311,7 +325,9 @@ public class BattleManager : MonoBehaviour
             {
                 Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
                 ai.SetCaster(_BattleUnitOrderList[0]);
-                ai.AIAction();    
+                ai.AIAction();
+                // Unit의 매니저 제거로 인해 임시로 놓음
+                UseNextUnit();
             }
             else
             {
