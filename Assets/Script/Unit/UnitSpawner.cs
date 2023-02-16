@@ -27,7 +27,7 @@ public class UnitSpawner : MonoBehaviour
             }
 
             GameObject go = GameObject.Instantiate(data.prefab);
-            go.GetComponent<BattleUnit>().Init(data.team, data.location);
+            GameManager.Battle.UnitSetting(go.GetComponent<BattleUnit>(), data.location);
         }
     }
 }
