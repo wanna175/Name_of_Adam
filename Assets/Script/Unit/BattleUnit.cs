@@ -23,6 +23,13 @@ public class BattleUnit : Unit
 
     public Vector2 _SelectTile = new Vector2(-1, -1);
     public Vector2 SelectTile => _SelectTile;
+
+    // 23.02.16 임시 수정
+    private Action<BattleUnit> _UnitDeadAction;
+    public Action<BattleUnit> UnitDeadAction
+    {
+        set { _UnitDeadAction = value; }
+    }
     
     private void Awake()
     {
@@ -35,7 +42,6 @@ public class BattleUnit : Unit
 
     public void Init(Team team, Vector2 coord)
     {
-        
         HP.Init(Stat.HP);
         _team = team;
 
@@ -46,56 +52,44 @@ public class BattleUnit : Unit
 
     public void OnAttack(List<BattleUnit> _HitUnits)
     {
-        //_CutSceneMNG.BattleCutScene(this, _HitUnits);
         foreach (BattleUnit unit in _HitUnits)
-            unit.Hit_GetDamage(GetStat().ATK);
-
-        //_BattleMNG.UseNextUnit();
+            unit.GetDamage(GetStat().ATK);
     }
     
-    public void Hit_GetDamage(int DMG)
-    {
+    public void GetDamage(int DMG) {
         HP.ChangeHP(-DMG);
     }
     
     //오브젝트 생성 시, 최초 위치 설정
-    public void setLocate(Vector2 coord)
-    {
+    public void setLocate(Vector2 coord) {
         _location = coord;
-        // *****
-        
     }
     
     public void UnitDiedEvent()
     {
-        //_BattleDataMNG.BattleUnitRemove(this);
-        //_BattleMNG.BattleOrderRemove(this);
+        // 23.02.16 임시 수정
+        _UnitDeadAction(this);
         Destroy(gameObject);
     }
 
-    public void SetPosition(Vector3 dest)
-    {
+    public void SetPosition(Vector3 dest) {
         transform.position = dest;
     }
     
 
-    public void AttackTileClick(BattleUnit _unit)
-    {
+    public void SkillUse(BattleUnit _unit) {
         _skill.Use(this, _unit);
-        //_BattleMNG.UseNextUnit();
     }
 
-    public Stat GetStat(bool buff = true)
-    {
+    public Stat GetStat(bool buff = true) {
         return Stat;
     }
 
-    public bool GetFlipX() => _renderer.flipX;
-    
-    public void ChangeHP(int value)
-    {
+    public void ChangeHP(int value) {
         HP.ChangeHP(value);
     }
+
+    public bool GetFlipX() => _renderer.flipX;
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
     
