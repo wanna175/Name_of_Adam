@@ -9,15 +9,13 @@ public class BattleUnit : Unit
     [SerializeField] private Team _team;
     public Team Team => _team;
 
-    [SerializeField] private int _fallGauge;
-    public int FallGauge => _fallGauge;
-    private Skill _skill;
-
     private SpriteRenderer _renderer;
     private Animator _animator;
 
     [SerializeField] public UnitHP HP;
-    
+    [SerializeField] public UnitFall Fall;
+    [SerializeField] public UnitSkill Skill;
+
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
 
@@ -35,7 +33,6 @@ public class BattleUnit : Unit
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        _skill = GetComponent<Skill>();
 
         _renderer.sprite = Data.Image;
     }
@@ -43,6 +40,7 @@ public class BattleUnit : Unit
     public void Init(Team team, Vector2 coord)
     {
         HP.Init(Stat.HP);
+        Fall.Init(Stat.Fall);
         _team = team;
 
         // 적군일 경우 x축 뒤집기
@@ -72,7 +70,28 @@ public class BattleUnit : Unit
         Destroy(gameObject);
     }
 
-    public void SetPosition(Vector3 dest) {
+    public void UnitFallEvent()
+    {
+        ChangeTeam();
+        Debug.Log($"{Data.name} Fall");
+    }
+
+    public void ChangeTeam(Team team = default)
+    {
+        if(team != default)
+        {
+            _team = team;
+            return;
+        }
+        
+        if (Team == Team.Player)
+            _team = Team.Enemy;
+        else
+            _team = Team.Player;
+    }
+
+    public void SetPosition(Vector3 dest)
+    {
         transform.position = dest;
     }
     
@@ -89,6 +108,11 @@ public class BattleUnit : Unit
         HP.ChangeHP(value);
     }
 
+    public void ChangeFall(int value)
+    {
+        Fall.ChangeFall(value);
+    }
+    
     public bool GetFlipX() => _renderer.flipX;
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
