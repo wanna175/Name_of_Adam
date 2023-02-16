@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Skill : MonoBehaviour
+public class UnitSkill : MonoBehaviour
 {
     [SerializeField] List<Effect> Effects;
 

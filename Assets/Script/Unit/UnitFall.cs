@@ -13,7 +13,7 @@ public class UnitFall : MonoBehaviour
     public void Init(int maxCount)
     {
         _maxCount = maxCount;
-        _currentCount = maxCount;
+        _currentCount = 0;
     }
 
     public void ChangeFall(int value)

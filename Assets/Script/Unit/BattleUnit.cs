@@ -9,15 +9,13 @@ public class BattleUnit : Unit
     [SerializeField] private Team _team;
     public Team Team => _team;
 
-    [SerializeField] private int _fallGauge;
-    private Skill _skill;
-
     private SpriteRenderer _renderer;
     private Animator _animator;
 
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
-    
+    [SerializeField] public UnitSkill Skill;
+
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
 
@@ -28,15 +26,14 @@ public class BattleUnit : Unit
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        _skill = GetComponent<Skill>();
 
         _renderer.sprite = Data.Image;
     }
 
     public void Init(Team team, Vector2 coord)
     {
-        
         HP.Init(Stat.HP);
+        Fall.Init(Stat.Fall);
         _team = team;
 
         // 적군일 경우 x축 뒤집기
@@ -96,7 +93,7 @@ public class BattleUnit : Unit
 
     public void AttackTileClick(BattleUnit _unit)
     {
-        _skill.Use(this, _unit);
+        Skill.Use(this, _unit);
         //_BattleMNG.UseNextUnit();
     }
 

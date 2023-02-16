@@ -129,9 +129,9 @@ MonoBehaviour:
     Fall: 0
   Stigmas: []
   _team: 0
-  _fallGauge: 0
   HP: {fileID: 1722822296286429812}
   Fall: {fileID: -3496854762374506308}
+  Skill: {fileID: 1722822296286429813}
   _location: {x: 0, y: 0}
   _SelectTile: {x: -1, y: -1}
 --- !u!114 &1722822296286429812
