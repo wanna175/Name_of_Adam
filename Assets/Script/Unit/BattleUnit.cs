@@ -13,10 +13,6 @@ public class BattleUnit : Unit
     public int FallGauge => _fallGauge;
     private Skill _skill;
 
-    BattleManager _BattleMNG;
-    BattleDataManager _BattleDataMNG;
-    CutSceneManager _CutSceneMNG;
-
     private SpriteRenderer _renderer;
     private Animator _animator;
 
@@ -30,10 +26,6 @@ public class BattleUnit : Unit
     
     private void Awake()
     {
-        _BattleMNG = GameManager.Battle;
-        _BattleDataMNG = GameManager.Battle.Data;
-        _CutSceneMNG = GameManager.CutScene;
-
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         _skill = GetComponent<Skill>();
@@ -43,7 +35,7 @@ public class BattleUnit : Unit
 
     public void Init(Team team, Vector2 coord)
     {
-        _BattleDataMNG.BattleUnitAdd(this);
+        
         HP.Init(Stat.HP);
         _team = team;
 
@@ -58,7 +50,7 @@ public class BattleUnit : Unit
         foreach (BattleUnit unit in _HitUnits)
             unit.Hit_GetDamage(GetStat().ATK);
 
-        _BattleMNG.UseNextUnit();
+        //_BattleMNG.UseNextUnit();
     }
     
     public void Hit_GetDamage(int DMG)
@@ -70,13 +62,14 @@ public class BattleUnit : Unit
     public void setLocate(Vector2 coord)
     {
         _location = coord;
-        _BattleMNG.SetUnit(this, coord);
+        // *****
+        
     }
     
     public void UnitDiedEvent()
     {
-        _BattleDataMNG.BattleUnitRemove(this);
-        _BattleMNG.BattleOrderRemove(this);
+        //_BattleDataMNG.BattleUnitRemove(this);
+        //_BattleMNG.BattleOrderRemove(this);
         Destroy(gameObject);
     }
 
@@ -88,9 +81,8 @@ public class BattleUnit : Unit
 
     public void AttackTileClick(BattleUnit _unit)
     {
-
         _skill.Use(this, _unit);
-        _BattleMNG.UseNextUnit();
+        //_BattleMNG.UseNextUnit();
     }
 
     public Stat GetStat(bool buff = true)
@@ -111,3 +103,7 @@ public class BattleUnit : Unit
     
     public List<Vector2> GetMoveRange() => Data.GetMoveRange();
 }
+
+// 22.02.16
+// 유닛에서 사용하는 매니저 제거
+// 매니저를 사용하는 기능들은 각 매니저로 기능을 옮김
