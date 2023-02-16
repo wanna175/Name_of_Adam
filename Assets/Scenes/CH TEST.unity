@@ -701,6 +701,10 @@ MonoBehaviour:
     location: {x: 2, y: 2}
     team: 0
     stigmas: []
+  - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
+    location: {x: 0, y: 0}
+    team: 1
+    stigmas: []
 --- !u!1 &1628690810
 GameObject:
   m_ObjectHideFlags: 0

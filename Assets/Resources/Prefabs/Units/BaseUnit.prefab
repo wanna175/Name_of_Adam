@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3210379171205965175}
   - component: {fileID: 9013690112352841668}
   - component: {fileID: 1722822296286429812}
+  - component: {fileID: -3496854762374506308}
   - component: {fileID: 1722822296286429813}
   m_Layer: 0
   m_Name: BaseUnit
@@ -125,11 +126,12 @@ MonoBehaviour:
     HP: 0
     ATK: 0
     SPD: 0
+    Fall: 0
   Stigmas: []
   _team: 0
   _fallGauge: 0
-  skill: {fileID: 0}
   HP: {fileID: 1722822296286429812}
+  Fall: {fileID: -3496854762374506308}
   _location: {x: 0, y: 0}
   _SelectTile: {x: -1, y: -1}
 --- !u!114 &1722822296286429812
@@ -161,6 +163,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-3496854762374506308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027651334718104315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ad945295d96d340b86be927bc3a3eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxCount: 0
+  _currentCount: 0
+  UnitFallEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9013690112352841668}
+        m_TargetAssemblyTypeName: BattleUnit, Assembly-CSharp
+        m_MethodName: UnitFallEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1722822296286429813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,4 +204,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813778a86aa3da74681056a984372ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Effects: []
+  Effects:
+  - {fileID: 0}
