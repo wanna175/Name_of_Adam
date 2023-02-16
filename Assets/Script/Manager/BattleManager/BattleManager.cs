@@ -49,55 +49,17 @@ public class BattleManager : MonoBehaviour
         _field.SetClickEvent(OnClickTile);
     }
 
-    public void OnClickTile(Vector2 coord, Tile tile)
+    public void OnClickTile(Vector2 coord)
     {
         //Prepare 페이즈
         if (CurrentPhase == Phase.Prepare)
         {
-            // ----------------변경 예정------------------------
-            Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
-            if (clickedUnit == null)
-                return;
-
-            Data.ChangeMana(-1 * clickedUnit.Data.ManaCost);
-
-            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Unit");
-            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
-
-            BattleUnit.Data = clickedUnit.Data;
-            BattleUnit.setLocate(coord);
-
-            BattleUnit.Init(Team.Player, coord);
-
-            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-            _UIMNG.Hands.ClearHand();
-            // ------------------------------------------------
+            BattleUnitFactory(coord);
         }
         //Start 페이즈
         else if (CurrentPhase == Phase.Start)
         {
-            //범위 외
-            if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) != null)
-                return;
-
-            // ----------------변경 예정------------------------
-            Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
-            if (clickedUnit == null)
-                return;
-
-            _battleData.ChangeMana(-1 * clickedUnit.Data.ManaCost);
-
-            GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Units/BaseUnit");
-            BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
-
-            BattleUnit.Data = clickedUnit.Data;
-            BattleUnit.setLocate(coord);
-
-            BattleUnit.Init(Team.Player, coord);
-
-            _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-            _UIMNG.Hands.ClearHand();
-            // ------------------------------------------------
+            BattleUnitFactory(coord);
         }
         //Engage 페이즈
         else
@@ -131,7 +93,37 @@ public class BattleManager : MonoBehaviour
             ChangeClickType();
         }
     }
-    
+
+    // *****
+    // 임시임시
+    private void BattleUnitFactory(Vector2 coord)
+    {
+        //범위 외
+        if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) != null)
+            return;
+
+        // ----------------변경 예정------------------------
+        Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
+        if (clickedUnit == null)
+            return;
+
+        _battleData.ChangeMana(-1 * clickedUnit.Data.ManaCost);
+
+        GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Units/BaseUnit");
+        BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
+
+        BattleUnit.Data = clickedUnit.Data;
+        BattleUnit.setLocate(coord);
+
+        _battleData.BattleUnitAdd(BattleUnit);
+
+        BattleUnit.Init(Team.Player, coord);
+        
+        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+        _UIMNG.Hands.ClearHand();
+        // ------------------------------------------------
+    }
+
     #region Phase Control
 
     private Phase _CurrentPhase;
@@ -355,6 +347,8 @@ public class BattleManager : MonoBehaviour
         Field.SetTileColor(rangeList, clr);
     }
 
+    // *****
+    // 경유만 하는 함수가 필요할까?
     public void SetUnit(BattleUnit unit, Vector2 coord)
     {
         Field.EnterTile(unit, coord);

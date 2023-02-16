@@ -6,32 +6,18 @@ using System;
 
 public class Field : MonoBehaviour
 {
+    private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
+    public Dictionary<Vector2, Tile> TileDict => _tileDict;
+
+    // 필드의 생성을 위한 필드의 위치
+    private Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
+    private Vector3 FieldRotation => new Vector3(16, 0, 0);
+
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
-    private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
-    public Dictionary<Vector2, Tile> TileDict => _tileDict;
-    public Vector2 FindCoordByTile(Tile tile)
-    {
-        if(tile == null)
-        {
-            Debug.Log("Tile Parameter is Null");
-            return new Vector2();
-        }
+    private Action<Vector2> OnClickAction;
 
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
-            if (items.Value == tile)
-                return items.Key;
-
-        Debug.Log("Can't find target tile");
-        return new Vector2();
-    }
-
-    // 필드의 생성을 위한 필드의 위치
-    public Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
-    public Vector3 FieldRotation => new Vector3(16, 0, 0);
-
-    public Action<Vector2, Tile> OnClickAction;
 
     private void Awake()
     {
@@ -43,7 +29,25 @@ public class Field : MonoBehaviour
         transform.eulerAngles = FieldRotation;
     }
 
-    public void SetClickEvent(Action<Vector2, Tile> action)
+    // 타일의 좌표값을 리턴한다.
+    private Vector2 FindCoordByTile(Tile tile)
+    {
+        // 타일이 없으면 -1, -1을 반환
+        if(tile == null)
+        {
+            Debug.Log("Tile Parameter is Null");
+            return new Vector2(-1, -1);
+        }
+
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+            if (items.Value == tile)
+                return items.Key;
+
+        Debug.Log("Can't find target tile");
+        return new Vector2();
+    }
+
+    public void SetClickEvent(Action<Vector2> action)
     {
         OnClickAction = action;
     }
@@ -68,8 +72,9 @@ public class Field : MonoBehaviour
         float locY = disY * y + 1.5f;
 
         Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
+        GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
         
-        return GameManager.Resource.Instantiate("Tile", transform).GetComponent<Tile>().Init(tilePos, TileClick);
+        return tileObject.GetComponent<Tile>().Init(tilePos, TileClick);
     }
 
     // 타일이 최대 범위를 벗어났는지 확인
@@ -82,6 +87,8 @@ public class Field : MonoBehaviour
 
     public void MoveUnit(Vector2 current, Vector2 dest)
     {
+        // *****
+        // 이 둘이 같은 처리를 하는 것이 맞을까?
         if (IsInRange(dest) == false | current == dest)
             return;
 
@@ -90,6 +97,8 @@ public class Field : MonoBehaviour
         
         if (TileDict[dest].IsOnTile)
         {
+            // *****
+            // 얘는 위의 IsRange(dest)와 같이 처리해도 될 것 같다
             if (currentUnit.Team == destUnit.Team)
             {
                 ExitTile(current);
@@ -98,6 +107,8 @@ public class Field : MonoBehaviour
                 currentUnit.setLocate(dest);
                 destUnit.setLocate(current);
 
+                EnterTile(currentUnit, dest);
+                EnterTile(destUnit, current);
                 return;
             }
         }
@@ -105,11 +116,12 @@ public class Field : MonoBehaviour
         {
             ExitTile(current);
             currentUnit.setLocate(dest);
+            EnterTile(currentUnit, dest);
         }
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
-    public Vector3 GetTilePosition(Vector2 coord)
+    private Vector3 GetTilePosition(Vector2 coord)
     {
         Vector3 position = TileDict[coord].transform.position;
 
@@ -123,14 +135,8 @@ public class Field : MonoBehaviour
         return position;
     }
 
-    public void ClearAllColor()
-    {
-        foreach(KeyValuePair<Vector2, Tile> items in TileDict)
-        {
-            items.Value.SetColor(Color.white);
-        }
-    } 
-
+    // *****
+    // 메서드 이름 바꾸기
     public List<Vector2> Get_Abs_Pos(BattleUnit _unit, ClickType _clickType)
     {
         List<Vector2> ResultVector = new List<Vector2>();
@@ -154,6 +160,7 @@ public class Field : MonoBehaviour
         return ResultVector;
     }
 
+
     public void SetTileColor(List<Vector2> vector, Color clr)
     {
         foreach (Vector2 vec in vector)
@@ -162,6 +169,15 @@ public class Field : MonoBehaviour
         }
     }
 
+    public void ClearAllColor()
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            items.Value.SetColor(Color.white);
+        }
+    }
+
+
     public void EnterTile(BattleUnit unit, Vector2 coord)
     {
         TileDict[coord].EnterTile(unit);
@@ -169,21 +185,23 @@ public class Field : MonoBehaviour
         unit.SetPosition(GetTilePosition(coord));
     }
 
-    public void ExitTile(Vector2 coord)
+    private void ExitTile(Vector2 coord)
     {
         TileDict[coord].ExitTile();
     }
 
-    public void TileClick(Tile tile)
+
+    private void TileClick(Tile tile)
     {
         Vector2 coord = FindCoordByTile(tile);
 
         if (coord == null)
             return;
 
-        OnClickAction(coord, tile);
+        OnClickAction(coord);
     }
 
+    // 배치 가능 범위 확인
     public bool IsPlayerRange(Vector2 coord)
     {
         if ((int)coord.x < MaxFieldX / 2)

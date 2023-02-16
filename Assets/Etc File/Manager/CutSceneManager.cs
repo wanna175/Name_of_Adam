@@ -143,7 +143,8 @@ public class CutSceneManager : MonoBehaviour
     Vector3 GetZoomLocation(CutSceneData CSData)
     {
         if (CSData.TargetType == TargetType.Range)
-            return _field.FieldPosition;
+            //return _field.FieldPosition;
+            return new Vector3();
 
         Vector3 zoomLoc = CSData.MovePosition;
 
