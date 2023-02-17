@@ -75,6 +75,8 @@ public enum TargetType
 
 public enum Phase
 {
+    SetupField,
+    SpawnEnemyUnit,
     Start,
     Prepare,
     Engage

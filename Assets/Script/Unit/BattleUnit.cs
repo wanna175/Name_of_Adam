@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 public class BattleUnit : Unit
 {
@@ -97,7 +97,7 @@ public class BattleUnit : Unit
     
 
     public void SkillUse(BattleUnit _unit) {
-        _skill.Use(this, _unit);
+        Skill.Use(this, _unit);
     }                   
 
     public Stat GetStat(bool buff = true) {

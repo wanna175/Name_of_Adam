@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Tile : MonoBehaviour
 {
@@ -12,16 +13,12 @@ public class Tile : MonoBehaviour
     public bool IsOnTile { get { if (Unit == null) return false; return true; } }
     public Action<Tile> OnClickAction = null;
 
-    public void Start()
+    public Tile Init(Vector3 position)
     {
         _renderer = GetComponent<SpriteRenderer>();
         _renderer.color = Color.white;
-    }
 
-    public Tile Init(Vector3 position, Action<Tile> action)
-    {
         transform.position = position;
-        OnClickAction = action;
         return this;
     }
 
@@ -48,6 +45,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        OnClickAction(this);
+        //OnClickAction(this);
+        GameManager.Battle.OnClickTile(this);
     }
 }

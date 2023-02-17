@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_ManaGuage : UI_Base
+public class UI_ManaGuage : UI_Scene
 {
     enum Objects
     {
@@ -11,10 +11,10 @@ public class UI_ManaGuage : UI_Base
         ManaCostText,
     }
 
-    private void Start()
+    private void Awake()
     {
         Bind<GameObject>(typeof(Objects));
-        GameManager.Battle.Data.SetManaGuage(this);
+        //GameManager.Battle.Data.SetManaGuage(this);
     }
 
     public void DrawGauge(int currentMana)

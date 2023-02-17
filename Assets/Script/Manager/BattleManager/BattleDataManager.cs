@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleDataManager
+public class BattleDataManager : MonoBehaviour
 {
-    public BattleDataManager()
+    [ReadOnly] public Mana Mana;
+
+    private void Awake()
     {
-        InitMana();
+        Mana = Util.GetOrAddComponent<Mana>(gameObject);
+    }
+
+    public void ChangeMana(int value)
+    {
+        Mana.ChangeMana(value);
     }
 
     #region Turn Count
@@ -54,44 +61,4 @@ public class BattleDataManager
     public void BattleUnitAdd(BattleUnit unit) => BattleUnitList.Add(unit);
 
     public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
-
-
-    // Mana Manage
-    private const int _maxManaCost = 200;
-    private int _currentMana;
-    private UI_ManaGuage _manaGuage;
-
-    public void InitMana(int _defaultMana = _maxManaCost)
-    {
-        _currentMana = _defaultMana;
-    }
-
-    private int _mana = 0;
-
-    public void SetManaGuage(UI_ManaGuage guage)
-    {
-        _manaGuage = guage;
-        _manaGuage.DrawGauge(_currentMana);
-    }
-
-    public void ChangeMana(int value)
-    {
-        _currentMana += value;
-
-        if (_maxManaCost <= _currentMana)
-            _currentMana = _maxManaCost;
-        else if (_currentMana < 0)
-            _currentMana = 0;
-        
-        _manaGuage.DrawGauge(_currentMana);
-    }
-
-    public bool CanUseMana(int value)
-    {
-        if (_currentMana >= value)
-            return true;
-
-        Debug.Log("not enough mana");
-        return false;
-    }
 }
