@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class UnitFall : MonoBehaviour
 {
     [SerializeField] private int _maxCount;
-    [SerializeField] private int _currentCount;
+    [SerializeField, ReadOnly] private int _currentCount;
 
     [Header("타락 이벤트")]
     public UnityEvent UnitFallEvent;
