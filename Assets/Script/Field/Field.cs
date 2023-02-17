@@ -16,9 +16,6 @@ public class Field : MonoBehaviour
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
-    private Action<Vector2> OnClickAction;
-
-
     private void Awake()
     {
         for (int i = 0; i < MaxFieldY; i++)
@@ -30,7 +27,7 @@ public class Field : MonoBehaviour
     }
 
     // 타일의 좌표값을 리턴한다.
-    private Vector2 FindCoordByTile(Tile tile)
+    public Vector2 FindCoordByTile(Tile tile)
     {
         // 타일이 없으면 -1, -1을 반환
         if(tile == null)
@@ -44,12 +41,7 @@ public class Field : MonoBehaviour
                 return items.Key;
 
         Debug.Log("Can't find target tile");
-        return new Vector2();
-    }
-
-    public void SetClickEvent(Action<Vector2> action)
-    {
-        OnClickAction = action;
+        return new Vector2(-1, -1);
     }
 
     public BattleUnit GetUnit(Vector2 coord)
@@ -74,7 +66,7 @@ public class Field : MonoBehaviour
         Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
         GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
         
-        return tileObject.GetComponent<Tile>().Init(tilePos, TileClick);
+        return tileObject.GetComponent<Tile>().Init(tilePos);
     }
 
     // 타일이 최대 범위를 벗어났는지 확인
@@ -188,17 +180,6 @@ public class Field : MonoBehaviour
     private void ExitTile(Vector2 coord)
     {
         TileDict[coord].ExitTile();
-    }
-
-
-    private void TileClick(Tile tile)
-    {
-        Vector2 coord = FindCoordByTile(tile);
-
-        if (coord == null)
-            return;
-
-        OnClickAction(coord);
     }
 
     // 배치 가능 범위 확인
