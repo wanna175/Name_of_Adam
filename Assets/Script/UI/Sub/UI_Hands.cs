@@ -88,7 +88,7 @@ public class UI_Hands : MonoBehaviour
         _ClickedHand = _HandList.IndexOf(hand);
         _ClickedUnit = hand.GetHandUnit();
 
-        if (!_BattleDataMNG.CanUseMana(_ClickedUnit.Data.ManaCost)){
+        if (!_BattleDataMNG.Mana.CanUseMana(_ClickedUnit.Data.ManaCost)){
             Debug.Log("not enough mana");
             ClearHand();
         }
