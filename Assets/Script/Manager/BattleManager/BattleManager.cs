@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private BattleDataManager _battleData  = new BattleDataManager();
+    private BattleDataManager _battleData;
     public BattleDataManager Data => _battleData;
     private List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
 
@@ -24,6 +25,7 @@ public class BattleManager : MonoBehaviour
     private void Awake()
     {
         _UIMNG = GameManager.UI;
+        _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
 
         SetupField();
 
@@ -41,16 +43,17 @@ public class BattleManager : MonoBehaviour
     private void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
-        
-        if (fieldObject != null)
-            return;
 
-        _field = GameManager.Resource.Instantiate("Field").GetComponent<Field>();
-        _field.SetClickEvent(OnClickTile);
+        if (fieldObject == null)
+            fieldObject = GameManager.Resource.Instantiate("Field");
+
+        _field = fieldObject.GetComponent<Field>();
     }
 
-    public void OnClickTile(Vector2 coord)
+    public void OnClickTile(Tile tile)
     {
+        Vector2 coord = Field.FindCoordByTile(tile);
+
         //Prepare 페이즈
         if (CurrentPhase == Phase.Prepare)
         {
@@ -144,26 +147,40 @@ public class BattleManager : MonoBehaviour
 
     public void PhaseUpdate()
     {
-        if (_CurrentPhase == Phase.Prepare)
+        switch (CurrentPhase)
         {
-            PrepareExit();
-            EngageEnter();
+            case Phase.SetupField:
+                SetupField();
 
-            PhaseChanger(Phase.Engage);
-        }
-        else if (_CurrentPhase == Phase.Engage)
-        {
-            EngageExit();
-            PrepareEnter();
+                PhaseChanger(Phase.SpawnEnemyUnit);
+                break;
 
-            PhaseChanger(Phase.Prepare);
-        }
-        else if(_CurrentPhase == Phase.Start)
-        {
-            StartExit();
-            EngageEnter();
+            case Phase.SpawnEnemyUnit:
+                UnitSpawn();
 
-            PhaseChanger(Phase.Engage);
+                PhaseChanger(Phase.Prepare);
+                break;
+
+            case Phase.Prepare:
+                PrepareExit();
+                EngageEnter();
+
+                PhaseChanger(Phase.Engage);
+                break;
+
+            case Phase.Engage:
+                EngageExit();
+                PrepareEnter();
+
+                PhaseChanger(Phase.Prepare);
+                break;
+
+            case Phase.Start:
+                StartExit();
+                EngageEnter();
+
+                PhaseChanger(Phase.Engage);
+                break;
         }
     }
 

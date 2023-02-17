@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleDataManager
+public class BattleDataManager : MonoBehaviour
 {
-    public BattleDataManager()
+    private void Awake()
     {
         InitMana();
     }
@@ -64,6 +64,8 @@ public class BattleDataManager
     public void InitMana(int _defaultMana = _maxManaCost)
     {
         _currentMana = _defaultMana;
+        _manaGuage = GameManager.UI.ShowScene<UI_ManaGuage>();
+        _manaGuage.DrawGauge(_currentMana);
     }
 
     private int _mana = 0;
@@ -82,7 +84,7 @@ public class BattleDataManager
             _currentMana = _maxManaCost;
         else if (_currentMana < 0)
             _currentMana = 0;
-        
+
         _manaGuage.DrawGauge(_currentMana);
     }
 
