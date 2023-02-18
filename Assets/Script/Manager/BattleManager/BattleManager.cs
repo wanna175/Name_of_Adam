@@ -184,7 +184,7 @@ public class BattleManager : MonoBehaviour
                 //전투시 맨 처음 Prepare 단계
                 Debug.Log("Start Enter");
 
-                //코루틴 등을 활용해 버튼 클릭 대기 상황을 만듦
+                //코루틴 등을 활용해 버튼 클릭 대기 상황을 만듦 UI_PhaseChange 버튼의 입력대기 받도록
 
                 //StartExit();
                 
@@ -242,10 +242,10 @@ public class BattleManager : MonoBehaviour
                 _battleData.TurnPlus();
                 _turnCount.ShowTurn();
 
-                // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기)
+                // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
 
                 //PrepareExit();
-                
+
                 Debug.Log("Prepare Exit");
                 PhaseChanger(Phase.Engage);
                 break;
