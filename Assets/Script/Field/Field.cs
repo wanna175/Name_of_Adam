@@ -153,8 +153,10 @@ public class Field : MonoBehaviour
     }
 
 
-    public void SetTileColor(List<Vector2> vector, Color clr)
+    public void SetTileColor(BattleUnit unit, Color clr, ClickType _clickType)
     {
+
+        List<Vector2> vector = Get_Abs_Pos(unit, _clickType);
         foreach (Vector2 vec in vector)
         {
             TileDict[vec].SetColor(clr);
