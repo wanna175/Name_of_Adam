@@ -14,8 +14,11 @@ public class BattleDataManager : MonoBehaviour
     }
     #endregion
 
-    private List<Unit> _playerDeckList = new List<Unit>();
-    public List<Unit> PlayerDeck => _playerDeckList;
+    private List<Unit> _playerDeck = new List<Unit>();
+    public List<Unit> PlayerDeck => _playerDeck;
+
+    private List<Unit> _playerHands = new List<Unit>();
+    public List<Unit> PlayerHands => _playerHands;
 
     public void AddUnit(Unit unit) {
         PlayerDeck.Add(unit);
@@ -25,7 +28,7 @@ public class BattleDataManager : MonoBehaviour
         PlayerDeck.Remove(unit);
     }
 
-    public Unit GetRandomUnit() {
+    public Unit GetRandomUnitFromDeck() {
         if (PlayerDeck.Count == 0)
         {
             return null;
@@ -33,7 +36,7 @@ public class BattleDataManager : MonoBehaviour
         int randNum = Random.Range(0, PlayerDeck.Count);
         
         Unit unit = PlayerDeck[randNum];
-        _playerDeckList.RemoveAt(randNum);
+        _playerDeck.RemoveAt(randNum);
 
         return unit;
     }

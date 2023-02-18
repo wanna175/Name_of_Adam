@@ -15,6 +15,8 @@ public class UI_Hand : MonoBehaviour
     {
         _hands = GetComponentInParent<UI_Hands>();
         _Image = GetComponent<Image>();
+
+        GetComponentInChildren<Text>().text = Random.Range(0, 10).ToString();
     }
 
     public void SetHandUnit(Unit unit)

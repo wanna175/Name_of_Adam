@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour
         _UIMNG = GameManager.UI;
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
+        _UIMNG.ShowScene<UI_Hands>();
 
         SetupField();
 

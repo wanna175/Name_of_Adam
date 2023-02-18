@@ -5,44 +5,50 @@ using UnityEngine;
 public class UI_Hands : UI_Scene
 {
     [SerializeField] GameObject HandPrefabs;
-    private List<UI_Hand> _HandList;
-    
+    private List<UI_Hand> _handList = new List<UI_Hand>();
+
     BattleDataManager _Data;
+    private Transform _grid;
 
     const int HandSize = 4;
 
     void Start()
     {
-        _Data = GameManager.Battle.Data;
+        _grid = Util.FindChild(gameObject, "Grid").transform;
 
-        _HandList = new List<UI_Hand>();
+        //_Data = GameManager.Battle.Data;
 
-        for (int i = 0; i < HandSize; i++)
-        {
-            GameObject obj = Instantiate(HandPrefabs, transform);
-            obj.transform.position = new Vector3(6 + 1.5f, -5.3f);
+        //_handList = new List<UI_Hand>();
 
-            _HandList.Add(obj.GetComponent<UI_Hand>());
-        }
+        //for (int i = 0; i < HandSize; i++)
+        //{
+        //    GameObject obj = Instantiate(HandPrefabs, transform);
+        //    obj.transform.position = new Vector3(6 + 1.5f, -5.3f);
+
+        //    _handList.Add(obj.GetComponent<UI_Hand>());
+        //}
+
+        StartCoroutine(Test());
     }
 
-    public void TEST()
+    IEnumerator Test()
     {
-        Debug.Log("?");
-        //전투 시작 후 초기 멀리건 4장
-        for (int i = 0; i < HandSize; i++) {
-            AddUnitToHand();
+        for (int i = 0; i < 3; i++)
+        {
+            UI_Hand newUnit = GameObject.Instantiate(HandPrefabs, _grid).GetComponent<UI_Hand>();
+            _handList.Add(newUnit);
+            yield return new WaitForSeconds(1f);
         }
-    }
 
+    }
     public void AddUnitToHand()
     {
         //1,2,3,4 순으로 Hand의 Unit이 null이면 1개 추가
-        foreach (UI_Hand h in _HandList)
+        foreach (UI_Hand h in _handList)
         {
             if (h.IsHandNull())
             {
-                h.SetHandUnit(_Data.GetRandomUnit());
+                h.SetHandUnit(_Data.GetRandomUnitFromDeck());
                 break;
             }
         }
@@ -52,11 +58,11 @@ public class UI_Hands : UI_Scene
         //handIndex는 1부터 시작하기에 -1 해야함
         Unit returnUnit;
 
-        returnUnit = _HandList[handIndex].RemoveHandUnit();
+        returnUnit = _handList[handIndex].RemoveHandUnit();
 
         for (int i = handIndex+1; i < HandSize; i++)
         {
-            _HandList[i-1].SetHandUnit(_HandList[i].RemoveHandUnit());
+            _handList[i-1].SetHandUnit(_handList[i].RemoveHandUnit());
         }
 
         //빈 공간이 있으면 1개 추가
@@ -67,14 +73,14 @@ public class UI_Hands : UI_Scene
 
     public void ReturnHand()
     {
-        foreach (UI_Hand h in _HandList)
+        foreach (UI_Hand h in _handList)
         {
             if (!h.IsHandNull())
             {
                 _Data.AddUnit(h.RemoveHandUnit());
             }
         }
-        _HandList = null;
+        _handList = null;
     }
 
     #region Hand Click
@@ -86,7 +92,7 @@ public class UI_Hands : UI_Scene
 
     public void OnHandClick(UI_Hand hand)
     {
-        _ClickedHand = _HandList.IndexOf(hand);
+        _ClickedHand = _handList.IndexOf(hand);
         _ClickedUnit = hand.GetHandUnit();
 
         // Memo : 소환 이전에 클릭이 되지 않아야 함
