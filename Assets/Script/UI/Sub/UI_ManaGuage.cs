@@ -18,7 +18,7 @@ public class UI_ManaGuage : UI_Scene
 
     public void DrawGauge(int max, int current)
     {
-        GetObject((int)Objects.Fill).GetComponent<Image>().fillAmount = current / max;
+        GetObject((int)Objects.Fill).GetComponent<Image>().fillAmount = (float)current / max;
         GetObject((int)Objects.ManaCostText).GetComponent<Text>().text = current.ToString();
     }
 }
