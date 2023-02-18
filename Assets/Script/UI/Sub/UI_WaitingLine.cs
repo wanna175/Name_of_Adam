@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_WaitingLine : MonoBehaviour
+public class UI_WaitingLine : UI_Scene
 {
     [SerializeField] GameObject P_WaitingUnit;
     private List<UI_WaitingUnit> _WaitingUnitList = new List<UI_WaitingUnit>();

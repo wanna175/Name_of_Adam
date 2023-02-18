@@ -22,6 +22,10 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private bool TestMode = true;
     private ClickType _clickType;
 
+    private UI_Hands _hands;
+    private UI_WaitingLine _waitingLine;
+    private UI_TurnCount _turnCount;
+
     private void Awake()
     {
         _UIMNG = GameManager.UI;
@@ -31,6 +35,10 @@ public class BattleManager : MonoBehaviour
 
         if (TestMode)
             UnitSpawn();
+
+        //_hands = GameManager.UI.ShowScene<UI_Hands>();
+        //_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
+        //_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
         StartEnter();
     }
@@ -107,7 +115,7 @@ public class BattleManager : MonoBehaviour
             return;
 
         // ----------------변경 예정------------------------
-        Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
+        Unit clickedUnit = _hands.ClickedUnit;
         if (clickedUnit == null)
             return;
 
@@ -120,8 +128,8 @@ public class BattleManager : MonoBehaviour
         UnitSetting(BattleUnit, coord);
 
         Data.BattleUnitAdd(BattleUnit);
-        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
-        _UIMNG.Hands.ClearHand();
+        _hands.RemoveHand(_hands.ClickedHand);
+        _hands.ClearHand();
         // ------------------------------------------------
     }
     public void UnitSetting(BattleUnit _unit, Vector2 coord)
@@ -157,12 +165,13 @@ public class BattleManager : MonoBehaviour
 
             case Phase.SpawnEnemyUnit:
                 UnitSpawn();
+                StartEnter();
 
-                PhaseChanger(Phase.Prepare);
+                PhaseChanger(Phase.Start);
                 break;
 
-            case Phase.Prepare:
-                PrepareExit();
+            case Phase.Start:
+                StartExit();
                 EngageEnter();
 
                 PhaseChanger(Phase.Engage);
@@ -175,8 +184,8 @@ public class BattleManager : MonoBehaviour
                 PhaseChanger(Phase.Prepare);
                 break;
 
-            case Phase.Start:
-                StartExit();
+            case Phase.Prepare:
+                PrepareExit();
                 EngageEnter();
 
                 PhaseChanger(Phase.Engage);
@@ -193,7 +202,6 @@ public class BattleManager : MonoBehaviour
     {
         //전투시 맨 처음 Prepare 단계
         Debug.Log("Start Enter");
-        PhaseChanger(Phase.Start);
     }
 
     public void StartExit()
@@ -204,7 +212,6 @@ public class BattleManager : MonoBehaviour
     public void PrepareEnter()
     {
         Debug.Log("Prepare Enter");
-        PhaseChanger(Phase.Prepare);
         //UI 튀어나옴
         //UI가 작동할 수 있게 해줌
     }
@@ -219,7 +226,6 @@ public class BattleManager : MonoBehaviour
     public void EngageEnter()
     {
         Debug.Log("Engage Enter");
-        PhaseChanger(Phase.Engage);
         //UI 튀어나옴
         //UI가 작동할 수 있게 해줌
 
@@ -233,6 +239,8 @@ public class BattleManager : MonoBehaviour
         // 턴 시작 전에 다시한번 순서를 정렬한다.
         BattleOrderReplace();
         GameManager.Battle.Field.ClearAllColor();
+        _waitingLine.SetBattleOrderList();
+        _waitingLine.SetWaitingLine();
 
         UseUnitSkill();
     }
@@ -246,6 +254,8 @@ public class BattleManager : MonoBehaviour
         BattleOverCheck();
         _battleData.ChangeMana(2);
         _battleData.TurnPlus();
+        _turnCount.ShowTurn();
+
     }
     #endregion
 
@@ -253,7 +263,7 @@ public class BattleManager : MonoBehaviour
     {
         int MyUnit = 0;
         int EnemyUnit = 0;
-        Debug.Log(Data.BattleUnitList.Count);
+
         foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
             if (BUnit.Team == Team.Player)//아군이면
@@ -332,6 +342,7 @@ public class BattleManager : MonoBehaviour
     {
         if (_BattleUnitOrderList.Count <= 0)
         {
+            //남은 유닛이 0일 때 Engage를 Prepare로 변경한다.
             PhaseUpdate();
             return;
         }
@@ -340,6 +351,7 @@ public class BattleManager : MonoBehaviour
         {
             if (_BattleUnitOrderList[0].Team == Team.Enemy)
             {
+                //적 유닛이면 AI를 가동한다
                 Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
                 ai.SetCaster(_BattleUnitOrderList[0]);
                 ai.AIAction();
@@ -361,6 +373,7 @@ public class BattleManager : MonoBehaviour
     {
         Field.ClearAllColor();
         _BattleUnitOrderList.RemoveAt(0);
+        _waitingLine.SetWaitingLine();
         UseUnitSkill();
     }
     
