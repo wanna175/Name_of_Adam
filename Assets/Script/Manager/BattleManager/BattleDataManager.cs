@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class BattleDataManager : MonoBehaviour
 {
-    [ReadOnly] public Mana Mana;
-
-    private void Awake()
-    {
-        Mana = Util.GetOrAddComponent<Mana>(gameObject);
-    }
-
-    public void ChangeMana(int value)
-    {
-        Mana.ChangeMana(value);
-    }
-
     #region Turn Count
     private int _TurnCount = 1;
     public int TurnCount => _TurnCount;

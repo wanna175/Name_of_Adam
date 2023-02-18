@@ -89,10 +89,11 @@ public class UI_Hands : UI_Scene
         _ClickedHand = _HandList.IndexOf(hand);
         _ClickedUnit = hand.GetHandUnit();
 
-        if (!_Data.Mana.CanUseMana(_ClickedUnit.Data.ManaCost)){
-            Debug.Log("not enough mana");
-            ClearHand();
-        }
+        // Memo : 소환 이전에 클릭이 되지 않아야 함
+        //if (!_Data.Mana.CanUseMana(_ClickedUnit.Data.ManaCost)){
+        //    Debug.Log("not enough mana");
+        //    ClearHand();
+        //}
     }
 
     public void ClearHand()
