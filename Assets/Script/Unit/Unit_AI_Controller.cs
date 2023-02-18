@@ -279,7 +279,6 @@ public class Unit_AI_Controller : MonoBehaviour
             {
                 Debug.Log("공격 불가 이동");
                 MoveUnit(MoveDirection(NearestEnemySearch()));
-                GameManager.Battle.UseNextUnit();
             }
         }
         ListClear();
