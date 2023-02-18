@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class UnitHP : MonoBehaviour
 {
     [SerializeField] private int _maxHP;
-    [SerializeField] private int _currentHP;
+    [SerializeField, ReadOnly] private int _currentHP;
 
     [Header("사망 이벤트")]
     public UnityEvent UnitDiedEvent;

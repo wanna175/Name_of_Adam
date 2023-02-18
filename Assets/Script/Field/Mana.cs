@@ -5,20 +5,13 @@ public class Mana : MonoBehaviour
 {
     // Mana Manage
     [SerializeField] private int _maxManaCost = 200;
-    [ReadOnly, SerializeField] private int _currentMana;
+    [ReadOnly, SerializeField] private int _currentMana = 0;
     private UI_ManaGuage _manaGuage;
 
     private void Awake()
     {
-        _currentMana = _maxManaCost;
         _manaGuage = GameManager.UI.ShowScene<UI_ManaGuage>();
-        _manaGuage.DrawGauge(_currentMana);
-    }
-
-    public void SetManaGuage(UI_ManaGuage guage)
-    {
-        _manaGuage = guage;
-        _manaGuage.DrawGauge(_currentMana);
+        ChangeMana(_maxManaCost);
     }
 
     public void ChangeMana(int value)
@@ -30,7 +23,7 @@ public class Mana : MonoBehaviour
         else if (_currentMana < 0)
             _currentMana = 0;
 
-        _manaGuage.DrawGauge(_currentMana);
+        _manaGuage.DrawGauge(_maxManaCost, _currentMana);
     }
 
     public bool CanUseMana(int value)
