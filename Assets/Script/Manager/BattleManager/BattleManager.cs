@@ -89,7 +89,7 @@ public class BattleManager : MonoBehaviour
             // 범위 밖을 클릭했으면 다시 클릭한다.
             if (!RangeList.Contains(coord))
             {
-                SetTileColor(Color.yellow);
+                Field.SetTileColor(GetNowUnit(), Color.yellow, _clickType);
                 return;
             }
             
@@ -334,12 +334,12 @@ public class BattleManager : MonoBehaviour
         if (_clickType > ClickType.Attack)
             _clickType = ClickType.Nothing;
 
-        SetTileColor(Color.yellow);
+        Field.SetTileColor(GetNowUnit(), Color.yellow, _clickType);
     }
 
     // BattleUnitList의 첫 번째 요소부터 순회
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
-    public void UseUnitSkill()
+    public void UseUnitSkill() //clicktype쪽 구조를 바꿔야함
     {
         if (_BattleUnitOrderList.Count <= 0)
         {
@@ -361,6 +361,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                // 아군 유닛이 버튼 대기 받을 수 있도록 수정 OnclickTile 수정 필요
                 ChangeClickType();
             }
         }
@@ -385,12 +386,6 @@ public class BattleManager : MonoBehaviour
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
-    }
-    
-    public void SetTileColor(Color clr)
-    {
-        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit(), _clickType);
-        Field.SetTileColor(rangeList, clr);
     }
 
     // *****
