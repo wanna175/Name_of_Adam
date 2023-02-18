@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_ManaGuage : UI_Scene
+public class UI_ManaGauge : UI_Scene
 {
     enum Objects
     {
