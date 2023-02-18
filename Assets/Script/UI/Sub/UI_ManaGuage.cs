@@ -7,19 +7,18 @@ public class UI_ManaGuage : UI_Scene
 {
     enum Objects
     {
-        ManaGuageSlider,
+        Fill,
         ManaCostText,
     }
 
     private void Awake()
     {
         Bind<GameObject>(typeof(Objects));
-        //GameManager.Battle.Data.SetManaGuage(this);
     }
 
-    public void DrawGauge(int currentMana)
+    public void DrawGauge(int max, int current)
     {
-        GetObject((int)Objects.ManaGuageSlider).GetComponent<Slider>().value = currentMana;
-        GetObject((int)Objects.ManaCostText).GetComponent<Text>().text = currentMana.ToString();
+        GetObject((int)Objects.Fill).GetComponent<Image>().fillAmount = current / max;
+        GetObject((int)Objects.ManaCostText).GetComponent<Text>().text = current.ToString();
     }
 }
