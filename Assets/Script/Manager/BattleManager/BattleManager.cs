@@ -40,8 +40,14 @@ public class BattleManager : MonoBehaviour
         //_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         //_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
-        StartEnter();
+
+        PhaseChanger(Phase.SetupField);
     }
+
+    //private void Update()
+    //{
+    //    PhaseUpdate();
+    //}
 
     private void UnitSpawn()
     {
@@ -90,7 +96,7 @@ public class BattleManager : MonoBehaviour
             if (_clickType == ClickType.Move)
             {
                 Vector2 dest = coord - nowUnit.Location;
-                MoveLotate(nowUnit, dest);
+                MoveLocate(nowUnit, dest);
             }
             else if (_clickType == ClickType.Attack)
             {
@@ -161,33 +167,86 @@ public class BattleManager : MonoBehaviour
                 SetupField();
 
                 PhaseChanger(Phase.SpawnEnemyUnit);
+
                 break;
 
             case Phase.SpawnEnemyUnit:
-                UnitSpawn();
-                StartEnter();
+                //UnitSpawn();
+
+                GetComponent<UnitSpawner>().Init();
 
                 PhaseChanger(Phase.Start);
                 break;
 
             case Phase.Start:
-                StartExit();
-                EngageEnter();
+                //StartEnter();
+
+                //전투시 맨 처음 Prepare 단계
+                Debug.Log("Start Enter");
+
+                //코루틴 등을 활용해 버튼 클릭 대기 상황을 만듦 UI_PhaseChange 버튼의 입력대기 받도록
+
+                //StartExit();
+                
+                Debug.Log("Start Exit");
 
                 PhaseChanger(Phase.Engage);
                 break;
 
             case Phase.Engage:
-                EngageExit();
-                PrepareEnter();
+                //EngageEnter();
 
+                Debug.Log("Engage Enter");
+
+                //UI 튀어나옴
+                //UI가 작동할 수 있게 해줌
+
+                // 필드 위의 모든 표시 삭제
+                Field.ClearAllColor();
+
+                // 턴 시작 전에 다시한번 순서를 정렬한다.
+
+                _BattleUnitOrderList.Clear();
+
+                foreach (BattleUnit unit in _battleData.BattleUnitList)
+                {
+                    _BattleUnitOrderList.Add(unit);
+                }
+
+                BattleOrderReplace();
+
+                _waitingLine.SetBattleOrderList();
+                _waitingLine.SetWaitingLine();
+
+                // UseNextUnit과 중복되는 것 확인
+
+                UseUnitSkill();
+
+
+                //EngageExit();
+
+                Debug.Log("Engage Exit");
+                //UI 들어감
+                //UI 사용 불가
+
+                BattleOverCheck();
+                
                 PhaseChanger(Phase.Prepare);
                 break;
 
             case Phase.Prepare:
-                PrepareExit();
-                EngageEnter();
+                //PrepareEnter();
+                Debug.Log("Prepare Enter");
 
+                _battleData.ChangeMana(2);
+                _battleData.TurnPlus();
+                _turnCount.ShowTurn();
+
+                // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
+
+                //PrepareExit();
+
+                Debug.Log("Prepare Exit");
                 PhaseChanger(Phase.Engage);
                 break;
         }
@@ -198,65 +257,7 @@ public class BattleManager : MonoBehaviour
         _CurrentPhase = phase;
     }
 
-    public void StartEnter()
-    {
-        //전투시 맨 처음 Prepare 단계
-        Debug.Log("Start Enter");
-    }
-
-    public void StartExit()
-    {
-        Debug.Log("Start Exit");
-    }
-
-    public void PrepareEnter()
-    {
-        Debug.Log("Prepare Enter");
-        //UI 튀어나옴
-        //UI가 작동할 수 있게 해줌
-    }
-
-    public void PrepareExit()
-    {
-        Debug.Log("Prepare Exit");
-        //UI 들어감
-        //UI 사용 불가
-    }
-
-    public void EngageEnter()
-    {
-        Debug.Log("Engage Enter");
-        //UI 튀어나옴
-        //UI가 작동할 수 있게 해줌
-
-        _BattleUnitOrderList.Clear();
-
-        foreach(BattleUnit unit in _battleData.BattleUnitList)
-        {
-            _BattleUnitOrderList.Add(unit);
-        }
-
-        // 턴 시작 전에 다시한번 순서를 정렬한다.
-        BattleOrderReplace();
-        GameManager.Battle.Field.ClearAllColor();
-        _waitingLine.SetBattleOrderList();
-        _waitingLine.SetWaitingLine();
-
-        UseUnitSkill();
-    }
-
-    public void EngageExit()
-    {
-        Debug.Log("Engage Exit");
-        //UI 들어감
-        //UI 사용 불가
-        
-        BattleOverCheck();
-        _battleData.ChangeMana(2);
-        _battleData.TurnPlus();
-        _turnCount.ShowTurn();
-
-    }
+    
     #endregion
 
     public void BattleOverCheck()
@@ -343,7 +344,7 @@ public class BattleManager : MonoBehaviour
         if (_BattleUnitOrderList.Count <= 0)
         {
             //남은 유닛이 0일 때 Engage를 Prepare로 변경한다.
-            PhaseUpdate();
+            
             return;
         }
 
@@ -378,14 +379,13 @@ public class BattleManager : MonoBehaviour
     }
     
     // 이동 경로를 받아와 이동시킨다
-    public void MoveLotate(BattleUnit caster, Vector2 coord)
+    public void MoveLocate(BattleUnit caster, Vector2 coord)
     {
         Vector2 current = caster.Location;
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
     }
-
     
     public void SetTileColor(Color clr)
     {
