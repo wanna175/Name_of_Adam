@@ -6,14 +6,14 @@ using UnityEngine.EventSystems;
 
 public class UI_Hand : MonoBehaviour
 {
-    private UI_Hands _Hands;
+    private UI_Hands _hands;
 
     private Image _Image;
     private Unit _HandUnit = null;
 
     void Start()
     {
-        _Hands = GameManager.UI.Hands;
+        _hands = GetComponentInParent<UI_Hands>();
         _Image = GetComponent<Image>();
     }
 
@@ -54,6 +54,6 @@ public class UI_Hand : MonoBehaviour
     void OnMouseDown() 
     {
         Debug.Log("Hand Click");
-        _Hands.OnHandClick(this);
+        _hands.OnHandClick(this);
     }
 }
