@@ -85,8 +85,11 @@ public enum Phase
 public enum ClickType
 {
     Nothing,
+    
     Move,
-    Attack
+    Before_Attack,
+    Attack,
+    Prepare
 }
 
 [SerializeField]

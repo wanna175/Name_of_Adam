@@ -12,6 +12,8 @@ public class BattleUnit : Unit
     private SpriteRenderer _renderer;
     private Animator _animator;
 
+    public Unit_AI_Controller AI;
+
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
@@ -33,8 +35,10 @@ public class BattleUnit : Unit
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-
+        AI = GetComponent<Unit_AI_Controller>();
         _renderer.sprite = Data.Image;
+        
+        AI.SetCaster(this);
     }
 
     public void Init(Team team, Vector2 coord)
