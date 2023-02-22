@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: _currentHP
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429813, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: Effects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429813, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: Effects.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e5ebf919038f5d489e948e2a7833a01, type: 2}
     - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -89,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 2bf249cb224e9ac498ca25f6957035ca, type: 2}
     - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_Name
-      value: "\uAD81\uC218"
+      value: "\uAD81\uC218 BattleUnit"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f985903313e834580fc378803a516b, type: 3}
