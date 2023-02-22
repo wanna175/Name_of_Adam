@@ -48,7 +48,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
             if (_field.IsInRange(AttackRange))
             {
-                if (_field.TileDict[AttackRange].IsOnTile && _field.TileDict[AttackRange].Unit.Team == Team.Player)
+                if (_field.TileDict[AttackRange].UnitExist && _field.TileDict[AttackRange].Unit.Team == Team.Player)
                 {
                     Attack_Range_Unit_List.Add(AttackRange);
                 }
@@ -103,7 +103,7 @@ public class Unit_AI_Controller : MonoBehaviour
                 Vector3 vec1 = new Vector3(caster.Location.x + vec.x, caster.Location.y + vec.y, i);
                 if (Attackable_Tile_List.Contains(vec1))
                 {
-                    if (_field.TileDict[vec1].IsOnTile)
+                    if (_field.TileDict[vec1].UnitExist)
                         swapList.Add(vec1);
                     else
                         Unit_Attackable_Tile_List.Add(vec1);
@@ -172,14 +172,14 @@ public class Unit_AI_Controller : MonoBehaviour
             {
                 currntMin = sqr;
                 moveVectorList.Clear();
-                if (!_field.TileDict[Vec].IsOnTile)
+                if (!_field.TileDict[Vec].UnitExist)
                 {
                     moveVectorList.Add(Vec);
                 }
             }
             else if (currntMin == sqr)
             {
-                if (!_field.TileDict[Vec].IsOnTile)
+                if (!_field.TileDict[Vec].UnitExist)
                 {
                     moveVectorList.Add(Vec);
                 }
