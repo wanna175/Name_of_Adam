@@ -18,7 +18,8 @@ public class UI_WaitingLine : UI_Scene
     public void Start()
     {
         _grid = Util.FindChild(gameObject, "Grid").transform;
-        StartCoroutine(Test());
+        //StartCoroutine(Test());
+        _BattleMNG = GameManager.Battle;
     }
 
     IEnumerator Test()
