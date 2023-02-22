@@ -14,12 +14,14 @@ public class UI_WaitingUnit : MonoBehaviour
 
     public void SetUnit(Sprite s)
     {
-        GetComponent<Image>().enabled = true;
-        _Image.sprite = s;
+        Debug.Log("1");
+        _Image.enabled = true;
+        //_Image.sprite = s;
+        Debug.Log("2");
     }
 
     public void RemoveUnit()
     {
-        GetComponent<Image>().enabled = false;
+        _Image.enabled = false;
     }
 }

@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
 {
     private BattleDataManager _battleData;
     public BattleDataManager Data => _battleData;
-    private List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
+    [SerializeField] public List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
 
     private UIManager _UIMNG;
     private Field _field;
@@ -40,10 +40,7 @@ public class BattleManager : MonoBehaviour
         _hands = _UIMNG.ShowScene<UI_Hands>();
         _waitingLine = _UIMNG.ShowScene<UI_WaitingLine>();
 
-        SetupField();
-
-        if (TestMode)
-            UnitSpawn();
+        
 
         //_hands = GameManager.UI.ShowScene<UI_Hands>();
         //_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
@@ -53,10 +50,10 @@ public class BattleManager : MonoBehaviour
         PhaseChanger(Phase.SetupField);
     }
 
-    //private void Update()
-    //{
-    //    PhaseUpdate();
-    //}
+    private void Update()
+    {
+        PhaseUpdate();
+    }
 
     private void UnitSpawn()
     {
@@ -142,29 +139,25 @@ public class BattleManager : MonoBehaviour
         {
             case Phase.SetupField:
                 SetupField();
+                Debug.Log("필드 생성");
 
                 PhaseChanger(Phase.SpawnEnemyUnit);
 
                 break;
 
             case Phase.SpawnEnemyUnit:
-                //UnitSpawn();
-
                 GetComponent<UnitSpawner>().Init();
+                Debug.Log("스포너 생성");
+
+                if (TestMode)
+                    UnitSpawn();
 
                 PhaseChanger(Phase.Start);
                 break;
 
             case Phase.Start:
-                //StartEnter();
-
-                //전투시 맨 처음 Prepare 단계
                 Debug.Log("Start Enter");
 
-                //코루틴 등을 활용해 버튼 클릭 대기 상황을 만듦 UI_PhaseChange 버튼의 입력대기 받도록
-
-                //StartExit();
-                
                 Debug.Log("Start Exit");
 
                 PhaseChanger(Phase.Engage);
@@ -172,11 +165,9 @@ public class BattleManager : MonoBehaviour
                 break;
 
             case Phase.Engage:
-                //EngageEnter();
-                // 한번만 실행되도록 추가
-
                 if(isEngage)
                 {
+                    isEngage = false;
                     Debug.Log("Engage Enter");
 
                     //UI 튀어나옴
@@ -195,18 +186,17 @@ public class BattleManager : MonoBehaviour
                     }
 
                     BattleOrderReplace();
+                    
+                    if(_waitingLine != null)
+                    {
+                        Debug.Log("WaitingLIne");
+                    }
 
                     _waitingLine.SetBattleOrderList();
                     _waitingLine.SetWaitingLine();
 
-                    isEngage = false;
+                    
                 }
-
-                if(_clickType == ClickType.Nothing)
-                {
-                    break;
-                }
-               
 
                 // 실행을 해야 i++
                 if(_BattleUnitOrderList.Count > 0)
@@ -243,6 +233,11 @@ public class BattleManager : MonoBehaviour
                                     _waitingLine.SetWaitingLine();
                                     ChangeClickType(ClickType.Nothing);
                                 }
+                            }
+                            else
+                            {
+                                Debug.Log("입력대기");
+                                break;
                             }
                         }
                     }

@@ -36,6 +36,7 @@ public class BattleUnit : Unit
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         AI = GetComponent<Unit_AI_Controller>();
+
         _renderer.sprite = Data.Image;
         
         AI.SetCaster(this);
