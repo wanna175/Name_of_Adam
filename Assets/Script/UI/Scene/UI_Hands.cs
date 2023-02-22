@@ -6,11 +6,9 @@ public class UI_Hands : UI_Scene
 {
     [SerializeField] GameObject HandPrefabs;
     private List<UI_Hand> _handList = new List<UI_Hand>();
-
-    BattleDataManager _Data;
     private Transform _grid;
 
-    const int HandSize = 4;
+    private const int _maxSize = 3;
 
     void Start()
     {
@@ -26,8 +24,6 @@ public class UI_Hands : UI_Scene
 
         //    _handList.Add(obj.GetComponent<UI_Hand>());
         //}
-
-        StartCoroutine(Test());
     }
 
     IEnumerator Test()
@@ -95,18 +91,6 @@ public class UI_Hands : UI_Scene
 
         //return returnUnit;
         return null;
-    }
-
-    public void ReturnHand()
-    {
-        foreach (UI_Hand h in _handList)
-        {
-            if (!h.IsHandNull())
-            {
-                _Data.AddUnit(h.RemoveHandUnit());
-            }
-        }
-        _handList = null;
     }
 
     #region Hand Click
