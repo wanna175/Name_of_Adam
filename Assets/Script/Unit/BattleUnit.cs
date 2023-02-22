@@ -30,7 +30,7 @@ public class BattleUnit : Unit
     {
         set { _UnitDeadAction = value; }
     }
-
+    
     private void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -38,7 +38,7 @@ public class BattleUnit : Unit
         AI = GetComponent<Unit_AI_Controller>();
 
         _renderer.sprite = Data.Image;
-
+        
         AI.SetCaster(this);
     }
 
@@ -58,18 +58,16 @@ public class BattleUnit : Unit
         foreach (BattleUnit unit in _HitUnits)
             unit.GetDamage(GetStat().ATK);
     }
-
-    public void GetDamage(int DMG)
-    {
+    
+    public void GetDamage(int DMG) {
         HP.ChangeHP(-DMG);
     }
-
+    
     //오브젝트 생성 시, 최초 위치 설정
-    public void setLocate(Vector2 coord)
-    {
+    public void setLocate(Vector2 coord) {
         _location = coord;
     }
-
+    
     public void UnitDiedEvent()
     {
         // 23.02.16 임시 수정
@@ -85,12 +83,12 @@ public class BattleUnit : Unit
 
     public void ChangeTeam(Team team = default)
     {
-        if (team != default)
+        if(team != default)
         {
             _team = team;
             return;
         }
-
+        
         if (Team == Team.Player)
             _team = Team.Enemy;
         else
@@ -101,20 +99,18 @@ public class BattleUnit : Unit
     {
         transform.position = dest;
     }
+    
 
+    public void SkillUse(BattleUnit _unit) {
+        if(_unit != null)
+            Skill.Use(this, _unit);
+    }                   
 
-    public void SkillUse(BattleUnit _unit)
-    {
-        Skill.Use(this, _unit);
-    }
-
-    public Stat GetStat(bool buff = true)
-    {
+    public Stat GetStat(bool buff = true) {
         return Stat;
     }
 
-    public void ChangeHP(int value)
-    {
+    public void ChangeHP(int value) {
         HP.ChangeHP(value);
     }
 
@@ -122,13 +118,13 @@ public class BattleUnit : Unit
     {
         Fall.ChangeFall(value);
     }
-
+    
     public bool GetFlipX() => _renderer.flipX;
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
-
+    
     public List<Vector2> GetAttackRange() => Data.GetAttackRange();
-
+    
     public List<Vector2> GetMoveRange() => Data.GetMoveRange();
 }
 

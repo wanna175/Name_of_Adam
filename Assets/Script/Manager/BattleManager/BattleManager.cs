@@ -68,13 +68,13 @@ public class BattleManager : MonoBehaviour
     {
         coord = Field.FindCoordByTile(tile);
 
-        if(_clickType == ClickType.Engage_Nothing)
+        if(_CurrentPhase == Phase.Engage && _clickType == ClickType.Engage_Nothing)
         {
-            ChangeClickType(ClickType.Move);
+            _clickType = ClickType.Move;
         }
-        else if (_clickType == ClickType.Before_Attack)
+        else if(_clickType == ClickType.Before_Attack)
         {
-            ChangeClickType(ClickType.Attack);
+            _clickType = ClickType.Attack;
         }
 
     }
@@ -149,17 +149,10 @@ public class BattleManager : MonoBehaviour
                 break;
 
             case Phase.Start:
-                //StartEnter();
-
-                //전투시 맨 처음 Prepare 단계
                 Debug.Log("Start Enter");
-
-                //코루틴 등을 활용해 버튼 클릭 대기 상황을 만듦 UI_PhaseChange 버튼의 입력대기 받도록
-
 
                 if (_clickType >= ClickType.Engage_Nothing)
                 {
-                    //StartExit();
                     Debug.Log("Start Exit");
 
                     PhaseChanger(Phase.Engage);
@@ -202,7 +195,7 @@ public class BattleManager : MonoBehaviour
                 }
 
                 // 실행을 해야 i++
-                if (_BattleUnitOrderList.Count > 0)
+                if(_BattleUnitOrderList.Count > 0)
                 {
                     // 유닛이 스킬 씀
                     BattleUnit Unit = GetNowUnit();
@@ -260,6 +253,7 @@ public class BattleManager : MonoBehaviour
                 {
                     PhaseChanger(Phase.Prepare);
                     isEngage = true;
+                    ChangeClickType(ClickType.Prepare_Nothing);// 턴 확인용 임시
                 }
 
                 //EngageExit();
@@ -269,13 +263,12 @@ public class BattleManager : MonoBehaviour
                 //UI 사용 불가
 
                 BattleOverCheck();
-
-
+                
+                
                 break;
 
             case Phase.Prepare:
                 //PrepareEnter();
-                // PrepareEnter에서 ClickType을 Prepare_Nothing으로
                 Debug.Log("Prepare Enter");
 
                 _mana.ChangeMana(2);
@@ -300,7 +293,7 @@ public class BattleManager : MonoBehaviour
         _CurrentPhase = phase;
     }
 
-
+    
     #endregion
 
     public void BattleOverCheck()
@@ -308,7 +301,7 @@ public class BattleManager : MonoBehaviour
         int MyUnit = 0;
         int EnemyUnit = 0;
 
-        foreach (BattleUnit BUnit in Data.BattleUnitList)
+        foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
             if (BUnit.Team == Team.Player)//아군이면
                 MyUnit++;
@@ -323,7 +316,7 @@ public class BattleManager : MonoBehaviour
         {
             GameOver();
         }
-        else if (EnemyUnit == 0)
+        else if(EnemyUnit == 0)
         {
             BattleOver();
         }
@@ -366,7 +359,19 @@ public class BattleManager : MonoBehaviour
         _clickType = type;
     }
 
+    public void TurnChange()
+    {
+        if (_clickType < ClickType.Engage_Nothing)
+            _clickType = ClickType.Engage_Nothing;
+        else
+            _clickType = ClickType.Prepare_Nothing;
+    }
 
+    // BattleUnitList의 첫 번째 요소부터 순회
+    // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
+    
+
+    
     // 이동 경로를 받아와 이동시킨다
     public void MoveLocate(BattleUnit caster, Vector2 coord)
     {
@@ -389,7 +394,7 @@ public class BattleManager : MonoBehaviour
             return _BattleUnitOrderList[0];
         return null;
     }
-
+    
     // 임시 메서드
     BattleUnit dump()
     {
@@ -397,7 +402,7 @@ public class BattleManager : MonoBehaviour
 
         List<Vector2> rangeList = caster.Data.GetAttackRange();
         BattleUnit hitUnits = new BattleUnit();
-
+        
         BattleUnit unit = _field.GetUnit(caster.SelectTile);
 
         if (unit != null)
@@ -405,7 +410,7 @@ public class BattleManager : MonoBehaviour
             if (unit.Team != caster.Team)
                 hitUnits = unit;
         }
-
+        
 
         return hitUnits;
     }

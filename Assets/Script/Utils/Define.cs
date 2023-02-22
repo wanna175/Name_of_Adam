@@ -84,16 +84,18 @@ public enum Phase
 
 public enum ClickType
 {
-    // 준비단계의 경우, 0~9의 범위 안에 놓는다.
+    // PreparePhase에서 사용되는 ClickType
+    // 0부터 9까지 포진되어있다
     Prepare_Nothing = 0,
     SetUnit,
     PlayerSkill,
 
-    // 전투단계의 경우, 10~19의 범위 안에 놓는다.
+    // EngagePhase에서 사용되는 ClickType
+    // 10부터 19까지
     Engage_Nothing = 10,
     Move,
     Before_Attack,
-    Attack
+    Attack,
 }
 
 [SerializeField]
