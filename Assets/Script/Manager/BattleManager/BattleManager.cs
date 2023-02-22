@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
 {
     private BattleDataManager _battleData;
     public BattleDataManager Data => _battleData;
-    private List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
+    [SerializeField] public List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
 
     private UIManager _UIMNG;
     private Field _field;
@@ -30,6 +30,8 @@ public class BattleManager : MonoBehaviour
 
     private Vector2 coord;
 
+    private bool isEngage = true;
+
     private void Awake()
     {
         _UIMNG = GameManager.UI;
@@ -38,10 +40,7 @@ public class BattleManager : MonoBehaviour
         _hands = _UIMNG.ShowScene<UI_Hands>();
         _waitingLine = _UIMNG.ShowScene<UI_WaitingLine>();
 
-        SetupField();
-
-        if (TestMode)
-            UnitSpawn();
+        
 
         //_hands = GameManager.UI.ShowScene<UI_Hands>();
         //_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
@@ -58,7 +57,7 @@ public class BattleManager : MonoBehaviour
 
     private void UnitSpawn()
     {
-        GetComponent<UnitSpawner>().Init();
+        GetComponent<UnitSpawner>().Spawn();
     }
 
     private void SetupField()
@@ -75,7 +74,7 @@ public class BattleManager : MonoBehaviour
     {
         coord = Field.FindCoordByTile(tile);
 
-        if (_CurrentPhase == Phase.Engage)
+        if(_clickType == ClickType.Engage_Nothing)
         {
             ChangeClickType(ClickType.Move);
         }
@@ -140,15 +139,17 @@ public class BattleManager : MonoBehaviour
         {
             case Phase.SetupField:
                 SetupField();
+                Debug.Log("필드 생성");
 
                 PhaseChanger(Phase.SpawnEnemyUnit);
 
                 break;
 
             case Phase.SpawnEnemyUnit:
+
                 //UnitSpawn();
 
-                GetComponent<UnitSpawner>().Init();
+                GetComponent<UnitSpawner>().Spawn();
 
                 PhaseChanger(Phase.Start);
                 break;
@@ -168,37 +169,45 @@ public class BattleManager : MonoBehaviour
                     //StartExit();
                 }
 
-
                 Debug.Log("Start Exit");
 
                 PhaseChanger(Phase.Engage);
+                
                 break;
 
             case Phase.Engage:
-                //EngageEnter();
-                // 한번만 실행되도록 추가
-                // EngageEnter에서 ClickType을 Engage_Nothing으로 변환
-                Debug.Log("Engage Enter");
-
-                //UI 튀어나옴
-                //UI가 작동할 수 있게 해줌
-
-                // 필드 위의 모든 표시 삭제
-                Field.ClearAllColor();
-
-                // 턴 시작 전에 순서를 정렬한다.
-
-                _BattleUnitOrderList.Clear();
-
-                foreach (BattleUnit unit in _battleData.BattleUnitList)
+                if(isEngage)
                 {
-                    _BattleUnitOrderList.Add(unit);
+                    isEngage = false;
+                    Debug.Log("Engage Enter");
+
+                    //UI 튀어나옴
+                    //UI가 작동할 수 있게 해줌
+
+                    // 필드 위의 모든 표시 삭제
+                    Field.ClearAllColor();
+
+                    // 턴 시작 전에 순서를 정렬한다.
+
+                    _BattleUnitOrderList.Clear();
+
+                    foreach (BattleUnit unit in _battleData.BattleUnitList)
+                    {
+                        _BattleUnitOrderList.Add(unit);
+                    }
+
+                    BattleOrderReplace();
+                    
+                    if(_waitingLine != null)
+                    {
+                        Debug.Log("WaitingLIne");
+                    }
+
+                    _waitingLine.SetBattleOrderList();
+                    _waitingLine.SetWaitingLine();
+
+                    
                 }
-
-                BattleOrderReplace();
-
-                _waitingLine.SetBattleOrderList();
-                _waitingLine.SetWaitingLine();
 
                 // 실행을 해야 i++
                 if (_BattleUnitOrderList.Count > 0)
@@ -236,12 +245,18 @@ public class BattleManager : MonoBehaviour
                                     ChangeClickType(ClickType.Engage_Nothing);
                                 }
                             }
+                            else
+                            {
+                                Debug.Log("입력대기");
+                                break;
+                            }
                         }
                     }
                 }
                 else
                 {
                     PhaseChanger(Phase.Prepare);
+                    isEngage = true;
                 }
 
                 //EngageExit();

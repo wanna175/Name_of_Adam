@@ -16,8 +16,10 @@ public class UnitSpawner : MonoBehaviour
 {
     [SerializeField] List<SpawnData> SpawnMonsters;
 
-    public void Init()
+    public void Spawn()
     {
+        Transform parent = SetParent();
+
         foreach(SpawnData data in SpawnMonsters)
         {
             if (GameManager.Battle.Field.TileDict[data.location].IsOnTile)
@@ -26,8 +28,16 @@ public class UnitSpawner : MonoBehaviour
                 continue;
             }
 
-            GameObject go = GameObject.Instantiate(data.prefab);
+            GameObject go = GameObject.Instantiate(data.prefab, parent);
             GameManager.Battle.UnitSetting(go.GetComponent<BattleUnit>(), data.location);
         }
+    }
+
+    private Transform SetParent()
+    {
+        GameObject go = GameObject.Find("Units");
+        if (go == null)
+            go = new GameObject("Units");
+        return go.transform;
     }
 }
