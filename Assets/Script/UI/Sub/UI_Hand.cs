@@ -4,37 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UI_Hand : MonoBehaviour
+public class UI_Hand : UI_Base
 {
-    private UI_Hands _hands;
+    private Unit _handUnit = null;
 
-    private Image _Image;
-    private Unit _HandUnit = null;
-
-    void Start()
-    {
-        _hands = GetComponentInParent<UI_Hands>();
-    }
 
     public void SetHandUnit(Unit unit)
     {
-        _HandUnit = unit;
-        if (_HandUnit != null)
-        {
-            GetComponent<Image>().enabled = true;
-            _Image.sprite = _HandUnit.Data.Image;
-        }
+        _handUnit = unit;
+        SetUnitInfo();
+    }
 
+    private void SetUnitInfo()
+    {
+        // UI가 완성된 후에 디테일한 요소 추가
     }
 
     public Unit GetHandUnit()
     {
-        return _HandUnit;
+        return _handUnit;
     }
 
     public bool IsHandNull()
     {
-        if (_HandUnit == null)
+        if (_handUnit == null)
             return true;
         else
             return false;
@@ -42,8 +35,8 @@ public class UI_Hand : MonoBehaviour
 
     public Unit RemoveHandUnit()
     {
-        Unit returnUnit = _HandUnit;
-        _HandUnit = null;
+        Unit returnUnit = _handUnit;
+        _handUnit = null;
         
         GetComponent<Image>().enabled = false;
         
@@ -53,6 +46,16 @@ public class UI_Hand : MonoBehaviour
     void OnMouseDown() 
     {
         Debug.Log("Hand Click");
-        _hands.OnHandClick(this);
+        //_hands.OnHandClick(this);
+    }
+
+    private void OnMouseEnter()
+    {
+        
+    }
+
+    private void OnMouseExit()
+    {
+        
     }
 }

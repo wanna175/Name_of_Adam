@@ -15,10 +15,9 @@ public class UI_Hands : UI_Scene
     void Start()
     {
         _grid = Util.FindChild(gameObject, "Grid").transform;
+        _handList = new List<UI_Hand>();
 
         //_Data = GameManager.Battle.Data;
-
-        //_handList = new List<UI_Hand>();
 
         //for (int i = 0; i < HandSize; i++)
         //{
@@ -39,36 +38,63 @@ public class UI_Hands : UI_Scene
             _handList.Add(newUnit);
             yield return new WaitForSeconds(1f);
         }
+    }
 
-    }
-    public void AddUnitToHand()
+    public void AddUnit(Unit unit)
     {
-        //1,2,3,4 순으로 Hand의 Unit이 null이면 1개 추가
-        foreach (UI_Hand h in _handList)
-        {
-            if (h.IsHandNull())
-            {
-                h.SetHandUnit(_Data.GetRandomUnitFromDeck());
-                break;
-            }
-        }
+        UI_Hand newCard = GameObject.Instantiate(HandPrefabs, _grid).GetComponent<UI_Hand>();
+        newCard.SetHandUnit(unit);
+        _handList.Add(newCard);
     }
+
+    public void RemoveUnit(Unit unit)
+    {
+        UI_Hand card = FindCardByUnit(unit);
+
+        if (card != null)
+            DestroyCard(card);
+    }
+
+    public void ClearHands()
+    {
+        foreach (UI_Hand card in _handList)
+            DestroyCard(card);
+    }
+
+    private void DestroyCard(UI_Hand card)
+    {
+        _handList.Remove(card);
+        Destroy(card.gameObject);
+    }
+
+    private UI_Hand FindCardByUnit(Unit unit)
+    {
+        foreach(UI_Hand card in _handList)
+        {
+            if (card.GetHandUnit() == unit)
+                return card;
+        }
+
+        return null;
+    }
+
     public Unit RemoveHand(int handIndex)
     {
-        //handIndex는 1부터 시작하기에 -1 해야함
-        Unit returnUnit;
+        ////handIndex는 1부터 시작하기에 -1 해야함
+        //Unit returnUnit;
 
-        returnUnit = _handList[handIndex].RemoveHandUnit();
+        //returnUnit = _handList[handIndex].RemoveHandUnit();
 
-        for (int i = handIndex+1; i < HandSize; i++)
-        {
-            _handList[i-1].SetHandUnit(_handList[i].RemoveHandUnit());
-        }
+        //for (int i = handIndex + 1; i < HandSize; i++)
+        //{
+        //    _handList[i - 1].SetHandUnit(_handList[i].RemoveHandUnit());
+        //}
 
-        //빈 공간이 있으면 1개 추가
-        AddUnitToHand();
+        ////빈 공간이 있으면 1개 추가
+        //AddUnitToHand();
 
-        return returnUnit;
+        //return returnUnit;
+        return null;
     }
 
     public void ReturnHand()
