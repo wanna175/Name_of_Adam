@@ -225,6 +225,18 @@ public class BattleManager : MonoBehaviour
                         }
                         else
                         {
+                            Field.ClearAllColor();
+                            if (_clickType == ClickType.Nothing)
+                            {
+                                Field.SetTileColor(Unit, Color.yellow, ClickType.Move);
+                            }
+                            else
+                            {
+                                Field.SetTileColor(Unit,Color.red, ClickType.Attack);
+                            }
+
+                            
+                            
                             if (Field.Get_Abs_Pos(Unit, _clickType).Contains(coord))
                             {
                                 if (_clickType == ClickType.Move)
@@ -277,7 +289,7 @@ public class BattleManager : MonoBehaviour
 
                 _mana.ChangeMana(2);
                 _battleData.TurnPlus();
-                _turnCount.ShowTurn();
+                //_turnCount.ShowTurn();
 
                 // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
 
