@@ -68,7 +68,7 @@ public class BattleManager : MonoBehaviour
     {
         coord = Field.FindCoordByTile(tile);
 
-        if(_CurrentPhase == Phase.Engage && _clickType == ClickType.Nothing)
+        if(_CurrentPhase == Phase.Engage && _clickType == ClickType.Engage_Nothing)
         {
             _clickType = ClickType.Move;
         }
@@ -151,9 +151,12 @@ public class BattleManager : MonoBehaviour
             case Phase.Start:
                 Debug.Log("Start Enter");
 
-                Debug.Log("Start Exit");
+                if (_clickType >= ClickType.Engage_Nothing)
+                {
+                    Debug.Log("Start Exit");
 
-                PhaseChanger(Phase.Engage);
+                    PhaseChanger(Phase.Engage);
+                }
                 
                 break;
 
@@ -208,7 +211,7 @@ public class BattleManager : MonoBehaviour
                         else
                         {
                             Field.ClearAllColor();
-                            if (_clickType == ClickType.Nothing)
+                            if (_clickType == ClickType.Engage_Nothing)
                             {
                                 Field.SetTileColor(Unit, Color.yellow, ClickType.Move);
                             }
@@ -236,7 +239,7 @@ public class BattleManager : MonoBehaviour
                                     Field.ClearAllColor();
                                     _BattleUnitOrderList.RemoveAt(0);
                                     _waitingLine.SetWaitingLine();
-                                    ChangeClickType(ClickType.Nothing);
+                                    ChangeClickType(ClickType.Engage_Nothing);
                                 }
                             }
                             else
@@ -250,6 +253,7 @@ public class BattleManager : MonoBehaviour
                 {
                     PhaseChanger(Phase.Prepare);
                     isEngage = true;
+                    ChangeClickType(ClickType.Prepare_Nothing);// 턴 확인용 임시
                 }
 
                 //EngageExit();
@@ -273,10 +277,13 @@ public class BattleManager : MonoBehaviour
 
                 // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
 
-                //PrepareExit();
+                if (_clickType >= ClickType.Engage_Nothing)
+                {
+                    //PrepareExit();
+                    Debug.Log("Prepare Exit");
 
-                Debug.Log("Prepare Exit");
-                PhaseChanger(Phase.Engage);
+                    PhaseChanger(Phase.Engage);
+                }
                 break;
         }
     }
@@ -350,6 +357,14 @@ public class BattleManager : MonoBehaviour
     public void ChangeClickType(ClickType type)
     {
         _clickType = type;
+    }
+
+    public void TurnChange()
+    {
+        if (_clickType < ClickType.Engage_Nothing)
+            _clickType = ClickType.Engage_Nothing;
+        else
+            _clickType = ClickType.Prepare_Nothing;
     }
 
     // BattleUnitList의 첫 번째 요소부터 순회

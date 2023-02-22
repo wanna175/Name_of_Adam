@@ -102,7 +102,8 @@ public class BattleUnit : Unit
     
 
     public void SkillUse(BattleUnit _unit) {
-        Skill.Use(this, _unit);
+        if(_unit != null)
+            Skill.Use(this, _unit);
     }                   
 
     public Stat GetStat(bool buff = true) {
