@@ -156,8 +156,6 @@ public class BattleManager : MonoBehaviour
 
             case Phase.Start:
                 //StartEnter();
-                // StartEnter에서 또는 Start로 진입하기 전에
-                // ClickType을 Prepare_Nothing으로 변환
 
                 //전투시 맨 처음 Prepare 단계
                 Debug.Log("Start Enter");
@@ -226,7 +224,7 @@ public class BattleManager : MonoBehaviour
                         else
                         {
                             Field.ClearAllColor();
-                            if (_clickType == ClickType.Nothing)
+                            if (_clickType == ClickType.Engage_Nothing)
                             {
                                 Field.SetTileColor(Unit, Color.yellow, ClickType.Move);
                             }
