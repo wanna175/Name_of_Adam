@@ -46,8 +46,8 @@ public class UI_WaitingLine : UI_Scene
     {
         for (int i = 0; i < _BattleUnitOrderList.Count; i++)
         {
-            GameObject obj = Instantiate(P_WaitingUnit, transform);
-            _waitingUnitList.Add(obj.GetComponent<UI_WaitingUnit>());
+            UI_WaitingUnit newUnit = GameObject.Instantiate(P_WaitingUnit, _grid).GetComponent<UI_WaitingUnit>();
+            _waitingUnitList.Add(newUnit);
             _waitingUnitList[i].SetUnit(_BattleUnitOrderList[i].Data.Image);
         }
     }

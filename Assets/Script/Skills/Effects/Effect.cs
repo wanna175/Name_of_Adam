@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class Effect : MonoBehaviour
+[CreateAssetMenu(fileName = "Effect", menuName = "Scriptable Object/Effect")]
+public abstract class Effect : ScriptableObject
 {
     public abstract void Use(BattleUnit caster, BattleUnit receiver);
 }

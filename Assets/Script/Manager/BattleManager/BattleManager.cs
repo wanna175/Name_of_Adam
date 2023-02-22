@@ -39,13 +39,7 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _hands = _UIMNG.ShowScene<UI_Hands>();
         _waitingLine = _UIMNG.ShowScene<UI_WaitingLine>();
-
-        
-
-        //_hands = GameManager.UI.ShowScene<UI_Hands>();
-        //_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         //_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
-
 
         PhaseChanger(Phase.SetupField);
     }
@@ -115,7 +109,7 @@ public class BattleManager : MonoBehaviour
     public void UnitSetting(BattleUnit _unit, Vector2 coord)
     {
         _unit.setLocate(coord);
-        _unit.Init(Team.Player, coord);
+        _unit.Init(_unit.Team, coord);
         Field.EnterTile(_unit, coord);
         _unit.UnitDeadAction = UnitDeadAction;
 
@@ -237,7 +231,7 @@ public class BattleManager : MonoBehaviour
                                 {
                                     // 제자리를 클릭했다면 공격하지 않는다.
                                     if (coord != Unit.Location)
-                                        Unit.SkillUse(dump());
+                                        Unit.SkillUse(_field.GetUnit(coord));
                                     // 공격 실행 후 바로 다음유닛 행동 실행
                                     Field.ClearAllColor();
                                     _BattleUnitOrderList.RemoveAt(0);
@@ -247,7 +241,6 @@ public class BattleManager : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("입력대기");
                                 break;
                             }
                         }
