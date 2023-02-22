@@ -167,9 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc08131f4fa85d4f81b453c6ebf6d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hands: {fileID: 0}
-  WaitingLine: {fileID: 0}
-  TurnCount: {fileID: 0}
 --- !u!1 &49041951
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _BattleUnitOrderList: []
   TestMode: 1
 --- !u!4 &1589663946
 Transform:
@@ -653,6 +651,14 @@ MonoBehaviour:
     stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
     location: {x: 2, y: 2}
+    team: 1
+    stigmas: []
+  - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
+    location: {x: 4, y: 2}
+    team: 1
+    stigmas: []
+  - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
+    location: {x: 3, y: 2}
     team: 1
     stigmas: []
 --- !u!1 &1628690810
