@@ -97,6 +97,7 @@ public class BattleManager : MonoBehaviour
             {
                 Vector2 dest = coord - nowUnit.Location;
                 MoveLocate(nowUnit, dest);
+                ChangeClickType(ClickType.Attack);
             }
             else if (_clickType == ClickType.Attack)
             {
@@ -104,10 +105,9 @@ public class BattleManager : MonoBehaviour
                 if (coord != nowUnit.Location)
                     nowUnit.SkillUse(dump());
                 // 공격 실행 후 바로 다음유닛 행동 실행
+                ChangeClickType(ClickType.Nothing);
                 UseNextUnit();
             }
-
-            ChangeClickType();
         }
     }
 
@@ -185,9 +185,15 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Start Enter");
 
                 //코루틴 등을 활용해 버튼 클릭 대기 상황을 만듦 UI_PhaseChange 버튼의 입력대기 받도록
+                // StartEnter를 한번만 실행해야함
 
-                //StartExit();
-                
+                if(_clickType != ClickType.Prepare)
+                {
+                    //StartExit();
+                }
+
+
+
                 Debug.Log("Start Exit");
 
                 PhaseChanger(Phase.Engage);
@@ -318,21 +324,9 @@ public class BattleManager : MonoBehaviour
         _BattleUnitOrderList.Remove(_unit);
     }
 
-    public void ChangeClickType()
+    public void ChangeClickType(ClickType type)
     {
-        if (GetNowUnit() == null)
-        {
-            _clickType = ClickType.Nothing;
-            return;
-        }
-
-        if (GetNowUnit().Team == Team.Enemy)
-            return;
-
-        _clickType++;
-
-        if (_clickType > ClickType.Attack)
-            _clickType = ClickType.Nothing;
+        _clickType = type;
 
         Field.SetTileColor(GetNowUnit(), Color.yellow, _clickType);
     }
@@ -362,7 +356,7 @@ public class BattleManager : MonoBehaviour
             else
             {
                 // 아군 유닛이 버튼 대기 받을 수 있도록 수정 OnclickTile 수정 필요
-                ChangeClickType();
+                ChangeClickType(ClickType.Move);
             }
         }
         else
