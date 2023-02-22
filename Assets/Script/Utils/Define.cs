@@ -84,11 +84,15 @@ public enum Phase
 
 public enum ClickType
 {
-    Prepare, // 준비단계의 경우, Prepare로 놓는다.
+    // 준비단계의 경우, 0~9의 범위 안에 놓는다.
+    Prepare_Nothing = 0,
+    SetUnit,
+    PlayerSkill,
 
-    // EngagePhase에서 사용되는 것들
-    Nothing,
+    // 전투단계의 경우, 10~19의 범위 안에 놓는다.
+    Engage_Nothing = 10,
     Move,
+    Before_Attack,
     Attack
 }
 
