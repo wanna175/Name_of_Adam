@@ -8,6 +8,7 @@ public class UI_WaitingLine : UI_Scene
     [SerializeField] GameObject P_WaitingUnit;
     private List<UI_WaitingUnit> _waitingUnitList = new List<UI_WaitingUnit>();
     private Transform _grid;
+    private const int _maxSize = 6;
 
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitOrderList;
@@ -18,7 +19,6 @@ public class UI_WaitingLine : UI_Scene
     public void Start()
     {
         _grid = Util.FindChild(gameObject, "Grid").transform;
-        //StartCoroutine(Test());
         _BattleMNG = GameManager.Battle;
     }
 
@@ -32,9 +32,14 @@ public class UI_WaitingLine : UI_Scene
         }
     }
 
-    public void Generate_WaitingUnit(int i)
+    private void ClearLine()
     {
-        _waitingUnitList[i].enabled = true;
+        for(int i= _waitingUnitList.Count-1; i>=0; i--)
+        {
+            UI_WaitingUnit unit = _waitingUnitList[i];
+            _waitingUnitList.Remove(unit);
+            Destroy(unit.gameObject);
+        }
     }
 
     public void SetBattleOrderList()
@@ -44,10 +49,12 @@ public class UI_WaitingLine : UI_Scene
 
     public void SetWaitingLine()
     {
+        ClearLine();
+
         for (int i = 0; i < _BattleUnitOrderList.Count; i++)
         {
-            GameObject obj = Instantiate(P_WaitingUnit, transform);
-            _waitingUnitList.Add(obj.GetComponent<UI_WaitingUnit>());
+            UI_WaitingUnit newUnit = GameObject.Instantiate(P_WaitingUnit, _grid).GetComponent<UI_WaitingUnit>();
+            _waitingUnitList.Add(newUnit);
             _waitingUnitList[i].SetUnit(_BattleUnitOrderList[i].Data.Image);
         }
     }

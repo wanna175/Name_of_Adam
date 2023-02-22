@@ -7,7 +7,14 @@ using UnityEngine.EventSystems;
 public class UI_Hand : UI_Base
 {
     private Unit _handUnit = null;
+    private GameObject _highlight = null;
 
+
+    private void Start()
+    {
+        _highlight = Util.FindChild(gameObject, "Highlight");
+        _highlight.SetActive(false);
+    }
 
     public void SetHandUnit(Unit unit)
     {
@@ -33,17 +40,7 @@ public class UI_Hand : UI_Base
             return false;
     }
 
-    public Unit RemoveHandUnit()
-    {
-        Unit returnUnit = _handUnit;
-        _handUnit = null;
-        
-        GetComponent<Image>().enabled = false;
-        
-        return returnUnit;
-    }
-
-    void OnMouseDown() 
+    private void OnMouseDown() 
     {
         Debug.Log("Hand Click");
         //_hands.OnHandClick(this);
@@ -51,11 +48,11 @@ public class UI_Hand : UI_Base
 
     private void OnMouseEnter()
     {
-        
+        _highlight.SetActive(true);
     }
 
     private void OnMouseExit()
     {
-        
+        _highlight.SetActive(false);
     }
 }
