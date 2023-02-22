@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_Hands : MonoBehaviour
+public class UI_Hands : UI_Scene
 {
     [SerializeField] GameObject HandPrefabs;
     private List<UI_Hand> _HandList;
     
-    BattleDataManager _BattleDataMNG;
+    BattleDataManager _Data;
+
+    const int HandSize = 4;
 
     void Start()
     {
-        _BattleDataMNG = GameManager.Battle.Data;
+        _Data = GameManager.Battle.Data;
 
         _HandList = new List<UI_Hand>();
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < HandSize; i++)
         {
             GameObject obj = Instantiate(HandPrefabs, transform);
-            obj.transform.position = new Vector3(3 + 2 * i, -5.3f);
+            obj.transform.position = new Vector3(6 + 1.5f, -5.3f);
 
             _HandList.Add(obj.GetComponent<UI_Hand>());
         }
@@ -28,7 +30,7 @@ public class UI_Hands : MonoBehaviour
     {
         Debug.Log("?");
         //전투 시작 후 초기 멀리건 4장
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < HandSize; i++) {
             AddUnitToHand();
         }
     }
@@ -40,7 +42,7 @@ public class UI_Hands : MonoBehaviour
         {
             if (h.IsHandNull())
             {
-                h.SetHandUnit(_BattleDataMNG.GetRandomUnit());
+                h.SetHandUnit(_Data.GetRandomUnit());
                 break;
             }
         }
@@ -52,7 +54,7 @@ public class UI_Hands : MonoBehaviour
 
         returnUnit = _HandList[handIndex].RemoveHandUnit();
 
-        for (int i = handIndex+1; i < 4; i++)
+        for (int i = handIndex+1; i < HandSize; i++)
         {
             _HandList[i-1].SetHandUnit(_HandList[i].RemoveHandUnit());
         }
@@ -69,10 +71,9 @@ public class UI_Hands : MonoBehaviour
         {
             if (!h.IsHandNull())
             {
-                _BattleDataMNG.AddUnit(h.RemoveHandUnit());
+                _Data.AddUnit(h.RemoveHandUnit());
             }
         }
-
         _HandList = null;
     }
 
@@ -88,7 +89,7 @@ public class UI_Hands : MonoBehaviour
         _ClickedHand = _HandList.IndexOf(hand);
         _ClickedUnit = hand.GetHandUnit();
 
-        if (!_BattleDataMNG.Mana.CanUseMana(_ClickedUnit.Data.ManaCost)){
+        if (!_Data.Mana.CanUseMana(_ClickedUnit.Data.ManaCost)){
             Debug.Log("not enough mana");
             ClearHand();
         }
