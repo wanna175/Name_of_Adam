@@ -6,11 +6,11 @@ public class Mana : MonoBehaviour
     // Mana Manage
     [SerializeField] private int _maxManaCost = 200;
     [ReadOnly, SerializeField] private int _currentMana = 0;
-    private UI_ManaGuage _manaGuage;
+    private UI_ManaGauge _manaGuage;
 
     private void Awake()
     {
-        _manaGuage = GameManager.UI.ShowScene<UI_ManaGuage>();
+        _manaGuage = GameManager.UI.ShowScene<UI_ManaGauge>();
         ChangeMana(_maxManaCost);
     }
 

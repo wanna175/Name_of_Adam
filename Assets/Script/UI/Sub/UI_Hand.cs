@@ -14,7 +14,6 @@ public class UI_Hand : MonoBehaviour
     void Start()
     {
         _hands = GetComponentInParent<UI_Hands>();
-        _Image = GetComponent<Image>();
     }
 
     public void SetHandUnit(Unit unit)

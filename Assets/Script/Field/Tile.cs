@@ -10,7 +10,7 @@ public class Tile : MonoBehaviour
     private BattleUnit _unit = null;
     public BattleUnit Unit => _unit;
     // IsOnTIle의 이름은 유닛이 가지는 이름같다. 위에 유닛이 있다는 것을 알리는 이름이 더 좋아보임
-    public bool IsOnTile { get { if (Unit == null) return false; return true; } }
+    public bool UnitExist { get { if (Unit == null) return false; return true; } }
     public Action<Tile> OnClickAction = null;
 
     public Tile Init(Vector3 position)
@@ -24,7 +24,7 @@ public class Tile : MonoBehaviour
 
     public void EnterTile(BattleUnit unit)
     {
-        if (IsOnTile)
+        if (UnitExist)
         {
             Debug.Log("타일에 유닛이 존재합니다.");
             return;

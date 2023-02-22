@@ -87,7 +87,7 @@ public class Field : MonoBehaviour
         BattleUnit currentUnit = TileDict[current].Unit;
         BattleUnit destUnit = TileDict[dest].Unit;
         
-        if (TileDict[dest].IsOnTile)
+        if (TileDict[dest].UnitExist)
         {
             // *****
             // 얘는 위의 IsRange(dest)와 같이 처리해도 될 것 같다
