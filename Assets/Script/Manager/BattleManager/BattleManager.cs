@@ -17,6 +17,8 @@ public class BattleManager : MonoBehaviour
 
     private UIManager _UIMNG;
     private Field _field;
+    private Mana _mana;
+
     public Field Field => _field;
 
     [SerializeField] private bool TestMode = true;
@@ -34,6 +36,9 @@ public class BattleManager : MonoBehaviour
     {
         _UIMNG = GameManager.UI;
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
+        _mana = Util.GetOrAddComponent<Mana>(gameObject);
+        _hands = _UIMNG.ShowScene<UI_Hands>();
+        _waitingLine = _UIMNG.ShowScene<UI_WaitingLine>();
 
         SetupField();
 
@@ -97,7 +102,7 @@ public class BattleManager : MonoBehaviour
         if (clickedUnit == null)
             return;
 
-        _battleData.ChangeMana(-1 * clickedUnit.Data.ManaCost);
+        _mana.ChangeMana(-1 * clickedUnit.Data.ManaCost);
 
         GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Units/BaseUnit");
         BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
@@ -263,7 +268,7 @@ public class BattleManager : MonoBehaviour
                 //PrepareEnter();
                 Debug.Log("Prepare Enter");
 
-                _battleData.ChangeMana(2);
+                _mana.ChangeMana(2);
                 _battleData.TurnPlus();
                 _turnCount.ShowTurn();
 

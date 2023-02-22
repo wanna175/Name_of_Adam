@@ -20,7 +20,7 @@ public class UnitSpawner : MonoBehaviour
     {
         foreach(SpawnData data in SpawnMonsters)
         {
-            if (GameManager.Battle.Field.TileDict[data.location].IsOnTile)
+            if (GameManager.Battle.Field.TileDict[data.location].UnitExist)
             {
                 Debug.Log("해당 타일에 유닛이 존재합니다.");
                 continue;
