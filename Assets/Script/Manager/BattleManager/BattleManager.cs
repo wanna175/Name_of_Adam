@@ -156,7 +156,8 @@ public class BattleManager : MonoBehaviour
 
             case Phase.Start:
                 //StartEnter();
-                // StartEnter에서 ClickType을 Prepare_Nothing으로 변환
+                // StartEnter에서 또는 Start로 진입하기 전에
+                // ClickType을 Prepare_Nothing으로 변환
 
                 //전투시 맨 처음 Prepare 단계
                 Debug.Log("Start Enter");
@@ -167,11 +168,10 @@ public class BattleManager : MonoBehaviour
                 if (_clickType >= ClickType.Engage_Nothing)
                 {
                     //StartExit();
+                    Debug.Log("Start Exit");
+
+                    PhaseChanger(Phase.Engage);
                 }
-
-                Debug.Log("Start Exit");
-
-                PhaseChanger(Phase.Engage);
                 
                 break;
 
@@ -281,11 +281,13 @@ public class BattleManager : MonoBehaviour
 
                 // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
 
-                if(_clickType >= ClickType.Engage_Nothing)
-                //PrepareExit();
+                if (_clickType >= ClickType.Engage_Nothing)
+                {
+                    //PrepareExit();
+                    Debug.Log("Prepare Exit");
 
-                Debug.Log("Prepare Exit");
-                PhaseChanger(Phase.Engage);
+                    PhaseChanger(Phase.Engage);
+                }
                 break;
         }
     }
