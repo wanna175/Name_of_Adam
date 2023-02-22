@@ -26,6 +26,8 @@ public class BattleManager : MonoBehaviour
     private UI_WaitingLine _waitingLine;
     private UI_TurnCount _turnCount;
 
+    private Vector2 coord;
+
     private void Awake()
     {
         _UIMNG = GameManager.UI;
@@ -66,49 +68,17 @@ public class BattleManager : MonoBehaviour
 
     public void OnClickTile(Tile tile)
     {
-        Vector2 coord = Field.FindCoordByTile(tile);
+        coord = Field.FindCoordByTile(tile);
 
-        //Prepare 페이즈
-        if (CurrentPhase == Phase.Prepare)
+        if(_CurrentPhase == Phase.Engage)
         {
-            BattleUnitFactory(coord);
+            _clickType = ClickType.Move;
         }
-        //Start 페이즈
-        else if (CurrentPhase == Phase.Start)
+        else if(_clickType == ClickType.Before_Attack)
         {
-            BattleUnitFactory(coord);
+            _clickType = ClickType.Attack;
         }
-        //Engage 페이즈
-        else
-        {
-            BattleUnit nowUnit = GetNowUnit();
-            List<Vector2> RangeList = Field.Get_Abs_Pos(nowUnit, _clickType);
 
-            Field.ClearAllColor();
-
-            // 범위 밖을 클릭했으면 다시 클릭한다.
-            if (!RangeList.Contains(coord))
-            {
-                Field.SetTileColor(GetNowUnit(), Color.yellow, _clickType);
-                return;
-            }
-            
-            if (_clickType == ClickType.Move)
-            {
-                Vector2 dest = coord - nowUnit.Location;
-                MoveLocate(nowUnit, dest);
-            }
-            else if (_clickType == ClickType.Attack)
-            {
-                // 제자리를 클릭했다면 공격하지 않는다.
-                if (coord != nowUnit.Location)
-                    nowUnit.SkillUse(dump());
-                // 공격 실행 후 바로 다음유닛 행동 실행
-                UseNextUnit();
-            }
-
-            ChangeClickType();
-        }
     }
 
     // *****
@@ -195,7 +165,7 @@ public class BattleManager : MonoBehaviour
 
             case Phase.Engage:
                 //EngageEnter();
-
+                // 한번만 실행되도록 추가
                 Debug.Log("Engage Enter");
 
                 //UI 튀어나옴
@@ -204,7 +174,7 @@ public class BattleManager : MonoBehaviour
                 // 필드 위의 모든 표시 삭제
                 Field.ClearAllColor();
 
-                // 턴 시작 전에 다시한번 순서를 정렬한다.
+                // 턴 시작 전에 순서를 정렬한다.
 
                 _BattleUnitOrderList.Clear();
 
@@ -218,10 +188,49 @@ public class BattleManager : MonoBehaviour
                 _waitingLine.SetBattleOrderList();
                 _waitingLine.SetWaitingLine();
 
-                // UseNextUnit과 중복되는 것 확인
-
-                UseUnitSkill();
-
+                // 실행을 해야 i++
+                if(_BattleUnitOrderList.Count > 0)
+                {
+                    // 유닛이 스킬 씀
+                    BattleUnit Unit = GetNowUnit();
+                    if (0 < Unit.HP.GetCurrentHP())
+                    {
+                        if (Unit.Team == Team.Enemy)
+                        {
+                            Unit.AI.AIAction();
+                            Field.ClearAllColor();
+                            _BattleUnitOrderList.RemoveAt(0);
+                            _waitingLine.SetWaitingLine();
+                        }
+                        else
+                        {
+                            if (Field.Get_Abs_Pos(Unit, _clickType).Contains(coord))
+                            {
+                                if (_clickType == ClickType.Move)
+                                {
+                                    Vector2 dest = coord - Unit.Location;
+                                    MoveLocate(Unit, dest);
+                                    ChangeClickType(ClickType.Before_Attack);
+                                }
+                                else if (_clickType == ClickType.Attack)
+                                {
+                                    // 제자리를 클릭했다면 공격하지 않는다.
+                                    if (coord != Unit.Location)
+                                        Unit.SkillUse(dump());
+                                    // 공격 실행 후 바로 다음유닛 행동 실행
+                                    Field.ClearAllColor();
+                                    _BattleUnitOrderList.RemoveAt(0);
+                                    _waitingLine.SetWaitingLine();
+                                    ChangeClickType(ClickType.Nothing);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    PhaseChanger(Phase.Prepare);
+                }
 
                 //EngageExit();
 
@@ -231,7 +240,7 @@ public class BattleManager : MonoBehaviour
 
                 BattleOverCheck();
                 
-                PhaseChanger(Phase.Prepare);
+                
                 break;
 
             case Phase.Prepare:
@@ -318,66 +327,15 @@ public class BattleManager : MonoBehaviour
         _BattleUnitOrderList.Remove(_unit);
     }
 
-    public void ChangeClickType()
+    public void ChangeClickType(ClickType type)
     {
-        if (GetNowUnit() == null)
-        {
-            _clickType = ClickType.Nothing;
-            return;
-        }
-
-        if (GetNowUnit().Team == Team.Enemy)
-            return;
-
-        _clickType++;
-
-        if (_clickType > ClickType.Attack)
-            _clickType = ClickType.Nothing;
-
-        Field.SetTileColor(GetNowUnit(), Color.yellow, _clickType);
+        _clickType = type;
     }
 
     // BattleUnitList의 첫 번째 요소부터 순회
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
-    public void UseUnitSkill() //clicktype쪽 구조를 바꿔야함
-    {
-        if (_BattleUnitOrderList.Count <= 0)
-        {
-            //남은 유닛이 0일 때 Engage를 Prepare로 변경한다.
-            
-            return;
-        }
+    
 
-        if (0 < _BattleUnitOrderList[0].HP.GetCurrentHP())
-        {
-            if (_BattleUnitOrderList[0].Team == Team.Enemy)
-            {
-                //적 유닛이면 AI를 가동한다
-                Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
-                ai.SetCaster(_BattleUnitOrderList[0]);
-                ai.AIAction();
-                // Unit의 매니저 제거로 인해 임시로 놓음
-                UseNextUnit();
-            }
-            else
-            {
-                // 아군 유닛이 버튼 대기 받을 수 있도록 수정 OnclickTile 수정 필요
-                ChangeClickType();
-            }
-        }
-        else
-        {
-            UseNextUnit();
-        }
-    }
-
-    public void UseNextUnit()
-    {
-        Field.ClearAllColor();
-        _BattleUnitOrderList.RemoveAt(0);
-        _waitingLine.SetWaitingLine();
-        UseUnitSkill();
-    }
     
     // 이동 경로를 받아와 이동시킨다
     public void MoveLocate(BattleUnit caster, Vector2 coord)
