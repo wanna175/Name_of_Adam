@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
     private UIManager _UIMNG;
     private Field _field;
     private Mana _mana;
+
     public Field Field => _field;
 
     [SerializeField] private bool TestMode = true;
@@ -32,7 +33,8 @@ public class BattleManager : MonoBehaviour
         _UIMNG = GameManager.UI;
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
-        _UIMNG.ShowScene<UI_Hands>();
+        _hands = _UIMNG.ShowScene<UI_Hands>();
+        _waitingLine = _UIMNG.ShowScene<UI_WaitingLine>();
 
         SetupField();
 
