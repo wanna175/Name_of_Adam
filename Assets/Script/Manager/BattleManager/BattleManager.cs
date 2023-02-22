@@ -58,7 +58,7 @@ public class BattleManager : MonoBehaviour
 
     private void UnitSpawn()
     {
-        GetComponent<UnitSpawner>().Init();
+        GetComponent<UnitSpawner>().Spawn();
     }
 
     private void SetupField()
@@ -148,7 +148,7 @@ public class BattleManager : MonoBehaviour
             case Phase.SpawnEnemyUnit:
                 //UnitSpawn();
 
-                GetComponent<UnitSpawner>().Init();
+                GetComponent<UnitSpawner>().Spawn();
 
                 PhaseChanger(Phase.Start);
                 break;
