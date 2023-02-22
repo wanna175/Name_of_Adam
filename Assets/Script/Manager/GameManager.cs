@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // 디버그용 입력기
+        if (Input.GetMouseButtonDown(1))
+        {
+            Battle.PhaseUpdate();
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //  SceneChanger.SceneChange("StageSelectScene");

@@ -22,10 +22,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private bool TestMode = true;
     private ClickType _clickType;
 
-    private UI_Hands _hands;
-    private UI_WaitingLine _waitingLine;
-    private UI_TurnCount _turnCount;
-
     private void Awake()
     {
         _UIMNG = GameManager.UI;
@@ -36,18 +32,8 @@ public class BattleManager : MonoBehaviour
         if (TestMode)
             UnitSpawn();
 
-        //_hands = GameManager.UI.ShowScene<UI_Hands>();
-        //_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
-        //_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
-
-
-        PhaseChanger(Phase.SetupField);
+        StartEnter();
     }
-
-    //private void Update()
-    //{
-    //    PhaseUpdate();
-    //}
 
     private void UnitSpawn()
     {
@@ -89,14 +75,14 @@ public class BattleManager : MonoBehaviour
             // 범위 밖을 클릭했으면 다시 클릭한다.
             if (!RangeList.Contains(coord))
             {
-                Field.SetTileColor(GetNowUnit(), Color.yellow, _clickType);
+                SetTileColor(Color.yellow);
                 return;
             }
             
             if (_clickType == ClickType.Move)
             {
                 Vector2 dest = coord - nowUnit.Location;
-                MoveLocate(nowUnit, dest);
+                MoveLotate(nowUnit, dest);
             }
             else if (_clickType == ClickType.Attack)
             {
@@ -121,7 +107,7 @@ public class BattleManager : MonoBehaviour
             return;
 
         // ----------------변경 예정------------------------
-        Unit clickedUnit = _hands.ClickedUnit;
+        Unit clickedUnit = _UIMNG.Hands.ClickedUnit;
         if (clickedUnit == null)
             return;
 
@@ -134,8 +120,8 @@ public class BattleManager : MonoBehaviour
         UnitSetting(BattleUnit, coord);
 
         Data.BattleUnitAdd(BattleUnit);
-        _hands.RemoveHand(_hands.ClickedHand);
-        _hands.ClearHand();
+        _UIMNG.Hands.RemoveHand(_UIMNG.Hands.ClickedHand);
+        _UIMNG.Hands.ClearHand();
         // ------------------------------------------------
     }
     public void UnitSetting(BattleUnit _unit, Vector2 coord)
@@ -167,86 +153,32 @@ public class BattleManager : MonoBehaviour
                 SetupField();
 
                 PhaseChanger(Phase.SpawnEnemyUnit);
-
                 break;
 
             case Phase.SpawnEnemyUnit:
-                //UnitSpawn();
+                UnitSpawn();
 
-                GetComponent<UnitSpawner>().Init();
-
-                PhaseChanger(Phase.Start);
+                PhaseChanger(Phase.Prepare);
                 break;
 
-            case Phase.Start:
-                //StartEnter();
-
-                //전투시 맨 처음 Prepare 단계
-                Debug.Log("Start Enter");
-
-                //코루틴 등을 활용해 버튼 클릭 대기 상황을 만듦 UI_PhaseChange 버튼의 입력대기 받도록
-
-                //StartExit();
-                
-                Debug.Log("Start Exit");
+            case Phase.Prepare:
+                PrepareExit();
+                EngageEnter();
 
                 PhaseChanger(Phase.Engage);
                 break;
 
             case Phase.Engage:
-                //EngageEnter();
+                EngageExit();
+                PrepareEnter();
 
-                Debug.Log("Engage Enter");
-
-                //UI 튀어나옴
-                //UI가 작동할 수 있게 해줌
-
-                // 필드 위의 모든 표시 삭제
-                Field.ClearAllColor();
-
-                // 턴 시작 전에 다시한번 순서를 정렬한다.
-
-                _BattleUnitOrderList.Clear();
-
-                foreach (BattleUnit unit in _battleData.BattleUnitList)
-                {
-                    _BattleUnitOrderList.Add(unit);
-                }
-
-                BattleOrderReplace();
-
-                _waitingLine.SetBattleOrderList();
-                _waitingLine.SetWaitingLine();
-
-                // UseNextUnit과 중복되는 것 확인
-
-                UseUnitSkill();
-
-
-                //EngageExit();
-
-                Debug.Log("Engage Exit");
-                //UI 들어감
-                //UI 사용 불가
-
-                BattleOverCheck();
-                
                 PhaseChanger(Phase.Prepare);
                 break;
 
-            case Phase.Prepare:
-                //PrepareEnter();
-                Debug.Log("Prepare Enter");
+            case Phase.Start:
+                StartExit();
+                EngageEnter();
 
-                _battleData.ChangeMana(2);
-                _battleData.TurnPlus();
-                _turnCount.ShowTurn();
-
-                // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
-
-                //PrepareExit();
-
-                Debug.Log("Prepare Exit");
                 PhaseChanger(Phase.Engage);
                 break;
         }
@@ -257,14 +189,71 @@ public class BattleManager : MonoBehaviour
         _CurrentPhase = phase;
     }
 
-    
+    public void StartEnter()
+    {
+        //전투시 맨 처음 Prepare 단계
+        Debug.Log("Start Enter");
+        PhaseChanger(Phase.Start);
+    }
+
+    public void StartExit()
+    {
+        Debug.Log("Start Exit");
+    }
+
+    public void PrepareEnter()
+    {
+        Debug.Log("Prepare Enter");
+        PhaseChanger(Phase.Prepare);
+        //UI 튀어나옴
+        //UI가 작동할 수 있게 해줌
+    }
+
+    public void PrepareExit()
+    {
+        Debug.Log("Prepare Exit");
+        //UI 들어감
+        //UI 사용 불가
+    }
+
+    public void EngageEnter()
+    {
+        Debug.Log("Engage Enter");
+        PhaseChanger(Phase.Engage);
+        //UI 튀어나옴
+        //UI가 작동할 수 있게 해줌
+
+        _BattleUnitOrderList.Clear();
+
+        foreach(BattleUnit unit in _battleData.BattleUnitList)
+        {
+            _BattleUnitOrderList.Add(unit);
+        }
+
+        // 턴 시작 전에 다시한번 순서를 정렬한다.
+        BattleOrderReplace();
+        GameManager.Battle.Field.ClearAllColor();
+
+        UseUnitSkill();
+    }
+
+    public void EngageExit()
+    {
+        Debug.Log("Engage Exit");
+        //UI 들어감
+        //UI 사용 불가
+        
+        BattleOverCheck();
+        _battleData.ChangeMana(2);
+        _battleData.TurnPlus();
+    }
     #endregion
 
     public void BattleOverCheck()
     {
         int MyUnit = 0;
         int EnemyUnit = 0;
-
+        Debug.Log(Data.BattleUnitList.Count);
         foreach(BattleUnit BUnit in Data.BattleUnitList)
         {
             if (BUnit.Team == Team.Player)//아군이면
@@ -334,17 +323,16 @@ public class BattleManager : MonoBehaviour
         if (_clickType > ClickType.Attack)
             _clickType = ClickType.Nothing;
 
-        Field.SetTileColor(GetNowUnit(), Color.yellow, _clickType);
+        SetTileColor(Color.yellow);
     }
 
     // BattleUnitList의 첫 번째 요소부터 순회
     // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
-    public void UseUnitSkill() //clicktype쪽 구조를 바꿔야함
+    public void UseUnitSkill()
     {
         if (_BattleUnitOrderList.Count <= 0)
         {
-            //남은 유닛이 0일 때 Engage를 Prepare로 변경한다.
-            
+            PhaseUpdate();
             return;
         }
 
@@ -352,7 +340,6 @@ public class BattleManager : MonoBehaviour
         {
             if (_BattleUnitOrderList[0].Team == Team.Enemy)
             {
-                //적 유닛이면 AI를 가동한다
                 Unit_AI_Controller ai = _BattleUnitOrderList[0].GetComponent<Unit_AI_Controller>();
                 ai.SetCaster(_BattleUnitOrderList[0]);
                 ai.AIAction();
@@ -361,7 +348,6 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                // 아군 유닛이 버튼 대기 받을 수 있도록 수정 OnclickTile 수정 필요
                 ChangeClickType();
             }
         }
@@ -375,17 +361,23 @@ public class BattleManager : MonoBehaviour
     {
         Field.ClearAllColor();
         _BattleUnitOrderList.RemoveAt(0);
-        _waitingLine.SetWaitingLine();
         UseUnitSkill();
     }
     
     // 이동 경로를 받아와 이동시킨다
-    public void MoveLocate(BattleUnit caster, Vector2 coord)
+    public void MoveLotate(BattleUnit caster, Vector2 coord)
     {
         Vector2 current = caster.Location;
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
+    }
+
+    
+    public void SetTileColor(Color clr)
+    {
+        List<Vector2> rangeList = Field.Get_Abs_Pos(GetNowUnit(), _clickType);
+        Field.SetTileColor(rangeList, clr);
     }
 
     // *****

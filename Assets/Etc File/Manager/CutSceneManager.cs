@@ -219,7 +219,7 @@ public class CutSceneManager : MonoBehaviour
 
     public void EndAttack()
     {
-        //_BattleMNG.UseNextUnit();
+        _BattleMNG.UseNextUnit();
     }
 
     IEnumerator ExitCutScene()
