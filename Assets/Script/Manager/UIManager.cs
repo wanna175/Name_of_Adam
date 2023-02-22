@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] public UI_Hands Hands; // 삭제
-    [SerializeField] public UI_WaitingLine WaitingLine; // 삭제
-    [SerializeField] public UI_TurnCount TurnCount; // 삭제
-
     private int _order = 10;
     private Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     public GameObject Root
