@@ -21,7 +21,6 @@ public class BattleManager : MonoBehaviour
 
     public Field Field => _field;
 
-    [SerializeField] private bool TestMode = true;
     private ClickType _clickType;
 
     private UI_Hands _hands;
@@ -48,6 +47,8 @@ public class BattleManager : MonoBehaviour
     {
         PhaseUpdate();
     }
+
+
 
     private void SetupField()
     {

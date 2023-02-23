@@ -478,7 +478,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BattleUnitOrderList: []
-  TestMode: 1
 --- !u!4 &1589663946
 Transform:
   m_ObjectHideFlags: 0
@@ -513,11 +512,11 @@ MonoBehaviour:
     stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
     location: {x: 2, y: 0}
-    team: 0
+    team: 1
     stigmas: []
   - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
     location: {x: 2, y: 1}
-    team: 0
+    team: 1
     stigmas: []
 --- !u!1 &1688846947
 GameObject:
