@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestMode: 1
+  _BattleUnitOrderList: []
 --- !u!4 &1589663946
 Transform:
   m_ObjectHideFlags: 0
@@ -511,12 +511,12 @@ MonoBehaviour:
     team: 0
     stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
-    location: {x: 3, y: 0}
-    team: 0
+    location: {x: 2, y: 0}
+    team: 1
     stigmas: []
   - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
-    location: {x: 3, y: 1}
-    team: 0
+    location: {x: 2, y: 1}
+    team: 1
     stigmas: []
 --- !u!1 &1688846947
 GameObject:
