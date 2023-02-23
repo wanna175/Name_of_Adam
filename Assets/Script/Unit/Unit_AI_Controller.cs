@@ -198,7 +198,8 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected Vector2 UnitCoord(List<Vector2> UnitList)
     {
-        return UnitList[Random.Range(0, UnitList.Count)];
+        Debug.Log(UnitList.Count);
+        return UnitList[Random.Range(0, UnitList.Count)]; 
     }
 
     protected Vector2 UnitCoord(List<Vector3> UnitList)
@@ -219,7 +220,7 @@ public class Unit_AI_Controller : MonoBehaviour
             //caster.AttackTileClick(UnitCoord(Attack_Range_Priority_Unit_List));  임시임시임시임시임시
             caster.SkillUse(_field.TileDict[UnitCoord(Attack_Range_Priority_Unit_List)].Unit);
         }
-        else
+        else if(Attack_Range_Unit_List.Count > 0)
         {
             //근거리 유닛만 있을 경우
             //caster.AttackTileClick(UnitCoord(Attack_Range_Unit_List));  임시임시임시임시임시임시임시
