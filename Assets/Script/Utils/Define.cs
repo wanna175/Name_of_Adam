@@ -79,7 +79,8 @@ public enum Phase
     SpawnEnemyUnit,
     Start,
     Prepare,
-    Engage
+    Engage,
+    BattlaOver,
 }
 
 public enum ClickType

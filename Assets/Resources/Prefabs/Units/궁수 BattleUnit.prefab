@@ -84,12 +84,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: AI
+      value: 
+      objectReference: {fileID: 9020254442287791704}
+    - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: Data
       value: 
       objectReference: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: _team
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: skill
@@ -101,18 +105,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f985903313e834580fc378803a516b, type: 3}
---- !u!1 &3954254994103691638 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
+--- !u!114 &9020254442287791704 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3929000787331167701, guid: b5f985903313e834580fc378803a516b, type: 3}
   m_PrefabInstance: {fileID: 5451885497509563277}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-2790733830831524940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3954254994103691638}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4656c3a1826ee9d4a84f1ddcc28ac1d1, type: 3}
