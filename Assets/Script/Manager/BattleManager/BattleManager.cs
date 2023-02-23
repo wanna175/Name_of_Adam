@@ -48,8 +48,6 @@ public class BattleManager : MonoBehaviour
         PhaseUpdate();
     }
 
-
-
     private void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
@@ -102,6 +100,7 @@ public class BattleManager : MonoBehaviour
         _hands.ClearHand();
         // ------------------------------------------------
     }
+
     public void UnitSetting(BattleUnit _unit, Vector2 coord)
     {
         _unit.setLocate(coord);
@@ -128,29 +127,23 @@ public class BattleManager : MonoBehaviour
         switch (CurrentPhase)
         {
             case Phase.SetupField:
+
                 SetupField();
-                Debug.Log("필드 생성");
 
                 PhaseChanger(Phase.SpawnEnemyUnit);
-
                 break;
 
             case Phase.SpawnEnemyUnit:
 
-                //UnitSpawn();
-
-                GetComponent<UnitSpawner>().Spawn();
+                GetComponent<UnitSpawner>().SpawnInitialUnit();
 
                 PhaseChanger(Phase.Start);
                 break;
 
             case Phase.Start:
-                Debug.Log("Start Enter");
 
                 if (_clickType >= ClickType.Engage_Nothing)
                 {
-                    Debug.Log("Start Exit");
-
                     PhaseChanger(Phase.Engage);
                 }
                 
@@ -160,12 +153,7 @@ public class BattleManager : MonoBehaviour
                 if(isEngage)
                 {
                     isEngage = false;
-                    Debug.Log("Engage Enter");
 
-                    //UI 튀어나옴
-                    //UI가 작동할 수 있게 해줌
-
-                    // 필드 위의 모든 표시 삭제
                     Field.ClearAllColor();
 
                     // 턴 시작 전에 순서를 정렬한다.
@@ -178,22 +166,12 @@ public class BattleManager : MonoBehaviour
                     }
 
                     BattleOrderReplace();
-                    
-                    if(_waitingLine != null)
-                    {
-                        Debug.Log("WaitingLIne");
-                    }
-
                     _waitingLine.SetBattleOrderList();
                     _waitingLine.SetWaitingLine();
-
-                    
                 }
 
-                // 실행을 해야 i++
                 if(_BattleUnitOrderList.Count > 0)
                 {
-                    // 유닛이 스킬 씀
                     BattleUnit Unit = GetNowUnit();
                     if (0 < Unit.HP.GetCurrentHP())
                     {
@@ -263,26 +241,17 @@ public class BattleManager : MonoBehaviour
                     ChangeClickType(ClickType.Prepare_Nothing);// 턴 확인용 임시
                 }
 
-                //EngageExit();
-
-                Debug.Log("Engage Exit");
-                //UI 들어감
-                //UI 사용 불가
-
                 BattleOverCheck();
-                
-                
+
                 break;
 
             case Phase.Prepare:
-                //PrepareEnter();
+
                 Debug.Log("Prepare Enter");
 
                 _mana.ChangeMana(2);
                 _battleData.TurnPlus();
                 //_turnCount.ShowTurn();
-
-                // 배치나 플레이어 스킬 등의 작업(코루틴으로 버튼 대기) UI_PhaseChange 버튼의 입력대기 받도록
 
                 if (_clickType >= ClickType.Engage_Nothing)
                 {
@@ -291,6 +260,12 @@ public class BattleManager : MonoBehaviour
 
                     PhaseChanger(Phase.Engage);
                 }
+
+                break;
+
+            case Phase.BattlaOver:
+                Debug.Log("끝끝끝");
+
                 break;
         }
     }
@@ -299,7 +274,6 @@ public class BattleManager : MonoBehaviour
     {
         _CurrentPhase = phase;
     }
-
     
     #endregion
 
@@ -322,12 +296,15 @@ public class BattleManager : MonoBehaviour
         if (MyUnit == 0)
         {
             Debug.Log("YOU LOSE");
-            
+            PhaseChanger(Phase.BattlaOver);
+
         }
         else if(EnemyUnit == 0)
         {
             Debug.Log("YOU WIN");
+            PhaseChanger(Phase.BattlaOver);
         }
+        
     }
 
     // BattleUnitList를 정렬
@@ -362,11 +339,6 @@ public class BattleManager : MonoBehaviour
         else
             _clickType = ClickType.Prepare_Nothing;
     }
-
-    // BattleUnitList의 첫 번째 요소부터 순회
-    // 다음 차례의 공격 호출은 CutSceneMNG의 ZoomOut에서 한다.
-    
-
     
     // 이동 경로를 받아와 이동시킨다
     private void MoveLocate(BattleUnit caster, Vector2 coord)
