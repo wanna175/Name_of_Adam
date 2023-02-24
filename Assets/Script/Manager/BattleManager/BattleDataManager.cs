@@ -7,16 +7,18 @@ public class BattleDataManager : MonoBehaviour
 {
     private void Start()
     {
-        _waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
+        _ui_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
+        _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
     }
 
     #region Turn Count
-    private int _TurnCount = 1;
-    public int TurnCount => _TurnCount;
+    private UI_TurnCount _ui_turnCount;
+    private int _turnCount = 1;
 
     public void TurnPlus()
     {
-        _TurnCount++;
+        _turnCount++;
+        _ui_turnCount.Refresh(_turnCount);
     }
     #endregion
 
@@ -62,7 +64,7 @@ public class BattleDataManager : MonoBehaviour
 
     #region OrderedList
     private List<BattleUnit> _battleUnitOrderList = new List<BattleUnit>();
-    private UI_WaitingLine _waitingLine;
+    private UI_WaitingLine _ui_waitingLine;
 
     public int OrderUnitCount => _battleUnitOrderList.Count;
 
@@ -77,7 +79,7 @@ public class BattleDataManager : MonoBehaviour
 
         BattleOrderReplace();
 
-        _waitingLine.SetWaitingLine(_battleUnitOrderList);
+        _ui_waitingLine.SetWaitingLine(_battleUnitOrderList);
     }
 
     private void BattleOrderReplace()
@@ -90,7 +92,7 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleOrderRemove(BattleUnit removedUnit)
     {
-        _waitingLine.RemoveUnit(removedUnit);
+        _ui_waitingLine.RemoveUnit(removedUnit);
         _battleUnitOrderList.Remove(removedUnit);
     }
 

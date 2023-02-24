@@ -23,7 +23,6 @@ public class BattleManager : MonoBehaviour
     private ClickType _clickType;
 
     private UI_Hands _hands;
-    private UI_TurnCount _turnCount;
 
     private Vector2 coord;
 
@@ -35,7 +34,6 @@ public class BattleManager : MonoBehaviour
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _hands = _UIMNG.ShowScene<UI_Hands>();
-        //_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
         PhaseChanger(Phase.SetupField);
     }
@@ -237,7 +235,6 @@ public class BattleManager : MonoBehaviour
 
                 _mana.ChangeMana(2);
                 _battleData.TurnPlus();
-                //_turnCount.ShowTurn();
 
                 if (_clickType >= ClickType.Engage_Nothing)
                 {
