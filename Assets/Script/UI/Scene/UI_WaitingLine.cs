@@ -8,7 +8,6 @@ public class UI_WaitingLine : UI_Scene
     [SerializeField] GameObject P_WaitingUnit;
     private List<UI_WaitingUnit> _waitingUnitList = new List<UI_WaitingUnit>();
     private Transform _grid;
-    private const int _maxSize = 6;
 
     #region BattleUnitList  
     List<BattleUnit> _BattleUnitOrderList;
@@ -18,7 +17,7 @@ public class UI_WaitingLine : UI_Scene
 
     public void Start()
     {
-        _grid = Util.FindChild(gameObject, "Grid").transform;
+        _grid = Util.FindChild(gameObject, "Grid", true).transform;
         _BattleMNG = GameManager.Battle;
     }
 
