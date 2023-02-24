@@ -21,9 +21,6 @@ public class BattleUnit : Unit
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
 
-    public Vector2 _SelectTile = new Vector2(-1, -1);
-    public Vector2 SelectTile => _SelectTile;
-
     // 23.02.16 임시 수정
     private Action<BattleUnit> _UnitDeadAction;
     public Action<BattleUnit> UnitDeadAction
@@ -35,36 +32,23 @@ public class BattleUnit : Unit
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        AI = GetComponent<Unit_AI_Controller>();
 
-        _renderer.sprite = Data.Image;
-        
         AI.SetCaster(this);
-    }
-
-    public void Init(Team team, Vector2 coord)
-    {
         HP.Init(Stat.HP);
         Fall.Init(Stat.Fall);
+
+        _renderer.sprite = Data.Image;
+    }
+
+    public void SetTeam(Team team)
+    {
         _team = team;
 
         // 적군일 경우 x축 뒤집기
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
-        setLocate(coord);
     }
 
-    public void OnAttack(List<BattleUnit> _HitUnits)
-    {
-        foreach (BattleUnit unit in _HitUnits)
-            unit.GetDamage(GetStat().ATK);
-    }
-    
-    public void GetDamage(int DMG) {
-        HP.ChangeHP(-DMG);
-    }
-    
-    //오브젝트 생성 시, 최초 위치 설정
-    public void setLocate(Vector2 coord) {
+    public void SetLocate(Vector2 coord) {
         _location = coord;
     }
     

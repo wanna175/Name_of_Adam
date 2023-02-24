@@ -96,9 +96,6 @@ public class Field : MonoBehaviour
                 ExitTile(current);
                 ExitTile(dest);
 
-                currentUnit.setLocate(dest);
-                destUnit.setLocate(current);
-
                 EnterTile(currentUnit, dest);
                 EnterTile(destUnit, current);
                 return;
@@ -107,7 +104,6 @@ public class Field : MonoBehaviour
         else
         {
             ExitTile(current);
-            currentUnit.setLocate(dest);
             EnterTile(currentUnit, dest);
         }
     }
@@ -176,6 +172,7 @@ public class Field : MonoBehaviour
     {
         TileDict[coord].EnterTile(unit);
 
+        unit.SetLocate(coord);
         unit.SetPosition(GetTilePosition(coord));
     }
 
