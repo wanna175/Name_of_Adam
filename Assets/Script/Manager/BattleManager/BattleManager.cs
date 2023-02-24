@@ -13,7 +13,6 @@ public class BattleManager : MonoBehaviour
 {
     private BattleDataManager _battleData;
     public BattleDataManager Data => _battleData;
-    [SerializeField] public List<BattleUnit> _BattleUnitOrderList = new List<BattleUnit>();
 
     private UIManager _UIMNG;
     private Field _field;
@@ -24,7 +23,6 @@ public class BattleManager : MonoBehaviour
     private ClickType _clickType;
 
     private UI_Hands _hands;
-    private UI_WaitingLine _waitingLine;
     private UI_TurnCount _turnCount;
 
     private Vector2 coord;
@@ -37,7 +35,6 @@ public class BattleManager : MonoBehaviour
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _hands = _UIMNG.ShowScene<UI_Hands>();
-        _waitingLine = _UIMNG.ShowScene<UI_WaitingLine>();
         //_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
         PhaseChanger(Phase.SetupField);
@@ -114,7 +111,7 @@ public class BattleManager : MonoBehaviour
     private void UnitDeadAction(BattleUnit _unit)
     {
         Data.BattleUnitRemove(_unit);
-        BattleOrderRemove(_unit);
+        Data.BattleOrderRemove(_unit);
     }
 
     #region Phase Control
@@ -158,29 +155,19 @@ public class BattleManager : MonoBehaviour
 
                     // 턴 시작 전에 순서를 정렬한다.
 
-                    _BattleUnitOrderList.Clear();
-
-                    foreach (BattleUnit unit in _battleData.BattleUnitList)
-                    {
-                        _BattleUnitOrderList.Add(unit);
-                    }
-
-                    BattleOrderReplace();
-                    _waitingLine.SetBattleOrderList();
-                    _waitingLine.SetWaitingLine();
+                    Data.BattleUnitOrder();
                 }
 
-                if(_BattleUnitOrderList.Count > 0)
+                if(Data.OrderUnitCount > 0)
                 {
-                    BattleUnit Unit = GetNowUnit();
+                    BattleUnit Unit = Data.GetNowUnit();
                     if (0 < Unit.HP.GetCurrentHP())
                     {
                         if (Unit.Team == Team.Enemy)
                         {
                             Unit.AI.AIAction();
                             Field.ClearAllColor();
-                            _BattleUnitOrderList.RemoveAt(0);
-                            _waitingLine.SetWaitingLine();
+                            Data.BattleOrderRemove(Unit);
                         }
                         else
                         {
@@ -222,8 +209,7 @@ public class BattleManager : MonoBehaviour
                                         }
                                     // 공격 실행 후 바로 다음유닛 행동 실행
                                     Field.ClearAllColor();
-                                    _BattleUnitOrderList.RemoveAt(0);
-                                    _waitingLine.SetWaitingLine();
+                                    Data.BattleOrderRemove(Unit);
                                     ChangeClickType(ClickType.Engage_Nothing);
                                 }
                             }
@@ -307,26 +293,6 @@ public class BattleManager : MonoBehaviour
         
     }
 
-    // BattleUnitList를 정렬
-    // 1. 스피드 높은 순으로, 2. 같을 경우 왼쪽 위부터 오른쪽으로 차례대로
-    public void BattleOrderReplace()
-    {
-        _BattleUnitOrderList = _BattleUnitOrderList.OrderByDescending(unit => unit.GetStat().SPD)
-            .ThenByDescending(unit => unit.Location.y)
-            .ThenBy(unit => unit.Location.x)
-            .ToList();
-    }
-
-    public List<BattleUnit> GetUnitbyOrder()
-    {
-        return _BattleUnitOrderList;
-    }
-
-    public void BattleOrderRemove(BattleUnit _unit)
-    {
-        _BattleUnitOrderList.Remove(_unit);
-    }
-
     public void ChangeClickType(ClickType type)
     {
         _clickType = type;
@@ -347,12 +313,5 @@ public class BattleManager : MonoBehaviour
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
-    }
-
-    public BattleUnit GetNowUnit()
-    {
-        if (_BattleUnitOrderList.Count != 0)
-            return _BattleUnitOrderList[0];
-        return null;
     }
 }

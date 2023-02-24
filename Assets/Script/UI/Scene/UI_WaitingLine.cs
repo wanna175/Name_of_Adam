@@ -8,42 +8,40 @@ public class UI_WaitingLine : UI_Scene
     [SerializeField] GameObject P_WaitingUnit;
     private List<UI_WaitingUnit> _waitingUnitList = new List<UI_WaitingUnit>();
     private Transform _grid;
-
-    #region BattleUnitList  
     List<BattleUnit> _BattleUnitOrderList;
-    #endregion
-
-    private BattleManager _BattleMNG;
 
     public void Start()
     {
         _grid = Util.FindChild(gameObject, "Grid", true).transform;
-        _BattleMNG = GameManager.Battle;
-    }
-
-    IEnumerator Test()
-    {
-        for(int i=0; i<6; i++)
-        {
-            UI_WaitingUnit newUnit = GameObject.Instantiate(P_WaitingUnit, _grid).GetComponent<UI_WaitingUnit>();
-            _waitingUnitList.Add(newUnit);
-            yield return new WaitForSeconds(1f);
-        }
     }
 
     private void ClearLine()
     {
         for(int i= _waitingUnitList.Count-1; i>=0; i--)
-        {
-            UI_WaitingUnit unit = _waitingUnitList[i];
-            _waitingUnitList.Remove(unit);
-            Destroy(unit.gameObject);
-        }
+            RemoveUnit(_waitingUnitList[i]);
     }
 
-    public void SetBattleOrderList()
+    public void RemoveUnit(UI_WaitingUnit unit)
     {
-        _BattleUnitOrderList = _BattleMNG.GetUnitbyOrder();
+        _waitingUnitList.Remove(unit);
+        Destroy(unit.gameObject);
+    }
+
+    public void RemoveUnit(BattleUnit removeUnit)
+    {
+
+    }
+
+    public void AddUnit(BattleUnit addUnit)
+    {
+        UI_WaitingUnit newUnit = GameManager.Resource.Instantiate("UI/Sub/WaitingUnit", _grid).GetComponent<UI_WaitingUnit>();
+        newUnit.SetUnit(addUnit.Data.Image);
+        _waitingUnitList.Add(newUnit);
+    }
+
+    public void SetBattleOrderList(List<BattleUnit> sortedList)
+    {
+        _BattleUnitOrderList = sortedList;
     }
 
     public void SetWaitingLine()
@@ -51,10 +49,6 @@ public class UI_WaitingLine : UI_Scene
         ClearLine();
 
         for (int i = 0; i < _BattleUnitOrderList.Count; i++)
-        {
-            UI_WaitingUnit newUnit = GameObject.Instantiate(P_WaitingUnit, _grid).GetComponent<UI_WaitingUnit>();
-            _waitingUnitList.Add(newUnit);
-            _waitingUnitList[i].SetUnit(_BattleUnitOrderList[i].Data.Image);
-        }
+            AddUnit(_BattleUnitOrderList[i]);
     }
 }

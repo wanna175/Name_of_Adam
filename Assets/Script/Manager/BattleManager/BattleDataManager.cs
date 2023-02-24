@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BattleDataManager : MonoBehaviour
 {
+    private void Start()
+    {
+        _waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
+    }
+
     #region Turn Count
     private int _TurnCount = 1;
     public int TurnCount => _TurnCount;
@@ -52,4 +58,48 @@ public class BattleDataManager : MonoBehaviour
     public void BattleUnitAdd(BattleUnit unit) => BattleUnitList.Add(unit);
 
     public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
+
+
+    #region OrderedList
+    private List<BattleUnit> _battleUnitOrderList = new List<BattleUnit>();
+    private UI_WaitingLine _waitingLine;
+
+    public int OrderUnitCount => _battleUnitOrderList.Count;
+
+    public void BattleUnitOrder()
+    {
+        _battleUnitOrderList.Clear();
+
+        foreach (BattleUnit unit in BattleUnitList)
+        {
+            _battleUnitOrderList.Add(unit);
+        }
+
+        BattleOrderReplace();
+
+        _waitingLine.SetBattleOrderList(_battleUnitOrderList);
+        _waitingLine.SetWaitingLine();
+    }
+
+    private void BattleOrderReplace()
+    {
+        _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => unit.GetStat().SPD)
+            .ThenByDescending(unit => unit.Location.y)
+            .ThenBy(unit => unit.Location.x)
+            .ToList();
+    }
+
+    public void BattleOrderRemove(BattleUnit removedUnit)
+    {
+        _battleUnitOrderList.Remove(removedUnit);
+        _waitingLine.SetWaitingLine();
+    }
+
+    public BattleUnit GetNowUnit()
+    {
+        if (_battleUnitOrderList.Count > 0)
+            return _battleUnitOrderList[0];
+        return null;
+    }
+    #endregion
 }
