@@ -130,6 +130,7 @@ MonoBehaviour:
     Fall: 0
   Stigmas: []
   _team: 0
+  AI: {fileID: 3929000787331167701}
   HP: {fileID: 1722822296286429812}
   Fall: {fileID: -3496854762374506308}
   Skill: {fileID: 1722822296286429813}

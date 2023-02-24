@@ -98,8 +98,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitSetting(BattleUnit _unit, Vector2 coord)
     {
-        _unit.setLocate(coord);
-        _unit.Init(_unit.Team, coord);
+        _unit.SetTeam(_unit.Team);
         Field.EnterTile(_unit, coord);
         _unit.UnitDeadAction = UnitDeadAction;
 
