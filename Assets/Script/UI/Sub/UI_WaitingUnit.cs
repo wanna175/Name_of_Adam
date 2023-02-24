@@ -5,23 +5,24 @@ using UnityEngine.UI;
 
 public class UI_WaitingUnit : MonoBehaviour
 {
-    private Image _Image;
+    private BattleUnit _unit;
 
-    void Awake()
+    //public void SetUnit(Sprite s)
+    //{
+        
+    //    _Image.enabled = true;
+    //    _Image.sprite = s;
+        
+    //}
+
+    public void SetUnit(BattleUnit unit)
     {
-        _Image = GetComponent<Image>();
+        _unit = unit;
+        GetComponent<Image>().sprite = _unit.Data.Image;
     }
 
-    public void SetUnit(Sprite s)
+    public BattleUnit GetUnit()
     {
-        
-        _Image.enabled = true;
-        _Image.sprite = s;
-        
-    }
-
-    public void RemoveUnit()
-    {
-        _Image.enabled = false;
+        return _unit;
     }
 }
