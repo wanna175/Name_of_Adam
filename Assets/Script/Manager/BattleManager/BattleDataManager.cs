@@ -77,8 +77,7 @@ public class BattleDataManager : MonoBehaviour
 
         BattleOrderReplace();
 
-        _waitingLine.SetBattleOrderList(_battleUnitOrderList);
-        _waitingLine.SetWaitingLine();
+        _waitingLine.SetWaitingLine(_battleUnitOrderList);
     }
 
     private void BattleOrderReplace()
@@ -91,8 +90,8 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleOrderRemove(BattleUnit removedUnit)
     {
+        _waitingLine.RemoveUnit(removedUnit);
         _battleUnitOrderList.Remove(removedUnit);
-        _waitingLine.SetWaitingLine();
     }
 
     public BattleUnit GetNowUnit()
