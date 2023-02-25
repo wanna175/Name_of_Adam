@@ -1,71 +1,117 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-// 필드 위에 올려진 캐릭터의 스크립트
-// 스킬 사용, 이동, 데미지와 사망판정을 처리
-
-public class BattleUnit : MonoBehaviour
+public class BattleUnit : Unit
 {
-    #region UnitRenderer
-    BattleUnitRenderer _UnitRenderer;
-    public BattleUnitRenderer UnitRenderer => _UnitRenderer;
-    #endregion
-    #region UnitAction
-    BattleUnitAction _UnitAction;
-    public BattleUnitAction UnitAction => _UnitAction;
-    #endregion
-    #region UnitMove
-    BattleUnitMove _UnitMove;
-    public BattleUnitMove UnitMove => _UnitMove;
-    #endregion
+    [SerializeField] private Team _team;
+    public Team Team => _team;
 
-    // 렌더링 관련 정보 및 관리는 UnitRenderer에서
-    // 유닛의 공격, 피격, 타락에 대한 관리는 UnitAction에서
-    // 유닛의 위치와 이동에 대한 정보 관리는 UnitMove에서
+    private SpriteRenderer _renderer;
+    private Animator _animator;
 
-    BattleDataManager _BattleDataMNG;
+    public Unit_AI_Controller AI;
 
-    [SerializeField] public BattleUnitSO BattleUnitSO;
-    Stigma _stigma;
+    [SerializeField] public UnitHP HP;
+    [SerializeField] public UnitFall Fall;
+    [SerializeField] public UnitSkill Skill;
+
+    [SerializeField] Vector2 _location;
+    public Vector2 Location => _location;
+
+    // 23.02.16 임시 수정
+    private Action<BattleUnit> _UnitDeadAction;
+    public Action<BattleUnit> UnitDeadAction
+    {
+        set { _UnitDeadAction = value; }
+    }
     
-    public Vector2 _SelectTile = new Vector2(-1, -1);
-    public Vector2 SelectTile => _SelectTile;
-
-
     private void Awake()
     {
-        _UnitRenderer = GetComponent<BattleUnitRenderer>();
-        _UnitAction = GetComponent<BattleUnitAction>();
-        _UnitMove = GetComponent<BattleUnitMove>();
-        _stigma = GetComponent<Stigma>();
+        _renderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+
+        AI.SetCaster(this);
+        HP.Init(Stat.HP);
+        Fall.Init(Stat.Fall);
+
+        _renderer.sprite = Data.Image;
     }
 
-    private void Start()
+    public void SetTeam(Team team)
     {
-        _BattleDataMNG = GameManager.Instance.BattleMNG.BattleDataMNG;
+        _team = team;
 
-        _BattleDataMNG.BattleUnitMNG.BattleUnitEnter(this);
-        _UnitAction.GetMaxHP(GetStat().HP);
+        // 적군일 경우 x축 뒤집기
+        _renderer.flipX = (Team == Team.Enemy) ? true : false;
+    }
+
+    public void SetLocate(Vector2 coord) {
+        _location = coord;
     }
     
-    // 스킬 사용
-    public void use()
+    public void UnitDiedEvent()
     {
-        BattleUnitSO.use(this);
+        // 23.02.16 임시 수정
+        _UnitDeadAction(this);
+        Destroy(gameObject);
+    }
+
+    public void UnitFallEvent()
+    {
+        ChangeTeam();
+        Debug.Log($"{Data.name} Fall");
+    }
+
+    public void ChangeTeam(Team team = default)
+    {
+        if(team != default)
+        {
+            _team = team;
+            return;
+        }
+        
+        if (Team == Team.Player)
+            _team = Team.Enemy;
+        else
+            _team = Team.Player;
+    }
+
+    public void SetPosition(Vector3 dest)
+    {
+        transform.position = dest;
     }
     
-    public Stat GetStat(bool buff = true)
-    {
-        Stat stat = BattleUnitSO.stat;
 
-        if (buff == false)
-            return stat;
+    public void SkillUse(BattleUnit _unit) {
+        if(_unit != null)
+            Skill.Use(this, _unit);
+    }                   
 
-        return _stigma.Use(stat);
+    public Stat GetStat(bool buff = true) {
+        return Stat;
     }
 
-    public void TileSelected(int x, int y) => _SelectTile = new Vector2(x, y);
+    public void ChangeHP(int value) {
+        HP.ChangeHP(value);
+    }
 
-    public int GetSpeed() => BattleUnitSO.stat.SPD;
+    public void ChangeFall(int value)
+    {
+        Fall.ChangeFall(value);
+    }
+    
+    public bool GetFlipX() => _renderer.flipX;
+
+    public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
+    
+    public List<Vector2> GetAttackRange() => Data.GetAttackRange();
+    
+    public List<Vector2> GetMoveRange() => Data.GetMoveRange();
 }
+
+// 22.02.16
+// 유닛에서 사용하는 매니저 제거
+// 매니저를 사용하는 기능들은 각 매니저로 기능을 옮김

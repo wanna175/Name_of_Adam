@@ -2,116 +2,192 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Field : MonoBehaviour
 {
-    [SerializeField] GameObject TilePrefabs;
-    [SerializeField] GameObject UnitPrefabs;
-    
-    BattleManager _BattleMNG;
-    BattleDataManager _BattleDataMNG;
-    FieldManager _FieldMNG;
-    InputManager _InputMNG;
+    private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
+    public Dictionary<Vector2, Tile> TileDict => _tileDict;
+
+    // 필드의 생성을 위한 필드의 위치
+    private Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
+    private Vector3 FieldRotation => new Vector3(16, 0, 0);
+
+    private const int MaxFieldX = 6;
+    private const int MaxFieldY = 3;
 
     private void Awake()
     {
-        _BattleMNG = GameManager.Instance.BattleMNG;
-        _BattleDataMNG = _BattleMNG.BattleDataMNG;
-        _FieldMNG = _BattleMNG.BattleDataMNG.FieldMNG;
-        _InputMNG = GameManager.Instance.InputMNG;
-        
-        _FieldMNG.FieldSet(this, TilePrefabs);
+        for (int i = 0; i < MaxFieldY; i++)
+            for (int j = 0; j < MaxFieldX; j++)
+                _tileDict.Add(new Vector2(j, i), CreateTile(j, i));
 
-        transform.position = _FieldMNG.FieldPosition;
-        transform.eulerAngles = new Vector3(16, 0, 0);
+        transform.position = FieldPosition;
+        transform.eulerAngles = FieldRotation;
     }
 
-    public void TileClick(Tile tile)
+    // 타일의 좌표값을 리턴한다.
+    public Vector2 FindCoordByTile(Tile tile)
     {
-        List<List<Tile>> tiles = _FieldMNG.TileArray;
-        int tileX = 0,
-            tileY = 0;
+        // 타일이 없으면 -1, -1을 반환
+        if(tile == null)
+        {
+            Debug.Log("Tile Parameter is Null");
+            return new Vector2(-1, -1);
+        }
+
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+            if (items.Value == tile)
+                return items.Key;
+
+        Debug.Log("Can't find target tile");
+        return new Vector2(-1, -1);
+    }
+
+    public BattleUnit GetUnit(Vector2 coord)
+    {
+        if (IsInRange(coord))
+            return TileDict[coord].Unit;
+
+        return null;
+    }
+
+    private Tile CreateTile(int x, int y)
+    {
+        x -= MaxFieldX / 2;
+        y -= MaxFieldY / 2;
+
+        float disX = transform.localScale.x / MaxFieldX;
+        float disY = transform.localScale.y / MaxFieldY;
+
+        float locX = (disX * x) + (disX * 0.5f);
+        float locY = disY * y + 1.5f;
+
+        Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
+        GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
         
-        for(int i = 0; i < tiles.Count; i++)
-        {
-            for(int j = 0; j < tiles[i].Count; j++)
-            {
-                if(ReferenceEquals(tile, tiles[i][j]))
-                {
-                    tileX = j;
-                    tileY = i;
-                }
-            }
-        }
+        return tileObject.GetComponent<Tile>().Init(tilePos);
+    }
 
-        // 현재 클릭 상태가 어떤 상태인지, 클릭 가능한지 체크하는 클래스 생성 필요
+    // 타일이 최대 범위를 벗어났는지 확인
+    public bool IsInRange(Vector2 coord)
+    {
+        if (TileDict.ContainsKey(coord))
+            return true;
+        return false;
+    }
 
-        // 유닛이 공격할 타겟을 선택중이라면
-        if (tile.CanSelect)
-        {
-            _BattleMNG.PrepareMNG.SelectedUnit.TileSelected(tileX, tileY);
-            _FieldMNG.FieldClear();
+    public void MoveUnit(Vector2 current, Vector2 dest)
+    {
+        // *****
+        // 이 둘이 같은 처리를 하는 것이 맞을까?
+        if (IsInRange(dest) == false | current == dest)
             return;
-        }
-        // 클릭한 타일에 유닛이 있을 시
-        else if (tile.TileUnit != null)
+
+        BattleUnit currentUnit = TileDict[current].Unit;
+        BattleUnit destUnit = TileDict[dest].Unit;
+        
+        if (TileDict[dest].UnitExist)
         {
-            BattleUnit SelectUnit = tile.TileUnit;
-            _FieldMNG.FieldClear();
-            
-            // 그 유닛이 아군이라면
-            if (tile.TileUnit.BattleUnitSO.team == Team.Player)
+            // *****
+            // 얘는 위의 IsRange(dest)와 같이 처리해도 될 것 같다
+            if (currentUnit.Team == destUnit.Team)
             {
-                _BattleMNG.PrepareMNG.SelectedUnit = SelectUnit;
+                ExitTile(current);
+                ExitTile(dest);
 
-                // 유닛이 보유한 스킬이 타겟팅 형식인지 확인한다.
-                List<Vector2> vecList = SelectUnit.BattleUnitSO.GetTargetingRange();
-                if (vecList != null)
-                {
-                    // 타겟팅이 맞다면 범위 표시
-                    for (int i = 0; i < vecList.Count; i++)
-                    {
-                        int x = SelectUnit.UnitMove.LocX - (int)vecList[i].x;
-                        int y = SelectUnit.UnitMove.LocY - (int)vecList[i].y;
-
-                        if (0 <= x && x < 8)
-                        {
-                            if (0 <= y && y < 3)
-                                tiles[y][x].SetCanSelect(true);
-                        }
-                    }
-                }
+                EnterTile(currentUnit, dest);
+                EnterTile(destUnit, current);
+                return;
             }
         }
-        // 클릭한 타일에 유닛이 없을 시
         else
         {
-            //핸드를 누르고 타일을 누를 때
-            if (_InputMNG.ClickedHand != 0)
-            {
-              //범위 외
-              if (tileX > 3 && tileY > 2)
-              {
-                  Debug.Log("out of range");
-              }
-              else
-              {
-                  if (_BattleDataMNG.ManaMNG.UseMana(2)) //조건문이 참이라면 이미 마나가 소모된 후
-                  {
-                       GameObject BattleUnitPrefab = Instantiate(UnitPrefabs);
+            ExitTile(current);
+            EnterTile(currentUnit, dest);
+        }
+    }
 
-                       _BattleDataMNG.BattleUnitMNG.CreatBattleUnit(BattleUnitPrefab, tileX, tileY);
-                        
-                      _InputMNG.Hands.RemoveHand(_InputMNG.ClickedHand);
-                      _InputMNG.ClearHand();
-                  }
-                  else
-                  {
-                      //마나 부족
-                      Debug.Log("not enough mana");
-                  }
-              }
+    // 지정한 위치에 있는 타일의 좌표를 반환
+    private Vector3 GetTilePosition(Vector2 coord)
+    {
+        Vector3 position = TileDict[coord].transform.position;
+
+        float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
+        float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
+        sizeY += TileDict[coord].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
+
+        position.x += sizeX;
+        position.y += sizeY;
+
+        return position;
+    }
+
+    // *****
+    // 메서드 이름 바꾸기
+    public List<Vector2> Get_Abs_Pos(BattleUnit _unit, ClickType _clickType)
+    {
+        List<Vector2> ResultVector = new List<Vector2>();
+
+        List<Vector2> RangeList = new List<Vector2>();
+
+        if (_clickType == ClickType.Move)
+            RangeList = _unit.GetMoveRange();
+        else if(_clickType == ClickType.Attack)
+            RangeList = _unit.GetAttackRange();
+
+        foreach (Vector2 vec in RangeList)
+        {
+            Vector2 dump = _unit.Location + vec;
+            if(IsInRange(dump))
+            {
+                ResultVector.Add(dump);
             }
         }
+
+        return ResultVector;
+    }
+
+
+    public void SetTileColor(BattleUnit unit, Color clr, ClickType _clickType)
+    {
+
+        List<Vector2> vector = Get_Abs_Pos(unit, _clickType);
+        foreach (Vector2 vec in vector)
+        {
+            TileDict[vec].SetColor(clr);
+        }
+    }
+
+    public void ClearAllColor()
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            items.Value.SetColor(Color.white);
+        }
+    }
+
+
+    public void EnterTile(BattleUnit unit, Vector2 coord)
+    {
+        TileDict[coord].EnterTile(unit);
+
+        unit.SetLocate(coord);
+        unit.SetPosition(GetTilePosition(coord));
+    }
+
+    private void ExitTile(Vector2 coord)
+    {
+        TileDict[coord].ExitTile();
+    }
+
+    // 배치 가능 범위 확인
+    public bool IsPlayerRange(Vector2 coord)
+    {
+        if ((int)coord.x < MaxFieldX / 2)
+            return true;
+
+        Debug.Log("out of range");
+        return false;
     }
 }

@@ -1,131 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Tile : MonoBehaviour
 {
-    SpriteRenderer SR;
+    private SpriteRenderer _renderer;
+    private BattleUnit _unit = null;
+    public BattleUnit Unit => _unit;
+    // IsOnTIle의 이름은 유닛이 가지는 이름같다. 위에 유닛이 있다는 것을 알리는 이름이 더 좋아보임
+    public bool UnitExist { get { if (Unit == null) return false; return true; } }
+    public Action<Tile> OnClickAction = null;
 
-    #region TileUnit
-    private BattleUnit _TileUnit;
-    public BattleUnit TileUnit => _TileUnit;
-    #endregion
-    #region isOnTile
-    public bool _isOnTile;
-    public bool isOnTile => _isOnTile;
-    #endregion
-    private Field _field;
-    public bool CanSelect = false;
-
-    
-    private void Start()
+    public Tile Init(Vector3 position)
     {
-        _field = transform.parent.GetComponent<Field>();
-        SR = GetComponent<SpriteRenderer>();
-        SR.color = Color.white;
+        _renderer = GetComponent<SpriteRenderer>();
+        _renderer.color = Color.white;
 
-        _TileUnit = null;
-        _isOnTile = false;
-        CanSelect = false;
+        transform.position = position;
+        return this;
     }
 
-    #region Enter & Exit Tile
-    public void EnterTile(BattleUnit _unit)
+    public void EnterTile(BattleUnit unit)
     {
-        _isOnTile = true;
-        _TileUnit = _unit;
+        if (UnitExist)
+        {
+            Debug.Log("타일에 유닛이 존재합니다.");
+            return;
+        }
+ 
+        _unit = unit;
     }
 
     public void ExitTile()
     {
-        _isOnTile = false;
-        _TileUnit = null;
-    }
-    #endregion
-
-    public void SetCanSelect(bool bo)
-    {
-        if (bo)
-        {
-            CanSelect = true;
-            SetColor(Color.yellow);
-        }
-        else
-        {
-            CanSelect = false;
-            SetColor(Color.white);
-        }
+        _unit = null;
     }
 
     public void SetColor(Color color)
     {
-        SR.color = color;
-    }
-
-    // 유닛에서 실행하는 메서드
-    public BattleUnit OnAttack()
-    {
-        // 타일이 공격범위 내에 있을 시
-        // 타일에 대한 이펙트 등의 공격 처리
-
-        return _TileUnit;
+        _renderer.color = color;
     }
 
     private void OnMouseDown()
     {
-        // 필드에 자신이 클릭되었다는 정보를 준다.
-        // 그러면 필드가 내가 어디에 위치해있는 타일인지 찾을 것
-
-        _field.TileClick(this);
-    }
-
-    
-    // 
-    // 지워질 것들
-    // 캐릭터 컴포넌트 분리시킬 때 얘들도 같이 수정하기
-    // ↓↓↓↓↓↓↓↓
-    
-    public void OnHeal(BattleUnit ch)
-    {
-        StartCoroutine(CoOnHeal(ch));
-    }
-    IEnumerator CoOnHeal(BattleUnit AttackChar)
-    {
-        SR.color = Color.blue;
-
-        if (_TileUnit != null)
-        {
-            if (AttackChar.BattleUnitSO.team == _TileUnit.BattleUnitSO.team)
-            {
-                _TileUnit.UnitAction.GetDamage(-AttackChar.GetStat().ATK);
-            }
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        SR.color = Color.white;
-
-    }
-    
-    public void OnFall(BattleUnit ch)
-    {
-        StartCoroutine(CoOnFall(ch));
-    }
-    IEnumerator CoOnFall(BattleUnit AttackChar)
-    {
-        SR.color = Color.yellow;
-
-        if (_TileUnit != null)
-        {
-            if (AttackChar.BattleUnitSO.team != _TileUnit.BattleUnitSO.team)
-            {
-                _TileUnit.UnitAction.SetFallGauge(1);
-            }
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        SR.color = Color.white;
-
+        //OnClickAction(this);
+        GameManager.Battle.OnClickTile(this);
     }
 }
