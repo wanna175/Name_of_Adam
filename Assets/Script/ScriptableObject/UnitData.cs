@@ -5,11 +5,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Unit", menuName = "Scriptable Object/Unit")]
 public class UnitData : ScriptableObject
 {
+    [SerializeField] private Stat _rawStat;
+    public Stat RawStat => _rawStat;
+    public void AddStat(Stat value) { _rawStat += value; }
+
     [SerializeField] private string _name;
     public string Name => _name;
 
     [SerializeField] private Faction _faction;
     public Faction Faction => _faction;
+
+    [SerializeField] private string _description;
+    public string Description => _description;
 
     [SerializeField] private Sprite _image;
     public Sprite Image => _image;
@@ -25,14 +32,16 @@ public class UnitData : ScriptableObject
     [SerializeField] private TargetType _targetType;
     public TargetType TargetType => _targetType;
 
-    [SerializeField] private Stat _rawStat;
-    public Stat RawStat => _rawStat;
+    [SerializeField] public List<Effect> _skill;
+    public List<Effect> Skill => _skill;
 
-    [SerializeField] private int _manaCost;
-    public int ManaCost => _manaCost;
+    [SerializeField] private List<Passive> _stigmas;
+    public List<Passive> Stigmas => _stigmas;
 
-    [SerializeField] private int _firstManaCost;
-    public int FirstManaCost => _firstManaCost;
+    public int FirstManaCost => (RawStat.ManaCost + 1) / 2;
+
+    [SerializeField] private int _darkEssence;
+    public int DarkEssence => _darkEssence;
 
     #region RangeEditor
     const int Arow = 5;

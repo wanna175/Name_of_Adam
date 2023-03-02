@@ -12,6 +12,8 @@ struct SpawnData
     public Passive[] stigmas;
 }
 
+// 핸드 -> 필드 위에 생성
+// 데이터 -> 필드 생성
 public class UnitSpawner : MonoBehaviour
 {
     [SerializeField] List<SpawnData> SpawnMonsters;
