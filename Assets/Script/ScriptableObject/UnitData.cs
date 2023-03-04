@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class UnitData : MonoBehaviour
 {
-    // º¯°æµÇ´Â °ªµé
+    // ë³€ê²½ë˜ëŠ” ê°’ë“¤
 
     public Stat Stat;
     public List<Passive> Stigma;
 
-    // º¯°æµÇÁö ¾Ê´Â °ªµé
+    // ë³€ê²½ë˜ì§€ ì•ŠëŠ” ê°’ë“¤
 
     public string Name;
     public string Description;
@@ -21,7 +21,6 @@ public class UnitData : MonoBehaviour
     public BehaviorType BehaviorType;
     public TargetType TargetType;
     public UnitSkill UnitSkill;
-
 
     const int Arow = 5;
     const int Acolumn = 11;
