@@ -9,6 +9,9 @@ public class Field : MonoBehaviour
     private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
     public Dictionary<Vector2, Tile> TileDict => _tileDict;
 
+    public Color MoveColor => Color.yellow;
+    public Color AttackColor => Color.red;
+
     // 필드의 생성을 위한 필드의 위치
     private Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
     private Vector3 FieldRotation => new Vector3(16, 0, 0);

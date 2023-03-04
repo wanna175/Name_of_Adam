@@ -18,6 +18,7 @@ public class BattleUnit : DeckUnit
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
 
+
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
 
@@ -54,7 +55,6 @@ public class BattleUnit : DeckUnit
     
     public void UnitDiedEvent()
     {
-        // 23.02.16 임시 수정
         _UnitDeadAction(this);
         Destroy(gameObject);
     }
@@ -87,7 +87,9 @@ public class BattleUnit : DeckUnit
 
     public void SkillUse(BattleUnit _unit) {
         if(_unit != null)
+        {
             Skill.Use(this, _unit);
+        }
     }                   
 
     public Stat GetStat(bool buff = true) {
@@ -153,7 +155,3 @@ public class BattleUnit : DeckUnit
         return RangeList;
     }
 }
-
-// 22.02.16
-// 유닛에서 사용하는 매니저 제거
-// 매니저를 사용하는 기능들은 각 매니저로 기능을 옮김

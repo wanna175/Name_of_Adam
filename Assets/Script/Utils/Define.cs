@@ -10,7 +10,6 @@ public struct Stat
     public int SPD;
     public int Fall;
     public int ManaCost;
-    
 
     public static Stat operator +(Stat lhs, Stat rhs)
     {
@@ -75,16 +74,6 @@ public enum TargetType
 {
     Select,
     Range,
-}
-
-public enum Phase
-{
-    SetupField,
-    SpawnEnemyUnit,
-    Start,
-    Prepare,
-    Engage,
-    BattlaOver,
 }
 
 public enum ClickType
