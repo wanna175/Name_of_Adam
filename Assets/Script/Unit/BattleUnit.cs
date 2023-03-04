@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BattleUnit : Unit
+public class BattleUnit : DeckUnit
 {
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -17,6 +17,7 @@ public class BattleUnit : Unit
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
+
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -54,7 +55,6 @@ public class BattleUnit : Unit
     
     public void UnitDiedEvent()
     {
-        // 23.02.16 임시 수정
         _UnitDeadAction(this);
         Destroy(gameObject);
     }
@@ -87,7 +87,9 @@ public class BattleUnit : Unit
 
     public void SkillUse(BattleUnit _unit) {
         if(_unit != null)
+        {
             Skill.Use(this, _unit);
+        }
     }                   
 
     public Stat GetStat(bool buff = true) {
@@ -106,12 +108,50 @@ public class BattleUnit : Unit
     public bool GetFlipX() => _renderer.flipX;
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
-    
-    public List<Vector2> GetAttackRange() => Data.GetAttackRange();
-    
-    public List<Vector2> GetMoveRange() => Data.GetMoveRange();
-}
 
-// 22.02.16
-// 유닛에서 사용하는 매니저 제거
-// 매니저를 사용하는 기능들은 각 매니저로 기능을 옮김
+    public List<Vector2> GetAttackRange()
+    {
+        List<Vector2> RangeList = new List<Vector2>();
+
+        int Acolumn = 11;
+        int Arow = 5;
+
+        for (int i = 0; i < Data.AttackRange.Length; i++)
+        {
+            if (Data.AttackRange[i])
+            {
+                int x = (i % Acolumn) - (Acolumn >> 1);
+                int y = (i / Acolumn) - (Arow >> 1);
+
+                Vector2 vec = new Vector2(x, y);
+
+                RangeList.Add(vec);
+            }
+        }
+
+        return RangeList;
+    }
+
+    public List<Vector2> GetMoveRange()
+    {
+        List<Vector2> RangeList = new List<Vector2>();
+
+        int Mrow = 5;
+        int Mcolumn = 5;
+
+        for (int i = 0; i < Data.MoveRange.Length; i++)
+        {
+            if (Data.MoveRange[i])
+            {
+                int x = (i % Mcolumn) - (Mcolumn >> 1);
+                int y = -((i / Mcolumn) - (Mrow >> 1));
+
+                Vector2 vec = new Vector2(x, y);
+
+                RangeList.Add(vec);
+            }
+        }
+
+        return RangeList;
+    }
+}

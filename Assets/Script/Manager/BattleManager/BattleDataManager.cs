@@ -22,28 +22,28 @@ public class BattleDataManager : MonoBehaviour
     }
     #endregion
 
-    private List<Unit> _playerDeck = new List<Unit>();
-    public List<Unit> PlayerDeck => _playerDeck;
+    private List<DeckUnit> _playerDeck = new List<DeckUnit>();
+    public List<DeckUnit> PlayerDeck => _playerDeck;
 
-    private List<Unit> _playerHands = new List<Unit>();
-    public List<Unit> PlayerHands => _playerHands;
+    private List<DeckUnit> _playerHands = new List<DeckUnit>();
+    public List<DeckUnit> PlayerHands => _playerHands;
 
-    public void AddUnit(Unit unit) {
+    public void AddUnit(DeckUnit unit) {
         PlayerDeck.Add(unit);
     }
 
-    public void RemoveUnit(Unit unit) {
+    public void RemoveUnit(DeckUnit unit) {
         PlayerDeck.Remove(unit);
     }
 
-    public Unit GetRandomUnitFromDeck() {
+    public DeckUnit GetRandomUnitFromDeck() {
         if (PlayerDeck.Count == 0)
         {
             return null;
         }
         int randNum = Random.Range(0, PlayerDeck.Count);
-        
-        Unit unit = PlayerDeck[randNum];
+
+        DeckUnit unit = PlayerDeck[randNum];
         _playerDeck.RemoveAt(randNum);
 
         return unit;
