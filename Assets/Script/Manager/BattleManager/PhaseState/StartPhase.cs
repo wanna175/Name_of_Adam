@@ -2,20 +2,17 @@ public class StartPhase : Phase
 {
     public override void OnStateEnter()
     {
-        if (_isFirstExcute == false)
-            return;
-
-        _isFirstExcute = false;
+        
     }
 
     public override void OnStateUpdate()
     {
-        if (IsExit())
+        if (_battle._clickType >= ClickType.Engage_Nothing)
             _controller.ChangePhase(_controller.Engage);
     }
 
-    protected override bool IsExit()
+    public override void OnStateExit()
     {
-        return _battle._clickType >= ClickType.Engage_Nothing;
+        
     }
 }
