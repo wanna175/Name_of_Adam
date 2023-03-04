@@ -60,65 +60,68 @@ public class BattleManager : MonoBehaviour
 
     public void EngagePhase()
     {
-        BattleUnit Unit = Data.GetNowUnit();
-        if (0 < Unit.HP.GetCurrentHP())
+        if (Data.OrderUnitCount <= 0)
         {
-            if (Unit.Team == Team.Enemy)
+            _phase.ChangePhase(_phase.Prepare);
+            ChangeClickType(ClickType.Prepare_Nothing);// 턴 확인용 임시
+            return;
+        }
+
+        BattleUnit Unit = Data.GetNowUnit();
+        if (Unit.HP.GetCurrentHP() <= 0)
+            return;
+
+        Field.ClearAllColor();
+        if (Unit.Team == Team.Enemy)
+        {
+            Unit.AI.AIAction();
+            
+            Data.BattleOrderRemove(Unit);
+            BattleOverCheck();
+        }
+        else
+        {
+            if (_clickType == ClickType.Engage_Nothing)
             {
-                Unit.AI.AIAction();
-                Field.ClearAllColor();
-                Data.BattleOrderRemove(Unit);
-                BattleOverCheck();
+                Field.SetTileColor(Unit, Field.MoveColor, ClickType.Move);
             }
             else
             {
-                Field.ClearAllColor();
-                if (_clickType == ClickType.Engage_Nothing)
-                {
-                    Field.SetTileColor(Unit, Field.MoveColor, ClickType.Move);
-                }
-                else
-                {
-                    Field.SetTileColor(Unit, Field.AttackColor, ClickType.Attack);
-                }
+                Field.SetTileColor(Unit, Field.AttackColor, ClickType.Attack);
+            }
 
-                if (Field.Get_Abs_Pos(Unit, _clickType).Contains(coord))
+            if (Field.Get_Abs_Pos(Unit, _clickType).Contains(coord))
+            {
+                if (_clickType == ClickType.Move)
                 {
-                    if (_clickType == ClickType.Move)
-                    {
-                        Vector2 dest = coord - Unit.Location;
-                        MoveLocate(Unit, dest);
-                        ChangeClickType(ClickType.Before_Attack);
-                    }
-                    else if (_clickType == ClickType.Attack)
-                    {
-                        // 제자리를 클릭했다면 공격하지 않는다.
-                        if (coord != Unit.Location)
+                    Vector2 dest = coord - Unit.Location;
+                    MoveLocate(Unit, dest);
+                    ChangeClickType(ClickType.Before_Attack);
+                }
+                else if (_clickType == ClickType.Attack)
+                {
+                    // 제자리를 클릭했다면 공격하지 않는다.
+                    if (coord != Unit.Location)
 
-                            if (Field.GetUnit(coord) == null)
-                            {
-                                // 공격하지 않음
-                            }
-                            else if (Field.GetUnit(coord).Team == Team.Enemy)
-                            {
-                                Unit.SkillUse(Field.GetUnit(coord));
+                        if (Field.GetUnit(coord) == null)
+                        {
+                            // 공격하지 않음
+                        }
+                        else if (Field.GetUnit(coord).Team == Team.Enemy)
+                        {
+                            Unit.SkillUse(Field.GetUnit(coord));
                                     
-                            }
-                            else
-                            {
-                                ChangeClickType(ClickType.Before_Attack);
-                                return;
-                            }
-                        // 공격 실행 후 바로 다음유닛 행동 실행
-                        Field.ClearAllColor();
-                        Data.BattleOrderRemove(Unit);
-                        ChangeClickType(ClickType.Engage_Nothing);
-                        BattleOverCheck();
-                    }
-                }
-                else
-                {
-                    return;
+                        }
+                        else
+                        {
+                            ChangeClickType(ClickType.Before_Attack);
+                            return;
+                        }
+                    // 공격 실행 후 바로 다음유닛 행동 실행
+                    Field.ClearAllColor();
+                    Data.BattleOrderRemove(Unit);
+                    ChangeClickType(ClickType.Engage_Nothing);
+                    BattleOverCheck();
                 }
             }
         }
