@@ -53,11 +53,6 @@ public class BattleManager : MonoBehaviour
         GetComponent<UnitSpawner>().SpawnInitialUnit();
     }
 
-    // Memo
-    // Prepare : Player Turn
-    // Engage : 전투 하고 있는 단계
-    // Start : 제일 처음 실행하는 Prepare
-
     public void EngagePhase()
     {
         if (Data.OrderUnitCount <= 0)

@@ -38,12 +38,35 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 
+    private void newSpawn(UnitData unitdata, Vector2 location)
+    {
+        if (GameManager.Battle.Field.TileDict[location].UnitExist)
+        {
+            Debug.Log("해당 타일에 유닛이 존재합니다.");
+        }
+        else
+        {
+            GameObject go = GameManager.Resource.Instantiate(unitdata.name, parent);
+            GameManager.Battle.UnitSetting(go.GetComponent<BattleUnit>(), location);
+        }
+    }
+
+
+
     public void SpawnInitialUnit()
     {
         foreach (SpawnData data in SpawnMonsters)
         {
             Spawn(data, data.location);
         }
+    }
+
+    private Transform SetParent()
+    {
+        GameObject go = GameObject.Find("Units");
+        if (go == null)
+            go = new GameObject("Units");
+        return go.transform;
     }
 
     // *****
@@ -75,11 +98,5 @@ public class UnitSpawner : MonoBehaviour
     //    // ------------------------------------------------
     //}
 
-    private Transform SetParent()
-    {
-        GameObject go = GameObject.Find("Units");
-        if (go == null)
-            go = new GameObject("Units");
-        return go.transform;
-    }
+
 }
