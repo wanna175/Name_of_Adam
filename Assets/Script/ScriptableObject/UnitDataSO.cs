@@ -42,6 +42,8 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private BehaviorType _behaviorType;
     public BehaviorType BehaviorType => _behaviorType;
 
+    [SerializeField] private UnitSkill _unitSkill;
+    public UnitSkill UnitSkill => _unitSkill;
 
 
     #region RangeEditor
@@ -51,8 +53,10 @@ public class UnitDataSO : ScriptableObject
     const int Mrow = 5;
     const int Mcolumn = 5;
 
-    [SerializeField] [HideInInspector] public bool[] AttackRange = new bool[Arow * Acolumn];
-    [SerializeField] [HideInInspector] public bool[] MoveRange = new bool[Mrow * Mcolumn];
+    [SerializeField] [HideInInspector] private bool[] _attackRange = new bool[Arow * Acolumn];
+    public bool[] AttackRange => _attackRange;
+    [SerializeField] [HideInInspector] public bool[] _moveRange = new bool[Mrow * Mcolumn];
+    public bool[] MoveRange => _moveRange;
 
 }
 
