@@ -16,7 +16,8 @@ public class BattleUnit : Unit
 
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
-    
+    [SerializeField] public UnitSkill Skill;
+
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -87,7 +88,7 @@ public class BattleUnit : Unit
     public void SkillUse(BattleUnit _unit) {
         if(_unit != null)
         {
-            //Data.Skill.Use(this, _unit);
+            Skill.Use(this, _unit);
         }
     }                   
 
