@@ -18,7 +18,7 @@ public class PhaseController
 
     public void OnUpdate()
     {
-        _currentPhase.OnUpdate();
+        _currentPhase.OnStateUpdate();
     }
 
     public void ChangePhase(Phase nextPhase)

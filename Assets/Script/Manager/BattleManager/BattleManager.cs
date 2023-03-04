@@ -55,9 +55,14 @@ public class BattleManager : MonoBehaviour
         GetComponent<UnitSpawner>().SpawnInitialUnit();
     }
 
+    // Memo
+    // Prepare : Player Turn
+    // Engage : 전투 하고 있는 단계
+    // Start : 제일 처음 실행하는 Prepare
+
     public void EngagePhase()
     {
-        if (isEngage)
+        if (isEngage) // Memo : 한 번만 실행될 목적으로 (Engage Phase의 Init)
         {
             isEngage = false;
 
@@ -84,11 +89,11 @@ public class BattleManager : MonoBehaviour
                     Field.ClearAllColor();
                     if (_clickType == ClickType.Engage_Nothing)
                     {
-                        Field.SetTileColor(Unit, Color.yellow, ClickType.Move);
+                        Field.SetTileColor(Unit, Field.MoveColor, ClickType.Move);
                     }
                     else
                     {
-                        Field.SetTileColor(Unit, Color.red, ClickType.Attack);
+                        Field.SetTileColor(Unit, Field.AttackColor, ClickType.Attack);
                     }
 
                     if (Field.Get_Abs_Pos(Unit, _clickType).Contains(coord))
