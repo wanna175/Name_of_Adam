@@ -945,24 +945,34 @@ MonoBehaviour:
   - 
   - 
   StageInfoContainer:
-  - StageName: "\uB099\uC778\uC18C"
+  - Name: Stigma Store
+    Type: Store
     MaxCount: 2
     MaxAppear: 1
-  - StageName: "\uAC15\uD654\uC18C"
-    MaxCount: 3
+  - Name: Upgrade Store
+    Type: Store
+    MaxCount: 2
     MaxAppear: 1
-  - StageName: "\uC5D8\uB9AC\uD2B8"
+  - Name: Money Store
+    Type: Store
     MaxCount: 1
     MaxAppear: 1
-  - StageName: "\uD0D5\uB140"
-    MaxCount: 2
+  - Name: Harlot
+    Type: Event
+    MaxCount: 1
     MaxAppear: 1
-  - StageName: "\uC804\uD22C"
-    MaxCount: 5
-    MaxAppear: 3
-  - StageName: "\uBB3C\uC74C\uD45C"
-    MaxCount: 8
-    MaxAppear: 4
+  - Name: '?'
+    Type: Event
+    MaxCount: 3
+    MaxAppear: 2
+  - Name: Common Battle
+    Type: Battle
+    MaxCount: 4
+    MaxAppear: 2
+  - Name: Elite Battle
+    Type: Battle
+    MaxCount: 1
+    MaxAppear: 1
 --- !u!224 &2117723696 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 963727030562007705, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}

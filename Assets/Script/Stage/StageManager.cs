@@ -86,14 +86,13 @@ public class StageManager : MonoBehaviour
     {
         StoreList = new List<string>();
 
-        StageInfoList = GetInfoList();
-
+        GetInfoList();
         InitStage();
     }
 
-    public List<Stage> GetInfoList()
+    void GetInfoList()
     {
-        List<Stage> stageList = new List<Stage>();
+        StageInfoList = new List<Stage>();
 
         foreach (TestContainer test in StageInfoContainer)
         {
@@ -103,10 +102,8 @@ public class StageManager : MonoBehaviour
             if (st.GetStageType() == "Store")
                 StoreList.Add(st.Name);
 
-            stageList.Add(st);
+            StageInfoList.Add(st);
         }
-
-        return stageList;
     }
 
 
@@ -133,12 +130,12 @@ public class StageManager : MonoBehaviour
 
     void SetMapList()
     {
-        for(int i = 4; i > 0; i--)
+        for(int i =0; i < 4; i++)
         {
             if (i == 2)
-                MapList.Add("Elite");
+                MapList.Add("Elite Battle");
             else
-                MapList.Add("Common");
+                MapList.Add("Common Battle");
 
 
             if (i <= 2)
@@ -147,7 +144,7 @@ public class StageManager : MonoBehaviour
                 MapList.Add("Store");
 
 
-            if (i / 2 == 0)
+            if (i % 2 == 0)
                 MapList.Add("Random");
         }
     }
@@ -155,6 +152,12 @@ public class StageManager : MonoBehaviour
 
     void SetAfterArray()
     {
+        if (MapList.Count == 5)
+        {
+            StageDict.Clear();
+            SetStageData();
+        }
+
         try
         {
             for (int i = 0; i < AfterNextStageArray.Length; i++)
@@ -163,16 +166,11 @@ public class StageManager : MonoBehaviour
                     AfterNextStageArray[i] = GetRandomStage();
                 else if(MapList[1] == "Store")
                 {
-                    int index = 0;
+                    int index = i;
+                    if (StoreList.Count <= index)
+                        index -= StoreList.Count;
 
-                    for(int j = 0; j < AfterNextStageArray.Length; j++)
-                    {
-                        AfterNextStageArray[i] = StoreList[index];
-
-                        i++;
-                        if (StoreList.Count <= i)
-                            i = 0;
-                    }
+                    AfterNextStageArray[i] = StoreList[index];
                 }
                 else
                     AfterNextStageArray[i] = MapList[1];
@@ -205,8 +203,8 @@ public class StageManager : MonoBehaviour
         Debug.Log(randCount);
 
         // 가져올 수 있는 스테이지가 나올 때까지 무한히 돌리는 방법
-        // 무한히 돌지 않도록 족쇄를 채워야 함(일단은 10번만 돌리는걸로)
-        for(int i = 0; i < 10; i++)
+        // 무한히 돌지 않도록 족쇄를 채워야 함(일단은 100번 돌리는걸로)
+        for(int i = 0; i < 100; i++)
         {
             int random = UnityEngine.Random.Range(0, randCount);
 
