@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UI_Hand : UI_Base
 {
-    private Unit _handUnit = null;
+    private DeckUnit _handUnit = null;
     private GameObject _highlight = null;
 
 
@@ -16,7 +16,7 @@ public class UI_Hand : UI_Base
         _highlight.SetActive(false);
     }
 
-    public void SetHandUnit(Unit unit)
+    public void SetHandUnit(DeckUnit unit)
     {
         _handUnit = unit;
         SetUnitInfo();
@@ -27,7 +27,7 @@ public class UI_Hand : UI_Base
         // UI가 완성된 후에 디테일한 요소 추가
     }
 
-    public Unit GetHandUnit()
+    public DeckUnit GetHandUnit()
     {
         return _handUnit;
     }

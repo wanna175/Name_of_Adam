@@ -36,14 +36,14 @@ public class UI_Hands : UI_Scene
         }
     }
 
-    public void AddUnit(Unit unit)
+    public void AddUnit(DeckUnit unit)
     {
         UI_Hand newCard = GameObject.Instantiate(HandPrefabs, _grid).GetComponent<UI_Hand>();
         newCard.SetHandUnit(unit);
         _handList.Add(newCard);
     }
 
-    public void RemoveUnit(Unit unit)
+    public void RemoveUnit(DeckUnit unit)
     {
         UI_Hand card = FindCardByUnit(unit);
 
@@ -63,7 +63,7 @@ public class UI_Hands : UI_Scene
         Destroy(card.gameObject);
     }
 
-    private UI_Hand FindCardByUnit(Unit unit)
+    private UI_Hand FindCardByUnit(DeckUnit unit)
     {
         foreach(UI_Hand card in _handList)
         {
@@ -74,7 +74,7 @@ public class UI_Hands : UI_Scene
         return null;
     }
 
-    public Unit RemoveHand(int handIndex)
+    public DeckUnit RemoveHand(int handIndex)
     {
         ////handIndex는 1부터 시작하기에 -1 해야함
         //Unit returnUnit;
@@ -97,8 +97,8 @@ public class UI_Hands : UI_Scene
     private int _ClickedHand = 0;
     public int ClickedHand => _ClickedHand;
 
-    private Unit _ClickedUnit = null;
-    public Unit ClickedUnit => _ClickedUnit;
+    private DeckUnit _ClickedUnit = null;
+    public DeckUnit ClickedUnit => _ClickedUnit;
 
     public void OnHandClick(UI_Hand hand)
     {

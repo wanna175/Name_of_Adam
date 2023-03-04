@@ -78,11 +78,11 @@ public class BattleManager : MonoBehaviour
             return;
 
         // ----------------변경 예정------------------------
-        Unit clickedUnit = _hands.ClickedUnit;
+        DeckUnit clickedUnit = _hands.ClickedUnit;
         if (clickedUnit == null)
             return;
 
-        _mana.ChangeMana(-1 * clickedUnit.Data.ManaCost);
+        _mana.ChangeMana(-1 * clickedUnit.Data.RawStat.ManaCost);
 
         GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Units/BaseUnit");
         BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
