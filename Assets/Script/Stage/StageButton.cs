@@ -1,24 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class StageButton : MonoBehaviour
+public class StageButton : EventTrigger
 {
-    [SerializeField] List<Image> Buttons;
 
-    public void MouseEnter()
-    {
-        foreach(Image img in Buttons)
-        {
-            img.color = Color.black;
-        }
-    }
-    public void MouseExit()
-    {
-        foreach (Image img in Buttons)
-        {
-            img.color = Color.red;
-        }
-    }
 }

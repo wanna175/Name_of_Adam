@@ -870,6 +870,7 @@ MonoBehaviour:
   _battle: {fileID: 1589663945}
   _cutScene: {fileID: 49041952}
   _ui: {fileID: 20967190}
+  _stageMNG: {fileID: 2067053089}
 --- !u!4 &1932546685
 Transform:
   m_ObjectHideFlags: 0
@@ -933,6 +934,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87d9431998c6274bb3aaf88bb005a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NextStageArray:
+  - 
+  - 
+  - 
+  AfterNextStageArray:
+  - 
+  - 
+  - 
+  - 
+  - 
   StageInfoContainer:
   - StageName: "\uB099\uC778\uC18C"
     MaxCount: 2

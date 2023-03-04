@@ -20,14 +20,11 @@ public class GameManager : MonoBehaviour
     public static ResourceManager Resource => Instance._resource;
 
     #region 현재 안 씀
-    StageManager _stageMNG;
+    [SerializeField] private StageManager _stageMNG;
     public static StageManager StageMNG => Instance._stageMNG;
 
     DataManager _dataMNG = new DataManager();
     public static DataManager DataMNG => Instance._dataMNG;
-
-    SceneChanger _sceneChanger;
-    public static SceneChanger SceneChanger => Instance._sceneChanger;
     #endregion
 
     void Awake()

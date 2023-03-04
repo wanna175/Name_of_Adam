@@ -6,7 +6,8 @@ using UnityEngine;
 [Serializable]
 public struct TestContainer
 {
-    public string StageName;
+    public string Name;
+    public string Type;
     public int MaxCount;
     public int MaxAppear;
 }
@@ -14,19 +15,22 @@ public struct TestContainer
 public class Stage
 {
     // 담고있는 정보가 어떤 스테이지의 것인지 확인하기 위한 변수
-    public string StageName;
+    public string Name;
+    string Type;
     int MaxAppear;
     int NowAppear;
     int MaxCount;
     int RemainCount;
 
-    public Stage(int count, int appear)
+    public Stage(string type, int count, int appear)
     {
+        Type = type;
         MaxAppear = appear;
         NowAppear = 0;
         MaxCount = RemainCount = count;
     }
 
+    public string GetStageType() => Type;
     public int GetRemainCount() => RemainCount;
 
     public bool GetStage()
@@ -66,16 +70,22 @@ public class StageManager : MonoBehaviour
     [SerializeField] string[] NextStageArray = new string[3];
     [SerializeField] string[] AfterNextStageArray = new string[5];
 
+    public string[] GetNextStage => NextStageArray;
+    public string[] GetAfterNextStage => AfterNextStageArray;
+
     // 인스펙터에서 스테이지 정보를 받기 위해 만든 테스트용 리스트
     // 얘는 데이터 매니저에서 받아야하려나?
     // 일단은 게임매니저 아래에 StageManger를 생성하고 인스펙터에서 받아오는 식으로 해보자
     [SerializeField] public List<TestContainer> StageInfoContainer;
     
     List<Stage> StageInfoList;
+    List<string> StoreList;
 
 
     private void Start()
     {
+        StoreList = new List<string>();
+
         StageInfoList = GetInfoList();
 
         InitStage();
@@ -87,8 +97,11 @@ public class StageManager : MonoBehaviour
 
         foreach (TestContainer test in StageInfoContainer)
         {
-            Stage st = new Stage(test.MaxCount, test.MaxAppear);
-            st.StageName = test.StageName;
+            Stage st = new Stage(test.Type, test.MaxCount, test.MaxAppear);
+            st.Name = test.Name;
+
+            if (st.GetStageType() == "Store")
+                StoreList.Add(st.Name);
 
             stageList.Add(st);
         }
@@ -115,38 +128,27 @@ public class StageManager : MonoBehaviour
     void SetStageData()
     {
         foreach(Stage si in StageInfoList)
-            StageDict.Add(si.StageName, si);
+            StageDict.Add(si.Name, si);
     }
 
     void SetMapList()
     {
-        int randStageCount = 2;
-
         for(int i = 4; i > 0; i--)
         {
             if (i == 2)
-                MapList.Add("엘리트");
+                MapList.Add("Elite");
             else
-                MapList.Add("전투");
+                MapList.Add("Common");
 
-            MapList.Add("랜덤");
 
-            if (randStageCount <= 0)
-                continue;
+            if (i <= 2)
+                MapList.Add("Random");
+            else
+                MapList.Add("Store");
 
-            if (i <= randStageCount) {
-                MapList.Add("랜덤");
-                randStageCount--;
-                Debug.Log(i + "번째에 랜덤 추가");
-                continue;
-            }
 
-            if (UnityEngine.Random.Range(0, 2) == 0)
-            {
-                MapList.Add("랜덤");
-                randStageCount--;
-                Debug.Log(i + "번째에 랜덤 추가");
-            }
+            if (i / 2 == 0)
+                MapList.Add("Random");
         }
     }
 
@@ -157,8 +159,21 @@ public class StageManager : MonoBehaviour
         {
             for (int i = 0; i < AfterNextStageArray.Length; i++)
             {
-                if (MapList[1] == "랜덤")
+                if (MapList[1] == "Random")
                     AfterNextStageArray[i] = GetRandomStage();
+                else if(MapList[1] == "Store")
+                {
+                    int index = 0;
+
+                    for(int j = 0; j < AfterNextStageArray.Length; j++)
+                    {
+                        AfterNextStageArray[i] = StoreList[index];
+
+                        i++;
+                        if (StoreList.Count <= i)
+                            i = 0;
+                    }
+                }
                 else
                     AfterNextStageArray[i] = MapList[1];
             }
@@ -175,7 +190,7 @@ public class StageManager : MonoBehaviour
             if(MapList.Count == 1)
             {
                 int half = AfterNextStageArray.Length / 2;
-                AfterNextStageArray[half] = "보스";
+                AfterNextStageArray[half] = "Boss";
             }
         }
     }
@@ -245,5 +260,7 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
             MoveNextStage(1);
+        if (Input.GetKeyDown(KeyCode.O))
+            SceneChanger.SceneChange("StageSelectScene");
     }
 }
