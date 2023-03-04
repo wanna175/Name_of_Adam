@@ -42,7 +42,7 @@ public class Unit_AI_Controller : MonoBehaviour
     protected void AttackRangeSearch()
     {
         //현재 위치에서 공격범위 내의 유닛을 찾는다.
-        foreach (Vector2 range in caster.Data.GetAttackRange())
+        foreach (Vector2 range in caster.GetAttackRange())
         {
             Vector2 AttackRange = caster.Location + range;
 
@@ -73,7 +73,7 @@ public class Unit_AI_Controller : MonoBehaviour
         {
             if (unit.Team == Team.Player)
             {
-                foreach (Vector2 range in caster.Data.GetAttackRange())
+                foreach (Vector2 range in caster.GetAttackRange())
                 {
                     //공격가능 타일은 공격하는 유닛의 공격 범위의 점 대칭이다. 따라서 -.
                     
@@ -96,7 +96,7 @@ public class Unit_AI_Controller : MonoBehaviour
         //단 위, 아래, 왼, 오른쪽만 이동 가능하다고 가정
         List<Vector3> swapList = new List<Vector3>();
 
-        foreach(Vector2 vec in caster.Data.GetMoveRange())
+        foreach(Vector2 vec in caster.GetMoveRange())
         {
             for (float i = 0; i <= 0.1f; i += 0.1f)
             {
