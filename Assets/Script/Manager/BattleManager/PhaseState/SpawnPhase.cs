@@ -14,9 +14,4 @@ public class SpawnPhase : Phase
     {
         _controller.ChangePhase(_controller.Start);
     }
-
-    public override void OnStateExit()
-    {
-        _isFirstExcute = true;
-    }
 }

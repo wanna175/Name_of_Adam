@@ -15,9 +15,4 @@ public class BattleOverPhase : Phase
     {
 
     }
-
-    public override void OnStateExit()
-    {
-        _isFirstExcute = true;
-    }
 }

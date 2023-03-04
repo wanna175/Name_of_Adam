@@ -15,9 +15,4 @@ public class EngagePhase : Phase
     {
         _battle.EngagePhase();
     }
-
-    public override void OnStateExit()
-    {
-        _isFirstExcute = true;
-    }
 }

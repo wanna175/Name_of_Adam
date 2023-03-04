@@ -14,11 +14,6 @@ public class StartPhase : Phase
             _controller.ChangePhase(_controller.Engage);
     }
 
-    public override void OnStateExit()
-    {
-        _isFirstExcute = true;
-    }
-
     protected override bool IsExit()
     {
         return _battle._clickType >= ClickType.Engage_Nothing;

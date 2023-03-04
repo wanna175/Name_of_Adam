@@ -21,7 +21,10 @@ public abstract class Phase
     public abstract void OnStateUpdate();
     // 페이즈 내내 실행
 
-    public abstract void OnStateExit();
+    public virtual void OnStateExit()
+    {
+        _isFirstExcute = true;
+    }
     // (IsExit 충족 시) 끝날 때 한 번 실행 
 
     protected virtual bool IsExit()

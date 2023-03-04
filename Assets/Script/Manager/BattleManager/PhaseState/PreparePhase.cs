@@ -16,10 +16,11 @@ public class PreparePhase : Phase
 
     public override void OnStateExit()
     {
+        
         _battle.Mana.ChangeMana(2);
         _battle.Data.TurnPlus();
 
-        _isFirstExcute = true;
+        base.OnStateExit();
     }
 
     protected override bool IsExit()
