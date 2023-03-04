@@ -229,24 +229,18 @@ public class BattleManager : MonoBehaviour
                 break;
 
             case Phase.Prepare:
-
-                Debug.Log("Prepare Enter");
-
                 _mana.ChangeMana(2);
                 _battleData.TurnPlus();
 
                 if (_clickType >= ClickType.Engage_Nothing)
                 {
                     //PrepareExit();
-                    Debug.Log("Prepare Exit");
-
                     PhaseChanger(Phase.Engage);
                 }
 
                 break;
 
             case Phase.BattlaOver:
-                Debug.Log("끝끝끝");
 
                 break;
         }
