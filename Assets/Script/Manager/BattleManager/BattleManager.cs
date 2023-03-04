@@ -25,8 +25,6 @@ public class BattleManager : MonoBehaviour
 
     private Vector2 coord;
 
-    private bool isEngage = true;
-
     private void Awake()
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
@@ -62,17 +60,6 @@ public class BattleManager : MonoBehaviour
 
     public void EngagePhase()
     {
-        if (isEngage) // Memo : 한 번만 실행될 목적으로 (Engage Phase의 Init)
-        {
-            isEngage = false;
-
-            Field.ClearAllColor();
-
-            // 턴 시작 전에 순서를 정렬한다.
-
-            Data.BattleUnitOrder();
-        }
-
         if (Data.OrderUnitCount > 0)
         {
             BattleUnit Unit = Data.GetNowUnit();
@@ -83,6 +70,7 @@ public class BattleManager : MonoBehaviour
                     Unit.AI.AIAction();
                     Field.ClearAllColor();
                     Data.BattleOrderRemove(Unit);
+                    BattleOverCheck();
                 }
                 else
                 {
@@ -116,6 +104,7 @@ public class BattleManager : MonoBehaviour
                                 else if (Field.GetUnit(coord).Team == Team.Enemy)
                                 {
                                     Unit.SkillUse(Field.GetUnit(coord));
+                                    
                                 }
                                 else
                                 {
@@ -126,6 +115,7 @@ public class BattleManager : MonoBehaviour
                             Field.ClearAllColor();
                             Data.BattleOrderRemove(Unit);
                             ChangeClickType(ClickType.Engage_Nothing);
+                            BattleOverCheck();
                         }
                     }
                     else
@@ -137,12 +127,9 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            _phase.ChangePhase(new PreparePhase());
-            isEngage = true;
+            _phase.ChangePhase(_phase.Prepare);
             ChangeClickType(ClickType.Prepare_Nothing);// 턴 확인용 임시
         }
-
-        BattleOverCheck();
     }
 
     public void OnClickTile(Tile tile)

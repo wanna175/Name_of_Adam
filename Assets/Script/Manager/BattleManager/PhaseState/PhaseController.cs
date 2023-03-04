@@ -23,8 +23,12 @@ public class PhaseController
 
     public void ChangePhase(Phase nextPhase)
     {
+        if (_currentPhase != null)
+            _currentPhase.OnStateExit();
+
         _currentPhase = nextPhase;
         _currentPhase.SetController(this);
+        _currentPhase.OnStateEnter();
     }
 
     private void InitializePhase()
