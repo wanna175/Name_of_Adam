@@ -105,7 +105,7 @@ public class RangeEditor : Editor
                 GUI.color = Color.green;
 
 
-            SerializedProperty a = serializedObject.FindProperty("AttackRange").GetArrayElementAtIndex(i);
+            SerializedProperty a = serializedObject.FindProperty("_attackRange").GetArrayElementAtIndex(i);
             atkRange[i] = EditorGUILayout.Toggle(atkRange[i]);
             a.boolValue = atkRange[i];
 
@@ -136,7 +136,7 @@ public class RangeEditor : Editor
                 GUI.color = Color.green;
 
 
-            SerializedProperty b = serializedObject.FindProperty("MoveRange").GetArrayElementAtIndex(i);
+            SerializedProperty b = serializedObject.FindProperty("_moveRange").GetArrayElementAtIndex(i);
             moveRange[i] = EditorGUILayout.Toggle(moveRange[i]);
             b.boolValue = moveRange[i];
 
