@@ -6,6 +6,7 @@ using UnityEngine;
 public struct Stat
 {
     public int HP;
+    public int CurrentHP;
     public int ATK;
     public int SPD;
     public int Fall;
@@ -15,6 +16,7 @@ public struct Stat
     {
         Stat result = new Stat();
         result.HP = lhs.HP + rhs.HP;
+        result.CurrentHP = lhs.CurrentHP + rhs.CurrentHP;
         result.ATK = lhs.ATK + rhs.ATK;
         result.SPD = lhs.SPD + rhs.SPD;
         result.Fall = lhs.Fall + rhs.Fall;
@@ -27,6 +29,7 @@ public struct Stat
     {
         Stat result = new Stat();
         result.HP = lhs.HP - rhs.HP;
+        result.CurrentHP = lhs.CurrentHP - rhs.CurrentHP;
         result.ATK = lhs.ATK - rhs.ATK;
         result.SPD = lhs.SPD - rhs.SPD;
         result.Fall = lhs.Fall - rhs.Fall;

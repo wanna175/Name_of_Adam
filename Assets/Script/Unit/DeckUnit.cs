@@ -6,23 +6,24 @@ public class DeckUnit : MonoBehaviour
 {
     public UnitDataSO Data;
     
-    [SerializeField] private Stat _changedstat;
-    public Stat Stat => Data.RawStat; // Memo : 나중에 낙인, 버프 추가한 스탯으로 수정
+    [SerializeField] public Stat ChangedStat;
+
+    public Stat Stat => Data.RawStat + ChangedStat; // Memo : 나중에 낙인, 버프 추가한 스탯으로 수정
     
-    [SerializeField] private List<Passive> Stigmas = new List<Passive>();
+    [SerializeField] private List<Passive> Stigmata = new List<Passive>();
 
     // 낙인 수정
     public void ChangeStigma()
     {
 
     }
-
+    /*
     public UnitData SetUnitData()
     {
         UnitData result = new UnitData();
 
-        result.Stat = Data.RawStat + _changedstat;
-        result.Stigma = Stigmas;
+        result.Stat = Data.RawStat + ChangedStat;
+        result.Stigma = Stigmata;
 
         result.Name = Data.Name;
         result.Description = Data.Description;
@@ -39,6 +40,5 @@ public class DeckUnit : MonoBehaviour
 
         return result;
     }
-
-
+    */
 }

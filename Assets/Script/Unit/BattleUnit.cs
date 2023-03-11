@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class BattleUnit : DeckUnit
 {
@@ -17,7 +15,6 @@ public class BattleUnit : DeckUnit
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
-
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
