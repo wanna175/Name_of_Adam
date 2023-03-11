@@ -1215,11 +1215,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589a3eb16de13884894881ea1f4f0e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextStageButton:
+  StageButtons:
   - {fileID: 2106240849}
   - {fileID: 558826718}
   - {fileID: 1874442688}
-  AfterNextStageButton:
+  NextStageButtons:
   - {fileID: 1329627356}
   - {fileID: 474538228}
   - {fileID: 583694012}
