@@ -55,8 +55,10 @@ public class UnitDataSO : ScriptableObject
 
     [SerializeField] [HideInInspector] private bool[] _attackRange = new bool[Arow * Acolumn];
     public bool[] AttackRange => _attackRange;
-    [SerializeField] [HideInInspector] public bool[] _moveRange = new bool[Mrow * Mcolumn];
+    [SerializeField] [HideInInspector] private bool[] _moveRange = new bool[Mrow * Mcolumn];
     public bool[] MoveRange => _moveRange;
+    [SerializeField] [HideInInspector] private bool[] _splashRange = new bool[Arow * Acolumn];
+    public bool[] SplashRange => _splashRange;
 
 }
 
@@ -74,6 +76,7 @@ public class RangeEditor : Editor
     UnitDataSO _range;
     bool[] atkRange;
     bool[] moveRange;
+    bool[] splashRange;
 
     private void OnEnable()
     {
@@ -146,6 +149,38 @@ public class RangeEditor : Editor
 
         #endregion
 
+        
+        #region SplashRange
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("광역 범위");
+
+        splashRange = _range.SplashRange;
+
+        for (int i = 0; i < splashRange.Length; i++)
+        {
+            if (i % Acolumn == 0)
+                GUILayout.BeginHorizontal();
+
+            GUI.color = Color.white;
+            if (splashRange[i])
+                GUI.color = Color.red;
+
+            if (i == Arow * Acolumn >> 1)
+                GUI.color = Color.green;
+
+
+            SerializedProperty s = serializedObject.FindProperty("_splashRange").GetArrayElementAtIndex(i);
+            splashRange[i] = EditorGUILayout.Toggle(splashRange[i]);
+            s.boolValue = splashRange[i];
+
+            if (i % Acolumn == Acolumn - 1)
+                GUILayout.EndHorizontal();
+        }
+
+        #endregion
+    
         serializedObject.ApplyModifiedProperties();
     }
 }

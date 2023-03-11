@@ -12,15 +12,16 @@ public struct TestContainer
     public int MaxAppear;
 }
 
+[Serializable]
 public class Stage
 {
     // 담고있는 정보가 어떤 스테이지의 것인지 확인하기 위한 변수
     public string Name;
-    string Type;
-    int MaxAppear;
-    int NowAppear;
-    int MaxCount;
-    int RemainCount;
+    [SerializeField] string Type;
+    [SerializeField] int MaxAppear;
+    [SerializeField] int NowAppear;
+    [SerializeField] int MaxCount;
+    [SerializeField] int RemainCount;
 
     public Stage(string type, int count, int appear)
     {
@@ -38,11 +39,13 @@ public class Stage
         // 최대 출현 가능 갯수 초과
         if (MaxAppear <= NowAppear)
         {
+            Debug.Log("최대 출현 가능 갯수 초과");
             return false;
         }
         // 카운트 초과
         if (RemainCount <= 0)
         {
+            Debug.Log("카운트 초과");
             return false;
         }
 
@@ -56,9 +59,10 @@ public class Stage
         if (RemainCount <= MaxCount)
         {
             RemainCount++;
-            NowAppear--;
         }
     }
+
+    public void AppearClear() => NowAppear = 0;
 }
 
 public class StageManager : MonoBehaviour
@@ -67,25 +71,23 @@ public class StageManager : MonoBehaviour
     Dictionary<string, Stage> StageDict = new Dictionary<string, Stage>();
 
     // 디버그용 시리얼라이즈
-    [SerializeField] string[] NextStageArray = new string[3];
-    [SerializeField] string[] AfterNextStageArray = new string[5];
+    [SerializeField] Stage[] NextStageArray = new Stage[3];
+    [SerializeField] Stage[] AfterNextStageArray = new Stage[5];
 
-    public string[] GetNextStage => NextStageArray;
-    public string[] GetAfterNextStage => AfterNextStageArray;
+    public Stage[] GetNextStage => NextStageArray;
+    public Stage[] GetAfterNextStage => AfterNextStageArray;
 
     // 인스펙터에서 스테이지 정보를 받기 위해 만든 테스트용 리스트
     // 얘는 데이터 매니저에서 받아야하려나?
     // 일단은 게임매니저 아래에 StageManger를 생성하고 인스펙터에서 받아오는 식으로 해보자
     [SerializeField] public List<TestContainer> StageInfoContainer;
     
-    List<Stage> StageInfoList;
-    List<string> StoreList;
+    [SerializeField] List<Stage> StageInfoList;
+    List<Stage> StoreList;
 
 
     private void Start()
     {
-        StoreList = new List<string>();
-
         GetInfoList();
         InitStage();
     }
@@ -93,6 +95,7 @@ public class StageManager : MonoBehaviour
     void GetInfoList()
     {
         StageInfoList = new List<Stage>();
+        StoreList = new List<Stage>();
 
         foreach (TestContainer test in StageInfoContainer)
         {
@@ -100,7 +103,7 @@ public class StageManager : MonoBehaviour
             st.Name = test.Name;
 
             if (st.GetStageType() == "Store")
-                StoreList.Add(st.Name);
+                StoreList.Add(st);
 
             StageInfoList.Add(st);
         }
@@ -116,7 +119,7 @@ public class StageManager : MonoBehaviour
         SetMapList();
 
         for(int i = 0; i < NextStageArray.Length; i++)
-            NextStageArray[i] = MapList[0];
+            NextStageArray[i] = StageDict[MapList[0]];
         SetAfterArray();
     }
 
@@ -154,16 +157,20 @@ public class StageManager : MonoBehaviour
     {
         if (MapList.Count == 5)
         {
+            Stage EliteStage = StageDict["Elite Battle"];
             StageDict.Clear();
             SetStageData();
+            StageDict["Elite Battle"] = EliteStage;
         }
 
         try
         {
+            NowAppearClear();
+
             for (int i = 0; i < AfterNextStageArray.Length; i++)
             {
                 if (MapList[1] == "Random")
-                    AfterNextStageArray[i] = GetRandomStage();
+                    AfterNextStageArray[i] = GetRandomStage(i);
                 else if(MapList[1] == "Store")
                 {
                     int index = i;
@@ -173,7 +180,7 @@ public class StageManager : MonoBehaviour
                     AfterNextStageArray[i] = StoreList[index];
                 }
                 else
-                    AfterNextStageArray[i] = MapList[1];
+                    AfterNextStageArray[i] = StageDict[MapList[1]];
             }
         }
         catch // OutOfIndex가 떳을 때
@@ -188,19 +195,21 @@ public class StageManager : MonoBehaviour
             if(MapList.Count == 1)
             {
                 int half = AfterNextStageArray.Length / 2;
-                AfterNextStageArray[half] = "Boss";
+
+                Stage BossStage = new Stage("Battle", 1, 1);
+                BossStage.Name = "Boss";
+
+                AfterNextStageArray[half] = BossStage;
             }
         }
     }
 
-    string GetRandomStage()
+    Stage GetRandomStage(int index)
     {
         int randCount = 0;
 
         foreach (KeyValuePair<string, Stage> st in StageDict)
             randCount += st.Value.GetRemainCount();
-
-        Debug.Log(randCount);
 
         // 가져올 수 있는 스테이지가 나올 때까지 무한히 돌리는 방법
         // 무한히 돌지 않도록 족쇄를 채워야 함(일단은 100번 돌리는걸로)
@@ -214,9 +223,31 @@ public class StageManager : MonoBehaviour
 
                 if (0 < random)
                     continue;
+
+                if (st.Value.GetStageType() == "Store")
+                {
+                    bool CanStore = true;
+
+                    for (int j = 0; j <= 2; j++)
+                    {
+                        int beforeStage = index - j;
+
+                        if (0 <= beforeStage && beforeStage < NextStageArray.Length)
+                        {
+                            if(NextStageArray[beforeStage].GetStageType() == "Store")
+                            {
+                                CanStore = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!CanStore)
+                        continue;
+                }
                
-                if (StageDict[st.Key].GetStage())
-                    return st.Key;
+                if (st.Value.GetStage())
+                    return st.Value;
                 else
                     break;
             }
@@ -224,6 +255,15 @@ public class StageManager : MonoBehaviour
 
         return null;
     }
+
+    void NowAppearClear()
+    {
+        foreach(KeyValuePair<string, Stage> st in StageDict)
+        {
+            st.Value.AppearClear();
+        }
+    }
+
 
     public void MoveNextStage(int index)
     {
@@ -234,7 +274,7 @@ public class StageManager : MonoBehaviour
             if (NextStageArray[i] != null)
             {
                 if (i != index)
-                    StageDict[NextStageArray[i]].RecallCount();
+                    NextStageArray[i].RecallCount();
             }
 
             NextStageArray[i] = AfterNextStageArray[index + i];
@@ -246,7 +286,7 @@ public class StageManager : MonoBehaviour
                 continue;
 
             if(i < index || index + 2 < i)
-                StageDict[AfterNextStageArray[i]].RecallCount();
+                AfterNextStageArray[i].RecallCount();
         }
 
         SetAfterArray();

@@ -34,8 +34,10 @@ public class ButtonController : MonoBehaviour
     {
         for (int i = 0; i < NextStageButton.Length; i++)
         {
+            string StageText = (_stageMNG.GetNextStage[i] != null) ? _stageMNG.GetNextStage[i].Name : "";
+
             NextStageButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
-                text = _stageMNG.GetNextStage[i];
+                text = StageText;
 
             if (_stageMNG.GetNextStage[i] == null)
                 NextStageButton[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -43,8 +45,10 @@ public class ButtonController : MonoBehaviour
 
         for(int i = 0; i < AfterNextStageButton.Length; i++)
         {
+            string StageText = (_stageMNG.GetAfterNextStage[i] != null) ? _stageMNG.GetAfterNextStage[i].Name : "";
+            
             AfterNextStageButton[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
-                text = _stageMNG.GetAfterNextStage[i];
+                text = StageText;
 
             if (_stageMNG.GetAfterNextStage[i] == null)
                 AfterNextStageButton[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
@@ -65,19 +69,27 @@ public class ButtonController : MonoBehaviour
     {
         int index = GetIndex(FocusObject);
 
-        NextStageButton[index].GetComponent<Image>().color = Color.white;
+        if (_stageMNG.GetNextStage[index] != null)
+            NextStageButton[index].GetComponent<Image>().color = Color.white;
 
-        for(int i = 0; i < 3; i++)
-            AfterNextStageButton[index + i].GetComponent<Image>().color = Color.white;
+        for (int i = 0; i < 3; i++)
+        {
+            if(_stageMNG.GetAfterNextStage[index + i] != null)
+               AfterNextStageButton[index + i].GetComponent<Image>().color = Color.white;
+        }
     }
 
     public void PointerExit(GameObject FocusObject)
     {
         int index = GetIndex(FocusObject);
 
-        NextStageButton[index].GetComponent<Image>().color = Color.red;
+        if (_stageMNG.GetNextStage[index] != null)
+            NextStageButton[index].GetComponent<Image>().color = Color.red;
 
         for (int i = 0; i < 3; i++)
-            AfterNextStageButton[index + i].GetComponent<Image>().color = Color.red;
+        {
+            if (_stageMNG.GetAfterNextStage[index + i] != null)
+                AfterNextStageButton[index + i].GetComponent<Image>().color = Color.red;
+        }
     }
 }

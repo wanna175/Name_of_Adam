@@ -12,18 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
   m_Name: "\uC624\uBE60"
   m_EditorClassIdentifier: 
-  _name: "\uC624\uBE60"
-  _faction: 0
-  _image: {fileID: 21300000, guid: cb52ee0c211a74d4f8b3ae69885e66b2, type: 3}
-  _behaviorType: 1
-  _rarity: 1
-  _targetType: 0
   _rawStat:
     HP: 100
     ATK: 20
     SPD: 45
     Fall: 6
-  _manaCost: 90
-  _firstManaCost: 60
-  AttackRange: 00000000000000000000000000000000000100000000000000000000010000000000000000000001000000000000000000000000000000
-  MoveRange: 00000000000000010000000101010000000100000000000000
+    ManaCost: 0
+  _stigma: []
+  _name: "\uC624\uBE60"
+  _description: 
+  _faction: 0
+  _rarity: 1
+  _image: {fileID: 21300000, guid: cb52ee0c211a74d4f8b3ae69885e66b2, type: 3}
+  _darkEssenseDrop: 0
+  _darkEssenseCost: 0
+  _targetType: 0
+  _behaviorType: 1
+  _unitSkill: {fileID: 0}
+  _attackRange: 00000000000000000000000000000001000000000000000000000100000000000000000000010000000000000000000000000000000000
+  _moveRange: 00000000000000010000000101010000000100000000000000
