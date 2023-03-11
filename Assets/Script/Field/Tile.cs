@@ -48,4 +48,15 @@ public class Tile : MonoBehaviour
         //OnClickAction(this);
         GameManager.Battle.OnClickTile(this);
     }
+
+    private void OnMouseEnter()
+    {
+        Debug.Log("Hover");
+        GameManager.Battle.Field.MouseEnterTile(this);
+    }
+
+    private void OnMouseExit()
+    {
+
+    }
 }

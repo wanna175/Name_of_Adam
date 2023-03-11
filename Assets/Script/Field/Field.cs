@@ -12,6 +12,8 @@ public class Field : MonoBehaviour
     public Color MoveColor => Color.yellow;
     public Color AttackColor => Color.red;
 
+    private List<Vector2> _coloredTile = new List<Vector2>();
+
     // 필드의 생성을 위한 필드의 위치
     private Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
     private Vector3 FieldRotation => new Vector3(16, 0, 0);
@@ -159,6 +161,7 @@ public class Field : MonoBehaviour
         foreach (Vector2 vec in vector)
         {
             TileDict[vec].SetColor(clr);
+            _coloredTile.Add(vec);
         }
     }
 
@@ -168,6 +171,7 @@ public class Field : MonoBehaviour
         {
             items.Value.SetColor(Color.white);
         }
+        _coloredTile.Clear();
     }
 
 
@@ -192,5 +196,30 @@ public class Field : MonoBehaviour
 
         Debug.Log("out of range");
         return false;
+    }
+
+    //리팩토링 무저건 하기
+    public void MouseEnterTile(Tile tile)
+    {
+        Vector2 coord = FindCoordByTile(tile);
+        Debug.Log("Hover");
+        if (_coloredTile.Contains(coord))
+        {
+            if (GameManager.Battle._clickType == ClickType.Before_Attack)
+            {
+                List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord);
+                Debug.Log("IF");
+                foreach (Vector2 vec in range)
+                {
+                    Debug.Log("GREEN");
+                    TileDict[coord + vec].SetColor(Color.green);
+                }
+            }
+        }
+    }
+
+    public void MouseExitTile()
+    {
+
     }
 }
