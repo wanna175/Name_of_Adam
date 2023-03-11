@@ -149,7 +149,6 @@ public class RangeEditor : Editor
 
         #endregion
 
-
         #region SplashRange
 
         EditorGUILayout.Space();
