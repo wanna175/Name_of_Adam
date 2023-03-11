@@ -95,23 +95,55 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (_clickType == ClickType.Attack)
                 {
+                    List<Vector2> splashRange = new List<Vector2>();
                     // 제자리를 클릭했다면 공격하지 않는다.
                     if (coord != Unit.Location)
+                    {
+                        if ((coord - Unit.Location).x > 0) //오른쪽
+                        {
+                            splashRange = Unit.GetSplashRange();
+                        }
+                        else if ((coord - Unit.Location).x < 0) //왼쪽
+                        {
+                            foreach (Vector2 vec in Unit.GetSplashRange())
+                            {
+                                splashRange.Add(new Vector2(-vec.x, vec.y));
+                            }
+                        }
+                        else if ((coord - Unit.Location).y > 0) //위쪽
+                        {
+                            foreach (Vector2 vec in Unit.GetSplashRange())
+                            {
+                                splashRange.Add(new Vector2(vec.y, vec.x));
+                            }
+                        }
+                        else if ((coord - Unit.Location).y < 0) //아래쪽
+                        {
+                            foreach (Vector2 vec in Unit.GetSplashRange())
+                            {
+                                splashRange.Add(new Vector2(-vec.y, vec.x));
+                            }
+                        }
 
-                        if (Field.GetUnit(coord) == null)
+                        foreach (Vector2 splash in splashRange)
                         {
-                            // 공격하지 않음
+                            if (Field.GetUnit(coord + splash) == null)
+                            {
+                                // 공격하지 않음
+                            }
+                            else if (Field.GetUnit(coord + splash).Team == Team.Enemy)
+                            {
+                                Unit.SkillUse(Field.GetUnit(coord + splash));
+
+                            }
+                            else
+                            {
+                                //ChangeClickType(ClickType.Before_Attack);
+                               // return;
+                               //왠지 모르지만 일단 없으면 잘 됨
+                            }
                         }
-                        else if (Field.GetUnit(coord).Team == Team.Enemy)
-                        {
-                            Unit.SkillUse(Field.GetUnit(coord));
-                                    
-                        }
-                        else
-                        {
-                            ChangeClickType(ClickType.Before_Attack);
-                            return;
-                        }
+                    }
                     // 공격 실행 후 바로 다음유닛 행동 실행
                     Field.ClearAllColor();
                     Data.BattleOrderRemove(Unit);

@@ -149,7 +149,6 @@ public class RangeEditor : Editor
 
         #endregion
 
-        
         #region SplashRange
 
         EditorGUILayout.Space();
@@ -180,7 +179,7 @@ public class RangeEditor : Editor
         }
 
         #endregion
-    
+
         serializedObject.ApplyModifiedProperties();
     }
 }
