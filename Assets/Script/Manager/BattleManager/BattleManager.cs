@@ -19,6 +19,7 @@ public class BattleManager : MonoBehaviour
     public Mana Mana => _mana;
     private PhaseController _phase;
 
+    //변수명 바꾸기
     public ClickType _clickType;
 
     private UI_Hands _hands;
@@ -95,35 +96,10 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (_clickType == ClickType.Attack)
                 {
-                    List<Vector2> splashRange = new List<Vector2>();
                     // 제자리를 클릭했다면 공격하지 않는다.
                     if (coord != Unit.Location)
                     {
-                        if ((coord - Unit.Location).x > 0) //오른쪽
-                        {
-                            splashRange = Unit.GetSplashRange();
-                        }
-                        else if ((coord - Unit.Location).x < 0) //왼쪽
-                        {
-                            foreach (Vector2 vec in Unit.GetSplashRange())
-                            {
-                                splashRange.Add(new Vector2(-vec.x, vec.y));
-                            }
-                        }
-                        else if ((coord - Unit.Location).y > 0) //위쪽
-                        {
-                            foreach (Vector2 vec in Unit.GetSplashRange())
-                            {
-                                splashRange.Add(new Vector2(vec.y, vec.x));
-                            }
-                        }
-                        else if ((coord - Unit.Location).y < 0) //아래쪽
-                        {
-                            foreach (Vector2 vec in Unit.GetSplashRange())
-                            {
-                                splashRange.Add(new Vector2(-vec.y, vec.x));
-                            }
-                        }
+                        List<Vector2> splashRange = Unit.GetSplashRange(coord);
 
                         foreach (Vector2 splash in splashRange)
                         {
@@ -134,7 +110,6 @@ public class BattleManager : MonoBehaviour
                             else if (Field.GetUnit(coord + splash).Team == Team.Enemy)
                             {
                                 Unit.SkillUse(Field.GetUnit(coord + splash));
-
                             }
                             else
                             {
@@ -158,7 +133,6 @@ public class BattleManager : MonoBehaviour
     {
         coord = Field.FindCoordByTile(tile);
 
-        
         if(_phase.Current == _phase.Engage && _clickType == ClickType.Engage_Nothing)
         {
             _clickType = ClickType.Move;
@@ -167,7 +141,6 @@ public class BattleManager : MonoBehaviour
         {
             _clickType = ClickType.Attack;
         }
-
     }
 
     public void UnitSetting(BattleUnit _unit, Vector2 coord)

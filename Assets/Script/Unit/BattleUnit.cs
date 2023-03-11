@@ -152,7 +152,7 @@ public class BattleUnit : DeckUnit
         return RangeList;
     }
 
-    public List<Vector2> GetSplashRange()
+    public List<Vector2> GetSplashRange(Vector2 target)
     {
         List<Vector2> SplashList = new List<Vector2>();
 
@@ -166,12 +166,24 @@ public class BattleUnit : DeckUnit
                 int x = (i % Scolumn) - (Scolumn >> 1);
                 int y = (i / Scolumn) - (Srow >> 1);
 
-                Vector2 vec = new Vector2(x, y);
-
-                SplashList.Add(vec);
+                if ((target - Location).x > 0) //오른쪽
+                {
+                    SplashList.Add(new Vector2(x, y));
+                }
+                else if ((target - Location).x < 0) //왼쪽
+                {
+                    SplashList.Add(new Vector2(-x, y));
+                }
+                else if ((target - Location).y > 0) //위쪽
+                {
+                    SplashList.Add(new Vector2(y, x));
+                }
+                else if ((target - Location).y < 0) //아래쪽
+                {
+                    SplashList.Add(new Vector2(-y, x));
+                }
             }
         }
-
         return SplashList;
     }
 }
