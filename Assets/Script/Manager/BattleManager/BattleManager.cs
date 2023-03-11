@@ -139,8 +139,8 @@ public class BattleManager : MonoBehaviour
                             else
                             {
                                 //ChangeClickType(ClickType.Before_Attack);
-                               // return;
-                               //왠지 모르지만 일단 없으면 잘 됨
+                                // return;
+                                //뭔지 모르지만 일단 없으면 잘 됨
                             }
                         }
                     }

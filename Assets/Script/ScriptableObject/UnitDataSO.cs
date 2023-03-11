@@ -42,8 +42,8 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private BehaviorType _behaviorType;
     public BehaviorType BehaviorType => _behaviorType;
 
-    [SerializeField] private UnitSkill _unitSkill;
-    public UnitSkill UnitSkill => _unitSkill;
+    [SerializeField] private List<Effect> _effects;
+    public List<Effect> Effects => _effects;
 
 
     #region RangeEditor

@@ -34,11 +34,14 @@ public class UnitSpawner : MonoBehaviour
         else
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
-            GameManager.Battle.UnitSetting(go.GetComponent<BattleUnit>(), location);
+            BattleUnit bu = go.GetComponent<BattleUnit>();
+
+            bu.Init();
+            GameManager.Battle.UnitSetting(bu, location);
         }
     }
 
-    private void newSpawn(UnitData unitdata, Vector2 location)
+    public void DeckSpawn(DeckUnit deckUnit, Vector2 location)
     {
         if (GameManager.Battle.Field.TileDict[location].UnitExist)
         {
@@ -46,12 +49,19 @@ public class UnitSpawner : MonoBehaviour
         }
         else
         {
-            GameObject go = GameManager.Resource.Instantiate(unitdata.name, parent);
+            GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+            BattleUnit bu = go.GetComponent<BattleUnit>();
+
+            bu.Data = deckUnit.Data;
+            bu.ChangedStat = deckUnit.ChangedStat;
+
+            bu.Skill.Effects = deckUnit.Data.Effects;
+
+            bu.Init();
+
             GameManager.Battle.UnitSetting(go.GetComponent<BattleUnit>(), location);
         }
     }
-
-
 
     public void SpawnInitialUnit()
     {
