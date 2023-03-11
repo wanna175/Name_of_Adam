@@ -29,7 +29,7 @@ public class BattleUnit : DeckUnit
         set { _UnitDeadAction = value; }
     }
     
-    private void Awake()
+    public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -153,5 +153,28 @@ public class BattleUnit : DeckUnit
         }
 
         return RangeList;
+    }
+
+    public List<Vector2> GetSplashRange()
+    {
+        List<Vector2> SplashList = new List<Vector2>();
+
+        int Scolumn = 11;
+        int Srow = 5;
+
+        for (int i = 0; i < Data.SplashRange.Length; i++)
+        {
+            if (Data.SplashRange[i])
+            {
+                int x = (i % Scolumn) - (Scolumn >> 1);
+                int y = (i / Scolumn) - (Srow >> 1);
+
+                Vector2 vec = new Vector2(x, y);
+
+                SplashList.Add(vec);
+            }
+        }
+
+        return SplashList;
     }
 }
