@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class BattleUnit : DeckUnit
 {
@@ -18,7 +16,6 @@ public class BattleUnit : DeckUnit
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
 
-
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
 
@@ -29,7 +26,7 @@ public class BattleUnit : DeckUnit
         set { _UnitDeadAction = value; }
     }
     
-    private void Awake()
+    public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -153,5 +150,40 @@ public class BattleUnit : DeckUnit
         }
 
         return RangeList;
+    }
+
+    public List<Vector2> GetSplashRange(Vector2 target)
+    {
+        List<Vector2> SplashList = new List<Vector2>();
+
+        int Scolumn = 11;
+        int Srow = 5;
+
+        for (int i = 0; i < Data.SplashRange.Length; i++)
+        {
+            if (Data.SplashRange[i])
+            {
+                int x = (i % Scolumn) - (Scolumn >> 1);
+                int y = (i / Scolumn) - (Srow >> 1);
+
+                if ((target - Location).x > 0) //오른쪽
+                {
+                    SplashList.Add(new Vector2(x, y));
+                }
+                else if ((target - Location).x < 0) //왼쪽
+                {
+                    SplashList.Add(new Vector2(-x, y));
+                }
+                else if ((target - Location).y > 0) //위쪽
+                {
+                    SplashList.Add(new Vector2(y, x));
+                }
+                else if ((target - Location).y < 0) //아래쪽
+                {
+                    SplashList.Add(new Vector2(-y, x));
+                }
+            }
+        }
+        return SplashList;
     }
 }

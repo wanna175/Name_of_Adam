@@ -19,6 +19,7 @@ public class BattleManager : MonoBehaviour
     public Mana Mana => _mana;
     private PhaseController _phase;
 
+    //변수명 바꾸기
     public ClickType _clickType;
 
     private UI_Hands _hands;
@@ -97,21 +98,27 @@ public class BattleManager : MonoBehaviour
                 {
                     // 제자리를 클릭했다면 공격하지 않는다.
                     if (coord != Unit.Location)
+                    {
+                        List<Vector2> splashRange = Unit.GetSplashRange(coord);
 
-                        if (Field.GetUnit(coord) == null)
+                        foreach (Vector2 splash in splashRange)
                         {
-                            // 공격하지 않음
+                            if (Field.GetUnit(coord + splash) == null)
+                            {
+                                // 공격하지 않음
+                            }
+                            else if (Field.GetUnit(coord + splash).Team == Team.Enemy)
+                            {
+                                Unit.SkillUse(Field.GetUnit(coord + splash));
+                            }
+                            else
+                            {
+                                //ChangeClickType(ClickType.Before_Attack);
+                                // return;
+                                //뭔지 모르지만 일단 없으면 잘 됨
+                            }
                         }
-                        else if (Field.GetUnit(coord).Team == Team.Enemy)
-                        {
-                            Unit.SkillUse(Field.GetUnit(coord));
-                                    
-                        }
-                        else
-                        {
-                            ChangeClickType(ClickType.Before_Attack);
-                            return;
-                        }
+                    }
                     // 공격 실행 후 바로 다음유닛 행동 실행
                     Field.ClearAllColor();
                     Data.BattleOrderRemove(Unit);
@@ -126,7 +133,6 @@ public class BattleManager : MonoBehaviour
     {
         coord = Field.FindCoordByTile(tile);
 
-        
         if(_phase.Current == _phase.Engage && _clickType == ClickType.Engage_Nothing)
         {
             _clickType = ClickType.Move;
@@ -135,7 +141,6 @@ public class BattleManager : MonoBehaviour
         {
             _clickType = ClickType.Attack;
         }
-
     }
 
     public void UnitSetting(BattleUnit _unit, Vector2 coord)

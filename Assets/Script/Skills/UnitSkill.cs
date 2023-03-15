@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UnitSkill : MonoBehaviour
 {
-    [SerializeField] List<Effect> Effects;
+    [SerializeField] public List<Effect> Effects;
 
     public void Use(BattleUnit caster, BattleUnit receiver)
     {
