@@ -973,6 +973,18 @@ MonoBehaviour:
     NowAppear: 0
     MaxCount: 0
     RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
   StageInfoContainer:
   - Name: Stigma Store
     Type: Store

@@ -451,7 +451,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1100229858}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: PointerEnter
+          m_MethodName: HoverEnter
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 558826718}
@@ -467,7 +467,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1100229858}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: PointerExit
+          m_MethodName: HoverExit
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 558826718}
@@ -2132,7 +2132,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1100229858}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: PointerEnter
+          m_MethodName: HoverEnter
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1874442688}
@@ -2148,7 +2148,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1100229858}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: PointerExit
+          m_MethodName: HoverExit
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 1874442688}
@@ -2549,7 +2549,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1100229858}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: PointerEnter
+          m_MethodName: HoverEnter
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 2106240849}
@@ -2565,7 +2565,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1100229858}
           m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-          m_MethodName: PointerExit
+          m_MethodName: HoverExit
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 2106240849}

@@ -74,7 +74,7 @@ public class ButtonController : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            if(_stageMNG.GetNextStageArray[index + i] != null)
+            if (_stageMNG.GetNextStageArray[index + i] != null)
                NextStageButtons[index + i].GetComponent<Image>().color = Color.white;
         }
     }

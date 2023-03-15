@@ -13,19 +13,23 @@ public struct TestContainer
     public int MaxAppear;
 }
 
-[Serializable]
+
+// 현재 전투 스테이지의 경우 팩션에 대한 데이터가 없음
+// Type == Battle 인 스테이지에 팩션에 대한 데이터가 추가되어야 함
+
 public class Stage
 {
     // 담고있는 정보가 어떤 스테이지의 것인지 확인하기 위한 변수
     public string Name;
-    [SerializeField] string Type;     // 전투, 이벤트 등 
-    [SerializeField] int MaxAppear;   // 필드에 출현 가능한 최대 갯수
-    [SerializeField] int NowAppear;
-    [SerializeField] int MaxCount;    // 최대 출현 가능 갯수
-    [SerializeField] int RemainCount;
-
-    public Stage(string type, int count, int appear)
+    string Type;     // 전투, 이벤트 등 
+    int MaxAppear;   // 필드에 출현 가능한 최대 갯수
+    int NowAppear;
+    int MaxCount;    // 최대 출현 가능 갯수
+    int RemainCount;
+    
+    public Stage(string name, string type, int count, int appear)
     {
+        Name = name;
         Type = type;
         MaxAppear = appear;
         NowAppear = 0;
@@ -35,14 +39,7 @@ public class Stage
     public string GetStageType() => Type;
     public int GetRemainCount() => RemainCount;
 
-    public Stage Clone()
-    {
-        Stage cloneStage = new Stage(Type, MaxCount, MaxAppear);
-        cloneStage.Name = Name;
-
-        return cloneStage;
-    }
-
+    // 이 스테이지가 출현 가능한 조건이라면 true를 반환
     public bool GetStage()
     {
         // 최대 출현 가능 갯수 초과
@@ -64,6 +61,8 @@ public class Stage
             RemainCount++;
     }
 
+    // 현재 클래스의 내용물을 복사하여 새로운 객체를 반환
+    public Stage Clone() => new Stage(Name, Type, MaxCount, MaxAppear);
     public void AppearClear() => NowAppear = 0;
 }
 
@@ -71,13 +70,14 @@ public class StageManager : MonoBehaviour
 {
     // 진행할 스테이지의 타입 리스트
     List<string> MapList = new List<string>();
-    // 스테이지 정보
+    // 스테이지 정보의 컨테이너
     List<Stage> StageInfo = new List<Stage>();
     
-    // 디버그용 시리얼라이즈
-    [SerializeField] Stage[] StageArray = new Stage[3];
-    [SerializeField] Stage[] NextStageArray = new Stage[5];
 
+    // 선택할 수 있는 다음 스테이지와 그 다음 표시되는 스테이지의 배열
+    Stage[] StageArray = new Stage[3];
+    Stage[] NextStageArray = new Stage[5];
+    
     public Stage[] GetStageArray => StageArray;
     public Stage[] GetNextStageArray => NextStageArray;
 
@@ -86,7 +86,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] public List<TestContainer> StageInfoContainer;
     
     // 현재 레벨에서 담고있는 스테이지의 정보
-    [SerializeField] List<Stage> StageInfoList;
+    List<Stage> StageInfoList;
     // 맵의 막바지에 사용할 상점을 위한 리스트
     List<Stage> StoreList;
 
@@ -97,6 +97,7 @@ public class StageManager : MonoBehaviour
         InitStage();
     }
     
+    // 데이터 컨테이너에서 스테이지의 정보를 받아오는 메서드
     void GetStageInfo()
     {
         StageInfo = new List<Stage>();
@@ -105,8 +106,7 @@ public class StageManager : MonoBehaviour
         // 인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
         foreach (TestContainer test in StageInfoContainer)
         {
-            Stage st = new Stage(test.Type, test.MaxCount, test.MaxAppear);
-            st.Name = test.Name;
+            Stage st = new Stage(test.Name, test.Type, test.MaxCount, test.MaxAppear);
 
             if (st.GetStageType() == "Store")
                 StoreList.Add(st);
@@ -115,16 +115,16 @@ public class StageManager : MonoBehaviour
         }
     }
 
-
+    // 스테이지의 최초 생성
     void InitStage()
     {
-        MapList.Clear();
-        StageInfoList.Clear();
+        MapList = new List<string>();
+        StageInfoList = new List<Stage>();
 
         SetStageData();
         SetMapList();
 
-        // 다음 선택지를 모두 전투로 설정한다
+        // 다음 선택지를 모두 전투로 설정한다.
         for(int i = 0; i < StageArray.Length; i++)
             StageArray[i] = FindStageByName(MapList[0]);
         SetNextArray();
@@ -138,6 +138,7 @@ public class StageManager : MonoBehaviour
             StageInfoList.Add(_stageInfo.Clone());
     }
 
+    // 정해진 순서대로 MapList를 초기화
     void SetMapList()
     {
         for(int i =0; i < 4; i++)
@@ -160,9 +161,10 @@ public class StageManager : MonoBehaviour
     }
 
 
-    // AfterNextStageArray를 요구하는 타입에 맞게 스테이지를 배치
+    // NextStageArray를 요구하는 타입에 맞게 스테이지를 배치
     void SetNextArray()
     {
+        // 맵의 절반을 통과했으면, 엘리트 전투를 제외한 모든 스테이지의 횟수 초기화
         if (MapList.Count == 5)
         {
             Stage EliteStage = FindStageByName("Elite Battle");
@@ -172,8 +174,8 @@ public class StageManager : MonoBehaviour
             Stage stage = FindStageByName("Elite Battle");
             stage = EliteStage;
         }
-        
-        try
+
+        if (MapList.Count > 1)
         {
             NowAppearClear();
 
@@ -181,7 +183,7 @@ public class StageManager : MonoBehaviour
             {
                 if (MapList[1] == "Random")
                     NextStageArray[i] = GetRandomStage(i);
-                else if(MapList[1] == "Store")
+                else if (MapList[1] == "Store")
                 {
                     int index = i;
                     if (StoreList.Count <= index)
@@ -193,10 +195,9 @@ public class StageManager : MonoBehaviour
                     NextStageArray[i] = FindStageByName(MapList[1]);
             }
         }
-        catch // OutOfIndex가 떳을 때
+        else // 맵의 끝에 도달했을 경우, 보스를 배치
         {
-            Stage BossStage = new Stage("Battle", 0, 0);
-            BossStage.Name = "Boss";
+            Stage BossStage = new Stage("Boss", "Battle", 0, 0);
 
             for (int i = 0; i < NextStageArray.Length; i++)
                 NextStageArray[i] = null;
@@ -218,6 +219,7 @@ public class StageManager : MonoBehaviour
 
     Stage GetRandomStage(int index)
     {
+        // 등장할 수 있는 모든 스테이지 수의 합
         int randCount = 0;
 
         foreach (Stage st in StageInfoList)
@@ -228,7 +230,7 @@ public class StageManager : MonoBehaviour
         for(int i = 0; i < 100; i++)
         {
             int random = UnityEngine.Random.Range(0, randCount);
-            Debug.Log(i);
+            
             foreach (Stage st in StageInfoList)
             {
                 random -= st.GetRemainCount();
@@ -236,6 +238,11 @@ public class StageManager : MonoBehaviour
                 if (0 < random)
                     continue;
 
+                // 너무 빨리 엘리트 전투가 나오지 않도록 제한
+                if (st.Name == "Elite Battle" && 7 < MapList.Count)
+                    break;
+
+                // 상점 뒤에 같은 상점이 나오지 않도록 제한
                 if (st.GetStageType() == "Store")
                 {
                     bool CanStore = true;
@@ -258,30 +265,40 @@ public class StageManager : MonoBehaviour
                         break;
                 }
                
+                // 제한사항이 없다면 스테이지 반환
                 if (st.GetStage())
                     return st;
                 else
                     break;
             }
         }
-        Debug.Log("return null");
+        
         return null;
     }
 
     void NowAppearClear()
     {
-        foreach(Stage st in StageInfo)
+        foreach(Stage st in StageInfoList)
         {
             st.AppearClear();
         }
     }
 
-
+    // 선택한 스테이지로 진행
     public void MoveNextStage(int index)
     {
-        Debug.Log(StageArray[index].Name);
-        Debug.Log(MapList[0]);
+        SetNextStage(StageArray[index]);
 
+
+        if (MapList.Count <= 0)
+        {
+            // 모든 스테이지 소모
+            // 다음 레벨로 진행
+
+            return;
+        }
+
+        // 선택하지 않은 스테이지를 반환
         for (int i = 0; i < StageArray.Length; i++)
         {
             if (StageArray[i] != null && MapList[0] == "Random")
@@ -292,9 +309,11 @@ public class StageManager : MonoBehaviour
 
             StageArray[i] = NextStageArray[index + i];
         }
-
         for(int i = 0; i < NextStageArray.Length; i++)
         {
+            if (MapList.Count <= 1)
+                break;
+
             if (MapList[1] != "Random")
                 break;
 
@@ -308,6 +327,15 @@ public class StageManager : MonoBehaviour
         MapList.RemoveAt(0);
         SetNextArray();
     }
+
+    // 다음 스테이지 이동용
+    void SetNextStage(Stage stage)
+    {
+        Debug.Log("Now Stage : " + stage.Name);
+
+        SceneChanger.SceneChange("JS TEST");
+    }
+
 
     Stage FindStageByName(string StageName) => StageInfoList.Find(x => x.Name == StageName);
 
