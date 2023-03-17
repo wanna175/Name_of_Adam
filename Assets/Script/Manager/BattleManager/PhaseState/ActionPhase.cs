@@ -8,7 +8,7 @@ public class ActionPhase : Phase
 {
     public override void OnStateEnter()
     {
-        _battle.Field.SetTileColor(_battle.Data.GetNowUnit(), _battle.Field.AttackColor, ClickType.Attack);
+        _battle.Field.SetTileColor(_battle.Data.GetNowUnit(), ClickType.Attack);
     }
 
     public override void OnStateUpdate()

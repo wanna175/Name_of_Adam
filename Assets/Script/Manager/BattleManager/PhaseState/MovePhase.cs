@@ -9,7 +9,7 @@ public class MovePhase : Phase
 {
     public override void OnStateEnter()
     {
-        _battle.Field.SetTileColor(_battle.Data.GetNowUnit(), _battle.Field.MoveColor, ClickType.Move);
+        _battle.Field.SetTileColor(_battle.Data.GetNowUnit(), ClickType.Move);
     }
 
     public override void OnStateUpdate()

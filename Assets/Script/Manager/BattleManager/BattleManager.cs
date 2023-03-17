@@ -19,9 +19,6 @@ public class BattleManager : MonoBehaviour
     public Mana Mana => _mana;
     private PhaseController _phase;
 
-    //변수명 바꾸기
-    public ClickType _clickType;
-
     private UI_Hands _hands;
 
     private Vector2 coord;
@@ -100,7 +97,7 @@ public class BattleManager : MonoBehaviour
         if (Data.OrderUnitCount <= 0)
         {
             _phase.ChangePhase(_phase.Prepare);
-            ChangeClickType(ClickType.Prepare_Nothing);// 턴 확인용 임시
+ 
             return;
         }
 
@@ -173,17 +170,12 @@ public class BattleManager : MonoBehaviour
         
     }
 
-    public void ChangeClickType(ClickType type)
-    {
-        _clickType = type;
-    }
-
     public void TurnChange()
     {
-        if (_clickType < ClickType.Engage_Nothing)
-            _clickType = ClickType.Engage_Nothing;
+        if (_phase.Current == _phase.Prepare)
+            _phase.ChangePhase(_phase.Engage);
         else
-            _clickType = ClickType.Prepare_Nothing;
+            _phase.ChangePhase(_phase.Prepare);
     }
     
     // 이동 경로를 받아와 이동시킨다
