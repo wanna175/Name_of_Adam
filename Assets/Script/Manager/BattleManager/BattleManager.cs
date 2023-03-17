@@ -19,9 +19,6 @@ public class BattleManager : MonoBehaviour
     public Mana Mana => _mana;
     private PhaseController _phase;
 
-    //변수명 바꾸기
-    public ClickType _clickType;
-
     private UI_Hands _hands;
 
     private Vector2 coord;
@@ -54,12 +51,53 @@ public class BattleManager : MonoBehaviour
         GetComponent<UnitSpawner>().SpawnInitialUnit();
     }
 
+    public void MovePhase()
+    {
+        BattleUnit unit = Data.GetNowUnit();
+
+        if (Field.Get_Abs_Pos(unit, ClickType.Move).Contains(coord) == false)
+            return;
+
+        Vector2 dest = coord - unit.Location;
+        MoveLocate(unit, dest);
+        _phase.ChangePhase(_phase.Action);
+    }
+
+    public void ActionPhase()
+    {
+        BattleUnit unit = Data.GetNowUnit();
+
+        if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
+            return;
+        
+        if (coord != unit.Location)
+        {
+            List<Vector2> splashRange = unit.GetSplashRange(coord);
+
+            foreach (Vector2 splash in splashRange)
+            {
+                BattleUnit targetUnit = Field.GetUnit(coord + splash);
+
+                if (targetUnit == null)
+                    continue;
+
+                if (targetUnit.Team == Team.Enemy)
+                    unit.SkillUse(Field.GetUnit(coord + splash));
+            }
+        }
+
+        Field.ClearAllColor();
+        Data.BattleOrderRemove(unit);
+        _phase.ChangePhase(_phase.Engage);
+        BattleOverCheck();
+    }
+
     public void EngagePhase()
     {
         if (Data.OrderUnitCount <= 0)
         {
             _phase.ChangePhase(_phase.Prepare);
-            ChangeClickType(ClickType.Prepare_Nothing);// 턴 확인용 임시
+ 
             return;
         }
 
@@ -74,73 +112,17 @@ public class BattleManager : MonoBehaviour
             
             Data.BattleOrderRemove(Unit);
             BattleOverCheck();
-        }
-        else
-        {
-            if (_clickType == ClickType.Engage_Nothing)
-            {
-                Field.SetTileColor(Unit, Field.MoveColor, ClickType.Move);
-            }
-            else
-            {
-                Field.SetTileColor(Unit, Field.AttackColor, ClickType.Attack);
-            }
 
-            if (Field.Get_Abs_Pos(Unit, _clickType).Contains(coord))
-            {
-                if (_clickType == ClickType.Move)
-                {
-                    Vector2 dest = coord - Unit.Location;
-                    MoveLocate(Unit, dest);
-                    ChangeClickType(ClickType.Before_Attack);
-                }
-                else if (_clickType == ClickType.Attack)
-                {
-                    // 제자리를 클릭했다면 공격하지 않는다.
-                    if (coord != Unit.Location)
-                    {
-                        List<Vector2> splashRange = Unit.GetSplashRange(coord);
-
-                        foreach (Vector2 splash in splashRange)
-                        {
-                            if (Field.GetUnit(coord + splash) == null)
-                            {
-                                // 공격하지 않음
-                            }
-                            else if (Field.GetUnit(coord + splash).Team == Team.Enemy)
-                            {
-                                Unit.SkillUse(Field.GetUnit(coord + splash));
-                            }
-                            else
-                            {
-                                //ChangeClickType(ClickType.Before_Attack);
-                                // return;
-                                //뭔지 모르지만 일단 없으면 잘 됨
-                            }
-                        }
-                    }
-                    // 공격 실행 후 바로 다음유닛 행동 실행
-                    Field.ClearAllColor();
-                    Data.BattleOrderRemove(Unit);
-                    ChangeClickType(ClickType.Engage_Nothing);
-                    BattleOverCheck();
-                }
-            }
+            return;
         }
+
+        _phase.ChangePhase(_phase.Move);
     }
 
     public void OnClickTile(Tile tile)
     {
         coord = Field.FindCoordByTile(tile);
-
-        if(_phase.Current == _phase.Engage && _clickType == ClickType.Engage_Nothing)
-        {
-            _clickType = ClickType.Move;
-        }
-        else if(_clickType == ClickType.Before_Attack)
-        {
-            _clickType = ClickType.Attack;
-        }
+        _phase.OnClickEvent();
     }
 
     public void UnitSetting(BattleUnit _unit, Vector2 coord)
@@ -188,17 +170,12 @@ public class BattleManager : MonoBehaviour
         
     }
 
-    public void ChangeClickType(ClickType type)
-    {
-        _clickType = type;
-    }
-
     public void TurnChange()
     {
-        if (_clickType < ClickType.Engage_Nothing)
-            _clickType = ClickType.Engage_Nothing;
+        if (_phase.Current == _phase.Prepare)
+            _phase.ChangePhase(_phase.Engage);
         else
-            _clickType = ClickType.Prepare_Nothing;
+            _phase.ChangePhase(_phase.Prepare);
     }
     
     // 이동 경로를 받아와 이동시킨다

@@ -622,6 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clickType: 0
 --- !u!4 &1589663946
 Transform:
   m_ObjectHideFlags: 0
@@ -934,16 +935,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87d9431998c6274bb3aaf88bb005a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StageArray:
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
   NextStageArray:
-  - 
-  - 
-  - 
-  AfterNextStageArray:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
+  - Name: 
+    Type: 
+    MaxAppear: 0
+    NowAppear: 0
+    MaxCount: 0
+    RemainCount: 0
   StageInfoContainer:
   - Name: Stigma Store
     Type: Store
@@ -973,6 +1014,11 @@ MonoBehaviour:
     Type: Battle
     MaxCount: 1
     MaxAppear: 1
+  - Name: Boss Battle
+    Type: Battle
+    MaxCount: 0
+    MaxAppear: 0
+  StageInfoList: []
 --- !u!224 &2117723696 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 963727030562007705, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
