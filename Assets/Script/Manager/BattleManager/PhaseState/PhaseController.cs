@@ -21,6 +21,11 @@ public class PhaseController
         _currentPhase.OnStateUpdate();
     }
 
+    public void OnClickEvent()
+    {
+        _currentPhase.OnClickEvent();
+    }
+
     public void ChangePhase(Phase nextPhase)
     {
         if (_currentPhase != null)

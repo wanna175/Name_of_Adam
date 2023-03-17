@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class MovePhase : Phase
 {
     public override void OnStateEnter()
     {
-        throw new NotImplementedException();
+        _battle.Field.SetTileColor(_battle.Data.GetNowUnit(), _battle.Field.MoveColor, ClickType.Move);
     }
 
     public override void OnStateUpdate()
     {
-        throw new NotImplementedException();
+        
+    }
+
+    public override void OnClickEvent()
+    {
+        _battle.MovePhase();
     }
 
     public override void OnStateExit()
     {
-        throw new NotImplementedException();
+        _battle.Field.ClearAllColor();
     }
 }

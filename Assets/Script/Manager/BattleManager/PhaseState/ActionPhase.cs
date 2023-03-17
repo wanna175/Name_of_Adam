@@ -8,16 +8,21 @@ public class ActionPhase : Phase
 {
     public override void OnStateEnter()
     {
-        throw new NotImplementedException();
+        _battle.Field.SetTileColor(_battle.Data.GetNowUnit(), _battle.Field.AttackColor, ClickType.Attack);
     }
 
     public override void OnStateUpdate()
     {
-        throw new NotImplementedException();
+        
+    }
+
+    public override void OnClickEvent()
+    {
+        _battle.ActionPhase();
     }
 
     public override void OnStateExit()
     {
-        throw new NotImplementedException();
+        
     }
 }

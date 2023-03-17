@@ -23,6 +23,11 @@ public abstract class Phase
     public abstract void OnStateExit();
     // 끝날 때 한 번 실행 
 
+    public virtual void OnClickEvent()
+    {
+        return;
+    }
+
     protected virtual bool IsExit()
     {
         return true;
