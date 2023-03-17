@@ -94,18 +94,15 @@ public class BattleManager : MonoBehaviour
 
     public void EngagePhase()
     {
+        Field.ClearAllColor();
+
         if (Data.OrderUnitCount <= 0)
         {
             _phase.ChangePhase(_phase.Prepare);
- 
             return;
         }
 
         BattleUnit unit = Data.GetNowUnit();
-        if (unit.HP.GetCurrentHP() <= 0)
-            return;
-
-        Field.ClearAllColor();
         if (unit.Team == Team.Enemy)
         {
             unit.AI.AIAction();
