@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rawStat:
     HP: 60
-    CurrentHP: 0
+    CurrentHP: 60
     ATK: 20
     SPD: 75
     Fall: 6
