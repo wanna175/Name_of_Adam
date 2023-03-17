@@ -7,8 +7,7 @@ public class PreparePhase : Phase
 
     public override void OnStateUpdate()
     {
-        if (_battle._clickType >= ClickType.Engage_Nothing)
-            _controller.ChangePhase(_controller.Engage);
+        _controller.ChangePhase(_controller.Engage);
     }
 
     public override void OnStateExit()

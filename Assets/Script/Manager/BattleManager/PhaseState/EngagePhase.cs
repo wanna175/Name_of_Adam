@@ -2,8 +2,12 @@ public class EngagePhase : Phase
 {
     public override void OnStateEnter()
     {
+        if (_battle.Data.OrderUnitCount <= 0)
+        {
+            _battle.Data.BattleUnitOrder();
+        }
+
         _battle.Field.ClearAllColor();
-        _battle.Data.BattleUnitOrder();
     }
 
     public override void OnStateUpdate()

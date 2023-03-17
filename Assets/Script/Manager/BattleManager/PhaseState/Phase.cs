@@ -21,7 +21,12 @@ public abstract class Phase
     // 페이즈 내내 실행
 
     public abstract void OnStateExit();
-    // (IsExit 충족 시) 끝날 때 한 번 실행 
+    // 끝날 때 한 번 실행 
+
+    public virtual void OnClickEvent()
+    {
+        return;
+    }
 
     protected virtual bool IsExit()
     {

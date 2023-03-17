@@ -9,9 +9,6 @@ public class Field : MonoBehaviour
     private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
     public Dictionary<Vector2, Tile> TileDict => _tileDict;
 
-    public Color MoveColor => Color.yellow;
-    public Color AttackColor => Color.red;
-
     private List<Vector2> _coloredTile = new List<Vector2>();
 
     // 필드의 생성을 위한 필드의 위치
@@ -20,6 +17,19 @@ public class Field : MonoBehaviour
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
+
+    private Color ColorList(ClickType type)
+    {
+        switch (type)
+        {
+            case ClickType.Move:
+                return Color.yellow;
+            case ClickType.Attack:
+                return Color.red;
+            default:
+                return default;
+        }
+    }
 
     private void Awake()
     {
@@ -84,8 +94,6 @@ public class Field : MonoBehaviour
 
     public void MoveUnit(Vector2 current, Vector2 dest)
     {
-        // *****
-        // 이 둘이 같은 처리를 하는 것이 맞을까?
         if (IsInRange(dest) == false | current == dest)
             return;
 
@@ -94,8 +102,6 @@ public class Field : MonoBehaviour
         
         if (TileDict[dest].UnitExist)
         {
-            // *****
-            // 얘는 위의 IsRange(dest)와 같이 처리해도 될 것 같다
             if (currentUnit.Team == destUnit.Team)
             {
                 ExitTile(current);
@@ -154,13 +160,12 @@ public class Field : MonoBehaviour
     }
 
 
-    public void SetTileColor(BattleUnit unit, Color clr, ClickType _clickType)
+    public void SetTileColor(BattleUnit unit, ClickType clickType)
     {
-
-        List<Vector2> vector = Get_Abs_Pos(unit, _clickType);
+        List<Vector2> vector = Get_Abs_Pos(unit, clickType);
         foreach (Vector2 vec in vector)
         {
-            TileDict[vec].SetColor(clr);
+            TileDict[vec].SetColor(ColorList(clickType));
             _coloredTile.Add(vec);
         }
     }
@@ -201,21 +206,21 @@ public class Field : MonoBehaviour
     //리팩토링 무저건 하기
     public void MouseEnterTile(Tile tile)
     {
-        Vector2 coord = FindCoordByTile(tile);
-        Debug.Log("Hover");
-        if (_coloredTile.Contains(coord))
-        {
-            if (GameManager.Battle._clickType == ClickType.Before_Attack)
-            {
-                List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord);
-                Debug.Log("IF");
-                foreach (Vector2 vec in range)
-                {
-                    Debug.Log("GREEN");
-                    TileDict[coord + vec].SetColor(Color.green);
-                }
-            }
-        }
+        //Vector2 coord = FindCoordByTile(tile);
+        //Debug.Log("Hover");
+        //if (_coloredTile.Contains(coord))
+        //{
+        //    if (GameManager.Battle._clickType == ClickType.Before_Attack)
+        //    {
+        //        List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord);
+        //        Debug.Log("IF");
+        //        foreach (Vector2 vec in range)
+        //        {
+        //            Debug.Log("GREEN");
+        //            TileDict[coord + vec].SetColor(Color.green);
+        //        }
+        //    }
+        //}
     }
 
     public void MouseExitTile()
