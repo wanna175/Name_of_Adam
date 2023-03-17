@@ -163,6 +163,7 @@ public class Field : MonoBehaviour
     public void SetTileColor(BattleUnit unit, ClickType clickType)
     {
         List<Vector2> vector = Get_Abs_Pos(unit, clickType);
+
         foreach (Vector2 vec in vector)
         {
             TileDict[vec].SetColor(ColorList(clickType));
@@ -203,7 +204,7 @@ public class Field : MonoBehaviour
         return false;
     }
 
-    //리팩토링 무저건 하기
+    //리팩토링 무저건 하기. 지금은 작동 안함
     public void MouseEnterTile(Tile tile)
     {
         //Vector2 coord = FindCoordByTile(tile);
