@@ -101,16 +101,16 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        BattleUnit Unit = Data.GetNowUnit();
-        if (Unit.HP.GetCurrentHP() <= 0)
+        BattleUnit unit = Data.GetNowUnit();
+        if (unit.HP.GetCurrentHP() <= 0)
             return;
 
         Field.ClearAllColor();
-        if (Unit.Team == Team.Enemy)
+        if (unit.Team == Team.Enemy)
         {
-            Unit.AI.AIAction();
+            unit.AI.AIAction();
             
-            Data.BattleOrderRemove(Unit);
+            Data.BattleOrderRemove(unit);
             BattleOverCheck();
 
             return;
@@ -172,7 +172,7 @@ public class BattleManager : MonoBehaviour
 
     public void TurnChange()
     {
-        if (_phase.Current == _phase.Prepare)
+        if (_phase.Current == _phase.Prepare || _phase.Current == _phase.Start)
             _phase.ChangePhase(_phase.Engage);
         else
             _phase.ChangePhase(_phase.Prepare);
