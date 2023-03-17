@@ -8,7 +8,7 @@ public class PhaseController
 {
     private Phase _currentPhase = null;
     public Phase Current => _currentPhase;
-    public Phase Setup, Spawn, Start, Engage, Prepare, BattleOver;
+    public Phase Setup, Spawn, Start, Engage, Move, Action, Prepare, BattleOver;
 
     public PhaseController()
     {
@@ -37,6 +37,8 @@ public class PhaseController
         Spawn = new SpawnPhase();
         Start = new StartPhase();
         Engage = new EngagePhase();
+        Move = new MovePhase();
+        Action = new ActionPhase();
         Prepare = new PreparePhase();
         BattleOver = new BattleOverPhase();
     }
