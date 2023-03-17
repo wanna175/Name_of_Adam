@@ -32,7 +32,7 @@ public class BattleUnit : DeckUnit
         _animator = GetComponent<Animator>();
 
         AI.SetCaster(this);
-        HP.Init(Stat.HP);
+        HP.Init(Stat.HP, Stat.CurrentHP);
         Fall.Init(Stat.Fall);
 
         _renderer.sprite = Data.Image;
@@ -59,6 +59,8 @@ public class BattleUnit : DeckUnit
     public void UnitFallEvent()
     {
         ChangeTeam();
+        ChangedStat.CurrentHP = Stat.HP;
+        HP.Init(Stat.HP, Stat.CurrentHP);
         Debug.Log($"{Data.name} Fall");
     }
 
@@ -66,14 +68,14 @@ public class BattleUnit : DeckUnit
     {
         if(team != default)
         {
-            _team = team;
+            SetTeam(team);
             return;
         }
         
         if (Team == Team.Player)
-            _team = Team.Enemy;
+            SetTeam(Team.Enemy);
         else
-            _team = Team.Player;
+            SetTeam(Team.Player);
     }
 
     public void SetPosition(Vector3 dest)

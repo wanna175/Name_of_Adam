@@ -156,7 +156,6 @@ public class Field : MonoBehaviour
 
     public void SetTileColor(BattleUnit unit, Color clr, ClickType _clickType)
     {
-
         List<Vector2> vector = Get_Abs_Pos(unit, _clickType);
         foreach (Vector2 vec in vector)
         {
@@ -198,11 +197,11 @@ public class Field : MonoBehaviour
         return false;
     }
 
-    //리팩토링 무저건 하기
+    //리팩토링 무저건 하기. 지금은 작동 안함
     public void MouseEnterTile(Tile tile)
     {
         Vector2 coord = FindCoordByTile(tile);
-        Debug.Log("Hover");
+        //Debug.Log("Hover");
         if (_coloredTile.Contains(coord))
         {
             if (GameManager.Battle._clickType == ClickType.Before_Attack)

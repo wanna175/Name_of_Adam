@@ -31,6 +31,7 @@ public class UnitFall : MonoBehaviour
         }
 
         // Add Fall Change Event (EX. UI)
+        Debug.Log("FALL : " + value + ", CurFALL ; " + _currentCount);
     }
 
     public int GetCurrentFallCount()
