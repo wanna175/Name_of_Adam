@@ -6,6 +6,7 @@ public class UnitFall : MonoBehaviour
 {
     [SerializeField] private int _maxCount;
     [SerializeField, ReadOnly] private int _currentCount;
+    private bool _isEdified;
 
     [Header("타락 이벤트")]
     public UnityEvent UnitFallEvent;
@@ -18,6 +19,8 @@ public class UnitFall : MonoBehaviour
 
     public void ChangeFall(int value)
     {
+        if (_isEdified) return;
+
         _currentCount += value;
 
         if (_currentCount <= 0)
@@ -32,6 +35,11 @@ public class UnitFall : MonoBehaviour
 
         // Add Fall Change Event (EX. UI)
         Debug.Log("FALL : " + value + ", CurFALL ; " + _currentCount);
+    }
+
+    public void Editfy()
+    {
+        _isEdified = true;
     }
 
     public int GetCurrentFallCount()

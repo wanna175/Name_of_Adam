@@ -58,24 +58,34 @@ public class BattleUnit : DeckUnit
 
     public void UnitFallEvent()
     {
-        ChangeTeam();
+        if (ChangeTeam() == Team.Enemy)
+        {
+            Fall.Editfy();
+        }
         ChangedStat.CurrentHP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
         Debug.Log($"{Data.name} Fall");
     }
 
-    public void ChangeTeam(Team team = default)
+    public Team ChangeTeam(Team team = default)
     {
         if(team != default)
         {
             SetTeam(team);
-            return;
+            return team;
         }
-        
+
         if (Team == Team.Player)
+        {
             SetTeam(Team.Enemy);
+            return Team.Enemy;
+        }
         else
+        {
             SetTeam(Team.Player);
+            return Team.Player;
+        }
+
     }
 
     public void SetPosition(Vector3 dest)
