@@ -162,7 +162,7 @@ public class Field : MonoBehaviour
 
     public void SetTileColor(BattleUnit unit, ClickType clickType)
     {
-        List<Vector2> vector = Get_Abs_Pos(unit, _clickType);
+        List<Vector2> vector = Get_Abs_Pos(unit, clickType);
 
         foreach (Vector2 vec in vector)
         {
