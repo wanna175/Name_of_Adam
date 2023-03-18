@@ -19,15 +19,12 @@ public class BattleManager : MonoBehaviour
     public Mana Mana => _mana;
     private PhaseController _phase;
 
-    private UI_Hands _hands;
-
     private Vector2 coord;
 
     private void Awake()
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
-        _hands = GameManager.UI.ShowScene<UI_Hands>();
         _phase = new PhaseController();
     }
 
@@ -57,8 +54,8 @@ public class BattleManager : MonoBehaviour
 
         if (Field.Get_Abs_Pos(unit, ClickType.Move).Contains(coord) == false)
             return;
-
         Vector2 dest = coord - unit.Location;
+        
         MoveLocate(unit, dest);
         _phase.ChangePhase(_phase.Action);
     }
@@ -69,7 +66,7 @@ public class BattleManager : MonoBehaviour
 
         if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
             return;
-        
+
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord);
@@ -105,7 +102,7 @@ public class BattleManager : MonoBehaviour
         BattleUnit unit = Data.GetNowUnit();
         if (unit.Team == Team.Enemy)
         {
-            //unit.AI.AIAction();
+            unit.AI.AIAction();
             
             Data.BattleOrderRemove(unit);
             BattleOverCheck();
@@ -114,6 +111,18 @@ public class BattleManager : MonoBehaviour
         }
 
         _phase.ChangePhase(_phase.Move);
+    }
+
+    public void PreparePhase()
+    {
+        if (Field._coloredTile.Count <= 0)
+            return;
+
+        DeckUnit unit = Data.UI_hands.GetSelectedUnit();
+        BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
+        Data.RemoveDeckUnit(unit);
+        Field.ClearAllColor();
+        Data.BattleUnitAdd(spawnedUnit);
     }
 
     public void OnClickTile(Tile tile)
@@ -182,5 +191,16 @@ public class BattleManager : MonoBehaviour
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
+    }
+
+    public bool UnitSpawn(DeckUnit unit)
+    {
+        if(_phase.Current == _phase.Start || _phase.Current == _phase.Prepare)
+        {
+            Field.SetTileColor(_phase.Current == _phase.Start);
+            return true;
+        }
+
+        return false;
     }
 }

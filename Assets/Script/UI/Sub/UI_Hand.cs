@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UI_Hand : UI_Base
+public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     private DeckUnit _handUnit = null;
     private GameObject _highlight = null;
-
+    public bool IsSelected = false;
+    
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class UI_Hand : UI_Base
     private void SetUnitInfo()
     {
         // UI가 완성된 후에 디테일한 요소 추가
+        GetComponent<Image>().sprite = _handUnit.Data.Image;
     }
 
     public DeckUnit GetHandUnit()
@@ -40,19 +42,30 @@ public class UI_Hand : UI_Base
             return false;
     }
 
-    private void OnMouseDown() 
-    {
-        Debug.Log("Hand Click");
-        //_hands.OnHandClick(this);
-    }
-
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
         _highlight.SetActive(true);
     }
 
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
+        if (IsSelected)
+            return;
         _highlight.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("Hand Click");
+        if (GameManager.Battle.UnitSpawn(_handUnit))
+        {
+            if (IsSelected)
+                IsSelected = false;
+            else
+                IsSelected = true;
+        }
+        
+        
+
     }
 }

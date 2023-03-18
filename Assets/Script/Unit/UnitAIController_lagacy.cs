@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit_AI_Controller : MonoBehaviour
+public class UnitAIController : MonoBehaviour
 {
     protected BattleDataManager _Data;
     protected Field _field;
@@ -287,7 +287,7 @@ public class Unit_AI_Controller : MonoBehaviour
     }
 }
 
-public class Common_Unit_AI_Controller : Unit_AI_Controller
+public class CommonUnitAIController : UnitAIController
 {
     public override void AIAction()
     {
