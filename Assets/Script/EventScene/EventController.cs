@@ -48,19 +48,22 @@ public class EventController : MonoBehaviour
 
     public void ButtonClick(GameObject button)
     {
-        int index = Buttons.FindIndex(x => x == button) + 1;
-        DestroyButton();
-
-        EventText.text = $"{index}번 버튼을 클릭하였습니다.";
-
-        CreateButton(1, new string[1] { "나가기" });
-
         if (!isEnd)
+        {
             isEnd = true;
+
+            int index = Buttons.FindIndex(x => x == button) + 1;
+            DestroyButton();
+
+            EventText.text = $"{index}번 버튼을 클릭하였습니다.";
+
+            CreateButton(1, new string[1] { "나가기" });
+        }
         else
         {
             // 이벤트 종료
             // 스테이지 이동
+            SceneChanger.SceneChange("StageSelectScene");
         }
     }
 
