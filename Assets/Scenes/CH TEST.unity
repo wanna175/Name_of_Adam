@@ -870,6 +870,7 @@ MonoBehaviour:
   - {fileID: 1234316201}
   - {fileID: 1234316201}
   - {fileID: 1234316201}
+  UI_hands: {fileID: 0}
 --- !u!1 &1688846947
 GameObject:
   m_ObjectHideFlags: 0

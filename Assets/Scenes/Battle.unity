@@ -858,6 +858,7 @@ GameObject:
   - component: {fileID: 1589663946}
   - component: {fileID: 1589663945}
   - component: {fileID: 1589663947}
+  - component: {fileID: 1589663948}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -929,6 +930,24 @@ MonoBehaviour:
     location: {x: 4, y: 1}
     team: 1
     stigmas: []
+--- !u!114 &1589663948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589663944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0895294e725f8774b915a1d07eb68388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerDeck: []
+  _playerHands:
+  - {fileID: 1234316201}
+  - {fileID: 1234316201}
+  - {fileID: 1234316201}
+  UI_hands: {fileID: 0}
 --- !u!1 &1688846947
 GameObject:
   m_ObjectHideFlags: 0
