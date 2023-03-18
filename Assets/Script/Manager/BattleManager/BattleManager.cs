@@ -133,6 +133,8 @@ public class BattleManager : MonoBehaviour
     private void SpawnUnitOnField()
     {
         DeckUnit unit = Data.UI_hands.GetSelectedUnit();
+        if (Field._coloredTile.Contains(coord) == false)
+            return;
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Data.RemoveDeckUnit(unit);
         Field.ClearAllColor();
@@ -211,8 +213,10 @@ public class BattleManager : MonoBehaviour
         if (_phase.Current != _phase.Prepare)
             return false;
 
-        if (b) Field.SetTileColor();
-        else Field.ClearAllColor();
+        if (b)
+            Field.SetTileColor();
+        else
+            Field.ClearAllColor();
 
         return true;
     }
