@@ -171,14 +171,11 @@ public class Field : MonoBehaviour
         }
     }
 
-    public void SetTileColor(bool isStart = false)
+    public void SetTileColor()
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
         {
-            if (isStart && IsPlayerRange(items.Key) == false)
-                continue;
-
-            if (items.Value.UnitExist == false)
+            if (items.Value.UnitExist == false && IsPlayerRange(items.Key))
             {
                 items.Value.SetColor(Color.blue);
                 _coloredTile.Add(items.Key);

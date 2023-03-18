@@ -193,11 +193,11 @@ public class BattleManager : MonoBehaviour
         Field.MoveUnit(current, dest);
     }
 
-    public bool UnitSpawn(DeckUnit unit)
+    public bool UnitSpawnReady()
     {
         if(_phase.Current == _phase.Start || _phase.Current == _phase.Prepare)
         {
-            Field.SetTileColor(_phase.Current == _phase.Start);
+            Field.SetTileColor();
             return true;
         }
 
