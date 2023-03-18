@@ -52,18 +52,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _hands.OnClickHand(this);
     }
 
-    public void ChangeSelectState()
+    public void ChangeSelectState(bool b)
     {
-        if (IsSelected)
-        {
-            IsSelected = false;
-            _highlight.SetActive(false);
-        }
-        else
-        {
-            IsSelected = true;
-            _highlight.SetActive(true);
-        }
-            
+        IsSelected = b;
+        _highlight.SetActive(b);
     }
 }

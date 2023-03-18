@@ -43,27 +43,19 @@ public class UnitSpawner : MonoBehaviour
 
     public BattleUnit DeckSpawn(DeckUnit deckUnit, Vector2 location)
     {
-        if (GameManager.Battle.Field.TileDict[location].UnitExist)
-        {
-            Debug.Log("해당 타일에 유닛이 존재합니다.");
-            return null;
-        }
-        else
-        {
-            GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
-            BattleUnit bu = go.GetComponent<BattleUnit>();
+        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+        BattleUnit bu = go.GetComponent<BattleUnit>();
 
-            bu.Data = deckUnit.Data;
-            bu.ChangedStat = deckUnit.ChangedStat;
+        bu.Data = deckUnit.Data;
+        bu.ChangedStat = deckUnit.ChangedStat;
 
-            bu.Skill.Effects = deckUnit.Data.Effects;
+        bu.Skill.Effects = deckUnit.Data.Effects;
 
-            bu.Init();
+        bu.Init();
 
-            BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
-            GameManager.Battle.UnitSetting(spawnedUnit, location);
-            return spawnedUnit;
-        }
+        BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
+        GameManager.Battle.UnitSetting(spawnedUnit, location);
+        return spawnedUnit;
     }
 
     public void SpawnInitialUnit()
