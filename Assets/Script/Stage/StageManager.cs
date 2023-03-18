@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    StageChanger Changer;
+
     // 진행할 스테이지의 타입 리스트
     List<string> MapList = new List<string>();
     // 스테이지 정보의 컨테이너
     List<Stage> StageInfo = new List<Stage>();
-    
+    // 맵의 막바지에 사용할 상점을 위한 리스트
+    List<Stage> StoreList;
+
 
     // 선택할 수 있는 다음 스테이지와 그 다음 표시되는 스테이지의 배열
     Stage[] StageArray = new Stage[3];
@@ -22,13 +26,13 @@ public class StageManager : MonoBehaviour
     [SerializeField] public List<TestContainer> StageInfoContainer;
     
     // 현재 레벨에서 담고있는 스테이지의 정보
-    List<Stage> StageInfoList;
-    // 맵의 막바지에 사용할 상점을 위한 리스트
-    List<Stage> StoreList;
+    List<Stage> RemainStageInfoList;
 
 
     private void Start()
     {
+        Changer = new StageChanger();
+
         GetStageInfo();
         InitStage();
     }
@@ -55,7 +59,7 @@ public class StageManager : MonoBehaviour
     void InitStage()
     {
         MapList = new List<string>();
-        StageInfoList = new List<Stage>();
+        RemainStageInfoList = new List<Stage>();
 
         SetStageData();
         SetMapList();
@@ -70,8 +74,18 @@ public class StageManager : MonoBehaviour
     // 데이터를 받는 방식이 달라지면 수정할 메서드
     void SetStageData()
     {
-        foreach(Stage _stageInfo in StageInfo)
-            StageInfoList.Add(_stageInfo.Clone());
+        foreach (Stage _stageInfo in StageInfo)
+        {
+            Stage st = RemainStageInfoList.Find(x => x.Name == _stageInfo.Name);
+
+            if (st == null)
+                RemainStageInfoList.Add(_stageInfo.Clone());
+            else
+            {
+                if (st.Name != "Elite Battle")
+                    st.InitCount();
+            }
+        }
     }
 
     // 정해진 순서대로 MapList를 초기화
@@ -102,14 +116,7 @@ public class StageManager : MonoBehaviour
     {
         // 맵의 절반을 통과했으면, 엘리트 전투를 제외한 모든 스테이지의 횟수 초기화
         if (MapList.Count == 5)
-        {
-            Stage EliteStage = FindStageByName("Elite Battle");
-            StageInfoList.Clear();
             SetStageData();
-
-            Stage stage = FindStageByName("Elite Battle");
-            stage = EliteStage;
-        }
 
         if (MapList.Count > 1)
         {
@@ -158,7 +165,7 @@ public class StageManager : MonoBehaviour
         // 등장할 수 있는 모든 스테이지 수의 합
         int randCount = 0;
 
-        foreach (Stage st in StageInfoList)
+        foreach (Stage st in RemainStageInfoList)
             randCount += st.GetRemainCount();
 
         // 가져올 수 있는 스테이지가 나올 때까지 무한히 돌리는 방법
@@ -167,7 +174,7 @@ public class StageManager : MonoBehaviour
         {
             int random = UnityEngine.Random.Range(0, randCount);
             
-            foreach (Stage st in StageInfoList)
+            foreach (Stage st in RemainStageInfoList)
             {
                 random -= st.GetRemainCount();
 
@@ -214,7 +221,7 @@ public class StageManager : MonoBehaviour
 
     void NowAppearClear()
     {
-        foreach(Stage st in StageInfoList)
+        foreach(Stage st in RemainStageInfoList)
         {
             st.AppearClear();
         }
@@ -223,7 +230,7 @@ public class StageManager : MonoBehaviour
     // 선택한 스테이지로 진행
     public void MoveNextStage(int index)
     {
-        SetNextStage(StageArray[index]);
+        Changer.SetNextStage(StageArray[index]);
 
 
         if (MapList.Count <= 0)
@@ -264,22 +271,8 @@ public class StageManager : MonoBehaviour
         SetNextArray();
     }
 
-    // 다음 스테이지 이동용
-    void SetNextStage(Stage stage)
-    {
-        Debug.Log("Now Stage : " + stage.Name);
 
-        if (stage.GetStageType() == "Battle")
-        {
-            // SceneChanger.SceneChange("JS TEST");
-            SceneChanger.SceneChange("Battle");
-        }
-        else
-            SceneChanger.SceneChange("EventScene");
-    }
-
-
-    Stage FindStageByName(string StageName) => StageInfoList.Find(x => x.Name == StageName);
+    Stage FindStageByName(string StageName) => RemainStageInfoList.Find(x => x.Name == StageName);
 
 
     // 디버그용 입력 이벤트

@@ -22,15 +22,17 @@ public class Stage
     // 담고있는 정보가 어떤 스테이지의 것인지 확인하기 위한 변수
     public string Name;
     string Type;     // 전투, 이벤트 등 
+    public Faction Faction;
     int MaxAppear;   // 필드에 출현 가능한 최대 갯수
     int NowAppear;
     int MaxCount;    // 최대 출현 가능 갯수
     int RemainCount;
 
-    public Stage(string name, string type, int count, int appear)
+    public Stage(string name, string type, int count, int appear, Faction f = 0)
     {
         Name = name;
         Type = type;
+        faction = f;
         MaxAppear = appear;
         NowAppear = 0;
         MaxCount = RemainCount = count;
@@ -59,6 +61,11 @@ public class Stage
     {
         if (RemainCount <= MaxCount)
             RemainCount++;
+    }
+
+    public void InitCount()
+    {
+        RemainCount = MaxCount;
     }
 
     // 현재 클래스의 내용물을 복사하여 새로운 객체를 반환
