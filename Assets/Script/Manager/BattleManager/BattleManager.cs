@@ -102,8 +102,8 @@ public class BattleManager : MonoBehaviour
         BattleUnit unit = Data.GetNowUnit();
         if (unit.Team == Team.Enemy)
         {
-            //unit.AI.AIAction();
-
+            unit.AI.AIAction();
+            
             Data.BattleOrderRemove(unit);
             BattleOverCheck();
 

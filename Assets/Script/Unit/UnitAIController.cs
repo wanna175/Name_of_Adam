@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit_AI_Controller : MonoBehaviour
+public class UnitAIController : MonoBehaviour
 {
     protected BattleDataManager _Data;
     protected Field _field;
@@ -12,19 +12,19 @@ public class Unit_AI_Controller : MonoBehaviour
     //공격 범위: 움직이지 않고 공격할 수 있는 범위; Attack Range
     //공격가능 타일: 해당 타일로 이동할 경우 공격할 수 있는 타일; Attackable Tile
 
-    protected List<Vector2> AttackRangeUnitList = new List<Vector2>();
+    protected List<Vector2> AttackRangeUnitList = new();
     //공격 범위 내 유닛
 
-    protected List<Vector2> AttackableTileList = new List<Vector2>();
+    protected List<Vector2> AttackableTileList = new();
     //공격 가능 타일 
 
-    protected List<Vector2> UnitAttackableTileList = new List<Vector2>();
+    protected List<Vector2> UnitAttackableTileList = new();
     //공격 가능 + 사거리 내 타일
 
-    protected List<Vector2> FourWay = new List<Vector2> { new Vector2(-1, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1) };
+    protected List<Vector2> FourWay = new() { new Vector2(-1, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1) };
     //상하좌우 foreach용
 
-    protected Dictionary<Vector2, int> TileHPDict = new Dictionary<Vector2, int>();
+    protected Dictionary<Vector2, int> TileHPDict = new();
 
     void Awake()
     {
@@ -161,8 +161,6 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void MoveUnit(Vector2 moveVector)
     {
-
-
         _field.MoveUnit(caster.Location, moveVector);
     }
 
@@ -177,7 +175,7 @@ public class Unit_AI_Controller : MonoBehaviour
 
         float minDistance = 100f;
 
-        List<Vector2> nearestEnemy = new List<Vector2>();
+        List<Vector2> nearestEnemy = new();
 
         foreach (Vector2 vec in AttackableTileList)
         {
@@ -203,11 +201,11 @@ public class Unit_AI_Controller : MonoBehaviour
         Vector2 MyPosition = caster.Location;
         float currntMin = 100f;
 
-        List<Vector2> moveVectorList = new List<Vector2>();
+        List<Vector2> moveVectorList = new();
 
         foreach (Vector2 direction in FourWay)
         {
-            Vector2 Vec = new Vector2(MyPosition.x + direction.x, MyPosition.y + direction.y);
+            Vector2 Vec = new(MyPosition.x + direction.x, MyPosition.y + direction.y);
             float sqr = (Vec - destination).sqrMagnitude;
 
             if (currntMin > sqr)
@@ -246,6 +244,34 @@ public class Unit_AI_Controller : MonoBehaviour
         TileHPDict.Clear();
     }
 
+    public virtual void AIAction()
+    {
+        SetAttackRangeList();
+
+        if (AttackRangeUnitList.Count > 0)
+        {
+            Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+        }
+        else
+        {
+            SetAttackableTile();
+            AttackableTileSearch();
+
+            if (UnitAttackableTileList.Count > 0)
+            {
+                MoveUnit(MinHPSearch(UnitAttackableTileList));
+
+                SetAttackRangeList();
+                Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+            }
+            else
+            {
+                MoveUnit(MoveDirection(NearestEnemySearch()));
+            }
+        }
+        ListClear();
+    }
+
     public virtual Vector2 AIMove()
     {
         ListClear();
@@ -254,7 +280,6 @@ public class Unit_AI_Controller : MonoBehaviour
         if (AttackRangeUnitList.Count > 0)
         {
             return caster.Location;
-            //Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
         }
         else
         {
@@ -264,15 +289,10 @@ public class Unit_AI_Controller : MonoBehaviour
             if (UnitAttackableTileList.Count > 0)
             {
                 return MinHPSearch(UnitAttackableTileList);
-                //MoveUnit(MinHPSearch(UnitAttackableTileList));
-
-                //SetAttackRangeList();
-                //Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
             }
             else
             {
                 return MoveDirection(NearestEnemySearch());
-                //MoveUnit(MoveDirection(NearestEnemySearch()));
             }
         }
     }
@@ -293,8 +313,12 @@ public class Unit_AI_Controller : MonoBehaviour
     }
 }
 
-public class Common_Unit_AI_Controller : Unit_AI_Controller
+public class CommonUnitAIController : UnitAIController
 {
+    public override void AIAction()
+    {
+        base.AIAction();
+    }
     public override Vector2 AIMove()
     {
         return base.AIMove();
