@@ -12,6 +12,6 @@ public class StartPhase : Phase
 
     public override void OnStateExit()
     {
-        
+        _battle.Data.BattleUnitOrder();
     }
 }
