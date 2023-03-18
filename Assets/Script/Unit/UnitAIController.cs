@@ -49,21 +49,21 @@ public class UnitAIController : MonoBehaviour
                 continue;
             }
 
-            if (_field.TileDict[range].UnitExist && _field.TileDict[range].Unit.Team == Team.Player)
+            if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Player)
             {
                 AttackRangeUnitList.Add(range);
 
                 if (TileHPDict.ContainsKey(range))
                 {
-                    if (TileHPDict[range] >= _field.TileDict[range].Unit.Stat.HP)
+                    if (TileHPDict[range] >= _field.GetUnit(range).Stat.HP)
                     {
                         TileHPDict.Remove(range);
-                        TileHPDict.Add(range, _field.TileDict[range].Unit.Stat.HP);
+                        TileHPDict.Add(range, _field.GetUnit(range).Stat.HP);
                     }
                 }
                 else
                 {
-                    TileHPDict.Add(range, _field.TileDict[range].Unit.Stat.HP);
+                    TileHPDict.Add(range, _field.GetUnit(range).Stat.HP);
                 }
             }
         }
@@ -250,7 +250,7 @@ public class UnitAIController : MonoBehaviour
 
         if (AttackRangeUnitList.Count > 0)
         {
-            Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+            Attack(_field.GetUnit(MinHPSearch(AttackRangeUnitList)));
         }
         else
         {
@@ -262,7 +262,7 @@ public class UnitAIController : MonoBehaviour
                 MoveUnit(MinHPSearch(UnitAttackableTileList));
 
                 SetAttackRangeList();
-                Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+                Attack(_field.GetUnit(MinHPSearch(AttackRangeUnitList)));
             }
             else
             {
