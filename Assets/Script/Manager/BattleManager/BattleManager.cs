@@ -119,10 +119,9 @@ public class BattleManager : MonoBehaviour
             return;
 
         DeckUnit unit = Data.UI_hands.GetSelectedUnit();
-        BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
+        GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Data.RemoveDeckUnit(unit);
         Field.ClearAllColor();
-        Data.BattleUnitAdd(spawnedUnit);
     }
 
     public void OnClickTile(Tile tile)
