@@ -10,7 +10,7 @@ public class BattleUnit : DeckUnit
     private SpriteRenderer _renderer;
     private Animator _animator;
 
-    public Unit_AI_Controller AI;
+    public UnitAIController AI;
 
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
