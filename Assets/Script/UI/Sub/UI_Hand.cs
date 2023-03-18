@@ -17,7 +17,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _highlight.SetActive(false);
     }
 
-    public void SetHandUnit(UI_Hands hands, DeckUnit unit)
+    public void SetUnit(UI_Hands hands, DeckUnit unit)
     {
         _hands = hands;
         _handUnit = unit;
@@ -30,17 +30,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         GetComponent<Image>().sprite = _handUnit.Data.Image;
     }
 
-    public DeckUnit GetHandUnit()
+    public DeckUnit GetUnit()
     {
         return _handUnit;
-    }
-
-    public bool IsHandNull()
-    {
-        if (_handUnit == null)
-            return true;
-        else
-            return false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -19,7 +19,7 @@ public class UI_Hands : UI_Scene
     public void AddUnit(DeckUnit unit)
     {
         UI_Hand newCard = GameObject.Instantiate(HandPrefabs, Grid).GetComponent<UI_Hand>();
-        newCard.SetHandUnit(this, unit);
+        newCard.SetUnit(this, unit);
         _handList.Add(newCard);
     }
 
@@ -41,7 +41,7 @@ public class UI_Hands : UI_Scene
     {
         foreach(UI_Hand card in _handList)
         {
-            if (card.GetHandUnit() == unit)
+            if (card.GetUnit() == unit)
                 return card;
         }
 
@@ -66,9 +66,6 @@ public class UI_Hands : UI_Scene
 
     public DeckUnit GetSelectedUnit()
     {
-        foreach (UI_Hand hand in _handList)
-            if (hand.IsSelected)
-                return hand.GetHandUnit();
-        return null;
+        return _selectedHand.GetUnit();
     }
 }
