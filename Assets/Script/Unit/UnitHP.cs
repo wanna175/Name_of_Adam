@@ -10,10 +10,10 @@ public class UnitHP : MonoBehaviour
     [Header("사망 이벤트")]
     public UnityEvent UnitDiedEvent;
 
-    public void Init(int maxHP)
+    public void Init(int maxHP, int currentHP)
     {
         _maxHP = maxHP;
-        _currentHP = maxHP;
+        _currentHP = currentHP;
     }
 
     public void ChangeHP(int value)
