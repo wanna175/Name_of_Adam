@@ -10,6 +10,11 @@ public class PreparePhase : Phase
         
     }
 
+    public override void OnClickEvent()
+    {
+        _battle.PreparePhase();
+    }
+
     public override void OnStateExit()
     {
         _battle.Mana.ChangeMana(2);

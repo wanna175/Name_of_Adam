@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandPrefabs: {fileID: 9037217407852231977, guid: bf27dc6fa9a3dc44896d9cb58014d4a7, type: 3}
+  Grid: {fileID: 8318413299908950032}
 --- !u!1 &8318413299908950031
 GameObject:
   m_ObjectHideFlags: 0
