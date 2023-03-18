@@ -7,18 +7,19 @@ using UnityEngine.EventSystems;
 public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     private DeckUnit _handUnit = null;
-    private GameObject _highlight = null;
+    [SerializeField] private GameObject _highlight;
+    private UI_Hands _hands;
     public bool IsSelected = false;
     
 
     private void Start()
     {
-        _highlight = Util.FindChild(gameObject, "Highlight");
         _highlight.SetActive(false);
     }
 
-    public void SetHandUnit(DeckUnit unit)
+    public void SetUnit(UI_Hands hands, DeckUnit unit)
     {
+        _hands = hands;
         _handUnit = unit;
         SetUnitInfo();
     }
@@ -29,17 +30,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         GetComponent<Image>().sprite = _handUnit.Data.Image;
     }
 
-    public DeckUnit GetHandUnit()
+    public DeckUnit GetUnit()
     {
         return _handUnit;
-    }
-
-    public bool IsHandNull()
-    {
-        if (_handUnit == null)
-            return true;
-        else
-            return false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -56,16 +49,21 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Hand Click");
-        if (GameManager.Battle.UnitSpawn(_handUnit))
-        {
-            if (IsSelected)
-                IsSelected = false;
-            else
-                IsSelected = true;
-        }
-        
-        
+        _hands.OnClickHand(this);
+    }
 
+    public void ChangeSelectState()
+    {
+        if (IsSelected)
+        {
+            IsSelected = false;
+            _highlight.SetActive(false);
+        }
+        else
+        {
+            IsSelected = true;
+            _highlight.SetActive(true);
+        }
+            
     }
 }
