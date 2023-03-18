@@ -6,8 +6,11 @@ using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
-    [SerializeField] GameObject[] StageButtons = new GameObject[3];
-    [SerializeField] GameObject[] NextStageButtons = new GameObject[5];
+    [SerializeField] GameObject StageButtonContainer;
+    [SerializeField] GameObject NextStageButtonContainer;
+
+    GameObject[] StageButtons = new GameObject[3];
+    GameObject[] NextStageButtons = new GameObject[5];
 
     StageManager _stageMNG;
 
@@ -16,7 +19,7 @@ public class ButtonController : MonoBehaviour
     {
         _stageMNG = GameManager.StageMNG;
 
-        SetButtonText();
+        CreateButton();
     }
 
     public int GetIndex(GameObject obj)
@@ -28,6 +31,27 @@ public class ButtonController : MonoBehaviour
         }
 
         return -1;
+    }
+
+    private void CreateButton()
+    {
+        ResourceManager resource = GameManager.Resource;
+
+        for(int i = 0; i < 3; i++)
+        {
+            GameObject StageButton = resource.Instantiate("UI/Stage/BTN_StageSelect", StageButtonContainer.transform);
+            StageButton.AddComponent<StageButtonEventTrigger>().Init(this);
+
+            StageButtons[i] = StageButton;
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject NextStageButton = resource.Instantiate("UI/Stage/BTN_StageSelect", NextStageButtonContainer.transform);
+
+            NextStageButtons[i] = NextStageButton;
+        }
+
+        SetButtonText();
     }
 
     private void SetButtonText()
@@ -61,8 +85,6 @@ public class ButtonController : MonoBehaviour
         int index = GetIndex(ClickObject);
 
         _stageMNG.MoveNextStage(index);
-
-        SetButtonText();
     }
 
     public void HoverEnter(GameObject FocusObject)

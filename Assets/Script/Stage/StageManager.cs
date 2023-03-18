@@ -343,8 +343,6 @@ public class StageManager : MonoBehaviour
     // 디버그용 입력 이벤트
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-            MoveNextStage(1);
         if (Input.GetKeyDown(KeyCode.O))
             SceneChanger.SceneChange("StageSelectScene");
     }
