@@ -161,6 +161,8 @@ public class Unit_AI_Controller : MonoBehaviour
 
     protected void MoveUnit(Vector2 moveVector)
     {
+
+
         _field.MoveUnit(caster.Location, moveVector);
     }
 
@@ -244,39 +246,62 @@ public class Unit_AI_Controller : MonoBehaviour
         TileHPDict.Clear();
     }
 
-    public virtual void AIAction()
+    public virtual Vector2 AIMove()
     {
+        ListClear();
         SetAttackRangeList();
 
         if (AttackRangeUnitList.Count > 0)
         {
-            Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+            return caster.Location;
+            //Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
         }
         else
         {
             SetAttackableTile();
-
             AttackableTileSearch();
+
             if (UnitAttackableTileList.Count > 0)
             {
-                MoveUnit(MinHPSearch(UnitAttackableTileList));
+                return MinHPSearch(UnitAttackableTileList);
+                //MoveUnit(MinHPSearch(UnitAttackableTileList));
 
-                SetAttackRangeList();
-                Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+                //SetAttackRangeList();
+                //Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
             }
             else
             {
-                MoveUnit(MoveDirection(NearestEnemySearch()));
+                return MoveDirection(NearestEnemySearch());
+                //MoveUnit(MoveDirection(NearestEnemySearch()));
             }
         }
+    }
+
+    public virtual Vector2 AISkillUse()
+    {
         ListClear();
+        SetAttackRangeList();
+
+        if (AttackRangeUnitList.Count > 0)
+        {
+            return MinHPSearch(AttackRangeUnitList);
+        }
+        else
+        {
+            return caster.Location;
+        }
     }
 }
 
 public class Common_Unit_AI_Controller : Unit_AI_Controller
 {
-    public override void AIAction()
+    public override Vector2 AIMove()
     {
-        base.AIAction();
+        return base.AIMove();
+    }
+
+    public override Vector2 AISkillUse()
+    {
+        return base.AISkillUse();
     }
 }
