@@ -41,11 +41,12 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 
-    public void DeckSpawn(DeckUnit deckUnit, Vector2 location)
+    public BattleUnit DeckSpawn(DeckUnit deckUnit, Vector2 location)
     {
         if (GameManager.Battle.Field.TileDict[location].UnitExist)
         {
             Debug.Log("해당 타일에 유닛이 존재합니다.");
+            return null;
         }
         else
         {
@@ -59,7 +60,9 @@ public class UnitSpawner : MonoBehaviour
 
             bu.Init();
 
-            GameManager.Battle.UnitSetting(go.GetComponent<BattleUnit>(), location);
+            BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
+            GameManager.Battle.UnitSetting(spawnedUnit, location);
+            return spawnedUnit;
         }
     }
 

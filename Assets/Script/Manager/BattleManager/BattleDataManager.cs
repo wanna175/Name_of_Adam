@@ -9,6 +9,8 @@ public class BattleDataManager : MonoBehaviour
     {
         _ui_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
+        UI_hands = GameManager.UI.ShowScene<UI_Hands>();
+        InitHands();
     }
 
     #region Turn Count
@@ -22,21 +24,41 @@ public class BattleDataManager : MonoBehaviour
     }
     #endregion
 
-    private List<DeckUnit> _playerDeck = new List<DeckUnit>();
+    [SerializeField] private List<DeckUnit> _playerDeck = new List<DeckUnit>();
     public List<DeckUnit> PlayerDeck => _playerDeck;
 
-    private List<DeckUnit> _playerHands = new List<DeckUnit>();
+    [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
     public List<DeckUnit> PlayerHands => _playerHands;
+    public UI_Hands UI_hands;
 
-    public void AddUnit(DeckUnit unit) {
+    private void InitHands()
+    {
+        UI_hands.SetHands(PlayerHands);
+    }
+
+    public void AddDeckUnit(DeckUnit unit) {
         PlayerDeck.Add(unit);
     }
 
-    public void RemoveUnit(DeckUnit unit) {
+    public void RemoveDeckUnit(DeckUnit unit) {
         PlayerDeck.Remove(unit);
+        UI_hands.RemoveUnit(unit);
     }
 
-    public DeckUnit GetRandomUnitFromDeck() {
+    public void AddHandUnit(DeckUnit unit)
+    {
+        PlayerHands.Add(unit);
+        UI_hands.AddUnit(unit);
+    }
+
+    public void RemoveHandUnit(DeckUnit unit)
+    {
+        PlayerHands.Remove(unit);
+        UI_hands.RemoveUnit(unit);
+    }
+
+    public DeckUnit GetRandomUnitFromDeck()
+    {
         if (PlayerDeck.Count == 0)
         {
             return null;
