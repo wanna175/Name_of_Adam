@@ -685,6 +685,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &825336032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 825336033}
+  - component: {fileID: 825336034}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &825336033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825336032}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1932546685}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &825336034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825336032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87d9431998c6274bb3aaf88bb005a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageInfoContainer:
+  - Name: Stigma Store
+    Type: Store
+    MaxCount: 2
+    MaxAppear: 1
+  - Name: Upgrade Store
+    Type: Store
+    MaxCount: 2
+    MaxAppear: 1
+  - Name: Money Store
+    Type: Store
+    MaxCount: 1
+    MaxAppear: 1
+  - Name: Harlot
+    Type: Event
+    MaxCount: 1
+    MaxAppear: 1
+  - Name: '?'
+    Type: Event
+    MaxCount: 3
+    MaxAppear: 2
+  - Name: Common Battle
+    Type: Battle
+    MaxCount: 4
+    MaxAppear: 2
+  - Name: Elite Battle
+    Type: Battle
+    MaxCount: 1
+    MaxAppear: 1
+  - Name: Boss Battle
+    Type: Battle
+    MaxCount: 0
+    MaxAppear: 0
 --- !u!1 &1234316200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1144,7 @@ MonoBehaviour:
   _battle: {fileID: 1589663945}
   _cutScene: {fileID: 49041952}
   _ui: {fileID: 20967190}
-  _stageMNG: {fileID: 0}
+  _stageMNG: {fileID: 825336034}
 --- !u!4 &1932546685
 Transform:
   m_ObjectHideFlags: 0
@@ -1083,6 +1160,7 @@ Transform:
   - {fileID: 1589663946}
   - {fileID: 49041953}
   - {fileID: 20967189}
+  - {fileID: 825336033}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

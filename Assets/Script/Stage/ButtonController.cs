@@ -106,12 +106,12 @@ public class ButtonController : MonoBehaviour
         int index = GetIndex(FocusObject);
 
         if (_stageMNG.GetStageArray[index] != null)
-            StageButtons[index].GetComponent<Image>().color = Color.red;
+            StageButtons[index].GetComponent<Image>().color = Color.gray;
 
         for (int i = 0; i < 3; i++)
         {
             if (_stageMNG.GetNextStageArray[index + i] != null)
-                NextStageButtons[index + i].GetComponent<Image>().color = Color.red;
+                NextStageButtons[index + i].GetComponent<Image>().color = Color.gray;
         }
     }
 }
