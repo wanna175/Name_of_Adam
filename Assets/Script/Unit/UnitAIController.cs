@@ -37,7 +37,7 @@ public class UnitAIController : MonoBehaviour
         caster = unit;
     }
 
-    private void SetAttackRangeList()
+    protected void SetAttackRangeList()
     {
         //캐스터의 공격 범위 내에 있는 유닛을 리스트에 담는다.
         foreach (Vector2 attackRange in caster.GetAttackRange())
@@ -49,21 +49,21 @@ public class UnitAIController : MonoBehaviour
                 continue;
             }
 
-            if (_field.TileDict[range].UnitExist && _field.TileDict[range].Unit.Team == Team.Player)
+            if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Player)
             {
                 AttackRangeUnitList.Add(range);
 
                 if (TileHPDict.ContainsKey(range))
                 {
-                    if (TileHPDict[range] >= _field.TileDict[range].Unit.Stat.HP)
+                    if (TileHPDict[range] >= _field.GetUnit(range).HP.GetCurrentHP())
                     {
                         TileHPDict.Remove(range);
-                        TileHPDict.Add(range, _field.TileDict[range].Unit.Stat.HP);
+                        TileHPDict.Add(range, _field.GetUnit(range).HP.GetCurrentHP());
                     }
                 }
                 else
                 {
-                    TileHPDict.Add(range, _field.TileDict[range].Unit.Stat.HP);
+                    TileHPDict.Add(range, _field.GetUnit(range).HP.GetCurrentHP());
                 }
             }
         }
@@ -84,22 +84,22 @@ public class UnitAIController : MonoBehaviour
 
                     if (TileHPDict.ContainsKey(attackableRange))
                     {
-                        if (TileHPDict[attackableRange] >= unit.Stat.HP)
+                        if (TileHPDict[attackableRange] >= unit.HP.GetCurrentHP())
                         {
                             TileHPDict.Remove(attackableRange);
-                            TileHPDict.Add(attackableRange, unit.Stat.HP);
+                            TileHPDict.Add(attackableRange, unit.HP.GetCurrentHP());
                         }
                     }
                     else
                     {
-                        TileHPDict.Add(attackableRange, unit.Stat.HP);
+                        TileHPDict.Add(attackableRange, unit.HP.GetCurrentHP());
                     }
                 }
             }
         }
     }
 
-    private void AttackableTileSearch()
+    protected void AttackableTileSearch()
     {
         //캐스터의 공격 범위 내에 있는 유닛을 리스트에 담는다.
         List<Vector2> swapList = new List<Vector2>();
@@ -133,7 +133,7 @@ public class UnitAIController : MonoBehaviour
         }
     }
 
-    private Vector2 MinHPSearch(List<Vector2> vecList)
+    protected Vector2 MinHPSearch(List<Vector2> vecList)
     {
         //리스트에서 가장 체력이 낮은 적을 찾는다.
         List<Vector2> minHPList = new List<Vector2>();
@@ -164,7 +164,7 @@ public class UnitAIController : MonoBehaviour
         _field.MoveUnit(caster.Location, moveVector);
     }
 
-    private void Attack(BattleUnit unit)
+    protected void Attack(BattleUnit unit)
     {
         caster.SkillUse(unit);
     }
@@ -195,7 +195,7 @@ public class UnitAIController : MonoBehaviour
         return nearestEnemy[Random.Range(0, nearestEnemy.Count)];
     }
 
-    public Vector2 MoveDirection(Vector2 destination)
+    protected Vector2 MoveDirection(Vector2 destination)
     {
         //가야하는 위치 destination을 받아 상하좌우 중 어디로 갈지를 정해 moveVec으로 리턴한다
         Vector2 MyPosition = caster.Location;
@@ -250,7 +250,7 @@ public class UnitAIController : MonoBehaviour
 
         if (AttackRangeUnitList.Count > 0)
         {
-            Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+            Attack(_field.GetUnit(MinHPSearch(AttackRangeUnitList)));
         }
         else
         {
@@ -262,7 +262,7 @@ public class UnitAIController : MonoBehaviour
                 MoveUnit(MinHPSearch(UnitAttackableTileList));
 
                 SetAttackRangeList();
-                Attack(_field.TileDict[MinHPSearch(AttackRangeUnitList)].Unit);
+                Attack(_field.GetUnit(MinHPSearch(AttackRangeUnitList)));
             }
             else
             {
