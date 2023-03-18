@@ -9,7 +9,7 @@ public class Field : MonoBehaviour
     private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
     public Dictionary<Vector2, Tile> TileDict => _tileDict;
 
-    private List<Vector2> _coloredTile = new List<Vector2>();
+    public List<Vector2> _coloredTile = new List<Vector2>();
 
     // 필드의 생성을 위한 필드의 위치
     private Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
@@ -169,6 +169,21 @@ public class Field : MonoBehaviour
             TileDict[vec].SetColor(ColorList(clickType));
             _coloredTile.Add(vec);
         }
+    }
+
+    public void SetTileColor(bool isStart = false)
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            if (isStart && IsPlayerRange(items.Key) == false)
+                continue;
+
+            if (items.Value.UnitExist == false)
+            {
+                items.Value.SetColor(Color.blue);
+                _coloredTile.Add(items.Key);
+            }    
+        }  
     }
 
     public void ClearAllColor()
