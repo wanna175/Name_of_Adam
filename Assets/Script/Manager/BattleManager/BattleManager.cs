@@ -69,7 +69,7 @@ public class BattleManager : MonoBehaviour
 
         if (coord != unit.Location)
         {
-            List<Vector2> splashRange = unit.GetSplashRange(coord);
+            List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
 
             foreach (Vector2 splash in splashRange)
             {
