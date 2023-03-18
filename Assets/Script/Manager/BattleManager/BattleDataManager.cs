@@ -15,7 +15,7 @@ public class BattleDataManager : MonoBehaviour
 
     #region Turn Count
     private UI_TurnCount _ui_turnCount;
-    private int _turnCount = 1;
+    private int _turnCount = 0;
 
     public void TurnPlus()
     {

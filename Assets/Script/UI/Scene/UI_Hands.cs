@@ -9,6 +9,7 @@ public class UI_Hands : UI_Scene
 
     private List<UI_Hand> _handList = new List<UI_Hand>();
     private UI_Hand _selectedHand = null;
+    private BattleManager _battle = GameManager.Battle;
     
     public void SetHands(List<DeckUnit> deckUnits)
     {
@@ -51,17 +52,27 @@ public class UI_Hands : UI_Scene
     public void OnClickHand(UI_Hand hand)
     {
         Debug.Log("Hand Click");
-        if (GameManager.Battle.UnitSpawnReady())
+        if (hand != null && hand == _selectedHand)
+            CancleSelect();
+        else
             SelectOneUnit(hand);
+    }
+
+    private void CancleSelect()
+    {
+        _selectedHand.ChangeSelectState(false);
+        _selectedHand = null;
+        _battle.UnitSpawnReady(false);
     }
 
     private void SelectOneUnit(UI_Hand hand)
     {
         if (_selectedHand != null)
-            _selectedHand.ChangeSelectState();
+            _selectedHand.ChangeSelectState(false);
         
         _selectedHand = hand;
-        _selectedHand.ChangeSelectState();
+        _selectedHand.ChangeSelectState(true);
+        _battle.UnitSpawnReady(true);
     }
 
     public DeckUnit GetSelectedUnit()

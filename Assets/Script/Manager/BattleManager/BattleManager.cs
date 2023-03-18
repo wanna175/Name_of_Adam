@@ -113,11 +113,25 @@ public class BattleManager : MonoBehaviour
         _phase.ChangePhase(_phase.Move);
     }
 
+    public void StartPhase()
+    {
+        if (Field._coloredTile.Count <= 0)
+            return;
+
+        SpawnUnitOnField();
+    }
+
     public void PreparePhase()
     {
         if (Field._coloredTile.Count <= 0)
             return;
 
+        SpawnUnitOnField();
+        // 마나 
+    }
+
+    private void SpawnUnitOnField()
+    {
         DeckUnit unit = Data.UI_hands.GetSelectedUnit();
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Data.RemoveDeckUnit(unit);
@@ -177,7 +191,7 @@ public class BattleManager : MonoBehaviour
 
     public void TurnChange()
     {
-        if (_phase.Current == _phase.Prepare || _phase.Current == _phase.Start)
+        if (_phase.Current == _phase.Prepare)
             _phase.ChangePhase(_phase.Engage);
         else
             _phase.ChangePhase(_phase.Prepare);
@@ -192,14 +206,14 @@ public class BattleManager : MonoBehaviour
         Field.MoveUnit(current, dest);
     }
 
-    public bool UnitSpawnReady()
+    public bool UnitSpawnReady(bool b)
     {
-        if(_phase.Current == _phase.Start || _phase.Current == _phase.Prepare)
-        {
-            Field.SetTileColor();
-            return true;
-        }
+        if (_phase.Current != _phase.Prepare)
+            return false;
 
-        return false;
+        if (b) Field.SetTileColor();
+        else Field.ClearAllColor();
+
+        return true;
     }
 }
