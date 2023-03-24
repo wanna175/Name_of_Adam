@@ -29,7 +29,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Init();
+        if (s_instance != null)
+            Destroy(gameObject);
+        else
+            Init();
     }
 
     private static void Init()

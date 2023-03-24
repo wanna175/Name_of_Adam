@@ -622,7 +622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickType: 0
 --- !u!4 &1589663946
 Transform:
   m_ObjectHideFlags: 0
@@ -935,90 +934,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87d9431998c6274bb3aaf88bb005a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageArray:
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
-  NextStageArray:
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
-  - Name: 
-    Type: 
-    MaxAppear: 0
-    NowAppear: 0
-    MaxCount: 0
-    RemainCount: 0
   StageInfoContainer:
-  - Name: Stigma Store
-    Type: Store
+  - Name: 0
+    Type: 0
+    Background: {fileID: 21300000, guid: 9ea47ee6b35a61a47a7eaca1b4994d61, type: 3}
     MaxCount: 2
     MaxAppear: 1
-  - Name: Upgrade Store
-    Type: Store
+  - Name: 1
+    Type: 0
+    Background: {fileID: 21300000, guid: fbc8700e467491945b19b4b40bdb4b7b, type: 3}
     MaxCount: 2
     MaxAppear: 1
-  - Name: Money Store
-    Type: Store
+  - Name: 2
+    Type: 0
+    Background: {fileID: 21300000, guid: 9e2554f20a3b9b34e9c1b34242d5c4f9, type: 3}
     MaxCount: 1
     MaxAppear: 1
-  - Name: Harlot
-    Type: Event
+  - Name: 3
+    Type: 1
+    Background: {fileID: 21300000, guid: c30bbf363ab82f846a211b0b09a68e5c, type: 3}
     MaxCount: 1
     MaxAppear: 1
-  - Name: '?'
-    Type: Event
+  - Name: 4
+    Type: 1
+    Background: {fileID: 21300000, guid: 5b997afb42475ca4e8301297234873b9, type: 3}
     MaxCount: 3
     MaxAppear: 2
-  - Name: Common Battle
-    Type: Battle
+  - Name: 5
+    Type: 2
+    Background: {fileID: 21300000, guid: 56ca14ee49e9c4641b06985f755c370a, type: 3}
     MaxCount: 4
     MaxAppear: 2
-  - Name: Elite Battle
-    Type: Battle
+  - Name: 6
+    Type: 2
+    Background: {fileID: 21300000, guid: b0143625e45d0244ab969fa662bf5292, type: 3}
     MaxCount: 1
     MaxAppear: 1
-  - Name: Boss Battle
-    Type: Battle
+  - Name: 7
+    Type: 2
+    Background: {fileID: 21300000, guid: f30d5f4a58dca2640a1f619d0699609b, type: 3}
     MaxCount: 0
     MaxAppear: 0
-  StageInfoList: []
 --- !u!224 &2117723696 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 963727030562007705, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}

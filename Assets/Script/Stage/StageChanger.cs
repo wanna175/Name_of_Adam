@@ -9,7 +9,7 @@ public class StageChanger
     {
         Debug.Log("Now Stage : " + stage.Name);
 
-        if (stage.GetStageType() == "Battle")
+        if (stage.GetStageType() == StageType.Battle)
         {
             // SceneChanger.SceneChange("JS TEST");
             SceneChanger.SceneChange("Battle");

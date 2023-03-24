@@ -32,6 +32,7 @@ public class StageManager : MonoBehaviour
     private void Start()
     {
         Changer = new StageChanger();
+        Debug.Log("start");
 
         GetStageInfo();
         InitStage();
@@ -46,9 +47,9 @@ public class StageManager : MonoBehaviour
         // 인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
         foreach (TestContainer test in StageInfoContainer)
         {
-            Stage st = new Stage(test.Name, test.Type, test.MaxCount, test.MaxAppear);
+            Stage st = new Stage(test.Name, test.Type, test.MaxCount, test.MaxAppear, test.Background);
 
-            if (st.GetStageType() == "Store")
+            if (st.GetStageType() == StageType.Store)
                 StoreList.Add(st);
             
             StageInfo.Add(st);
@@ -66,7 +67,7 @@ public class StageManager : MonoBehaviour
 
         // 다음 선택지를 모두 전투로 설정한다.
         for(int i = 0; i < StageArray.Length; i++)
-            StageArray[i] = FindStageByName(MapList[0]);
+            StageArray[i] = SetRandomFaction(MapList[0]);
         SetNextArray();
     }
 
@@ -82,7 +83,7 @@ public class StageManager : MonoBehaviour
                 RemainStageInfoList.Add(_stageInfo.Clone());
             else
             {
-                if (st.Name != "Elite Battle")
+                if (st.Name != StageName.EliteBattle)
                     st.InitCount();
             }
         }
@@ -94,9 +95,9 @@ public class StageManager : MonoBehaviour
         for(int i =0; i < 4; i++)
         {
             if (i == 2)
-                MapList.Add("Elite Battle");
+                MapList.Add("EliteBattle");
             else
-                MapList.Add("Common Battle");
+                MapList.Add("CommonBattle");
 
 
             if (i <= 2)
@@ -135,12 +136,12 @@ public class StageManager : MonoBehaviour
                     NextStageArray[i] = StoreList[index];
                 }
                 else
-                    NextStageArray[i] = FindStageByName(MapList[1]);
+                    NextStageArray[i] = SetRandomFaction(MapList[1]);
             }
         }
         else // 맵의 끝에 도달했을 경우, 보스를 배치
         {
-            Stage BossStage = new Stage("Boss", "Battle", 0, 0);
+            Stage BossStage = StageInfo.Find(x => x.Name == StageName.BossBattle);
 
             for (int i = 0; i < NextStageArray.Length; i++)
                 NextStageArray[i] = null;
@@ -182,11 +183,11 @@ public class StageManager : MonoBehaviour
                     continue;
 
                 // 너무 빨리 엘리트 전투가 나오지 않도록 제한
-                if (st.Name == "Elite Battle" && 7 < MapList.Count)
+                if (st.Name == StageName.EliteBattle && 7 < MapList.Count)
                     break;
 
                 // 상점 뒤에 같은 상점이 나오지 않도록 제한
-                if (st.GetStageType() == "Store")
+                if (st.GetStageType() == StageType.Store)
                 {
                     bool CanStore = true;
 
@@ -247,7 +248,7 @@ public class StageManager : MonoBehaviour
             if (StageArray[i] != null && MapList[0] == "Random")
             {
                 if (i != index)
-                    StageArray[i].RecallCount();
+                    GetStageByName(StageArray[i].Name).RecallCount();
             }
 
             StageArray[i] = NextStageArray[index + i];
@@ -264,15 +265,26 @@ public class StageManager : MonoBehaviour
                 continue;
 
             if(i < index || index + 2 < i)
-                NextStageArray[i].RecallCount();
+                GetStageByName(NextStageArray[i].Name).RecallCount();
         }
 
         MapList.RemoveAt(0);
         SetNextArray();
     }
 
+    Stage GetStageByName(StageName name)
+    {
+        return RemainStageInfoList.Find(x => x.Name == name);
+    }
 
-    Stage FindStageByName(string StageName) => RemainStageInfoList.Find(x => x.Name == StageName);
+    Stage SetRandomFaction(string Name)
+    {
+        StageName _name = (StageName)Enum.Parse(typeof(StageName), Name);
+        Stage st = RemainStageInfoList.Find(x => x.Name == _name);
+        st.SetBattleFaction();
+
+        return st.Clone();
+    }
 
 
     // 디버그용 입력 이벤트

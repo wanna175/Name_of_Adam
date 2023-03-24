@@ -14,6 +14,6 @@ public class UI_TurnCount : UI_Scene
 
     public void Refresh(int turn)
     {
-        _turnText.text = turn.ToString();
+        // _turnText.text = turn.ToString();
     }
 }
