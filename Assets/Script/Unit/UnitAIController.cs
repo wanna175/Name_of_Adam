@@ -164,9 +164,9 @@ public class UnitAIController : MonoBehaviour
         _field.MoveUnit(caster.Location, moveVector);
     }
 
-    protected void Attack(BattleUnit unit)
+    protected void Attack(Vector2 vec)
     {
-        caster.SkillUse(unit);
+        caster.SkillUse(_field.GetUnit(vec));
     }
 
     protected Vector2 NearestEnemySearch()
@@ -250,7 +250,7 @@ public class UnitAIController : MonoBehaviour
 
         if (AttackRangeUnitList.Count > 0)
         {
-            Attack(_field.GetUnit(MinHPSearch(AttackRangeUnitList)));
+            Attack(MinHPSearch(AttackRangeUnitList));
         }
         else
         {
@@ -262,7 +262,7 @@ public class UnitAIController : MonoBehaviour
                 MoveUnit(MinHPSearch(UnitAttackableTileList));
 
                 SetAttackRangeList();
-                Attack(_field.GetUnit(MinHPSearch(AttackRangeUnitList)));
+                Attack(MinHPSearch(AttackRangeUnitList));
             }
             else
             {
