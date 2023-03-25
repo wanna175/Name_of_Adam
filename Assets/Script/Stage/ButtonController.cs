@@ -51,31 +51,35 @@ public class ButtonController : MonoBehaviour
             NextStageButtons[i] = NextStageButton;
         }
 
-        SetButtonText();
+        SetButtons();
     }
 
-    private void SetButtonText()
+    private void SetButtons()
     {
         for (int i = 0; i < StageButtons.Length; i++)
         {
-            string StageText = (_stageMNG.GetStageArray[i] != null) ? _stageMNG.GetStageArray[i].Name : "";
+            string StageText = (_stageMNG.GetStageArray[i] != null) ? _stageMNG.GetStageArray[i].Name.ToString() : "";
 
             StageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
                 text = StageText;
 
             if (_stageMNG.GetStageArray[i] == null)
-                StageButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                StageButtons[i].GetComponent<Image>().color = Color.clear;
+            else
+                StageButtons[i].GetComponent<Image>().sprite = _stageMNG.GetStageArray[i].Background;
         }
 
         for(int i = 0; i < NextStageButtons.Length; i++)
         {
-            string StageText = (_stageMNG.GetNextStageArray[i] != null) ? _stageMNG.GetNextStageArray[i].Name : "";
+            string StageText = (_stageMNG.GetNextStageArray[i] != null) ? _stageMNG.GetNextStageArray[i].Name.ToString() : "";
             
             NextStageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
                 text = StageText;
 
             if (_stageMNG.GetNextStageArray[i] == null)
-                NextStageButtons[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                NextStageButtons[i].GetComponent<Image>().color = Color.clear;
+            else
+                NextStageButtons[i].GetComponent<Image>().sprite = _stageMNG.GetNextStageArray[i].Background;
         }
     }
 
@@ -87,21 +91,41 @@ public class ButtonController : MonoBehaviour
         _stageMNG.MoveNextStage(index);
     }
 
+    #region Hover 시 이미지를 바꾸는 버전
+    /*
     public void HoverEnter(GameObject FocusObject)
     {
         int index = GetIndex(FocusObject);
 
         if (_stageMNG.GetStageArray[index] != null)
-            StageButtons[index].GetComponent<Image>().color = Color.white;
+            StageButtons[index].GetComponent<Image>().sprite = null;
 
         for (int i = 0; i < 3; i++)
         {
             if (_stageMNG.GetNextStageArray[index + i] != null)
-               NextStageButtons[index + i].GetComponent<Image>().color = Color.white;
+                NextStageButtons[index + i].GetComponent<Image>().sprite = null;
         }
     }
 
     public void HoverExit(GameObject FocusObject)
+    {
+        int index = GetIndex(FocusObject);
+
+        if (_stageMNG.GetStageArray[index] != null)
+            StageButtons[index].GetComponent<Image>().sprite = _stageMNG.GetStageArray[index].Background;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (_stageMNG.GetNextStageArray[index + i] != null)
+                NextStageButtons[index + i].GetComponent<Image>().sprite = _stageMNG.GetNextStageArray[index + i].Background;
+        }
+    }
+    */
+    #endregion
+
+    #region Hover 시 색만 어둡게 하는 버전
+
+    public void HoverEnter(GameObject FocusObject)
     {
         int index = GetIndex(FocusObject);
 
@@ -114,4 +138,20 @@ public class ButtonController : MonoBehaviour
                 NextStageButtons[index + i].GetComponent<Image>().color = Color.gray;
         }
     }
+
+    public void HoverExit(GameObject FocusObject)
+    {
+        int index = GetIndex(FocusObject);
+
+        if (_stageMNG.GetStageArray[index] != null)
+            StageButtons[index].GetComponent<Image>().color = Color.white;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (_stageMNG.GetNextStageArray[index + i] != null)
+                NextStageButtons[index + i].GetComponent<Image>().color = Color.white;
+        }
+    }
+
+    #endregion
 }

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageChanger
+public static class StageChanger
 {
     // 다음 스테이지 이동용
-    public void SetNextStage(Stage stage)
+    public static void SetNextStage(Stage stage)
     {
         Debug.Log("Now Stage : " + stage.Name);
 
-        if (stage.GetStageType() == "Battle")
+        if (stage.GetStageType() == StageType.Battle)
         {
             // SceneChanger.SceneChange("JS TEST");
             SceneChanger.SceneChange("Battle");
@@ -18,7 +18,7 @@ public class StageChanger
             SceneChanger.SceneChange("EventScene");
     }
 
-    private void SetBattleScene(Stage stage)
+    private static void SetBattleScene(Stage stage)
     {
         
     }
