@@ -30,7 +30,6 @@ public class BattleUnit : DeckUnit
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-
         AI.SetCaster(this);
         HP.Init(Stat.HP, Stat.CurrentHP);
         Fall.Init(Stat.Fall);
@@ -92,7 +91,6 @@ public class BattleUnit : DeckUnit
     {
         transform.position = dest;
     }
-    
 
     public void SkillUse(BattleUnit _unit) {
         if(_unit != null)
