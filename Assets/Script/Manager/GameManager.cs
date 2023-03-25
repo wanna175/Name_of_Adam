@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (s_instance != null)
-            Destroy(gameObject);
+            Destroy(gameObject); // 이미 GameManager가 있으면 이 오브젝트를 제거
         else
             Init();
     }

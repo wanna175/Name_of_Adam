@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    StageChanger Changer;
-
     // 진행할 스테이지의 타입 리스트
     List<string> MapList = new List<string>();
     // 스테이지 정보의 컨테이너
@@ -26,14 +24,11 @@ public class StageManager : MonoBehaviour
     [SerializeField] public List<TestContainer> StageInfoContainer;
     
     // 현재 레벨에서 담고있는 스테이지의 정보
-    List<Stage> RemainStageInfoList;
+    List<Stage> LocalStageInfo;
 
 
     private void Start()
     {
-        Changer = new StageChanger();
-        Debug.Log("start");
-
         GetStageInfo();
         InitStage();
     }
@@ -42,15 +37,11 @@ public class StageManager : MonoBehaviour
     void GetStageInfo()
     {
         StageInfo = new List<Stage>();
-        StoreList = new List<Stage>();
 
         // 인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
         foreach (TestContainer test in StageInfoContainer)
         {
             Stage st = new Stage(test.Name, test.Type, test.MaxCount, test.MaxAppear, test.Background);
-
-            if (st.GetStageType() == StageType.Store)
-                StoreList.Add(st);
             
             StageInfo.Add(st);
         }
@@ -60,7 +51,7 @@ public class StageManager : MonoBehaviour
     void InitStage()
     {
         MapList = new List<string>();
-        RemainStageInfoList = new List<Stage>();
+        LocalStageInfo = new List<Stage>();
 
         SetStageData();
         SetMapList();
@@ -77,10 +68,10 @@ public class StageManager : MonoBehaviour
     {
         foreach (Stage _stageInfo in StageInfo)
         {
-            Stage st = RemainStageInfoList.Find(x => x.Name == _stageInfo.Name);
+            Stage st = LocalStageInfo.Find(x => x.Name == _stageInfo.Name);
 
             if (st == null)
-                RemainStageInfoList.Add(_stageInfo.Clone());
+                LocalStageInfo.Add(_stageInfo.Clone());
             else
             {
                 if (st.Name != StageName.EliteBattle)
@@ -125,16 +116,26 @@ public class StageManager : MonoBehaviour
 
             for (int i = 0; i < NextStageArray.Length; i++)
             {
-                if (MapList[1] == "Random")
-                    NextStageArray[i] = GetRandomStage(i);
-                else if (MapList[1] == "Store")
+                if (MapList[1] == "Store")
                 {
-                    int index = i;
-                    if (StoreList.Count <= index)
-                        index -= StoreList.Count;
+                    int index = 0;
+                    
+                    for(int j = 0; j < NextStageArray.Length; j++)
+                    {
+                        if (StageInfo[index].GetStageType() == StageType.Store)
+                            NextStageArray[j] = StageInfo[index];
+                        else
+                            j--;
 
-                    NextStageArray[i] = StoreList[index];
+                        index++;
+                        if (index == StageInfo.Count)
+                            index = 0;
+                    }
+
+                    break;
                 }
+                else if (MapList[1] == "Random")
+                    NextStageArray[i] = GetRandomStage(i);
                 else
                     NextStageArray[i] = SetRandomFaction(MapList[1]);
             }
@@ -163,20 +164,31 @@ public class StageManager : MonoBehaviour
 
     Stage GetRandomStage(int index)
     {
-        // 등장할 수 있는 모든 스테이지 수의 합
-        int randCount = 0;
+        // 이미 가져올 수 없음을 확인한 스테이지의 이름
+        List<StageName> PassName = new List<StageName>();
 
-        foreach (Stage st in RemainStageInfoList)
-            randCount += st.GetRemainCount();
-
-        // 가져올 수 있는 스테이지가 나올 때까지 무한히 돌리는 방법
-        // 무한히 돌지 않도록 족쇄를 채워야 함(일단은 100번 돌리는걸로)
-        for(int i = 0; i < 100; i++)
+        // 가져올 수 있는 스테이지가 나올 때까지 스테이지 확인
+        while(true)
         {
+            // 등장할 수 있는 모든 스테이지 수의 합
+            int randCount = 0;
+
+            foreach (Stage st in LocalStageInfo)
+            {
+                if (PassName.Contains(st.Name) == false)
+                    randCount += st.GetRemainCount();
+            }
+
+            if (randCount == 0)
+                break;
+
             int random = UnityEngine.Random.Range(0, randCount);
             
-            foreach (Stage st in RemainStageInfoList)
+            foreach (Stage st in LocalStageInfo)
             {
+                if (PassName.Contains(st.Name))
+                    continue;
+
                 random -= st.GetRemainCount();
 
                 if (0 < random)
@@ -222,7 +234,7 @@ public class StageManager : MonoBehaviour
 
     void NowAppearClear()
     {
-        foreach(Stage st in RemainStageInfoList)
+        foreach(Stage st in LocalStageInfo)
         {
             st.AppearClear();
         }
@@ -231,7 +243,7 @@ public class StageManager : MonoBehaviour
     // 선택한 스테이지로 진행
     public void MoveNextStage(int index)
     {
-        Changer.SetNextStage(StageArray[index]);
+        StageChanger.SetNextStage(StageArray[index]);
 
 
         if (MapList.Count <= 0)
@@ -274,13 +286,13 @@ public class StageManager : MonoBehaviour
 
     Stage GetStageByName(StageName name)
     {
-        return RemainStageInfoList.Find(x => x.Name == name);
+        return LocalStageInfo.Find(x => x.Name == name);
     }
 
     Stage SetRandomFaction(string Name)
     {
         StageName _name = (StageName)Enum.Parse(typeof(StageName), Name);
-        Stage st = RemainStageInfoList.Find(x => x.Name == _name);
+        Stage st = LocalStageInfo.Find(x => x.Name == _name);
         st.SetBattleFaction();
 
         return st.Clone();
