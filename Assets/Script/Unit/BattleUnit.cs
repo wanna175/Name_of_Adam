@@ -15,6 +15,7 @@ public class BattleUnit : DeckUnit
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
+    [SerializeField] public List<Passive> Passive;
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -57,6 +58,7 @@ public class BattleUnit : DeckUnit
 
     public void UnitFallEvent()
     {
+        //타락 시 낙인 체크
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
@@ -95,7 +97,9 @@ public class BattleUnit : DeckUnit
     public void SkillUse(BattleUnit _unit) {
         if(_unit != null)
         {
+            //피격 전 낙인 체크
             Skill.Use(this, _unit);
+            //피격 후 낙인 체크
         }
     }                   
 
@@ -184,4 +188,33 @@ public class BattleUnit : DeckUnit
         }
         return SplashList;
     }
+
+
+    // 낙인 타입에 따라 낙인 내용 실행하는 함수 BattleManager나 BattleUnit 혹은 제 3자에 넣을 지 고민 중
+    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, PassiveType type)
+    {
+        if(type == PassiveType.BEFOREATTACKED || type == PassiveType.AFTERATTACKED || type == PassiveType.FALLED)
+        {
+            for (int i = 0; i < receiver.Passive.Count; i++)
+            {
+                if (receiver.Passive[i].GetPassiveType() == type)
+                {
+                    receiver.Passive[i].Use(caster, receiver);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < caster.Passive.Count; i++)
+            {
+                if (caster.Passive[i].GetPassiveType() == type)
+                {
+                    caster.Passive[i].Use(caster, receiver);
+                }
+            }
+        }
+        
+    }
+
+
 }
