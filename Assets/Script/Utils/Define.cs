@@ -99,6 +99,14 @@ public struct TestUnit
     public Team Team;
 }
 
+
+public enum Sound
+{
+    Bgm,
+    Effect,
+    MaxCount,
+}
+
 public enum PassiveType 
 { 
     BEFOREATTACK, 
@@ -111,3 +119,4 @@ public enum PassiveType
     SUMMON, 
     ETC 
 };
+
