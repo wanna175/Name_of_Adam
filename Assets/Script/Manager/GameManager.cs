@@ -16,15 +16,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager _ui;
     public static UIManager UI => Instance._ui;
 
+    [SerializeField] DataManager _data = new DataManager();
+    public static DataManager Data => Instance._data;
+
     private ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource => Instance._resource;
 
     #region 현재 안 씀
     [SerializeField] private StageManager _stageMNG;
     public static StageManager StageMNG => Instance._stageMNG;
-
-    DataManager _dataMNG = new DataManager();
-    public static DataManager DataMNG => Instance._dataMNG;
     #endregion
 
     void Awake()
