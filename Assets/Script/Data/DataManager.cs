@@ -22,4 +22,37 @@ public class DataManager : MonoBehaviour
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
+
+    private int _money;
+    public int Money => _money;
+
+    public bool MoneyChage(int cost)
+    {
+        if (_money + cost < 0)
+        {
+            return false;
+        }
+        else
+        {
+            _money += cost;
+            return true;
+        }
+    }
+
+    private int _darkEssense = 4;
+    private int DarkEssense => _darkEssense;
+
+    public bool DarkEssenseChage(int cost)
+    {
+        Debug.Log("Dark Essense: " + _darkEssense + " Change: " + cost);
+        if (_darkEssense + cost < 0)
+        {
+            return false;
+        }
+        else
+        {
+            _darkEssense += cost;
+            return true;
+        }
+    }
 }
