@@ -29,11 +29,12 @@ public class BattleDataManager : MonoBehaviour
 
     [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
     public List<DeckUnit> PlayerHands => _playerHands;
+    private int _maxHandCount = 3;
     public UI_Hands UI_hands;
 
     private void InitHands()
     {
-        UI_hands.SetHands(PlayerHands);
+        FillHand();
     }
 
     public void AddDeckUnit(DeckUnit unit) {
@@ -42,7 +43,6 @@ public class BattleDataManager : MonoBehaviour
 
     public void RemoveDeckUnit(DeckUnit unit) {
         PlayerDeck.Remove(unit);
-        UI_hands.RemoveUnit(unit);
     }
 
     public void AddHandUnit(DeckUnit unit)
@@ -55,6 +55,19 @@ public class BattleDataManager : MonoBehaviour
     {
         PlayerHands.Remove(unit);
         UI_hands.RemoveUnit(unit);
+        FillHand();
+    }
+
+    public void FillHand()
+    {
+        for(int i=0; PlayerHands.Count < _maxHandCount ; i++)
+        {
+            DeckUnit unit = GetRandomUnitFromDeck();
+            if (unit == null)
+                return;
+            RemoveDeckUnit(unit);
+            AddHandUnit(unit);
+        }
     }
 
     public DeckUnit GetRandomUnitFromDeck()

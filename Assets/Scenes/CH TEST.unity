@@ -408,6 +408,112 @@ Transform:
   m_Father: {fileID: 1688846948}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &598798935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 598798937}
+  - component: {fileID: 598798936}
+  m_Layer: 0
+  m_Name: DECKUNIT (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &598798936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598798935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361a693d4864cca418cc650506465e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
+  ChangedStat:
+    HP: 1
+    CurrentHP: 0
+    ATK: 0
+    SPD: 20
+    Fall: 0
+    ManaCost: 0
+  Stigmata: []
+--- !u!4 &598798937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598798935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 221.72786, y: 80.27323, z: 6.644983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &616695966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616695968}
+  - component: {fileID: 616695967}
+  m_Layer: 0
+  m_Name: DECKUNIT (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &616695967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616695966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361a693d4864cca418cc650506465e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
+  ChangedStat:
+    HP: 20
+    CurrentHP: 0
+    ATK: 0
+    SPD: 20
+    Fall: 0
+    ManaCost: 0
+  Stigmata: []
+--- !u!4 &616695968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616695966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 221.72786, y: 80.27323, z: 6.644983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628916018
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +844,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1298157136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1298157138}
+  - component: {fileID: 1298157137}
+  m_Layer: 0
+  m_Name: DECKUNIT (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1298157137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298157136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361a693d4864cca418cc650506465e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
+  ChangedStat:
+    HP: 10
+    CurrentHP: 0
+    ATK: 0
+    SPD: 20
+    Fall: 0
+    ManaCost: 0
+  Stigmata: []
+--- !u!4 &1298157138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298157136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 221.72786, y: 80.27323, z: 6.644983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1459266799
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,11 +1024,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895294e725f8774b915a1d07eb68388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDeck: []
-  _playerHands:
+  _playerDeck:
   - {fileID: 1234316201}
-  - {fileID: 1234316201}
-  - {fileID: 1234316201}
+  - {fileID: 616695967}
+  - {fileID: 1298157137}
+  - {fileID: 598798936}
+  _playerHands: []
   UI_hands: {fileID: 0}
 --- !u!1 &1688846947
 GameObject:
@@ -1091,3 +1251,66 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 963727030562007705, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
   m_PrefabInstance: {fileID: 382914898}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2146102452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146102454}
+  - component: {fileID: 2146102453}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2146102453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146102452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638ff9a6dfa28b04eac801a87ff3dded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deckUnits:
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmas: []
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmas: []
+--- !u!4 &2146102454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146102452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 411.16296, y: 88.168526, z: -3.4255052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
