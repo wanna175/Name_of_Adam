@@ -10,6 +10,7 @@ public class BattleDataManager : MonoBehaviour
         _ui_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
         UI_hands = GameManager.UI.ShowScene<UI_Hands>();
+        UI_PlayerSkill = GameManager.UI.ShowScene<UI_PlayerSkill>();
         InitHands();
     }
 
@@ -31,6 +32,7 @@ public class BattleDataManager : MonoBehaviour
     public List<DeckUnit> PlayerHands => _playerHands;
     private int _maxHandCount = 3;
     public UI_Hands UI_hands;
+    public UI_PlayerSkill UI_PlayerSkill;
 
     private void InitHands()
     {
