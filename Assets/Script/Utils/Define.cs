@@ -98,3 +98,10 @@ public struct TestUnit
     public Vector2 Location;
     public Team Team;
 }
+
+public enum Sound
+{
+    Bgm,
+    Effect,
+    MaxCount,
+}
