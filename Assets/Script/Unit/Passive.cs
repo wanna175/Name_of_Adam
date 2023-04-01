@@ -6,7 +6,7 @@ public class Passive : MonoBehaviour
 {
     private PassiveType type;
 
-    public PassiveType GetType()
+    public PassiveType GetPassiveType()
     {
         return type;
     }
