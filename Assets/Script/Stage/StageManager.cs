@@ -183,7 +183,8 @@ public class StageManager : MonoBehaviour
                 break;
 
             int random = UnityEngine.Random.Range(0, randCount);
-            
+
+
             foreach (Stage st in LocalStageInfo)
             {
                 if (PassName.Contains(st.Name))
@@ -194,9 +195,13 @@ public class StageManager : MonoBehaviour
                 if (0 < random)
                     continue;
 
+
                 // 너무 빨리 엘리트 전투가 나오지 않도록 제한
                 if (st.Name == StageName.EliteBattle && 7 < MapList.Count)
+                {
+                    PassName.Add(st.Name);
                     break;
+                }
 
                 // 상점 뒤에 같은 상점이 나오지 않도록 제한
                 if (st.GetStageType() == StageType.Store)
@@ -209,7 +214,7 @@ public class StageManager : MonoBehaviour
 
                         if (0 <= beforeStage && beforeStage < StageArray.Length)
                         {
-                            if(StageArray[beforeStage].Name == st.Name)
+                            if (StageArray[beforeStage].Name == st.Name)
                             {
                                 CanStore = false;
                                 break;
@@ -218,14 +223,20 @@ public class StageManager : MonoBehaviour
                     }
 
                     if (!CanStore)
+                    {
+                        PassName.Add(st.Name);
                         break;
+                    }
                 }
-               
+
                 // 제한사항이 없다면 스테이지 반환
-                if (st.GetStage())
-                    return st;
-                else
+                if (!st.GetStage())
+                {
+                    PassName.Add(st.Name);
                     break;
+                }
+
+                return st;
             }
         }
         
@@ -243,6 +254,7 @@ public class StageManager : MonoBehaviour
     // 선택한 스테이지로 진행
     public void MoveNextStage(int index)
     {
+        // 스테이지 이동
         StageChanger.SetNextStage(StageArray[index]);
 
 
