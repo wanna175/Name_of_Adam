@@ -136,7 +136,7 @@ public class BattleManager : MonoBehaviour
         if (Field._coloredTile.Contains(coord) == false)
             return;
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
-        Data.RemoveDeckUnit(unit);
+        Data.RemoveHandUnit(unit);
         Field.ClearAllColor();
     }
 
