@@ -163,6 +163,7 @@ public class BattleManager : MonoBehaviour
         if (Field._coloredTile.Contains(coord) == false)
             return;
         Field.GetUnit(coord).Fall.ChangeFall(1);
+        _battleData.UI_PlayerSkill.CancleSelect();
         Field.ClearAllColor();
     }
 
