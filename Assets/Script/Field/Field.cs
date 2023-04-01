@@ -212,7 +212,6 @@ public class Field : MonoBehaviour
         if ((int)coord.x < MaxFieldX / 2)
             return true;
 
-        Debug.Log("out of range");
         return false;
     }
 
