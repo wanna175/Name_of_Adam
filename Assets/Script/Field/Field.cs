@@ -183,6 +183,18 @@ public class Field : MonoBehaviour
         }  
     }
 
+    public void SetEnemyUnitTileColor()
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            if (items.Value.UnitExist == true && items.Value.Unit.Team == Team.Enemy)
+            {
+                items.Value.SetColor(Color.blue);
+                _coloredTile.Add(items.Key);
+            }
+        }
+    }
+
     public void ClearAllColor()
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)

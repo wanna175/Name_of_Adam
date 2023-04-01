@@ -22,6 +22,8 @@ public class BattleManager : MonoBehaviour
 
     private Vector2 coord;
 
+    public FieldColorType fieldColorType = FieldColorType.none;
+
     private void Awake()
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
@@ -56,7 +58,7 @@ public class BattleManager : MonoBehaviour
         if (Field.Get_Abs_Pos(unit, ClickType.Move).Contains(coord) == false)
             return;
         Vector2 dest = coord - unit.Location;
-        
+
         MoveLocate(unit, dest);
         _phase.ChangePhase(_phase.Action);
     }
@@ -104,7 +106,7 @@ public class BattleManager : MonoBehaviour
         if (unit.Team == Team.Enemy)
         {
             unit.AI.AIAction();
-            
+
             Data.BattleOrderRemove(unit);
             BattleOverCheck();
 
@@ -119,15 +121,23 @@ public class BattleManager : MonoBehaviour
         if (Field._coloredTile.Count <= 0)
             return;
 
-        SpawnUnitOnField();
+        if (fieldColorType == FieldColorType.UnitSpawn)
+        {
+            SpawnUnitOnField();
+        }
     }
 
     public void PreparePhase()
     {
-        if (Field._coloredTile.Count <= 0)
-            return;
+        if (fieldColorType == FieldColorType.UnitSpawn)
+        {
+            SpawnUnitOnField();
+        }
+        else if (fieldColorType == FieldColorType.FallPlayerSkill)
+        {
+            FallUnitOnField();
+        }
 
-        SpawnUnitOnField();
         // 마나 
     }
 
@@ -138,6 +148,14 @@ public class BattleManager : MonoBehaviour
             return;
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Data.RemoveHandUnit(unit);
+        Field.ClearAllColor();
+    }
+
+    private void FallUnitOnField()
+    {
+        if (Field._coloredTile.Contains(coord) == false)
+            return;
+        Field.GetUnit(coord).Fall.ChangeFall(1);
         Field.ClearAllColor();
     }
 
@@ -167,7 +185,7 @@ public class BattleManager : MonoBehaviour
         int MyUnit = 0;
         int EnemyUnit = 0;
 
-        foreach(BattleUnit BUnit in Data.BattleUnitList)
+        foreach (BattleUnit BUnit in Data.BattleUnitList)
         {
             if (BUnit.Team == Team.Player)//아군이면
                 MyUnit++;
@@ -184,12 +202,12 @@ public class BattleManager : MonoBehaviour
             _phase.ChangePhase(new BattleOverPhase());
 
         }
-        else if(EnemyUnit == 0)
+        else if (EnemyUnit == 0)
         {
             Debug.Log("YOU WIN");
             _phase.ChangePhase(new BattleOverPhase());
         }
-        
+
     }
 
     public void TurnChange()
@@ -199,7 +217,7 @@ public class BattleManager : MonoBehaviour
         else
             _phase.ChangePhase(_phase.Prepare);
     }
-    
+
     // 이동 경로를 받아와 이동시킨다
     private void MoveLocate(BattleUnit caster, Vector2 coord)
     {
@@ -209,15 +227,47 @@ public class BattleManager : MonoBehaviour
         Field.MoveUnit(current, dest);
     }
 
+    public enum FieldColorType
+    {
+        none,
+        UnitSpawn,
+        FallPlayerSkill
+    }
+
     public bool UnitSpawnReady(bool b)
     {
         if (_phase.Current != _phase.Prepare)
             return false;
 
         if (b)
+        {
             Field.SetTileColor();
+            fieldColorType = FieldColorType.UnitSpawn;
+        }
         else
+        {
             Field.ClearAllColor();
+            fieldColorType = FieldColorType.none;
+        }
+
+        return true;
+    }
+
+    public bool FallPlayerSkillReady(bool b)
+    {
+        if (_phase.Current != _phase.Prepare)
+            return false;
+
+        if (b)
+        {
+            Field.SetEnemyUnitTileColor();
+            fieldColorType = FieldColorType.FallPlayerSkill;
+        }
+        else
+        {
+            Field.ClearAllColor();
+            fieldColorType = FieldColorType.none;
+        }
 
         return true;
     }

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager _ui;
     public static UIManager UI => Instance._ui;
 
-    [SerializeField] DataManager _data = new DataManager();
+    [SerializeField] DataManager _data;
     public static DataManager Data => Instance._data;
 
     private ResourceManager _resource = new ResourceManager();
