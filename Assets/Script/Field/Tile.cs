@@ -56,6 +56,6 @@ public class Tile : MonoBehaviour
 
     private void OnMouseExit()
     {
-
+        GameManager.Battle.Field.MouseExitTile(this);
     }
 }

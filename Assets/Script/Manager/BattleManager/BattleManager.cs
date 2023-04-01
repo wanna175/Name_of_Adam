@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
     private Mana _mana;
     public Mana Mana => _mana;
     private PhaseController _phase;
+    public PhaseController Phase => _phase;
 
     private Vector2 coord;
 

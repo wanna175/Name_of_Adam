@@ -216,28 +216,28 @@ public class Field : MonoBehaviour
         return false;
     }
 
-    //리팩토링 무저건 하기. 지금은 작동 안함
+    //리팩토링 무저건 하기.
     public void MouseEnterTile(Tile tile)
     {
-        //Vector2 coord = FindCoordByTile(tile);
-        //Debug.Log("Hover");
-        //if (_coloredTile.Contains(coord))
-        //{
-        //    if (GameManager.Battle._clickType == ClickType.Before_Attack)
-        //    {
-        //        List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord);
-        //        Debug.Log("IF");
-        //        foreach (Vector2 vec in range)
-        //        {
-        //            Debug.Log("GREEN");
-        //            TileDict[coord + vec].SetColor(Color.green);
-        //        }
-        //    }
-        //}
+        Vector2 coord = FindCoordByTile(tile);
+        if (_coloredTile.Contains(coord))
+        {
+            if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+            {
+                List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord, GameManager.Battle.Data.GetNowUnit().Location);
+                foreach (Vector2 vec in range)
+                {
+                    TileDict[coord + vec].SetColor(Color.green);
+                }
+            }
+        }
     }
 
-    public void MouseExitTile()
+    public void MouseExitTile(Tile tile)
     {
-
+        if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+        {
+            SetTileColor(GameManager.Battle.Data.GetNowUnit(), ClickType.Attack);
+        }
     }
 }
