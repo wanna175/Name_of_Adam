@@ -59,7 +59,9 @@ public class BattleManager : MonoBehaviour
             return;
         Vector2 dest = coord - unit.Location;
 
-        MoveLocate(unit, dest);
+        
+        MoveLocate(unit, dest); //이동시 낙인 체크
+
         _phase.ChangePhase(_phase.Action);
     }
 
@@ -82,7 +84,10 @@ public class BattleManager : MonoBehaviour
                     continue;
 
                 if (targetUnit.Team == Team.Enemy)
+                    //공격 전 낙인 체크
                     unit.SkillUse(Field.GetUnit(coord + splash));
+                    //공격 후 낙인 체크
+
             }
         }
 
@@ -148,6 +153,7 @@ public class BattleManager : MonoBehaviour
             return;
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Mana.ChangeMana(-unit.Stat.ManaCost);
+        //배치 시 낙인 체크
         Data.RemoveHandUnit(unit);
         Field.ClearAllColor();
     }

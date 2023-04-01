@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Passive : MonoBehaviour
 {
+    private PassiveType type;
 
-    // Use this for initialization
-    void Start()
+    public PassiveType GetPassiveType()
+    {
+        return type;
+    }
+
+    public void Use(BattleUnit caster, BattleUnit receiver)
     {
 
     }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }
+
