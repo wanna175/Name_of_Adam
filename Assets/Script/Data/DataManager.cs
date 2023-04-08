@@ -23,6 +23,29 @@ public class DataManager : MonoBehaviour
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
 
+    [SerializeField] private List<DeckUnit> _playerDeck = new();
+    public List<DeckUnit> PlayerDeck => _playerDeck;
+
+    public void AddDeckUnit(DeckUnit unit)
+    {
+        PlayerDeck.Add(unit);
+    }
+
+    public void RemoveDeckUnit(DeckUnit unit)
+    {
+        PlayerDeck.Remove(unit);
+    }
+
+    public List<DeckUnit> GetDeck()
+    {   
+        return PlayerDeck;
+    }
+
+    public void SetDeck(List<DeckUnit> deck)
+    {
+        _playerDeck = deck;
+    }
+
     private int _money;
     public int Money => _money;
 

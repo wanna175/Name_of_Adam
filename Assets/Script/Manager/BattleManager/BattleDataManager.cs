@@ -11,7 +11,7 @@ public class BattleDataManager : MonoBehaviour
         _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
         UI_hands = GameManager.UI.ShowScene<UI_Hands>();
         UI_PlayerSkill = GameManager.UI.ShowScene<UI_PlayerSkill>();
-        InitHands();
+        Init();
     }
 
     #region Turn Count
@@ -34,9 +34,15 @@ public class BattleDataManager : MonoBehaviour
     public UI_Hands UI_hands;
     public UI_PlayerSkill UI_PlayerSkill;
 
-    private void InitHands()
+    private void Init()
     {
+        _playerDeck = GameManager.Data.GetDeck();
         FillHand();
+    }
+
+    public void Destroy()
+    {
+        GameManager.Data.SetDeck(_playerDeck);
     }
 
     public void AddDeckUnit(DeckUnit unit) {
@@ -62,12 +68,11 @@ public class BattleDataManager : MonoBehaviour
 
     public void FillHand()
     {
-        for(int i=0; PlayerHands.Count < _maxHandCount ; i++)
+        while (PlayerHands.Count < _maxHandCount)
         {
             DeckUnit unit = GetRandomUnitFromDeck();
             if (unit == null)
                 return;
-            RemoveDeckUnit(unit);
             AddHandUnit(unit);
         }
     }
