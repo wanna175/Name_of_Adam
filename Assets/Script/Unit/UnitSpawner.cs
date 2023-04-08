@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-struct SpawnData
+public struct SpawnData
 {
     public GameObject prefab;
     public Vector2 location;

@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
-public class OptionManager : MonoBehaviour
+public class Option : UI_Popup
 {
     [SerializeField] AudioMixer MasterMixer;
 
@@ -38,8 +38,9 @@ public class OptionManager : MonoBehaviour
 
         MasterMixer.SetFloat(text, slider);
     }
-
-    public void ButtonClick(AudioSource sfx) => sfx.Play(); 
     
     private void SetScreen() => Screen.SetResolution(ScreenX, ScreenY, isWindow);
+
+
+    public void QuitOption() => Destroy(gameObject);
 }
