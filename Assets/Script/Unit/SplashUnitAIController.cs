@@ -14,7 +14,7 @@ public class SplashUnitAIController : UnitAIController
         {
             Vector2 loc = caster.Location + move; //이동할 위치
 
-            if (!_field.IsInRange(loc)) continue;
+            if (!_field.IsInRange(loc) || _field.TileDict[loc].UnitExist) continue;
 
             foreach (Vector2 attack in caster.GetAttackRange())
             {

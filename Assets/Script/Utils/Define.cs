@@ -98,3 +98,25 @@ public struct TestUnit
     public Vector2 Location;
     public Team Team;
 }
+
+
+public enum Sound
+{
+    Bgm,
+    Effect,
+    MaxCount,
+}
+
+public enum PassiveType 
+{ 
+    BEFOREATTACK, 
+    AFTERATTACK, 
+    BEFOREATTACKED, 
+    AFTERATTACKED, 
+    FALL, 
+    FALLED, 
+    MOVE, 
+    SUMMON, 
+    ETC 
+};
+
