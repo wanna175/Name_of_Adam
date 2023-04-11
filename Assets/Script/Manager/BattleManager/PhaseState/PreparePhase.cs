@@ -20,7 +20,9 @@ public class PreparePhase : Phase
             isFirst = false;
         }
         else
+        {
             _battle.PreparePhase();
+        }
     }
 
     public override void OnStateExit()
