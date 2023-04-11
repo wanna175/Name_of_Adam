@@ -19,6 +19,7 @@ public class StageChanger
 
     private void SetBattleScene(Stage stage)
     {
+        SceneChanger.SpawnDataList = SetSpawnUnit();
 
         SceneChanger.SceneChange("JS TEST");
         //SceneChanger.SceneChange("Battle");

@@ -32,7 +32,7 @@ public class CutSceneManager : MonoBehaviour
     BattleManager _BattleMNG;
     Field _field;
     #region CameraHandler
-    private CameraHandler _CameraHandler;
+    [SerializeField] private CameraHandler _CameraHandler;
     public CameraHandler CameraHandler
     {
         get { return _CameraHandler; }
@@ -66,6 +66,12 @@ public class CutSceneManager : MonoBehaviour
         }
         
         SetCSData(AttackUnit, HitUnits);
+
+        AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = 5;
+        foreach (BattleUnit unit in HitUnits)
+        {
+            unit.GetComponent<SpriteRenderer>().sortingOrder = 5;
+        }
 
         _CameraHandler.CutSceneZoomIn(CSData);
     }
@@ -101,43 +107,41 @@ public class CutSceneManager : MonoBehaviour
         CutSceneType range = atkUnit.GetCutSceneType();
 
         // 공격자가 적을 추적
-        if(range == CutSceneType.tracking)
+        // y축을 우선으로 가까운 곳에 있는 적을 찾는다.
+        Vector3 vec = new Vector3();
+        BattleUnit target = null;
+        int num = 999;
+
+        foreach (BattleUnit unit in hitUnits)
         {
-            // y축을 우선으로 가까운 곳에 있는 적을 찾는다.
-            Vector3 vec = new Vector3();
-            BattleUnit target = null;
-            int num = 999;
-
-            foreach (BattleUnit unit in hitUnits)
+            int dump = 999;
+            if (!atkUnit.GetFlipX())
             {
-                int dump = 999;
-                if (!atkUnit.GetFlipX())
-                {
-                    dump = (int)unit.Location.x;
-                    dump += Mathf.Abs((int)atkUnit.Location.y - (int)unit.Location.y) * 100;
-                }
-                else
-                {
-                    dump = (int)unit.Location.x * -1;
-                    dump += Mathf.Abs((int)atkUnit.Location.y - (int)unit.Location.y) * 100;
-                }
-
-                if (dump < num)
-                {
-                    num = dump;
-                    target = unit;
-                }
+                dump = (int)unit.Location.x;
+                dump += Mathf.Abs((int)atkUnit.Location.y - (int)unit.Location.y) * 100;
+            }
+            else
+            {
+                dump = (int)unit.Location.x * -1;
+                dump += Mathf.Abs((int)atkUnit.Location.y - (int)unit.Location.y) * 100;
             }
 
-            vec = target.transform.position;
-
-            return vec;
+            if (dump < num)
+            {
+                num = dump;
+                target = unit;
+            }
         }
-        // 제자리에서 공격
-        else if (range == CutSceneType.noneMove)
-            return atkUnit.transform.position;
 
-        return new Vector3();
+        vec = target.transform.position;
+        vec.x -= 3;
+
+        return vec;
+
+        //// 제자리에서 공격
+        //return atkUnit.transform.position;
+
+        //return new Vector3();
     }
 
     Vector3 GetZoomLocation(CutSceneData CSData)
@@ -148,10 +152,7 @@ public class CutSceneManager : MonoBehaviour
 
         Vector3 zoomLoc = CSData.MovePosition;
 
-        if (CSData.AttackUnit.GetFlipX())
-            zoomLoc.x += 1;
-        else
-            zoomLoc.x -= 1;
+        zoomLoc.x += 1;
 
         return zoomLoc;
     }

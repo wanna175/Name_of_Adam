@@ -66,7 +66,7 @@ public class BattleManager : MonoBehaviour
 
         if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
             return;
-
+        
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
@@ -79,7 +79,9 @@ public class BattleManager : MonoBehaviour
                     continue;
 
                 if (targetUnit.Team == Team.Enemy)
+                {
                     unit.SkillUse(Field.GetUnit(coord + splash));
+                }
             }
         }
 

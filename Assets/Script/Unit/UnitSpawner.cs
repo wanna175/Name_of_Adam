@@ -60,6 +60,9 @@ public class UnitSpawner : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
+        //List<SpawnData> datas = SceneChanger.SpawnDataList;
+
+        //foreach (SpawnData data in datas)
         foreach (SpawnData data in SpawnMonsters)
         {
             Spawn(data, data.location);

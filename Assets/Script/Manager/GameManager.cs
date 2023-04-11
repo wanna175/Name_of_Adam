@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     public static ResourceManager Resource => Instance._resource;
 
     #region 현재 안 씀
-    //[SerializeField] private CutSceneManager _cutScene;
-    //public static CutSceneManager CutScene => Instance._cutScene;
+    [SerializeField] private CutSceneManager _cutScene;
+    public static CutSceneManager CutScene => Instance._cutScene;
 
     [SerializeField] private StageManager _stageMNG;
     public static StageManager StageMNG => Instance._stageMNG;
