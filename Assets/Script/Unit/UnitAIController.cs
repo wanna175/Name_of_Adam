@@ -28,8 +28,8 @@ public class UnitAIController : MonoBehaviour
 
     void Awake()
     {
-        _Data = GameManager.Battle.Data;
-        _field = GameManager.Battle.Field;
+        _Data = BattleManager.Data;
+        _field = BattleManager.Field;
     }
 
     public void SetCaster(BattleUnit unit)

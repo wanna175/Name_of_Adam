@@ -6,9 +6,6 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager s_instance;
     public static GameManager Instance { get { Init(); return s_instance; } }
-    
-    [SerializeField] private BattleManager _battle;
-    public static BattleManager Battle => Instance._battle;
 
     [SerializeField] private UIManager _ui;
     public static UIManager UI => Instance._ui;

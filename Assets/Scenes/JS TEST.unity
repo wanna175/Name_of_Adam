@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 5599883418855769735, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1012622347}
     - target: {fileID: 5599883418855769735, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TurnChange
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 1012622346}
   - component: {fileID: 1012622345}
   m_Layer: 0
-  m_Name: BattleManager
+  m_Name: '@BattleManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,6 +509,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   UI_hands: {fileID: 0}
+  UI_PlayerSkill: {fileID: 0}
 --- !u!114 &1012622346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldColorType: 0
 --- !u!4 &1012622348
 Transform:
   m_ObjectHideFlags: 0

@@ -29,7 +29,6 @@ public struct CutSceneData
 
 public class CutSceneManager : MonoBehaviour
 {
-    BattleManager _BattleMNG;
     Field _field;
     #region CameraHandler
     [SerializeField] private CameraHandler _CameraHandler;
@@ -46,8 +45,7 @@ public class CutSceneManager : MonoBehaviour
 
     private void Start()
     {
-        _BattleMNG = GameManager.Battle;
-        _field = GameManager.Battle.Field;
+        _field = BattleManager.Field;
         CSData = new CutSceneData();
 
         // CameraHandler = GameObject.Find("Camera").GetComponent<CameraHandler>();
