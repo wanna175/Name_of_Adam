@@ -65,8 +65,8 @@ public class UnitSpawner : MonoBehaviour
         foreach (SpawnData data in datas)
         //foreach (SpawnData data in SpawnMonsters)
         {
-            Debug.Log(data);
-            Debug.Log(data.location);
+            //Debug.Log(data);
+            //Debug.Log(data.location);
             Spawn(data, data.location);
         }
     }

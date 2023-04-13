@@ -5,20 +5,17 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ButtonController : MonoBehaviour
-{
+{ 
+    [SerializeField] StageManager StageMNG;
+
     [SerializeField] GameObject StageButtonContainer;
     [SerializeField] GameObject NextStageButtonContainer;
 
     GameObject[] StageButtons = new GameObject[3];
     GameObject[] NextStageButtons = new GameObject[5];
 
-    StageManager _stageMNG;
-
-
     private void Start()
     {
-        _stageMNG = GameManager.StageMNG;
-
         CreateButton();
     }
 
@@ -58,28 +55,28 @@ public class ButtonController : MonoBehaviour
     {
         for (int i = 0; i < StageButtons.Length; i++)
         {
-            string StageText = (_stageMNG.GetStageArray[i] != null) ? _stageMNG.GetStageArray[i].Name.ToString() : "";
+            string StageText = (StageMNG.GetStageArray[i] != null) ? StageMNG.GetStageArray[i].Name.ToString() : "";
 
             StageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
                 text = StageText;
 
-            if (_stageMNG.GetStageArray[i] == null)
+            if (StageMNG.GetStageArray[i] == null)
                 StageButtons[i].GetComponent<Image>().color = Color.clear;
             else
-                StageButtons[i].GetComponent<Image>().sprite = _stageMNG.GetStageArray[i].Background;
+                StageButtons[i].GetComponent<Image>().sprite = StageMNG.GetStageArray[i].Background;
         }
 
         for(int i = 0; i < NextStageButtons.Length; i++)
         {
-            string StageText = (_stageMNG.GetNextStageArray[i] != null) ? _stageMNG.GetNextStageArray[i].Name.ToString() : "";
+            string StageText = (StageMNG.GetNextStageArray[i] != null) ? StageMNG.GetNextStageArray[i].Name.ToString() : "";
             
             NextStageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
                 text = StageText;
 
-            if (_stageMNG.GetNextStageArray[i] == null)
+            if (StageMNG.GetNextStageArray[i] == null)
                 NextStageButtons[i].GetComponent<Image>().color = Color.clear;
             else
-                NextStageButtons[i].GetComponent<Image>().sprite = _stageMNG.GetNextStageArray[i].Background;
+                NextStageButtons[i].GetComponent<Image>().sprite = StageMNG.GetNextStageArray[i].Background;
         }
     }
 
@@ -88,7 +85,7 @@ public class ButtonController : MonoBehaviour
     {
         int index = GetIndex(ClickObject);
 
-        _stageMNG.MoveNextStage(index);
+        StageMNG.MoveNextStage(index);
     }
 
     #region Hover 시 이미지를 바꾸는 버전
@@ -129,12 +126,12 @@ public class ButtonController : MonoBehaviour
     {
         int index = GetIndex(FocusObject);
 
-        if (_stageMNG.GetStageArray[index] != null)
+        if (StageMNG.GetStageArray[index] != null)
             StageButtons[index].GetComponent<Image>().color = Color.gray;
 
         for (int i = 0; i < 3; i++)
         {
-            if (_stageMNG.GetNextStageArray[index + i] != null)
+            if (StageMNG.GetNextStageArray[index + i] != null)
                 NextStageButtons[index + i].GetComponent<Image>().color = Color.gray;
         }
     }
@@ -143,12 +140,12 @@ public class ButtonController : MonoBehaviour
     {
         int index = GetIndex(FocusObject);
 
-        if (_stageMNG.GetStageArray[index] != null)
+        if (StageMNG.GetStageArray[index] != null)
             StageButtons[index].GetComponent<Image>().color = Color.white;
 
         for (int i = 0; i < 3; i++)
         {
-            if (_stageMNG.GetNextStageArray[index + i] != null)
+            if (StageMNG.GetNextStageArray[index + i] != null)
                 NextStageButtons[index + i].GetComponent<Image>().color = Color.white;
         }
     }
