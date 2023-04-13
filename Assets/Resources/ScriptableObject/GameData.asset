@@ -14,4 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Money: 0
   DarkEssence: 0
-  deckUnits: []
+  decks:
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmata: []

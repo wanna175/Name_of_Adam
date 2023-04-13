@@ -2,8 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleUnit : DeckUnit
+public class BattleUnit : MonoBehaviour
 {
+    public DeckUnit DeckUnit;
+    public Stat Stat => DeckUnit.Stat;
+    public UnitDataSO Data => DeckUnit.Data;
+
     [SerializeField] private Team _team;
     public Team Team => _team;
 
@@ -67,7 +71,7 @@ public class BattleUnit : DeckUnit
         {
             Fall.Editfy();
         }
-        ChangedStat.CurrentHP = Stat.HP;
+        DeckUnit.ChangedStat.CurrentHP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
         Debug.Log($"{Data.name} Fall");
     }

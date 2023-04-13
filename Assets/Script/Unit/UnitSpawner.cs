@@ -45,9 +45,7 @@ public class UnitSpawner : MonoBehaviour
     {
         GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
         BattleUnit bu = go.GetComponent<BattleUnit>();
-
-        bu.Data = deckUnit.Data;
-        bu.ChangedStat = deckUnit.ChangedStat;
+        bu.DeckUnit = deckUnit;
 
         bu.Skill.Effects = deckUnit.Data.Effects;
 

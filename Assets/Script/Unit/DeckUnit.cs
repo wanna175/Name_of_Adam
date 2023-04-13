@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckUnit : MonoBehaviour
+[Serializable]
+public class DeckUnit
 {
     public UnitDataSO Data;
     
@@ -17,28 +19,4 @@ public class DeckUnit : MonoBehaviour
     {
 
     }
-    /*
-    public UnitData SetUnitData()
-    {
-        UnitData result = new UnitData();
-
-        result.Stat = Data.RawStat + ChangedStat;
-        result.Stigma = Stigmata;
-
-        result.Name = Data.Name;
-        result.Description = Data.Description;
-        result.Faction = Data.Faction;
-        result.Rarity = Data.Rarity;
-        result.Image = Data.Image;
-        result.DarkEssenseDrop = Data.DarkEssenseDrop;
-        result.DarkEssenseCost = Data.DarkEssenseCost;
-        result.BehaviorType = Data.BehaviorType;
-        result.TargetType = Data.TargetType;
-        result.UnitSkill = Data.UnitSkill;
-        result.MoveRange = Data.MoveRange;
-        result.AttackRange = Data.AttackRange;
-
-        return result;
-    }
-    */
 }
