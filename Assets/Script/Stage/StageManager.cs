@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    StageChanger _stageChanger;
     // 진행할 스테이지의 타입 리스트
     List<string> MapList = new List<string>();
     // 스테이지 정보의 컨테이너
@@ -29,6 +30,8 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
+        _stageChanger = new StageChanger();
+
         GetStageInfo();
         InitStage();
     }
@@ -255,8 +258,7 @@ public class StageManager : MonoBehaviour
     public void MoveNextStage(int index)
     {
         // 스테이지 이동
-        StageChanger.SetNextStage(StageArray[index]);
-
+        _stageChanger.SetNextStage(StageArray[index]);
 
         if (MapList.Count <= 0)
         {

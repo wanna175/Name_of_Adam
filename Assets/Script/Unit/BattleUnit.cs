@@ -53,6 +53,10 @@ public class BattleUnit : DeckUnit
     public void UnitDiedEvent()
     {
         _UnitDeadAction(this);
+        if (_team == Team.Enemy)
+        {
+            GameManager.Data.DarkEssenseChage(Data.DarkEssenseDrop);
+        }
         Destroy(gameObject);
     }
 

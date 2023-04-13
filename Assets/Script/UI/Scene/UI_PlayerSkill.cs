@@ -33,7 +33,7 @@ public class UI_PlayerSkill : UI_Scene
             SelectCard(card);
     }
 
-    private void CancleSelect()
+    public void CancleSelect()
     {
         _selectedCard.ChangeSelectState(false);
         _selectedCard = null;

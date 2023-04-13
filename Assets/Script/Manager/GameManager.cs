@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private BattleManager _battle;
     public static BattleManager Battle => Instance._battle;
-    
-    [SerializeField] private CutSceneManager _cutScene;
-    public static CutSceneManager CutScene => Instance._cutScene;
 
     [SerializeField] private UIManager _ui;
     public static UIManager UI => Instance._ui;
@@ -23,6 +20,9 @@ public class GameManager : MonoBehaviour
     public static ResourceManager Resource => Instance._resource;
 
     #region 현재 안 씀
+    //[SerializeField] private CutSceneManager _cutScene;
+    //public static CutSceneManager CutScene => Instance._cutScene;
+
     [SerializeField] private StageManager _stageMNG;
     public static StageManager StageMNG => Instance._stageMNG;
     #endregion
