@@ -259,6 +259,9 @@ public class StageManager : MonoBehaviour
     // 선택한 스테이지로 진행
     public void MoveNextStage(int index)
     {
+        // 스테이지 이동
+        _stageChanger.SetNextStage(StageArray[index]);
+
         if (MapList.Count <= 0)
         {
             // 모든 스테이지 소모
@@ -297,9 +300,6 @@ public class StageManager : MonoBehaviour
 
         GameManager.Data.StageArray = StageArray;
         MapList.RemoveAt(0);
-
-        // 스테이지 이동
-        _stageChanger.SetNextStage(StageArray[index]);
     }
 
     Stage GetStageByName(StageName name)

@@ -13,6 +13,9 @@ public class BattleManager : MonoBehaviour
 {
     private static BattleManager s_instance;
     public static BattleManager Instance { get { Init(); return s_instance; } }
+
+    [SerializeField] CutSceneManager _cutScene;
+    public static CutSceneManager CutScene => Instance._cutScene;
         
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
@@ -50,8 +53,8 @@ public class BattleManager : MonoBehaviour
 
             if (go == null)
             {
-                go = new GameObject("@BattleManager");
-                go.AddComponent<BattleManager>();
+                // BattleManager 오브젝트가 없다면 BattleScene이 아닌 것
+                return;
             }
 
             s_instance = go.GetComponent<BattleManager>();
@@ -104,6 +107,10 @@ public class BattleManager : MonoBehaviour
 
                 if (targetUnit == null)
                     continue;
+
+                List<BattleUnit> unitList = new List<BattleUnit>();
+                unitList.Add(targetUnit);
+                CutScene.BattleCutScene(unit, unitList);
 
                 if (targetUnit.Team == Team.Enemy)
                     //공격 전 낙인 체크

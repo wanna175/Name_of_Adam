@@ -16,6 +16,7 @@ public class CameraHandler : MonoBehaviour
     {
         //_CutSceneMNG = GameManager.CutScene;
         _field = BattleManager.Field;
+        _CutSceneMNG = BattleManager.CutScene;
 
         SetMainCamera();
     }

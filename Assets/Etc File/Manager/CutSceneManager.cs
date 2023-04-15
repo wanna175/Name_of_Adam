@@ -185,9 +185,10 @@ public class CutSceneManager : MonoBehaviour
 
 
         StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
-
+        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", true);
 
         yield return new WaitForSeconds(CutSceneTime);
+        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
 
 
         foreach (BattleUnit unit in CSData.HitUnits)

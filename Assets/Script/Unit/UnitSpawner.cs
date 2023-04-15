@@ -34,10 +34,10 @@ public class UnitSpawner : MonoBehaviour
         else
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
-            BattleUnit bu = go.GetComponent<BattleUnit>();
+            BattleUnit unit = go.GetComponent<BattleUnit>();
 
-            bu.Init();
-            BattleManager.Instance.UnitSetting(bu, location);
+            unit.Init();
+            BattleManager.Instance.UnitSetting(unit, location);
         }
     }
 
@@ -62,8 +62,8 @@ public class UnitSpawner : MonoBehaviour
     {
         List<SpawnData> datas = SceneChanger.SpawnDataList;
 
-        foreach (SpawnData data in datas)
-        //foreach (SpawnData data in SpawnMonsters)
+        //foreach (SpawnData data in datas)
+        foreach (SpawnData data in SpawnMonsters)
         {
             //Debug.Log(data);
             //Debug.Log(data.location);
