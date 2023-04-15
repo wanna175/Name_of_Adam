@@ -65,9 +65,10 @@ public class BattleManager : MonoBehaviour
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
-
+        
         if (fieldObject == null)    
             fieldObject = GameManager.Resource.Instantiate("Field");
+
 
         _field = fieldObject.GetComponent<Field>();
     }
