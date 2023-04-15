@@ -14,9 +14,9 @@ public class BattleManager : MonoBehaviour
     private static BattleManager s_instance;
     public static BattleManager Instance { get { Init(); return s_instance; } }
 
-    //[SerializeField] CutSceneManager _cutScene;
-    //public static CutSceneManager CutScene => Instance._cutScene;
-        
+    [SerializeField] CutSceneManager _cutScene;
+    public static CutSceneManager CutScene => Instance._cutScene;
+
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
 
@@ -118,7 +118,8 @@ public class BattleManager : MonoBehaviour
                     //공격 후 낙인 체크
             }
 
-            //CutScene.BattleCutScene(unit, unitList);
+            CutScene.BattleCutScene(unit, unitList);
+            // 딜레이를 어떻게 줄까?
         }
 
         Field.ClearAllColor();

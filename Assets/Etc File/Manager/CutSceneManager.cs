@@ -32,6 +32,7 @@ public class CutSceneManager : MonoBehaviour
     Field _field;
     #region CameraHandler
     [SerializeField] private CameraHandler _CameraHandler;
+    public bool moving = true;
     public CameraHandler CameraHandler
     {
         get { return _CameraHandler; }
@@ -41,7 +42,7 @@ public class CutSceneManager : MonoBehaviour
 
     CutSceneData CSData;
     // 줌 인, 줌 아웃하는데 들어가는 시간
-    float _zoomTime = 0.2f;
+    float _zoomTime = 0.1f;
 
     private void Start()
     {
@@ -102,6 +103,9 @@ public class CutSceneManager : MonoBehaviour
     // 공격범위 내의 적을 추적하는 것보다 한 지점에서 공격을 하는 것이 좋지 않을까?
     Vector3 GetMoveLocation(BattleUnit atkUnit, List<BattleUnit> hitUnits)
     {
+        if (!moving)
+            return atkUnit.transform.position;
+
         CutSceneType range = atkUnit.GetCutSceneType();
 
         // 공격자가 적을 추적
@@ -148,9 +152,7 @@ public class CutSceneManager : MonoBehaviour
             //return _field.FieldPosition;
             return new Vector3();
 
-        Vector3 zoomLoc = CSData.MovePosition;
-
-        zoomLoc.x += 1;
+        Vector3 zoomLoc = Vector3.Lerp(CSData.MovePosition, CSData.HitUnits[0].transform.position, 0.5f);
 
         return zoomLoc;
     }
@@ -232,7 +234,3 @@ public class CutSceneManager : MonoBehaviour
 
     #endregion
 }
-
-// 23.01.23 김종석 - 수정된 사항
-// GetMoveLocation 함수 중복부분 제거
-// SetUnitAnim 추가 - 유닛의 애니메이션을 SetUnitAnim에서 처리

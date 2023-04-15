@@ -14,9 +14,8 @@ public class CameraHandler : MonoBehaviour
 
     private void Start()
     {
-        //_CutSceneMNG = GameManager.CutScene;
         _field = BattleManager.Field;
-        //_CutSceneMNG = BattleManager.CutScene;
+        _CutSceneMNG = BattleManager.CutScene;
 
         SetMainCamera();
     }
@@ -67,7 +66,7 @@ public class CameraHandler : MonoBehaviour
 
             yield return null;
         }
-        
+
         StartCoroutine(_CutSceneMNG.AttackCutScene(CSData));
     }
 
