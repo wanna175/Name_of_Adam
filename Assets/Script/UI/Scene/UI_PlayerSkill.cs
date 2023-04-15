@@ -11,7 +11,7 @@ public class UI_PlayerSkill : UI_Scene
 
     private void Awake()
     {
-        _battle = GameManager.Battle;
+        _battle = BattleManager.Instance;
         SetSkill();
     }
 

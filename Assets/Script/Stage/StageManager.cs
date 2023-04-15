@@ -6,11 +6,12 @@ public class StageManager : MonoBehaviour
 {
     StageChanger _stageChanger;
     // 진행할 스테이지의 타입 리스트
-    List<string> MapList = new List<string>();
+    List<MapSign> MapList;
     // 스테이지 정보의 컨테이너
-    List<Stage> StageInfo = new List<Stage>();
-    // 맵의 막바지에 사용할 상점을 위한 리스트
-    List<Stage> StoreList;
+    List<Stage> StageInfo;
+
+    // 현재 레벨에서 담고있는 스테이지의 정보
+    List<Stage> LocalStageInfo;
 
 
     // 선택할 수 있는 다음 스테이지와 그 다음 표시되는 스테이지의 배열
@@ -23,24 +24,29 @@ public class StageManager : MonoBehaviour
     // 인스펙터에서 스테이지 정보를 받기 위해 만든 테스트용 리스트
     // StageManger를 생성하고 인스펙터에서 받아오는 식
     [SerializeField] public List<TestContainer> StageInfoContainer;
-    
-    // 현재 레벨에서 담고있는 스테이지의 정보
-    List<Stage> LocalStageInfo;
 
 
     private void Start()
     {
         _stageChanger = new StageChanger();
 
-        GetStageInfo();
-        InitStage();
+        StageInfo = GameManager.Data.StageInfo;
+        LocalStageInfo = GameManager.Data.LocalStageInfo;
+        MapList = GameManager.Data.MapList;
+        StageArray = GameManager.Data.StageArray;
+
+        if (GameManager.Data.StageInfo.Count == 0)
+        {
+            GetStageInfo();
+            InitStage();
+        }
+
+        SetNextArray();
     }
-    
+
     // 데이터 컨테이너에서 스테이지의 정보를 받아오는 메서드
     void GetStageInfo()
     {
-        StageInfo = new List<Stage>();
-
         // 인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
         foreach (TestContainer test in StageInfoContainer)
         {
@@ -53,16 +59,12 @@ public class StageManager : MonoBehaviour
     // 스테이지의 최초 생성
     void InitStage()
     {
-        MapList = new List<string>();
-        LocalStageInfo = new List<Stage>();
-
         SetStageData();
         SetMapList();
 
         // 다음 선택지를 모두 전투로 설정한다.
         for(int i = 0; i < StageArray.Length; i++)
             StageArray[i] = SetRandomFaction(MapList[0]);
-        SetNextArray();
     }
 
     // 인스펙터에서 받은 데이터를 입력하는 용도로 만듦
@@ -89,19 +91,19 @@ public class StageManager : MonoBehaviour
         for(int i =0; i < 4; i++)
         {
             if (i == 2)
-                MapList.Add("EliteBattle");
+                MapList.Add(MapSign.EliteBattle);
             else
-                MapList.Add("CommonBattle");
+                MapList.Add(MapSign.CommonBattle);
 
 
             if (i <= 2)
-                MapList.Add("Random");
+                MapList.Add(MapSign.Random);
             else
-                MapList.Add("Store");
+                MapList.Add(MapSign.Store);
 
 
             if (i % 2 == 0)
-                MapList.Add("Random");
+                MapList.Add(MapSign.Random);
         }
     }
 
@@ -119,7 +121,7 @@ public class StageManager : MonoBehaviour
 
             for (int i = 0; i < NextStageArray.Length; i++)
             {
-                if (MapList[1] == "Store")
+                if (MapList[1] == MapSign.Store)
                 {
                     int index = 0;
                     
@@ -137,7 +139,7 @@ public class StageManager : MonoBehaviour
 
                     break;
                 }
-                else if (MapList[1] == "Random")
+                else if (MapList[1] == MapSign.Random)
                     NextStageArray[i] = GetRandomStage(i);
                 else
                     NextStageArray[i] = SetRandomFaction(MapList[1]);
@@ -242,7 +244,7 @@ public class StageManager : MonoBehaviour
                 return st;
             }
         }
-        
+
         return null;
     }
 
@@ -271,7 +273,7 @@ public class StageManager : MonoBehaviour
         // 선택하지 않은 스테이지를 반환
         for (int i = 0; i < StageArray.Length; i++)
         {
-            if (StageArray[i] != null && MapList[0] == "Random")
+            if (StageArray[i] != null && MapList[0] == MapSign.Random)
             {
                 if (i != index)
                     GetStageByName(StageArray[i].Name).RecallCount();
@@ -284,18 +286,20 @@ public class StageManager : MonoBehaviour
             if (MapList.Count <= 1)
                 break;
 
-            if (MapList[1] != "Random")
+            if (MapList[1] != MapSign.Random)
                 break;
 
             if (NextStageArray[i] == null)
                 continue;
 
-            if(i < index || index + 2 < i)
+            if (i < index || index + 2 < i)
+            {
                 GetStageByName(NextStageArray[i].Name).RecallCount();
+            }
         }
 
+        GameManager.Data.StageArray = StageArray;
         MapList.RemoveAt(0);
-        SetNextArray();
     }
 
     Stage GetStageByName(StageName name)
@@ -303,20 +307,12 @@ public class StageManager : MonoBehaviour
         return LocalStageInfo.Find(x => x.Name == name);
     }
 
-    Stage SetRandomFaction(string Name)
+    Stage SetRandomFaction(MapSign sign)
     {
-        StageName _name = (StageName)Enum.Parse(typeof(StageName), Name);
+        StageName _name = (StageName)Enum.Parse(typeof(StageName), sign.ToString());
         Stage st = LocalStageInfo.Find(x => x.Name == _name);
         st.SetBattleFaction();
 
         return st.Clone();
-    }
-
-
-    // 디버그용 입력 이벤트
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-            SceneChanger.SceneChange("StageSelectScene");
     }
 }

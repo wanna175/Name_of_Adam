@@ -25,6 +25,14 @@ public enum StageType
     Battle
 }
 
+public enum MapSign
+{
+    CommonBattle,
+    EliteBattle,
+    Store,
+    Random
+}
+
 // 인스펙터에서 스테이지 정보를 받기 위한 테스트 클래스
 [Serializable]
 public struct TestContainer

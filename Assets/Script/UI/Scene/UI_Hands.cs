@@ -9,7 +9,7 @@ public class UI_Hands : UI_Scene
 
     private List<UI_Hand> _handList = new List<UI_Hand>();
     private UI_Hand _selectedHand = null;
-    private BattleManager _battle = GameManager.Battle;
+    private BattleManager _battle = BattleManager.Instance;
     
     public void SetHands(List<DeckUnit> deckUnits)
     {

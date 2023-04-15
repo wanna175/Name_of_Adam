@@ -7,7 +7,7 @@ public class EngagePhase : Phase
 
     public override void OnStateUpdate()
     { 
-        _battle.EngagePhase();
+        BattleManager.Instance.EngagePhase();
     }
 
     public override void OnStateExit()

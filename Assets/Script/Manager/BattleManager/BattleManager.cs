@@ -11,14 +11,23 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    private static BattleManager s_instance;
+    public static BattleManager Instance { get { Init(); return s_instance; } }
+
+    //[SerializeField] CutSceneManager _cutScene;
+    //public static CutSceneManager CutScene => Instance._cutScene;
+        
     private BattleDataManager _battleData;
-    public BattleDataManager Data => _battleData;
+    public static BattleDataManager Data => Instance._battleData;
+
     private Field _field;
-    public Field Field => _field;
+    public static Field Field => Instance._field;
+
     private Mana _mana;
-    public Mana Mana => _mana;
+    public static Mana Mana => Instance._mana;
+
     private PhaseController _phase;
-    public PhaseController Phase => _phase;
+    public static PhaseController Phase => Instance._phase;
 
     private Vector2 coord;
 
@@ -36,11 +45,28 @@ public class BattleManager : MonoBehaviour
         _phase.OnUpdate();
     }
 
+    private static void Init()
+    {
+        if (s_instance == null)
+        {
+            GameObject go = GameObject.Find("@BattleManager");
+
+            if (go == null)
+            {
+                //go = new GameObject("@BattleManager");
+                //go.AddComponent<BattleManager>();
+                return;
+            }
+
+            s_instance = go.GetComponent<BattleManager>();
+        }
+    }
+
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
 
-        if (fieldObject == null)
+        if (fieldObject == null)    
             fieldObject = GameManager.Resource.Instantiate("Field");
 
         _field = fieldObject.GetComponent<Field>();
@@ -71,10 +97,11 @@ public class BattleManager : MonoBehaviour
 
         if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
             return;
-
+        
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
+            List<BattleUnit> unitList = new List<BattleUnit>();
 
             foreach (Vector2 splash in splashRange)
             {
@@ -83,12 +110,15 @@ public class BattleManager : MonoBehaviour
                 if (targetUnit == null)
                     continue;
 
+                unitList.Add(targetUnit);
+
                 if (targetUnit.Team == Team.Enemy)
                     //공격 전 낙인 체크
                     unit.SkillUse(Field.GetUnit(coord + splash));
                     //공격 후 낙인 체크
-
             }
+
+            //CutScene.BattleCutScene(unit, unitList);
         }
 
         Field.ClearAllColor();

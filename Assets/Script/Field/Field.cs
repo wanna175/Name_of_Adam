@@ -233,9 +233,9 @@ public class Field : MonoBehaviour
         Vector2 coord = FindCoordByTile(tile);
         if (_coloredTile.Contains(coord))
         {
-            if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+            if (BattleManager.Phase.Current == BattleManager.Phase.Action)
             {
-                List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord, GameManager.Battle.Data.GetNowUnit().Location);
+                List<Vector2> range = BattleManager.Data.GetNowUnit().GetSplashRange(coord, BattleManager.Data.GetNowUnit().Location);
                 foreach (Vector2 vec in range)
                 {
                     TileDict[coord + vec].SetColor(Color.green);
@@ -246,9 +246,9 @@ public class Field : MonoBehaviour
 
     public void MouseExitTile(Tile tile)
     {
-        if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+        if (BattleManager.Phase.Current == BattleManager.Phase.Action)
         {
-            SetTileColor(GameManager.Battle.Data.GetNowUnit(), ClickType.Attack);
+            SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
         }
     }
 }

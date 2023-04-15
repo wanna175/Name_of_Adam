@@ -14,7 +14,7 @@ public class TEST : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("CLICK");
-        UnitSpawner us = GameManager.Battle.GetComponent<UnitSpawner>();
+        UnitSpawner us = BattleManager.Instance.GetComponent<UnitSpawner>();
 
         //us.newSpawn(u, new Vector2(0, 0));
         us.DeckSpawn(u, new Vector2(0, 0));

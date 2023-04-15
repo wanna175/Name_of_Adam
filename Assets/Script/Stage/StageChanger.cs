@@ -19,9 +19,10 @@ public class StageChanger
 
     private void SetBattleScene(Stage stage)
     {
+        SceneChanger.SpawnDataList = SetSpawnUnit();
 
-        SceneChanger.SceneChange("JS TEST");
-        //SceneChanger.SceneChange("Battle");
+        //SceneChanger.SceneChange("JS TEST");
+        SceneChanger.SceneChange("Battle");
     }
 
     private List<SpawnData> SetSpawnUnit()
@@ -34,13 +35,13 @@ public class StageChanger
 
         for (int i = 0; i < 3; i++)
         {
-            data.prefab = GameManager.Resource.Instantiate("BattleUnits/" + unitName);
+            data.prefab = GameManager.Resource.Load<GameObject>("Prefabs/BattleUnits/" + unitName);
             data.location = new Vector2(3, i);
             data.team = Team.Enemy;
 
             SpawnUnitList.Add(data);
         }
-
+        Debug.Log(SpawnUnitList.Count);
         return SpawnUnitList;
     }
 }

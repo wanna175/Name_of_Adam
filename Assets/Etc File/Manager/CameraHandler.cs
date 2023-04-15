@@ -7,13 +7,16 @@ public class CameraHandler : MonoBehaviour
     [SerializeField] Camera MainCamera;
     [SerializeField] Camera CutSceneCamera;
 
+    GameObject Blur;
+
     CutSceneManager _CutSceneMNG;
     Field _field;
 
     private void Start()
     {
         //_CutSceneMNG = GameManager.CutScene;
-        _field = GameManager.Battle.Field;
+        _field = BattleManager.Field;
+        //_CutSceneMNG = BattleManager.CutScene;
 
         SetMainCamera();
     }
@@ -45,6 +48,7 @@ public class CameraHandler : MonoBehaviour
     {
         SetCutSceneCamera();
 
+        Blur = GameManager.Resource.Instantiate("TestBlur");
         StartCoroutine(ZoomIn(CSData));
     }
     // 화면 줌 인
@@ -105,7 +109,7 @@ public class CameraHandler : MonoBehaviour
 
         _field.ClearAllColor();
         yield return new WaitForSeconds(0.2f);
-
+        Destroy(Blur);
         _CutSceneMNG.EndAttack();
     }
 

@@ -27,17 +27,17 @@ public class UnitSpawner : MonoBehaviour
 
     private void Spawn(SpawnData spawndata, Vector2 location)
     {
-        if (GameManager.Battle.Field.TileDict[location].UnitExist)
+        if (BattleManager.Field.TileDict[location].UnitExist)
         {
             Debug.Log("해당 타일에 유닛이 존재합니다.");
         }
         else
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
-            BattleUnit bu = go.GetComponent<BattleUnit>();
+            BattleUnit unit = go.GetComponent<BattleUnit>();
 
-            bu.Init();
-            GameManager.Battle.UnitSetting(bu, location);
+            unit.Init();
+            BattleManager.Instance.UnitSetting(unit, location);
         }
     }
 
@@ -54,16 +54,22 @@ public class UnitSpawner : MonoBehaviour
         bu.Init();
 
         BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
-        GameManager.Battle.UnitSetting(spawnedUnit, location);
+        BattleManager.Instance.UnitSetting(spawnedUnit, location);
         return spawnedUnit;
     }
 
     public void SpawnInitialUnit()
     {
+        List<SpawnData> datas = SceneChanger.SpawnDataList;
+
+        //foreach (SpawnData data in datas)
         foreach (SpawnData data in SpawnMonsters)
         {
+            //Debug.Log(data);
+            //Debug.Log(data.location);
             Spawn(data, data.location);
         }
+        datas.Clear();
     }
 
     private Transform SetParent()
