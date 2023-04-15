@@ -69,6 +69,7 @@ public class UnitSpawner : MonoBehaviour
             //Debug.Log(data.location);
             Spawn(data, data.location);
         }
+        datas.Clear();
     }
 
     private Transform SetParent()

@@ -259,9 +259,6 @@ public class StageManager : MonoBehaviour
     // 선택한 스테이지로 진행
     public void MoveNextStage(int index)
     {
-        // 스테이지 이동
-        _stageChanger.SetNextStage(StageArray[index]);
-
         if (MapList.Count <= 0)
         {
             // 모든 스테이지 소모
@@ -296,12 +293,13 @@ public class StageManager : MonoBehaviour
             {
                 GetStageByName(NextStageArray[i].Name).RecallCount();
             }
-            ReferenceEquals(MapList, GameManager.Data.MapList);
         }
 
+        GameManager.Data.StageArray = StageArray;
         MapList.RemoveAt(0);
 
-        GameManager.Data.StageArray = StageArray;
+        // 스테이지 이동
+        _stageChanger.SetNextStage(StageArray[index]);
     }
 
     Stage GetStageByName(StageName name)
@@ -316,13 +314,5 @@ public class StageManager : MonoBehaviour
         st.SetBattleFaction();
 
         return st.Clone();
-    }
-
-
-    // 디버그용 입력 이벤트
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-            SceneChanger.SceneChange("StageSelectScene");
     }
 }
