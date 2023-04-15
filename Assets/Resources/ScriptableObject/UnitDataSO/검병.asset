@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "\uAC80\uBCD1"
   m_EditorClassIdentifier: 
   _rawStat:
-    HP: 50
-    CurrentHP: 50
+    HP: 500
+    CurrentHP: 500
     ATK: 10
     SPD: 40
     Fall: 0

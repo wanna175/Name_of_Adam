@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "\uC624\uBE60"
   m_EditorClassIdentifier: 
   _rawStat:
-    HP: 100
-    CurrentHP: 100
+    HP: 1000
+    CurrentHP: 1000
     ATK: 20
     SPD: 45
     Fall: 6

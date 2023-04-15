@@ -14,8 +14,8 @@ public class BattleManager : MonoBehaviour
     private static BattleManager s_instance;
     public static BattleManager Instance { get { Init(); return s_instance; } }
 
-    [SerializeField] CutSceneManager _cutScene;
-    public static CutSceneManager CutScene => Instance._cutScene;
+    //[SerializeField] CutSceneManager _cutScene;
+    //public static CutSceneManager CutScene => Instance._cutScene;
         
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
@@ -53,7 +53,8 @@ public class BattleManager : MonoBehaviour
 
             if (go == null)
             {
-                // BattleManager 오브젝트가 없다면 BattleScene이 아닌 것
+                //go = new GameObject("@BattleManager");
+                //go.AddComponent<BattleManager>();
                 return;
             }
 
@@ -100,6 +101,7 @@ public class BattleManager : MonoBehaviour
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
+            List<BattleUnit> unitList = new List<BattleUnit>();
 
             foreach (Vector2 splash in splashRange)
             {
@@ -108,15 +110,15 @@ public class BattleManager : MonoBehaviour
                 if (targetUnit == null)
                     continue;
 
-                List<BattleUnit> unitList = new List<BattleUnit>();
                 unitList.Add(targetUnit);
-                CutScene.BattleCutScene(unit, unitList);
 
                 if (targetUnit.Team == Team.Enemy)
                     //공격 전 낙인 체크
                     unit.SkillUse(Field.GetUnit(coord + splash));
                     //공격 후 낙인 체크
             }
+
+            //CutScene.BattleCutScene(unit, unitList);
         }
 
         Field.ClearAllColor();
