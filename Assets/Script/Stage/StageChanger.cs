@@ -35,7 +35,7 @@ public class StageChanger
 
         for (int i = 0; i < 3; i++)
         {
-            data.prefab = GameManager.Resource.Instantiate("BattleUnits/" + unitName);
+            data.prefab = GameManager.Resource.Load<GameObject>("Prefabs/BattleUnits/" + unitName);
             data.location = new Vector2(3, i);
             data.team = Team.Enemy;
 

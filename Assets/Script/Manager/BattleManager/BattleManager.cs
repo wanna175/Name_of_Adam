@@ -39,9 +39,8 @@ public class BattleManager : MonoBehaviour
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
-        Debug.Log("dd");
+
         if (fieldObject == null)
-            Debug.Log("clear");
             fieldObject = GameManager.Resource.Instantiate("Field");
 
 
