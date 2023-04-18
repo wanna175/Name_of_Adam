@@ -16,7 +16,7 @@ MonoBehaviour:
     HP: 500
     CurrentHP: 500
     ATK: 10
-    SPD: 40
+    SPD: 50
     Fall: 0
     ManaCost: 0
   _stigma: []

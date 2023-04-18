@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _CameraHandler: {fileID: 1688846949}
   moving: 1
+  ZoomSize: 50
+  AttackLocationAdd: {x: 0, y: 0, z: 0}
 --- !u!4 &212572833
 Transform:
   m_ObjectHideFlags: 0
@@ -666,10 +668,6 @@ MonoBehaviour:
     location: {x: 2, y: 1}
     team: 0
     stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: 4778d7a3063585d478470b04a72ca01c, type: 3}
-    location: {x: 3, y: 1}
-    team: 1
-    stigmas: []
   - prefab: {fileID: 7249694890102593154, guid: 6ba32b91d7b286d4c8a25441db9a0427, type: 3}
     location: {x: 1, y: 1}
     team: 0
@@ -677,6 +675,10 @@ MonoBehaviour:
   - prefab: {fileID: 7249694890102593154, guid: 6ba32b91d7b286d4c8a25441db9a0427, type: 3}
     location: {x: 1, y: 2}
     team: 0
+    stigmas: []
+  - prefab: {fileID: 3954254994103691638, guid: 4778d7a3063585d478470b04a72ca01c, type: 3}
+    location: {x: 3, y: 1}
+    team: 1
     stigmas: []
 --- !u!114 &1012622347
 MonoBehaviour:

@@ -39,6 +39,8 @@ public class CutSceneManager : MonoBehaviour
         set { _CameraHandler = value; }
     }
     #endregion
+    public float ZoomSize;
+    public Vector3 AttackLocationAdd;
 
     CutSceneData CSData;
     // 줌 인, 줌 아웃하는데 들어가는 시간
@@ -69,7 +71,7 @@ public class CutSceneManager : MonoBehaviour
         AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = 5;
         foreach (BattleUnit unit in HitUnits)
         {
-            unit.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            unit.GetComponent<SpriteRenderer>().sortingOrder = 6;
         }
 
         _CameraHandler.CutSceneZoomIn(CSData);
@@ -94,9 +96,9 @@ public class CutSceneManager : MonoBehaviour
         // 줌 사이즈는 나중에 유동적으로 바뀌거나 개별적으로 할 수도 있을 것 같다.
         // 일단 타입에 따라 임의로 부여함
         if (CSData.TargetType == TargetType.Range)
-            CSData.ZoomSize = 50;
+            CSData.ZoomSize = ZoomSize;
         if (CSData.TargetType == TargetType.Select)
-            CSData.ZoomSize = 35;
+            CSData.ZoomSize = ZoomSize;
     }
 
     // 공격자의 위치를 지정
@@ -138,7 +140,7 @@ public class CutSceneManager : MonoBehaviour
         vec = target.transform.position;
         vec.x -= 3;
 
-        return vec;
+        return vec + AttackLocationAdd;
 
         //// 제자리에서 공격
         //return atkUnit.transform.position;
@@ -175,7 +177,7 @@ public class CutSceneManager : MonoBehaviour
 
     #endregion
 
-    #region Attack & Animation
+    #region Attack & Animation.
 
     // 확대 후 컷씬
     public IEnumerator AttackCutScene(CutSceneData CSData)
