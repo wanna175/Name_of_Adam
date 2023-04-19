@@ -2,6 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class StageDataContainer
+{
+    public List<StageSpawnData> StageData;
+}
+
+public class StageSpawnData
+{
+    public Faction FactionName;
+    public int Level;
+    public int ID;
+    public List<StageUnitData> Units;
+}
+
+public class StageUnitData
+{
+    public string Name;
+    public Vector2 Location;
+}
+
 public class StageChanger
 {
     // 다음 스테이지 이동용
