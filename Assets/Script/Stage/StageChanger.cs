@@ -1,20 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class StageDataContainer
 {
     public List<StageSpawnData> StageData;
-}
 
+    public StageSpawnData GetStageData(string faction, int level, int id) => StageData.Find(x => x.FactionName == faction && x.ID == id && x.Level == level);
+}
+[Serializable]
 public class StageSpawnData
 {
-    public Faction FactionName;
+    public string FactionName;
     public int Level;
     public int ID;
     public List<StageUnitData> Units;
 }
-
+[Serializable]
 public class StageUnitData
 {
     public string Name;
@@ -44,23 +48,34 @@ public class StageChanger
         //SceneChanger.SceneChange("Battle");
     }
 
-    private List<SpawnData> SetSpawnUnit()
+    private List<SpawnData> SetSpawnUnit() // 다음에 받을 팩션, 레벨, 아이디 넣기
     {
+        StageSpawnData SpawnData = tempStageCreate();
         List<SpawnData> SpawnUnitList = new List<SpawnData>();
 
-        SpawnData data = new SpawnData();
         // 테스트용
-        string unitName = "검병";
+        List<StageUnitData> UnitDataList = GameManager.Data.StageData.GetStageData(SpawnData.FactionName, SpawnData.Level, SpawnData.ID).Units;
 
-        for (int i = 0; i < 3; i++)
+        foreach(StageUnitData data in UnitDataList)
         {
-            data.prefab = GameManager.Resource.Load<GameObject>("Prefabs/BattleUnits/" + unitName);
-            data.location = new Vector2(3, i);
-            data.team = Team.Enemy;
+            SpawnData sd = new SpawnData();
+            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{SpawnData.FactionName}/{data.Name}");
+            sd.location = data.Location;
+            sd.team = Team.Enemy;
 
-            SpawnUnitList.Add(data);
+            SpawnUnitList.Add(sd);
         }
 
         return SpawnUnitList;
+    }
+
+    StageSpawnData tempStageCreate()
+    {
+        StageSpawnData data = new StageSpawnData();
+        data.FactionName = "순리의_기사단";
+        data.Level = 1;
+        data.ID = 1;
+
+        return data;
     }
 }

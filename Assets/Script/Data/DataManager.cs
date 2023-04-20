@@ -11,16 +11,24 @@ public interface ILoader<Key, Value>
 public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
+    public StageDataContainer StageData;
 
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
+        StageData = LoadJson<StageDataContainer>("StageData");
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
     {
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
+    }
+    T LoadJson<T>(string path)
+    {
+        TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
+        Debug.Log(textAsset.text);
+        return JsonUtility.FromJson<T>(textAsset.text);
     }
 
     private int _money;
