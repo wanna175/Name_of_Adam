@@ -219,7 +219,6 @@ public class BattleUnit : MonoBehaviour
             {
                 if (passive.GetPassiveType() == type)
                 {
-                    Debug.Log("Passive Check");
                     passive.Use(caster, receiver);
                 }
             }

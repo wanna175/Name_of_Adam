@@ -21,6 +21,8 @@ public abstract class Passive
 
 public class 가학 : Passive
 {
+    private bool isApplied = false;
+
     public override PassiveType GetPassiveType()
     {
         return PassiveType.AFTERATTACK;
@@ -28,8 +30,11 @@ public class 가학 : Passive
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        Debug.Log($"{caster.name} 가학");
+        if (isApplied)
+            return;
+
         caster.ChangedStat.ATK += 3;
+        isApplied = true;
     }
 }
 
