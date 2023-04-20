@@ -660,7 +660,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cb086f047997f4184e70922c4424c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  u: {fileID: 0}
+  u:
+    Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmata: []
 --- !u!1 &790361361
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,11 +951,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895294e725f8774b915a1d07eb68388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 0}
   _playerDeck: []
   _playerHands:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmata: []
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmata: []
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmata: []
   UI_hands: {fileID: 0}
   UI_PlayerSkill: {fileID: 0}
 --- !u!1 &1688846947
@@ -1055,7 +1089,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0cbeefb348ad1564d9c08f3acd828d09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95293f158ce755b40906f7a3d84b682b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1074,8 +1108,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872367573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1825843, y: 1.1825843, z: 0.69563776}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1898948688}
