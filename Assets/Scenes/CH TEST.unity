@@ -660,7 +660,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cb086f047997f4184e70922c4424c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  u: {fileID: 0}
+  u:
+    Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    Stigmata: []
 --- !u!1 &790361361
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,22 +915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnMonsters:
-  - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
-    location: {x: 1, y: 1}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
-    location: {x: 2, y: 0}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: ebaa2a0731d9a3a4e83490780025b320, type: 3}
-    location: {x: 2, y: 1}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: f0dbda1664a1a5a4d97e2b3c3a957b1e, type: 3}
-    location: {x: 3, y: 1}
-    team: 0
-    stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
     location: {x: 4, y: 2}
     team: 1
@@ -942,11 +935,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895294e725f8774b915a1d07eb68388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
   _playerDeck: []
-  _playerHands:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _playerHands: []
   UI_hands: {fileID: 0}
   UI_PlayerSkill: {fileID: 0}
 --- !u!1 &1688846947

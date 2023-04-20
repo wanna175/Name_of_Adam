@@ -8,5 +8,5 @@ public class GameData : ScriptableObject
 {
     public int Money;
     public int DarkEssence;
-    public List<DeckUnit> decks = new List<DeckUnit>();
+    public List<DeckUnit> DeckUnits = new List<DeckUnit>();
 }
