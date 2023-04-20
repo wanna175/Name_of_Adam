@@ -205,7 +205,7 @@ public class BattleUnit : MonoBehaviour
         {
             for (int i = 0; i < receiver.Passive.Count; i++)
             {
-                if (receiver.Passive[i].GetPassiveType() == type)
+                if (receiver.Passive[i].PassiveType == type)
                 {
                     receiver.Passive[i].Use(caster, receiver);
                 }
@@ -215,7 +215,7 @@ public class BattleUnit : MonoBehaviour
         {
             for (int i = 0; i < caster.Passive.Count; i++)
             {
-                if (caster.Passive[i].GetPassiveType() == type)
+                if (caster.Passive[i].PassiveType == type)
                 {
                     caster.Passive[i].Use(caster, receiver);
                 }
