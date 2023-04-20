@@ -38,19 +38,21 @@ public class DeckUnit
         {
             case 낙인.가학:
                 Stigmata.Add(new 가학());
-                Debug.Log("가학 들어감");
                 break;
             case 낙인.강림:
                 break;
             case 낙인.고양:
                 break;
             case 낙인.대죄:
+                Stigmata.Add(new 대죄());
                 break;
             case 낙인.자애:
                 break;
             case 낙인.처형:
+                Stigmata.Add(new 처형());
                 break;
             case 낙인.흡수:
+                Stigmata.Add(new 흡수());
                 break;
         }
     }

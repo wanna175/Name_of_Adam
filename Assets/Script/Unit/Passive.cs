@@ -47,7 +47,8 @@ public class 흡수 : Passive
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        throw new NotImplementedException();
+        double heal = caster.Stat.ATK * 0.3;
+        caster.ChangeHP(((int)heal));
     }
 }
 
@@ -60,7 +61,10 @@ public class 처형 : Passive
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        throw new NotImplementedException();
+        if (receiver.HP.GetCurrentHP() <= 10)
+        {
+            receiver.ChangeHP(-receiver.HP.GetCurrentHP());
+        }
     }
 }
 
@@ -73,6 +77,6 @@ public class 대죄 : Passive
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        throw new NotImplementedException();
+        receiver.ChangeFall(1);
     }
 }
