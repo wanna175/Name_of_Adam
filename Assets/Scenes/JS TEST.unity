@@ -156,6 +156,8 @@ MonoBehaviour:
   moving: 1
   ZoomSize: 50
   AttackLocationAdd: {x: 0, y: 0, z: 0}
+  AttackTime: 1
+  HitDelayTime: 0.2
 --- !u!4 &212572833
 Transform:
   m_ObjectHideFlags: 0

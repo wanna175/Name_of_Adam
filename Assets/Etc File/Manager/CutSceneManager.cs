@@ -41,6 +41,8 @@ public class CutSceneManager : MonoBehaviour
     #endregion
     public float ZoomSize;
     public Vector3 AttackLocationAdd;
+    public float AttackTime;
+    public float HitDelayTime;
 
     CutSceneData CSData;
     // 줌 인, 줌 아웃하는데 들어가는 시간
@@ -182,18 +184,19 @@ public class CutSceneManager : MonoBehaviour
     // 확대 후 컷씬
     public IEnumerator AttackCutScene(CutSceneData CSData)
     {
-        // 줌 시간 제외, 확대하는 시간은 총 1초
-        float CutSceneTime = 1;
-
         yield return new WaitForSeconds(0.1f);
 
-
-        StartCoroutine(_CameraHandler.CameraLotate(CutSceneTime));
+        StartCoroutine(_CameraHandler.CameraLotate(AttackTime));
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", true);
 
-        yield return new WaitForSeconds(CutSceneTime);
-        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
+        yield return new WaitForSeconds(HitDelayTime);
+        foreach (BattleUnit unit in CSData.HitUnits)
+            unit.GetComponent<Animator>().SetBool("isHit", true);
 
+        yield return new WaitForSeconds(AttackTime - HitDelayTime);
+        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
+        foreach (BattleUnit unit in CSData.HitUnits)
+            unit.GetComponent<Animator>().SetBool("isHit", false);
 
         foreach (BattleUnit unit in CSData.HitUnits)
             unit.ChangeHP(-CSData.AttackUnit.GetStat().ATK);
