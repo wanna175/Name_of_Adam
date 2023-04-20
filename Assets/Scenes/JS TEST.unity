@@ -665,7 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnMonsters:
   - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
-    location: {x: 2, y: 1}
+    location: {x: 0, y: 2}
     team: 0
     stigmas: []
   - prefab: {fileID: 7249694890102593154, guid: 6ba32b91d7b286d4c8a25441db9a0427, type: 3}
