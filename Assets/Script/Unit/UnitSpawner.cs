@@ -7,6 +7,7 @@ using UnityEngine;
 public struct SpawnData
 {
     public GameObject prefab;
+    public DeckUnit deckUnit;
     public Vector2 location;
     public Team team;
     public Passive[] stigmas;
@@ -23,6 +24,19 @@ public class UnitSpawner : MonoBehaviour
     private void Awake()
     {
         parent = SetParent();
+    }
+
+    private void SpawnTest(SpawnData spawndata, Vector2 location)
+    {
+        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+        BattleUnit bu = go.GetComponent<BattleUnit>();
+        bu.DeckUnit = spawndata.deckUnit;
+        bu.DeckUnit.SetStigma();
+
+        bu.Skill.Effects = spawndata.deckUnit.Data.Effects;
+
+        bu.Init();
+        GameManager.Battle.UnitSetting(bu, location);
     }
 
     private void Spawn(SpawnData spawndata, Vector2 location)
@@ -60,7 +74,8 @@ public class UnitSpawner : MonoBehaviour
     {
         foreach (SpawnData data in SpawnMonsters)
         {
-            Spawn(data, data.location);
+            //Spawn(data, data.location);
+            SpawnTest(data, data.location);
         }
     }
 

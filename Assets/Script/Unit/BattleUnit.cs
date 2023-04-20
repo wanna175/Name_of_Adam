@@ -5,8 +5,10 @@ using UnityEngine;
 public class BattleUnit : MonoBehaviour
 {
     public DeckUnit DeckUnit;
-    public Stat Stat => DeckUnit.Stat;
+    public Stat Stat => DeckUnit.Stat + ChangedStat;
     public UnitDataSO Data => DeckUnit.Data;
+
+    [SerializeField] public Stat ChangedStat; 
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -205,7 +207,7 @@ public class BattleUnit : MonoBehaviour
         {
             for (int i = 0; i < receiver.Passive.Count; i++)
             {
-                if (receiver.Passive[i].PassiveType == type)
+                if (receiver.Passive[i].GetPassiveType() == type)
                 {
                     receiver.Passive[i].Use(caster, receiver);
                 }
@@ -215,7 +217,7 @@ public class BattleUnit : MonoBehaviour
         {
             for (int i = 0; i < caster.Passive.Count; i++)
             {
-                if (caster.Passive[i].PassiveType == type)
+                if (caster.Passive[i].GetPassiveType() == type)
                 {
                     caster.Passive[i].Use(caster, receiver);
                 }
