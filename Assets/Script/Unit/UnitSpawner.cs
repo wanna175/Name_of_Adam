@@ -36,7 +36,7 @@ public class UnitSpawner : MonoBehaviour
         bu.Skill.Effects = spawndata.deckUnit.Data.Effects;
 
         bu.Init();
-        GameManager.Battle.UnitSetting(bu, location);
+        GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
     }
 
     private void Spawn(SpawnData spawndata, Vector2 location)
@@ -51,7 +51,7 @@ public class UnitSpawner : MonoBehaviour
             BattleUnit bu = go.GetComponent<BattleUnit>();
 
             bu.Init();
-            GameManager.Battle.UnitSetting(bu, location);
+            GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
         }
     }
 
@@ -60,13 +60,14 @@ public class UnitSpawner : MonoBehaviour
         GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
         BattleUnit bu = go.GetComponent<BattleUnit>();
         bu.DeckUnit = deckUnit;
+        bu.DeckUnit.SetStigma();
 
         bu.Skill.Effects = deckUnit.Data.Effects;
 
         bu.Init();
 
         BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
-        GameManager.Battle.UnitSetting(spawnedUnit, location);
+        GameManager.Battle.UnitSetting(spawnedUnit, location, Team.Player);
         return spawnedUnit;
     }
 

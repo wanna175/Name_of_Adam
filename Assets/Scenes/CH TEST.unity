@@ -669,7 +669,7 @@ MonoBehaviour:
       SPD: 0
       Fall: 0
       ManaCost: 0
-    Stigmata: []
+    stigmas: 
 --- !u!1 &790361361
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,13 +916,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnMonsters:
   - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
-    location: {x: 4, y: 2}
+    deckUnit:
+      Data: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        Fall: 0
+        ManaCost: 0
+      stigmas: 03000000
+    location: {x: 3, y: 2}
     team: 1
-    stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: 4778d7a3063585d478470b04a72ca01c, type: 3}
-    location: {x: 4, y: 1}
+    deckUnit:
+      Data: {fileID: 11400000, guid: 85bc66698f01ae44997f1a76b8c50137, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        Fall: 0
+        ManaCost: 0
+      stigmas: 03000000
+    location: {x: 3, y: 1}
     team: 1
-    stigmas: []
 --- !u!114 &1589663948
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class DeckUnit
     public Stat Stat => Data.RawStat + ChangedStat; // Memo : 나중에 낙인, 버프 추가한 스탯으로 수정
     
     [SerializeField] private List<낙인> stigmas = new List<낙인>();
-    [SerializeField, ReadOnly] private List<Passive> Stigmata = new List<Passive>();
+    public List<Passive> Stigmata = new List<Passive>();
 
     private int _maxStigmaCount = 3;
 
@@ -37,6 +37,8 @@ public class DeckUnit
         switch (stigma)
         {
             case 낙인.가학:
+                Stigmata.Add(new 가학());
+                Debug.Log("가학 들어감");
                 break;
             case 낙인.강림:
                 break;

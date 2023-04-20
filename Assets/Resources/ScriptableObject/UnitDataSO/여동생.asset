@@ -19,7 +19,7 @@ MonoBehaviour:
     SPD: 75
     Fall: 6
     ManaCost: 0
-  _stigma: []
+  _stigma: 
   _name: "\uC5EC\uB3D9\uC0DD"
   _description: 
   _faction: 0
