@@ -42,19 +42,19 @@ public class StageChanger
 
     private void SetBattleScene(Stage stage)
     {
-        SceneChanger.SpawnDataList = SetSpawnUnit();
+        SceneChanger.SpawnDataList = SetSpawnUnit(Faction.순리의_기사단, 1, 1);
 
         SceneChanger.SceneChange("JS TEST");
         //SceneChanger.SceneChange("Battle");
     }
 
-    private List<SpawnData> SetSpawnUnit() // 다음에 받을 팩션, 레벨, 아이디 넣기
+    private List<SpawnData> SetSpawnUnit(Faction faction, int level, int id) // 다음에 받을 팩션, 레벨, 아이디 넣기
     {
         StageSpawnData SpawnData = tempStageCreate();
         List<SpawnData> SpawnUnitList = new List<SpawnData>();
 
         // 테스트용
-        List<StageUnitData> UnitDataList = GameManager.Data.StageData.GetStageData(SpawnData.FactionName, SpawnData.Level, SpawnData.ID).Units;
+        List<StageUnitData> UnitDataList = GameManager.Data.StageDatas.GetStageData(SpawnData.FactionName, SpawnData.Level, SpawnData.ID).Units;
 
         foreach(StageUnitData data in UnitDataList)
         {

@@ -11,12 +11,13 @@ public interface ILoader<Key, Value>
 public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
-    public StageDataContainer StageData;
+    public StageDataContainer StageDatas;
+    public StageSpawnData CurrentStageData;
 
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
-        StageData = LoadJson<StageDataContainer>("StageData");
+        StageDatas = LoadJson<StageDataContainer>("StageData");
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
