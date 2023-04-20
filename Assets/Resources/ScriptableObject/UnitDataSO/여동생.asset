@@ -18,7 +18,7 @@ MonoBehaviour:
     ATK: 20
     SPD: 75
     Fall: 6
-    ManaCost: 0
+    ManaCost: 20
   _stigma: 
   _name: "\uC5EC\uB3D9\uC0DD"
   _description: 

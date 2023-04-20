@@ -40,13 +40,16 @@ public class DeckUnit
                 Stigmata.Add(new 가학());
                 break;
             case 낙인.강림:
+                Stigmata.Add(new 강림());
                 break;
             case 낙인.고양:
+                Stigmata.Add(new 고양());
                 break;
             case 낙인.대죄:
                 Stigmata.Add(new 대죄());
                 break;
             case 낙인.자애:
+                Stigmata.Add(new 자애());
                 break;
             case 낙인.처형:
                 Stigmata.Add(new 처형());

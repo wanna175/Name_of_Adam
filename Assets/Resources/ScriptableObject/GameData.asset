@@ -23,7 +23,7 @@ MonoBehaviour:
       SPD: 0
       Fall: 0
       ManaCost: 0
-    stigmas: 03000000
+    stigmas: 0300000000000000
   - Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
     ChangedStat:
       HP: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
       SPD: 0
       Fall: 0
       ManaCost: 0
-    stigmas: 
+    stigmas: 01000000
   - Data: {fileID: 11400000, guid: 3f23ffda944dd0749b1bb9db306d1daf, type: 2}
     ChangedStat:
       HP: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
       SPD: 0
       Fall: 0
       ManaCost: 0
-    stigmas: 
+    stigmas: 03000000
   - Data: {fileID: 11400000, guid: 23691f8b9fe949c4c88452aa55b097a9, type: 2}
     ChangedStat:
       HP: 0
@@ -50,4 +50,4 @@ MonoBehaviour:
       SPD: 0
       Fall: 0
       ManaCost: 0
-    stigmas: 
+    stigmas: 05000000

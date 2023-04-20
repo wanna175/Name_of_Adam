@@ -154,9 +154,9 @@ public class BattleManager : MonoBehaviour
         DeckUnit unit = Data.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
-        GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
+        BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Mana.ChangeMana(-unit.Stat.ManaCost);
-        //배치 시 낙인 체크
+        spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         Data.RemoveHandUnit(unit);
         Field.ClearAllColor();
     }
@@ -281,5 +281,20 @@ public class BattleManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public List<BattleUnit> GetArroundUnits(List<Vector2> coords)
+    {
+        List<BattleUnit> units = new List<BattleUnit>();
+
+        foreach (Vector2 coord in coords)
+        {
+            BattleUnit targetUnit = Field.GetUnit(coord);
+            if (targetUnit == null)
+                continue;
+            units.Add(targetUnit);
+        }    
+
+        return units;
     }
 }
