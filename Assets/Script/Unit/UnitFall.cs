@@ -4,17 +4,17 @@ using UnityEngine.Events;
 
 public class UnitFall : MonoBehaviour
 {
-    [SerializeField] private int _maxCount;
-    [SerializeField, ReadOnly] private int _currentCount;
+    private int _maxCount;
+    private int _currentCount;
     private bool _isEdified;
 
     [Header("타락 이벤트")]
     public UnityEvent UnitFallEvent;
 
-    public void Init(int maxCount)
+    public void Init(int CurrentCount, int maxCount)
     {
+        _currentCount = CurrentCount;
         _maxCount = maxCount;
-        _currentCount = 0;
     }
 
     public void ChangeFall(int value)
