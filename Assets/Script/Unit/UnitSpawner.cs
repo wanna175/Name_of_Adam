@@ -60,13 +60,22 @@ public class UnitSpawner : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
-        List<SpawnData> datas = SceneChanger.SpawnDataList;
+        List<StageUnitData> datas = GameManager.Data.CurrentStageData.Units;
+        string factionName = GameManager.Data.CurrentStageData.FactionName;
 
-        foreach (SpawnData data in datas)
-         //foreach (SpawnData data in SpawnMonsters)
+        foreach (StageUnitData data in datas)
         {
-            Spawn(data, data.location);
+            SpawnData sd = new SpawnData();
+            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{factionName}/{data.Name}");
+            sd.location = data.Location;
+            sd.team = Team.Enemy;
+
+            Spawn(sd, data.Location);
         }
+        //foreach (SpawnData data in SpawnMonsters)
+        //{
+        //    Spawn(data, data.location);
+        //}
     }
 
     private Transform SetParent()

@@ -1,7 +1,14 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class TempStageStorage
+{
+    public Stage[] Stages = new Stage[3];
+}
 
 public interface ILoader<Key, Value>
 {
@@ -13,6 +20,7 @@ public class DataManager : MonoBehaviour
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
     public StageDataContainer StageDatas;
     public StageSpawnData CurrentStageData;
+    public List<TempStageStorage> SmagaStage;
 
     public void Init()
     {
@@ -28,7 +36,7 @@ public class DataManager : MonoBehaviour
     T LoadJson<T>(string path)
     {
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
-        Debug.Log(textAsset.text);
+
         return JsonUtility.FromJson<T>(textAsset.text);
     }
 

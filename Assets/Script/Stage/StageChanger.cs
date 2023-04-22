@@ -25,6 +25,8 @@ public class StageUnitData
     public Vector2 Location;
 }
 
+
+
 public class StageChanger
 {
     // 다음 스테이지 이동용
@@ -42,40 +44,14 @@ public class StageChanger
 
     private void SetBattleScene(Stage stage)
     {
-        SceneChanger.SpawnDataList = SetSpawnUnit(Faction.순리의_기사단, 1, 1);
+        SetSpawnUnit(stage.BattleStageData.faction, stage.BattleStageData.level, stage.BattleStageData.id);
 
         SceneChanger.SceneChange("JS TEST");
         //SceneChanger.SceneChange("Battle");
     }
 
-    private List<SpawnData> SetSpawnUnit(Faction faction, int level, int id) // 다음에 받을 팩션, 레벨, 아이디 넣기
+    private void SetSpawnUnit(Faction faction, int level, int id) // 다음에 받을 팩션, 레벨, 아이디 넣기
     {
-        StageSpawnData SpawnData = tempStageCreate();
-        List<SpawnData> SpawnUnitList = new List<SpawnData>();
-
-        // 테스트용
-        List<StageUnitData> UnitDataList = GameManager.Data.StageDatas.GetStageData(SpawnData.FactionName, SpawnData.Level, SpawnData.ID).Units;
-
-        foreach(StageUnitData data in UnitDataList)
-        {
-            SpawnData sd = new SpawnData();
-            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{SpawnData.FactionName}/{data.Name}");
-            sd.location = data.Location;
-            sd.team = Team.Enemy;
-
-            SpawnUnitList.Add(sd);
-        }
-
-        return SpawnUnitList;
-    }
-
-    StageSpawnData tempStageCreate()
-    {
-        StageSpawnData data = new StageSpawnData();
-        data.FactionName = "순리의_기사단";
-        data.Level = 1;
-        data.ID = 1;
-
-        return data;
+        GameManager.Data.CurrentStageData = GameManager.Data.StageDatas.GetStageData(faction.ToString(), level, id);
     }
 }
