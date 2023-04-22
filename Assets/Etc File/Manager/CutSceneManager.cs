@@ -50,7 +50,7 @@ public class CutSceneManager : MonoBehaviour
         _field = GameManager.Battle.Field;
         CSData = new CutSceneData();
 
-        CameraHandler = GameObject.Find("Camera").GetComponent<CameraHandler>();
+        // CameraHandler = GameObject.Find("Camera").GetComponent<CameraHandler>();
     }
 
 

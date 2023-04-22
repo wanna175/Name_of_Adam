@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-struct SpawnData
+public struct SpawnData
 {
     public GameObject prefab;
+    public DeckUnit deckUnit;
     public Vector2 location;
     public Team team;
     public Passive[] stigmas;
@@ -25,6 +26,19 @@ public class UnitSpawner : MonoBehaviour
         parent = SetParent();
     }
 
+    private void SpawnTest(SpawnData spawndata, Vector2 location)
+    {
+        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+        BattleUnit bu = go.GetComponent<BattleUnit>();
+        bu.DeckUnit = spawndata.deckUnit;
+        bu.DeckUnit.SetStigma();
+
+        bu.Skill.Effects = spawndata.deckUnit.Data.Effects;
+
+        bu.Init();
+        GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
+    }
+
     private void Spawn(SpawnData spawndata, Vector2 location)
     {
         if (GameManager.Battle.Field.TileDict[location].UnitExist)
@@ -37,7 +51,7 @@ public class UnitSpawner : MonoBehaviour
             BattleUnit bu = go.GetComponent<BattleUnit>();
 
             bu.Init();
-            GameManager.Battle.UnitSetting(bu, location);
+            GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
         }
     }
 
@@ -45,16 +59,15 @@ public class UnitSpawner : MonoBehaviour
     {
         GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
         BattleUnit bu = go.GetComponent<BattleUnit>();
-
-        bu.Data = deckUnit.Data;
-        bu.ChangedStat = deckUnit.ChangedStat;
+        bu.DeckUnit = deckUnit;
+        bu.DeckUnit.SetStigma();
 
         bu.Skill.Effects = deckUnit.Data.Effects;
 
         bu.Init();
 
         BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
-        GameManager.Battle.UnitSetting(spawnedUnit, location);
+        GameManager.Battle.UnitSetting(spawnedUnit, location, Team.Player);
         return spawnedUnit;
     }
 
@@ -62,7 +75,8 @@ public class UnitSpawner : MonoBehaviour
     {
         foreach (SpawnData data in SpawnMonsters)
         {
-            Spawn(data, data.location);
+            //Spawn(data, data.location);
+            SpawnTest(data, data.location);
         }
     }
 
