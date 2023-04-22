@@ -12,6 +12,8 @@ public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
 
+    [SerializeField] private GameData _gameData;
+
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
@@ -36,9 +38,9 @@ public class DataManager : MonoBehaviour
         PlayerDeck.Remove(unit);
     }
 
-    public List<DeckUnit> GetDeck()
-    {   
-        return PlayerDeck;
+    public List<DeckUnit> GetDeck() 
+    {
+        return _gameData.DeckUnits;
     }
 
     public void SetDeck(List<DeckUnit> deck)
