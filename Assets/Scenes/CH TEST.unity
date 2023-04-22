@@ -660,7 +660,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cb086f047997f4184e70922c4424c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  u: {fileID: 1234316201}
+  u:
+    Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      Fall: 0
+      ManaCost: 0
+    stigmas: 
 --- !u!1 &790361361
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,59 +737,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1234316200
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1234316202}
-  - component: {fileID: 1234316201}
-  m_Layer: 0
-  m_Name: DECKUNIT
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1234316201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234316200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 361a693d4864cca418cc650506465e42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
-  ChangedStat:
-    HP: 5
-    CurrentHP: 0
-    ATK: 0
-    SPD: 0
-    Fall: 0
-    ManaCost: 0
-  Stigmata: []
---- !u!4 &1234316202
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234316200}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 221.72786, y: 80.27323, z: 6.644983}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1373365276
 GameObject:
@@ -930,6 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldColorType: 0
 --- !u!4 &1589663946
 Transform:
   m_ObjectHideFlags: 0
@@ -958,30 +915,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnMonsters:
-  - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
-    location: {x: 1, y: 1}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
-    location: {x: 2, y: 0}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: ebaa2a0731d9a3a4e83490780025b320, type: 3}
-    location: {x: 2, y: 1}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: f0dbda1664a1a5a4d97e2b3c3a957b1e, type: 3}
-    location: {x: 3, y: 1}
-    team: 0
-    stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
-    location: {x: 4, y: 2}
+    deckUnit:
+      Data: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        Fall: 0
+        ManaCost: 0
+      stigmas: 03000000
+    location: {x: 3, y: 2}
     team: 1
-    stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: 4778d7a3063585d478470b04a72ca01c, type: 3}
-    location: {x: 4, y: 1}
+    deckUnit:
+      Data: {fileID: 11400000, guid: 85bc66698f01ae44997f1a76b8c50137, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        Fall: 0
+        ManaCost: 0
+      stigmas: 03000000
+    location: {x: 3, y: 1}
     team: 1
-    stigmas: []
 --- !u!114 &1589663948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,12 +953,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895294e725f8774b915a1d07eb68388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
   _playerDeck: []
-  _playerHands:
-  - {fileID: 1234316201}
-  - {fileID: 1234316201}
-  - {fileID: 1234316201}
+  _playerHands: []
   UI_hands: {fileID: 0}
+  UI_PlayerSkill: {fileID: 0}
 --- !u!1 &1688846947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battle: {fileID: 1589663945}
-  _cutScene: {fileID: 49041952}
   _ui: {fileID: 20967190}
   _data: {fileID: 116503414}
   _stageMNG: {fileID: 1373365278}

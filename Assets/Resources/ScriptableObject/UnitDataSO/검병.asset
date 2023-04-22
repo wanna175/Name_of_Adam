@@ -18,8 +18,8 @@ MonoBehaviour:
     ATK: 10
     SPD: 40
     Fall: 0
-    ManaCost: 0
-  _stigma: []
+    ManaCost: 30
+  _stigma: 
   _name: "\uAC80\uBCD1"
   _description: 
   _faction: 0
