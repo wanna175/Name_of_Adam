@@ -17,7 +17,8 @@ MonoBehaviour:
     CurrentHP: 20
     ATK: 15
     SPD: 50
-    Fall: 0
+    FallCurrentCount: 0
+    FallMaxCount: 2
     ManaCost: 20
   _stigma: 
   _name: "\uAD81\uC218"

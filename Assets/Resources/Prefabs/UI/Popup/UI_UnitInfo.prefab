@@ -1412,6 +1412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _imageArea: {fileID: 2011348169921099059}
   _fallGaugePrefab: {fileID: 71125851770971500, guid: 6affe1e06d3e6074ab912f69295f1ccb, type: 3}
+  _squarePrefab: {fileID: 7046639679152195088, guid: 7d61e2dec942a4e4687234d8a927e31d, type: 3}
   _unitInfoName: {fileID: 2011348171584008466}
   _unitInfoCost: {fileID: 2011348171407921395}
   _unitInfoFallGrid: {fileID: 2011348171133323722}
@@ -1730,7 +1731,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -50, y: -125}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 175, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2011348171586248748
 CanvasRenderer:
@@ -1760,7 +1761,7 @@ MonoBehaviour:
   m_ChildAlignment: 3
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 250, y: 300}
-  m_Spacing: {x: 10, y: 0}
+  m_CellSize: {x: 10, y: 10}
+  m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2

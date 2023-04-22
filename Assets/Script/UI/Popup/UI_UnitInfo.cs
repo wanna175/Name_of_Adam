@@ -8,6 +8,7 @@ public class UI_UnitInfo : UI_Popup
 {
     [SerializeField] private Image _imageArea;
     [SerializeField] private GameObject _fallGaugePrefab;
+    [SerializeField] private GameObject _squarePrefab;
 
     [SerializeField] private TextMeshProUGUI _unitInfoName;
     [SerializeField] private TextMeshProUGUI _unitInfoCost;
@@ -49,6 +50,15 @@ public class UI_UnitInfo : UI_Popup
                 fg.Set(false);
 
             fg.Init();
+        }
+
+        foreach (bool range in _unit.Data.AttackRange)
+        {
+            Image block = GameObject.Instantiate(_squarePrefab, _unitInfoSkillRangeGrid).GetComponent<Image>();
+            if (range)
+                block.color = Color.red;
+            else
+                block.color = Color.grey;
         }
     }
 
