@@ -33,7 +33,7 @@ public class BattleUnit : DeckUnit
         _animator = GetComponent<Animator>();
         AI.SetCaster(this);
         HP.Init(Stat.HP, Stat.CurrentHP);
-        Fall.Init(Stat.Fall);
+        Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
 
         _renderer.sprite = Data.Image;
     }
