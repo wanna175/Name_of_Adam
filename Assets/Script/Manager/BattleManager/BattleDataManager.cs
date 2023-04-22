@@ -14,6 +14,8 @@ public class BattleDataManager : MonoBehaviour
         InitHands();
     }
 
+    [SerializeField] private GameData _gameData;
+
     #region Turn Count
     private UI_TurnCount _ui_turnCount;
     private int _turnCount = 0;
@@ -36,6 +38,7 @@ public class BattleDataManager : MonoBehaviour
 
     private void InitHands()
     {
+        _playerDeck = _gameData.DeckUnits.ToList<DeckUnit>();
         FillHand();
     }
 
