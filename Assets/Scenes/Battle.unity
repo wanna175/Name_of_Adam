@@ -255,6 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c557c71daccca4b8b39eef42acd45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
+  _playerDeck: []
 --- !u!1001 &382914898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -667,9 +669,10 @@ MonoBehaviour:
       CurrentHP: 0
       ATK: 0
       SPD: 0
-      Fall: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
       ManaCost: 0
-    Stigmata: []
+    stigmas: 
 --- !u!1 &790361361
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,30 +918,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnMonsters:
-  - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
-    location: {x: 1, y: 1}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
-    location: {x: 2, y: 0}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: ebaa2a0731d9a3a4e83490780025b320, type: 3}
-    location: {x: 2, y: 1}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: f0dbda1664a1a5a4d97e2b3c3a957b1e, type: 3}
-    location: {x: 3, y: 1}
-    team: 0
-    stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
+    deckUnit:
+      Data: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      stigmas: 
     location: {x: 4, y: 2}
     team: 1
-    stigmas: []
   - prefab: {fileID: 3954254994103691638, guid: 4778d7a3063585d478470b04a72ca01c, type: 3}
+    deckUnit:
+      Data: {fileID: 11400000, guid: 85bc66698f01ae44997f1a76b8c50137, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      stigmas: 
     location: {x: 4, y: 1}
     team: 1
-    stigmas: []
 --- !u!114 &1589663948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,36 +958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895294e725f8774b915a1d07eb68388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameData: {fileID: 0}
   _playerDeck: []
-  _playerHands:
-  - Data: {fileID: 0}
-    ChangedStat:
-      HP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      Fall: 0
-      ManaCost: 0
-    Stigmata: []
-  - Data: {fileID: 0}
-    ChangedStat:
-      HP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      Fall: 0
-      ManaCost: 0
-    Stigmata: []
-  - Data: {fileID: 0}
-    ChangedStat:
-      HP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      Fall: 0
-      ManaCost: 0
-    Stigmata: []
+  _playerHands: []
   UI_hands: {fileID: 0}
   UI_PlayerSkill: {fileID: 0}
 --- !u!1 &1688846947
