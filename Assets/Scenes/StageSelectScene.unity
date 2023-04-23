@@ -876,6 +876,7 @@ GameObject:
   - component: {fileID: 2044695603}
   - component: {fileID: 2044695602}
   - component: {fileID: 2044695601}
+  - component: {fileID: 2044695604}
   m_Layer: 5
   m_Name: Area_NextStageSelect
   m_TagString: Untagged
@@ -965,6 +966,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044695599}
   m_CullTransparentMesh: 1
+--- !u!114 &2044695604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044695599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7623c11e6773e44892a33434009acc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &2047149483
 GameObject:
   m_ObjectHideFlags: 0
