@@ -2,8 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleUnit : DeckUnit
+public class BattleUnit : MonoBehaviour
 {
+    public DeckUnit DeckUnit;
+    public Stat Stat => DeckUnit.Stat + ChangedStat;
+    public UnitDataSO Data => DeckUnit.Data;
+
+    [SerializeField] public Stat ChangedStat; 
+
     [SerializeField] private Team _team;
     public Team Team => _team;
 
@@ -15,7 +21,7 @@ public class BattleUnit : DeckUnit
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
-    [SerializeField] public List<Passive> Passive;
+    [SerializeField] public List<Passive> Passive => DeckUnit.Stigmata;
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -33,7 +39,7 @@ public class BattleUnit : DeckUnit
         _animator = GetComponent<Animator>();
         AI.SetCaster(this);
         HP.Init(Stat.HP, Stat.CurrentHP);
-        Fall.Init(Stat.Fall);
+        Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
 
         _renderer.sprite = Data.Image;
     }
@@ -67,7 +73,7 @@ public class BattleUnit : DeckUnit
         {
             Fall.Editfy();
         }
-        ChangedStat.CurrentHP = Stat.HP;
+        DeckUnit.ChangedStat.CurrentHP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
         Debug.Log($"{Data.name} Fall");
     }
@@ -199,21 +205,21 @@ public class BattleUnit : DeckUnit
     {
         if(type == PassiveType.BEFOREATTACKED || type == PassiveType.AFTERATTACKED || type == PassiveType.FALLED)
         {
-            for (int i = 0; i < receiver.Passive.Count; i++)
+            foreach(Passive passive in receiver.Passive)
             {
-                if (receiver.Passive[i].GetPassiveType() == type)
+                if (passive.GetPassiveType() == type)
                 {
-                    receiver.Passive[i].Use(caster, receiver);
+                    passive.Use(caster, receiver);
                 }
             }
         }
         else
         {
-            for (int i = 0; i < caster.Passive.Count; i++)
+            foreach(Passive passive in Passive)
             {
-                if (caster.Passive[i].GetPassiveType() == type)
+                if (passive.GetPassiveType() == type)
                 {
-                    caster.Passive[i].Use(caster, receiver);
+                    passive.Use(caster, receiver);
                 }
             }
         }

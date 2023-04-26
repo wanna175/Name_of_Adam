@@ -9,7 +9,8 @@ public struct Stat
     public int CurrentHP;
     public int ATK;
     public int SPD;
-    public int Fall;
+    public int FallCurrentCount;
+    public int FallMaxCount;
     public int ManaCost;
 
     public static Stat operator +(Stat lhs, Stat rhs)
@@ -19,7 +20,8 @@ public struct Stat
         result.CurrentHP = lhs.CurrentHP + rhs.CurrentHP;
         result.ATK = lhs.ATK + rhs.ATK;
         result.SPD = lhs.SPD + rhs.SPD;
-        result.Fall = lhs.Fall + rhs.Fall;
+        result.FallCurrentCount = lhs.FallCurrentCount + rhs.FallCurrentCount;
+        result.FallMaxCount = lhs.FallMaxCount + rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost + rhs.ManaCost;
 
         return result;
@@ -32,7 +34,8 @@ public struct Stat
         result.CurrentHP = lhs.CurrentHP - rhs.CurrentHP;
         result.ATK = lhs.ATK - rhs.ATK;
         result.SPD = lhs.SPD - rhs.SPD;
-        result.Fall = lhs.Fall - rhs.Fall;
+        result.FallCurrentCount = lhs.FallCurrentCount - rhs.FallCurrentCount;
+        result.FallMaxCount = lhs.FallMaxCount - rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost - rhs.ManaCost;
 
         return result;

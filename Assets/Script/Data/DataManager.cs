@@ -22,6 +22,8 @@ public class DataManager : MonoBehaviour
     public StageSpawnData CurrentStageData;
     public List<TempStageStorage> SmagaStage;
 
+    [SerializeField] private GameData _gameData;
+
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
@@ -38,6 +40,29 @@ public class DataManager : MonoBehaviour
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
 
         return JsonUtility.FromJson<T>(textAsset.text);
+    }
+
+    [SerializeField] private List<DeckUnit> _playerDeck = new();
+    public List<DeckUnit> PlayerDeck => _playerDeck;
+
+    public void AddDeckUnit(DeckUnit unit)
+    {
+        PlayerDeck.Add(unit);
+    }
+
+    public void RemoveDeckUnit(DeckUnit unit)
+    {
+        PlayerDeck.Remove(unit);
+    }
+
+    public List<DeckUnit> GetDeck() 
+    {
+        return _gameData.DeckUnits;
+    }
+
+    public void SetDeck(List<DeckUnit> deck)
+    {
+        _playerDeck = deck;
     }
 
     private int _money;
