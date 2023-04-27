@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 // 전투를 담당하는 매니저
@@ -19,6 +20,7 @@ public class BattleManager : MonoBehaviour
     public Mana Mana => _mana;
     private PhaseController _phase;
     public PhaseController Phase => _phase;
+    [SerializeField] private UI_TurnChangeButton _turnChangeButton;
 
     private Vector2 coord;
 
@@ -28,7 +30,7 @@ public class BattleManager : MonoBehaviour
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
-        _phase = new PhaseController();
+        _phase = new PhaseController();      
     }
 
     private void Update()
@@ -51,6 +53,17 @@ public class BattleManager : MonoBehaviour
     public void SpawnInitialUnit()
     {
         GetComponent<UnitSpawner>().SpawnInitialUnit();
+    }
+
+    public void ChangeButtonName()
+    {
+        Text buttonName = _turnChangeButton.GetComponentInChildren<Text>();
+        if (Phase.Current == Phase.Prepare)
+            buttonName.text = "Next Turn";
+        else if(Phase.Current == Phase.Move)
+            buttonName.text = "Move Skip";
+        else if (Phase.Current == Phase.Action)
+            buttonName.text = "Action Skip";
     }
 
     public void MovePhase()
@@ -96,10 +109,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        Field.ClearAllColor();
-        Data.BattleOrderRemove(unit);
         _phase.ChangePhase(_phase.Engage);
-        BattleOverCheck();
     }
 
     public void EngagePhase()
@@ -227,8 +237,10 @@ public class BattleManager : MonoBehaviour
     {
         if (_phase.Current == _phase.Prepare)
             _phase.ChangePhase(_phase.Engage);
+        else if (_phase.Current == _phase.Move)
+            _phase.ChangePhase(_phase.Action);
         else
-            _phase.ChangePhase(_phase.Prepare);
+            _phase.ChangePhase(_phase.Engage);
     }
 
     // 이동 경로를 받아와 이동시킨다
