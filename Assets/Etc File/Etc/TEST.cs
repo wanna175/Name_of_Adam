@@ -13,11 +13,13 @@ public class TEST : MonoBehaviour
 
     void OnMouseDown()
     {
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        /*
         Debug.Log("CLICK");
         UnitSpawner us = BattleManager.Instance.GetComponent<UnitSpawner>();
 
         //us.newSpawn(u, new Vector2(0, 0));
         us.DeckSpawn(u, new Vector2(0, 0));
-
+        */
     }
 }

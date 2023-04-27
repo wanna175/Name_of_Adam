@@ -65,8 +65,8 @@ public class BattleManager : MonoBehaviour
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
-        
-        if (fieldObject == null)    
+
+        if (fieldObject == null)
             fieldObject = GameManager.Resource.Instantiate("Field");
 
 
@@ -114,9 +114,11 @@ public class BattleManager : MonoBehaviour
                 unitList.Add(targetUnit);
 
                 if (targetUnit.Team == Team.Enemy)
+                {
                     //공격 전 낙인 체크
                     unit.SkillUse(Field.GetUnit(coord + splash));
-                    //공격 후 낙인 체크
+                    unit.PassiveCheck(unit, targetUnit, PassiveType.AFTERATTACK);
+                }
             }
 
             CutScene.BattleCutScene(unit, unitList);
@@ -183,9 +185,9 @@ public class BattleManager : MonoBehaviour
         DeckUnit unit = Data.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
-        GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
+        BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Mana.ChangeMana(-unit.Stat.ManaCost);
-        //배치 시 낙인 체크
+        spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         Data.RemoveHandUnit(unit);
         Field.ClearAllColor();
     }
@@ -205,9 +207,9 @@ public class BattleManager : MonoBehaviour
         _phase.OnClickEvent();
     }
 
-    public void UnitSetting(BattleUnit _unit, Vector2 coord)
+    public void UnitSetting(BattleUnit _unit, Vector2 coord, Team team)
     {
-        _unit.SetTeam(_unit.Team);
+        _unit.SetTeam(team);
         Field.EnterTile(_unit, coord);
         _unit.UnitDeadAction = UnitDeadAction;
 
@@ -310,5 +312,20 @@ public class BattleManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public List<BattleUnit> GetArroundUnits(List<Vector2> coords)
+    {
+        List<BattleUnit> units = new List<BattleUnit>();
+
+        foreach (Vector2 coord in coords)
+        {
+            BattleUnit targetUnit = Field.GetUnit(coord);
+            if (targetUnit == null)
+                continue;
+            units.Add(targetUnit);
+        }    
+
+        return units;
     }
 }

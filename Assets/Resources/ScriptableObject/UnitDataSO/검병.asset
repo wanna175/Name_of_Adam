@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: "\uAC80\uBCD1"
   m_EditorClassIdentifier: 
   _rawStat:
-    HP: 500
-    CurrentHP: 500
+    HP: 50
+    CurrentHP: 50
     ATK: 10
-    SPD: 50
-    Fall: 0
-    ManaCost: 0
-  _stigma: []
+    SPD: 40
+    FallCurrentCount: 0
+    FallMaxCount: 3
+    ManaCost: 30
+  _stigma: 
   _name: "\uAC80\uBCD1"
   _description: 
   _faction: 0

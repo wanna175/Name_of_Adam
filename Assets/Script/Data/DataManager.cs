@@ -1,7 +1,14 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class TempStageStorage
+{
+    public Stage[] Stages = new Stage[3];
+}
 
 public interface ILoader<Key, Value>
 {
@@ -18,15 +25,51 @@ public class DataManager : MonoBehaviour
 
     public Stage[] StageArray = new Stage[3];
 
+    public StageDataContainer StageDatas;
+    public StageSpawnData CurrentStageData;
+    public List<TempStageStorage> SmagaStage;
+
+    [SerializeField] private GameData _gameData;
+    
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
+        StageDatas = LoadJson<StageDataContainer>("StageData");
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
     {
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
+    }
+    T LoadJson<T>(string path)
+    {
+        TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
+
+        return JsonUtility.FromJson<T>(textAsset.text);
+    }
+
+    [SerializeField] private List<DeckUnit> _playerDeck = new();
+    public List<DeckUnit> PlayerDeck => _playerDeck;
+
+    public void AddDeckUnit(DeckUnit unit)
+    {
+        PlayerDeck.Add(unit);
+    }
+
+    public void RemoveDeckUnit(DeckUnit unit)
+    {
+        PlayerDeck.Remove(unit);
+    }
+
+    public List<DeckUnit> GetDeck() 
+    {
+        return _gameData.DeckUnits;
+    }
+
+    public void SetDeck(List<DeckUnit> deck)
+    {
+        _playerDeck = deck;
     }
 
     public void StageDataInit()
