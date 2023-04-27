@@ -5,6 +5,7 @@ public class PreparePhase : Phase
     public override void OnStateEnter()
     {
         _battle.Data.TurnPlus();
+        _battle.ChangeButtonName();
     }
 
     public override void OnStateUpdate()

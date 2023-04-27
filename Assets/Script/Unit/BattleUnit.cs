@@ -22,6 +22,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigmata;
+    [SerializeField] private UI_HPBar _hpBar;
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -42,6 +43,11 @@ public class BattleUnit : MonoBehaviour
         Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
 
         _renderer.sprite = Data.Image;
+    }
+
+    public void SetHPBar()
+    {
+        _hpBar.SetHPBar(Team, transform);
     }
 
     public void SetTeam(Team team)

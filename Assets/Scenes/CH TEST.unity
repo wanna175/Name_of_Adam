@@ -255,6 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c557c71daccca4b8b39eef42acd45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameData: {fileID: 0}
+  _playerDeck: []
 --- !u!1001 &382914898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -265,6 +267,10 @@ PrefabInstance:
     - target: {fileID: 963727030562007701, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
       propertyPath: m_Name
       value: UI_TurnChangeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 963727030562007701, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 963727030562007705, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
       propertyPath: m_Pivot.x
@@ -667,7 +673,8 @@ MonoBehaviour:
       CurrentHP: 0
       ATK: 0
       SPD: 0
-      Fall: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
       ManaCost: 0
     stigmas: 
 --- !u!1 &790361361
@@ -886,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _turnChangeButton: {fileID: 2117723700}
   fieldColorType: 0
 --- !u!4 &1589663946
 Transform:
@@ -923,7 +931,8 @@ MonoBehaviour:
         CurrentHP: 0
         ATK: 0
         SPD: 0
-        Fall: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
         ManaCost: 0
       stigmas: 03000000
     location: {x: 3, y: 2}
@@ -936,7 +945,8 @@ MonoBehaviour:
         CurrentHP: 0
         ATK: 0
         SPD: 0
-        Fall: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
         ManaCost: 0
       stigmas: 03000000
     location: {x: 3, y: 1}
@@ -953,7 +963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895294e725f8774b915a1d07eb68388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
   _playerDeck: []
   _playerHands: []
   UI_hands: {fileID: 0}
@@ -1180,3 +1189,75 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 963727030562007705, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
   m_PrefabInstance: {fileID: 382914898}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2117723700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8767890975757157279, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
+  m_PrefabInstance: {fileID: 382914898}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b14f979ed20e9e4b92c32b82ebfc1a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &8651148051788872275
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_Name
+      value: BattleUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5f985903313e834580fc378803a516b, type: 3}
