@@ -17,8 +17,6 @@ public struct SpawnData
 // 데이터 -> 필드 생성
 public class UnitSpawner : MonoBehaviour
 {
-    [SerializeField] List<SpawnData> SpawnMonsters;
-
     private Transform parent;
 
     private void Awake()
@@ -49,6 +47,10 @@ public class UnitSpawner : MonoBehaviour
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
             BattleUnit bu = go.GetComponent<BattleUnit>();
+            bu.DeckUnit = spawndata.deckUnit;
+
+            bu.DeckUnit.SetStigma();
+            bu.Skill.Effects = spawndata.deckUnit.Data.Effects;
 
             bu.Init();
             GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
@@ -83,10 +85,12 @@ public class UnitSpawner : MonoBehaviour
             sd.location = data.Location;
             sd.team = Team.Enemy;
 
+            //sd.deckUnit.Data = sd.prefab.GetComponent<>
+
             Spawn(sd, data.Location);
 
             //Spawn(data, data.location);
-            SpawnTest(data, data.location);
+            //SpawnTest(data, data.Location);
         }
         //foreach (SpawnData data in SpawnMonsters)
         //{
