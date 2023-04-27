@@ -8,6 +8,7 @@ public class UI_HPBar : UI_Base
     [SerializeField] private Image _background;
     [SerializeField] private Image _playerBar;
     [SerializeField] private Image _enemyBar;
+    private Team team;
 
     public void SetHPBar(Team team, Transform trans)
     {
@@ -16,8 +17,14 @@ public class UI_HPBar : UI_Base
         else
             _enemyBar.gameObject.SetActive(true);
 
-        Vector3 vector = Camera.main.WorldToScreenPoint(trans.position);
-        Debug.Log(vector);
-        _background.transform.position = vector;
+        this.team = team;
+    }
+
+    public void RefreshBar(float amount)
+    {
+        if (team == Team.Player)
+            _playerBar.fillAmount = amount;
+        else
+            _enemyBar.fillAmount = amount;
     }
 }

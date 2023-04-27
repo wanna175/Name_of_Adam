@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c557c71daccca4b8b39eef42acd45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameData: {fileID: 0}
+  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
   _playerDeck: []
 --- !u!1001 &382914898
 PrefabInstance:

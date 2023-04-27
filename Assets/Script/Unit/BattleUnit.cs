@@ -56,6 +56,7 @@ public class BattleUnit : MonoBehaviour
 
         // 적군일 경우 x축 뒤집기
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
+        SetHPBar();
     }
 
     public void SetLocate(Vector2 coord) {
@@ -125,6 +126,7 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeHP(int value) {
         HP.ChangeHP(value);
+        _hpBar.RefreshBar(HP.FillAmount());
     }
 
     public void ChangeFall(int value)
