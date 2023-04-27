@@ -119,6 +119,10 @@ PrefabInstance:
       propertyPath: _location.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: DeckUnit.Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
     - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_Name
       value: "\uAC80\uBCD1"

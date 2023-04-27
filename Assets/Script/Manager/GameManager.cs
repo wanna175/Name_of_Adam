@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // 디버그용 입력기
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            //  SceneChanger.SceneChange("StageSelectScene");
+            SceneChanger.SceneChange("StageSelectScene");
         }
     }
 }

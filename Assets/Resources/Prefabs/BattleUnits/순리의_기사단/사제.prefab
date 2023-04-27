@@ -99,9 +99,13 @@ PrefabInstance:
       propertyPath: skill
       value: 
       objectReference: {fileID: 11400000, guid: 2bf249cb224e9ac498ca25f6957035ca, type: 2}
+    - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: DeckUnit.Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f23ffda944dd0749b1bb9db306d1daf, type: 2}
     - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_Name
-      value: "\uC0AC\uC81C BattleUnit"
+      value: "\uC0AC\uC81C"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f985903313e834580fc378803a516b, type: 3}

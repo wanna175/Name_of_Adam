@@ -19,9 +19,20 @@ public class UnitSpawner : MonoBehaviour
 {
     private Transform parent;
 
+    // 디버그용
+    [SerializeField] List<SpawnData> AnimTest;
+    // 디버그용
+
     private void Awake()
     {
         parent = SetParent();
+    }
+    private void Start()
+    {
+        // 디버그용
+        foreach (SpawnData data in AnimTest)
+            InitSpawn(data);
+        // 디버그용
     }
 
     private void SpawnTest(SpawnData spawndata, Vector2 location)
@@ -37,9 +48,9 @@ public class UnitSpawner : MonoBehaviour
         GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
     }
 
-    private void Spawn(SpawnData spawndata, Vector2 location)
+    private void InitSpawn(SpawnData spawndata)
     {
-        if (GameManager.Battle.Field.TileDict[location].UnitExist)
+        if (GameManager.Battle.Field.TileDict[spawndata.location].UnitExist)
         {
             Debug.Log("해당 타일에 유닛이 존재합니다.");
         }
@@ -47,13 +58,9 @@ public class UnitSpawner : MonoBehaviour
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
             BattleUnit bu = go.GetComponent<BattleUnit>();
-            bu.DeckUnit = spawndata.deckUnit;
-
-            bu.DeckUnit.SetStigma();
-            bu.Skill.Effects = spawndata.deckUnit.Data.Effects;
-
+            
             bu.Init();
-            GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
+            GameManager.Battle.UnitSetting(bu, spawndata.location, Team.Enemy);
         }
     }
 
@@ -85,9 +92,9 @@ public class UnitSpawner : MonoBehaviour
             sd.location = data.Location;
             sd.team = Team.Enemy;
 
-            //sd.deckUnit.Data = sd.prefab.GetComponent<>
+            //sd.deckUnit.Data = sd.prefab.GetComponent<BattleUnit>()
 
-            Spawn(sd, data.Location);
+            InitSpawn(sd);
 
             //Spawn(data, data.location);
             //SpawnTest(data, data.Location);
