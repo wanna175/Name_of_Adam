@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
 // 필드에 올라와있는 캐릭터의 제어를 배틀매니저에서 담당
@@ -167,8 +166,10 @@ public class BattleManager : MonoBehaviour
     {
         if (Field._coloredTile.Contains(coord) == false)
             return;
+        Mana.ChangeMana(-20);
         Field.GetUnit(coord).Fall.ChangeFall(1);
         _battleData.UI_PlayerSkill.CancleSelect();
+        _battleData.UI_PlayerSkill.Used = true;
         Field.ClearAllColor();
     }
 
