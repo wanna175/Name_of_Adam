@@ -6,6 +6,7 @@ public class PreparePhase : Phase
     {
         _battle.Data.TurnPlus();
         _battle.Data.UI_PlayerSkill.Used = false;
+        _battle.ChangeButtonName();
     }
 
     public override void OnStateUpdate()
