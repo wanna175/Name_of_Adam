@@ -120,13 +120,12 @@ public class Field : MonoBehaviour
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
-    private Vector3 GetTilePosition(Vector2 coord)
+    public Vector3 GetTilePosition(Vector2 coord)
     {
         Vector3 position = TileDict[coord].transform.position;
 
         float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
         float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
-        sizeY += TileDict[coord].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
 
         position.x += sizeX;
         position.y += sizeY;
@@ -233,9 +232,9 @@ public class Field : MonoBehaviour
         Vector2 coord = FindCoordByTile(tile);
         if (_coloredTile.Contains(coord))
         {
-            if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+            if (BattleManager.Phase.Current == BattleManager.Phase.Action)
             {
-                List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord, GameManager.Battle.Data.GetNowUnit().Location);
+                List<Vector2> range = BattleManager.Data.GetNowUnit().GetSplashRange(coord, BattleManager.Data.GetNowUnit().Location);
                 foreach (Vector2 vec in range)
                 {
                     TileDict[coord + vec].SetColor(Color.green);
@@ -246,9 +245,9 @@ public class Field : MonoBehaviour
 
     public void MouseExitTile(Tile tile)
     {
-        if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+        if (BattleManager.Phase.Current == BattleManager.Phase.Action)
         {
-            SetTileColor(GameManager.Battle.Data.GetNowUnit(), ClickType.Attack);
+            SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
         }
     }
 }

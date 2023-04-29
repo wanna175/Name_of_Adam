@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3210379171205965175, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dc2a159a8e4e70147a0502d4ff463850, type: 2}
     - target: {fileID: 4481877192685339916, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_FlipX
       value: 1
@@ -90,10 +94,10 @@ PrefabInstance:
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: Data
       value: 
-      objectReference: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
+      objectReference: {fileID: 11400000, guid: 3f23ffda944dd0749b1bb9db306d1daf, type: 2}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: _team
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: skill
@@ -102,10 +106,10 @@ PrefabInstance:
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: DeckUnit.Data
       value: 
-      objectReference: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
+      objectReference: {fileID: 11400000, guid: 3f23ffda944dd0749b1bb9db306d1daf, type: 2}
     - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_Name
-      value: "\uC5EC\uB3D9\uC0DD"
+      value: "\uC0AC\uC81C"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f985903313e834580fc378803a516b, type: 3}

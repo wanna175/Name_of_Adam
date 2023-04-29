@@ -52,7 +52,8 @@ public enum Team
 [SerializeField]
 public enum Faction
 {
-    날개의_기사단,
+    순리의_기사단,
+    짐승,
     바벨,
 }
 
@@ -76,10 +77,10 @@ public enum Rarity
 }
 
 [SerializeField]
-public enum TargetType
+public enum CutSceneMoveType
 {
-    Select,
-    Range,
+    stand,
+    tracking
 }
 
 public enum ClickType

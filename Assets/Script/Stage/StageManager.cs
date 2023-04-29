@@ -5,17 +5,21 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     StageChanger _stageChanger;
-    // 진행할 스테이지의 타입 리스트
-    List<string> MapList = new List<string>();
+
+    // 기존 시스템
+    //// 진행할 스테이지의 타입 리스트
+    List<MapSign> MapList;
     // 스테이지 정보의 컨테이너
-    List<Stage> StageInfo = new List<Stage>();
-    // 맵의 막바지에 사용할 상점을 위한 리스트
-    List<Stage> StoreList;
+    List<Stage> StageInfo;
+
+    // 현재 레벨에서 담고있는 스테이지의 정보
+    List<Stage> LocalStageInfo;
 
 
     // 선택할 수 있는 다음 스테이지와 그 다음 표시되는 스테이지의 배열
     Stage[] StageArray = new Stage[3];
-    Stage[] NextStageArray = new Stage[5];
+    Stage[] NextStageArray = new Stage[3]; // 스마게용
+    //Stage[] NextStageArray = new Stage[5];
     
     public Stage[] GetStageArray => StageArray;
     public Stage[] GetNextStageArray => NextStageArray;
@@ -23,29 +27,39 @@ public class StageManager : MonoBehaviour
     // 인스펙터에서 스테이지 정보를 받기 위해 만든 테스트용 리스트
     // StageManger를 생성하고 인스펙터에서 받아오는 식
     [SerializeField] public List<TestContainer> StageInfoContainer;
-    
-    // 현재 레벨에서 담고있는 스테이지의 정보
-    List<Stage> LocalStageInfo;
 
 
-    private void Start()
+    private void Awake()
     {
         _stageChanger = new StageChanger();
 
+        // 기존 시스템
+        StageInfo = GameManager.Data.StageInfo;
+        LocalStageInfo = GameManager.Data.LocalStageInfo;
+        MapList = GameManager.Data.MapList;
+        StageArray = GameManager.Data.StageArray;
+
+        if (GameManager.Data.StageInfo.Count == 0)
+        {
+            GetStageInfo();
+            InitStage();
+        }
+
         GetStageInfo();
         InitStage();
+
+        SetNextArray();
     }
-    
+
     // 데이터 컨테이너에서 스테이지의 정보를 받아오는 메서드
     void GetStageInfo()
     {
         StageInfo = new List<Stage>();
-
-        // 인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
+         //인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
         foreach (TestContainer test in StageInfoContainer)
         {
             Stage st = new Stage(test.Name, test.Type, test.MaxCount, test.MaxAppear, test.Background);
-            
+
             StageInfo.Add(st);
         }
     }
@@ -53,15 +67,17 @@ public class StageManager : MonoBehaviour
     // 스테이지의 최초 생성
     void InitStage()
     {
+        /* 기존 시스템
         MapList = new List<string>();
         LocalStageInfo = new List<Stage>();
 
         SetStageData();
         SetMapList();
-
         // 다음 선택지를 모두 전투로 설정한다.
         for(int i = 0; i < StageArray.Length; i++)
             StageArray[i] = SetRandomFaction(MapList[0]);
+        */
+        SetRandomBattle(ref StageArray, GameManager.Data.SmagaStage[0].Stages); // 스마게용
         SetNextArray();
     }
 
@@ -86,22 +102,22 @@ public class StageManager : MonoBehaviour
     // 정해진 순서대로 MapList를 초기화
     void SetMapList()
     {
-        for(int i =0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (i == 2)
-                MapList.Add("EliteBattle");
+                MapList.Add(MapSign.EliteBattle);
             else
-                MapList.Add("CommonBattle");
+                MapList.Add(MapSign.CommonBattle);
 
 
             if (i <= 2)
-                MapList.Add("Random");
+                MapList.Add(MapSign.Random);
             else
-                MapList.Add("Store");
+                MapList.Add(MapSign.Store);
 
 
             if (i % 2 == 0)
-                MapList.Add("Random");
+                MapList.Add(MapSign.Random);
         }
     }
 
@@ -109,6 +125,16 @@ public class StageManager : MonoBehaviour
     // NextStageArray를 요구하는 타입에 맞게 스테이지를 배치
     void SetNextArray()
     {
+        if (GameManager.Data.SmagaStage.Count > 1)
+            SetRandomBattle(ref NextStageArray, GameManager.Data.SmagaStage[1].Stages); // 스마게용
+        else
+        {
+            NextStageArray = new Stage[3];
+            for (int i = 0; i < 3; i++)
+                NextStageArray[i] = new Stage(StageName.none, StageType.Store, 0, 0, null);
+        }
+
+        /* 기존 시스템(스마게용에서 필요 x)
         // 맵의 절반을 통과했으면, 엘리트 전투를 제외한 모든 스테이지의 횟수 초기화
         if (MapList.Count == 5)
             SetStageData();
@@ -119,7 +145,7 @@ public class StageManager : MonoBehaviour
 
             for (int i = 0; i < NextStageArray.Length; i++)
             {
-                if (MapList[1] == "Store")
+                if (MapList[1] == MapSign.Store)
                 {
                     int index = 0;
                     
@@ -137,7 +163,7 @@ public class StageManager : MonoBehaviour
 
                     break;
                 }
-                else if (MapList[1] == "Random")
+                else if (MapList[1] == MapSign.Random)
                     NextStageArray[i] = GetRandomStage(i);
                 else
                     NextStageArray[i] = SetRandomFaction(MapList[1]);
@@ -163,6 +189,7 @@ public class StageManager : MonoBehaviour
                 StageArray[1] = BossStage;
             }
         }
+        */
     }
 
     Stage GetRandomStage(int index)
@@ -171,7 +198,7 @@ public class StageManager : MonoBehaviour
         List<StageName> PassName = new List<StageName>();
 
         // 가져올 수 있는 스테이지가 나올 때까지 스테이지 확인
-        while(true)
+        while (true)
         {
             // 등장할 수 있는 모든 스테이지 수의 합
             int randCount = 0;
@@ -242,13 +269,13 @@ public class StageManager : MonoBehaviour
                 return st;
             }
         }
-        
+
         return null;
     }
 
     void NowAppearClear()
     {
-        foreach(Stage st in LocalStageInfo)
+        foreach (Stage st in LocalStageInfo)
         {
             st.AppearClear();
         }
@@ -260,6 +287,8 @@ public class StageManager : MonoBehaviour
         // 스테이지 이동
         _stageChanger.SetNextStage(StageArray[index]);
 
+
+        /* 기존 시스템, 스마게용에선 사용 안됨
         if (MapList.Count <= 0)
         {
             // 모든 스테이지 소모
@@ -271,7 +300,7 @@ public class StageManager : MonoBehaviour
         // 선택하지 않은 스테이지를 반환
         for (int i = 0; i < StageArray.Length; i++)
         {
-            if (StageArray[i] != null && MapList[0] == "Random")
+            if (StageArray[i] != null && MapList[0] == MapSign.Random)
             {
                 if (i != index)
                     GetStageByName(StageArray[i].Name).RecallCount();
@@ -284,17 +313,22 @@ public class StageManager : MonoBehaviour
             if (MapList.Count <= 1)
                 break;
 
-            if (MapList[1] != "Random")
+            if (MapList[1] != MapSign.Random)
                 break;
 
             if (NextStageArray[i] == null)
                 continue;
 
-            if(i < index || index + 2 < i)
+            if (i < index || index + 2 < i)
+            {
                 GetStageByName(NextStageArray[i].Name).RecallCount();
+            }
         }
+        */
+        StageArray = (Stage[])NextStageArray.Clone(); // 스마게용
+        GameManager.Data.SmagaStage.RemoveAt(0); // 스마게용
 
-        MapList.RemoveAt(0);
+        //MapList.RemoveAt(0); 기존 시스템
         SetNextArray();
     }
 
@@ -303,20 +337,30 @@ public class StageManager : MonoBehaviour
         return LocalStageInfo.Find(x => x.Name == name);
     }
 
-    Stage SetRandomFaction(string Name)
+    Stage SetRandomFaction(MapSign sign)
     {
-        StageName _name = (StageName)Enum.Parse(typeof(StageName), Name);
+        StageName _name = (StageName)Enum.Parse(typeof(StageName), sign.ToString());
         Stage st = LocalStageInfo.Find(x => x.Name == _name);
         st.SetBattleFaction();
 
         return st.Clone();
     }
 
-
-    // 디버그용 입력 이벤트
-    private void Update()
+    // 스마게용 임시 매서드
+    void SetRandomBattle(ref Stage[] inputArr, Stage[] stageData)
     {
-        if (Input.GetKeyDown(KeyCode.O))
-            SceneChanger.SceneChange("StageSelectScene");
+        inputArr = stageData;
+        for(int i = 0; i < 3; i++)
+        {
+            if (inputArr[i].GetStageType() == StageType.Battle)
+            {
+                int rand = UnityEngine.Random.Range(0, inputArr[i].BattleRandomStage.Length);
+
+                inputArr[i].BattleStageData = inputArr[i].BattleRandomStage[rand];
+
+                string name = inputArr[i].BattleStageData.faction.ToString();
+                inputArr[i].Background = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/" + name);
+            }
+        }
     }
 }
