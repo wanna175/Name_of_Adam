@@ -9,6 +9,8 @@ public class UI_PlayerSkill : UI_Scene
     private UI_PlayerSkillCard _selectedCard = null;
     private BattleManager _battle;
 
+    public bool Used = false;// once per turn
+
     private void Awake()
     {
         _battle = GameManager.Battle;
@@ -26,11 +28,19 @@ public class UI_PlayerSkill : UI_Scene
 
     public void OnClickHand(UI_PlayerSkillCard card)
     {
-        Debug.Log("Hand Click");
-        if (card != null && card == _selectedCard)
-            CancleSelect();
+        if (!Used && _battle.Mana.CanUseMana(20))
+        {
+            if (card != null && card == _selectedCard)
+                CancleSelect();
+            else
+                SelectCard(card);
+        }
         else
-            SelectCard(card);
+        {
+            Debug.Log("Can't");
+        }
+
+
     }
 
     public void CancleSelect()

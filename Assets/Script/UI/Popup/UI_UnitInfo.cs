@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class UI_UnitInfo : UI_Popup
 {
     [SerializeField] private Image _imageArea;
+    [SerializeField] private GameObject _selectButton;
     [SerializeField] private GameObject _fallGaugePrefab;
     [SerializeField] private GameObject _squarePrefab;
 
@@ -21,15 +23,15 @@ public class UI_UnitInfo : UI_Popup
 
     private DeckUnit _unit;
 
-    private List<UI_Card> _cardList = new List<UI_Card>();
-
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
     }
 
-    public void init() 
+    public void Init(bool select)
     {
+        _selectButton.SetActive(select);
+
         _imageArea.sprite = _unit.Data.Image;
 
         _unitInfoName.text = _unit.Data.Name.ToString();
@@ -65,5 +67,15 @@ public class UI_UnitInfo : UI_Popup
     public void Quit()
     {
         GameManager.UI.ClosePopup();
+    }
+
+    public UnityEvent onSelect;
+
+    public DeckUnit Select()
+    {
+        GameManager.UI.ClosePopup();
+
+        onSelect.Invoke();
+        return _unit;
     }
 }
