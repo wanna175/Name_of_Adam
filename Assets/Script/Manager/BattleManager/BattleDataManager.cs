@@ -7,10 +7,17 @@ public class BattleDataManager : MonoBehaviour
 {
     private void Start()
     {
+        UI_ControlBar UI_Control = GameManager.UI.ShowScene<UI_ControlBar>();
+        GameManager.UI.ShowScene<UI_OptionButton>();
+
         _ui_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
-        UI_hands = GameManager.UI.ShowScene<UI_Hands>();
-        UI_PlayerSkill = GameManager.UI.ShowScene<UI_PlayerSkill>();
+
+        UI_hands = UI_Control.UI_Hands;
+        UI_PlayerSkill = UI_Control.UI_PlayerSkill;
+        UI_DarkEssence = UI_Control.UI_DarkEssence;
+        UI_ManaGauge = UI_Control.UI_ManaGauge;
+
         Init();
     }
 
@@ -31,8 +38,11 @@ public class BattleDataManager : MonoBehaviour
     [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
     public List<DeckUnit> PlayerHands => _playerHands;
     private int _maxHandCount = 3;
+
     public UI_Hands UI_hands;
     public UI_PlayerSkill UI_PlayerSkill;
+    public UI_DarkEssence UI_DarkEssence;
+    public UI_ManaGauge UI_ManaGauge;
 
     private void Init()
     {

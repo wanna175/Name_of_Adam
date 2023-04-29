@@ -65,7 +65,7 @@ public class DataManager : MonoBehaviour
     }
 
     private int _darkEssense = 4;
-    private int DarkEssense => _darkEssense;
+    public int DarkEssense => _darkEssense;
 
     public bool DarkEssenseChage(int cost)
     {
