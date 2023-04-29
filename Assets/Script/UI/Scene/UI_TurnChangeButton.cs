@@ -20,7 +20,7 @@ public class UI_TurnChangeButton : UI_Scene
 
     public void TurnChange()
     {
-        PhaseController _phase = GameManager.Battle.Phase;
+        PhaseController _phase = BattleManager.Phase;
 
         if (_phase.Current == _phase.Prepare)
             _phase.ChangePhase(_phase.Engage);
