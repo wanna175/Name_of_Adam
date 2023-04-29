@@ -14,8 +14,9 @@ public class MainSceneController : MonoBehaviour
 
     public void OptionButton()
     {
-        GameObject go = Resources.Load<GameObject>("Prefabs/UI/OptionBox");
-        GameObject.Instantiate(go, Canvas.transform);
+        UI_Option go = GameManager.UI.ShowPopup<UI_Option>();
+        //GameObject go = Resources.Load<GameObject>("Prefabs/UI/Popup/UI_Option");
+        //GameObject.Instantiate(go, Canvas.transform);
     }
 
     public void ExitButton()

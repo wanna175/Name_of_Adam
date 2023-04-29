@@ -1,11 +1,11 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
-public class Option : UI_Popup
+public class UI_Option : UI_Popup
 {
     [SerializeField] AudioMixer MasterMixer;
 
@@ -42,5 +42,5 @@ public class Option : UI_Popup
     private void SetScreen() => Screen.SetResolution(ScreenX, ScreenY, isWindow);
 
 
-    public void QuitOption() => Destroy(gameObject);
+    public void QuitOption() => GameManager.UI.ClosePopup();
 }
