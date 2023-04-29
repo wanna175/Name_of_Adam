@@ -5,7 +5,9 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     StageChanger _stageChanger;
-    // 진행할 스테이지의 타입 리스트
+
+    // 기존 시스템
+    //// 진행할 스테이지의 타입 리스트
     List<MapSign> MapList;
     // 스테이지 정보의 컨테이너
     List<Stage> StageInfo;
@@ -31,6 +33,7 @@ public class StageManager : MonoBehaviour
     {
         _stageChanger = new StageChanger();
 
+        // 기존 시스템
         StageInfo = GameManager.Data.StageInfo;
         LocalStageInfo = GameManager.Data.LocalStageInfo;
         MapList = GameManager.Data.MapList;
@@ -42,17 +45,21 @@ public class StageManager : MonoBehaviour
             InitStage();
         }
 
+        GetStageInfo();
+        InitStage();
+
         SetNextArray();
     }
 
     // 데이터 컨테이너에서 스테이지의 정보를 받아오는 메서드
     void GetStageInfo()
     {
-        // 인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
+        StageInfo = new List<Stage>();
+         //인스펙터에서 데이터를 받아서 StageInfoList에 넣는다.
         foreach (TestContainer test in StageInfoContainer)
         {
             Stage st = new Stage(test.Name, test.Type, test.MaxCount, test.MaxAppear, test.Background);
-            
+
             StageInfo.Add(st);
         }
     }
@@ -95,7 +102,7 @@ public class StageManager : MonoBehaviour
     // 정해진 순서대로 MapList를 초기화
     void SetMapList()
     {
-        for(int i =0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (i == 2)
                 MapList.Add(MapSign.EliteBattle);
@@ -191,7 +198,7 @@ public class StageManager : MonoBehaviour
         List<StageName> PassName = new List<StageName>();
 
         // 가져올 수 있는 스테이지가 나올 때까지 스테이지 확인
-        while(true)
+        while (true)
         {
             // 등장할 수 있는 모든 스테이지 수의 합
             int randCount = 0;
@@ -268,7 +275,7 @@ public class StageManager : MonoBehaviour
 
     void NowAppearClear()
     {
-        foreach(Stage st in LocalStageInfo)
+        foreach (Stage st in LocalStageInfo)
         {
             st.AppearClear();
         }

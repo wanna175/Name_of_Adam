@@ -16,10 +16,10 @@ public class UnitData : MonoBehaviour
     public Faction Faction;
     public Rarity Rarity;
     public Sprite Image;
+    public AnimType AnimType;
     public int DarkEssenseDrop;
     public int DarkEssenseCost;
     public BehaviorType BehaviorType;
-    public TargetType TargetType;
     public UnitSkill UnitSkill;
 
     const int Arow = 5;

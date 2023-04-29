@@ -37,6 +37,7 @@ public class BattleDataManager : MonoBehaviour
     private void Init()
     {
         _playerDeck = GameManager.Data.GetDeck().ToList<DeckUnit>();
+        Debug.Log(_playerDeck.Count);
         FillHand();
     }
 

@@ -229,5 +229,8 @@ public class BattleUnit : MonoBehaviour
         
     }
 
-
+    public void AnimAttack()
+    {
+        StartCoroutine(BattleManager.Instance.UnitAttack());
+    }
 }

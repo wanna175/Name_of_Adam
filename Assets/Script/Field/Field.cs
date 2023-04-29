@@ -120,13 +120,12 @@ public class Field : MonoBehaviour
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
-    private Vector3 GetTilePosition(Vector2 coord)
+    public Vector3 GetTilePosition(Vector2 coord)
     {
         Vector3 position = TileDict[coord].transform.position;
 
         float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
         float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
-        sizeY += TileDict[coord].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
 
         position.x += sizeX;
         position.y += sizeY;

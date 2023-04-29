@@ -14,8 +14,8 @@ public class BattleManager : MonoBehaviour
     private static BattleManager s_instance;
     public static BattleManager Instance { get { Init(); return s_instance; } }
 
-    [SerializeField] CutSceneManager _cutScene;
-    public static CutSceneManager CutScene => Instance._cutScene;
+    [SerializeField] CutSceneController _cutScene;
+    public static CutSceneController CutScene => Instance._cutScene;
 
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
@@ -29,6 +29,7 @@ public class BattleManager : MonoBehaviour
     private PhaseController _phase;
     public static PhaseController Phase => Instance._phase;
 
+    private List<BattleUnit> hitUnits;
     private Vector2 coord;
 
     public FieldColorType fieldColorType = FieldColorType.none;
@@ -112,23 +113,10 @@ public class BattleManager : MonoBehaviour
                     continue;
 
                 unitList.Add(targetUnit);
-
-                if (targetUnit.Team == Team.Enemy)
-                {
-                    //공격 전 낙인 체크
-                    unit.SkillUse(Field.GetUnit(coord + splash));
-                    unit.PassiveCheck(unit, targetUnit, PassiveType.AFTERATTACK);
-                }
             }
-
-            CutScene.BattleCutScene(unit, unitList);
-            // 딜레이를 어떻게 줄까?
+            
+            AttackStart(unit, unitList);
         }
-
-        Field.ClearAllColor();
-        Data.BattleOrderRemove(unit);
-        _phase.ChangePhase(_phase.Engage);
-        BattleOverCheck();
     }
 
     public void EngagePhase()
@@ -145,8 +133,6 @@ public class BattleManager : MonoBehaviour
         if (unit.Team == Team.Enemy)
         {
             unit.AI.AIAction();
-
-            Data.BattleOrderRemove(unit);
             BattleOverCheck();
 
             return;
@@ -214,6 +200,55 @@ public class BattleManager : MonoBehaviour
         _unit.UnitDeadAction = UnitDeadAction;
 
         Data.BattleUnitAdd(_unit);
+    }
+
+    public IEnumerator UnitAttack()
+    {
+        UnitAttackAction();
+        yield return StartCoroutine(CutScene.AfterAttack());
+        
+        EndAttackAction();
+    }
+
+    public void AttackStart(BattleUnit caster, BattleUnit hit)
+    {
+        List<BattleUnit> hits = new List<BattleUnit>();
+        hits.Add(hit);
+
+        hitUnits = hits;
+        CutScene.BattleCutScene(caster, hitUnits);
+    }
+    public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
+    {
+        hitUnits = hits;
+        CutScene.BattleCutScene(caster, hitUnits);
+    }
+
+    // 애니메이션용 추가
+    private void UnitAttackAction()
+    {
+        BattleUnit unit = Data.GetNowUnit();
+        
+        foreach (BattleUnit hit in hitUnits)
+        {
+            if (hit == null)
+                continue;
+
+            if (hit.Team == Team.Enemy)
+            {
+                //공격 전 낙인 체크
+                unit.SkillUse(hit);
+                unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
+            }
+        }
+    }
+
+    private void EndAttackAction()
+    {
+        Field.ClearAllColor();
+        Data.BattleOrderRemove(Data.GetNowUnit());
+        _phase.ChangePhase(_phase.Engage);
+        BattleOverCheck();
     }
 
     private void UnitDeadAction(BattleUnit _unit)

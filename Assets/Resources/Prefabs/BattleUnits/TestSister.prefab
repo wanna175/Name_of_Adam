@@ -122,21 +122,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ab44a989e60ad4184ec9a57b1c1ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 6960c2ded380e784e97899fe52911a5d, type: 2}
+  DeckUnit:
+    Data: {fileID: 11400000, guid: 6960c2ded380e784e97899fe52911a5d, type: 2}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    stigmas: 
   ChangedStat:
     HP: 0
     CurrentHP: 0
     ATK: 0
     SPD: 0
-    Fall: 0
+    FallCurrentCount: 0
+    FallMaxCount: 0
     ManaCost: 0
-  Stigmata: []
   _team: 0
   AI: {fileID: 3409826897388437932}
   HP: {fileID: 1025712241329387021}
   Fall: {fileID: 6245387706574793925}
   Skill: {fileID: 1025712241329387020}
-  Passive: []
   _location: {x: 0, y: 0}
 --- !u!114 &1025712241329387021
 MonoBehaviour:
@@ -179,8 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ad945295d96d340b86be927bc3a3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxCount: 0
-  _currentCount: 0
   UnitFallEvent:
     m_PersistentCalls:
       m_Calls:

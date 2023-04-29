@@ -18,6 +18,7 @@ public interface ILoader<Key, Value>
 public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
+    
     private List<Stage> _stageInfo;
     public List<Stage> StageInfo { get { StageDataInit(); return _stageInfo; } set { _stageInfo = value; } }
     public List<Stage> LocalStageInfo;
@@ -71,7 +72,7 @@ public class DataManager : MonoBehaviour
     {
         _playerDeck = deck;
     }
-
+    
     public void StageDataInit()
     {
         if (_stageInfo == null)

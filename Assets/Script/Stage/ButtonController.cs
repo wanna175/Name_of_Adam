@@ -56,26 +56,26 @@ public class ButtonController : MonoBehaviour
         for (int i = 0; i < StageButtons.Length; i++)
         {
             // string StageText = (_stageMNG.GetStageArray[i] != null) ? _stageMNG.GetStageArray[i].Name.ToString() : ""; // 기존 시스템
-            string StageText = (_stageMNG.GetStageArray[i].Name != StageName.none) ? _stageMNG.GetStageArray[i].Name.ToString() : ""; // 스마게용
+            string StageText = (StageMNG.GetStageArray[i].Name != StageName.none) ? StageMNG.GetStageArray[i].Name.ToString() : ""; // 스마게용
 
-            StageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
+            StageButtons[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().
                 text = StageText;
 
             // if (_stageMNG.GetStageArray[i] == null)
-            if (_stageMNG.GetStageArray[i].Name == StageName.none) // 스마게용
+            if (StageMNG.GetStageArray[i].Name == StageName.none) // 스마게용
                 StageButtons[i].GetComponent<Image>().color = Color.clear;
             else
-                StageButtons[i].GetComponent<Image>().sprite = StageMNG.GetStageArray[i].Background;
+                StageButtons[i].transform.GetChild(0).GetComponent<Image>().sprite = StageMNG.GetStageArray[i].Background;
         }
 
         // 스마게 제출용 스테이지를 위한 시스템
         for (int i = 0; i < NextStageButtons.Length; i++)
         {
-            Stage nextStage = _stageMNG.GetNextStageArray[i];
+            Stage nextStage = StageMNG.GetNextStageArray[i];
             //string StageText = (nextStage != null) ? nextStage.Name.ToString() : ""; 기존 시스템
             string StageText = (nextStage.Name != StageName.none) ? nextStage.Name.ToString() : ""; // 스마게용
 
-            NextStageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
+            NextStageButtons[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().
                 text = StageText;
 
             //if (nextStage == null) 기존 시스템
@@ -150,14 +150,14 @@ public class ButtonController : MonoBehaviour
     {
         int index = GetIndex(FocusObject);
 
-        //if (_stageMNG.GetStageArray[index] != null) 기존 시스템
-        if (_stageMNG.GetStageArray[index].Name != StageName.none)
+        //if (StageMNG.GetStageArray[index] != null) 기존 시스템
+        if (StageMNG.GetStageArray[index].Name != StageName.none)
             StageButtons[index].GetComponent<Image>().color = Color.gray;
 
         // 기존 매커니즘
         //for (int i = 0; i < 3; i++)
         //{
-        //    if (_stageMNG.GetNextStageArray[index + i] != null)
+        //    if (StageMNG.GetNextStageArray[index + i] != null)
         //        NextStageButtons[index + i].GetComponent<Image>().color = Color.gray;
         //}
     }
@@ -167,7 +167,7 @@ public class ButtonController : MonoBehaviour
         int index = GetIndex(FocusObject);
 
         //if (_stageMNG.GetStageArray[index] != null) 기존 시스템
-        if (_stageMNG.GetStageArray[index].Name != StageName.none)
+        if (StageMNG.GetStageArray[index].Name != StageName.none)
             StageButtons[index].GetComponent<Image>().color = Color.white;
 
         // 기존 매커니즘

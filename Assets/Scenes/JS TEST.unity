@@ -153,11 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CameraHandler: {fileID: 1688846949}
-  moving: 1
-  ZoomSize: 50
-  AttackLocationAdd: {x: 0, y: 0, z: 0}
-  AttackTime: 1
-  HitDelayTime: 0.2
+  ZoomTime: 0.1
+  CutSceneTime: 1
 --- !u!4 &212572833
 Transform:
   m_ObjectHideFlags: 0
@@ -166,57 +163,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212572831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 393.54456, y: 506.58923, z: -1.6875448}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &281504823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 281504825}
-  - component: {fileID: 281504824}
-  m_Layer: 0
-  m_Name: DataManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &281504824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281504823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74c557c71daccca4b8b39eef42acd45c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MapList: 
---- !u!4 &281504825
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281504823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 303797217}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303797215
 GameObject:
@@ -248,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ui: {fileID: 1875350421}
-  _data: {fileID: 281504824}
+  _data: {fileID: 943606190}
 --- !u!4 &303797217
 Transform:
   m_ObjectHideFlags: 0
@@ -262,7 +214,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1875350422}
-  - {fileID: 281504825}
+  - {fileID: 943606191}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -456,7 +408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -489,7 +441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628916018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -615,6 +567,258 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &943606189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 943606191}
+  - component: {fileID: 943606190}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &943606190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943606189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c557c71daccca4b8b39eef42acd45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalStageInfo: []
+  MapList: 
+  StageArray:
+  - Name: 0
+    Type: 0
+    Background: {fileID: 0}
+    BattleRandomStage: []
+  - Name: 0
+    Type: 0
+    Background: {fileID: 0}
+    BattleRandomStage: []
+  - Name: 0
+    Type: 0
+    Background: {fileID: 0}
+    BattleRandomStage: []
+  StageDatas:
+    StageData: []
+  CurrentStageData:
+    FactionName: 
+    Level: 0
+    ID: 0
+    Units: []
+  SmagaStage:
+  - Stages:
+    - Name: 0
+      Type: 0
+      Background: {fileID: 0}
+      BattleRandomStage: []
+    - Name: 6
+      Type: 2
+      Background: {fileID: 21300000, guid: 50d852198f4463d48b0a3a0d877cd72f, type: 3}
+      BattleRandomStage:
+      - faction: 0
+        level: 1
+        id: 1
+    - Name: 0
+      Type: 0
+      Background: {fileID: 0}
+      BattleRandomStage: []
+  - Stages:
+    - Name: 6
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 1
+        level: 1
+        id: 3
+    - Name: 6
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 0
+        level: 1
+        id: 3
+    - Name: 6
+      Type: 2
+      Background: {fileID: 21300000, guid: 2fbd3f66be5f96c4fb652975c865c4b0, type: 3}
+      BattleRandomStage:
+      - faction: 2
+        level: 1
+        id: 2
+  - Stages:
+    - Name: 1
+      Type: 0
+      Background: {fileID: 21300000, guid: 9ea47ee6b35a61a47a7eaca1b4994d61, type: 3}
+      BattleRandomStage: []
+    - Name: 2
+      Type: 0
+      Background: {fileID: 21300000, guid: fbc8700e467491945b19b4b40bdb4b7b, type: 3}
+      BattleRandomStage: []
+    - Name: 6
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 0
+        level: 1
+        id: 1
+      - faction: 0
+        level: 1
+        id: 2
+      - faction: 1
+        level: 1
+        id: 1
+      - faction: 1
+        level: 1
+        id: 3
+      - faction: 2
+        level: 1
+        id: 1
+      - faction: 2
+        level: 1
+        id: 2
+  - Stages:
+    - Name: 6
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 1
+        level: 2
+        id: 1
+      - faction: 1
+        level: 2
+        id: 3
+      - faction: 1
+        level: 2
+        id: 4
+      - faction: 1
+        level: 2
+        id: 14
+    - Name: 6
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 0
+        level: 2
+        id: 1
+      - faction: 0
+        level: 2
+        id: 6
+      - faction: 0
+        level: 2
+        id: 8
+      - faction: 0
+        level: 2
+        id: 14
+    - Name: 6
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 2
+        level: 2
+        id: 2
+      - faction: 2
+        level: 2
+        id: 3
+      - faction: 2
+        level: 2
+        id: 4
+      - faction: 2
+        level: 2
+        id: 5
+  - Stages:
+    - Name: 1
+      Type: 0
+      Background: {fileID: 21300000, guid: 9ea47ee6b35a61a47a7eaca1b4994d61, type: 3}
+      BattleRandomStage: []
+    - Name: 2
+      Type: 0
+      Background: {fileID: 21300000, guid: fbc8700e467491945b19b4b40bdb4b7b, type: 3}
+      BattleRandomStage: []
+    - Name: 6
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 1
+        level: 2
+        id: 1
+      - faction: 1
+        level: 2
+        id: 3
+      - faction: 1
+        level: 2
+        id: 4
+      - faction: 1
+        level: 2
+        id: 14
+      - faction: 0
+        level: 2
+        id: 1
+      - faction: 0
+        level: 2
+        id: 6
+      - faction: 0
+        level: 2
+        id: 8
+      - faction: 0
+        level: 2
+        id: 14
+      - faction: 2
+        level: 2
+        id: 2
+      - faction: 2
+        level: 2
+        id: 3
+      - faction: 2
+        level: 2
+        id: 4
+      - faction: 2
+        level: 2
+        id: 5
+  - Stages:
+    - Name: 0
+      Type: 0
+      Background: {fileID: 0}
+      BattleRandomStage: []
+    - Name: 7
+      Type: 2
+      Background: {fileID: 0}
+      BattleRandomStage:
+      - faction: 0
+        level: 11
+        id: 1
+    - Name: 0
+      Type: 0
+      Background: {fileID: 0}
+      BattleRandomStage: []
+  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
+  _playerDeck: []
+--- !u!4 &943606191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943606189}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 303797217}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1012622344
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,9 +852,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDeck: []
   _playerHands:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    stigmas: 
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    stigmas: 
+  - Data: {fileID: 0}
+    ChangedStat:
+      HP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    stigmas: 
   UI_hands: {fileID: 0}
   UI_PlayerSkill: {fileID: 0}
 --- !u!114 &1012622346
@@ -665,23 +896,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13616eb65c31b14abf4568200669721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnMonsters:
-  - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
-    location: {x: 0, y: 2}
-    team: 0
-    stigmas: []
+  AnimTest:
   - prefab: {fileID: 7249694890102593154, guid: 6ba32b91d7b286d4c8a25441db9a0427, type: 3}
+    deckUnit:
+      Data: {fileID: 0}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      stigmas: 
     location: {x: 1, y: 1}
     team: 0
-    stigmas: []
   - prefab: {fileID: 7249694890102593154, guid: 6ba32b91d7b286d4c8a25441db9a0427, type: 3}
-    location: {x: 1, y: 2}
-    team: 0
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: 4778d7a3063585d478470b04a72ca01c, type: 3}
+    deckUnit:
+      Data: {fileID: 0}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      stigmas: 
     location: {x: 3, y: 1}
     team: 1
-    stigmas: []
 --- !u!114 &1012622347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +1011,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688846947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

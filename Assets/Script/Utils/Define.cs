@@ -77,10 +77,10 @@ public enum Rarity
 }
 
 [SerializeField]
-public enum TargetType
+public enum CutSceneMoveType
 {
-    Select,
-    Range,
+    stand,
+    tracking
 }
 
 public enum ClickType
