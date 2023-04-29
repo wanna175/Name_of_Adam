@@ -295,10 +295,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: My name is sukjun min
+  m_text: "\uBC30\uCE58\uD134\uC5D0\uB294 \uB9C8\uB098\uB97C \uC18C\uBAA8\uD558\uC5EC
+    \uC720\uB2DB\uC744 \uC18C\uD658\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uC720\uB2DB
+    \uC911\uC5D0\uB294 \uB9C8\uB098 \uBFD0\uB9CC \uC544\uB2C8\uB77C \uAC80\uC740
+    \uC815\uC218\uAE4C\uC9C0 \uC0AC\uC6A9\uD558\uC5EC \uC18C\uD658\uD558\uB294 \uC720\uB2DB\uB3C4
+    \uC874\uC7AC\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -430,10 +434,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tutorial-1
+  m_text: "\uC720\uB2DB \uBC30\uCE58"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
