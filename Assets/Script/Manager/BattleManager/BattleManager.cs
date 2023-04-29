@@ -29,7 +29,7 @@ public class BattleManager : MonoBehaviour
     private PhaseController _phase;
     public static PhaseController Phase => Instance._phase;
 
-    [SerializeField] private UI_TurnChangeButton _turnChangeButton;
+    private UI_TurnChangeButton _turnChangeButton;
 
     private List<BattleUnit> hitUnits;
     private Vector2 coord;
