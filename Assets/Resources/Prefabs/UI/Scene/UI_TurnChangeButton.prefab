@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 963727030562007706}
   - component: {fileID: 963727030562007707}
   - component: {fileID: 963727030562007700}
+  - component: {fileID: 8767890975757157279}
   m_Layer: 5
   m_Name: UI_TurnChangeButton
   m_TagString: Untagged
@@ -101,6 +102,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8767890975757157279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963727030562007701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b14f979ed20e9e4b92c32b82ebfc1a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeButton: {fileID: 5599883418855769735}
+  _text: {fileID: 3801176289179656859}
 --- !u!1 &2317654386567439935
 GameObject:
   m_ObjectHideFlags: 0

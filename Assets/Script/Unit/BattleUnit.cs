@@ -22,6 +22,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigmata;
+    [SerializeField] private UI_HPBar _hpBar;
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -47,12 +48,18 @@ public class BattleUnit : MonoBehaviour
         _renderer.sprite = Data.Image;
     }
 
+    public void SetHPBar()
+    {
+        _hpBar.SetHPBar(Team, transform);
+    }
+
     public void SetTeam(Team team)
     {
         _team = team;
 
         // 적군일 경우 x축 뒤집기
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
+        SetHPBar();
     }
 
     public void SetLocate(Vector2 coord) {
@@ -122,6 +129,7 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeHP(int value) {
         HP.ChangeHP(value);
+        _hpBar.RefreshBar(HP.FillAmount());
     }
 
     public void ChangeFall(int value)

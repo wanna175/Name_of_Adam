@@ -10,6 +10,7 @@ public class MovePhase : Phase
     public override void OnStateEnter()
     {
         BattleManager.Field.SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Move);
+        BattleManager.Instance.ChangeButtonName();
     }
 
     public override void OnStateUpdate()

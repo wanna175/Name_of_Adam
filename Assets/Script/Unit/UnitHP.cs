@@ -38,4 +38,9 @@ public class UnitHP : MonoBehaviour
     {
         return _currentHP;
     }
+
+    public float FillAmount()
+    {
+        return (float)_currentHP / (float)_maxHP;
+    }
 }

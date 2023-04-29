@@ -9,6 +9,7 @@ public class ActionPhase : Phase
     public override void OnStateEnter()
     {
         BattleManager.Field.SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
+        BattleManager.Instance.ChangeButtonName();
     }
 
     public override void OnStateUpdate()
@@ -23,6 +24,8 @@ public class ActionPhase : Phase
 
     public override void OnStateExit()
     {
-        
+        _battle.Field.ClearAllColor();
+        _battle.Data.BattleOrderRemove(_battle.Data.GetNowUnit());
+        _battle.BattleOverCheck();
     }
 }
