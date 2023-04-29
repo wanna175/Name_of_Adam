@@ -30,14 +30,14 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private Sprite _image;
     public Sprite Image => _image;
 
+    [SerializeField] private AnimType _animType;
+    public AnimType AnimType => _animType;
+
     [SerializeField] private int _darkEssenseDrop;
     public int DarkEssenseDrop => _darkEssenseDrop;
 
     [SerializeField] private int _darkEssenseCost;
     public int DarkEssenseCost => _darkEssenseCost;
-
-    [SerializeField] private TargetType _targetType;
-    public TargetType TargetType => _targetType;
 
     [SerializeField] private BehaviorType _behaviorType;
     public BehaviorType BehaviorType => _behaviorType;

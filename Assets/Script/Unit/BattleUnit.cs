@@ -39,6 +39,9 @@ public class BattleUnit : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         AI.SetCaster(this);
+        Debug.Log(HP);
+        Debug.Log(Stat.HP);
+        Debug.Log(Stat.CurrentHP);
         HP.Init(Stat.HP, Stat.CurrentHP);
         Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
 
@@ -234,5 +237,8 @@ public class BattleUnit : MonoBehaviour
         
     }
 
-
+    public void AnimAttack()
+    {
+        StartCoroutine(BattleManager.Instance.UnitAttack());
+    }
 }

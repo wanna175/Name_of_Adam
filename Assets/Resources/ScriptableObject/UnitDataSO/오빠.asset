@@ -26,9 +26,9 @@ MonoBehaviour:
   _faction: 0
   _rarity: 1
   _image: {fileID: 21300000, guid: cb52ee0c211a74d4f8b3ae69885e66b2, type: 3}
+  _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
   _darkEssenseDrop: 10
   _darkEssenseCost: 0
-  _targetType: 0
   _behaviorType: 1
   _effects:
   - {fileID: 11400000, guid: 6e5ebf919038f5d489e948e2a7833a01, type: 2}

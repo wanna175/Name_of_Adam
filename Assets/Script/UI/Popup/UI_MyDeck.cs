@@ -12,7 +12,7 @@ public class UI_MyDeck : UI_Popup
     public void Init(bool battle=false, bool select=false)
     {
         if (battle)
-            _playerDeck = GameManager.Battle.Data.PlayerDeck;
+            _playerDeck = BattleManager.Data.PlayerDeck;
         else
             _playerDeck = GameManager.Data.GetDeck();
 

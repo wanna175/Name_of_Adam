@@ -11,16 +11,27 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
+    private static BattleManager s_instance;
+    public static BattleManager Instance { get { Init(); return s_instance; } }
+
+    [SerializeField] CutSceneController _cutScene;
+    public static CutSceneController CutScene => Instance._cutScene;
+
     private BattleDataManager _battleData;
-    public BattleDataManager Data => _battleData;
+    public static BattleDataManager Data => Instance._battleData;
+
     private Field _field;
-    public Field Field => _field;
+    public static Field Field => Instance._field;
+
     private Mana _mana;
-    public Mana Mana => _mana;
+    public static Mana Mana => Instance._mana;
+
     private PhaseController _phase;
-    public PhaseController Phase => _phase;
+    public static PhaseController Phase => Instance._phase;
+
     private UI_TurnChangeButton _turnChangeButton;
 
+    private List<BattleUnit> hitUnits;
     private Vector2 coord;
 
     public FieldColorType fieldColorType = FieldColorType.none;
@@ -38,12 +49,28 @@ public class BattleManager : MonoBehaviour
         _phase.OnUpdate();
     }
 
+    private static void Init()
+    {
+        if (s_instance == null)
+        {
+            GameObject go = GameObject.Find("@BattleManager");
+
+            if (go == null)
+            {
+                //go = new GameObject("@BattleManager");
+                //go.AddComponent<BattleManager>();
+                return;
+            }
+
+            s_instance = go.GetComponent<BattleManager>();
+        }
+    }
+
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
-        Debug.Log("dd");
+
         if (fieldObject == null)
-            Debug.Log("clear");
             fieldObject = GameManager.Resource.Instantiate("Field");
 
 
@@ -86,10 +113,11 @@ public class BattleManager : MonoBehaviour
 
         if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
             return;
-
+        
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
+            List<BattleUnit> unitList = new List<BattleUnit>();
 
             foreach (Vector2 splash in splashRange)
             {
@@ -98,18 +126,11 @@ public class BattleManager : MonoBehaviour
                 if (targetUnit == null)
                     continue;
 
-                if (targetUnit.Team == Team.Enemy)
-                {
-                    //공격 전 낙인 체크
-                    unit.SkillUse(Field.GetUnit(coord + splash));
-                    unit.PassiveCheck(unit, targetUnit, PassiveType.AFTERATTACK);
-                }
-                    
-
+                unitList.Add(targetUnit);
             }
+            
+            AttackStart(unit, unitList);
         }
-
-        _phase.ChangePhase(_phase.Engage);
     }
 
     public void EngagePhase()
@@ -126,8 +147,6 @@ public class BattleManager : MonoBehaviour
         if (unit.Team == Team.Enemy)
         {
             unit.AI.AIAction();
-
-            Data.BattleOrderRemove(unit);
             BattleOverCheck();
 
             return;
@@ -197,6 +216,55 @@ public class BattleManager : MonoBehaviour
         _unit.UnitDeadAction = UnitDeadAction;
 
         Data.BattleUnitAdd(_unit);
+    }
+
+    public IEnumerator UnitAttack()
+    {
+        UnitAttackAction();
+        yield return StartCoroutine(CutScene.AfterAttack());
+        
+        EndAttackAction();
+    }
+
+    public void AttackStart(BattleUnit caster, BattleUnit hit)
+    {
+        List<BattleUnit> hits = new List<BattleUnit>();
+        hits.Add(hit);
+
+        hitUnits = hits;
+        CutScene.BattleCutScene(caster, hitUnits);
+    }
+    public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
+    {
+        hitUnits = hits;
+        CutScene.BattleCutScene(caster, hitUnits);
+    }
+
+    // 애니메이션용 추가
+    private void UnitAttackAction()
+    {
+        BattleUnit unit = Data.GetNowUnit();
+        
+        foreach (BattleUnit hit in hitUnits)
+        {
+            if (hit == null)
+                continue;
+
+            if (hit.Team == Team.Enemy)
+            {
+                //공격 전 낙인 체크
+                unit.SkillUse(hit);
+                unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
+            }
+        }
+    }
+
+    private void EndAttackAction()
+    {
+        Field.ClearAllColor();
+        Data.BattleOrderRemove(Data.GetNowUnit());
+        _phase.ChangePhase(_phase.Engage);
+        BattleOverCheck();
     }
 
     private void UnitDeadAction(BattleUnit _unit)

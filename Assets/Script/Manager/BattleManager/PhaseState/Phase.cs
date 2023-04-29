@@ -6,12 +6,10 @@ using UnityEngine;
 public abstract class Phase
 {
     protected PhaseController _controller;
-    protected BattleManager _battle;
 
     public void SetController(PhaseController controller)
     {
         this._controller = controller;
-        _battle = GameManager.Battle;
     }
 
     public abstract void OnStateEnter();

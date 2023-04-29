@@ -97,7 +97,7 @@ public class 고양 : Passive
         targetCoords.Add(caster.Location + Vector2.right);
         targetCoords.Add(caster.Location + Vector2.left);
 
-        List<BattleUnit> targetUnits = GameManager.Battle.GetArroundUnits(targetCoords);
+        List<BattleUnit> targetUnits = BattleManager.Instance.GetArroundUnits(targetCoords);
 
         foreach(BattleUnit unit in targetUnits)
         {
@@ -126,7 +126,7 @@ public class 자애 : Passive
         targetCoords.Add(caster.Location + new Vector2(1, 1));
         targetCoords.Add(caster.Location + new Vector2(1, -1));
 
-        List<BattleUnit> targetUnits = GameManager.Battle.GetArroundUnits(targetCoords);
+        List<BattleUnit> targetUnits = BattleManager.Instance.GetArroundUnits(targetCoords);
 
         foreach (BattleUnit unit in targetUnits)
         {
@@ -151,7 +151,7 @@ public class 강림 : Passive
         targetCoords.Add(caster.Location + Vector2.right);
         targetCoords.Add(caster.Location + Vector2.left);
 
-        List<BattleUnit> targetUnits = GameManager.Battle.GetArroundUnits(targetCoords);
+        List<BattleUnit> targetUnits = BattleManager.Instance.GetArroundUnits(targetCoords);
 
         foreach (BattleUnit unit in targetUnits)
         {

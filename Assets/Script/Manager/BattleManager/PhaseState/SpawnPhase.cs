@@ -2,7 +2,7 @@ public class SpawnPhase : Phase
 {
     public override void OnStateEnter()
     {
-        _battle.SpawnInitialUnit();
+        BattleManager.Instance.SpawnInitialUnit();
     }
 
     public override void OnStateUpdate()

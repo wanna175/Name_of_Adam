@@ -17,13 +17,22 @@ public struct SpawnData
 // 데이터 -> 필드 생성
 public class UnitSpawner : MonoBehaviour
 {
-    [SerializeField] List<SpawnData> SpawnMonsters;
-
     private Transform parent;
+
+    // 디버그용
+    [SerializeField] List<SpawnData> AnimTest;
+    // 디버그용
 
     private void Awake()
     {
         parent = SetParent();
+    }
+    private void Start()
+    {
+        // 디버그용
+        //foreach (SpawnData data in AnimTest)
+        //    InitSpawn(data);
+        // 디버그용
     }
 
     private void SpawnTest(SpawnData spawndata, Vector2 location)
@@ -36,12 +45,12 @@ public class UnitSpawner : MonoBehaviour
         bu.Skill.Effects = spawndata.deckUnit.Data.Effects;
 
         bu.Init();
-        GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
+        BattleManager.Instance.UnitSetting(bu, location, Team.Enemy);
     }
 
-    private void Spawn(SpawnData spawndata, Vector2 location)
+    private void InitSpawn(SpawnData spawndata)
     {
-        if (GameManager.Battle.Field.TileDict[location].UnitExist)
+        if (BattleManager.Field.TileDict[spawndata.location].UnitExist)
         {
             Debug.Log("해당 타일에 유닛이 존재합니다.");
         }
@@ -49,9 +58,10 @@ public class UnitSpawner : MonoBehaviour
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
             BattleUnit bu = go.GetComponent<BattleUnit>();
-
+            
             bu.Init();
-            GameManager.Battle.UnitSetting(bu, location, Team.Enemy);
+            //BattleManager.Instance.UnitSetting(bu, spawndata.location, Team.Enemy);
+            BattleManager.Instance.UnitSetting(bu, spawndata.location, spawndata.team); // animTest
         }
     }
 
@@ -67,17 +77,33 @@ public class UnitSpawner : MonoBehaviour
         bu.Init();
 
         BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
-        GameManager.Battle.UnitSetting(spawnedUnit, location, Team.Player);
+
+        BattleManager.Instance.UnitSetting(spawnedUnit, location, Team.Player);
         return spawnedUnit;
     }
 
     public void SpawnInitialUnit()
     {
-        foreach (SpawnData data in SpawnMonsters)
+        List<StageUnitData> datas = GameManager.Data.CurrentStageData.Units;
+        string factionName = GameManager.Data.CurrentStageData.FactionName;
+
+        foreach (StageUnitData data in datas)
         {
+            SpawnData sd = new SpawnData();
+            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{factionName}/{data.Name}");
+            sd.location = data.Location;
+            sd.team = Team.Enemy;
+
+            //sd.deckUnit.Data = sd.prefab.GetComponent<BattleUnit>()
+            InitSpawn(sd);
+
             //Spawn(data, data.location);
-            SpawnTest(data, data.location);
+            //SpawnTest(data, data.Location);
         }
+        //foreach (SpawnData data in SpawnMonsters)
+        //{
+        //    Spawn(data, data.location);
+        //}
     }
 
     private Transform SetParent()

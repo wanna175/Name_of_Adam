@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1722822296286429812, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: _maxHP
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1722822296286429812, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: _currentHP
@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3210379171205965175, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dc2a159a8e4e70147a0502d4ff463850, type: 2}
     - target: {fileID: 4481877192685339916, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_FlipX
       value: 1
@@ -90,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: Data
       value: 
-      objectReference: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
+      objectReference: {fileID: 11400000, guid: 23691f8b9fe949c4c88452aa55b097a9, type: 2}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: _team
       value: 0
@@ -99,9 +103,13 @@ PrefabInstance:
       propertyPath: skill
       value: 
       objectReference: {fileID: 11400000, guid: 2bf249cb224e9ac498ca25f6957035ca, type: 2}
+    - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: DeckUnit.Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 23691f8b9fe949c4c88452aa55b097a9, type: 2}
     - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_Name
-      value: "\uAD81\uC218 BattleUnit"
+      value: "\uC554\uC0B4\uC790"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f985903313e834580fc378803a516b, type: 3}

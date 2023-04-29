@@ -28,8 +28,8 @@ public class UnitAIController : MonoBehaviour
 
     void Awake()
     {
-        _Data = GameManager.Battle.Data;
-        _field = GameManager.Battle.Field;
+        _Data = BattleManager.Data;
+        _field = BattleManager.Field;
     }
 
     public void SetCaster(BattleUnit unit)
@@ -166,7 +166,8 @@ public class UnitAIController : MonoBehaviour
 
     protected void Attack(Vector2 vec)
     {
-        caster.SkillUse(_field.GetUnit(vec));
+        BattleManager.Instance.AttackStart(caster, _field.GetUnit(vec));
+        //caster.SkillUse(_field.GetUnit(vec));
     }
 
     protected Vector2 NearestEnemySearch()
@@ -191,7 +192,7 @@ public class UnitAIController : MonoBehaviour
                 nearestEnemy.Add(vec);
             }
         }
-
+        
         return nearestEnemy[Random.Range(0, nearestEnemy.Count)];
     }
 

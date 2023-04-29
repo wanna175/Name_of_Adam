@@ -12,7 +12,7 @@ public class Mana : MonoBehaviour
 
     private void Start()
     {
-        _manaGuage = GameManager.Battle.Data.UI_ManaGauge;
+        _manaGuage = BattleManager.Data.UI_ManaGauge;
         ChangeMana(_startMana);
     }
 

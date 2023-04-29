@@ -2,7 +2,7 @@ public class SetupPhase : Phase
 {
     public override void OnStateEnter()
     {
-        _battle.SetupField();
+        BattleManager.Instance.SetupField();
     }
 
     public override void OnStateUpdate()

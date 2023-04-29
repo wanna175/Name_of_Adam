@@ -13,7 +13,7 @@ public class UI_PlayerSkill : UI_Scene
 
     private void Awake()
     {
-        _battle = GameManager.Battle;
+        _battle = BattleManager.Instance;
         SetSkill();
     }
 
@@ -28,7 +28,7 @@ public class UI_PlayerSkill : UI_Scene
 
     public void OnClickHand(UI_PlayerSkillCard card)
     {
-        if (!Used && _battle.Mana.CanUseMana(20))
+        if (!Used && BattleManager.Mana.CanUseMana(20))
         {
             if (card != null && card == _selectedCard)
                 CancleSelect();
