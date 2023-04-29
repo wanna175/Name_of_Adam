@@ -12,7 +12,7 @@ public class UnitAIController : MonoBehaviour
     //공격 범위: 움직이지 않고 공격할 수 있는 범위; Attack Range
     //공격가능 타일: 해당 타일로 이동할 경우 공격할 수 있는 타일; Attackable Tile
 
-    protected List<Vector2> AttackRangeUnitList = new();
+    protected List<Vector2> AttackRangeUnitList = new();//
     //공격 범위 내 유닛
 
     protected List<Vector2> AttackableTileList = new();
