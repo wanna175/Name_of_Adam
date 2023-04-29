@@ -8,21 +8,18 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 {
     private DeckUnit _cardUnit = null;
     [SerializeField] private GameObject _highlight;
-    public bool IsSelected = false;
+    private bool _select; //UnitInfo에 전달용
     
     private void Start()
     {
         _highlight.SetActive(false);
     }
 
-    public void SetUnit(DeckUnit unit)
+    public void SetCardInfo(DeckUnit unit, bool select)
     {
         _cardUnit = unit;
-        SetCardInfo();
-    }
+        _select = select;
 
-    private void SetCardInfo()
-    {
         // UI가 완성된 후에 디테일한 요소 추가
         GetComponent<Image>().sprite = _cardUnit.Data.Image;
     }
@@ -42,6 +39,6 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
 
         ui.SetUnit(_cardUnit);
-        ui.init();
+        ui.Init(_select);
     }
 }

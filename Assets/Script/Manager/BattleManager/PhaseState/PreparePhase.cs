@@ -5,6 +5,7 @@ public class PreparePhase : Phase
     public override void OnStateEnter()
     {
         BattleManager.Data.TurnPlus();
+        BattleManager.Data.UI_PlayerSkill.Used = false;
         BattleManager.Instance.ChangeButtonName();
     }
 

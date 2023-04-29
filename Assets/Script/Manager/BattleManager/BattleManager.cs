@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
 // 필드에 올라와있는 캐릭터의 제어를 배틀매니저에서 담당
@@ -41,7 +40,8 @@ public class BattleManager : MonoBehaviour
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
-        _phase = new PhaseController();      
+        _phase = new PhaseController();
+        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
     }
 
     private void Update()
@@ -196,8 +196,10 @@ public class BattleManager : MonoBehaviour
     {
         if (Field._coloredTile.Contains(coord) == false)
             return;
+        Mana.ChangeMana(-20);
         Field.GetUnit(coord).Fall.ChangeFall(1);
         _battleData.UI_PlayerSkill.CancleSelect();
+        _battleData.UI_PlayerSkill.Used = true;
         Field.ClearAllColor();
     }
 
@@ -301,6 +303,9 @@ public class BattleManager : MonoBehaviour
 
     }
 
+
+    /*
+    UI_TurnChangeButton으로 이사감
     public void TurnChange()
     {
         if (_phase.Current == _phase.Prepare)
@@ -310,6 +315,7 @@ public class BattleManager : MonoBehaviour
         else
             _phase.ChangePhase(_phase.Engage);
     }
+    */
 
     // 이동 경로를 받아와 이동시킨다
     private void MoveLocate(BattleUnit caster, Vector2 coord)
