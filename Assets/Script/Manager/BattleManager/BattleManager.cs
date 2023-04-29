@@ -19,7 +19,7 @@ public class BattleManager : MonoBehaviour
     public Mana Mana => _mana;
     private PhaseController _phase;
     public PhaseController Phase => _phase;
-    [SerializeField] private UI_TurnChangeButton _turnChangeButton;
+    private UI_TurnChangeButton _turnChangeButton;
 
     private Vector2 coord;
 
@@ -29,7 +29,8 @@ public class BattleManager : MonoBehaviour
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
-        _phase = new PhaseController();      
+        _phase = new PhaseController();
+        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
     }
 
     private void Update()
@@ -234,6 +235,9 @@ public class BattleManager : MonoBehaviour
 
     }
 
+
+    /*
+    UI_TurnChangeButton으로 이사감
     public void TurnChange()
     {
         if (_phase.Current == _phase.Prepare)
@@ -243,6 +247,7 @@ public class BattleManager : MonoBehaviour
         else
             _phase.ChangePhase(_phase.Engage);
     }
+    */
 
     // 이동 경로를 받아와 이동시킨다
     private void MoveLocate(BattleUnit caster, Vector2 coord)
