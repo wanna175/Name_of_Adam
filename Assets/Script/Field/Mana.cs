@@ -10,9 +10,9 @@ public class Mana : MonoBehaviour
 
     const int _startMana = 50;
 
-    private void Awake()
+    private void Start()
     {
-        _manaGuage = GameManager.UI.ShowScene<UI_ManaGauge>();
+        _manaGuage = GameManager.Battle.Data.UI_ManaGauge;
         ChangeMana(_startMana);
     }
 
