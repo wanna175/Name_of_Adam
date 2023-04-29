@@ -64,7 +64,8 @@ public class BattleDataManager : MonoBehaviour
     {
         PlayerHands.Remove(unit);
         UI_hands.RemoveUnit(unit);
-        FillHand();
+        //FillHand();
+        UI_hands.SetHands(GameManager.Data.GetDeck());
     }
 
     public void FillHand()

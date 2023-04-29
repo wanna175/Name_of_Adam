@@ -886,6 +886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cutScene: {fileID: 549769541}
+  _turnChangeButton: {fileID: 2117723697}
   fieldColorType: 0
 --- !u!4 &1338417447
 Transform:
@@ -1151,3 +1152,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 963727030562007705, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
   m_PrefabInstance: {fileID: 382914898}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2117723697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8767890975757157279, guid: e000c68d2f1fb8242aec398d2e2bccdc, type: 3}
+  m_PrefabInstance: {fileID: 382914898}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b14f979ed20e9e4b92c32b82ebfc1a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
