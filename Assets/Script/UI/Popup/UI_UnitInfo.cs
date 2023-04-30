@@ -22,14 +22,16 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private Transform _unitInfoSkillimage;
 
     private DeckUnit _unit;
+    private Selectable _selectable;
 
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
     }
 
-    public void Init(bool select)
+    public void Init(bool select, Selectable selectable)
     {
+        _selectable = selectable;
         _selectButton.SetActive(select);
 
         _imageArea.sprite = _unit.Data.Image;
@@ -69,13 +71,8 @@ public class UI_UnitInfo : UI_Popup
         GameManager.UI.ClosePopup();
     }
 
-    public UnityEvent onSelect;
-
-    public DeckUnit Select()
+    public void Select()
     {
-        GameManager.UI.ClosePopup();
-
-        onSelect.Invoke();
-        return _unit;
+        _selectable.OnSelect(_unit);
     }
 }

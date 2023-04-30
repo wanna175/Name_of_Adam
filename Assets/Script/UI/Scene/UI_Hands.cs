@@ -14,7 +14,11 @@ public class UI_Hands : UI_Scene
     public void SetHands(List<DeckUnit> deckUnits)
     {
         foreach (DeckUnit unit in deckUnits)
-            AddUnit(unit);
+        { 
+            if (_handList.Count < 3)
+                AddUnit(unit);
+        }
+
     }
 
     public void AddUnit(DeckUnit unit)
