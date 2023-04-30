@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
     [SerializeField] private GameObject _highlight;
     private bool _select; //UnitInfo에 전달용
@@ -15,10 +16,10 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _highlight.SetActive(false);
     }
 
-    public void SetCardInfo(DeckUnit unit, bool select)
+    public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit)
     {
+        _myDeck = myDeck;
         _cardUnit = unit;
-        _select = select;
 
         // UI가 완성된 후에 디테일한 요소 추가
         GetComponent<Image>().sprite = _cardUnit.Data.Image;
@@ -36,9 +37,6 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
-
-        ui.SetUnit(_cardUnit);
-        ui.Init(_select);
+        _myDeck.OnClickCard(_cardUnit);
     }
 }
