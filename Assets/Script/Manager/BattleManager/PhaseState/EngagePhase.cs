@@ -2,7 +2,8 @@ public class EngagePhase : Phase
 {
     public override void OnStateEnter()
     {
-        BattleManager.Instance.EngagePhase();
+        if(BattleManager.Phase.Current != BattleManager.Phase.BattleOver)
+            BattleManager.Instance.EngagePhase();
     }
 
     public override void OnStateUpdate()

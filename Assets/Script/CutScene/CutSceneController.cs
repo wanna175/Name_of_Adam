@@ -87,12 +87,7 @@ public class CutSceneController : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.1f);
-
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", true);
-
-        // 애니메이션 없으니 해놓은 임시용
-        StartCoroutine(BattleManager.Instance.UnitAttack());
     }
 
     // 원래 위치로 이동

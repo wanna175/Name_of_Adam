@@ -105,6 +105,7 @@ public class SplashUnitAIController : UnitAIController
             //Attack(splash + TileSplashDic[vec][0]);
             hitUnits.Add(_field.GetUnit(splash + TileSplashDic[vec][0]));
         }
+        Debug.Log('a');
 
         BattleManager.Instance.AttackStart(caster, hitUnits);
     }

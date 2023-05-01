@@ -113,7 +113,7 @@ public class BattleManager : MonoBehaviour
 
         if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
             return;
-        
+
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
@@ -135,6 +135,7 @@ public class BattleManager : MonoBehaviour
 
     public void EngagePhase()
     {
+        Debug.Log("Engage");
         Field.ClearAllColor();
 
         if (Data.OrderUnitCount <= 0)
@@ -147,8 +148,6 @@ public class BattleManager : MonoBehaviour
         if (unit.Team == Team.Enemy)
         {
             unit.AI.AIAction();
-            BattleOverCheck();
-
             return;
         }
 
@@ -263,8 +262,8 @@ public class BattleManager : MonoBehaviour
     {
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());
-        _phase.ChangePhase(_phase.Engage);
         BattleOverCheck();
+        _phase.ChangePhase(_phase.Engage);
     }
 
     private void UnitDeadAction(BattleUnit _unit)
