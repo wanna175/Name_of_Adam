@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
@@ -38,10 +39,10 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
+        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
-        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
     }
 
     private void Update()
@@ -84,7 +85,7 @@ public class BattleManager : MonoBehaviour
 
     public void ChangeButtonName()
     {
-        Text buttonName = _turnChangeButton.GetComponentInChildren<Text>();
+        TextMeshProUGUI buttonName = _turnChangeButton.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
         if (Phase.Current == Phase.Prepare)
             buttonName.text = "Next Turn";
         else if(Phase.Current == Phase.Move)
