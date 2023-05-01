@@ -25,7 +25,5 @@ public class ActionPhase : Phase
     public override void OnStateExit()
     {
         BattleManager.Field.ClearAllColor();
-        BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnit());
-        BattleManager.Instance.BattleOverCheck();
     }
 }

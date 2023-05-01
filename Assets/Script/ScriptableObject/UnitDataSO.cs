@@ -30,6 +30,9 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private Sprite _image;
     public Sprite Image => _image;
 
+    [SerializeField] private RuntimeAnimatorController _animatorController;
+    public RuntimeAnimatorController AnimatorController => _animatorController;
+
     [SerializeField] private AnimType _animType;
     public AnimType AnimType => _animType;
 

@@ -38,6 +38,7 @@ public class BattleUnit : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _animator.runtimeAnimatorController = Data.AnimatorController;
         AI.SetCaster(this);
         Debug.Log(HP);
         Debug.Log(Stat.HP);
