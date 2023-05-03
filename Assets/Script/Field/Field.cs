@@ -123,12 +123,9 @@ public class Field : MonoBehaviour
     public Vector3 GetTilePosition(Vector2 coord)
     {
         Vector3 position = TileDict[coord].transform.position;
-
-        float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
-        float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
-
-        position.x += sizeX;
-        position.y += sizeY;
+        
+        float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
+        position.y -= sizeY;
 
         return position;
     }

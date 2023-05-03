@@ -30,8 +30,8 @@ public class UnitSpawner : MonoBehaviour
     private void Start()
     {
         // 디버그용
-        //foreach (SpawnData data in AnimTest)
-        //    InitSpawn(data);
+        foreach (SpawnData data in AnimTest)
+            InitSpawn(data);
         // 디버그용
     }
 

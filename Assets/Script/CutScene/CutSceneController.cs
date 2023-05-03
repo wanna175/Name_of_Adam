@@ -20,13 +20,35 @@ public class CutSceneController : MonoBehaviour
         if (HitUnits.Count == 0)
             return;
 
-        CSData = new CutSceneData();
-        CSData.SetData(AttackUnit, HitUnits);
+        CSData = new CutSceneData(AttackUnit, HitUnits);
         
         CameraHandler.SetCutSceneCamera();
+        UnitFlip();
         SetUnitRayer(5);
 
         StartCoroutine(ZoomIn());
+    }
+
+    private void UnitFlip()
+    {
+        if(CSData.AttackUnitDirection < 0)
+        {
+            CSData.AttackUnit.GetComponent<SpriteRenderer>().flipX = false;
+            foreach(BattleUnit unit in CSData.HitUnits)
+                unit.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (CSData.AttackUnitDirection > 0)
+        {
+            CSData.AttackUnit.GetComponent<SpriteRenderer>().flipX = true;
+            foreach (BattleUnit unit in CSData.HitUnits)
+                unit.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            bool attackDir = CSData.AttackUnit.GetComponent<SpriteRenderer>().flipX;
+            foreach (BattleUnit unit in CSData.HitUnits)
+                unit.GetComponent<SpriteRenderer>().flipX = !attackDir;
+        }
     }
 
     public IEnumerator AfterAttack()
@@ -108,7 +130,7 @@ public class CutSceneController : MonoBehaviour
 
     private void SetUnitRayer(int rayer)
     {
-        CSData.AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = rayer + 1;
+        CSData.AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
         foreach (BattleUnit unit in CSData.HitUnits)
         {
             if(unit != null)

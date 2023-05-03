@@ -27,8 +27,10 @@ public class CutSceneData
     public Vector3 ZoomLocation;
     // 움직일 위치
     public Vector3 MovePosition;
+    // 공격 유닛이 어느 방향에 있는지
+    public int AttackUnitDirection;
 
-    public void SetData(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
+    public CutSceneData(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
         this.AttackUnit = AttackUnit;
         this.HitUnits = HitUnits;
@@ -62,11 +64,20 @@ public class CutSceneData
         Vector2 moveTile = HitUnitTile;
 
         if (AttackUnitTile.x < HitUnitTile.x)
+        {
             moveTile.x -= 1;
+            AttackUnitDirection = -1;
+        }
         else if (HitUnitTile.x < AttackUnitTile.x)
+        {
             moveTile.x += 1;
+            AttackUnitDirection = 1;
+        }
         else
+        {
             moveTile = AttackUnitTile;
+            AttackUnitDirection = 0;
+        }
 
         return moveTile;
     }
