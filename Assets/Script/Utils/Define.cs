@@ -104,9 +104,9 @@ public struct TestUnit
 }
 
 
-public enum Sound
+public enum Sounds
 {
-    Bgm,
+    BGM,
     Effect,
     MaxCount,
 }

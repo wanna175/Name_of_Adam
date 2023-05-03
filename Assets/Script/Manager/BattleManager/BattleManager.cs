@@ -15,6 +15,9 @@ public class BattleManager : MonoBehaviour
     private static BattleManager s_instance;
     public static BattleManager Instance { get { Init(); return s_instance; } }
 
+    private SoundManager _sound;
+    public static SoundManager Sound => Instance._sound;
+
     [SerializeField] CutSceneController _cutScene;
     public static CutSceneController CutScene => Instance._cutScene;
 
@@ -127,7 +130,9 @@ public class BattleManager : MonoBehaviour
                 if (targetUnit == null)
                     continue;
 
-                unitList.Add(targetUnit);
+                // 힐러의 예외처리 필요
+                if(targetUnit.Team != unit.Team)
+                    unitList.Add(targetUnit);
             }
             
             AttackStart(unit, unitList);
@@ -136,7 +141,6 @@ public class BattleManager : MonoBehaviour
 
     public void EngagePhase()
     {
-        Debug.Log("Engage");
         Field.ClearAllColor();
 
         if (Data.OrderUnitCount <= 0)
@@ -250,12 +254,9 @@ public class BattleManager : MonoBehaviour
             if (hit == null)
                 continue;
 
-            if (hit.Team == Team.Enemy)
-            {
-                //공격 전 낙인 체크
-                unit.SkillUse(hit);
-                unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
-            }
+            //공격 전 낙인 체크
+            unit.SkillUse(hit);
+            unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
         }
     }
 

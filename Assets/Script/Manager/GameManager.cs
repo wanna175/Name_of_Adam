@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] DataManager _data;
     public static DataManager Data => Instance._data;
 
+    private SoundManager _sound;
+    public static SoundManager Sound => Instance._sound;
+
     private ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource => Instance._resource;
 
@@ -22,7 +25,9 @@ public class GameManager : MonoBehaviour
         //    Destroy(gameObject); // 이미 GameManager가 있으면 이 오브젝트를 제거
         //else
         //    Init();
+        _sound = new SoundManager();
         Data.Init();
+        Sound.Init();
     }
 
     private static void Init()
