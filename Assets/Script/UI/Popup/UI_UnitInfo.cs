@@ -34,9 +34,7 @@ public class UI_UnitInfo : UI_Popup
         _selectable = selectable;
         _selectButton.SetActive(select);
 
-        _unitCard.SetImage( _unit.Data.Image);
-        _unitCard.SetName(_unit.Data.Name.ToString());
-        _unitCard.SetCost(_unit.Stat.ManaCost.ToString());
+        _unitCard.Set(_unit.Data.Image, _unit.Data.Name, _unit.Stat.ManaCost.ToString());
 
         _unitInfoName.text = _unit.Data.Name;
         _unitInfoCost.text = _unit.Stat.ManaCost.ToString();
