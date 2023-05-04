@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeStore : Selectable
+public class StigmaStore : Selectable
 {
-    private DeckUnit _upgradeUnit;
+    private DeckUnit _stigmatizeUnit;
 
     [SerializeField] private GameObject button;
 
@@ -18,50 +18,49 @@ public class UpgradeStore : Selectable
     {
         List<Script> scripts = new();
         Script s = new();
-        s.name = "강화소";
+        s.name = "낙인소";
         s.script = "입장";
         scripts.Add(s);
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
     }
 
-    public void OnUpgradeUnitButtonClick()
+    public void OnStigmaUnitButtonClick()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, true, this);
     }
 
     public override void OnSelect(DeckUnit unit)
     {
-        _upgradeUnit = unit;
+        _stigmatizeUnit = unit;
         button.GetComponent<Image>().sprite = unit.Data.Image;
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
     }
 
-    public void OnUpgradeButtonClick()
+    public void OnStigmaButtonClick()
     {
-        if (_upgradeUnit != null)
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().init(this);
+        if (_stigmatizeUnit != null) { }
+            GameManager.UI.ShowPopup<UI_StigmaSelectButton>().init(this);
     }
 
-    public void OnUpgradeSelect(int select) 
+    public void OnStigmaSelect(int select) 
     {
         if (select == 1)
         {
-            _upgradeUnit.ChangedStat.ATK += 5;
+
         }
-        else if (select == 2) 
+        else if (select == 2)
         {
-            _upgradeUnit.ChangedStat.HP += 15;
         }
         else if (select == 3)
         {
-            _upgradeUnit.ChangedStat.SPD += 25;
+
         }
         else if (select == 4)
         {
-            _upgradeUnit.ChangedStat.ManaCost -= 5;
+
         }
 
         GameManager.UI.ClosePopup();
@@ -73,7 +72,7 @@ public class UpgradeStore : Selectable
     {
         List<Script> scripts = new();
         Script s = new();
-        s.name = "강화소";
+        s.name = "낙인소";
         s.script = "퇴장";
         scripts.Add(s);
 
