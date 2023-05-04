@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class UI_UpgradeSelectButton : UI_Popup
+public class UI_StigmaSelectButton : UI_Popup
 {
-    private UpgradeStore _us;
-    public void init(UpgradeStore us)
+    private StigmaStore _ss;
+    public void init(StigmaStore ss)
     {
-        _us = us; 
+        _ss = ss; 
     }
 
     public void OnClick(int select)
     {
-        _us.OnUpgradeSelect(select);
+        _ss.OnStigmaSelect(select);
     }
 }
