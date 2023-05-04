@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class UI_UnitInfo : UI_Popup
 {
-    [SerializeField] private Image _imageArea;
+    [SerializeField] private UI_UnitCard _unitCard;
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private GameObject _fallGaugePrefab;
     [SerializeField] private GameObject _squarePrefab;
@@ -34,9 +34,11 @@ public class UI_UnitInfo : UI_Popup
         _selectable = selectable;
         _selectButton.SetActive(select);
 
-        _imageArea.sprite = _unit.Data.Image;
+        _unitCard.SetImage( _unit.Data.Image);
+        _unitCard.SetName(_unit.Data.Name.ToString());
+        _unitCard.SetCost(_unit.Stat.ManaCost.ToString());
 
-        _unitInfoName.text = _unit.Data.Name.ToString();
+        _unitInfoName.text = _unit.Data.Name;
         _unitInfoCost.text = _unit.Stat.ManaCost.ToString();
 
         _unitInfoStat.text = "HP: " + _unit.Stat.HP.ToString() + "\n" +
