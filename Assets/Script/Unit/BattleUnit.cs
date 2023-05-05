@@ -52,6 +52,7 @@ public class BattleUnit : MonoBehaviour
     public void SetHPBar()
     {
         _hpBar.SetHPBar(Team, transform);
+        _hpBar.SetFallBar(DeckUnit);
     }
 
     public void SetTeam(Team team)
@@ -130,7 +131,7 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeHP(int value) {
         HP.ChangeHP(value);
-        _hpBar.RefreshBar(HP.FillAmount());
+        _hpBar.RefreshHPBar(HP.FillAmount());
     }
 
     public void ChangeFall(int value)

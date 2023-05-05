@@ -25,9 +25,16 @@ public class DeckUnit
             SetStigmaByEnum(stigma);
     }
 
+    public void AddStigma()
+    {
+
+    }
+
     // 낙인 수정
     public void SetStigmaByEnum(낙인 stigma)
     {
+
+
         if(Stigmata.Count >= _maxStigmaCount)
         {
             Debug.Log($"이미 낙인이 {_maxStigmaCount}개임");
