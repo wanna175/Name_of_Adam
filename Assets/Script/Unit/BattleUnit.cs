@@ -85,6 +85,7 @@ public class BattleUnit : MonoBehaviour
         {
             Fall.Editfy();
         }
+        _hpBar.RefreshFallGauge(0);
         DeckUnit.ChangedStat.CurrentHP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
         Debug.Log($"{Data.name} Fall");
@@ -137,6 +138,7 @@ public class BattleUnit : MonoBehaviour
     public void ChangeFall(int value)
     {
         Fall.ChangeFall(value);
+        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
     
     public bool GetFlipX() => _renderer.flipX;
