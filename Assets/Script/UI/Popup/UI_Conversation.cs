@@ -21,16 +21,21 @@ public class UI_Conversation : UI_Popup
         Name,
     }
 
-    public void Init(List<Script> scripts)
+    // autoStart = false면 따로 실행해줘야 함
+    public void Init(List<Script> scripts, bool autoStart = true)
     {
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(Objects));
 
         this.scripts = scripts;
+
+        if (autoStart == false)
+            return;
+
         StartCoroutine(PrintScript());
     }
 
-    private IEnumerator PrintScript()
+    public IEnumerator PrintScript()
     {
         // 이벤트 스크립트 본문 출력
         foreach (Script script in scripts)
