@@ -18,8 +18,8 @@ public class UpgradeStore : Selectable
     {
         List<Script> scripts = new();
         Script s = new();
-        s.name = "°­Θ­ΌÒ";
-        s.script = "ΐΤΐε";
+        s.name = "κ°•ν™”μ†";
+        s.script = "μ…μ¥";
         scripts.Add(s);
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
@@ -73,12 +73,18 @@ public class UpgradeStore : Selectable
     {
         List<Script> scripts = new();
         Script s = new();
-        s.name = "°­Θ­ΌÒ";
-        s.script = "Επΐε";
+        s.name = "κ°•ν™”μ†";
+        s.script = "ν‡΄μ¥";
         scripts.Add(s);
 
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
+        quitScript.Init(scripts);
+        StartCoroutine(ChangeScene(quitScript));
+    }
 
+    private IEnumerator ChangeScene(UI_Conversation quitScript)
+    {
+        yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");
     }
 }
