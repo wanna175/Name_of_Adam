@@ -52,6 +52,7 @@ public enum Team
 [SerializeField]
 public enum Faction
 {
+    오리지널,
     순리의_기사단,
     짐승,
     바벨,
@@ -72,6 +73,7 @@ public enum BehaviorType
 [SerializeField]
 public enum Rarity
 {
+    일반,
     레어,
     엘리트,
 }

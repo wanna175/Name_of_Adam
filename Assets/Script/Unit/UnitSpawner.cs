@@ -30,8 +30,11 @@ public class UnitSpawner : MonoBehaviour
     private void Start()
     {
         // 디버그용
-        foreach (SpawnData data in AnimTest)
-            InitSpawn(data);
+        if (GameManager.Data.CurrentStageData.Units.Count == 0)
+        {
+            foreach (SpawnData data in AnimTest)
+                InitSpawn(data);
+        }
         // 디버그용
     }
 
