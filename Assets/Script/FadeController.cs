@@ -14,61 +14,51 @@ public class FadeController : MonoBehaviour
     private void Awake()
     {
         //여기의 Alpha 값을 조절
-        cg = gameObject.GetComponent<CanvasGroup>(); // 캔버스 그룹
-        StartFadeIn();
+        cg = GetComponent<CanvasGroup>(); // 캔버스 그룹
+        fadeCor = null;
+        //StartFadeIn();
     }
 
     public void StartFadeIn() // 호출 함수 Fade In을 시작
     {
         if (fadeCor != null)
-        {
-            StopAllCoroutines();
-            fadeCor = null;
-        }
+            StopCoroutine(fadeCor);
+
         fadeCor = StartCoroutine(FadeIn());
     }
 
     private IEnumerator FadeIn() // 코루틴을 통해 페이드 인 시간 조절
     {
-        yield return new WaitForSeconds(0.2f);
-        accumTime = 0f;
         while (accumTime < fadeTime)
         {
             cg.alpha = Mathf.Lerp(0f, 1f, accumTime / fadeTime);
-            yield return 0;
             accumTime += Time.deltaTime;
+            yield return null;
         }
         cg.alpha = 1f;
-
-        if(isButton == false)
-        {
-            StartCoroutine(FadeOut()); //일정시간 켜졌다 꺼지도록 Fade out 코루틴 호출
-        }
-        
-
+        accumTime = fadeTime;
     }
 
     public void StartFadeOut() // 호출 함수 Fadeout을 시작
     {
-        StartCoroutine(FadeOut());
+        if (fadeCor != null)
+            StopCoroutine(fadeCor);
+
+        fadeCor = StartCoroutine(FadeOut());
     }
 
     private IEnumerator FadeOut()
     {
-        yield return new WaitForSeconds(2.0f);
-        accumTime = 0f;
-        while (accumTime < fadeTime)
+        while (0 < accumTime)
         {
-            cg.alpha = Mathf.Lerp(1f, 0f, accumTime / fadeTime);
-            yield return 0;
-            accumTime += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(0, 1f, accumTime / fadeTime);
+            accumTime -= Time.deltaTime;
+            yield return null;
         }
         cg.alpha = 0f;
+        accumTime = 0;
 
-
-        SceneCheck();
-        
-
+        //SceneCheck();
     }
 
     void SceneCheck()

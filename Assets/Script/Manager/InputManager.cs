@@ -8,8 +8,8 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameManager.Sound.Play("UIClick2");
-            Debug.Log("마우스 좌클릭");
+            //GameManager.Sound.Play("UIClick2");
+            //Debug.Log("마우스 좌클릭");
         }
     }
 }

@@ -24,8 +24,8 @@ public class BattleManager : MonoBehaviour
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
 
-    private SkillEffectManager _skillEffect;
-    public static SkillEffectManager SkillEffect => Instance._skillEffect;
+    private VisualEffectManager _skillEffect;
+    public static VisualEffectManager SkillEffect => Instance._skillEffect;
 
     private Field _field;
     public static Field Field => Instance._field;
@@ -47,7 +47,7 @@ public class BattleManager : MonoBehaviour
     {
         _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
-        _skillEffect = new SkillEffectManager();
+        _skillEffect = new VisualEffectManager();
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
     }
