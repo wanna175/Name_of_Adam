@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         _renderer.color = Color.white;
-
+        //color.a = 0;
         transform.position = position;
         return this;
     }
