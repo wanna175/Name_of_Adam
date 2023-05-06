@@ -51,9 +51,32 @@ public class BattleDataManager : MonoBehaviour
         FillHand();
     }
 
-    public void Destroy()
+    public void OnBattleOver()
     {
+        Debug.Log("BDM Destroy");
+        foreach (DeckUnit unit in PlayerHands)
+        {
+            AddDeckUnit(unit);
+            Debug.Log(unit.Data.Name);
+        }
+
+        foreach (BattleUnit unit in BattleUnitList)
+        {
+            AddDeckUnit(unit.DeckUnit);
+            Debug.Log(unit.Data.Name);
+        }
+
+        foreach (DeckUnit unit in _playerDeck)
+        {
+            Debug.Log(unit.Data.Name);
+        }
+
         GameManager.Data.SetDeck(_playerDeck);
+
+        foreach (DeckUnit unit in GameManager.Data.GetDeck())
+        {
+            Debug.Log(unit.Data.Name);
+        }
     }
 
     public void AddDeckUnit(DeckUnit unit) {
@@ -74,8 +97,8 @@ public class BattleDataManager : MonoBehaviour
     {
         PlayerHands.Remove(unit);
         UI_hands.RemoveUnit(unit);
-        //FillHand();
-        UI_hands.SetHands(GameManager.Data.GetDeck());
+        FillHand();
+        //UI_hands.SetHands(GameManager.Data.GetDeck());
     }
 
     public void FillHand()

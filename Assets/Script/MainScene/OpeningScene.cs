@@ -1,62 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OpeningScene : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer[] LogoImages;
+    //[SerializeField] SpriteRenderer[] LogoImages;
+    [SerializeField] Image image; // 검은 화면
+    [SerializeField] GameObject button; // 클릭 버튼
 
-    private void Start()
+    
+
+    public void FadeButton()
     {
-        foreach(SpriteRenderer sr in LogoImages)
-            sr.color = Color.clear;
+        Debug.Log("버튼클릭");
+        button.SetActive(false);
+        StartCoroutine(FadeCoroutine());
 
-        StartCoroutine(ViewLogo());
+        
     }
 
-    private IEnumerator ViewLogo()
+    private IEnumerator FadeCoroutine()
     {
-        foreach (SpriteRenderer sr in LogoImages)
+        float fadeCount = 0;
+        while(fadeCount >= 1.0f)
         {
-            sr.color = Color.black;
-
-            float time = 0;
-            float FadeTime = 1;
-
-            while (time <= FadeTime)
-            {
-                time += Time.deltaTime;
-                float light = (time / FadeTime);
-                light = (light > 1) ? 1 : light;
-
-                sr.color = new Color(light, light, light, 1);
-
-                yield return null;
-            }
-            
-            yield return new WaitForSeconds(1);
-
-            time = FadeTime;
-
-            while (time > 0)
-            {
-                time -= Time.deltaTime;
-                float light = (time / FadeTime);
-                light = (light < 0) ? 0 : light;
-
-                sr.color = new Color(light, light, light, 1);
-                
-                yield return null;
-            }
-
-            sr.color = Color.clear;
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            image.color = new Color(0, 0, 0, fadeCount);
         }
-
-        EndScene();
+        
+        
     }
 
-    private void EndScene()
-    {
-        SceneChanger.SceneChange("MainScene");
-    }
 }

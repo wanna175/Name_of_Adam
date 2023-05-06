@@ -280,6 +280,12 @@ public class BattleManager : MonoBehaviour
         Data.BattleOrderRemove(_unit);
     }
 
+    public void DirectAttack()//임시 삭제
+    {
+        int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
+        Data.RemoveHandUnit(Data.PlayerHands[randNum]);
+    }
+
     public void BattleOverCheck()
     {
         int MyUnit = 0;
@@ -294,35 +300,33 @@ public class BattleManager : MonoBehaviour
         }
 
         MyUnit += Data.PlayerDeck.Count;
+        MyUnit += Data.PlayerHands.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
         {
-            Debug.Log("YOU LOSE");
-            _phase.ChangePhase(new BattleOverPhase());
-
+            BattleOverLose();
         }
         else if (EnemyUnit == 0)
         {
-            Debug.Log("YOU WIN");
-            _phase.ChangePhase(new BattleOverPhase());
+            BattleOverWin();
         }
-
     }
 
-
-    /*
-    UI_TurnChangeButton으로 이사감
-    public void TurnChange()
+    private void BattleOverWin()
     {
-        if (_phase.Current == _phase.Prepare)
-            _phase.ChangePhase(_phase.Engage);
-        else if (_phase.Current == _phase.Move)
-            _phase.ChangePhase(_phase.Action);
-        else
-            _phase.ChangePhase(_phase.Engage);
+        Debug.Log("YOU WIN");
+        Data.OnBattleOver();
+        _phase.ChangePhase(new BattleOverPhase());
+        GameManager.UI.ShowPopup<UI_BattleOver>().SetImage(1);
     }
-    */
+
+    private void BattleOverLose()
+    {
+        Debug.Log("YOU LOSE");
+        _phase.ChangePhase(new BattleOverPhase());
+        GameManager.UI.ShowPopup<UI_BattleOver>().SetImage(3);
+    }
 
     // 이동 경로를 받아와 이동시킨다
     private void MoveLocate(BattleUnit caster, Vector2 coord)

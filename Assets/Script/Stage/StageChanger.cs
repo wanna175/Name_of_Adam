@@ -38,13 +38,11 @@ public class StageChanger
         {
             SetBattleScene(stage);
         }
-        else if(stage.GetStageType() == StageType.Store)
+        else if (stage.GetStageType() == StageType.Store)
         {
-            string name = stage.Name.ToString().Replace("Store", "");
-            SceneChanger.SceneChange(name + "Scene");
+            SceneChanger.SceneChange("UpgradeScene");
         }
-        else
-            SceneChanger.SceneChange("EventScene");
+
     }
 
     private void SetBattleScene(Stage stage)
