@@ -53,7 +53,7 @@ public enum Team
 public enum Faction
 {
     오리지널,
-    순리의_기사단,
+    월식의_기사단,
     짐승,
     바벨,
 }
