@@ -29,6 +29,9 @@ public class UI_TurnChangeButton : UI_Scene
         else if (_phase.Current == _phase.Move)
             _phase.ChangePhase(_phase.Action);
         else
+        {
+            BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnit());
             _phase.ChangePhase(_phase.Engage);
+        }
     }
 }

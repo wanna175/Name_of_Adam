@@ -50,14 +50,17 @@ public class CutSceneData
         ZoomSize = AttackUnit.Data.AnimType.ZoomSize;
         TiltPower = AttackUnit.Data.AnimType.TiltPower;
 
-        MovePosition = BattleManager.Field.GetTilePosition(GetMoveLocation());
+        MovePosition = BattleManager.Field.GetTilePosition(GetMoveLocation(AttackUnit));
         
         Vector3 vec = Vector3.Lerp(MovePosition, HitPosition[0], 0.5f);
         ZoomLocation = new Vector3(vec.x, vec.y, 0);
     }
 
-    Vector3 GetMoveLocation()
+    Vector2 GetMoveLocation(BattleUnit unit)
     {
+        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
+            return unit.Location;
+
         Vector2 AttackUnitTile = AttackLocation;
         Vector2 HitUnitTile = HitLocation[0];
 

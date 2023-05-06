@@ -101,12 +101,10 @@ public class SplashUnitAIController : UnitAIController
 
         foreach (Vector2 splash in caster.GetSplashRange(TileSplashDic[vec][0], caster.Location))
         {
-            Debug.Log(splash + TileSplashDic[vec][0]);
             //Attack(splash + TileSplashDic[vec][0]);
             hitUnits.Add(_field.GetUnit(splash + TileSplashDic[vec][0]));
         }
-        Debug.Log('a');
-
+        Debug.Log(hitUnits.Count);
         BattleManager.Instance.AttackStart(caster, hitUnits);
     }
 
