@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillEffectManager
+public class VisualEffectManager
 {
     GameObject root;
     Queue<GameObject> EffectQueue;
 
-    public SkillEffectManager()
+    public VisualEffectManager()
     {
         root = new GameObject { name = "SkillEffectContainer" };
         EffectQueue = new Queue<GameObject>();
@@ -32,7 +32,7 @@ public class SkillEffectManager
 
     public void RestoreSkillEffect(GameObject go)
     {
-        go.SetActive(false);
         EffectQueue.Enqueue(go);
+        go.SetActive(false);
     }
 }

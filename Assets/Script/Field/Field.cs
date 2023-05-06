@@ -107,15 +107,15 @@ public class Field : MonoBehaviour
                 ExitTile(current);
                 ExitTile(dest);
 
-                EnterTile(currentUnit, dest);
-                EnterTile(destUnit, current);
+                EnterTile(currentUnit, dest, true);
+                EnterTile(destUnit, current, true);
                 return;
             }
         }
         else
         {
             ExitTile(current);
-            EnterTile(currentUnit, dest);
+            EnterTile(currentUnit, dest, true);
         }
     }
 
@@ -201,12 +201,15 @@ public class Field : MonoBehaviour
     }
 
 
-    public void EnterTile(BattleUnit unit, Vector2 coord)
+    public void EnterTile(BattleUnit unit, Vector2 coord, bool move = false)
     {
         TileDict[coord].EnterTile(unit);
 
         unit.SetLocate(coord);
-        unit.SetPosition(GetTilePosition(coord));
+        if (move)
+            StartCoroutine(unit.MovePosition(GetTilePosition(coord)));
+        else
+            unit.SetPosition(GetTilePosition(coord));
     }
 
     private void ExitTile(Vector2 coord)

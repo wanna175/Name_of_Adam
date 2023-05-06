@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
-            SceneChanger.SceneChange("StigmaScene");
+            SceneChanger.SceneChange("StageSelectScene");
+            //SceneChanger.SceneChange("StigmaScene");
     }
 }

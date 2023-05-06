@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillEffect : MonoBehaviour
+public class VisualEffect : MonoBehaviour
 {
     private void OnEnable()
     {

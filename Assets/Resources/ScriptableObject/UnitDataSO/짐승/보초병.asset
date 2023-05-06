@@ -25,11 +25,11 @@ MonoBehaviour:
   _description: 
   _faction: 2
   _rarity: 0
-  _image: {fileID: 0}
-  _animatorController: {fileID: 0}
+  _image: {fileID: 1993628109, guid: 0c8994001913b884ba4e339440494b0e, type: 3}
+  _animatorController: {fileID: 9100000, guid: a2fd4ee1f371a4a488a25670c7dbf079, type: 2}
   _skillEffectController: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
-  _darkEssenseDrop: 0
+  _darkEssenseDrop: 1
   _darkEssenseCost: 0
   _behaviorType: 1
   _effects:

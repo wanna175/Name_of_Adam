@@ -29,7 +29,7 @@ MonoBehaviour:
   _animatorController: {fileID: 0}
   _skillEffectController: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
-  _darkEssenseDrop: 0
+  _darkEssenseDrop: 1
   _darkEssenseCost: 0
   _behaviorType: 1
   _effects:
