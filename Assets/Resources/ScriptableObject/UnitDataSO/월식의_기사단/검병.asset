@@ -20,7 +20,7 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 3
     ManaCost: 30
-  _stigma: 
+  _stigma: 07000000
   _name: "\uAC80\uBCD1"
   _description: 
   _faction: 1

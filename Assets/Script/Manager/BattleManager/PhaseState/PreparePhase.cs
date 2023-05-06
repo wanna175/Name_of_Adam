@@ -11,7 +11,7 @@ public class PreparePhase : Phase
 
     public override void OnStateUpdate()
     {
-        
+        BattleManager.Data.BattleUnitOrder();
     }
 
     public override void OnClickEvent()
@@ -30,7 +30,5 @@ public class PreparePhase : Phase
     public override void OnStateExit()
     {
         BattleManager.Mana.ChangeMana(2);
-        BattleManager.Data.BattleUnitOrder();
-        
     }
 }

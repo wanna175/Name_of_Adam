@@ -714,7 +714,7 @@ MonoBehaviour:
   AnimTest:
   - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
     deckUnit:
-      Data: {fileID: 0}
+      Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
       ChangedStat:
         HP: 0
         CurrentHP: 0
@@ -728,7 +728,7 @@ MonoBehaviour:
     team: 1
   - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
     deckUnit:
-      Data: {fileID: 0}
+      Data: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
       ChangedStat:
         HP: 0
         CurrentHP: 0

@@ -20,7 +20,7 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 6
     ManaCost: 80
-  _stigma: 
+  _stigma: 07000000
   _name: "\uB0A8\uB9E4-\uC624\uBE60"
   _description: 
   _faction: 1
