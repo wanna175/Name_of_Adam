@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uAD81\uBCD1"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    HP: 20
+    CurrentHP: 20
+    ATK: 15
+    SPD: 65
+    FallCurrentCount: 0
+    FallMaxCount: 2
+    ManaCost: 30
+  _stigma: 
+  _name: "\uAD81\uBCD1"
+  _description: 
+  _faction: 1
+  _rarity: 1
+  _image: {fileID: 1003346480, guid: 36f9e7d4640e8864fb621cb29e3e2891, type: 3}
+  _animatorController: {fileID: 9100000, guid: cf7832f4ea4763c499598409d9f606b8, type: 2}
+  _skillEffectController: {fileID: 0}
+  _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
+  _darkEssenseDrop: 1
+  _darkEssenseCost: 0
+  _behaviorType: 0
+  _effects:
+  - {fileID: 11400000, guid: 6e5ebf919038f5d489e948e2a7833a01, type: 2}
+  _attackRange: 00000000000100000000000000000000010000000000000001010101010101000000000000000100000000000000000000010000000000
+  _moveRange: 00000000000000010000000101010000000100000000000000
+  _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000

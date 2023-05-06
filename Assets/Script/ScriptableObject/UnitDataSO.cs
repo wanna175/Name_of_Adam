@@ -33,6 +33,9 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private RuntimeAnimatorController _animatorController;
     public RuntimeAnimatorController AnimatorController => _animatorController;
 
+    [SerializeField] private RuntimeAnimatorController _skillEffectController;
+    public RuntimeAnimatorController SkillEffectController => _skillEffectController;
+
     [SerializeField] private AnimType _animType;
     public AnimType AnimType => _animType;
 
