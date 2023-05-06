@@ -237,6 +237,19 @@ public class UnitAIController : MonoBehaviour
         }
     }
 
+    protected bool DirectAttackCheck()//임시 삭제
+    {
+        if (_Data.BattleUnitList.Count == 0)
+        {
+            BattleManager.Instance.DirectAttack();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     protected void ListClear()
     {
         AttackRangeUnitList.Clear();
@@ -247,6 +260,7 @@ public class UnitAIController : MonoBehaviour
 
     public virtual void AIAction()
     {
+
         SetAttackRangeList();
 
         if (AttackRangeUnitList.Count > 0)
