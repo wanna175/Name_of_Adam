@@ -24,8 +24,6 @@ public class SoundManager
                 GameObject go = new GameObject { name = soundNames[i] };
                 _audioSources[i] = go.AddComponent<AudioSource>();
 
-                Debug.Log(mixer.FindMatchingGroups(soundNames[i]));
-
                 _audioSources[i].outputAudioMixerGroup = mixer.FindMatchingGroups(soundNames[i])[0];
                 go.transform.parent = root.transform;
             }

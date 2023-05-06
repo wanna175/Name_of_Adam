@@ -71,8 +71,7 @@ public class Stage
     int RemainCount;
 
     // 스마게용 임시 변수
-    public BattleData[] BattleRandomStage;
-    [NonSerialized] public BattleData BattleStageData;
+    public BattleData BattleStageData;
 
     public Stage(StageName name, StageType type, int count, int appear, Sprite sprite)
     {

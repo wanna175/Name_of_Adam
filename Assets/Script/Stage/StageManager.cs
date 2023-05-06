@@ -17,7 +17,7 @@ public class StageManager : MonoBehaviour
 
 
     // 선택할 수 있는 다음 스테이지와 그 다음 표시되는 스테이지의 배열
-    Stage[] StageArray = new Stage[3];
+    [SerializeField] Stage[] StageArray = new Stage[3];
     Stage[] NextStageArray = new Stage[3]; // 스마게용
     //Stage[] NextStageArray = new Stage[5];
     
@@ -77,7 +77,7 @@ public class StageManager : MonoBehaviour
         for(int i = 0; i < StageArray.Length; i++)
             StageArray[i] = SetRandomFaction(MapList[0]);
         */
-        SetRandomBattle(ref StageArray, GameManager.Data.SmagaStage[0].Stages); // 스마게용
+        SetSmagaStage(ref StageArray, GameManager.Data.SmagaMap[0].Stages); // 스마게용
         SetNextArray();
     }
 
@@ -125,8 +125,8 @@ public class StageManager : MonoBehaviour
     // NextStageArray를 요구하는 타입에 맞게 스테이지를 배치
     void SetNextArray()
     {
-        if (GameManager.Data.SmagaStage.Count > 1)
-            SetRandomBattle(ref NextStageArray, GameManager.Data.SmagaStage[1].Stages); // 스마게용
+        if (GameManager.Data.SmagaMap.Count > 1)
+            SetSmagaStage(ref NextStageArray, GameManager.Data.SmagaMap[1].Stages); // 스마게용
         else
         {
             NextStageArray = new Stage[3];
@@ -326,7 +326,7 @@ public class StageManager : MonoBehaviour
         }
         */
         StageArray = (Stage[])NextStageArray.Clone(); // 스마게용
-        GameManager.Data.SmagaStage.RemoveAt(0); // 스마게용
+        GameManager.Data.SmagaMap.RemoveAt(0); // 스마게용
 
         //MapList.RemoveAt(0); 기존 시스템
         SetNextArray();
@@ -347,19 +347,36 @@ public class StageManager : MonoBehaviour
     }
 
     // 스마게용 임시 매서드
-    void SetRandomBattle(ref Stage[] inputArr, Stage[] stageData)
+    void SetSmagaStage(ref Stage[] inputArr, Stage[] stageData)
     {
         inputArr = stageData;
         for(int i = 0; i < 3; i++)
         {
             if (inputArr[i].GetStageType() == StageType.Battle)
             {
-                int rand = UnityEngine.Random.Range(0, inputArr[i].BattleRandomStage.Length);
-
-                inputArr[i].BattleStageData = inputArr[i].BattleRandomStage[rand];
+                inputArr[i].BattleStageData = stageData[i].BattleStageData;
 
                 string name = inputArr[i].BattleStageData.faction.ToString();
                 inputArr[i].Background = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/" + name);
+            }
+            if(inputArr[i].Name == StageName.Random)
+            {
+                List<Stage> stageList = GameManager.Data.SmagaRandomStage;
+                int rand;
+
+                while (true)
+                {
+                    rand = UnityEngine.Random.Range(0, stageList.Count);
+
+                    if (stageList[rand].Name == StageName.CommonBattle)
+                        break;
+                    
+                    if (inputArr[1].Name != stageList[rand].Name)
+                        break; 
+                }
+
+                inputArr[i] = stageList[rand];
+                stageList.RemoveAt(rand);
             }
         }
     }

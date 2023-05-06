@@ -28,7 +28,8 @@ public class DataManager : MonoBehaviour
 
     public StageDataContainer StageDatas;
     public StageSpawnData CurrentStageData;
-    public List<TempStageStorage> SmagaStage;
+    public List<TempStageStorage> SmagaMap;
+    public List<Stage> SmagaRandomStage;
 
     [SerializeField] private GameData _gameData;
     
