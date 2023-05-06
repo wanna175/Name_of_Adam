@@ -10,7 +10,7 @@ public class UI_MyDeck : UI_Popup
     private List<DeckUnit> _playerDeck = new();
     private Selectable _selectable;
 
-    public void Init(bool battle=false, bool select=false, Selectable selectable =null)
+    public void Init(bool battle=false, bool select=false, Selectable selectable=null)
     {
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;

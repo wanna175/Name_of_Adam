@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 915e9b1c642de1b42a831be87353e4e5
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/EventScene.unity
     guid: 102eea14b216423479e79d7ffd6c904e
@@ -32,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JS TEST.unity
     guid: 4b2e013270782c94ab7f4ab5bb588e0c
+  - enabled: 1
+    path: Assets/Scenes/StigmaScene.unity
+    guid: 01401f6f9c7306e41822287d7817c601
   m_configObjects: {}

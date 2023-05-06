@@ -14,6 +14,6 @@ public class UI_UpgradeSelectButton : UI_Popup
 
     public void OnClick(int select)
     {
-        _us.OnSelect(select);
+        _us.OnUpgradeSelect(select);
     }
 }

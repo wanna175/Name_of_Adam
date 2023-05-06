@@ -18,8 +18,8 @@ public class UpgradeStore : Selectable
     {
         List<Script> scripts = new();
         Script s = new();
-        s.name = "°­È­¼Ò";
-        s.script = "ÀÔÀå";
+        s.name = "ê°•í™”ì†Œ";
+        s.script = "ìž…ìž¥";
         scripts.Add(s);
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
@@ -45,13 +45,14 @@ public class UpgradeStore : Selectable
             GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().init(this);
     }
 
-    public void OnSelect(int select) 
+    public void OnUpgradeSelect(int select) 
     {
         if (select == 1)
         {
             _upgradeUnit.ChangedStat.ATK += 5;
         }
-        else if (select == 2) {
+        else if (select == 2) 
+        {
             _upgradeUnit.ChangedStat.HP += 15;
         }
         else if (select == 3)
@@ -72,12 +73,18 @@ public class UpgradeStore : Selectable
     {
         List<Script> scripts = new();
         Script s = new();
-        s.name = "°­È­¼Ò";
-        s.script = "ÅðÀå";
+        s.name = "ê°•í™”ì†Œ";
+        s.script = "í‡´ìž¥";
         scripts.Add(s);
 
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
+        quitScript.Init(scripts);
+        StartCoroutine(ChangeScene(quitScript));
+    }
 
+    private IEnumerator ChangeScene(UI_Conversation quitScript)
+    {
+        yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");
     }
 }

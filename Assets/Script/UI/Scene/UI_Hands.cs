@@ -55,11 +55,17 @@ public class UI_Hands : UI_Scene
 
     public void OnClickHand(UI_Hand hand)
     {
-        Debug.Log("Hand Click");
-        if (hand != null && hand == _selectedHand)
-            CancleSelect();
+        if (BattleManager.Mana.CanUseMana(20))
+        {
+            if (hand != null && hand == _selectedHand)
+                CancleSelect();
+            else
+                SelectOneUnit(hand);
+        }
         else
-            SelectOneUnit(hand);
+        {
+            Debug.Log("Can't");
+        }
     }
 
     private void CancleSelect()
