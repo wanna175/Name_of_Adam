@@ -41,7 +41,7 @@ public class StigmaStore : Selectable
 
     public void OnStigmaButtonClick()
     {
-        if (_stigmatizeUnit != null) { }
+        if (_stigmatizeUnit != null)
             GameManager.UI.ShowPopup<UI_StigmaSelectButton>().init(this);
     }
 
