@@ -17,6 +17,8 @@ public class UI_BattleOver : UI_Popup
         if (imageNum == 1)
         {
             _textImage.sprite = _winText;
+            GameManager.Sound.Clear();
+            GameManager.Sound.Play("UI/ResultSFX/승리 효과음");
         }
         else if (imageNum == 2)
         {
@@ -25,6 +27,8 @@ public class UI_BattleOver : UI_Popup
         else if (imageNum == 3) 
         {
             _textImage.sprite = _loseText;
+            GameManager.Sound.Clear();
+            GameManager.Sound.Play("UI/ResultSFX/패배 효과음");
         }
     }
 
