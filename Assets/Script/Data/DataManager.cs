@@ -31,12 +31,15 @@ public class DataManager : MonoBehaviour
     public List<TempStageStorage> SmagaMap;
     public List<Stage> SmagaRandomStage;
 
-    [SerializeField] private GameData _gameData;
-    
+    [SerializeField] public GameData GameData;
+
+    public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
+
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageDataContainer>("StageData");
+        ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -44,6 +47,7 @@ public class DataManager : MonoBehaviour
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
+
     T LoadJson<T>(string path)
     {
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
@@ -56,22 +60,22 @@ public class DataManager : MonoBehaviour
 
     public void AddDeckUnit(DeckUnit unit)
     {
-        _gameData.DeckUnits.Add(unit);
+        GameData.DeckUnits.Add(unit);
     }
 
     public void RemoveDeckUnit(DeckUnit unit)
     {
-        _gameData.DeckUnits.Remove(unit);
+        GameData.DeckUnits.Remove(unit);
     }
 
     public List<DeckUnit> GetDeck() 
     {
-        return _gameData.DeckUnits;
+        return GameData.DeckUnits;
     }
 
     public void SetDeck(List<DeckUnit> deck)
     {
-        _gameData.DeckUnits = deck;
+        GameData.DeckUnits = deck;
     }
     
     public void StageDataInit()
