@@ -16,10 +16,11 @@ public class UI_BattleOver : UI_Scene
         GetComponent<Canvas>().sortingOrder = 100;
         _result = result;
 
-        if (result == 1)
+        if (result == 1) 
+        {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("UI/ResultSFX/�¸� ȿ���");
+            GameManager.Sound.Play("UI/ResultSFX/승리 효과음");
         }
         else if (result == 2)
         {
@@ -29,7 +30,7 @@ public class UI_BattleOver : UI_Scene
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("UI/ResultSFX/�й� ȿ���");
+            GameManager.Sound.Play("UI/ResultSFX/패배 효과음");
         }
     }
 
