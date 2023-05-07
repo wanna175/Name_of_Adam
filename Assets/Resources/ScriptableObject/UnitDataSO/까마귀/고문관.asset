@@ -27,7 +27,7 @@ MonoBehaviour:
   _faction: 2
   _rarity: 0
   _image: {fileID: 1050555066, guid: 34699526708ad2945b82de23eaedd7b1, type: 3}
-  _animatorController: {fileID: 9100000, guid: dc2a159a8e4e70147a0502d4ff463850, type: 2}
+  _animatorController: {fileID: 9100000, guid: 96df7636d7766c6429a18fc3b70c36e9, type: 2}
   _skillEffectController: {fileID: 0}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
   _darkEssenseDrop: 1

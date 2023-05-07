@@ -268,7 +268,7 @@ public class BattleManager : MonoBehaviour
 
             if (unit.Data.SkillEffectController != null)
                 SkillEffect.StartSkillEffect(unit.Data.SkillEffectController, hit.transform.position);
-
+            
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
 

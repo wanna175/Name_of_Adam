@@ -13,17 +13,17 @@ public class UI_BattleOver : UI_Popup
 
     public void SetImage(int result)
     {
-        if (imageNum == 1)
+        if (result == 1)
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
             GameManager.Sound.Play("UI/ResultSFX/�¸� ȿ���");
         }
-        else if (imageNum == 2)
+        else if (result== 2)
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
         }
-        else if (imageNum == 3) 
+        else if (result== 3) 
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();

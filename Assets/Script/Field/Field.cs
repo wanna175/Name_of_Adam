@@ -81,7 +81,7 @@ public class Field : MonoBehaviour
 
         Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
         GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
-        
+
         return tileObject.GetComponent<Tile>().Init(tilePos);
     }
 
