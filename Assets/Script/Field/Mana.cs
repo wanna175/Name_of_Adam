@@ -4,7 +4,7 @@ using UnityEngine;
 public class Mana : MonoBehaviour
 {
     // Mana Manage
-    [SerializeField] private int _maxManaCost = 100;
+    [SerializeField] private int _maxManaCost = 99;
     [ReadOnly, SerializeField] private int _currentMana = 0;
     private UI_ManaGauge _manaGuage;
 
