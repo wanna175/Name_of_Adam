@@ -55,7 +55,12 @@ public class UI_HPBar : UI_Base
 
     public void RefreshFallGauge(float current)
     {
-        for (int i = 0; i < current; i++)
-            _fallGauge[i].FillGauge();
+        for (int i = 0; i < _fallGauge.Count; i++)
+        {
+            if (i < current)
+                _fallGauge[i].FillGauge();
+            else
+                _fallGauge[i].EmptyGauge();
+        }
     }
 }
