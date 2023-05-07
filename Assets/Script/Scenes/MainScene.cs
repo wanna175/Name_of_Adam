@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleScene : MonoBehaviour
+public class MainScene : MonoBehaviour
 {
     private void Awake()
     {
-        GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
+        GameManager.Sound.Play("BattleBGMB", Sounds.BGM);
     }
-
 }

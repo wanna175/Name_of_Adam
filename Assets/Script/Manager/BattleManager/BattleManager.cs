@@ -50,7 +50,7 @@ public class BattleManager : MonoBehaviour
         _skillEffect = new VisualEffectManager();
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
-
+        GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
     }
 
     private void Update()

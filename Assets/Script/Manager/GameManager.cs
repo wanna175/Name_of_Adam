@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager s_instance;
@@ -54,6 +55,14 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
             SceneChanger.SceneChange("StageSelectScene");
-            //SceneChanger.SceneChange("StigmaScene");
+        //SceneChanger.SceneChange("StigmaScene");
+        //if(SceneChanger.GetSceneName() != "Battle")
+        //{
+        //    Sound.Play("BattleBGMA", Sounds.BGM);
+        //}
+        //else
+        //{
+        //    Sound.Play("BattleBGMB", Sounds.BGM);
+        //}
     }
 }
