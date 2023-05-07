@@ -123,294 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &447430929
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 447430931}
-  - component: {fileID: 447430930}
-  m_Layer: 0
-  m_Name: DataManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &447430930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447430929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74c557c71daccca4b8b39eef42acd45c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LocalStageInfo: []
-  MapList: 
-  StageArray:
-  - Name: 0
-    Type: 0
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 0
-      level: 0
-      id: 0
-  - Name: 0
-    Type: 0
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 0
-      level: 0
-      id: 0
-  - Name: 0
-    Type: 0
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 0
-      level: 0
-      id: 0
-  StageDatas:
-    StageData: []
-  CurrentStageData:
-    FactionName: 
-    Level: 0
-    ID: 0
-    Units: []
-  SmagaMap:
-  - Stages:
-    - Name: 0
-      Type: 0
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 6
-      Type: 2
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 1
-        level: 1
-        id: 1
-    - Name: 0
-      Type: 0
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-  - Stages:
-    - Name: 6
-      Type: 2
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 2
-        level: 1
-        id: 3
-    - Name: 6
-      Type: 2
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 1
-        level: 1
-        id: 3
-    - Name: 6
-      Type: 2
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 3
-        level: 1
-        id: 2
-  - Stages:
-    - Name: 9
-      Type: 1
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 1
-      Type: 0
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 9
-      Type: 1
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-  - Stages:
-    - Name: 9
-      Type: 1
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 2
-      Type: 0
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 9
-      Type: 1
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-  - Stages:
-    - Name: 9
-      Type: 1
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 9
-      Type: 1
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 9
-      Type: 1
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-  - Stages:
-    - Name: 0
-      Type: 0
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-    - Name: 7
-      Type: 2
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 1
-        level: 11
-        id: 1
-    - Name: 0
-      Type: 0
-      Background: {fileID: 0}
-      BattleStageData:
-        faction: 0
-        level: 0
-        id: 0
-  SmagaRandomStage:
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 1
-      level: 2
-      id: 1
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 1
-      level: 2
-      id: 8
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 1
-      level: 2
-      id: 14
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 2
-      level: 2
-      id: 1
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 2
-      level: 2
-      id: 14
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 2
-      level: 2
-      id: 15
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 3
-      level: 2
-      id: 2
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 3
-      level: 2
-      id: 3
-  - Name: 6
-    Type: 2
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 3
-      level: 2
-      id: 4
-  - Name: 1
-    Type: 0
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 0
-      level: 0
-      id: 0
-  - Name: 2
-    Type: 0
-    Background: {fileID: 0}
-    BattleStageData:
-      faction: 0
-      level: 0
-      id: 0
-  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
-  _playerDeck: []
---- !u!4 &447430931
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447430929}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 653520488}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &455184538
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,54 +166,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &653520486
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 653520488}
-  - component: {fileID: 653520487}
-  m_Layer: 0
-  m_Name: '@GameManager'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &653520487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653520486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e29baf8a2a665145b45901eeb8117f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ui: {fileID: 2122667426}
-  _data: {fileID: 447430930}
---- !u!4 &653520488
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653520486}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2122667427}
-  - {fileID: 447430931}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697651487
 GameObject:
@@ -620,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 836598657}
   - component: {fileID: 836598656}
+  - component: {fileID: 836598658}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -654,6 +319,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &836598658
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836598655}
+  m_Enabled: 1
 --- !u!1 &1100229857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,47 +920,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099927713}
   m_CullTransparentMesh: 1
---- !u!1 &2122667425
-GameObject:
+--- !u!1001 &7143347325344360979
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2122667427}
-  - component: {fileID: 2122667426}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2122667426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122667425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dc08131f4fa85d4f81b453c6ebf6d48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2122667427
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122667425}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 653520488}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7143347325917774965, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_Name
+      value: '@GameManager'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143347325917774971, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}

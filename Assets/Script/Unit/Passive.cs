@@ -244,7 +244,7 @@ public class 동생 : Passive
         foreach(BattleUnit unit in units)
         {
             unit.ChangeHP(-caster.Stat.ATK);
-            //unit.ChangeFall(1);
+            unit.ChangeFall(1);
             AddMoonMark(unit);
         }
         _connectedPassive.GetPointedUnits().Clear();

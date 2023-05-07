@@ -21,9 +21,15 @@ public class UI_HPBar : UI_Base
     public void SetHPBar(Team team, Transform trans)
     {
         if (team == Team.Player)
+        {
             _playerBar.gameObject.SetActive(true);
+            _enemyBar.gameObject.SetActive(false);
+        }
         else
+        {
             _enemyBar.gameObject.SetActive(true);
+            _playerBar.gameObject.SetActive(false);
+        }
 
         this.team = team;
     }
@@ -53,9 +59,14 @@ public class UI_HPBar : UI_Base
             _enemyBar.fillAmount = amount;
     }
 
-    public void RefreshFallGauge(float current)
+    public void RefreshFallGauge(int current)
     {
-        for (int i = 0; i < current; i++)
-            _fallGauge[i].FillGauge();
+        for (int i = 0; i < _fallGauge.Count; i++)
+        {
+            if (i < current)
+                _fallGauge[i].FillGauge();
+            else
+                _fallGauge[i].EmptyGauge();
+        }
     }
 }
