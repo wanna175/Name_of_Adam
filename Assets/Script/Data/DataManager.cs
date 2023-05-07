@@ -116,4 +116,13 @@ public class DataManager : MonoBehaviour
             return true;
         }
     }
+
+    public bool CanUseDarkEssense(int value)
+    {
+        if (_darkEssense >= value)
+            return true;
+
+        Debug.Log("not enough Dark Essense");
+        return false;
+    }
 }
