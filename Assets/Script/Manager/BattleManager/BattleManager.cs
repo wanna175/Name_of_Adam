@@ -50,6 +50,7 @@ public class BattleManager : MonoBehaviour
         _skillEffect = new VisualEffectManager();
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
+
     }
 
     private void Update()

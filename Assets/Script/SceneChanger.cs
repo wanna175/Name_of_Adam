@@ -7,6 +7,11 @@ public static class SceneChanger
 {
     public static void SceneChange(string SceneName)
     {
+        
+        
         SceneManager.LoadScene(SceneName);
+        
+
+
     }
 }

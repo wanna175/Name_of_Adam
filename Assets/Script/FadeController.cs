@@ -9,6 +9,7 @@ public class FadeController : MonoBehaviour
     float accumTime = 0f;
     private Coroutine fadeCor;
     [SerializeField] bool isButton;
+    [SerializeField] bool auto;
     [SerializeField] string scenename = "none";
 
     private void Awake()
@@ -16,7 +17,10 @@ public class FadeController : MonoBehaviour
         //여기의 Alpha 값을 조절
         cg = GetComponent<CanvasGroup>(); // 캔버스 그룹
         fadeCor = null;
-        //StartFadeIn();
+        if(auto == true)
+        {
+            StartFadeIn();
+        }
     }
 
     public void StartFadeIn() // 호출 함수 Fade In을 시작
@@ -37,6 +41,10 @@ public class FadeController : MonoBehaviour
         }
         cg.alpha = 1f;
         accumTime = fadeTime;
+        if (auto == true)
+        {
+            StartFadeOut();
+        }
     }
 
     public void StartFadeOut() // 호출 함수 Fadeout을 시작
@@ -58,7 +66,7 @@ public class FadeController : MonoBehaviour
         cg.alpha = 0f;
         accumTime = 0;
 
-        //SceneCheck();
+        SceneCheck();
     }
 
     void SceneCheck()

@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     private ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource => Instance._resource;
 
+    private InputManager _input = new InputManager();
+    public static InputManager InputManager => Instance._input;
+
     void Awake()
     {
         //if (s_instance != null)

@@ -25,7 +25,7 @@ public class CutSceneController : MonoBehaviour
         CameraHandler.SetCutSceneCamera();
         UnitFlip();
         SetUnitRayer(5);
-
+        GameManager.Sound.Play("");
         StartCoroutine(ZoomIn());
     }
 
