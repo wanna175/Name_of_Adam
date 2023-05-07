@@ -31,6 +31,7 @@ public class CutSceneController : MonoBehaviour
 
     private void UnitFlip()
     {
+        Debug.Log(CSData.AttackUnitDirection);
         if(CSData.AttackUnitDirection < 0)
         {
             CSData.AttackUnit.GetComponent<SpriteRenderer>().flipX = false;

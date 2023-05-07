@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameManager.Sound.Play("UI/UIClick1");
-            Debug.Log("마우스 좌클릭");
+            //Debug.Log("마우스 좌클릭");
         }
         
     }

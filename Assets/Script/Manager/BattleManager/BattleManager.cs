@@ -259,11 +259,16 @@ public class BattleManager : MonoBehaviour
         {
             if (hit == null)
                 continue;
-
+            
             //공격 전 낙인 체크
             unit.SkillUse(hit);
-            if(unit.Data.SkillEffectController != null)
+
+            if (unit.Data.SkillEffectController != null)
                 SkillEffect.StartSkillEffect(unit.Data.SkillEffectController, hit.transform.position);
+
+            if (hit.HP.GetCurrentHP() <= 0)
+                continue;
+
             unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
         }
 
