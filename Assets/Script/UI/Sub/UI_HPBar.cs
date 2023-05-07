@@ -21,9 +21,15 @@ public class UI_HPBar : UI_Base
     public void SetHPBar(Team team, Transform trans)
     {
         if (team == Team.Player)
+        {
             _playerBar.gameObject.SetActive(true);
+            _enemyBar.gameObject.SetActive(false);
+        }
         else
+        {
             _enemyBar.gameObject.SetActive(true);
+            _playerBar.gameObject.SetActive(false);
+        }
 
         this.team = team;
     }

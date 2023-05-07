@@ -89,7 +89,9 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshFallGauge(0);
         DeckUnit.ChangedStat.CurrentHP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
-        Debug.Log($"{Data.name} Fall");
+        _hpBar.SetHPBar(Team, transform);
+        
+        //Debug.Log($"{Data.name} Fall");
     }
 
     public Team ChangeTeam(Team team = default)
