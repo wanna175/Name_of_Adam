@@ -34,7 +34,11 @@ public class ButtonController : MonoBehaviour
     {
         ResourceManager resource = GameManager.Resource;
 
-        for(int i = 0; i < 3; i++)
+        Debug.Log("asd");
+        GameManager.UI.ShowScene<UI_OptionButton>();
+        GameManager.UI.ShowScene<UI_DeckButton>().Set(false);
+
+        for (int i = 0; i < 3; i++)
         {
             GameObject StageButton = resource.Instantiate("UI/Stage/BTN_StageSelect", StageButtonContainer.transform);
             StageButton.AddComponent<StageButtonEventTrigger>().Init(this);

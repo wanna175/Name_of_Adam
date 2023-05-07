@@ -9,7 +9,7 @@ public class BattleDataManager : MonoBehaviour
     {
         UI_ControlBar UI_Control = GameManager.UI.ShowScene<UI_ControlBar>();
         GameManager.UI.ShowScene<UI_OptionButton>();
-        GameManager.UI.ShowScene<UI_DeckButton>();
+        GameManager.UI.ShowScene<UI_DeckButton>().Set(true);
 
         _ui_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
