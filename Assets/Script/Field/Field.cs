@@ -12,8 +12,8 @@ public class Field : MonoBehaviour
     public List<Vector2> _coloredTile = new List<Vector2>();
 
     // 필드의 생성을 위한 필드의 위치
-    private Vector3 FieldPosition => new Vector3(0, -1.4f, 0);
-    private Vector3 FieldRotation => new Vector3(16, 0, 0);
+    private Vector3 FieldPosition => new Vector3(0, -0.7f, 0);
+    private Vector3 FieldRotation => new Vector3(40, 0, 0);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
@@ -39,6 +39,7 @@ public class Field : MonoBehaviour
 
         transform.position = FieldPosition;
         transform.eulerAngles = FieldRotation;
+        
     }
 
     // 타일의 좌표값을 리턴한다.
@@ -80,7 +81,7 @@ public class Field : MonoBehaviour
 
         Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
         GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
-        
+
         return tileObject.GetComponent<Tile>().Init(tilePos);
     }
 
@@ -107,29 +108,25 @@ public class Field : MonoBehaviour
                 ExitTile(current);
                 ExitTile(dest);
 
-                EnterTile(currentUnit, dest);
-                EnterTile(destUnit, current);
+                EnterTile(currentUnit, dest, true);
+                EnterTile(destUnit, current, true);
                 return;
             }
         }
         else
         {
             ExitTile(current);
-            EnterTile(currentUnit, dest);
+            EnterTile(currentUnit, dest, true);
         }
     }
 
     // 지정한 위치에 있는 타일의 좌표를 반환
-    private Vector3 GetTilePosition(Vector2 coord)
+    public Vector3 GetTilePosition(Vector2 coord)
     {
         Vector3 position = TileDict[coord].transform.position;
-
-        float sizeX = TileDict[coord].transform.localScale.x * 0.5f;
-        float sizeY = TileDict[coord].transform.localScale.y * 0.5f;
-        sizeY += TileDict[coord].transform.localScale.y * 0.5f; // 스프라이트 변경으로 인한 임시조치
-
-        position.x += sizeX;
-        position.y += sizeY;
+        
+        float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
+        position.y -= sizeY;
 
         return position;
     }
@@ -205,12 +202,15 @@ public class Field : MonoBehaviour
     }
 
 
-    public void EnterTile(BattleUnit unit, Vector2 coord)
+    public void EnterTile(BattleUnit unit, Vector2 coord, bool move = false)
     {
         TileDict[coord].EnterTile(unit);
 
         unit.SetLocate(coord);
-        unit.SetPosition(GetTilePosition(coord));
+        if (move)
+            StartCoroutine(unit.MovePosition(GetTilePosition(coord)));
+        else
+            unit.SetPosition(GetTilePosition(coord));
     }
 
     private void ExitTile(Vector2 coord)
@@ -231,11 +231,18 @@ public class Field : MonoBehaviour
     public void MouseEnterTile(Tile tile)
     {
         Vector2 coord = FindCoordByTile(tile);
-        if (_coloredTile.Contains(coord))
+
+        if (tile.UnitExist)
         {
-            if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+            BattleUnit unit = GetUnit(coord);
+            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.FillAmount(), unit.Fall.GetCurrentFallCount());
+        }
+
+        if (_coloredTile.Contains(coord)) 
+        {
+            if (BattleManager.Phase.Current == BattleManager.Phase.Action)
             {
-                List<Vector2> range = GameManager.Battle.Data.GetNowUnit().GetSplashRange(coord, GameManager.Battle.Data.GetNowUnit().Location);
+                List<Vector2> range = BattleManager.Data.GetNowUnit().GetSplashRange(coord, BattleManager.Data.GetNowUnit().Location);
                 foreach (Vector2 vec in range)
                 {
                     TileDict[coord + vec].SetColor(Color.green);
@@ -246,9 +253,14 @@ public class Field : MonoBehaviour
 
     public void MouseExitTile(Tile tile)
     {
-        if (GameManager.Battle.Phase.Current == GameManager.Battle.Phase.Action)
+        if (tile.UnitExist)
         {
-            SetTileColor(GameManager.Battle.Data.GetNowUnit(), ClickType.Attack);
+            GameManager.UI.ClosePopup();
+        }
+
+        if (BattleManager.Phase.Current == BattleManager.Phase.Action)
+        {
+            SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
         }
     }
 }

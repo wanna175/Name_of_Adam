@@ -1,7 +1,7 @@
 {
   "StageData": [
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 1,
       "ID": 1,
       "Units": [
@@ -13,7 +13,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
@@ -23,7 +23,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 1,
       "ID": 2,
       "Units": [
@@ -45,7 +45,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 1,
       "ID": 3,
       "Units": [
@@ -67,7 +67,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 1,
       "Units": [
@@ -86,7 +86,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
@@ -96,7 +96,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 2,
       "Units": [
@@ -108,14 +108,14 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -125,7 +125,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 3,
       "Units": [
@@ -144,7 +144,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
@@ -154,7 +154,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 4,
       "Units": [
@@ -183,7 +183,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 5,
       "Units": [
@@ -195,14 +195,14 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
@@ -212,7 +212,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 6,
       "Units": [
@@ -231,7 +231,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -241,7 +241,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 7,
       "Units": [
@@ -260,7 +260,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -270,7 +270,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 8,
       "Units": [
@@ -299,7 +299,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 9,
       "Units": [
@@ -328,12 +328,12 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 10,
       "Units": [
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 3,
             "y": 1
@@ -343,7 +343,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 11,
       "Units": [
@@ -355,7 +355,7 @@
           }
         },
         {
-          "Name": "대?",
+          "Name": "대포",
           "Location": {
             "x": 5,
             "y": 1
@@ -365,7 +365,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 12,
       "Units": [
@@ -384,7 +384,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
@@ -394,7 +394,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 13,
       "Units": [
@@ -430,7 +430,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 2,
       "ID": 14,
       "Units": [
@@ -449,7 +449,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
@@ -459,7 +459,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 1,
       "Units": [
@@ -478,14 +478,14 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -495,7 +495,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 2,
       "Units": [
@@ -521,7 +521,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
@@ -531,7 +531,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 3,
       "Units": [
@@ -550,14 +550,14 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -567,7 +567,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 4,
       "Units": [
@@ -586,14 +586,14 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -603,7 +603,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 5,
       "Units": [
@@ -622,14 +622,14 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -639,7 +639,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 6,
       "Units": [
@@ -658,7 +658,7 @@
           }
         },
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 5,
             "y": 1
@@ -668,7 +668,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 7,
       "Units": [
@@ -694,7 +694,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
@@ -704,7 +704,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 8,
       "Units": [
@@ -730,7 +730,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
@@ -740,7 +740,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 9,
       "Units": [
@@ -766,7 +766,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -776,19 +776,19 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 10,
       "Units": [
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 5,
             "y": 2
@@ -798,7 +798,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 11,
       "Units": [
@@ -810,14 +810,14 @@
           }
         },
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
@@ -827,7 +827,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 12,
       "Units": [
@@ -839,14 +839,14 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 5,
             "y": 2
@@ -856,19 +856,19 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 13,
       "Units": [
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "대?",
+          "Name": "대포",
           "Location": {
             "x": 5,
             "y": 1
@@ -878,7 +878,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 14,
       "Units": [
@@ -897,7 +897,7 @@
           }
         },
         {
-          "Name": "대?",
+          "Name": "대포",
           "Location": {
             "x": 5,
             "y": 1
@@ -907,7 +907,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 15,
       "Units": [
@@ -926,7 +926,7 @@
           }
         },
         {
-          "Name": "대?",
+          "Name": "대포",
           "Location": {
             "x": 5,
             "y": 1
@@ -943,7 +943,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 16,
       "Units": [
@@ -955,14 +955,14 @@
           }
         },
         {
-          "Name": "대?",
+          "Name": "대포",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "대?",
+          "Name": "대포",
           "Location": {
             "x": 5,
             "y": 2
@@ -972,26 +972,26 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 17,
       "Units": [
         {
-          "Name": "기?",
+          "Name": "기마병",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -1001,7 +1001,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 18,
       "Units": [
@@ -1013,21 +1013,21 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 1
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 5,
             "y": 2
@@ -1037,7 +1037,7 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 3,
       "ID": 19,
       "Units": [
@@ -1049,7 +1049,7 @@
           }
         },
         {
-          "Name": "궁수",
+          "Name": "궁병",
           "Location": {
             "x": 4,
             "y": 0
@@ -1063,7 +1063,7 @@
           }
         },
         {
-          "Name": "대?",
+          "Name": "대포",
           "Location": {
             "x": 5,
             "y": 2
@@ -1073,19 +1073,19 @@
     },
 
     {
-      "FactionName": "순리의_기사단",
+      "FactionName": "월식의_기사단",
       "Level": 11,
       "ID": 1,
       "Units": [
         {
-          "Name": "오빠",
+          "Name": "남매-오빠",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "동생",
+          "Name": "남매-여동생",
           "Location": {
             "x": 5,
             "y": 1
@@ -1095,26 +1095,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 1,
       "ID": 1,
       "Units": [
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 2
@@ -1124,19 +1124,19 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 1,
       "ID": 2,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
@@ -1146,19 +1146,19 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 1,
       "ID": 3,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 5,
             "y": 1
@@ -1168,26 +1168,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 1,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 5,
             "y": 2
@@ -1197,33 +1197,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 2,
       "Units": [
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 5,
             "y": 1
@@ -1233,26 +1233,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 3,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 1
@@ -1262,26 +1262,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 4,
       "Units": [
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 5,
             "y": 2
@@ -1291,26 +1291,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 5,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 4,
             "y": 1
@@ -1320,26 +1320,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 6,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 4,
             "y": 2
@@ -1349,33 +1349,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 7,
       "Units": [
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 2
@@ -1385,26 +1385,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 8,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 4,
             "y": 2
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 5,
             "y": 2
@@ -1414,26 +1414,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 9,
       "Units": [
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 3,
             "y": 2
@@ -1443,26 +1443,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 10,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
@@ -1472,12 +1472,12 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 11,
       "Units": [
         {
-          "Name": "죄?",
+          "Name": "까마귀_죄수",
           "Location": {
             "x": 3,
             "y": 1
@@ -1487,12 +1487,12 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 12,
       "Units": [
         {
-          "Name": "낫?",
+          "Name": "까마귀_여러마리_낫",
           "Location": {
             "x": 3,
             "y": 1
@@ -1502,19 +1502,19 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 13,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "암?",
+          "Name": "암살자_까마귀",
           "Location": {
             "x": 5,
             "y": 1
@@ -1524,33 +1524,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 2,
       "ID": 14,
       "Units": [
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 1
@@ -1560,33 +1560,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 1,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 2
@@ -1596,26 +1596,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 2,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "암?",
+          "Name": "암살자_까마귀",
           "Location": {
             "x": 4,
             "y": 1
@@ -1625,26 +1625,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 3,
       "Units": [
         {
-          "Name": "낫?",
+          "Name": "까마귀_여러마리_낫",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 0
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 2
@@ -1654,26 +1654,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 4,
       "Units": [
         {
-          "Name": "죄?",
+          "Name": "까마귀_죄수",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 4,
             "y": 1
@@ -1683,19 +1683,19 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 5,
       "Units": [
         {
-          "Name": "죄?",
+          "Name": "까마귀_죄수",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "죄?",
+          "Name": "까마귀_죄수",
           "Location": {
             "x": 3,
             "y": 2
@@ -1705,47 +1705,47 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 6,
       "Units": [
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 4,
             "y": 0
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 4,
             "y": 2
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 2
@@ -1755,33 +1755,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 7,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 1
@@ -1791,26 +1791,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 8,
       "Units": [
         {
-          "Name": "낫?",
+          "Name": "까마귀_여러마리_낫",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 5,
             "y": 1
@@ -1820,33 +1820,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 9,
       "Units": [
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "암?",
+          "Name": "암살자_까마귀",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 5,
             "y": 2
@@ -1856,19 +1856,19 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 10,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 1
@@ -1878,33 +1878,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 11,
       "Units": [
         {
-          "Name": "낫?",
+          "Name": "까마귀_여러마리_낫",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 2
@@ -1914,26 +1914,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 12,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "암?",
+          "Name": "암살자_까마귀",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "암?",
+          "Name": "암살자_까마귀",
           "Location": {
             "x": 5,
             "y": 2
@@ -1943,26 +1943,26 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 13,
       "Units": [
         {
-          "Name": "죄?",
+          "Name": "까마귀_죄수",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "암?",
+          "Name": "암살자_까마귀",
           "Location": {
             "x": 4,
             "y": 0
@@ -1972,33 +1972,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 14,
       "Units": [
         {
-          "Name": "죄?",
+          "Name": "까마귀_죄수",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 0
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 1
           }
         },
         {
-          "Name": "네?",
+          "Name": "망령",
           "Location": {
             "x": 5,
             "y": 2
@@ -2008,33 +2008,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 15,
       "Units": [
         {
-          "Name": "죄?",
+          "Name": "까마귀_죄수",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 0
           }
         },
         {
-          "Name": "그?",
+          "Name": "고문관",
           "Location": {
             "x": 4,
             "y": 2
           }
         },
         {
-          "Name": "암?",
+          "Name": "암살자_까마귀",
           "Location": {
             "x": 5,
             "y": 1
@@ -2044,33 +2044,33 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 11,
       "ID": 1,
       "Units": [
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "추?",
+          "Name": "추적_간지_까마귀",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "창?",
+          "Name": "보초병",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "사?",
+          "Name": "까마귀_힐러",
           "Location": {
             "x": 4,
             "y": 1
@@ -2080,12 +2080,12 @@
     },
 
     {
-      "FactionName": "짐승",
+      "FactionName": "까마귀",
       "Level": 11,
       "ID": 2,
       "Units": [
         {
-          "Name": "결?",
+          "Name": "사제_까마귀_결합",
           "Location": {
             "x": 3,
             "y": 1
@@ -2100,14 +2100,14 @@
       "ID": 1,
       "Units": [
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 2
@@ -2122,14 +2122,14 @@
       "ID": 2,
       "Units": [
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "고?",
+          "Name": "집정관",
           "Location": {
             "x": 4,
             "y": 1
@@ -2144,21 +2144,21 @@
       "ID": 1,
       "Units": [
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 2
@@ -2173,28 +2173,28 @@
       "ID": 2,
       "Units": [
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "고?",
+          "Name": "집정관",
           "Location": {
             "x": 5,
             "y": 1
@@ -2209,21 +2209,21 @@
       "ID": 3,
       "Units": [
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 0
           }
         },
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 2
           }
         },
         {
-          "Name": "구?",
+          "Name": "감시관의_눈",
           "Location": {
             "x": 5,
             "y": 1
@@ -2238,21 +2238,21 @@
       "ID": 4,
       "Units": [
         {
-          "Name": "고?",
+          "Name": "집정관",
           "Location": {
             "x": 4,
             "y": 0
           }
         },
         {
-          "Name": "고?",
+          "Name": "집정관",
           "Location": {
             "x": 4,
             "y": 2
           }
         },
         {
-          "Name": "구?",
+          "Name": "감시관의_눈",
           "Location": {
             "x": 5,
             "y": 1
@@ -2267,21 +2267,21 @@
       "ID": 5,
       "Units": [
         {
-          "Name": "노?",
+          "Name": "노동자",
           "Location": {
             "x": 3,
             "y": 1
           }
         },
         {
-          "Name": "고?",
+          "Name": "집정관",
           "Location": {
             "x": 4,
             "y": 1
           }
         },
         {
-          "Name": "구?",
+          "Name": "감시관의_눈",
           "Location": {
             "x": 5,
             "y": 1

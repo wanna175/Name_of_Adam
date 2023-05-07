@@ -38,16 +38,25 @@ public class StageChanger
         {
             SetBattleScene(stage);
         }
-        else
-            SceneChanger.SceneChange("EventScene");
+        else if (stage.GetStageType() == StageType.Store)
+        {
+            if (stage.Name == StageName.StigmaStore)
+            {
+                SceneChanger.SceneChange("StigmaScene");
+            }
+            else if (stage.Name == StageName.UpgradeStore)
+            {
+                SceneChanger.SceneChange("UpgradeScene");
+            }
+        }
     }
 
     private void SetBattleScene(Stage stage)
     {
         SetSpawnUnit(stage.BattleStageData.faction, stage.BattleStageData.level, stage.BattleStageData.id);
 
-        SceneChanger.SceneChange("JS TEST");
-        //SceneChanger.SceneChange("Battle");
+        //SceneChanger.SceneChange("JS TEST");
+        SceneChanger.SceneChange("Battle");
     }
 
     private void SetSpawnUnit(Faction faction, int level, int id) // 다음에 받을 팩션, 레벨, 아이디 넣기

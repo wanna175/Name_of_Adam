@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uB0A8\uB9E4-\uC624\uBE60"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    HP: 80
+    CurrentHP: 80
+    ATK: 15
+    SPD: 45
+    FallCurrentCount: 0
+    FallMaxCount: 6
+    ManaCost: 80
+  _stigma: 07000000
+  _name: "\uB0A8\uB9E4-\uC624\uBE60"
+  _description: "\uC804\uBC29 3\uCE78\uC5D0 \uC788\uB294 \uC801\uC5D0\uAC8C (ATK)\uC758
+    \uAD11\uC5ED \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4. \uB2EC\uC758 \uC99D\uD45C\uAC00
+    \uBD80\uC5EC\uB41C \uC801\uC744 \uACF5\uACA9\uD560 \uC2DC \uAD50\uD654\uB3C4\uB97C
+    1\uBD80\uC5EC\uD558\uBA70 \uD55C\uBA85\uB2F9 \uCCB4\uB825\uC744 10 \uD68C\uBCF5\uD569\uB2C8\uB2E4.
+    \uC5D8\uB9AC\uC6B0\uC2A4\uC5D0\uAC8C \uD53C\uACA9\uB41C \uBAA8\uB4E0 \uC801\uC5D0\uAC8C
+    \uD574\uC758 \uC99D\uD45C\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  _faction: 1
+  _rarity: 2
+  _image: {fileID: 21300000, guid: 101229687224338458a3238b895207e2, type: 3}
+  _animatorController: {fileID: 9100000, guid: 7e062985ae110c647a9643f7c5f53361, type: 2}
+  _skillEffectController: {fileID: 9100000, guid: cb5aa424f80307846a41ac39fa74221b, type: 2}
+  _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
+  _darkEssenseDrop: 10
+  _darkEssenseCost: 0
+  _behaviorType: 1
+  _effects:
+  - {fileID: 11400000, guid: 6e5ebf919038f5d489e948e2a7833a01, type: 2}
+  _attackRange: 00000000000000000000000000000000010000000000000000000101010000000000000000000100000000000000000000000000000000
+  _moveRange: 00000000000000010000000101010000000100000000000000
+  _splashRange: 00000000000000000000000000000000010000000000000000000001000000000000000000000100000000000000000000000000000000

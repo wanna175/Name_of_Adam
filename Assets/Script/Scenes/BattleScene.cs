@@ -1,18 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleScene : MonoBehaviour
 {
-
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
-
+        GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

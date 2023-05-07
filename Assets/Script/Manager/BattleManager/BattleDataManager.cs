@@ -7,10 +7,18 @@ public class BattleDataManager : MonoBehaviour
 {
     private void Start()
     {
+        UI_ControlBar UI_Control = GameManager.UI.ShowScene<UI_ControlBar>();
+        GameManager.UI.ShowScene<UI_OptionButton>();
+        GameManager.UI.ShowScene<UI_DeckButton>().Set(true);
+
         _ui_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
-        UI_hands = GameManager.UI.ShowScene<UI_Hands>();
-        UI_PlayerSkill = GameManager.UI.ShowScene<UI_PlayerSkill>();
+
+        UI_hands = UI_Control.UI_Hands;
+        UI_PlayerSkill = UI_Control.UI_PlayerSkill;
+        UI_DarkEssence = UI_Control.UI_DarkEssence;
+        UI_ManaGauge = UI_Control.UI_ManaGauge;
+
         Init();
     }
 
@@ -31,8 +39,11 @@ public class BattleDataManager : MonoBehaviour
     [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
     public List<DeckUnit> PlayerHands => _playerHands;
     private int _maxHandCount = 3;
+
     public UI_Hands UI_hands;
     public UI_PlayerSkill UI_PlayerSkill;
+    public UI_DarkEssence UI_DarkEssence;
+    public UI_ManaGauge UI_ManaGauge;
 
     private void Init()
     {
@@ -40,9 +51,38 @@ public class BattleDataManager : MonoBehaviour
         FillHand();
     }
 
-    public void Destroy()
+    public void DarkEssenseChage(int chage)
     {
+        GameManager.Data.DarkEssenseChage(-1);
+        UI_DarkEssence.Refresh();
+    }
+
+    public void OnBattleOver()
+    {
+        Debug.Log("BDM Destroy");
+        foreach (DeckUnit unit in PlayerHands)
+        {
+            AddDeckUnit(unit);
+            Debug.Log(unit.Data.Name);
+        }
+
+        foreach (BattleUnit unit in BattleUnitList)
+        {
+            AddDeckUnit(unit.DeckUnit);
+            Debug.Log(unit.Data.Name);
+        }
+
+        foreach (DeckUnit unit in _playerDeck)
+        {
+            Debug.Log(unit.Data.Name);
+        }
+
         GameManager.Data.SetDeck(_playerDeck);
+
+        foreach (DeckUnit unit in GameManager.Data.GetDeck())
+        {
+            Debug.Log(unit.Data.Name);
+        }
     }
 
     public void AddDeckUnit(DeckUnit unit) {
@@ -64,6 +104,7 @@ public class BattleDataManager : MonoBehaviour
         PlayerHands.Remove(unit);
         UI_hands.RemoveUnit(unit);
         FillHand();
+        //UI_hands.SetHands(GameManager.Data.GetDeck());
     }
 
     public void FillHand()
@@ -90,7 +131,7 @@ public class BattleDataManager : MonoBehaviour
 
         return unit;
     }
-    
+
     // 전투를 진행중인 캐릭터가 들어있는 리스트
     List<BattleUnit> _battleUnitList = new List<BattleUnit>();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
@@ -121,6 +162,11 @@ public class BattleDataManager : MonoBehaviour
 
         BattleOrderReplace();
 
+        RefreshWaitingLine();
+    }
+
+    public void RefreshWaitingLine()
+    {
         _ui_waitingLine.SetWaitingLine(_battleUnitOrderList);
     }
 
@@ -136,6 +182,7 @@ public class BattleDataManager : MonoBehaviour
     {
         _ui_waitingLine.RemoveUnit(removedUnit);
         _battleUnitOrderList.Remove(removedUnit);
+        RefreshWaitingLine();
     }
 
     public BattleUnit GetNowUnit()

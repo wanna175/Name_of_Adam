@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 
 public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    private DeckUnit _handUnit = null;
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private UI_UnitCard _unitCard;
+
+    private DeckUnit _handUnit = null;
     private UI_Hands _hands;
     public bool IsSelected = false;
     
@@ -26,8 +28,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private void SetUnitInfo()
     {
-        // UI가 완성된 후에 디테일한 요소 추가
-        GetComponent<Image>().sprite = _handUnit.Data.Image;
+        _unitCard.Set(_handUnit.Data.Image, _handUnit.Data.Name, _handUnit.Stat.ManaCost.ToString());
     }
 
     public DeckUnit GetUnit()
@@ -38,10 +39,13 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         _highlight.SetActive(true);
+        GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, ((float)_handUnit.Stat.HP / (float)_handUnit.Stat.CurrentHP), _handUnit.Stat.FallCurrentCount);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        GameManager.UI.ClosePopup();
+
         if (IsSelected)
             return;
         _highlight.SetActive(false);
@@ -56,5 +60,14 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         IsSelected = b;
         _highlight.SetActive(b);
+
+        if (IsSelected)
+        {
+            GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, ((float)_handUnit.Stat.HP / (float)_handUnit.Stat.CurrentHP), _handUnit.Stat.FallCurrentCount);
+        }
+        else
+        {
+            GameManager.UI.ClosePopup();
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigmata;
+    [SerializeField] private UI_HPBar _hpBar;
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -37,6 +39,7 @@ public class BattleUnit : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _animator.runtimeAnimatorController = Data.AnimatorController;
         AI.SetCaster(this);
         Debug.Log(HP);
         Debug.Log(Stat.HP);
@@ -47,12 +50,19 @@ public class BattleUnit : MonoBehaviour
         _renderer.sprite = Data.Image;
     }
 
+    public void SetHPBar()
+    {
+        _hpBar.SetHPBar(Team, transform);
+        _hpBar.SetFallBar(DeckUnit);
+    }
+
     public void SetTeam(Team team)
     {
         _team = team;
 
         // 적군일 경우 x축 뒤집기
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
+        SetHPBar();
     }
 
     public void SetLocate(Vector2 coord) {
@@ -76,9 +86,12 @@ public class BattleUnit : MonoBehaviour
         {
             Fall.Editfy();
         }
+        _hpBar.RefreshFallGauge(0);
         DeckUnit.ChangedStat.CurrentHP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
-        Debug.Log($"{Data.name} Fall");
+        _hpBar.SetHPBar(Team, transform);
+        
+        //Debug.Log($"{Data.name} Fall");
     }
 
     public Team ChangeTeam(Team team = default)
@@ -107,6 +120,20 @@ public class BattleUnit : MonoBehaviour
         transform.position = dest;
     }
 
+    public IEnumerator MovePosition(Vector3 dest)
+    {
+        float moveTime = 0.4f;
+        float time = 0;
+        Vector3 cur = transform.position;
+
+        while (time < moveTime)
+        {
+            time += Time.deltaTime;
+            transform.position = Vector3.Lerp(cur, dest, time / moveTime);
+            yield return null;
+        }
+    }
+
     public void SkillUse(BattleUnit _unit) {
         if(_unit != null)
         {
@@ -122,11 +149,13 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeHP(int value) {
         HP.ChangeHP(value);
+        _hpBar.RefreshHPBar(HP.FillAmount());
     }
 
     public void ChangeFall(int value)
     {
         Fall.ChangeFall(value);
+        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
     
     public bool GetFlipX() => _renderer.flipX;
@@ -208,7 +237,7 @@ public class BattleUnit : MonoBehaviour
     {
         if(type == PassiveType.BEFOREATTACKED || type == PassiveType.AFTERATTACKED || type == PassiveType.FALLED)
         {
-            foreach(Passive passive in receiver.Passive)
+            foreach (Passive passive in receiver.Passive)
             {
                 if (passive.GetPassiveType() == type)
                 {
@@ -229,5 +258,8 @@ public class BattleUnit : MonoBehaviour
         
     }
 
-
+    public void AnimAttack()
+    {
+        StartCoroutine(BattleManager.Instance.UnitAttack());
+    }
 }

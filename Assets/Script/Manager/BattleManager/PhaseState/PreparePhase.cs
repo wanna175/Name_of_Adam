@@ -4,31 +4,32 @@ public class PreparePhase : Phase
 
     public override void OnStateEnter()
     {
-        _battle.Data.TurnPlus();
+        BattleManager.Data.TurnPlus();
+        BattleManager.Data.UI_PlayerSkill.Used = false;
+        BattleManager.Instance.ChangeButtonName();
     }
 
     public override void OnStateUpdate()
     {
-        
+        BattleManager.Data.BattleUnitOrder();
     }
 
     public override void OnClickEvent()
     {
         if (isFirst)
         {
-            _battle.StartPhase();
+            BattleManager.Instance.StartPhase();
             isFirst = false;
         }
         else
         {
-            _battle.PreparePhase();
+            BattleManager.Instance.PreparePhase();
         }
     }
 
     public override void OnStateExit()
     {
-        _battle.Mana.ChangeMana(2);
-        _battle.Data.BattleUnitOrder();
+        BattleManager.Mana.ChangeMana(15);
         
     }
 }

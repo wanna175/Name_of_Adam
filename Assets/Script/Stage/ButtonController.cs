@@ -5,20 +5,17 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ButtonController : MonoBehaviour
-{
+{ 
+    [SerializeField] StageManager StageMNG;
+
     [SerializeField] GameObject StageButtonContainer;
     [SerializeField] GameObject NextStageButtonContainer;
 
     GameObject[] StageButtons = new GameObject[3];
     GameObject[] NextStageButtons = new GameObject[3];
 
-    StageManager _stageMNG;
-
-
     private void Start()
     {
-        _stageMNG = GameManager.StageMNG;
-
         CreateButton();
     }
 
@@ -37,7 +34,11 @@ public class ButtonController : MonoBehaviour
     {
         ResourceManager resource = GameManager.Resource;
 
-        for(int i = 0; i < 3; i++)
+        Debug.Log("asd");
+        GameManager.UI.ShowScene<UI_OptionButton>();
+        GameManager.UI.ShowScene<UI_DeckButton>().Set(false);
+
+        for (int i = 0; i < 3; i++)
         {
             GameObject StageButton = resource.Instantiate("UI/Stage/BTN_StageSelect", StageButtonContainer.transform);
             StageButton.AddComponent<StageButtonEventTrigger>().Init(this);
@@ -58,34 +59,20 @@ public class ButtonController : MonoBehaviour
     {
         for (int i = 0; i < StageButtons.Length; i++)
         {
-            // string StageText = (_stageMNG.GetStageArray[i] != null) ? _stageMNG.GetStageArray[i].Name.ToString() : ""; // 기존 시스템
-            string StageText = (_stageMNG.GetStageArray[i].Name != StageName.none) ? _stageMNG.GetStageArray[i].Name.ToString() : ""; // 스마게용
+            StageButtons[i].SetActive(true);
 
-            StageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
-                text = StageText;
+            // string StageText = (_stageMNG.GetStageArray[i] != null) ? _stageMNG.GetStageArray[i].Name.ToString() : ""; // 기존 시스템
+            string StageText = (StageMNG.GetStageArray[i].Name != StageName.none) ? StageMNG.GetStageArray[i].Name.ToString() : ""; // 스마게용
+
+            StageButtons[i].transform.GetChild(2).transform.GetChild(0).
+                GetComponent<TextMeshProUGUI>().text = StageText;
 
             // if (_stageMNG.GetStageArray[i] == null)
-            if (_stageMNG.GetStageArray[i].Name == StageName.none) // 스마게용
-                StageButtons[i].GetComponent<Image>().color = Color.clear;
+            if (StageMNG.GetStageArray[i].Name == StageName.none) // 스마게용
+                //StageButtons[i].GetComponent<Image>().color = Color.clear;
+                StageButtons[i].SetActive(false);
             else
-                StageButtons[i].GetComponent<Image>().sprite = _stageMNG.GetStageArray[i].Background;
-        }
-
-        // 스마게 제출용 스테이지를 위한 시스템
-        for (int i = 0; i < NextStageButtons.Length; i++)
-        {
-            Stage nextStage = _stageMNG.GetNextStageArray[i];
-            //string StageText = (nextStage != null) ? nextStage.Name.ToString() : ""; 기존 시스템
-            string StageText = (nextStage.Name != StageName.none) ? nextStage.Name.ToString() : ""; // 스마게용
-
-            NextStageButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().
-                text = StageText;
-
-            //if (nextStage == null) 기존 시스템
-            if(nextStage.Name == StageName.none)
-                NextStageButtons[i].GetComponent<Image>().color = Color.clear;
-            else
-                NextStageButtons[i].GetComponent<Image>().sprite = nextStage.Background;
+                StageButtons[i].transform.GetChild(1).GetComponent<Image>().sprite = StageMNG.GetStageArray[i].Background;
         }
 
         /* // 5개의 랜덤 스테이지를 가져오는 기존의 시스템
@@ -108,78 +95,27 @@ public class ButtonController : MonoBehaviour
 
     public void ButtonClick(GameObject ClickObject)
     {
-        if (ClickObject.GetComponent<Image>().color.a == 0)
-            return;
         int index = GetIndex(ClickObject);
 
-        _stageMNG.MoveNextStage(index);
+        StageMNG.MoveNextStage(index);
     }
+    
 
-    #region Hover 시 이미지를 바꾸는 버전
-    /*
     public void HoverEnter(GameObject FocusObject)
     {
         int index = GetIndex(FocusObject);
 
-        if (_stageMNG.GetStageArray[index] != null)
-            StageButtons[index].GetComponent<Image>().sprite = null;
+        FadeController FC = NextStageButtons[index].transform.GetChild(0).GetComponent<FadeController>();
 
-        for (int i = 0; i < 3; i++)
-        {
-            if (_stageMNG.GetNextStageArray[index + i] != null)
-                NextStageButtons[index + i].GetComponent<Image>().sprite = null;
-        }
+        FC.StartFadeIn();
     }
 
     public void HoverExit(GameObject FocusObject)
     {
         int index = GetIndex(FocusObject);
 
-        if (_stageMNG.GetStageArray[index] != null)
-            StageButtons[index].GetComponent<Image>().sprite = _stageMNG.GetStageArray[index].Background;
+        FadeController FC = NextStageButtons[index].transform.GetChild(0).GetComponent<FadeController>();
 
-        for (int i = 0; i < 3; i++)
-        {
-            if (_stageMNG.GetNextStageArray[index + i] != null)
-                NextStageButtons[index + i].GetComponent<Image>().sprite = _stageMNG.GetNextStageArray[index + i].Background;
-        }
+        FC.StartFadeOut();
     }
-    */
-    #endregion
-
-    #region Hover 시 색만 어둡게 하는 버전
-
-    public void HoverEnter(GameObject FocusObject)
-    {
-        int index = GetIndex(FocusObject);
-
-        //if (_stageMNG.GetStageArray[index] != null) 기존 시스템
-        if (_stageMNG.GetStageArray[index].Name != StageName.none)
-            StageButtons[index].GetComponent<Image>().color = Color.gray;
-
-        // 기존 매커니즘
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    if (_stageMNG.GetNextStageArray[index + i] != null)
-        //        NextStageButtons[index + i].GetComponent<Image>().color = Color.gray;
-        //}
-    }
-
-    public void HoverExit(GameObject FocusObject)
-    {
-        int index = GetIndex(FocusObject);
-
-        //if (_stageMNG.GetStageArray[index] != null) 기존 시스템
-        if (_stageMNG.GetStageArray[index].Name != StageName.none)
-            StageButtons[index].GetComponent<Image>().color = Color.white;
-
-        // 기존 매커니즘
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    if (_stageMNG.GetNextStageArray[index + i] != null)
-        //        NextStageButtons[index + i].GetComponent<Image>().color = Color.white;
-        //}
-    }
-
-    #endregion
 }

@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
@@ -11,29 +12,67 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private BattleDataManager _battleData;
-    public BattleDataManager Data => _battleData;
-    private Field _field;
-    public Field Field => _field;
-    private Mana _mana;
-    public Mana Mana => _mana;
-    private PhaseController _phase;
-    public PhaseController Phase => _phase;
+    private static BattleManager s_instance;
+    public static BattleManager Instance { get { Init(); return s_instance; } }
 
+    private SoundManager _sound;
+    public static SoundManager Sound => Instance._sound;
+
+    [SerializeField] CutSceneController _cutScene;
+    public static CutSceneController CutScene => Instance._cutScene;
+
+    private BattleDataManager _battleData;
+    public static BattleDataManager Data => Instance._battleData;
+
+    private VisualEffectManager _skillEffect;
+    public static VisualEffectManager SkillEffect => Instance._skillEffect;
+
+    private Field _field;
+    public static Field Field => Instance._field;
+
+    private Mana _mana;
+    public static Mana Mana => Instance._mana;
+
+    private PhaseController _phase;
+    public static PhaseController Phase => Instance._phase;
+
+    private UI_TurnChangeButton _turnChangeButton;
+
+    private List<BattleUnit> hitUnits;
     private Vector2 coord;
 
     public FieldColorType fieldColorType = FieldColorType.none;
 
     private void Awake()
     {
+        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
+        _skillEffect = new VisualEffectManager();
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
+        GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
     }
 
     private void Update()
     {
         _phase.OnUpdate();
+    }
+
+    private static void Init()
+    {
+        if (s_instance == null)
+        {
+            GameObject go = GameObject.Find("@BattleManager");
+
+            if (go == null)
+            {
+                //go = new GameObject("@BattleManager");
+                //go.AddComponent<BattleManager>();
+                return;
+            }
+
+            s_instance = go.GetComponent<BattleManager>();
+        }
     }
 
     public void SetupField()
@@ -50,6 +89,17 @@ public class BattleManager : MonoBehaviour
     public void SpawnInitialUnit()
     {
         GetComponent<UnitSpawner>().SpawnInitialUnit();
+    }
+
+    public void ChangeButtonName()
+    {
+        TextMeshProUGUI buttonName = _turnChangeButton.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+        if (Phase.Current == Phase.Prepare)
+            buttonName.text = "Next Turn";
+        else if(Phase.Current == Phase.Move)
+            buttonName.text = "Move Skip";
+        else if (Phase.Current == Phase.Action)
+            buttonName.text = "Action Skip";
     }
 
     public void MovePhase()
@@ -72,10 +122,11 @@ public class BattleManager : MonoBehaviour
 
         if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
             return;
-        
+
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
+            List<BattleUnit> unitList = new List<BattleUnit>();
 
             foreach (Vector2 splash in splashRange)
             {
@@ -84,19 +135,13 @@ public class BattleManager : MonoBehaviour
                 if (targetUnit == null)
                     continue;
 
-                if (targetUnit.Team == Team.Enemy)
-                {
-                    //공격 전 낙인 체크
-                    unit.SkillUse(Field.GetUnit(coord + splash));
-                    unit.PassiveCheck(unit, targetUnit, PassiveType.AFTERATTACK);
-                }
+                // 힐러의 예외처리 필요
+                if(targetUnit.Team != unit.Team)
+                    unitList.Add(targetUnit);
             }
+            
+            AttackStart(unit, unitList);
         }
-
-        Field.ClearAllColor();
-        Data.BattleOrderRemove(unit);
-        _phase.ChangePhase(_phase.Engage);
-        BattleOverCheck();
     }
 
     public void EngagePhase()
@@ -113,10 +158,6 @@ public class BattleManager : MonoBehaviour
         if (unit.Team == Team.Enemy)
         {
             unit.AI.AIAction();
-
-            Data.BattleOrderRemove(unit);
-            BattleOverCheck();
-
             return;
         }
 
@@ -164,8 +205,13 @@ public class BattleManager : MonoBehaviour
     {
         if (Field._coloredTile.Contains(coord) == false)
             return;
-        Field.GetUnit(coord).Fall.ChangeFall(1);
+        
+        Mana.ChangeMana(-20);
+        Data.DarkEssenseChage(-1);
+
+        Field.GetUnit(coord).ChangeFall(1);
         _battleData.UI_PlayerSkill.CancleSelect();
+        _battleData.UI_PlayerSkill.Used = true;
         Field.ClearAllColor();
     }
 
@@ -182,12 +228,79 @@ public class BattleManager : MonoBehaviour
         _unit.UnitDeadAction = UnitDeadAction;
 
         Data.BattleUnitAdd(_unit);
+        //Data.BattleUnitOrder();
+    }
+
+    public IEnumerator UnitAttack()
+    {
+        UnitAttackAction();
+        yield return StartCoroutine(CutScene.AfterAttack());
+        
+        EndAttackAction();
+    }
+
+    public void AttackStart(BattleUnit caster, BattleUnit hit)
+    {
+        List<BattleUnit> hits = new List<BattleUnit>();
+        hits.Add(hit);
+
+        hitUnits = hits;
+        CutScene.BattleCutScene(caster, hitUnits);
+    }
+    public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
+    {
+        hitUnits = hits;
+        CutScene.BattleCutScene(caster, hitUnits);
+    }
+
+    // 애니메이션용 추가
+    private void UnitAttackAction()
+    {
+        BattleUnit unit = Data.GetNowUnit();
+        
+        foreach (BattleUnit hit in hitUnits)
+        {
+            if (hit == null)
+                continue;
+            
+            //공격 전 낙인 체크
+            unit.SkillUse(hit);
+
+            if (unit.Data.SkillEffectController != null)
+                SkillEffect.StartSkillEffect(unit.Data.SkillEffectController, hit.transform.position);
+            
+            if (hit.HP.GetCurrentHP() <= 0)
+                continue;
+
+            unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
+        }
+
+        string unitname = unit.DeckUnit.Data.Name;
+        string faction = unit.DeckUnit.Data.Faction.ToString();
+        Debug.Log(unitname + "   " + faction);
+        GameManager.Sound.Play("Character/" + faction + "/" + unitname + "/" + unitname + "_Attack");
+
+    }
+
+    private void EndAttackAction()
+    {
+        Field.ClearAllColor();
+        Data.BattleOrderRemove(Data.GetNowUnit());
+        BattleOverCheck();
+        _phase.ChangePhase(_phase.Engage);
+        Data.UI_DarkEssence.Refresh(); //이 코드를 발견했다면 수정해야하는 임시 코드이니 알릴 것
     }
 
     private void UnitDeadAction(BattleUnit _unit)
     {
         Data.BattleUnitRemove(_unit);
         Data.BattleOrderRemove(_unit);
+    }
+
+    public void DirectAttack()//임시 삭제
+    {
+        int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
+        Data.RemoveHandUnit(Data.PlayerHands[randNum]);
     }
 
     public void BattleOverCheck()
@@ -203,29 +316,33 @@ public class BattleManager : MonoBehaviour
                 EnemyUnit++;
         }
 
-        MyUnit += Data.PlayerDeck.Count;
+        //MyUnit += Data.PlayerDeck.Count;
+        //MyUnit += Data.PlayerHands.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
         {
-            Debug.Log("YOU LOSE");
-            _phase.ChangePhase(new BattleOverPhase());
-
+            BattleOverLose();
         }
         else if (EnemyUnit == 0)
         {
-            Debug.Log("YOU WIN");
-            _phase.ChangePhase(new BattleOverPhase());
+            BattleOverWin();
         }
-
     }
 
-    public void TurnChange()
+    private void BattleOverWin()
     {
-        if (_phase.Current == _phase.Prepare)
-            _phase.ChangePhase(_phase.Engage);
-        else
-            _phase.ChangePhase(_phase.Prepare);
+        Debug.Log("YOU WIN");
+        Data.OnBattleOver();
+        _phase.ChangePhase(new BattleOverPhase());
+        GameManager.UI.ShowScene<UI_BattleOver>().SetImage(1);
+    }
+
+    private void BattleOverLose()
+    {
+        Debug.Log("YOU LOSE");
+        _phase.ChangePhase(new BattleOverPhase());
+        GameManager.UI.ShowScene<UI_BattleOver>().SetImage(3);
     }
 
     // 이동 경로를 받아와 이동시킨다

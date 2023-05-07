@@ -4,14 +4,16 @@ using UnityEngine;
 public class Mana : MonoBehaviour
 {
     // Mana Manage
-    [SerializeField] private int _maxManaCost = 200;
+    [SerializeField] private int _maxManaCost = 99;
     [ReadOnly, SerializeField] private int _currentMana = 0;
     private UI_ManaGauge _manaGuage;
 
-    private void Awake()
+    const int _startMana = 200;
+
+    private void Start()
     {
-        _manaGuage = GameManager.UI.ShowScene<UI_ManaGauge>();
-        ChangeMana(_maxManaCost);
+        _manaGuage = BattleManager.Data.UI_ManaGauge;
+        ChangeMana(_startMana);
     }
 
     public void ChangeMana(int value)

@@ -89,6 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42fca114c1dc744ba48f9dc3a0718ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FallGauge_Full: {fileID: 21300000, guid: 462e054dd68199841929c3413357d93d, type: 3}
-  FallGauge_Empty: {fileID: 21300000, guid: 5dddefc599666d94f8f928d635bc47b9, type: 3}
+  FallGauge_Full: {fileID: 21300000, guid: 1b5072f1facd4a045976962f8911e955, type: 3}
+  FallGauge_Empty: {fileID: 21300000, guid: 87e01650495b36a46ac0c2608e1d25d6, type: 3}
   IsOn: 0

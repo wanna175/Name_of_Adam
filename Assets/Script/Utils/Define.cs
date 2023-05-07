@@ -52,8 +52,9 @@ public enum Team
 [SerializeField]
 public enum Faction
 {
-    순리의_기사단,
-    짐승,
+    오리지널,
+    월식의_기사단,
+    까마귀,
     바벨,
 }
 
@@ -72,15 +73,16 @@ public enum BehaviorType
 [SerializeField]
 public enum Rarity
 {
+    일반,
     레어,
     엘리트,
 }
 
 [SerializeField]
-public enum TargetType
+public enum CutSceneMoveType
 {
-    Select,
-    Range,
+    stand,
+    tracking
 }
 
 public enum ClickType
@@ -104,9 +106,9 @@ public struct TestUnit
 }
 
 
-public enum Sound
+public enum Sounds
 {
-    Bgm,
+    BGM,
     Effect,
     MaxCount,
 }

@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         _renderer.color = Color.white;
-
+        //color.a = 0;
         transform.position = position;
         return this;
     }
@@ -45,16 +45,16 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
         //OnClickAction(this);
-        GameManager.Battle.OnClickTile(this);
+        BattleManager.Instance.OnClickTile(this);
     }
 
     private void OnMouseEnter()
     {
-        GameManager.Battle.Field.MouseEnterTile(this);
+        BattleManager.Field.MouseEnterTile(this);
     }
 
     private void OnMouseExit()
     {
-        GameManager.Battle.Field.MouseExitTile(this);
+        BattleManager.Field.MouseExitTile(this);
     }
 }

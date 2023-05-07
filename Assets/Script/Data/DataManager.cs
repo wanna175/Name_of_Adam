@@ -18,16 +18,28 @@ public interface ILoader<Key, Value>
 public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
+    
+    private List<Stage> _stageInfo;
+    public List<Stage> StageInfo { get { StageDataInit(); return _stageInfo; } set { _stageInfo = value; } }
+    public List<Stage> LocalStageInfo;
+    public List<MapSign> MapList;
+
+    public Stage[] StageArray = new Stage[3];
+
     public StageDataContainer StageDatas;
     public StageSpawnData CurrentStageData;
-    public List<TempStageStorage> SmagaStage;
+    public List<TempStageStorage> SmagaMap;
+    public List<Stage> SmagaRandomStage;
 
-    [SerializeField] private GameData _gameData;
+    [SerializeField] public GameData GameData;
+
+    public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
 
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageDataContainer>("StageData");
+        ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -35,6 +47,7 @@ public class DataManager : MonoBehaviour
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
+
     T LoadJson<T>(string path)
     {
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
@@ -47,22 +60,32 @@ public class DataManager : MonoBehaviour
 
     public void AddDeckUnit(DeckUnit unit)
     {
-        PlayerDeck.Add(unit);
+        GameData.DeckUnits.Add(unit);
     }
 
     public void RemoveDeckUnit(DeckUnit unit)
     {
-        PlayerDeck.Remove(unit);
+        GameData.DeckUnits.Remove(unit);
     }
 
     public List<DeckUnit> GetDeck() 
     {
-        return _gameData.DeckUnits;
+        return GameData.DeckUnits;
     }
 
     public void SetDeck(List<DeckUnit> deck)
     {
-        _playerDeck = deck;
+        GameData.DeckUnits = deck;
+    }
+    
+    public void StageDataInit()
+    {
+        if (_stageInfo == null)
+        {
+            _stageInfo = new List<Stage>();
+            LocalStageInfo = new List<Stage>();
+            MapList = new List<MapSign>();
+        }
     }
 
     private int _money;
@@ -82,7 +105,7 @@ public class DataManager : MonoBehaviour
     }
 
     private int _darkEssense = 4;
-    private int DarkEssense => _darkEssense;
+    public int DarkEssense => _darkEssense;
 
     public bool DarkEssenseChage(int cost)
     {
@@ -96,5 +119,14 @@ public class DataManager : MonoBehaviour
             _darkEssense += cost;
             return true;
         }
+    }
+
+    public bool CanUseDarkEssense(int value)
+    {
+        if (_darkEssense >= value)
+            return true;
+
+        Debug.Log("not enough Dark Essense");
+        return false;
     }
 }

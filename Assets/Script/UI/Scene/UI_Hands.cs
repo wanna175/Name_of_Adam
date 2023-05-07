@@ -9,12 +9,16 @@ public class UI_Hands : UI_Scene
 
     private List<UI_Hand> _handList = new List<UI_Hand>();
     private UI_Hand _selectedHand = null;
-    private BattleManager _battle = GameManager.Battle;
+    private BattleManager _battle = BattleManager.Instance;
     
     public void SetHands(List<DeckUnit> deckUnits)
     {
         foreach (DeckUnit unit in deckUnits)
-            AddUnit(unit);
+        { 
+            if (_handList.Count < 3)
+                AddUnit(unit);
+        }
+
     }
 
     public void AddUnit(DeckUnit unit)
@@ -51,11 +55,17 @@ public class UI_Hands : UI_Scene
 
     public void OnClickHand(UI_Hand hand)
     {
-        Debug.Log("Hand Click");
-        if (hand != null && hand == _selectedHand)
-            CancleSelect();
+        if (BattleManager.Mana.CanUseMana(hand.GetUnit().Stat.ManaCost))
+        {
+            if (hand != null && hand == _selectedHand)
+                CancleSelect();
+            else
+                SelectOneUnit(hand);
+        }
         else
-            SelectOneUnit(hand);
+        {
+            Debug.Log("Can't");
+        }
     }
 
     private void CancleSelect()

@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager
 {
-    AudioSource[] _audioSources = new AudioSource[(int)Sound.MaxCount];
+    AudioSource[] _audioSources = new AudioSource[(int)Sounds.MaxCount];
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
     public void Init()
     {
-        GameObject root = GameObject.Find("@Sound");
+        GameObject root = GameObject.Find("@SoundManager");
         if (root == null)
         {
-            root = new GameObject { name = "@Sound" };
-            Object.DontDestroyOnLoad(root);
+            root = new GameObject() { name = "@SoundManager" };
+            root.transform.parent = GameManager.Instance.transform;
 
-            string[] soundNames = System.Enum.GetNames(typeof(Sound));
+            AudioMixer mixer = Resources.Load<AudioMixer>("Sounds/AudioMixer");
+
+            string[] soundNames = System.Enum.GetNames(typeof(Sounds));
             for (int i = 0; i < soundNames.Length - 1; i++)
             {
                 GameObject go = new GameObject { name = soundNames[i] };
                 _audioSources[i] = go.AddComponent<AudioSource>();
+
+                _audioSources[i].outputAudioMixerGroup = mixer.FindMatchingGroups(soundNames[i])[0];
                 go.transform.parent = root.transform;
             }
 
-            _audioSources[(int)Sound.Bgm].loop = true;
+            _audioSources[(int)Sounds.BGM].loop = true;
         }
     }
 
@@ -37,20 +42,21 @@ public class SoundManager
         _audioClips.Clear();
     }
 
-    public void Play(string path, Sound type = Sound.Effect, float pitch = 1.0f)
+    public void Play(string path, Sounds type = Sounds.Effect, float pitch = 1.0f)
     {
-        AudioClip audioClip = GetOrAddAudioClip(path, type);
+        AudioClip audioClip = GetOrAddAudioClip(type.ToString() + "/" + path, type);
+        //Debug.Log(type.ToString() + "/" + path);
         Play(audioClip, type, pitch);
     }
 
-    public void Play(AudioClip audioClip, Sound type = Sound.Effect, float pitch = 1.0f)
+    public void Play(AudioClip audioClip, Sounds type = Sounds.Effect, float pitch = 1.0f)
     {
         if (audioClip == null)
             return;
 
-        if (type == Sound.Bgm)
+        if (type == Sounds.BGM)
         {
-            AudioSource audioSource = _audioSources[(int)Sound.Bgm];
+            AudioSource audioSource = _audioSources[(int)Sounds.BGM];
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
@@ -60,20 +66,20 @@ public class SoundManager
         }
         else
         {
-            AudioSource audioSource = _audioSources[(int)Sound.Effect];
+            AudioSource audioSource = _audioSources[(int)Sounds.Effect];
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(audioClip);
         }
     }
 
-    AudioClip GetOrAddAudioClip(string path, Sound type = Sound.Effect)
+    AudioClip GetOrAddAudioClip(string path, Sounds type = Sounds.Effect)
     {
         if (path.Contains("Sounds/") == false)
             path = $"Sounds/{path}";
 
         AudioClip audioClip = null;
 
-        if (type == Sound.Bgm)
+        if (type == Sounds.BGM)
         {
             audioClip = GameManager.Resource.Load<AudioClip>(path);
         }
@@ -91,4 +97,10 @@ public class SoundManager
 
         return audioClip;
     }
+
+    
+   
+
+
+
 }
