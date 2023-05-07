@@ -55,3 +55,4 @@ MonoBehaviour:
       FallMaxCount: 0
       ManaCost: 0
     stigmas: 05000000
+  isVisitUpgrade: 0

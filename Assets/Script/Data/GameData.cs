@@ -9,4 +9,5 @@ public class GameData : ScriptableObject
     public int Money;
     public int DarkEssence;
     public List<DeckUnit> DeckUnits = new List<DeckUnit>();
+    public bool isVisitUpgrade = false;
 }
