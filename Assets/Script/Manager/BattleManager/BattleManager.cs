@@ -205,8 +205,11 @@ public class BattleManager : MonoBehaviour
     {
         if (Field._coloredTile.Contains(coord) == false)
             return;
+        
         Mana.ChangeMana(-20);
-        Field.GetUnit(coord).Fall.ChangeFall(1);
+        Data.DarkEssenseChage(-1);
+
+        Field.GetUnit(coord).ChangeFall(1);
         _battleData.UI_PlayerSkill.CancleSelect();
         _battleData.UI_PlayerSkill.Used = true;
         Field.ClearAllColor();
@@ -266,6 +269,12 @@ public class BattleManager : MonoBehaviour
                 SkillEffect.StartSkillEffect(unit.Data.SkillEffectController, hit.transform.position);
             unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
         }
+
+        string unitname = unit.DeckUnit.Data.Name;
+        string faction = unit.DeckUnit.Data.Faction.ToString();
+        Debug.Log(unitname + "   " + faction);
+        GameManager.Sound.Play("Character/" + faction + "/" + unitname + "/" + unitname + "_Attack");
+
     }
 
     private void EndAttackAction()
@@ -274,6 +283,7 @@ public class BattleManager : MonoBehaviour
         Data.BattleOrderRemove(Data.GetNowUnit());
         BattleOverCheck();
         _phase.ChangePhase(_phase.Engage);
+        Data.UI_DarkEssence.Refresh(); //이 코드를 발견했다면 수정해야하는 임시 코드이니 알릴 것
     }
 
     private void UnitDeadAction(BattleUnit _unit)
@@ -301,8 +311,8 @@ public class BattleManager : MonoBehaviour
                 EnemyUnit++;
         }
 
-        MyUnit += Data.PlayerDeck.Count;
-        MyUnit += Data.PlayerHands.Count;
+        //MyUnit += Data.PlayerDeck.Count;
+        //MyUnit += Data.PlayerHands.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
