@@ -45,7 +45,7 @@ public class SoundManager
     public void Play(string path, Sounds type = Sounds.Effect, float pitch = 1.0f)
     {
         AudioClip audioClip = GetOrAddAudioClip(type.ToString() + "/" + path, type);
-        Debug.Log(type.ToString() + "/" + path);
+        //Debug.Log(type.ToString() + "/" + path);
         Play(audioClip, type, pitch);
     }
 

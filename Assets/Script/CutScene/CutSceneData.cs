@@ -58,9 +58,6 @@ public class CutSceneData
 
     Vector2 GetMoveLocation(BattleUnit unit)
     {
-        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
-            return unit.Location;
-
         Vector2 AttackUnitTile = AttackLocation;
         Vector2 HitUnitTile = HitLocation[0];
 
@@ -81,6 +78,9 @@ public class CutSceneData
             moveTile = AttackUnitTile;
             AttackUnitDirection = 0;
         }
+
+        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
+            return unit.Location;
 
         return moveTile;
     }

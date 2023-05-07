@@ -8,10 +8,42 @@ using TMPro;
 public class UI_Option : UI_Popup
 {
     [SerializeField] AudioMixer MasterMixer;
+    [SerializeField] List<GameObject> SoundSliders;
+    [SerializeField] TextMeshProUGUI ResolutionText;
+    [SerializeField] Toggle WindowToggle;
 
     int ScreenX = 1920;
     int ScreenY = 1080;
     bool isWindow = false;
+
+    private void OnEnable()
+    {
+        SetSlider();
+        SetResolution();
+    }
+
+    private void SetSlider()
+    {
+        foreach (GameObject slider in SoundSliders)
+        {
+            string text = slider.transform.GetChild(0).GetComponent<Text>().text;
+            float value;
+
+            MasterMixer.GetFloat(text, out value);
+            slider.transform.GetChild(1).GetComponent<Slider>().value = value;
+        }
+    }
+
+    private void SetResolution()
+    {
+        float x = Screen.currentResolution.width;
+        float y = Screen.currentResolution.height;
+        bool window = !Screen.fullScreen;
+
+        ResolutionText.text = x + " x " + y;
+        WindowToggle.isOn = window;
+    }
+
 
     public void ChangeResolution(TextMeshProUGUI text)
     {
