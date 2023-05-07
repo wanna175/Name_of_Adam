@@ -9,14 +9,17 @@ public class UI_WaitingUnit : MonoBehaviour
     [SerializeField] private Image _unitImage;
     [SerializeField] private Image _background;
 
+    private Color32 _enemy = new Color32(130, 45, 45, 255);
+    private Color32 _player = new Color32(45, 45, 130, 255);
+
     public void SetUnit(BattleUnit unit)
     {
         _unit = unit;
         _unitImage.GetComponent<Image>().sprite = _unit.Data.Image;
         if (unit.Team == Team.Player)
-            _background.GetComponent<Image>().color = Color.blue;
+            _background.GetComponent<Image>().color = _player;
         else
-            _background.GetComponent<Image>().color = Color.red;
+            _background.GetComponent<Image>().color = _enemy;
     }
 
     public BattleUnit GetUnit()
