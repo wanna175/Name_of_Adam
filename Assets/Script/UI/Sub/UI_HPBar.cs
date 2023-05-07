@@ -59,7 +59,7 @@ public class UI_HPBar : UI_Base
             _enemyBar.fillAmount = amount;
     }
 
-    public void RefreshFallGauge(float current)
+    public void RefreshFallGauge(int current)
     {
         for (int i = 0; i < _fallGauge.Count; i++)
         {

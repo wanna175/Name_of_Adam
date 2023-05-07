@@ -8,29 +8,35 @@ using UnityEngine.Events;
 public class UI_BattleOver : UI_Popup
 {
     [SerializeField] private Image _textImage;
-    [SerializeField] private Sprite _winText;
-    [SerializeField] private Sprite _eliteWinText;
-    [SerializeField] private Sprite _loseText;
 
-    public void SetImage(int imageNum)
+    private int _result;
+
+    public void SetImage(int result)
     {
         if (imageNum == 1)
         {
-            _textImage.sprite = _winText;
+            _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
+            GameManager.Sound.Clear();
+            GameManager.Sound.Play("UI/ResultSFX/�¸� ȿ���");
         }
         else if (imageNum == 2)
         {
-            _textImage.sprite = _eliteWinText;
+            _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
         }
         else if (imageNum == 3) 
         {
-            _textImage.sprite = _loseText;
+            _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
+            GameManager.Sound.Clear();
+            GameManager.Sound.Play("UI/ResultSFX/�й� ȿ���");
         }
     }
 
     public void OnClick()
     {
         GameManager.UI.ClosePopup();
-        SceneChanger.SceneChange("StageSelectScene");
+        if (_result == 3)
+            SceneChanger.SceneChange("MainScene");
+        else
+            SceneChanger.SceneChange("StageSelectScene");
     }
 }
