@@ -15,7 +15,7 @@ public class UI_HPBar : UI_Base
     [SerializeField] private GameObject _fallGaugeUnit; // 타락 게이지 각 보석
 
 
-    private List<GameObject> _fallGauge = new List<GameObject>();
+    private List<UI_FallUnit> _fallGauge = new List<UI_FallUnit>();
     private Team team;
 
     public void SetHPBar(Team team, Transform trans)
@@ -37,11 +37,11 @@ public class UI_HPBar : UI_Base
 
         for(int i=0; i<max; i++)
         {
-            GameObject newObject = GameObject.Instantiate(_fallGaugeUnit, _grid);
+            UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
             _fallGauge.Add(newObject);
 
-            if(i >= current)
-                Util.FindChild(newObject, "Fill").SetActive(false);
+            if (i >= current)
+                newObject.EmptyGauge();
         }
     }
 
@@ -56,6 +56,6 @@ public class UI_HPBar : UI_Base
     public void RefreshFallGauge(float current)
     {
         for (int i = 0; i < current; i++)
-            Util.FindChild(_fallGauge[i].gameObject, "Fill").SetActive(true);
+            _fallGauge[i].FillGauge();
     }
 }
