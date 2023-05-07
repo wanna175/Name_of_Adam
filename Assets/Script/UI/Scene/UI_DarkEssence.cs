@@ -10,8 +10,11 @@ public class UI_DarkEssence : UI_Scene
 
     private void Awake()
     {
-        _darkEssence.text = GameManager.Data.DarkEssense.ToString();
+        Refresh();
     }
 
-
+    public void Refresh() 
+    {
+        _darkEssence.text = GameManager.Data.DarkEssense.ToString();
+    }
 }

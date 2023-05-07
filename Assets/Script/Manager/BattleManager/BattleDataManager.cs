@@ -51,6 +51,12 @@ public class BattleDataManager : MonoBehaviour
         FillHand();
     }
 
+    public void DarkEssenseChage(int chage)
+    {
+        GameManager.Data.DarkEssenseChage(-1);
+        UI_DarkEssence.Refresh();
+    }
+
     public void OnBattleOver()
     {
         Debug.Log("BDM Destroy");
