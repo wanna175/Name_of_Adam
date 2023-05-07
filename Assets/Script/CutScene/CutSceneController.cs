@@ -25,7 +25,8 @@ public class CutSceneController : MonoBehaviour
         CameraHandler.SetCutSceneCamera();
         UnitFlip();
         SetUnitRayer(5);
-        //GameManager.Sound.Play("Charater/"+ AttackUnit.name + "/" + AttackUnit.name);
+        string unitname = AttackUnit.DeckUnit.Data.Name;
+        GameManager.Sound.Play("Charater/"+ unitname + "/" + unitname + "_Attack");
         StartCoroutine(ZoomIn());
     }
 
