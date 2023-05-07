@@ -33,7 +33,7 @@ public class UnitSpawner : MonoBehaviour
         if (GameManager.Data.CurrentStageData.Units.Count == 0)
         {
             foreach (SpawnData data in AnimTest)
-                InitSpawn(data);
+              InitSpawn(data);
         }
         // 디버그용
     }
@@ -61,6 +61,7 @@ public class UnitSpawner : MonoBehaviour
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
             BattleUnit bu = go.GetComponent<BattleUnit>();
+            bu.DeckUnit.SetStigma();
             
             bu.Init();
             BattleManager.Instance.UnitSetting(bu, spawndata.location, Team.Enemy);

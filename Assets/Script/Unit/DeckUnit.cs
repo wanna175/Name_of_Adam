@@ -83,6 +83,12 @@ public class DeckUnit
             case 낙인.흡수:
                 newPassive = new 흡수();
                 break;
+            case 낙인.오빠:
+                newPassive = new 오빠();
+                break;
+            case 낙인.동생:
+                newPassive = new 동생();
+                break;
         }
 
         foreach(Passive passive in Stigmata)
@@ -93,6 +99,7 @@ public class DeckUnit
             }
 
         Stigmata.Add(newPassive);
+        Debug.Log($"{Data.name}에 {newPassive.GetType()} 낙인이 장착되었습니다.");
     }
 
     public 낙인 PassiveToStigma(Passive p)
