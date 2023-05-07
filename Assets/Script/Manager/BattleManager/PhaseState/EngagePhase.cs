@@ -7,8 +7,8 @@ public class EngagePhase : Phase
     }
 
     public override void OnStateUpdate()
-    { 
-
+    {
+        
     }
 
     public override void OnStateExit()

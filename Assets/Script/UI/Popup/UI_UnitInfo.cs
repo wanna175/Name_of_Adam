@@ -40,11 +40,11 @@ public class UI_UnitInfo : UI_Popup
         _unitInfoName.text = _unit.Data.Name;
         _unitInfoCost.text = _unit.Stat.ManaCost.ToString();
 
-        _unitInfoStat.text = "HP: " + _unit.Stat.HP.ToString() + "\n" +
+        _unitInfoStat.text = "HP:     " + _unit.Stat.HP.ToString() + "\n" +
                                  "Attack: " + _unit.Stat.ATK.ToString() + "\n" +
-                                 "Speed: " + _unit.Stat.SPD.ToString();
+                                 "Speed:  " + _unit.Stat.SPD.ToString();
 
-        _unitInfoSkillDescrption.text = "-";
+        _unitInfoSkillDescrption.text = _unit.Data.Description.Replace("(ATK)", _unit.Stat.HP.ToString());
 
         for (int i = 0; i < _unit.Stat.FallMaxCount; i++)
         {

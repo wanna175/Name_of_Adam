@@ -225,6 +225,7 @@ public class BattleManager : MonoBehaviour
         _unit.UnitDeadAction = UnitDeadAction;
 
         Data.BattleUnitAdd(_unit);
+        //Data.BattleUnitOrder();
     }
 
     public IEnumerator UnitAttack()
