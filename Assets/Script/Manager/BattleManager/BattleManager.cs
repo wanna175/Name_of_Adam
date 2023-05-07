@@ -213,6 +213,7 @@ public class BattleManager : MonoBehaviour
         _battleData.UI_PlayerSkill.CancleSelect();
         _battleData.UI_PlayerSkill.Used = true;
         Field.ClearAllColor();
+        BattleOverCheck();
     }
 
     public void OnClickTile(Tile tile)
