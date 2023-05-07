@@ -266,6 +266,12 @@ public class BattleManager : MonoBehaviour
                 SkillEffect.StartSkillEffect(unit.Data.SkillEffectController, hit.transform.position);
             unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
         }
+
+        string unitname = unit.DeckUnit.Data.Name;
+        string faction = unit.DeckUnit.Data.Faction.ToString();
+        Debug.Log(unitname + "   " + faction);
+        GameManager.Sound.Play("Character/" + faction + "/" + unitname + "/" + unitname + "_Attack");
+
     }
 
     private void EndAttackAction()
