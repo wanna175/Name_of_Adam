@@ -372,6 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 1
   isButton: 0
+  auto: 1
   scenename: MainScene
 --- !u!1 &502942168
 GameObject:
