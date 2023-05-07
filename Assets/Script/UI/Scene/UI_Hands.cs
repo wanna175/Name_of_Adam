@@ -55,7 +55,7 @@ public class UI_Hands : UI_Scene
 
     public void OnClickHand(UI_Hand hand)
     {
-        if (BattleManager.Mana.CanUseMana(20))
+        if (BattleManager.Mana.CanUseMana(hand.GetUnit().Stat.ManaCost))
         {
             if (hand != null && hand == _selectedHand)
                 CancleSelect();

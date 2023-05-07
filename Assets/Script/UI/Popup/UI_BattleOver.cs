@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class UI_BattleOver : UI_Popup
+public class UI_BattleOver : UI_Scene
 {
     [SerializeField] private Image _textImage;
 
@@ -13,17 +13,19 @@ public class UI_BattleOver : UI_Popup
 
     public void SetImage(int result)
     {
-        if (imageNum == 1)
-        {
+        GetComponent<Canvas>().sortingOrder = 100;
+        _result = result;
+
+        if (result == 1)
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
             GameManager.Sound.Play("UI/ResultSFX/�¸� ȿ���");
         }
-        else if (imageNum == 2)
+        else if (result == 2)
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
         }
-        else if (imageNum == 3) 
+        else if (result == 3) 
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();
@@ -33,7 +35,6 @@ public class UI_BattleOver : UI_Popup
 
     public void OnClick()
     {
-        GameManager.UI.ClosePopup();
         if (_result == 3)
             SceneChanger.SceneChange("MainScene");
         else

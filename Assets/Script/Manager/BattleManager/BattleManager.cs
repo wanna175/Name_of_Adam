@@ -330,14 +330,14 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowPopup<UI_BattleOver>().SetImage(1);
+        GameManager.UI.ShowScene<UI_BattleOver>().SetImage(1);
     }
 
     private void BattleOverLose()
     {
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowPopup<UI_BattleOver>().SetImage(3);
+        GameManager.UI.ShowScene<UI_BattleOver>().SetImage(3);
     }
 
     // 이동 경로를 받아와 이동시킨다
