@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager s_instance;
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     private ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource => Instance._resource;
+
+    private InputManager _input = new InputManager();
+    public static InputManager InputManager => Instance._input;
 
     void Awake()
     {
@@ -50,6 +54,15 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
-            SceneChanger.SceneChange("StigmaScene");
+            SceneChanger.SceneChange("StageSelectScene");
+        //SceneChanger.SceneChange("StigmaScene");
+        //if(SceneChanger.GetSceneName() != "Battle")
+        //{
+        //    Sound.Play("BattleBGMA", Sounds.BGM);
+        //}
+        //else
+        //{
+        //    Sound.Play("BattleBGMB", Sounds.BGM);
+        //}
     }
 }

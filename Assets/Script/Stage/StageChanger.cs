@@ -38,8 +38,17 @@ public class StageChanger
         {
             SetBattleScene(stage);
         }
-        else
-            SceneChanger.SceneChange("EventScene");
+        else if (stage.GetStageType() == StageType.Store)
+        {
+            if (stage.Name == StageName.StigmaStore)
+            {
+                SceneChanger.SceneChange("StigmaScene");
+            }
+            else if (stage.Name == StageName.UpgradeStore)
+            {
+                SceneChanger.SceneChange("UpgradeScene");
+            }
+        }
     }
 
     private void SetBattleScene(Stage stage)
@@ -52,7 +61,6 @@ public class StageChanger
 
     private void SetSpawnUnit(Faction faction, int level, int id) // 다음에 받을 팩션, 레벨, 아이디 넣기
     {
-        Debug.Log(faction + ", " + level + ", " + id);
         GameManager.Data.CurrentStageData = GameManager.Data.StageDatas.GetStageData(faction.ToString(), level, id);
     }
 }

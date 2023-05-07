@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -115,6 +116,20 @@ public class BattleUnit : MonoBehaviour
     public void SetPosition(Vector3 dest)
     {
         transform.position = dest;
+    }
+
+    public IEnumerator MovePosition(Vector3 dest)
+    {
+        float moveTime = 0.4f;
+        float time = 0;
+        Vector3 cur = transform.position;
+
+        while (time < moveTime)
+        {
+            time += Time.deltaTime;
+            transform.position = Vector3.Lerp(cur, dest, time / moveTime);
+            yield return null;
+        }
     }
 
     public void SkillUse(BattleUnit _unit) {

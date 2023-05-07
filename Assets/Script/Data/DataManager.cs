@@ -28,7 +28,8 @@ public class DataManager : MonoBehaviour
 
     public StageDataContainer StageDatas;
     public StageSpawnData CurrentStageData;
-    public List<TempStageStorage> SmagaStage;
+    public List<TempStageStorage> SmagaMap;
+    public List<Stage> SmagaRandomStage;
 
     [SerializeField] private GameData _gameData;
     
@@ -55,12 +56,12 @@ public class DataManager : MonoBehaviour
 
     public void AddDeckUnit(DeckUnit unit)
     {
-        PlayerDeck.Add(unit);
+        _gameData.DeckUnits.Add(unit);
     }
 
     public void RemoveDeckUnit(DeckUnit unit)
     {
-        PlayerDeck.Remove(unit);
+        _gameData.DeckUnits.Remove(unit);
     }
 
     public List<DeckUnit> GetDeck() 
@@ -70,7 +71,7 @@ public class DataManager : MonoBehaviour
 
     public void SetDeck(List<DeckUnit> deck)
     {
-        _playerDeck = deck;
+        _gameData.DeckUnits = deck;
     }
     
     public void StageDataInit()

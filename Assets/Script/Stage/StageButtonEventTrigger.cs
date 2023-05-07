@@ -16,15 +16,15 @@ public class StageButtonEventTrigger : EventTrigger
         PointerClick += controller.ButtonClick;
     }
 
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        PointerEnter(gameObject);
-    }
+    //public override void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    PointerEnter(gameObject);
+    //}
 
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        PointerExit(gameObject);
-    }
+    //public override void OnPointerExit(PointerEventData eventData)
+    //{
+    //    PointerExit(gameObject);
+    //}
 
     public override void OnPointerClick(PointerEventData eventData)
     {

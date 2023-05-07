@@ -101,4 +101,72 @@ public class DeckUnit
         Stigmata.Add(newPassive);
         Debug.Log($"{Data.name}에 {newPassive.GetType()} 낙인이 장착되었습니다.");
     }
+
+    public 낙인 PassiveToStigma(Passive p)
+    {
+        if (p.GetType() == new 가학().GetType())
+        {
+            return 낙인.가학;
+        }
+        else if (p.GetType() == new 강림().GetType())
+        {
+            return 낙인.강림;
+        }
+        else if (p.GetType() == new 고양().GetType())
+        {
+            return 낙인.고양;
+        }
+        else if (p.GetType() == new 대죄().GetType())
+        {
+            return 낙인.대죄;
+        }
+        else if (p.GetType() == new 자애().GetType())
+        {
+            return 낙인.자애;
+        }
+        else if (p.GetType() == new 처형().GetType())
+        {
+            return 낙인.처형;
+        }
+        else if (p.GetType() == new 흡수().GetType())
+        {
+            return 낙인.흡수;
+        }
+
+        return 낙인.가학;
+    }
+
+    public Sprite GetStigmaImage(낙인 stigma)
+    {
+        if (stigma == 낙인.처형)
+        {
+            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_execution");
+        }
+        else if (stigma == 낙인.가학)
+        {
+            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_sadism");
+        }
+        else if (stigma == 낙인.고양)
+        {
+            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_encourage");
+        }
+        else if (stigma == 낙인.대죄)
+        {
+            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_sin");
+        }
+        else if (stigma == 낙인.강림)
+        {
+            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_advent");
+        }
+        else if (stigma == 낙인.자애)
+        {
+            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_benevolence");
+        }
+        else if (stigma == 낙인.흡수)
+        {
+            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_absorption");
+        }
+
+        return null;
+    }
 }

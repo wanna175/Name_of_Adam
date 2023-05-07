@@ -29,6 +29,7 @@ public class PreparePhase : Phase
 
     public override void OnStateExit()
     {
-        BattleManager.Mana.ChangeMana(2);
+        BattleManager.Mana.ChangeMana(15);
+        
     }
 }

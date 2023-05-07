@@ -10,6 +10,7 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private UI_UnitCard _unitCard;
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private GameObject _fallGaugePrefab;
+    [SerializeField] private GameObject _stigmaPrefab;
     [SerializeField] private GameObject _squarePrefab;
 
     [SerializeField] private TextMeshProUGUI _unitInfoName;
@@ -39,11 +40,11 @@ public class UI_UnitInfo : UI_Popup
         _unitInfoName.text = _unit.Data.Name;
         _unitInfoCost.text = _unit.Stat.ManaCost.ToString();
 
-        _unitInfoStat.text = "HP: " + _unit.Stat.HP.ToString() + "\n" +
+        _unitInfoStat.text = "HP:     " + _unit.Stat.HP.ToString() + "\n" +
                                  "Attack: " + _unit.Stat.ATK.ToString() + "\n" +
-                                 "Speed: " + _unit.Stat.SPD.ToString();
+                                 "Speed:  " + _unit.Stat.SPD.ToString();
 
-        _unitInfoSkillDescrption.text = "-";
+        _unitInfoSkillDescrption.text = _unit.Data.Description.Replace("(ATK)", _unit.Stat.HP.ToString());
 
         for (int i = 0; i < _unit.Stat.FallMaxCount; i++)
         {
@@ -54,6 +55,16 @@ public class UI_UnitInfo : UI_Popup
                 fg.Set(false);
 
             fg.Init();
+        }
+
+        _unit.SetStigma();
+
+        foreach (Passive sti in _unit.Stigmata)
+        {
+            Debug.Log(_unit.Stigmata);
+            ³«ÀÎ stig = _unit.PassiveToStigma(sti);
+
+            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_Stigma>().SetImage(_unit.GetStigmaImage(stig));
         }
 
         foreach (bool range in _unit.Data.AttackRange)

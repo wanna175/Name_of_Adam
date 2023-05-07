@@ -9,6 +9,8 @@ public class StigmaStore : Selectable
 
     [SerializeField] private GameObject button;
 
+    List<³«ÀÎ> stigmaList = new();
+
     void Start()
     {
         Init();
@@ -23,6 +25,18 @@ public class StigmaStore : Selectable
         scripts.Add(s);
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+
+        DeckUnit deckUnit = new();
+        stigmaList.Add(deckUnit.GetRandomStigma());
+
+        while (stigmaList.Count < 3)
+        {
+            ³«ÀÎ tempStigma = deckUnit.GetRandomStigma();
+            if (!stigmaList.Contains(tempStigma))
+            {
+                stigmaList.Add(tempStigma);
+            }
+        }
     }
 
     public void OnStigmaUnitButtonClick()
@@ -42,25 +56,24 @@ public class StigmaStore : Selectable
     public void OnStigmaButtonClick()
     {
         if (_stigmatizeUnit != null)
-            GameManager.UI.ShowPopup<UI_StigmaSelectButton>().init(this);
+        {
+            GameManager.UI.ShowPopup<UI_StigmaSelectButton>().init(this, stigmaList);
+        }
     }
 
     public void OnStigmaSelect(int select) 
     {
         if (select == 1)
         {
-
+            _stigmatizeUnit.AddStigma(stigmaList[0]);
         }
         else if (select == 2)
         {
+            _stigmatizeUnit.AddStigma(stigmaList[1]);
         }
         else if (select == 3)
         {
-
-        }
-        else if (select == 4)
-        {
-
+            _stigmatizeUnit.AddStigma(stigmaList[2]);
         }
 
         GameManager.UI.ClosePopup();
