@@ -231,7 +231,14 @@ public class Field : MonoBehaviour
     public void MouseEnterTile(Tile tile)
     {
         Vector2 coord = FindCoordByTile(tile);
-        if (_coloredTile.Contains(coord))
+
+        if (tile.UnitExist)
+        {
+            BattleUnit unit = GetUnit(coord);
+            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.FillAmount(), unit.Fall.GetCurrentFallCount());
+        }
+
+        if (_coloredTile.Contains(coord)) 
         {
             if (BattleManager.Phase.Current == BattleManager.Phase.Action)
             {
@@ -246,6 +253,11 @@ public class Field : MonoBehaviour
 
     public void MouseExitTile(Tile tile)
     {
+        if (tile.UnitExist)
+        {
+            GameManager.UI.ClosePopup();
+        }
+
         if (BattleManager.Phase.Current == BattleManager.Phase.Action)
         {
             SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);

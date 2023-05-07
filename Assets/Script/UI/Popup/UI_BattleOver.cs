@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class UI_BattleOver : UI_Popup
+public class UI_BattleOver : UI_Scene
 {
     [SerializeField] private Image _textImage;
 
@@ -13,6 +13,7 @@ public class UI_BattleOver : UI_Popup
 
     public void SetImage(int result)
     {
+        GetComponent<Canvas>().sortingOrder = 100;
         _result = result;
 
         if (result == 1)
@@ -26,7 +27,6 @@ public class UI_BattleOver : UI_Popup
 
     public void OnClick()
     {
-        GameManager.UI.ClosePopup();
         if (_result == 3)
             SceneChanger.SceneChange("MainScene");
         else
