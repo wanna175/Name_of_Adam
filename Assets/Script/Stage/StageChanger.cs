@@ -40,9 +40,15 @@ public class StageChanger
         }
         else if (stage.GetStageType() == StageType.Store)
         {
-            SceneChanger.SceneChange("UpgradeScene");
+            if (stage.Name == StageName.StigmaStore)
+            {
+                SceneChanger.SceneChange("StigmaScene");
+            }
+            else if (stage.Name == StageName.UpgradeStore)
+            {
+                SceneChanger.SceneChange("UpgradeScene");
+            }
         }
-
     }
 
     private void SetBattleScene(Stage stage)
