@@ -32,11 +32,14 @@ public class DataManager : MonoBehaviour
     public List<Stage> SmagaRandomStage;
 
     [SerializeField] private GameData _gameData;
-    
+
+    public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
+
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageDataContainer>("StageData");
+        ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -44,6 +47,7 @@ public class DataManager : MonoBehaviour
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
+
     T LoadJson<T>(string path)
     {
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");

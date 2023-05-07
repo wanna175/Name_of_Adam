@@ -16,11 +16,7 @@ public class UpgradeStore : Selectable
 
     private void Init()
     {
-        List<Script> scripts = new();
-        Script s = new();
-        s.name = "강화소";
-        s.script = "입장";
-        scripts.Add(s);
+        List<Script> scripts = GameManager.Data.ScriptData["강화소_입장"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
     }
@@ -71,19 +67,13 @@ public class UpgradeStore : Selectable
 
     public void OnQuitClick()
     {
-        List<Script> scripts = new();
-        Script s = new();
-        s.name = "강화소";
-        s.script = "퇴장";
-        scripts.Add(s);
-
-        UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
-        quitScript.Init(scripts);
-        StartCoroutine(ChangeScene(quitScript));
+        StartCoroutine(ChangeScene());
     }
 
-    private IEnumerator ChangeScene(UI_Conversation quitScript)
+    private IEnumerator ChangeScene()
     {
+        UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
+        quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장"], false);
         yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");
     }
