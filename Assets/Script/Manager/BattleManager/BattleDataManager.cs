@@ -131,7 +131,7 @@ public class BattleDataManager : MonoBehaviour
 
         return unit;
     }
-    
+
     // 전투를 진행중인 캐릭터가 들어있는 리스트
     List<BattleUnit> _battleUnitList = new List<BattleUnit>();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
@@ -162,6 +162,11 @@ public class BattleDataManager : MonoBehaviour
 
         BattleOrderReplace();
 
+        RefreshWaitingLine();
+    }
+
+    public void RefreshWaitingLine()
+    {
         _ui_waitingLine.SetWaitingLine(_battleUnitOrderList);
     }
 
@@ -177,6 +182,7 @@ public class BattleDataManager : MonoBehaviour
     {
         _ui_waitingLine.RemoveUnit(removedUnit);
         _battleUnitOrderList.Remove(removedUnit);
+        RefreshWaitingLine();
     }
 
     public BattleUnit GetNowUnit()
