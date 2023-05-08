@@ -137,7 +137,8 @@ public class BattleManager : MonoBehaviour
                 if(targetUnit.Team != unit.Team)
                     unitList.Add(targetUnit);
             }
-            
+
+
             AttackStart(unit, unitList);
         }
     }
