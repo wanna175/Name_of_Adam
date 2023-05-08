@@ -75,8 +75,16 @@ public class CutSceneData
         }
         else
         {
-            moveTile = AttackUnitTile;
-            AttackUnitDirection = 0;
+            if (unit.GetComponent<SpriteRenderer>().flipX)
+            {
+                moveTile.x += 1;
+                AttackUnitDirection = 1;
+            }
+            else
+            {
+                moveTile.x -= 1;
+                AttackUnitDirection = -1;
+            }
         }
 
         if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)

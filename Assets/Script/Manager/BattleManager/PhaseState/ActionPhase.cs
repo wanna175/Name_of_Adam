@@ -8,7 +8,7 @@ public class ActionPhase : Phase
 {
     public override void OnStateEnter()
     {
-        BattleManager.Field.SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
+        BattleManager.Field.SetTileColor(BattleManager.Data.GetNowUnit(), FieldColor.Attack);
         BattleManager.Instance.ChangeButtonName();
     }
 
