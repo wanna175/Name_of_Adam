@@ -12,8 +12,9 @@ public class Field : MonoBehaviour
     public List<Vector2> _coloredTile = new List<Vector2>();
 
     // 필드의 생성을 위한 필드의 위치
-    private Vector3 FieldPosition => new Vector3(0, -0.7f, 0);
-    private Vector3 FieldRotation => new Vector3(40, 0, 0);
+    private Vector3 FieldPosition => new Vector3(0, -0.37f, 0.6f);
+    private Vector3 FieldRotation => new Vector3(41.29f, 0, 0);
+    private Vector3 FieldScale => new Vector3(19.02f, 9.48f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
@@ -39,6 +40,7 @@ public class Field : MonoBehaviour
 
         transform.position = FieldPosition;
         transform.eulerAngles = FieldRotation;
+        transform.localScale = FieldScale;
         
     }
 
