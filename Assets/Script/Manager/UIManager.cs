@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
 
         if (_popupStack.Peek() != popup)
         {
-            Debug.Log($"Failed to close popup : {popup.name}, Now : {_popupStack.Peek().name}");
+            //Debug.Log($"Failed to close popup : {popup.name}, Now : {_popupStack.Peek().name}");
             return;
         }
 
@@ -93,7 +93,11 @@ public class UIManager : MonoBehaviour
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        GameManager.Resource.Destroy(popup.gameObject);
+        if (popup != null)
+        {
+            Debug.Log("ClosePopUp 오류");
+            GameManager.Resource.Destroy(popup.gameObject);
+        }
         popup = null;
 
         _order--;

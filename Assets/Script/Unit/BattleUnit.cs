@@ -49,12 +49,14 @@ public class BattleUnit : MonoBehaviour
         Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
 
         _renderer.sprite = Data.Image;
+        GameManager.Sound.Play("Summon/SummonSFX");
     }
 
     public void SetHPBar()
     {
         _hpBar.SetHPBar(Team, transform);
         _hpBar.SetFallBar(DeckUnit);
+
     }
 
     public void SetTeam(Team team)
@@ -92,7 +94,7 @@ public class BattleUnit : MonoBehaviour
         // DeckUnit.ChangedStat.HP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
         _hpBar.SetHPBar(Team, transform);
-
+        GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartVisualEffect(Resources.Load<RuntimeAnimatorController>("Animation/Corruption"), transform.position);
         //Debug.Log($"{Data.name} Fall");
     }

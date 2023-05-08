@@ -178,6 +178,9 @@ public class 오빠 : Passive
         if (_connectedPassive == null)
             FindConnectPassive();
 
+        if (_connectedPassive == null)
+            return;
+
         List<BattleUnit> units = _connectedPassive.GetPointedUnits();
         if (units.Contains(receiver))
         {
@@ -239,6 +242,9 @@ public class 동생 : Passive
         if (_connectedPassive == null)
             FindConnectPassive();
 
+        if (_connectedPassive == null)
+            return;
+           
         List<BattleUnit> units = _connectedPassive.GetPointedUnits();
 
         foreach(BattleUnit unit in units)

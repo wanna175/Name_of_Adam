@@ -1,5 +1,7 @@
 public class EngagePhase : Phase
 {
+    private UI_Info _engageInfo;
+
     public override void OnStateEnter()
     {
         if (BattleManager.Phase.Current != BattleManager.Phase.BattleOver)
@@ -8,7 +10,8 @@ public class EngagePhase : Phase
         BattleUnit unit = BattleManager.Data.GetNowUnit();
         if (unit != null)
         {
-            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
+            _engageInfo = GameManager.UI.ShowPopup<UI_Info>();
+            _engageInfo.Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
         BattleManager.Instance.ChangeButtonName();
     }
@@ -20,6 +23,6 @@ public class EngagePhase : Phase
 
     public override void OnStateExit()
     {
-        GameManager.UI.ClosePopup();
+        GameManager.UI.ClosePopup(_engageInfo);
     }
 }
