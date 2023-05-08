@@ -211,7 +211,7 @@ public class BattleManager : MonoBehaviour
         
         Mana.ChangeMana(-20);
         Data.DarkEssenseChage(-1);
-
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         Field.GetUnit(coord).ChangeFall(1);
         _battleData.UI_PlayerSkill.CancleSelect();
         _battleData.UI_PlayerSkill.Used = true;
@@ -357,6 +357,7 @@ public class BattleManager : MonoBehaviour
         Vector2 dest = current + coord;
 
         Field.MoveUnit(current, dest);
+        GameManager.Sound.Play("Move/MoveSFX");
     }
 
     public enum FieldColorType
