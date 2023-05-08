@@ -275,7 +275,7 @@ public class BattleManager : MonoBehaviour
                 GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnimator, hit.transform.position);
 
             if (team != hit.Team)
-                hit.HP.ChangeHP(1000);
+                hit.ChangeHP(1000);
 
             Debug.Log(hit.Team);
             if (hit.HP.GetCurrentHP() <= 0)
