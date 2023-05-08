@@ -9,7 +9,7 @@ public class StigmaStore : Selectable
 
     [SerializeField] private Image _unitImage;
 
-    List<³«ÀÎ> stigmaList = new();
+    List<ë‚™ì¸> stigmaList = new();
 
     void Start()
     {
@@ -18,11 +18,12 @@ public class StigmaStore : Selectable
 
     private void Init()
     {
-        List<Script> scripts = new();
-        Script s = new();
-        s.name = "³«ÀÎ¼Ò";
-        s.script = "ÀÔÀå";
-        scripts.Add(s);
+        List<Script> scripts = new List<Script>();
+
+        if (GameManager.Data.GameData.isVisitUpgrade == false)
+            scripts = GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ì…ì¥_ìµœì´ˆ"];
+        else
+            scripts = GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ì…ì¥"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
@@ -31,8 +32,8 @@ public class StigmaStore : Selectable
 
         while (stigmaList.Count < 3)
         {
-            ³«ÀÎ tempStigma = deckUnit.GetRandomStigma();
-            if (!stigmaList.Contains(tempStigma) & tempStigma != ³«ÀÎ.¿Àºü & tempStigma != ³«ÀÎ.µ¿»ı & tempStigma != ³«ÀÎ.°í¹®°ü & tempStigma != ³«ÀÎ.¸Á·É)
+            ë‚™ì¸ tempStigma = deckUnit.GetRandomStigma();
+            if (!stigmaList.Contains(tempStigma) & tempStigma != ë‚™ì¸.ì˜¤ë¹  & tempStigma != ë‚™ì¸.ë™ìƒ)
             {
                 stigmaList.Add(tempStigma);
             }
@@ -67,31 +68,70 @@ public class StigmaStore : Selectable
         if (select == 1)
         {
             _stigmatizeUnit.AddStigma(stigmaList[0]);
+            GameManager.UI.ClosePopup();
+            AddStigamScript(stigmaList[0]);
         }
         else if (select == 2)
         {
             _stigmatizeUnit.AddStigma(stigmaList[1]);
+            GameManager.UI.ClosePopup();
+            AddStigamScript(stigmaList[1]);
         }
         else if (select == 3)
         {
             _stigmatizeUnit.AddStigma(stigmaList[2]);
+            GameManager.UI.ClosePopup();
+            AddStigamScript(stigmaList[2]);
         }
 
-        GameManager.UI.ClosePopup();
+        //OnQuitClick();
+    }
 
-        OnQuitClick();
+    public void AddStigamScript(ë‚™ì¸ stigma)
+    {
+        switch (stigma)
+        {
+            case ë‚™ì¸.ê³ ì–‘:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ê³ ì–‘"]);
+                break;
+            case ë‚™ì¸.ê°•ë¦¼:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ê°•ë¦¼"]);
+                break;
+            case ë‚™ì¸.ê°€í•™:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ê°€í•™"]);
+                break;
+            case ë‚™ì¸.ëŒ€ì£„:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ëŒ€ì£„"]);
+                break;
+            case ë‚™ì¸.ìì• :
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ìì• "]);
+                break;
+            case ë‚™ì¸.ì²˜í˜•:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ì²˜í˜•"]);
+                break;
+            case ë‚™ì¸.í¡ìˆ˜:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_í¡ìˆ˜"]);
+                break;
+        }
     }
 
     public void OnQuitClick()
     {
-        List<Script> scripts = new();
-        Script s = new();
-        s.name = "³«ÀÎ¼Ò";
-        s.script = "ÅğÀå";
-        scripts.Add(s);
+        StartCoroutine(QuitScene());
 
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        if (GameManager.Data.GameData.isVisitStigma == false)
+        {
+            GameManager.Data.GameData.isVisitStigma = true;
+        }
+    }
 
+    private IEnumerator QuitScene()
+    {
+        UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
+
+        quitScript.Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_í‡´ì¥"], false);
+
+        yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");
     }
 }

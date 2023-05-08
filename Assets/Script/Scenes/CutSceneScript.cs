@@ -6,9 +6,10 @@ public class CutSceneScript : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sr;
 
-    private void Awake()
+    private void Start()
     {
-        //GameManager.Sound.Play("");
+        GameManager.Sound.Clear();
+        GameManager.Sound.Play("Stage_Transition/CutScene/CutSceneBGM");
     }
 
     public void SceneChange()
