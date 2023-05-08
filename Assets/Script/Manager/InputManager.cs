@@ -23,8 +23,8 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameManager.Sound.Play("UI/ClickSFX/UI Click1");
-            Debug.Log("ë§ˆìš°ìŠ¤ ì¢Œí´ë¦­");
+            GameManager.Sound.Play("UI/ClickSFX/UIClick1");
+            Debug.Log("¸¶¿ì½º ÁÂÅ¬¸¯");
         }
     }
 }

@@ -4,6 +4,7 @@ public class EngagePhase : Phase
 
     public override void OnStateEnter()
     {
+        GameManager.Sound.Play("Stage_Transition/Engage/EngageEnter");
         if (BattleManager.Phase.Current != BattleManager.Phase.BattleOver)
             BattleManager.Instance.EngagePhase();
 
