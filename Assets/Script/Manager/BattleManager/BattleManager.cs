@@ -344,7 +344,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowScene<UI_BattleOver>().SetImage(3);
-        GameManager.Data.Gameover();
+        GameManager.Data.DeckClear();
     }
 
     // 이동 경로를 받아와 이동시킨다
