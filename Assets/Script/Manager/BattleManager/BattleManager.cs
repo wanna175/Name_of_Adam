@@ -265,13 +265,18 @@ public class BattleManager : MonoBehaviour
         {
             if (hit == null)
                 continue;
-            
+            Team team = hit.Team;
+            Debug.Log(team);
             //공격 전 낙인 체크
             unit.SkillUse(hit);
 
             if (unit.SkillEffectAnimator != null)
                 GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnimator, hit.transform.position);
-            
+
+            if (team != hit.Team)
+                hit.HP.ChangeHP(1000);
+
+            Debug.Log(hit.Team);
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
 

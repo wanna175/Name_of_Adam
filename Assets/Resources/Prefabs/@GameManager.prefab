@@ -286,7 +286,8 @@ MonoBehaviour:
       faction: 0
       level: 0
       id: 0
-  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
+  GameData: {fileID: 0}
+  GameDataOriginal: {fileID: 0}
   _playerDeck: []
 --- !u!1 &7143347325917774965
 GameObject:

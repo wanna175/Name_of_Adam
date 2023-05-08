@@ -78,12 +78,12 @@ public class ButtonController : MonoBehaviour
 
             int infoNum = 0;
             if (StageMNG.GetStageArray[i].GetStageType() == StageType.Battle)
-                infoNum += 10 + (int)StageMNG.GetStageArray[i].BattleFaction;
+                infoNum += 10 + (int)StageMNG.GetStageArray[i].BattleStageData.faction;
             else
                 infoNum = (int)StageMNG.GetStageArray[i].Name;
 
             StageButtons[i].transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().
-                text = ((StageInfo)infoNum).ToString();
+                text = ((StageInfo)infoNum).ToString().Replace('_', ' ');
         }
 
         /* // 5개의 랜덤 스테이지를 가져오는 기존의 시스템
