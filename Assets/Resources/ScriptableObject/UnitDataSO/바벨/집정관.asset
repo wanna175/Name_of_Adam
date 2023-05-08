@@ -26,7 +26,7 @@ MonoBehaviour:
     \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
   _faction: 3
   _rarity: 0
-  _image: {fileID: 0}
+  _image: {fileID: 21300000, guid: fe21f903dbac6e449a53f2a1c82f235d, type: 3}
   _animatorController: {fileID: 9100000, guid: 504aede10c2572c4f884a3c2f699bfe7, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 8fa5fa82c758b264489358f367a0c9ae, type: 2}
   _skillEffectController: {fileID: 9100000, guid: b725b2a2fc82fbb4b9435bac494559b6, type: 2}
