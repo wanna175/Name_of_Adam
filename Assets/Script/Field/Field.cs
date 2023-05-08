@@ -235,7 +235,7 @@ public class Field : MonoBehaviour
         if (tile.UnitExist)
         {
             BattleUnit unit = GetUnit(coord);
-            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.FillAmount(), unit.Fall.GetCurrentFallCount());
+            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
 
         if (_coloredTile.Contains(coord)) 

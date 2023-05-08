@@ -73,6 +73,10 @@ public class UI_Option : UI_Popup
     
     private void SetScreen() => Screen.SetResolution(ScreenX, ScreenY, isWindow);
 
-
     public void QuitOption() => GameManager.UI.ClosePopup();
+
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
 }

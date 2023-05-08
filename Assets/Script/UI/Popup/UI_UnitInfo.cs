@@ -44,7 +44,7 @@ public class UI_UnitInfo : UI_Popup
                                  "Attack: " + _unit.Stat.ATK.ToString() + "\n" +
                                  "Speed:  " + _unit.Stat.SPD.ToString();
 
-        _unitInfoSkillDescrption.text = _unit.Data.Description.Replace("(ATK)", _unit.Stat.HP.ToString());
+        _unitInfoSkillDescrption.text = _unit.Data.Description.Replace("(ATK)", _unit.Stat.ATK.ToString());
 
         for (int i = 0; i < _unit.Stat.FallMaxCount; i++)
         {
@@ -63,7 +63,7 @@ public class UI_UnitInfo : UI_Popup
         {
             ³«ÀÎ stig = _unit.PassiveToStigma(sti);
 
-            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_Stigma>().SetImage(_unit.GetStigmaImage(stig));
+            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_Stigma>().SetImage(_unit.GetStigmaImage(stig), _unit.GetStigmaText(stig));
         }
 
         foreach (bool range in _unit.Data.AttackRange)
