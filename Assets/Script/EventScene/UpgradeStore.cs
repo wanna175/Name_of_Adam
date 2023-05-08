@@ -7,7 +7,7 @@ public class UpgradeStore : Selectable
 {
     private DeckUnit _upgradeUnit;
 
-    [SerializeField] private GameObject button;
+    [SerializeField] private Image _unitImage;
 
     void Start()
     {
@@ -34,7 +34,8 @@ public class UpgradeStore : Selectable
     public override void OnSelect(DeckUnit unit)
     {
         _upgradeUnit = unit;
-        button.GetComponent<Image>().sprite = unit.Data.Image;
+        _unitImage.sprite = unit.Data.Image;
+        _unitImage.color = Color.white;
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();

@@ -40,8 +40,8 @@ public class UI_HPBar : UI_Base
         int current = unit.Stat.FallCurrentCount;
 
         if (max > 6) max = 6; // 스마게까지 타락 Max 6
-
-        for(int i=0; i<max; i++)
+        
+        for (int i = _fallGauge.Count; i<max; i++)
         {
             UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
             _fallGauge.Add(newObject);
