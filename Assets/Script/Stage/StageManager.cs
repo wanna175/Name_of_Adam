@@ -352,14 +352,14 @@ public class StageManager : MonoBehaviour
         inputArr = stageData;
         for(int i = 0; i < 3; i++)
         {
+            string name = "";
             if (inputArr[i].GetStageType() == StageType.Battle)
             {
                 inputArr[i].BattleStageData = stageData[i].BattleStageData;
 
-                string name = inputArr[i].BattleStageData.faction.ToString();
-                inputArr[i].Background = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/" + name);
+                name = inputArr[i].BattleStageData.faction.ToString();
             }
-            if(inputArr[i].Name == StageName.Random)
+            else if(inputArr[i].Name == StageName.Random)
             {
                 List<Stage> stageList = GameManager.Data.SmagaRandomStage;
                 int rand;
@@ -378,6 +378,10 @@ public class StageManager : MonoBehaviour
                 inputArr[i] = stageList[rand];
                 stageList.RemoveAt(rand);
             }
+            else
+                name = inputArr[i].Name.ToString();
+
+            inputArr[i].Background = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/" + name);
         }
     }
 }

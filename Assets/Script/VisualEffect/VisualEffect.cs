@@ -11,6 +11,6 @@ public class VisualEffect : MonoBehaviour
 
     public void AnimExit()
     {
-        BattleManager.SkillEffect.RestoreSkillEffect(gameObject);
+        GameManager.VisualEffect.RestoreVisualEffect(gameObject);
     }
 }

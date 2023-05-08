@@ -27,8 +27,10 @@ MonoBehaviour:
   _faction: 0
   _rarity: 0
   _image: {fileID: 21300000, guid: b1cfb933082a5d048b72c67a4088c95c, type: 3}
-  _animatorController: {fileID: 9100000, guid: bb7ba7f3d0ea75447b98790f60bc524d, type: 2}
+  _animatorController: {fileID: 9100000, guid: 3f6abfb0885e86a45af730a8872bfc0c, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: 3f6abfb0885e86a45af730a8872bfc0c, type: 2}
   _skillEffectController: {fileID: 0}
+  _corruptionSkillEffectController: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
   _darkEssenseDrop: 0
   _darkEssenseCost: 1

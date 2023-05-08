@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     private InputManager _input = new InputManager();
     public static InputManager InputManager => Instance._input;
 
+    private VisualEffectManager _visualEffect;
+    public static VisualEffectManager VisualEffect => Instance._visualEffect;
+
     void Awake()
     {
         //if (s_instance != null)
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
         //else
         //    Init();
         _sound = new SoundManager();
+        _visualEffect = new VisualEffectManager();
         Data.Init();
         Sound.Init();
     }

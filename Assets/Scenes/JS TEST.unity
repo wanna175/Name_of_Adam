@@ -291,7 +291,8 @@ MonoBehaviour:
     Units: []
   SmagaMap: []
   SmagaRandomStage: []
-  _gameData: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
+  GameData: {fileID: 11400000, guid: 1c3f1f779abcbdc49b7a0ca29522a837, type: 2}
+  GameDataOriginal: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
   _playerDeck: []
 --- !u!1 &118785512
 GameObject:
@@ -2713,7 +2714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2035607025
 Transform:
   m_ObjectHideFlags: 0

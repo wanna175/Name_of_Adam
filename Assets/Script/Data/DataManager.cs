@@ -41,6 +41,8 @@ public class DataManager : MonoBehaviour
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageDataContainer>("StageData");
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
+
+        GameData += GameDataOriginal;
     }
 
     public void Gameover()
