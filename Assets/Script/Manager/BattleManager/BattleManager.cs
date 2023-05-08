@@ -268,7 +268,7 @@ public class BattleManager : MonoBehaviour
             if (hit == null)
                 continue;
             Team team = hit.Team;
-            Debug.Log(team);
+
             //공격 전 낙인 체크
             unit.SkillUse(hit);
 
@@ -277,8 +277,7 @@ public class BattleManager : MonoBehaviour
 
             if (team != hit.Team)
                 hit.ChangeHP(1000);
-
-            Debug.Log(hit.Team);
+            
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
 
@@ -303,8 +302,34 @@ public class BattleManager : MonoBehaviour
 
     private void UnitDeadAction(BattleUnit _unit)
     {
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<RuntimeAnimatorController>("Animation/UnitDeadEffect"), _unit.transform.position);
+
+        StartCoroutine(UnitDeadEffect(_unit));
+    }
+
+    private IEnumerator UnitDeadEffect(BattleUnit _unit)
+    {
+        SpriteRenderer sr = _unit.GetComponent<SpriteRenderer>();
+
+        while (true)
+        {
+            Debug.Log(sr);
+            Debug.Log(sr.color);
+            Color c = sr.color;
+            float a = c.a - 0.01f;
+            c.a = a;
+
+            sr.color = c;
+
+            if (c.a <= 0)
+                break;
+
+            yield return null;
+        }
+
         Data.BattleUnitRemove(_unit);
         Data.BattleOrderRemove(_unit);
+        Destroy(_unit.gameObject);
     }
 
     public void DirectAttack()//임시 삭제

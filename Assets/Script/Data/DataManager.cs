@@ -49,6 +49,9 @@ public class DataManager : MonoBehaviour
         GameData.DarkEssence = GameDataOriginal.DarkEssence;
         GameData.DeckUnits = GameDataOriginal.DeckUnits;
         GameData.isVisitUpgrade = GameDataOriginal.isVisitUpgrade;
+
+        foreach (DeckUnit unit in GameData.DeckUnits)
+            unit.ChangedStat.FallCurrentCount = 0;
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

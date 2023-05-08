@@ -23,6 +23,6 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 0
+      ManaCost: -5
     stigmas: 
   isVisitUpgrade: 0

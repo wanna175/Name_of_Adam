@@ -80,7 +80,6 @@ public class BattleUnit : MonoBehaviour
         {
             GameManager.Data.DarkEssenseChage(Data.DarkEssenseDrop);
         }
-        Destroy(gameObject);
     }
 
     public void UnitFallEvent()
@@ -276,6 +275,7 @@ public class BattleUnit : MonoBehaviour
             {
                 if (passive.GetPassiveType() == type)
                 {
+                    Debug.Log("aaaaaaaaaaaaaaaaaaaaaaa");
                     passive.Use(caster, receiver);
                 }
             }
