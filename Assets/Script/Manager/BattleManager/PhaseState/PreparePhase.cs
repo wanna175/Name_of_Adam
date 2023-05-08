@@ -4,9 +4,11 @@ public class PreparePhase : Phase
 
     public override void OnStateEnter()
     {
+        BattleManager.Mana.ChangeMana(15);
         BattleManager.Data.TurnPlus();
         BattleManager.Data.UI_PlayerSkill.Used = false;
         BattleManager.Instance.ChangeButtonName();
+        GameManager.UI.ShowScene<UI_TurnNotify>().Set(true);
     }
 
     public override void OnStateUpdate()
@@ -28,7 +30,7 @@ public class PreparePhase : Phase
 
     public override void OnStateExit()
     {
-        BattleManager.Mana.ChangeMana(15);
         isFirst = false;
+        GameManager.UI.ShowScene<UI_TurnNotify>().Set(false);
     }
 }

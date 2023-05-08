@@ -8,11 +8,14 @@ using UnityEngine.Events;
 public class UI_BattleOver : UI_Scene
 {
     [SerializeField] private Image _textImage;
+    [SerializeField] private FadeController fc;
 
     private int _result;
 
     public void SetImage(int result)
     {
+        fc.GetComponent<FadeController>().StartFadeIn();
+
         GetComponent<Canvas>().sortingOrder = 100;
         _result = result;
 
