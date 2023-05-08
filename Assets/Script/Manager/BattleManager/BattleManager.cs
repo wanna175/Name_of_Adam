@@ -104,7 +104,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit unit = Data.GetNowUnit();
 
-        if (Field.Get_Abs_Pos(unit, ClickType.Move).Contains(coord) == false)
+        if (Field.Get_Abs_Pos(unit, FieldColor.Move).Contains(coord) == false)
             return;
         Vector2 dest = coord - unit.Location;
 
@@ -118,7 +118,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit unit = Data.GetNowUnit();
 
-        if (Field.Get_Abs_Pos(unit, ClickType.Attack).Contains(coord) == false)
+        if (Field.Get_Abs_Pos(unit, FieldColor.Attack).Contains(coord) == false)
             return;
 
         if (coord != unit.Location)

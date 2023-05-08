@@ -85,10 +85,12 @@ public enum CutSceneMoveType
     tracking
 }
 
-public enum ClickType
+public enum FieldColor
 {
     Move = 0,
     Attack = 1,
+    Select = 2,
+    Clear = 3,
 }
 
 [SerializeField]
