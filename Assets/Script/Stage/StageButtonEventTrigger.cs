@@ -28,6 +28,7 @@ public class StageButtonEventTrigger : EventTrigger
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         PointerClick(gameObject);
     }
 }

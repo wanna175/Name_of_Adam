@@ -57,6 +57,7 @@ public class UI_Option : UI_Popup
 
     public void ChangeWindow(Toggle toggle)
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         isWindow = toggle.isOn;
 
         SetScreen();
@@ -64,6 +65,7 @@ public class UI_Option : UI_Popup
 
     public void UpdateVolume(GameObject go)
     {
+        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         string text = go.transform.GetChild(0).GetComponent<Text>().text;
         float slider = go.transform.GetChild(1).GetComponent<Slider>().value;
         slider = (slider == -40) ? -80 : slider;
@@ -77,6 +79,7 @@ public class UI_Option : UI_Popup
 
     public void ExitButton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         Application.Quit();
     }
 }

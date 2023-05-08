@@ -57,6 +57,7 @@ public class StigmaStore : Selectable
 
     public void OnStigmaButtonClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         if (_stigmatizeUnit != null)
         {
             GameManager.UI.ShowPopup<UI_StigmaSelectButton>().init(this, stigmaList);
@@ -65,6 +66,7 @@ public class StigmaStore : Selectable
 
     public void OnStigmaSelect(int select) 
     {
+        
         if (select == 1)
         {
             _stigmatizeUnit.AddStigma(stigmaList[0]);
@@ -85,13 +87,14 @@ public class StigmaStore : Selectable
         }
 
         //StartCoroutine(QuitScene());
+        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         //OnQuitClick();
     }
 
     public void AddStigamScript(낙인 stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-
+        
         switch (stigma)
         {
             case 낙인.고양:
@@ -122,6 +125,7 @@ public class StigmaStore : Selectable
 
     public void OnQuitClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         StartCoroutine(QuitScene());
     }
 
