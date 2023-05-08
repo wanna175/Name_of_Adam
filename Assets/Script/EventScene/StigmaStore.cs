@@ -32,7 +32,7 @@ public class StigmaStore : Selectable
         while (stigmaList.Count < 3)
         {
             ³«ÀÎ tempStigma = deckUnit.GetRandomStigma();
-            if (!stigmaList.Contains(tempStigma) && tempStigma != ³«ÀÎ.¿Àºü && tempStigma != ³«ÀÎ.µ¿»ý)
+            if (!stigmaList.Contains(tempStigma) & tempStigma != ³«ÀÎ.¿Àºü & tempStigma != ³«ÀÎ.µ¿»ý)
             {
                 stigmaList.Add(tempStigma);
             }

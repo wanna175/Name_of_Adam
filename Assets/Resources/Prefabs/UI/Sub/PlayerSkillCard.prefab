@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highlight: {fileID: 1962386849409806015}
+  _text: {fileID: 5223449261046211788}
   IsSelected: 0
 --- !u!61 &4438675646838010937
 BoxCollider2D:

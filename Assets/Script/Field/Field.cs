@@ -12,8 +12,9 @@ public class Field : MonoBehaviour
     public List<Vector2> _coloredTile = new List<Vector2>();
 
     // 필드의 생성을 위한 필드의 위치
-    private Vector3 FieldPosition => new Vector3(0, -0.7f, 0);
-    private Vector3 FieldRotation => new Vector3(40, 0, 0);
+    private Vector3 FieldPosition => new Vector3(0, -0.35f, 0.5f);
+    private Vector3 FieldRotation => new Vector3(41.5f, 0, 0);
+    private Vector3 FieldScale => new Vector3(18.54f, 9.28f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
@@ -39,6 +40,7 @@ public class Field : MonoBehaviour
 
         transform.position = FieldPosition;
         transform.eulerAngles = FieldRotation;
+        transform.localScale = FieldScale;
         
     }
 
@@ -227,6 +229,7 @@ public class Field : MonoBehaviour
         return false;
     }
 
+    private UI_Info _unitInfo;
     //리팩토링 무저건 하기.
     public void MouseEnterTile(Tile tile)
     {
@@ -235,7 +238,8 @@ public class Field : MonoBehaviour
         if (tile.UnitExist)
         {
             BattleUnit unit = GetUnit(coord);
-            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
+            _unitInfo = GameManager.UI.ShowPopup<UI_Info>();
+            _unitInfo.Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
 
         if (_coloredTile.Contains(coord)) 
@@ -255,7 +259,7 @@ public class Field : MonoBehaviour
     {
         if (tile.UnitExist)
         {
-            GameManager.UI.ClosePopup();
+            GameManager.UI.ClosePopup(_unitInfo);
         }
 
         if (BattleManager.Phase.Current == BattleManager.Phase.Action)
