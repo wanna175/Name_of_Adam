@@ -77,6 +77,12 @@ public class StageManager : MonoBehaviour
         for(int i = 0; i < StageArray.Length; i++)
             StageArray[i] = SetRandomFaction(MapList[0]);
         */
+        if (GameManager.Data.SmagaMap.Count <= 0)
+        {
+            SceneChanger.SceneChange("MainScene");
+            return;
+        }
+
         SetSmagaStage(ref StageArray, GameManager.Data.SmagaMap[0].Stages); // 스마게용
         SetNextArray();
     }

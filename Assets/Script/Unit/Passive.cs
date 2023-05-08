@@ -9,7 +9,7 @@ public enum 낙인
 {
     고양, 자애, 강림, // 소환 시
     가학, 흡수, 처형, 대죄, // 공격 후
-    오빠, 동생, // 특수 낙인
+    오빠, 동생, 고문관, 망령 // 특수 낙인
 }
 
 public abstract class Passive
@@ -288,5 +288,43 @@ public class 동생 : Passive
     {
         Debug.Log($"{unit.Data.Name}에 달의 증표");
         _pointedUnits.Add(unit);
+    }
+}
+
+public class 고문관 : Passive
+{
+    public override PassiveType GetPassiveType()
+    {
+        return PassiveType.AFTERATTACK;
+    }
+
+    public override void Use(BattleUnit caster, BattleUnit receiver)
+    {
+        Vector2 moveVec = (receiver.Location - caster.Location).normalized;
+
+        if (!BattleManager.Field.TileDict[caster.Location + moveVec].UnitExist)
+        {
+            Debug.Log(caster.Location + moveVec);
+            BattleManager.Field.MoveUnit(receiver.Location, caster.Location +  moveVec);
+        }
+    }
+}
+
+public class 망령 : Passive
+{
+    public override PassiveType GetPassiveType()
+    {
+        return PassiveType.AFTERATTACK;
+    }
+
+    public override void Use(BattleUnit caster, BattleUnit receiver)
+    {
+        Vector2 moveVec = receiver.Location + (receiver.Location - caster.Location);
+
+        if (!BattleManager.Field.TileDict.ContainsKey(moveVec))
+            return;
+
+        if (!BattleManager.Field.TileDict[moveVec].UnitExist)
+            BattleManager.Field.MoveUnit(caster.Location, moveVec);
     }
 }

@@ -123,7 +123,7 @@ public class CutSceneController : MonoBehaviour
             time += Time.deltaTime;
             float t = time / ZoomTime;
 
-            CSData.AttackUnit.transform.position = Vector3.Lerp(CSData.MovePosition, CSData.AttackPosition, t);
+            CSData.AttackUnit.transform.position = Vector3.Lerp(CSData.MovePosition, BattleManager.Field.GetTilePosition(CSData.AttackUnit.Location), t);
             _CameraHandler.CutSceneZoomOut(CSData, t);
             yield return null;
         }

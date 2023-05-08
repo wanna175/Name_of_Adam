@@ -81,7 +81,6 @@ public class BattleUnit : MonoBehaviour
             GameManager.Data.DarkEssenseChage(Data.DarkEssenseDrop);
         }
         GameManager.Sound.Play("Dead/DeadSFX");
-        Destroy(gameObject);
     }
 
     public void UnitFallEvent()

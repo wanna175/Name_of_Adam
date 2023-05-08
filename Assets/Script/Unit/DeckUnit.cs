@@ -89,6 +89,12 @@ public class DeckUnit
             case 낙인.동생:
                 newPassive = new 동생();
                 break;
+            case 낙인.고문관:
+                newPassive = new 고문관();
+                break;
+            case 낙인.망령:
+                newPassive = new 망령();
+                break;
         }
 
         foreach(Passive passive in Stigmata)

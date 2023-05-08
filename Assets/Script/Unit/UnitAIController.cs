@@ -223,6 +223,9 @@ public class UnitAIController : MonoBehaviour
             Vector2 Vec = new(MyPosition.x + direction.x, MyPosition.y + direction.y);
             float sqr = (Vec - destination).sqrMagnitude;
 
+            if (!BattleManager.Field.IsInRange(Vec))
+                continue;
+
             if (currntMin > sqr)
             {
                 currntMin = sqr;
