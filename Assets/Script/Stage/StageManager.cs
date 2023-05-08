@@ -381,7 +381,7 @@ public class StageManager : MonoBehaviour
             else
                 name = inputArr[i].Name.ToString();
 
-            inputArr[i].Background = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/" + name);
+            inputArr[i].Background = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/Thumbnail/" + name);
         }
     }
 }

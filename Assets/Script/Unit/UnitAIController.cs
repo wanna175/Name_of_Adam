@@ -295,6 +295,7 @@ public class UnitAIController : MonoBehaviour
             else
             {
                 MoveUnit(MoveDirection(NearestEnemySearch()));
+                BattleManager.Instance.EndUnitkAction();
             }
         }
         ListClear();

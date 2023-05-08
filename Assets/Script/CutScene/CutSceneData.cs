@@ -35,14 +35,14 @@ public class CutSceneData
         this.AttackUnit = AttackUnit;
         this.HitUnits = HitUnits;
 
-        AttackPosition = AttackUnit.transform.position;
         AttackLocation = AttackUnit.Location;
-        HitPosition = new List<Vector3>();
+        AttackPosition = BattleManager.Field.GetTilePosition(AttackUnit.Location);
         HitLocation = new List<Vector2>();
+        HitPosition = new List<Vector3>();
         foreach (BattleUnit unit in HitUnits)
         {
-            HitPosition.Add(unit.transform.position);
             HitLocation.Add(unit.Location);
+            HitPosition.Add(BattleManager.Field.GetTilePosition(unit.Location));
         }
 
         DefaultZoomSize = Camera.main.fieldOfView;

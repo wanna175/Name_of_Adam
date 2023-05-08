@@ -72,6 +72,18 @@ public class ButtonController : MonoBehaviour
                 StageButtons[i].SetActive(false);
             else
                 StageButtons[i].transform.GetChild(1).GetComponent<Image>().sprite = StageMNG.GetStageArray[i].Background;
+
+            StageButtons[i].transform.GetChild(3).GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>("Arts/UI/Stage/Icon/" + StageText);
+
+
+            int infoNum = 0;
+            if (StageMNG.GetStageArray[i].GetStageType() == StageType.Battle)
+                infoNum += 10 + (int)StageMNG.GetStageArray[i].BattleFaction;
+            else
+                infoNum = (int)StageMNG.GetStageArray[i].Name;
+
+            StageButtons[i].transform.GetChild(2).transform.GetChild(0).GetComponent<TextMeshProUGUI>().
+                text = ((StageInfo)infoNum).ToString();
         }
 
         /* // 5개의 랜덤 스테이지를 가져오는 기존의 시스템
