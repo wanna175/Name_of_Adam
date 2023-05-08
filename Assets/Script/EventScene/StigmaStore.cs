@@ -7,7 +7,7 @@ public class StigmaStore : Selectable
 {
     private DeckUnit _stigmatizeUnit;
 
-    [SerializeField] private GameObject button;
+    [SerializeField] private Image _unitImage;
 
     List<³«ÀÎ> stigmaList = new();
 
@@ -47,7 +47,8 @@ public class StigmaStore : Selectable
     public override void OnSelect(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
-        button.GetComponent<Image>().sprite = unit.Data.Image;
+        _unitImage.sprite = unit.Data.Image;
+        _unitImage.color = Color.white;
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
