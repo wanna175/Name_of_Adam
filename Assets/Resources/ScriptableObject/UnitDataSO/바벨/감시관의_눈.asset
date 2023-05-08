@@ -19,7 +19,7 @@ MonoBehaviour:
     SPD: 15
     FallCurrentCount: 0
     FallMaxCount: 3
-    ManaCost: 40
+    ManaCost: 20
   _stigma: 
   _name: "\uAC10\uC2DC\uAD00\uC758_\uB208"
   _description: "\uC77C\uC9C1\uC120\uC0C1\uC758 \uC801\uC5D0\uAC8C (ATK)\uC758 \uAD11\uC5ED
