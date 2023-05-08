@@ -8,7 +8,7 @@ public class EngagePhase : Phase
         BattleUnit unit = BattleManager.Data.GetNowUnit();
         if (unit != null)
         {
-            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.FillAmount(), unit.Fall.GetCurrentFallCount());
+            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
 
     }
