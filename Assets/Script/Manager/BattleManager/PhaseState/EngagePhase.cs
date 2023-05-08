@@ -10,7 +10,6 @@ public class EngagePhase : Phase
         {
             GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
-
     }
 
     public override void OnStateUpdate()
