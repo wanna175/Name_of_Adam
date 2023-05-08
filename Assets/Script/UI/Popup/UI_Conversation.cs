@@ -51,7 +51,7 @@ public class UI_Conversation : UI_Popup
 
             co_typing = StartCoroutine(TypingEffect(script.script));
 
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+            yield return new WaitUntil(() => GameManager.InputManager.Click);
         }
 
         GameManager.UI.ClosePopup(this);
