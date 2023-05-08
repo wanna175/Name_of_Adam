@@ -52,10 +52,10 @@ public enum Team
 [SerializeField]
 public enum Faction
 {
-    오리지널,
-    월식의_기사단,
-    까마귀,
-    바벨,
+    오리지널      = 0,
+    월식의_기사단 = 1,
+    까마귀        = 2,
+    바벨          = 3,
 }
 
 [SerializeField]

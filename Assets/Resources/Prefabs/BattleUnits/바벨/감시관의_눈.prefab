@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7650281996513497887}
   - component: {fileID: 3655619081401174487}
   - component: {fileID: 7650281996513497886}
-  - component: {fileID: 4781074426739037805}
+  - component: {fileID: 3292117978652991192}
   m_Layer: 0
   m_Name: "\uAC10\uC2DC\uAD00\uC758_\uB208"
   m_TagString: Untagged
@@ -143,7 +143,8 @@ MonoBehaviour:
     FallMaxCount: 0
     ManaCost: 0
   _team: 0
-  AI: {fileID: 4781074426739037805}
+  SkillEffectAnimator: {fileID: 0}
+  AI: {fileID: 3292117978652991192}
   HP: {fileID: 7650281996513497887}
   Fall: {fileID: 3655619081401174487}
   Skill: {fileID: 7650281996513497886}
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Effects:
   - {fileID: 11400000, guid: 6e5ebf919038f5d489e948e2a7833a01, type: 2}
---- !u!114 &4781074426739037805
+--- !u!114 &3292117978652991192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 39224251436397456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560296eb0cfafb04993b6a315fdc9048, type: 3}
+  m_Script: {fileID: 11500000, guid: 4656c3a1826ee9d4a84f1ddcc28ac1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3242495623933191735

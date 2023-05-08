@@ -7,8 +7,8 @@ public enum StageName
 {
     none,
 
-    StigmaStore,
-    UpgradeStore,
+    StigmaStore  = 1,
+    UpgradeStore = 2,
     MoneyStore,
     Harlot,
     RandomEvent,
@@ -18,6 +18,16 @@ public enum StageName
 
 
     Random
+}
+
+public enum StageInfo
+{
+    아군에게_낙인을_부여합니다 = 1,
+    아군의_스탯을_강화합니다   = 2,
+
+    월식의_기사단과_전투합니다 = 11,
+    죄의_짐승들과_전투합니다   = 12,
+    바벨의_잔재와_전투합니다   = 13
 }
 
 public enum StageType
