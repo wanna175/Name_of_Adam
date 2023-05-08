@@ -237,7 +237,7 @@ public class BattleManager : MonoBehaviour
         UnitAttackAction();
         yield return StartCoroutine(CutScene.AfterAttack());
         
-        EndAttackAction();
+        EndUnitkAction();
     }
 
     public void AttackStart(BattleUnit caster, BattleUnit hit)
@@ -283,7 +283,7 @@ public class BattleManager : MonoBehaviour
 
     }
 
-    private void EndAttackAction()
+    public void EndUnitkAction()
     {
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());

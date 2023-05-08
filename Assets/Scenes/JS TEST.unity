@@ -1894,7 +1894,7 @@ MonoBehaviour:
   AnimTest:
   - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
     deckUnit:
-      Data: {fileID: 0}
+      Data: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
       ChangedStat:
         HP: 0
         CurrentHP: 0
@@ -1908,7 +1908,7 @@ MonoBehaviour:
     team: 1
   - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
     deckUnit:
-      Data: {fileID: 0}
+      Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
       ChangedStat:
         HP: 0
         CurrentHP: 0
@@ -1920,6 +1920,34 @@ MonoBehaviour:
       stigmas: 
     location: {x: 5, y: 1}
     team: 1
+  - prefab: {fileID: 3954254994103691638, guid: eb7302a1b40d7fc4ab4e6a36e63c2758, type: 3}
+    deckUnit:
+      Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      stigmas: 
+    location: {x: 4, y: 1}
+    team: 1
+  - prefab: {fileID: 39224251436397456, guid: 6215954ea611ecd418ef88701cd966f6, type: 3}
+    deckUnit:
+      Data: {fileID: 11400000, guid: 81b77514843d8664e904c5cb55dda9b1, type: 2}
+      ChangedStat:
+        HP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      stigmas: 
+    location: {x: 0, y: 1}
+    team: 0
 --- !u!114 &1589663948
 MonoBehaviour:
   m_ObjectHideFlags: 0
