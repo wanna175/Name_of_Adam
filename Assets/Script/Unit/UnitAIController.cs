@@ -260,7 +260,6 @@ public class UnitAIController : MonoBehaviour
 
     public virtual void AIAction()
     {
-
         SetAttackRangeList();
 
         if (AttackRangeUnitList.Count > 0)
