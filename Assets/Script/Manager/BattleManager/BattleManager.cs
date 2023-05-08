@@ -92,7 +92,9 @@ public class BattleManager : MonoBehaviour
         TextMeshProUGUI buttonName = _turnChangeButton.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
         if (Phase.Current == Phase.Prepare)
             buttonName.text = "Next Turn";
-        else if(Phase.Current == Phase.Move)
+        else if (Phase.Current == Phase.Engage)
+            buttonName.text = "";
+        else if (Phase.Current == Phase.Move)
             buttonName.text = "Move Skip";
         else if (Phase.Current == Phase.Action)
             buttonName.text = "Action Skip";
