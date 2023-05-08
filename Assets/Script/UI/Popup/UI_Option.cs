@@ -36,21 +36,19 @@ public class UI_Option : UI_Popup
 
     private void SetResolution()
     {
-        float x = Screen.currentResolution.width;
-        float y = Screen.currentResolution.height;
+        ScreenX = Screen.currentResolution.width;
+        ScreenY = Screen.currentResolution.height;
         bool window = !Screen.fullScreen;
 
-        ResolutionText.text = x + " x " + y;
+        ResolutionText.text = ScreenX + " x " + ScreenY;
         WindowToggle.isOn = window;
     }
 
 
     public void ChangeResolution(TextMeshProUGUI text)
     {
-        int ScreenX = Int32.Parse(text.text.Split(" x ")[0]);
-        int ScreenY = Int32.Parse(text.text.Split(" x ")[1]);
-
-        Debug.Log(ScreenX + ", " + ScreenY);
+        ScreenX = Int32.Parse(text.text.Split(" x ")[0]);
+        ScreenY = Int32.Parse(text.text.Split(" x ")[1]);
 
         SetScreen();
     }
@@ -73,7 +71,7 @@ public class UI_Option : UI_Popup
         MasterMixer.SetFloat(text, slider);
     }
     
-    private void SetScreen() => Screen.SetResolution(ScreenX, ScreenY, isWindow);
+    private void SetScreen() => Screen.SetResolution(ScreenX, ScreenY, !isWindow);
 
     public void QuitOption() => GameManager.UI.ClosePopup();
 

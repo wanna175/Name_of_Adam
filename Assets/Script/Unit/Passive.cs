@@ -300,13 +300,13 @@ public class 고문관 : Passive
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        Debug.Log("aaaaaaaaaaaaaaaa");
         Vector2 moveVec = (receiver.Location - caster.Location).normalized;
-        Debug.Log(moveVec);
-        Debug.Log(moveVec);
 
-        if (!BattleManager.Field.TileDict[caster.Location + moveVec].UnitExist) 
-            BattleManager.Field.MoveUnit(receiver.Location, moveVec);
+        if (!BattleManager.Field.TileDict[caster.Location + moveVec].UnitExist)
+        {
+            Debug.Log(caster.Location + moveVec);
+            BattleManager.Field.MoveUnit(receiver.Location, caster.Location +  moveVec);
+        }
     }
 }
 
@@ -320,6 +320,10 @@ public class 망령 : Passive
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
         Vector2 moveVec = receiver.Location + (receiver.Location - caster.Location);
+
+        if (!BattleManager.Field.TileDict.ContainsKey(moveVec))
+            return;
+
         if (!BattleManager.Field.TileDict[moveVec].UnitExist)
             BattleManager.Field.MoveUnit(caster.Location, moveVec);
     }

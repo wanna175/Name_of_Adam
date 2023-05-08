@@ -330,8 +330,6 @@ public class BattleManager : MonoBehaviour
 
         while (true)
         {
-            Debug.Log(sr);
-            Debug.Log(sr.color);
             Color c = sr.color;
             float a = c.a - 0.01f;
             c.a = a;
