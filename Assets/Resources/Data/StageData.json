@@ -1561,6 +1561,35 @@
 
     {
       "FactionName": "까마귀",
+      "Level": 2,
+      "ID": 15,
+      "Units": [
+        {
+          "Name": "망령",
+          "Location": {
+            "x": 3,
+            "y": 0
+          }
+        },
+        {
+          "Name": "보초병",
+          "Location": {
+            "x": 3,
+            "y": 1
+          }
+        },
+        {
+          "Name": "망령",
+          "Location": {
+            "x": 3,
+            "y": 2
+          }
+        }
+      ]
+    },
+
+    {
+      "FactionName": "까마귀",
       "Level": 3,
       "ID": 1,
       "Units": [
