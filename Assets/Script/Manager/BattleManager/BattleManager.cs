@@ -46,8 +46,6 @@ public class BattleManager : MonoBehaviour
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
-        //GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
-        Debug.Log("dd");
     }
 
     private void Update()
