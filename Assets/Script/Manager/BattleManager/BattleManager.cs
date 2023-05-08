@@ -38,6 +38,8 @@ public class BattleManager : MonoBehaviour
     private List<BattleUnit> hitUnits;
     private Vector2 coord;
 
+    [SerializeField] GameObject Background;
+
     public FieldColorType fieldColorType = FieldColorType.none;
 
     private void Awake()
@@ -47,6 +49,8 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
+
+        SetBackground();
     }
 
     private void Update()
@@ -99,6 +103,19 @@ public class BattleManager : MonoBehaviour
         else if (Phase.Current == Phase.Action)
             buttonName.text = "Action Skip";
     }
+
+    private void SetBackground()
+    {
+        String str = GameManager.Data.CurrentStageData.FactionName;
+
+        for(int i = 0; i < 3; i++)
+        {
+            Background.transform.GetChild(i).gameObject.SetActive(false);
+            if (((Faction)i + 1).ToString() == str)
+                Background.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
 
     public void MovePhase()
     {
