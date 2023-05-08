@@ -69,7 +69,7 @@ public class UpgradeStore : Selectable
         }
         else if (select == 4)
         {
-            _upgradeUnit.ChangedStat.ManaCost -= 5;
+            _upgradeUnit.ChangedStat.ManaCost -= 10;
             GameManager.UI.ClosePopup();
             GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_코스트"]);
         }
