@@ -19,10 +19,13 @@ public class UI_PlayerSkill : UI_Scene
 
     public void SetSkill()
     {
-        for (int i = 0; i < 4; i++)
+        UI_PlayerSkillCard newCard1 = GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>();
+        newCard1.Set(this, "Whisper", false);
+
+        for (int i = 0; i < 3; i++)
         {
             UI_PlayerSkillCard newCard = GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>();
-            newCard.Set(this);
+            newCard.Set(this, "Locked");
         }
     }
 

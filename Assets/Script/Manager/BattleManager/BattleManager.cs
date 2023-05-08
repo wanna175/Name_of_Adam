@@ -200,6 +200,7 @@ public class BattleManager : MonoBehaviour
 
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         Data.RemoveHandUnit(unit);
+        GameManager.UI.ClosePopup();
         Field.ClearAllColor();
     }
 
