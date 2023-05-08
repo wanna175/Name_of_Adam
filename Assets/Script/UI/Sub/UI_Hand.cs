@@ -39,7 +39,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         _highlight.SetActive(true);
-        GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, ((float)_handUnit.Stat.HP / (float)_handUnit.Stat.CurrentHP), _handUnit.Stat.FallCurrentCount);
+        GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -63,7 +63,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if (IsSelected)
         {
-            GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, ((float)_handUnit.Stat.HP / (float)_handUnit.Stat.CurrentHP), _handUnit.Stat.FallCurrentCount);
+            GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
         }
         else
         {

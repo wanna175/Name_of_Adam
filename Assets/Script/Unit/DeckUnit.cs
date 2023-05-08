@@ -169,4 +169,38 @@ public class DeckUnit
 
         return null;
     }
+
+    public string GetStigmaText(낙인 stigma)
+    {
+        if (stigma == 낙인.처형)
+        {
+            return "처형 - 공격 후 체력이 10 이하인 적을 즉사시킵니다.";
+        }
+        else if (stigma == 낙인.가학)
+        {
+            return "가학 - 공격 시 공격력이 3 증가합니다.";
+        }
+        else if (stigma == 낙인.고양)
+        {
+            return "고양 - 소환 시 주변 4칸에 있는 아군의 공격력이 5 증가합니다.";
+        }
+        else if (stigma == 낙인.대죄)
+        {
+            return "대죄 - 공격 시 적에게 타락도를 1 부여합니다.";
+        }
+        else if (stigma == 낙인.강림)
+        {
+            return "강림 - 소환 시 주변 4칸에 있는 적에게 15 데미지를 줍니다.";
+        }
+        else if (stigma == 낙인.자애)
+        {
+            return "자애 - 소환 시 주변 8칸에 있는 아군의 체력을 30 회복시킵니다.";
+        }
+        else if (stigma == 낙인.흡수)
+        {
+            return "흡수 - 공격 시 입힌 피해의 30 % 를 회복합니다.";
+        }
+
+        return null;
+    }
 }

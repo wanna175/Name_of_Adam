@@ -1050,7 +1050,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7797966450009537865}
+        - m_Target: {fileID: 4048148721924049468}
           m_TargetAssemblyTypeName: FadeController, Assembly-CSharp
           m_MethodName: StartFadeIn
           m_Mode: 1
@@ -1066,7 +1066,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7797966450009537865}
+        - m_Target: {fileID: 4048148721924049468}
           m_TargetAssemblyTypeName: FadeController, Assembly-CSharp
           m_MethodName: StartFadeOut
           m_Mode: 1
@@ -1202,7 +1202,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7797966450009537865}
+        - m_Target: {fileID: 4720545752815103501}
           m_TargetAssemblyTypeName: FadeController, Assembly-CSharp
           m_MethodName: StartFadeIn
           m_Mode: 1
@@ -1218,7 +1218,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7797966450009537865}
+        - m_Target: {fileID: 4720545752815103501}
           m_TargetAssemblyTypeName: FadeController, Assembly-CSharp
           m_MethodName: StartFadeOut
           m_Mode: 1

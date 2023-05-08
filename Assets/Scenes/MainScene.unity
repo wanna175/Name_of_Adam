@@ -614,8 +614,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.55999756, y: 0.55999756}
+  m_SizeDelta: {x: 5.93, y: 5.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &802678270
 MonoBehaviour:
@@ -1075,6 +1075,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7143347324914789121, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: GameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c3f1f779abcbdc49b7a0ca29522a837, type: 2}
+    - target: {fileID: 7143347324914789121, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: GameDataOriginal
+      value: 
+      objectReference: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
     - target: {fileID: 7143347325917774965, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
       propertyPath: m_Name
       value: '@GameManager'

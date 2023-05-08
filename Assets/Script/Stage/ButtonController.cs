@@ -34,7 +34,6 @@ public class ButtonController : MonoBehaviour
     {
         ResourceManager resource = GameManager.Resource;
 
-        Debug.Log("asd");
         GameManager.UI.ShowScene<UI_OptionButton>();
         GameManager.UI.ShowScene<UI_DeckButton>().Set(false);
 
