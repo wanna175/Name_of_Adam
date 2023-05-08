@@ -20,6 +20,7 @@ public class CutSceneController : MonoBehaviour
         if (HitUnits.Count == 0)
             return;
 
+        BattleManager.Field.ClearAllColor();
         CSData = new CutSceneData(AttackUnit, HitUnits);
         
         CameraHandler.SetCutSceneCamera();

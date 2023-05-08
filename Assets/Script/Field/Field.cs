@@ -242,17 +242,17 @@ public class Field : MonoBehaviour
             _unitInfo.Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
 
-        if (_coloredTile.Contains(coord)) 
-        {
-            if (BattleManager.Phase.Current == BattleManager.Phase.Action)
-            {
-                List<Vector2> range = BattleManager.Data.GetNowUnit().GetSplashRange(coord, BattleManager.Data.GetNowUnit().Location);
-                foreach (Vector2 vec in range)
-                {
-                    TileDict[coord + vec].SetColor(Color.green);
-                }
-            }
-        }
+        //if (_coloredTile.Contains(coord)) 
+        //{
+        //    if (BattleManager.Phase.Current == BattleManager.Phase.Action)
+        //    {
+        //        List<Vector2> range = BattleManager.Data.GetNowUnit().GetSplashRange(coord, BattleManager.Data.GetNowUnit().Location);
+        //        foreach (Vector2 vec in range)
+        //        {
+        //            TileDict[coord + vec].SetColor(Color.green);
+        //        }
+        //    }
+        //}
     }
 
     public void MouseExitTile(Tile tile)
@@ -262,9 +262,9 @@ public class Field : MonoBehaviour
             GameManager.UI.ClosePopup(_unitInfo);
         }
 
-        if (BattleManager.Phase.Current == BattleManager.Phase.Action)
-        {
-            SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
-        }
+        //if (BattleManager.Phase.Current == BattleManager.Phase.Action)
+        //{
+        //    SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
+        //}
     }
 }
