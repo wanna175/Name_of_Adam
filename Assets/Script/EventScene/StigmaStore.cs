@@ -84,49 +84,57 @@ public class StigmaStore : Selectable
             AddStigamScript(stigmaList[2]);
         }
 
+        //StartCoroutine(QuitScene());
         //OnQuitClick();
     }
 
     public void AddStigamScript(낙인 stigma)
     {
+        UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
+
         switch (stigma)
         {
             case 낙인.고양:
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_고양"]);
+                script.Init(GameManager.Data.ScriptData["낙인소_고양"], false);
                 break;
             case 낙인.강림:
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_강림"]);
+                script.Init(GameManager.Data.ScriptData["낙인소_강림"], false);
                 break;
             case 낙인.가학:
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_가학"]);
+                script.Init(GameManager.Data.ScriptData["낙인소_가학"], false);
                 break;
             case 낙인.대죄:
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_대죄"]);
+                script.Init(GameManager.Data.ScriptData["낙인소_대죄"], false);
                 break;
             case 낙인.자애:
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_자애"]);
+                script.Init(GameManager.Data.ScriptData["낙인소_자애"], false);
                 break;
             case 낙인.처형:
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_처형"]);
+                script.Init(GameManager.Data.ScriptData["낙인소_처형"], false);
                 break;
             case 낙인.흡수:
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_흡수"]);
+                script.Init(GameManager.Data.ScriptData["낙인소_흡수"], false);
                 break;
         }
+
+        StartCoroutine(QuitScene(script));
     }
 
     public void OnQuitClick()
     {
         StartCoroutine(QuitScene());
+    }
 
+    private IEnumerator QuitScene(UI_Conversation eventScript = null)
+    {
         if (GameManager.Data.GameData.isVisitStigma == false)
         {
             GameManager.Data.GameData.isVisitStigma = true;
         }
-    }
 
-    private IEnumerator QuitScene()
-    {
+        if (eventScript != null)
+            yield return StartCoroutine(eventScript.PrintScript());
+
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
         quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
