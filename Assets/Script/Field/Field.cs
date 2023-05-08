@@ -19,14 +19,18 @@ public class Field : MonoBehaviour
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
-    private Color ColorList(ClickType type)
+    private Color ColorList(FieldColor color)
     {
-        switch (type)
+        switch (color)
         {
-            case ClickType.Move:
-                return Color.yellow;
-            case ClickType.Attack:
-                return Color.red;
+            case FieldColor.Move:
+                return new Color32(149, 173, 35, 40);
+            case FieldColor.Attack:
+                return new Color32(140, 27, 46, 40);
+            case FieldColor.Select:
+                return new Color32(23, 114, 102, 40);
+            case FieldColor.Clear:
+                return new Color32(0, 0, 0, 0);
             default:
                 return default;
         }
@@ -135,15 +139,15 @@ public class Field : MonoBehaviour
 
     // *****
     // 메서드 이름 바꾸기
-    public List<Vector2> Get_Abs_Pos(BattleUnit _unit, ClickType _clickType)
+    public List<Vector2> Get_Abs_Pos(BattleUnit _unit, FieldColor _clickType)
     {
         List<Vector2> ResultVector = new List<Vector2>();
 
         List<Vector2> RangeList = new List<Vector2>();
 
-        if (_clickType == ClickType.Move)
+        if (_clickType == FieldColor.Move)
             RangeList = _unit.GetMoveRange();
-        else if(_clickType == ClickType.Attack)
+        else if(_clickType == FieldColor.Attack)
             RangeList = _unit.GetAttackRange();
 
         foreach (Vector2 vec in RangeList)
@@ -159,7 +163,7 @@ public class Field : MonoBehaviour
     }
 
 
-    public void SetTileColor(BattleUnit unit, ClickType clickType)
+    public void SetTileColor(BattleUnit unit, FieldColor clickType)
     {
         List<Vector2> vector = Get_Abs_Pos(unit, clickType);
 
@@ -176,7 +180,7 @@ public class Field : MonoBehaviour
         {
             if (items.Value.UnitExist == false && IsPlayerRange(items.Key))
             {
-                items.Value.SetColor(Color.blue);
+                items.Value.SetColor(ColorList(FieldColor.Select));
                 _coloredTile.Add(items.Key);
             }    
         }  
@@ -188,7 +192,7 @@ public class Field : MonoBehaviour
         {
             if (items.Value.UnitExist == true && items.Value.Unit.Team == Team.Enemy)
             {
-                items.Value.SetColor(Color.blue);
+                items.Value.SetColor(ColorList(FieldColor.Select));
                 _coloredTile.Add(items.Key);
             }
         }
