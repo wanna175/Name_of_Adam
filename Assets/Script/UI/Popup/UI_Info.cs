@@ -14,6 +14,12 @@ public class UI_Info : UI_Popup
     [SerializeField] private UI_Stigma _stigama_small;
     [SerializeField] private Transform _stigamaGrid;
 
+    [SerializeField] private TextMeshProUGUI _skillText;
+    [SerializeField] private Image _SkillImage;
+
+    [SerializeField] private Transform _rangeGrid;
+    [SerializeField] private GameObject _squarePrefab;
+
     public void Set(DeckUnit unit, Team team, float hp, int fall)
     {
         _name.text = unit.Data.Name;
@@ -36,6 +42,22 @@ public class UI_Info : UI_Popup
             낙인 stig = unit.PassiveToStigma(sti);
 
             GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_Stigma>().SetImage(unit.GetStigmaImage(stig));
+        }
+
+        _skillText.text = unit.Data.Description.Replace("(ATK)", unit.Stat.HP.ToString());
+
+        if (unit.Data.BehaviorType == BehaviorType.근거리)
+            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘");
+        else
+            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘");
+
+        foreach (bool range in unit.Data.AttackRange)
+        {
+            Image block = GameObject.Instantiate(_squarePrefab, _rangeGrid).GetComponent<Image>();
+            if (range)
+                block.color = Color.red;
+            else
+                block.color = Color.grey;
         }
     }
 }

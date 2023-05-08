@@ -171,6 +171,7 @@ public class BattleManager : MonoBehaviour
 
         if (fieldColorType == FieldColorType.UnitSpawn)
         {
+            //SpawnUnitOnField(true);
             SpawnUnitOnField();
         }
     }
@@ -185,17 +186,20 @@ public class BattleManager : MonoBehaviour
         {
             FallUnitOnField();
         }
-
-        // 마나 
     }
 
-    private void SpawnUnitOnField()
+    private void SpawnUnitOnField(bool isFrist=false)
     {
         DeckUnit unit = Data.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
-        Mana.ChangeMana(-unit.Stat.ManaCost);
+        
+        if (isFrist)
+            Mana.ChangeMana(-1 * ((unit.Stat.ManaCost + 1) / 2));
+        else
+            Mana.ChangeMana(-unit.Stat.ManaCost);
+
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         Data.RemoveHandUnit(unit);
         Field.ClearAllColor();
@@ -213,6 +217,7 @@ public class BattleManager : MonoBehaviour
         _battleData.UI_PlayerSkill.CancleSelect();
         _battleData.UI_PlayerSkill.Used = true;
         Field.ClearAllColor();
+        BattleOverCheck();
     }
 
     public void OnClickTile(Tile tile)
@@ -343,6 +348,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowScene<UI_BattleOver>().SetImage(3);
+        GameManager.Data.Gameover();
     }
 
     // 이동 경로를 받아와 이동시킨다

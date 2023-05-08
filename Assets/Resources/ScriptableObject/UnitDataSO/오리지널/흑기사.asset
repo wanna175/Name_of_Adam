@@ -19,15 +19,15 @@ MonoBehaviour:
     SPD: 55
     FallCurrentCount: 0
     FallMaxCount: 5
-    ManaCost: 75
+    ManaCost: 70
   _stigma: 06000000
   _name: "\uD751\uAE30\uC0AC"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC8FC\uBA70 \uD0C0\uB77D\uB3C4 1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   _faction: 0
   _rarity: 0
-  _image: {fileID: 0}
-  _animatorController: {fileID: 0}
+  _image: {fileID: 21300000, guid: b1cfb933082a5d048b72c67a4088c95c, type: 3}
+  _animatorController: {fileID: 9100000, guid: bb7ba7f3d0ea75447b98790f60bc524d, type: 2}
   _skillEffectController: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
   _darkEssenseDrop: 0
@@ -35,6 +35,7 @@ MonoBehaviour:
   _behaviorType: 1
   _effects:
   - {fileID: 11400000, guid: 6e5ebf919038f5d489e948e2a7833a01, type: 2}
+  - {fileID: 11400000, guid: b24a4e96498a678478d577f80b513bef, type: 2}
   _attackRange: 00000000000000000000000000000000010000000000000000000101010000000000000000000100000000000000000000000000000000
   _moveRange: 00000000000000010000000101010000000100000000000000
   _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000

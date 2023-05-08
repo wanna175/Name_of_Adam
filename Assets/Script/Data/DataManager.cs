@@ -32,6 +32,7 @@ public class DataManager : MonoBehaviour
     public List<Stage> SmagaRandomStage;
 
     [SerializeField] public GameData GameData;
+    [SerializeField] public GameData GameDataOriginal;
 
     public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
 
@@ -40,6 +41,14 @@ public class DataManager : MonoBehaviour
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageDataContainer>("StageData");
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
+    }
+
+    public void Gameover()
+    {
+        GameData.Money = GameDataOriginal.Money;
+        GameData.DarkEssence = GameDataOriginal.DarkEssence;
+        GameData.DeckUnits = GameDataOriginal.DeckUnits;
+        GameData.isVisitUpgrade = GameDataOriginal.isVisitUpgrade;
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
