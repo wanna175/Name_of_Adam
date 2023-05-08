@@ -9,7 +9,7 @@ public class StigmaStore : Selectable
 
     [SerializeField] private Image _unitImage;
 
-    List<³«ÀÎ> stigmaList = new();
+    List<ë‚™ì¸> stigmaList = new();
 
     void Start()
     {
@@ -18,11 +18,12 @@ public class StigmaStore : Selectable
 
     private void Init()
     {
-        List<Script> scripts = new();
-        Script s = new();
-        s.name = "³«ÀÎ¼Ò";
-        s.script = "ÀÔÀå";
-        scripts.Add(s);
+        List<Script> scripts = new List<Script>();
+
+        if (GameManager.Data.GameData.isVisitUpgrade == false)
+            scripts = GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ì…ì¥_ìµœì´ˆ"];
+        else
+            scripts = GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ì…ì¥"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
@@ -31,8 +32,8 @@ public class StigmaStore : Selectable
 
         while (stigmaList.Count < 3)
         {
-            ³«ÀÎ tempStigma = deckUnit.GetRandomStigma();
-            if (!stigmaList.Contains(tempStigma) & tempStigma != ³«ÀÎ.¿Àºü & tempStigma != ³«ÀÎ.µ¿»ı)
+            ë‚™ì¸ tempStigma = deckUnit.GetRandomStigma();
+            if (!stigmaList.Contains(tempStigma) & tempStigma != ë‚™ì¸.ì˜¤ë¹  & tempStigma != ë‚™ì¸.ë™ìƒ)
             {
                 stigmaList.Add(tempStigma);
             }
@@ -84,14 +85,21 @@ public class StigmaStore : Selectable
 
     public void OnQuitClick()
     {
-        List<Script> scripts = new();
-        Script s = new();
-        s.name = "³«ÀÎ¼Ò";
-        s.script = "ÅğÀå";
-        scripts.Add(s);
+        StartCoroutine(QuitScene());
 
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        if (GameManager.Data.GameData.isVisitStigma == false)
+        {
+            GameManager.Data.GameData.isVisitStigma = true;
+        }
+    }
 
+    private IEnumerator QuitScene()
+    {
+        UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
+
+        quitScript.Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_í‡´ì¥"], false);
+
+        yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");
     }
 }
