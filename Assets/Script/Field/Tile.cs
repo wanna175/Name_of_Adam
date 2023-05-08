@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour
     public Tile Init(Vector3 position)
     {
         _renderer = GetComponent<SpriteRenderer>();
-        _renderer.color = Color.white;
+        //_renderer.color = Color.white;
         //color.a = 0;
         transform.position = position;
         _highlight.SetActive(false);
