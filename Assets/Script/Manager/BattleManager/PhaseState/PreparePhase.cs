@@ -1,6 +1,6 @@
 public class PreparePhase : Phase
 {
-    private bool isFirst = true;
+    public bool isFirst = true;
 
     public override void OnStateEnter()
     {
@@ -19,7 +19,6 @@ public class PreparePhase : Phase
         if (isFirst)
         {
             BattleManager.Instance.StartPhase();
-            isFirst = false;
         }
         else
         {
@@ -30,6 +29,6 @@ public class PreparePhase : Phase
     public override void OnStateExit()
     {
         BattleManager.Mana.ChangeMana(15);
-        
+        isFirst = false;
     }
 }
