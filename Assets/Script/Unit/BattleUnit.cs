@@ -18,7 +18,7 @@ public class BattleUnit : MonoBehaviour
     private Animator UnitAnimator;
     public RuntimeAnimatorController SkillEffectAnimator;
 
-    public UnitAIController AI;
+    [SerializeField] public UnitAIController AI;
 
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
