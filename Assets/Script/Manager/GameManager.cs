@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private VisualEffectManager _visualEffect;
     public static VisualEffectManager VisualEffect => Instance._visualEffect;
 
+    public bool tutorial_Trigger = true;
+
     void Awake()
     {
         //if (s_instance != null)
