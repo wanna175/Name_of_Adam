@@ -166,8 +166,22 @@ public class UnitAIController : MonoBehaviour
 
     protected void Attack(Vector2 vec)
     {
-        BattleManager.Instance.AttackStart(caster, _field.GetUnit(vec));
-        //caster.SkillUse(_field.GetUnit(vec));
+        List<BattleUnit> hitUnits = new List<BattleUnit>();
+        Debug.Log(vec);
+
+        foreach (Vector2 splash in caster.GetSplashRange(vec, caster.Location))
+        {
+            Debug.Log(splash + vec);
+            if (!_field.IsInRange(splash + vec))
+                continue;
+
+            if (_field.TileDict[splash + vec].UnitExist)
+            {
+                if (_field.GetUnit(splash + vec).Team == Team.Player)
+                    hitUnits.Add(_field.GetUnit(splash + vec));
+            }
+        }
+        BattleManager.Instance.AttackStart(caster, hitUnits);
     }
 
     protected Vector2 NearestEnemySearch()

@@ -31,6 +31,7 @@ public class PreparePhase : Phase
     public override void OnStateExit()
     {
         isFirst = false;
+
         GameManager.UI.ShowScene<UI_TurnNotify>().Set(false);
     }
 }

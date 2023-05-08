@@ -13,7 +13,6 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     private UI_Hands _hands;
     public bool IsSelected = false;
     
-
     private void Start()
     {
         _highlight.SetActive(false);
