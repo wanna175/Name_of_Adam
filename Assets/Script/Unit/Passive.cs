@@ -9,7 +9,7 @@ public enum 낙인
 {
     고양, 자애, 강림, // 소환 시
     가학, 흡수, 처형, 대죄, // 공격 후
-    오빠, 동생, 고문관, 망령// 특수 낙인
+    오빠, 동생, 고문관, 망령 // 특수 낙인
 }
 
 public abstract class Passive
@@ -300,8 +300,9 @@ public class 고문관 : Passive
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        Debug.Log("bbbbbbbbbbbbbbbbbbb");
+        Debug.Log("aaaaaaaaaaaaaaaa");
         Vector2 moveVec = (receiver.Location - caster.Location).normalized;
+        Debug.Log(moveVec);
         Debug.Log(moveVec);
 
         if (!BattleManager.Field.TileDict[caster.Location + moveVec].UnitExist) 
