@@ -326,6 +326,9 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator UnitDeadEffect(BattleUnit _unit)
     {
+        Data.BattleUnitRemove(_unit);
+        Data.BattleOrderRemove(_unit);
+
         SpriteRenderer sr = _unit.GetComponent<SpriteRenderer>();
 
         while (true)
@@ -342,8 +345,6 @@ public class BattleManager : MonoBehaviour
             yield return null;
         }
 
-        Data.BattleUnitRemove(_unit);
-        Data.BattleOrderRemove(_unit);
         Destroy(_unit.gameObject);
     }
 
