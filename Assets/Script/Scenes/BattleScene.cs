@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class BattleScene : MonoBehaviour
 {
-    private void Awake()
+    [SerializeField] GameObject Tutorial;
+    public void Start()
     {
-        GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
+        if(GameManager.Instance.Tutorial_Trigger == false)
+        {
+            Tutorial.gameObject.SetActive(false);
+        }
+        else
+        {
+            GameManager.Instance.Tutorial_Trigger = false;
+        }
     }
 
 }

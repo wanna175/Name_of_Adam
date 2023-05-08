@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private VisualEffectManager _visualEffect;
     public static VisualEffectManager VisualEffect => Instance._visualEffect;
 
-    public bool tutorial_Trigger = true;
+    public bool Tutorial_Trigger = true;
 
     void Awake()
     {
@@ -61,14 +61,6 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
             SceneChanger.SceneChange("StageSelectScene");
-        //SceneChanger.SceneChange("StigmaScene");
-        //if(SceneChanger.GetSceneName() != "Battle")
-        //{
-        //    Sound.Play("BattleBGMA", Sounds.BGM);
-        //}
-        //else
-        //{
-        //    Sound.Play("BattleBGMB", Sounds.BGM);
-        //}
+        
     }
 }
