@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede1931723b31594ba0c3264ffd166d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 1
+  fadeTime: 3
   isButton: 0
   auto: 1
   scenename: MainScene
