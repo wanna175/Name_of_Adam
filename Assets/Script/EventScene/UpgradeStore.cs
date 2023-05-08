@@ -49,45 +49,49 @@ public class UpgradeStore : Selectable
 
     public void OnUpgradeSelect(int select) 
     {
+        GameManager.UI.ClosePopup();
+        UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
+
         if (select == 1)
         {
             _upgradeUnit.ChangedStat.ATK += 5;
-            GameManager.UI.ClosePopup();
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_공격력"]);
+            script.Init(GameManager.Data.ScriptData["강화소_공격력"], false);
         }
         else if (select == 2) 
         {
             _upgradeUnit.ChangedStat.HP += 15;
-            GameManager.UI.ClosePopup();
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_체력"]);
+            script.Init(GameManager.Data.ScriptData["강화소_체력"], false);
         }
         else if (select == 3)
         {
             _upgradeUnit.ChangedStat.SPD += 25;
-            GameManager.UI.ClosePopup();
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_속도"]);
+            script.Init(GameManager.Data.ScriptData["강화소_속도"], false);
         }
         else if (select == 4)
         {
             _upgradeUnit.ChangedStat.ManaCost -= 10;
-            GameManager.UI.ClosePopup();
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_코스트"]);
+            script.Init(GameManager.Data.ScriptData["강화소_코스트"], false);
         }
 
         // OnQuitClick();
+        StartCoroutine(QuitScene(script));
     }
 
     public void OnQuitClick()
     {
         StartCoroutine(QuitScene());
-        if (GameManager.Data.GameData.isVisitUpgrade == false)
-        {
-            GameManager.Data.GameData.isVisitUpgrade = true;
-        }
     }
 
-    private IEnumerator QuitScene()
+    private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
+        if (GameManager.Data.GameData.isVisitStigma == false)
+        {
+            GameManager.Data.GameData.isVisitStigma = true;
+        }
+
+        if (eventScript != null)
+            yield return StartCoroutine(eventScript.PrintScript());
+
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)

@@ -330,10 +330,8 @@ MonoBehaviour:
       faction: 0
       level: 0
       id: 0
-
   GameData: {fileID: 11400000, guid: 1c3f1f779abcbdc49b7a0ca29522a837, type: 2}
   GameDataOriginal: {fileID: 11400000, guid: fc81f11d8bcbb55409a8689ca0647965, type: 2}
-
   _playerDeck: []
 --- !u!1 &7143347325917774965
 GameObject:
@@ -384,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui: {fileID: 7143347326594482097}
   _data: {fileID: 7143347324914789121}
+  Tutorial_Trigger: 1
 --- !u!1 &7143347326594482098
 GameObject:
   m_ObjectHideFlags: 0
