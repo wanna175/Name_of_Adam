@@ -68,6 +68,7 @@ public class BattleDataManager : MonoBehaviour
 
         foreach (BattleUnit unit in BattleUnitList)
         {
+            unit.DeckUnit.ChangedStat.FallCurrentCount = unit.Fall.GetCurrentFallCount();
             AddDeckUnit(unit.DeckUnit);
             Debug.Log(unit.Data.Name);
         }
