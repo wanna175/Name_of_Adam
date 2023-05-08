@@ -43,7 +43,7 @@ public class DataManager : MonoBehaviour
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
     }
 
-    public void Gameover()
+    public void DeckClear()
     {
         GameData.Money = GameDataOriginal.Money;
         GameData.DarkEssence = GameDataOriginal.DarkEssence;

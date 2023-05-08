@@ -26,9 +26,11 @@ MonoBehaviour:
     \uC8FC\uACE0 \uD55C\uCE78 \uB04C\uC5B4\uC635\uB2C8\uB2E4."
   _faction: 2
   _rarity: 0
-  _image: {fileID: 1050555066, guid: 34699526708ad2945b82de23eaedd7b1, type: 3}
+  _image: {fileID: 21300000, guid: 8052732cbf734094d92eb101bfd64669, type: 3}
   _animatorController: {fileID: 9100000, guid: 96df7636d7766c6429a18fc3b70c36e9, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: 83ca02c46f2ff1540bb3978195522e2b, type: 2}
   _skillEffectController: {fileID: 0}
+  _corruptionSkillEffectController: {fileID: 0}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
   _darkEssenseDrop: 1
   _darkEssenseCost: 0

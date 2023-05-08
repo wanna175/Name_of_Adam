@@ -24,9 +24,6 @@ public class BattleManager : MonoBehaviour
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
 
-    private VisualEffectManager _skillEffect;
-    public static VisualEffectManager SkillEffect => Instance._skillEffect;
-
     private Field _field;
     public static Field Field => Instance._field;
 
@@ -47,7 +44,6 @@ public class BattleManager : MonoBehaviour
     {
         _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
-        _skillEffect = new VisualEffectManager();
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
@@ -271,8 +267,8 @@ public class BattleManager : MonoBehaviour
             //공격 전 낙인 체크
             unit.SkillUse(hit);
 
-            if (unit.Data.SkillEffectController != null)
-                SkillEffect.StartSkillEffect(unit.Data.SkillEffectController, hit.transform.position);
+            if (unit.SkillEffectAnimator != null)
+                GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnimator, hit.transform.position);
             
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
@@ -348,7 +344,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowScene<UI_BattleOver>().SetImage(3);
-        GameManager.Data.Gameover();
+        GameManager.Data.DeckClear();
     }
 
     // 이동 경로를 받아와 이동시킨다

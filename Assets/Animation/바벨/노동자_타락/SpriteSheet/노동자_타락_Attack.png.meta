@@ -129,85 +129,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_worker_cor_attack-Sheet_0
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 170
         height: 177
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dda9065380907d54595c47b7ad104780
-      internalID: -47179758
+      spriteID: bb08f56c152838748a0d2e074cac3233
+      internalID: 1760607650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_cor_attack-Sheet_1
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
         x: 170
         y: 0
         width: 170
         height: 177
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba129bac8089c274b82d38ee2010d63d
-      internalID: 1423586610
+      spriteID: a1a8ff87aa2e4514e9ae23825935ae1e
+      internalID: 1600794843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_cor_attack-Sheet_2
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
         x: 340
         y: 0
         width: 170
         height: 177
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b066daea81788241a2eb25cf6234580
-      internalID: -577739198
+      spriteID: a6a47a8bb87aee54cb879a71dfb29579
+      internalID: 207156392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_cor_attack-Sheet_3
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_3"
       rect:
         serializedVersion: 2
         x: 510
         y: 0
         width: 170
         height: 177
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a215d44827250a146bad9609ad6acd27
-      internalID: 465698228
+      spriteID: 869ab49b4c956844b81fec3221cdc9c6
+      internalID: 1215516473
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_worker_cor_attack-Sheet_1: 1423586610
-      bavel_worker_cor_attack-Sheet_0: -47179758
-      bavel_worker_cor_attack-Sheet_2: -577739198
-      bavel_worker_cor_attack-Sheet_3: 465698228
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_2": 207156392
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_0": 1760607650
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_1": 1600794843
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_3": 1215516473
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -15,7 +15,8 @@ public class BattleUnit : MonoBehaviour
     public Team Team => _team;
 
     private SpriteRenderer _renderer;
-    private Animator _animator;
+    private Animator UnitAnimator;
+    public RuntimeAnimatorController SkillEffectAnimator;
 
     public UnitAIController AI;
 
@@ -38,8 +39,8 @@ public class BattleUnit : MonoBehaviour
     public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
-        _animator.runtimeAnimatorController = Data.AnimatorController;
+        UnitAnimator = GetComponent<Animator>();
+
         AI.SetCaster(this);
         Debug.Log(HP);
         Debug.Log(Stat.HP);
@@ -63,6 +64,7 @@ public class BattleUnit : MonoBehaviour
         // 적군일 경우 x축 뒤집기
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
         SetHPBar();
+        ChangeAnimator();
     }
 
     public void SetLocate(Vector2 coord) {
@@ -90,8 +92,14 @@ public class BattleUnit : MonoBehaviour
 
         HP.Init(Stat.HP, Stat.CurrentHP);
         _hpBar.SetHPBar(Team, transform);
-        
+
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<RuntimeAnimatorController>("Animation/Corruption"), transform.position);
         //Debug.Log($"{Data.name} Fall");
+    }
+
+    public void AnimAttack()
+    {
+        StartCoroutine(BattleManager.Instance.UnitAttack());
     }
 
     public Team ChangeTeam(Team team = default)
@@ -112,7 +120,22 @@ public class BattleUnit : MonoBehaviour
             SetTeam(Team.Player);
             return Team.Player;
         }
+    }
 
+    private void ChangeAnimator()
+    {
+        if(Team == Team.Player)
+        {
+            UnitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
+            if (Data.CorruptionSkillEffectController != null)
+                SkillEffectAnimator = Data.CorruptionSkillEffectController;
+        }
+        else
+        {
+            UnitAnimator.runtimeAnimatorController = Data.AnimatorController;
+            if (Data.SkillEffectController != null)
+                SkillEffectAnimator = Data.SkillEffectController;
+        }
     }
 
     public void SetPosition(Vector3 dest)
@@ -256,10 +279,5 @@ public class BattleUnit : MonoBehaviour
             }
         }
         
-    }
-
-    public void AnimAttack()
-    {
-        StartCoroutine(BattleManager.Instance.UnitAttack());
     }
 }

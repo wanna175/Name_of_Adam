@@ -9,16 +9,17 @@ public class VisualEffectManager
 
     public VisualEffectManager()
     {
-        root = new GameObject { name = "SkillEffectContainer" };
+        root = new GameObject { name = "VisualEffectContainer" };
+        root.transform.parent = GameManager.Instance.transform;
         EffectQueue = new Queue<GameObject>();
     }
     
-    public GameObject StartSkillEffect(RuntimeAnimatorController _animator, Vector3 position)
+    public GameObject StartVisualEffect(RuntimeAnimatorController _animator, Vector3 position)
     {
         GameObject go;
 
         if (EffectQueue.Count == 0)
-            go = GameManager.Resource.Instantiate("SkillEffect", root.transform);
+            go = GameManager.Resource.Instantiate("VisualEffect", root.transform);
         else
             go = EffectQueue.Dequeue();
 
@@ -30,7 +31,7 @@ public class VisualEffectManager
         return go;
     }
 
-    public void RestoreSkillEffect(GameObject go)
+    public void RestoreVisualEffect(GameObject go)
     {
         EffectQueue.Enqueue(go);
         go.SetActive(false);
