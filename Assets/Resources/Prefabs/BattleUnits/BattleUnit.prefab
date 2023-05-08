@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 9027651334718104315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2.85, y: 2.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1066858655128151714}
@@ -143,6 +143,7 @@ MonoBehaviour:
     FallMaxCount: 0
     ManaCost: 0
   _team: 0
+  SkillEffectAnimator: {fileID: 0}
   AI: {fileID: 3929000787331167701}
   HP: {fileID: 1722822296286429812}
   Fall: {fileID: -3496854762374506308}

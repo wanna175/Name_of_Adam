@@ -10,4 +10,5 @@ public class GameData : ScriptableObject
     public int DarkEssence;
     public List<DeckUnit> DeckUnits = new List<DeckUnit>();
     public bool isVisitUpgrade = false;
+    public bool isVisitStigma = false;
 }

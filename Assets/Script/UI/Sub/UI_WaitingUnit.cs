@@ -9,8 +9,8 @@ public class UI_WaitingUnit : MonoBehaviour
     [SerializeField] private Image _unitImage;
     [SerializeField] private Image _background;
 
-    private Color32 _enemy = new Color32(130, 45, 45, 255);
-    private Color32 _player = new Color32(45, 45, 130, 255);
+    private Color32 _enemy = new Color32(137, 25, 25, 60);
+    private Color32 _player = new Color32(28, 62, 129, 60);
 
     public void SetUnit(BattleUnit unit)
     {

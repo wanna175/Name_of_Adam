@@ -52,23 +52,29 @@ public class UpgradeStore : Selectable
         if (select == 1)
         {
             _upgradeUnit.ChangedStat.ATK += 5;
+            GameManager.UI.ClosePopup();
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_공격력"]);
         }
         else if (select == 2) 
         {
             _upgradeUnit.ChangedStat.HP += 15;
+            GameManager.UI.ClosePopup();
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_체력"]);
         }
         else if (select == 3)
         {
             _upgradeUnit.ChangedStat.SPD += 25;
+            GameManager.UI.ClosePopup();
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_속도"]);
         }
         else if (select == 4)
         {
             _upgradeUnit.ChangedStat.ManaCost -= 5;
+            GameManager.UI.ClosePopup();
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_코스트"]);
         }
 
-        GameManager.UI.ClosePopup();
-
-        OnQuitClick();
+        // OnQuitClick();
     }
 
     public void OnQuitClick()
