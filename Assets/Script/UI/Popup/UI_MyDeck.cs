@@ -49,10 +49,12 @@ public class UI_MyDeck : UI_Popup
 
         ui.SetUnit(unit);
         ui.Init(_select, _selectable);
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
     public void Quit()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         GameManager.UI.ClosePopup();
     }
 }

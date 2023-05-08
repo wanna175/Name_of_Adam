@@ -1125,6 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui: {fileID: 952802628}
   _data: {fileID: 952802629}
+  Tutorial_Trigger: 1
 --- !u!4 &952802631
 Transform:
   m_ObjectHideFlags: 0
