@@ -68,19 +68,51 @@ public class StigmaStore : Selectable
         if (select == 1)
         {
             _stigmatizeUnit.AddStigma(stigmaList[0]);
+            GameManager.UI.ClosePopup();
+            AddStigamScript(stigmaList[0]);
         }
         else if (select == 2)
         {
             _stigmatizeUnit.AddStigma(stigmaList[1]);
+            GameManager.UI.ClosePopup();
+            AddStigamScript(stigmaList[1]);
         }
         else if (select == 3)
         {
             _stigmatizeUnit.AddStigma(stigmaList[2]);
+            GameManager.UI.ClosePopup();
+            AddStigamScript(stigmaList[2]);
         }
 
-        GameManager.UI.ClosePopup();
+        //OnQuitClick();
+    }
 
-        OnQuitClick();
+    public void AddStigamScript(낙인 stigma)
+    {
+        switch (stigma)
+        {
+            case 낙인.고양:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_고양"]);
+                break;
+            case 낙인.강림:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_강림"]);
+                break;
+            case 낙인.가학:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_가학"]);
+                break;
+            case 낙인.대죄:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_대죄"]);
+                break;
+            case 낙인.자애:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_자애"]);
+                break;
+            case 낙인.처형:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_처형"]);
+                break;
+            case 낙인.흡수:
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["낙인소_흡수"]);
+                break;
+        }
     }
 
     public void OnQuitClick()
