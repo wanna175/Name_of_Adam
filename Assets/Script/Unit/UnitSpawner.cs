@@ -62,7 +62,9 @@ public class UnitSpawner : MonoBehaviour
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
             BattleUnit bu = go.GetComponent<BattleUnit>();
             bu.DeckUnit.SetStigma();
-            
+
+            bu.Skill.Effects = bu.DeckUnit.Data.Effects;
+
             bu.Init();
             BattleManager.Instance.UnitSetting(bu, spawndata.location, Team.Enemy);
             //BattleManager.Instance.UnitSetting(bu, spawndata.location, spawndata.team); // animTest
