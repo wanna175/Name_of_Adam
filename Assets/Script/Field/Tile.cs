@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Tile : MonoBehaviour
 {
+    [SerializeField] private GameObject _highlight;
     private SpriteRenderer _renderer;
     private BattleUnit _unit = null;
     public BattleUnit Unit => _unit;
@@ -18,6 +19,7 @@ public class Tile : MonoBehaviour
         _renderer.color = Color.white;
         //color.a = 0;
         transform.position = position;
+        _highlight.SetActive(false);
         return this;
     }
 
@@ -39,7 +41,14 @@ public class Tile : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        _renderer.color = color;
+        if (color.Equals(Color.white))
+            _highlight.SetActive(false);
+        else
+        {
+            _highlight.SetActive(true);
+            color.a = 100 / 255f;
+            _highlight.GetComponent<SpriteRenderer>().color = color;
+        }
     }
 
     private void OnMouseDown()
