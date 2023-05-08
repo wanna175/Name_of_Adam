@@ -29,6 +29,7 @@ public class UpgradeStore : Selectable
     public void OnUpgradeUnitButtonClick()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, true, this);
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
     public override void OnSelect(DeckUnit unit)
@@ -45,6 +46,7 @@ public class UpgradeStore : Selectable
     {
         if (_upgradeUnit != null)
             GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().init(this);
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
     public void OnUpgradeSelect(int select) 
@@ -73,7 +75,7 @@ public class UpgradeStore : Selectable
             GameManager.UI.ClosePopup();
             GameManager.UI.ShowPopup<UI_Conversation>().Init(GameManager.Data.ScriptData["강화소_코스트"]);
         }
-
+        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         // OnQuitClick();
     }
 
@@ -84,6 +86,7 @@ public class UpgradeStore : Selectable
         {
             GameManager.Data.GameData.isVisitUpgrade = true;
         }
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
     private IEnumerator QuitScene()
