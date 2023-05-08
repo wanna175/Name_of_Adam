@@ -227,6 +227,7 @@ public class Field : MonoBehaviour
         return false;
     }
 
+    private UI_Info _unitInfo;
     //리팩토링 무저건 하기.
     public void MouseEnterTile(Tile tile)
     {
@@ -235,7 +236,8 @@ public class Field : MonoBehaviour
         if (tile.UnitExist)
         {
             BattleUnit unit = GetUnit(coord);
-            GameManager.UI.ShowPopup<UI_Info>().Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
+            _unitInfo = GameManager.UI.ShowPopup<UI_Info>();
+            _unitInfo.Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
 
         if (_coloredTile.Contains(coord)) 
@@ -255,7 +257,7 @@ public class Field : MonoBehaviour
     {
         if (tile.UnitExist)
         {
-            GameManager.UI.ClosePopup();
+            GameManager.UI.ClosePopup(_unitInfo);
         }
 
         if (BattleManager.Phase.Current == BattleManager.Phase.Action)
