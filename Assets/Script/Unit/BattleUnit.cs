@@ -237,7 +237,7 @@ public class BattleUnit : MonoBehaviour
     {
         if(type == PassiveType.BEFOREATTACKED || type == PassiveType.AFTERATTACKED || type == PassiveType.FALLED)
         {
-            foreach(Passive passive in receiver.Passive)
+            foreach (Passive passive in receiver.Passive)
             {
                 if (passive.GetPassiveType() == type)
                 {
