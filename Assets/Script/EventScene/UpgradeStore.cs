@@ -29,7 +29,7 @@ public class UpgradeStore : Selectable
     public void OnUpgradeUnitButtonClick()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, true, this);
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
     public override void OnSelect(DeckUnit unit)
