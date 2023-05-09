@@ -19,7 +19,7 @@ public class UI_Option : UI_Popup
     private void OnEnable()
     {
         SetSlider();
-        SetResolution();
+        //SetResolution();
     }
 
     private void SetSlider()
