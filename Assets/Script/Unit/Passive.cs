@@ -75,7 +75,7 @@ public class 대죄 : Passive
 {
     public override PassiveType GetPassiveType()
     {
-        return PassiveType.AFTERATTACK;
+        return PassiveType.BEFOREATTACK;
     }
 
     public override void Use(BattleUnit caster, BattleUnit receiver)

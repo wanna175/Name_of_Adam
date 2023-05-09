@@ -287,6 +287,7 @@ public class BattleManager : MonoBehaviour
             Team team = hit.Team;
 
             //공격 전 낙인 체크
+            unit.PassiveCheck(unit, hit, PassiveType.BEFOREATTACK);
             unit.SkillUse(hit);
 
             if (unit.SkillEffectAnimator != null)
