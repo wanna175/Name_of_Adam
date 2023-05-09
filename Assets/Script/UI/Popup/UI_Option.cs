@@ -55,7 +55,7 @@ public class UI_Option : UI_Popup
 
     public void ChangeWindow(Toggle toggle)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         isWindow = toggle.isOn;
 
         SetScreen();

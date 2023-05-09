@@ -78,13 +78,11 @@ public class UI_UnitInfo : UI_Popup
 
     public void Quit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         GameManager.UI.ClosePopup();
     }
 
     public void Select()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         _selectable.OnSelect(_unit);
     }
 }
