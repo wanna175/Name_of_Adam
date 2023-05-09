@@ -9,16 +9,11 @@ public class UI_Hands : UI_Scene
 
     private List<UI_Hand> _handList = new List<UI_Hand>();
     private UI_Hand _selectedHand = null;
-    private BattleManager _battle = BattleManager.Instance;
+    private BattleManager _battle;
     
-    public void SetHands(List<DeckUnit> deckUnits)
+    public void SetHands()
     {
-        foreach (DeckUnit unit in deckUnits)
-        { 
-            if (_handList.Count < 3)
-                AddUnit(unit);
-        }
-
+        _battle = BattleManager.Instance;
     }
 
     public void AddUnit(DeckUnit unit)

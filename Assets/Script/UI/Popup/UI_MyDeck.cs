@@ -45,16 +45,17 @@ public class UI_MyDeck : UI_Popup
 
     public void OnClickCard(DeckUnit unit)
     {
+
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
 
         ui.SetUnit(unit);
         ui.Init(_select, _selectable);
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+
     }
 
     public void Quit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         GameManager.UI.ClosePopup();
     }
 }

@@ -27,7 +27,7 @@ public class DeckUnit
 
     public 낙인 GetRandomStigma()
     {
-        return (낙인)(UnityEngine.Random.Range(0, Enum.GetNames(typeof(낙인)).Length-2));
+        return (낙인)(UnityEngine.Random.Range(0, Enum.GetNames(typeof(낙인)).Length-4));
     }
 
     public void AddStigma(낙인 stigma)

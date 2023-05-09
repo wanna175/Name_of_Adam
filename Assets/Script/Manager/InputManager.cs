@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    [SerializeField] Texture2D icon;
+    private void Start()
+    {
+        Cursor.SetCursor(icon, Vector2.zero, CursorMode.Auto);
+    }
+
+
     public bool Click { get { return OneClick(); } }
 
     private long _lastClickTime = 0;

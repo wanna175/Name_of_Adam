@@ -15,6 +15,7 @@ public class BattleDataManager : MonoBehaviour
         _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
         UI_hands = UI_Control.UI_Hands;
+        UI_hands.SetHands();
         UI_PlayerSkill = UI_Control.UI_PlayerSkill;
         UI_DarkEssence = UI_Control.UI_DarkEssence;
         UI_ManaGauge = UI_Control.UI_ManaGauge;
