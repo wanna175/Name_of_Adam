@@ -50,4 +50,17 @@ public class PassiveManager
         PassiveDict.Add(PassiveManageType.Special, special);
         PassiveDict.Add(PassiveManageType.Entire, entire);
     }
+
+    public Passive GetRandomPassive(bool includeSpecial = false)
+    {
+        PassiveManageType type;
+
+        if (includeSpecial)
+            type = PassiveManageType.Entire;
+        else
+            type = PassiveManageType.Common;
+
+        int randNum = Random.Range(0, PassiveDict[type].Count);
+        return PassiveDict[type][randNum];
+    }
 }
