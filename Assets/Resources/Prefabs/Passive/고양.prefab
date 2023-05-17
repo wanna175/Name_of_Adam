@@ -79,6 +79,6 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: fb571479bd546ec418f3139fcdfc1172, type: 3}
   _passvieType: 7
   _rarity: 0
-  _description: "\uC18C\uD658 \uC2DC \uC8FC\uBCC0 4\uCE78\uC5D0 \uC788\uB294 \uC544\uAD70\uC758
-    \uACF5\uACA9\uB825\uC774 5 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  _description: "\uACE0\uC591 - \uC18C\uD658 \uC2DC \uC8FC\uBCC0 4\uCE78\uC5D0 \uC788\uB294
+    \uC544\uAD70\uC758 \uACF5\uACA9\uB825\uC774 5 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   _isSpecial: 0
