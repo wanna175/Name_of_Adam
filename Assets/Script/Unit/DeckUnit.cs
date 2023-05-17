@@ -12,47 +12,37 @@ public class DeckUnit
     public Stat Stat => Data.RawStat + ChangedStat; // Memo : 나중에 낙인, 버프 추가한 스탯으로 수정
     
     [SerializeField] private List<낙인> stigmas = new List<낙인>();
-    public List<Passive> Stigmata = new List<Passive>();
+    [SerializeField] public List<Passive> Stigma = new List<Passive>();
 
     private int _maxStigmaCount = 3;
 
     public void SetStigma()
     {
-        foreach(낙인 stigma in Data.Stigma)
-            SetStigmaByEnum(stigma);
+        foreach (Passive stigma in Data.IngerenceStigma)
+            Stigma.Add(stigma);
 
         foreach (낙인 stigma in stigmas)
             SetStigmaByEnum(stigma);
     }
 
-    public 낙인 GetRandomStigma()
-    {
-        return (낙인)(UnityEngine.Random.Range(0, Enum.GetNames(typeof(낙인)).Length-4));
-    }
-
-    public void AddStigma(낙인 stigma)
-    {
-        SetStigmaByEnum(stigma);
-    }
-
     public Type RemoveRandomStigma()
     {
-        if(Stigmata.Count <= 0)
+        if(Stigma.Count <= 0)
         {
             Debug.Log("삭제할 낙인이 없습니다.");
             return null;
         }
 
-        int num = UnityEngine.Random.Range(0, Stigmata.Count);
-        Type removed = Stigmata[num].GetType(); // 지워질 패시브의 정보
-        Stigmata.RemoveAt(num);
+        int num = UnityEngine.Random.Range(0, Stigma.Count);
+        Type removed = Stigma[num].GetType(); // 지워질 패시브의 정보
+        Stigma.RemoveAt(num);
         return removed;
     }
 
     // 낙인 수정
     public void SetStigmaByEnum(낙인 stigma)
     {
-        if(Stigmata.Count >= _maxStigmaCount)
+        if(Stigma.Count >= _maxStigmaCount)
         {
             Debug.Log($"이미 낙인이 {_maxStigmaCount}개임");
             return;
@@ -97,116 +87,14 @@ public class DeckUnit
                 break;
         }
 
-        foreach(Passive passive in Stigmata)
+        foreach(Passive passive in Stigma)
             if(passive.GetType() == newPassive.GetType())
             {
                 Debug.Log("이미 장착된 낙인입니다.");
                 return;
             }
 
-        Stigmata.Add(newPassive);
+        Stigma.Add(newPassive);
         Debug.Log($"{Data.name}에 {newPassive.GetType()} 낙인이 장착되었습니다.");
-    }
-
-    public 낙인 PassiveToStigma(Passive p)
-    {
-        if (p.GetType() == new 가학().GetType())
-        {
-            return 낙인.가학;
-        }
-        else if (p.GetType() == new 강림().GetType())
-        {
-            return 낙인.강림;
-        }
-        else if (p.GetType() == new 고양().GetType())
-        {
-            return 낙인.고양;
-        }
-        else if (p.GetType() == new 대죄().GetType())
-        {
-            return 낙인.대죄;
-        }
-        else if (p.GetType() == new 자애().GetType())
-        {
-            return 낙인.자애;
-        }
-        else if (p.GetType() == new 처형().GetType())
-        {
-            return 낙인.처형;
-        }
-        else if (p.GetType() == new 흡수().GetType())
-        {
-            return 낙인.흡수;
-        }
-
-        return 낙인.가학;
-    }
-
-    public Sprite GetStigmaImage(낙인 stigma)
-    {
-        if (stigma == 낙인.처형)
-        {
-            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_execution");
-        }
-        else if (stigma == 낙인.가학)
-        {
-            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_sadism");
-        }
-        else if (stigma == 낙인.고양)
-        {
-            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_encourage");
-        }
-        else if (stigma == 낙인.대죄)
-        {
-            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_sin");
-        }
-        else if (stigma == 낙인.강림)
-        {
-            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_advent");
-        }
-        else if (stigma == 낙인.자애)
-        {
-            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_benevolence");
-        }
-        else if (stigma == 낙인.흡수)
-        {
-            return GameManager.Resource.Load<Sprite>($"Arts/Stigma/stigma_absorption");
-        }
-
-        return null;
-    }
-
-    public string GetStigmaText(낙인 stigma)
-    {
-        if (stigma == 낙인.처형)
-        {
-            return "처형 - 공격 후 체력이 10 이하인 적을 즉사시킵니다.";
-        }
-        else if (stigma == 낙인.가학)
-        {
-            return "가학 - 공격 시 공격력이 3 증가합니다.";
-        }
-        else if (stigma == 낙인.고양)
-        {
-            return "고양 - 소환 시 주변 4칸에 있는 아군의 공격력이 5 증가합니다.";
-        }
-        else if (stigma == 낙인.대죄)
-        {
-            return "대죄 - 공격 시 적에게 타락도를 1 부여합니다.";
-        }
-        else if (stigma == 낙인.강림)
-        {
-            return "강림 - 소환 시 주변 4칸에 있는 적에게 15 데미지를 줍니다.";
-        }
-        else if (stigma == 낙인.자애)
-        {
-            return "자애 - 소환 시 주변 8칸에 있는 아군의 체력을 30 회복시킵니다.";
-        }
-        else if (stigma == 낙인.흡수)
-        {
-            return "흡수 - 공격 시 입힌 피해의 30 % 를 회복합니다.";
-        }
-
-        return null;
     }
 }

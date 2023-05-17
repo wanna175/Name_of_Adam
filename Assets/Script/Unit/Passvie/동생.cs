@@ -33,7 +33,7 @@ public class 동생 : Passive
             if (unit.DeckUnit.Data.Name.Equals("검병") == false)
                 continue;
 
-            foreach (Passive passive in unit.DeckUnit.Stigmata)
+            foreach (Passive passive in unit.DeckUnit.Stigma)
                 if (passive.GetType() == typeof(오빠))
                 {
                     _connectedPassive = passive as 오빠;

@@ -36,20 +36,17 @@ public class UI_Info : UI_Popup
         _hpBar.RefreshFallGauge(fall);
 
         unit.SetStigma();
-        foreach (Passive sti in unit.Stigmata)
+        foreach (Passive sti in unit.Stigma)
         {
-            Debug.Log("³«ÀÎ");
-            ³«ÀÎ stig = unit.PassiveToStigma(sti);
-
-            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_Stigma>().SetImage(unit.GetStigmaImage(stig), unit.GetStigmaText(stig));
+            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_Stigma>().SetImage(sti.Sprite, sti.Description);
         }
 
         _skillText.text = unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString());
 
-        if (unit.Data.BehaviorType == BehaviorType.±Ù°Å¸®)
-            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/±Ù°Å¸®_¾ÆÀÌÄÜ");
+        if (unit.Data.BehaviorType == BehaviorType.ê·¼ê±°ë¦¬)
+            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/ê·¼ê±°ë¦¬_ì•„ì´ì½˜");
         else
-            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/¿ø°Å¸®_¾ÆÀÌÄÜ");
+            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/ì›ê±°ë¦¬_ì•„ì´ì½˜");
 
         foreach (bool range in unit.Data.AttackRange)
         {

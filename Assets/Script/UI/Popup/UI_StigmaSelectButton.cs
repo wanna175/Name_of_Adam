@@ -16,7 +16,7 @@ public class UI_StigmaSelectButton : UI_Popup
     [SerializeReference] private TextMeshProUGUI _textBTN3;
 
     private StigmaStore _ss;
-    public void init(StigmaStore ss,  List<³«ÀÎ> stigmaList)
+    public void init(StigmaStore ss,  List<Passive> stigmaList)
     {
         _ss = ss;
         
@@ -26,14 +26,14 @@ public class UI_StigmaSelectButton : UI_Popup
 
         DeckUnit u = new();
 
-        _imageBTN1.sprite = u.GetStigmaImage(stigmaList[0]);
-        _imageBTN2.sprite = u.GetStigmaImage(stigmaList[1]);
-        _imageBTN3.sprite = u.GetStigmaImage(stigmaList[2]);
+        //_imageBTN1.sprite = u.GetStigmaImage(stigmaList[0]);
+        //_imageBTN2.sprite = u.GetStigmaImage(stigmaList[1]);
+        //_imageBTN3.sprite = u.GetStigmaImage(stigmaList[2]);
 
     }
 
     public void OnClick(int select)
     {
-        _ss.OnStigmaSelect(select);
+        //_ss.OnStigmaSelect(select);
     }
 }
