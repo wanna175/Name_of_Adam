@@ -14,11 +14,17 @@ public enum 낙인
 
 public class Passive : MonoBehaviour
 {
+    [SerializeField] private string _name;
+    public string Name => _name;
+
     [SerializeField] private PassiveType _passvieType;
     public PassiveType PassiveType => _passvieType;
 
     [SerializeField] private Rarity _rarity;
     public Rarity Rarity => _rarity;
+
+    [SerializeField, TextArea] private string _description;
+    public string Description => _description;
 
     [SerializeField] private bool _isSpecial = false;
     public bool IsSpecial => _isSpecial;

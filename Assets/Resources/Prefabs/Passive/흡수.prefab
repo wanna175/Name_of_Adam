@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd74037f95a500419c97346f2d4dbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: "\uD761\uC218"
   _passvieType: 1
   _rarity: 0
+  _description: "\uACF5\uACA9 \uC2DC \uC785\uD78C \uD53C\uD574\uC758 30 % \uB97C
+    \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   _isSpecial: 0
