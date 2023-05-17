@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uCC98\uD615"
+  _sprite: {fileID: 21300000, guid: 6084db1b943aeda429c0703de8d48c08, type: 3}
   _passvieType: 0
   _rarity: 0
   _description: "\uACF5\uACA9 \uD6C4 \uCCB4\uB825\uC774 10 \uC774\uD558\uC778 \uC801\uC744

@@ -17,6 +17,9 @@ public class Passive : MonoBehaviour
     [SerializeField] private string _name;
     public string Name => _name;
 
+    [SerializeField] private Sprite _sprite;
+    public Sprite Sprite => _sprite;
+
     [SerializeField] private PassiveType _passvieType;
     public PassiveType PassiveType => _passvieType;
 
