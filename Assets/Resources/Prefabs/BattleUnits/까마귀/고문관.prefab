@@ -134,6 +134,7 @@ MonoBehaviour:
       FallMaxCount: 0
       ManaCost: 0
     stigmas: 
+    Stigmata: []
   ChangedStat:
     HP: 0
     CurrentHP: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
     FallMaxCount: 0
     ManaCost: 0
   _team: 0
+  SkillEffectAnimator: {fileID: 0}
   AI: {fileID: 6497519562581061683}
   HP: {fileID: 8882786473063450514}
   Fall: {fileID: 2582220535032831322}
