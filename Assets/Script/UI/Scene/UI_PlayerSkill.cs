@@ -31,7 +31,7 @@ public class UI_PlayerSkill : UI_Scene
 
     public void OnClickHand(UI_PlayerSkillCard card)
     {
-        if (!Used && BattleManager.Mana.CanUseMana(20))
+        if (!Used && BattleManager.Mana.CanUseMana(20) && GameManager.Data.CanUseDarkEssense(1))
         {
             if (card != null && card == _selectedCard)
                 CancleSelect();
