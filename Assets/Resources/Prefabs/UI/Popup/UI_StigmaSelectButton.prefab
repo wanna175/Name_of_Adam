@@ -201,12 +201,6 @@ MonoBehaviour:
   - {fileID: 6026201422449248851}
   - {fileID: 4370906927271365833}
   - {fileID: 937245261656731428}
-  _imageBTN1: {fileID: 4702366116040258668}
-  _imageBTN2: {fileID: 4663003916580375255}
-  _imageBTN3: {fileID: 8251160758827782263}
-  _textBTN1: {fileID: 6026201422449248851}
-  _textBTN2: {fileID: 4370906927271365833}
-  _textBTN3: {fileID: 937245261656731428}
 --- !u!1 &2509682207669031248
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d920f80c9fc4492458fba5827e16cb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StigmaImage: {fileID: 3003681390065032289}
+  Image: {fileID: 3003681390065032289}
 --- !u!1 &5097157373118156167
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d920f80c9fc4492458fba5827e16cb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StigmaImage: {fileID: 45054072105710800}
+  Image: {fileID: 45054072105710800}
 --- !u!1 &6026201421062485305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,7 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d920f80c9fc4492458fba5827e16cb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StigmaImage: {fileID: 2590456170676267840}
+  Image: {fileID: 2590456170676267840}
 --- !u!1 &8107239207279917561
 GameObject:
   m_ObjectHideFlags: 0

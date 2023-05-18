@@ -7,7 +7,7 @@ using TMPro;
 
 public class UI_StigmaSelectButton : UI_Popup
 {
-    [SerializeReference] private List<UI_Stigma> _image;
+    [SerializeReference] private List<UI_HoverImageBlock> _image;
     [SerializeReference] private List<TextMeshProUGUI> _text;
 
     private StigmaStore _store;
