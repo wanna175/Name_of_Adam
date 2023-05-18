@@ -193,9 +193,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b801691970d304dbfdc96a63864759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imageBTN1: {fileID: 45054072105710800}
-  _imageBTN2: {fileID: 3003681390065032289}
-  _imageBTN3: {fileID: 2590456170676267840}
+  _image:
+  - {fileID: 4702366116040258668}
+  - {fileID: 4663003916580375255}
+  - {fileID: 8251160758827782263}
+  _text:
+  - {fileID: 6026201422449248851}
+  - {fileID: 4370906927271365833}
+  - {fileID: 937245261656731428}
+  _imageBTN1: {fileID: 4702366116040258668}
+  _imageBTN2: {fileID: 4663003916580375255}
+  _imageBTN3: {fileID: 8251160758827782263}
   _textBTN1: {fileID: 6026201422449248851}
   _textBTN2: {fileID: 4370906927271365833}
   _textBTN3: {fileID: 937245261656731428}
@@ -633,6 +641,7 @@ GameObject:
   - component: {fileID: 6798172150796140810}
   - component: {fileID: 8764495092904183641}
   - component: {fileID: 3003681390065032289}
+  - component: {fileID: 4663003916580375255}
   m_Layer: 5
   m_Name: StigmaImage2
   m_TagString: Untagged
@@ -698,6 +707,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4663003916580375255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829582289960886516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d920f80c9fc4492458fba5827e16cb62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StigmaImage: {fileID: 3003681390065032289}
 --- !u!1 &5097157373118156167
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +731,7 @@ GameObject:
   - component: {fileID: 8420485815063614624}
   - component: {fileID: 1217668551734342710}
   - component: {fileID: 45054072105710800}
+  - component: {fileID: 4702366116040258668}
   m_Layer: 5
   m_Name: StigmaImage1
   m_TagString: Untagged
@@ -774,6 +797,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4702366116040258668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097157373118156167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d920f80c9fc4492458fba5827e16cb62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StigmaImage: {fileID: 45054072105710800}
 --- !u!1 &6026201421062485305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,6 +1744,7 @@ GameObject:
   - component: {fileID: 1660070588509737517}
   - component: {fileID: 5818115735190819570}
   - component: {fileID: 2590456170676267840}
+  - component: {fileID: 8251160758827782263}
   m_Layer: 5
   m_Name: StigmaImage3
   m_TagString: Untagged
@@ -1773,6 +1810,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8251160758827782263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976870707111384423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d920f80c9fc4492458fba5827e16cb62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StigmaImage: {fileID: 2590456170676267840}
 --- !u!1 &8107239207279917561
 GameObject:
   m_ObjectHideFlags: 0

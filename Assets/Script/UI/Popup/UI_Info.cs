@@ -41,7 +41,7 @@ public class UI_Info : UI_Popup
             Debug.Log("³«ÀÎ");
             ³«ÀÎ stig = unit.PassiveToStigma(sti);
 
-            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_Stigma>().SetImage(unit.GetStigmaImage(stig), unit.GetStigmaText(stig));
+            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_Stigma>().Set(unit.GetStigmaImage(stig), unit.GetStigmaText(stig));
         }
 
         _skillText.text = unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString());
