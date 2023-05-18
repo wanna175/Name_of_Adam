@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,7 +105,7 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        String str = GameManager.Data.CurrentStageData.FactionName;
+        string str = GameManager.Data.CurrentStageData.FactionName;
 
         for(int i = 0; i < 3; i++)
         {
@@ -351,8 +350,17 @@ public class BattleManager : MonoBehaviour
 
     public void DirectAttack()//임시 삭제
     {
-        int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
+        Debug.Log("DirectAttack");
+        if (Data.PlayerHands.Count == 0)
+        {
+            BattleOverCheck();
+            return;
+        }
+
+        int randNum = Random.Range(0, Data.PlayerHands.Count);
         Data.RemoveHandUnit(Data.PlayerHands[randNum]);
+
+        BattleOverCheck();
     }
 
     public void BattleOverCheck()
@@ -368,8 +376,8 @@ public class BattleManager : MonoBehaviour
                 EnemyUnit++;
         }
 
-        //MyUnit += Data.PlayerDeck.Count;
-        //MyUnit += Data.PlayerHands.Count;
+        MyUnit += Data.PlayerDeck.Count;
+        MyUnit += Data.PlayerHands.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)

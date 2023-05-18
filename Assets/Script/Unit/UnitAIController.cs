@@ -167,11 +167,9 @@ public class UnitAIController : MonoBehaviour
     protected void Attack(Vector2 vec)
     {
         List<BattleUnit> hitUnits = new List<BattleUnit>();
-        Debug.Log(vec);
 
         foreach (Vector2 splash in caster.GetSplashRange(vec, caster.Location))
         {
-            Debug.Log(splash + vec);
             if (!_field.IsInRange(splash + vec))
                 continue;
 
@@ -256,9 +254,18 @@ public class UnitAIController : MonoBehaviour
 
     protected bool DirectAttackCheck()//임시 삭제
     {
-        if (_Data.BattleUnitList.Count == 0)
+        int playerUnit = 0;
+
+        foreach (BattleUnit unit in _Data.BattleUnitList)
+        {
+            if (unit.Team == Team.Player)
+                playerUnit++;
+        }
+
+        if (playerUnit == 0)
         {
             BattleManager.Instance.DirectAttack();
+            BattleManager.Instance.EndUnitkAction();
             return true;
         }
         else
@@ -277,6 +284,9 @@ public class UnitAIController : MonoBehaviour
 
     public virtual void AIAction()
     {
+        if (DirectAttackCheck())
+            return;
+
         SetAttackRangeList();
 
         if (AttackRangeUnitList.Count > 0)
