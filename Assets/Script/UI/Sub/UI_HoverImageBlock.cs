@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UI_Stigma : UI_Base, IPointerEnterHandler, IPointerExitHandler
+public class UI_HoverImageBlock : UI_Base, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] Image StigmaImage;
+    [SerializeField] Image Image;
     private string _text;
 
-    public void SetImage(Sprite image, string text)
+    public void Set(Sprite image, string text)
     {
-        StigmaImage.sprite = image;
+        Image.sprite = image;
         _text = text;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameManager.UI.ShowPopup<UI_TextHover>().SetText(_text, eventData.position);
+        GameManager.UI.ShowHover<UI_TextHover>().SetText(_text, eventData.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.UI.ClosePopup();
+        GameManager.UI.CloseHover();
     }
 }

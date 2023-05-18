@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 public class UI_UnitInfo : UI_Popup
 {
@@ -23,17 +24,17 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private Transform _unitInfoSkillimage;
 
     private DeckUnit _unit;
-    private Selectable _selectable;
+    private Action<DeckUnit> _onSelect;
 
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
     }
 
-    public void Init(bool select, Selectable selectable)
+    public void Init(Action<DeckUnit> onSelect=null)
     {
-        _selectable = selectable;
-        _selectButton.SetActive(select);
+        _onSelect = onSelect;
+        _selectButton.SetActive(onSelect != null);
 
         _unitCard.Set(_unit.Data.Image, _unit.Data.Name, _unit.Stat.ManaCost.ToString());
 
@@ -63,7 +64,7 @@ public class UI_UnitInfo : UI_Popup
         {
             ³«ÀÎ stig = _unit.PassiveToStigma(sti);
 
-            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_Stigma>().SetImage(_unit.GetStigmaImage(stig), _unit.GetStigmaText(stig));
+            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>().Set(_unit.GetStigmaImage(stig), _unit.GetStigmaText(stig));
         }
 
         foreach (bool range in _unit.Data.AttackRange)
@@ -83,6 +84,6 @@ public class UI_UnitInfo : UI_Popup
 
     public void Select()
     {
-        _selectable.OnSelect(_unit);
+        _onSelect(_unit);
     }
 }
