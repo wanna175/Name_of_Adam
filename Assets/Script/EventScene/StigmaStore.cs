@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StigmaStore : Selectable
+public class StigmaStore : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
 
@@ -42,10 +42,10 @@ public class StigmaStore : Selectable
 
     public void OnStigmaUnitButtonClick()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, true, this);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
     }
 
-    public override void OnSelect(DeckUnit unit)
+    public void OnSelect(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
         _unitImage.sprite = unit.Data.Image;

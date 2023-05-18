@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,25 +9,19 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private Transform Grid;
     private bool _select; //UnitInfo에 전달용
     private List<DeckUnit> _playerDeck = new();
-    private Selectable _selectable;
+    private Action<DeckUnit> _onSelect;
 
-    public void Init(bool battle=false, bool select=false, Selectable selectable=null)
+    public void Init(bool battle=false, Action<DeckUnit> onSelect=null)
     {
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
             _playerDeck = GameManager.Data.GetDeck();
 
-        if (select)
-        {
-            _select = select;
-            _selectable = selectable;
-        }
-
+        if (onSelect != null)
+            _onSelect = onSelect;
 
         SetCard();
-
-        //GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
     }
 
     public void SetCard()
@@ -45,12 +40,10 @@ public class UI_MyDeck : UI_Popup
 
     public void OnClickCard(DeckUnit unit)
     {
-
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
 
         ui.SetUnit(unit);
-        ui.Init(_select, _selectable);
-
+        ui.Init(_onSelect);
     }
 
     public void Quit()
