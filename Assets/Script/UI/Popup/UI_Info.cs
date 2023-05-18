@@ -43,17 +43,13 @@ public class UI_Info : UI_Popup
             GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_HoverImageBlock>().Set(unit.GetStigmaImage(stig), unit.GetStigmaText(stig));
         }
 
-
-
         if (unit.Data.BehaviorType == BehaviorType.근거리)
         {
-            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘"),
-                                unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
+            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘"), unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
         }
         else
         {
-            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘"),
-                                unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
+            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘"), unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
         }
 
         foreach (bool range in unit.Data.AttackRange)

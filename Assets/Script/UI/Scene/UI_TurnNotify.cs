@@ -8,14 +8,14 @@ public class UI_TurnNotify : UI_Scene
 {
     [SerializeField] public GameObject image;
 
-    public void Set(bool playerTurn)
+    public void Set(string turn)
     {
         FadeIn();
         Invoke("FadeOut", 0.5f);
 
-        if (playerTurn)
+        if (turn == "playerTurn")
             image.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
-        else
+        else if (turn == "UnitTurn")
             image.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
     }
 
@@ -27,5 +27,12 @@ public class UI_TurnNotify : UI_Scene
     public void FadeOut()
     {
         image.GetComponent<FadeController>().StartFadeOut();
+        Invoke("Destroy", 0.5f);
+    }
+
+    private void Destroy()
+    {
+        Debug.Log("DESTROY");
+        GameManager.Resource.Destroy(this.gameObject);
     }
 }
