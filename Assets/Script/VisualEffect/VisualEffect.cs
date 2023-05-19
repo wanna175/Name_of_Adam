@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class VisualEffect : MonoBehaviour
 {
+    Animator _animator;
+
     private void OnEnable()
     {
-        GetComponent<Animator>().Play("SkillEffect");
+        _animator = GetComponent<Animator>();
+        _animator.Play("Effect");
+
+        StartCoroutine(AnimExit());
     }
 
-    public void AnimExit()
+    IEnumerator AnimExit()
     {
+        while (true)
+        {
+            if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+                break;
+
+            yield return null;
+        }
+
         GameManager.VisualEffect.RestoreVisualEffect(gameObject);
     }
 }

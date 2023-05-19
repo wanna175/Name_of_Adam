@@ -16,7 +16,7 @@ public class BattleUnit : MonoBehaviour
 
     private SpriteRenderer _renderer;
     private Animator UnitAnimator;
-    public RuntimeAnimatorController SkillEffectAnimator;
+    public AnimationClip SkillEffect;
 
     [SerializeField] public UnitAIController AI;
 
@@ -95,7 +95,7 @@ public class BattleUnit : MonoBehaviour
         HP.Init(Stat.HP, Stat.CurrentHP);
         _hpBar.SetHPBar(Team, transform);
         GameManager.Sound.Play("UI/FallSFX/Fall");
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<RuntimeAnimatorController>("Animation/Corruption"), transform.position);
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/Corruption"), transform.position);
         //Debug.Log($"{Data.name} Fall");
     }
 
@@ -130,13 +130,13 @@ public class BattleUnit : MonoBehaviour
         {
             UnitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
             if (Data.CorruptionSkillEffectController != null)
-                SkillEffectAnimator = Data.CorruptionSkillEffectController;
+                SkillEffect = Data.CorruptionSkillEffectController;
         }
         else
         {
             UnitAnimator.runtimeAnimatorController = Data.AnimatorController;
             if (Data.SkillEffectController != null)
-                SkillEffectAnimator = Data.SkillEffectController;
+                SkillEffect = Data.SkillEffectController;
         }
     }
 

@@ -290,9 +290,9 @@ public class BattleManager : MonoBehaviour
             unit.PassiveCheck(unit, hit, PassiveType.BEFOREATTACK);
             unit.SkillUse(hit);
 
-            if (unit.SkillEffectAnimator != null)
-                GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnimator, hit.transform.position);
-
+            if (unit.SkillEffect != null)
+                GameManager.VisualEffect.StartVisualEffect(unit.SkillEffect, hit.transform.position);
+            
             if (team != hit.Team)
                 hit.ChangeHP(1000);
             
@@ -320,7 +320,7 @@ public class BattleManager : MonoBehaviour
 
     private void UnitDeadAction(BattleUnit _unit)
     {
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<RuntimeAnimatorController>("Animation/UnitDeadEffect"), _unit.transform.position);
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), _unit.transform.position);
 
         StartCoroutine(UnitDeadEffect(_unit));
     }
