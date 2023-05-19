@@ -11,50 +11,43 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private TextMeshProUGUI _text;
 
     private UI_PlayerSkill _playerSkill;
+    private PlayerSkill _skill;
     public bool IsSelected = false;
-    private bool _IsLocked = true;
-
 
     private void Start()
     {
         _highlight.SetActive(false);
     }
 
-    public void Set(UI_PlayerSkill ps, string text, bool locked=true)
+    public void Set(UI_PlayerSkill ps, PlayerSkill skill)
     {
         _playerSkill = ps;
-        _text.text = text;
-        _IsLocked = locked;
+        _skill = skill;
+        _text.text = skill.GetName();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!_IsLocked)
-            _highlight.SetActive(true);
+        _highlight.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!_IsLocked)
-        { 
-            if (IsSelected)
-                return;
-            _highlight.SetActive(false);
-        }
+        if (IsSelected)
+            return;
+        _highlight.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!_IsLocked)
-            _playerSkill.OnClickHand(this);
+        _playerSkill.OnClickHand(this);
     }
 
     public void ChangeSelectState(bool b)
     {
-        if (!_IsLocked) 
-        {
-            IsSelected = b;
-            _highlight.SetActive(b);
-        }
+        IsSelected = b;
+        _highlight.SetActive(b);
     }
+
+    public PlayerSkill GetSkill() => _skill;
 }

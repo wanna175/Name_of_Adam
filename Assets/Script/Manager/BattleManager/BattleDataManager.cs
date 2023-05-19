@@ -52,39 +52,21 @@ public class BattleDataManager : MonoBehaviour
         FillHand();
     }
 
-    public void DarkEssenseChage(int chage)
-    {
-        GameManager.Data.DarkEssenseChage(-1);
-        UI_DarkEssence.Refresh();
-    }
-
     public void OnBattleOver()
     {
         Debug.Log("BDM Destroy");
         foreach (DeckUnit unit in PlayerHands)
         {
             AddDeckUnit(unit);
-            Debug.Log(unit.Data.Name);
         }
 
         foreach (BattleUnit unit in BattleUnitList)
         {
             unit.DeckUnit.ChangedStat.FallCurrentCount = unit.Fall.GetCurrentFallCount();
             AddDeckUnit(unit.DeckUnit);
-            Debug.Log(unit.Data.Name);
-        }
-
-        foreach (DeckUnit unit in _playerDeck)
-        {
-            Debug.Log(unit.Data.Name);
         }
 
         GameManager.Data.SetDeck(_playerDeck);
-
-        foreach (DeckUnit unit in GameManager.Data.GetDeck())
-        {
-            Debug.Log(unit.Data.Name);
-        }
     }
 
     public void AddDeckUnit(DeckUnit unit) {
@@ -132,6 +114,12 @@ public class BattleDataManager : MonoBehaviour
         _playerDeck.RemoveAt(randNum);
 
         return unit;
+    }
+
+    public void DarkEssenseChage(int chage)
+    {
+        GameManager.Data.DarkEssenseChage(chage);
+        UI_DarkEssence.Refresh();
     }
 
     // 전투를 진행중인 캐릭터가 들어있는 리스트

@@ -174,7 +174,7 @@ public class Field : MonoBehaviour
         }
     }
 
-    public void SetTileColor()
+    public void SetSpawnTileColor()
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
         {
@@ -191,6 +191,18 @@ public class Field : MonoBehaviour
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
         {
             if (items.Value.UnitExist == true && items.Value.Unit.Team == Team.Enemy)
+            {
+                items.Value.SetColor(ColorList(FieldColor.Select));
+                _coloredTile.Add(items.Key);
+            }
+        }
+    }
+    
+    public void SetFriendlyUnitTileColor()
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            if (items.Value.UnitExist == true && items.Value.Unit.Team == Team.Player)
             {
                 items.Value.SetColor(ColorList(FieldColor.Select));
                 _coloredTile.Add(items.Key);

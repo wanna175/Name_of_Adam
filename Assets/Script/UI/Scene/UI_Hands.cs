@@ -67,7 +67,7 @@ public class UI_Hands : UI_Scene
     {
         _selectedHand.ChangeSelectState(false);
         _selectedHand = null;
-        _battle.UnitSpawnReady(false);
+        _battle.UnitSpawnReady(BattleManager.FieldColorType.none);
     }
 
     private void SelectOneUnit(UI_Hand hand)
@@ -77,7 +77,7 @@ public class UI_Hands : UI_Scene
         
         _selectedHand = hand;
         _selectedHand.ChangeSelectState(true);
-        _battle.UnitSpawnReady(true);
+        _battle.UnitSpawnReady(BattleManager.FieldColorType.UnitSpawn);
     }
 
     public DeckUnit GetSelectedUnit()
