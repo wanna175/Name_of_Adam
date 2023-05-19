@@ -265,7 +265,7 @@ public class UnitAIController : MonoBehaviour
         if (playerUnit == 0)
         {
             BattleManager.Instance.DirectAttack();
-            BattleManager.Instance.EndUnitkAction();
+            BattleManager.Instance.EndUnitAction();
             return true;
         }
         else
@@ -308,7 +308,7 @@ public class UnitAIController : MonoBehaviour
             else
             {
                 MoveUnit(MoveDirection(NearestEnemySearch()));
-                BattleManager.Instance.EndUnitkAction();
+                BattleManager.Instance.EndUnitAction();
             }
         }
         ListClear();

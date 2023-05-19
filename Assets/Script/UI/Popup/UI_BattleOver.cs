@@ -10,26 +10,26 @@ public class UI_BattleOver : UI_Scene
     [SerializeField] private Image _textImage;
     [SerializeField] private FadeController fc;
 
-    private int _result;
+    private string _result;
 
-    public void SetImage(int result)
+    public void SetImage(string result)
     {
         fc.GetComponent<FadeController>().StartFadeIn();
 
         GetComponent<Canvas>().sortingOrder = 100;
         _result = result;
 
-        if (result == 1) 
+        if (result == "win") 
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
             GameManager.Sound.Play("UI/ResultSFX/승리 효과음");
         }
-        else if (result == 2)
+        else if (result == "elite win")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
         }
-        else if (result == 3) 
+        else if (result == "lose")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();
@@ -39,9 +39,11 @@ public class UI_BattleOver : UI_Scene
 
     public void OnClick()
     {
-        if (_result == 3)
-            SceneChanger.SceneChange("MainScene");
-        else
+        if (_result == "win")
             SceneChanger.SceneChange("StageSelectScene");
+        else if (_result == "elite win")
+            SceneChanger.SceneChange("StageSelectScene");
+        else if (_result == "lose")
+            SceneChanger.SceneChange("MainScene");
     }
 }
