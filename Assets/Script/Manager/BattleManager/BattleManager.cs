@@ -121,12 +121,16 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit unit = Data.GetNowUnit();
 
-        if (Field.Get_Abs_Pos(unit, FieldColor.Move).Contains(coord) == false)
-            return;
-        Vector2 dest = coord - unit.Location;
+        if (unit.Team == Team.Player)
+        {
+            if (Field.Get_Abs_Pos(unit, FieldColor.Move).Contains(coord) == false)
+                return;
+            Vector2 dest = coord - unit.Location;
 
-        
-        MoveLocate(unit, dest); //이동시 낙인 체크
+            MoveLocate(unit, dest); //이동시 낙인 체크
+        }
+        else if (unit.Team == Team.Enemy)
+            unit.AI.AIMove();
 
         _phase.ChangePhase(_phase.Action);
     }
@@ -134,6 +138,12 @@ public class BattleManager : MonoBehaviour
     public void ActionPhase()
     {
         BattleUnit unit = Data.GetNowUnit();
+
+        if (unit.Team == Team.Enemy)
+        {
+            unit.AI.AISkillUse();
+            return;
+        }
 
         if (Field.Get_Abs_Pos(unit, FieldColor.Attack).Contains(coord) == false)
             return;
@@ -167,13 +177,6 @@ public class BattleManager : MonoBehaviour
         if (Data.OrderUnitCount <= 0)
         {
             _phase.ChangePhase(_phase.Prepare);
-            return;
-        }
-
-        BattleUnit unit = Data.GetNowUnit();
-        if (unit.Team == Team.Enemy)
-        {
-            unit.AI.AIAction();
             return;
         }
 
