@@ -9,7 +9,7 @@ public class PreparePhase : Phase
         BattleManager.Data.TurnPlus();
         BattleManager.Data.UI_PlayerSkill.Used = false;
         BattleManager.Instance.ChangeButtonName();
-        GameManager.UI.ShowScene<UI_TurnNotify>().Set("playerTurn");
+        GameManager.UI.ShowScene<UI_TurnNotify>().Set("PlayerTurn");
     }
 
     public override void OnStateUpdate()
