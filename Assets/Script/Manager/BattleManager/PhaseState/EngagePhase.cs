@@ -11,8 +11,8 @@ public class EngagePhase : Phase
         BattleUnit unit = BattleManager.Data.GetNowUnit();
         if (unit != null)
         {
-            _engageInfo = GameManager.UI.ShowPopup<UI_Info>();
-            _engageInfo.Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
+            _engageInfo = BattleManager.BattleUI.ShowInfo();
+            _engageInfo.SetInfo(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
         BattleManager.BattleUI.ChangeButtonName();
     }
@@ -24,6 +24,6 @@ public class EngagePhase : Phase
 
     public override void OnStateExit()
     {
-        GameManager.UI.ClosePopup(_engageInfo);
+        BattleManager.BattleUI.CloseInfo(_engageInfo);
     }
 }

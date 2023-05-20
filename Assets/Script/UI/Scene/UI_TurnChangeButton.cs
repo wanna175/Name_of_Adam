@@ -10,16 +10,6 @@ public class UI_TurnChangeButton : UI_Scene
     [SerializeField] private Button _changeButton;
     [SerializeField] private TextMeshProUGUI _text;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void TurnChange()
     {
         PhaseController _phase = BattleManager.Phase;

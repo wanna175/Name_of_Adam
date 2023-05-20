@@ -11,6 +11,10 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private DeckUnit _handUnit = null;
     private UI_Hands _hands;
+
+    private UI_Info _hoverInfo;
+    private UI_Info _selectInfo;
+
     public bool IsSelected = false;
     
     private void Start()
@@ -38,12 +42,13 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         _highlight.SetActive(true);
-        GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
+        _hoverInfo = BattleManager.BattleUI.ShowInfo();
+        _hoverInfo.SetInfo(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.UI.ClosePopup();
+        BattleManager.BattleUI.CloseInfo(_hoverInfo);
 
         if (IsSelected)
             return;
@@ -62,11 +67,12 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if (IsSelected)
         {
-            GameManager.UI.ShowPopup<UI_Info>().Set(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
+            _selectInfo = BattleManager.BattleUI.ShowInfo();
+            _selectInfo.SetInfo(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
         }
         else
         {
-            GameManager.UI.ClosePopup();
+            BattleManager.BattleUI.CloseInfo(_selectInfo);
         }
     }
 }

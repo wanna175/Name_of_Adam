@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_Info : UI_Popup
+public class UI_Info : UI_Scene
 {
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _cost;
@@ -19,7 +19,7 @@ public class UI_Info : UI_Popup
     [SerializeField] private Transform _rangeGrid;
     [SerializeField] private GameObject _squarePrefab;
 
-    public void Set(DeckUnit unit, Team team, int currnetHP, int fall)
+    public void SetInfo(DeckUnit unit, Team team, int currnetHP, int fall)
     {
         _name.text = unit.Data.Name;
         _cost.text = unit.Stat.ManaCost.ToString();
@@ -57,5 +57,10 @@ public class UI_Info : UI_Popup
             else
                 block.color = Color.grey;
         }
+    }
+
+    public void InfoDestroy()
+    {
+        GameManager.Resource.Destroy(this.gameObject);
     }
 }
