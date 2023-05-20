@@ -11,7 +11,7 @@ public class UI_StigmaSelectButton : UI_Popup
     [SerializeReference] private List<TextMeshProUGUI> _text;
 
     private StigmaStore _store;
-    public void init(StigmaStore store,  List<³«ÀÎ> stigmaList)
+    public void init(StigmaStore store,  List<Â³Â«Ã€ÃŽ> stigmaList)
     {
         _store = store;
 

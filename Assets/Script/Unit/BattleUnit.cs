@@ -23,7 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
-    [SerializeField] public List<Passive> Passive => DeckUnit.Stigmata;
+    [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
     [SerializeField] private UI_HPBar _hpBar;
 
     [SerializeField] Vector2 _location;
@@ -264,7 +264,7 @@ public class BattleUnit : MonoBehaviour
         {
             foreach (Passive passive in receiver.Passive)
             {
-                if (passive.GetPassiveType() == type)
+                if (passive.PassiveType == type)
                 {
                     passive.Use(caster, receiver);
                 }
@@ -274,7 +274,7 @@ public class BattleUnit : MonoBehaviour
         {
             foreach(Passive passive in Passive)
             {
-                if (passive.GetPassiveType() == type)
+                if (passive.PassiveType == type)
                 {
                     passive.Use(caster, receiver);
                 }

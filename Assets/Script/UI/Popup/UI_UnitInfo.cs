@@ -60,11 +60,9 @@ public class UI_UnitInfo : UI_Popup
 
         _unit.SetStigma();
 
-        foreach (Passive sti in _unit.Stigmata)
+        foreach (Passive sti in _unit.Stigma)
         {
-            ³«ÀÎ stig = _unit.PassiveToStigma(sti);
-
-            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>().Set(_unit.GetStigmaImage(stig), _unit.GetStigmaText(stig));
+            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }
 
         foreach (bool range in _unit.Data.AttackRange)
