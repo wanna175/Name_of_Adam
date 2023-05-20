@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class StigmaStore : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
-
     [SerializeField] private Image _unitImage;
-
-    List<Passive> stigmaList = new();
+    private List<Passive> stigmaList = new();
 
     void Start()
     {
@@ -65,31 +63,15 @@ public class StigmaStore : MonoBehaviour
         }
     }
 
-    //public void OnStigmaSelect(int select) 
-    //{
-    //    if (select == 1)
-    //    {
-    //        _stigmatizeUnit.AddStigma(stigmaList[0]);
-    //        GameManager.UI.ClosePopup();
-    //        AddStigamScript(stigmaList[0]);
-    //    }
-    //    else if (select == 2)
-    //    {
-    //        _stigmatizeUnit.AddStigma(stigmaList[1]);
-    //        GameManager.UI.ClosePopup();
-    //        AddStigamScript(stigmaList[1]);
-    //    }
-    //    else if (select == 3)
-    //    {
-    //        _stigmatizeUnit.AddStigma(stigmaList[2]);
-    //        GameManager.UI.ClosePopup();
-    //        AddStigamScript(stigmaList[2]);
-    //    }
-
-    //    //StartCoroutine(QuitScene());
-    //    GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-    //    //OnQuitClick();
-    //}
+    public void OnStigmaSelect(int select)
+    {
+        _stigmatizeUnit.AddStigma(stigmaList[select]);
+        GameManager.UI.ClosePopup();
+        AddStigamScript(stigmaList[select]);
+        //StartCoroutine(QuitScene());
+        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        //OnQuitClick();
+    }
 
     public void AddStigamScript(Passive stigma)
     {
