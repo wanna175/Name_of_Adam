@@ -314,14 +314,14 @@ public class UnitAIController : MonoBehaviour
         ListClear();
     }
 
-    public virtual Vector2 AIMove()
+    public virtual void AIMove()
     {
         ListClear();
         SetAttackRangeList();
 
         if (AttackRangeUnitList.Count > 0)
         {
-            return caster.Location;
+            MoveUnit(caster.Location);
         }
         else
         {
@@ -330,28 +330,26 @@ public class UnitAIController : MonoBehaviour
 
             if (UnitAttackableTileList.Count > 0)
             {
-                return MinHPSearch(UnitAttackableTileList);
+                MoveUnit(MinHPSearch(UnitAttackableTileList));
             }
             else
             {
-                return MoveDirection(NearestEnemySearch());
+                MoveUnit(MoveDirection(NearestEnemySearch()));
             }
         }
     }
 
-    public virtual Vector2 AISkillUse()
+    public virtual void AISkillUse()
     {
         ListClear();
         SetAttackRangeList();
 
         if (AttackRangeUnitList.Count > 0)
         {
-            return MinHPSearch(AttackRangeUnitList);
+            Attack(MinHPSearch(AttackRangeUnitList));
         }
         else
-        {
-            return caster.Location;
-        }
+            BattleManager.Instance.EndUnitkAction();
     }
 }
 
@@ -361,13 +359,13 @@ public class CommonUnitAIController : UnitAIController
     {
         base.AIAction();
     }
-    public override Vector2 AIMove()
+    public override void AIMove()
     {
-        return base.AIMove();
+        base.AIMove();
     }
 
-    public override Vector2 AISkillUse()
+    public override void AISkillUse()
     {
-        return base.AISkillUse();
+        base.AISkillUse();
     }
 }

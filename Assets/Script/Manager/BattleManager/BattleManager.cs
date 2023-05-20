@@ -107,12 +107,16 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit unit = Data.GetNowUnit();
 
-        if (Field.Get_Abs_Pos(unit, FieldColor.Move).Contains(coord) == false)
-            return;
-        Vector2 dest = coord - unit.Location;
+        if (unit.Team == Team.Player)
+        {
+            if (Field.Get_Abs_Pos(unit, FieldColor.Move).Contains(coord) == false)
+                return;
+            Vector2 dest = coord - unit.Location;
 
-        
-        MoveLocate(unit, dest); //이동시 낙인 체크
+            MoveLocate(unit, dest); //이동시 낙인 체크
+        }
+        else if (unit.Team == Team.Enemy)
+            unit.AI.AIMove();
 
         _phase.ChangePhase(_phase.Action);
     }
@@ -120,6 +124,12 @@ public class BattleManager : MonoBehaviour
     public void ActionPhase()
     {
         BattleUnit unit = Data.GetNowUnit();
+
+        if (unit.Team == Team.Enemy)
+        {
+            unit.AI.AISkillUse();
+            return;
+        }
 
         if (Field.Get_Abs_Pos(unit, FieldColor.Attack).Contains(coord) == false)
             return;
@@ -153,13 +163,6 @@ public class BattleManager : MonoBehaviour
         if (Data.OrderUnitCount <= 0)
         {
             _phase.ChangePhase(_phase.Prepare);
-            return;
-        }
-
-        BattleUnit unit = Data.GetNowUnit();
-        if (unit.Team == Team.Enemy)
-        {
-            unit.AI.AIAction();
             return;
         }
 
@@ -251,7 +254,6 @@ public class BattleManager : MonoBehaviour
         BattleUI.UI_playerSkill.CancleSelect();
         BattleUI.UI_playerSkill.Used = true;
         Field.ClearAllColor();
-        BattleOverCheck();
     }
 
     public void OnClickTile(Tile tile)
@@ -308,9 +310,9 @@ public class BattleManager : MonoBehaviour
             unit.PassiveCheck(unit, hit, PassiveType.BEFOREATTACK);
             unit.SkillUse(hit);
 
-            if (unit.SkillEffectAnimator != null)
-                GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnimator, hit.transform.position);
-
+            if (unit.SkillEffect != null)
+                GameManager.VisualEffect.StartVisualEffect(unit.SkillEffect, hit.transform.position);
+            
             if (team != hit.Team)
                 hit.ChangeHP(1000);
             
@@ -338,7 +340,7 @@ public class BattleManager : MonoBehaviour
 
     private void UnitDeadAction(BattleUnit _unit)
     {
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<RuntimeAnimatorController>("Animation/UnitDeadEffect"), _unit.transform.position);
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), _unit.transform.position);
 
         StartCoroutine(UnitDeadEffect(_unit));
     }
