@@ -9,7 +9,7 @@ public class PreparePhase : Phase
         BattleManager.Data.TurnPlus();
         BattleManager.Data.UI_PlayerSkill.Used = false;
         BattleManager.Instance.ChangeButtonName();
-        GameManager.UI.ShowScene<UI_TurnNotify>().Set("PlayerTurn");
+        GameManager.UI.ShowScene<UI_TurnNotify>().SetPlayerTurnImage();
     }
 
     public override void OnStateUpdate()
@@ -33,6 +33,6 @@ public class PreparePhase : Phase
     {
         isFirst = false;
 
-        GameManager.UI.ShowScene<UI_TurnNotify>().Set("UnitTurn");
+        GameManager.UI.ShowScene<UI_TurnNotify>().SetUnitTurnImage();
     }
 }

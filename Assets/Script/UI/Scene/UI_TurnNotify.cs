@@ -8,13 +8,20 @@ public class UI_TurnNotify : UI_Scene
 {
     const float fadeTime = 0.5f;
 
-    public void Set(string turn)
+    public void SetPlayerTurnImage()
     {
         FadeIn();
         Invoke("FadeOut", fadeTime);
-        //PlayerTurn, UnitTurn 두가지만 인자로
         
-        GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/" + turn +  "Text");
+        GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
+    }
+
+    public void SetUnitTurnImage()
+    {
+        FadeIn();
+        Invoke("FadeOut", fadeTime);
+
+        GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
     }
 
     public void FadeIn()
