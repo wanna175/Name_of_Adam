@@ -55,8 +55,7 @@ public class StageChanger
     {
         SetSpawnUnit(stage.BattleStageData.faction, stage.BattleStageData.level, stage.BattleStageData.id);
 
-        //SceneChanger.SceneChange("JS TEST");
-        SceneChanger.SceneChange("Battle");
+        SceneChanger.SceneChange("BattleScene");
     }
 
     private void SetSpawnUnit(Faction faction, int level, int id) // 다음에 받을 팩션, 레벨, 아이디 넣기
