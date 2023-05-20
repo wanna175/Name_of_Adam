@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StigmaStore : Selectable
+public class StigmaStore : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
-
     [SerializeField] private Image _unitImage;
-
-    List<낙인> stigmaList = new();
+    private List<Passive> stigmaList = new();
 
     void Start()
     {
@@ -27,25 +25,26 @@ public class StigmaStore : Selectable
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
-        DeckUnit deckUnit = new();
-        stigmaList.Add(deckUnit.GetRandomStigma());
+        PassiveManager passiveManager = GameManager.Data.Passive;
+        stigmaList.Add(passiveManager.GetRandomPassive());
 
         while (stigmaList.Count < 3)
         {
-            낙인 tempStigma = deckUnit.GetRandomStigma();
-            if (!stigmaList.Contains(tempStigma) & tempStigma != 낙인.오빠 & tempStigma != 낙인.동생)
-            {
-                stigmaList.Add(tempStigma);
-            }
+            Passive tempPassive = passiveManager.GetRandomPassive();
+            
+            if (stigmaList.Contains(tempPassive))
+                continue;
+            
+            stigmaList.Add(tempPassive);
         }
     }
 
     public void OnStigmaUnitButtonClick()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, true, this);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
     }
 
-    public override void OnSelect(DeckUnit unit)
+    public void OnSelect(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
         _unitImage.sprite = unit.Data.Image;
@@ -64,61 +63,21 @@ public class StigmaStore : Selectable
         }
     }
 
-    public void OnStigmaSelect(int select) 
+    public void OnStigmaSelect(int select)
     {
-        if (select == 1)
-        {
-            _stigmatizeUnit.AddStigma(stigmaList[0]);
-            GameManager.UI.ClosePopup();
-            AddStigamScript(stigmaList[0]);
-        }
-        else if (select == 2)
-        {
-            _stigmatizeUnit.AddStigma(stigmaList[1]);
-            GameManager.UI.ClosePopup();
-            AddStigamScript(stigmaList[1]);
-        }
-        else if (select == 3)
-        {
-            _stigmatizeUnit.AddStigma(stigmaList[2]);
-            GameManager.UI.ClosePopup();
-            AddStigamScript(stigmaList[2]);
-        }
-
+        _stigmatizeUnit.AddStigma(stigmaList[select]);
+        GameManager.UI.ClosePopup();
+        AddStigamScript(stigmaList[select]);
         //StartCoroutine(QuitScene());
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         //OnQuitClick();
     }
 
-    public void AddStigamScript(낙인 stigma)
+    public void AddStigamScript(Passive stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        
-        switch (stigma)
-        {
-            case 낙인.고양:
-                script.Init(GameManager.Data.ScriptData["낙인소_고양"], false);
-                break;
-            case 낙인.강림:
-                script.Init(GameManager.Data.ScriptData["낙인소_강림"], false);
-                break;
-            case 낙인.가학:
-                script.Init(GameManager.Data.ScriptData["낙인소_가학"], false);
-                break;
-            case 낙인.대죄:
-                script.Init(GameManager.Data.ScriptData["낙인소_대죄"], false);
-                break;
-            case 낙인.자애:
-                script.Init(GameManager.Data.ScriptData["낙인소_자애"], false);
-                break;
-            case 낙인.처형:
-                script.Init(GameManager.Data.ScriptData["낙인소_처형"], false);
-                break;
-            case 낙인.흡수:
-                script.Init(GameManager.Data.ScriptData["낙인소_흡수"], false);
-                break;
-        }
-
+        string scriptKey = "낙인소_" + stigma.Name;
+        script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }
 

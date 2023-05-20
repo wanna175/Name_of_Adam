@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeStore : Selectable
+public class UpgradeStore : MonoBehaviour
 {
     private DeckUnit _upgradeUnit;
 
@@ -28,11 +28,11 @@ public class UpgradeStore : Selectable
 
     public void OnUpgradeUnitButtonClick()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, true, this);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
         //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
-    public override void OnSelect(DeckUnit unit)
+    public  void OnSelect(DeckUnit unit)
     {
         _upgradeUnit = unit;
         _unitImage.sprite = unit.Data.Image;

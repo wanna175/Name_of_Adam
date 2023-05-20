@@ -9,8 +9,8 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private Stat _rawStat;
     public Stat RawStat => _rawStat;
 
-    [SerializeField] private List<낙인> _stigma = new List<낙인>();
-    public List<낙인> Stigma => _stigma;
+    [SerializeField] private List<Passive> _inherenceStigma = new List<Passive>();
+    public List<Passive> IngerenceStigma => _inherenceStigma;
 
     // 변경되지않는 값들
 

@@ -4,23 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_Info : UI_Popup
+public class UI_Info : UI_Scene
 {
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _cost;
     [SerializeField] private TextMeshProUGUI _stat;
 
     [SerializeField] private UI_HPBar _hpBar;
-    [SerializeField] private UI_Stigma _stigama_small;
+    [SerializeField] private UI_HoverImageBlock _stigama_small;
     [SerializeField] private Transform _stigamaGrid;
 
-    [SerializeField] private TextMeshProUGUI _skillText;
-    [SerializeField] private Image _SkillImage;
+    [SerializeField] private UI_HoverImageBlock _SkillImage;
 
     [SerializeField] private Transform _rangeGrid;
     [SerializeField] private GameObject _squarePrefab;
 
-    public void Set(DeckUnit unit, Team team, int currnetHP, int fall)
+    public void SetInfo(DeckUnit unit, Team team, int currnetHP, int fall)
     {
         _name.text = unit.Data.Name;
         _cost.text = unit.Stat.ManaCost.ToString();
@@ -36,20 +35,19 @@ public class UI_Info : UI_Popup
         _hpBar.RefreshFallGauge(fall);
 
         unit.SetStigma();
-        foreach (Passive sti in unit.Stigmata)
+        foreach (Passive sti in unit.Stigma)
         {
-            Debug.Log("≥´¿Œ");
-            ≥´¿Œ stig = unit.PassiveToStigma(sti);
-
-            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_Stigma>().SetImage(unit.GetStigmaImage(stig), unit.GetStigmaText(stig));
+            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }
 
-        _skillText.text = unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString());
-
-        if (unit.Data.BehaviorType == BehaviorType.±Ÿ∞≈∏Æ)
-            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/±Ÿ∞≈∏Æ_æ∆¿Ãƒ‹");
+        if (unit.Data.BehaviorType == BehaviorType.Í∑ºÍ±∞Î¶¨)
+        {
+            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Í∑ºÍ±∞Î¶¨_ÏïÑÏù¥ÏΩò"), unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
+        }
         else
-            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/ø¯∞≈∏Æ_æ∆¿Ãƒ‹");
+        {
+            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/ÏõêÍ±∞Î¶¨_ÏïÑÏù¥ÏΩò"), unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
+        }
 
         foreach (bool range in unit.Data.AttackRange)
         {
@@ -59,5 +57,10 @@ public class UI_Info : UI_Popup
             else
                 block.color = Color.grey;
         }
+    }
+
+    public void InfoDestroy()
+    {
+        GameManager.Resource.Destroy(this.gameObject);
     }
 }

@@ -20,7 +20,8 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 2
     ManaCost: 15
-  _stigma: 09000000
+  _inherenceStigma:
+  - {fileID: 4053712423199977490, guid: 8ed302a24519aec4aa627fe3bcff55fe, type: 3}
   _name: "\uACE0\uBB38\uAD00"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC8FC\uACE0 \uD55C\uCE78 \uB04C\uC5B4\uC635\uB2C8\uB2E4."

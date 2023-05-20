@@ -9,7 +9,7 @@ public static class SceneChanger
     public static void SceneChange(string SceneName)
     {
         
-        if(SceneName == "Battle")
+        if(SceneName == "BattleScene")
         {
             GameManager.Sound.Clear();
             GameManager.Sound.Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");

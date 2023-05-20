@@ -9,12 +9,6 @@ public class UI_Hands : UI_Scene
 
     private List<UI_Hand> _handList = new List<UI_Hand>();
     private UI_Hand _selectedHand = null;
-    private BattleManager _battle;
-    
-    public void SetHands()
-    {
-        _battle = BattleManager.Instance;
-    }
 
     public void AddUnit(DeckUnit unit)
     {
@@ -26,6 +20,7 @@ public class UI_Hands : UI_Scene
     public void RemoveUnit(DeckUnit unit)
     {
         UI_Hand card = FindCardByUnit(unit);
+        card.ChangeSelectState(false);
 
         if (card != null)
             DestroyCard(card);
@@ -67,7 +62,7 @@ public class UI_Hands : UI_Scene
     {
         _selectedHand.ChangeSelectState(false);
         _selectedHand = null;
-        _battle.UnitSpawnReady(false);
+        BattleManager.Instance.UnitSpawnReady(BattleManager.FieldColorType.none);
     }
 
     private void SelectOneUnit(UI_Hand hand)
@@ -77,7 +72,7 @@ public class UI_Hands : UI_Scene
         
         _selectedHand = hand;
         _selectedHand.ChangeSelectState(true);
-        _battle.UnitSpawnReady(true);
+        BattleManager.Instance.UnitSpawnReady(BattleManager.FieldColorType.UnitSpawn);
     }
 
     public DeckUnit GetSelectedUnit()

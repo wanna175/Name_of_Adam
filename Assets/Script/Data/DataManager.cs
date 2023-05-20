@@ -35,12 +35,14 @@ public class DataManager : MonoBehaviour
     [SerializeField] public GameData GameDataOriginal;
 
     public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
+    public PassiveManager Passive;
 
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageDataContainer>("StageData");
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
+        Passive = new PassiveManager();
     }
 
     public void DeckClear()
