@@ -13,6 +13,10 @@ public class CutSceneController : MonoBehaviour
 
     public float ZoomTime = 1;
     public float CutSceneTime = 1;
+
+    public float BlinkTime = 0.1f;
+    public float ShakePower = 1;
+    public float ShakeTime = 0.1f;
     
 
     public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
@@ -56,8 +60,12 @@ public class CutSceneController : MonoBehaviour
     {
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            if(unit != null)
+            if (unit != null)
+            {
                 unit.GetComponent<Animator>().SetBool("isHit", true);
+                StartCoroutine(UnitBlink(unit));
+                StartCoroutine(UnitShake(unit));
+            }
         }
 
         yield return StartCoroutine(AttackTilt());
@@ -138,5 +146,55 @@ public class CutSceneController : MonoBehaviour
                 unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
         }
 
+    }
+
+    private IEnumerator UnitBlink(BattleUnit unit)
+    {
+        SpriteRenderer sr = unit.GetComponent<SpriteRenderer>();
+
+        sr.color = Color.black;
+
+        yield return new WaitForSeconds(BlinkTime);
+
+        sr.color = Color.white;
+
+        yield return new WaitForSeconds(BlinkTime);
+
+        sr.color = Color.black;
+
+        yield return new WaitForSeconds(BlinkTime);
+
+        sr.color = Color.white;
+    }
+
+    private IEnumerator UnitShake(BattleUnit unit)
+    {
+        Transform trans = unit.transform;
+        Vector3 originPos = trans.position;
+        
+        float power = ShakePower;
+        float time = ShakeTime / ShakePower;
+        bool min = true;
+
+        trans.position += new Vector3(power / 2, 0, 0);
+        power -= time;
+
+        while (power > 0)
+        {
+            if (trans == null)
+                yield break;
+
+            Vector3 vec = new Vector3(power, 0, 0);
+            if (min) vec *= -1;
+
+            trans.position += vec;
+            power -= time;
+            min = !min;
+
+            yield return new WaitForSeconds(ShakeTime / ShakePower);
+            Debug.Log('a');
+        }
+
+        trans.position = originPos;
     }
 }
