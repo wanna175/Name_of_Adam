@@ -20,6 +20,7 @@ public class UI_Hands : UI_Scene
     public void RemoveUnit(DeckUnit unit)
     {
         UI_Hand card = FindCardByUnit(unit);
+        card.ChangeSelectState(false);
 
         if (card != null)
             DestroyCard(card);

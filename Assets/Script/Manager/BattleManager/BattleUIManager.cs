@@ -30,9 +30,8 @@ public class BattleUIManager : MonoBehaviour
         UI_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
 
         //컨트롤바
-        UI_ControlBar control = GameManager.UI.ShowScene<UI_ControlBar>();
-
         _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
+        UI_ControlBar control = GameManager.UI.ShowScene<UI_ControlBar>();
 
         UI_hands = control.UI_Hands;
         UI_playerSkill = control.UI_PlayerSkill;
@@ -84,5 +83,39 @@ public class BattleUIManager : MonoBehaviour
             buttonName.text = "Move Skip";
         else if (phaseController.Current == phaseController.Action)
             buttonName.text = "Action Skip";
+    }
+
+    private List<UI_Info> infoList = new();
+
+    public UI_Info ShowInfo()
+    { 
+        UI_Info ui_Info = GameManager.UI.ShowScene<UI_Info>();
+        ui_Info.GetComponent<Canvas>().sortingOrder = infoList.Count + 1;
+        infoList.Add(ui_Info);
+        return ui_Info;
+    }
+
+    public void CloseInfo(UI_Info close)
+    {
+        foreach (UI_Info info in infoList)
+        {
+            if (info == close)
+            {
+                info.InfoDestroy();
+                infoList.Remove(info);
+
+                break;
+            }
+        }
+
+        InfoOrdering();
+    }
+
+    private void InfoOrdering()
+    {
+        for (int i = 0; i < infoList.Count; i++)
+        {
+            infoList[i].GetComponent<Canvas>().sortingOrder = i + 1;
+        }
     }
 }
