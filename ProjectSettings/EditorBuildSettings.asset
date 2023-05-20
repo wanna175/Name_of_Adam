@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelectScene.unity
     guid: f6c5136d5d2025340b84790d4806ab6f
   - enabled: 1
-    path: Assets/Scenes/Battle.unity
+    path: Assets/Scenes/BattleScene.unity
     guid: 2e27cffb22e492d4690b7ba19378ad11
   - enabled: 1
     path: Assets/Scenes/StigmaScene.unity
