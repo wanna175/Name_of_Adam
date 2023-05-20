@@ -85,18 +85,28 @@ public class BattleUnit : MonoBehaviour
 
     public void UnitFallEvent()
     {
-        //타락 시 낙인 체크
-        if (ChangeTeam() == Team.Enemy)
-        {
-            Fall.Editfy();
-        }
         _hpBar.RefreshFallGauge(0);
         // DeckUnit.ChangedStat.HP = Stat.HP;
         HP.Init(Stat.HP, Stat.CurrentHP);
         _hpBar.SetHPBar(Team, transform);
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/Corruption"), transform.position);
+
+        StartCoroutine(CorruptDelay());
         //Debug.Log($"{Data.name} Fall");
+    }
+    IEnumerator CorruptDelay()
+    {
+        yield return new WaitForSeconds(1.03f);
+
+        //타락 시 낙인 체크
+        if (ChangeTeam() == Team.Enemy)
+        {
+            Fall.Editfy();
+        }
+
+        BattleManager.Instance.BattleOverCheck();
+
     }
 
     public void AnimAttack()

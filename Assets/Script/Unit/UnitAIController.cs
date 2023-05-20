@@ -338,10 +338,8 @@ public class UnitAIController : MonoBehaviour
         {
             Attack(MinHPSearch(AttackRangeUnitList));
         }
-        //else
-        //{
-        //    Attack(caster.Location);
-        //}
+        else
+            BattleManager.Instance.EndUnitkAction();
     }
 }
 
