@@ -14,7 +14,7 @@ public class Field : MonoBehaviour
     // 필드의 생성을 위한 필드의 위치
     private Vector3 FieldPosition => new Vector3(0, -0.35f, 0.5f);
     private Vector3 FieldRotation => new Vector3(41.5f, 0, 0);
-    private Vector3 FieldScale => new Vector3(18.54f, 9.28f, 1f);
+    private Vector3 FieldScale => new Vector3(21f, 10.7f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
@@ -133,6 +133,7 @@ public class Field : MonoBehaviour
         
         float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
         position.y -= sizeY;
+        //position.z = 1.729823f;
 
         return position;
     }

@@ -16,7 +16,7 @@ public class BattleUnit : MonoBehaviour
 
     private SpriteRenderer _renderer;
     private Animator UnitAnimator;
-    public AnimationClip SkillEffect;
+    public AnimationClip SkillEffectAnim;
 
     [SerializeField] public UnitAIController AI;
 
@@ -28,6 +28,7 @@ public class BattleUnit : MonoBehaviour
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
+    private float scale;
 
     // 23.02.16 임시 수정
     private Action<BattleUnit> _UnitDeadAction;
@@ -47,6 +48,7 @@ public class BattleUnit : MonoBehaviour
         Debug.Log(Stat.CurrentHP);
         HP.Init(Stat.HP, Stat.CurrentHP);
         Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
+        scale = transform.localScale.x;
 
         _renderer.sprite = Data.Image;
         GameManager.Sound.Play("Summon/SummonSFX");
@@ -139,14 +141,14 @@ public class BattleUnit : MonoBehaviour
         if(Team == Team.Player)
         {
             UnitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
-            if (Data.CorruptionSkillEffectController != null)
-                SkillEffect = Data.CorruptionSkillEffectController;
+            if (Data.CorruptionSkillEffectAnim != null)
+                SkillEffectAnim = Data.CorruptionSkillEffectAnim;
         }
         else
         {
             UnitAnimator.runtimeAnimatorController = Data.AnimatorController;
-            if (Data.SkillEffectController != null)
-                SkillEffect = Data.SkillEffectController;
+            if (Data.SkillEffectAnim != null)
+                SkillEffectAnim = Data.SkillEffectAnim;
         }
     }
 
@@ -159,12 +161,16 @@ public class BattleUnit : MonoBehaviour
     {
         float moveTime = 0.4f;
         float time = 0;
-        Vector3 cur = transform.position;
+        Vector3 curP = transform.position;
+        Vector3 curS = transform.localScale;
+
+        float addScale = scale + ((scale * 0.1f) * (Location.y - 1));
 
         while (time < moveTime)
         {
             time += Time.deltaTime;
-            transform.position = Vector3.Lerp(cur, dest, time / moveTime);
+            transform.position = Vector3.Lerp(curP, dest, time / moveTime);
+            transform.localScale = Vector3.Lerp(curS, new Vector3(addScale, addScale, 1), time / moveTime);
             yield return null;
         }
     }
