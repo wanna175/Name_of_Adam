@@ -6,15 +6,22 @@ using UnityEngine.EventSystems;
 
 public class UI_TurnNotify : UI_Scene
 {
-    public void Set(string turn)
+    const float fadeTime = 0.5f;
+
+    public void SetPlayerTurnImage()
     {
         FadeIn();
-        Invoke("FadeOut", 0.5f);
+        Invoke("FadeOut", fadeTime);
 
-        if (turn == "playerTurn")
-            GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
-        else if (turn == "UnitTurn")
-            GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
+        GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
+    }
+
+    public void SetUnitTurnImage()
+    {
+        FadeIn();
+        Invoke("FadeOut", fadeTime);
+
+        GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
     }
 
     public void FadeIn()
@@ -25,7 +32,7 @@ public class UI_TurnNotify : UI_Scene
     public void FadeOut()
     {
         GetComponent<FadeController>().StartFadeOut();
-        Invoke("Destroy", 0.5f);
+        Invoke("Destroy", fadeTime);
     }
 
     private void Destroy()
