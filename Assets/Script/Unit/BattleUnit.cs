@@ -28,7 +28,9 @@ public class BattleUnit : MonoBehaviour
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
+
     private float scale;
+    private float GetModifiedScale() => scale + ((scale * 0.1f) * (Location.y - 1));
 
     // 23.02.16 임시 수정
     private Action<BattleUnit> _UnitDeadAction;
@@ -154,7 +156,10 @@ public class BattleUnit : MonoBehaviour
 
     public void SetPosition(Vector3 dest)
     {
+        float s = GetModifiedScale();
+
         transform.position = dest;
+        transform.localScale = new Vector3(s, s, 1);
     }
 
     public IEnumerator MovePosition(Vector3 dest)
@@ -164,7 +169,7 @@ public class BattleUnit : MonoBehaviour
         Vector3 curP = transform.position;
         Vector3 curS = transform.localScale;
 
-        float addScale = scale + ((scale * 0.1f) * (Location.y - 1));
+        float addScale = GetModifiedScale();
 
         while (time < moveTime)
         {
