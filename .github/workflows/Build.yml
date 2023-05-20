@@ -37,7 +37,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-          projectPath: Project_Blind
+          projectPath: .
 
       - uses: actions/upload-artifact@v2
         with:
