@@ -19,10 +19,15 @@ public class DeckUnit
     public void SetStigma()
     {
         foreach (Passive stigma in Data.IngerenceStigma)
-            Stigma.Add(stigma);
+            AddStigma(stigma);
 
         foreach (낙인 stigma in stigmas)
             SetStigmaByEnum(stigma);
+    }
+
+    public void AddStigma(Passive passive)
+    {
+        Stigma.Add(passive);
     }
 
     public Type RemoveRandomStigma()
