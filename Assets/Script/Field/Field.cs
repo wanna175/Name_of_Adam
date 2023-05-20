@@ -133,7 +133,6 @@ public class Field : MonoBehaviour
         
         float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
         position.y -= sizeY;
-        //position.z = 1.729823f;
 
         return position;
     }
