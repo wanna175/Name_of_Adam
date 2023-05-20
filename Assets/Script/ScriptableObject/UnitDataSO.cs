@@ -35,11 +35,11 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private RuntimeAnimatorController _corruptionAnimatorController;
     public RuntimeAnimatorController CorruptionAnimatorController => _corruptionAnimatorController;
 
-    [SerializeField] private AnimationClip _skillEffectController;
-    public AnimationClip SkillEffectController => _skillEffectController;
+    [SerializeField] private AnimationClip _skillEffectAnim;
+    public AnimationClip SkillEffectAnim => _skillEffectAnim;
 
-    [SerializeField] private AnimationClip _corruptionSkillEffectController;
-    public AnimationClip CorruptionSkillEffectController => _corruptionSkillEffectController;
+    [SerializeField] private AnimationClip _corruptionSkillEffectAnim;
+    public AnimationClip CorruptionSkillEffectAnim => _corruptionSkillEffectAnim;
 
     [SerializeField] private AnimType _animType;
     public AnimType AnimType => _animType;

@@ -292,8 +292,8 @@ public class BattleManager : MonoBehaviour
             unit.PassiveCheck(unit, hit, PassiveType.BEFOREATTACK);
             unit.SkillUse(hit);
 
-            if (unit.SkillEffect != null)
-                GameManager.VisualEffect.StartVisualEffect(unit.SkillEffect, hit.transform.position);
+            if (unit.SkillEffectAnim != null)
+                GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnim, hit.transform.position);
             
             if (team != hit.Team)
                 hit.ChangeHP(1000);
