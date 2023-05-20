@@ -12,9 +12,9 @@ public class UI_TurnNotify : UI_Scene
     {
         FadeIn();
         Invoke("FadeOut", fadeTime);
-        //PlayerTurn, UnitTurn µÎ°¡Áö¸¸ ÀÎÀÚ·Î
+        //PlayerTurn, UnitTurn ÂµÃÂ°Â¡ÃÃ¶Â¸Â¸ Ã€ÃÃ€ÃšÂ·Ã
         
-        GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/" + turn +  "Text");
+        GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/{turn}Text");
     }
 
     public void FadeIn()
