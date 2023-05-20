@@ -7,8 +7,8 @@ public class PreparePhase : Phase
         GameManager.Sound.Play("Stage_Transition/Prepare/PrepareEnter");
         BattleManager.Mana.ChangeMana(15);
         BattleManager.Data.TurnPlus();
-        BattleManager.Data.UI_PlayerSkill.Used = false;
-        BattleManager.Instance.ChangeButtonName();
+        BattleManager.BattleUI.UI_playerSkill.Used = false;
+        BattleManager.BattleUI.ChangeButtonName();
         GameManager.UI.ShowScene<UI_TurnNotify>().SetPlayerTurnImage();
     }
 
