@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
@@ -23,6 +22,9 @@ public class BattleManager : MonoBehaviour
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
 
+    private BattleUIManager _battleUI;
+    public static BattleUIManager BattleUI => Instance._battleUI;
+
     private Field _field;
     public static Field Field => Instance._field;
 
@@ -31,8 +33,6 @@ public class BattleManager : MonoBehaviour
 
     private PhaseController _phase;
     public static PhaseController Phase => Instance._phase;
-
-    private UI_TurnChangeButton _turnChangeButton;
 
     private List<BattleUnit> hitUnits;
     private Vector2 coord;
@@ -43,8 +43,8 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
+        _battleUI = Util.GetOrAddComponent<BattleUIManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
@@ -88,19 +88,6 @@ public class BattleManager : MonoBehaviour
     public void SpawnInitialUnit()
     {
         GetComponent<UnitSpawner>().SpawnInitialUnit();
-    }
-
-    public void ChangeButtonName()
-    {
-        TextMeshProUGUI buttonName = _turnChangeButton.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-        if (Phase.Current == Phase.Prepare)
-            buttonName.text = "Next Turn";
-        else if (Phase.Current == Phase.Engage)
-            buttonName.text = "";
-        else if (Phase.Current == Phase.Move)
-            buttonName.text = "Move Skip";
-        else if (Phase.Current == Phase.Action)
-            buttonName.text = "Action Skip";
     }
 
     private void SetBackground()
@@ -217,7 +204,7 @@ public class BattleManager : MonoBehaviour
 
     private void SpawnUnitOnField(bool isFrist=false)
     {
-        DeckUnit unit = Data.UI_hands.GetSelectedUnit();
+        DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
@@ -228,7 +215,7 @@ public class BattleManager : MonoBehaviour
             Mana.ChangeMana(-unit.Stat.ManaCost);
 
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
-        Data.RemoveHandUnit(unit);
+        BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
     }
@@ -244,8 +231,8 @@ public class BattleManager : MonoBehaviour
         GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         Field.GetUnit(coord).ChangeFall(1);
 
-        Data.UI_PlayerSkill.CancleSelect();
-        Data.UI_PlayerSkill.Used = true;
+        BattleUI.UI_playerSkill.CancleSelect();
+        BattleUI.UI_playerSkill.Used = true;
         Field.ClearAllColor();
         BattleOverCheck();
     }
@@ -261,8 +248,8 @@ public class BattleManager : MonoBehaviour
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         Field.GetUnit(coord).ChangeHP(-20);
 
-        Data.UI_PlayerSkill.CancleSelect();
-        Data.UI_PlayerSkill.Used = true;
+        BattleUI.UI_playerSkill.CancleSelect();
+        BattleUI.UI_playerSkill.Used = true;
         Field.ClearAllColor();
         BattleOverCheck();
     }
@@ -346,7 +333,7 @@ public class BattleManager : MonoBehaviour
         Data.BattleOrderRemove(Data.GetNowUnit());
         BattleOverCheck();
         _phase.ChangePhase(_phase.Engage);
-        Data.UI_DarkEssence.Refresh(); //이 코드를 발견했다면 수정해야하는 임시 코드이니 알릴 것
+        BattleUI.UI_darkEssence.Refresh();
     }
 
     private void UnitDeadAction(BattleUnit _unit)
@@ -392,7 +379,7 @@ public class BattleManager : MonoBehaviour
         }
 
         int randNum = Random.Range(0, Data.PlayerHands.Count);
-        Data.RemoveHandUnit(Data.PlayerHands[randNum]);
+        BattleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
 
         BattleOverCheck();
     }

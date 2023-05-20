@@ -12,8 +12,8 @@ public class UI_TurnCount : UI_Scene
         _turnText = Util.FindChild<Text>(gameObject, "TurnText", true);
     }
 
-    public void Refresh(int turn)
+    public void Refresh()
     {
-        // _turnText.text = turn.ToString();
+        _turnText.text = BattleManager.Data.TurnCount.ToString();
     }
 }
