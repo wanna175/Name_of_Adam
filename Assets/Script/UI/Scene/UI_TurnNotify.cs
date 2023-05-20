@@ -12,7 +12,7 @@ public class UI_TurnNotify : UI_Scene
     {
         FadeIn();
         Invoke("FadeOut", fadeTime);
-        
+
         GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
     }
 
