@@ -15,8 +15,9 @@ public class CutSceneController : MonoBehaviour
     public float CutSceneTime = 1;
 
     public float BlinkTime = 0.1f;
-    public float ShakePower = 1;
+    public float ShakePower = 0.5f;
     public float ShakeTime = 0.1f;
+    public float ShakeCount = 5;
     
 
     public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
@@ -157,14 +158,6 @@ public class CutSceneController : MonoBehaviour
         yield return new WaitForSeconds(BlinkTime);
 
         sr.color = Color.white;
-
-        yield return new WaitForSeconds(BlinkTime);
-
-        sr.color = Color.black;
-
-        yield return new WaitForSeconds(BlinkTime);
-
-        sr.color = Color.white;
     }
 
     private IEnumerator UnitShake(BattleUnit unit)
@@ -172,27 +165,23 @@ public class CutSceneController : MonoBehaviour
         Transform trans = unit.transform;
         Vector3 originPos = trans.position;
         
-        float power = ShakePower;
+        float count = ShakeCount;
         float time = ShakeTime / ShakePower;
         bool min = true;
+        trans.position += new Vector3(ShakePower / 2, 0, 0);
 
-        trans.position += new Vector3(power / 2, 0, 0);
-        power -= time;
-
-        while (power > 0)
+        while (count > 0)
         {
+            yield return new WaitForSeconds(time / ShakeCount);
+
             if (trans == null)
                 yield break;
 
-            Vector3 vec = new Vector3(power, 0, 0);
+            Vector3 vec = new Vector3(ShakePower / ShakeCount * count, 0, 0);
             if (min) vec *= -1;
-
             trans.position += vec;
-            power -= time;
+            count--;
             min = !min;
-
-            yield return new WaitForSeconds(ShakeTime / ShakePower);
-            Debug.Log('a');
         }
 
         trans.position = originPos;
