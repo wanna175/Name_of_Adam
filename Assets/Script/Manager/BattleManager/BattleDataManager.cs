@@ -7,55 +7,18 @@ public class BattleDataManager : MonoBehaviour
 {
     private void Start()
     {
-        UI_ControlBar UI_Control = GameManager.UI.ShowScene<UI_ControlBar>();
-        GameManager.UI.ShowScene<UI_OptionButton>();
-        GameManager.UI.ShowScene<UI_DeckButton>().Set(true);
-
-        _ui_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
-        _ui_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
-
-        UI_hands = UI_Control.UI_Hands;
-        UI_hands.SetHands();
-        UI_PlayerSkill = UI_Control.UI_PlayerSkill;
-        UI_DarkEssence = UI_Control.UI_DarkEssence;
-        UI_ManaGauge = UI_Control.UI_ManaGauge;
-
         Init();
     }
-
-    #region Turn Count
-    private UI_TurnCount _ui_turnCount;
-    private int _turnCount = 0;
-
-    public void TurnPlus()
-    {
-        _turnCount++;
-        _ui_turnCount.Refresh(_turnCount);
-    }
-    #endregion
 
     [SerializeField] private List<DeckUnit> _playerDeck = new List<DeckUnit>();
     public List<DeckUnit> PlayerDeck => _playerDeck;
 
     [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
     public List<DeckUnit> PlayerHands => _playerHands;
-    private int _maxHandCount = 3;
-
-    public UI_Hands UI_hands;
-    public UI_PlayerSkill UI_PlayerSkill;
-    public UI_DarkEssence UI_DarkEssence;
-    public UI_ManaGauge UI_ManaGauge;
 
     private void Init()
     {
         _playerDeck = GameManager.Data.GetDeck().ToList<DeckUnit>();
-        FillHand();
-    }
-
-    public void DarkEssenseChage(int chage)
-    {
-        GameManager.Data.DarkEssenseChage(-1);
-        UI_DarkEssence.Refresh();
     }
 
     public void OnBattleOver()
@@ -64,60 +27,40 @@ public class BattleDataManager : MonoBehaviour
         foreach (DeckUnit unit in PlayerHands)
         {
             AddDeckUnit(unit);
-            Debug.Log(unit.Data.Name);
         }
 
         foreach (BattleUnit unit in BattleUnitList)
         {
             unit.DeckUnit.ChangedStat.FallCurrentCount = unit.Fall.GetCurrentFallCount();
             AddDeckUnit(unit.DeckUnit);
-            Debug.Log(unit.Data.Name);
-        }
-
-        foreach (DeckUnit unit in _playerDeck)
-        {
-            Debug.Log(unit.Data.Name);
         }
 
         GameManager.Data.SetDeck(_playerDeck);
-
-        foreach (DeckUnit unit in GameManager.Data.GetDeck())
-        {
-            Debug.Log(unit.Data.Name);
-        }
     }
 
-    public void AddDeckUnit(DeckUnit unit) {
+    private int _turnCount = 0;
+    public int TurnCount => _turnCount;
+
+    public void TurnPlus()
+    {
+        _turnCount++;
+        BattleManager.BattleUI.UI_turnCount.Refresh();
+    }
+
+    public void DarkEssenseChage(int chage)
+    {
+        GameManager.Data.DarkEssenseChage(chage);
+        BattleManager.BattleUI.UI_darkEssence.Refresh();
+    }
+
+    public void AddDeckUnit(DeckUnit unit)
+    {
         PlayerDeck.Add(unit);
     }
 
-    public void RemoveDeckUnit(DeckUnit unit) {
+    public void RemoveDeckUnit(DeckUnit unit)
+    {
         PlayerDeck.Remove(unit);
-    }
-
-    public void AddHandUnit(DeckUnit unit)
-    {
-        PlayerHands.Add(unit);
-        UI_hands.AddUnit(unit);
-    }
-
-    public void RemoveHandUnit(DeckUnit unit)
-    {
-        PlayerHands.Remove(unit);
-        UI_hands.RemoveUnit(unit);
-        FillHand();
-        //UI_hands.SetHands(GameManager.Data.GetDeck());
-    }
-
-    public void FillHand()
-    {
-        while (PlayerHands.Count < _maxHandCount)
-        {
-            DeckUnit unit = GetRandomUnitFromDeck();
-            if (unit == null)
-                return;
-            AddHandUnit(unit);
-        }
     }
 
     public DeckUnit GetRandomUnitFromDeck()
@@ -146,11 +89,8 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
 
-
     #region OrderedList
     private List<BattleUnit> _battleUnitOrderList = new List<BattleUnit>();
-    private UI_WaitingLine _ui_waitingLine;
-
     public int OrderUnitCount => _battleUnitOrderList.Count;
 
     public void BattleUnitOrder()
@@ -164,12 +104,7 @@ public class BattleDataManager : MonoBehaviour
 
         BattleOrderReplace();
 
-        RefreshWaitingLine();
-    }
-
-    public void RefreshWaitingLine()
-    {
-        _ui_waitingLine.SetWaitingLine(_battleUnitOrderList);
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }
 
     private void BattleOrderReplace()
@@ -182,9 +117,9 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleOrderRemove(BattleUnit removedUnit)
     {
-        _ui_waitingLine.RemoveUnit(removedUnit);
+        BattleManager.BattleUI.UI_waitingLine.RemoveUnit(removedUnit);
         _battleUnitOrderList.Remove(removedUnit);
-        RefreshWaitingLine();
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }
 
     public BattleUnit GetNowUnit()

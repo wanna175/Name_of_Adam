@@ -11,11 +11,10 @@ public class UI_Info : UI_Popup
     [SerializeField] private TextMeshProUGUI _stat;
 
     [SerializeField] private UI_HPBar _hpBar;
-    [SerializeField] private UI_Stigma _stigama_small;
+    [SerializeField] private UI_HoverImageBlock _stigama_small;
     [SerializeField] private Transform _stigamaGrid;
 
-    [SerializeField] private TextMeshProUGUI _skillText;
-    [SerializeField] private Image _SkillImage;
+    [SerializeField] private UI_HoverImageBlock _SkillImage;
 
     [SerializeField] private Transform _rangeGrid;
     [SerializeField] private GameObject _squarePrefab;
@@ -38,15 +37,17 @@ public class UI_Info : UI_Popup
         unit.SetStigma();
         foreach (Passive sti in unit.Stigma)
         {
-            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_Stigma>().SetImage(sti.Sprite, sti.Description);
+            GameObject.Instantiate(_stigama_small, _stigamaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }
 
-        _skillText.text = unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString());
-
         if (unit.Data.BehaviorType == BehaviorType.근거리)
-            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘");
+        {
+            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘"), unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
+        }
         else
-            _SkillImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘");
+        {
+            _SkillImage.Set(GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘"), unit.Data.Description.Replace("(ATK)", unit.Stat.ATK.ToString()));
+        }
 
         foreach (bool range in unit.Data.AttackRange)
         {

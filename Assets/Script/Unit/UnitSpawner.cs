@@ -119,35 +119,4 @@ public class UnitSpawner : MonoBehaviour
             go = new GameObject("Units");
         return go.transform;
     }
-
-    // *****
-    // 임시임시
-    // 팩토리는 다른곳으로 빼는걸로
-    //private void BattleUnitFactory(Vector2 coord)
-    //{
-    //    //범위 외
-    //    if (Field.IsPlayerRange(coord) == false || Field.GetUnit(coord) != null)
-    //        return;
-
-    //    // ----------------변경 예정------------------------
-    //    Unit clickedUnit = _hands.ClickedUnit;
-    //    if (clickedUnit == null)
-    //        return;
-
-    //    _mana.ChangeMana(-1 * clickedUnit.Data.ManaCost);
-
-    //    GameObject BattleUnitPrefab = GameManager.Resource.Instantiate("Units/BaseUnit");
-    //    BattleUnit BattleUnit = BattleUnitPrefab.GetComponent<BattleUnit>();
-
-    //    GameObject go = GameObject.Instantiate(data.prefab, parent);
-    //    GameManager.Battle.UnitSetting(go.GetComponent<BattleUnit>(), data.location);
-
-    //    BattleUnit.Data = clickedUnit.Data;
-    //    UnitSetting(BattleUnit, coord);
-
-    //    Data.BattleUnitAdd(BattleUnit);
-    //    // ------------------------------------------------
-    //}
-
-
 }

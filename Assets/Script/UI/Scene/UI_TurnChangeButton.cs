@@ -32,7 +32,9 @@ public class UI_TurnChangeButton : UI_Scene
                 myUnit++;
         }
 
-        if (myUnit == 0)
+        PreparePhase prepare = (PreparePhase)_phase.Prepare;
+
+        if (myUnit == 0 && prepare.isFirst)
             return;
 
         if (_phase.Current == _phase.Prepare)

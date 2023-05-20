@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-public class UI_TextHover : UI_Popup
+public class UI_TextHover : UI_Hover
 {
     [SerializeField] public TextMeshProUGUI _text;
     [SerializeField] public GameObject _block;

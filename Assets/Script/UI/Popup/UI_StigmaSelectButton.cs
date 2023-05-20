@@ -7,33 +7,26 @@ using TMPro;
 
 public class UI_StigmaSelectButton : UI_Popup
 {
-    [SerializeReference] private Image _imageBTN1;
-    [SerializeReference] private Image _imageBTN2;
-    [SerializeReference] private Image _imageBTN3;
+    [SerializeReference] private List<UI_HoverImageBlock> _image;
+    [SerializeReference] private List<TextMeshProUGUI> _text;
 
-    [SerializeReference] private TextMeshProUGUI _textBTN1;
-    [SerializeReference] private TextMeshProUGUI _textBTN2;
-    [SerializeReference] private TextMeshProUGUI _textBTN3;
-
-    private StigmaStore _ss;
-    public void init(StigmaStore ss,  List<Passive> stigmaList)
+    private StigmaStore _store;
+    public void init(StigmaStore store,  List<³«ÀÎ> stigmaList)
     {
-        _ss = ss;
-        
-        _textBTN1.text = stigmaList[0].ToString();
-        _textBTN2.text = stigmaList[1].ToString();
-        _textBTN3.text = stigmaList[2].ToString();
+        _store = store;
 
-        DeckUnit u = new();
+        for (int i = 0; i < 3; i++)
+            _text[i].text = stigmaList[i].ToString();
 
-        //_imageBTN1.sprite = u.GetStigmaImage(stigmaList[0]);
-        //_imageBTN2.sprite = u.GetStigmaImage(stigmaList[1]);
-        //_imageBTN3.sprite = u.GetStigmaImage(stigmaList[2]);
+        DeckUnit unit = new();
 
+        for (int i = 0; i < 3; i++)
+            _image[i].Set(unit.GetStigmaImage(stigmaList[i]), unit.GetStigmaText(stigmaList[i]));
     }
 
     public void OnClick(int select)
     {
-        //_ss.OnStigmaSelect(select);
+        _store.OnStigmaSelect(select);
+        GameManager.UI.CloseHover();
     }
 }

@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
 {
     private int _order = 10;
     private Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
+    private UI_Hover _hover;
+
     public GameObject Root
     {
         get
@@ -95,7 +97,6 @@ public class UIManager : MonoBehaviour
         UI_Popup popup = _popupStack.Pop();
         if (popup != null)
         {
-            Debug.Log("ClosePopUp 오류");
             GameManager.Resource.Destroy(popup.gameObject);
         }
         popup = null;
@@ -118,5 +119,30 @@ public class UIManager : MonoBehaviour
             return null;
 
         return _popupStack.Peek();
+    }
+
+    /// <summary>
+    /// Hover UI를 관리할 때 씁니다. Hover UI는 1개만 존재할 수 있습니다.
+    /// </summary>
+    public T ShowHover<T>(string name = null) where T : UI_Hover
+    {
+        if (_hover != null)
+            CloseHover();
+
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = GameManager.Resource.Instantiate($"UI/Hover/{name}", Root.transform);
+        T hover = go.GetOrAddComponent<T>();
+        SetCanvas(go, true);
+        _hover = hover;
+
+        return hover;
+    }
+
+    public void CloseHover()
+    {
+        GameManager.Resource.Destroy(_hover.gameObject);
+        _hover = null;
     }
 }

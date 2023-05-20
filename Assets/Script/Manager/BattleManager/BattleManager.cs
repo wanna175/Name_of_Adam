@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
@@ -24,6 +22,9 @@ public class BattleManager : MonoBehaviour
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
 
+    private BattleUIManager _battleUI;
+    public static BattleUIManager BattleUI => Instance._battleUI;
+
     private Field _field;
     public static Field Field => Instance._field;
 
@@ -32,8 +33,6 @@ public class BattleManager : MonoBehaviour
 
     private PhaseController _phase;
     public static PhaseController Phase => Instance._phase;
-
-    private UI_TurnChangeButton _turnChangeButton;
 
     private List<BattleUnit> hitUnits;
     private Vector2 coord;
@@ -44,8 +43,8 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
+        _battleUI = Util.GetOrAddComponent<BattleUIManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
@@ -91,22 +90,9 @@ public class BattleManager : MonoBehaviour
         GetComponent<UnitSpawner>().SpawnInitialUnit();
     }
 
-    public void ChangeButtonName()
-    {
-        TextMeshProUGUI buttonName = _turnChangeButton.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-        if (Phase.Current == Phase.Prepare)
-            buttonName.text = "Next Turn";
-        else if (Phase.Current == Phase.Engage)
-            buttonName.text = "";
-        else if (Phase.Current == Phase.Move)
-            buttonName.text = "Move Skip";
-        else if (Phase.Current == Phase.Action)
-            buttonName.text = "Action Skip";
-    }
-
     private void SetBackground()
     {
-        String str = GameManager.Data.CurrentStageData.FactionName;
+        string str = GameManager.Data.CurrentStageData.FactionName;
 
         for(int i = 0; i < 3; i++)
         {
@@ -115,7 +101,7 @@ public class BattleManager : MonoBehaviour
                 Background.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
-
+    #region Click 관련
 
     public void MovePhase()
     {
@@ -198,15 +184,27 @@ public class BattleManager : MonoBehaviour
         {
             SpawnUnitOnField();
         }
-        else if (fieldColorType == FieldColorType.FallPlayerSkill)
+        else if (fieldColorType == FieldColorType.PlayerSkillWhisper)
         {
             FallUnitOnField();
+        }
+        else if (fieldColorType == FieldColorType.PlayerSkill_1)
+        {
+            DamageUnitOnField();
+        }
+        else if (fieldColorType == FieldColorType.PlayerSkill_2)
+        {
+
+        }
+        else if (fieldColorType == FieldColorType.PlayerSkill_3)
+        {
+
         }
     }
 
     private void SpawnUnitOnField(bool isFrist=false)
     {
-        DeckUnit unit = Data.UI_hands.GetSelectedUnit();
+        DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
@@ -217,7 +215,7 @@ public class BattleManager : MonoBehaviour
             Mana.ChangeMana(-unit.Stat.ManaCost);
 
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
-        Data.RemoveHandUnit(unit);
+        BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
     }
@@ -226,13 +224,32 @@ public class BattleManager : MonoBehaviour
     {
         if (Field._coloredTile.Contains(coord) == false)
             return;
-        
+
         Mana.ChangeMana(-20);
         Data.DarkEssenseChage(-1);
+
         GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         Field.GetUnit(coord).ChangeFall(1);
-        _battleData.UI_PlayerSkill.CancleSelect();
-        _battleData.UI_PlayerSkill.Used = true;
+
+        BattleUI.UI_playerSkill.CancleSelect();
+        BattleUI.UI_playerSkill.Used = true;
+        Field.ClearAllColor();
+        BattleOverCheck();
+    }
+
+    private void DamageUnitOnField()
+    {
+        if (Field._coloredTile.Contains(coord) == false)
+            return;
+
+        Mana.ChangeMana(-20);
+        Data.DarkEssenseChage(0);
+
+        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        Field.GetUnit(coord).ChangeHP(-20);
+
+        BattleUI.UI_playerSkill.CancleSelect();
+        BattleUI.UI_playerSkill.Used = true;
         Field.ClearAllColor();
         BattleOverCheck();
     }
@@ -242,6 +259,7 @@ public class BattleManager : MonoBehaviour
         coord = Field.FindCoordByTile(tile);
         _phase.OnClickEvent();
     }
+    #endregion
 
     public void UnitSetting(BattleUnit _unit, Vector2 coord, Team team)
     {
@@ -258,7 +276,7 @@ public class BattleManager : MonoBehaviour
         UnitAttackAction();
         yield return StartCoroutine(CutScene.AfterAttack());
         
-        EndUnitkAction();
+        EndUnitAction();
     }
 
     public void AttackStart(BattleUnit caster, BattleUnit hit)
@@ -309,13 +327,13 @@ public class BattleManager : MonoBehaviour
 
     }
 
-    public void EndUnitkAction()
+    public void EndUnitAction()
     {
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());
         BattleOverCheck();
         _phase.ChangePhase(_phase.Engage);
-        Data.UI_DarkEssence.Refresh(); //이 코드를 발견했다면 수정해야하는 임시 코드이니 알릴 것
+        BattleUI.UI_darkEssence.Refresh();
     }
 
     private void UnitDeadAction(BattleUnit _unit)
@@ -349,10 +367,21 @@ public class BattleManager : MonoBehaviour
         Destroy(_unit.gameObject);
     }
 
-    public void DirectAttack()//임시 삭제
+    public void DirectAttack()
     {
-        int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
-        Data.RemoveHandUnit(Data.PlayerHands[randNum]);
+        //핸드에 있는 유닛을 하나 무작위로 제거하고 배틀 종료 체크
+        Debug.Log("DirectAttack");
+
+        if (Data.PlayerHands.Count == 0)
+        {
+            BattleOverCheck();
+            return;
+        }
+
+        int randNum = Random.Range(0, Data.PlayerHands.Count);
+        BattleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
+
+        BattleOverCheck();
     }
 
     public void BattleOverCheck()
@@ -368,8 +397,8 @@ public class BattleManager : MonoBehaviour
                 EnemyUnit++;
         }
 
-        //MyUnit += Data.PlayerDeck.Count;
-        //MyUnit += Data.PlayerHands.Count;
+        MyUnit += Data.PlayerDeck.Count;
+        MyUnit += Data.PlayerHands.Count;
         //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
@@ -387,14 +416,14 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowScene<UI_BattleOver>().SetImage(1);
+        GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
     }
 
     private void BattleOverLose()
     {
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowScene<UI_BattleOver>().SetImage(3);
+        GameManager.UI.ShowScene<UI_BattleOver>().SetImage("lose");
         GameManager.Data.DeckClear();
     }
 
@@ -408,51 +437,6 @@ public class BattleManager : MonoBehaviour
         GameManager.Sound.Play("Move/MoveSFX");
     }
 
-    public enum FieldColorType
-    {
-        none,
-        UnitSpawn,
-        FallPlayerSkill
-    }
-
-    public bool UnitSpawnReady(bool b)
-    {
-        if (_phase.Current != _phase.Prepare)
-            return false;
-
-        if (b)
-        {
-            Field.SetTileColor();
-            fieldColorType = FieldColorType.UnitSpawn;
-        }
-        else
-        {
-            Field.ClearAllColor();
-            fieldColorType = FieldColorType.none;
-        }
-
-        return true;
-    }
-
-    public bool FallPlayerSkillReady(bool b)
-    {
-        if (_phase.Current != _phase.Prepare)
-            return false;
-
-        if (b)
-        {
-            Field.SetEnemyUnitTileColor();
-            fieldColorType = FieldColorType.FallPlayerSkill;
-        }
-        else
-        {
-            Field.ClearAllColor();
-            fieldColorType = FieldColorType.none;
-        }
-
-        return true;
-    }
-
     public List<BattleUnit> GetArroundUnits(List<Vector2> coords)
     {
         List<BattleUnit> units = new List<BattleUnit>();
@@ -463,8 +447,65 @@ public class BattleManager : MonoBehaviour
             if (targetUnit == null)
                 continue;
             units.Add(targetUnit);
-        }    
+        }
 
         return units;
     }
+
+    #region Field Color 관련
+    public enum FieldColorType
+    {
+        none,
+        UnitSpawn,
+        PlayerSkillWhisper,
+        PlayerSkill_1,//아마 데미지
+        PlayerSkill_2,//아마 이동
+        PlayerSkill_3//아마 바운스
+    }
+
+    public bool UnitSpawnReady(FieldColorType colorType)
+    {
+        if (_phase.Current != _phase.Prepare)
+            return false;
+
+        if (colorType == FieldColorType.none)
+            Field.ClearAllColor();
+        else
+            Field.SetSpawnTileColor();
+        
+        fieldColorType = colorType;
+
+        return true;
+    }
+
+    public bool EnemyTargetPlayerSkillReady(FieldColorType colorType)
+    {
+        if (_phase.Current != _phase.Prepare)
+            return false;
+
+        if (colorType == FieldColorType.none)
+            Field.ClearAllColor();
+        else
+            Field.SetEnemyUnitTileColor();
+
+        fieldColorType = colorType;
+
+        return true;
+    }
+
+    public bool FriendlyTargetPlayerSkillReady(FieldColorType colorType)
+    {
+        if (_phase.Current != _phase.Prepare)
+            return false;
+
+        if (colorType == FieldColorType.none)
+            Field.ClearAllColor();
+        else
+            Field.SetFriendlyUnitTileColor();
+
+        fieldColorType = colorType;
+
+        return true;
+    }
+    #endregion
 }

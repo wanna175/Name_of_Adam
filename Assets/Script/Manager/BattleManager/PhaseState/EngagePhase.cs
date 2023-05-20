@@ -14,7 +14,7 @@ public class EngagePhase : Phase
             _engageInfo = GameManager.UI.ShowPopup<UI_Info>();
             _engageInfo.Set(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
         }
-        BattleManager.Instance.ChangeButtonName();
+        BattleManager.BattleUI.ChangeButtonName();
     }
 
     public override void OnStateUpdate()
