@@ -349,7 +349,7 @@ public class UnitAIController : MonoBehaviour
             Attack(MinHPSearch(AttackRangeUnitList));
         }
         else
-            BattleManager.Instance.EndUnitkAction();
+            BattleManager.Instance.EndUnitAction();
     }
 }
 
