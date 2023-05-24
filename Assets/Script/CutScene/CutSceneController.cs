@@ -64,8 +64,7 @@ public class CutSceneController : MonoBehaviour
             if (unit != null)
             {
                 unit.GetComponent<Animator>().SetBool("isHit", true);
-                StartCoroutine(UnitBlink(unit));
-                StartCoroutine(UnitShake(unit));
+                UnitShake(unit);
             }
         }
 
@@ -149,41 +148,8 @@ public class CutSceneController : MonoBehaviour
 
     }
 
-    private IEnumerator UnitBlink(BattleUnit unit)
+    private void UnitShake(BattleUnit unit)
     {
-        SpriteRenderer sr = unit.GetComponent<SpriteRenderer>();
-
-        sr.color = Color.black;
-
-        yield return new WaitForSeconds(BlinkTime);
-
-        sr.color = Color.white;
-    }
-
-    private IEnumerator UnitShake(BattleUnit unit)
-    {
-        Transform trans = unit.transform;
-        Vector3 originPos = trans.position;
-        
-        float count = ShakeCount;
-        float time = ShakeTime / ShakePower;
-        bool min = true;
-        trans.position += new Vector3(ShakePower / 2, 0, 0);
-
-        while (count > 0)
-        {
-            yield return new WaitForSeconds(time / ShakeCount);
-
-            if (trans == null)
-                yield break;
-
-            Vector3 vec = new Vector3(ShakePower / ShakeCount * count, 0, 0);
-            if (min) vec *= -1;
-            trans.position += vec;
-            count--;
-            min = !min;
-        }
-
-        trans.position = originPos;
+        unit.ShakeUnit(ShakeCount, ShakeTime, ShakePower);
     }
 }
