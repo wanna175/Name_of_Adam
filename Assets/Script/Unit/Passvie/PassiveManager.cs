@@ -8,7 +8,7 @@ public class PassiveManager
     public enum PassiveManageType
     {
         Entire,
-        Special,
+        Unique,
         Common,
     }
 
@@ -23,7 +23,7 @@ public class PassiveManager
     private void LoadPassiveList()
     {
         List<Passive> common = new List<Passive>();
-        List<Passive> special = new List<Passive>();
+        List<Passive> unique = new List<Passive>();
         List<Passive> entire = new List<Passive>();
 
         string path = "Assets/Resources/Prefabs/Passive";
@@ -39,7 +39,7 @@ public class PassiveManager
             Passive passive = go.GetComponent<Passive>();
 
             if (passive.IsSpecial)
-                special.Add(passive);
+                unique.Add(passive);
             else
                 common.Add(passive);
 
@@ -47,7 +47,7 @@ public class PassiveManager
         }
 
         PassiveDict.Add(PassiveManageType.Common, common);
-        PassiveDict.Add(PassiveManageType.Special, special);
+        PassiveDict.Add(PassiveManageType.Unique, unique);
         PassiveDict.Add(PassiveManageType.Entire, entire);
     }
 
