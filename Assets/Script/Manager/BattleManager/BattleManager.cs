@@ -176,8 +176,7 @@ public class BattleManager : MonoBehaviour
 
         if (fieldColorType == FieldColorType.UnitSpawn)
         {
-            //SpawnUnitOnField(true);
-            SpawnUnitOnField();
+            SpawnUnitOnField(true);
         }
     }
 
