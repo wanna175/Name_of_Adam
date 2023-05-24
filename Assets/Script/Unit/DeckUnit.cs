@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -17,6 +18,8 @@ public class DeckUnit
 
     public void SetStigma()
     {
+        Stigma = Stigma.Distinct().ToList();
+
         foreach (Passive stigma in Data.UniqueStigma)
             AddStigma(stigma);
 
