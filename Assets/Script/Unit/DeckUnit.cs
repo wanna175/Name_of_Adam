@@ -11,7 +11,6 @@ public class DeckUnit
     [SerializeField] public Stat ChangedStat; // 영구 변화 수치
     public Stat Stat => Data.RawStat + ChangedStat; // Memo : 나중에 낙인, 버프 추가한 스탯으로 수정
     
-    [SerializeField] private List<낙인> stigmas = new List<낙인>();
     [SerializeField] public List<Passive> Stigma = new List<Passive>();
 
     private int _maxStigmaCount = 3;
@@ -21,12 +20,24 @@ public class DeckUnit
         foreach (Passive stigma in Data.IngerenceStigma)
             AddStigma(stigma);
 
-        foreach (낙인 stigma in stigmas)
-            SetStigmaByEnum(stigma);
+        foreach (Passive stigma in Stigma)
+            AddStigma(stigma);
     }
 
     public void AddStigma(Passive passive)
     {
+        if (Stigma.Contains(passive))
+        {
+            Debug.Log($"이미 장착된 낙인입니다. : {passive.Name}");
+            return;
+        }
+
+        if(Stigma.Count >= _maxStigmaCount)
+        {
+            Debug.Log("최대 낙인 개수");
+            return;
+        }
+
         Stigma.Add(passive);
     }
 
@@ -42,64 +53,5 @@ public class DeckUnit
         Type removed = Stigma[num].GetType(); // 지워질 패시브의 정보
         Stigma.RemoveAt(num);
         return removed;
-    }
-
-    // 낙인 수정
-    public void SetStigmaByEnum(낙인 stigma)
-    {
-        if(Stigma.Count >= _maxStigmaCount)
-        {
-            Debug.Log($"이미 낙인이 {_maxStigmaCount}개임");
-            return;
-        }
-
-        Passive newPassive = null;
-
-        switch (stigma)
-        {
-            case 낙인.가학:
-                newPassive = new 가학();
-                break;
-            case 낙인.강림:
-                newPassive = new 강림();
-                break;
-            case 낙인.고양:
-                newPassive = new 고양(); 
-                break;
-            case 낙인.대죄:
-                newPassive = new 대죄();
-                break;
-            case 낙인.자애:
-                newPassive = new 자애();
-                break;
-            case 낙인.처형:
-                newPassive = new 처형();
-                break;
-            case 낙인.흡수:
-                newPassive = new 흡수();
-                break;
-            case 낙인.오빠:
-                newPassive = new 오빠();
-                break;
-            case 낙인.동생:
-                newPassive = new 동생();
-                break;
-            case 낙인.고문관:
-                newPassive = new 고문관();
-                break;
-            case 낙인.망령:
-                newPassive = new 망령();
-                break;
-        }
-
-        foreach(Passive passive in Stigma)
-            if(passive.GetType() == newPassive.GetType())
-            {
-                Debug.Log("이미 장착된 낙인입니다.");
-                return;
-            }
-
-        Stigma.Add(newPassive);
-        Debug.Log($"{Data.name}에 {newPassive.GetType()} 낙인이 장착되었습니다.");
     }
 }
