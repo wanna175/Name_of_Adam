@@ -169,7 +169,8 @@ public class BattleManager : MonoBehaviour
 
         if (fieldColorType == FieldColorType.UnitSpawn)
         {
-            SpawnUnitOnField(true);
+            //SpawnUnitOnField(true);
+            SpawnUnitOnField();
         }
     }
 
@@ -197,14 +198,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void SpawnUnitOnField(bool isFirst=false)
+    private void SpawnUnitOnField(bool isFrist=false)
     {
         DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         
-        if (isFirst)
+        if (isFrist)
             Mana.ChangeMana(-1 * ((unit.Stat.ManaCost + 1) / 2));
         else
             Mana.ChangeMana(-unit.Stat.ManaCost);
