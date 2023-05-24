@@ -17,7 +17,7 @@ public class DeckUnit
 
     public void SetStigma()
     {
-        foreach (Passive stigma in Data.IngerenceStigma)
+        foreach (Passive stigma in Data.UniqueStigma)
             AddStigma(stigma);
 
         foreach (Passive stigma in Stigma)
@@ -39,19 +39,5 @@ public class DeckUnit
         }
 
         Stigma.Add(passive);
-    }
-
-    public Type RemoveRandomStigma()
-    {
-        if(Stigma.Count <= 0)
-        {
-            Debug.Log("삭제할 낙인이 없습니다.");
-            return null;
-        }
-
-        int num = UnityEngine.Random.Range(0, Stigma.Count);
-        Type removed = Stigma[num].GetType(); // 지워질 패시브의 정보
-        Stigma.RemoveAt(num);
-        return removed;
     }
 }
