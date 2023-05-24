@@ -337,8 +337,6 @@ public class UnitAIController : MonoBehaviour
                 MoveUnit(MoveDirection(NearestEnemySearch()));
             }
         }
-
-        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
     }
 
     public virtual void AISkillUse()
@@ -353,7 +351,6 @@ public class UnitAIController : MonoBehaviour
         else
             BattleManager.Instance.EndUnitAction();
     }
-
 }
 
 public class CommonUnitAIController : UnitAIController
