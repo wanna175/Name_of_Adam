@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,8 +116,6 @@ public class BattleManager : MonoBehaviour
 
             MoveLocate(unit, dest); //이동시 낙인 체크
         }
-        else if (unit.Team == Team.Enemy)
-            unit.AI.AIMove();
 
         _phase.ChangePhase(_phase.Action);
     }
@@ -124,12 +123,6 @@ public class BattleManager : MonoBehaviour
     public void ActionPhase()
     {
         BattleUnit unit = Data.GetNowUnit();
-
-        if (unit.Team == Team.Enemy)
-        {
-            unit.AI.AISkillUse();
-            return;
-        }
 
         if (Field.Get_Abs_Pos(unit, FieldColor.Attack).Contains(coord) == false)
             return;
@@ -380,7 +373,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        int randNum = Random.Range(0, Data.PlayerHands.Count);
+        int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
         BattleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
 
         BattleOverCheck();
@@ -452,6 +445,15 @@ public class BattleManager : MonoBehaviour
         }
 
         return units;
+    }
+
+    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
+
+    private IEnumerator PlayCoroutine(Action action, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        action();
     }
 
     #region Field Color 관련
