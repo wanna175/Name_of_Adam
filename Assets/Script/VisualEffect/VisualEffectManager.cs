@@ -21,25 +21,26 @@ public class VisualEffectManager
     public GameObject StartVisualEffect(AnimationClip clip, Vector3 position)
     {
         GameObject go;
+        Animator _animator;
 
         if (EffectQueue.Count == 0)
             go = GameManager.Resource.Instantiate("VisualEffect", root.transform);
         else
             go = EffectQueue.Dequeue();
 
+        _animator = go.GetComponent<Animator>();
         go.transform.position = position;
         
-        AnimationClip originalClip = go.GetComponent<Animator>().runtimeAnimatorController.animationClips[0];
-        RuntimeAnimatorController myController = go.GetComponent<Animator>().runtimeAnimatorController;
+        RuntimeAnimatorController myController = _animator.runtimeAnimatorController;
         AnimatorOverrideController myOverrideController = myController as AnimatorOverrideController;
         if (myOverrideController != null)
             myController = myOverrideController.runtimeAnimatorController;
 
         AnimatorOverrideController overrideController = new AnimatorOverrideController();
         overrideController.runtimeAnimatorController = myController;
-        overrideController[originalClip] = clip;
+        overrideController["VisualEffect"] = clip;
 
-        go.GetComponent<Animator>().runtimeAnimatorController = overrideController;
+        _animator.runtimeAnimatorController = overrideController;
         go.SetActive(true);
         
         return go;
