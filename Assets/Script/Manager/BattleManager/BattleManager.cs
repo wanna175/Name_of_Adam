@@ -204,14 +204,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void SpawnUnitOnField(bool isFrist=false)
+    private void SpawnUnitOnField(bool isFirst=false)
     {
         DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
         if (Field._coloredTile.Contains(coord) == false)
             return;
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         
-        if (isFrist)
+        if (isFirst)
             Mana.ChangeMana(-1 * ((unit.Stat.ManaCost + 1) / 2));
         else
             Mana.ChangeMana(-unit.Stat.ManaCost);
