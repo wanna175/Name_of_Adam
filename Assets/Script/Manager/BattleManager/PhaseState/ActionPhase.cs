@@ -8,8 +8,14 @@ public class ActionPhase : Phase
 {
     public override void OnStateEnter()
     {
-        BattleManager.Field.SetTileColor(BattleManager.Data.GetNowUnit(), FieldColor.Attack);
+        BattleUnit unit = BattleManager.Data.GetNowUnit();
+
+        BattleManager.Field.SetTileColor(unit, FieldColor.Attack);
         BattleManager.BattleUI.ChangeButtonName();
+
+        if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
+            BattleManager.Instance.PlayAfterCoroutine(unit.AI.AISkillUse, 1);
+
     }
 
     public override void OnStateUpdate()
@@ -19,7 +25,8 @@ public class ActionPhase : Phase
 
     public override void OnClickEvent()
     {
-        BattleManager.Instance.ActionPhase();
+        if (BattleManager.Data.GetNowUnit().Team == Team.Player)
+            BattleManager.Instance.ActionPhase();
     }
 
     public override void OnStateExit()
