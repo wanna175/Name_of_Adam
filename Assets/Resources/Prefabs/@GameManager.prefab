@@ -383,6 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui: {fileID: 7143347326594482097}
   _data: {fileID: 7143347324914789121}
+  _input: {fileID: 3107478602675997737}
   Tutorial_Trigger: 1
 --- !u!1 &7143347326594482098
 GameObject:
