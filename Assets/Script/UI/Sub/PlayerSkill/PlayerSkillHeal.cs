@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSkillDamage : PlayerSkill
+public class PlayerSkillHeal : PlayerSkill
 {
-    private string name = "Damage";
+    private string name = "Heal";
     private int manaCost = 20;
     private int darkEssence = 0;
 
@@ -14,11 +14,11 @@ public class PlayerSkillDamage : PlayerSkill
 
     public override void CancleSelect()
     {
-        BattleManager.Instance.EnemyTargetPlayerSkillReady(BattleManager.FieldColorType.none);
+        BattleManager.Instance.UnitTargetPlayerSkillReady(BattleManager.FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.Instance.EnemyTargetPlayerSkillReady(BattleManager.FieldColorType.PlayerSkillDamage);
+        BattleManager.Instance.UnitTargetPlayerSkillReady(BattleManager.FieldColorType.PlayerSkillHeal);
     }
 }

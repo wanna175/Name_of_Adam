@@ -6,10 +6,10 @@ using UnityEngine;
 public class BattleUnit : MonoBehaviour
 {
     public DeckUnit DeckUnit;
-    public Stat Stat => DeckUnit.Stat + ChangedStat;
+    public Stat Stat => DeckUnit.Stat + BattleUnitChangedStat;
     public UnitDataSO Data => DeckUnit.Data;
 
-    [SerializeField] public Stat ChangedStat; 
+    [SerializeField] public Stat BattleUnitChangedStat; 
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -45,9 +45,6 @@ public class BattleUnit : MonoBehaviour
         UnitAnimator = GetComponent<Animator>();
 
         AI.SetCaster(this);
-        Debug.Log(HP);
-        Debug.Log(Stat.HP);
-        Debug.Log(Stat.CurrentHP);
         HP.Init(Stat.HP, Stat.CurrentHP);
         Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
         scale = transform.localScale.x;
@@ -326,7 +323,12 @@ public class BattleUnit : MonoBehaviour
                     passive.Use(caster, receiver);
                 }
             }
-        }
-        
+        }   
+    }
+
+    public void OnDestroy()
+    {
+        DeckUnit.ChangedStat.CurrentHP = HP.GetCurrentHP() - DeckUnit.Stat.HP;
+        DeckUnit.ChangedStat.FallCurrentCount = Fall.GetCurrentFallCount();
     }
 }

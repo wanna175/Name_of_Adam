@@ -26,11 +26,13 @@ public class BattleDataManager : MonoBehaviour
         Debug.Log("BDM Destroy");
         foreach (DeckUnit unit in PlayerHands)
         {
+            unit.ChangedStat.CurrentHP = 0;
             AddDeckUnit(unit);
         }
 
         foreach (BattleUnit unit in BattleUnitList)
         {
+            unit.DeckUnit.ChangedStat.CurrentHP = 0;
             unit.DeckUnit.ChangedStat.FallCurrentCount = unit.Fall.GetCurrentFallCount();
             AddDeckUnit(unit.DeckUnit);
         }
@@ -53,15 +55,9 @@ public class BattleDataManager : MonoBehaviour
         BattleManager.BattleUI.UI_darkEssence.Refresh();
     }
 
-    public void AddDeckUnit(DeckUnit unit)
-    {
-        PlayerDeck.Add(unit);
-    }
+    public void AddDeckUnit(DeckUnit unit) =>PlayerDeck.Add(unit);
 
-    public void RemoveDeckUnit(DeckUnit unit)
-    {
-        PlayerDeck.Remove(unit);
-    }
+    public void RemoveDeckUnit(DeckUnit unit) => PlayerDeck.Remove(unit);
 
     public DeckUnit GetRandomUnitFromDeck()
     {
