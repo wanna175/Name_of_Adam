@@ -101,6 +101,9 @@ public class BattleManager : MonoBehaviour
             if (((Faction)i + 1).ToString() == str)
                 Background.transform.GetChild(i).gameObject.SetActive(true);
         }
+
+        if(str == "" || str == null)
+            Background.transform.GetChild(0).gameObject.SetActive(true);
     }
     #region Click 관련
 
