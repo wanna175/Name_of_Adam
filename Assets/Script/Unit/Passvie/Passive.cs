@@ -7,7 +7,6 @@ using UnityEngine;
 public class Passive : MonoBehaviour
 {
     [SerializeField] private string _name;
-    public string Name => _name;
 
     [SerializeField] private Sprite _sprite;
     public Sprite Sprite => _sprite;
@@ -15,8 +14,8 @@ public class Passive : MonoBehaviour
     [SerializeField] private PassiveType _passvieType;
     public PassiveType PassiveType => _passvieType;
 
-    [SerializeField] private Rarity _rarity;
-    public Rarity Rarity => _rarity;
+    [SerializeField] private int _tier;
+    public int Tier => _tier;
 
     [SerializeField, TextArea] private string _description;
     public string Description => _description;
@@ -30,5 +29,24 @@ public class Passive : MonoBehaviour
     public virtual void Use(BattleUnit caster, BattleUnit receiver)
     {
         return;
+    }
+
+    public string GetName(bool isIncludeRomanNumber)
+    {
+        string name = _name;
+        if (isIncludeRomanNumber)
+            name = $"{name} {Enum.GetName(typeof(RomanNumber), Tier)}";
+        return name;
+    }
+
+    public bool Equals(Passive other, bool isIncludeTier)
+    {
+        if (isIncludeTier && this.Tier != other.Tier)
+            return false;
+
+        if (this.GetType() != other.GetType())
+            return false;
+
+        return true;
     }
 }
