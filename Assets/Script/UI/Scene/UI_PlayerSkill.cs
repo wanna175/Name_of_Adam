@@ -63,4 +63,6 @@ public class UI_PlayerSkill : UI_Scene
         _selectedCard = card;
         _selectedCard.ChangeSelectState(true);
     }
+
+    public UI_PlayerSkillCard GetSelectedCard() => _selectedCard;
 }
