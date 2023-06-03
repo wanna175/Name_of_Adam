@@ -38,4 +38,15 @@ public class Passive : MonoBehaviour
             name = $"{name} {Enum.GetName(typeof(RomanNumber), Tier)}";
         return name;
     }
+
+    public bool Equals(Passive other, bool isIncludeTier)
+    {
+        if (isIncludeTier && this.Tier != other.Tier)
+            return false;
+
+        if (this.GetType() != other.GetType())
+            return false;
+
+        return true;
+    }
 }
