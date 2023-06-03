@@ -94,7 +94,7 @@ public class CutSceneController : MonoBehaviour
         {
             time += Time.deltaTime;
             float t = time / CutSceneTime;
-            _CameraHandler.AttackCameraLotate(CSData.TiltPower, -CSData.AttackUnitDirection, t);
+            _CameraHandler.AttackCameraLotate(CSData.GradientPower, -CSData.AttackUnitDirection, t);
 
             yield return null;
         }
