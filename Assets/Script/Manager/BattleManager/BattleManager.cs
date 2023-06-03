@@ -101,6 +101,9 @@ public class BattleManager : MonoBehaviour
             if (((Faction)i + 1).ToString() == str)
                 Background.transform.GetChild(i).gameObject.SetActive(true);
         }
+
+        if(str == "" || str == null)
+            Background.transform.GetChild(0).gameObject.SetActive(true);
     }
     #region Click 관련
 
@@ -291,8 +294,10 @@ public class BattleManager : MonoBehaviour
     public IEnumerator UnitAttack()
     {
         UnitAttackAction();
+
         yield return StartCoroutine(CutScene.AfterAttack());
-        
+        yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
+
         EndUnitAction();
     }
 
@@ -301,13 +306,13 @@ public class BattleManager : MonoBehaviour
         List<BattleUnit> hits = new();
         hits.Add(hit);
 
-        hitUnits = hits;
-        CutScene.BattleCutScene(caster, hitUnits);
+        Data.HitUnits = hits;
+        CutScene.BattleCutScene(caster, Data.HitUnits);
     }
     public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
     {
-        hitUnits = hits;
-        CutScene.BattleCutScene(caster, hitUnits);
+        Data.HitUnits = hits;
+        CutScene.BattleCutScene(caster, Data.HitUnits);
     }
 
     // 애니메이션용 추가
@@ -315,7 +320,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit unit = Data.GetNowUnit();
         
-        foreach (BattleUnit hit in hitUnits)
+        foreach (BattleUnit hit in Data.HitUnits)
         {
             if (hit == null)
                 continue;
@@ -351,6 +356,12 @@ public class BattleManager : MonoBehaviour
         BattleOverCheck();
         _phase.ChangePhase(_phase.Engage);
         BattleUI.UI_darkEssence.Refresh();
+    }
+
+    public void StigmaSelectEvent(Corruption cor)
+    {
+        // 낙인 선택지 등장
+        cor.LoopExit();
     }
 
     private void UnitDeadAction(BattleUnit _unit)
