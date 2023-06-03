@@ -16,6 +16,15 @@ public class UI_Option : UI_Popup
     int ScreenY = 1080;
     bool isWindow = false;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitOption();
+        }
+    }
+
+
     private void OnEnable()
     {
         SetSlider();
