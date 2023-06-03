@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,11 +81,6 @@ public class UnitAIController : MonoBehaviour
                 {
                     //공격가능 타일은 공격하는 유닛의 공격 범위의 점 대칭이다. 따라서 -.
                     Vector2 attackableRange = unit.Location - range;
-                    if (!_field.IsInRange(attackableRange))
-                        continue;
-                    
-                    Debug.Log(caster.Data.Name + ": " + attackableRange.x + ". " + attackableRange.y);
-
                     AttackableTileList.Add(attackableRange);
 
                     if (TileHPDict.ContainsKey(attackableRange))
@@ -106,23 +102,18 @@ public class UnitAIController : MonoBehaviour
 
     protected bool AttackableTileSearch()
     {
-        //캐스터의 이동 범위 내에 있는 공격가능 타일을 리스트에 담는다.
+        //캐스터의 공격 범위 내에 있는 유닛을 리스트에 담는다.
         List<Vector2> swapList = new();
 
         foreach (Vector2 moveRange in caster.GetMoveRange())
         {
             Vector2 range = caster.Location + moveRange;
 
-            if (AttackableTileList.Contains(caster.Location))
-            {
-                AttackableTileInRangeList.Add(caster.Location);
-            }
-
             if (AttackableTileList.Contains(range))
             {
-                if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Enemy)
+                if (_field.TileDict[range].UnitExist)//적군이 해당 위치에 있다면, 공격 가능 대상이기에 아군인지는 확인할 필요 없다.
                     swapList.Add(range);
-                else if (!_field.TileDict[range].UnitExist)
+                else
                     AttackableTileInRangeList.Add(range);
             }
         }
@@ -136,7 +127,7 @@ public class UnitAIController : MonoBehaviour
         return AttackableTileInRangeList.Count > 0;
     }
 
-    protected List<Vector2> MinHPSearch(List<Vector2> vecList)
+    protected Vector2 MinHPSearch(List<Vector2> vecList)
     {
         //리스트에서 가장 체력이 낮은 적을 찾는다.
         List<Vector2> minHPList = new();
@@ -160,7 +151,7 @@ public class UnitAIController : MonoBehaviour
             }
         }
 
-        return minHPList;
+        return minHPList[Random.Range(0, minHPList.Count)];
     }
 
     protected void MoveUnit(Vector2 moveVector)
@@ -278,7 +269,33 @@ public class UnitAIController : MonoBehaviour
 
     public virtual void AIAction()
     {
+        if (DirectAttackCheck())
+            return;
 
+        SetUnitInAttackRangeList();
+
+        if (UnitInAttackRangeList.Count > 0)
+        {
+            Attack(MinHPSearch(UnitInAttackRangeList));
+        }
+        else
+        {
+            SetAttackableTile();
+
+            if (AttackableTileSearch())
+            {
+                MoveUnit(MinHPSearch(AttackableTileInRangeList));
+
+                SetUnitInAttackRangeList();
+                Attack(MinHPSearch(UnitInAttackRangeList));
+            }
+            else
+            {
+                MoveUnit(MoveDirection(NearestEnemySearch()));
+                BattleManager.Instance.EndUnitAction();
+            }
+        }
+        ListClear();
     }
 
     public virtual void AIMove()
@@ -287,24 +304,23 @@ public class UnitAIController : MonoBehaviour
             return;
 
         ListClear();
-        SetAttackableTile();
 
-        if (AttackableTileSearch())
+        if (SetUnitInAttackRangeList())
         {
-            List<Vector2> MinHPUnit = MinHPSearch(AttackableTileInRangeList);
-            
-            if (!MinHPUnit.Contains(caster.Location))
-            {
-                MoveUnit(MoveDirection(MinHPUnit[Random.Range(0, MinHPUnit.Count)]));
-            }
-            else
-            {
-                Debug.Log("제자리");
-            }
+            MoveUnit(caster.Location);//안 움직임
         }
         else
         {
-            MoveUnit(MoveDirection(NearestEnemySearch()));
+            SetAttackableTile();
+
+            if (AttackableTileSearch())
+            {
+                MoveUnit(MinHPSearch(AttackableTileInRangeList));
+            }
+            else
+            {
+                MoveUnit(MoveDirection(NearestEnemySearch()));
+            }
         }
 
         BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
@@ -316,9 +332,7 @@ public class UnitAIController : MonoBehaviour
 
         if (SetUnitInAttackRangeList())
         {
-            List<Vector2> MinHPUnit = MinHPSearch(UnitInAttackRangeList);
-
-            Attack(MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+            Attack(MinHPSearch(UnitInAttackRangeList));
         }
         else
             BattleManager.Instance.EndUnitAction();
@@ -341,27 +355,4 @@ public class CommonUnitAIController : UnitAIController
         base.AISkillUse();
     }
 }
-
-/*
- if 공격가능범위에 적이 있다
-    체력이 가장 낮은 적 = 찾기()
-    if 체력이 가장 낮은 적.갯수 >= 2
-        if 가만히 때릴 수 있으면
-             이동 안함
-             때림
-        else
-             랜덤하게 이동
-             때림
-    else
-        이동
-        때림
-else 가장 가까운 적 이동
-
-찾기():
-체력이 낮은 적을 찾는다.
-if 만약 스위치해야한다면
-    if 다른 방법이 없다면
-         추가
-    else 
-         안 추가
 */
