@@ -6,10 +6,10 @@ using UnityEngine;
 public class BattleUnit : MonoBehaviour
 {
     public DeckUnit DeckUnit;
-    public Stat Stat => DeckUnit.Stat + ChangedStat;
+    public Stat Stat => DeckUnit.Stat + BattleUnitChangedStat;
     public UnitDataSO Data => DeckUnit.Data;
 
-    [SerializeField] public Stat ChangedStat; 
+    [SerializeField] public Stat BattleUnitChangedStat; 
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -45,9 +45,6 @@ public class BattleUnit : MonoBehaviour
         UnitAnimator = GetComponent<Animator>();
 
         AI.SetCaster(this);
-        Debug.Log(HP);
-        Debug.Log(Stat.HP);
-        Debug.Log(Stat.CurrentHP);
         HP.Init(Stat.HP, Stat.CurrentHP);
         Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
         scale = transform.localScale.x;
@@ -90,27 +87,24 @@ public class BattleUnit : MonoBehaviour
     public void UnitFallEvent()
     {
         _hpBar.RefreshFallGauge(0);
-        // DeckUnit.ChangedStat.HP = Stat.HP;
+
         HP.Init(Stat.HP, Stat.CurrentHP);
         _hpBar.SetHPBar(Team, transform);
+        BattleManager.Data.CorruptUnits.Add(this);
+
         GameManager.Sound.Play("UI/FallSFX/Fall");
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/Corruption"), transform.position);
-
-        StartCoroutine(CorruptDelay());
-        //Debug.Log($"{Data.name} Fall");
+        GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
-    IEnumerator CorruptDelay()
-    {
-        yield return new WaitForSeconds(1.03f);
 
+    public void Corrupted()
+    {
         //타락 시 낙인 체크
+        BattleManager.Data.CorruptUnits.Remove(this);
+
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
-
-        BattleManager.Instance.BattleOverCheck();
-
     }
 
     public void AnimAttack()
@@ -326,7 +320,12 @@ public class BattleUnit : MonoBehaviour
                     passive.Use(caster, receiver);
                 }
             }
-        }
-        
+        }   
+    }
+
+    public void OnDestroy()
+    {
+        DeckUnit.ChangedStat.CurrentHP = HP.GetCurrentHP() - DeckUnit.Stat.HP;
+        DeckUnit.ChangedStat.FallCurrentCount = Fall.GetCurrentFallCount();
     }
 }

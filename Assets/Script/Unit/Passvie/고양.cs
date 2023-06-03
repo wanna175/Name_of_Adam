@@ -16,7 +16,7 @@ public class 고양 : Passive
         foreach (BattleUnit unit in targetUnits)
         {
             if (unit.Team == caster.Team)
-                unit.ChangedStat.ATK += 5;
+                unit.BattleUnitChangedStat.ATK += 5;
         }
     }
 }

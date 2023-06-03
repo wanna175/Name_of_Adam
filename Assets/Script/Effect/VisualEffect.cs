@@ -24,6 +24,6 @@ public class VisualEffect : MonoBehaviour
             yield return null;
         }
 
-        GameManager.VisualEffect.RestoreVisualEffect(gameObject);
+        GameManager.VisualEffect.RestoreEffect(AnimEffects.VisualEffect, gameObject);
     }
 }

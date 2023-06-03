@@ -101,6 +101,9 @@ public class BattleManager : MonoBehaviour
             if (((Faction)i + 1).ToString() == str)
                 Background.transform.GetChild(i).gameObject.SetActive(true);
         }
+
+        if(str == "" || str == null)
+            Background.transform.GetChild(0).gameObject.SetActive(true);
     }
     #region Click 관련
 
@@ -175,6 +178,9 @@ public class BattleManager : MonoBehaviour
 
     public void PreparePhase()
     {
+        if (Field._coloredTile.Contains(coord) == false)
+            return;
+
         if (fieldColorType == FieldColorType.UnitSpawn)
         {
             SpawnUnitOnField();
@@ -182,18 +188,22 @@ public class BattleManager : MonoBehaviour
         else if (fieldColorType == FieldColorType.PlayerSkillWhisper)
         {
             FallUnitOnField();
+            PlayerSkillUse();
         }
-        else if (fieldColorType == FieldColorType.PlayerSkill_1)
+        else if (fieldColorType == FieldColorType.PlayerSkillDamage)
         {
             DamageUnitOnField();
+            PlayerSkillUse();
         }
-        else if (fieldColorType == FieldColorType.PlayerSkill_2)
+        else if (fieldColorType == FieldColorType.PlayerSkillHeal)
         {
-
+            HealUnitOnField();
+            PlayerSkillUse();
         }
-        else if (fieldColorType == FieldColorType.PlayerSkill_3)
+        else if (fieldColorType == FieldColorType.PlayerSkillBounce)
         {
-
+            BounceUnitOnField();
+            PlayerSkillUse();
         }
     }
 
@@ -215,16 +225,12 @@ public class BattleManager : MonoBehaviour
         Field.ClearAllColor();
     }
 
-    private void FallUnitOnField()
+    private void PlayerSkillUse()
     {
-        if (Field._coloredTile.Contains(coord) == false)
-            return;
+        PlayerSkill selectedSkill = BattleUI.UI_playerSkill.GetSelectedCard().GetSkill();
 
-        Mana.ChangeMana(-20);
-        Data.DarkEssenseChage(-1);
-
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        Field.GetUnit(coord).ChangeFall(1);
+        Mana.ChangeMana(-1 * selectedSkill.GetManaCost());
+        Data.DarkEssenseChage(-1 * selectedSkill.GetDarkEssenceCost());
 
         BattleUI.UI_playerSkill.CancleSelect();
         BattleUI.UI_playerSkill.Used = true;
@@ -232,20 +238,40 @@ public class BattleManager : MonoBehaviour
         BattleOverCheck();
     }
 
+    private void FallUnitOnField()
+    {
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        //이팩트를 여기에 추가
+        Field.GetUnit(coord).ChangeFall(1);
+    }
+
     private void DamageUnitOnField()
     {
-        if (Field._coloredTile.Contains(coord) == false)
-            return;
-
-        Mana.ChangeMana(-20);
-        Data.DarkEssenseChage(0);
-
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        //이팩트를 여기에 추가
         Field.GetUnit(coord).ChangeHP(-20);
+    }
 
-        BattleUI.UI_playerSkill.CancleSelect();
-        BattleUI.UI_playerSkill.Used = true;
-        Field.ClearAllColor();
+    private void HealUnitOnField()
+    {
+        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        //이팩트를 여기에 추가
+        Field.GetUnit(coord).ChangeHP(20);
+    }
+
+    private void BounceUnitOnField()
+    {
+        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        //이팩트를 여기에 추가
+
+        BattleUnit unit = Field.GetUnit(coord);
+
+        Data.BattleUnitRemove(unit);
+        Data.BattleOrderRemove(unit);
+        Data.AddDeckUnit(unit.DeckUnit);
+        BattleUI.FillHand();
+        Field.FieldCloseInfo(Field.TileDict[coord]);
+        Destroy(unit.gameObject);
     }
 
     public void OnClickTile(Tile tile)
@@ -268,23 +294,25 @@ public class BattleManager : MonoBehaviour
     public IEnumerator UnitAttack()
     {
         UnitAttackAction();
+
         yield return StartCoroutine(CutScene.AfterAttack());
-        
+        yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
+
         EndUnitAction();
     }
 
     public void AttackStart(BattleUnit caster, BattleUnit hit)
     {
-        List<BattleUnit> hits = new List<BattleUnit>();
+        List<BattleUnit> hits = new();
         hits.Add(hit);
 
-        hitUnits = hits;
-        CutScene.BattleCutScene(caster, hitUnits);
+        Data.HitUnits = hits;
+        CutScene.BattleCutScene(caster, Data.HitUnits);
     }
     public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
     {
-        hitUnits = hits;
-        CutScene.BattleCutScene(caster, hitUnits);
+        Data.HitUnits = hits;
+        CutScene.BattleCutScene(caster, Data.HitUnits);
     }
 
     // 애니메이션용 추가
@@ -292,7 +320,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit unit = Data.GetNowUnit();
         
-        foreach (BattleUnit hit in hitUnits)
+        foreach (BattleUnit hit in Data.HitUnits)
         {
             if (hit == null)
                 continue;
@@ -330,6 +358,12 @@ public class BattleManager : MonoBehaviour
         BattleUI.UI_darkEssence.Refresh();
     }
 
+    public void StigmaSelectEvent(Corruption cor)
+    {
+        // 낙인 선택지 등장
+        cor.LoopExit();
+    }
+
     private void UnitDeadAction(BattleUnit _unit)
     {
         GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), _unit.transform.position);
@@ -357,14 +391,13 @@ public class BattleManager : MonoBehaviour
 
             yield return null;
         }
-
         Destroy(_unit.gameObject);
     }
 
     public void DirectAttack()
     {
         //핸드에 있는 유닛을 하나 무작위로 제거하고 배틀 종료 체크
-        Debug.Log("DirectAttack");
+        Debug.Log("Direct Attack");
 
         if (Data.PlayerHands.Count == 0)
         {
@@ -461,9 +494,9 @@ public class BattleManager : MonoBehaviour
         none,
         UnitSpawn,
         PlayerSkillWhisper,
-        PlayerSkill_1,//아마 데미지
-        PlayerSkill_2,//아마 이동
-        PlayerSkill_3//아마 바운스
+        PlayerSkillDamage,//아마 데미지
+        PlayerSkillHeal,//아마 힐
+        PlayerSkillBounce//아마 바운스
     }
 
     public bool UnitSpawnReady(FieldColorType colorType)
@@ -476,6 +509,21 @@ public class BattleManager : MonoBehaviour
         else
             Field.SetSpawnTileColor();
         
+        fieldColorType = colorType;
+
+        return true;
+    }
+
+    public bool UnitTargetPlayerSkillReady(FieldColorType colorType)
+    {
+        if (_phase.Current != _phase.Prepare)
+            return false;
+
+        if (colorType == FieldColorType.none)
+            Field.ClearAllColor();
+        else
+            Field.SetUnitTileColor();
+
         fieldColorType = colorType;
 
         return true;

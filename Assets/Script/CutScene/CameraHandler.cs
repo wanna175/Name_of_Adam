@@ -38,9 +38,29 @@ public class CameraHandler : MonoBehaviour
     }
 
     // 컷씬 중 카메라 회전
-    public void CameraLotate(Vector3 origin, Vector3 tilt, float t)
+    public void AttackCameraLotate(float tilt, int AttackDir, float t)
     {
-        Vector3 vec = Vector3.Lerp(origin, tilt, t);
+        t = t * 4;
+
+        if (1 < t)
+        {
+            Vector3 v = CutSceneCamera.transform.rotation.eulerAngles + new Vector3(0, 0, 0.005f * AttackDir);
+            CutSceneCamera.transform.eulerAngles = v;
+
+            return;
+        }
+        
+        float z = CutSceneCamera.transform.eulerAngles.z;
+        z = (z > 180) ? -(360 - z) : z;
+
+        float a = Mathf.Lerp(z, tilt * AttackDir, t);
+        CutSceneCamera.transform.eulerAngles = new Vector3(0, 0, a);
+    }
+
+    public void CameraLotate(Vector3 origin, Vector3 change, float t)
+    {
+        Vector3 vec = Vector3.Lerp(origin, change, t);
+
         CutSceneCamera.transform.rotation = Quaternion.Euler(vec);
     }
 
