@@ -128,3 +128,12 @@ public enum PassiveType
     ETC 
 };
 
+public enum FieldColorType
+{
+    none,
+    UnitSpawn,
+    PlayerSkillWhisper,
+    PlayerSkillDamage,
+    PlayerSkillHeal,
+    PlayerSkillBounce
+}

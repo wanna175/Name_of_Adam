@@ -12,13 +12,13 @@ public class PlayerSkillBounce : PlayerSkill
     public override int GetManaCost() => manaCost;
     public override string GetName() => name;
 
-    public override void CancleSelect()
+    public override void CancelSelect()
     {
-        BattleManager.Instance.FriendlyTargetPlayerSkillReady(BattleManager.FieldColorType.none);
+        BattleManager.PlayerSkillController.FriendlyTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.Instance.FriendlyTargetPlayerSkillReady(BattleManager.FieldColorType.PlayerSkillBounce);
+        BattleManager.PlayerSkillController.FriendlyTargetPlayerSkillReady(FieldColorType.PlayerSkillBounce);
     }
 }
