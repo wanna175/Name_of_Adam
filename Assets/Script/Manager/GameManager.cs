@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource => Instance._resource;
 
-    private InputManager _input = new InputManager();
+    [SerializeField] private InputManager _input;
     public static InputManager InputManager => Instance._input;
 
     private VisualEffectManager _visualEffect;
