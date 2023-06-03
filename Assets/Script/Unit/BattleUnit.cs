@@ -90,27 +90,24 @@ public class BattleUnit : MonoBehaviour
     public void UnitFallEvent()
     {
         _hpBar.RefreshFallGauge(0);
-        // DeckUnit.ChangedStat.HP = Stat.HP;
+
         HP.Init(Stat.HP, Stat.CurrentHP);
         _hpBar.SetHPBar(Team, transform);
+        BattleManager.Data.CorruptUnits.Add(this);
+
         GameManager.Sound.Play("UI/FallSFX/Fall");
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/Corruption"), transform.position);
-
-        StartCoroutine(CorruptDelay());
-        //Debug.Log($"{Data.name} Fall");
+        GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
-    IEnumerator CorruptDelay()
-    {
-        yield return new WaitForSeconds(1.03f);
 
+    public void Corrupted()
+    {
         //타락 시 낙인 체크
+        BattleManager.Data.CorruptUnits.Remove(this);
+
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
-
-        BattleManager.Instance.BattleOverCheck();
-
     }
 
     public void AnimAttack()

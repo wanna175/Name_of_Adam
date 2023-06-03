@@ -15,6 +15,9 @@ public class BattleDataManager : MonoBehaviour
 
     [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
     public List<DeckUnit> PlayerHands => _playerHands;
+    
+    public List<BattleUnit> HitUnits;
+    public List<BattleUnit> CorruptUnits;
 
     private void Init()
     {
