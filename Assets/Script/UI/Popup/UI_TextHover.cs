@@ -13,6 +13,22 @@ public class UI_TextHover : UI_Hover
     public void SetText(string text, Vector2 position)
     {
         _text.text = text;
-        _block.GetComponent<Transform>().position = position;
+
+        float posX;
+        float posY;
+
+        Debug.Log(position);
+
+        if (position.x > 1080 - 200)
+            posX = 1080 - 200;
+        else
+            posX = position.x;
+
+        if (position.y > 0 - 120)
+            posY = 120;
+        else
+            posY = position.y;
+
+        _block.GetComponent<Transform>().position = new(posX, posY);
     }
 }

@@ -7,6 +7,6 @@ public abstract class PlayerSkill : MonoBehaviour
     public abstract string GetName();
     public abstract int GetManaCost();
     public abstract int GetDarkEssenceCost();
-    public abstract void CancleSelect();
+    public abstract void CancelSelect();
     public abstract void OnSelect();
 }
