@@ -12,13 +12,13 @@ public class PlayerSkillDamage : PlayerSkill
     public override int GetManaCost() => manaCost;
     public override string GetName() => name;
 
-    public override void CancleSelect()
+    public override void CancelSelect()
     {
-        BattleManager.Instance.EnemyTargetPlayerSkillReady(BattleManager.FieldColorType.none);
+        BattleManager.PlayerSkillControler.EnemyTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.Instance.EnemyTargetPlayerSkillReady(BattleManager.FieldColorType.PlayerSkillDamage);
+        BattleManager.PlayerSkillControler.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkillDamage);
     }
 }

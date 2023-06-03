@@ -12,13 +12,13 @@ public class PlayerSkillHeal : PlayerSkill
     public override int GetManaCost() => manaCost;
     public override string GetName() => name;
 
-    public override void CancleSelect()
+    public override void CancelSelect()
     {
-        BattleManager.Instance.UnitTargetPlayerSkillReady(BattleManager.FieldColorType.none);
+        BattleManager.PlayerSkillControler.UnitTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.Instance.UnitTargetPlayerSkillReady(BattleManager.FieldColorType.PlayerSkillHeal);
+        BattleManager.PlayerSkillControler.UnitTargetPlayerSkillReady(FieldColorType.PlayerSkillHeal);
     }
 }

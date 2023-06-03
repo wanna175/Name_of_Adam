@@ -26,6 +26,9 @@ public class BattleManager : MonoBehaviour
     private BattleUIManager _battleUI;
     public static BattleUIManager BattleUI => Instance._battleUI;
 
+    private PlayerSkillControler _playerSkillControler;
+    public static PlayerSkillControler PlayerSkillControler => Instance._playerSkillControler;
+
     private Field _field;
     public static Field Field => Instance._field;
 
@@ -48,6 +51,7 @@ public class BattleManager : MonoBehaviour
         _battleUI = Util.GetOrAddComponent<BattleUIManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
+        _playerSkillControler = Util.GetOrAddComponent<PlayerSkillControler>(gameObject);
         GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
 
         SetBackground();
@@ -184,23 +188,19 @@ public class BattleManager : MonoBehaviour
         }
         else if (fieldColorType == FieldColorType.PlayerSkillWhisper)
         {
-            FallUnitOnField();
-            PlayerSkillUse();
+            PlayerSkillControler.FallUnitOnField(coord);
         }
         else if (fieldColorType == FieldColorType.PlayerSkillDamage)
         {
-            DamageUnitOnField();
-            PlayerSkillUse();
+            PlayerSkillControler.DamageUnitOnField(coord);
         }
         else if (fieldColorType == FieldColorType.PlayerSkillHeal)
         {
-            HealUnitOnField();
-            PlayerSkillUse();
+            PlayerSkillControler.HealUnitOnField(coord);
         }
         else if (fieldColorType == FieldColorType.PlayerSkillBounce)
         {
-            BounceUnitOnField();
-            PlayerSkillUse();
+            PlayerSkillControler.BounceUnitOnField(coord);
         }
     }
 
@@ -220,55 +220,6 @@ public class BattleManager : MonoBehaviour
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
-    }
-
-    private void PlayerSkillUse()
-    {
-        PlayerSkill selectedSkill = BattleUI.UI_playerSkill.GetSelectedCard().GetSkill();
-
-        Mana.ChangeMana(-1 * selectedSkill.GetManaCost());
-        Data.DarkEssenseChage(-1 * selectedSkill.GetDarkEssenceCost());
-
-        BattleUI.UI_playerSkill.CancleSelect();
-        BattleUI.UI_playerSkill.Used = true;
-        Field.ClearAllColor();
-        BattleOverCheck();
-    }
-
-    private void FallUnitOnField()
-    {
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        Field.GetUnit(coord).ChangeFall(1);
-    }
-
-    private void DamageUnitOnField()
-    {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        Field.GetUnit(coord).ChangeHP(-20);
-    }
-
-    private void HealUnitOnField()
-    {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        Field.GetUnit(coord).ChangeHP(20);
-    }
-
-    private void BounceUnitOnField()
-    {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-
-        BattleUnit unit = Field.GetUnit(coord);
-
-        Data.BattleUnitRemove(unit);
-        Data.BattleOrderRemove(unit);
-        Data.AddDeckUnit(unit.DeckUnit);
-        BattleUI.FillHand();
-        Field.FieldCloseInfo(Field.TileDict[coord]);
-        Destroy(unit.gameObject);
     }
 
     public void OnClickTile(Tile tile)
@@ -478,16 +429,6 @@ public class BattleManager : MonoBehaviour
     }
 
     #region Field Color 관련
-    public enum FieldColorType
-    {
-        none,
-        UnitSpawn,
-        PlayerSkillWhisper,
-        PlayerSkillDamage,//아마 데미지
-        PlayerSkillHeal,//아마 힐
-        PlayerSkillBounce//아마 바운스
-    }
-
     public bool UnitSpawnReady(FieldColorType colorType)
     {
         if (_phase.Current != _phase.Prepare)
@@ -498,51 +439,6 @@ public class BattleManager : MonoBehaviour
         else
             Field.SetSpawnTileColor();
         
-        fieldColorType = colorType;
-
-        return true;
-    }
-
-    public bool UnitTargetPlayerSkillReady(FieldColorType colorType)
-    {
-        if (_phase.Current != _phase.Prepare)
-            return false;
-
-        if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
-        else
-            Field.SetUnitTileColor();
-
-        fieldColorType = colorType;
-
-        return true;
-    }
-
-    public bool EnemyTargetPlayerSkillReady(FieldColorType colorType)
-    {
-        if (_phase.Current != _phase.Prepare)
-            return false;
-
-        if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
-        else
-            Field.SetEnemyUnitTileColor();
-
-        fieldColorType = colorType;
-
-        return true;
-    }
-
-    public bool FriendlyTargetPlayerSkillReady(FieldColorType colorType)
-    {
-        if (_phase.Current != _phase.Prepare)
-            return false;
-
-        if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
-        else
-            Field.SetFriendlyUnitTileColor();
-
         fieldColorType = colorType;
 
         return true;
