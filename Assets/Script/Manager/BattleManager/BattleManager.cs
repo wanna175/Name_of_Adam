@@ -26,8 +26,8 @@ public class BattleManager : MonoBehaviour
     private BattleUIManager _battleUI;
     public static BattleUIManager BattleUI => Instance._battleUI;
 
-    private PlayerSkillControler _playerSkillControler;
-    public static PlayerSkillControler PlayerSkillControler => Instance._playerSkillControler;
+    private PlayerSkillController _playerSkillController;
+    public static PlayerSkillController PlayerSkillController => Instance._playerSkillController;
 
     private Field _field;
     public static Field Field => Instance._field;
@@ -51,7 +51,7 @@ public class BattleManager : MonoBehaviour
         _battleUI = Util.GetOrAddComponent<BattleUIManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
-        _playerSkillControler = Util.GetOrAddComponent<PlayerSkillControler>(gameObject);
+        _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
         GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
 
         SetBackground();
@@ -188,19 +188,19 @@ public class BattleManager : MonoBehaviour
         }
         else if (fieldColorType == FieldColorType.PlayerSkillWhisper)
         {
-            PlayerSkillControler.FallUnitOnField(coord);
+            PlayerSkillController.FallUnitOnField(coord);
         }
         else if (fieldColorType == FieldColorType.PlayerSkillDamage)
         {
-            PlayerSkillControler.DamageUnitOnField(coord);
+            PlayerSkillController.DamageUnitOnField(coord);
         }
         else if (fieldColorType == FieldColorType.PlayerSkillHeal)
         {
-            PlayerSkillControler.HealUnitOnField(coord);
+            PlayerSkillController.HealUnitOnField(coord);
         }
         else if (fieldColorType == FieldColorType.PlayerSkillBounce)
         {
-            PlayerSkillControler.BounceUnitOnField(coord);
+            PlayerSkillController.BounceUnitOnField(coord);
         }
     }
 

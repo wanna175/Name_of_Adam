@@ -14,11 +14,11 @@ public class PlayerSkillDamage : PlayerSkill
 
     public override void CancelSelect()
     {
-        BattleManager.PlayerSkillControler.EnemyTargetPlayerSkillReady(FieldColorType.none);
+        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillControler.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkillDamage);
+        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkillDamage);
     }
 }

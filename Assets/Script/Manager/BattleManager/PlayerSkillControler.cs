@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
-public class PlayerSkillControler : MonoBehaviour
+public class PlayerSkillController : MonoBehaviour
 {
     BattleManager battle = BattleManager.Instance;
     BattleUIManager BattleUI;

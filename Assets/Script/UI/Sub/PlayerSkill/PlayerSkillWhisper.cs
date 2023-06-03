@@ -13,11 +13,11 @@ public class PlayerSkillWhisper : PlayerSkill
     public override string GetName() => name;
     public override void CancelSelect()
     {
-        BattleManager.PlayerSkillControler.EnemyTargetPlayerSkillReady(FieldColorType.none);
+        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillControler.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkillWhisper);
+        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkillWhisper);
     }
 }

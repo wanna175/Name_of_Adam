@@ -14,11 +14,11 @@ public class PlayerSkillBounce : PlayerSkill
 
     public override void CancelSelect()
     {
-        BattleManager.PlayerSkillControler.FriendlyTargetPlayerSkillReady(FieldColorType.none);
+        BattleManager.PlayerSkillController.FriendlyTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillControler.FriendlyTargetPlayerSkillReady(FieldColorType.PlayerSkillBounce);
+        BattleManager.PlayerSkillController.FriendlyTargetPlayerSkillReady(FieldColorType.PlayerSkillBounce);
     }
 }
