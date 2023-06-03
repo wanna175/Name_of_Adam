@@ -14,7 +14,7 @@ public class Field : MonoBehaviour
     // 필드의 생성을 위한 필드의 위치
     private Vector3 FieldPosition => new Vector3(0, -0.35f, 0.5f);
     private Vector3 FieldRotation => new Vector3(41.5f, 0, 0);
-    private Vector3 FieldScale => new Vector3(18.54f, 9.28f, 1f);
+    private Vector3 FieldScale => new Vector3(21f, 10.7f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
@@ -186,6 +186,18 @@ public class Field : MonoBehaviour
         }  
     }
 
+    public void SetUnitTileColor()
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            if (items.Value.UnitExist == true)
+            {
+                items.Value.SetColor(ColorList(FieldColor.Select));
+                _coloredTile.Add(items.Key);
+            }
+        }
+    }
+
     public void SetEnemyUnitTileColor()
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
@@ -246,17 +258,10 @@ public class Field : MonoBehaviour
     }
 
     private UI_Info _hoverInfo;
-    //리팩토링 무저건 하기.
+
     public void MouseEnterTile(Tile tile)
     {
-        Vector2 coord = FindCoordByTile(tile);
-
-        if (tile.UnitExist)
-        {
-            BattleUnit unit = GetUnit(coord);
-            _hoverInfo = BattleManager.BattleUI.ShowInfo();
-            _hoverInfo.SetInfo(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
-        }
+        FieldShowInfo(tile);
 
         //if (_coloredTile.Contains(coord)) 
         //{
@@ -273,14 +278,29 @@ public class Field : MonoBehaviour
 
     public void MouseExitTile(Tile tile)
     {
-        if (tile.UnitExist && _hoverInfo != null)
-        {
-            BattleManager.BattleUI.CloseInfo(_hoverInfo);
-        }
+        FieldCloseInfo(tile);
 
         //if (BattleManager.Phase.Current == BattleManager.Phase.Action)
         //{
         //    SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
         //}
+    }
+
+    public void FieldShowInfo(Tile tile)
+    {
+        if (tile.UnitExist)
+        {
+            BattleUnit unit = tile.Unit;
+            _hoverInfo = BattleManager.BattleUI.ShowInfo();
+            _hoverInfo.SetInfo(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
+        }
+    }
+
+    public void FieldCloseInfo(Tile tile)
+    {
+        if (tile.UnitExist && _hoverInfo != null)
+        {
+            BattleManager.BattleUI.CloseInfo(_hoverInfo);
+        }
     }
 }

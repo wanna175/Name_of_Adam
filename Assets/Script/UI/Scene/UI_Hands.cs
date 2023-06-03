@@ -48,7 +48,7 @@ public class UI_Hands : UI_Scene
         if (BattleManager.Mana.CanUseMana(hand.GetUnit().Stat.ManaCost))
         {
             if (hand != null && hand == _selectedHand)
-                CancleSelect();
+                CancelSelect();
             else
                 SelectOneUnit(hand);
         }
@@ -58,11 +58,11 @@ public class UI_Hands : UI_Scene
         }
     }
 
-    private void CancleSelect()
+    private void CancelSelect()
     {
         _selectedHand.ChangeSelectState(false);
         _selectedHand = null;
-        BattleManager.Instance.UnitSpawnReady(BattleManager.FieldColorType.none);
+        BattleManager.Instance.UnitSpawnReady(FieldColorType.none);
     }
 
     private void SelectOneUnit(UI_Hand hand)
@@ -72,7 +72,7 @@ public class UI_Hands : UI_Scene
         
         _selectedHand = hand;
         _selectedHand.ChangeSelectState(true);
-        BattleManager.Instance.UnitSpawnReady(BattleManager.FieldColorType.UnitSpawn);
+        BattleManager.Instance.UnitSpawnReady(FieldColorType.UnitSpawn);
     }
 
     public DeckUnit GetSelectedUnit()

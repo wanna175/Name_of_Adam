@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: "Default_\uADFC\uAC70\uB9AC"
   m_EditorClassIdentifier: 
   _moveType: 1
-  _zoomSize: 45
-  _tiltPower: 0.5
+  _zoomSize: 50
+  _tiltPower: 10

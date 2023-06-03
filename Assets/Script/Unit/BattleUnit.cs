@@ -6,17 +6,17 @@ using UnityEngine;
 public class BattleUnit : MonoBehaviour
 {
     public DeckUnit DeckUnit;
-    public Stat Stat => DeckUnit.Stat + ChangedStat;
+    public Stat Stat => DeckUnit.Stat + BattleUnitChangedStat;
     public UnitDataSO Data => DeckUnit.Data;
 
-    [SerializeField] public Stat ChangedStat; 
+    [SerializeField] public Stat BattleUnitChangedStat; 
 
     [SerializeField] private Team _team;
     public Team Team => _team;
 
     private SpriteRenderer _renderer;
     private Animator UnitAnimator;
-    public AnimationClip SkillEffect;
+    public AnimationClip SkillEffectAnim;
 
     [SerializeField] public UnitAIController AI;
 
@@ -28,6 +28,9 @@ public class BattleUnit : MonoBehaviour
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
+
+    private float scale;
+    private float GetModifiedScale() => scale + ((scale * 0.1f) * (Location.y - 1));
 
     // 23.02.16 임시 수정
     private Action<BattleUnit> _UnitDeadAction;
@@ -42,11 +45,9 @@ public class BattleUnit : MonoBehaviour
         UnitAnimator = GetComponent<Animator>();
 
         AI.SetCaster(this);
-        Debug.Log(HP);
-        Debug.Log(Stat.HP);
-        Debug.Log(Stat.CurrentHP);
         HP.Init(Stat.HP, Stat.CurrentHP);
         Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
+        scale = transform.localScale.x;
 
         _renderer.sprite = Data.Image;
         GameManager.Sound.Play("Summon/SummonSFX");
@@ -86,27 +87,24 @@ public class BattleUnit : MonoBehaviour
     public void UnitFallEvent()
     {
         _hpBar.RefreshFallGauge(0);
-        // DeckUnit.ChangedStat.HP = Stat.HP;
+
         HP.Init(Stat.HP, Stat.CurrentHP);
         _hpBar.SetHPBar(Team, transform);
+        BattleManager.Data.CorruptUnits.Add(this);
+
         GameManager.Sound.Play("UI/FallSFX/Fall");
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/Corruption"), transform.position);
-
-        StartCoroutine(CorruptDelay());
-        //Debug.Log($"{Data.name} Fall");
+        GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
-    IEnumerator CorruptDelay()
-    {
-        yield return new WaitForSeconds(1.03f);
 
+    public void Corrupted()
+    {
         //타락 시 낙인 체크
+        BattleManager.Data.CorruptUnits.Remove(this);
+
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
-
-        BattleManager.Instance.BattleOverCheck();
-
     }
 
     public void AnimAttack()
@@ -139,32 +137,39 @@ public class BattleUnit : MonoBehaviour
         if(Team == Team.Player)
         {
             UnitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
-            if (Data.CorruptionSkillEffectController != null)
-                SkillEffect = Data.CorruptionSkillEffectController;
+            if (Data.CorruptionSkillEffectAnim != null)
+                SkillEffectAnim = Data.CorruptionSkillEffectAnim;
         }
         else
         {
             UnitAnimator.runtimeAnimatorController = Data.AnimatorController;
-            if (Data.SkillEffectController != null)
-                SkillEffect = Data.SkillEffectController;
+            if (Data.SkillEffectAnim != null)
+                SkillEffectAnim = Data.SkillEffectAnim;
         }
     }
 
     public void SetPosition(Vector3 dest)
     {
+        float s = GetModifiedScale();
+
         transform.position = dest;
+        transform.localScale = new Vector3(s, s, 1);
     }
 
     public IEnumerator MovePosition(Vector3 dest)
     {
         float moveTime = 0.4f;
         float time = 0;
-        Vector3 cur = transform.position;
+        Vector3 curP = transform.position;
+        Vector3 curS = transform.localScale;
+
+        float addScale = GetModifiedScale();
 
         while (time < moveTime)
         {
             time += Time.deltaTime;
-            transform.position = Vector3.Lerp(cur, dest, time / moveTime);
+            transform.position = Vector3.Lerp(curP, dest, time / moveTime);
+            transform.localScale = Vector3.Lerp(curS, new Vector3(addScale, addScale, 1), time / moveTime);
             yield return null;
         }
     }
@@ -243,6 +248,32 @@ public class BattleUnit : MonoBehaviour
         return RangeList;
     }
 
+    public IEnumerator ShakeUnit(float shakeCount, float shakeTime, float shakePower)
+    {
+        Vector3 originPos = transform.position;
+
+        float count = shakeCount;
+        float time = shakeTime / shakePower;
+        bool min = true;
+        transform.position += new Vector3(shakePower / 2, 0, 0);
+
+        while (count > 0)
+        {
+            yield return new WaitForSeconds(time / shakeCount);
+
+            if (gameObject == null)
+                yield break;
+
+            Vector3 vec = new Vector3(shakePower / shakeCount * count, 0, 0);
+            if (min) vec *= -1;
+            transform.position += vec;
+            count--;
+            min = !min;
+        }
+
+        transform.position = originPos;
+    }
+
     public List<Vector2> GetSplashRange(Vector2 target, Vector2 caster)
     {
         List<Vector2> SplashList = new List<Vector2>();
@@ -289,7 +320,12 @@ public class BattleUnit : MonoBehaviour
                     passive.Use(caster, receiver);
                 }
             }
-        }
-        
+        }   
+    }
+
+    public void OnDestroy()
+    {
+        DeckUnit.ChangedStat.CurrentHP = HP.GetCurrentHP() - DeckUnit.Stat.HP;
+        DeckUnit.ChangedStat.FallCurrentCount = Fall.GetCurrentFallCount();
     }
 }

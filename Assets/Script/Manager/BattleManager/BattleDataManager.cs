@@ -15,6 +15,9 @@ public class BattleDataManager : MonoBehaviour
 
     [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
     public List<DeckUnit> PlayerHands => _playerHands;
+    
+    public List<BattleUnit> HitUnits;
+    public List<BattleUnit> CorruptUnits;
 
     private void Init()
     {
@@ -26,11 +29,13 @@ public class BattleDataManager : MonoBehaviour
         Debug.Log("BDM Destroy");
         foreach (DeckUnit unit in PlayerHands)
         {
+            unit.ChangedStat.CurrentHP = 0;
             AddDeckUnit(unit);
         }
 
         foreach (BattleUnit unit in BattleUnitList)
         {
+            unit.DeckUnit.ChangedStat.CurrentHP = 0;
             unit.DeckUnit.ChangedStat.FallCurrentCount = unit.Fall.GetCurrentFallCount();
             AddDeckUnit(unit.DeckUnit);
         }
@@ -53,15 +58,9 @@ public class BattleDataManager : MonoBehaviour
         BattleManager.BattleUI.UI_darkEssence.Refresh();
     }
 
-    public void AddDeckUnit(DeckUnit unit)
-    {
-        PlayerDeck.Add(unit);
-    }
+    public void AddDeckUnit(DeckUnit unit) =>PlayerDeck.Add(unit);
 
-    public void RemoveDeckUnit(DeckUnit unit)
-    {
-        PlayerDeck.Remove(unit);
-    }
+    public void RemoveDeckUnit(DeckUnit unit) => PlayerDeck.Remove(unit);
 
     public DeckUnit GetRandomUnitFromDeck()
     {

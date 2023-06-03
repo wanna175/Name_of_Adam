@@ -1075,7 +1075,7 @@ MonoBehaviour:
   _cost: {fileID: 478166179327676175}
   _stat: {fileID: 478166179501200156}
   _hpBar: {fileID: 478166179419758329}
-  _stigama_small: {fileID: 4510113309876099264, guid: b6a098c6234a60246aeec7575c93a3c0, type: 3}
+  _stigama: {fileID: 4510113309876099264, guid: f3acaf644a2213944b3a254bbfda7e21, type: 3}
   _stigamaGrid: {fileID: 478166178416242298}
   _SkillImage: {fileID: 3010333717116513547}
   _rangeGrid: {fileID: 7719568206293656685}

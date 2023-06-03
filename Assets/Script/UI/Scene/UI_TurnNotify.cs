@@ -7,11 +7,12 @@ using UnityEngine.EventSystems;
 public class UI_TurnNotify : UI_Scene
 {
     const float fadeTime = 0.5f;
+    const float displayTime = 0.5f;
 
     public void SetPlayerTurnImage()
     {
         FadeIn();
-        Invoke("FadeOut", fadeTime);
+        Invoke("FadeOut", fadeTime + displayTime);
 
         GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
     }
@@ -19,7 +20,7 @@ public class UI_TurnNotify : UI_Scene
     public void SetUnitTurnImage()
     {
         FadeIn();
-        Invoke("FadeOut", fadeTime);
+        Invoke("FadeOut", fadeTime + displayTime);
 
         GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
     }

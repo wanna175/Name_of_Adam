@@ -9,8 +9,13 @@ public class MovePhase : Phase
 {
     public override void OnStateEnter()
     {
-        BattleManager.Field.SetTileColor(BattleManager.Data.GetNowUnit(), FieldColor.Move);
+        BattleUnit unit = BattleManager.Data.GetNowUnit();
+
+        BattleManager.Field.SetTileColor(unit, FieldColor.Move);
         BattleManager.BattleUI.ChangeButtonName();
+
+        if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
+            BattleManager.Instance.PlayAfterCoroutine(unit.AI.AIMove, 1);
     }
 
     public override void OnStateUpdate()
@@ -20,7 +25,8 @@ public class MovePhase : Phase
 
     public override void OnClickEvent()
     {
-        BattleManager.Instance.MovePhase();
+        if (BattleManager.Data.GetNowUnit().Team == Team.Player)
+            BattleManager.Instance.MovePhase();
     }
 
     public override void OnStateExit()

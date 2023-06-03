@@ -20,7 +20,7 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 3
     ManaCost: 20
-  _stigma: 
+  _inherenceStigma: []
   _name: "\uC9D1\uC815\uAD00"
   _description: "\uB2E8\uC77C \uC801\uACFC \uADF8 \uBC14\uB85C \uB4A4\uC5D0\uC788\uB294
     \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
@@ -29,8 +29,8 @@ MonoBehaviour:
   _image: {fileID: 21300000, guid: fe21f903dbac6e449a53f2a1c82f235d, type: 3}
   _animatorController: {fileID: 9100000, guid: 504aede10c2572c4f884a3c2f699bfe7, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 8fa5fa82c758b264489358f367a0c9ae, type: 2}
-  _skillEffectController: {fileID: 7400000, guid: 96f28f62b3a264c43880d8da52b48ae0, type: 2}
-  _corruptionSkillEffectController: {fileID: 7400000, guid: ec2496ae8931e1542ba9ec334dd2548e, type: 2}
+  _skillEffectAnim: {fileID: 7400000, guid: 96f28f62b3a264c43880d8da52b48ae0, type: 2}
+  _corruptionSkillEffectAnim: {fileID: 7400000, guid: ec2496ae8931e1542ba9ec334dd2548e, type: 2}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
   _darkEssenseDrop: 1
   _darkEssenseCost: 0

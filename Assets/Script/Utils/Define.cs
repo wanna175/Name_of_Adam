@@ -141,3 +141,13 @@ public enum RomanNumber
     IX = 9,
     X = 10,
 }
+
+public enum FieldColorType
+{
+    none,
+    UnitSpawn,
+    PlayerSkillWhisper,
+    PlayerSkillDamage,
+    PlayerSkillHeal,
+    PlayerSkillBounce
+}
