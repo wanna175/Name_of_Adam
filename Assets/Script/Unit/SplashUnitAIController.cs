@@ -4,124 +4,130 @@ using UnityEngine;
 
 public class SplashUnitAIController : UnitAIController
 {
-    Dictionary<Vector2, List<Vector2>> TileSplashDic = new();
+    Dictionary<Vector2, List<Vector2>> TileSplashDic = new();//이동할 타일, 공격시 데미지 받는 유닛이 있는 타일 리스트
+    Dictionary<Vector2, Vector2> TileAttackDic = new();//이동할 타일, 공격할 타일
 
-    protected void SetSplashAttackableList()
+
+    protected bool SetSplashAttackableList()
     {
-        int splashUnit = -1;
+        int MaxSplashUnitNum = 0;
 
         foreach (Vector2 move in caster.GetMoveRange())
         {
-            Vector2 loc = caster.Location + move; //이동할 위치
+            Vector2 moveDest = caster.Location + move; //이동할 위치
 
-            if (!_field.IsInRange(loc) || _field.TileDict[loc].UnitExist) continue;
+            if (!_field.IsInRange(moveDest) || (_field.TileDict[moveDest].UnitExist && _field.GetUnit(moveDest).Team == Team.Player))
+                continue;
 
             foreach (Vector2 attack in caster.GetAttackRange())
             {
-                Vector2 attackLoc = loc + attack;
-
-                if (!_field.IsInRange(attackLoc) || loc == attackLoc) continue;
+                Vector2 attackDest = moveDest + attack;
+                if (!_field.IsInRange(attackDest) || moveDest == attackDest)
+                    continue;
 
                 List<Vector2> SplashList = new();
-                SplashList.Add(attackLoc);//리스트의 첫번째 값은 공격할 위치
 
-                foreach (Vector2 range in caster.GetSplashRange(attackLoc, loc))
+                foreach (Vector2 range in caster.GetSplashRange(attackDest, moveDest))
                 {
-                    Vector2 splash = attackLoc + range;
+                    Vector2 splash = attackDest + range;
 
-                    if (!_field.IsInRange(splash)) continue;
-
-                    if (_field.TileDict[splash].UnitExist && _field.GetUnit(splash).Team == Team.Player)
-                    {
+                    if (_field.IsInRange(splash) && _field.TileDict[splash].UnitExist && _field.GetUnit(splash).Team == Team.Player)
                         SplashList.Add(splash);
-                    }
                 }
 
-                if (SplashList.Count <= 1) continue;
-
-                if (SplashList.Count > splashUnit)
+                if (SplashList.Count > MaxSplashUnitNum)
                 {
                     TileSplashDic.Clear();
-                    TileSplashDic.Add(loc, SplashList);
-                    splashUnit = SplashList.Count;
+                    TileSplashDic.Add(moveDest, SplashList);
+
+                    TileAttackDic.Clear();
+                    TileAttackDic.Add(moveDest, attackDest);
+
+                    MaxSplashUnitNum = SplashList.Count;
                 }
-                else if (SplashList.Count == splashUnit)
-                {//이 부분 좀 이상함 3/25
-                    if (TileSplashDic.ContainsKey(loc)) {
-                        if (Random.Range(0, 2) == 1)
+                else if (SplashList.Count == MaxSplashUnitNum && SplashList.Count != 0)
+                {
+                    if (TileSplashDic.ContainsKey(moveDest))
+                    {
+                        if (ListMinHP(TileSplashDic[moveDest]) > ListMinHP(SplashList))
                         {
-                            TileSplashDic.Remove(loc);
-                            TileSplashDic.Add(loc, SplashList);
+                            TileSplashDic.Clear();
+                            TileSplashDic.Add(moveDest, SplashList);
+
+                            TileAttackDic.Clear();
+                            TileAttackDic.Add(moveDest, attackDest);
                         }
                     }
-                    else TileSplashDic.Add(loc, SplashList);
-
                 }
             }
         }
+
+        return TileSplashDic.Count > 0;
     }
 
-    protected Vector2 SplashAttackableUnitSearch()
+    protected Vector2 SplashAttackableTileSearch()
     {
         List<Vector2> destVec = new();
         int minHP = 999999;
+        int currentHP;
 
         foreach (Vector2 move in caster.GetMoveRange())
         {
             Vector2 loc = caster.Location + move;
+            Debug.Log("loc" + loc + " caster.Location " + caster.Location + "move" + move);
             
-            if (!TileSplashDic.ContainsKey(loc)) continue;
+            if (!TileSplashDic.ContainsKey(loc)) 
+                continue;
 
-            if (loc == caster.Location)  return loc;
-
-            for (int i = 1; i < TileSplashDic[loc].Count; i++)
+            if (loc == caster.Location)//제자리 우선
             {
-                Vector2 splash = TileSplashDic[loc][i];
+                Debug.Log("제자리 우선");
+                return loc;
+            }
+                
 
-                if (_field.GetUnit(splash).HP.GetCurrentHP() < minHP)
-                {
-                    destVec.Clear();
-                    destVec.Add(loc);
-                    minHP = _field.GetUnit(splash).HP.GetCurrentHP();
-                }
-                else if (_field.GetUnit(splash).HP.GetCurrentHP() == minHP)
-                {
-                    destVec.Add(loc);
-                }
 
+            currentHP = ListMinHP(TileSplashDic[loc]);
+
+            if (currentHP < minHP)
+            {
+                destVec.Clear();
+                destVec.Add(loc);
+                minHP = currentHP;
+            }
+            else if (currentHP == minHP)
+            {
+                destVec.Add(loc);
             }
         }
 
         return destVec[Random.Range(0, destVec.Count)];
     }
 
-    protected void SplashAttack(Vector2 vec)
+    protected int ListMinHP(List<Vector2> list)
     {
-        List<BattleUnit> hitUnits = new List<BattleUnit>();
-
-        foreach (Vector2 splash in caster.GetSplashRange(TileSplashDic[vec][0], caster.Location))
+        int minHP = _field.GetUnit(list[0]).HP.GetCurrentHP();
+        foreach (Vector2 vec in list)
         {
-            //Attack(splash + TileSplashDic[vec][0]);
-            hitUnits.Add(_field.GetUnit(splash + TileSplashDic[vec][0]));
+            if (minHP > _field.GetUnit(vec).HP.GetCurrentHP())
+                minHP = _field.GetUnit(vec).HP.GetCurrentHP();
         }
-        Debug.Log(hitUnits.Count);
-        BattleManager.Instance.AttackStart(caster, hitUnits);
+
+        return minHP;
     }
 
     protected void SplashListClear()
     {
         ListClear();
         TileSplashDic.Clear();
+        TileAttackDic.Clear();
     }
 
     public override void AIAction()
     {
-        SetSplashAttackableList();
-        if (TileSplashDic.Count > 0)
+        if (SetSplashAttackableList())
         {
-            Vector2 vec = SplashAttackableUnitSearch();
-            MoveUnit(vec);
-            SplashAttack(vec);
+            MoveUnit(SplashAttackableTileSearch());
         }
         else
         {
@@ -129,5 +135,45 @@ public class SplashUnitAIController : UnitAIController
             MoveUnit(MoveDirection(NearestEnemySearch()));
         }
         SplashListClear();
+    }
+
+    public override void AIMove()
+    {
+        if (DirectAttackCheck())
+            return;
+
+        SplashListClear();
+
+        if (SetSplashAttackableList())
+        {
+            MoveUnit(SplashAttackableTileSearch());
+        }
+        else
+        {
+            SetAttackableTile();
+
+            if (AttackableTileSearch())
+            {
+                //MoveUnit(MinHPSearch(AttackableTileInRangeList));
+            }
+            else
+            {
+                MoveUnit(MoveDirection(NearestEnemySearch()));
+            }
+        }
+
+        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
+    }
+
+    public override void AISkillUse()
+    {
+        if (TileSplashDic.Count > 0)
+        {
+            Attack(TileAttackDic[SplashAttackableTileSearch()]);
+        }
+        else
+        {
+            BattleManager.Instance.EndUnitAction();
+        }
     }
 }
