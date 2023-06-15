@@ -11,13 +11,13 @@ public class PlayerSkillWhisper : PlayerSkill
     public override int GetDarkEssenceCost() => darkEssence;
     public override int GetManaCost() => manaCost;
     public override string GetName() => name;
-    public override void CancleSelect()
+    public override void CancelSelect()
     {
-        BattleManager.Instance.EnemyTargetPlayerSkillReady(BattleManager.FieldColorType.none);
+        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.Instance.EnemyTargetPlayerSkillReady(BattleManager.FieldColorType.PlayerSkillWhisper);
+        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkillWhisper);
     }
 }

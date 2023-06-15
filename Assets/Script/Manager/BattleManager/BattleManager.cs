@@ -26,6 +26,9 @@ public class BattleManager : MonoBehaviour
     private BattleUIManager _battleUI;
     public static BattleUIManager BattleUI => Instance._battleUI;
 
+    private PlayerSkillController _playerSkillController;
+    public static PlayerSkillController PlayerSkillController => Instance._playerSkillController;
+
     private Field _field;
     public static Field Field => Instance._field;
 
@@ -48,6 +51,7 @@ public class BattleManager : MonoBehaviour
         _battleUI = Util.GetOrAddComponent<BattleUIManager>(gameObject);
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
+        _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
         GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
 
         SetBackground();
@@ -178,25 +182,28 @@ public class BattleManager : MonoBehaviour
 
     public void PreparePhase()
     {
+        if (Field._coloredTile.Contains(coord) == false)
+            return;
+
         if (fieldColorType == FieldColorType.UnitSpawn)
         {
             SpawnUnitOnField();
         }
         else if (fieldColorType == FieldColorType.PlayerSkillWhisper)
         {
-            FallUnitOnField();
+            PlayerSkillController.FallUnitOnField(coord);
         }
-        else if (fieldColorType == FieldColorType.PlayerSkill_1)
+        else if (fieldColorType == FieldColorType.PlayerSkillDamage)
         {
-            DamageUnitOnField();
+            PlayerSkillController.DamageUnitOnField(coord);
         }
-        else if (fieldColorType == FieldColorType.PlayerSkill_2)
+        else if (fieldColorType == FieldColorType.PlayerSkillHeal)
         {
-
+            PlayerSkillController.HealUnitOnField(coord);
         }
-        else if (fieldColorType == FieldColorType.PlayerSkill_3)
+        else if (fieldColorType == FieldColorType.PlayerSkillBounce)
         {
-
+            PlayerSkillController.BounceUnitOnField(coord);
         }
     }
 
@@ -215,39 +222,6 @@ public class BattleManager : MonoBehaviour
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
-        Field.ClearAllColor();
-    }
-
-    private void FallUnitOnField()
-    {
-        if (Field._coloredTile.Contains(coord) == false)
-            return;
-
-        Mana.ChangeMana(-20);
-        Data.DarkEssenseChage(-1);
-
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        Field.GetUnit(coord).ChangeFall(1);
-
-        BattleUI.UI_playerSkill.CancleSelect();
-        BattleUI.UI_playerSkill.Used = true;
-        Field.ClearAllColor();
-        BattleOverCheck();
-    }
-
-    private void DamageUnitOnField()
-    {
-        if (Field._coloredTile.Contains(coord) == false)
-            return;
-
-        Mana.ChangeMana(-20);
-        Data.DarkEssenseChage(0);
-
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        Field.GetUnit(coord).ChangeHP(-20);
-
-        BattleUI.UI_playerSkill.CancleSelect();
-        BattleUI.UI_playerSkill.Used = true;
         Field.ClearAllColor();
     }
 
@@ -280,7 +254,7 @@ public class BattleManager : MonoBehaviour
 
     public void AttackStart(BattleUnit caster, BattleUnit hit)
     {
-        List<BattleUnit> hits = new List<BattleUnit>();
+        List<BattleUnit> hits = new();
         hits.Add(hit);
 
         Data.HitUnits = hits;
@@ -369,14 +343,13 @@ public class BattleManager : MonoBehaviour
 
             yield return null;
         }
-
         Destroy(_unit.gameObject);
     }
 
     public void DirectAttack()
     {
         //핸드에 있는 유닛을 하나 무작위로 제거하고 배틀 종료 체크
-        Debug.Log("DirectAttack");
+        Debug.Log("Direct Attack");
 
         if (Data.PlayerHands.Count == 0)
         {
@@ -468,16 +441,6 @@ public class BattleManager : MonoBehaviour
     }
 
     #region Field Color 관련
-    public enum FieldColorType
-    {
-        none,
-        UnitSpawn,
-        PlayerSkillWhisper,
-        PlayerSkill_1,//아마 데미지
-        PlayerSkill_2,//아마 이동
-        PlayerSkill_3//아마 바운스
-    }
-
     public bool UnitSpawnReady(FieldColorType colorType)
     {
         if (_phase.Current != _phase.Prepare)
@@ -488,36 +451,6 @@ public class BattleManager : MonoBehaviour
         else
             Field.SetSpawnTileColor();
         
-        fieldColorType = colorType;
-
-        return true;
-    }
-
-    public bool EnemyTargetPlayerSkillReady(FieldColorType colorType)
-    {
-        if (_phase.Current != _phase.Prepare)
-            return false;
-
-        if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
-        else
-            Field.SetEnemyUnitTileColor();
-
-        fieldColorType = colorType;
-
-        return true;
-    }
-
-    public bool FriendlyTargetPlayerSkillReady(FieldColorType colorType)
-    {
-        if (_phase.Current != _phase.Prepare)
-            return false;
-
-        if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
-        else
-            Field.SetFriendlyUnitTileColor();
-
         fieldColorType = colorType;
 
         return true;

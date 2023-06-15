@@ -14,6 +14,7 @@ public class PassiveManager
 
     private Dictionary<PassiveManageType, List<Passive>> _passiveDict = new Dictionary<PassiveManageType, List<Passive>>();
     public Dictionary<PassiveManageType, List<Passive>> PassiveDict => _passiveDict;
+    private List<Passive> _weightPassiveList = new List<Passive>();
 
     public PassiveManager()
     {
@@ -41,7 +42,11 @@ public class PassiveManager
             if (passive.IsSpecial)
                 unique.Add(passive);
             else
+            {
                 common.Add(passive);
+                AddToWeightList(passive, GetWeight(passive));
+            }
+                
 
             entire.Add(passive);
         }
@@ -51,9 +56,24 @@ public class PassiveManager
         PassiveDict.Add(PassiveManageType.Entire, entire);
     }
 
-    public Passive GetRandomPassive(PassiveManageType passiveType = PassiveManageType.Common)
+    public Passive GetRandomPassive()
     {
-        int randNum = Random.Range(0, PassiveDict[passiveType].Count);
-        return PassiveDict[passiveType][randNum];
+        int randNum = Mathf.RoundToInt(_weightPassiveList.Count * Random.Range(0f, 1f));
+        return _weightPassiveList[randNum];
+    }
+
+    private int GetWeight(Passive passive)
+    {
+        int weight = 0;
+        weight = 4 - passive.Tier;
+        return weight;
+    }
+
+    private void AddToWeightList(Passive passive, int weight)
+    {
+        for(int i=0; i<weight; i++)
+        {
+            _weightPassiveList.Add(passive);
+        }
     }
 }

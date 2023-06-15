@@ -33,8 +33,8 @@ public class UI_PlayerSkill : UI_Scene
             if (card != null && card == _selectedCard)
             {
                 //선택 취소
-                CancleSelect();
-                card.GetSkill().CancleSelect();
+                CancelSelect();
+                card.GetSkill().CancelSelect();
             }
             else
             {
@@ -49,7 +49,7 @@ public class UI_PlayerSkill : UI_Scene
         }
     }
 
-    public  void CancleSelect()
+    public  void CancelSelect()
     {
         _selectedCard.ChangeSelectState(false);
         _selectedCard = null;
@@ -63,4 +63,6 @@ public class UI_PlayerSkill : UI_Scene
         _selectedCard = card;
         _selectedCard.ChangeSelectState(true);
     }
+
+    public UI_PlayerSkillCard GetSelectedCard() => _selectedCard;
 }

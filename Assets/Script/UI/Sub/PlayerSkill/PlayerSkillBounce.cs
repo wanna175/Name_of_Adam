@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSkillDamage : PlayerSkill
+public class PlayerSkillBounce : PlayerSkill
 {
-    private string name = "Damage";
+    private string name = "Bounce";
     private int manaCost = 20;
     private int darkEssence = 0;
 
@@ -14,11 +14,11 @@ public class PlayerSkillDamage : PlayerSkill
 
     public override void CancelSelect()
     {
-        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.none);
+        BattleManager.PlayerSkillController.FriendlyTargetPlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkillDamage);
+        BattleManager.PlayerSkillController.FriendlyTargetPlayerSkillReady(FieldColorType.PlayerSkillBounce);
     }
 }
