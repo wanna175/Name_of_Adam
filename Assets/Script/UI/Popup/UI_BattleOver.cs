@@ -42,7 +42,7 @@ public class UI_BattleOver : UI_Scene
         if (_result == "win")
             SceneChanger.SceneChange("StageSelectScene");
         else if (_result == "elite win")
-            SceneChanger.SceneChange("StageSelectScene");
+            SceneChanger.SceneChange("EndingCreditScene");
         else if (_result == "lose")
             SceneChanger.SceneChange("MainScene");
     }
