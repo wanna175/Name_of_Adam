@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameManager.Sound.Play("UI/ClickSFX/UIClick1");
+           // GameManager.Sound.Play("UI/ClickSFX/UIClick1");
         }
     }
 }
