@@ -283,7 +283,6 @@ public class BattleManager : MonoBehaviour
 
             if (unit.SkillEffectAnim != null)
                 GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnim, hit.transform.position);
-            GameManager.VisualEffect.StartStigmaEffect(GameManager.Resource.Load<Sprite>("Arts/Stigma/stigma_sin"), unit.transform.position);
             
             if (team != hit.Team)
                 hit.ChangeHP(1000);

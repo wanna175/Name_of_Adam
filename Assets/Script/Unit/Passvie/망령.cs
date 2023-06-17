@@ -9,6 +9,8 @@ public class 망령 : Passive
         if (!BattleManager.Field.TileDict.ContainsKey(moveVec))
             return;
 
+        base.Use(caster, receiver);
+
         if (!BattleManager.Field.TileDict[moveVec].UnitExist)
             BattleManager.Field.MoveUnit(caster.Location, moveVec);
     }
