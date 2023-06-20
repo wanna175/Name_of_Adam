@@ -9,27 +9,23 @@ public enum AnimEffects
     Corruption,
 }
 
-public class VisualEffectManager
+public class VisualEffectManager : MonoBehaviour
 {
-    GameObject root;
+    Transform root;
     Dictionary<AnimEffects, Queue<GameObject>> EffectQueue;
     Dictionary<AnimEffects, string> AnimEffectNames;
 
-    public VisualEffectManager()
+    public void Init()
     {
-        if (!GameObject.Find("VisualEffectContainer"))
+        root = transform;
+
+        EffectQueue = new Dictionary<AnimEffects, Queue<GameObject>>();
+        AnimEffectNames = new Dictionary<AnimEffects, string>();
+
+        foreach (AnimEffects effect in Enum.GetValues(typeof(AnimEffects)))
         {
-            EffectQueue = new Dictionary<AnimEffects, Queue<GameObject>>();
-            AnimEffectNames = new Dictionary<AnimEffects, string>();
-
-            root = new GameObject { name = "VisualEffectContainer" };
-            root.transform.parent = GameManager.Instance.transform;
-
-            foreach (AnimEffects effect in Enum.GetValues(typeof(AnimEffects)))
-            {
-                EffectQueue.Add(effect, new Queue<GameObject>());
-                AnimEffectNames.Add(effect, effect.ToString());
-            }
+            EffectQueue.Add(effect, new Queue<GameObject>());
+            AnimEffectNames.Add(effect, effect.ToString());
         }
 
         for (int i = 0; i < 5; i++)
@@ -84,6 +80,7 @@ public class VisualEffectManager
 
     private void CreateEffect(AnimEffects effect)
     {
+        Debug.Log(root);
         GameObject go = GameManager.Resource.Instantiate($"Effect/{AnimEffectNames[effect]}", root.transform);
         RestoreEffect(effect, go);
     }
