@@ -14,6 +14,8 @@ public class 오빠 : Passive
         if (_connectedPassive == null)
             return;
 
+        base.Use(caster, receiver);
+
         List<BattleUnit> units = _connectedPassive.GetPointedUnits();
         if (units.Contains(receiver))
         {

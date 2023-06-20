@@ -13,6 +13,8 @@ public class 가학 : Passive
         if (isApplied)
             return;
 
+        base.Use(caster, receiver);
+
         caster.BattleUnitChangedStat.ATK += 3;
         isApplied = true;
     }

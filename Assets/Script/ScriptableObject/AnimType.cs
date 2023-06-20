@@ -11,7 +11,7 @@ public class AnimType : ScriptableObject
     [SerializeField] private float _zoomSize;
     public float ZoomSize => _zoomSize;
 
-    [SerializeField] private float _tiltPower;
-    public float TiltPower => _tiltPower;
+    [SerializeField] private float _gradientPower;
+    public float GradientPower => _gradientPower;
 
 }

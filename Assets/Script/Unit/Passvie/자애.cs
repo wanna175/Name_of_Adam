@@ -5,6 +5,8 @@ public class 자애 : Passive
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
+        base.Use(caster, receiver);
+
         List<Vector2> targetCoords = new List<Vector2>();
         targetCoords.Add(caster.Location + Vector2.up);
         targetCoords.Add(caster.Location + Vector2.down);

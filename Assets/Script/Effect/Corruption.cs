@@ -21,7 +21,6 @@ public class Corruption : MonoBehaviour
 
         gameObject.SetActive(true);
         _animator.Play("Corruption_Start");
-        Debug.Log("Init");
     }
 
     public void LoopStart()

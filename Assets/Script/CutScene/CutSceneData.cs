@@ -21,7 +21,7 @@ public class CutSceneData
     // 얼마나 줌할 것인지
     public float ZoomSize;
     // 어느정도 기울일 것인지
-    public float TiltPower;
+    public float GradientPower;
 
     // 확대 할 위치
     public Vector3 ZoomLocation;
@@ -48,7 +48,7 @@ public class CutSceneData
         DefaultZoomSize = Camera.main.fieldOfView;
         MoveType = AttackUnit.Data.AnimType.MoveType;
         ZoomSize = AttackUnit.Data.AnimType.ZoomSize;
-        TiltPower = AttackUnit.Data.AnimType.TiltPower;
+        GradientPower = AttackUnit.Data.AnimType.GradientPower;
 
         MovePosition = BattleManager.Field.GetTilePosition(GetMoveLocation(AttackUnit));
         

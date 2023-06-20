@@ -9,6 +9,7 @@ public class 고문관 : Passive
 
         if (!BattleManager.Field.TileDict[caster.Location + moveVec].UnitExist)
         {
+            base.Use(caster, receiver);
             Debug.Log(caster.Location + moveVec);
             BattleManager.Field.MoveUnit(receiver.Location, caster.Location + moveVec);
         }
