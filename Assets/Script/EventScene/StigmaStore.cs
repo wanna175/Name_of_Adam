@@ -56,18 +56,17 @@ public class StigmaStore : MonoBehaviour
 
     public void OnStigmaButtonClick()
     {
-        
         if (_stigmatizeUnit != null)
         {
-            GameManager.UI.ShowPopup<UI_StigmaSelectButton>().init(this, stigmaList);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().init(OnStigmaSelect, stigmaList);
         }
     }
 
-    public void OnStigmaSelect(int select)
+    public void OnStigmaSelect(Passive stigma)
     {
-        _stigmatizeUnit.AddStigma(stigmaList[select]);
+        _stigmatizeUnit.AddStigma(stigma);
         GameManager.UI.ClosePopup();
-        AddStigamScript(stigmaList[select]);
+        AddStigamScript(stigma);
         //StartCoroutine(QuitScene());
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         //OnQuitClick();
@@ -76,7 +75,7 @@ public class StigmaStore : MonoBehaviour
     public void AddStigamScript(Passive stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        string scriptKey = "낙인소_" + stigma.GetName(false);
+        string scriptKey = "낙인소_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }

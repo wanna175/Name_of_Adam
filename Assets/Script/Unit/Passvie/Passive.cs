@@ -34,11 +34,15 @@ public class Passive : MonoBehaviour
         return;
     }
 
-    public string GetName(bool isIncludeRomanNumber)
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public string GetNameWithRomanNumber()
     {
         string name = _name;
-        if (isIncludeRomanNumber)
-            name = $"{name} {Enum.GetName(typeof(RomanNumber), Tier)}";
+        name = $"{_name} {Enum.GetName(typeof(RomanNumber), Tier)}";
         return name;
     }
 
