@@ -28,6 +28,9 @@ public class Passive : MonoBehaviour
 
     public virtual void Use(BattleUnit caster, BattleUnit receiver)
     {
+        Vector3 pos = caster.transform.position + new Vector3(0, caster.transform.lossyScale.y * 0.5f, 0);
+        GameManager.VisualEffect.StartStigmaEffect(Sprite, pos);
+        Debug.Log(Sprite);
         return;
     }
 

@@ -4,33 +4,26 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 
-public class SoundManager
+public class SoundManager : MonoBehaviour
 {
     AudioSource[] _audioSources = new AudioSource[(int)Sounds.MaxCount];
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
     public void Init()
     {
-        GameObject root = GameObject.Find("@SoundManager");
-        if (root == null)
+        AudioMixer mixer = Resources.Load<AudioMixer>("Sounds/AudioMixer");
+
+        string[] soundNames = System.Enum.GetNames(typeof(Sounds));
+        for (int i = 0; i < soundNames.Length - 1; i++)
         {
-            root = new GameObject() { name = "@SoundManager" };
-            root.transform.parent = GameManager.Instance.transform;
+            GameObject go = new GameObject { name = soundNames[i] };
+            _audioSources[i] = go.AddComponent<AudioSource>();
 
-            AudioMixer mixer = Resources.Load<AudioMixer>("Sounds/AudioMixer");
-
-            string[] soundNames = System.Enum.GetNames(typeof(Sounds));
-            for (int i = 0; i < soundNames.Length - 1; i++)
-            {
-                GameObject go = new GameObject { name = soundNames[i] };
-                _audioSources[i] = go.AddComponent<AudioSource>();
-
-                _audioSources[i].outputAudioMixerGroup = mixer.FindMatchingGroups(soundNames[i])[0];
-                go.transform.parent = root.transform;
-            }
-
-            _audioSources[(int)Sounds.BGM].loop = true;
+            _audioSources[i].outputAudioMixerGroup = mixer.FindMatchingGroups(soundNames[i])[0];
+            go.transform.parent = transform;
         }
+
+        _audioSources[(int)Sounds.BGM].loop = true;
     }
 
     public void Clear()

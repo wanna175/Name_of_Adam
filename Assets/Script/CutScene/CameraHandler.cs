@@ -38,7 +38,7 @@ public class CameraHandler : MonoBehaviour
     }
 
     // 컷씬 중 카메라 회전
-    public void AttackCameraLotate(float tilt, int AttackDir, float t)
+    public void AttackCameraLotate(float gradient, int AttackDir, float t)
     {
         t = t * 4;
 
@@ -53,7 +53,7 @@ public class CameraHandler : MonoBehaviour
         float z = CutSceneCamera.transform.eulerAngles.z;
         z = (z > 180) ? -(360 - z) : z;
 
-        float a = Mathf.Lerp(z, tilt * AttackDir, t);
+        float a = Mathf.Lerp(z, gradient * AttackDir, t);
         CutSceneCamera.transform.eulerAngles = new Vector3(0, 0, a);
     }
 
@@ -70,6 +70,6 @@ public class CameraHandler : MonoBehaviour
         CutSceneCamera.transform.localPosition = Vector3.Lerp(CSData.ZoomLocation, MainCamera.transform.localPosition, t);
         CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, t);
 
-        CameraLotate(new Vector3(0, 0, CSData.TiltPower), new Vector3(0, 0, 0), t);
+        CameraLotate(new Vector3(0, 0, CSData.GradientPower), new Vector3(0, 0, 0), t);
     }
 }

@@ -8,6 +8,8 @@ public class 동생 : Passive
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
+        base.Use(caster, receiver);
+
         if (_connectedPassive == null)
             FindConnectPassive();
 

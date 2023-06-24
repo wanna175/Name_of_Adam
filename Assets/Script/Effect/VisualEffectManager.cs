@@ -9,27 +9,23 @@ public enum AnimEffects
     Corruption,
 }
 
-public class VisualEffectManager
+public class VisualEffectManager : MonoBehaviour
 {
-    GameObject root;
+    Transform root;
     Dictionary<AnimEffects, Queue<GameObject>> EffectQueue;
     Dictionary<AnimEffects, string> AnimEffectNames;
 
-    public VisualEffectManager()
+    public void Init()
     {
-        if (!GameObject.Find("VisualEffectContainer"))
+        root = transform;
+
+        EffectQueue = new Dictionary<AnimEffects, Queue<GameObject>>();
+        AnimEffectNames = new Dictionary<AnimEffects, string>();
+
+        foreach (AnimEffects effect in Enum.GetValues(typeof(AnimEffects)))
         {
-            EffectQueue = new Dictionary<AnimEffects, Queue<GameObject>>();
-            AnimEffectNames = new Dictionary<AnimEffects, string>();
-
-            root = new GameObject { name = "VisualEffectContainer" };
-            root.transform.parent = GameManager.Instance.transform;
-
-            foreach (AnimEffects effect in Enum.GetValues(typeof(AnimEffects)))
-            {
-                EffectQueue.Add(effect, new Queue<GameObject>());
-                AnimEffectNames.Add(effect, effect.ToString());
-            }
+            EffectQueue.Add(effect, new Queue<GameObject>());
+            AnimEffectNames.Add(effect, effect.ToString());
         }
 
         for (int i = 0; i < 5; i++)
@@ -38,7 +34,7 @@ public class VisualEffectManager
             CreateEffect(AnimEffects.Corruption);
         }
     }
-    
+
     public GameObject StartVisualEffect(AnimationClip clip, Vector3 position)
     {
         if (EffectQueue.Count == 0)
@@ -59,11 +55,11 @@ public class VisualEffectManager
 
         _animator.runtimeAnimatorController = overrideController;
         go.SetActive(true);
-        
+
         return go;
     }
 
-    public GameObject StartCorruptionEffect(BattleUnit unit, Vector3 position)
+    public void StartCorruptionEffect(BattleUnit unit, Vector3 position)
     {
         if (EffectQueue.Count == 0)
             CreateEffect(AnimEffects.Corruption);
@@ -71,8 +67,14 @@ public class VisualEffectManager
         GameObject go = EffectQueue[AnimEffects.Corruption].Dequeue();
         go.GetComponent<Corruption>().Init(unit, BattleManager.Instance.StigmaSelectEvent);
         go.transform.position = position;
+    }
 
-        return go;
+    public void StartStigmaEffect(Sprite sprite, Vector3 position)
+    {
+        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Animation/StigmaEffect");
+        GameObject go = StartVisualEffect(clip, position);
+
+        go.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
 

@@ -10,6 +10,7 @@ public class 처형 : Passive
     {
         if (receiver.HP.GetCurrentHP() <= 10)
         {
+            base.Use(caster, receiver);
             receiver.ChangeHP(-receiver.HP.GetCurrentHP());
         }
     }
