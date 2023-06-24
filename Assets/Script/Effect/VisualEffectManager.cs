@@ -80,7 +80,6 @@ public class VisualEffectManager : MonoBehaviour
 
     private void CreateEffect(AnimEffects effect)
     {
-        Debug.Log(root);
         GameObject go = GameManager.Resource.Instantiate($"Effect/{AnimEffectNames[effect]}", root.transform);
         RestoreEffect(effect, go);
     }

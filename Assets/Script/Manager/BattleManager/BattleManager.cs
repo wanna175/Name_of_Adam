@@ -394,7 +394,10 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+        if(GameManager.Data.CurrentStageData.Level == 11)
+            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+        else
+            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
     }
 
     private void BattleOverLose()
