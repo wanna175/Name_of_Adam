@@ -19,8 +19,8 @@ MonoBehaviour:
     SPD: 46
     FallCurrentCount: 0
     FallMaxCount: 3
-    ManaCost: 15
-  _stigma: 
+    ManaCost: 30
+  _uniqueStigma: []
   _name: "\uBCF4\uCD08\uBCD1"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC90D\uB2C8\uB2E4."
@@ -29,8 +29,8 @@ MonoBehaviour:
   _image: {fileID: 21300000, guid: 514786a5b91d72e4fb785fb5f9e79add, type: 3}
   _animatorController: {fileID: 9100000, guid: a2fd4ee1f371a4a488a25670c7dbf079, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 946137005c1873b4889dd8cc51d6c525, type: 2}
-  _skillEffectController: {fileID: 0}
-  _corruptionSkillEffectController: {fileID: 0}
+  _skillEffectAnim: {fileID: 0}
+  _corruptionSkillEffectAnim: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
   _darkEssenseDrop: 1
   _darkEssenseCost: 0
