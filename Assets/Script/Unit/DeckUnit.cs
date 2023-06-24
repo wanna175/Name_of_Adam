@@ -31,7 +31,7 @@ public class DeckUnit
     {
         if (Stigma.Contains(passive))
         {
-            Debug.Log($"이미 장착된 낙인입니다. : {passive.GetName(true)}");
+            Debug.Log($"이미 장착된 낙인입니다. : {passive.GetNameWithRomanNumber()}");
             return;
         }
 

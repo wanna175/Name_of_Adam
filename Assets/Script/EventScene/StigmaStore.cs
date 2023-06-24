@@ -75,7 +75,7 @@ public class StigmaStore : MonoBehaviour
     public void AddStigamScript(Passive stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        string scriptKey = "낙인소_" + stigma.GetName(false);
+        string scriptKey = "낙인소_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }
