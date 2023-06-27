@@ -40,6 +40,17 @@ public struct Stat
 
         return result;
     }
+
+    public void ClearStat()
+    {
+        HP = 0;
+        CurrentHP = 0;
+        ATK = 0;
+        SPD = 0;
+        FallCurrentCount = 0;
+        FallMaxCount = 0;
+        ManaCost = 0;
+    }
 }
 
 [Serializable]

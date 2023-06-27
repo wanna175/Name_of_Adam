@@ -54,12 +54,7 @@ public class DataManager : MonoBehaviour
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
-            unit.ChangedStat.HP = 0;
-            unit.ChangedStat.CurrentHP = 0;
-            unit.ChangedStat.SPD = 0;
-            unit.ChangedStat.FallMaxCount = 0;
-            unit.ChangedStat.FallCurrentCount = 0;
-            unit.ChangedStat.ManaCost = 0;
+            unit.ChangedStat.ClearStat();
         }
     }
 
