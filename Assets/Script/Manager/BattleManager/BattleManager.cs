@@ -52,7 +52,7 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
-        GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
+        GameManager.Sound.Play("Battle/BattleBGM", Sounds.BGM);
 
         SetBackground();
     }
