@@ -36,8 +36,8 @@ public class UI_HPBar : UI_Base
 
     public void SetFallBar(DeckUnit unit)
     {
-        int max = unit.Stat.FallMaxCount;
-        int current = unit.Stat.FallCurrentCount;
+        int max = unit.DeckUnitTotalStat.FallMaxCount;
+        int current = unit.DeckUnitTotalStat.FallCurrentCount;
 
         if (max > 6) max = 6; // 스마게까지 타락 Max 6
         

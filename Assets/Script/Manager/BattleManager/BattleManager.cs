@@ -215,9 +215,9 @@ public class BattleManager : MonoBehaviour
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         
         if (isFirst)
-            Mana.ChangeMana(-1 * ((unit.Stat.ManaCost + 1) / 2));
+            Mana.ChangeMana(-1 * ((unit.DeckUnitTotalStat.ManaCost + 1) / 2));
         else
-            Mana.ChangeMana(-unit.Stat.ManaCost);
+            Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
 
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         BattleUI.RemoveHandUnit(unit);

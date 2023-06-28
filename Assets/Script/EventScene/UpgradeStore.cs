@@ -56,22 +56,22 @@ public class UpgradeStore : MonoBehaviour
 
         if (select == 1)
         {
-            _upgradeUnit.ChangedStat.ATK += 5;
+            _upgradeUnit.DeckUnitUpgradeStat.ATK += 5;
             script.Init(GameManager.Data.ScriptData["강화소_공격력"], false);
         }
         else if (select == 2) 
         {
-            _upgradeUnit.ChangedStat.HP += 15;
+            _upgradeUnit.DeckUnitUpgradeStat.MaxHP += 15;
             script.Init(GameManager.Data.ScriptData["강화소_체력"], false);
         }
         else if (select == 3)
         {
-            _upgradeUnit.ChangedStat.SPD += 25;
+            _upgradeUnit.DeckUnitUpgradeStat.SPD += 25;
             script.Init(GameManager.Data.ScriptData["강화소_속도"], false);
         }
         else if (select == 4)
         {
-            _upgradeUnit.ChangedStat.ManaCost -= 10;
+            _upgradeUnit.DeckUnitUpgradeStat.ManaCost -= 10;
             script.Init(GameManager.Data.ScriptData["강화소_코스트"], false);
         }
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");

@@ -54,7 +54,7 @@ public class DataManager : MonoBehaviour
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
-            unit.ChangedStat.ClearStat();
+            unit.DeckUnitChangedStat.ClearStat();
         }
     }
 
