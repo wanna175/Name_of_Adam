@@ -41,7 +41,7 @@ public class BattleManager : MonoBehaviour
     private List<BattleUnit> hitUnits;
     private Vector2 coord;
 
-    [SerializeField] GameObject Background;
+    [SerializeField] List<GameObject> Background;
 
     public FieldColorType fieldColorType = FieldColorType.none;
 
@@ -52,7 +52,7 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
-        GameManager.Sound.Play("BattleBGMA", Sounds.BGM);
+        GameManager.Sound.Play("Battle/BattleBGM", Sounds.BGM);
 
         SetBackground();
     }
@@ -101,13 +101,14 @@ public class BattleManager : MonoBehaviour
 
         for(int i = 0; i < 3; i++)
         {
-            Background.transform.GetChild(i).gameObject.SetActive(false);
+            Background[i].gameObject.SetActive(false);
+            //Background
             if (((Faction)i + 1).ToString() == str)
-                Background.transform.GetChild(i).gameObject.SetActive(true);
+                Background[i].gameObject.SetActive(true);
         }
 
         if(str == "" || str == null)
-            Background.transform.GetChild(0).gameObject.SetActive(true);
+            Background[0].gameObject.SetActive(true);
     }
     #region Click 관련
 
