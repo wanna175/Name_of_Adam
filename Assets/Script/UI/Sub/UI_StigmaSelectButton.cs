@@ -19,7 +19,7 @@ public class UI_StigmaSelectButton : UI_Base
         _popup = popup;
         _stigma = stigma;
 
-        _stigmaName.text = stigma.GetName(false);
+        _stigmaName.text = stigma.GetName();
         _stigmaDescription.text = stigma.Description;
         _stigmaImage.sprite = stigma.Sprite;
     }
