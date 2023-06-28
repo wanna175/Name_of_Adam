@@ -40,6 +40,7 @@ public class PlayerSkillController : MonoBehaviour
         GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //이팩트를 여기에 추가
         Field.GetUnit(coord).ChangeFall(1);
+
         PlayerSkillUse();
     }
 
@@ -48,6 +49,8 @@ public class PlayerSkillController : MonoBehaviour
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //이팩트를 여기에 추가
         Field.GetUnit(coord).ChangeHP(-20);
+
+        PlayerSkillUse();
     }
 
     public void HealUnitOnField(Vector2 coord)
@@ -55,6 +58,8 @@ public class PlayerSkillController : MonoBehaviour
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //이팩트를 여기에 추가
         Field.GetUnit(coord).ChangeHP(20);
+
+        PlayerSkillUse();
     }
 
     public void BounceUnitOnField(Vector2 coord)
@@ -70,6 +75,8 @@ public class PlayerSkillController : MonoBehaviour
         BattleUI.FillHand();
         Field.FieldCloseInfo(Field.TileDict[coord]);
         Destroy(unit.gameObject);
+
+        PlayerSkillUse();
     }
 
     public bool UnitTargetPlayerSkillReady(FieldColorType colorType)
