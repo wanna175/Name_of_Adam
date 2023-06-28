@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public struct Stat
 {
-    public int HP;
+    public int MaxHP;
     public int CurrentHP;
     public int ATK;
     public int SPD;
@@ -16,7 +16,7 @@ public struct Stat
     public static Stat operator +(Stat lhs, Stat rhs)
     {
         Stat result = new Stat();
-        result.HP = lhs.HP + rhs.HP;
+        result.MaxHP = lhs.MaxHP + rhs.MaxHP;
         result.CurrentHP = lhs.CurrentHP + rhs.CurrentHP;
         result.ATK = lhs.ATK + rhs.ATK;
         result.SPD = lhs.SPD + rhs.SPD;
@@ -30,7 +30,7 @@ public struct Stat
     public static Stat operator -(Stat lhs, Stat rhs)
     {
         Stat result = new Stat();
-        result.HP = lhs.HP - rhs.HP;
+        result.MaxHP = lhs.MaxHP - rhs.MaxHP;
         result.CurrentHP = lhs.CurrentHP - rhs.CurrentHP;
         result.ATK = lhs.ATK - rhs.ATK;
         result.SPD = lhs.SPD - rhs.SPD;
@@ -43,7 +43,7 @@ public struct Stat
 
     public void ClearStat()
     {
-        HP = 0;
+        MaxHP = 0;
         CurrentHP = 0;
         ATK = 0;
         SPD = 0;
