@@ -50,10 +50,10 @@ Canvas:
   m_GameObject: {fileID: 4377793920896701894}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -116,6 +116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSkillCardPrefabs: {fileID: 4244837440217407375, guid: 86b5927ed012bce409c76a59e48c8c45, type: 3}
   Grid: {fileID: 2173794050751317050}
+  skillList: []
+  Used: 0
 --- !u!1 &4853456371399789443
 GameObject:
   m_ObjectHideFlags: 0

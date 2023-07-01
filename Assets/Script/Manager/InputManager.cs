@@ -25,12 +25,4 @@ public class InputManager : MonoBehaviour
 
         return false;
     }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-           // GameManager.Sound.Play("UI/ClickSFX/UIClick1");
-        }
-    }
 }
