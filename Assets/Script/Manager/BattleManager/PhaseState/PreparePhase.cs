@@ -31,8 +31,16 @@ public class PreparePhase : Phase
 
     public override void OnStateExit()
     {
-        isFirst = false;
+        if (isFirst) 
+        {
+            foreach (DeckUnit unit in BattleManager.Data.PlayerDeck)
+                unit.FirstTurnDiscountUndo();
 
+            foreach (DeckUnit unit in BattleManager.Data.PlayerHands)
+                unit.FirstTurnDiscountUndo();
+
+            isFirst = false;
+        }
         GameManager.UI.ShowScene<UI_TurnNotify>().SetUnitTurnImage();
     }
 }
