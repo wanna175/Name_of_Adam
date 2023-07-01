@@ -26,18 +26,18 @@ public class BattleDataManager : MonoBehaviour
 
     public void OnBattleOver()
     {
-        Debug.Log("BDM Destroy");
-        foreach (DeckUnit unit in PlayerHands)
-        {
-            unit.ChangedStat.CurrentHP = 0;
-            AddDeckUnit(unit);
-        }
+        Debug.Log("BattleDataManager Destroy");
 
         foreach (BattleUnit unit in BattleUnitList)
         {
-            unit.DeckUnit.ChangedStat.CurrentHP = 0;
-            unit.DeckUnit.ChangedStat.FallCurrentCount = unit.Fall.GetCurrentFallCount();
+            unit.DeckUnit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit.DeckUnit);
+        }
+
+        foreach (DeckUnit unit in PlayerHands)
+        {
+            unit.DeckUnitChangedStat.ClearStat();
+            AddDeckUnit(unit);
         }
 
         GameManager.Data.SetDeck(_playerDeck);
