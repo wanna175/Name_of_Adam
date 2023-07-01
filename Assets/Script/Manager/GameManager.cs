@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
         //    Destroy(gameObject); // 이미 GameManager가 있으면 이 오브젝트를 제거
         //else
         //    Init();
+        if (s_instance != null)
+            return;
         Data.Init();
         Sound.Init();
         VisualEffect.Init();
