@@ -92,29 +92,8 @@ public class BattleUnit : MonoBehaviour
         _hpBar.SetHPBar(Team, transform);
         BattleManager.Data.CorruptUnits.Add(this);
 
-        List<Passive> stigmaList = new List<Passive>();
-
-        while (stigmaList.Count < 2)
-        {
-            Passive tempPassive = GameManager.Data.Passive.GetRandomPassive();
-
-            if (stigmaList.Contains(tempPassive))
-                continue;
-
-            stigmaList.Add(tempPassive);
-        }
-
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().init(OnStigmaSelect, stigmaList);
-
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
-    }
-
-    public void OnStigmaSelect(Passive stigma)
-    {
-        DeckUnit.AddStigma(stigma);
-        GameManager.UI.ClosePopup();
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
     }
 
     public void Corrupted()

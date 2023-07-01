@@ -312,8 +312,16 @@ public class BattleManager : MonoBehaviour
 
     public void StigmaSelectEvent(Corruption cor)
     {
-        // 낙인 선택지 등장
-        cor.LoopExit();
+        List<Passive> stigmaList = new List<Passive>();
+         
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(cor.LoopExit, cor.GetTargetUnit(), 2);
+    }
+
+    public void OnStigmaSelect(Passive stigma)
+    {
+        //DeckUnit.AddStigma(stigma);
+        //GameManager.UI.ClosePopup();
+        //GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
     }
 
     private void UnitDeadAction(BattleUnit _unit)
