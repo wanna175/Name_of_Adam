@@ -46,4 +46,16 @@ public class DeckUnit
 
         Stigma.Add(passive);
     }
+
+    private int _firstTurnDiscount = 0;
+    public void FirstTurnDiscount()
+    {
+        _firstTurnDiscount = (DeckUnitTotalStat.ManaCost + 1) / 2;
+        DeckUnitChangedStat.ManaCost -= _firstTurnDiscount;
+    }
+
+    public void FirstTurnDiscountUndo()
+    {
+        DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
+    }
 }

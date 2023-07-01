@@ -214,11 +214,10 @@ public class BattleManager : MonoBehaviour
         if (Field._coloredTile.Contains(coord) == false)
             return;
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
-        
+        Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
+
         if (isFirst)
-            Mana.ChangeMana(-1 * ((unit.DeckUnitTotalStat.ManaCost + 1) / 2));
-        else
-            Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
+            unit.FirstTurnDiscountUndo();
 
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         BattleUI.RemoveHandUnit(unit);
