@@ -31,7 +31,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private void SetUnitInfo()
     {
-        _unitCard.Set(_handUnit.Data.Image, _handUnit.Data.Name, _handUnit.Stat.ManaCost.ToString());
+        _unitCard.Set(_handUnit.Data.Image, _handUnit.Data.Name, _handUnit.DeckUnitTotalStat.ManaCost.ToString());
     }
 
     public DeckUnit GetUnit()
@@ -43,7 +43,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         _highlight.SetActive(true);
         _hoverInfo = BattleManager.BattleUI.ShowInfo();
-        _hoverInfo.SetInfo(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
+        _hoverInfo.SetInfo(_handUnit, Team.Player);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -68,7 +68,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         if (IsSelected)
         {
             _selectInfo = BattleManager.BattleUI.ShowInfo();
-            _selectInfo.SetInfo(_handUnit, Team.Player, _handUnit.Stat.CurrentHP, _handUnit.Stat.FallCurrentCount);
+            _selectInfo.SetInfo(_handUnit, Team.Player);
         }
         else
         {

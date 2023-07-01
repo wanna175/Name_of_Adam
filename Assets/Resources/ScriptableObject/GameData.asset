@@ -16,13 +16,23 @@ MonoBehaviour:
   DarkEssence: 0
   DeckUnits:
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
-    ChangedStat:
-      HP: 0
+    DeckUnitUpgradeStat:
+      MaxHP: 0
       CurrentHP: 0
       ATK: 0
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    stigmas: 
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    Stigma:
+    - {fileID: 6636403106130926892, guid: 38954cff096a00d46816c86ca6af40ad, type: 3}
   isVisitUpgrade: 0
+  isVisitStigma: 1

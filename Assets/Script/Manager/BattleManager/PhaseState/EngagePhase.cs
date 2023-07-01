@@ -12,7 +12,7 @@ public class EngagePhase : Phase
         if (unit != null)
         {
             _engageInfo = BattleManager.BattleUI.ShowInfo();
-            _engageInfo.SetInfo(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
+            _engageInfo.SetInfo(unit);
         }
         BattleManager.BattleUI.ChangeButtonName();
     }

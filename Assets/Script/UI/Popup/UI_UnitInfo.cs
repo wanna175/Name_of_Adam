@@ -36,21 +36,21 @@ public class UI_UnitInfo : UI_Popup
         _onSelect = onSelect;
         _selectButton.SetActive(onSelect != null);
 
-        _unitCard.Set(_unit.Data.Image, _unit.Data.Name, _unit.Stat.ManaCost.ToString());
+        _unitCard.Set(_unit.Data.Image, _unit.Data.Name, _unit.DeckUnitTotalStat.ManaCost.ToString());
 
         _unitInfoName.text = _unit.Data.Name;
-        _unitInfoCost.text = _unit.Stat.ManaCost.ToString();
+        _unitInfoCost.text = _unit.DeckUnitTotalStat.ManaCost.ToString();
 
-        _unitInfoStat.text = "HP:     " + _unit.Stat.HP.ToString() + "\n" +
-                                 "Attack: " + _unit.Stat.ATK.ToString() + "\n" +
-                                 "Speed:  " + _unit.Stat.SPD.ToString();
+        _unitInfoStat.text = "HP:     " + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
+                                 "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + "\n" +
+                                 "Speed:  " + _unit.DeckUnitTotalStat.SPD.ToString();
 
-        _unitInfoSkillDescrption.text = _unit.Data.Description.Replace("(ATK)", _unit.Stat.ATK.ToString());
+        _unitInfoSkillDescrption.text = _unit.Data.Description.Replace("(ATK)", _unit.DeckUnitTotalStat.ATK.ToString());
 
-        for (int i = 0; i < _unit.Stat.FallMaxCount; i++)
+        for (int i = 0; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
             UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
-            if (i < _unit.Stat.FallCurrentCount)
+            if (i < _unit.DeckUnitTotalStat.FallCurrentCount)
                 fg.Set(true);
             else
                 fg.Set(false);
