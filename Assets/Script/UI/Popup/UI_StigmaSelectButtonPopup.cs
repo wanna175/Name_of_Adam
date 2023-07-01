@@ -33,6 +33,9 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
             if (existStigma.Contains(stigma))
                 continue;
 
+            if (result.Contains(stigma))
+                continue;
+
             result.Add(stigma);
         }
 

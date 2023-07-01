@@ -58,7 +58,7 @@ public class PassiveManager
 
     public Passive GetRandomPassive()
     {
-        int randNum = Mathf.RoundToInt(_weightPassiveList.Count * Random.Range(0f, 1f));
+        int randNum = Mathf.FloorToInt(_weightPassiveList.Count * Random.Range(0f, 1f));
         return _weightPassiveList[randNum];
     }
 
