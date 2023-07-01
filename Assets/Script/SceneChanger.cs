@@ -13,10 +13,9 @@ public static class SceneChanger
         {
             GameManager.Sound.Clear();
             GameManager.Sound.Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
-            
+            GameManager.Sound.Play(SceneName + "/" + SceneName + "BGM", Sounds.BGM);
         }
-
-        if(SceneName != "LogoScene")
+        else if(SceneName != "LogoScene" && SceneName != "CutScene")
         {
             GameManager.Sound.Clear();
             GameManager.Sound.Play(SceneName + "/" + SceneName + "BGM", Sounds.BGM);

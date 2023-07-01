@@ -23,7 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
-    [SerializeField] public UnitBuff Buff;
+    //[SerializeField] public UnitBuff Buff;
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
     [SerializeField] private UI_HPBar _hpBar;
 

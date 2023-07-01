@@ -22,7 +22,8 @@ public class UIManager : MonoBehaviour
     public void SetCanvas(GameObject go, bool sort = true)
     {
         Canvas canvas = go.GetOrAddComponent<Canvas>();
-        //canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        //canvas.worldCamera = GameObject.Find("Main Camera");
         canvas.overrideSorting = true;
 
         if (sort)
