@@ -7,34 +7,24 @@ using TMPro;
 
 public class UI_StigmaSelectButtonPopup : UI_Popup
 {
-    private Action _action;
-    private DeckUnit _deckUnit;
+    private Action _afterPopupAction;
+    private DeckUnit _targetUnit;
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private Transform _grid;
 
-    public void init(Action<Passive> action,  List<Passive> stigmaList)
+    public void Init(DeckUnit targetUnit, int stigmaCount, Action afterPopupAction = null)
     {
-        //_action = action;
+        _afterPopupAction = afterPopupAction;
+        _targetUnit = targetUnit;
 
-        for (int i = 0; i < stigmaList.Count; i++)
-        { 
-            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().init(this, stigmaList[i]);
-        }
-    }
-
-    public void Init(Action action, BattleUnit targetUnit, int stigmaCount)
-    {
-        _action = action;
-        _deckUnit = targetUnit.DeckUnit;
-
-        List<Passive> stigmaList = CreatePassiveList(targetUnit, stigmaCount);
+        List<Passive> stigmaList = CreatePassiveList(_targetUnit, stigmaCount);
         SetStigmaSelectButtons(stigmaList);
     }
 
-    private List<Passive> CreatePassiveList(BattleUnit targetUnit, int stigmaCount)
+    private List<Passive> CreatePassiveList(DeckUnit targetUnit, int stigmaCount)
     {
         List<Passive> result = new List<Passive>();
-        List<Passive> existStigma = targetUnit.Passive;
+        List<Passive> existStigma = targetUnit.Stigma;
 
         while (result.Count < stigmaCount)
         {
@@ -59,9 +49,12 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void OnClick(Passive stigma)
     {
-        _deckUnit.AddStigma(stigma);
+        _targetUnit.AddStigma(stigma);
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        _action.Invoke();
+
+        if(_afterPopupAction != null)
+            _afterPopupAction.Invoke();
+
         GameManager.UI.ClosePopup();
     }
 }

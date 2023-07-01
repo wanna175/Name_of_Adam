@@ -314,14 +314,7 @@ public class BattleManager : MonoBehaviour
     {
         List<Passive> stigmaList = new List<Passive>();
          
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(cor.LoopExit, cor.GetTargetUnit(), 2);
-    }
-
-    public void OnStigmaSelect(Passive stigma)
-    {
-        //DeckUnit.AddStigma(stigma);
-        //GameManager.UI.ClosePopup();
-        //GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(cor.GetTargetUnit().DeckUnit, 2, cor.LoopExit);
     }
 
     private void UnitDeadAction(BattleUnit _unit)
