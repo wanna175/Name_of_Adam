@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: "\uC554\uC0B4\uC790"
   m_EditorClassIdentifier: 
   _rawStat:
-    HP: 25
+    MaxHP: 25
     CurrentHP: 25
     ATK: 20
     SPD: 80
     FallCurrentCount: 0
     FallMaxCount: 3
     ManaCost: 10
-  _stigma: 
+  _uniqueStigma: []
   _name: "\uC554\uC0B4\uC790"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC90D\uB2C8\uB2E4."
@@ -28,7 +28,9 @@ MonoBehaviour:
   _rarity: 0
   _image: {fileID: 21300000, guid: a2354bd8bb6fa6c45b73bfc551a78a5e, type: 3}
   _animatorController: {fileID: 9100000, guid: dc2a159a8e4e70147a0502d4ff463850, type: 2}
-  _skillEffectController: {fileID: 0}
+  _corruptionAnimatorController: {fileID: 0}
+  _skillEffectAnim: {fileID: 0}
+  _corruptionSkillEffectAnim: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
   _darkEssenseDrop: 1
   _darkEssenseCost: 0

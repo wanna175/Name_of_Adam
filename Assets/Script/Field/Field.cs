@@ -292,7 +292,7 @@ public class Field : MonoBehaviour
         {
             BattleUnit unit = tile.Unit;
             _hoverInfo = BattleManager.BattleUI.ShowInfo();
-            _hoverInfo.SetInfo(unit.DeckUnit, unit.Team, unit.HP.GetCurrentHP(), unit.Fall.GetCurrentFallCount());
+            _hoverInfo.SetInfo(unit);
         }
     }
 

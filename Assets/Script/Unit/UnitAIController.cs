@@ -82,9 +82,7 @@ public class UnitAIController : MonoBehaviour
                     Vector2 attackableRange = unit.Location - range;
                     if (!_field.IsInRange(attackableRange))
                         continue;
-                    
-                    Debug.Log(caster.Data.Name + ": " + attackableRange.x + ". " + attackableRange.y);
-
+                   
                     AttackableTileList.Add(attackableRange);
 
                     if (TileHPDict.ContainsKey(attackableRange))

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\uACE0\uBB38\uAD00"
   m_EditorClassIdentifier: 
   _rawStat:
-    HP: 25
+    MaxHP: 25
     CurrentHP: 25
     ATK: 10
     SPD: 52

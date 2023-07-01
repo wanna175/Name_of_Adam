@@ -45,7 +45,7 @@ public class UI_Hands : UI_Scene
 
     public void OnClickHand(UI_Hand hand)
     {
-        if (BattleManager.Mana.CanUseMana(hand.GetUnit().Stat.ManaCost))
+        if (BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost))
         {
             if (hand != null && hand == _selectedHand)
                 CancelSelect();
