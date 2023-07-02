@@ -7,7 +7,6 @@ public class StigmaStore : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
     [SerializeField] private Image _unitImage;
-    private List<Passive> stigmaList = new();
 
     void Start()
     {
@@ -26,17 +25,6 @@ public class StigmaStore : MonoBehaviour
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
         PassiveManager passiveManager = GameManager.Data.Passive;
-        stigmaList.Add(passiveManager.GetRandomPassive());
-
-        while (stigmaList.Count < 3)
-        {
-            Passive tempPassive = passiveManager.GetRandomPassive();
-            
-            if (stigmaList.Contains(tempPassive))
-                continue;
-            
-            stigmaList.Add(tempPassive);
-        }
     }
 
     public void OnStigmaUnitButtonClick()
@@ -58,7 +46,7 @@ public class StigmaStore : MonoBehaviour
     {
         if (_stigmatizeUnit != null)
         {
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().init(OnStigmaSelect, stigmaList);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, 3);
         }
     }
 
