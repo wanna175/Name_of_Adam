@@ -41,6 +41,15 @@ public class UI_Conversation : UI_Popup
 
             co_typing = StartCoroutine(TypingEffect(script.script));
 
+            yield return new WaitUntil(() => (co_typing == null || GameManager.InputManager.Click));
+
+            if(co_typing != null)
+            {
+                StopCoroutine(co_typing);
+                co_typing = null;
+            }
+            _conversationText.text = script.script;
+
             yield return new WaitUntil(() => GameManager.InputManager.Click);
         }
 
