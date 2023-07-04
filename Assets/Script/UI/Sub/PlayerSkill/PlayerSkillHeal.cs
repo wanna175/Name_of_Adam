@@ -7,10 +7,12 @@ public class PlayerSkillHeal : PlayerSkill
     private string name = "Heal";
     private int manaCost = 20;
     private int darkEssence = 0;
+    private string description = "20 마나를 지불하고 원하는 유닛의 체력을 20 회복합니다.";
 
     public override int GetDarkEssenceCost() => darkEssence;
     public override int GetManaCost() => manaCost;
     public override string GetName() => name;
+    public override string GetDescription() => description;
 
     public override void CancelSelect()
     {
