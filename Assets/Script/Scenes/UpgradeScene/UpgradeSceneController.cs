@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeStore : MonoBehaviour
+public class UpgradeSceneController : MonoBehaviour
 {
     private DeckUnit _upgradeUnit;
 
