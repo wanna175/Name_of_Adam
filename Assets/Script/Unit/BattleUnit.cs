@@ -23,7 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
-    //[SerializeField] public UnitBuff Buff;
+    [SerializeField] public UnitBuff Buff;
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
     [SerializeField] private UI_HPBar _hpBar;
 
@@ -307,13 +307,13 @@ public class BattleUnit : MonoBehaviour
 
 
     // 낙인 타입에 따라 낙인 내용 실행하는 함수 BattleManager나 BattleUnit 혹은 제 3자에 넣을 지 고민 중
-    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, PassiveType type)
+    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming type)
     {
-        if(type == PassiveType.BEFOREATTACKED || type == PassiveType.AFTERATTACKED || type == PassiveType.FALLED)
+        if(type == ActiveTiming.BEFORE_ATTACKED || type == ActiveTiming.AFTER_ATTACKED || type == ActiveTiming.FALLED)
         {
             foreach (Passive passive in receiver.Passive)
             {
-                if (passive.PassiveType == type)
+                if (passive.ActiveTiming == type)
                 {
                     passive.Use(caster, receiver);
                 }
@@ -323,7 +323,7 @@ public class BattleUnit : MonoBehaviour
         {
             foreach(Passive passive in Passive)
             {
-                if (passive.PassiveType == type)
+                if (passive.ActiveTiming == type)
                 {
                     passive.Use(caster, receiver);
                 }

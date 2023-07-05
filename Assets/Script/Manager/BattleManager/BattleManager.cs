@@ -219,7 +219,7 @@ public class BattleManager : MonoBehaviour
         if (isFirst)
             unit.FirstTurnDiscountUndo();
 
-        spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
+        spawnedUnit.PassiveCheck(spawnedUnit, null, ActiveTiming.SUMMON); //배치 시 낙인 체크
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
@@ -278,7 +278,7 @@ public class BattleManager : MonoBehaviour
             Team team = hit.Team;
 
             //공격 전 낙인 체크
-            unit.PassiveCheck(unit, hit, PassiveType.BEFOREATTACK);
+            unit.PassiveCheck(unit, hit, ActiveTiming.BEFORE_ATTACK);
             unit.SkillUse(hit);
 
             if (unit.SkillEffectAnim != null)
@@ -290,7 +290,7 @@ public class BattleManager : MonoBehaviour
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
 
-            unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
+            unit.PassiveCheck(unit, hit, ActiveTiming.AFTER_ATTACK);
         }
 
         string unitname = unit.DeckUnit.Data.Name;
