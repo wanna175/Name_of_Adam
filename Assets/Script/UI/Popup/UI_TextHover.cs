@@ -19,12 +19,12 @@ public class UI_TextHover : UI_Hover
 
         Debug.Log(position);
 
-        if (position.x > 1080 - 200)
-            posX = 1080 - 200;
+        if (position.x > 1920 - 200)
+            posX = 1920 - 200;
         else
             posX = position.x;
 
-        if (position.y > 0 - 120)
+        if (position.y < 120)
             posY = 120;
         else
             posY = position.y;
