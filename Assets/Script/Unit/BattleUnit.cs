@@ -87,27 +87,29 @@ public class BattleUnit : MonoBehaviour
 
     public void UnitFallEvent()
     {
+        //타락 이벤트 시작
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
-        _hpBar.SetHPBar(Team, transform);
-        _hpBar.RefreshHPBar(HP.FillAmount());
         BattleManager.Data.CorruptUnits.Add(this);
 
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
-
-        DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
-        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
     }
 
     public void Corrupted()
     {
-        //타락 시 낙인 체크
+        //타락 이벤트 종료
         BattleManager.Data.CorruptUnits.Remove(this);
 
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
+        HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
+        _hpBar.SetHPBar(Team, transform);
+        _hpBar.RefreshHPBar(HP.FillAmount());
+
+        DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
+        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
         BattleManager.Instance.BattleOverCheck();
     }
 

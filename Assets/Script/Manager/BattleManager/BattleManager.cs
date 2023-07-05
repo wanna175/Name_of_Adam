@@ -311,9 +311,12 @@ public class BattleManager : MonoBehaviour
 
     public void StigmaSelectEvent(Corruption cor)
     {
-        List<Passive> stigmaList = new List<Passive>();
-         
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(cor.GetTargetUnit().DeckUnit, 2, cor.LoopExit);
+        BattleUnit targetUnit = cor.GetTargetUnit();
+
+        if (targetUnit.Team == Team.Enemy)
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, 2, cor.LoopExit);
+        else
+            cor.LoopExit();
     }
 
     private void UnitDeadAction(BattleUnit _unit)
