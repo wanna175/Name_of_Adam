@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CutSceneData
+public class BattleCutSceneData
 {
     public BattleUnit AttackUnit;
     public List<BattleUnit> HitUnits;
@@ -30,7 +30,7 @@ public class CutSceneData
     // 공격 유닛이 어느 방향에 있는지
     public int AttackUnitDirection;
 
-    public CutSceneData(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
+    public BattleCutSceneData(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
         this.AttackUnit = AttackUnit;
         this.HitUnits = HitUnits;

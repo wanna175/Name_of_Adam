@@ -9,7 +9,7 @@ public class StageButtonEventTrigger : EventTrigger
     Action<GameObject> PointerExit;
     Action<GameObject> PointerClick;
 
-    public void Init(ButtonController controller)
+    public void Init(StageSelectSceneController controller)
     {
         PointerEnter += controller.HoverEnter;
         PointerExit+= controller.HoverExit;

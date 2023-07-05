@@ -31,7 +31,7 @@ public class CameraHandler : MonoBehaviour
     }
 
     
-    public void ZoomIn(CutSceneData CSData, float t)
+    public void ZoomIn(BattleCutSceneData CSData, float t)
     {
         CutSceneCamera.transform.localPosition = Vector3.Lerp(MainCamera.transform.localPosition, CSData.ZoomLocation, t);
         CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.DefaultZoomSize, CSData.ZoomSize, t);
@@ -65,7 +65,7 @@ public class CameraHandler : MonoBehaviour
     }
 
     // 컷씬 후 화면 줌 아웃
-    public void CutSceneZoomOut(CutSceneData CSData, float t)
+    public void CutSceneZoomOut(BattleCutSceneData CSData, float t)
     {
         CutSceneCamera.transform.localPosition = Vector3.Lerp(CSData.ZoomLocation, MainCamera.transform.localPosition, t);
         CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, t);
