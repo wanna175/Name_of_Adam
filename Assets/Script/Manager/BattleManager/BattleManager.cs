@@ -17,8 +17,8 @@ public class BattleManager : MonoBehaviour
     private SoundManager _sound;
     public static SoundManager Sound => Instance._sound;
 
-    [SerializeField] CutSceneController _cutScene;
-    public static CutSceneController CutScene => Instance._cutScene;
+    [SerializeField] BattleCutSceneController _battlecutScene;
+    public static BattleCutSceneController BattleCutScene => Instance._battlecutScene;
 
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
@@ -246,7 +246,7 @@ public class BattleManager : MonoBehaviour
     {
         UnitAttackAction();
 
-        yield return StartCoroutine(CutScene.AfterAttack());
+        yield return StartCoroutine(BattleCutScene.AfterAttack());
         yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
 
         EndUnitAction();
@@ -258,12 +258,12 @@ public class BattleManager : MonoBehaviour
         hits.Add(hit);
 
         Data.HitUnits = hits;
-        CutScene.BattleCutScene(caster, Data.HitUnits);
+        BattleCutScene.BattleCutScene(caster, Data.HitUnits);
     }
     public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
     {
         Data.HitUnits = hits;
-        CutScene.BattleCutScene(caster, Data.HitUnits);
+        BattleCutScene.BattleCutScene(caster, Data.HitUnits);
     }
 
     // 애니메이션용 추가

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CutSceneScript : MonoBehaviour
+public class CutSceneController : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sr;
 

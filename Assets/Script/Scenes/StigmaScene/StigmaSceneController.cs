@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StigmaStore : MonoBehaviour
+public class StigmaController : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
     [SerializeField] private Image _unitImage;

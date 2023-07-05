@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CutSceneController : MonoBehaviour
+public class BattleCutSceneController : MonoBehaviour
 {
     [SerializeField] private CameraHandler _CameraHandler;
     public CameraHandler CameraHandler => _CameraHandler;
 
-    CutSceneData CSData;
+    BattleCutSceneData CSData;
     GameObject Blur;
 
     public float ZoomTime = 1;
@@ -26,7 +26,7 @@ public class CutSceneController : MonoBehaviour
             return;
 
         BattleManager.Field.ClearAllColor();
-        CSData = new CutSceneData(AttackUnit, HitUnits);
+        CSData = new BattleCutSceneData(AttackUnit, HitUnits);
         
         CameraHandler.SetCutSceneCamera();
         UnitFlip();
