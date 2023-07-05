@@ -10,23 +10,13 @@ public class UI_Conversation : UI_Popup
     private Coroutine co_typing = null;
     private List<Script> scripts = new List<Script>();
 
-    enum Texts
-    {
-        ConversationText,
-        NameText,
-    }
-
-    enum Objects
-    {
-        Name,
-    }
+    [SerializeField] private Text _conversationText;
+    [SerializeField] private Text _nameText;
+    [SerializeField] private GameObject _nameObject;
 
     // autoStart = false면 따로 실행해줘야 함
     public void Init(List<Script> scripts, bool autoStart = true)
     {
-        Bind<Text>(typeof(Texts));
-        Bind<GameObject>(typeof(Objects));
-
         this.scripts = scripts;
 
         if (autoStart == false)
@@ -42,14 +32,23 @@ public class UI_Conversation : UI_Popup
         {
             // 이름 없으면 이름 창 꺼짐
             if (script.name == "")
-                GetObject((int)Objects.Name).SetActive(false);
+                _nameObject.SetActive(false);
             else
             {
-                GetObject((int)Objects.Name).SetActive(true);
-                GetText((int)Texts.NameText).text = script.name;
+                _nameObject.SetActive(true);
+                _nameText.text = script.name;
             }
 
             co_typing = StartCoroutine(TypingEffect(script.script));
+
+            yield return new WaitUntil(() => (co_typing == null || GameManager.InputManager.Click));
+
+            if(co_typing != null)
+            {
+                StopCoroutine(co_typing);
+                co_typing = null;
+            }
+            _conversationText.text = script.script;
 
             yield return new WaitUntil(() => GameManager.InputManager.Click);
         }
@@ -59,7 +58,7 @@ public class UI_Conversation : UI_Popup
 
     private IEnumerator TypingEffect(string script)
     {
-        Text text = GetText((int)Texts.ConversationText);
+        Text text = _conversationText;
         text.text = "";
 
         foreach (char c in script.ToCharArray())
