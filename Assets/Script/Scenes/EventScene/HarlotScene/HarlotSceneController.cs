@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WhoreSceneController : MonoBehaviour
+public class HarlotSceneController : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
 
