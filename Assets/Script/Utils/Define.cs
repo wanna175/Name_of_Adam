@@ -136,7 +136,10 @@ public enum ActiveTiming
     FALLED, //타락되었을 때 그 전
     MOVE, //이동 후
     SUMMON, //소환 전
-    ETC //기타
+    TURN_START, //턴 시작 시
+    TURN_END, //턴 종료 시
+    ETC, //기타
+    NONE//없음
 };
 
 public enum RomanNumber
@@ -161,4 +164,11 @@ public enum FieldColorType
     PlayerSkillDamage,
     PlayerSkillHeal,
     PlayerSkillBounce
+}
+
+public enum BuffEnum//모든 버프를 enum으로???
+{
+    Sadism,
+    Encourage,
+    Bleeding
 }

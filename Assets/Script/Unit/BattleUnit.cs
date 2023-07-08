@@ -9,7 +9,7 @@ public class BattleUnit : MonoBehaviour
     public UnitDataSO Data => DeckUnit.Data;
 
     [SerializeField] public Stat BattleUnitChangedStat;//버프 등으로 변경된 스탯
-    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat;//실제 적용 중인 스탯
+    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat; //실제 적용 중인 스탯
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -53,6 +53,32 @@ public class BattleUnit : MonoBehaviour
 
         _renderer.sprite = Data.Image;
         GameManager.Sound.Play("Summon/SummonSFX");
+    }
+
+    private void BuffUse(List<Buff> buffList)
+    {
+        foreach (Buff buff in buffList)
+        {
+            buff.Active(this);
+        }
+    }
+    public void SetBuff(Buff buff)
+    {
+        Buff.SetBuff(buff);
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+    }
+
+    public void TurnStart()
+    {
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+        BuffUse(Buff.CheckActiveTiming(ActiveTiming.TURN_START));
+        Buff.CheckCountDownTiming(ActiveTiming.TURN_START);
+    }
+
+    public void TurnEnd()
+    {
+        BuffUse(Buff.CheckActiveTiming(ActiveTiming.TURN_END));
+        Buff.CheckCountDownTiming(ActiveTiming.TURN_END);
     }
 
     public void SetTeam(Team team)
