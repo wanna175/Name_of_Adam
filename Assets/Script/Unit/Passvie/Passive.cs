@@ -11,8 +11,8 @@ public class Passive : MonoBehaviour
     [SerializeField] private Sprite _sprite;
     public Sprite Sprite => _sprite;
 
-    [SerializeField] private PassiveType _passvieType;
-    public PassiveType PassiveType => _passvieType;
+    [SerializeField] private ActiveTiming _activeTiming;
+    public ActiveTiming ActiveTiming => _activeTiming;
 
     [SerializeField] private int _tier;
     public int Tier => _tier;
