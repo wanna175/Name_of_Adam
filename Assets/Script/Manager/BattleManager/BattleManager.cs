@@ -17,8 +17,8 @@ public class BattleManager : MonoBehaviour
     private SoundManager _sound;
     public static SoundManager Sound => Instance._sound;
 
-    [SerializeField] CutSceneController _cutScene;
-    public static CutSceneController CutScene => Instance._cutScene;
+    [SerializeField] BattleCutSceneController _battlecutScene;
+    public static BattleCutSceneController BattleCutScene => Instance._battlecutScene;
 
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
@@ -52,7 +52,7 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
-        GameManager.Sound.Play("Battle/BattleBGM", Sounds.BGM);
+        
 
         SetBackground();
     }
@@ -214,11 +214,10 @@ public class BattleManager : MonoBehaviour
         if (Field._coloredTile.Contains(coord) == false)
             return;
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
-        
+        Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
+
         if (isFirst)
-            Mana.ChangeMana(-1 * ((unit.Stat.ManaCost + 1) / 2));
-        else
-            Mana.ChangeMana(-unit.Stat.ManaCost);
+            unit.FirstTurnDiscountUndo();
 
         spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
         BattleUI.RemoveHandUnit(unit);
@@ -247,7 +246,7 @@ public class BattleManager : MonoBehaviour
     {
         UnitAttackAction();
 
-        yield return StartCoroutine(CutScene.AfterAttack());
+        yield return StartCoroutine(BattleCutScene.AfterAttack());
         yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
 
         EndUnitAction();
@@ -259,12 +258,12 @@ public class BattleManager : MonoBehaviour
         hits.Add(hit);
 
         Data.HitUnits = hits;
-        CutScene.BattleCutScene(caster, Data.HitUnits);
+        BattleCutScene.BattleCutScene(caster, Data.HitUnits);
     }
     public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
     {
         Data.HitUnits = hits;
-        CutScene.BattleCutScene(caster, Data.HitUnits);
+        BattleCutScene.BattleCutScene(caster, Data.HitUnits);
     }
 
     // 애니메이션용 추가
@@ -312,8 +311,12 @@ public class BattleManager : MonoBehaviour
 
     public void StigmaSelectEvent(Corruption cor)
     {
-        // 낙인 선택지 등장
-        cor.LoopExit();
+        BattleUnit targetUnit = cor.GetTargetUnit();
+
+        if (targetUnit.Team == Team.Enemy)
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, 2, cor.LoopExit);
+        else
+            cor.LoopExit();
     }
 
     private void UnitDeadAction(BattleUnit _unit)

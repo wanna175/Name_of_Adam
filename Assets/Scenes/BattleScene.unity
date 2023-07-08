@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 49041953}
   - component: {fileID: 49041952}
   m_Layer: 0
-  m_Name: CutSceneController
+  m_Name: BattleCutSceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61a81f4617e9d48b2b6a6ce027d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cutScene: {fileID: 49041952}
+  _battlecutScene: {fileID: 49041952}
   Background:
   - {fileID: 1212175861}
   - {fileID: 1117165737}
@@ -2181,8 +2181,16 @@ MonoBehaviour:
   - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
     deckUnit:
       Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
-      ChangedStat:
-        HP: 0
+      DeckUnitUpgradeStat:
+        MaxHP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      DeckUnitChangedStat:
+        MaxHP: 0
         CurrentHP: 0
         ATK: 0
         SPD: 0
@@ -2196,8 +2204,16 @@ MonoBehaviour:
   - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
     deckUnit:
       Data: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
-      ChangedStat:
-        HP: 0
+      DeckUnitUpgradeStat:
+        MaxHP: 0
+        CurrentHP: 0
+        ATK: 0
+        SPD: 0
+        FallCurrentCount: 0
+        FallMaxCount: 0
+        ManaCost: 0
+      DeckUnitChangedStat:
+        MaxHP: 0
         CurrentHP: 0
         ATK: 0
         SPD: 0

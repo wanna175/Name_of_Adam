@@ -6,7 +6,7 @@ public class Effect_Attack : Effect
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        int damage = caster.Stat.ATK;
+        int damage = caster.BattleUnitTotalStat.ATK;
 
         receiver.ChangeHP(-damage);
     }

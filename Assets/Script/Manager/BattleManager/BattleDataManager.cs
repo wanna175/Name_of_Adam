@@ -22,23 +22,33 @@ public class BattleDataManager : MonoBehaviour
     private void Init()
     {
         _playerDeck = GameManager.Data.GetDeck().ToList<DeckUnit>();
+        foreach (DeckUnit unit in _playerDeck)//UI에서 정보를 표시하기 전에 미리 할인함
+        {
+            unit.FirstTurnDiscount();
+        }
     }
 
     public void OnBattleOver()
     {
-        Debug.Log("BDM Destroy");
-        foreach (DeckUnit unit in PlayerHands)
-        {
-            unit.ChangedStat.CurrentHP = 0;
-            AddDeckUnit(unit);
-        }
+        Debug.Log("BattleDataManager Destroy");
 
         foreach (BattleUnit unit in BattleUnitList)
         {
-            unit.DeckUnit.ChangedStat.CurrentHP = 0;
-            unit.DeckUnit.ChangedStat.FallCurrentCount = unit.Fall.GetCurrentFallCount();
+            unit.DeckUnit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit.DeckUnit);
+            Debug.Log(unit.Data.Name);
         }
+
+        BattleUnitList.Clear();
+
+        foreach (DeckUnit unit in PlayerHands)
+        {
+            unit.DeckUnitChangedStat.ClearStat();
+            AddDeckUnit(unit);
+            Debug.Log(unit.Data.Name);
+        }
+
+        PlayerHands.Clear();
 
         GameManager.Data.SetDeck(_playerDeck);
     }

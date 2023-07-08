@@ -28,11 +28,14 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        GameManager.UI.ShowHover<UI_TextHover>().SetText(_skill.GetDescription(), eventData.position);
         _highlight.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        GameManager.UI.CloseHover();
+
         if (IsSelected)
             return;
         _highlight.SetActive(false);

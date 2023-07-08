@@ -20,7 +20,7 @@ public class 동생 : Passive
 
         foreach (BattleUnit unit in units)
         {
-            unit.ChangeHP(-caster.Stat.ATK);
+            unit.ChangeHP(-caster.BattleUnitTotalStat.ATK);
             unit.ChangeFall(1);
             AddMoonMark(unit);
         }

@@ -9,7 +9,7 @@ public class 흡수 : Passive
     {
         base.Use(caster, receiver);
 
-        double heal = caster.Stat.ATK * 0.3;
+        double heal = caster.BattleUnitTotalStat.ATK * 0.3;
         caster.ChangeHP(((int)heal));
     }
 }

@@ -6,10 +6,10 @@ using UnityEngine;
 public class BattleUnit : MonoBehaviour
 {
     public DeckUnit DeckUnit;
-    public Stat Stat => DeckUnit.Stat + BattleUnitChangedStat;
     public UnitDataSO Data => DeckUnit.Data;
 
-    [SerializeField] public Stat BattleUnitChangedStat; 
+    [SerializeField] public Stat BattleUnitChangedStat;//버프 등으로 변경된 스탯
+    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat;//실제 적용 중인 스탯
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -23,6 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
+    //[SerializeField] public UnitBuff Buff;
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
     [SerializeField] private UI_HPBar _hpBar;
 
@@ -45,19 +46,13 @@ public class BattleUnit : MonoBehaviour
         UnitAnimator = GetComponent<Animator>();
 
         AI.SetCaster(this);
-        HP.Init(Stat.HP, Stat.CurrentHP);
-        Fall.Init(Stat.FallCurrentCount, Stat.FallMaxCount);
+        HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
+        _hpBar.RefreshHPBar(HP.FillAmount());
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
         scale = transform.localScale.x;
 
         _renderer.sprite = Data.Image;
         GameManager.Sound.Play("Summon/SummonSFX");
-    }
-
-    public void SetHPBar()
-    {
-        _hpBar.SetHPBar(Team, transform);
-        _hpBar.SetFallBar(DeckUnit);
-
     }
 
     public void SetTeam(Team team)
@@ -68,6 +63,12 @@ public class BattleUnit : MonoBehaviour
         _renderer.flipX = (Team == Team.Enemy) ? true : false;
         SetHPBar();
         ChangeAnimator();
+    }
+
+    public void SetHPBar()
+    {
+        _hpBar.SetHPBar(Team, transform);
+        _hpBar.SetFallBar(DeckUnit);
     }
 
     public void SetLocate(Vector2 coord) {
@@ -86,10 +87,8 @@ public class BattleUnit : MonoBehaviour
 
     public void UnitFallEvent()
     {
-        _hpBar.RefreshFallGauge(0);
-
-        HP.Init(Stat.HP, Stat.CurrentHP);
-        _hpBar.SetHPBar(Team, transform);
+        //타락 이벤트 시작
+        HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         BattleManager.Data.CorruptUnits.Add(this);
 
         GameManager.Sound.Play("UI/FallSFX/Fall");
@@ -98,13 +97,20 @@ public class BattleUnit : MonoBehaviour
 
     public void Corrupted()
     {
-        //타락 시 낙인 체크
+        //타락 이벤트 종료
         BattleManager.Data.CorruptUnits.Remove(this);
 
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
+        HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
+        _hpBar.SetHPBar(Team, transform);
+        _hpBar.RefreshHPBar(HP.FillAmount());
+
+        DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
+        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+        BattleManager.Instance.BattleOverCheck();
     }
 
     public void AnimAttack()
@@ -184,17 +190,19 @@ public class BattleUnit : MonoBehaviour
     }                   
 
     public Stat GetStat(bool buff = true) {
-        return Stat;
+        return BattleUnitTotalStat;
     }
 
     public void ChangeHP(int value) {
         HP.ChangeHP(value);
+        DeckUnit.DeckUnitChangedStat.CurrentHP += value;
         _hpBar.RefreshHPBar(HP.FillAmount());
     }
 
     public void ChangeFall(int value)
     {
         Fall.ChangeFall(value);
+        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
     
@@ -321,11 +329,5 @@ public class BattleUnit : MonoBehaviour
                 }
             }
         }   
-    }
-
-    public void OnDestroy()
-    {
-        DeckUnit.ChangedStat.CurrentHP = HP.GetCurrentHP() - DeckUnit.Stat.HP;
-        DeckUnit.ChangedStat.FallCurrentCount = Fall.GetCurrentFallCount();
     }
 }

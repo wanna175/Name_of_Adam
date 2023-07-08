@@ -9,9 +9,12 @@ public class DeckUnit
 {
     public UnitDataSO Data; // 유닛 기초 정보
     
-    [SerializeField] public Stat ChangedStat; // 영구 변화 수치
-    public Stat Stat => Data.RawStat + ChangedStat; // Memo : 나중에 낙인, 버프 추가한 스탯으로 수정
-    
+    [SerializeField] public Stat DeckUnitUpgradeStat; // 영구 변화 수치
+    [SerializeField] public Stat DeckUnitChangedStat; // 일시적 변화 수치, 한 전투 내에서만 적용
+
+    public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
+    public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
+
     [SerializeField] public List<Passive> Stigma = new List<Passive>();
 
     private int _maxStigmaCount = 3;
@@ -42,5 +45,17 @@ public class DeckUnit
         }
 
         Stigma.Add(passive);
+    }
+
+    private int _firstTurnDiscount = 0;
+    public void FirstTurnDiscount()
+    {
+        _firstTurnDiscount = (DeckUnitTotalStat.ManaCost + 1) / 2;
+        DeckUnitChangedStat.ManaCost -= _firstTurnDiscount;
+    }
+
+    public void FirstTurnDiscountUndo()
+    {
+        DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
     }
 }

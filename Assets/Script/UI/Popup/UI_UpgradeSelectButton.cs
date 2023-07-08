@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class UI_UpgradeSelectButton : UI_Popup
 {
-    private UpgradeStore _us;
-    public void init(UpgradeStore us)
+    private UpgradeSceneController _uc;
+    public void init(UpgradeSceneController uc)
     {
-        _us = us; 
+        _uc = uc; 
     }
 
     public void OnClick(int select)
     {
-        _us.OnUpgradeSelect(select);
+        _uc.OnUpgradeSelect(select);
     }
 }
