@@ -10,6 +10,7 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_playerSkill.Used = false;
         BattleManager.BattleUI.ChangeButtonName();
         GameManager.UI.ShowScene<UI_TurnNotify>().SetPlayerTurnImage();
+        BattleManager.Instance.TurnStart();
     }
 
     public override void OnStateUpdate()
