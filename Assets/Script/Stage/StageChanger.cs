@@ -53,7 +53,8 @@ public class StageChanger
 
     private void SetBattleScene(Stage stage)
     {
-        SetSpawnUnit(stage.BattleStageData.faction, stage.BattleStageData.level, stage.BattleStageData.id);
+        //SetSpawnUnit(stage.BattleStageData.faction, stage.BattleStageData.level, stage.BattleStageData.id);
+        SetSpawnUnit(Faction.월식의_기사단, 1, 1);
 
         SceneChanger.SceneChange("BattleScene");
     }
