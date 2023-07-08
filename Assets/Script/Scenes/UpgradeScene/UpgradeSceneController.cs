@@ -7,7 +7,9 @@ public class UpgradeSceneController : MonoBehaviour
 {
     private DeckUnit _upgradeUnit;
 
-    [SerializeField] private Image _unitImage;
+    [SerializeField] private Image _upgradeunitImage; // 강화 대상 유닛
+
+    [SerializeField] private Image _releaseunitImage; // 교화 해소 유닛
 
     void Start()
     {
@@ -35,8 +37,8 @@ public class UpgradeSceneController : MonoBehaviour
     public  void OnSelect(DeckUnit unit)
     {
         _upgradeUnit = unit;
-        _unitImage.sprite = unit.Data.Image;
-        _unitImage.color = Color.white;
+        _upgradeunitImage.sprite = unit.Data.Image;
+        _upgradeunitImage.color = Color.white;
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();

@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StigmaSceneController : MonoBehaviour
+public class WhoreSceneController : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
-    [SerializeField] private Image _unitImage;
 
-    [SerializeField] private Image _giveunitImage;
-    [SerializeField] private Image _targetunitImage;
+    [SerializeField] private Image _unitImage; // ³«ÀÎ ºÎ¿© À¯´Ö
 
 
     void Start()
@@ -22,9 +20,9 @@ public class StigmaSceneController : MonoBehaviour
         List<Script> scripts = new List<Script>();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
-            scripts = GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ì…ì¥_ìµœì´ˆ"];
+            scripts = GameManager.Data.ScriptData["³«ÀÎ¼Ò_ÀÔÀå_ÃÖÃÊ"];
         else
-            scripts = GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_ì…ì¥"];
+            scripts = GameManager.Data.ScriptData["³«ÀÎ¼Ò_ÀÔÀå"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
@@ -67,7 +65,7 @@ public class StigmaSceneController : MonoBehaviour
     public void AddStigamScript(Passive stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        string scriptKey = "ë‚™ì¸ì†Œ_" + stigma.GetName();
+        string scriptKey = "³«ÀÎ¼Ò_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }
@@ -89,7 +87,7 @@ public class StigmaSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        quitScript.Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_í‡´ì¥"], false);
+        quitScript.Init(GameManager.Data.ScriptData["³«ÀÎ¼Ò_ÅğÀå"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");
