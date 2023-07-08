@@ -79,6 +79,22 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void TurnStart()
+    {
+        foreach (BattleUnit unit in _battleData.BattleUnitList)
+        {
+            unit.TurnStart();
+        }
+    }
+
+    public void TurnEnd()
+    {
+        foreach (BattleUnit unit in _battleData.BattleUnitList)
+        {
+            unit.TurnEnd();
+        }
+    }
+
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
@@ -163,7 +179,7 @@ public class BattleManager : MonoBehaviour
 
         if (Data.OrderUnitCount <= 0)
         {
-            _phase.ChangePhase(_phase.Prepare);
+            _phase.ChangePhase(_phase.End);
             return;
         }
 
