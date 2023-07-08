@@ -8,6 +8,11 @@ public class HarlotSceneController : MonoBehaviour
     private DeckUnit _stigmatizeUnit;
 
     [SerializeField] private Image _unitImage; // ³«ÀÎ ºÎ¿© À¯´Ö
+    [SerializeField] private Image _stigmaImage; // Å¸¶ô ³«ÀÎ ÀÌ¹ÌÁö
+    [SerializeField] private GameObject _menuChoose;
+    [SerializeField] private GameObject _stigmazation;
+    [SerializeField] private GameObject _getEliteUnit;
+
 
 
     void Start()
@@ -17,6 +22,11 @@ public class HarlotSceneController : MonoBehaviour
 
     private void Init()
     {
+        //_stigmaImage = GameManager.Resource.Load<Image>("");
+        _menuChoose.SetActive(true);
+        _stigmazation.SetActive(false);
+        _getEliteUnit.SetActive(false);
+
         List<Script> scripts = new List<Script>();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
@@ -29,10 +39,31 @@ public class HarlotSceneController : MonoBehaviour
         PassiveManager passiveManager = GameManager.Data.Passive;
     }
 
-    public void OnStigmaUnitButtonClick()
+    public void ClickStigmatization()
+    {
+        _menuChoose.SetActive(false);
+
+        _stigmazation.SetActive(true);
+
+
+    }
+
+    public void ClickGetEliteUnit()
+    {
+        _menuChoose.SetActive(false);
+        _getEliteUnit.SetActive(true);
+
+        // À¯´Ö ¾ò´Â ³»¿ë
+
+    }
+
+
+
+    public void ClickUnitSelectBTN()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
     }
+
 
     public void OnSelect(DeckUnit unit)
     {
@@ -58,7 +89,7 @@ public class HarlotSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
         AddStigamScript(stigma);
         //StartCoroutine(QuitScene());
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        
         //OnQuitClick();
     }
 
@@ -70,7 +101,7 @@ public class HarlotSceneController : MonoBehaviour
         StartCoroutine(QuitScene(script));
     }
 
-    public void OnQuitClick()
+    public void ClickQuit()
     {
         StartCoroutine(QuitScene());
     }
