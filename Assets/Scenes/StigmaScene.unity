@@ -233,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 6690453242010598847, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1114547691}
+      objectReference: {fileID: 0}
     - target: {fileID: 6690453242010598847, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -755,7 +755,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1114547691}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StigmaStore, Assembly-CSharp
         m_MethodName: OnStigmaUnitButtonClick
         m_Mode: 1
@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0481c0b0c9f7f44c90d01074e72dc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitImage: {fileID: 1069450464}
+  _unitImage: {fileID: 0}
 --- !u!1 &1284920865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1307,7 @@ PrefabInstance:
     - target: {fileID: 6690453242010598847, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1114547691}
+      objectReference: {fileID: 0}
     - target: {fileID: 6690453242010598847, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
