@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac803bb941873b4fafc0c839fc31480, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
   Money: 0
   DarkEssence: 0
   DeckUnits:
@@ -32,7 +33,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    Stigma:
-    - {fileID: 6636403106130926892, guid: 38954cff096a00d46816c86ca6af40ad, type: 3}
+    Stigma: []
   isVisitUpgrade: 0
-  isVisitStigma: 1
+  isVisitStigma: 0

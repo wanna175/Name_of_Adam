@@ -6,18 +6,13 @@ public class UI_PlayerSkill : UI_Scene
 {
     [SerializeField] private GameObject PlayerSkillCardPrefabs;
     [SerializeField] private Transform Grid;
-    [SerializeField] private List<PlayerSkill> skillList;
 
     private UI_PlayerSkillCard _selectedCard = null;
 
     public bool Used = false;// once per turn
 
-    private void Awake()
-    {
-        SetSkill();
-    }
 
-    public void SetSkill()
+    public void SetSkill(List<PlayerSkill> skillList)
     {
         for (int i = 0; i < 4; i++)
         {

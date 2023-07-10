@@ -147,4 +147,6 @@ public class DataManager : MonoBehaviour
         Debug.Log("not enough Dark Essense");
         return false;
     }
+
+    public List<PlayerSkill> GetPlayerSkillList() => GameData.Incarna.PlayerSkillList;
 }
