@@ -1,31 +1,7 @@
 fileFormatVersion: 2
-guid: 07e2b3776824bce46bed717b4569e0d1
+guid: b84dd1ccc2176a14ba47b2c181d95b5d
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 463167036469006645
-    second: Pixilart Sprite Sheet_0
-  - first:
-      213: -3901825175021881390
-    second: Pixilart Sprite Sheet_1
-  - first:
-      213: -5664650594666802891
-    second: Pixilart Sprite Sheet_2
-  - first:
-      213: -3736641513198929832
-    second: Pixilart Sprite Sheet_3
-  - first:
-      213: -3632358520896601122
-    second: Enemy_Slime2_0
-  - first:
-      213: 5702275661849612381
-    second: Enemy_Slime2_1
-  - first:
-      213: -8942274633707511356
-    second: Enemy_Slime2_2
-  - first:
-      213: 1549343003576151062
-    second: Enemy_Slime2_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -71,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -114,7 +90,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,7 +102,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -141,85 +117,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Slime2_0
+      name: AttackFrame1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed348199b25479dc0800000000000000
-      internalID: -3632358520896601122
+      spriteID: abe07c2c3e9df8f4097ef504b763092f
+      internalID: 1376607506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Slime2_1
+      name: AttackFrame1_1
       rect:
         serializedVersion: 2
-        x: 160
+        x: 256
         y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d50d6e3a08d822f40800000000000000
-      internalID: 5702275661849612381
+      spriteID: 0e9311c2a90279744ab048db4d89a32f
+      internalID: -1549110582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Slime2_2
+      name: AttackFrame1_2
       rect:
         serializedVersion: 2
-        x: 320
+        x: 512
         y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c1a0ed4998a6e380800000000000000
-      internalID: -8942274633707511356
+      spriteID: c8d7f1b0d952d1d458a863bf54a69669
+      internalID: 2096700845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Slime2_3
+      name: AttackFrame1_3
       rect:
         serializedVersion: 2
-        x: 480
+        x: 768
         y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61ca463c04f508510800000000000000
-      internalID: 1549343003576151062
+      spriteID: 9826c452b903ef44e840fc317e4d97ae
+      internalID: -173902241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackFrame1_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fb6a9c55cf0c7f4f94e17c0a17d2e41
+      internalID: -160109247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackFrame1_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b985dd7b62a7f154c8f21b172389aa39
+      internalID: -943662681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackFrame1_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e5bae78c275f1e40b913b04bbcc9898
+      internalID: 320213218
       vertices: []
       indices: 
       edges: []
@@ -235,10 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy_Slime2_3: 1549343003576151062
-      Enemy_Slime2_1: 5702275661849612381
-      Enemy_Slime2_0: -3632358520896601122
-      Enemy_Slime2_2: -8942274633707511356
+      AttackFrame1_5: -943662681
+      AttackFrame1_0: 1376607506
+      AttackFrame1_3: -173902241
+      AttackFrame1_6: 320213218
+      AttackFrame1_2: 2096700845
+      AttackFrame1_1: -1549110582
+      AttackFrame1_4: -160109247
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -284,7 +284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5250745
+      value: 15.775074
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.6545434
+      value: 17.904543
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -440,7 +440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.17
+      value: 15.42
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -505,7 +505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.302581
+      value: 12.947419
       objectReference: {fileID: 0}
     - target: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -729,7 +729,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 61f153129cce4364a86f5f6e8496125a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b5adf26a1aab814a9d720e889dcd0eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -749,7 +749,7 @@ Transform:
   m_GameObject: {fileID: 1967057651}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.111111, y: 1.111111, z: 1}
+  m_LocalScale: {x: 1.815, y: 1.815, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
