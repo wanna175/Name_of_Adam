@@ -16,14 +16,15 @@ public class UI_PlayerSkill : UI_Scene
     {
         for (int i = 0; i < 4; i++)
         {
-            UI_PlayerSkillCard newCard = GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>();
-            newCard.Set(this, skillList[i]);
+            GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
         }
     }
 
     public void OnClickHand(UI_PlayerSkillCard card)
     {
-        if (!Used)
+        PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
+        
+        if (!prepare.isFirst && !Used)
         {
             if (card != null && card == _selectedCard)
             {

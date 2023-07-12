@@ -43,14 +43,20 @@ public class DataManager : MonoBehaviour
         StageDatas = LoadJson<StageDataContainer>("StageData");
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
         Passive = new PassiveManager();
+
+        _darkEssense = GameData.DarkEssence;
+        _playerSkillCount = GameData.Incarna.PlayerSkillCount;
     }
 
     public void DeckClear()
     {
+        GameData.Incarna = GameDataOriginal.Incarna;
         GameData.Money = GameDataOriginal.Money;
         GameData.DarkEssence = GameDataOriginal.DarkEssence;
+        GameData.PlayerSkillCount = GameDataOriginal.PlayerSkillCount;
         GameData.DeckUnits = GameDataOriginal.DeckUnits;
         GameData.isVisitUpgrade = GameDataOriginal.isVisitUpgrade;
+        GameData.isVisitStigma = GameDataOriginal.isVisitStigma;
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
@@ -122,7 +128,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private int _darkEssense = 4;
+    private int _darkEssense = 0;
     public int DarkEssense => _darkEssense;
 
     public bool DarkEssenseChage(int cost)
@@ -146,6 +152,23 @@ public class DataManager : MonoBehaviour
 
         Debug.Log("not enough Dark Essense");
         return false;
+    }
+
+    private int _playerSkillCount = 0;
+    public int PlayerSkillCount => _playerSkillCount;
+
+    public bool PlayerSkillCountChage(int cost)
+    {
+        Debug.Log("Player Skill Count: " + _playerSkillCount + " Change: " + cost);
+        if (_playerSkillCount + cost < 0)
+        {
+            return false;
+        }
+        else
+        {
+            _playerSkillCount += cost;
+            return true;
+        }
     }
 
     public List<PlayerSkill> GetPlayerSkillList() => GameData.Incarna.PlayerSkillList;

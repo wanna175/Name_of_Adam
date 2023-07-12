@@ -160,13 +160,11 @@ public enum FieldColorType
 {
     none,
     UnitSpawn,
-    PlayerSkillWhisper,
-    PlayerSkillDamage,
-    PlayerSkillHeal,
-    PlayerSkillBounce
+    PlayerSkill,
+    UltimatePlayerSkill
 }
 
-public enum BuffEnum//모든 버프를 enum으로???
+public enum BuffEnum
 {
     Sadism,
     Encourage,

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "PlayerSkillWhisper", menuName = "Scriptable Object/PlayerSkillWhisper")]
+[CreateAssetMenu(fileName = "UltimatePlayerSkill_Whisper", menuName = "Scriptable Object/UltimatePlayerSkill_Whisper")]
 
-public class PlayerSkill_Whisper : PlayerSkill
+public class UltimatePlayerSkill_Whisper : PlayerSkill
 {
-    private string playerSkillName = "Whisper";
+    private string playerSkillName = "U-Whisper";
     private int manaCost = 20;
     private int darkEssence = 1;
     private string description = "20 마나와 1 검은 정수를 지불하고 원하는 적 유닛에게 타락도 1을 부여합니다.";
@@ -17,9 +17,15 @@ public class PlayerSkill_Whisper : PlayerSkill
 
     public override void Use(Vector2 coord)
     {
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        BattleManager.Field.GetUnit(coord).ChangeFall(1);
+        foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
+        {
+            if (unit.Team == Team.Enemy)
+            {
+                GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+                //이팩트를 여기에 추가
+                unit.ChangeFall(1);
+            }
+        }
     }
 
     public override void CancelSelect()
@@ -29,6 +35,6 @@ public class PlayerSkill_Whisper : PlayerSkill
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.PlayerSkill);
+        BattleManager.PlayerSkillController.EnemyTargetPlayerSkillReady(FieldColorType.UltimatePlayerSkill);
     }
 }

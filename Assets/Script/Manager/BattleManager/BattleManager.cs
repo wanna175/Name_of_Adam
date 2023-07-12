@@ -206,21 +206,18 @@ public class BattleManager : MonoBehaviour
         {
             SpawnUnitOnField();
         }
-        else if (fieldColorType == FieldColorType.PlayerSkillWhisper)
+        else if (fieldColorType == FieldColorType.PlayerSkill)
         {
-            PlayerSkillController.FallUnitOnField(coord);
+            BattleUI.UI_playerSkill.GetSelectedCard().GetSkill().Use(coord);
+            PlayerSkillController.PlayerSkillUse();
         }
-        else if (fieldColorType == FieldColorType.PlayerSkillDamage)
+        else if (fieldColorType == FieldColorType.UltimatePlayerSkill)
         {
-            PlayerSkillController.DamageUnitOnField(coord);
-        }
-        else if (fieldColorType == FieldColorType.PlayerSkillHeal)
-        {
-            PlayerSkillController.HealUnitOnField(coord);
-        }
-        else if (fieldColorType == FieldColorType.PlayerSkillBounce)
-        {
-            PlayerSkillController.BounceUnitOnField(coord);
+            if (GameManager.Data.PlayerSkillCountChage(-1))
+            {
+                BattleUI.UI_playerSkill.GetSelectedCard().GetSkill().Use(coord);
+                PlayerSkillController.PlayerSkillUse();
+            }
         }
     }
 

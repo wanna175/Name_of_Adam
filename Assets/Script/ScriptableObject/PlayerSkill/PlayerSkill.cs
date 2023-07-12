@@ -10,6 +10,7 @@ public abstract class PlayerSkill : ScriptableObject
     public abstract int GetDarkEssenceCost();
 
     public abstract string GetDescription();
+    public abstract void Use(Vector2 coord);
     public abstract void CancelSelect();
     public abstract void OnSelect();
 }
