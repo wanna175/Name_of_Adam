@@ -168,5 +168,6 @@ public enum BuffEnum
 {
     Sadism,
     Encourage,
-    Bleeding
+    Bleeding,
+    Benediction
 }
