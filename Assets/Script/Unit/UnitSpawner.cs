@@ -74,18 +74,16 @@ public class UnitSpawner : MonoBehaviour
     public BattleUnit DeckSpawn(DeckUnit deckUnit, Vector2 location)
     {
         GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
-        BattleUnit bu = go.GetComponent<BattleUnit>();
-        bu.DeckUnit = deckUnit;
-        bu.DeckUnit.SetStigma();
+        BattleUnit unit = go.GetComponent<BattleUnit>();
+        unit.DeckUnit = deckUnit;
+        unit.DeckUnit.SetStigma();
 
-        bu.Skill.Effects = deckUnit.Data.Effects;
+        unit.Skill.Effects = deckUnit.Data.Effects;
 
-        bu.Init();
-
-        BattleUnit spawnedUnit = go.GetComponent<BattleUnit>();
-
-        BattleManager.Instance.UnitSetting(spawnedUnit, location, Team.Player);
-        return spawnedUnit;
+        unit.Init();
+        BattleManager.Instance.UnitSetting(unit, location, Team.Player);
+        
+        return unit;
     }
 
     public void SpawnInitialUnit()

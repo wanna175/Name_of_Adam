@@ -15,70 +15,69 @@ public class BattleUnit : MonoBehaviour
     public Team Team => _team;
 
     private SpriteRenderer _renderer;
-    private Animator UnitAnimator;
+    private Animator _unitAnimator;
     public AnimationClip SkillEffectAnim;
 
     [SerializeField] public UnitAIController AI;
-
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
     [SerializeField] public UnitBuff Buff;
-    [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
     [SerializeField] private UI_HPBar _hpBar;
+
+    [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
 
-    private float scale;
-    private float GetModifiedScale() => scale + ((scale * 0.1f) * (Location.y - 1));
+    private float _scale;
+    private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (Location.y - 1));
 
     // 23.02.16 임시 수정
-    private Action<BattleUnit> _UnitDeadAction;
+    private Action<BattleUnit> _unitDeadAction;
     public Action<BattleUnit> UnitDeadAction
     {
-        set { _UnitDeadAction = value; }
+        set { _unitDeadAction = value; }
     }
     
     public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
-        UnitAnimator = GetComponent<Animator>();
+        _unitAnimator = GetComponent<Animator>();
 
         AI.SetCaster(this);
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         _hpBar.RefreshHPBar(HP.FillAmount());
+
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
-        scale = transform.localScale.x;
+        _scale = transform.localScale.x;
 
         _renderer.sprite = Data.Image;
         GameManager.Sound.Play("Summon/SummonSFX");
     }
 
-    private void BuffUse(List<Buff> buffList)
+    public void Summon()
     {
-        foreach (Buff buff in buffList)
-        {
-            buff.Active(this);
-        }
-    }
-    public void SetBuff(Buff buff)
-    {
-        Buff.SetBuff(buff);
-        BattleUnitChangedStat = Buff.GetBuffedStat();
+        ActiveTimingCheck(ActiveTiming.SUMMON);
     }
 
     public void TurnStart()
     {
-        BattleUnitChangedStat = Buff.GetBuffedStat();
-        BuffUse(Buff.CheckActiveTiming(ActiveTiming.TURN_START));
-        Buff.CheckCountDownTiming(ActiveTiming.TURN_START);
+        ActiveTimingCheck(ActiveTiming.TURN_START);
     }
 
     public void TurnEnd()
     {
-        BuffUse(Buff.CheckActiveTiming(ActiveTiming.TURN_END));
-        Buff.CheckCountDownTiming(ActiveTiming.TURN_END);
+        ActiveTimingCheck(ActiveTiming.TURN_END);
+    }
+
+    private void ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
+    {
+        PassiveCheck(this, receiver, activeTiming);
+        BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
+        Buff.CheckCountDownTiming(activeTiming);
+
+        BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
     public void SetTeam(Team team)
@@ -103,7 +102,7 @@ public class BattleUnit : MonoBehaviour
     
     public void UnitDiedEvent()
     {
-        _UnitDeadAction(this);
+        _unitDeadAction(this);
         if (_team == Team.Enemy)
         {
             GameManager.Data.DarkEssenseChage(Data.DarkEssenseDrop);
@@ -168,13 +167,13 @@ public class BattleUnit : MonoBehaviour
     {
         if(Team == Team.Player)
         {
-            UnitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
+            _unitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
             if (Data.CorruptionSkillEffectAnim != null)
                 SkillEffectAnim = Data.CorruptionSkillEffectAnim;
         }
         else
         {
-            UnitAnimator.runtimeAnimatorController = Data.AnimatorController;
+            _unitAnimator.runtimeAnimatorController = Data.AnimatorController;
             if (Data.SkillEffectAnim != null)
                 SkillEffectAnim = Data.SkillEffectAnim;
         }
@@ -206,18 +205,18 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-    public void SkillUse(BattleUnit _unit) {
-        if(_unit != null)
+    public void SkillUse(BattleUnit unit) {
+        if(unit != null)
         {
             //피격 전 낙인 체크
-            Skill.Use(this, _unit);
+            ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
+
+            Skill.Use(this, unit);
+
             //피격 후 낙인 체크
+            ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit);
         }
     }                   
-
-    public Stat GetStat(bool buff = true) {
-        return BattleUnitTotalStat;
-    }
 
     public void ChangeHP(int value) {
         HP.ChangeHP(value);
@@ -231,7 +230,20 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
-    
+
+    private void BuffUse(List<Buff> buffList, BattleUnit receiver = null)
+    {
+        foreach (Buff buff in buffList)
+        {
+            buff.Active(this, receiver);
+        }
+    }
+    public void SetBuff(Buff buff)
+    {
+        Buff.SetBuff(buff);
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+    }
+
     public bool GetFlipX() => _renderer.flipX;
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
@@ -330,7 +342,6 @@ public class BattleUnit : MonoBehaviour
         }
         return SplashList;
     }
-
 
     // 낙인 타입에 따라 낙인 내용 실행하는 함수 BattleManager나 BattleUnit 혹은 제 3자에 넣을 지 고민 중
     public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming type)

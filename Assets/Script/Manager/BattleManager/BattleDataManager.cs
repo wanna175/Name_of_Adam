@@ -118,7 +118,7 @@ public class BattleDataManager : MonoBehaviour
 
     private void BattleOrderReplace()
     {
-        _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => unit.GetStat().SPD)
+        _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => unit.BattleUnitTotalStat.SPD)
             .ThenByDescending(unit => unit.Location.y)
             .ThenBy(unit => unit.Location.x)
             .ToList();
