@@ -27,7 +27,7 @@ public abstract class Buff : MonoBehaviour
     public bool PassiveBuff => _passiveBuff;
 
     public abstract void Init();
-    public abstract void Active(BattleUnit unit = null);
+    public abstract void Active(BattleUnit caster = null, BattleUnit rereceiver = null);
 
     public abstract void Stack();
 

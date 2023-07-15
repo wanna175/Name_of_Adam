@@ -1,42 +1,35 @@
 using UnityEngine;
 
-public class Buff_Sadism : Buff
-{
-
-    private int attackUp;
-    public override void Init()
+public class Buff_Benediction : Buff
+{    public override void Init()
     {
-        _buffEnum = BuffEnum.Sadism;
+        _buffEnum = BuffEnum.Benediction;
 
-        _name = "가학";
+        _name = "신성";
 
-        _description = "공격력이 3 증가합니다.";
+        _description = "마지막 남은 유닛의 공격에는 교화가 1 부여됩니다.";
 
         _count = -1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.NONE;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _passiveBuff = true;
-
-        attackUp = 3;
 }
 
     public override void Active(BattleUnit caster, BattleUnit receiver)
     {
+        receiver.ChangeFall(1);
     }
 
     public override void Stack()
     {
-        attackUp += 3;
     }
 
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK += attackUp;
-
         return stat;
     }
 }

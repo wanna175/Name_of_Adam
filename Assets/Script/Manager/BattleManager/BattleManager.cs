@@ -229,10 +229,11 @@ public class BattleManager : MonoBehaviour
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
 
+        spawnedUnit.Summon();
+
         if (isFirst)
             unit.FirstTurnDiscountUndo();
 
-        spawnedUnit.PassiveCheck(spawnedUnit, null, ActiveTiming.SUMMON); //배치 시 낙인 체크
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
@@ -245,13 +246,13 @@ public class BattleManager : MonoBehaviour
     }
     #endregion
 
-    public void UnitSetting(BattleUnit _unit, Vector2 coord, Team team)
+    public void UnitSetting(BattleUnit unit, Vector2 coord, Team team)
     {
-        _unit.SetTeam(team);
-        Field.EnterTile(_unit, coord);
-        _unit.UnitDeadAction = UnitDeadAction;
+        unit.SetTeam(team);
+        Field.EnterTile(unit, coord);
+        unit.UnitDeadAction = UnitDeadAction;
 
-        Data.BattleUnitAdd(_unit);
+        Data.BattleUnitAdd(unit);
         //Data.BattleUnitOrder();
     }
 
@@ -291,19 +292,16 @@ public class BattleManager : MonoBehaviour
             Team team = hit.Team;
 
             //공격 전 낙인 체크
-            unit.PassiveCheck(unit, hit, ActiveTiming.BEFORE_ATTACK);
+            //unit.PassiveCheck(unit, hit, ActiveTiming.BEFORE_ATTACK);
             unit.SkillUse(hit);
 
             if (unit.SkillEffectAnim != null)
                 GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnim, hit.transform.position);
-            
-            if (team != hit.Team)
-                hit.ChangeHP(1000);
-            
+
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
 
-            unit.PassiveCheck(unit, hit, ActiveTiming.AFTER_ATTACK);
+            //unit.PassiveCheck(unit, hit, ActiveTiming.AFTER_ATTACK);
         }
 
         string unitname = unit.DeckUnit.Data.Name;
@@ -332,19 +330,19 @@ public class BattleManager : MonoBehaviour
             cor.LoopExit();
     }
 
-    private void UnitDeadAction(BattleUnit _unit)
+    private void UnitDeadAction(BattleUnit unit)
     {
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), _unit.transform.position);
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), unit.transform.position);
 
-        StartCoroutine(UnitDeadEffect(_unit));
+        StartCoroutine(UnitDeadEffect(unit));
     }
 
-    private IEnumerator UnitDeadEffect(BattleUnit _unit)
+    private IEnumerator UnitDeadEffect(BattleUnit unit)
     {
-        Data.BattleUnitRemove(_unit);
-        Data.BattleOrderRemove(_unit);
+        Data.BattleUnitRemove(unit);
+        Data.BattleOrderRemove(unit);
 
-        SpriteRenderer sr = _unit.GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = unit.GetComponent<SpriteRenderer>();
 
         while (true)
         {
@@ -359,7 +357,7 @@ public class BattleManager : MonoBehaviour
 
             yield return null;
         }
-        Destroy(_unit.gameObject);
+        Destroy(unit.gameObject);
     }
 
     public void DirectAttack()
