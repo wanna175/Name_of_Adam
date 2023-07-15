@@ -19,9 +19,9 @@ public class Buff_Bleeding : Buff
         _passiveBuff = false;
 }
 
-    public override void Active(BattleUnit unit)
+    public override void Active(BattleUnit caster, BattleUnit receiver)
     {
-        unit.ChangeHP(-5);
+        caster.ChangeHP(-5);
     }
 
     public override void Stack()

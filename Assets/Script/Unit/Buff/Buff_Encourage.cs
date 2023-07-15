@@ -23,7 +23,7 @@ public class Buff_Encourage : Buff
         attackUp = 5;
 }
 
-    public override void Active(BattleUnit unit)
+    public override void Active(BattleUnit caster, BattleUnit receiver)
     {
     }
 

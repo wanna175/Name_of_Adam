@@ -17,7 +17,7 @@ public class Buff_AttackUp : Buff
         _passiveBuff = true;
     }
 
-    public override void Active(BattleUnit unit)
+    public override void Active(BattleUnit caster, BattleUnit receiver)
     {
     }
 
