@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: a8575cac6b308f94b961595592c5a22c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: elitesisreal_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1084
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53919c8a12148bc499296e79b5cd59ac
+      internalID: 767613294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_1
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 1084
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f814a791d6366e340b64286462313173
+      internalID: 1238057224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_2
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 1084
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb0764efca597e94eabe4e22af8b72e8
+      internalID: -1408532161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_3
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 1084
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33717a898c922124699940c01a74b089
+      internalID: 1734682528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_4
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 1084
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f680f51ba6a3534498b9e4f74c7633b
+      internalID: 1679427965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 813
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d3b32ea229b8b148bf236020b716c33
+      internalID: 1443095231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_6
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 813
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c27e386269fb34f82a8b595ad6541c
+      internalID: 2101061774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_7
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 813
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3ffd74c6450a44fb2735e816d0025e
+      internalID: -396370832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_8
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 813
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b381c567585d6469af83fc74f40615
+      internalID: -960151925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_9
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 813
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c5e92470c624bf41aa1f10166cd182d
+      internalID: 1902411185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 542
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3216a91a07f98c1428f7c25142493830
+      internalID: -766563951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_11
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 542
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e6ef3b9d239a34f9805c3a9b93c00b
+      internalID: -402889543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_12
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 542
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14c3b49732534f49911914669a2cacf
+      internalID: 246133250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_13
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 542
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 685cdbcd7a3aefd40b0e06bb16b5e702
+      internalID: 835828416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_14
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 542
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 429247ff315da5e4db686ad81651b0bc
+      internalID: 1428961423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 271
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2472044ce4d8bc46b56d91410118a53
+      internalID: 1793699056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_16
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 271
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b83328ae66d46144298f7ca379c80b31
+      internalID: -1077555188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_17
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 271
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53362d8ffdb276c42970c2c424bb001e
+      internalID: -670768138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_18
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 271
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8175692d54839f4a99e496a32c88d2a
+      internalID: 264850514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_19
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 271
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76052d89f0861249becb3bc3fe25786
+      internalID: 410400310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a2335e73ad03749ae22fead4817d73
+      internalID: 750856877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_21
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 0
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ad4001ccdf01b04c91ba2a2ea9fd138
+      internalID: -2102615991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_22
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 0
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a59cdb51522b25b4e90862c63ef3dc4e
+      internalID: 453352242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitesisreal_23
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 0
+        width: 494
+        height: 271
+      alignment: 9
+      pivot: {x: 0.14, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c3a467af6df7464a952f6616c7a6ee5
+      internalID: 1933010125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      elitesisreal_2: -1408532161
+      elitesisreal_11: -402889543
+      elitesisreal_9: 1902411185
+      elitesisreal_4: 1679427965
+      elitesisreal_7: -396370832
+      elitesisreal_17: -670768138
+      elitesisreal_3: 1734682528
+      elitesisreal_23: 1933010125
+      elitesisreal_14: 1428961423
+      elitesisreal_0: 767613294
+      elitesisreal_1: 1238057224
+      elitesisreal_12: 246133250
+      elitesisreal_5: 1443095231
+      elitesisreal_13: 835828416
+      elitesisreal_10: -766563951
+      elitesisreal_19: 410400310
+      elitesisreal_16: -1077555188
+      elitesisreal_20: 750856877
+      elitesisreal_21: -2102615991
+      elitesisreal_22: 453352242
+      elitesisreal_6: 2101061774
+      elitesisreal_15: 1793699056
+      elitesisreal_8: -960151925
+      elitesisreal_18: 264850514
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
