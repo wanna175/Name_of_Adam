@@ -77,8 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\uC790\uC560"
   _sprite: {fileID: 21300000, guid: 520b8e83d0b6939439713ed0c8a6ea1e, type: 3}
-  _passvieType: 7
-  _rarity: 0
+  _activeTiming: 7
+  _tier: 0
   _description: "\uC790\uC560 - \uC18C\uD658 \uC2DC \uC8FC\uBCC0 8\uCE78\uC5D0 \uC788\uB294
     \uC544\uAD70\uC758 \uCCB4\uB825\uC744 30 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
   _isSpecial: 0

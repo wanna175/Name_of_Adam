@@ -15,7 +15,9 @@ public class 가학 : Passive
 
         base.Use(caster, receiver);
 
-        caster.BattleUnitChangedStat.ATK += 3;
+        Buff_Sadism sadism = new();
+        caster.SetBuff(sadism);
+        //caster.BattleUnitChangedStat.ATK += 3;
         isApplied = true;
     }
 }

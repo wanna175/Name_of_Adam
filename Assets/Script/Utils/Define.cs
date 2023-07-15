@@ -126,17 +126,20 @@ public enum Sounds
     MaxCount,
 }
 
-public enum PassiveType 
-{ 
-    BEFOREATTACK, 
-    AFTERATTACK, 
-    BEFOREATTACKED, 
-    AFTERATTACKED, 
-    FALL, 
-    FALLED, 
-    MOVE, 
-    SUMMON, 
-    ETC 
+public enum ActiveTiming
+{
+    BEFORE_ATTACK, //공격 전
+    AFTER_ATTACK, //공격 후
+    BEFORE_ATTACKED, //피격 전
+    AFTER_ATTACKED, //피격 후
+    FALL, //타락시켰을 때, 그 후
+    FALLED, //타락되었을 때 그 전
+    MOVE, //이동 후
+    SUMMON, //소환 전
+    TURN_START, //턴 시작 시
+    TURN_END, //턴 종료 시
+    ETC, //기타
+    NONE//없음
 };
 
 public enum RomanNumber
@@ -157,8 +160,13 @@ public enum FieldColorType
 {
     none,
     UnitSpawn,
-    PlayerSkillWhisper,
-    PlayerSkillDamage,
-    PlayerSkillHeal,
-    PlayerSkillBounce
+    PlayerSkill,
+    UltimatePlayerSkill
+}
+
+public enum BuffEnum
+{
+    Sadism,
+    Encourage,
+    Bleeding
 }

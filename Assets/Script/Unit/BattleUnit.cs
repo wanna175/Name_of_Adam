@@ -9,7 +9,7 @@ public class BattleUnit : MonoBehaviour
     public UnitDataSO Data => DeckUnit.Data;
 
     [SerializeField] public Stat BattleUnitChangedStat;//버프 등으로 변경된 스탯
-    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat;//실제 적용 중인 스탯
+    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat; //실제 적용 중인 스탯
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -23,7 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitSkill Skill;
-    //[SerializeField] public UnitBuff Buff;
+    [SerializeField] public UnitBuff Buff;
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
     [SerializeField] private UI_HPBar _hpBar;
 
@@ -53,6 +53,32 @@ public class BattleUnit : MonoBehaviour
 
         _renderer.sprite = Data.Image;
         GameManager.Sound.Play("Summon/SummonSFX");
+    }
+
+    private void BuffUse(List<Buff> buffList)
+    {
+        foreach (Buff buff in buffList)
+        {
+            buff.Active(this);
+        }
+    }
+    public void SetBuff(Buff buff)
+    {
+        Buff.SetBuff(buff);
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+    }
+
+    public void TurnStart()
+    {
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+        BuffUse(Buff.CheckActiveTiming(ActiveTiming.TURN_START));
+        Buff.CheckCountDownTiming(ActiveTiming.TURN_START);
+    }
+
+    public void TurnEnd()
+    {
+        BuffUse(Buff.CheckActiveTiming(ActiveTiming.TURN_END));
+        Buff.CheckCountDownTiming(ActiveTiming.TURN_END);
     }
 
     public void SetTeam(Team team)
@@ -307,13 +333,13 @@ public class BattleUnit : MonoBehaviour
 
 
     // 낙인 타입에 따라 낙인 내용 실행하는 함수 BattleManager나 BattleUnit 혹은 제 3자에 넣을 지 고민 중
-    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, PassiveType type)
+    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming type)
     {
-        if(type == PassiveType.BEFOREATTACKED || type == PassiveType.AFTERATTACKED || type == PassiveType.FALLED)
+        if(type == ActiveTiming.BEFORE_ATTACKED || type == ActiveTiming.AFTER_ATTACKED || type == ActiveTiming.FALLED)
         {
             foreach (Passive passive in receiver.Passive)
             {
-                if (passive.PassiveType == type)
+                if (passive.ActiveTiming == type)
                 {
                     passive.Use(caster, receiver);
                 }
@@ -323,7 +349,7 @@ public class BattleUnit : MonoBehaviour
         {
             foreach(Passive passive in Passive)
             {
-                if (passive.PassiveType == type)
+                if (passive.ActiveTiming == type)
                 {
                     passive.Use(caster, receiver);
                 }

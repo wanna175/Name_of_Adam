@@ -76,7 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uB3D9\uC0DD"
-  _passvieType: 1
-  _rarity: 0
+  _sprite: {fileID: 0}
+  _activeTiming: 1
+  _tier: 0
   _description: 
   _isSpecial: 1

@@ -79,6 +79,22 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void TurnStart()
+    {
+        foreach (BattleUnit unit in _battleData.BattleUnitList)
+        {
+            unit.TurnStart();
+        }
+    }
+
+    public void TurnEnd()
+    {
+        foreach (BattleUnit unit in _battleData.BattleUnitList)
+        {
+            unit.TurnEnd();
+        }
+    }
+
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
@@ -163,7 +179,7 @@ public class BattleManager : MonoBehaviour
 
         if (Data.OrderUnitCount <= 0)
         {
-            _phase.ChangePhase(_phase.Prepare);
+            _phase.ChangePhase(_phase.End);
             return;
         }
 
@@ -190,21 +206,18 @@ public class BattleManager : MonoBehaviour
         {
             SpawnUnitOnField();
         }
-        else if (fieldColorType == FieldColorType.PlayerSkillWhisper)
+        else if (fieldColorType == FieldColorType.PlayerSkill)
         {
-            PlayerSkillController.FallUnitOnField(coord);
+            BattleUI.UI_playerSkill.GetSelectedCard().GetSkill().Use(coord);
+            PlayerSkillController.PlayerSkillUse();
         }
-        else if (fieldColorType == FieldColorType.PlayerSkillDamage)
+        else if (fieldColorType == FieldColorType.UltimatePlayerSkill)
         {
-            PlayerSkillController.DamageUnitOnField(coord);
-        }
-        else if (fieldColorType == FieldColorType.PlayerSkillHeal)
-        {
-            PlayerSkillController.HealUnitOnField(coord);
-        }
-        else if (fieldColorType == FieldColorType.PlayerSkillBounce)
-        {
-            PlayerSkillController.BounceUnitOnField(coord);
+            if (GameManager.Data.PlayerSkillCountChage(-1))
+            {
+                BattleUI.UI_playerSkill.GetSelectedCard().GetSkill().Use(coord);
+                PlayerSkillController.PlayerSkillUse();
+            }
         }
     }
 
@@ -219,7 +232,7 @@ public class BattleManager : MonoBehaviour
         if (isFirst)
             unit.FirstTurnDiscountUndo();
 
-        spawnedUnit.PassiveCheck(spawnedUnit, null, PassiveType.SUMMON); //배치 시 낙인 체크
+        spawnedUnit.PassiveCheck(spawnedUnit, null, ActiveTiming.SUMMON); //배치 시 낙인 체크
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
@@ -278,7 +291,7 @@ public class BattleManager : MonoBehaviour
             Team team = hit.Team;
 
             //공격 전 낙인 체크
-            unit.PassiveCheck(unit, hit, PassiveType.BEFOREATTACK);
+            unit.PassiveCheck(unit, hit, ActiveTiming.BEFORE_ATTACK);
             unit.SkillUse(hit);
 
             if (unit.SkillEffectAnim != null)
@@ -290,7 +303,7 @@ public class BattleManager : MonoBehaviour
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
 
-            unit.PassiveCheck(unit, hit, PassiveType.AFTERATTACK);
+            unit.PassiveCheck(unit, hit, ActiveTiming.AFTER_ATTACK);
         }
 
         string unitname = unit.DeckUnit.Data.Name;

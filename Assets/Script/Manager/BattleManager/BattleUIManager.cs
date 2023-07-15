@@ -33,8 +33,9 @@ public class BattleUIManager : MonoBehaviour
         _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         UI_ControlBar control = GameManager.UI.ShowScene<UI_ControlBar>();
 
-        UI_hands = control.UI_Hands;
         UI_playerSkill = control.UI_PlayerSkill;
+        UI_playerSkill.SetSkill(GameManager.Data.GetPlayerSkillList());
+        UI_hands = control.UI_Hands;
         UI_darkEssence = control.UI_DarkEssence;
         UI_manaGauge = control.UI_ManaGauge;
 

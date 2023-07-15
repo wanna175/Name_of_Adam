@@ -17,8 +17,6 @@ public class UI_TextHover : UI_Hover
         float posX;
         float posY;
 
-        Debug.Log(position);
-
         if (position.x > 1920 - 200)
             posX = 1920 - 200;
         else

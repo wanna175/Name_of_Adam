@@ -6,29 +6,25 @@ public class UI_PlayerSkill : UI_Scene
 {
     [SerializeField] private GameObject PlayerSkillCardPrefabs;
     [SerializeField] private Transform Grid;
-    [SerializeField] private List<PlayerSkill> skillList;
 
     private UI_PlayerSkillCard _selectedCard = null;
 
     public bool Used = false;// once per turn
 
-    private void Awake()
-    {
-        SetSkill();
-    }
 
-    public void SetSkill()
+    public void SetSkill(List<PlayerSkill> skillList)
     {
         for (int i = 0; i < 4; i++)
         {
-            UI_PlayerSkillCard newCard = GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>();
-            newCard.Set(this, skillList[i]);
+            GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
         }
     }
 
     public void OnClickHand(UI_PlayerSkillCard card)
     {
-        if (!Used)
+        PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
+        
+        if (!prepare.isFirst && !Used)
         {
             if (card != null && card == _selectedCard)
             {
