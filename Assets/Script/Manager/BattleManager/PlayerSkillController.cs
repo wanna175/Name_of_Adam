@@ -35,50 +35,6 @@ public class PlayerSkillController : MonoBehaviour
         battle.BattleOverCheck();
     }
 
-    public void FallUnitOnField(Vector2 coord)
-    {
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        Field.GetUnit(coord).ChangeFall(1);
-
-        PlayerSkillUse();
-    }
-
-    public void DamageUnitOnField(Vector2 coord)
-    {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        Field.GetUnit(coord).ChangeHP(-20);
-
-        PlayerSkillUse();
-    }
-
-    public void HealUnitOnField(Vector2 coord)
-    {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        Field.GetUnit(coord).ChangeHP(20);
-
-        PlayerSkillUse();
-    }
-
-    public void BounceUnitOnField(Vector2 coord)
-    {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-
-        BattleUnit unit = Field.GetUnit(coord);
-
-        Data.BattleUnitRemove(unit);
-        Data.BattleOrderRemove(unit);
-        Data.AddDeckUnit(unit.DeckUnit);
-        BattleUI.FillHand();
-        Field.FieldCloseInfo(Field.TileDict[coord]);
-        Destroy(unit.gameObject);
-
-        PlayerSkillUse();
-    }
-
     public bool UnitTargetPlayerSkillReady(FieldColorType colorType)
     {
         if (Phase.Current != Phase.Prepare)
