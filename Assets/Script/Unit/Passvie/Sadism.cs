@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class 가학 : Passive
+public class Sadism : Passive
 {
     private bool isApplied = false;
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class 강림 : Passive
+public class Enhance : Passive
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
@@ -17,8 +17,13 @@ public class 강림 : Passive
 
         foreach (BattleUnit unit in targetUnits)
         {
-            if (unit.Team != caster.Team)
-                unit.ChangeHP(-15);
+            if (unit.Team == caster.Team)
+            {
+                Buff_Encourage encorage = new();
+                unit.SetBuff(encorage);
+                //unit.BattleUnitChangedStat.ATK += 5;
+            }
+
         }
     }
 }
