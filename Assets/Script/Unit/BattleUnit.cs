@@ -71,15 +71,6 @@ public class BattleUnit : MonoBehaviour
         ActiveTimingCheck(ActiveTiming.TURN_END);
     }
 
-    private void ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
-    {
-        PassiveCheck(this, receiver, activeTiming);
-        BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
-        Buff.CheckCountDownTiming(activeTiming);
-
-        BattleUnitChangedStat = Buff.GetBuffedStat();
-    }
-
     public void SetTeam(Team team)
     {
         _team = team;
@@ -231,6 +222,21 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
 
+    public void SetBuff(Buff buff)
+    {
+        Buff.SetBuff(buff);
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+    }
+
+    private void ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
+    {
+        PassiveCheck(this, receiver, activeTiming);
+        BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
+        Buff.CheckCountDownTiming(activeTiming);
+
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+    }
+
     private void BuffUse(List<Buff> buffList, BattleUnit receiver = null)
     {
         foreach (Buff buff in buffList)
@@ -238,10 +244,29 @@ public class BattleUnit : MonoBehaviour
             buff.Active(this, receiver);
         }
     }
-    public void SetBuff(Buff buff)
+
+    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming type)
     {
-        Buff.SetBuff(buff);
-        BattleUnitChangedStat = Buff.GetBuffedStat();
+        if (type == ActiveTiming.BEFORE_ATTACKED || type == ActiveTiming.AFTER_ATTACKED || type == ActiveTiming.FALLED)
+        {
+            foreach (Passive passive in receiver.Passive)
+            {
+                if (passive.ActiveTiming == type)
+                {
+                    passive.Use(caster, receiver);
+                }
+            }
+        }
+        else
+        {
+            foreach (Passive passive in Passive)
+            {
+                if (passive.ActiveTiming == type)
+                {
+                    passive.Use(caster, receiver);
+                }
+            }
+        }
     }
 
     public bool GetFlipX() => _renderer.flipX;
@@ -341,30 +366,5 @@ public class BattleUnit : MonoBehaviour
             }
         }
         return SplashList;
-    }
-
-    // 낙인 타입에 따라 낙인 내용 실행하는 함수 BattleManager나 BattleUnit 혹은 제 3자에 넣을 지 고민 중
-    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming type)
-    {
-        if(type == ActiveTiming.BEFORE_ATTACKED || type == ActiveTiming.AFTER_ATTACKED || type == ActiveTiming.FALLED)
-        {
-            foreach (Passive passive in receiver.Passive)
-            {
-                if (passive.ActiveTiming == type)
-                {
-                    passive.Use(caster, receiver);
-                }
-            }
-        }
-        else
-        {
-            foreach(Passive passive in Passive)
-            {
-                if (passive.ActiveTiming == type)
-                {
-                    passive.Use(caster, receiver);
-                }
-            }
-        }   
     }
 }
