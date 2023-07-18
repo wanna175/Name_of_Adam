@@ -26,7 +26,7 @@ public class ActionPhase : Phase
     public override void OnClickEvent()
     {
         if (BattleManager.Data.GetNowUnit().Team == Team.Player)
-            BattleManager.Instance.ActionPhase();
+            BattleManager.Instance.ActionPhaseClick();
     }
 
     public override void OnStateExit()

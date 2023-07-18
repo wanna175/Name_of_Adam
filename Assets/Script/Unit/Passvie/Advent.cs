@@ -7,13 +7,7 @@ public class Advent : Passive
     {
         base.Use(caster, receiver);
 
-        List<Vector2> targetCoords = new List<Vector2>();
-        targetCoords.Add(caster.Location + Vector2.up);
-        targetCoords.Add(caster.Location + Vector2.down);
-        targetCoords.Add(caster.Location + Vector2.right);
-        targetCoords.Add(caster.Location + Vector2.left);
-
-        List<BattleUnit> targetUnits = BattleManager.Instance.GetArroundUnits(targetCoords);
+        List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location);
 
         foreach (BattleUnit unit in targetUnits)
         {

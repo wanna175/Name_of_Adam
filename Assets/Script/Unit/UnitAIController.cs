@@ -21,7 +21,7 @@ public class UnitAIController : MonoBehaviour
     protected List<Vector2> AttackableTileInRangeList = new();
     //공격 가능 + 사거리 내 타일
 
-    protected List<Vector2> FourWay = new() { new Vector2(-1, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(0, -1) };
+    protected List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
     //상하좌우 foreach용
 
     protected Dictionary<Vector2, int> TileHPDict = new();
@@ -218,7 +218,7 @@ public class UnitAIController : MonoBehaviour
 
         List<Vector2> moveVectorList = new();
 
-        foreach (Vector2 direction in FourWay)
+        foreach (Vector2 direction in UDLR)
         {
             Vector2 vec = new(MyPosition.x + direction.x, MyPosition.y + direction.y);
             float sqr = (vec - destination).sqrMagnitude;

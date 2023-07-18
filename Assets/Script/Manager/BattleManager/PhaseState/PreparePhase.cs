@@ -22,11 +22,11 @@ public class PreparePhase : Phase
     {
         if (isFirst)
         {
-            BattleManager.Instance.StartPhase();
+            BattleManager.Instance.StartPhaseClick();
         }
         else
         {
-            BattleManager.Instance.PreparePhase();
+            BattleManager.Instance.PreparePhaseClick();
         }
     }
 
