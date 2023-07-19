@@ -12,18 +12,20 @@ public class Buff_Crime : Buff
 
         _count = 2;
 
-        _countDownTiming = ActiveTiming.AFTER_ATTACK;
+        _countDownTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _passiveBuff = false;
 
         _dispellable = true;
     }
 
-    public override void Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
         receiver.ChangeFall(1);
+
+        return false;
     }
 
     public override void Stack()

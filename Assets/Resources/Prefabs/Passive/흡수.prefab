@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\uD761\uC218"
   _sprite: {fileID: 21300000, guid: 147a690bda2544e42b70143665d2ebee, type: 3}
-  _activeTiming: 1
+  _activeTiming: 7
   _tier: 1
   _description: "\uD761\uC218 - \uACF5\uACA9 \uC2DC \uC785\uD78C \uD53C\uD574\uC758
     30 % \uB97C \uD68C\uBCF5\uD569\uB2C8\uB2E4."

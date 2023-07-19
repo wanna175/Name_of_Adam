@@ -25,8 +25,9 @@ public class Buff_Encourage : Buff
         attackUp = 5;
 }
 
-    public override void Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
+        return false;
     }
 
     public override void Stack()

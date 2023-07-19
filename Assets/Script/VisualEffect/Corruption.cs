@@ -9,7 +9,6 @@ public class Corruption : MonoBehaviour
     BattleUnit _unit;
     public Action<Corruption> StigmaSelectEvent;
 
-
     public void Init(BattleUnit unit, Action<Corruption> action)
     {
         _animator = GetComponent<Animator>();
