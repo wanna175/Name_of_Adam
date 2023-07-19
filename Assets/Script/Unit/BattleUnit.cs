@@ -33,51 +33,76 @@ public class BattleUnit : MonoBehaviour
     private float _scale;
     private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (Location.y - 1));
 
-    // 23.02.16 임시 수정
-    private Action<BattleUnit> _unitDeadAction;
-    public Action<BattleUnit> UnitDeadAction
-    {
-        set { _unitDeadAction = value; }
-    }
+    private Action _unitDeadAction;
     
-    public void Init()
+    public void Init(Vector2 coord, Team team)
     {
         _renderer = GetComponent<SpriteRenderer>();
         _unitAnimator = GetComponent<Animator>();
 
+        _renderer.sprite = Data.Image;
+
         AI.SetCaster(this);
+
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
         _hpBar.RefreshHPBar(HP.FillAmount());
 
-        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
         _scale = transform.localScale.x;
 
-        _renderer.sprite = Data.Image;
+        DeckUnit.SetStigma();
+        Skill.Effects = DeckUnit.Data.Effects;
+
+        SetTeam(team);
+        _unitDeadAction = UnitDeadAction;
+
+        BattleManager.Field.EnterTile(this, coord);
+        BattleManager.Data.BattleUnitAdd(this);
+
+        //소환 시 체크
+        ActiveTimingCheck(ActiveTiming.SUMMON);
+
         GameManager.Sound.Play("Summon/SummonSFX");
     }
 
-    public void Summon()
+    private void UnitDeadAction()
     {
-        ActiveTimingCheck(ActiveTiming.SUMMON);
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), this.transform.position);
+
+        StartCoroutine(UnitDeadEffect());
+    }
+
+    private IEnumerator UnitDeadEffect()
+    {
+        BattleManager.Data.BattleUnitRemove(this);
+        BattleManager.Data.BattleOrderRemove(this);
+
+        while (true)
+        {
+            Color c = _renderer.color;
+            float a = c.a - 0.01f;
+            c.a = a;
+
+            _renderer.color = c;
+
+            if (c.a <= 0)
+                break;
+
+            yield return null;
+        }
+        Destroy(this.gameObject);
     }
 
     public void TurnStart()
     {
+        //턴 시작 시 체크
         ActiveTimingCheck(ActiveTiming.TURN_START);
     }
 
     public void TurnEnd()
     {
+        //턴 종료 시 체크
         ActiveTimingCheck(ActiveTiming.TURN_END);
-    }
-
-    private void ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
-    {
-        PassiveCheck(this, receiver, activeTiming);
-        BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
-        Buff.CheckCountDownTiming(activeTiming);
-
-        BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
     public void SetTeam(Team team)
@@ -102,7 +127,8 @@ public class BattleUnit : MonoBehaviour
     
     public void UnitDiedEvent()
     {
-        _unitDeadAction(this);
+        _unitDeadAction();
+
         if (_team == Team.Enemy)
         {
             GameManager.Data.DarkEssenseChage(Data.DarkEssenseDrop);
@@ -208,13 +234,20 @@ public class BattleUnit : MonoBehaviour
     public void SkillUse(BattleUnit unit) {
         if(unit != null)
         {
-            //피격 전 낙인 체크
+            //공격 전 낙인 체크
             ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
+            //피격 전 낙인 체크
+            ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, unit);
+
+            //대미지 확정 시 낙인 체크
+            ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
 
             Skill.Use(this, unit);
 
-            //피격 후 낙인 체크
+            //공격 후 낙인 체크
             ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit);
+            //피격 후 낙인 체크
+            ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, unit);
         }
     }                   
 
@@ -231,6 +264,33 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
 
+    public void SetBuff(Buff buff)
+    {
+        Buff.SetBuff(buff);
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+    }
+
+    public void ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
+    {
+        //수동적 낙인
+        if (activeTiming == ActiveTiming.BEFORE_ATTACKED || activeTiming == ActiveTiming.AFTER_ATTACKED || activeTiming == ActiveTiming.FALLED)
+        {
+            receiver.PassiveCheck(receiver, this, activeTiming);
+            receiver.BuffUse(receiver.Buff.CheckActiveTiming(activeTiming), this);
+            receiver.Buff.CheckCountDownTiming(activeTiming);
+
+            receiver.BattleUnitChangedStat = receiver.Buff.GetBuffedStat();
+        }
+        else
+        {
+            PassiveCheck(this, receiver, activeTiming);
+            BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
+            Buff.CheckCountDownTiming(activeTiming);
+
+            BattleUnitChangedStat = Buff.GetBuffedStat();
+        }
+    }
+
     private void BuffUse(List<Buff> buffList, BattleUnit receiver = null)
     {
         foreach (Buff buff in buffList)
@@ -238,10 +298,16 @@ public class BattleUnit : MonoBehaviour
             buff.Active(this, receiver);
         }
     }
-    public void SetBuff(Buff buff)
+
+    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming activeTiming)
     {
-        Buff.SetBuff(buff);
-        BattleUnitChangedStat = Buff.GetBuffedStat();
+        foreach (Passive passive in Passive)
+        {
+            if (passive.ActiveTiming == activeTiming)
+            {
+                passive.Use(caster, receiver);
+            }
+        }
     }
 
     public bool GetFlipX() => _renderer.flipX;
@@ -341,30 +407,5 @@ public class BattleUnit : MonoBehaviour
             }
         }
         return SplashList;
-    }
-
-    // 낙인 타입에 따라 낙인 내용 실행하는 함수 BattleManager나 BattleUnit 혹은 제 3자에 넣을 지 고민 중
-    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming type)
-    {
-        if(type == ActiveTiming.BEFORE_ATTACKED || type == ActiveTiming.AFTER_ATTACKED || type == ActiveTiming.FALLED)
-        {
-            foreach (Passive passive in receiver.Passive)
-            {
-                if (passive.ActiveTiming == type)
-                {
-                    passive.Use(caster, receiver);
-                }
-            }
-        }
-        else
-        {
-            foreach(Passive passive in Passive)
-            {
-                if (passive.ActiveTiming == type)
-                {
-                    passive.Use(caster, receiver);
-                }
-            }
-        }   
     }
 }

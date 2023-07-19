@@ -74,6 +74,22 @@ public class Field : MonoBehaviour
         return null;
     }
 
+    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord)
+    {
+        List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
+        List<BattleUnit> units = new();
+
+        foreach (Vector2 udlr in UDLR)
+        {
+            BattleUnit targetUnit = GetUnit(unitCoord + udlr);
+            if (targetUnit == null)
+                continue;
+            units.Add(targetUnit);
+        }
+
+        return units;
+    }
+
     private Tile CreateTile(int x, int y)
     {
         x -= MaxFieldX / 2;
@@ -262,28 +278,11 @@ public class Field : MonoBehaviour
     public void MouseEnterTile(Tile tile)
     {
         FieldShowInfo(tile);
-
-        //if (_coloredTile.Contains(coord)) 
-        //{
-        //    if (BattleManager.Phase.Current == BattleManager.Phase.Action)
-        //    {
-        //        List<Vector2> range = BattleManager.Data.GetNowUnit().GetSplashRange(coord, BattleManager.Data.GetNowUnit().Location);
-        //        foreach (Vector2 vec in range)
-        //        {
-        //            TileDict[coord + vec].SetColor(Color.green);
-        //        }
-        //    }
-        //}
     }
 
     public void MouseExitTile(Tile tile)
     {
         FieldCloseInfo(tile);
-
-        //if (BattleManager.Phase.Current == BattleManager.Phase.Action)
-        //{
-        //    SetTileColor(BattleManager.Data.GetNowUnit(), ClickType.Attack);
-        //}
     }
 
     public void FieldShowInfo(Tile tile)
