@@ -156,8 +156,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1212175862}
-  - {fileID: 1117165738}
   - {fileID: 1111578284}
+  - {fileID: 1117165738}
   m_Father: {fileID: 1319507223}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1157,7 +1157,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 29422686}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1255,7 +1255,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 29422686}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2406,29 +2406,6 @@ MonoBehaviour:
         ManaCost: 0
       Stigma: []
     location: {x: 3, y: 1}
-    team: 1
-    stigmas: []
-  - prefab: {fileID: 3954254994103691638, guid: 75efea0fed34fec4496d8c9beda1d808, type: 3}
-    deckUnit:
-      Data: {fileID: 11400000, guid: 19f63d4909f065448b3e2357f1140064, type: 2}
-      DeckUnitUpgradeStat:
-        MaxHP: 0
-        CurrentHP: 0
-        ATK: 0
-        SPD: 0
-        FallCurrentCount: 0
-        FallMaxCount: 0
-        ManaCost: 0
-      DeckUnitChangedStat:
-        MaxHP: 0
-        CurrentHP: 0
-        ATK: 0
-        SPD: 0
-        FallCurrentCount: 0
-        FallMaxCount: 0
-        ManaCost: 0
-      Stigma: []
-    location: {x: 5, y: 1}
     team: 1
     stigmas: []
 --- !u!114 &1589663948

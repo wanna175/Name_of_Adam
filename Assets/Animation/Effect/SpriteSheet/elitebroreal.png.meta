@@ -1,0 +1,707 @@
+fileFormatVersion: 2
+guid: 93271071f321fd74597a943d69277da6
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: elitebroreal_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c61b5990e99ba48b039e657bd3b46c
+      internalID: -787880245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_1
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 1024
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cd0bc0c88e6fb34dbe46f846e66da58
+      internalID: 1308178295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_2
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 1024
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8aff8495ddede348abb985a3c9b5d81
+      internalID: 659467517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_3
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 1024
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f644fd878833d3845a9e3546dc3b4c42
+      internalID: 851974351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_4
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 1024
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63fa48f1c465dfa468563614a6a4d1e0
+      internalID: -1239479242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_5
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 1024
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa366cd6f61559d4294bb1b4c35f3110
+      internalID: -1239994486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3152f4ce9e8e3b04cb6bb3a6f0b59a55
+      internalID: -95626627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_7
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 768
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fe96ed93d769a642a6131625b2ccb26
+      internalID: 1479942240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_8
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 768
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a4048e26b498924ab72fc15263f4e4d
+      internalID: -1236707783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_9
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 768
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f00f53a38876b8945a04a3543b746d70
+      internalID: -2060504623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_10
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 768
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c75afe7700d263941b11f7722cf9b04e
+      internalID: 483636939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_11
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 768
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d41d2a3b45e4f3e4bb73a35a73b74031
+      internalID: -1194642291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a35ad23ec0bff4340b7ac1a8cf5a0bfe
+      internalID: -286431326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_13
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 512
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6cb83e74b73b2d4e99fecdf349c0d2b
+      internalID: 379705469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_14
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 512
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68010881a7eb9ec4db26635a936ea5d2
+      internalID: 46087548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_15
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 512
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771ca7542b2144b4d8025bc13d2da440
+      internalID: 2060745755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_16
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 512
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c07961cd3a0e13043ad8b1469bc9d8dc
+      internalID: 1449713513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_17
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 512
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c1fbc66f9c32c5498eddc4c2ceb7c87
+      internalID: -941378580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cda8eb731fcb3a45a1913b741f30371
+      internalID: 513068996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_19
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 256
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6738673c93faeb44eb166aada6fe590c
+      internalID: 207430411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_20
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 256
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7ca6ea1eb02b134b9869bba5e9e8a77
+      internalID: -541916241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_21
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 256
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28cfb213a1a6b3144b2e7c6489688e71
+      internalID: 2130012476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_22
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 256
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac2ac78a57dc02f4d80dd0ca030a9a96
+      internalID: 744702526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_23
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 256
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64bfe763b32cfc449c4cdc55b593d01
+      internalID: -1546050492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e422c37de58959844b060124ed58b321
+      internalID: -144380206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elitebroreal_25
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 0
+        width: 378
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5206f3fc6503aba4b8bbaf24739a9c50
+      internalID: -283349001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      elitebroreal_19: 207430411
+      elitebroreal_7: 1479942240
+      elitebroreal_10: 483636939
+      elitebroreal_24: -144380206
+      elitebroreal_12: -286431326
+      elitebroreal_16: 1449713513
+      elitebroreal_3: 851974351
+      elitebroreal_17: -941378580
+      elitebroreal_14: 46087548
+      elitebroreal_8: -1236707783
+      elitebroreal_18: 513068996
+      elitebroreal_13: 379705469
+      elitebroreal_15: 2060745755
+      elitebroreal_22: 744702526
+      elitebroreal_6: -95626627
+      elitebroreal_5: -1239994486
+      elitebroreal_0: -787880245
+      elitebroreal_20: -541916241
+      elitebroreal_21: 2130012476
+      elitebroreal_4: -1239479242
+      elitebroreal_9: -2060504623
+      elitebroreal_25: -283349001
+      elitebroreal_11: -1194642291
+      elitebroreal_2: 659467517
+      elitebroreal_23: -1546050492
+      elitebroreal_1: 1308178295
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

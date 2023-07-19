@@ -15,6 +15,8 @@ public class Buff_AttackUp : Buff
         _buffActiveTiming = ActiveTiming.NONE;
 
         _passiveBuff = true;
+
+        _dispellable = true;
     }
 
     public override void Active(BattleUnit caster, BattleUnit receiver)

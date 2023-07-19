@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
-public class 처형 : Passive
+public class Sin : Passive
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        if (receiver.HP.GetCurrentHP() <= 10)
-        {
-            base.Use(caster, receiver);
-            receiver.ChangeHP(-receiver.HP.GetCurrentHP());
-        }
+        base.Use(caster, receiver);
+
+        receiver.ChangeFall(1);
     }
 }

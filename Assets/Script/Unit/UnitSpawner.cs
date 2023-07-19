@@ -38,19 +38,6 @@ public class UnitSpawner : MonoBehaviour
         // 디버그용
     }
 
-    private void SpawnTest(SpawnData spawndata, Vector2 location)
-    {
-        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
-        BattleUnit bu = go.GetComponent<BattleUnit>();
-        bu.DeckUnit = spawndata.deckUnit;
-        bu.DeckUnit.SetStigma();
-
-        bu.Skill.Effects = spawndata.deckUnit.Data.Effects;
-
-        bu.Init();
-        BattleManager.Instance.UnitSetting(bu, location, Team.Enemy);
-    }
-
     private void InitSpawn(SpawnData spawndata)
     {
         if (BattleManager.Field.TileDict[spawndata.location].UnitExist)
@@ -60,14 +47,9 @@ public class UnitSpawner : MonoBehaviour
         else
         {
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
-            BattleUnit bu = go.GetComponent<BattleUnit>();
-            bu.DeckUnit.SetStigma();
+            BattleUnit unit = go.GetComponent<BattleUnit>();
 
-            bu.Skill.Effects = bu.DeckUnit.Data.Effects;
-
-            bu.Init();
-            BattleManager.Instance.UnitSetting(bu, spawndata.location, Team.Enemy);
-            //BattleManager.Instance.UnitSetting(bu, spawndata.location, spawndata.team); // animTest
+            unit.Init(spawndata.location, Team.Enemy);
         }
     }
 
@@ -76,12 +58,8 @@ public class UnitSpawner : MonoBehaviour
         GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
         BattleUnit unit = go.GetComponent<BattleUnit>();
         unit.DeckUnit = deckUnit;
-        unit.DeckUnit.SetStigma();
 
-        unit.Skill.Effects = deckUnit.Data.Effects;
-
-        unit.Init();
-        BattleManager.Instance.UnitSetting(unit, location, Team.Player);
+        unit.Init(location, Team.Player);
         
         return unit;
     }

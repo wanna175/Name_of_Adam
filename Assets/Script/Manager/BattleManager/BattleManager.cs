@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 // 전투를 담당하는 매니저
 // 필드와 턴의 관리
@@ -38,7 +36,6 @@ public class BattleManager : MonoBehaviour
     private PhaseController _phase;
     public static PhaseController Phase => Instance._phase;
 
-    private List<BattleUnit> hitUnits;
     private Vector2 coord;
 
     [SerializeField] List<GameObject> Background;
@@ -104,7 +101,6 @@ public class BattleManager : MonoBehaviour
         if (fieldObject == null)
             fieldObject = GameManager.Resource.Instantiate("Field");
 
-
         _field = fieldObject.GetComponent<Field>();
     }
 
@@ -134,7 +130,7 @@ public class BattleManager : MonoBehaviour
     }
     #region Click 관련
 
-    public void MovePhase()
+    public void MovePhaseClick()
     {
         BattleUnit unit = Data.GetNowUnit();
 
@@ -150,7 +146,7 @@ public class BattleManager : MonoBehaviour
         _phase.ChangePhase(_phase.Action);
     }
 
-    public void ActionPhase()
+    public void ActionPhaseClick()
     {
         BattleUnit unit = Data.GetNowUnit();
 
@@ -174,12 +170,11 @@ public class BattleManager : MonoBehaviour
                     unitList.Add(targetUnit);
             }
 
-
             AttackStart(unit, unitList);
         }
     }
 
-    public void EngagePhase()
+    public void EngagePhaseClick()
     {
         Field.ClearAllColor();
 
@@ -192,7 +187,7 @@ public class BattleManager : MonoBehaviour
         _phase.ChangePhase(_phase.Move);
     }
 
-    public void StartPhase()
+    public void StartPhaseClick()
     {
         if (Field._coloredTile.Count <= 0)
             return;
@@ -203,7 +198,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void PreparePhase()
+    public void PreparePhaseClick()
     {
         if (Field._coloredTile.Contains(coord) == false)
             return;
@@ -235,8 +230,6 @@ public class BattleManager : MonoBehaviour
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
 
-        spawnedUnit.Summon();
-
         if (isFirst)
             unit.FirstTurnDiscountUndo();
 
@@ -251,16 +244,6 @@ public class BattleManager : MonoBehaviour
         _phase.OnClickEvent();
     }
     #endregion
-
-    public void UnitSetting(BattleUnit unit, Vector2 coord, Team team)
-    {
-        unit.SetTeam(team);
-        Field.EnterTile(unit, coord);
-        unit.UnitDeadAction = UnitDeadAction;
-
-        Data.BattleUnitAdd(unit);
-        //Data.BattleUnitOrder();
-    }
 
     public IEnumerator UnitAttack()
     {
@@ -280,6 +263,7 @@ public class BattleManager : MonoBehaviour
         Data.HitUnits = hits;
         BattleCutScene.BattleCutScene(caster, Data.HitUnits);
     }
+
     public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
     {
         Data.HitUnits = hits;
@@ -295,10 +279,7 @@ public class BattleManager : MonoBehaviour
         {
             if (hit == null)
                 continue;
-            Team team = hit.Team;
 
-            //공격 전 낙인 체크
-            //unit.PassiveCheck(unit, hit, ActiveTiming.BEFORE_ATTACK);
             unit.SkillUse(hit);
 
             if (unit.SkillEffectAnim != null)
@@ -306,8 +287,6 @@ public class BattleManager : MonoBehaviour
 
             if (hit.HP.GetCurrentHP() <= 0)
                 continue;
-
-            //unit.PassiveCheck(unit, hit, ActiveTiming.AFTER_ATTACK);
         }
 
         string unitname = unit.DeckUnit.Data.Name;
@@ -334,36 +313,6 @@ public class BattleManager : MonoBehaviour
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, 2, cor.LoopExit);
         else
             cor.LoopExit();
-    }
-
-    private void UnitDeadAction(BattleUnit unit)
-    {
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), unit.transform.position);
-
-        StartCoroutine(UnitDeadEffect(unit));
-    }
-
-    private IEnumerator UnitDeadEffect(BattleUnit unit)
-    {
-        Data.BattleUnitRemove(unit);
-        Data.BattleOrderRemove(unit);
-
-        SpriteRenderer sr = unit.GetComponent<SpriteRenderer>();
-
-        while (true)
-        {
-            Color c = sr.color;
-            float a = c.a - 0.01f;
-            c.a = a;
-
-            sr.color = c;
-
-            if (c.a <= 0)
-                break;
-
-            yield return null;
-        }
-        Destroy(unit.gameObject);
     }
 
     public void DirectAttack()
@@ -398,7 +347,6 @@ public class BattleManager : MonoBehaviour
 
         MyUnit += Data.PlayerDeck.Count;
         MyUnit += Data.PlayerHands.Count;
-        //EnemyUnit 대기 중인 리스트만큼 추가하기
 
         if (MyUnit == 0)
         {
@@ -437,21 +385,6 @@ public class BattleManager : MonoBehaviour
 
         Field.MoveUnit(current, dest);
         GameManager.Sound.Play("Move/MoveSFX");
-    }
-
-    public List<BattleUnit> GetArroundUnits(List<Vector2> coords)
-    {
-        List<BattleUnit> units = new List<BattleUnit>();
-
-        foreach (Vector2 coord in coords)
-        {
-            BattleUnit targetUnit = Field.GetUnit(coord);
-            if (targetUnit == null)
-                continue;
-            units.Add(targetUnit);
-        }
-
-        return units;
     }
 
     public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
