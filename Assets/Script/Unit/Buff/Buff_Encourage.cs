@@ -20,6 +20,8 @@ public class Buff_Encourage : Buff
 
         _passiveBuff = true;
 
+        _dispellable = true;
+
         attackUp = 5;
 }
 

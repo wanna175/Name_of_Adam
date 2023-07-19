@@ -26,6 +26,10 @@ public abstract class Buff : MonoBehaviour
     protected bool _passiveBuff;
     public bool PassiveBuff => _passiveBuff;
 
+    protected bool _dispellable;
+    public bool Dispellable => _dispellable;
+
+
     public abstract void Init();
     public abstract void Active(BattleUnit caster = null, BattleUnit rereceiver = null);
 

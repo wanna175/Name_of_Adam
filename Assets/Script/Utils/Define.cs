@@ -128,17 +128,30 @@ public enum Sounds
 
 public enum ActiveTiming
 {
-    BEFORE_ATTACK, //공격 전
-    AFTER_ATTACK, //공격 후
-    BEFORE_ATTACKED, //피격 전
-    AFTER_ATTACKED, //피격 후
-    FALL, //타락시켰을 때, 그 후
-    FALLED, //타락되었을 때 그 전
-    MOVE, //이동 후
-    SUMMON, //소환 전
+    SUMMON, //소환 후
+    
     TURN_START, //턴 시작 시
     TURN_END, //턴 종료 시
-    ETC, //기타
+
+    BEFORE_MOVE_TURN, //이동턴 전
+    AFTER_MOVE_TURN, //이동턴 후
+    BEFORE_ATTACK_TURN, //공격턴 전
+    AFTER_ATTACK_TURN, //공격턴 후
+
+    BEFORE_ATTACK, //공격 전
+    AFTER_ATTACK, //공격 후
+
+    DAMAGE_CONFIRM, //대미지 확정
+
+    BEFORE_ATTACKED, //피격 전
+    AFTER_ATTACKED, //피격 후
+
+    FALL, //타락시켰을 때, 그 후
+    FALLED, //타락되었을 때 그 전
+
+    UNIT_DEAD, //자신이 사망 전
+    FIELD_UNIT_DEAD, //필드 유닛이 사망 시
+
     NONE//없음
 };
 
@@ -169,5 +182,6 @@ public enum BuffEnum
     Sadism,
     Encourage,
     Bleeding,
-    Benediction
+    Benediction,
+    Crime
 }

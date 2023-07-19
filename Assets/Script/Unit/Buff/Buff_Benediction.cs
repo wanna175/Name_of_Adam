@@ -16,7 +16,9 @@ public class Buff_Benediction : Buff
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _passiveBuff = true;
-}
+
+        _dispellable = false;
+    }
 
     public override void Active(BattleUnit caster, BattleUnit receiver)
     {
