@@ -31,7 +31,7 @@ public abstract class Buff : MonoBehaviour
 
 
     public abstract void Init();
-    public abstract void Active(BattleUnit caster = null, BattleUnit rereceiver = null);
+    public abstract bool Active(BattleUnit caster = null, BattleUnit rereceiver = null);
 
     public abstract void Stack();
 

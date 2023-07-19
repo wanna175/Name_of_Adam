@@ -49,7 +49,8 @@ public class UnitSpawner : MonoBehaviour
             GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
             BattleUnit unit = go.GetComponent<BattleUnit>();
 
-            unit.Init(spawndata.location, Team.Enemy);
+            unit.Init();
+            unit.UnitSetting(spawndata.location, Team.Enemy);
         }
     }
 
@@ -59,8 +60,9 @@ public class UnitSpawner : MonoBehaviour
         BattleUnit unit = go.GetComponent<BattleUnit>();
         unit.DeckUnit = deckUnit;
 
-        unit.Init(location, Team.Player);
-        
+        unit.Init();
+        unit.UnitSetting(location, Team.Player);
+
         return unit;
     }
 

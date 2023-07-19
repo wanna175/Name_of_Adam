@@ -252,7 +252,7 @@ public class Field : MonoBehaviour
     {
         TileDict[coord].EnterTile(unit);
 
-        unit.SetLocate(coord);
+        unit.SetLocate(coord, move);
         if (move)
             StartCoroutine(unit.MovePosition(GetTilePosition(coord)));
         else

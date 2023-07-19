@@ -21,9 +21,11 @@ public class Buff_Bleeding : Buff
         _dispellable = true;
     }
 
-    public override void Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
         caster.ChangeHP(-5);
+
+        return false;
     }
 
     public override void Stack()
