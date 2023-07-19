@@ -34,6 +34,28 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    Stigma: []
+    Stigma:
+    - {fileID: -2550542083864282572, guid: 6b7375150ca85564fa7b3fc98463d79b, type: 3}
+    - {fileID: 6636403106130926892, guid: 11db3f0537fb35543a931f72a4cdeb3d, type: 3}
+  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    Stigma:
+    - {fileID: 5166774272718736912, guid: 561726d5fee601e468f72fd8e65860cd, type: 3}
+    - {fileID: -2075204548318158111, guid: 5156b58e1438ec345bf1db69a947a266, type: 3}
   isVisitUpgrade: 0
-  isVisitStigma: 0
+  isVisitStigma: 1

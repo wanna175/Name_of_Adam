@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HarlotSceneController : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
-
+    private Passive stigma;
     [SerializeField] private Image _unitImage; // 낙인 부여 유닛
     [SerializeField] private Image _stigmaImage; // 타락 낙인 이미지
     [SerializeField] private GameObject _menuChoose;
@@ -37,6 +37,12 @@ public class HarlotSceneController : MonoBehaviour
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
         PassiveManager passiveManager = GameManager.Data.Passive;
+
+        stigma = GameManager.Data.Passive.GetRandomPassive();
+
+        Debug.Log(stigma.GetName());
+        //_stigmaImage = GameManager.Resource.Load<Image>("" + stigma.GetName());
+
     }
 
     public void ClickStigmatization()
@@ -58,11 +64,26 @@ public class HarlotSceneController : MonoBehaviour
     }
 
 
-
+    // 유닛 고르기 버튼
     public void ClickUnitSelectBTN()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
     }
+
+    // 유닛 선택 후 타락 관련 낙인 부여 버튼
+    public void OnStigmaButtonClick()
+    {
+        if (_stigmatizeUnit != null)
+        {
+
+            List<Passive> stigmata = new List<Passive>();
+
+            stigmata.Add(stigma);
+
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigmata);
+        }
+    }
+
 
 
     public void OnSelect(DeckUnit unit)
@@ -75,22 +96,13 @@ public class HarlotSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
     }
 
-    public void OnStigmaButtonClick()
-    {
-        if (_stigmatizeUnit != null)
-        {
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, 3);
-        }
-    }
+    
 
     public void OnStigmaSelect(Passive stigma)
     {
         _stigmatizeUnit.AddStigma(stigma);
         GameManager.UI.ClosePopup();
         AddStigamScript(stigma);
-        //StartCoroutine(QuitScene());
-        
-        //OnQuitClick();
     }
 
     public void AddStigamScript(Passive stigma)
