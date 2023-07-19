@@ -17,7 +17,9 @@ public class Buff_Bleeding : Buff
         _buffActiveTiming = ActiveTiming.TURN_END;
 
         _passiveBuff = false;
-}
+
+        _dispellable = true;
+    }
 
     public override void Active(BattleUnit caster, BattleUnit receiver)
     {
