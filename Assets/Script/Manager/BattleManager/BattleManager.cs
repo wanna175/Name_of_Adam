@@ -164,7 +164,6 @@ public class BattleManager : MonoBehaviour
                     unitList.Add(targetUnit);
             }
 
-
             AttackStart(unit, unitList);
         }
     }
@@ -225,8 +224,6 @@ public class BattleManager : MonoBehaviour
         BattleUnit spawnedUnit = GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
 
-        spawnedUnit.Summon();
-
         if (isFirst)
             unit.FirstTurnDiscountUndo();
 
@@ -241,16 +238,6 @@ public class BattleManager : MonoBehaviour
         _phase.OnClickEvent();
     }
     #endregion
-
-    public void UnitSetting(BattleUnit unit, Vector2 coord, Team team)
-    {
-        unit.SetTeam(team);
-        Field.EnterTile(unit, coord);
-        unit.UnitDeadAction = UnitDeadAction;
-
-        Data.BattleUnitAdd(unit);
-        //Data.BattleUnitOrder();
-    }
 
     public IEnumerator UnitAttack()
     {
@@ -286,7 +273,6 @@ public class BattleManager : MonoBehaviour
         {
             if (hit == null)
                 continue;
-            Team team = hit.Team;
 
             unit.SkillUse(hit);
 
@@ -321,36 +307,6 @@ public class BattleManager : MonoBehaviour
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, 2, cor.LoopExit);
         else
             cor.LoopExit();
-    }
-
-    private void UnitDeadAction(BattleUnit unit)
-    {
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), unit.transform.position);
-
-        StartCoroutine(UnitDeadEffect(unit));
-    }
-
-    private IEnumerator UnitDeadEffect(BattleUnit unit)
-    {
-        Data.BattleUnitRemove(unit);
-        Data.BattleOrderRemove(unit);
-
-        SpriteRenderer sr = unit.GetComponent<SpriteRenderer>();
-
-        while (true)
-        {
-            Color c = sr.color;
-            float a = c.a - 0.01f;
-            c.a = a;
-
-            sr.color = c;
-
-            if (c.a <= 0)
-                break;
-
-            yield return null;
-        }
-        Destroy(unit.gameObject);
     }
 
     public void DirectAttack()
