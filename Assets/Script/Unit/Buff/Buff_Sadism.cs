@@ -25,8 +25,9 @@ public class Buff_Sadism : Buff
         attackUp = 3;
 }
 
-    public override void Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
+        return false;
     }
 
     public override void Stack()

@@ -134,7 +134,7 @@ public class BattleManager : MonoBehaviour
                 return;
             Vector2 dest = coord - unit.Location;
 
-            MoveLocate(unit, dest); //이동시 낙인 체크
+            MoveLocate(unit, dest);
         }
 
         _phase.ChangePhase(_phase.Action);
@@ -274,7 +274,7 @@ public class BattleManager : MonoBehaviour
             if (hit == null)
                 continue;
 
-            unit.SkillUse(hit);
+            unit.Attack(hit);
 
             if (unit.SkillEffectAnim != null)
                 GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnim, hit.transform.position);
@@ -374,10 +374,7 @@ public class BattleManager : MonoBehaviour
     // 이동 경로를 받아와 이동시킨다
     private void MoveLocate(BattleUnit caster, Vector2 coord)
     {
-        Vector2 current = caster.Location;
-        Vector2 dest = current + coord;
-
-        Field.MoveUnit(current, dest);
+        Field.MoveUnit(caster.Location, caster.Location + coord);
         GameManager.Sound.Play("Move/MoveSFX");
     }
 

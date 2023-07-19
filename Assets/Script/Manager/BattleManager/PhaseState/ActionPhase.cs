@@ -13,6 +13,8 @@ public class ActionPhase : Phase
         BattleManager.Field.SetTileColor(unit, FieldColor.Attack);
         BattleManager.BattleUI.ChangeButtonName();
 
+        unit.AttackTurn();
+
         if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
             BattleManager.Instance.PlayAfterCoroutine(unit.AI.AISkillUse, 1);
 

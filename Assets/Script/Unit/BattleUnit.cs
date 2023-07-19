@@ -21,9 +21,11 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitAIController AI;
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
-    [SerializeField] public UnitSkill Skill;
     [SerializeField] public UnitBuff Buff;
     [SerializeField] private UI_HPBar _hpBar;
+
+    private bool _nextMoveSkip = false;
+    private bool _nextAttackSkip = false;
 
     [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
 
@@ -32,10 +34,8 @@ public class BattleUnit : MonoBehaviour
 
     private float _scale;
     private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (Location.y - 1));
-
-    private Action _unitDeadAction;
     
-    public void Init(Vector2 coord, Team team)
+    public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _unitAnimator = GetComponent<Animator>();
@@ -51,46 +51,18 @@ public class BattleUnit : MonoBehaviour
         _scale = transform.localScale.x;
 
         DeckUnit.SetStigma();
-        Skill.Effects = DeckUnit.Data.Effects;
-
-        SetTeam(team);
-        _unitDeadAction = UnitDeadAction;
-
-        BattleManager.Field.EnterTile(this, coord);
         BattleManager.Data.BattleUnitAdd(this);
-
-        //소환 시 체크
-        ActiveTimingCheck(ActiveTiming.SUMMON);
 
         GameManager.Sound.Play("Summon/SummonSFX");
     }
 
-    private void UnitDeadAction()
+    public void UnitSetting(Vector2 coord, Team team)
     {
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), this.transform.position);
+        SetTeam(team);
+        BattleManager.Field.EnterTile(this, coord);
 
-        StartCoroutine(UnitDeadEffect());
-    }
-
-    private IEnumerator UnitDeadEffect()
-    {
-        BattleManager.Data.BattleUnitRemove(this);
-        BattleManager.Data.BattleOrderRemove(this);
-
-        while (true)
-        {
-            Color c = _renderer.color;
-            float a = c.a - 0.01f;
-            c.a = a;
-
-            _renderer.color = c;
-
-            if (c.a <= 0)
-                break;
-
-            yield return null;
-        }
-        Destroy(this.gameObject);
+        //소환 시 체크
+        ActiveTimingCheck(ActiveTiming.SUMMON);
     }
 
     public void TurnStart()
@@ -103,6 +75,18 @@ public class BattleUnit : MonoBehaviour
     {
         //턴 종료 시 체크
         ActiveTimingCheck(ActiveTiming.TURN_END);
+    }
+
+    public void MoveTurn()
+    {
+        //이동 턴 시작 시 체크
+        _nextMoveSkip = ActiveTimingCheck(ActiveTiming.MOVE_TURN);
+    }
+
+    public void AttackTurn()
+    {
+        //공격 턴 시작 시 체크
+        _nextAttackSkip = ActiveTimingCheck(ActiveTiming.ATTACK_TURN);
     }
 
     public void SetTeam(Team team)
@@ -121,13 +105,24 @@ public class BattleUnit : MonoBehaviour
         _hpBar.SetFallBar(DeckUnit);
     }
 
-    public void SetLocate(Vector2 coord) {
-        _location = coord;
+    public void SetLocate(Vector2 coord, bool move) {
+        if (move)
+        {
+            ActiveTimingCheck(ActiveTiming.MOVE);
+        }
+            _location = coord;
     }
     
     public void UnitDiedEvent()
     {
-        _unitDeadAction();
+        if (ActiveTimingCheck(ActiveTiming.UNIT_DEAD))
+        {
+            return;
+        }
+
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), this.transform.position);
+
+        StartCoroutine(UnitDeadEffect());
 
         if (_team == Team.Enemy)
         {
@@ -136,8 +131,33 @@ public class BattleUnit : MonoBehaviour
         GameManager.Sound.Play("Dead/DeadSFX");
     }
 
+    private IEnumerator UnitDeadEffect()
+    {
+        BattleManager.Data.BattleUnitRemove(this);
+        BattleManager.Data.BattleOrderRemove(this);
+
+        Color c = _renderer.color;
+
+        while (c.a > 0)
+        {
+            float a = c.a - 0.01f;
+            c.a = a;
+
+            _renderer.color = c;
+
+            yield return null;
+        }
+
+        Destroy(this.gameObject);
+    }
+
     public void UnitFallEvent()
     {
+        if (ActiveTimingCheck(ActiveTiming.FALLED))
+        {
+            return;
+        }
+
         //타락 이벤트 시작
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         BattleManager.Data.CorruptUnits.Add(this);
@@ -231,25 +251,46 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-    public void SkillUse(BattleUnit unit) {
+    public void Attack(BattleUnit unit) {
         if(unit != null)
         {
-            //공격 전 낙인 체크
-            ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
-            //피격 전 낙인 체크
-            ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, unit);
+            bool attackSkip = false;
+            Team team = unit.Team;
 
-            //대미지 확정 시 낙인 체크
-            ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
+            //공격 전 체크
+            attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
+            //피격 전 체크
+            attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, unit);
 
-            Skill.Use(this, unit);
+            //대미지 확정 시 체크
+            attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
 
-            //공격 후 낙인 체크
+            if (team != unit.Team)
+            {
+                attackSkip = true;
+                ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
+            }
+
+            if (attackSkip || team != unit.Team)
+            {
+                return;
+            }
+
+            unit.GetAttack(-BattleUnitTotalStat.ATK);
+
+            //Skill.Use(this, unit);
+
+            //공격 후 체크
             ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit);
-            //피격 후 낙인 체크
+            //피격 후 체크
             ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, unit);
         }
-    }                   
+    }
+
+    public void GetAttack(int value)
+    {
+        ChangeHP(value);
+    }
 
     public void ChangeHP(int value) {
         HP.ChangeHP(value);
@@ -270,10 +311,12 @@ public class BattleUnit : MonoBehaviour
         BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
-    public void ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
+    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
     {
+        bool skipNextAction = false;
+
         //수동적 낙인
-        if (activeTiming == ActiveTiming.BEFORE_ATTACKED || activeTiming == ActiveTiming.AFTER_ATTACKED || activeTiming == ActiveTiming.FALLED)
+        if (activeTiming == ActiveTiming.BEFORE_ATTACKED || activeTiming == ActiveTiming.AFTER_ATTACKED)
         {
             receiver.PassiveCheck(receiver, this, activeTiming);
             receiver.BuffUse(receiver.Buff.CheckActiveTiming(activeTiming), this);
@@ -284,19 +327,25 @@ public class BattleUnit : MonoBehaviour
         else
         {
             PassiveCheck(this, receiver, activeTiming);
-            BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
+            skipNextAction = BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
             Buff.CheckCountDownTiming(activeTiming);
 
             BattleUnitChangedStat = Buff.GetBuffedStat();
         }
+
+        return skipNextAction;
     }
 
-    private void BuffUse(List<Buff> buffList, BattleUnit receiver = null)
+    private bool BuffUse(List<Buff> buffList, BattleUnit receiver = null)
     {
+        bool skipNextAction = false;
+
         foreach (Buff buff in buffList)
         {
-            buff.Active(this, receiver);
+            skipNextAction = buff.Active(this, receiver);
         }
+
+        return skipNextAction;
     }
 
     public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming activeTiming)
@@ -316,7 +365,13 @@ public class BattleUnit : MonoBehaviour
 
     public List<Vector2> GetAttackRange()
     {
-        List<Vector2> RangeList = new List<Vector2>();
+        List<Vector2> RangeList = new();
+
+        if (_nextAttackSkip)
+        {
+            _nextAttackSkip = false;
+            return RangeList;
+        }
 
         int Acolumn = 11;
         int Arow = 5;
@@ -328,7 +383,7 @@ public class BattleUnit : MonoBehaviour
                 int x = (i % Acolumn) - (Acolumn >> 1);
                 int y = (i / Acolumn) - (Arow >> 1);
 
-                Vector2 vec = new Vector2(x, y);
+                Vector2 vec = new(x, y);
 
                 RangeList.Add(vec);
             }
@@ -339,7 +394,13 @@ public class BattleUnit : MonoBehaviour
 
     public List<Vector2> GetMoveRange()
     {
-        List<Vector2> RangeList = new List<Vector2>();
+        List<Vector2> RangeList = new();
+
+        if (_nextMoveSkip)
+        {
+            _nextMoveSkip = false;
+            return RangeList;
+        }
 
         int Mrow = 5;
         int Mcolumn = 5;
@@ -351,7 +412,7 @@ public class BattleUnit : MonoBehaviour
                 int x = (i % Mcolumn) - (Mcolumn >> 1);
                 int y = -((i / Mcolumn) - (Mrow >> 1));
 
-                Vector2 vec = new Vector2(x, y);
+                Vector2 vec = new(x, y);
 
                 RangeList.Add(vec);
             }

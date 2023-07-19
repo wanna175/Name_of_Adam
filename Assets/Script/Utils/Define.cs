@@ -133,10 +133,11 @@ public enum ActiveTiming
     TURN_START, //턴 시작 시
     TURN_END, //턴 종료 시
 
-    BEFORE_MOVE_TURN, //이동턴 전
-    AFTER_MOVE_TURN, //이동턴 후
-    BEFORE_ATTACK_TURN, //공격턴 전
-    AFTER_ATTACK_TURN, //공격턴 후
+    MOVE_TURN, //이동턴 전
+
+    MOVE, //이동 후
+
+    ATTACK_TURN, //공격턴 전
 
     BEFORE_ATTACK, //공격 전
     AFTER_ATTACK, //공격 후
