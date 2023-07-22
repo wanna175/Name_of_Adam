@@ -8,15 +8,20 @@ public class EventSceneController : MonoBehaviour
     [SerializeField] GameObject _stigma;
     [SerializeField] GameObject _harlot;
 
-    string _sceneName;
+    private string _sceneName;
 
 
-    public void Start()
+    private void Awake()
     {
         _upgrade.SetActive(false);
         _stigma.SetActive(false);
         _harlot.SetActive(false);
 
+        //_sceneName = 
+    }
+
+    public void Start()
+    {
         if(_sceneName == "Upgrade")
         {
             _upgrade.SetActive(true);
@@ -27,7 +32,7 @@ public class EventSceneController : MonoBehaviour
         }
         else if(_sceneName== "Harlot")
         {
-            _harlot.SetActive(false);
+            _harlot.SetActive(true);
         }
     }
 }
