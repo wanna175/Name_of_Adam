@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Advent : Passive
+public class Benevolence : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
@@ -11,8 +11,8 @@ public class Advent : Passive
 
         foreach (BattleUnit unit in targetUnits)
         {
-            if (unit.Team != caster.Team)
-                unit.ChangeHP(-15);
+            if (unit.Team == caster.Team)
+                unit.ChangeHP(20);
         }
     }
 }

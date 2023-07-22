@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class 망령 : Passive
+public class 망령 : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {

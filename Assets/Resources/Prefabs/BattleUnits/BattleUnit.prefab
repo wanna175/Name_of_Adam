@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 9013690112352841668}
   - component: {fileID: 1722822296286429812}
   - component: {fileID: -3496854762374506308}
-  - component: {fileID: 1722822296286429813}
   - component: {fileID: 3929000787331167701}
+  - component: {fileID: 5390689723891468034}
   - component: {fileID: 242521100124440565}
   m_Layer: 0
   m_Name: BattleUnit
@@ -151,21 +151,13 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 0
     ManaCost: 0
-  BUFFSTAT:
-    MaxHP: 0
-    CurrentHP: 0
-    ATK: 0
-    SPD: 0
-    FallCurrentCount: 0
-    FallMaxCount: 0
-    ManaCost: 0
   _team: 0
   SkillEffectAnim: {fileID: 0}
   AI: {fileID: 3929000787331167701}
   HP: {fileID: 1722822296286429812}
   Fall: {fileID: -3496854762374506308}
-  Skill: {fileID: 1722822296286429813}
   Buff: {fileID: 242521100124440565}
+  Action: {fileID: 5390689723891468034}
   _hpBar: {fileID: 5860012635904994748}
   _location: {x: 0, y: 0}
 --- !u!114 &1722822296286429812
@@ -224,19 +216,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1722822296286429813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027651334718104315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813778a86aa3da74681056a984372ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Effects: []
 --- !u!114 &3929000787331167701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +226,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4656c3a1826ee9d4a84f1ddcc28ac1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5390689723891468034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9027651334718104315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06753cc2f8d254645acc29273800a716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &242521100124440565
@@ -261,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457a5f8b7717f9f4cb41d98a3ceae821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buffList: []
 --- !u!1001 &5853654386056476508
 PrefabInstance:
   m_ObjectHideFlags: 0
