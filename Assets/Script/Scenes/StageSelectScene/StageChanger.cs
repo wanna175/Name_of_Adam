@@ -32,7 +32,7 @@ public class StageChanger
     // 다음 스테이지 이동용
     public void SetNextStage(Stage stage)
     {
-        Debug.Log("Now Stage : " + stage.Name);
+        GameManager.Data.CurStageData = stage;
 
         if (stage.GetStageType() == StageType.Battle)
         {

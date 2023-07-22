@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class StigmaSceneController : MonoBehaviour
 {
+    private DeckUnit _givestigmatizeUnit;
     private DeckUnit _stigmatizeUnit;
     [SerializeField] private Image _unitImage;
-
     [SerializeField] private Image _giveunitImage;
     [SerializeField] private Image _targetunitImage;
+
 
 
     void Start()
@@ -30,12 +31,49 @@ public class StigmaSceneController : MonoBehaviour
 
     }
 
+    // 유닛 선택창을 띄우는 함수
     public void OnStigmaUnitButtonClick()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization);
     }
 
-    public void OnSelect(DeckUnit unit)
+
+    public void OnStigmaTargetUnitButtonClick()
+    {
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatransfertarget);
+    }
+
+    // 낙인을 주는 유닛을 고르는 함수
+    public void OnStigmaGiveUnitButtonClick()
+    {
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatransfergiver);
+    }
+
+    // 낙인 선택지가 뜨는 함수
+    public void OnStigmaButtonClick()
+    {
+        if (_stigmatizeUnit != null)
+        {
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3);
+        }
+    }
+
+    // 낙인소 나가기 
+    public void OnQuitClick()
+    {
+        StartCoroutine(QuitScene());
+    }
+
+    // 낙인 이동 실행시킬 함수
+    public void StigmaTransfer()
+    {
+        if (_stigmatizeUnit != null)
+        {
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, _givestigmatizeUnit.Stigma);
+        }
+    }
+
+    public void OnSelectStigmatization(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
         _unitImage.sprite = unit.Data.Image;
@@ -44,35 +82,43 @@ public class StigmaSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
     }
 
-    public void OnStigmaButtonClick()
+    public void OnSelectStigmatransfertarget(DeckUnit unit)
     {
-        if (_stigmatizeUnit != null)
-        {
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, 3);
-        }
+        _stigmatizeUnit = unit;
+        _targetunitImage.sprite = unit.Data.Image;
+        _targetunitImage.color = Color.white;
+
+        GameManager.UI.ClosePopup();
+        GameManager.UI.ClosePopup();
     }
 
-    public void OnStigmaSelect(Stigma stigma)
+    public void OnSelectStigmatransfergiver(DeckUnit unit)
+    {
+        _givestigmatizeUnit = unit;
+        _giveunitImage.sprite = unit.Data.Image;
+        _giveunitImage.color = Color.white;
+
+        GameManager.UI.ClosePopup();
+        GameManager.UI.ClosePopup();
+    }
+
+
+    public void OnStigmaSelected(Stigma stigma)
     {
         _stigmatizeUnit.AddStigma(stigma);
         GameManager.UI.ClosePopup();
-        AddStigamScript(stigma);
+        AddStigmaScript(stigma);
         //StartCoroutine(QuitScene());
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         //OnQuitClick();
     }
 
     public void AddStigamScript(Stigma stigma)
-    {
+
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "낙인소_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
-    }
-
-    public void OnQuitClick()
-    {
-        StartCoroutine(QuitScene());
     }
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)

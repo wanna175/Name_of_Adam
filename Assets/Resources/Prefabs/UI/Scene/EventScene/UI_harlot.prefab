@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 7195676994146816801}
   - component: {fileID: 7195676994146816800}
   m_Layer: 5
-  m_Name: WhoreNPC
+  m_Name: HarlotNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,6 +461,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3438009545746664619, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7195676995062162376}
+    - target: {fileID: 3438009545746664619, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ClickQuit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438009545746664619, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: HarlotSceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438009545746664619, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438009545746664620, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438009545746664620, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438009545746664620, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438009545746664620, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6670048055099707714, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -496,6 +528,10 @@ PrefabInstance:
     - target: {fileID: 6670048055099707717, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003431294604240409, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_text
+      value: "\uD0C0\uB77D\uB41C \uB099\uC778"
       objectReference: {fileID: 0}
     - target: {fileID: 7003431294783875219, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -568,6 +604,42 @@ PrefabInstance:
     - target: {fileID: 7327753584981817151, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
       propertyPath: m_Name
       value: GetEliteUnitBTN
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970536971824, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970536971824, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970536971824, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970536971824, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970536971831, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7195676995062162376}
+    - target: {fileID: 7700059970536971831, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ClickGetEliteUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970536971831, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: HarlotSceneController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970536971831, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7700059970598899901, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}
+      propertyPath: m_text
+      value: "\uD0C0\uB77D\uB41C \uC720\uB2DB"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95fcabf8614f9a64d94946be082ccba4, type: 3}

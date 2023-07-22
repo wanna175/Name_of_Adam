@@ -27,7 +27,8 @@ public class DataManager : MonoBehaviour
     public Stage[] StageArray = new Stage[3];
 
     public StageDataContainer StageDatas;
-    public StageSpawnData CurrentStageData;
+    public StageSpawnData CurrentStageData; // 버려질 친구
+    public Stage CurStageData; // NEW!!
     public List<TempStageStorage> SmagaMap;
     public List<Stage> SmagaRandomStage;
 
