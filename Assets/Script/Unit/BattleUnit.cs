@@ -22,6 +22,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitBuff Buff;
+    [SerializeField] public UnitAction Action;
     [SerializeField] private UI_HPBar _hpBar;
 
     private bool _nextMoveSkip = false;
@@ -46,6 +47,8 @@ public class BattleUnit : MonoBehaviour
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
+
+        Action.Init(this);
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         _scale = transform.localScale.x;
@@ -101,7 +104,7 @@ public class BattleUnit : MonoBehaviour
 
     public void SetHPBar()
     {
-        _hpBar.SetHPBar(Team, transform);
+        _hpBar.SetHPBar(_team, transform);
         _hpBar.SetFallBar(DeckUnit);
     }
 
@@ -115,6 +118,7 @@ public class BattleUnit : MonoBehaviour
     
     public void UnitDiedEvent()
     {
+        //자신이 사망 시 체크
         if (ActiveTimingCheck(ActiveTiming.UNIT_DEAD))
         {
             return;
@@ -140,8 +144,7 @@ public class BattleUnit : MonoBehaviour
 
         while (c.a > 0)
         {
-            float a = c.a - 0.01f;
-            c.a = a;
+            c.a -= 0.01f;
 
             _renderer.color = c;
 
@@ -153,6 +156,7 @@ public class BattleUnit : MonoBehaviour
 
     public void UnitFallEvent()
     {
+        //타락 시 체크
         if (ActiveTimingCheck(ActiveTiming.FALLED))
         {
             return;
@@ -259,37 +263,39 @@ public class BattleUnit : MonoBehaviour
 
             //공격 전 체크
             attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
-            //피격 전 체크
-            attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, unit);
 
             //대미지 확정 시 체크
             attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
 
             if (team != unit.Team)
             {
+                //타락시켰을 시 체크
+                ActiveTimingCheck(ActiveTiming.FALL, unit);
                 attackSkip = true;
-                ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
             }
 
-            if (attackSkip || team != unit.Team)
-            {
+            if (attackSkip)
                 return;
-            }
 
-            unit.GetAttack(-BattleUnitTotalStat.ATK);
-
-            //Skill.Use(this, unit);
+            unit.GetAttack(-BattleUnitTotalStat.ATK, this);
 
             //공격 후 체크
             ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit);
-            //피격 후 체크
-            ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, unit);
         }
     }
 
-    public void GetAttack(int value)
+    public void GetAttack(int value, BattleUnit caster)
     {
+        //피격 전 체크
+        if (ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, caster))
+        {
+            return;
+        }
+
         ChangeHP(value);
+
+        //피격 후 체크
+        ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, caster);
     }
 
     public void ChangeHP(int value) {
@@ -315,48 +321,24 @@ public class BattleUnit : MonoBehaviour
     {
         bool skipNextAction = false;
 
-        //수동적 낙인
-        if (activeTiming == ActiveTiming.BEFORE_ATTACKED || activeTiming == ActiveTiming.AFTER_ATTACKED)
-        {
-            receiver.PassiveCheck(receiver, this, activeTiming);
-            receiver.BuffUse(receiver.Buff.CheckActiveTiming(activeTiming), this);
-            receiver.Buff.CheckCountDownTiming(activeTiming);
-
-            receiver.BattleUnitChangedStat = receiver.Buff.GetBuffedStat();
-        }
-        else
-        {
-            PassiveCheck(this, receiver, activeTiming);
-            skipNextAction = BuffUse(Buff.CheckActiveTiming(activeTiming), receiver);
-            Buff.CheckCountDownTiming(activeTiming);
-
-            BattleUnitChangedStat = Buff.GetBuffedStat();
-        }
-
-        return skipNextAction;
-    }
-
-    private bool BuffUse(List<Buff> buffList, BattleUnit receiver = null)
-    {
-        bool skipNextAction = false;
-
-        foreach (Buff buff in buffList)
-        {
-            skipNextAction = buff.Active(this, receiver);
-        }
-
-        return skipNextAction;
-    }
-
-    public void PassiveCheck(BattleUnit caster, BattleUnit receiver, ActiveTiming activeTiming)
-    {
         foreach (Passive passive in Passive)
         {
             if (passive.ActiveTiming == activeTiming)
             {
-                passive.Use(caster, receiver);
+                passive.Use(this, receiver);
             }
         }
+
+        foreach (Buff buff in Buff.CheckActiveTiming(activeTiming))
+        {
+            skipNextAction = buff.Active(this, receiver);
+        }
+
+        Buff.CheckCountDownTiming(activeTiming);
+
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+
+        return skipNextAction;
     }
 
     public bool GetFlipX() => _renderer.flipX;

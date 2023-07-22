@@ -52,7 +52,6 @@ public class BattleManager : MonoBehaviour
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
         
-
         SetBackground();
     }
 
@@ -136,7 +135,7 @@ public class BattleManager : MonoBehaviour
 
         if (unit.Team == Team.Player)
         {
-            if (Field.Get_Abs_Pos(unit, FieldColor.Move).Contains(coord) == false)
+            if (Field.GetAbsPos(unit, FieldColor.Move).Contains(coord) == false)
                 return;
             Vector2 dest = coord - unit.Location;
 
@@ -150,7 +149,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit unit = Data.GetNowUnit();
 
-        if (Field.Get_Abs_Pos(unit, FieldColor.Attack).Contains(coord) == false)
+        if (Field.GetAbsPos(unit, FieldColor.Attack).Contains(coord) == false)
             return;
 
         if (coord != unit.Location)
@@ -280,7 +279,7 @@ public class BattleManager : MonoBehaviour
             if (hit == null)
                 continue;
 
-            unit.Attack(hit);
+            unit.Action.Action(hit);
 
             if (unit.SkillEffectAnim != null)
                 GameManager.VisualEffect.StartVisualEffect(unit.SkillEffectAnim, hit.transform.position);

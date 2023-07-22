@@ -20,7 +20,6 @@ public class UnitData : MonoBehaviour
     public int DarkEssenseDrop;
     public int DarkEssenseCost;
     public BehaviorType BehaviorType;
-    public UnitSkill UnitSkill;
 
     const int Arow = 5;
     const int Acolumn = 11;

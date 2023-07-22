@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,3 +14,4 @@ public class UnitSkill : MonoBehaviour
             effect.Use(caster, receiver);
     }
 }
+*/
