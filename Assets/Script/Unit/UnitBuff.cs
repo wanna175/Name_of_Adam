@@ -7,11 +7,6 @@ public class UnitBuff : MonoBehaviour
 {
     [SerializeField] private List<Buff> _buffList;
 
-    public void Init()
-    {
-
-    }
-
     public void SetBuff(Buff buff)
     {
         buff.Init();

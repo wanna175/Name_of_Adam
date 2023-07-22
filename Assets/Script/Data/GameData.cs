@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public Incarna Incarna;
+    public PlayerSkill UniversalPlayerSkill;
     public int Money;
     public int DarkEssence;
     public int PlayerSkillCount;

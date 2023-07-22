@@ -27,7 +27,8 @@ public class DataManager : MonoBehaviour
     public Stage[] StageArray = new Stage[3];
 
     public StageDataContainer StageDatas;
-    public StageSpawnData CurrentStageData;
+    public StageSpawnData CurrentStageData; // 버려질 친구
+    public Stage CurStageData; // NEW!!
     public List<TempStageStorage> SmagaMap;
     public List<Stage> SmagaRandomStage;
 
@@ -35,14 +36,14 @@ public class DataManager : MonoBehaviour
     [SerializeField] public GameData GameDataOriginal;
 
     public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
-    public PassiveManager Passive;
+    public StigmaController StigmaController;
 
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageDataContainer>("StageData");
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
-        Passive = new PassiveManager();
+        StigmaController = new StigmaController();
 
         _darkEssense = GameData.DarkEssence;
         _playerSkillCount = GameData.Incarna.PlayerSkillCount;
@@ -171,5 +172,17 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public List<PlayerSkill> GetPlayerSkillList() => GameData.Incarna.PlayerSkillList;
+    public List<PlayerSkill> GetPlayerSkillList()
+    {
+        List<PlayerSkill> skillList = new();
+
+        foreach (PlayerSkill skill in GameData.Incarna.PlayerSkillList)
+        {
+            skillList.Add(skill);
+        }
+
+        skillList.Insert(2, GameData.UniversalPlayerSkill);
+
+        return skillList;
+    }
 }

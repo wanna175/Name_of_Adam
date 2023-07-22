@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Sadism : Passive
+public class Sadism : Stigma
 {
     private bool isApplied = false;
 
@@ -16,7 +16,7 @@ public class Sadism : Passive
         base.Use(caster, receiver);
 
         Buff_Sadism sadism = new();
-        caster.SetBuff(sadism);
+        caster.SetBuff(sadism, caster);
         //caster.BattleUnitChangedStat.ATK += 3;
         isApplied = true;
     }

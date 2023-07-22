@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class 고문관 : Passive
+public class 고문관 : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {

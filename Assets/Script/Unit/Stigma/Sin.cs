@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
-public class Execution : Passive
+public class Sin : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        if (receiver.HP.GetCurrentHP() <= 10)
-        {
-            base.Use(caster, receiver);
-            receiver.ChangeHP(-receiver.HP.GetCurrentHP());
-        }
+        base.Use(caster, receiver);
+
+        receiver.ChangeFall(1);
     }
 }

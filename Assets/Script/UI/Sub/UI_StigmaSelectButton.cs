@@ -12,9 +12,9 @@ public class UI_StigmaSelectButton : UI_Base
     [SerializeReference] private TextMeshProUGUI _stigmaDescription;
 
     private UI_StigmaSelectButtonPopup _popup;
-    private Passive _stigma;
+    private Stigma _stigma;
 
-    public void init(UI_StigmaSelectButtonPopup popup, Passive stigma)
+    public void init(UI_StigmaSelectButtonPopup popup, Stigma stigma)
     {
         _popup = popup;
         _stigma = stigma;

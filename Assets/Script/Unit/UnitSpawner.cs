@@ -10,7 +10,7 @@ public struct SpawnData
     public DeckUnit deckUnit;
     public Vector2 location;
     public Team team;
-    public Passive[] stigmas;
+    public Stigma[] stigmas;
 }
 
 // 핸드 -> 필드 위에 생성

@@ -15,7 +15,7 @@ public class DeckUnit
     public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
-    [SerializeField] public List<Passive> Stigma = new List<Passive>();
+    [SerializeField] public List<Stigma> Stigma = new List<Stigma>();
 
     private int _maxStigmaCount = 3;
 
@@ -23,14 +23,14 @@ public class DeckUnit
     {
         Stigma = Stigma.Distinct().ToList();
 
-        foreach (Passive stigma in Data.UniqueStigma)
+        foreach (Stigma stigma in Data.UniqueStigma)
             AddStigma(stigma);
 
-        foreach (Passive stigma in Stigma)
+        foreach (Stigma stigma in Stigma)
             AddStigma(stigma);
     }
 
-    public void AddStigma(Passive passive)
+    public void AddStigma(Stigma passive)
     {
         if (Stigma.Contains(passive))
         {

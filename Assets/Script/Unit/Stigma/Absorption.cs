@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-public class Absorption : Passive
+public class Absorption : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
