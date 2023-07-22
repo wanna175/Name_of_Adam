@@ -155,7 +155,7 @@ public class Field : MonoBehaviour
 
     // *****
     // 메서드 이름 바꾸기
-    public List<Vector2> Get_Abs_Pos(BattleUnit _unit, FieldColor _clickType)
+    public List<Vector2> GetAbsPos(BattleUnit _unit, FieldColor _clickType)
     {
         List<Vector2> ResultVector = new List<Vector2>();
 
@@ -181,7 +181,7 @@ public class Field : MonoBehaviour
 
     public void SetTileColor(BattleUnit unit, FieldColor clickType)
     {
-        List<Vector2> vector = Get_Abs_Pos(unit, clickType);
+        List<Vector2> vector = GetAbsPos(unit, clickType);
 
         foreach (Vector2 vec in vector)
         {

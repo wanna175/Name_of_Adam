@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using UnityEngine;
 
@@ -6,3 +7,4 @@ public abstract class Effect : ScriptableObject
 {
     public abstract void Use(BattleUnit caster, BattleUnit receiver);
 }
+*/

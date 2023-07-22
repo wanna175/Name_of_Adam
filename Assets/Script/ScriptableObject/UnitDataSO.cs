@@ -53,10 +53,6 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private BehaviorType _behaviorType;
     public BehaviorType BehaviorType => _behaviorType;
 
-    [SerializeField] private List<Effect> _effects;
-    public List<Effect> Effects => _effects;
-    
-
     const int Arow = 5;
     const int Acolumn = 11;
 

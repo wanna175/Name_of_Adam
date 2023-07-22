@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using UnityEngine;
 
@@ -11,3 +12,4 @@ public class Effect_Attack : Effect
         receiver.ChangeHP(-damage);
     }
 }
+*/

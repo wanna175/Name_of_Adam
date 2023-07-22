@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using UnityEngine;
 
@@ -11,3 +12,4 @@ public class Effect_Fall : Effect
         receiver.ChangeFall(_fallValue);
     }
 }
+*/
