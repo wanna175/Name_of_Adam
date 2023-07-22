@@ -7,8 +7,8 @@ public class HarlotSceneController : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
     private Stigma stigma;
-    [SerializeField] private Image _unitImage; // ���� �ο� ����
-    [SerializeField] private Image _stigmaImage; // Ÿ�� ���� �̹���
+    [SerializeField] private Image _unitImage; // 낙인 부여 유닛
+    [SerializeField] private Image _stigmaImage; // 타락 낙인 이미지
     [SerializeField] private GameObject _menuChoose;
     [SerializeField] private GameObject _stigmazation;
     [SerializeField] private GameObject _getEliteUnit;
@@ -55,18 +55,17 @@ public class HarlotSceneController : MonoBehaviour
         _menuChoose.SetActive(false);
         _getEliteUnit.SetActive(true);
 
-        // ���� ��� ����
+        // 유닛 얻는 내용
 
     }
 
-
-    // ���� ������ ��ư
+    // 유닛 고르기 버튼
     public void ClickUnitSelectBTN()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
     }
 
-    // ���� ���� �� Ÿ�� ���� ���� �ο� ��ư
+    // 유닛 선택 후 타락 관련 낙인 부여 버튼
     public void OnStigmaButtonClick()
     {
         if (_stigmatizeUnit != null)
@@ -79,8 +78,6 @@ public class HarlotSceneController : MonoBehaviour
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigmata);
         }
     }
-
-
 
     public void OnSelect(DeckUnit unit)
     {
@@ -98,13 +95,13 @@ public class HarlotSceneController : MonoBehaviour
     {
         _stigmatizeUnit.AddStigma(stigma);
         GameManager.UI.ClosePopup();
-        AddStigamScript(stigma);
+        AddStigmaScript(stigma);
     }
 
-    public void AddStigamScript(Stigma stigma)
+    public void AddStigmaScript(Stigma stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        string scriptKey = "���μ�_" + stigma.GetName();
+        string scriptKey = "낙인소_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }
@@ -126,7 +123,7 @@ public class HarlotSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        quitScript.Init(GameManager.Data.ScriptData["���μ�_����"], false);
+        quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");

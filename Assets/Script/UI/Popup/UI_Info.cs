@@ -11,8 +11,8 @@ public class UI_Info : UI_Scene
     [SerializeField] private TextMeshProUGUI _stat;
 
     [SerializeField] private UI_HPBar _hpBar;
-    [SerializeField] private UI_HoverImageBlock _stigama;
-    [SerializeField] private Transform _stigamaGrid;
+    [SerializeField] private UI_HoverImageBlock _stigma;
+    [SerializeField] private Transform _stigmaGrid;
 
     [SerializeField] private UI_HoverImageBlock _SkillImage;
 
@@ -89,7 +89,7 @@ public class UI_Info : UI_Scene
         unit.SetStigma();
         foreach (Stigma sti in unit.Stigma)
         {
-            GameObject.Instantiate(_stigama, _stigamaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
+            GameObject.Instantiate(_stigma, _stigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }
 
         Sprite attackType;
@@ -171,7 +171,7 @@ public class UI_Info : UI_Scene
         unit.SetStigma();
         foreach (Stigma sti in unit.Stigma)
         {
-            GameObject.Instantiate(_stigama, _stigamaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
+            GameObject.Instantiate(_stigma, _stigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }
 
         Sprite attackType;
