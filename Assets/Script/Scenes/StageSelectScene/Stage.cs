@@ -3,23 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum StageName
-{
-    none,
-
-    StigmaStore  = 1,
-    UpgradeStore = 2,
-    MoneyStore,
-    Harlot,
-    RandomEvent,
-    CommonBattle,
-    EliteBattle,
-    BossBattle,
-
-
-    Random
-}
-
 public enum StageInfo
 {
     아군에게_낙인을_부여합니다 = 1,
