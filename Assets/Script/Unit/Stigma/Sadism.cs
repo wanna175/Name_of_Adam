@@ -16,7 +16,7 @@ public class Sadism : Stigma
         base.Use(caster, receiver);
 
         Buff_Sadism sadism = new();
-        caster.SetBuff(sadism);
+        caster.SetBuff(sadism, caster);
         //caster.BattleUnitChangedStat.ATK += 3;
         isApplied = true;
     }

@@ -14,7 +14,7 @@ public class Enhance : Stigma
             if (unit.Team == caster.Team)
             {
                 Buff_Encourage encorage = new();
-                unit.SetBuff(encorage);
+                unit.SetBuff(encorage, caster);
             }
 
         }
