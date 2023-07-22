@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enhance : Passive
+public class Enhance : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {

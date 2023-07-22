@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Sin : Passive
+public class Sin : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {

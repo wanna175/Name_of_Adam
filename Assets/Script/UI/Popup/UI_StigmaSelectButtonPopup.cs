@@ -17,18 +17,18 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         _afterPopupAction = afterPopupAction;
         _targetUnit = targetUnit;
 
-        List<Passive> stigmaList = CreatePassiveList(_targetUnit, stigmaCount);
+        List<Stigma> stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
         SetStigmaSelectButtons(stigmaList);
     }
 
-    private List<Passive> CreatePassiveList(DeckUnit targetUnit, int stigmaCount)
+    private List<Stigma> CreateStigmaList(DeckUnit targetUnit, int stigmaCount)
     {
-        List<Passive> result = new List<Passive>();
-        List<Passive> existStigma = targetUnit.Stigma;
+        List<Stigma> result = new();
+        List<Stigma> existStigma = targetUnit.Stigma;
 
         while (result.Count < stigmaCount)
         {
-            Passive stigma = GameManager.Data.Passive.GetRandomPassive();
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigma();
 
             if (existStigma.Contains(stigma))
                 continue;
@@ -42,7 +42,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         return result;
     }
 
-    private void SetStigmaSelectButtons(List<Passive> stigmaList)
+    private void SetStigmaSelectButtons(List<Stigma> stigmaList)
     {
         for (int i = 0; i < stigmaList.Count; i++)
         {
@@ -50,7 +50,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         }
     }
 
-    public void OnClick(Passive stigma)
+    public void OnClick(Stigma stigma)
     {
         _targetUnit.AddStigma(stigma);
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");

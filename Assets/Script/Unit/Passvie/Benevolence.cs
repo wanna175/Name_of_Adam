@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Benevolence : Passive
+public class Benevolence : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {

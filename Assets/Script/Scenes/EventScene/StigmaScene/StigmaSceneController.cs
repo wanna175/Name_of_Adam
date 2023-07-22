@@ -19,7 +19,7 @@ public class StigmaSceneController : MonoBehaviour
 
     private void Init()
     {
-        List<Script> scripts = new List<Script>();
+        List<Script> scripts = new();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
             scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
@@ -28,7 +28,6 @@ public class StigmaSceneController : MonoBehaviour
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
-        PassiveManager passiveManager = GameManager.Data.Passive;
     }
 
     public void OnStigmaUnitButtonClick()
@@ -41,7 +40,6 @@ public class StigmaSceneController : MonoBehaviour
         _stigmatizeUnit = unit;
         _unitImage.sprite = unit.Data.Image;
         _unitImage.color = Color.white;
-
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
     }
@@ -54,7 +52,7 @@ public class StigmaSceneController : MonoBehaviour
         }
     }
 
-    public void OnStigmaSelect(Passive stigma)
+    public void OnStigmaSelect(Stigma stigma)
     {
         _stigmatizeUnit.AddStigma(stigma);
         GameManager.UI.ClosePopup();
@@ -64,7 +62,7 @@ public class StigmaSceneController : MonoBehaviour
         //OnQuitClick();
     }
 
-    public void AddStigamScript(Passive stigma)
+    public void AddStigamScript(Stigma stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "낙인소_" + stigma.GetName();

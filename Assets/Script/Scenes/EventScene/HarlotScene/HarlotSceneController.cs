@@ -35,8 +35,6 @@ public class HarlotSceneController : MonoBehaviour
             scripts = GameManager.Data.ScriptData["≥´¿Œº“_¿‘¿Â"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-
-        PassiveManager passiveManager = GameManager.Data.Passive;
     }
 
     public void ClickStigmatization()
@@ -83,7 +81,7 @@ public class HarlotSceneController : MonoBehaviour
         }
     }
 
-    public void OnStigmaSelect(Passive stigma)
+    public void OnStigmaSelect(Stigma stigma)
     {
         _stigmatizeUnit.AddStigma(stigma);
         GameManager.UI.ClosePopup();
@@ -93,7 +91,7 @@ public class HarlotSceneController : MonoBehaviour
         //OnQuitClick();
     }
 
-    public void AddStigamScript(Passive stigma)
+    public void AddStigamScript(Stigma stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "≥´¿Œº“_" + stigma.GetName();

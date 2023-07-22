@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Advent : Passive
+public class Advent : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {

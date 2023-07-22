@@ -87,7 +87,7 @@ public class UI_Info : UI_Scene
         _hpBar.RefreshFallGauge(battleUnit.BattleUnitTotalStat.FallCurrentCount);
 
         unit.SetStigma();
-        foreach (Passive sti in unit.Stigma)
+        foreach (Stigma sti in unit.Stigma)
         {
             GameObject.Instantiate(_stigama, _stigamaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }
@@ -169,7 +169,7 @@ public class UI_Info : UI_Scene
         _hpBar.RefreshFallGauge(unit.DeckUnitTotalStat.FallCurrentCount);
 
         unit.SetStigma();
-        foreach (Passive sti in unit.Stigma)
+        foreach (Stigma sti in unit.Stigma)
         {
             GameObject.Instantiate(_stigama, _stigamaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Execution : Passive
+public class Execution : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
