@@ -18,4 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a8c7559f612cb8a429662984cdad7087, type: 2}
   - {fileID: 11400000, guid: 9619319320dfc73468abf666a2ca7034, type: 2}
   - {fileID: 11400000, guid: b54a8847ace00584ca9174d138240985, type: 2}
-  - {fileID: 11400000, guid: 83cab6ffc5c178a4386cab417f65780a, type: 2}
+  PlayerSkillCount: 3
