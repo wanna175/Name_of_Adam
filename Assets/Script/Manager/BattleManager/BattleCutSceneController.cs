@@ -13,8 +13,7 @@ public class BattleCutSceneController : MonoBehaviour
 
     public float ZoomTime = 1;
     public float CutSceneTime = 1;
-
-    public float BlinkTime = 0.1f;
+    
     public float ShakePower = 0.5f;
     public float ShakeTime = 0.1f;
     public float ShakeCount = 5;
@@ -64,11 +63,11 @@ public class BattleCutSceneController : MonoBehaviour
             if (unit != null)
             {
                 unit.GetComponent<Animator>().SetBool("isHit", true);
-                UnitShake(unit);
             }
         }
 
-        yield return StartCoroutine(AttackTilt());
+        //yield return StartCoroutine(AttackTilt());
+        yield return StartCoroutine(_CameraHandler.AttackEffect(ShakeCount, ShakeTime, ShakePower));
 
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
@@ -145,11 +144,5 @@ public class BattleCutSceneController : MonoBehaviour
             if(unit != null)
                 unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
         }
-
-    }
-
-    private void UnitShake(BattleUnit unit)
-    {
-        unit.ShakeUnit(ShakeCount, ShakeTime, ShakePower);
     }
 }

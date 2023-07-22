@@ -403,32 +403,6 @@ public class BattleUnit : MonoBehaviour
         return RangeList;
     }
 
-    public IEnumerator ShakeUnit(float shakeCount, float shakeTime, float shakePower)
-    {
-        Vector3 originPos = transform.position;
-
-        float count = shakeCount;
-        float time = shakeTime / shakePower;
-        bool min = true;
-        transform.position += new Vector3(shakePower / 2, 0, 0);
-
-        while (count > 0)
-        {
-            yield return new WaitForSeconds(time / shakeCount);
-
-            if (gameObject == null)
-                yield break;
-
-            Vector3 vec = new Vector3(shakePower / shakeCount * count, 0, 0);
-            if (min) vec *= -1;
-            transform.position += vec;
-            count--;
-            min = !min;
-        }
-
-        transform.position = originPos;
-    }
-
     public List<Vector2> GetSplashRange(Vector2 target, Vector2 caster)
     {
         List<Vector2> SplashList = new List<Vector2>();
