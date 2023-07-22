@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Crime : Buff
 {
-    public override void Init()
+    public override void Init(BattleUnit caster)
     {
         _buffEnum = BuffEnum.Crime;
 
@@ -16,9 +16,11 @@ public class Buff_Crime : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _passiveBuff = false;
+        _statBuff = false;
 
         _dispellable = true;
+
+        _caster = caster;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)

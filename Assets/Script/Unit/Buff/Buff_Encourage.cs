@@ -4,7 +4,7 @@ public class Buff_Encourage : Buff
 {
 
     private int attackUp;
-    public override void Init()
+    public override void Init(BattleUnit caster)
     {
         _buffEnum = BuffEnum.Encourage;
 
@@ -18,9 +18,11 @@ public class Buff_Encourage : Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
-        _passiveBuff = true;
+        _statBuff = true;
 
         _dispellable = true;
+
+        _caster = caster;
 
         attackUp = 5;
 }

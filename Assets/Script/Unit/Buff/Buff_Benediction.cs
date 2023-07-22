@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Buff_Benediction : Buff
-{    public override void Init()
+{    public override void Init(BattleUnit caster)
     {
         _buffEnum = BuffEnum.Benediction;
 
@@ -15,9 +15,11 @@ public class Buff_Benediction : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _passiveBuff = true;
+        _statBuff = true;
 
         _dispellable = false;
+
+        _caster = caster;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)

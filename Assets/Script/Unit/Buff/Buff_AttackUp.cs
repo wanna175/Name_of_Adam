@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_AttackUp : Buff
 {
-    public override void Init()
+    public override void Init(BattleUnit caster)
     {
         _name = "Attack Up";
 
@@ -14,9 +14,11 @@ public class Buff_AttackUp : Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
-        _passiveBuff = true;
+        _statBuff = true;
 
         _dispellable = true;
+
+        _caster = caster;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Bleeding : Buff
 {
-    public override void Init()
+    public override void Init(BattleUnit caster)
     {
         _buffEnum = BuffEnum.Bleeding;
 
@@ -16,9 +16,11 @@ public class Buff_Bleeding : Buff
 
         _buffActiveTiming = ActiveTiming.TURN_END;
 
-        _passiveBuff = false;
+        _statBuff = false;
 
         _dispellable = true;
+
+        _caster = caster;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
