@@ -23,14 +23,17 @@ public abstract class Buff : MonoBehaviour
     protected ActiveTiming _buffActiveTiming;
     public ActiveTiming BuffActiveTiming => _buffActiveTiming;
 
-    protected bool _passiveBuff;
-    public bool PassiveBuff => _passiveBuff;
+    protected bool _statBuff;
+    public bool StatBuff => _statBuff;
 
     protected bool _dispellable;
     public bool Dispellable => _dispellable;
 
+    protected bool _caster;
+    public bool Caster => _caster;
 
-    public abstract void Init();
+
+    public abstract void Init(BattleUnit caster);
     public abstract bool Active(BattleUnit caster = null, BattleUnit rereceiver = null);
 
     public abstract void Stack();
