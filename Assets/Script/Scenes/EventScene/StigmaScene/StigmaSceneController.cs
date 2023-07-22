@@ -113,8 +113,8 @@ public class StigmaSceneController : MonoBehaviour
         //OnQuitClick();
     }
 
-    public void AddStigamScript(Stigma stigma)
-
+    public void AddStigmaScript(Stigma stigma)
+    { 
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "낙인소_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);

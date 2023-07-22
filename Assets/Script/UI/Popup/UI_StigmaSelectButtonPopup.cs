@@ -12,12 +12,10 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private Transform _grid;
 
-    public void Init(DeckUnit targetUnit, List<Passive> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null)
+    public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null)
     {
         _afterPopupAction = afterPopupAction;
         _targetUnit = targetUnit;
-
-        List<Stigma> stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
 
         if(stigmata != null)
         {
@@ -42,7 +40,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         }
         else
         {
-            List<Stigma> stigmaList = CreatePassiveList(_targetUnit, stigmaCount);
+            List<Stigma> stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
             SetStigmaSelectButtons(stigmaList);
         }
     }
