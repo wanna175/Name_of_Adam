@@ -1,5 +1,4 @@
 using System;
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +6,9 @@ public class UnitBuff : MonoBehaviour
 {
     [SerializeField] private List<Buff> _buffList;
 
-    public void SetBuff(Buff buff)
+    public void SetBuff(Buff buff, BattleUnit caster)
     {
-        buff.Init();
+        buff.Init(caster);
 
         foreach (Buff listedBuff in _buffList)
         {
@@ -30,7 +29,7 @@ public class UnitBuff : MonoBehaviour
 
         foreach (Buff buff in _buffList)
         {
-            if (buff.PassiveBuff)
+            if (buff.StatBuff)
             {
                 buffedStat += buff.GetBuffedStat();
             }

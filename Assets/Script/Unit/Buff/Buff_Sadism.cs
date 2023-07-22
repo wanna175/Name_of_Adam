@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class Buff_Sadism : Buff
 {
-
     private int attackUp;
-    public override void Init()
+    public override void Init(BattleUnit caster)
     {
         _buffEnum = BuffEnum.Sadism;
 
@@ -18,9 +17,11 @@ public class Buff_Sadism : Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
-        _passiveBuff = true;
+        _statBuff = true;
 
         _dispellable = true;
+
+        _caster = caster;
 
         attackUp = 3;
 }

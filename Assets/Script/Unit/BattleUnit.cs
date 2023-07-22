@@ -311,9 +311,9 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
 
-    public void SetBuff(Buff buff)
+    public void SetBuff(Buff buff, BattleUnit caster)
     {
-        Buff.SetBuff(buff);
+        Buff.SetBuff(buff, caster);
         BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
