@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Passive : MonoBehaviour
+public class Stigma : MonoBehaviour
 {
     [SerializeField] private string _name;
 
@@ -46,7 +46,7 @@ public class Passive : MonoBehaviour
         return name;
     }
 
-    public bool Equals(Passive other, bool isIncludeTier)
+    public bool Equals(Stigma other, bool isIncludeTier)
     {
         if (isIncludeTier && this.Tier != other.Tier)
             return false;

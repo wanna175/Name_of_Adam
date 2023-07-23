@@ -7,7 +7,7 @@ public class UnitData : MonoBehaviour
     // 변경되는 값들
 
     public Stat Stat;
-    public List<Passive> Stigma;
+    public List<Stigma> Stigma;
 
     // 변경되지 않는 값들
 

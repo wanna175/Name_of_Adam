@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class HarlotSceneController : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
-    private Passive stigma;
-    [SerializeField] private Image _unitImage; // ³«ÀÎ ºÎ¿© À¯´Ö
-    [SerializeField] private Image _stigmaImage; // Å¸¶ô ³«ÀÎ ÀÌ¹ÌÁö
+    private Stigma stigma;
+    [SerializeField] private Image _unitImage; // ë‚™ì¸ ë¶€ì—¬ ìœ ë‹›
+    [SerializeField] private Image _stigmaImage; // íƒ€ë½ ë‚™ì¸ ì´ë¯¸ì§€
     [SerializeField] private GameObject _menuChoose;
     [SerializeField] private GameObject _stigmazation;
     [SerializeField] private GameObject _getEliteUnit;
@@ -30,19 +30,15 @@ public class HarlotSceneController : MonoBehaviour
         List<Script> scripts = new List<Script>();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
-            scripts = GameManager.Data.ScriptData["³«ÀÎ¼Ò_ÀÔÀå_ÃÖÃÊ"];
+            scripts = GameManager.Data.ScriptData["ï¿½ï¿½ï¿½Î¼ï¿½_ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½"];
         else
-            scripts = GameManager.Data.ScriptData["³«ÀÎ¼Ò_ÀÔÀå"];
+            scripts = GameManager.Data.ScriptData["ï¿½ï¿½ï¿½Î¼ï¿½_ï¿½ï¿½ï¿½ï¿½"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
-        PassiveManager passiveManager = GameManager.Data.Passive;
-
-        stigma = GameManager.Data.Passive.GetRandomPassive();
+        stigma = GameManager.Data.StigmaController.GetRandomStigma();
 
         Debug.Log(stigma.GetName());
-        //_stigmaImage = GameManager.Resource.Load<Image>("" + stigma.GetName());
-
     }
 
     public void ClickStigmatization()
@@ -59,32 +55,29 @@ public class HarlotSceneController : MonoBehaviour
         _menuChoose.SetActive(false);
         _getEliteUnit.SetActive(true);
 
-        // À¯´Ö ¾ò´Â ³»¿ë
+        // ìœ ë‹› ì–»ëŠ” ë‚´ìš©
 
     }
 
-
-    // À¯´Ö °í¸£±â ¹öÆ°
+    // ìœ ë‹› ê³ ë¥´ê¸° ë²„íŠ¼
     public void ClickUnitSelectBTN()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelect);
     }
 
-    // À¯´Ö ¼±ÅÃ ÈÄ Å¸¶ô °ü·Ã ³«ÀÎ ºÎ¿© ¹öÆ°
+    // ìœ ë‹› ì„ íƒ í›„ íƒ€ë½ ê´€ë ¨ ë‚™ì¸ ë¶€ì—¬ ë²„íŠ¼
     public void OnStigmaButtonClick()
     {
         if (_stigmatizeUnit != null)
         {
 
-            List<Passive> stigmata = new List<Passive>();
+            List<Stigma> stigmata = new();
 
             stigmata.Add(stigma);
 
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigmata);
         }
     }
-
-
 
     public void OnSelect(DeckUnit unit)
     {
@@ -98,17 +91,17 @@ public class HarlotSceneController : MonoBehaviour
 
     
 
-    public void OnStigmaSelect(Passive stigma)
+    public void OnStigmaSelect(Stigma stigma)
     {
         _stigmatizeUnit.AddStigma(stigma);
         GameManager.UI.ClosePopup();
-        AddStigamScript(stigma);
+        AddStigmaScript(stigma);
     }
 
-    public void AddStigamScript(Passive stigma)
+    public void AddStigmaScript(Stigma stigma)
     {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        string scriptKey = "³«ÀÎ¼Ò_" + stigma.GetName();
+        string scriptKey = "ë‚™ì¸ì†Œ_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }
@@ -130,7 +123,7 @@ public class HarlotSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        quitScript.Init(GameManager.Data.ScriptData["³«ÀÎ¼Ò_ÅğÀå"], false);
+        quitScript.Init(GameManager.Data.ScriptData["ë‚™ì¸ì†Œ_í‡´ì¥"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
         SceneChanger.SceneChange("StageSelectScene");

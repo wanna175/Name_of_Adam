@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enhance : Passive
+public class Enhance : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
@@ -14,7 +14,7 @@ public class Enhance : Passive
             if (unit.Team == caster.Team)
             {
                 Buff_Encourage encorage = new();
-                unit.SetBuff(encorage);
+                unit.SetBuff(encorage, caster);
             }
 
         }

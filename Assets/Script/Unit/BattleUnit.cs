@@ -28,7 +28,7 @@ public class BattleUnit : MonoBehaviour
     private bool _nextMoveSkip = false;
     private bool _nextAttackSkip = false;
 
-    [SerializeField] public List<Passive> Passive => DeckUnit.Stigma;
+    [SerializeField] public List<Stigma> StigmaList => DeckUnit.Stigma;
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
@@ -311,9 +311,9 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
 
-    public void SetBuff(Buff buff)
+    public void SetBuff(Buff buff, BattleUnit caster)
     {
-        Buff.SetBuff(buff);
+        Buff.SetBuff(buff, caster);
         BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
@@ -321,11 +321,11 @@ public class BattleUnit : MonoBehaviour
     {
         bool skipNextAction = false;
 
-        foreach (Passive passive in Passive)
+        foreach (Stigma stigma in StigmaList)
         {
-            if (passive.ActiveTiming == activeTiming)
+            if (stigma.ActiveTiming == activeTiming)
             {
-                passive.Use(this, receiver);
+                stigma.Use(this, receiver);
             }
         }
 

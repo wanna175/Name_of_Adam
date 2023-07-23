@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class 동생 : Passive
+public class 동생 : Stigma
 {
     private 오빠 _connectedPassive; // 연결된 오빠 낙인
     private List<BattleUnit> _pointedUnits = new List<BattleUnit>(); // 달의 증표가 붙은 애들
@@ -35,7 +35,7 @@ public class 동생 : Passive
             if (unit.DeckUnit.Data.Name.Equals("검병") == false)
                 continue;
 
-            foreach (Passive passive in unit.DeckUnit.Stigma)
+            foreach (Stigma passive in unit.DeckUnit.Stigma)
                 if (passive.GetType() == typeof(오빠))
                 {
                     _connectedPassive = passive as 오빠;
