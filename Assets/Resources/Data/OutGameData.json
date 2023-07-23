@@ -1,0 +1,18 @@
+{
+  "ProgressPoint": [
+    {
+      "ID": 1,
+      "Name": "진척도",
+      "Cost": 100,
+      "Conditions": [ 0 ],
+      "isLock": false
+    }
+  ],
+
+  "HallUnit": [
+    {
+      "UnitID" : 1,
+      "Stigmata" : ["가학"]
+    }
+  ]
+}
