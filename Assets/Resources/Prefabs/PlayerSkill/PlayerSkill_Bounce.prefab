@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8f252347f1ff24991bf5621912fbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSkillName: Bounce
+  manaCost: 20
+  darkEssence: 0
+  description: 

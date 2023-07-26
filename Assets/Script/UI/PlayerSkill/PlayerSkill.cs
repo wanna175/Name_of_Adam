@@ -4,12 +4,11 @@ using UnityEngine;
 
 public abstract class PlayerSkill : MonoBehaviour
 {
-    protected string playerSkillName;
-    protected int manaCost;
-    protected int darkEssence;
-    protected string description;
+    [SerializeField] private string playerSkillName;
+    [SerializeField] private int manaCost;
+    [SerializeField] private int darkEssence;
+    [SerializeField] private string description;
 
-    public abstract void Init();
     public int GetDarkEssenceCost() => darkEssence;
     public int GetManaCost() => manaCost;
     public string GetName() => playerSkillName;

@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5933a50457c111b4fb5b418735f13dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSkillName: Damage
+  manaCost: 20
+  darkEssence: 0
+  description: 

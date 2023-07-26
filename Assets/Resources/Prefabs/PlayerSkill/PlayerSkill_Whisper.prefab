@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ff48973d662334e958b7cda53b6955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSkillName: Whisper
+  manaCost: 20
+  darkEssence: 1
+  description: 

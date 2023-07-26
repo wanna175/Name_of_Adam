@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1e164c811c4a942a4f926d82a83bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSkillName: Heal
+  manaCost: 20
+  darkEssence: 0
+  description: 
