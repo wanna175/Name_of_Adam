@@ -39,7 +39,7 @@ public class StigmaController
             GameObject go = GameManager.Resource.Load<GameObject>("Prefabs/Stigma/" + fileName);
             Stigma stigma = go.GetComponent<Stigma>();
 
-            if (stigma.IsSpecial)
+            if (stigma.Unique)
                 unique.Add(stigma);
             else
             {
