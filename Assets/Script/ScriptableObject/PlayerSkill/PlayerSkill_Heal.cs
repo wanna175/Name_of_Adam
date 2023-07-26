@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "PlayerSkillHeal", menuName = "Scriptable Object/PlayerSkillHeal")]
 
 public class PlayerSkill_Heal : PlayerSkill
 {

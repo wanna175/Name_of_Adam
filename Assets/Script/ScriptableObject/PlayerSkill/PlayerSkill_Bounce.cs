@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "PlayerSkillBounce", menuName = "Scriptable Object/PlayerSkillBounce")]
+
 public class PlayerSkill_Bounce : PlayerSkill
 {
     private string playerSkillName = "Bounce";

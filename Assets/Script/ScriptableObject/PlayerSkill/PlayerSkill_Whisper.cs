@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "PlayerSkillWhisper", menuName = "Scriptable Object/PlayerSkillWhisper")]
 
 public class PlayerSkill_Whisper : PlayerSkill
 {

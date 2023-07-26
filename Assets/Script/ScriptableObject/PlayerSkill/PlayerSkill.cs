@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "PlayerSkill", menuName = "Scriptable Object/PlayerSkill")]
 
-public abstract class PlayerSkill : ScriptableObject
+public abstract class PlayerSkill : MonoBehaviour
 {
     public abstract string GetName();
     public abstract int GetManaCost();
