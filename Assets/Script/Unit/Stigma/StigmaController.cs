@@ -10,6 +10,7 @@ public class StigmaController
         Entire,
         Unique,
         Common,
+        Locked
     }
 
     private Dictionary<StigmaManageType, List<Stigma>> _stigmaDict = new();
@@ -25,6 +26,7 @@ public class StigmaController
     {
         List<Stigma> common = new();
         List<Stigma> unique = new();
+        List<Stigma> locked = new();
         List<Stigma> entire = new();
 
         string path = "Assets/Resources/Prefabs/Stigma";
@@ -41,6 +43,8 @@ public class StigmaController
 
             if (stigma.IsSpecial)
                 unique.Add(stigma);
+            else if (stigma.IsLock)
+                locked.Add(stigma);
             else
             {
                 common.Add(stigma);
@@ -53,6 +57,7 @@ public class StigmaController
 
         StigmaDict.Add(StigmaManageType.Common, common);
         StigmaDict.Add(StigmaManageType.Unique, unique);
+        StigmaDict.Add(StigmaManageType.Locked, locked);
         StigmaDict.Add(StigmaManageType.Entire, entire);
     }
 

@@ -23,6 +23,10 @@ public class Stigma : MonoBehaviour
     [SerializeField] private bool _isSpecial = false;
     public bool IsSpecial => _isSpecial;
 
+    [SerializeField] private bool _isLock = false;
+    public bool IsLock => _isLock;
+
+
     // Memo : 사실 윗 부분만 있다면 SO로 떼서 관리하는 편이 나음...
     // Use의 내용이 달라서 Prefab으로 관리하는 건데 이를 개선할 방법은 없을까
 
