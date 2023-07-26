@@ -9,6 +9,7 @@ public abstract class PlayerSkill : MonoBehaviour
     protected int darkEssence;
     protected string description;
 
+    public abstract void Init();
     public int GetDarkEssenceCost() => darkEssence;
     public int GetManaCost() => manaCost;
     public string GetName() => playerSkillName;

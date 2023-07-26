@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerSkill_Damage : PlayerSkill
 {
-    private new string playerSkillName = "Damage";
-    private new int manaCost = 20;
-    private new int darkEssence = 0;
-    private new string description = "20 마나를 지불하고 원하는 적 유닛에게 20 대미지를 줍니다.";
+    public override void Init()
+    {
+        base.playerSkillName = "Damage";
+        base.manaCost = 20;
+        base.darkEssence = 0;
+        base.description = "20 마나를 지불하고 원하는 적 유닛에게 20 대미지를 줍니다.";
+    }
 
     public override void Use(Vector2 coord)
     {

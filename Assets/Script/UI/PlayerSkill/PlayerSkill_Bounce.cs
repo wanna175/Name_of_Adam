@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerSkill_Bounce : PlayerSkill
 {
-    private new string playerSkillName = "Bounce";
-    private new int manaCost = 20;
-    private new int darkEssence = 0;
-    private new string description = "20 마나를 지불하고 원하는 아군 유닛을 손으로 가져옵니다.";
+    public override void Init()
+    {
+        base.playerSkillName = "Bounce";
+        base.manaCost = 20;
+        base.darkEssence = 0;
+        base.description = "20 마나를 지불하고 원하는 아군 유닛을 손으로 가져옵니다.";
+    }
 
     public override void Use(Vector2 coord)
     {

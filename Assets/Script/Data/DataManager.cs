@@ -183,6 +183,11 @@ public class DataManager : MonoBehaviour
 
         skillList.Insert(2, GameData.UniversalPlayerSkill);
 
+        foreach (PlayerSkill skill in skillList)
+        {
+            skill.Init();
+        }
+
         return skillList;
     }
 }
