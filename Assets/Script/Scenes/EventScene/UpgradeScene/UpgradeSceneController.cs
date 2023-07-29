@@ -11,6 +11,8 @@ public class UpgradeSceneController : MonoBehaviour
 
     [SerializeField] private Image _releaseunitImage; // 교화 해소 유닛
 
+    [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+
     void Start()
     {
         Init();
@@ -26,6 +28,16 @@ public class UpgradeSceneController : MonoBehaviour
             scripts = GameManager.Data.ScriptData["강화소_입장"];
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        /*
+        if(GameManager.Data.GameData)
+        {
+            _forbiddenButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            _forbiddenButton.gameObject.SetActive(false);
+        }
+        */
     }
 
     // 업그레이드 할 유닛을 고릅니다.
