@@ -10,6 +10,20 @@ public class Stigma_동생 : Stigma
     {
         base.Use(caster, receiver);
 
+        if (receiver.Buff.CheckBuff(BuffEnum.TraceOfSolar))
+        {
+
+        }
+        else
+        { 
+            
+        }
+    }
+
+    public void Use1(BattleUnit caster, BattleUnit receiver)
+    {
+        base.Use(caster, receiver);
+
         if (_connectedPassive == null)
             FindConnectPassive();
 

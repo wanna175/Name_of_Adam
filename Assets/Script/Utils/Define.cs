@@ -155,5 +155,7 @@ public enum BuffEnum
     Encourage,
     Bleeding,
     Benediction,
-    Crime
+    Crime,
+    TraceOfSolar,
+    TraceOfLunar
 }

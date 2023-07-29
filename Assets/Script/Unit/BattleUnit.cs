@@ -92,6 +92,12 @@ public class BattleUnit : MonoBehaviour
         _nextAttackSkip = ActiveTimingCheck(ActiveTiming.ATTACK_TURN);
     }
 
+    public void FieldUnitDdead()
+    {
+        //필드 유닛 사망시 체크
+        ActiveTimingCheck(ActiveTiming.FIELD_UNIT_DEAD);
+    }
+
     public void SetTeam(Team team)
     {
         _team = team;
@@ -126,20 +132,13 @@ public class BattleUnit : MonoBehaviour
 
         GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), this.transform.position);
 
+        BattleManager.Instance.UnitDeadEvent(this);
         StartCoroutine(UnitDeadEffect());
-
-        if (_team == Team.Enemy)
-        {
-            GameManager.Data.DarkEssenseChage(Data.DarkEssenseDrop);
-        }
         GameManager.Sound.Play("Dead/DeadSFX");
     }
 
     private IEnumerator UnitDeadEffect()
     {
-        BattleManager.Data.BattleUnitRemove(this);
-        BattleManager.Data.BattleOrderRemove(this);
-
         Color c = _renderer.color;
 
         while (c.a > 0)

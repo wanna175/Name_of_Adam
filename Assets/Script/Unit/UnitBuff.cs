@@ -23,6 +23,34 @@ public class UnitBuff : MonoBehaviour
         _buffList.Add(buff);
     }
 
+    public bool CheckBuff(BuffEnum buffEnum)
+    {
+        foreach (Buff listedBuff in _buffList)
+        {
+            if (buffEnum == listedBuff.BuffEnum)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool DeleteBuff(BuffEnum buffEnum)
+    {
+        for (int i = 0; i < _buffList.Count; i++)
+        {
+            if (buffEnum == _buffList[i].BuffEnum)
+            {
+                _buffList.RemoveAt(i);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Stat GetBuffedStat()
     {
         Stat buffedStat = new();
