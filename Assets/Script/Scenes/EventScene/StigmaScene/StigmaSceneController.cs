@@ -11,7 +11,7 @@ public class StigmaSceneController : MonoBehaviour
     [SerializeField] private Image _giveunitImage;
     [SerializeField] private Image _targetunitImage;
 
-
+    [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
 
     void Start()
     {
@@ -29,6 +29,16 @@ public class StigmaSceneController : MonoBehaviour
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
+        /*
+        if(GameManager.Data.GameData)
+        {
+            _forbiddenButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            _forbiddenButton.gameObject.SetActive(false);
+        }
+        */
     }
 
     // 유닛 선택창을 띄우는 함수

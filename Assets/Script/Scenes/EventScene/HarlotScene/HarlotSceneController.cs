@@ -13,6 +13,8 @@ public class HarlotSceneController : MonoBehaviour
     [SerializeField] private GameObject _stigmazation;
     [SerializeField] private GameObject _getEliteUnit;
 
+    [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+
     void Start()
     {
         Init();
@@ -37,6 +39,16 @@ public class HarlotSceneController : MonoBehaviour
         stigma = GameManager.Data.StigmaController.GetRandomStigma(GameManager.Data.GetProbability());
 
         Debug.Log(stigma.Name);
+        /*
+        if(GameManager.Data.GameData)
+        {
+            _forbiddenButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            _forbiddenButton.gameObject.SetActive(false);
+        }
+        */
     }
 
     public void ClickStigmatization()

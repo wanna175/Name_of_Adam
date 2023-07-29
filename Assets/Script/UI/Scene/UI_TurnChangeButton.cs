@@ -29,14 +29,14 @@ public class UI_TurnChangeButton : UI_Scene
 
         if (_phase.Current == _phase.Prepare)
             _phase.ChangePhase(_phase.Engage);
-        else if (_phase.Current == _phase.Move)
+        else if (_phase.Current == _phase.Move && BattleManager.Data.GetNowUnit().Team == Team.Player)
             _phase.ChangePhase(_phase.Action);
-        else if (_phase.Current == _phase.Engage)
-            return;
-        else
+        else if(_phase.Current == _phase.Action && BattleManager.Data.GetNowUnit().Team == Team.Player)
         {
             BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnit());
             _phase.ChangePhase(_phase.Engage);
         }
+        else
+            return;
     }
 }
