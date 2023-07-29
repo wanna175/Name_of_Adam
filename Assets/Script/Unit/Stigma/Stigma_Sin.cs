@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-public class Sin : Stigma
+public class Stigma_Sin : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {

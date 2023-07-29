@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Sadism : Stigma
+public class Stigma_Sadism : Stigma
 {
     private bool isApplied = false;
 

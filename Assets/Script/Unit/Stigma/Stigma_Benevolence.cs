@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Benevolence : Stigma
+public class Stigma_Benevolence : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
@@ -12,7 +12,7 @@ public class Benevolence : Stigma
         foreach (BattleUnit unit in targetUnits)
         {
             if (unit.Team == caster.Team)
-                unit.ChangeHP(20);
+                unit.ChangeHP(30);
         }
     }
 }

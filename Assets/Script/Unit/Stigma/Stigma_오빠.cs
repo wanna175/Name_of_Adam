@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class 오빠 : Stigma
+public class Stigma_오빠 : Stigma
 {
-    private 동생 _connectedPassive; // 연결된 동생 낙인
+    private Stigma_동생 _connectedPassive; // 연결된 동생 낙인
     private List<BattleUnit> _pointedUnits = new List<BattleUnit>(); // 해의 증표 붙은 애들
 
     public override void Use(BattleUnit caster, BattleUnit receiver)
@@ -36,9 +36,9 @@ public class 오빠 : Stigma
                 continue;
 
             foreach (Stigma passive in unit.DeckUnit.Stigma)
-                if (passive.GetType() == typeof(동생))
+                if (passive.GetType() == typeof(Stigma_동생))
                 {
-                    _connectedPassive = passive as 동생;
+                    _connectedPassive = passive as Stigma_동생;
                     Debug.Log("오빠 낙인 등록");
                     return;
                 }

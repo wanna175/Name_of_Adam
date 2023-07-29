@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-public class Execution : Stigma
+public class Stigma_Absorption : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
-        if (receiver.HP.GetCurrentHP() <= 10)
-        {
-            base.Use(caster, receiver);
-            receiver.ChangeHP(-receiver.HP.GetCurrentHP());
-        }
+        base.Use(caster, receiver);
+
+        double heal = caster.BattleUnitTotalStat.ATK * 0.3;
+        caster.ChangeHP(((int)heal));
     }
 }
