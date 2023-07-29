@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class TestStage : MonoBehaviour
 {
+    [SerializeField] public int ID;
+    [Space (10f)]
     [SerializeField] Animation Anim;
-
+    [Space(10f)]
     [SerializeField] public List<TestStage> NextStage;
     [SerializeField] private StageType _type;
     public StageType Type => _type;

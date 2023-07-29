@@ -60,6 +60,23 @@ public enum Team
     Enemy,
 }
 
+public enum StageName
+{
+    none,
+
+    StigmaStore = 1,
+    UpgradeStore = 2,
+    MoneyStore,
+    Harlot,
+    RandomEvent,
+    CommonBattle,
+    EliteBattle,
+    BossBattle,
+
+
+    Random
+}
+
 [SerializeField]
 public enum Faction
 {
