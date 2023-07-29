@@ -5,75 +5,62 @@ using UnityEngine;
 
 public class StigmaController
 {
-    public enum StigmaManageType
-    {
-        Entire,
-        Unique,
-        Common,
-    }
-
-    private Dictionary<StigmaManageType, List<Stigma>> _stigmaDict = new();
-    public Dictionary<StigmaManageType, List<Stigma>> StigmaDict => _stigmaDict;
-    private List<Stigma> _weightStigmaList = new();
-
     public StigmaController()
     {
         LoadStigmaList();
     }
 
+    private List<Stigma> _tier1StigmaList = new();
+    private List<Stigma> _tier2StigmaList = new();
+    private List<Stigma> _tier3StigmaList = new();
+    private List<Stigma> _uniqueStigmaList = new();
+
     private void LoadStigmaList()
     {
-        List<Stigma> common = new();
-        List<Stigma> unique = new();
-        List<Stigma> entire = new();
-
         string path = "Assets/Resources/Prefabs/Stigma";
         string[] files = Directory.GetFiles(path, "*.prefab");
-            
+
         foreach (string file in files)
         {
             string fileName = Path.GetFileNameWithoutExtension(file);
-            if (fileName == "Stigma")
-                continue;
 
             GameObject go = GameManager.Resource.Load<GameObject>("Prefabs/Stigma/" + fileName);
             Stigma stigma = go.GetComponent<Stigma>();
 
-            if (stigma.Unique)
-                unique.Add(stigma);
-            else
+            if (stigma.Tier == 1)
             {
-                common.Add(stigma);
-                AddToWeightList(stigma, GetWeight(stigma));
+                _tier1StigmaList.Add(stigma);
             }
-                
-
-            entire.Add(stigma);
+            else if (stigma.Tier == 2)
+            {
+                _tier2StigmaList.Add(stigma);
+            }
+            else if (stigma.Tier == 3)
+            {
+                _tier3StigmaList.Add(stigma);
+            }
+            else if (stigma.Unique)
+            {
+                _uniqueStigmaList.Add(stigma);
+            }
         }
-
-        StigmaDict.Add(StigmaManageType.Common, common);
-        StigmaDict.Add(StigmaManageType.Unique, unique);
-        StigmaDict.Add(StigmaManageType.Entire, entire);
     }
 
-    public Stigma GetRandomStigma()
+    public Stigma GetRandomStigma(List<int> probability)
     {
-        int randNum = Mathf.FloorToInt(_weightStigmaList.Count * Random.Range(0f, 1f));
-        return _weightStigmaList[randNum];
-    }
+        int randNum = Random.Range(0, 100);
 
-    private int GetWeight(Stigma stigma)
-    {
-        int weight = 0;
-        weight = 4 - stigma.Tier;
-        return weight;
-    }
-
-    private void AddToWeightList(Stigma stigma, int weight)
-    {
-        for(int i=0; i<weight; i++)
+        if (randNum >= probability[0])
         {
-            _weightStigmaList.Add(stigma);
+            return _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
         }
-    }
+        else if (randNum >= probability[1])
+        {
+            return _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
+        }
+        else
+        {
+            return _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
+        }
+     }
 }

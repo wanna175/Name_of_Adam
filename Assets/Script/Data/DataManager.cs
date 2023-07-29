@@ -183,11 +183,24 @@ public class DataManager : MonoBehaviour
 
         skillList.Insert(2, GameData.UniversalPlayerSkill);
 
-        foreach (PlayerSkill skill in skillList)
-        {
-            skill.Init();
-        }
-
         return skillList;
+    }
+
+    public List<int> GetProbability()
+    {
+
+        //원래는 이런 함수가 아니라 조건에 따라 확률이 바뀌어야함, 데이터 완성 시 적용
+        //적어두겠음
+        //90 9 1    ~1장 엘리트
+        //80 15 5   ~1장 보스
+        //70 20 10  ~2장 엘리트
+        //60 25 15  ~2장 보스
+        //하드에서는 4단계로 고정
+
+        List<int> probability = new();
+        probability.Add(99);
+        probability.Add(89);
+
+        return probability;
     }
 }

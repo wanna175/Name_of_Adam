@@ -34,7 +34,7 @@ public class HarlotSceneController : MonoBehaviour
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
-        stigma = GameManager.Data.StigmaController.GetRandomStigma();
+        stigma = GameManager.Data.StigmaController.GetRandomStigma(GameManager.Data.GetProbability());
 
         Debug.Log(stigma.Name);
     }
