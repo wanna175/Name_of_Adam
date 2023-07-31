@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_AttackUp : Buff
 {
-    public override void Init(BattleUnit caster)
+    public override void Init(BattleUnit caster, BattleUnit owner)
     {
         _name = "Attack Up";
 
@@ -19,6 +19,8 @@ public class Buff_AttackUp : Buff
         _dispellable = true;
 
         _caster = caster;
+
+        _owner = owner;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
@@ -37,5 +39,10 @@ public class Buff_AttackUp : Buff
         attackUp.ATK = 10;
 
         return attackUp;
+    }
+
+    public override void SetValue(int num)
+    {
+
     }
 }

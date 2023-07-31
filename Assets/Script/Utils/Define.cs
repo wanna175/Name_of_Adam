@@ -158,6 +158,15 @@ public enum ActiveTiming
     NONE//없음
 };
 
+public enum StigmaTier
+{
+    Tier1,
+    Tier2,
+    Tier3,
+    Unique,
+    Harlot
+}
+
 public enum FieldColorType
 {
     none,

@@ -16,11 +16,8 @@ public class Stigma : MonoBehaviour
     [SerializeField] private ActiveTiming _activeTiming;
     public ActiveTiming ActiveTiming => _activeTiming;
 
-    [SerializeField] private int _tier;
-    public int Tier => _tier;
-
-    [SerializeField] private bool unique = false;
-    public bool Unique => unique;
+    [SerializeField] private StigmaTier _tier;
+    public StigmaTier Tier => _tier;
 
     [SerializeField] private bool _isLock = false;
     public bool IsLock => _isLock;

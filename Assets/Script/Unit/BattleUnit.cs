@@ -312,11 +312,11 @@ public class BattleUnit : MonoBehaviour
 
     public void SetBuff(Buff buff, BattleUnit caster)
     {
-        Buff.SetBuff(buff, caster);
+        Buff.SetBuff(buff, caster, this);
         BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
-    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null)
+    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int num = 0)
     {
         bool skipNextAction = false;
 
@@ -330,6 +330,7 @@ public class BattleUnit : MonoBehaviour
 
         foreach (Buff buff in Buff.CheckActiveTiming(activeTiming))
         {
+            buff.SetValue(num);
             skipNextAction = buff.Active(this, receiver);
         }
 

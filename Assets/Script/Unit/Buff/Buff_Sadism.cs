@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Buff_Sadism : Buff
 {
-    private int attackUp;
-    public override void Init(BattleUnit caster)
+    private int attackUp = 3;
+    private int totalUp = 0;
+    public override void Init(BattleUnit caster, BattleUnit owner)
     {
         _buffEnum = BuffEnum.Sadism;
 
@@ -23,8 +24,8 @@ public class Buff_Sadism : Buff
 
         _caster = caster;
 
-        attackUp = 3;
-}
+        _owner = owner;
+    }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
@@ -33,14 +34,19 @@ public class Buff_Sadism : Buff
 
     public override void Stack()
     {
-        attackUp += 3;
+        totalUp += attackUp;
     }
 
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK += attackUp;
+        stat.ATK += totalUp;
 
         return stat;
+    }
+
+    public override void SetValue(int num)
+    {
+        attackUp = num;
     }
 }
