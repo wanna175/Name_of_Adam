@@ -164,6 +164,11 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 시작
         BattleManager.Data.CorruptUnits.Add(this);
 
+        if (ChangeTeam() == Team.Enemy)
+        {
+            Fall.Editfy();
+        }
+
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -173,10 +178,6 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 종료
         BattleManager.Data.CorruptUnits.Remove(this);
 
-        if (ChangeTeam() == Team.Enemy)
-        {
-            Fall.Editfy();
-        }
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         _hpBar.SetHPBar(Team, transform);
         _hpBar.RefreshHPBar(HP.FillAmount());
