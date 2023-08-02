@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class Buff_Encourage : Buff
-{
-
-    private int attackUp;
-    public override void Init(BattleUnit caster)
+public class Buff_TraceOfLunar: Buff
+{    public override void Init(BattleUnit caster)
     {
-        _buffEnum = BuffEnum.Encourage;
+        _buffEnum = BuffEnum.TraceOfLunar;
 
-        _name = "고양";
+        _name = "달의 흔적";
 
-        _description = "공격력이 5 증가합니다.";
+        _description = "달의 흔적.";
 
         _count = -1;
 
@@ -18,13 +15,11 @@ public class Buff_Encourage : Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
-        _statBuff = true;
+        _statBuff = false;
 
         _dispellable = true;
 
         _caster = caster;
-
-        attackUp = 5;
 }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
@@ -34,13 +29,11 @@ public class Buff_Encourage : Buff
 
     public override void Stack()
     {
-        attackUp += 5;
     }
 
     public override Stat GetBuffedStat()
     {
-        Stat stat = new();  
-        stat.ATK += attackUp;
+        Stat stat = new();
 
         return stat;
     }
