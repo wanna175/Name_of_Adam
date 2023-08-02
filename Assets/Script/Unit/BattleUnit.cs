@@ -162,7 +162,6 @@ public class BattleUnit : MonoBehaviour
         }
 
         //타락 이벤트 시작
-        HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         BattleManager.Data.CorruptUnits.Add(this);
 
         GameManager.Sound.Play("UI/FallSFX/Fall");
@@ -254,9 +253,13 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-    public void Attack(BattleUnit unit) {
+    //엑티브 타이밍에 대미지 바꿀 때용
+    public int ChangedDamage = 0;
+
+    public void Attack(BattleUnit unit, int damage) {
         if(unit != null)
         {
+            ChangedDamage = damage;
             bool attackSkip = false;
             Team team = unit.Team;
 
@@ -264,7 +267,7 @@ public class BattleUnit : MonoBehaviour
             attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
 
             //대미지 확정 시 체크
-            attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit);
+            attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit, ChangedDamage);
 
             if (team != unit.Team)
             {
@@ -276,10 +279,11 @@ public class BattleUnit : MonoBehaviour
             if (attackSkip)
                 return;
 
-            unit.GetAttack(-BattleUnitTotalStat.ATK, this);
+            unit.GetAttack(-ChangedDamage, this);
 
             //공격 후 체크
-            ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit);
+            ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit, ChangedDamage);
+            ChangedDamage = 0;
         }
     }
 

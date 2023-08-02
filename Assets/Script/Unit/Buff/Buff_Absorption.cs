@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Buff_Absorption : Buff
 {
+    int damage = 0;
+
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
         _name = "Èí¼ö";
@@ -25,6 +27,8 @@ public class Buff_Absorption : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
+        caster.ChangeHP((int)(damage * 0.3));
+
         return false;
     }
 
@@ -41,6 +45,6 @@ public class Buff_Absorption : Buff
 
     public override void SetValue(int num)
     {
-
+        damage = num;
     }
 }

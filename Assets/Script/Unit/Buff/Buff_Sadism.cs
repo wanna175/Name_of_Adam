@@ -10,17 +10,17 @@ public class Buff_Sadism : Buff
 
         _name = "가학";
 
-        _description = "공격력이 3 증가합니다.";
+        _description = "공격 후 공격력이 3 증가합니다.";
 
         _count = -1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.NONE;
+        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
         _statBuff = true;
 
-        _dispellable = true;
+        _dispellable = false;
 
         _caster = caster;
 
@@ -29,12 +29,13 @@ public class Buff_Sadism : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
+        totalUp += attackUp;
+
         return false;
     }
 
     public override void Stack()
     {
-        totalUp += attackUp;
     }
 
     public override Stat GetBuffedStat()

@@ -182,6 +182,7 @@ public enum BuffEnum
     Bleeding,
     Benediction,
     Crime,
+    Sin,
     TraceOfSolar,
     TraceOfLunar
 }

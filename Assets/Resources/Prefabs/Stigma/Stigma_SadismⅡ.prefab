@@ -47,6 +47,6 @@ MonoBehaviour:
   _name: "\uAC00\uD559"
   _sprite: {fileID: 21300000, guid: 605a48317ce99844e8c066ca9a089c36, type: 3}
   _description: "\uAC00\uD5592"
-  _activeTiming: 7
+  _activeTiming: 0
   _tier: 1
   _isLock: 0
