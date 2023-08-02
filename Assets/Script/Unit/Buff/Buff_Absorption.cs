@@ -1,23 +1,24 @@
 using UnityEngine;
 
-public class Buff_TraceOfSolar: Buff
-{    public override void Init(BattleUnit caster, BattleUnit owner)
+public class Buff_Absorption : Buff
+{
+    int damage = 0;
+
+    public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.TraceOfSolar;
+        _name = "흡수";
 
-        _name = "태양의 흔적";
-
-        _description = "태양의 흔적.";
+        _description = "피해량의 30퍼센트를 회복.";
 
         _count = -1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.NONE;
+        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
         _statBuff = false;
 
-        _dispellable = true;
+        _dispellable = false;
 
         _caster = caster;
 
@@ -26,6 +27,8 @@ public class Buff_TraceOfSolar: Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
+        caster.ChangeHP((int)(damage * 0.3));
+
         return false;
     }
 
@@ -35,13 +38,13 @@ public class Buff_TraceOfSolar: Buff
 
     public override Stat GetBuffedStat()
     {
-        Stat stat = new();
+        Stat attackUp = new();
 
-        return stat;
+        return attackUp;
     }
 
     public override void SetValue(int num)
     {
-
+        damage = num;
     }
 }

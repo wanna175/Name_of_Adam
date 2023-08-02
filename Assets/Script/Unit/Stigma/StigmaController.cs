@@ -14,6 +14,7 @@ public class StigmaController
     private List<Stigma> _tier2StigmaList = new();
     private List<Stigma> _tier3StigmaList = new();
     private List<Stigma> _uniqueStigmaList = new();
+    private List<Stigma> _harlotStigmaList = new();
 
     private void LoadStigmaList()
     {
@@ -27,21 +28,25 @@ public class StigmaController
             GameObject go = GameManager.Resource.Load<GameObject>("Prefabs/Stigma/" + fileName);
             Stigma stigma = go.GetComponent<Stigma>();
 
-            if (stigma.Tier == 1)
+            if (stigma.Tier == StigmaTier.Tier1)
             {
                 _tier1StigmaList.Add(stigma);
             }
-            else if (stigma.Tier == 2)
+            else if (stigma.Tier == StigmaTier.Tier2)
             {
                 _tier2StigmaList.Add(stigma);
             }
-            else if (stigma.Tier == 3)
+            else if (stigma.Tier == StigmaTier.Tier3)
             {
                 _tier3StigmaList.Add(stigma);
             }
-            else if (stigma.Unique)
+            else if (stigma.Tier == StigmaTier.Unique)
             {
                 _uniqueStigmaList.Add(stigma);
+            }
+            else if (stigma.Tier == StigmaTier.Harlot)
+            {
+                _harlotStigmaList.Add(stigma);
             }
         }
     }

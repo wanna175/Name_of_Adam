@@ -1,23 +1,24 @@
 using UnityEngine;
 
-public class Buff_TraceOfSolar: Buff
-{    public override void Init(BattleUnit caster, BattleUnit owner)
+public class Buff_Sin : Buff
+{
+    public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.TraceOfSolar;
+        _buffEnum = BuffEnum.Sin;
 
-        _name = "태양의 흔적";
+        _name = "대죄";
 
-        _description = "태양의 흔적.";
+        _description = "공격 시 타락을 1 부여합니다.";
 
         _count = -1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.NONE;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _statBuff = false;
 
-        _dispellable = true;
+        _dispellable = false;
 
         _caster = caster;
 
@@ -26,6 +27,8 @@ public class Buff_TraceOfSolar: Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
+        receiver.ChangeFall(1);
+
         return false;
     }
 
@@ -36,12 +39,11 @@ public class Buff_TraceOfSolar: Buff
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-
         return stat;
     }
 
     public override void SetValue(int num)
     {
-
+        
     }
 }
