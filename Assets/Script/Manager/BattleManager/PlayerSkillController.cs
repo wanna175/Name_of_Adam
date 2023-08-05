@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using TMPro;
 
 public class PlayerSkillController : MonoBehaviour
 {
@@ -32,7 +31,6 @@ public class PlayerSkillController : MonoBehaviour
         BattleUI.UI_playerSkill.CancelSelect();
         BattleUI.UI_playerSkill.Used = true;
         Field.ClearAllColor();
-        battle.BattleOverCheck();
     }
 
     public bool UnitTargetPlayerSkillReady(FieldColorType colorType)
