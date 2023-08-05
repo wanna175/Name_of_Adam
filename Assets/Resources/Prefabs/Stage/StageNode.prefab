@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1752166522479971496}
   - component: {fileID: 1752166522479971497}
   - component: {fileID: 3056445420010944998}
-  - component: {fileID: 1752166522479971499}
+  - component: {fileID: 1563608486446279766}
   m_Layer: 0
   m_Name: StageNode
   m_TagString: Untagged
@@ -129,7 +129,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &1752166522479971499
+--- !u!114 &1563608486446279766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +138,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752166522479971493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd3d370cb9447fc4881103267184384a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bfe4d35f93e57647b3759628b29959b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 3056445420010944998}
   NextStage: []
-  _type: 0
-  _stage: 0
+  Datas:
+    ID: 0
+    Type: 0
+    Name: 0
+    StageLevel: 0
+    StageID: 0
