@@ -20,7 +20,7 @@ public class StigmaSceneController : MonoBehaviour
 
     private void Init()
     {
-        List<Script> scripts = new();
+        List<Script> scripts = new ();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
             scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
@@ -124,7 +124,7 @@ public class StigmaSceneController : MonoBehaviour
     }
 
     public void AddStigmaScript(Stigma stigma)
-    { 
+    {
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "낙인소_" + stigma.GetName();
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
@@ -146,6 +146,7 @@ public class StigmaSceneController : MonoBehaviour
         quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
+        GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
 }
