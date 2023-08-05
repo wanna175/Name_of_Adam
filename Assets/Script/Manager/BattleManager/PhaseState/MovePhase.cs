@@ -7,17 +7,18 @@ using UnityEngine;
 
 public class MovePhase : Phase
 {
+    private BattleUnit _nowUnit;
+
     public override void OnStateEnter()
     {
-        BattleUnit unit = BattleManager.Data.GetNowUnit();
+        _nowUnit = BattleManager.Data.GetNowUnit();
+        _nowUnit.MoveTurnStart();
 
-        BattleManager.Field.SetTileColor(unit, FieldColor.Move);
+        BattleManager.Field.SetTileColor(_nowUnit, FieldColor.Move);
         BattleManager.BattleUI.ChangeButtonName();
 
-        unit.MoveTurn();
-
-        if (unit.Team == Team.Enemy)
-            BattleManager.Instance.PlayAfterCoroutine(unit.AI.AIMove, 1);
+        if (_nowUnit.Team == Team.Enemy)
+            BattleManager.Instance.PlayAfterCoroutine(_nowUnit.AI.AIMove, 1);
     }
 
     public override void OnStateUpdate()
@@ -33,6 +34,9 @@ public class MovePhase : Phase
 
     public override void OnStateExit()
     {
+        _nowUnit.MoveTurnStart();
+        _nowUnit = null;
+
         BattleManager.Field.ClearAllColor();
     }
 }

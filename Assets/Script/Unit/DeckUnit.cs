@@ -15,9 +15,9 @@ public class DeckUnit
     public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
-    [SerializeField] public List<Stigma> Stigma = new List<Stigma>();
+    [SerializeField] public List<Stigma> Stigma = new();
 
-    private int _maxStigmaCount = 3;
+    private readonly int _maxStigmaCount = 3;
 
     public void SetStigma()
     {

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 public class ActionPhase : Phase
 {
+    private BattleUnit _nowUnit;
+
     public override void OnStateEnter()
     {
-        BattleUnit unit = BattleManager.Data.GetNowUnit();
+        _nowUnit = BattleManager.Data.GetNowUnit();
+        _nowUnit.AttackTurnStart();
 
-        BattleManager.Field.SetTileColor(unit, FieldColor.Attack);
+        BattleManager.Field.SetTileColor(_nowUnit, FieldColor.Attack);
         BattleManager.BattleUI.ChangeButtonName();
 
-        unit.AttackTurn();
-
         if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
-            BattleManager.Instance.PlayAfterCoroutine(unit.AI.AISkillUse, 1);
-
+            BattleManager.Instance.PlayAfterCoroutine(_nowUnit.AI.AISkillUse, 1);
     }
 
     public override void OnStateUpdate()
@@ -33,6 +33,7 @@ public class ActionPhase : Phase
 
     public override void OnStateExit()
     {
-
+        _nowUnit.AttackTurnEnd();
+        _nowUnit = null;
     }
 }
