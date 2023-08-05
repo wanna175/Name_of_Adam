@@ -78,15 +78,6 @@ public enum StageName
 }
 
 [SerializeField]
-public enum Faction
-{
-    오리지널      = 0,
-    월식의_기사단 = 1,
-    까마귀        = 2,
-    바벨          = 3,
-}
-
-[SerializeField]
 public enum BehaviorType
 {
     원거리,
@@ -131,7 +122,7 @@ public enum Sounds
 public enum ActiveTiming
 {
     SUMMON, //소환 후
-    
+
     TURN_START, //턴 시작 시
     TURN_END, //턴 종료 시
 
