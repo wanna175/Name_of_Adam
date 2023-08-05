@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class PhaseController
 {
@@ -21,9 +22,9 @@ public class PhaseController
         _currentPhase.OnStateUpdate();
     }
 
-    public void OnClickEvent()
+    public void OnClickEvent(Vector2 coord)
     {
-        _currentPhase.OnClickEvent();
+        _currentPhase.OnClickEvent(coord);
     }
 
     public void ChangePhase(Phase nextPhase)

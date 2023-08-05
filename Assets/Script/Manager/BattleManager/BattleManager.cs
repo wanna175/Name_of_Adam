@@ -36,13 +36,9 @@ public class BattleManager : MonoBehaviour
     private PhaseController _phase;
     public static PhaseController Phase => Instance._phase;
 
-    private Vector2 coord;
-
     [SerializeField] List<GameObject> Background;
 
     [SerializeField] List<GameObject> CutSceneBackground;
-
-    public FieldColorType fieldColorType = FieldColorType.none;
 
     private void Awake()
     {
@@ -127,30 +123,89 @@ public class BattleManager : MonoBehaviour
             CutSceneBackground[0].gameObject.SetActive(true);
             Background[0].gameObject.SetActive(true);
     }
-    #region Click 관련
 
-    public void MovePhaseClick()
+    #region Click 관련
+    public void OnClickTile(Tile tile)
+    {
+        Vector2 coord = Field.FindCoordByTile(tile);
+        _phase.OnClickEvent(coord);
+    }
+
+    public void StartPhaseClick(Vector2 coord)
+    {
+        if (Field.ColoredTile.Count <= 0)
+            return;
+
+        if (Field.FieldType == FieldColorType.UnitSpawn)
+        {
+            SpawnUnitOnField(coord, true);
+        }
+    }
+
+    public void PreparePhaseClick(Vector2 coord)
+    {
+        if (!Field.ColoredTile.Contains(coord))
+            return;
+
+        if (Field.FieldType == FieldColorType.UnitSpawn)
+        {
+            SpawnUnitOnField(coord);
+        }
+        else if (Field.FieldType == FieldColorType.PlayerSkill)
+        {
+            BattleUI.GetSelectedPlayerSkill().Use(coord);
+            PlayerSkillController.PlayerSkillUse();
+        }
+        else if (Field.FieldType == FieldColorType.UltimatePlayerSkill)
+        {
+            if (GameManager.Data.PlayerSkillCountChage(-1))
+            {
+                BattleUI.GetSelectedPlayerSkill().Use(coord);
+                PlayerSkillController.PlayerSkillUse();
+            }
+        }
+    }
+
+    private void SpawnUnitOnField(Vector2 coord, bool isFirst = false)
+    {
+        DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
+        if (!Field.ColoredTile.Contains(coord))
+            return;
+
+        Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
+
+        if (isFirst)
+            unit.FirstTurnDiscountUndo();
+
+        GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
+
+        BattleUI.RemoveHandUnit(unit);
+        GameManager.UI.ClosePopup();
+        Field.ClearAllColor();
+    }
+
+    public void MovePhaseClick(Vector2 coord)
     {
         BattleUnit unit = Data.GetNowUnit();
 
         if (unit.Team == Team.Player)
         {
-            if (Field.GetAbsPos(unit, FieldColor.Move).Contains(coord) == false)
+            if (!Field.ColoredTile.Contains(coord))
                 return;
-            Vector2 dest = coord - unit.Location;
 
+            Vector2 dest = coord - unit.Location;
             MoveLocate(unit, dest);
         }
 
         _phase.ChangePhase(_phase.Action);
     }
 
-    public void ActionPhaseClick()
+    public void ActionPhaseClick(Vector2 coord)
     {
-        BattleUnit unit = Data.GetNowUnit();
-
-        if (Field.GetAbsPos(unit, FieldColor.Attack).Contains(coord) == false)
+        if (!Field.ColoredTile.Contains(coord))
             return;
+
+        BattleUnit unit = Data.GetNowUnit();
 
         if (coord != unit.Location)
         {
@@ -171,78 +226,6 @@ public class BattleManager : MonoBehaviour
 
             AttackStart(unit, unitList);
         }
-    }
-
-    public void EngagePhaseClick()
-    {
-        Field.ClearAllColor();
-
-        if (Data.OrderUnitCount <= 0)
-        {
-            _phase.ChangePhase(_phase.End);
-            return;
-        }
-
-        _phase.ChangePhase(_phase.Move);
-    }
-
-    public void StartPhaseClick()
-    {
-        if (Field._coloredTile.Count <= 0)
-            return;
-
-        if (fieldColorType == FieldColorType.UnitSpawn)
-        {
-            SpawnUnitOnField(true);
-        }
-    }
-
-    public void PreparePhaseClick()
-    {
-        if (Field._coloredTile.Contains(coord) == false)
-            return;
-
-        if (fieldColorType == FieldColorType.UnitSpawn)
-        {
-            SpawnUnitOnField();
-        }
-        else if (fieldColorType == FieldColorType.PlayerSkill)
-        {
-            BattleUI.UI_playerSkill.GetSelectedCard().GetSkill().Use(coord);
-            PlayerSkillController.PlayerSkillUse();
-        }
-        else if (fieldColorType == FieldColorType.UltimatePlayerSkill)
-        {
-            if (GameManager.Data.PlayerSkillCountChage(-1))
-            {
-                BattleUI.UI_playerSkill.GetSelectedCard().GetSkill().Use(coord);
-                PlayerSkillController.PlayerSkillUse();
-            }
-        }
-    }
-
-    private void SpawnUnitOnField(bool isFirst=false)
-    {
-        DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
-        if (Field._coloredTile.Contains(coord) == false)
-            return;
-
-        Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
-
-        if (isFirst)
-            unit.FirstTurnDiscountUndo();
-
-        GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
-        
-        BattleUI.RemoveHandUnit(unit);
-        GameManager.UI.ClosePopup();
-        Field.ClearAllColor();
-    }
-
-    public void OnClickTile(Tile tile)
-    {
-        coord = Field.FindCoordByTile(tile);
-        _phase.OnClickEvent();
     }
     #endregion
 
@@ -420,9 +403,7 @@ public class BattleManager : MonoBehaviour
         if (colorType == FieldColorType.none)
             Field.ClearAllColor();
         else
-            Field.SetSpawnTileColor();
-        
-        fieldColorType = colorType;
+            Field.SetSpawnTileColor(colorType);
 
         return true;
     }
