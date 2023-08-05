@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerSkillController : MonoBehaviour
 {
-    BattleManager battle = BattleManager.Instance;
     BattleUIManager BattleUI;
     BattleDataManager Data;
     Field Field;
@@ -23,7 +22,7 @@ public class PlayerSkillController : MonoBehaviour
 
     public void PlayerSkillUse()
     {
-        PlayerSkill selectedSkill = BattleUI.UI_playerSkill.GetSelectedCard().GetSkill();
+        PlayerSkill selectedSkill = BattleUI.GetSelectedPlayerSkill();
 
         Mana.ChangeMana(-1 * selectedSkill.GetManaCost());
         Data.DarkEssenseChage(-1 * selectedSkill.GetDarkEssenceCost());
@@ -33,48 +32,21 @@ public class PlayerSkillController : MonoBehaviour
         Field.ClearAllColor();
     }
 
-    public bool UnitTargetPlayerSkillReady(FieldColorType colorType)
+    public void PlayerSkillReady(FieldColorType colorType, PlayerSkillTargetType TargetType = PlayerSkillTargetType.none)
     {
         if (Phase.Current != Phase.Prepare)
-            return false;
+            return;
 
         if (colorType == FieldColorType.none)
             Field.ClearAllColor();
         else
-            Field.SetUnitTileColor();
-
-        battle.fieldColorType = colorType;
-
-        return true;
-    }
-
-    public bool EnemyTargetPlayerSkillReady(FieldColorType colorType)
-    {
-        if (Phase.Current != Phase.Prepare)
-            return false;
-
-        if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
-        else
-            Field.SetEnemyUnitTileColor();
-
-        battle.fieldColorType = colorType;
-
-        return true;
-    }
-
-    public bool FriendlyTargetPlayerSkillReady(FieldColorType colorType)
-    {
-        if (Phase.Current != Phase.Prepare)
-            return false;
-
-        if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
-        else
-            Field.SetFriendlyUnitTileColor();
-
-        battle.fieldColorType = colorType;
-
-        return true;
+        { 
+            if (TargetType == PlayerSkillTargetType.Unit)
+                Field.SetUnitTileColor(colorType);
+            else if (TargetType == PlayerSkillTargetType.Enemy)
+                Field.SetEnemyUnitTileColor(colorType);
+            else if (TargetType == PlayerSkillTargetType.Friendly)
+                Field.SetFriendlyUnitTileColor(colorType);
+        }
     }
 }
