@@ -153,8 +153,6 @@ public class Field : MonoBehaviour
         return position;
     }
 
-    // *****
-    // 메서드 이름 바꾸기
     public List<Vector2> GetAbsPos(BattleUnit _unit, FieldColor _clickType)
     {
         List<Vector2> ResultVector = new List<Vector2>();
@@ -246,7 +244,6 @@ public class Field : MonoBehaviour
         }
         _coloredTile.Clear();
     }
-
 
     public void EnterTile(BattleUnit unit, Vector2 coord, bool move = false)
     {

@@ -112,12 +112,6 @@ public enum FieldColor
     Clear = 3,
 }
 
-[SerializeField]
-public enum Scene
-{
-    Battle,
-}
-
 public enum Sounds
 {
     BGM,
@@ -132,11 +126,15 @@ public enum ActiveTiming
     TURN_START, //턴 시작 시
     TURN_END, //턴 종료 시
 
-    MOVE_TURN, //이동턴 전
+    ACTION_TURN_START, //이동턴 전, 공격턴 전 통합
+
+    MOVE_TURN_START, //이동턴 전
 
     MOVE, //이동 후
 
-    ATTACK_TURN, //공격턴 전
+    MOVE_TURN_END, //이동턴 후
+
+    ATTACK_TURN_START, //공격턴 전
 
     BEFORE_ATTACK, //공격 전
     AFTER_ATTACK, //공격 후
@@ -145,6 +143,8 @@ public enum ActiveTiming
 
     BEFORE_ATTACKED, //피격 전
     AFTER_ATTACKED, //피격 후
+
+    ATTACK_TURN_END, //공격턴 후
 
     FALL, //타락시켰을 때, 그 후
     FALLED, //타락되었을 때 그 전
@@ -155,18 +155,13 @@ public enum ActiveTiming
     NONE//없음
 };
 
-public enum RomanNumber
+public enum StigmaTier
 {
-    I = 1,
-    II = 2,
-    III = 3,
-    IV = 4,
-    V = 5,
-    VI = 6,
-    VII = 7,
-    VIII = 8,
-    IX = 9,
-    X = 10,
+    Tier1,
+    Tier2,
+    Tier3,
+    Unique,
+    Harlot
 }
 
 public enum FieldColorType
@@ -181,7 +176,12 @@ public enum BuffEnum
 {
     Sadism,
     Encourage,
-    Bleeding,
     Benediction,
-    Crime
+    Crime,
+    Sin,
+    
+    TraceOfSolar,
+    TraceOfLunar,
+
+    Stun
 }
