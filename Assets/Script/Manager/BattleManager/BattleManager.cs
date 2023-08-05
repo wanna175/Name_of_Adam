@@ -310,7 +310,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit targetUnit = cor.GetTargetUnit();
 
-        if (targetUnit.Team == Team.Enemy)
+        if (!targetUnit.Fall.IsEdified)
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
         else
             cor.LoopExit();
@@ -347,6 +347,8 @@ public class BattleManager : MonoBehaviour
         {
             fieldUnit.FieldUnitDdead();
         }
+
+        BattleOverCheck();
     }
 
     public void BattleOverCheck()
@@ -410,7 +412,6 @@ public class BattleManager : MonoBehaviour
         action();
     }
 
-    #region Field Color 관련
     public bool UnitSpawnReady(FieldColorType colorType)
     {
         if (_phase.Current != _phase.Prepare)
@@ -425,5 +426,4 @@ public class BattleManager : MonoBehaviour
 
         return true;
     }
-    #endregion
 }

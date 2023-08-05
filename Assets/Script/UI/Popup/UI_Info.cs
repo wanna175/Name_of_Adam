@@ -86,11 +86,13 @@ public class UI_Info : UI_Scene
         _hpBar.RefreshHPBar((float)battleUnit.BattleUnitTotalStat.CurrentHP / (float)battleUnit.BattleUnitTotalStat.MaxHP);
         _hpBar.RefreshFallGauge(battleUnit.BattleUnitTotalStat.FallCurrentCount);
 
-        //unit.SetStigma();
-        //foreach (Stigma sti in unit.Stigma)
-        //{
-        //    GameObject.Instantiate(_stigma, _stigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
-        //}
+        /*
+        unit.SetStigma();
+        foreach (Stigma sti in unit.Stigma)
+        {
+            GameObject.Instantiate(_stigma, _stigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
+        }
+        */  
 
         Sprite attackType;
 
