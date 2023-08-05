@@ -6,10 +6,14 @@ using System;
 
 public class Field : MonoBehaviour
 {
-    private Dictionary<Vector2, Tile> _tileDict = new Dictionary<Vector2, Tile>();
+    private Dictionary<Vector2, Tile> _tileDict = new();
     public Dictionary<Vector2, Tile> TileDict => _tileDict;
 
-    public List<Vector2> _coloredTile = new List<Vector2>();
+    public FieldColorType FieldType => _fieldType;
+    private FieldColorType _fieldType = FieldColorType.none;
+
+    private List<Vector2> _coloredTile = new();
+    public List<Vector2> ColoredTile => _coloredTile;
 
     // 필드의 생성을 위한 필드의 위치
     private Vector3 FieldPosition => new Vector3(0, -0.35f, 0.5f);
@@ -19,21 +23,15 @@ public class Field : MonoBehaviour
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
 
-    private Color ColorList(FieldColor color)
+    private Color ColorList(FieldColorType color)
     {
-        switch (color)
+        return color switch
         {
-            case FieldColor.Move:
-                return new Color32(149, 173, 35, 40);
-            case FieldColor.Attack:
-                return new Color32(140, 27, 46, 40);
-            case FieldColor.Select:
-                return new Color32(23, 114, 102, 40);
-            case FieldColor.Clear:
-                return new Color32(0, 0, 0, 0);
-            default:
-                return default;
-        }
+            FieldColorType.Move => new Color32(149, 173, 35, 40),
+            FieldColorType.Attack => new Color32(140, 27, 46, 40),
+            FieldColorType.none => new Color32(0, 0, 0, 0),
+            _ => new Color32(23, 114, 102, 40),
+        };
     }
 
     private void Awake()
@@ -45,7 +43,23 @@ public class Field : MonoBehaviour
         transform.position = FieldPosition;
         transform.eulerAngles = FieldRotation;
         transform.localScale = FieldScale;
-        
+    }
+
+    private Tile CreateTile(int x, int y)
+    {
+        x -= MaxFieldX / 2;
+        y -= MaxFieldY / 2;
+
+        float disX = transform.localScale.x / MaxFieldX;
+        float disY = transform.localScale.y / MaxFieldY;
+
+        float locX = (disX * x) + (disX * 0.5f);
+        float locY = disY * y + 1.5f;
+
+        Vector3 tilePos = new(locX, transform.position.y + locY);
+        GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
+
+        return tileObject.GetComponent<Tile>().Init(tilePos);
     }
 
     // 타일의 좌표값을 리턴한다.
@@ -90,23 +104,6 @@ public class Field : MonoBehaviour
         return units;
     }
 
-    private Tile CreateTile(int x, int y)
-    {
-        x -= MaxFieldX / 2;
-        y -= MaxFieldY / 2;
-
-        float disX = transform.localScale.x / MaxFieldX;
-        float disY = transform.localScale.y / MaxFieldY;
-
-        float locX = (disX * x) + (disX * 0.5f);
-        float locY = disY * y + 1.5f;
-
-        Vector3 tilePos = new Vector3(locX, transform.position.y + locY);
-        GameObject tileObject = GameManager.Resource.Instantiate("Tile", transform);
-
-        return tileObject.GetComponent<Tile>().Init(tilePos);
-    }
-
     // 타일이 최대 범위를 벗어났는지 확인
     public bool IsInRange(Vector2 coord)
     {
@@ -117,7 +114,7 @@ public class Field : MonoBehaviour
 
     public void MoveUnit(Vector2 current, Vector2 dest)
     {
-        if (IsInRange(dest) == false | current == dest)
+        if (IsInRange(dest) == false || current == dest)
             return;
 
         BattleUnit currentUnit = TileDict[current].Unit;
@@ -125,7 +122,7 @@ public class Field : MonoBehaviour
         
         if (TileDict[dest].UnitExist)
         {
-            if (currentUnit.Team == destUnit.Team)
+            if (currentUnit.Team == destUnit.Team && GetArroundUnits(current).Contains(destUnit))
             {
                 ExitTile(current);
                 ExitTile(dest);
@@ -153,87 +150,80 @@ public class Field : MonoBehaviour
         return position;
     }
 
-    public List<Vector2> GetAbsPos(BattleUnit _unit, FieldColor _clickType)
+    public void SetNextActionTileColor(BattleUnit unit, FieldColorType fieldType)
     {
-        List<Vector2> ResultVector = new List<Vector2>();
+        List<Vector2> rangeList = new();
 
-        List<Vector2> RangeList = new List<Vector2>();
+        if (fieldType == FieldColorType.Move)
+            rangeList = unit.GetMoveRange();
+        else if (fieldType == FieldColorType.Attack)
+            rangeList = unit.GetAttackRange();
 
-        if (_clickType == FieldColor.Move)
-            RangeList = _unit.GetMoveRange();
-        else if(_clickType == FieldColor.Attack)
-            RangeList = _unit.GetAttackRange();
-
-        foreach (Vector2 vec in RangeList)
+        foreach (Vector2 vec in rangeList)
         {
-            Vector2 dump = _unit.Location + vec;
-            if(IsInRange(dump))
+            Vector2 range = unit.Location + vec;
+            if (IsInRange(range))
             {
-                ResultVector.Add(dump);
+                TileDict[range].SetColor(ColorList(fieldType));
+                _coloredTile.Add(range);
             }
         }
-
-        return ResultVector;
     }
 
-
-    public void SetTileColor(BattleUnit unit, FieldColor clickType)
-    {
-        List<Vector2> vector = GetAbsPos(unit, clickType);
-
-        foreach (Vector2 vec in vector)
-        {
-            TileDict[vec].SetColor(ColorList(clickType));
-            _coloredTile.Add(vec);
-        }
-    }
-
-    public void SetSpawnTileColor()
+    public void SetSpawnTileColor(FieldColorType fieldType)
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
         {
-            if (items.Value.UnitExist == false && IsPlayerRange(items.Key))
+            if (!items.Value.UnitExist && IsPlayerRange(items.Key))
             {
-                items.Value.SetColor(ColorList(FieldColor.Select));
+                items.Value.SetColor(ColorList(fieldType));
                 _coloredTile.Add(items.Key);
             }    
-        }  
+        }
+
+        _fieldType = fieldType;
     }
 
-    public void SetUnitTileColor()
+    public void SetUnitTileColor(FieldColorType fieldType)
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
         {
-            if (items.Value.UnitExist == true)
+            if (items.Value.UnitExist)
             {
-                items.Value.SetColor(ColorList(FieldColor.Select));
+                items.Value.SetColor(ColorList(fieldType));
                 _coloredTile.Add(items.Key);
             }
         }
+
+        _fieldType = fieldType;
     }
 
-    public void SetEnemyUnitTileColor()
+    public void SetEnemyUnitTileColor(FieldColorType fieldType)
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
         {
-            if (items.Value.UnitExist == true && items.Value.Unit.Team == Team.Enemy)
+            if (items.Value.UnitExist && items.Value.Unit.Team == Team.Enemy)
             {
-                items.Value.SetColor(ColorList(FieldColor.Select));
+                items.Value.SetColor(ColorList(fieldType));
                 _coloredTile.Add(items.Key);
             }
         }
+
+        _fieldType = fieldType;
     }
     
-    public void SetFriendlyUnitTileColor()
+    public void SetFriendlyUnitTileColor(FieldColorType fieldType)
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)
         {
-            if (items.Value.UnitExist == true && items.Value.Unit.Team == Team.Player)
+            if (items.Value.UnitExist && items.Value.Unit.Team == Team.Player)
             {
-                items.Value.SetColor(ColorList(FieldColor.Select));
+                items.Value.SetColor(ColorList(fieldType));
                 _coloredTile.Add(items.Key);
             }
         }
+
+        _fieldType = fieldType;
     }
 
     public void ClearAllColor()

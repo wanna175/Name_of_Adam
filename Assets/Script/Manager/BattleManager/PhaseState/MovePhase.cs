@@ -14,7 +14,7 @@ public class MovePhase : Phase
         _nowUnit = BattleManager.Data.GetNowUnit();
         _nowUnit.MoveTurnStart();
 
-        BattleManager.Field.SetTileColor(_nowUnit, FieldColor.Move);
+        BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Move);
         BattleManager.BattleUI.ChangeButtonName();
 
         if (_nowUnit.Team == Team.Enemy)
@@ -26,10 +26,10 @@ public class MovePhase : Phase
         
     }
 
-    public override void OnClickEvent()
+    public override void OnClickEvent(Vector2 coord)
     {
         if (BattleManager.Data.GetNowUnit().Team == Team.Player)
-            BattleManager.Instance.MovePhaseClick();
+            BattleManager.Instance.MovePhaseClick(coord);
     }
 
     public override void OnStateExit()

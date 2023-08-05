@@ -12,11 +12,12 @@ public class PlayerSkill_Heal : PlayerSkill
     }
     public override void CancelSelect()
     {
-        BattleManager.PlayerSkillController.UnitTargetPlayerSkillReady(FieldColorType.none);
+        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.none);
     }
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.UnitTargetPlayerSkillReady(FieldColorType.PlayerSkill);
+        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Unit);
+
     }
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PreparePhase : Phase
 {
     public bool isFirst = true;
@@ -18,15 +20,15 @@ public class PreparePhase : Phase
         BattleManager.Data.BattleUnitOrder();
     }
 
-    public override void OnClickEvent()
+    public override void OnClickEvent(Vector2 coord)
     {
         if (isFirst)
         {
-            BattleManager.Instance.StartPhaseClick();
+            BattleManager.Instance.StartPhaseClick(coord);
         }
         else
         {
-            BattleManager.Instance.PreparePhaseClick();
+            BattleManager.Instance.PreparePhaseClick(coord);
         }
     }
 

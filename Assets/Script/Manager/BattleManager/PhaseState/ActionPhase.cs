@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 public class ActionPhase : Phase
 {
@@ -13,7 +10,7 @@ public class ActionPhase : Phase
         _nowUnit = BattleManager.Data.GetNowUnit();
         _nowUnit.AttackTurnStart();
 
-        BattleManager.Field.SetTileColor(_nowUnit, FieldColor.Attack);
+        BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
         BattleManager.BattleUI.ChangeButtonName();
 
         if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
@@ -25,10 +22,10 @@ public class ActionPhase : Phase
         
     }
 
-    public override void OnClickEvent()
+    public override void OnClickEvent(Vector2 coord)
     {
         if (BattleManager.Data.GetNowUnit().Team == Team.Player)
-            BattleManager.Instance.ActionPhaseClick();
+            BattleManager.Instance.ActionPhaseClick(coord);
     }
 
     public override void OnStateExit()
