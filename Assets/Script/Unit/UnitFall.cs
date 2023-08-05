@@ -6,7 +6,8 @@ public class UnitFall : MonoBehaviour
 {
     private int _maxCount;
     private int _currentCount;
-    private bool _isEdified;
+    private bool _isEdified = false;
+    public bool IsEdified => _isEdified;
 
     [Header("타락 이벤트")]
     public UnityEvent UnitFallEvent;

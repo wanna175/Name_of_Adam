@@ -25,9 +25,6 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitAction Action;
     [SerializeField] private UI_HPBar _hpBar;
 
-    private bool _nextMoveSkip = false;
-    private bool _nextAttackSkip = false;
-
     [SerializeField] public List<Stigma> StigmaList => DeckUnit.Stigma;
 
     [SerializeField] Vector2 _location;
@@ -35,7 +32,12 @@ public class BattleUnit : MonoBehaviour
 
     private float _scale;
     private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (Location.y - 1));
-    
+
+    private bool _nextMoveSkip = false;
+    private bool _nextAttackSkip = false;
+
+    private  bool[] _moveRangeList;
+
     public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -52,6 +54,7 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         _scale = transform.localScale.x;
+        _moveRangeList = Data.MoveRange;
 
         DeckUnit.SetStigma();
         BattleManager.Data.BattleUnitAdd(this);
@@ -80,16 +83,31 @@ public class BattleUnit : MonoBehaviour
         ActiveTimingCheck(ActiveTiming.TURN_END);
     }
 
-    public void MoveTurn()
+    public void MoveTurnStart()
     {
         //이동 턴 시작 시 체크
-        _nextMoveSkip = ActiveTimingCheck(ActiveTiming.MOVE_TURN);
+        _nextMoveSkip = ActiveTimingCheck(ActiveTiming.MOVE_TURN_START);
+        _nextMoveSkip |= ActiveTimingCheck(ActiveTiming.ACTION_TURN_START);
     }
 
-    public void AttackTurn()
+    public void MoveTurnEnd()
+    {
+        //이동 턴 종료 시 체크
+        ActiveTimingCheck(ActiveTiming.MOVE_TURN_END);
+    }
+
+    public void AttackTurnStart()
     {
         //공격 턴 시작 시 체크
-        _nextAttackSkip = ActiveTimingCheck(ActiveTiming.ATTACK_TURN);
+        _nextAttackSkip = ActiveTimingCheck(ActiveTiming.ATTACK_TURN_START);
+        _nextAttackSkip |= ActiveTimingCheck(ActiveTiming.ACTION_TURN_START);
+
+    }
+
+    public void AttackTurnEnd()
+    {
+        //공격 턴 종료 시 체크
+        ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END);
     }
 
     public void FieldUnitDdead()
@@ -164,6 +182,11 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 시작
         BattleManager.Data.CorruptUnits.Add(this);
 
+        if (ChangeTeam() == Team.Enemy)
+        {
+            Fall.Editfy();
+        }
+
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -173,10 +196,6 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 종료
         BattleManager.Data.CorruptUnits.Remove(this);
 
-        if (ChangeTeam() == Team.Enemy)
-        {
-            Fall.Editfy();
-        }
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         _hpBar.SetHPBar(Team, transform);
         _hpBar.RefreshHPBar(HP.FillAmount());
@@ -320,7 +339,7 @@ public class BattleUnit : MonoBehaviour
         BattleUnitChangedStat = Buff.GetBuffedStat();
     }
 
-    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int num = 0)
+    private bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int num = 0)
     {
         bool skipNextAction = false;
 
@@ -345,7 +364,13 @@ public class BattleUnit : MonoBehaviour
         return skipNextAction;
     }
 
-    public bool GetFlipX() => _renderer.flipX;
+    public void AddMoveRange(bool[] rangeList)
+    {
+        for (int i = 0; i < _moveRangeList.Length; i++)
+        {
+            _moveRangeList[i] = _moveRangeList[i] || rangeList[i];
+        }
+    }
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
 
@@ -391,9 +416,9 @@ public class BattleUnit : MonoBehaviour
         int Mrow = 5;
         int Mcolumn = 5;
 
-        for (int i = 0; i < Data.MoveRange.Length; i++)
+        for (int i = 0; i < _moveRangeList.Length; i++)
         {
-            if (Data.MoveRange[i])
+            if (_moveRangeList[i])
             {
                 int x = (i % Mcolumn) - (Mcolumn >> 1);
                 int y = -((i / Mcolumn) - (Mrow >> 1));
