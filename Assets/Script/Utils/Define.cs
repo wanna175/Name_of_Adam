@@ -122,6 +122,8 @@ public enum Sounds
 
 public enum ActiveTiming
 {
+    STIGMA, //낙인 발동(소환 시, 낙인 부여 시)
+
     SUMMON, //소환 후
     
     TURN_START, //턴 시작 시
