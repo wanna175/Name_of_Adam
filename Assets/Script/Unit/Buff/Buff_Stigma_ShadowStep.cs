@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Buff_Stigma_Hook : Buff
+public class Buff_Stigma_ShadowStep: Buff
 {
     private readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Hook;
+        _buffEnum = BuffEnum.ShadowStep;
 
-        _name = "갈고리";
+        _name = "그림자 밟기";
 
-        _description = "갈고리.";
+        _description = "그림자 밟기.";
 
         _count = -1;
 
@@ -32,40 +32,36 @@ public class Buff_Stigma_Hook : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-
-        Vector2 casterPosition = caster.Location;
-        Vector2 receiverPosition = receiver.Location;
-        float currntMin = 100f;
-
+        float currntMax = 0f;
         List<Vector2> moveVectorList = new();
 
         foreach (Vector2 direction in UDLR)
         {
-            Vector2 vec = receiverPosition + direction;
-            float sqr = (vec - casterPosition).sqrMagnitude;
+            Vector2 vec = receiver.Location + direction;
+            float sqr = (vec - caster.Location).sqrMagnitude;
 
             if (!BattleManager.Field.IsInRange(vec))
                 continue;
 
-            if (currntMin > sqr)
+            if (currntMax < sqr)
             {
-                currntMin = sqr;
+                currntMax = sqr;
                 moveVectorList.Clear();
                 if (!BattleManager.Field.TileDict[vec].UnitExist)
                 {
                     moveVectorList.Add(vec);
                 }
             }
-            else if (currntMin == sqr)
+            else if (currntMax == sqr)
             {
                 moveVectorList.Add(vec);
             }
         }
 
         if (moveVectorList.Count == 0)
-            BattleManager.Field.MoveUnit(receiver.Location, receiverPosition);
+            BattleManager.Field.MoveUnit(caster.Location, receiver.Location);
         else
-            BattleManager.Field.MoveUnit(receiver.Location, moveVectorList[Random.Range(0, moveVectorList.Count)]);
+            BattleManager.Field.MoveUnit(caster.Location, moveVectorList[Random.Range(0, moveVectorList.Count)]);
 
         return false;
     }
