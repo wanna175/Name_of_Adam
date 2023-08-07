@@ -26,11 +26,6 @@ public class Buff_Encourage : Buff
         _owner = owner;
 
         attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
-}
-
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
-    {
-        return false;
     }
 
     public override void Stack()
@@ -44,10 +39,5 @@ public class Buff_Encourage : Buff
         stat.ATK += attackUp;
 
         return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-
     }
 }

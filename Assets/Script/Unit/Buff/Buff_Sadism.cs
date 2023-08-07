@@ -34,10 +34,6 @@ public class Buff_Sadism : Buff
         return false;
     }
 
-    public override void Stack()
-    {
-    }
-
     public override Stat GetBuffedStat()
     {
         Stat stat = new();

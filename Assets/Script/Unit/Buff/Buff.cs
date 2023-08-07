@@ -35,18 +35,31 @@ public abstract class Buff : MonoBehaviour
     protected bool _owner;
     public bool Owner => _owner;
 
-
     public abstract void Init(BattleUnit caster, BattleUnit owner);
 
-    public abstract bool Active(BattleUnit caster = null, BattleUnit rereceiver = null);
+    public virtual bool Active(BattleUnit caster = null, BattleUnit receiver = null)
+    {
+        Debug.Log("BUFF");
 
-    public abstract void Stack();
+        return false;
+    }
 
-    public abstract Stat GetBuffedStat();
+    public virtual void Stack()
+    {
+    }
 
-    public abstract void SetValue(int num);
+    public virtual Stat GetBuffedStat()
+    {
+        Stat stat = new();
 
-    public void CountChange(int num)
+        return stat;
+    }
+
+    public virtual void SetValue(int num)
+    { 
+    }
+
+    public virtual void CountChange(int num)
     {
         _count += num;
     }

@@ -27,23 +27,9 @@ public class Buff_Sin : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
+        Debug.Log("BUFF-SIN");
         receiver.ChangeFall(1);
 
         return false;
-    }
-
-    public override void Stack()
-    {
-    }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-        return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-        
     }
 }

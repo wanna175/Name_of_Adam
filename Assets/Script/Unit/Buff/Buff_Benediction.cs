@@ -30,19 +30,4 @@ public class Buff_Benediction : Buff
 
         return false;
     }
-
-    public override void Stack()
-    {
-    }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-        return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-
-    }
 }

@@ -36,15 +36,4 @@ public class Buff_Crime : Buff
     {
         _count += 2;
     }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-        return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-        
-    }
 }

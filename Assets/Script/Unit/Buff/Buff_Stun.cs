@@ -33,16 +33,4 @@ public class Buff_Stun : Buff
     {
         _count += 1;
     }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-
-        return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-
-    }
 }

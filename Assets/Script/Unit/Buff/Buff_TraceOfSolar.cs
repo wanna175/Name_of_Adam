@@ -23,25 +23,4 @@ public class Buff_TraceOfSolar: Buff
 
         _owner = owner;
     }
-
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
-    {
-        return false;
-    }
-
-    public override void Stack()
-    {
-    }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-
-        return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-
-    }
 }

@@ -32,17 +32,6 @@ public class Buff_Absorption : Buff
         return false;
     }
 
-    public override void Stack()
-    {
-    }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat attackUp = new();
-
-        return attackUp;
-    }
-
     public override void SetValue(int num)
     {
         damage = num;
