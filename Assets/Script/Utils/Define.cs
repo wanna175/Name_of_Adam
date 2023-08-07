@@ -188,6 +188,10 @@ public enum PlayerSkillTargetType
 
 public enum BuffEnum
 {
+    Hook,
+    Dispel,
+    ShadowStep,
+
     Sadism,
     Encourage,
     Benediction,
