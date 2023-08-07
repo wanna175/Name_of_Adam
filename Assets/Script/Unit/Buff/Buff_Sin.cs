@@ -16,18 +16,19 @@ public class Buff_Sin : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
+        _caster = caster;
+
+        _owner = owner;
+
         _statBuff = false;
 
         _dispellable = false;
 
-        _caster = caster;
-
-        _owner = owner;
+        _stigmaBuff = true;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-        Debug.Log("BUFF-SIN");
         receiver.ChangeFall(1);
 
         return false;

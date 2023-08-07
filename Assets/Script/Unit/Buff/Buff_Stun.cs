@@ -15,13 +15,15 @@ public class Buff_Stun : Buff
 
         _buffActiveTiming = ActiveTiming.ACTION_TURN_START;
 
+        _caster = caster;
+
+        _owner = owner;
+
         _statBuff = false;
 
         _dispellable = true;
 
-        _caster = caster;
-
-        _owner = owner;
+        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)

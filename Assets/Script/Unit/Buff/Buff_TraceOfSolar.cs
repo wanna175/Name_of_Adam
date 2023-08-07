@@ -15,12 +15,14 @@ public class Buff_TraceOfSolar: Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
+        _caster = caster;
+
+        _owner = owner;
+
         _statBuff = false;
 
         _dispellable = true;
 
-        _caster = caster;
-
-        _owner = owner;
+        _stigmaBuff = false;
     }
 }

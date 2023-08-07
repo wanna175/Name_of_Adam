@@ -18,13 +18,15 @@ public class Buff_Sadism : Buff
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
-        _statBuff = true;
-
-        _dispellable = false;
-
         _caster = caster;
 
         _owner = owner;
+
+        _statBuff = false;
+
+        _dispellable = false;
+
+        _stigmaBuff = true;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)

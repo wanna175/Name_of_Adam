@@ -16,13 +16,15 @@ public class Buff_Crime : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
+        _caster = caster;
+
+        _owner = owner;
+
         _statBuff = false;
 
         _dispellable = true;
 
-        _caster = caster;
-
-        _owner = owner;
+        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)

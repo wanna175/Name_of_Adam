@@ -17,13 +17,15 @@ public class Buff_Encourage : Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
-        _statBuff = true;
-
-        _dispellable = true;
-
         _caster = caster;
 
         _owner = owner;
+
+        _statBuff = true;
+
+        _dispellable = false;
+
+        _stigmaBuff = false;
 
         attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
     }

@@ -15,13 +15,15 @@ public class Buff_Benediction : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _statBuff = true;
-
-        _dispellable = false;
-
         _caster = caster;
 
         _owner = owner;
+
+        _statBuff = false;
+
+        _dispellable = false;
+
+        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
