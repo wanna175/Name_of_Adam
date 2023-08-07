@@ -7,7 +7,7 @@ public class Stigma_Gamble : Stigma
     {
         base.Use(caster, receiver);
 
-        Buff_Gamble gamble = new();
+        Buff_Stigma_Gamble gamble = new();
         caster.SetBuff(gamble, caster);
     }
 }

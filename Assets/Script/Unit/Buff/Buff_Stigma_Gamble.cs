@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Buff_Gamble : Buff
+public class Buff_Stigma_Gamble : Buff
 {    public override void Init(BattleUnit caster, BattleUnit owner)
     {
         _buffEnum = BuffEnum.Gamble;

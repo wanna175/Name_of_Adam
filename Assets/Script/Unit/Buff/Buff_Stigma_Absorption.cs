@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Buff_Sadism : Buff
+public class Buff_Stigma_Absorption : Buff
 {
-    private int attackUp = 3;
-    private int totalUp = 0;
+    int damage = 0;
+
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Sadism;
+        _name = "흡수";
 
-        _name = "가학";
-
-        _description = "공격 후 공격력이 3 증가합니다.";
+        _description = "피해량의 30퍼센트를 회복.";
 
         _count = -1;
 
@@ -31,21 +29,13 @@ public class Buff_Sadism : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-        totalUp += attackUp;
+        caster.ChangeHP((int)(damage * 0.3));
 
         return false;
     }
 
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-        stat.ATK += totalUp;
-
-        return stat;
-    }
-
     public override void SetValue(int num)
     {
-        attackUp = num;
+        damage = num;
     }
 }
