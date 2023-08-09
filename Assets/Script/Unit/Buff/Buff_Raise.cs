@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Buff_Encourage : Buff
+public class Buff_Raise : Buff
 {
     private int attackUp;
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Encourage;
+        _buffEnum = BuffEnum.Raise;
 
         _name = "°í¾ç";
 
