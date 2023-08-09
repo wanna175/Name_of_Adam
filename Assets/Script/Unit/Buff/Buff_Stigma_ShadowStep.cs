@@ -17,7 +17,7 @@ public class Buff_Stigma_ShadowStep: Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _caster = caster;
 
@@ -33,35 +33,31 @@ public class Buff_Stigma_ShadowStep: Buff
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
         float currntMax = 0f;
-        List<Vector2> moveVectorList = new();
+        Vector2 moveVector = caster.Location;
 
         foreach (Vector2 direction in UDLR)
         {
             Vector2 vec = receiver.Location + direction;
             float sqr = (vec - caster.Location).sqrMagnitude;
 
-            if (!BattleManager.Field.IsInRange(vec))
-                continue;
-
             if (currntMax < sqr)
             {
                 currntMax = sqr;
-                moveVectorList.Clear();
-                if (!BattleManager.Field.TileDict[vec].UnitExist)
+                if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
                 {
-                    moveVectorList.Add(vec);
+                    moveVector = vec;
                 }
             }
             else if (currntMax == sqr)
             {
-                moveVectorList.Add(vec);
+                if (direction.x != 0 && BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
+                {
+                    moveVector = vec;
+                }
             }
         }
 
-        if (moveVectorList.Count == 0)
-            BattleManager.Field.MoveUnit(caster.Location, receiver.Location);
-        else
-            BattleManager.Field.MoveUnit(caster.Location, moveVectorList[Random.Range(0, moveVectorList.Count)]);
+        BattleManager.Field.MoveUnit(caster.Location, moveVector);
 
         return false;
     }

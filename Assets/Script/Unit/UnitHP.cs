@@ -23,7 +23,7 @@ public class UnitHP : MonoBehaviour
 
         if(_currentHP <= 0)
         {
-            _currentHP = 0;
+            //_currentHP = 0;
             UnitDiedEvent.Invoke();
         }
         else if (_currentHP > _maxHP)
