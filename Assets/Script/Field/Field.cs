@@ -104,6 +104,26 @@ public class Field : MonoBehaviour
         return units;
     }
 
+    //십자가 범위 유닛
+    public List<BattleUnit> GetCrossUnits(Vector2 unitCoord)
+    {
+        List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
+        List<BattleUnit> units = new();
+
+        for(int i=1; i < MaxFieldX; i++)
+        {
+            foreach(Vector2 udlr in UDLR)
+            {
+                BattleUnit targetUnit = GetUnit(unitCoord + udlr * i);
+                if (targetUnit == null)
+                    continue;
+                units.Add(targetUnit);
+            }
+        }
+
+        return units;
+    }
+
     // 타일이 최대 범위를 벗어났는지 확인
     public bool IsInRange(Vector2 coord)
     {
