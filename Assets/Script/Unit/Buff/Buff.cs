@@ -23,30 +23,44 @@ public abstract class Buff : MonoBehaviour
     protected ActiveTiming _buffActiveTiming;
     public ActiveTiming BuffActiveTiming => _buffActiveTiming;
 
+    protected BattleUnit _caster;
+    public BattleUnit Caster => _caster;
+
+    protected BattleUnit _owner;
+    public BattleUnit Owner => _owner;
+
     protected bool _statBuff;
     public bool StatBuff => _statBuff;
 
     protected bool _dispellable;
     public bool Dispellable => _dispellable;
 
-    protected bool _caster;
-    public bool Caster => _caster;
-
-    protected bool _owner;
-    public bool Owner => _owner;
-
+    protected bool _stigmaBuff;
+    public bool StigmaBuff => _stigmaBuff;
 
     public abstract void Init(BattleUnit caster, BattleUnit owner);
 
-    public abstract bool Active(BattleUnit caster = null, BattleUnit rereceiver = null);
+    public virtual bool Active(BattleUnit caster = null, BattleUnit receiver = null)
+    {
+        return false;
+    }
 
-    public abstract void Stack();
+    public virtual void Stack()
+    {
+    }
 
-    public abstract Stat GetBuffedStat();
+    public virtual Stat GetBuffedStat()
+    {
+        Stat stat = new();
 
-    public abstract void SetValue(int num);
+        return stat;
+    }
 
-    public void CountChange(int num)
+    public virtual void SetValue(int num)
+    { 
+    }
+
+    public virtual void CountChange(int num)
     {
         _count += num;
     }

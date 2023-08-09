@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Buff_Sadism : Buff
+public class Buff_Stigma_Sadism : Buff
 {
     private int attackUp = 3;
     private int totalUp = 0;
@@ -18,13 +18,15 @@ public class Buff_Sadism : Buff
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
-        _statBuff = true;
-
-        _dispellable = false;
-
         _caster = caster;
 
         _owner = owner;
+
+        _statBuff = false;
+
+        _dispellable = false;
+
+        _stigmaBuff = true;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
@@ -32,10 +34,6 @@ public class Buff_Sadism : Buff
         totalUp += attackUp;
 
         return false;
-    }
-
-    public override void Stack()
-    {
     }
 
     public override Stat GetBuffedStat()

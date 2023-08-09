@@ -99,4 +99,15 @@ public class UnitBuff : MonoBehaviour
             }
         }
     }
+
+    public void DispelBuff()
+    {
+        for (int i = 0; i < _buffList.Count; i++)
+        {
+            if (_buffList[i].Dispellable)
+            {
+                _buffList.RemoveAt(i);
+            }
+        }
+    }
 }

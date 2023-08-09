@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Buff_Encourage : Buff
+public class Buff_Raise : Buff
 {
     private int attackUp;
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Encourage;
+        _buffEnum = BuffEnum.Raise;
 
         _name = "°í¾ç";
 
@@ -17,20 +17,17 @@ public class Buff_Encourage : Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
-        _statBuff = true;
-
-        _dispellable = true;
-
         _caster = caster;
 
         _owner = owner;
 
-        attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
-}
+        _statBuff = true;
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
-    {
-        return false;
+        _dispellable = false;
+
+        _stigmaBuff = false;
+
+        attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
     }
 
     public override void Stack()
@@ -44,10 +41,5 @@ public class Buff_Encourage : Buff
         stat.ATK += attackUp;
 
         return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-
     }
 }

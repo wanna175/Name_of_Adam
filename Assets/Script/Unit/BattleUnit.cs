@@ -68,6 +68,7 @@ public class BattleUnit : MonoBehaviour
         BattleManager.Field.EnterTile(this, coord);
 
         //소환 시 체크
+        ActiveTimingCheck(ActiveTiming.STIGMA);
         ActiveTimingCheck(ActiveTiming.SUMMON);
     }
 

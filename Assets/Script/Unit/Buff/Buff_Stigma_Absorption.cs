@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Buff_Absorption : Buff
+public class Buff_Stigma_Absorption : Buff
 {
     int damage = 0;
 
@@ -16,13 +16,15 @@ public class Buff_Absorption : Buff
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
+        _caster = caster;
+
+        _owner = owner;
+
         _statBuff = false;
 
         _dispellable = false;
 
-        _caster = caster;
-
-        _owner = owner;
+        _stigmaBuff = true;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
@@ -30,17 +32,6 @@ public class Buff_Absorption : Buff
         caster.ChangeHP((int)(damage * 0.3));
 
         return false;
-    }
-
-    public override void Stack()
-    {
-    }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat attackUp = new();
-
-        return attackUp;
     }
 
     public override void SetValue(int num)
