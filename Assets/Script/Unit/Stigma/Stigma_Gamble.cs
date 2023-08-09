@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class Stigma_Sin : Stigma
+public class Stigma_Gamble : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
         base.Use(caster, receiver);
 
-        Buff_Stigma_Sin sin = new();
-        caster.SetBuff(sin, caster);
+        Buff_Stigma_Gamble gamble = new();
+        caster.SetBuff(gamble, caster);
     }
 }

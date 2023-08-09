@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Buff_Sin : Buff
+public class Buff_Stigma_Sin : Buff
 {
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
@@ -16,13 +16,15 @@ public class Buff_Sin : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
+        _caster = caster;
+
+        _owner = owner;
+
         _statBuff = false;
 
         _dispellable = false;
 
-        _caster = caster;
-
-        _owner = owner;
+        _stigmaBuff = true;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
@@ -30,20 +32,5 @@ public class Buff_Sin : Buff
         receiver.ChangeFall(1);
 
         return false;
-    }
-
-    public override void Stack()
-    {
-    }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-        return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-        
     }
 }

@@ -15,33 +15,14 @@ public class Buff_TraceOfSolar: Buff
 
         _buffActiveTiming = ActiveTiming.NONE;
 
+        _caster = caster;
+
+        _owner = owner;
+
         _statBuff = false;
 
         _dispellable = true;
 
-        _caster = caster;
-
-        _owner = owner;
-    }
-
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
-    {
-        return false;
-    }
-
-    public override void Stack()
-    {
-    }
-
-    public override Stat GetBuffedStat()
-    {
-        Stat stat = new();
-
-        return stat;
-    }
-
-    public override void SetValue(int num)
-    {
-
+        _stigmaBuff = false;
     }
 }

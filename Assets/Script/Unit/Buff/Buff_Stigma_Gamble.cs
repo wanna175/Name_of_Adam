@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Buff_Benediction : Buff
+public class Buff_Stigma_Gamble : Buff
 {    public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Benediction;
+        _buffEnum = BuffEnum.Gamble;
 
-        _name = "신성";
+        _name = "도박";
 
-        _description = "마지막 남은 유닛의 공격에는 교화가 1 부여됩니다.";
+        _description = "도박.";
 
         _count = -1;
 
@@ -23,12 +23,19 @@ public class Buff_Benediction : Buff
 
         _dispellable = false;
 
-        _stigmaBuff = false;
+        _stigmaBuff = true;
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-        receiver.ChangeFall(1);
+        if (6 >= Random.Range(0, 10))
+        {
+            caster.ChangedDamage += caster.BattleUnitTotalStat.ATK;
+        }
+        else
+        {
+            caster.ChangedDamage -= caster.BattleUnitTotalStat.ATK / 2;
+        }
 
         return false;
     }
