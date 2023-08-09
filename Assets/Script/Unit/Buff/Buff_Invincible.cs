@@ -1,19 +1,19 @@
 using UnityEngine;
 
-public class Buff_Stun : Buff
+public class Buff_Invincible : Buff
 {    public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stun;
+        _buffEnum = BuffEnum.Invincible;
 
-        _name = "扁例";
+        _name = "公利";
 
-        _description = "扁例.";
+        _description = "公利.";
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.ATTACK_TURN_END;
+        _countDownTiming = ActiveTiming.BEFORE_ATTACKED;
 
-        _buffActiveTiming = ActiveTiming.ACTION_TURN_START;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACKED;
 
         _caster = caster;
 
