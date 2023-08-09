@@ -10,7 +10,7 @@ public class Stigma_Sadism : Stigma
     {
         base.Use(caster, receiver);
 
-        Buff_Sadism sadism = new();
+        Buff_Stigma_Sadism sadism = new();
         if (Tier == StigmaTier.Tier1)
         {
             sadism.SetValue(3);

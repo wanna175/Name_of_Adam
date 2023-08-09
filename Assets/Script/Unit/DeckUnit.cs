@@ -57,5 +57,6 @@ public class DeckUnit
     public void FirstTurnDiscountUndo()
     {
         DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
+        _firstTurnDiscount = 0;
     }
 }

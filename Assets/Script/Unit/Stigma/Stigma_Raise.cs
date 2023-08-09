@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stigma_Encourage : Stigma
+public class Stigma_Raise : Stigma
 {
     public override void Use(BattleUnit caster, BattleUnit receiver)
     {
@@ -13,11 +13,11 @@ public class Stigma_Encourage : Stigma
         {
             if (unit.Team == caster.Team)
             {
-                Buff_Encourage encourage = new();
-                unit.SetBuff(encourage, caster);
+                Buff_Raise raise = new();
+                unit.SetBuff(raise, caster);
                 if (Tier == StigmaTier.Tier2)
                 {
-                    unit.SetBuff(encourage, caster);
+                    unit.SetBuff(raise, caster);
                 }
             }
         }

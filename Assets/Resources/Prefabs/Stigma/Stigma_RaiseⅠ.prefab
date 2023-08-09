@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1519732635373234784}
   - component: {fileID: 5301678949382926427}
   m_Layer: 0
-  m_Name: "Stigma_Encourage\u2160"
+  m_Name: "Stigma_Raise\u2160"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

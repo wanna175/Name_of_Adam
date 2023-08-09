@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public abstract class Phase
@@ -21,7 +18,7 @@ public abstract class Phase
     public abstract void OnStateExit();
     // 끝날 때 한 번 실행 
 
-    public virtual void OnClickEvent()
+    public virtual void OnClickEvent(Vector2 coord)
     {
         return;
     }

@@ -244,11 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSkillCardPrefabs: {fileID: 4244837440217407375, guid: 86b5927ed012bce409c76a59e48c8c45, type: 3}
   Grid: {fileID: 8176466027900947826}
-  skillList:
-  - {fileID: 1968195709193623969, guid: 0dbed49eae7ba7248b6d8acf02a73bb1, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   Used: 0
 --- !u!1 &4500828762906546510
 GameObject:
@@ -945,6 +940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8433b6713812c4e81f9424ab97675e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bluemanaIMG: {fileID: 8019756150546835070}
+  _currentMana: {fileID: 9194759721847281045}
 --- !u!1 &7230500483516047834
 GameObject:
   m_ObjectHideFlags: 0

@@ -104,14 +104,6 @@ public enum CutSceneMoveType
     tracking
 }
 
-public enum FieldColor
-{
-    Move = 0,
-    Attack = 1,
-    Select = 2,
-    Clear = 3,
-}
-
 public enum Sounds
 {
     BGM,
@@ -121,6 +113,8 @@ public enum Sounds
 
 public enum ActiveTiming
 {
+    STIGMA, //낙인 발동(소환 시, 낙인 부여 시)
+
     SUMMON, //소환 후
 
     TURN_START, //턴 시작 시
@@ -168,20 +162,42 @@ public enum FieldColorType
 {
     none,
     UnitSpawn,
+    Move,
+    Attack,
+    Select,
     PlayerSkill,
     UltimatePlayerSkill
 }
 
+public enum PlayerSkillTargetType
+{
+    none,
+    Unit,
+    Enemy,
+    Friendly
+}
+
 public enum BuffEnum
 {
+    Hook,
+    Dispel,
+    ShadowStep,
+    Blessing,
     Sadism,
-    Encourage,
     Benediction,
     Crime,
     Sin,
-    
+    Gamble,
+    BloodBlessing,
+
+    DeathStrike,
+
+    Raise,
+
     TraceOfSolar,
     TraceOfLunar,
 
-    Stun
+    Stun,
+
+    InevitableEnd
 }

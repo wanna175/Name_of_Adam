@@ -71,6 +71,8 @@ public class BattleUIManager : MonoBehaviour
         }
     }
 
+    public PlayerSkill GetSelectedPlayerSkill() => UI_playerSkill.GetSelectedCard().GetSkill();
+
     public void ChangeButtonName()
     {
         PhaseController phaseController = BattleManager.Phase;
