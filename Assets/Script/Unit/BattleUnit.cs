@@ -322,8 +322,8 @@ public class BattleUnit : MonoBehaviour
     }
 
     public void ChangeHP(int value) {
-        HP.ChangeHP(value);
         DeckUnit.DeckUnitChangedStat.CurrentHP += value;
+        HP.ChangeHP(value);
         _hpBar.RefreshHPBar(HP.FillAmount());
     }
 
