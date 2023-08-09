@@ -17,16 +17,28 @@ public class Mana : MonoBehaviour
         ChangeMana(_startMana);
     }
 
-    public void ChangeMana(int value)
+    public bool ChangeMana(int value)
     {
-        _currentMana += value;
-
-        if (_maxManaCost <= _currentMana)
+       
+        if (_maxManaCost <= _currentMana + value)
+        {
+            _currentMana += value;
             _currentMana = _maxManaCost;
-        else if (_currentMana < 0)
-            _currentMana = 0;
+            _manaGuage.DrawGauge(_maxManaCost, _currentMana);
+            return true;
+        }  
+        else if (_currentMana < value)
+        {
+            Debug.Log("Not enough mana");
+            return false;
+        }
+        else
+        {
+            _currentMana += value;
+            _manaGuage.DrawGauge(_maxManaCost, _currentMana);
+        }
 
-        _manaGuage.DrawGauge(_maxManaCost, _currentMana);
+        return true;
     }
 
     public bool CanUseMana(int value)
