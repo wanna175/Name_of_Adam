@@ -198,10 +198,14 @@ public enum BuffEnum
     Sin,
     Gamble,
     BloodBlessing,
+    BloodFest,
 
     DeathStrike,
 
     Raise,
+    Invincible,
+    Immortal,
+    Tailwind,
 
     TraceOfSolar,
     TraceOfLunar,
