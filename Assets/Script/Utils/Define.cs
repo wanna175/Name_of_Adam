@@ -191,16 +191,22 @@ public enum BuffEnum
     Hook,
     Dispel,
     ShadowStep,
-
+    Blessing,
     Sadism,
-    Encourage,
     Benediction,
     Crime,
     Sin,
     Gamble,
+    BloodBlessing,
+
+    DeathStrike,
+
+    Raise,
 
     TraceOfSolar,
     TraceOfLunar,
 
-    Stun
+    Stun,
+
+    InevitableEnd
 }
