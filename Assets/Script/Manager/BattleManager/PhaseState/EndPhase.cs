@@ -13,7 +13,7 @@ public class EndPhase : Phase
         _controller.ChangePhase(_controller.Prepare);
     }
 
-    public override void OnClickEvent()
+    public override void OnClickEvent(Vector2 coord)
     {
         
     }

@@ -104,14 +104,6 @@ public enum CutSceneMoveType
     tracking
 }
 
-public enum FieldColor
-{
-    Move = 0,
-    Attack = 1,
-    Select = 2,
-    Clear = 3,
-}
-
 public enum Sounds
 {
     BGM,
@@ -168,8 +160,19 @@ public enum FieldColorType
 {
     none,
     UnitSpawn,
+    Move,
+    Attack,
+    Select,
     PlayerSkill,
     UltimatePlayerSkill
+}
+
+public enum PlayerSkillTargetType
+{
+    none,
+    Unit,
+    Enemy,
+    Friendly
 }
 
 public enum BuffEnum
@@ -179,7 +182,8 @@ public enum BuffEnum
     Benediction,
     Crime,
     Sin,
-    
+    Gamble,
+
     TraceOfSolar,
     TraceOfLunar,
 
