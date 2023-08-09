@@ -181,7 +181,7 @@ public class DataManager : MonoBehaviour
             skillList.Add(skill);
         }
 
-        skillList.Insert(2, GameData.UniversalPlayerSkill);
+        //skillList.Insert(2, GameData.UniversalPlayerSkill); //Universal Skill º¸·ù
 
         return skillList;
     }
