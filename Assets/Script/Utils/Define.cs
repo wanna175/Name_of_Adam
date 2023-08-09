@@ -199,6 +199,8 @@ public enum BuffEnum
     Gamble,
     BloodBlessing,
     BloodFest,
+    Repetance,
+    Martyrdom,
 
     DeathStrike,
 
