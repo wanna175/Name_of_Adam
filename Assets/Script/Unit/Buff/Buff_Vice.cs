@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Buff_Crime : Buff
+public class Buff_Vice : Buff
 {
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Crime;
+        _buffEnum = BuffEnum.Vice;
 
         _name = "ак╬г";
 
