@@ -206,6 +206,7 @@ public enum BuffEnum
     BloodFest,
     Repetance,
     Martyrdom,
+    Misdeed,
 
     DeathStrike,
 
