@@ -13,9 +13,9 @@ public class BattleUIManager : MonoBehaviour
 
     public UI_WaitingLine UI_waitingLine;
     public UI_TurnCount UI_turnCount;
+    public UI_TurnNotify UI_turnNotify;
 
     private UI_TurnChangeButton _turnChangeButton;
-
 
     private int _maxHandCount = 3;
 
@@ -28,6 +28,7 @@ public class BattleUIManager : MonoBehaviour
         //정보들
         UI_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         UI_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
+        UI_turnNotify = GameManager.UI.ShowScene<UI_TurnNotify>();
 
         //컨트롤바
         _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();

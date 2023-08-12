@@ -28,9 +28,6 @@ public class Buff_Immortal : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-        Debug.Log("CUR:" + caster.HP.GetCurrentHP());
-        Debug.Log("!FF:" + -1 * caster.HP.GetCurrentHP() + 1);
-
         caster.ChangeHP(-1 * caster.HP.GetCurrentHP() + 1);
         return true;
     }
