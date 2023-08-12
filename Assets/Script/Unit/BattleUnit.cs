@@ -293,6 +293,8 @@ public class BattleUnit : MonoBehaviour
             {
                 //타락시켰을 시 체크
                 ActiveTimingCheck(ActiveTiming.FALL, unit);
+                ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, unit);
+
                 attackSkip = true;
             }
 
@@ -303,6 +305,13 @@ public class BattleUnit : MonoBehaviour
 
             //공격 후 체크
             ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit, ChangedDamage);
+
+            if (unit.HP.GetCurrentHP() <= 0)
+            {
+                ActiveTimingCheck(ActiveTiming.UNIT_KILL, unit);
+                ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, unit);
+            }
+
             ChangedDamage = 0;
         }
     }

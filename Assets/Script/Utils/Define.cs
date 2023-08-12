@@ -122,6 +122,7 @@ public enum Sounds
 
 public enum ActiveTiming
 {
+    //2중 타이밍
     STIGMA, //낙인 발동(소환 시, 낙인 부여 시)
 
     SUMMON, //소환 후
@@ -154,6 +155,11 @@ public enum ActiveTiming
 
     UNIT_DEAD, //자신이 사망 전
     FIELD_UNIT_DEAD, //필드 유닛이 사망 시
+
+    UNIT_KILL, //다른 유닛을 죽일 시
+
+    UNIT_TERMINATE, //유닛을 제거 시(타락시켰을 때, 죽였을 때)
+
 
     NONE//없음
 };
@@ -194,7 +200,6 @@ public enum BuffEnum
     Blessing,
     Sadism,
     Benediction,
-    Crime,
     Sin,
     Gamble,
     BloodBlessing,
@@ -209,6 +214,7 @@ public enum BuffEnum
     Immortal,
     Tailwind,
 
+    Vice,
     TraceOfSolar,
     TraceOfLunar,
 
