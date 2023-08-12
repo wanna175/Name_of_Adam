@@ -17,7 +17,7 @@ public class PlayerSkill_Heal : PlayerSkill
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Unit);
+        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Friendly);
 
     }
 }
