@@ -32,6 +32,13 @@ public class UI_PlayerSkill : UI_Scene
                 CancelSelect();
                 card.GetSkill().CancelSelect();
             }
+            else if (_selectedCard != null && card != _selectedCard)
+            {
+                //기존 선택 취소 및 재선택
+                _selectedCard.GetSkill().CancelSelect();
+                OnSelect(card);
+                card.GetSkill().OnSelect();
+            }
             else
             {
                 //선택
