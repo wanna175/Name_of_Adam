@@ -60,7 +60,7 @@ public abstract class Buff : MonoBehaviour
     { 
     }
 
-    public virtual void CountChange(int num)
+    public void CountChange(int num)
     {
         _count += num;
     }

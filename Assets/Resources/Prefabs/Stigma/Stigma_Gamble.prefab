@@ -41,12 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9184981377842464421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222b2b032b7c6f04ca070b746ba7b768, type: 3}
+  m_Script: {fileID: 11500000, guid: e69b68e26959e20468ae7b2bba6c214d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  _name: "\uB3C4\uBC15"
   _sprite: {fileID: 0}
-  _description: 
+  _description: "\uB3C4\uBC15"
   _activeTiming: 0
-  _tier: 0
+  _tier: 2
   _isLock: 0

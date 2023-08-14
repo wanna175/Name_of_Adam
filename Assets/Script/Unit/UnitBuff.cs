@@ -93,7 +93,8 @@ public class UnitBuff : MonoBehaviour
                 _buffList[i].CountChange(-1);
                 if (_buffList[i].Count == 0)
                 {
-                    _buffList.Remove(_buffList[i]);
+                    _buffList.RemoveAt(i);
+
                     i--;
                 }
             }

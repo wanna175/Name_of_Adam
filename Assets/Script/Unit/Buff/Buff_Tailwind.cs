@@ -5,7 +5,7 @@ public class Buff_Tailwind : Buff
     private int speedUp;
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Raise;
+        _buffEnum = BuffEnum.Tailwind;
 
         _name = "¼øÇ³";
 

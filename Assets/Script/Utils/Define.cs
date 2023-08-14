@@ -189,10 +189,16 @@ public enum BuffEnum
     Sin,
     Gamble,
     BloodBlessing,
+    BloodFest,
+    Repetance,
+    Martyrdom,
 
     DeathStrike,
 
     Raise,
+    Invincible,
+    Immortal,
+    Tailwind,
 
     TraceOfSolar,
     TraceOfLunar,

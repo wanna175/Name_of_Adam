@@ -38,8 +38,6 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] List<GameObject> Background;
 
-    [SerializeField] List<GameObject> CutSceneBackground;
-
     private void Awake()
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
@@ -110,9 +108,8 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            CutSceneBackground[i].gameObject.SetActive(false);
             Background[i].gameObject.SetActive(false);
-            //Background
+            
             // if (((Faction)i + 1).ToString() == str)
             if (i == 0)
                 CutSceneBackground[i].gameObject.SetActive(true);

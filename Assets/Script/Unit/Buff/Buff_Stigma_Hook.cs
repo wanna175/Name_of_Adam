@@ -32,40 +32,32 @@ public class Buff_Stigma_Hook : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-
-        Vector2 casterPosition = caster.Location;
-        Vector2 receiverPosition = receiver.Location;
         float currntMin = 100f;
-
-        List<Vector2> moveVectorList = new();
+        Vector2 moveVector = receiver.Location;
 
         foreach (Vector2 direction in UDLR)
         {
-            Vector2 vec = receiverPosition + direction;
-            float sqr = (vec - casterPosition).sqrMagnitude;
-
-            if (!BattleManager.Field.IsInRange(vec))
-                continue;
+            Vector2 vec = receiver.Location + direction;
+            float sqr = (vec - caster.Location).sqrMagnitude;
 
             if (currntMin > sqr)
             {
                 currntMin = sqr;
-                moveVectorList.Clear();
-                if (!BattleManager.Field.TileDict[vec].UnitExist)
+                if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
                 {
-                    moveVectorList.Add(vec);
+                    moveVector = vec;
                 }
             }
             else if (currntMin == sqr)
             {
-                moveVectorList.Add(vec);
+                if (direction.x != 0 && BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
+                {
+                    moveVector = vec;
+                }
             }
         }
 
-        if (moveVectorList.Count == 0)
-            BattleManager.Field.MoveUnit(receiver.Location, receiverPosition);
-        else
-            BattleManager.Field.MoveUnit(receiver.Location, moveVectorList[Random.Range(0, moveVectorList.Count)]);
+        BattleManager.Field.MoveUnit(receiver.Location, moveVector);
 
         return false;
     }
