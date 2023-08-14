@@ -183,11 +183,6 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 시작
         BattleManager.Data.CorruptUnits.Add(this);
 
-        if (ChangeTeam() == Team.Enemy)
-        {
-            Fall.Editfy();
-        }
-
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -195,6 +190,11 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        if (ChangeTeam() == Team.Enemy)
+        {
+            Fall.Editfy();
+        }
+
         BattleManager.Data.CorruptUnits.Remove(this);
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
