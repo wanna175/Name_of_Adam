@@ -36,7 +36,7 @@ public class BattleUnit : MonoBehaviour
     private bool _nextMoveSkip = false;
     private bool _nextAttackSkip = false;
 
-    private  bool[] _moveRangeList;
+    private bool[] _moveRangeList;
 
     public void Init()
     {
@@ -54,10 +54,11 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         _scale = transform.localScale.x;
-        _moveRangeList = Data.MoveRange;
+        _moveRangeList = new bool[Data.MoveRange.Length];
+        Array.Copy(Data.MoveRange, _moveRangeList, Data.MoveRange.Length);
 
         DeckUnit.SetStigma();
-        BattleManager.Data.BattleUnitAdd(this);
+        BattleManager.Data.BattleUnitList.Add(this);
 
         GameManager.Sound.Play("Summon/SummonSFX");
     }
@@ -206,6 +207,7 @@ public class BattleUnit : MonoBehaviour
         BattleManager.Instance.BattleOverCheck();
     }
 
+    //애니메이션에서 직접 실행시킴
     public void AnimAttack()
     {
         StartCoroutine(BattleManager.Instance.UnitAttack());

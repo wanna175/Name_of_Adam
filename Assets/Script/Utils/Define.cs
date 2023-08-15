@@ -207,6 +207,9 @@ public enum BuffEnum
     Repetance,
     Martyrdom,
     Misdeed,
+    Expand,
+    SolarEclipse,
+    LunarEclipse,
 
     DeathStrike,
 
