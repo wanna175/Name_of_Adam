@@ -20,6 +20,7 @@ public class StageManager : MonoBehaviour
 
     List<Stage> StageList;
     [SerializeField] Stage CurrentStage;
+    [SerializeField] StageCameraController CameraController;
 
     StageChanger _stageChanger;
 
@@ -57,7 +58,7 @@ public class StageManager : MonoBehaviour
         int curID = GameManager.Data.Map.CurrentTileID;
 
         CurrentStage = StageList.Find(x => x.Datas.ID == curID);
-        StartBlink();
+        CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
     }
 
     private void SetStageData()
@@ -79,11 +80,6 @@ public class StageManager : MonoBehaviour
         GameManager.Data.Map.StageList = StageDatas;
     }
 
-    private void StartBlink()
-    {
-        foreach (Stage stage in CurrentStage.NextStage)
-            stage.StartBlink();
-    }
 
     public void StageMove(int _id)
     {

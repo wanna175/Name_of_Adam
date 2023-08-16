@@ -36,7 +36,7 @@ public class BattleUnit : MonoBehaviour
     private bool _nextMoveSkip = false;
     private bool _nextAttackSkip = false;
 
-    private  bool[] _moveRangeList;
+    private bool[] _moveRangeList;
 
     public void Init()
     {
@@ -54,10 +54,12 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         _scale = transform.localScale.x;
-        _moveRangeList = Data.MoveRange;
+
+        _moveRangeList = new bool[Data.MoveRange.Length];
+        Array.Copy(Data.MoveRange, _moveRangeList, Data.MoveRange.Length);
 
         DeckUnit.SetStigma();
-        BattleManager.Data.BattleUnitAdd(this);
+        BattleManager.Data.BattleUnitList.Add(this);
 
         GameManager.Sound.Play("Summon/SummonSFX");
     }
@@ -183,11 +185,6 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 시작
         BattleManager.Data.CorruptUnits.Add(this);
 
-        if (ChangeTeam() == Team.Enemy)
-        {
-            Fall.Editfy();
-        }
-
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -195,6 +192,11 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        if (ChangeTeam() == Team.Enemy)
+        {
+            Fall.Editfy();
+        }
+
         BattleManager.Data.CorruptUnits.Remove(this);
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
@@ -204,8 +206,10 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
         BattleManager.Instance.BattleOverCheck();
+        ActiveTimingCheck(ActiveTiming.STIGMA);
     }
 
+    //애니메이션에서 직접 실행시킴
     public void AnimAttack()
     {
         StartCoroutine(BattleManager.Instance.UnitAttack());
@@ -293,6 +297,8 @@ public class BattleUnit : MonoBehaviour
             {
                 //타락시켰을 시 체크
                 ActiveTimingCheck(ActiveTiming.FALL, unit);
+                ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, unit);
+
                 attackSkip = true;
             }
 
@@ -303,6 +309,13 @@ public class BattleUnit : MonoBehaviour
 
             //공격 후 체크
             ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit, ChangedDamage);
+
+            if (unit.HP.GetCurrentHP() <= 0)
+            {
+                ActiveTimingCheck(ActiveTiming.UNIT_KILL, unit);
+                ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, unit);
+            }
+
             ChangedDamage = 0;
         }
     }
@@ -322,8 +335,8 @@ public class BattleUnit : MonoBehaviour
     }
 
     public void ChangeHP(int value) {
-        HP.ChangeHP(value);
         DeckUnit.DeckUnitChangedStat.CurrentHP += value;
+        HP.ChangeHP(value);
         _hpBar.RefreshHPBar(HP.FillAmount());
     }
 
@@ -369,7 +382,7 @@ public class BattleUnit : MonoBehaviour
     {
         for (int i = 0; i < _moveRangeList.Length; i++)
         {
-            _moveRangeList[i] = _moveRangeList[i] || rangeList[i];
+            _moveRangeList[i] |= rangeList[i];
         }
     }
 

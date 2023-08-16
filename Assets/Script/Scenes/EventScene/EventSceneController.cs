@@ -17,16 +17,17 @@ public class EventSceneController : MonoBehaviour
         _stigma.SetActive(false);
         _harlot.SetActive(false);
 
-        //_sceneName = 
+        DataManager _data = GameManager.Data;
+        _sceneName = _data.Map.StageList.Find(x => x.ID == _data.Map.CurrentTileID).Name.ToString();
     }
 
     public void Start()
     {
-        if(_sceneName == "Upgrade")
+        if(_sceneName == "UpgradeStore")
         {
             _upgrade.SetActive(true);
         }
-        else if(_sceneName == "Stigma")
+        else if(_sceneName == "StigmaStore")
         {
             _stigma.SetActive(true);
         }

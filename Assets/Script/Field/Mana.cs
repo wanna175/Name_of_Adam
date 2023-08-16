@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mana : MonoBehaviour
 {
     // Mana Manage
-    [SerializeField] private int _maxManaCost = 100;
+    [SerializeField] private int _maxMana = 100;
     [ReadOnly, SerializeField] private int _currentMana = 0;
     private UI_ManaGauge _manaGuage;
 
@@ -19,14 +19,20 @@ public class Mana : MonoBehaviour
 
     public void ChangeMana(int value)
     {
-        _currentMana += value;
+        if (_currentMana + value > _maxMana)
+        {
+            _currentMana = _maxMana;
+        }  
+        else if (_currentMana + value < 0)
+        {
+            Debug.Log("Not enough mana");
+        }
+        else
+        {
+            _currentMana += value;
+        }
 
-        if (_maxManaCost <= _currentMana)
-            _currentMana = _maxManaCost;
-        else if (_currentMana < 0)
-            _currentMana = 0;
-
-        _manaGuage.DrawGauge(_maxManaCost, _currentMana);
+        _manaGuage.DrawGauge(_maxMana, _currentMana);
     }
 
     public bool CanUseMana(int value)

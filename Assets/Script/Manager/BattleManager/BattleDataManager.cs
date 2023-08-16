@@ -10,14 +10,18 @@ public class BattleDataManager : MonoBehaviour
         Init();
     }
 
-    [SerializeField] private List<DeckUnit> _playerDeck = new List<DeckUnit>();
+    [SerializeField] private List<DeckUnit> _playerDeck = new();
     public List<DeckUnit> PlayerDeck => _playerDeck;
 
-    [SerializeField] private List<DeckUnit> _playerHands = new List<DeckUnit>();
+    [SerializeField] private List<DeckUnit> _playerHands = new();
     public List<DeckUnit> PlayerHands => _playerHands;
 
     public List<BattleUnit> HitUnits;
     public List<BattleUnit> CorruptUnits;
+
+    // 전투를 진행중인 캐릭터가 들어있는 리스트
+    private List<BattleUnit> _battleUnitList = new();
+    public List<BattleUnit> BattleUnitList => _battleUnitList;
 
     private void Init()
     {
@@ -32,14 +36,14 @@ public class BattleDataManager : MonoBehaviour
     {
         Debug.Log("BattleDataManager Destroy");
 
-        foreach (BattleUnit unit in BattleUnitList)
+        foreach (BattleUnit unit in _battleUnitList)
         {
             unit.DeckUnit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit.DeckUnit);
             Debug.Log(unit.Data.Name);
         }
 
-        BattleUnitList.Clear();
+        _battleUnitList.Clear();
 
         foreach (DeckUnit unit in PlayerHands)
         {
@@ -60,7 +64,7 @@ public class BattleDataManager : MonoBehaviour
     public void TurnPlus()
     {
         _turnCount++;
-        BattleManager.BattleUI.UI_turnCount.Refresh();
+        //BattleManager.BattleUI.UI_turnCount.Refresh();
     }
 
     public void DarkEssenseChage(int chage)
@@ -87,27 +91,15 @@ public class BattleDataManager : MonoBehaviour
         return unit;
     }
 
-    // 전투를 진행중인 캐릭터가 들어있는 리스트
-    List<BattleUnit> _battleUnitList = new List<BattleUnit>();
-    public List<BattleUnit> BattleUnitList => _battleUnitList;
-
-    // 현재 리스트를 초기화
-    public void UnitListClear() => BattleUnitList.Clear();
-
-    // 리스트에 캐릭터를 추가 / 제거
-    public void BattleUnitAdd(BattleUnit unit) => BattleUnitList.Add(unit);
-
-    public void BattleUnitRemove(BattleUnit unit) => BattleUnitList.Remove(unit);
-
     #region OrderedList
-    private List<BattleUnit> _battleUnitOrderList = new List<BattleUnit>();
+    private List<BattleUnit> _battleUnitOrderList = new();
     public int OrderUnitCount => _battleUnitOrderList.Count;
 
     public void BattleUnitOrder()
     {
         _battleUnitOrderList.Clear();
 
-        foreach (BattleUnit unit in BattleUnitList)
+        foreach (BattleUnit unit in _battleUnitList)
         {
             _battleUnitOrderList.Add(unit);
         }

@@ -24,13 +24,20 @@ public class UI_PlayerSkill : UI_Scene
     {
         PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
         
-        if (!prepare.isFirst && !Used)
+        if (!prepare.isFirst && !Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()))
         {
             if (card != null && card == _selectedCard)
             {
                 //선택 취소
                 CancelSelect();
                 card.GetSkill().CancelSelect();
+            }
+            else if (_selectedCard != null && card != _selectedCard)
+            {
+                //기존 선택 취소 및 재선택
+                _selectedCard.GetSkill().CancelSelect();
+                OnSelect(card);
+                card.GetSkill().OnSelect();
             }
             else
             {

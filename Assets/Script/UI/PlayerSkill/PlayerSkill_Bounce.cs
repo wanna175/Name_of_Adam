@@ -10,8 +10,8 @@ public class PlayerSkill_Bounce : PlayerSkill
         //이팩트를 여기에 추가
 
         BattleUnit unit = BattleManager.Field.GetUnit(coord);
-
-        BattleManager.Data.BattleUnitRemove(unit);
+        
+        BattleManager.Data.BattleUnitList.Remove(unit);
         BattleManager.Data.BattleOrderRemove(unit);
         BattleManager.Data.AddDeckUnit(unit.DeckUnit);
         BattleManager.BattleUI.FillHand();

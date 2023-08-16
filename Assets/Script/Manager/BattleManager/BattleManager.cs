@@ -38,8 +38,6 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] List<GameObject> Background;
 
-    [SerializeField] List<GameObject> CutSceneBackground;
-
     private void Awake()
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
@@ -110,13 +108,11 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            CutSceneBackground[i].gameObject.SetActive(false);
             Background[i].gameObject.SetActive(false);
-            //Background
+            
             // if (((Faction)i + 1).ToString() == str)
             if (i == 0)
-                CutSceneBackground[i].gameObject.SetActive(true);
-            Background[i].gameObject.SetActive(true);
+                Background[i].gameObject.SetActive(true);
 
         }
     }
@@ -207,7 +203,7 @@ public class BattleManager : MonoBehaviour
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
-            List<BattleUnit> unitList = new List<BattleUnit>();
+            List<BattleUnit> unitList = new();
 
             foreach (Vector2 splash in splashRange)
             {
@@ -221,7 +217,7 @@ public class BattleManager : MonoBehaviour
                     unitList.Add(targetUnit);
             }
 
-            AttackStart(unit, unitList);
+            unit.Action.ActionStart(unitList);
         }
     }
 
@@ -233,6 +229,7 @@ public class BattleManager : MonoBehaviour
 
         yield return StartCoroutine(BattleCutScene.AfterAttack());
         yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
+        yield return new WaitForSeconds(1);
 
         EndUnitAction();
     }
@@ -281,8 +278,8 @@ public class BattleManager : MonoBehaviour
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());
         BattleOverCheck();
-        _phase.ChangePhase(_phase.Engage);
         BattleUI.UI_darkEssence.Refresh();
+        _phase.ChangePhase(_phase.Engage);
     }
 
     public void StigmaSelectEvent(Corruption cor)
@@ -290,9 +287,13 @@ public class BattleManager : MonoBehaviour
         BattleUnit targetUnit = cor.GetTargetUnit();
 
         if (!targetUnit.Fall.IsEdified)
+        {
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+        }
         else
+        { 
             cor.LoopExit();
+        }
     }
 
     public void DirectAttack()
@@ -314,7 +315,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitDeadEvent(BattleUnit unit)
     {
-        BattleManager.Data.BattleUnitRemove(unit);
+        BattleManager.Data.BattleUnitList.Remove(unit);
         BattleManager.Data.BattleOrderRemove(unit);
 
         if (unit.Team == Team.Enemy)

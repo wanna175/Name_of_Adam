@@ -105,7 +105,6 @@ public class BattleCutSceneController : MonoBehaviour
         Blur = GameManager.Resource.Instantiate("TestBlur");
 
         float time = 0;
-        Vector3 moveVec = CSData.MovePosition;
 
         while (time <= ZoomTime)
         {

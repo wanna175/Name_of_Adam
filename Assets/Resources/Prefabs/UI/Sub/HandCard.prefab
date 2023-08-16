@@ -610,6 +610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _highlight: {fileID: 6681609024184896537}
   _unitCard: {fileID: 2242102603483642898}
+  _hand: {fileID: 9037217407852231977}
   IsSelected: 0
 --- !u!61 &8798700562663675551
 BoxCollider2D:

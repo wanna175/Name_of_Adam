@@ -30,6 +30,8 @@ public class ActionPhase : Phase
 
     public override void OnStateExit()
     {
+        BattleManager.Field.ClearAllColor();
+
         _nowUnit.AttackTurnEnd();
         _nowUnit = null;
     }
