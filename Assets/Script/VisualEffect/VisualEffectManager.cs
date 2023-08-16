@@ -19,8 +19,8 @@ public class VisualEffectManager : MonoBehaviour
     {
         root = transform;
 
-        EffectQueue = new Dictionary<AnimEffects, Queue<GameObject>>();
-        AnimEffectNames = new Dictionary<AnimEffects, string>();
+        EffectQueue = new();
+        AnimEffectNames = new();
 
         foreach (AnimEffects effect in Enum.GetValues(typeof(AnimEffects)))
         {
@@ -49,8 +49,10 @@ public class VisualEffectManager : MonoBehaviour
         if (myOverrideController != null)
             myController = myOverrideController.runtimeAnimatorController;
 
-        AnimatorOverrideController overrideController = new AnimatorOverrideController();
-        overrideController.runtimeAnimatorController = myController;
+        AnimatorOverrideController overrideController = new()
+        {
+            runtimeAnimatorController = myController
+        };
         overrideController["VisualEffect"] = clip;
 
         _animator.runtimeAnimatorController = overrideController;
@@ -76,7 +78,6 @@ public class VisualEffectManager : MonoBehaviour
 
         go.GetComponent<SpriteRenderer>().sprite = sprite;
     }
-
 
     private void CreateEffect(AnimEffects effect)
     {

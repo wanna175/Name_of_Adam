@@ -205,7 +205,7 @@ public class BattleManager : MonoBehaviour
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
-            List<BattleUnit> unitList = new List<BattleUnit>();
+            List<BattleUnit> unitList = new();
 
             foreach (Vector2 splash in splashRange)
             {
@@ -219,20 +219,10 @@ public class BattleManager : MonoBehaviour
                     unitList.Add(targetUnit);
             }
 
-            AttackStart(unit, unitList);
+            unit.Action.ActionStart(unitList);
         }
     }
     #endregion
-
-    public IEnumerator UnitAttack()
-    {
-        UnitAttackAction();
-
-        yield return StartCoroutine(BattleCutScene.AfterAttack());
-        yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
-
-        EndUnitAction();
-    }
 
     public void AttackStart(BattleUnit caster, BattleUnit hit)
     {
@@ -247,6 +237,16 @@ public class BattleManager : MonoBehaviour
     {
         Data.HitUnits = hits;
         BattleCutScene.BattleCutScene(caster, Data.HitUnits);
+    }
+
+    public IEnumerator UnitAttack()
+    {
+        UnitAttackAction();
+
+        yield return StartCoroutine(BattleCutScene.AfterAttack());
+        yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
+
+        EndUnitAction();
     }
 
     // 애니메이션용 추가
@@ -280,8 +280,8 @@ public class BattleManager : MonoBehaviour
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());
         BattleOverCheck();
-        _phase.ChangePhase(_phase.Engage);
         BattleUI.UI_darkEssence.Refresh();
+        _phase.ChangePhase(_phase.Engage);
     }
 
     public void StigmaSelectEvent(Corruption cor)
@@ -289,9 +289,13 @@ public class BattleManager : MonoBehaviour
         BattleUnit targetUnit = cor.GetTargetUnit();
 
         if (!targetUnit.Fall.IsEdified)
+        {
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+        }
         else
+        { 
             cor.LoopExit();
+        }
     }
 
     public void DirectAttack()
@@ -313,7 +317,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitDeadEvent(BattleUnit unit)
     {
-        BattleManager.Data.BattleUnitRemove(unit);
+        BattleManager.Data.BattleUnitList.Remove(unit);
         BattleManager.Data.BattleOrderRemove(unit);
 
         if (unit.Team == Team.Enemy)
