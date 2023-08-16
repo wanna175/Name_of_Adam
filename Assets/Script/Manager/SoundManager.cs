@@ -103,7 +103,8 @@ public class SoundManager : MonoBehaviour
         else if(scenename == "EventScene")
         {
             Clear();
-            //Play(scenename + "/" + )
+            string storeName = GameManager.Data.GetCurrentStageData().Name.ToString();
+            Play(scenename + "/" + storeName);
 
         }
         else if (scenename != "LogoScene" && scenename != "CutScene")

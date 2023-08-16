@@ -17,8 +17,7 @@ public class EventSceneController : MonoBehaviour
         _stigma.SetActive(false);
         _harlot.SetActive(false);
 
-        DataManager _data = GameManager.Data;
-        _sceneName = _data.Map.StageList.Find(x => x.ID == _data.Map.CurrentTileID).Name.ToString();
+        _sceneName = GameManager.Data.GetCurrentStageData().Name.ToString();
     }
 
     public void Start()
