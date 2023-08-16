@@ -22,9 +22,12 @@ public class UI_Info : UI_Scene
     //색상은 UI에서 정해주는대로
     readonly Color goodColor = Color.yellow;
     readonly Color badColor = Color.red;
+    readonly Color textColor = new Color(195f, 195f, 195f);
     readonly string goodColorStr = "yellow";
     readonly string badColorStr = "red";
-    readonly string normalColorStr = "white";
+    readonly string normalColorStr = "grey";
+    
+    
 
     public void SetInfo(BattleUnit battleUnit)
     {
