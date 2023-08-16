@@ -9,7 +9,7 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private Stat _rawStat;
     public Stat RawStat => _rawStat;
 
-    [SerializeField] private List<Stigma> _uniqueStigma = new();
+    [SerializeField] private List<Stigma> _uniqueStigma = new ();
     public List<Stigma> UniqueStigma => _uniqueStigma;
 
     // 변경되지않는 값들
@@ -19,9 +19,6 @@ public class UnitDataSO : ScriptableObject
 
     [SerializeField] private string _description;
     public string Description => _description;
-
-    [SerializeField] private Faction _faction;
-    public Faction Faction => _faction;
 
     [SerializeField] private Rarity _rarity;
     public Rarity Rarity => _rarity;

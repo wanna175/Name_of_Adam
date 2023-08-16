@@ -192,11 +192,6 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 시작
         BattleManager.Data.CorruptUnits.Add(this);
 
-        if (ChangeTeam() == Team.Enemy)
-        {
-            Fall.Editfy();
-        }
-
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -204,6 +199,11 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        if (ChangeTeam() == Team.Enemy)
+        {
+            Fall.Editfy();
+        }
+
         BattleManager.Data.CorruptUnits.Remove(this);
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
@@ -269,19 +269,20 @@ public class BattleUnit : MonoBehaviour
     public IEnumerator MovePosition(Vector3 dest)
     {
         float moveTime = 0.4f;
-        float time = 0;
-        Vector3 curP = transform.position;
-        Vector3 curS = transform.localScale;
+        Vector3 pVel = Vector3.zero;
+        Vector3 sVel = Vector3.zero;
 
         float addScale = GetModifiedScale();
 
-        while (time < moveTime)
+        while (Vector3.Distance(dest, transform.position) >= 0.05f)
         {
-            time += Time.deltaTime;
-            transform.position = Vector3.Lerp(curP, dest, time / moveTime);
-            transform.localScale = Vector3.Lerp(curS, new Vector3(addScale, addScale, 1), time / moveTime);
+            transform.position = Vector3.SmoothDamp(transform.position, dest, ref pVel, moveTime);
+            transform.localScale = Vector3.SmoothDamp(transform.localScale, new Vector3(addScale, addScale, 1), ref sVel, moveTime);
             yield return null;
         }
+
+        transform.position = dest;
+        transform.localScale = new Vector3(addScale, addScale, 1);
     }
 
     //엑티브 타이밍에 대미지 바꿀 때용

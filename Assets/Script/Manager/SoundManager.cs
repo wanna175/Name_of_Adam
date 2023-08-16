@@ -92,7 +92,27 @@ public class SoundManager : MonoBehaviour
         return audioClip;
     }
 
-    
+    public void SceneBGMPlay(string scenename)
+    {
+        if (scenename == "BattleScene" || scenename == "TutorialScene")
+        {
+            Clear();
+            Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
+            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+        }
+        else if(scenename == "EventScene")
+        {
+            Clear();
+            string storeName = GameManager.Data.GetCurrentStageData().Name.ToString();
+            Play(scenename + "/" + storeName);
+
+        }
+        else if (scenename != "LogoScene" && scenename != "CutScene")
+        {
+            Clear();
+            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+        }
+    }
    
 
 

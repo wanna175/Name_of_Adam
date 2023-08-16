@@ -15,7 +15,7 @@ public class BattleDataManager : MonoBehaviour
 
     [SerializeField] private List<DeckUnit> _playerHands = new();
     public List<DeckUnit> PlayerHands => _playerHands;
-    
+
     public List<BattleUnit> HitUnits;
     public List<BattleUnit> CorruptUnits;
 
@@ -55,6 +55,7 @@ public class BattleDataManager : MonoBehaviour
         PlayerHands.Clear();
 
         GameManager.Data.SetDeck(_playerDeck);
+        GameManager.SaveManager.SaveGame();
     }
 
     private int _turnCount = 0;

@@ -30,10 +30,10 @@ public class UnitSpawner : MonoBehaviour
     private void Start()
     {
         // 디버그용
-        if (GameManager.Data.CurrentStageData.Units.Count == 0)
+        if (GameManager.Data.Map.CurrentTileID == 0)
         {
             foreach (SpawnData data in AnimTest)
-              InitSpawn(data);
+                InitSpawn(data);
         }
         // 디버그용
     }
@@ -68,13 +68,14 @@ public class UnitSpawner : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
-        List<StageUnitData> datas = GameManager.Data.CurrentStageData.Units;
-        string factionName = GameManager.Data.CurrentStageData.FactionName;
+        DataManager _data = GameManager.Data;
+        StageData stage = GameManager.Data.GetCurrentStageData();
+        List<StageUnitData> datas = GameManager.Data.StageDatas[stage.StageLevel].Find(x => x.ID == stage.StageID).Units;
 
         foreach (StageUnitData data in datas)
         {
             SpawnData sd = new SpawnData();
-            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{factionName}/{data.Name}");
+            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{data.Name}");
             sd.location = data.Location;
             sd.team = Team.Enemy;
 
