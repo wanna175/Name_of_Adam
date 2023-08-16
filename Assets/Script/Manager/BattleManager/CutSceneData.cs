@@ -9,10 +9,10 @@ public class BattleCutSceneData
 
     // 각 유닛의 위치
     public Vector3 AttackPosition;
-    public List<Vector3> HitPosition = new List<Vector3>();
+    public List<Vector3> HitPosition;
     // 각 유닛의 타일 위치
     public Vector2 AttackLocation;
-    public List<Vector2> HitLocation = new List<Vector2>();
+    public List<Vector2> HitLocation;
 
     // 공격 타입
     public CutSceneMoveType MoveType;
