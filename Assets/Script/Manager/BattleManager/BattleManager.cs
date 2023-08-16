@@ -230,6 +230,7 @@ public class BattleManager : MonoBehaviour
 
         yield return StartCoroutine(BattleCutScene.AfterAttack());
         yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
+        yield return new WaitForSeconds(1);
 
         EndUnitAction();
     }
