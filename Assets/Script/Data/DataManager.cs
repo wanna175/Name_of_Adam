@@ -71,6 +71,11 @@ public class DataManager : MonoBehaviour
         return JsonUtility.FromJson<T>(textAsset.text);
     }
 
+    public StageData GetCurrentStageData()
+    {
+        return Map.StageList.Find(x => x.ID == Map.CurrentTileID);
+    }
+
     [SerializeField] private List<DeckUnit> _playerDeck = new ();
     public List<DeckUnit> PlayerDeck => _playerDeck;
 
@@ -176,7 +181,7 @@ public class DataManager : MonoBehaviour
         //80 15 5   ~1?? ????
         //70 20 10  ~2?? ????Ʈ
         //60 25 15  ~2?? ????
-        //??忡???? 4?ܰ? ???
+        //??�???? 4?ܰ? ???
 
         List<int> probability = new();
         probability.Add(99);

@@ -362,7 +362,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        StageData data = GameManager.Data.Map.StageList.Find(x => x.ID == GameManager.Data.Map.CurrentTileID);
+        StageData data = GameManager.Data.GetCurrentStageData();
         if (data.StageLevel >= 10)
         {
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
