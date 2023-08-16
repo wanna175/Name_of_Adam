@@ -23,40 +23,24 @@ public class StageData
 
 public class Stage : MonoBehaviour
 {
-    [SerializeField] Animation Anim;
+    [SerializeField] StageNodeBackLight BackLight;
     [Space(10f)]
     [SerializeField] public List<Stage> NextStage;
     [Space(10f)]
     [Header("StageInfo")]
     [SerializeField] public StageData Datas;
 
-    private Coroutine coro;
-    private float ZoomSpeed = 0.05f;
-
 
     private void Awake()
     {
         StageManager.Instance.InputStageList(this);
-
-        coro = null;
-        Anim.Stop();
     }
 
     public void OnMouseUp() => StageManager.Instance.StageMove(Datas.ID);
 
-    public void OnMouseEnter()
-    {
-        if (coro != null)
-            StopCoroutine(coro);
-        coro = StartCoroutine(SizeUp());
-    }
+    public void OnMouseEnter() => BackLight.FadeIn();
 
-    public void OnMouseExit()
-    {
-        if (coro != null)
-            StopCoroutine(coro);
-        coro = StartCoroutine(SizeDown());
-    }
+    public void OnMouseExit() => BackLight.FadeOut();
 
     public StageData SetBattleStage(int a, int b)
     {
@@ -64,32 +48,5 @@ public class Stage : MonoBehaviour
         Datas.StageID = b;
 
         return Datas;
-    }
-
-    public void StartBlink()
-    {
-        Anim.Play();
-    }
-
-    IEnumerator SizeUp()
-    {
-        while (transform.localScale.x < 1.5f)
-        {
-            transform.localScale += new Vector3(ZoomSpeed, ZoomSpeed);
-            yield return null;
-        }
-
-        transform.localScale = new Vector3(1.5f, 1.5f, 1);
-    }
-
-    IEnumerator SizeDown()
-    {
-        while (transform.localScale.x > 1)
-        {
-            transform.localScale -= new Vector3(ZoomSpeed, ZoomSpeed);
-            yield return null;
-        }
-
-        transform.localScale = new Vector3(1, 1, 1);
     }
 }

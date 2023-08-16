@@ -112,8 +112,7 @@ public class BattleManager : MonoBehaviour
             
             // if (((Faction)i + 1).ToString() == str)
             if (i == 0)
-                CutSceneBackground[i].gameObject.SetActive(true);
-            Background[i].gameObject.SetActive(true);
+                Background[i].gameObject.SetActive(true);
 
         }
     }
