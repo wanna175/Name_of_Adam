@@ -17,14 +17,7 @@ public class StageChanger
         }
         else if (stage.Type == StageType.Store)
         {
-            if (stage.Name == StageName.StigmaStore)
-            {
-                SceneChanger.SceneChange("StigmaScene");
-            }
-            else if (stage.Name == StageName.UpgradeStore)
-            {
-                SceneChanger.SceneChange("UpgradeScene");
-            }
+            SceneChanger.SceneChange("EventScene");
         }
     }
 }
