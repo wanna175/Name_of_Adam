@@ -54,6 +54,7 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         _scale = transform.localScale.x;
+
         _moveRangeList = new bool[Data.MoveRange.Length];
         Array.Copy(Data.MoveRange, _moveRangeList, Data.MoveRange.Length);
 
@@ -205,6 +206,7 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
         BattleManager.Instance.BattleOverCheck();
+        ActiveTimingCheck(ActiveTiming.STIGMA);
     }
 
     //애니메이션에서 직접 실행시킴
@@ -380,7 +382,7 @@ public class BattleUnit : MonoBehaviour
     {
         for (int i = 0; i < _moveRangeList.Length; i++)
         {
-            _moveRangeList[i] = _moveRangeList[i] || rangeList[i];
+            _moveRangeList[i] |= rangeList[i];
         }
     }
 

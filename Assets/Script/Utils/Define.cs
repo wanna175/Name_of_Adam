@@ -208,6 +208,7 @@ public enum BuffEnum
     Martyrdom,
     Misdeed,
     Expand,
+    Thirst,
     SolarEclipse,
     LunarEclipse,
 

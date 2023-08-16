@@ -289,9 +289,13 @@ public class BattleManager : MonoBehaviour
         BattleUnit targetUnit = cor.GetTargetUnit();
 
         if (!targetUnit.Fall.IsEdified)
+        {
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+        }
         else
+        { 
             cor.LoopExit();
+        }
     }
 
     public void DirectAttack()
