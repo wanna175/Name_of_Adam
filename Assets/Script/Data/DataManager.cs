@@ -4,11 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class TempStageStorage
-{
-    public Stage[] Stages = new Stage[3];
-}
 
 public interface ILoader<Key, Value>
 {
@@ -18,19 +13,10 @@ public interface ILoader<Key, Value>
 public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
-    
-    private List<Stage> _stageInfo;
-    public List<Stage> StageInfo { get { StageDataInit(); return _stageInfo; } set { _stageInfo = value; } }
-    public List<Stage> LocalStageInfo;
-    public List<MapSign> MapList;
-
-    public Stage[] StageArray = new Stage[3];
-
-    public StageDataContainer StageDatas;
-    public StageSpawnData CurrentStageData; // 버려질 친구
-    public Stage CurStageData; // NEW!!
-    public List<TempStageStorage> SmagaMap;
-    public List<Stage> SmagaRandomStage;
+    public Dictionary<int, List<StageSpawnData>> StageDatas = new Dictionary<int, List<StageSpawnData>>();
+    public List<Stage> StageList;
+    public MapData Map;
+    public int StageAct;
 
     [SerializeField] public GameData GameData;
     [SerializeField] public GameData GameDataOriginal;
@@ -41,9 +27,14 @@ public class DataManager : MonoBehaviour
     public void Init()
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
-        StageDatas = LoadJson<StageDataContainer>("StageData");
+        StageDatas = LoadJson<StageLoader, int, List<StageSpawnData>>("StageData").MakeDict();
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
         StigmaController = new StigmaController();
+
+        Map = new MapData();
+
+        if (GameManager.SaveManager.SaveFileCheck())
+            GameManager.SaveManager.LoadGame();
 
         _darkEssense = GameData.DarkEssence;
         _playerSkillCount = GameData.Incarna.PlayerSkillCount;
@@ -80,7 +71,7 @@ public class DataManager : MonoBehaviour
         return JsonUtility.FromJson<T>(textAsset.text);
     }
 
-    [SerializeField] private List<DeckUnit> _playerDeck = new();
+    [SerializeField] private List<DeckUnit> _playerDeck = new ();
     public List<DeckUnit> PlayerDeck => _playerDeck;
 
     public void AddDeckUnit(DeckUnit unit)
@@ -93,7 +84,7 @@ public class DataManager : MonoBehaviour
         GameData.DeckUnits.Remove(unit);
     }
 
-    public List<DeckUnit> GetDeck() 
+    public List<DeckUnit> GetDeck()
     {
         return GameData.DeckUnits;
     }
@@ -101,16 +92,6 @@ public class DataManager : MonoBehaviour
     public void SetDeck(List<DeckUnit> deck)
     {
         GameData.DeckUnits = deck;
-    }
-    
-    public void StageDataInit()
-    {
-        if (_stageInfo == null)
-        {
-            _stageInfo = new List<Stage>();
-            LocalStageInfo = new List<Stage>();
-            MapList = new List<MapSign>();
-        }
     }
 
     private int _money;
@@ -174,7 +155,7 @@ public class DataManager : MonoBehaviour
 
     public List<PlayerSkill> GetPlayerSkillList()
     {
-        List<PlayerSkill> skillList = new();
+        List<PlayerSkill> skillList = new ();
 
         foreach (PlayerSkill skill in GameData.Incarna.PlayerSkillList)
         {
@@ -189,13 +170,13 @@ public class DataManager : MonoBehaviour
     public List<int> GetProbability()
     {
 
-        //원래는 이런 함수가 아니라 조건에 따라 확률이 바뀌어야함, 데이터 완성 시 적용
-        //적어두겠음
-        //90 9 1    ~1장 엘리트
-        //80 15 5   ~1장 보스
-        //70 20 10  ~2장 엘리트
-        //60 25 15  ~2장 보스
-        //하드에서는 4단계로 고정
+        //?????? ?肩? ????? ?틈灸? ???퓻? ???? 확???? ?侮????, ????? ?究? ?? ????
+        //???????
+        //90 9 1    ~1?? ????트
+        //80 15 5   ~1?? ????
+        //70 20 10  ~2?? ????트
+        //60 25 15  ~2?? ????
+        //??恙�???? 4?丙? ???
 
         List<int> probability = new();
         probability.Add(99);

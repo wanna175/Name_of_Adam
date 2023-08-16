@@ -22,7 +22,7 @@ public class UpgradeSceneController : MonoBehaviour
     {
         List<Script> scripts = new List<Script>();
 
-        if(GameManager.Data.GameData.isVisitUpgrade == false)
+        if (GameManager.Data.GameData.isVisitUpgrade == false)
             scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
         else
             scripts = GameManager.Data.ScriptData["강화소_입장"];
@@ -63,7 +63,7 @@ public class UpgradeSceneController : MonoBehaviour
     // 유닛 선택 후 교화 풀기 버튼
     public void OnReleaseButtonClick()
     {
-        if(_unit.DeckUnitChangedStat.FallCurrentCount > 0)
+        if (_unit.DeckUnitChangedStat.FallCurrentCount > 0)
         {
             _unit.DeckUnitChangedStat.FallCurrentCount -= 1;
         }
@@ -72,7 +72,7 @@ public class UpgradeSceneController : MonoBehaviour
 
     }
 
-    public  void OnSelectUpgrade(DeckUnit unit)
+    public void OnSelectUpgrade(DeckUnit unit)
     {
         _unit = unit;
         _upgradeunitImage.sprite = unit.Data.Image;
@@ -93,9 +93,9 @@ public class UpgradeSceneController : MonoBehaviour
     }
 
 
-    
 
-    public void OnUpgradeSelect(int select) 
+
+    public void OnUpgradeSelect(int select)
     {
         GameManager.UI.ClosePopup();
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
@@ -105,7 +105,7 @@ public class UpgradeSceneController : MonoBehaviour
             _unit.DeckUnitUpgradeStat.ATK += 5;
             script.Init(GameManager.Data.ScriptData["강화소_공격력"], false);
         }
-        else if (select == 2) 
+        else if (select == 2)
         {
             _unit.DeckUnitUpgradeStat.MaxHP += 15;
             script.Init(GameManager.Data.ScriptData["강화소_체력"], false);
@@ -156,6 +156,7 @@ public class UpgradeSceneController : MonoBehaviour
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
+        GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
 }
