@@ -1,41 +1,28 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitAction : MonoBehaviour
+public class UnitAIController : MonoBehaviour
 {
     protected BattleDataManager _Data;
     protected Field _field;
 
-    protected BattleUnit _unit;
-    public void Init(BattleUnit unit)
-    {
-        _unit = unit;
-    }
+    protected BattleUnit caster;
 
-    public virtual void ActionStart(List<BattleUnit> hits)
-    {
-        BattleManager.Instance.AttackStart(_unit, hits);
-    }
-
-    public virtual void Action(BattleUnit receiver)
-    {
-        _unit.Attack(receiver, _unit.BattleUnitTotalStat.ATK);
-    }
-
-    //°ø°İ ¹üÀ§: ¿òÁ÷ÀÌÁö ¾Ê°í °ø°İÇÒ ¼ö ÀÖ´Â ¹üÀ§; Attack Range
-    //°ø°İ°¡´É Å¸ÀÏ: ÇØ´ç Å¸ÀÏ À§·Î ÀÌµ¿ÇÒ °æ¿ì °ø°İÇÒ ¼ö ÀÖ´Â Å¸ÀÏ; Attackable Tile
+    //ê³µê²© ë²”ìœ„: ì›€ì§ì´ì§€ ì•Šê³  ê³µê²©í•  ìˆ˜ ìˆëŠ” ë²”ìœ„; Attack Range
+    //ê³µê²©ê°€ëŠ¥ íƒ€ì¼: í•´ë‹¹ íƒ€ì¼ ìœ„ë¡œ ì´ë™í•  ê²½ìš° ê³µê²©í•  ìˆ˜ ìˆëŠ” íƒ€ì¼; Attackable Tile
 
     protected List<Vector2> UnitInAttackRangeList = new();//
-    //°ø°İ ¹üÀ§ ³» À¯´Ö
+    //ê³µê²© ë²”ìœ„ ë‚´ ìœ ë‹›
 
     protected List<Vector2> AttackableTileList = new();
-    //°ø°İ °¡´É Å¸ÀÏ 
+    //ê³µê²© ê°€ëŠ¥ íƒ€ì¼ 
 
     protected List<Vector2> AttackableTileInRangeList = new();
-    //°ø°İ °¡´É + »ç°Å¸® ³» Å¸ÀÏ
+    //ê³µê²© ê°€ëŠ¥ + ì‚¬ê±°ë¦¬ ë‚´ íƒ€ì¼
 
-    readonly protected List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
-    //»óÇÏÁÂ¿ì foreach¿ë
+    protected List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
+    //ìƒí•˜ì¢Œìš° foreachìš©
 
     protected Dictionary<Vector2, int> TileHPDict = new();
 
@@ -45,12 +32,17 @@ public class UnitAction : MonoBehaviour
         _field = BattleManager.Field;
     }
 
+    public void SetCaster(BattleUnit unit)
+    {
+        caster = unit;
+    }
+
     protected bool SetUnitInAttackRangeList()
     {
-        //À¯´ÖÀÇ °ø°İ ¹üÀ§ ³»¿¡ ÀÖ´Â À¯´ÖÀ» ¸®½ºÆ®¿¡ ´ã´Â´Ù.
-        foreach (Vector2 attackRange in _unit.GetAttackRange())
+        //ìºìŠ¤í„°ì˜ ê³µê²© ë²”ìœ„ ë‚´ì— ìˆëŠ” ìœ ë‹›ì„ ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤.
+        foreach (Vector2 attackRange in caster.GetAttackRange())
         {
-            Vector2 range = _unit.Location + attackRange;
+            Vector2 range = caster.Location + attackRange;
 
             if (!_field.IsInRange(range))
                 continue;
@@ -61,7 +53,7 @@ public class UnitAction : MonoBehaviour
 
                 if (TileHPDict.ContainsKey(range))
                 {
-                    if (TileHPDict[range] >= _field.GetUnit(range).HP.GetCurrentHP()) //¿©±â¼­ = ÀÌ ¹®Á¦ÀÏ ¼öµµ
+                    if (TileHPDict[range] >= _field.GetUnit(range).HP.GetCurrentHP())
                     {
                         TileHPDict.Remove(range);
                         TileHPDict.Add(range, _field.GetUnit(range).HP.GetCurrentHP());
@@ -79,18 +71,18 @@ public class UnitAction : MonoBehaviour
 
     protected void SetAttackableTile()
     {
-        //¸ğµç °ø°İ°¡´É Å¸ÀÏÀ» ¸®½ºÆ®¿¡ ÀúÀåÇÑ´Ù.
+        //ëª¨ë“  ê³µê²©ê°€ëŠ¥ íƒ€ì¼ì„ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥í•œë‹¤.
         foreach (BattleUnit unit in _Data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
             {
-                foreach (Vector2 range in _unit.GetAttackRange())
+                foreach (Vector2 range in caster.GetAttackRange())
                 {
-                    //°ø°İ°¡´É Å¸ÀÏÀº °ø°İÇÏ´Â À¯´ÖÀÇ °ø°İ ¹üÀ§ÀÇ Á¡ ´ëÄªÀÌ´Ù. µû¶ó¼­ -.
+                    //ê³µê²©ê°€ëŠ¥ íƒ€ì¼ì€ ê³µê²©í•˜ëŠ” ìœ ë‹›ì˜ ê³µê²© ë²”ìœ„ì˜ ì  ëŒ€ì¹­ì´ë‹¤. ë”°ë¼ì„œ -.
                     Vector2 attackableRange = unit.Location - range;
                     if (!_field.IsInRange(attackableRange))
                         continue;
-
+                   
                     AttackableTileList.Add(attackableRange);
 
                     if (TileHPDict.ContainsKey(attackableRange))
@@ -112,16 +104,16 @@ public class UnitAction : MonoBehaviour
 
     protected bool AttackableTileSearch()
     {
-        //Ä³½ºÅÍÀÇ ÀÌµ¿ ¹üÀ§ ³»¿¡ ÀÖ´Â °ø°İ°¡´É Å¸ÀÏÀ» ¸®½ºÆ®¿¡ ´ã´Â´Ù.
+        //ìºìŠ¤í„°ì˜ ì´ë™ ë²”ìœ„ ë‚´ì— ìˆëŠ” ê³µê²©ê°€ëŠ¥ íƒ€ì¼ì„ ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤.
         List<Vector2> swapList = new();
 
-        foreach (Vector2 moveRange in _unit.GetMoveRange())
+        foreach (Vector2 moveRange in caster.GetMoveRange())
         {
-            Vector2 range = _unit.Location + moveRange;
+            Vector2 range = caster.Location + moveRange;
 
-            if (AttackableTileList.Contains(_unit.Location))
+            if (AttackableTileList.Contains(caster.Location))
             {
-                AttackableTileInRangeList.Add(_unit.Location);
+                AttackableTileInRangeList.Add(caster.Location);
             }
 
             if (AttackableTileList.Contains(range))
@@ -133,7 +125,7 @@ public class UnitAction : MonoBehaviour
             }
         }
 
-        if (AttackableTileInRangeList.Count == 0)//½º¿ÒÇØ¾ß¸¸ °ø°İ °¡´ÉÇÑÁö È®ÀÎ
+        if (AttackableTileInRangeList.Count == 0)//ìŠ¤ì™‘í•´ì•¼ë§Œ ê³µê²© ê°€ëŠ¥í•œì§€ í™•ì¸
         {
             foreach (Vector2 vec in swapList)
                 AttackableTileInRangeList.Add(vec);
@@ -144,7 +136,7 @@ public class UnitAction : MonoBehaviour
 
     protected List<Vector2> MinHPSearch(List<Vector2> vecList)
     {
-        //¸®½ºÆ®¿¡¼­ °¡Àå Ã¼·ÂÀÌ ³·Àº ÀûÀ» Ã£´Â´Ù.
+        //ë¦¬ìŠ¤íŠ¸ì—ì„œ ê°€ì¥ ì²´ë ¥ì´ ë‚®ì€ ì ì„ ì°¾ëŠ”ë‹¤.
         List<Vector2> minHPList = new();
 
         int minHP = TileHPDict[vecList[0]];
@@ -171,14 +163,14 @@ public class UnitAction : MonoBehaviour
 
     protected void MoveUnit(Vector2 moveVector)
     {
-        _field.MoveUnit(_unit.Location, moveVector);
+        _field.MoveUnit(caster.Location, moveVector);
     }
 
     protected void Attack(Vector2 vec)
     {
-        List<BattleUnit> hitUnits = new();
+        List<BattleUnit> hitUnits = new List<BattleUnit>();
 
-        foreach (Vector2 splash in _unit.GetSplashRange(vec, _unit.Location))
+        foreach (Vector2 splash in caster.GetSplashRange(vec, caster.Location))
         {
             if (!_field.IsInRange(splash + vec))
                 continue;
@@ -190,12 +182,12 @@ public class UnitAction : MonoBehaviour
             }
         }
 
-        ActionStart(hitUnits);
+        caster.Action.ActionStart(hitUnits);
     }
 
     protected Vector2 NearestEnemySearch()
     {
-        Vector2 MyPosition = _unit.Location;
+        Vector2 MyPosition = caster.Location;
 
         float minDistance = 100f;
 
@@ -221,8 +213,8 @@ public class UnitAction : MonoBehaviour
 
     protected Vector2 MoveDirection(Vector2 destination)
     {
-        //°¡¾ßÇÏ´Â À§Ä¡ destinationÀ» ¹Ş¾Æ »óÇÏÁÂ¿ì Áß ¾îµğ·Î °¥Áö¸¦ Á¤ÇØ moveVecÀ¸·Î ¸®ÅÏÇÑ´Ù
-        Vector2 MyPosition = _unit.Location;
+        //ê°€ì•¼í•˜ëŠ” ìœ„ì¹˜ destinationì„ ë°›ì•„ ìƒí•˜ì¢Œìš° ì¤‘ ì–´ë””ë¡œ ê°ˆì§€ë¥¼ ì •í•´ moveVecìœ¼ë¡œ ë¦¬í„´í•œë‹¤
+        Vector2 MyPosition = caster.Location;
         float currntMin = 100f;
 
         List<Vector2> moveVectorList = new();
@@ -283,6 +275,11 @@ public class UnitAction : MonoBehaviour
         TileHPDict.Clear();
     }
 
+    public virtual void AIAction()
+    {
+
+    }
+
     public virtual void AIMove()
     {
         if (DirectAttackCheck())
@@ -294,14 +291,14 @@ public class UnitAction : MonoBehaviour
         if (AttackableTileSearch())
         {
             List<Vector2> MinHPUnit = MinHPSearch(AttackableTileInRangeList);
-
-            if (!MinHPUnit.Contains(_unit.Location))
+            
+            if (!MinHPUnit.Contains(caster.Location))
             {
                 MoveUnit(MoveDirection(MinHPUnit[Random.Range(0, MinHPUnit.Count)]));
             }
             else
             {
-                Debug.Log("Á¦ÀÚ¸®");
+                Debug.Log("ì œìë¦¬");
             }
         }
         else
@@ -326,3 +323,44 @@ public class UnitAction : MonoBehaviour
             BattleManager.Instance.EndUnitAction();
     }
 }
+
+public class CommonUnitAIController : UnitAIController
+{
+    public override void AIAction()
+    {
+        base.AIAction();
+    }
+    public override void AIMove()
+    {
+        base.AIMove();
+    }
+
+    public override void AISkillUse()
+    {
+        base.AISkillUse();
+    }
+}
+
+/*
+ if ê³µê²©ê°€ëŠ¥ë²”ìœ„ì— ì ì´ ìˆë‹¤
+    ì²´ë ¥ì´ ê°€ì¥ ë‚®ì€ ì  = ì°¾ê¸°()
+    if ì²´ë ¥ì´ ê°€ì¥ ë‚®ì€ ì .ê°¯ìˆ˜ >= 2
+        if ê°€ë§Œíˆ ë•Œë¦´ ìˆ˜ ìˆìœ¼ë©´
+             ì´ë™ ì•ˆí•¨
+             ë•Œë¦¼
+        else
+             ëœë¤í•˜ê²Œ ì´ë™
+             ë•Œë¦¼
+    else
+        ì´ë™
+        ë•Œë¦¼
+else ê°€ì¥ ê°€ê¹Œìš´ ì  ì´ë™
+
+ì°¾ê¸°():
+ì²´ë ¥ì´ ë‚®ì€ ì ì„ ì°¾ëŠ”ë‹¤.
+if ë§Œì•½ ìŠ¤ìœ„ì¹˜í•´ì•¼í•œë‹¤ë©´
+    if ë‹¤ë¥¸ ë°©ë²•ì´ ì—†ë‹¤ë©´
+         ì¶”ê°€
+    else 
+         ì•ˆ ì¶”ê°€
+*/

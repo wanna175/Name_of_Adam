@@ -75,7 +75,7 @@ public class BattleCutSceneData
         }
         else
         {
-            if (unit.GetComponent<SpriteRenderer>().flipX)
+            if (unit.GetFlipX())
             {
                 moveTile.x += 1;
                 AttackUnitDirection = 1;
