@@ -8,6 +8,8 @@ public class Stigma_BloodBlessing : Stigma
         base.Use(caster, receiver);
 
         Buff_Stigma_BloodBlessing bloodBlessing = new();
+        caster.SetBuff(bloodBlessing, caster);
+
         if (Tier == StigmaTier.Tier1)
         {
             bloodBlessing.SetValue(10);
@@ -16,6 +18,5 @@ public class Stigma_BloodBlessing : Stigma
         {
             bloodBlessing.SetValue(20);
         }
-        caster.SetBuff(bloodBlessing, caster);
     }
 }
