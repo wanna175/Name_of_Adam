@@ -181,7 +181,8 @@ public class UnitAIController : MonoBehaviour
                     hitUnits.Add(_field.GetUnit(splash + vec));
             }
         }
-        BattleManager.Instance.AttackStart(caster, hitUnits);
+
+        caster.Action.ActionStart(hitUnits);
     }
 
     protected Vector2 NearestEnemySearch()

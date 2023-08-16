@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/EndingCreditScene.unity
     guid: 23f8b5c773b1a0c43a99cb3c42999841
   - enabled: 1
-    path: Assets/Scenes/TestStageSelectScene.unity
+    path: Assets/Scenes/StageSelectScene.unity
     guid: 944e604fff7adf34f8cad7af8b2bac6e
   - enabled: 1
     path: Assets/Scenes/EventScene.unity

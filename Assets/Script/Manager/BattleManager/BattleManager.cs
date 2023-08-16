@@ -45,7 +45,7 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
-        
+
         SetBackground();
     }
 
@@ -104,19 +104,17 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        string str = GameManager.Data.CurrentStageData.FactionName;
+        // string str = GameManager.Data.CurrentStageData.FactionName;
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             Background[i].gameObject.SetActive(false);
-            //Background
-            if (((Faction)i + 1).ToString() == str)
+            
+            // if (((Faction)i + 1).ToString() == str)
+            if (i == 0)
                 Background[i].gameObject.SetActive(true);
 
         }
-
-        if(str == "" || str == null)
-            Background[0].gameObject.SetActive(true);
     }
 
     #region Click 관련
@@ -205,7 +203,7 @@ public class BattleManager : MonoBehaviour
         if (coord != unit.Location)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
-            List<BattleUnit> unitList = new List<BattleUnit>();
+            List<BattleUnit> unitList = new();
 
             foreach (Vector2 splash in splashRange)
             {
@@ -215,13 +213,14 @@ public class BattleManager : MonoBehaviour
                     continue;
 
                 // 힐러의 예외처리 필요
-                if(targetUnit.Team != unit.Team)
+                if (targetUnit.Team != unit.Team)
                     unitList.Add(targetUnit);
             }
 
-            AttackStart(unit, unitList);
+            unit.Action.ActionStart(unitList);
         }
     }
+
     #endregion
 
     public IEnumerator UnitAttack()
@@ -237,7 +236,7 @@ public class BattleManager : MonoBehaviour
 
     public void AttackStart(BattleUnit caster, BattleUnit hit)
     {
-        List<BattleUnit> hits = new();
+        List<BattleUnit> hits = new ();
         hits.Add(hit);
 
         Data.HitUnits = hits;
@@ -254,7 +253,7 @@ public class BattleManager : MonoBehaviour
     private void UnitAttackAction()
     {
         BattleUnit unit = Data.GetNowUnit();
-        
+
         foreach (BattleUnit hit in Data.HitUnits)
         {
             if (hit == null)
@@ -270,9 +269,7 @@ public class BattleManager : MonoBehaviour
         }
 
         string unitname = unit.DeckUnit.Data.Name;
-        string faction = unit.DeckUnit.Data.Faction.ToString();
-        Debug.Log(unitname + "   " + faction);
-        GameManager.Sound.Play("Character/" + faction + "/" + unitname + "/" + unitname + "_Attack");
+        GameManager.Sound.Play("Character/" + unitname + "/" + unitname + "_Attack");
 
     }
 
@@ -281,8 +278,8 @@ public class BattleManager : MonoBehaviour
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());
         BattleOverCheck();
-        _phase.ChangePhase(_phase.Engage);
         BattleUI.UI_darkEssence.Refresh();
+        _phase.ChangePhase(_phase.Engage);
     }
 
     public void StigmaSelectEvent(Corruption cor)
@@ -290,9 +287,13 @@ public class BattleManager : MonoBehaviour
         BattleUnit targetUnit = cor.GetTargetUnit();
 
         if (!targetUnit.Fall.IsEdified)
+        {
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+        }
         else
+        { 
             cor.LoopExit();
+        }
     }
 
     public void DirectAttack()
@@ -314,7 +315,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitDeadEvent(BattleUnit unit)
     {
-        BattleManager.Data.BattleUnitRemove(unit);
+        BattleManager.Data.BattleUnitList.Remove(unit);
         BattleManager.Data.BattleOrderRemove(unit);
 
         if (unit.Team == Team.Enemy)
@@ -361,8 +362,12 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        if(GameManager.Data.CurrentStageData.Level == 11)
+        StageData data = GameManager.Data.Map.StageList.Find(x => x.ID == GameManager.Data.Map.CurrentTileID);
+        if (data.StageLevel >= 10)
+        {
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+            GameManager.SaveManager.DeleteSaveData();
+        }
         else
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
     }
@@ -372,6 +377,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowScene<UI_BattleOver>().SetImage("lose");
+        GameManager.SaveManager.DeleteSaveData();
         GameManager.Data.DeckClear();
     }
 

@@ -78,15 +78,6 @@ public enum StageName
 }
 
 [SerializeField]
-public enum Faction
-{
-    오리지널      = 0,
-    월식의_기사단 = 1,
-    까마귀        = 2,
-    바벨          = 3,
-}
-
-[SerializeField]
 public enum BehaviorType
 {
     원거리,
@@ -122,10 +113,11 @@ public enum Sounds
 
 public enum ActiveTiming
 {
+    //2중 타이밍
     STIGMA, //낙인 발동(소환 시, 낙인 부여 시)
 
     SUMMON, //소환 후
-    
+
     TURN_START, //턴 시작 시
     TURN_END, //턴 종료 시
 
@@ -154,6 +146,11 @@ public enum ActiveTiming
 
     UNIT_DEAD, //자신이 사망 전
     FIELD_UNIT_DEAD, //필드 유닛이 사망 시
+
+    UNIT_KILL, //다른 유닛을 죽일 시
+
+    UNIT_TERMINATE, //유닛을 제거 시(타락시켰을 때, 죽였을 때)
+
 
     NONE//없음
 };
@@ -194,13 +191,17 @@ public enum BuffEnum
     Blessing,
     Sadism,
     Benediction,
-    Crime,
     Sin,
     Gamble,
     BloodBlessing,
     BloodFest,
     Repetance,
     Martyrdom,
+    Misdeed,
+    Expand,
+    Thirst,
+    SolarEclipse,
+    LunarEclipse,
 
     DeathStrike,
 
@@ -209,6 +210,7 @@ public enum BuffEnum
     Immortal,
     Tailwind,
 
+    Vice,
     TraceOfSolar,
     TraceOfLunar,
 
