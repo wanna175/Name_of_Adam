@@ -91,7 +91,5 @@ public class CameraHandler : MonoBehaviour
     {
         CutSceneCamera.transform.localPosition = Vector3.Lerp(CSData.ZoomLocation, MainCamera.transform.localPosition, t);
         CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, t);
-
-        CameraLotate(new Vector3(0, 0, CSData.GradientPower), new Vector3(0, 0, 0), t);
     }
 }
