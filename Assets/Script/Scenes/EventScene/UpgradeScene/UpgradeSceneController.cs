@@ -156,6 +156,7 @@ public class UpgradeSceneController : MonoBehaviour
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
+        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }

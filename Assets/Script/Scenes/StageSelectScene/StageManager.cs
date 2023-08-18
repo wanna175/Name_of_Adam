@@ -10,7 +10,7 @@ public class MapData
 {
     public List<StageData> StageList;
     public int CurrentTileID;
-    // public int[] PassedTileID;
+    public List<int> ClearTileID;
 }
 
 public class StageManager : MonoBehaviour
