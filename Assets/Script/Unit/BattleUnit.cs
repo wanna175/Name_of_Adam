@@ -151,9 +151,10 @@ public class BattleUnit : MonoBehaviour
             return;
         }
 
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), this.transform.position);
 
         BattleManager.Instance.UnitDeadEvent(this);
+        Debug.Log(Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitDeadEffect"));
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitDeadEffect"), this.transform.position);
         StartCoroutine(UnitDeadEffect());
         GameManager.Sound.Play("Dead/DeadSFX");
     }
@@ -328,6 +329,10 @@ public class BattleUnit : MonoBehaviour
         {
             return;
         }
+
+        GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/HitEffect"),
+            transform.position);
 
         ChangeHP(value);
 
