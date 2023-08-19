@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
     public static SaveController SaveManager => Instance._saveController;
 
 
-    public bool Tutorial_Trigger = true;
+    public bool Tutorial_Trigger_First = true;
+    public bool Tutorial_Trigger_Second = true;
 
     void Awake()
     {
