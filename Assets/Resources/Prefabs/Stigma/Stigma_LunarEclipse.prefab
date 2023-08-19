@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uC6D4\uC2DD"
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: a8805cb784edabc4d88e4224acb8688d, type: 3}
   _description: "\uC6D4\uC2DD"
   _activeTiming: 0
   _tier: 3
