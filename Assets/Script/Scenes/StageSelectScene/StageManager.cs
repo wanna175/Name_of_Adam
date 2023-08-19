@@ -59,6 +59,10 @@ public class StageManager : MonoBehaviour
         int curID = GameManager.Data.Map.CurrentTileID;
 
         CurrentStage = StageList.Find(x => x.Datas.ID == curID);
+
+        foreach (Stage st in CurrentStage.NextStage)
+            st.SetNextStage();
+
         if(curID == 17)
         {
             CameraController.SetLocate(-5);
@@ -74,25 +78,35 @@ public class StageManager : MonoBehaviour
     {
         List<StageData> StageDatas = new List<StageData>();
         int addLevel = GameManager.Data.StageAct * 2;
+        List<Vector2> existStage = new List<Vector2>();
 
-        foreach (Stage value in StageList)
+        for (int i = 0; i < StageList.Count; i++)
         {
-            if (value.Datas.Type == StageType.Battle)
+            if (StageList[i].Datas.Type == StageType.Battle)
             {
-                int x = (value.Datas.ID <= 1 && addLevel == 0) ? 0 : (int)value.Datas.StageLevel + addLevel;
+                int x = (StageList[i].Datas.ID <= 1 && addLevel == 0) ? 0 : (int)StageList[i].Datas.StageLevel + addLevel;
                 int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
 
-                if (value.Datas.ID <= 3)
-                {
-                    y = 0;
-                }
+                Vector2 vec = new Vector2(x, y);
 
-                StageDatas.Add(value.SetBattleStage(x, y));
+                if (!existStage.Contains(vec))
+                {
+                    existStage.Add(vec);
+                    StageDatas.Add(StageList[i].SetBattleStage(x, y));
+                }
+                else
+                    i--;
             }
             else
-                StageDatas.Add(value.Datas);
+                StageDatas.Add(StageList[i].Datas);
         }
+
         GameManager.Data.Map.StageList = StageDatas;
+
+        foreach (StageData data in GameManager.Data.Map.StageList)
+        {
+            Debug.Log(data.ID + ", " + data.Name + " : " + data.StageID + ", " + data.StageLevel);
+        }
     }
 
     public void StageMove(int _id)
