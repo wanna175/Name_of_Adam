@@ -16,6 +16,7 @@ public class EngagePhase : Phase
             return;
         }
 
+        BattleManager.BattleUI.ShowTutorial();
         BattleManager.Phase.ChangePhase(BattleManager.Phase.Move);
     }
 
