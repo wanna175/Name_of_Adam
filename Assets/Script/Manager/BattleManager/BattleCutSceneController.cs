@@ -38,21 +38,21 @@ public class BattleCutSceneController : MonoBehaviour
     {
         if(CSData.AttackUnitDirection < 0)
         {
-            CSData.AttackUnit.GetComponent<SpriteRenderer>().flipX = false;
+            CSData.AttackUnit.SetFlipX(false);
             foreach(BattleUnit unit in CSData.HitUnits)
-                unit.GetComponent<SpriteRenderer>().flipX = true;
+                unit.SetFlipX(true);
         }
         else if (CSData.AttackUnitDirection > 0)
         {
-            CSData.AttackUnit.GetComponent<SpriteRenderer>().flipX = true;
+            CSData.AttackUnit.SetFlipX(true);
             foreach (BattleUnit unit in CSData.HitUnits)
-                unit.GetComponent<SpriteRenderer>().flipX = false;
+                unit.SetFlipX(false);
         }
         else
         {
-            bool attackDir = CSData.AttackUnit.GetComponent<SpriteRenderer>().flipX;
+            bool attackDir = CSData.AttackUnit.GetFlipX();
             foreach (BattleUnit unit in CSData.HitUnits)
-                unit.GetComponent<SpriteRenderer>().flipX = !attackDir;
+                unit.SetFlipX(!attackDir);
         }
     }
 

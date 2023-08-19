@@ -16,7 +16,7 @@ public class ActionPhase : Phase
         if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
             GameManager.Instance.PlayAfterCoroutine(_nowUnit.AI.AISkillUse, 1);
     }
-
+    
     public override void OnStateUpdate()
     {
         
