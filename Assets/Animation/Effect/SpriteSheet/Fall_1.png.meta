@@ -113,6 +113,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -652,8 +664,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      CorruptionEffect_10: -407232880
       CorruptionEffect_16: 27048775
-      CorruptionEffect_3: 1691537236
       CorruptionEffect_1: -1983577626
       CorruptionEffect_15: -907242081
       CorruptionEffect_22: -1601690530
@@ -676,7 +688,7 @@ TextureImporter:
       CorruptionEffect_17: -353410879
       CorruptionEffect_14: 1686456210
       CorruptionEffect_0: 231202617
-      CorruptionEffect_10: -407232880
+      CorruptionEffect_3: 1691537236
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
