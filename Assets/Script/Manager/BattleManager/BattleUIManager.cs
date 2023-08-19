@@ -23,7 +23,7 @@ public class BattleUIManager : MonoBehaviour
     {
         //버튼 생성
         GameManager.UI.ShowScene<UI_OptionButton>();
-        GameManager.UI.ShowScene<UI_DeckButton>().Set(true);
+        GameManager.UI.ShowScene<UI_DeckButton>().Set(false/*true*/);
 
         //정보들
         UI_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
