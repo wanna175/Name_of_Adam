@@ -92,6 +92,63 @@ public class BattleUIManager : MonoBehaviour
         */
     }
 
+    //임시, 수정 필요 8.19
+    public void ShowTutorial()
+    {
+        PhaseController phaseController = BattleManager.Phase;
+        int curID = GameManager.Data.Map.CurrentTileID;
+
+        GameObject tutorial = GameObject.Find("UI_Tutorial");
+
+        GameObject _Tutorial1 = tutorial.transform.Find("UI_Tutorial1").gameObject;
+        GameObject _Tutorial2 = tutorial.transform.Find("UI_Tutorial2").gameObject;
+        GameObject _Tutorial3 = tutorial.transform.Find("UI_Tutorial3").gameObject;
+        GameObject _Tutorial4 = tutorial.transform.Find("UI_Tutorial4").gameObject;
+        GameObject _Tutorial5 = tutorial.transform.Find("UI_Tutorial5").gameObject;
+        GameObject _Tutorial6 = tutorial.transform.Find("UI_Tutorial6").gameObject;
+        GameObject _Tutorial7 = tutorial.transform.Find("UI_Tutorial7").gameObject;
+
+        if (curID == 15)
+        {
+            if (GameManager.Instance.Tutorial_Trigger_First == true)
+            {
+                if (phaseController.Current == phaseController.Prepare)
+                {
+                    _Tutorial1.SetActive(true);
+                    _Tutorial2.SetActive(true);
+                    _Tutorial3.SetActive(true);
+                }
+                else if (phaseController.Current == phaseController.Engage)
+                {
+                    _Tutorial4.SetActive(true);
+                    _Tutorial5.SetActive(true);
+                    GameManager.Instance.Tutorial_Trigger_First = false;
+                }
+            }
+        }
+        else if (curID == 16)
+        {
+            if (GameManager.Instance.Tutorial_Trigger_Second == true)
+            {
+                if (phaseController.Current == phaseController.Prepare)
+                {
+                    _Tutorial6.SetActive(true);
+                }
+                else if (phaseController.Current == phaseController.Engage)
+                {
+                    _Tutorial7.SetActive(true);
+                    GameManager.Instance.Tutorial_Trigger_Second = false;
+                }
+            }
+        }
+    }
+
+    public void tutorialHandUnit()
+    {
+        
+    }
+    
+
     private List<UI_Info> infoList = new();
 
     public UI_Info ShowInfo()
