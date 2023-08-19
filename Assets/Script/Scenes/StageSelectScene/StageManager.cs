@@ -35,6 +35,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Data.Map.StageList == null)
             SetStageData();
         SetCurrentStage();
+        GameManager.VisualEffect.StartFadeEffect(true);
     }
 
     private static void Init()
@@ -99,7 +100,10 @@ public class StageManager : MonoBehaviour
         foreach (Stage st in CurrentStage.NextStage)
         {
             if (st.Datas.ID == _id)
-                _stageChanger.SetNextStage(_id);
+            {
+                GameManager.VisualEffect.StartFadeEffect(false);
+                GameManager.Instance.PlayAfterCoroutine(() => _stageChanger.SetNextStage(_id), 0.8f);
+            }
         }
     }
 }
