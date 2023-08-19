@@ -64,8 +64,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    bool escOption = false;
+
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!escOption)
+            {
+                GameManager.UI.ShowPopup<UI_ESCOption>();
+                escOption = true;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                UI.ClosePopup();
+                escOption = false;
+                Time.timeScale = 1;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
