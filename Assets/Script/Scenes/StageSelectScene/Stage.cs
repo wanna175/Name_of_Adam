@@ -8,7 +8,8 @@ public enum StageType
 {
     Store,
     Event,
-    Battle
+    Battle,
+    Tutorial
 }
 
 [Serializable]

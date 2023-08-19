@@ -12,6 +12,9 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_playerSkill.Used = false;
         BattleManager.BattleUI.ChangeButtonName();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
+
+        BattleManager.BattleUI.ShowTutorial();
+
         BattleManager.Instance.TurnStart();
     }
 
