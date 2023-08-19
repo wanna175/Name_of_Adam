@@ -409,4 +409,33 @@ public class BattleManager : MonoBehaviour
 
         return true;
     }
+
+    public void BenedictionCheck()
+    {
+        BattleUnit lastUnit = null;
+
+        foreach (BattleUnit unit in Data.BattleUnitList)
+        {
+            if (unit.Team == Team.Enemy)
+            {
+                if (lastUnit == null)
+                {
+                    lastUnit = unit;
+                }
+                else
+                {
+                    lastUnit = null;
+                    break;
+                }
+            }
+        }
+
+        if (lastUnit != null)
+        {
+            Buff_Benediction benediction = new();
+            lastUnit.SetBuff(benediction, lastUnit);
+        }
+
+        
+    }
 }
