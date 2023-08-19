@@ -5,12 +5,13 @@ using UnityEngine;
 public class VisualEffect : MonoBehaviour
 {
     Animator _animator;
+    bool isLoop = false;
 
     private void OnEnable()
     {
         _animator = GetComponent<Animator>();
         _animator.Play("Effect");
-
+        
         StartCoroutine(AnimExit());
     }
 
@@ -24,6 +25,12 @@ public class VisualEffect : MonoBehaviour
             yield return null;
         }
 
-        GameManager.VisualEffect.RestoreEffect(AnimEffects.VisualEffect, gameObject);
+        if (!isLoop)
+        {
+            SetLoop(false);
+            GameManager.VisualEffect.RestoreEffect(AnimEffects.VisualEffect, gameObject);
+        }
     }
+
+    public void SetLoop(bool loop) => isLoop = loop;
 }

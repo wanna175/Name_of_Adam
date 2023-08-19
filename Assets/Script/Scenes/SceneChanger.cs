@@ -7,8 +7,14 @@ public static class SceneChanger
 {
     public static void SceneChange(string scenename)
     {
-        GameManager.Sound.SceneBGMPlay(scenename);
-        SceneManager.LoadScene(scenename);
+        GameManager.VisualEffect.StartFadeEffect(false);
+
+        GameManager.Instance.PlayAfterCoroutine(() =>
+        {
+            GameManager.Sound.SceneBGMPlay(scenename);
+            SceneManager.LoadScene(scenename);
+        }, 1);
+
     }
     public static string GetSceneName()
     {

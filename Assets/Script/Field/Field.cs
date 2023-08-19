@@ -261,7 +261,7 @@ public class Field : MonoBehaviour
 
         unit.SetLocate(coord, move);
         if (move)
-            StartCoroutine(unit.MovePosition(GetTilePosition(coord)));
+            StartCoroutine(unit.MoveFieldPosition(GetTilePosition(coord)));
         else
             unit.SetPosition(GetTilePosition(coord));
     }

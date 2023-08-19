@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -85,8 +86,20 @@ public class GameManager : MonoBehaviour
             }
             BattleManager.Instance.BattleOverCheck();
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameManager.VisualEffect.StartBenedictionEffect(BattleManager.Data.GetNowUnit());
+        }
         if (Input.GetKeyDown(KeyCode.Z))
             GameManager.SaveManager.DeleteSaveData();
 
+    }
+    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
+
+    private IEnumerator PlayCoroutine(Action action, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        action();
     }
 }

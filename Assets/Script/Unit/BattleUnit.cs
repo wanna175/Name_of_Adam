@@ -62,6 +62,7 @@ public class BattleUnit : MonoBehaviour
         BattleManager.Data.BattleUnitList.Add(this);
 
         GameManager.Sound.Play("Summon/SummonSFX");
+        GameManager.VisualEffect.StartBenedictionEffect(this);
     }
 
     public void UnitSetting(Vector2 coord, Team team)
@@ -153,8 +154,8 @@ public class BattleUnit : MonoBehaviour
 
 
         BattleManager.Instance.UnitDeadEvent(this);
-        Debug.Log(Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitDeadEffect"));
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitDeadEffect"), this.transform.position);
+        Debug.Log(Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitDeadEffect"));
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitDeadEffect"), this.transform.position);
         StartCoroutine(UnitDeadEffect());
         GameManager.Sound.Play("Dead/DeadSFX");
     }
@@ -406,7 +407,7 @@ public class BattleUnit : MonoBehaviour
         }
 
         GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/HitEffect"),
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/HitEffect"),
             transform.position);
 
         ChangeHP(value);
