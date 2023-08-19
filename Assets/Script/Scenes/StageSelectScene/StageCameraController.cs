@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class StageCameraController : MonoBehaviour
 {
-    [SerializeField] Transform MapTransform;
+    [SerializeField] float MaxHight;
+    [SerializeField] float MinHight;
 
     private void Update()
     {
@@ -19,16 +20,18 @@ public class StageCameraController : MonoBehaviour
 
         transform.position += new Vector3(0, num * 5, 0);
 
-        if (transform.position.y < -5)
-            transform.position = new Vector3(0, -5, -10);
-        if (transform.position.y > 30)
-            transform.position = new Vector3(0, 30, -10);
+        if (transform.position.y < MinHight)
+            transform.position = new Vector3(0, MinHight, -10);
+        if (transform.position.y > MaxHight)
+            transform.position = new Vector3(0, MaxHight, -10);
     }
 
     public void SetLocate(float y)
     {
         transform.position = new Vector3(0, y, -10);
-        if (y < -5 || 30 < y)
-            transform.position = new Vector3(0, -5, -10);
+        if (y < -5)
+            transform.position = new Vector3(0, MinHight, -10);
+        else if (30 < y)
+            transform.position = new Vector3(0, MaxHight, -10);
     }
 }
