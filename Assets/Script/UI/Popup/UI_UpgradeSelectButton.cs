@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UI_UpgradeSelectButton : UI_Popup
 {
     private UpgradeSceneController _uc;
-    public void init(UpgradeSceneController uc)
+    public void Init(UpgradeSceneController uc)
     {
         _uc = uc; 
     }

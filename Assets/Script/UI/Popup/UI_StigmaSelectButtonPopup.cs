@@ -11,13 +11,13 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private DeckUnit _targetUnit;
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private Transform _grid;
-
-    public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null)
+    private StigmaSceneController _sc;
+    public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaSceneController sc = null)
     {
         _afterPopupAction = afterPopupAction;
         _targetUnit = targetUnit;
-
-        if(stigmata != null)
+        _sc = sc;
+        if (stigmata != null)
         {
             List<Stigma> stigmaList = new();
             List<Stigma> existStigma = targetUnit.Stigma;
@@ -70,7 +70,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     {
         for (int i = 0; i < stigmaList.Count; i++)
         {
-            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().Init(this, stigmaList[i]);
+            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().Init(stigmaList[i], _sc, this);
         }
     }
 
@@ -80,8 +80,11 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
 
         if(_afterPopupAction != null)
+        {
             _afterPopupAction.Invoke();
-
+        }
         GameManager.UI.ClosePopup();
+
+        
     }
 }

@@ -56,7 +56,7 @@ public class UpgradeSceneController : MonoBehaviour
     public void OnUpgradeButtonClick()
     {
         if (_unit != null)
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().init(this);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this);
         //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
@@ -143,6 +143,7 @@ public class UpgradeSceneController : MonoBehaviour
         }
 
         if (eventScript != null)
+            Debug.Log("dsdsds");
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
