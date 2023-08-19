@@ -18,7 +18,10 @@ public class PlayerSkill_Cross : PlayerSkill
             BattleUnit targetUnit = BattleManager.Field.GetUnit(target);
 
             if (targetUnit != null)
-                targetUnit.GetAttack(-15, null);
+            {
+                if(targetUnit.Team == Team.Enemy)
+                    targetUnit.GetAttack(-15, null);
+            }
         }
 
     }

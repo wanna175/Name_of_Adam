@@ -25,7 +25,10 @@ public class Corruption : MonoBehaviour
     public void LoopStart()
     {
         _animator.SetBool("LoopStart", true);
-        StigmaSelectEvent(this);
+        if (_unit.Team == Team.Enemy)
+            StigmaSelectEvent(this);
+        else
+            LoopExit();
     }
 
     public void LoopExit()
