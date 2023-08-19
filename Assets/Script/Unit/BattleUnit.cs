@@ -18,12 +18,13 @@ public class BattleUnit : MonoBehaviour
     private Animator _unitAnimator;
     public AnimationClip SkillEffectAnim;
 
-    [SerializeField] public UnitAIController AI;
+    //[SerializeField] public UnitAIController AI;
     [SerializeField] public UnitHP HP;
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitBuff Buff;
     [SerializeField] public UnitAction Action;
     [SerializeField] private UI_HPBar _hpBar;
+    [SerializeField] private UI_FloatingDamage _floatingDamage;
 
     [SerializeField] public List<Stigma> StigmaList => DeckUnit.Stigma;
 
@@ -44,8 +45,6 @@ public class BattleUnit : MonoBehaviour
         _unitAnimator = GetComponent<Animator>();
 
         _renderer.sprite = Data.Image;
-
-        AI.SetCaster(this);
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
@@ -124,10 +123,18 @@ public class BattleUnit : MonoBehaviour
         _team = team;
 
         // 적군일 경우 x축 뒤집기
-        _renderer.flipX = (Team == Team.Enemy) ? true : false;
+        SetFlipX(Team == Team.Enemy);
         SetHPBar();
         ChangeAnimator();
     }
+
+    public void SetFlipX(bool flip)
+    {
+        _renderer.flipX = flip;
+        _floatingDamage.DirectionChange(flip);
+    }
+
+    public bool GetFlipX() => _renderer.flipX;
 
     public void SetHPBar()
     {
@@ -405,12 +412,16 @@ public class BattleUnit : MonoBehaviour
             return;
         }
 
+
         GameManager.VisualEffect.StartVisualEffect(
             Resources.Load<AnimationClip>("Arts/EffectAnimation/HitEffect"),
             transform.position);
 
-        ChangeHP(value);
 
+        _floatingDamage.Init(value);
+
+        ChangeHP(value);
+        
         //피격 후 체크
         ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, caster);
     }
