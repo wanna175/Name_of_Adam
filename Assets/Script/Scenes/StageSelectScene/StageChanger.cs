@@ -12,6 +12,7 @@ public class StageChanger
 
         GameManager.Data.Map.CurrentTileID = _id;
 
+
         if(_id == 1)
         {
             GameManager.Data.DeckClear();
@@ -22,6 +23,7 @@ public class StageChanger
             SceneChanger.SceneChange("BattleScene");
         }
         else if (stage.Type == StageType.Battle)
+
         {
             SceneChanger.SceneChange("BattleScene");
         }

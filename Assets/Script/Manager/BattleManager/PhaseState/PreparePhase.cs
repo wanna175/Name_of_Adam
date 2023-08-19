@@ -47,6 +47,8 @@ public class PreparePhase : Phase
 
             isFirst = false;
         }
+
+        BattleManager.Instance.BenedictionCheck();
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
     }
 }
