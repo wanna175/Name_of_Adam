@@ -77,6 +77,7 @@ public class BattleUIManager : MonoBehaviour
 
     public void ChangeButtonName()
     {
+        /*
         PhaseController phaseController = BattleManager.Phase;
 
         TextMeshProUGUI buttonName = _turnChangeButton.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
@@ -88,6 +89,7 @@ public class BattleUIManager : MonoBehaviour
             buttonName.text = "Move Skip";
         else if (phaseController.Current == phaseController.Action)
             buttonName.text = "Action Skip";
+        */
     }
 
     private List<UI_Info> infoList = new();
