@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40170696f036d5446bd8e8caaf0959e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\uBD88\uC0AC\u2160"
-  _sprite: {fileID: 0}
+  _name: "\uBD88\uC0AC\u2161"
+  _sprite: {fileID: 21300000, guid: 8dca6d2ef7f2aeb4dad1b2e492a1b57a, type: 3}
   _description: "\uBD88\uC0AC\u2160"
   _activeTiming: 1
   _tier: 1
