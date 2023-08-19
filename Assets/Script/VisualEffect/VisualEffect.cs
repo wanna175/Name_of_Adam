@@ -28,6 +28,7 @@ public class VisualEffect : MonoBehaviour
         if (!isLoop)
         {
             SetLoop(false);
+            GetComponent<SpriteRenderer>().sprite = null;
             GameManager.VisualEffect.RestoreEffect(AnimEffects.VisualEffect, gameObject);
         }
     }

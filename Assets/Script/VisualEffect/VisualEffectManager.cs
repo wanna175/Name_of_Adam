@@ -86,6 +86,14 @@ public class VisualEffectManager : MonoBehaviour
         go.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
+    public void StartUnitDeadEffect(Vector3 position, bool flip)
+    {
+        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitDeadEffect");
+        GameObject go = StartVisualEffect(clip, position);
+
+        go.GetComponent<SpriteRenderer>().flipX = flip;
+    }
+
     public void StartFadeEffect(bool FadeIn)
     {
         GameObject go;
