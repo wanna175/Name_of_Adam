@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uD751\uAE30\uC0AC_Hit"
+  m_Name: "\uAC80\uBCD1_Hit1"
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 746804486, guid: d8a6c9b613fe821498646c0cb01a3d06, type: 3}
+      value: {fileID: 1961306202, guid: 747f37a086763c44585d508a1c37e7a3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -40,7 +40,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 746804486, guid: d8a6c9b613fe821498646c0cb01a3d06, type: 3}
+    - {fileID: 1961306202, guid: 747f37a086763c44585d508a1c37e7a3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
