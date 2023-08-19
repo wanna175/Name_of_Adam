@@ -121,7 +121,6 @@ public class UpgradeSceneController : MonoBehaviour
             script.Init(GameManager.Data.ScriptData["강화소_코스트"], false);
         }
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        // OnQuitClick();
         StartCoroutine(QuitScene(script));
     }
 
@@ -143,7 +142,6 @@ public class UpgradeSceneController : MonoBehaviour
         }
 
         if (eventScript != null)
-            Debug.Log("dsdsds");
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();

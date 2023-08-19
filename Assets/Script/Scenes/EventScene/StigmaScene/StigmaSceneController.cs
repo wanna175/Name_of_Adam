@@ -122,7 +122,6 @@ public class StigmaSceneController : MonoBehaviour
 
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "낙인소_" + stigma.Name;
-        Debug.Log(scriptKey);
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
     }
@@ -134,8 +133,6 @@ public class StigmaSceneController : MonoBehaviour
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        Debug.Log("sssss");
-
         if (GameManager.Data.GameData.isVisitStigma == false)
         {
             GameManager.Data.GameData.isVisitStigma = true;
@@ -157,7 +154,6 @@ public class StigmaSceneController : MonoBehaviour
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
-        Debug.Log("sdsss");
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
