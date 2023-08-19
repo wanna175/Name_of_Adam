@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UI_DeckButton : UI_Scene
 {
-    private bool _isBattle = true;
+    private bool _isBattle = false;
 
     public void Set(bool isBattle)
     {

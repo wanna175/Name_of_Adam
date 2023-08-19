@@ -171,6 +171,9 @@ public class BattleManager : MonoBehaviour
             unit.FirstTurnDiscountUndo();
 
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
+        GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitSpawnEffect"),
+            BattleManager.Field.GetTilePosition(coord));
 
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
@@ -363,13 +366,20 @@ public class BattleManager : MonoBehaviour
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
         StageData data = GameManager.Data.GetCurrentStageData();
-        if (data.StageLevel >= 10)
+        try
         {
-            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
-            GameManager.SaveManager.DeleteSaveData();
+            if (data.StageLevel >= 10)
+            {
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+                GameManager.SaveManager.DeleteSaveData();
+            }
+            else
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
         }
-        else
+        catch
+        {
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+        }
     }
 
     private void BattleOverLose()
@@ -408,5 +418,34 @@ public class BattleManager : MonoBehaviour
             Field.SetSpawnTileColor(colorType);
 
         return true;
+    }
+
+    public void BenedictionCheck()
+    {
+        BattleUnit lastUnit = null;
+
+        foreach (BattleUnit unit in Data.BattleUnitList)
+        {
+            if (unit.Team == Team.Enemy)
+            {
+                if (lastUnit == null)
+                {
+                    lastUnit = unit;
+                }
+                else
+                {
+                    lastUnit = null;
+                    break;
+                }
+            }
+        }
+
+        if (lastUnit != null)
+        {
+            Buff_Benediction benediction = new();
+            lastUnit.SetBuff(benediction, lastUnit);
+        }
+
+        
     }
 }
