@@ -13,11 +13,31 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
-  UniversalPlayerSkill: {fileID: 11400000, guid: 89cad111ca2142745a6152764fcd1575, type: 2}
+  UniversalPlayerSkill: {fileID: 710112273335604812, guid: cde596edd4843ec41bf7e4d6d0bc6808, type: 3}
   Money: 0
   DarkEssence: 4
   PlayerSkillCount: 0
   DeckUnits:
+  - Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    Stigma:
+    - {fileID: 5699345184258759755, guid: 7ed5edde74524e047b91b1141dd79ae5, type: 3}
+    - {fileID: 7423770131057606638, guid: 12938a7ce8be2ad40815bcfd0bc2734c, type: 3}
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -36,9 +56,8 @@ MonoBehaviour:
       FallMaxCount: 0
       ManaCost: 0
     Stigma:
-    - {fileID: -2550542083864282572, guid: 6b7375150ca85564fa7b3fc98463d79b, type: 3}
-    - {fileID: 6636403106130926892, guid: 11db3f0537fb35543a931f72a4cdeb3d, type: 3}
-  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
+    - {fileID: 4891567991765696922, guid: 8dd6772932cefc84988838b0cbed6647, type: 3}
+  - Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0
@@ -56,7 +75,7 @@ MonoBehaviour:
       FallMaxCount: 0
       ManaCost: 0
     Stigma:
-    - {fileID: 5166774272718736912, guid: 561726d5fee601e468f72fd8e65860cd, type: 3}
-    - {fileID: -2075204548318158111, guid: 5156b58e1438ec345bf1db69a947a266, type: 3}
+    - {fileID: 3027779355813734386, guid: e3cc368803298d8429f5b1128128c60e, type: 3}
+    - {fileID: 6822439255809191265, guid: 154b20718bcf6a24898d30a93528752d, type: 3}
   isVisitUpgrade: 0
-  isVisitStigma: 1
+  isVisitStigma: 0

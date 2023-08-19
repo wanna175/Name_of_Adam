@@ -8,7 +8,9 @@ public class PlayerSkill_DarkStrike : PlayerSkill
     public override void Use(Vector2 coord)
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
+        GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/DarkThunder"),
+            BattleManager.Field.GetTilePosition(coord));
         BattleManager.Field.GetUnit(coord).GetAttack(-30, null);
     }
     public override void CancelSelect()
