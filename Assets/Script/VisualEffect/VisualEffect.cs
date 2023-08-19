@@ -9,6 +9,7 @@ public class VisualEffect : MonoBehaviour
 
     private void OnEnable()
     {
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         _animator = GetComponent<Animator>();
         _animator.Play("Effect");
         
