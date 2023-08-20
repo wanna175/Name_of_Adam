@@ -64,7 +64,7 @@ public class StigmaSceneController : MonoBehaviour
     {
         if (_stigmatizeUnit != null)
         {
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
         }
     }
 
@@ -116,19 +116,19 @@ public class StigmaSceneController : MonoBehaviour
     public void OnStigmaSelected(Stigma stigma)
     {
         _stigmatizeUnit.AddStigma(stigma);
-        GameManager.UI.ClosePopup();
-        AddStigmaScript(stigma);
-        //StartCoroutine(QuitScene());
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        //OnQuitClick();
-    }
 
-    public void AddStigmaScript(Stigma stigma)
-    {
+        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        GameManager.UI.ClosePopup();
+
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "낙인소_" + stigma.Name;
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
         StartCoroutine(QuitScene(script));
+    }
+
+    public void AddStigmaScript(Stigma stigma)
+    {
+        
     }
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
@@ -143,9 +143,18 @@ public class StigmaSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
+
+
+        if (GameManager.Data.GameData.isVisitStigma == false)
+        {
+            GameManager.Data.GameData.isVisitStigma = true;
+            quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
+        }
+        else
+            quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
+        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }

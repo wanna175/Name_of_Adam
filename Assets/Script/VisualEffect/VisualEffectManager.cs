@@ -37,10 +37,17 @@ public class VisualEffectManager : MonoBehaviour
 
     public GameObject StartVisualEffect(AnimationClip clip, Vector3 position)
     {
-        if (EffectQueue.Count == 0)
+        GameObject go;
+        try
+        {
+            go = EffectQueue[AnimEffects.VisualEffect].Dequeue();
+        }
+        catch
+        {
             CreateEffect(AnimEffects.VisualEffect);
+            go = EffectQueue[AnimEffects.VisualEffect].Dequeue();
+        }
 
-        GameObject go = EffectQueue[AnimEffects.VisualEffect].Dequeue();
         go.transform.position = position;
         Animator _animator = go.GetComponent<Animator>();
 
@@ -59,7 +66,7 @@ public class VisualEffectManager : MonoBehaviour
         go.SetActive(true);
 
         return go;
-    }
+        }
 
     public void StartCorruptionEffect(BattleUnit unit, Vector3 position)
     {

@@ -11,12 +11,14 @@ public class UI_StigmaSelectButton : UI_Base
     [SerializeReference] private TextMeshProUGUI _stigmaName;
     [SerializeReference] private TextMeshProUGUI _stigmaDescription;
 
+    private StigmaSceneController _sc;
     private UI_StigmaSelectButtonPopup _popup;
     private Stigma _stigma;
 
-    public void Init(UI_StigmaSelectButtonPopup popup, Stigma stigma)
+    public void Init(Stigma stigma, StigmaSceneController sc = null, UI_StigmaSelectButtonPopup popup = null)
     {
         _popup = popup;
+        _sc = sc;
         _stigma = stigma;
 
         _stigmaName.text = stigma.Name;
@@ -26,6 +28,18 @@ public class UI_StigmaSelectButton : UI_Base
 
     public void OnClick()
     {
-        _popup.OnClick(_stigma);
+        //if()
+        
+        if(_sc != null)
+        {
+            _sc.OnStigmaSelected(_stigma);
+        }
+        else if(_popup != null)
+        {
+            _popup.OnClick(_stigma);
+        }
+
+
+        //sc.OnStigmaSelected(_stigma);
     }
 }

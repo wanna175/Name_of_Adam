@@ -5,11 +5,27 @@ using UnityEngine;
 public class StageCameraController : MonoBehaviour
 {
     [SerializeField] Transform MapTransform;
+    Vector3 lastMousePosition;
 
     private void Update()
     {
-        float wheel = Input.GetAxis("Mouse ScrollWheel");
-        MoveCamera(wheel);
+        MouseInputs();
+    }
+
+    void MouseInputs()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            lastMousePosition = Input.mousePosition;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            Vector3 delta = Input.mousePosition - lastMousePosition;
+
+            MoveCamera(delta.y);
+
+            lastMousePosition = Input.mousePosition;
+        }
     }
 
     void MoveCamera(float num)
@@ -17,9 +33,13 @@ public class StageCameraController : MonoBehaviour
         if (num == 0)
             return;
 
-        transform.position += new Vector3(0, num * 5, 0);
+        transform.position += new Vector3(0, num * -0.01f , 0);
 
-        if (transform.position.y < -5)
+        if(transform.position.y < -50)
+            transform.position = new Vector3(0, -50, -10);
+        if(transform.position.y > -40 && transform.position.y < -20)
+            transform.position = new Vector3(0, -40, -10);
+        if (transform.position.y < -5 && transform.position.y > -20)
             transform.position = new Vector3(0, -5, -10);
         if (transform.position.y > 30)
             transform.position = new Vector3(0, 30, -10);
@@ -28,7 +48,7 @@ public class StageCameraController : MonoBehaviour
     public void SetLocate(float y)
     {
         transform.position = new Vector3(0, y, -10);
-        if (y < -5 || 30 < y)
-            transform.position = new Vector3(0, -5, -10);
+        //if (y < -5 || 30 < y)
+            //transform.position = new Vector3(0, -5, -10);
     }
 }

@@ -158,9 +158,10 @@ public class BattleUnit : MonoBehaviour
             return;
         }
 
-        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Animation/UnitDeadEffect"), this.transform.position);
 
         BattleManager.Instance.UnitDeadEvent(this);
+        Debug.Log(Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitDeadEffect"));
+        GameManager.VisualEffect.StartVisualEffect(Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitDeadEffect"), this.transform.position);
         StartCoroutine(UnitDeadEffect());
         GameManager.Sound.Play("Dead/DeadSFX");
     }
@@ -190,8 +191,6 @@ public class BattleUnit : MonoBehaviour
         }
 
         //타락 이벤트 시작
-        BattleManager.Data.CorruptUnits.Add(this);
-
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -203,8 +202,6 @@ public class BattleUnit : MonoBehaviour
         {
             Fall.Editfy();
         }
-
-        BattleManager.Data.CorruptUnits.Remove(this);
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         _hpBar.SetHPBar(Team, transform);
@@ -266,23 +263,102 @@ public class BattleUnit : MonoBehaviour
         transform.localScale = new Vector3(s, s, 1);
     }
 
-    public IEnumerator MovePosition(Vector3 dest)
+    public IEnumerator MoveFieldPosition(Vector3 dest)
     {
-        float moveTime = 0.4f;
+        float moveTime = 0.2f;
+        float backMoveTime = 0.5f;
+        Vector3 overDistance = (dest - transform.position) * 0.1f;
         Vector3 pVel = Vector3.zero;
         Vector3 sVel = Vector3.zero;
 
         float addScale = GetModifiedScale();
 
-        while (Vector3.Distance(dest, transform.position) >= 0.05f)
+        #region 감속 -> 등속
+        
+        while (Vector3.Distance(dest + overDistance, transform.position) >= 0.03f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, dest, ref pVel, moveTime);
+            transform.position = Vector3.SmoothDamp(transform.position, dest + overDistance, ref pVel, moveTime);
             transform.localScale = Vector3.SmoothDamp(transform.localScale, new Vector3(addScale, addScale, 1), ref sVel, moveTime);
             yield return null;
         }
 
+        float time = 0;
+        Vector3 vec = transform.position;
+        while (time < backMoveTime)
+        {
+            time += Time.deltaTime;
+            float t = time / backMoveTime;
+
+            transform.position = Vector3.Lerp(vec, dest, t);
+
+            yield return null;
+        }
+        
+        #endregion
+
+        #region 등속 -> 감속
+        /*
+        float time = 0;
+        Vector3 vec = transform.position;
+        while (time <= moveTime)
+        {
+            time += Time.deltaTime;
+            float t = time / moveTime;
+
+            transform.position = Vector3.Lerp(vec, dest + overDistance, t);
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(addScale, addScale, 1), t);
+
+            yield return null;
+        }
+
+        while(Vector3.Distance(dest, transform.position) >= 0.03f)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, dest, ref pVel, backMoveTime);
+
+            yield return null;
+        }
+        */
+        #endregion
+
+        #region 감속 -> 감속
+        /*
+        while (Vector3.Distance(dest + overDistance, transform.position) >= 0.03f)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, dest + overDistance, ref pVel, moveTime);
+            transform.localScale = Vector3.SmoothDamp(transform.localScale, new Vector3(addScale, addScale, 1), ref sVel, moveTime);
+            yield return null;
+        }
+
+        pVel = Vector3.zero;
+
+        while (Vector3.Distance(dest, transform.position) >= 0.03f)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, dest, ref pVel, backMoveTime);
+
+            yield return null;
+        }
+        */
+        #endregion
+
+
         transform.position = dest;
         transform.localScale = new Vector3(addScale, addScale, 1);
+    }
+
+    public IEnumerator AttackMove(Vector3 movePosition, float moveTime)
+    {
+        float time = 0;
+        Vector3 originPosition = transform.position;
+
+        while(time <= moveTime)
+        {
+            time += Time.deltaTime;
+            float t = time / moveTime;
+
+            transform.position = Vector3.Lerp(originPosition, movePosition, t);
+
+            yield return null;
+        }
     }
 
     //엑티브 타이밍에 대미지 바꿀 때용
@@ -336,7 +412,14 @@ public class BattleUnit : MonoBehaviour
             return;
         }
 
+
+        GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/HitEffect"),
+            transform.position);
+
+
         _floatingDamage.Init(value);
+
         ChangeHP(value);
         
         //피격 후 체크

@@ -10,7 +10,7 @@ public class MapData
 {
     public List<StageData> StageList;
     public int CurrentTileID;
-    // public int[] PassedTileID;
+    public List<int> ClearTileID;
 }
 
 public class StageManager : MonoBehaviour
@@ -58,7 +58,15 @@ public class StageManager : MonoBehaviour
         int curID = GameManager.Data.Map.CurrentTileID;
 
         CurrentStage = StageList.Find(x => x.Datas.ID == curID);
-        CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
+        if(curID == 17)
+        {
+            CameraController.SetLocate(-5);
+        }
+        else
+        {
+            CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
+        }
+            
     }
 
     private void SetStageData()
@@ -72,6 +80,12 @@ public class StageManager : MonoBehaviour
             {
                 int x = (value.Datas.ID <= 1 && addLevel == 0) ? 0 : (int)value.Datas.StageLevel + addLevel;
                 int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
+
+                if (value.Datas.ID <= 3)
+                {
+                    y = 0;
+                }
+
                 StageDatas.Add(value.SetBattleStage(x, y));
             }
             else
@@ -79,7 +93,6 @@ public class StageManager : MonoBehaviour
         }
         GameManager.Data.Map.StageList = StageDatas;
     }
-
 
     public void StageMove(int _id)
     {

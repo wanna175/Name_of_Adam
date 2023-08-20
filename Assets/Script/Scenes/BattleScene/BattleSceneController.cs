@@ -7,6 +7,7 @@ public class BattleSceneController : MonoBehaviour
     [SerializeField] GameObject Tutorial;
     public void Start()
     {
+        /*
         if(GameManager.Instance.Tutorial_Trigger == false)
         {
             Tutorial.gameObject.SetActive(false);
@@ -15,6 +16,7 @@ public class BattleSceneController : MonoBehaviour
         {
             GameManager.Instance.Tutorial_Trigger = false;
         }
+        */
     }
 
 }

@@ -11,7 +11,19 @@ public class StageChanger
         StageData stage = GameManager.Data.Map.StageList.Find(x => x.ID == _id);
 
         GameManager.Data.Map.CurrentTileID = _id;
-        if (stage.Type == StageType.Battle)
+
+
+        if(_id == 1)
+        {
+            GameManager.Data.DeckClear();
+            SceneChanger.SceneChange("BattleScene");
+        }
+        if (stage.Type == StageType.Tutorial)
+        {
+            SceneChanger.SceneChange("BattleScene");
+        }
+        else if (stage.Type == StageType.Battle)
+
         {
             SceneChanger.SceneChange("BattleScene");
         }

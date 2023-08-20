@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_Conversation : UI_Popup
 {
@@ -10,10 +11,11 @@ public class UI_Conversation : UI_Popup
     private Coroutine co_typing = null;
     private List<Script> scripts = new List<Script>();
 
-    [SerializeField] private Text _conversationText;
+    //[SerializeField] private Text _conversationText;
     [SerializeField] private Text _nameText;
     [SerializeField] private GameObject _nameObject;
-
+    [SerializeField] private TextMeshProUGUI _conversation;
+    
     // autoStart = false면 따로 실행해줘야 함
     public void Init(List<Script> scripts, bool autoStart = true)
     {
@@ -48,7 +50,7 @@ public class UI_Conversation : UI_Popup
                 StopCoroutine(co_typing);
                 co_typing = null;
             }
-            _conversationText.text = script.script;
+            _conversation.text = script.script;
 
             yield return new WaitUntil(() => GameManager.InputManager.Click);
         }
@@ -58,7 +60,7 @@ public class UI_Conversation : UI_Popup
 
     private IEnumerator TypingEffect(string script)
     {
-        Text text = _conversationText;
+        TextMeshProUGUI text = _conversation;
         text.text = "";
 
         foreach (char c in script.ToCharArray())

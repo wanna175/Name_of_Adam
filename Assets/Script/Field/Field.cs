@@ -17,8 +17,8 @@ public class Field : MonoBehaviour
 
     // 필드의 생성을 위한 필드의 위치
     private Vector3 FieldPosition => new Vector3(0, -1.4f, 2.5f);
-    private Vector3 FieldRotation => new Vector3(16.67f, 0, 0);
-    private Vector3 FieldScale => new Vector3(26.54f, 10.8f, 1f);
+    private Vector3 FieldRotation => new Vector3(34f, 0, 0);
+    private Vector3 FieldScale => new Vector3(14.2f, 5.3f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
@@ -105,23 +105,23 @@ public class Field : MonoBehaviour
     }
 
     //십자가 범위 유닛
-    public List<BattleUnit> GetCrossUnits(Vector2 unitCoord)
+    public List<Vector2> GetCrossCoord(Vector2 unitCoord)
     {
         List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
-        List<BattleUnit> units = new();
+        List<Vector2> Coords = new();
+        Coords.Add(unitCoord);
 
         for(int i=1; i < MaxFieldX; i++)
         {
             foreach(Vector2 udlr in UDLR)
             {
-                BattleUnit targetUnit = GetUnit(unitCoord + udlr * i);
-                if (targetUnit == null)
-                    continue;
-                units.Add(targetUnit);
+                Vector2 vec = unitCoord + udlr * i;
+                if (IsInRange(vec))
+                    Coords.Add(vec);
             }
         }
 
-        return units;
+        return Coords;
     }
 
     // 타일이 최대 범위를 벗어났는지 확인

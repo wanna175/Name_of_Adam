@@ -8,18 +8,26 @@ public class PlayerSkill_Cross : PlayerSkill
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //이팩트를 여기에 추가
-        BattleManager.Field.GetUnit(coord).GetAttack(-15, null);
-        List<BattleUnit> targetUnits = BattleManager.Field.GetCrossUnits(coord);
+        List<Vector2> targetCoords = BattleManager.Field.GetCrossCoord(coord);
 
-        foreach (BattleUnit enemyUnits in targetUnits)
+        foreach (Vector2 target in targetCoords)
         {
-            if(enemyUnits.Team == Team.Enemy)
-            {
-                enemyUnits.GetAttack(-15, null);
-            }
+            GameManager.VisualEffect.StartVisualEffect(
+                Resources.Load<AnimationClip>("Arts/EffectAnimation/CrossThunder"),
+                BattleManager.Field.GetTilePosition(target));
+            BattleUnit targetUnit = BattleManager.Field.GetUnit(target);
+
+            if (targetUnit != null)
+                targetUnit.GetAttack(-15, null);
         }
 
     }
+    private void Attack(Vector2 coord)
+    {
+        BattleManager.Field.GetUnit(coord).GetAttack(-15, null);
+    }
+
+
     public override void CancelSelect()
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.none);

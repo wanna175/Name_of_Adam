@@ -56,7 +56,7 @@ public class UpgradeSceneController : MonoBehaviour
     public void OnUpgradeButtonClick()
     {
         if (_unit != null)
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().init(this);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this);
         //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
     }
 
@@ -121,7 +121,6 @@ public class UpgradeSceneController : MonoBehaviour
             script.Init(GameManager.Data.ScriptData["강화소_코스트"], false);
         }
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        // OnQuitClick();
         StartCoroutine(QuitScene(script));
     }
 
@@ -156,6 +155,7 @@ public class UpgradeSceneController : MonoBehaviour
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
+        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
