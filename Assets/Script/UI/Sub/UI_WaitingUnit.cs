@@ -9,17 +9,22 @@ public class UI_WaitingUnit : MonoBehaviour
     [SerializeField] private Image _unitImage;
     [SerializeField] private Image _background;
 
-    private Color32 _enemy = new Color32(137, 25, 25, 60);
-    private Color32 _player = new Color32(28, 62, 129, 60);
+    private Color32 _enemy = new Color32(130, 123, 56, 60);
+    private Color32 _player = new Color32(48, 12, 69, 60);
 
     public void SetUnit(BattleUnit unit)
     {
         _unit = unit;
-        _unitImage.GetComponent<Image>().sprite = _unit.Data.Image;
+        _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _unit.DeckUnit.Data.Name);
+        //_unitImage.GetComponent<Image>().sprite = _unit.Data.Image;
         if (unit.Team == Team.Player)
             _background.GetComponent<Image>().color = _player;
         else
+        {
             _background.GetComponent<Image>().color = _enemy;
+            _unitImage.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+        }
+        
     }
 
     public BattleUnit GetUnit()
