@@ -31,6 +31,7 @@ public class Stage : MonoBehaviour
     [Header("StageInfo")]
     [SerializeField] public StageData Datas;
     private bool isClear = false;
+    private bool isNextStage = false;
 
 
     private void Awake()
@@ -49,16 +50,26 @@ public class Stage : MonoBehaviour
         }
     }
 
+    public void SetNextStage()
+    {
+        isNextStage = true;
+        BackLight.SetVisible();
+    }
+
     public void OnMouseUp() => StageManager.Instance.StageMove(Datas.ID);
 
     public void OnMouseEnter()
     {
+        if (isNextStage)
+            return;
         if (!isClear)
             BackLight.FadeIn();
     }
 
     public void OnMouseExit()
     {
+        if (isNextStage)
+            return;
         if (!isClear)
             BackLight.FadeOut();
     }
