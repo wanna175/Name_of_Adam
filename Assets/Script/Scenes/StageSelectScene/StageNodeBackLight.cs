@@ -15,6 +15,8 @@ public class StageNodeBackLight : MonoBehaviour
         coro = null;
     }
 
+    public void SetVisible() => renderer.color = new Color(1, 1, 1, 1);
+
     public void FadeIn()
     {
         if (coro != null)

@@ -80,10 +80,41 @@ public class VisualEffectManager : MonoBehaviour
 
     public void StartStigmaEffect(Sprite sprite, Vector3 position)
     {
-        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Animation/StigmaEffect");
+        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/StigmaEffect");
         GameObject go = StartVisualEffect(clip, position);
 
         go.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+
+    public void StartUnitDeadEffect(Vector3 position, bool flip)
+    {
+        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitDeadEffect");
+        GameObject go = StartVisualEffect(clip, position);
+
+        go.GetComponent<SpriteRenderer>().flipX = flip;
+    }
+
+    public void StartFadeEffect(bool FadeIn)
+    {
+        GameObject go;
+        AnimationClip clip;
+
+        if (FadeIn)
+            clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/FadeInEffect");
+        else
+            clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/FadeOutEffect");
+
+        go = StartVisualEffect(clip, Vector3.zero);
+        go.GetComponent<SpriteRenderer>().sprite = GameManager.Resource.Load<Sprite>("Arts/EffectAnimation/VisualEffect/Sprite/Fade");
+    }
+
+    public void StartBenedictionEffect(BattleUnit unit)
+    {
+        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/BenedictionEffect");
+        GameObject go = StartVisualEffect(clip, Vector3.zero);
+        go.transform.SetParent(unit.transform);
+        go.transform.localPosition = Vector3.zero;
+        go.GetComponent<VisualEffect>().SetLoop(true);
     }
 
     private void CreateEffect(AnimEffects effect)

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class BattleCutSceneController : MonoBehaviour
 {
     [SerializeField] private CameraHandler _CameraHandler;
@@ -15,6 +14,7 @@ public class BattleCutSceneController : MonoBehaviour
     public float CutSceneTime = 1;
     
     public float ShakePower = 0.5f;
+    public float ShakeMinus = 0.1f;
     public float ShakeTime = 0.1f;
     public float ShakeCount = 5;
     
@@ -67,7 +67,7 @@ public class BattleCutSceneController : MonoBehaviour
         }
 
         //yield return StartCoroutine(AttackTilt());
-        yield return StartCoroutine(_CameraHandler.AttackEffect(ShakeCount, ShakeTime, ShakePower));
+        yield return StartCoroutine(_CameraHandler.AttackEffect(ShakeCount, ShakeTime, ShakePower, ShakeMinus));
 
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
