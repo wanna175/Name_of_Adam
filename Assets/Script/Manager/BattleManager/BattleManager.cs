@@ -172,7 +172,7 @@ public class BattleManager : MonoBehaviour
 
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/UnitSpawnEffect"),
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect"),
             BattleManager.Field.GetTilePosition(coord));
 
         BattleUI.RemoveHandUnit(unit);
@@ -401,14 +401,6 @@ public class BattleManager : MonoBehaviour
         GameManager.Sound.Play("Move/MoveSFX");
     }
 
-    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
-
-    private IEnumerator PlayCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        action();
-    }
 
     public bool UnitSpawnReady(FieldColorType colorType)
     {

@@ -15,7 +15,7 @@ MonoBehaviour:
   Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
   UniversalPlayerSkill: {fileID: 710112273335604812, guid: cde596edd4843ec41bf7e4d6d0bc6808, type: 3}
   Money: 0
-  DarkEssence: 4
+  DarkEssence: 0
   PlayerSkillCount: 0
   DeckUnits:
   - Data: {fileID: 11400000, guid: c616bfb8360e1ff41b2fcb46b6ec5dcb, type: 2}
@@ -36,8 +36,7 @@ MonoBehaviour:
       FallMaxCount: 0
       ManaCost: 0
     Stigma:
-    - {fileID: 5699345184258759755, guid: 7ed5edde74524e047b91b1141dd79ae5, type: 3}
-    - {fileID: 7423770131057606638, guid: 12938a7ce8be2ad40815bcfd0bc2734c, type: 3}
+    - {fileID: 5904062041423394259, guid: 02b8b968052d68449b4957bd80e9bc4e, type: 3}
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -49,7 +48,7 @@ MonoBehaviour:
       ManaCost: 0
     DeckUnitChangedStat:
       MaxHP: 0
-      CurrentHP: 0
+      CurrentHP: -20
       ATK: 0
       SPD: 0
       FallCurrentCount: 0
@@ -57,25 +56,5 @@ MonoBehaviour:
       ManaCost: 0
     Stigma:
     - {fileID: 4891567991765696922, guid: 8dd6772932cefc84988838b0cbed6647, type: 3}
-  - Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    Stigma:
-    - {fileID: 3027779355813734386, guid: e3cc368803298d8429f5b1128128c60e, type: 3}
-    - {fileID: 6822439255809191265, guid: 154b20718bcf6a24898d30a93528752d, type: 3}
   isVisitUpgrade: 0
   isVisitStigma: 0

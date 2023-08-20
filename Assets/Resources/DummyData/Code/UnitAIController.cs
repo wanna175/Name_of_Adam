@@ -306,7 +306,7 @@ public class UnitAIController : MonoBehaviour
             MoveUnit(MoveDirection(NearestEnemySearch()));
         }
 
-        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
+        GameManager.Instance.PlayAfterCoroutine(() => BattleManager.Phase.ChangePhase(BattleManager.Phase.Action), 0.7f);
     }
 
     public virtual void AISkillUse()
