@@ -172,9 +172,11 @@ public class BattleManager : MonoBehaviour
 
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect"),
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect"),
             BattleManager.Field.GetTilePosition(coord));
-
+        GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnFrontEffect"),
+            BattleManager.Field.GetTilePosition(coord));
         BattleUI.RemoveHandUnit(unit);
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
