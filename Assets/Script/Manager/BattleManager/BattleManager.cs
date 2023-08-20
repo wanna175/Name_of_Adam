@@ -183,7 +183,12 @@ public class BattleManager : MonoBehaviour
     public void MovePhaseClick(Vector2 coord)
     {
         BattleUnit unit = Data.GetNowUnit();
+        BattleUnit destunit = _field.GetUnit(coord);
 
+        if (destunit != null && unit.Team != destunit.Team)
+        {
+            return;
+        }
         if (unit.Team == Team.Player)
         {
             if (!Field.ColoredTile.Contains(coord))
