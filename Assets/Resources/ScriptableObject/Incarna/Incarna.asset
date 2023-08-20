@@ -19,4 +19,4 @@ MonoBehaviour:
   - {fileID: 3233695130252107697, guid: d7c1eb92d8fbd87418d73002f3cfb65f, type: 3}
   - {fileID: 5395026236160498702, guid: 63388be1b1c6f2f4e99351a5ce301eff, type: 3}
   - {fileID: 4925856778809104441, guid: b3fc180a5fda0074e9e14deac46a69cc, type: 3}
-  _playerSkillCount: 0
+  _playerSkillCount: 4
