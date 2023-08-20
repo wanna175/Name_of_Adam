@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
-  m_Name: "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD"
+  m_Name: "\uC57C\uB098"
   m_EditorClassIdentifier: 
   _rawStat:
     MaxHP: 40
@@ -22,14 +22,13 @@ MonoBehaviour:
     ManaCost: 80
   _uniqueStigma:
   - {fileID: 171247975755226261, guid: e2453f4d561b4694d8202f89587122af, type: 3}
-  _name: "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD"
+  _name: "\uC57C\uB098"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC90D\uB2C8\uB2E4. \uD574\uC758 \uC99D\uD45C\uAC00 \uBD80\uC5EC\uB41C \uC801\uC744
     \uAC70\uB9AC\uC5D0 \uC0C1\uAD00 \uC5C6\uC774 \uB3D9\uC77C\uD55C \uB370\uBBF8\uC9C0\uB85C
     \uACF5\uACA9\uD558\uBA70 \uAD50\uD654\uB3C4\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.
     \uC57C\uB098\uC5D0\uAC8C \uD53C\uACA9\uB41C \uBAA8\uB4E0 \uC801\uC5D0\uAC8C \uB2EC\uC758
     \uC99D\uD45C\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
-  _faction: 1
   _rarity: 2
   _image: {fileID: 21300000, guid: cca1af85aaa350e4cb23eafc14937be8, type: 3}
   _animatorController: {fileID: 9100000, guid: 3c7bf4e4998708646af6c6e7be07e68d, type: 2}
