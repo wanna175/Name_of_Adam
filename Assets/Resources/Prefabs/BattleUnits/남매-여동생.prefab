@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 3c7bf4e4998708646af6c6e7be07e68d, type: 2}
     - target: {fileID: 4481877192685339916, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4481877192685339916, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_Sprite
@@ -98,7 +98,7 @@ PrefabInstance:
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: AI
       value: 
-      objectReference: {fileID: 9020254442287791704}
+      objectReference: {fileID: 0}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: Data
       value: 
@@ -141,16 +141,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 958f33d27528d9547bc7d9815cb908d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &9020254442287791704 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3929000787331167701, guid: b5f985903313e834580fc378803a516b, type: 3}
-  m_PrefabInstance: {fileID: 5451885497509563277}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3954254994103691638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4656c3a1826ee9d4a84f1ddcc28ac1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

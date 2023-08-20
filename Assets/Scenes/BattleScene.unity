@@ -155,8 +155,9 @@ MonoBehaviour:
   _CameraHandler: {fileID: 1688846949}
   ZoomTime: 0.1
   CutSceneTime: 2
-  ShakePower: 0.2
-  ShakeTime: 1
+  ShakePower: 0.8
+  ShakeMinus: 0.1
+  ShakeTime: 0.7
   ShakeCount: 5
 --- !u!4 &49041953
 Transform:
@@ -1070,9 +1071,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1858358185829964396, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858358185829964396, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858358185829964396, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6231958352190634651, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_Name
       value: Square
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231958352190634651, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_RootOrder
@@ -3413,7 +3430,8 @@ MonoBehaviour:
       Stigma: []
     location: {x: 3, y: 1}
     team: 1
-    stigmas: []
+    stigmas:
+    - {fileID: 6009915712508650629, guid: 5fc0158cfd7db004cb608da3b834f628, type: 3}
 --- !u!114 &1589663948
 MonoBehaviour:
   m_ObjectHideFlags: 0

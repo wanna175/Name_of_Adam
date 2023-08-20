@@ -13,12 +13,15 @@ public class PlayerSkill_Cross : PlayerSkill
         foreach (Vector2 target in targetCoords)
         {
             GameManager.VisualEffect.StartVisualEffect(
-                Resources.Load<AnimationClip>("Arts/EffectAnimation/CrossThunder"),
+                Resources.Load<AnimationClip>("Arts/EffectAnimation/PlayerSkill/CrossThunder"),
                 BattleManager.Field.GetTilePosition(target));
             BattleUnit targetUnit = BattleManager.Field.GetUnit(target);
 
             if (targetUnit != null)
-                targetUnit.GetAttack(-15, null);
+            {
+                if(targetUnit.Team == Team.Enemy)
+                    targetUnit.GetAttack(-15, null);
+            }
         }
 
     }

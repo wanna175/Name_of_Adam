@@ -57,7 +57,7 @@ public class CameraHandler : MonoBehaviour
         CutSceneCamera.transform.eulerAngles = new Vector3(0, 0, a);
     }
 
-    public IEnumerator AttackEffect(float shakeCount, float shakeTime, float shakePower)
+    public IEnumerator AttackEffect(float shakeCount, float shakeTime, float shakePower, float shakeMinus)
     {
         Vector3 originPos = CutSceneCamera.transform.position;
 
@@ -66,12 +66,16 @@ public class CameraHandler : MonoBehaviour
 
         Vector3 editVec = new Vector3(shakePower, 0, 0);
 
+        yield return new WaitForSeconds(0.1f);
+
+        float pls = 1;
         while (count > 0)
         {
-            editVec *= -1;
-            CutSceneCamera.transform.position += editVec;
+            pls *= -1;
+            editVec.x -= shakeMinus;
             count--;
 
+            CutSceneCamera.transform.position += editVec * pls;
             yield return new WaitForSeconds(time);
         }
 
