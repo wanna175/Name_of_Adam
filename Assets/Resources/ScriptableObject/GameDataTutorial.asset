@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dac803bb941873b4fafc0c839fc31480, type: 3}
-  m_Name: GameDataOriginal
+  m_Name: GameDataTutorial
   m_EditorClassIdentifier: 
   Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
-  UniversalPlayerSkill: {fileID: 11400000, guid: 89cad111ca2142745a6152764fcd1575, type: 2}
+  UniversalPlayerSkill: {fileID: 0}
   Money: 0
   DarkEssence: 0
   PlayerSkillCount: 0
   DeckUnits:
-  - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
+  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0
@@ -34,9 +34,26 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
+      ManaCost: -20
+    Stigma: []
+  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
       ManaCost: 0
-    Stigma:
-    - {fileID: 4891567991765696922, guid: 8dd6772932cefc84988838b0cbed6647, type: 3}
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: -20
+    Stigma: []
   - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -53,9 +70,9 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 0
+      ManaCost: -20
     Stigma: []
-  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
+  - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0
@@ -66,30 +83,12 @@ MonoBehaviour:
       ManaCost: 0
     DeckUnitChangedStat:
       MaxHP: 0
-      CurrentHP: -40
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    Stigma: []
-  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
       CurrentHP: 0
       ATK: 0
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: -40
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
+      ManaCost: -35
     Stigma: []
   isVisitUpgrade: 0
   isVisitStigma: 0
