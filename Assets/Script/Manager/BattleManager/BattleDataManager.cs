@@ -78,6 +78,18 @@ public class BattleDataManager : MonoBehaviour
 
     public void RemoveDeckUnit(DeckUnit unit) => PlayerDeck.Remove(unit);
 
+    public DeckUnit GetUnitFromDeck(int i)
+    {
+        if (PlayerDeck.Count == 0)
+        {
+            return null;
+        }
+        DeckUnit unit = PlayerDeck[i];
+        _playerDeck.RemoveAt(i);
+
+        return unit;
+    }
+
     public DeckUnit GetRandomUnitFromDeck()
     {
         if (PlayerDeck.Count == 0)

@@ -18,6 +18,7 @@ public class BattleUIManager : MonoBehaviour
     private UI_TurnChangeButton _turnChangeButton;
 
     private int _maxHandCount = 3;
+    int DeckBackCount = 3;
 
     private void Start()
     {
@@ -63,12 +64,33 @@ public class BattleUIManager : MonoBehaviour
 
     public void FillHand()
     {
+        int curID = GameManager.Data.Map.CurrentTileID;
+
         while (BattleManager.Data.PlayerHands.Count < _maxHandCount)
         {
-            DeckUnit unit = BattleManager.Data.GetRandomUnitFromDeck();
-            if (unit == null)
-                return;
-            AddHandUnit(unit);
+            if (curID == 15)
+            {
+                DeckUnit unit = BattleManager.Data.GetUnitFromDeck(0);
+                if (unit == null)
+                    return;
+                AddHandUnit(unit);
+            }
+            else if (curID == 16)
+            {
+                DeckUnit unit = BattleManager.Data.GetUnitFromDeck(DeckBackCount);
+                if (unit == null)
+                    return;
+                DeckBackCount--;
+                AddHandUnit(unit);
+            }
+            else
+            {
+                DeckUnit unit = BattleManager.Data.GetRandomUnitFromDeck();
+                if (unit == null)
+                    return;
+                AddHandUnit(unit);
+            }
+
         }
     }
 
@@ -106,6 +128,8 @@ public class BattleUIManager : MonoBehaviour
         GameObject _Tutorial5 = tutorial.transform.Find("UI_Tutorial5").gameObject;
         GameObject _Tutorial6 = tutorial.transform.Find("UI_Tutorial6").gameObject;
         GameObject _Tutorial7 = tutorial.transform.Find("UI_Tutorial7").gameObject;
+
+
 
         if (curID == 15)
         {

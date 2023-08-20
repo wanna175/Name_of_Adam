@@ -8,7 +8,7 @@ using TMPro;
 public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _highlight;
-    [SerializeField] private TextMeshProUGUI _text;
+    //[SerializeField] private TextMeshProUGUI _text;
 
     private UI_PlayerSkill _playerSkill;
     private PlayerSkill _skill;
@@ -23,7 +23,8 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     {
         _playerSkill = ps;
         _skill = skill;
-        _text.text = skill.GetName();
+        //_text.text = skill.GetName();
+        GetComponent<Image>().sprite = skill.GetSkillImage();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
