@@ -23,7 +23,6 @@ public class BattleUIManager : MonoBehaviour
     private void Start()
     {
         //버튼 생성
-        GameManager.UI.ShowScene<UI_OptionButton>();
         GameManager.UI.ShowScene<UI_DeckButton>().Set(false/*true*/);
 
         //정보들

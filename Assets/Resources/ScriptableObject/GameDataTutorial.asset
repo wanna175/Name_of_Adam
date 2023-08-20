@@ -15,7 +15,7 @@ MonoBehaviour:
   Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
   UniversalPlayerSkill: {fileID: 0}
   Money: 0
-  DarkEssence: 0
+  DarkEssence: 5
   PlayerSkillCount: 0
   DeckUnits:
   - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}

@@ -855,7 +855,7 @@ GameObject:
   - component: {fileID: 704919192}
   - component: {fileID: 704919191}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1803,7 +1803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1209585369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1884,6 +1884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SplashObj: {fileID: 1209585368}
+  sr: {fileID: 0}
 --- !u!1001 &1223257097
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,32 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LogoScene.unity
+    guid: 912d15aaab0a8cb4984233313c0429d6
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 478486cde4bdcd840afc3983e3b37ce1
   - enabled: 1
-    path: Assets/Scenes/LogoScene.unity
-    guid: 912d15aaab0a8cb4984233313c0429d6
+    path: Assets/Scenes/StageSelectScene.unity
+    guid: 944e604fff7adf34f8cad7af8b2bac6e
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 2e27cffb22e492d4690b7ba19378ad11
   - enabled: 1
     path: Assets/Scenes/CutScene.unity
     guid: 0248c2054aac16148b1b54ba8bfb589c
   - enabled: 1
-    path: Assets/Scenes/BattleScene.unity
-    guid: 2e27cffb22e492d4690b7ba19378ad11
+    path: Assets/Scenes/DifficultySelectScene.unity
+    guid: 99018feaf0e64be4289cbc700e78890d
   - enabled: 1
     path: Assets/Scenes/EndingCreditScene.unity
     guid: 23f8b5c773b1a0c43a99cb3c42999841
   - enabled: 1
     path: Assets/Scenes/EventScene.unity
     guid: 0ce76a95be913ec4c969b9d09386cbe2
-  - enabled: 1
-    path: Assets/Scenes/StageSelectScene.unity
-    guid: 944e604fff7adf34f8cad7af8b2bac6e
-  - enabled: 1
-    path: Assets/Scenes/TutorialScene.unity
-    guid: f068c300570d104418186f1ab2bb0003
-  - enabled: 1
-    path: Assets/Scenes/DifficultySelectScene.unity
-    guid: 99018feaf0e64be4289cbc700e78890d
   - enabled: 1
     path: Assets/Scenes/HubScene.unity
     guid: 6ca3abbdf26956a458e045166ee63328
