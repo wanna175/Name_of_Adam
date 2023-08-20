@@ -45,7 +45,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         _highlight.SetActive(true);
-        _hand.transform.localScale = new Vector3 (1.2f, 1.2f, 1f);
+        _hand.transform.localScale = new Vector3 (1.3f, 1.3f, 1f);
         _hoverInfo = BattleManager.BattleUI.ShowInfo();
         _hoverInfo.SetInfo(_handUnit, Team.Player);
     }
