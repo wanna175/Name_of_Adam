@@ -7,7 +7,7 @@ public class PlayerSkill_Cross : PlayerSkill
     public override void Use(Vector2 coord)
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //ÀÌÆÑÆ®¸¦ ¿©±â¿¡ Ãß°¡
+        //Ã€ÃŒÃ†Ã‘Ã†Â®Â¸Â¦ Â¿Â©Â±Ã¢Â¿Â¡ ÃƒÃŸÂ°Â¡
         List<Vector2> targetCoords = BattleManager.Field.GetCrossCoord(coord);
 
         foreach (Vector2 target in targetCoords)
@@ -17,11 +17,12 @@ public class PlayerSkill_Cross : PlayerSkill
                 BattleManager.Field.GetTilePosition(target));
             BattleUnit targetUnit = BattleManager.Field.GetUnit(target);
 
-            if (targetUnit != null)
+            if (targetUnit != null && targetUnit.Team == Team.Enemy)
             {
-                if(targetUnit.Team == Team.Enemy)
-                    targetUnit.GetAttack(-15, null);
+                targetUnit.GetAttack(-15, null);
             }
+
+
         }
 
     }
