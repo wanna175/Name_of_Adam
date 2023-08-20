@@ -18,7 +18,6 @@ public class BattleUIManager : MonoBehaviour
     private UI_TurnChangeButton _turnChangeButton;
 
     private int _maxHandCount = 3;
-    int DeckBackCount = 3;
 
     private void Start()
     {
@@ -77,10 +76,9 @@ public class BattleUIManager : MonoBehaviour
             }
             else if (curID == 16)
             {
-                DeckUnit unit = BattleManager.Data.GetUnitFromDeck(DeckBackCount);
+                DeckUnit unit = BattleManager.Data.GetRandomUnitFromDeck();
                 if (unit == null)
                     return;
-                DeckBackCount--;
                 AddHandUnit(unit);
             }
             else
@@ -128,6 +126,13 @@ public class BattleUIManager : MonoBehaviour
         GameObject _Tutorial5 = tutorial.transform.Find("UI_Tutorial5").gameObject;
         GameObject _Tutorial6 = tutorial.transform.Find("UI_Tutorial6").gameObject;
         GameObject _Tutorial7 = tutorial.transform.Find("UI_Tutorial7").gameObject;
+        GameObject _Tutorial8 = tutorial.transform.Find("UI_Tutorial8").gameObject;
+        GameObject _Tutorial9 = tutorial.transform.Find("UI_Tutorial9").gameObject;
+        GameObject _Tutorial10 = tutorial.transform.Find("UI_Tutorial10").gameObject;
+        GameObject _Tutorial11 = tutorial.transform.Find("UI_Tutorial11").gameObject;
+        GameObject _Tutorial12 = tutorial.transform.Find("UI_Tutorial12").gameObject;
+        GameObject _Tutorial13 = tutorial.transform.Find("UI_Tutorial13").gameObject;
+        GameObject _Tutorial14 = tutorial.transform.Find("UI_Tutorial14").gameObject;
 
 
 
@@ -140,11 +145,13 @@ public class BattleUIManager : MonoBehaviour
                     _Tutorial1.SetActive(true);
                     _Tutorial2.SetActive(true);
                     _Tutorial3.SetActive(true);
+                    _Tutorial4.SetActive(true);
                 }
                 else if (phaseController.Current == phaseController.Engage)
                 {
-                    _Tutorial4.SetActive(true);
                     _Tutorial5.SetActive(true);
+                    _Tutorial6.SetActive(true);
+                    _Tutorial7.SetActive(true);
                     GameManager.Instance.Tutorial_Trigger_First = false;
                 }
             }
@@ -155,11 +162,16 @@ public class BattleUIManager : MonoBehaviour
             {
                 if (phaseController.Current == phaseController.Prepare)
                 {
-                    _Tutorial6.SetActive(true);
+                    _Tutorial8.SetActive(true);
+                    _Tutorial9.SetActive(true);
+                    _Tutorial10.SetActive(true);
                 }
                 else if (phaseController.Current == phaseController.Engage)
                 {
-                    _Tutorial7.SetActive(true);
+                    _Tutorial11.SetActive(true);
+                    _Tutorial12.SetActive(true);
+                    _Tutorial13.SetActive(true);//두번째 페이즈
+                    _Tutorial14.SetActive(true);//신성
                     GameManager.Instance.Tutorial_Trigger_Second = false;
                 }
             }
