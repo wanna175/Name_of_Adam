@@ -193,7 +193,7 @@ public class BattleManager : MonoBehaviour
             MoveLocate(unit, dest);
         }
 
-        Invoke(nameof(MoveWait), 1f);
+        Invoke(nameof(MoveWait), 0.8f);
     }
 
     //임시
@@ -445,8 +445,9 @@ public class BattleManager : MonoBehaviour
         {
             Buff_Benediction benediction = new();
             lastUnit.SetBuff(benediction, lastUnit);
+            GameManager.VisualEffect.StartBenedictionEffect(lastUnit);
         }
 
-        
+
     }
 }
