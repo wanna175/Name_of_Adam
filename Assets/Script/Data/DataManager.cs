@@ -19,7 +19,8 @@ public class DataManager : MonoBehaviour
     public int StageAct;
 
     [SerializeField] public GameData GameData;
-    [SerializeField] public GameData GameDataOriginal;
+    [SerializeField] public GameData GameDataMain;
+    [SerializeField] public GameData GameDataTutorial;
 
     public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
     public StigmaController StigmaController;
@@ -40,15 +41,33 @@ public class DataManager : MonoBehaviour
         _playerSkillCount = GameData.Incarna.PlayerSkillCount;
     }
 
+    public void MainDeckSet()
+    {
+        GameData.Incarna = GameDataMain.Incarna;
+        GameData.Money = GameDataMain.Money;
+        GameData.DarkEssence = GameDataMain.DarkEssence;
+        GameData.PlayerSkillCount = GameDataMain.PlayerSkillCount;
+        GameData.DeckUnits = GameDataMain.DeckUnits;
+        GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
+        GameData.isVisitStigma = GameDataMain.isVisitStigma;
+
+        foreach (DeckUnit unit in GameData.DeckUnits)
+        {
+            unit.DeckUnitChangedStat.ClearStat();
+            unit.DeckUnitUpgradeStat.ClearStat();
+            unit.Stigma.Clear();
+        }
+    }
+
     public void DeckClear()
     {
-        GameData.Incarna = GameDataOriginal.Incarna;
-        GameData.Money = GameDataOriginal.Money;
-        GameData.DarkEssence = GameDataOriginal.DarkEssence;
-        GameData.PlayerSkillCount = GameDataOriginal.PlayerSkillCount;
-        GameData.DeckUnits = GameDataOriginal.DeckUnits;
-        GameData.isVisitUpgrade = GameDataOriginal.isVisitUpgrade;
-        GameData.isVisitStigma = GameDataOriginal.isVisitStigma;
+        GameData.Incarna = GameDataTutorial.Incarna;
+        GameData.Money = GameDataTutorial.Money;
+        GameData.DarkEssence = GameDataTutorial.DarkEssence;
+        GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
+        GameData.DeckUnits = GameDataTutorial.DeckUnits;
+        GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
+        GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
