@@ -24,7 +24,7 @@ MonoBehaviour:
       CurrentHP: 0
       ATK: 0
       SPD: 0
-      FallCurrentCount: 0
+      FallCurrentCount: 2
       FallMaxCount: 0
       ManaCost: 0
     DeckUnitChangedStat:
@@ -35,6 +35,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    Stigma: []
+    Stigma:
+    - {fileID: 4891567991765696922, guid: 8dd6772932cefc84988838b0cbed6647, type: 3}
   isVisitUpgrade: 0
   isVisitStigma: 0

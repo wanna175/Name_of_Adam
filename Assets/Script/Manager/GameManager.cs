@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
                 unit.ChangeHP(-100);
             }
-            BattleManager.Instance.BattleOverCheck();
+            //BattleManager.Instance.BattleOverCheck();
         }
         if (Input.GetKeyDown(KeyCode.P))
         {

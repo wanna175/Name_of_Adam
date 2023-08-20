@@ -4,8 +4,6 @@ public class BattleOverPhase : Phase
 {
     public override void OnStateEnter()
     {
-        Debug.Log("끝끝끝");
-        
         foreach (DeckUnit unit in BattleManager.Data.PlayerDeck)
             unit.FirstTurnDiscountUndo();
 

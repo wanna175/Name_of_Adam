@@ -280,7 +280,7 @@ public class BattleManager : MonoBehaviour
     {
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());
-        BattleOverCheck();
+        //BattleOverCheck();
         BattleUI.UI_darkEssence.Refresh();
         _phase.ChangePhase(_phase.Engage);
     }
@@ -374,7 +374,10 @@ public class BattleManager : MonoBehaviour
                 GameManager.SaveManager.DeleteSaveData();
             }
             else
+            {
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+            }
+                
         }
         catch
         {
