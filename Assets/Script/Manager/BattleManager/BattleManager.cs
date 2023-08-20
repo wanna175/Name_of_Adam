@@ -374,7 +374,10 @@ public class BattleManager : MonoBehaviour
                 GameManager.SaveManager.DeleteSaveData();
             }
             else
+            {
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+            }
+                
         }
         catch
         {
