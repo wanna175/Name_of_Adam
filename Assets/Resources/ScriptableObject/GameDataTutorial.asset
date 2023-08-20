@@ -34,7 +34,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -20
+      ManaCost: 0
     Stigma: []
   - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
     DeckUnitUpgradeStat:
@@ -52,7 +52,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -20
+      ManaCost: 0
     Stigma: []
   - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
     DeckUnitUpgradeStat:
@@ -70,7 +70,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -20
+      ManaCost: 0
     Stigma: []
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
@@ -83,12 +83,13 @@ MonoBehaviour:
       ManaCost: 0
     DeckUnitChangedStat:
       MaxHP: 0
-      CurrentHP: 0
+      CurrentHP: -20
       ATK: 0
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -35
-    Stigma: []
+      ManaCost: 0
+    Stigma:
+    - {fileID: 4891567991765696922, guid: 8dd6772932cefc84988838b0cbed6647, type: 3}
   isVisitUpgrade: 0
   isVisitStigma: 0

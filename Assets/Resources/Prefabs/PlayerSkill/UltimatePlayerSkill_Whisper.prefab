@@ -48,3 +48,4 @@ MonoBehaviour:
   manaCost: 20
   darkEssence: 1
   description: 
+  skillImage: {fileID: 21300000, guid: 7d96c9752ef267e49a35f489676e7921, type: 3}
