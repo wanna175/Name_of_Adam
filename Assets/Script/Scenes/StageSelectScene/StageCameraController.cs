@@ -41,13 +41,13 @@ public class StageCameraController : MonoBehaviour
             transform.position = new Vector3(0, -40, -10);
         if (transform.position.y < -5 && transform.position.y > -20)
             transform.position = new Vector3(0, -5, -10);
-        if (transform.position.y > 30)
-            transform.position = new Vector3(0, 30, -10);
+        if (transform.position.y > 25)
+            transform.position = new Vector3(0, 25, -10);
     }
 
     public void SetLocate(float y)
     {
-        transform.position = new Vector3(0, y, -10);
+        transform.localPosition = new Vector3(0, y, -10);
         //if (y < -5 || 30 < y)
             //transform.position = new Vector3(0, -5, -10);
     }
