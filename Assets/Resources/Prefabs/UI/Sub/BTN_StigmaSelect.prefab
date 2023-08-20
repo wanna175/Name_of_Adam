@@ -174,8 +174,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB300\uC8C4\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36ece148b57fce84f8c9a5b521fa542f, type: 2}
+  m_sharedMaterial: {fileID: 8581356327694910831, guid: 36ece148b57fce84f8c9a5b521fa542f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -597,8 +597,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -155}
-  m_SizeDelta: {x: 240, y: 140}
+  m_AnchoredPosition: {x: 0, y: -130.7702}
+  m_SizeDelta: {x: 240, y: 188.4596}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1516669295446194080
 CanvasRenderer:
@@ -628,10 +628,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACF5\uACA9 \uC2DC \uC801\uC5D0\uAC8C \n\uD0C0\uB77D 1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+  m_text: "\uC785\uD78C \uB370\uBBF8\uC9C0\uC758 \n30%\uB97C \uD68C\uBCF5\uD569\uB2C8\uB2E4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36ece148b57fce84f8c9a5b521fa542f, type: 2}
+  m_sharedMaterial: {fileID: 8581356327694910831, guid: 36ece148b57fce84f8c9a5b521fa542f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -655,19 +655,19 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 22
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

@@ -94,7 +94,7 @@ public class SoundManager : MonoBehaviour
 
     public void SceneBGMPlay(string scenename)
     {
-        if (scenename == "BattleScene" || scenename == "TutorialScene")
+        if (scenename == "BattleScene")
         {
             Clear();
             Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
@@ -105,9 +105,12 @@ public class SoundManager : MonoBehaviour
             Clear();
             string storeName = GameManager.Data.GetCurrentStageData().Name.ToString();
             Play(scenename + "/" + storeName);
-
         }
-        else if (scenename != "LogoScene" && scenename != "CutScene")
+        else if(scenename == "CutScene")
+        {
+            Clear();
+        }
+        else if (scenename != "LogoScene")
         {
             Clear();
             Play(scenename + "/" + scenename + "BGM", Sounds.BGM);

@@ -38,7 +38,14 @@ public class DataManager : MonoBehaviour
             GameManager.SaveManager.LoadGame();
 
         _darkEssense = GameData.DarkEssence;
-        _playerSkillCount = GameData.Incarna.PlayerSkillCount;
+        if(GameData.Incarna != null)
+        {
+            _playerSkillCount = GameData.Incarna.PlayerSkillCount;
+        }
+        else
+        {
+            _playerSkillCount = 0;
+        }
     }
 
     public void MainDeckSet()
