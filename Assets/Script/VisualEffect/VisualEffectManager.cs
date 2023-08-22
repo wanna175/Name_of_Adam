@@ -35,6 +35,12 @@ public class VisualEffectManager : MonoBehaviour
         }
     }
 
+    public GameObject StartVisualEffect(string str, Vector3 position)
+    {
+        AnimationClip clip = GameManager.Resource.Load<AnimationClip>(str);
+
+        return StartVisualEffect(clip, position);
+    }
     public GameObject StartVisualEffect(AnimationClip clip, Vector3 position)
     {
         GameObject go;
