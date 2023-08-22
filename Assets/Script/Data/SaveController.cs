@@ -24,9 +24,12 @@ public class SaveController
 
     public SaveController()
     {
+        // 사용자/Appdata//LocalLow에 자신의 파일이 있는지 확인하는 함수(System.IO 필요)
         path = Path.Combine(Application.persistentDataPath, "SaveData.json");
     }
 
+    // 게임 진행 정보 저장
+    // 저장하는 데이터가 늘어나면 이곳에서 관리해주어야 함
     public void SaveGame()
     {
         SaveData newData = new SaveData();
@@ -39,14 +42,16 @@ public class SaveController
         newData.UniversalPlayerSkillData = CurGameData.UniversalPlayerSkill;
         newData.DarkEssence = CurGameData.DarkEssence;
         newData.PlayerSkillCount = CurGameData.PlayerSkillCount;
-        newData.DefaultMana = 50; // 
-        newData.GuardCount = 1;   //
+        newData.DefaultMana = 50; // 진척도에 따라 바뀌는 인자들
+        newData.GuardCount = 1;   // 이 인자들을 적용하는 곳이 생기면 연동하기
 
         string json = JsonUtility.ToJson(newData, true);
 
         File.WriteAllText(path, json);
     }
 
+    // 게임 진행 정보 저장
+    // 저장하는 데이터가 늘어나면 이곳에서 관리해주어야 함
     public void LoadGame()
     {
         string json = File.ReadAllText(path);
@@ -63,7 +68,9 @@ public class SaveController
         //CurGameData.GuardCount
     }
 
+    // 저장된 데이터가 있는지 확인
     public bool SaveFileCheck() => File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.json")) ? true : false;
 
+    // 저장된 데이터 삭제
     public void DeleteSaveData() => File.Delete(path);
 }
