@@ -24,7 +24,7 @@ public class UI_PlayerSkill : UI_Scene
     {
         PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
         
-        if (!prepare.isFirst && !Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()))
+        if (!Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()))
         {
             if (card != null && card == _selectedCard)
             {
