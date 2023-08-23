@@ -378,7 +378,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU WIN");
         Data.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
-        StageData data = GameManager.Data.GetCurrentStageData();
+        StageData data = GameManager.Data.Map.GetCurrentStage();
         try
         {
             if (data.StageLevel >= 10)

@@ -9,7 +9,7 @@ public class StageNodeBackLight : MonoBehaviour
     float fadeTime = 0.3f;
     float curTime = 0;
 
-    private void Start()
+    private void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
         coro = null;
