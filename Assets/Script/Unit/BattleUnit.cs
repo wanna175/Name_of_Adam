@@ -188,7 +188,7 @@ public class BattleUnit : MonoBehaviour
         {
             return;
         }
-
+        
         //타락 이벤트 시작
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
