@@ -234,10 +234,10 @@ MonoBehaviour:
   m_text: "\uD544\uB4DC \uC704\uC5D0 \uC801\uC774 \uB0A8\uC9C0 \uC54A\uAC8C \uB418\uBA74
     \uC2B9\uB9AC\uD569\uB2C8\uB2E4.\r\n\uBC18\uB300\uB85C \uBCF4\uC720\uD55C \uC720\uB2DB\uC774
     \uC804\uBD80 \uC0AC\uB9DD\uD574 \uD544\uB4DC\uC640 \uD328\uC5D0 \uC720\uB2DB\uC774
-    \uD55C\uBA85\uC774\uB77C\uB3C4 \uB0A8\uC9C0 \uC54A\uAC8C \uB418\uBA74 \uD328\uBC30\uD569\uB2C8\uB2E4.\r\n"
+    \n\uD55C\uBA85\uC774\uB77C\uB3C4 \uB0A8\uC9C0 \uC54A\uAC8C \uB418\uBA74 \uD328\uBC30\uD569\uB2C8\uB2E4.\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -261,8 +261,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -271,9 +271,9 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 2
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 20
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -371,8 +371,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2B9\uB9AC, \uD328\uBC30 \uC870\uAC74"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -396,8 +396,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

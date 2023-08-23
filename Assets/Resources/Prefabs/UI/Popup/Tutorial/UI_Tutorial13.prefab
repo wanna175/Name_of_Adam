@@ -232,15 +232,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uB450\uBC88\uC9F8 \uD50C\uB808\uC774\uC5B4 \uD134\uBD80\uD130\uB294 \uB9C8\uB098\uC640
-    \uAC80\uC740 \uC815\uC218\uB97C \uC18C\uBAA8\uD558\uC5EC \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560
-    \uC218 \uC788\uC73C\uBA70 \uD134\uB2F9 \uD55C\uAC1C\uC758 \uC2A4\uD0AC\uB9CC\uC744
-    \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\n\uC2A4\uD0AC \uCC9C\uBC8C\uC740
-    \uB9C8\uB098 20\uACFC \uAC80\uC740 \uC815\uC218\uB97C 2 \uC18C\uBAA8\uD558\uC5EC
-    \uC9C0\uC815\uD55C \uC801 \uD55C\uBA85\uC758 \uD0C0\uB77D \uAC8C\uC774\uC9C0\uB97C
+    \uAC80\uC740 \uC815\uC218\uB97C \uC18C\uBAA8\uD558\uC5EC \uC2A4\uD0AC\uC744\n
+    \uC0AC\uC6A9\uD560 \uC218 \uC788\uC73C\uBA70 \uD134\uB2F9 \uD55C\uAC1C\uC758
+    \uC2A4\uD0AC\uB9CC\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\n\uC2A4\uD0AC
+    \uCC9C\uBC8C\uC740 \uB9C8\uB098 20\uACFC \uAC80\uC740 \uC815\uC218\uB97C 2 \uC18C\uBAA8\uD558\uC5EC
+    \n\uC9C0\uC815\uD55C \uC801 \uD55C\uBA85\uC758 \uD0C0\uB77D \uAC8C\uC774\uC9C0\uB97C
     1 \uC62C\uB9BD\uB2C8\uB2E4. \r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -264,8 +264,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -274,9 +274,9 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 2
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 20
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -374,8 +374,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2A4\uD0AC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -399,8 +399,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
