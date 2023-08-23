@@ -8,14 +8,33 @@ public class UI_WaitingLine : UI_Scene
     private List<UI_WaitingUnit> _waitingUnitList = new List<UI_WaitingUnit>();
     private Transform _grid;
     private bool _turned = false;
-
+    [SerializeField] private GameObject _button1;
+    [SerializeField] private GameObject _button2;
 
     public void Start()
     {
         _grid = Util.FindChild(gameObject, "Grid", true).transform;
+        _button1.SetActive(false);
+        _button2.SetActive(false);
     }
 
-    public void AddUnit(BattleUnit addUnit)
+    public void ButtonActive()
+    {
+        if (_waitingUnitList.Count >= 5)
+        {
+            _button1.SetActive(true);
+        }
+        if (_button1.activeSelf == true)
+        {
+            _button2.SetActive(false);
+        }
+        else if (_button2.activeSelf == true)
+        {
+            _button1.SetActive(false);
+        }
+    }
+
+    private void AddUnit(BattleUnit addUnit)
     {
         UI_WaitingUnit newUnit = GameManager.Resource.Instantiate("UI/Sub/WaitingUnit", _grid).GetComponent<UI_WaitingUnit>();
         newUnit.SetUnit(addUnit, _turned);
@@ -32,7 +51,7 @@ public class UI_WaitingLine : UI_Scene
     public void SetWaitingLine(List<BattleUnit> orderList)
     {
         ClearLine();
-
+        ButtonActive();
         for (int i = 0; i < orderList.Count; i++)
             AddUnit(orderList[i]);
     }

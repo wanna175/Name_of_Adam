@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UI_WaitingUnit : MonoBehaviour
 {
-    
     private BattleUnit _unit;
     [SerializeField] private Image _unitImage;
     [SerializeField] private Image _background;
@@ -16,17 +15,16 @@ public class UI_WaitingUnit : MonoBehaviour
     public void SetUnit(BattleUnit unit, bool _turned)
     {
         _unit = unit;
-        _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _unit.DeckUnit.Data.Name);
-
         if (unit.Team == Team.Player)
         {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _unit.DeckUnit.Data.Name + "_Å¸¶ô");
             _background.GetComponent<Image>().color = _player;
         }
         else
         {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _unit.DeckUnit.Data.Name);
             _background.GetComponent<Image>().color = _enemy;
             _unitImage.transform.eulerAngles += new Vector3(0f, 180f, 0f);
-
         }
 
         if(_turned)

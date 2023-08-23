@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43a539cba95e4343915a4dbfa63379a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button1: {fileID: 9046886332893377408}
+  _button2: {fileID: 8904539574874878629}
 --- !u!1 &3685965299457681035
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +423,7 @@ GameObject:
   - component: {fileID: 8463060477078564488}
   - component: {fileID: 7486534776025511079}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: BTN_Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -444,7 +446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 903, y: -179}
+  m_AnchoredPosition: {x: 903, y: 408}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7549423356675858732
@@ -554,7 +556,7 @@ GameObject:
   - component: {fileID: 1545808529125676762}
   - component: {fileID: 8098233317557527507}
   m_Layer: 0
-  m_Name: Button
+  m_Name: BTN_Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -577,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 903, y: 398}
+  m_AnchoredPosition: {x: 897, y: -179}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1496666851894748601
