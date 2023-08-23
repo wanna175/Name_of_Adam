@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ public class DataManager : MonoBehaviour
     public Dictionary<int, List<StageSpawnData>> StageDatas = new Dictionary<int, List<StageSpawnData>>();
     public List<Stage> StageList;
     public MapData Map;
-    public int StageAct;
+    public int StageAct; // 현재 맵이 몇 막인지 기록하는 변수. 0 : 튜토리얼, 1 : 1막, 2 : 2막 이런식으로
 
     [SerializeField] public GameData GameData;
     [SerializeField] public GameData GameDataMain;
@@ -95,11 +95,6 @@ public class DataManager : MonoBehaviour
         TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
 
         return JsonUtility.FromJson<T>(textAsset.text);
-    }
-
-    public StageData GetCurrentStageData()
-    {
-        return Map.StageList.Find(x => x.ID == Map.CurrentTileID);
     }
 
     [SerializeField] private List<DeckUnit> _playerDeck = new ();
@@ -193,7 +188,7 @@ public class DataManager : MonoBehaviour
             skillList.Add(skill);
         }
 
-        //skillList.Insert(2, GameData.UniversalPlayerSkill); //Universal Skill ����
+        //skillList.Insert(2, GameData.UniversalPlayerSkill); //Universal Skill 보류
 
         return skillList;
     }
@@ -201,13 +196,13 @@ public class DataManager : MonoBehaviour
     public List<int> GetProbability()
     {
 
-        //?????? ?̷? ????? ?ƴ϶? ???ǿ? ???? Ȯ???? ?ٲ????, ????? ?ϼ? ?? ????
+        //?????? ?肩? ????? ?틈灸? ???퓻? ???? 확???? ?侮????, ????? ?究? ?? ????
         //???????
-        //90 9 1    ~1?? ????Ʈ
+        //90 9 1    ~1?? ????트
         //80 15 5   ~1?? ????
-        //70 20 10  ~2?? ????Ʈ
+        //70 20 10  ~2?? ????트
         //60 25 15  ~2?? ????
-        //??�???? 4?ܰ? ???
+        //??恙???? 4?丙? ???
 
         List<int> probability = new();
         probability.Add(99);
