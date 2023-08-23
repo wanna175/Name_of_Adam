@@ -7,6 +7,8 @@ public class UI_WaitingLine : UI_Scene
 {
     private List<UI_WaitingUnit> _waitingUnitList = new List<UI_WaitingUnit>();
     private Transform _grid;
+    private bool _turned = false;
+
 
     public void Start()
     {
@@ -16,7 +18,7 @@ public class UI_WaitingLine : UI_Scene
     public void AddUnit(BattleUnit addUnit)
     {
         UI_WaitingUnit newUnit = GameManager.Resource.Instantiate("UI/Sub/WaitingUnit", _grid).GetComponent<UI_WaitingUnit>();
-        newUnit.SetUnit(addUnit);
+        newUnit.SetUnit(addUnit, _turned);
         _waitingUnitList.Add(newUnit);
     }
 
@@ -45,5 +47,14 @@ public class UI_WaitingLine : UI_Scene
     {
         _waitingUnitList.Remove(unit);
         Destroy(unit.gameObject);
+    }
+
+    public void OnClickSeeNextUnits()
+    {
+        _grid.eulerAngles += new Vector3(0f, 180f, 0f);
+        if (_turned == false)
+            _turned = true;
+        else
+            _turned = false;
     }
 }
