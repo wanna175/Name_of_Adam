@@ -21,14 +21,14 @@ EditorBuildSettings:
     path: Assets/Scenes/CutScene.unity
     guid: 0248c2054aac16148b1b54ba8bfb589c
   - enabled: 1
-    path: Assets/Scenes/DifficultySelectScene.unity
-    guid: 99018feaf0e64be4289cbc700e78890d
+    path: Assets/Scenes/EventScene.unity
+    guid: 0ce76a95be913ec4c969b9d09386cbe2
   - enabled: 1
     path: Assets/Scenes/EndingCreditScene.unity
     guid: 23f8b5c773b1a0c43a99cb3c42999841
   - enabled: 1
-    path: Assets/Scenes/EventScene.unity
-    guid: 0ce76a95be913ec4c969b9d09386cbe2
+    path: Assets/Scenes/DifficultySelectScene.unity
+    guid: 99018feaf0e64be4289cbc700e78890d
   - enabled: 1
     path: Assets/Scenes/HubScene.unity
     guid: 6ca3abbdf26956a458e045166ee63328
