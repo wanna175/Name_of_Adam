@@ -27,8 +27,8 @@ public class Field : MonoBehaviour
     {
         return color switch
         {
-            FieldColorType.Move => new Color32(149, 173, 35, 40),
-            FieldColorType.Attack => new Color32(140, 27, 46, 40),
+            FieldColorType.Move => new Color32(23, 114, 102, 40),
+            FieldColorType.Attack => new Color32(220, 20, 60, 40),
             FieldColorType.none => new Color32(0, 0, 0, 0),
             _ => new Color32(23, 114, 102, 40),
         };

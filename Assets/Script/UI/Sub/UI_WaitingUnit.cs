@@ -12,19 +12,25 @@ public class UI_WaitingUnit : MonoBehaviour
     private Color32 _enemy = new Color32(130, 123, 56, 60);
     private Color32 _player = new Color32(48, 12, 69, 60);
 
-    public void SetUnit(BattleUnit unit)
+    public void SetUnit(BattleUnit unit, bool _turned)
     {
         _unit = unit;
-        _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _unit.DeckUnit.Data.Name);
-        //_unitImage.GetComponent<Image>().sprite = _unit.Data.Image;
         if (unit.Team == Team.Player)
+        {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _unit.DeckUnit.Data.Name + "_Å¸¶ô");
             _background.GetComponent<Image>().color = _player;
+        }
         else
         {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _unit.DeckUnit.Data.Name);
             _background.GetComponent<Image>().color = _enemy;
-            _unitImage.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+            _unitImage.transform.eulerAngles += new Vector3(0f, 180f, 0f);
         }
-        
+
+        if(_turned)
+        {
+            _unitImage.transform.eulerAngles += new Vector3(0f, 180f, 0f);
+        }
     }
 
     public BattleUnit GetUnit()

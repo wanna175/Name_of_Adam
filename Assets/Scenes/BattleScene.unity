@@ -1188,7 +1188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.2, y: -0.6}
+  m_AnchoredPosition: {x: 0.3, y: -0.6}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &628916018
@@ -1280,7 +1280,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1410153077}
     m_Modifications:
     - target: {fileID: 1858358185829964396, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_Color.b
@@ -1300,11 +1300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6231958352190634651, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1324,15 +1324,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1348,6 +1348,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
+--- !u!4 &668061506 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6766344523882314438, guid: 3e66cd4d0093d0c4b820369f04a7cc3d, type: 3}
+  m_PrefabInstance: {fileID: 668061505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &730276081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3571,6 +3576,7 @@ Transform:
   - {fileID: 49041953}
   - {fileID: 1589663946}
   - {fileID: 615846137}
+  - {fileID: 668061506}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
