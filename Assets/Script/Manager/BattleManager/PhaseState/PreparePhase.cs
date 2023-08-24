@@ -25,14 +25,7 @@ public class PreparePhase : Phase
 
     public override void OnClickEvent(Vector2 coord)
     {
-        if (isFirst)
-        {
-            BattleManager.Instance.StartPhaseClick(coord);
-        }
-        else
-        {
-            BattleManager.Instance.PreparePhaseClick(coord);
-        }
+        BattleManager.Instance.PreparePhaseClick(coord);
     }
 
     public override void OnStateExit()
