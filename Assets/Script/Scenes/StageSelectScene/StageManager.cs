@@ -92,20 +92,17 @@ public class StageManager : MonoBehaviour
             StageList = new List<Stage>();
         if(!StageList.Contains(stage))
             StageList.Add(stage);
-        Debug.Log(StageList.Count);
     }
 
     public void SetCurrentStage()
     {
         int curID = GameManager.Data.Map.CurrentTileID;
-        Debug.Log(curID);
         CurrentStage = StageList.Find(x => x.Datas.ID == curID);
-        Debug.Log(StageList.Count);
-        Debug.Log(CurrentStage);
+
         foreach (Stage st in CurrentStage.NextStage)
             st.SetNextStage();
 
-            CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
+        CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
     }
 
     private void SetStageData()
@@ -137,11 +134,6 @@ public class StageManager : MonoBehaviour
         }
 
         GameManager.Data.Map.StageList = StageDatas;
-
-        foreach (StageData data in GameManager.Data.Map.StageList)
-        {
-            Debug.Log(data.ID + ", " + data.Name + " : " + data.StageID + ", " + data.StageLevel);
-        }
     }
 
     public void StageMove(int _id)

@@ -15,6 +15,8 @@ public class StageNodeBackLight : MonoBehaviour
         coro = null;
     }
 
+    public void SetSprite(string name) => renderer.sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/BackLight/{name}");
+
     public void SetVisible() => renderer.color = new Color(1, 1, 1, 1);
 
     public void FadeIn()
