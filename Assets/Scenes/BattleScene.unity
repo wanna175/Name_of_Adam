@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CameraHandler: {fileID: 1688846949}
-  ZoomTime: 0.1
+  ZoomTime: 0.3
   CutSceneTime: 2
   ShakePower: 0.8
   ShakeMinus: 0.1

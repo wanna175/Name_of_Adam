@@ -48,6 +48,12 @@ public class Stage : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
             isClear = true;
         }
+
+        foreach (Stage st in NextStage)
+        {
+            StageLine line = GameManager.Resource.Instantiate("Stage/Line", transform).GetComponent<StageLine>();
+            line.DrawLine(st);
+        }
     }
 
     public void SetNextStage()

@@ -360,9 +360,7 @@ public class BattleUnit : MonoBehaviour
         }
 
 
-        GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/HitEffect"),
-            transform.position);
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/HitEffect", transform.position);
 
 
         _floatingDamage.Init(value);

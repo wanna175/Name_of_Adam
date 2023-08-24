@@ -69,7 +69,7 @@ public class UnitSpawner : MonoBehaviour
     public void SpawnInitialUnit()
     {
         DataManager _data = GameManager.Data;
-        StageData stage = GameManager.Data.GetCurrentStageData();
+        StageData stage = GameManager.Data.Map.GetCurrentStage();
         List<StageUnitData> datas = GameManager.Data.StageDatas[stage.StageLevel].Find(x => x.ID == stage.StageID).Units;
 
         foreach (StageUnitData data in datas)

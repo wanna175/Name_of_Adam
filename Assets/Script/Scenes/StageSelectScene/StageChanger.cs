@@ -8,16 +8,11 @@ public class StageChanger
 {
     public void SetNextStage(int _id)
     {
-        StageData stage = GameManager.Data.Map.StageList.Find(x => x.ID == _id);
+        StageData stage = GameManager.Data.Map.GetStage(_id);
 
         GameManager.Data.Map.CurrentTileID = _id;
 
 
-        if(_id == 1)
-        {
-            GameManager.Data.MainDeckSet();
-            SceneChanger.SceneChange("BattleScene");
-        }
         if (stage.Type == StageType.Tutorial)
         {
             GameManager.Data.DeckClear();

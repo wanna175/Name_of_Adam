@@ -1,5 +1,6 @@
 {
-  "ProgressPoint": [
+  "ProgressCoin" : 0,
+  "ProgressItems": [
     {
       "ID": 1,
       "Name": "진척도",
@@ -11,8 +12,9 @@
 
   "HallUnit": [
     {
-      "UnitID" : 1,
-      "Stigmata" : ["가학"]
+      "UnitID" :  0,
+      "UnitName": 1,
+      "Stigmata": [ "가학" ]
     }
   ]
 }
