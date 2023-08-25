@@ -10,6 +10,7 @@ public class PreparePhase : Phase
         BattleManager.Mana.ChangeMana(15);
         BattleManager.Data.TurnPlus();
         BattleManager.BattleUI.UI_playerSkill.Used = false;
+        BattleManager.BattleUI.UI_playerSkill.InableSkill();
         BattleManager.BattleUI.ChangeButtonName();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
 
@@ -41,7 +42,6 @@ public class PreparePhase : Phase
             isFirst = false;
         }
 
-        BattleManager.Instance.BenedictionCheck();
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
     }
 }

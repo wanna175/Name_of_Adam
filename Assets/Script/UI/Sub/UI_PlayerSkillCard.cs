@@ -8,6 +8,7 @@ using TMPro;
 public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _inactive;
     //[SerializeField] private TextMeshProUGUI _text;
 
     private UI_PlayerSkill _playerSkill;
@@ -17,6 +18,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     private void Start()
     {
         _highlight.SetActive(false);
+        _inactive.SetActive(false);
     }
 
     public void Set(UI_PlayerSkill ps, PlayerSkill skill)
@@ -51,6 +53,11 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     {
         IsSelected = b;
         _highlight.SetActive(b);
+    }
+
+    public void ChangeInable(bool b)
+    {
+        _inactive.SetActive(b);
     }
 
     public PlayerSkill GetSkill() => _skill;

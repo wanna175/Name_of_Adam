@@ -450,6 +450,16 @@ public class BattleManager : MonoBehaviour
 
         if (lastUnit != null)
         {
+            if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
+            {
+                return;
+            }
+
+            if(GameManager.Instance.Tutorial_Benediction_Trigger == true)
+            {
+                GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
+                GameManager.Instance.Tutorial_Benediction_Trigger = false;
+            }
             Buff_Benediction benediction = new();
             lastUnit.SetBuff(benediction, lastUnit);
             GameManager.VisualEffect.StartBenedictionEffect(lastUnit);
