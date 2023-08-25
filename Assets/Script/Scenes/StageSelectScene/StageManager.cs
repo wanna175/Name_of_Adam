@@ -69,19 +69,20 @@ public class StageManager : MonoBehaviour
     public void ActClearCheck()
     {
         // 마지막 스테이지일 때(ID가 99일 때)
+        // 마지막 스테이지 조건을 보스일 때로 하고싶지만, 튜토리얼 스테이지의 경우에 의해 보스일 때로는 하지 못함
         if (GameManager.Data.Map.CurrentTileID == 99)
         {
-            if (GameManager.Data.StageAct < 1) // 여기의 상수는 최대 스테이지의 수
+            if (GameManager.Data.StageAct < 1) // 여기의 상수는 최대 막의 수, 지금은 1막밖에 없기에 1임
             {
                 GameManager.Data.StageAct++;
                 GameManager.Data.Map = new MapData();
 
-                if(GameManager.Data.StageAct == 1)
+                if(GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
                     GameManager.Data.MainDeckSet();
             }
             else
             {
-                // 게임 종료
+                // 게임 클리어
             }
         }
     }
