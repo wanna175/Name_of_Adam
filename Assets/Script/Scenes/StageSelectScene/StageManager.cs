@@ -143,8 +143,17 @@ public class StageManager : MonoBehaviour
             if (st.Datas.ID == _id)
             {
                 GameManager.VisualEffect.StartFadeEffect(false);
-                GameManager.Instance.PlayAfterCoroutine(() => _stageChanger.SetNextStage(_id), 0.8f);
+                PlayAfterCoroutine(() => _stageChanger.SetNextStage(_id), 0.8f);
             }
         }
+    }
+
+    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
+
+    private IEnumerator PlayCoroutine(Action action, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        action();
     }
 }

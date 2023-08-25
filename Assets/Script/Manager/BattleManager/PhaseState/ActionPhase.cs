@@ -14,7 +14,7 @@ public class ActionPhase : Phase
         BattleManager.BattleUI.ChangeButtonName();
 
         if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
-            GameManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AISkillUse, 1.5f);
+            BattleManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AISkillUse, 1.5f);
     }
     
     public override void OnStateUpdate()
