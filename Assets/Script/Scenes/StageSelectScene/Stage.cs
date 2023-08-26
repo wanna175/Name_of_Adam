@@ -24,6 +24,8 @@ public class StageData
 
 public class Stage : MonoBehaviour
 {
+    SpriteRenderer renderer;
+
     [SerializeField] StageNodeBackLight BackLight;
     [Space(10f)]
     [SerializeField] public List<Stage> NextStage;
@@ -36,10 +38,13 @@ public class Stage : MonoBehaviour
 
     private void Awake()
     {
+        renderer = GetComponent<SpriteRenderer>();
         StageManager.Instance.InputStageList(this);
     }
     private void Start()
     {
+        SetSprite();
+
         if (GameManager.Data.Map.ClearTileID == null)
             GameManager.Data.Map.ClearTileID = new();
 
@@ -54,6 +59,20 @@ public class Stage : MonoBehaviour
             StageLine line = GameManager.Resource.Instantiate("Stage/Line", transform).GetComponent<StageLine>();
             line.DrawLine(st);
         }
+    }
+
+    public void SetSprite()
+    {
+        if (Datas.Name == StageName.none)
+            return;
+
+        string name = Datas.Name.ToString();
+
+        if (Datas.Name == StageName.EliteBattle || Datas.Name == StageName.BossBattle)
+            name += "_" + Datas.StageID;
+
+        renderer.sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/Node/{name}");
+        BackLight.SetSprite(name);
     }
 
     public void SetNextStage()

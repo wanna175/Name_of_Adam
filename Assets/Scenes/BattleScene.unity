@@ -4895,31 +4895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13616eb65c31b14abf4568200669721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimTest:
-  - prefab: {fileID: 8631276697958916553, guid: 05ed64bb29200f14b95ef59b7227eda0, type: 3}
-    deckUnit:
-      Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
-      DeckUnitUpgradeStat:
-        MaxHP: 0
-        CurrentHP: 0
-        ATK: 0
-        SPD: 0
-        FallCurrentCount: 0
-        FallMaxCount: 0
-        ManaCost: 0
-      DeckUnitChangedStat:
-        MaxHP: 0
-        CurrentHP: 0
-        ATK: 0
-        SPD: 0
-        FallCurrentCount: 0
-        FallMaxCount: 0
-        ManaCost: 0
-      Stigma: []
-    location: {x: 3, y: 1}
-    team: 1
-    stigmas:
-    - {fileID: 6009915712508650629, guid: 5fc0158cfd7db004cb608da3b834f628, type: 3}
+  TestSpawnUnit: []
 --- !u!114 &1589663948
 MonoBehaviour:
   m_ObjectHideFlags: 0

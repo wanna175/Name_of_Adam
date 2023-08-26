@@ -114,12 +114,4 @@ public class GameManager : MonoBehaviour
             GameManager.SaveManager.DeleteSaveData();
 
     }
-    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
-
-    private IEnumerator PlayCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        action();
-    }
 }

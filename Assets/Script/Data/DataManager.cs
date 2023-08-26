@@ -14,7 +14,6 @@ public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
     public Dictionary<int, List<StageSpawnData>> StageDatas = new Dictionary<int, List<StageSpawnData>>();
-    public List<Stage> StageList;
     public MapData Map;
     public int StageAct; // 현재 맵이 몇 막인지 기록하는 변수. 0 : 튜토리얼, 1 : 1막, 2 : 2막 이런식으로
 

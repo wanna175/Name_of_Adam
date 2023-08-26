@@ -14,7 +14,7 @@ public class MovePhase : Phase
         BattleManager.BattleUI.ChangeButtonName();
 
         if (_nowUnit.Team == Team.Enemy)
-            GameManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AIMove, 1);
+            BattleManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AIMove, 1);
     }
 
     public override void OnStateUpdate()
