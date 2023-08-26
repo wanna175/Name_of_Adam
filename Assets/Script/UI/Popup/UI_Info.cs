@@ -83,7 +83,7 @@ public class UI_Info : UI_Scene
 
         _stat.text = statText;
 
-        _hpBar.SetHPBar(team, null);
+        _hpBar.SetHPBar(team);
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)battleUnit.BattleUnitTotalStat.CurrentHP / (float)battleUnit.BattleUnitTotalStat.MaxHP);
@@ -167,7 +167,7 @@ public class UI_Info : UI_Scene
 
         _stat.text = statText;
 
-        _hpBar.SetHPBar(team, null);
+        _hpBar.SetHPBar(team);
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)unit.DeckUnitTotalStat.CurrentHP / (float)unit.DeckUnitTotalStat.MaxHP);

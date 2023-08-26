@@ -100,6 +100,6 @@ public class UI_FloatingDamage : UI_Base
         }
 
         _damageNumber.alpha = 0f;
-        _damageNumber.transform.localPosition = new Vector3(0,0,0);
+        _damageNumber.transform.localPosition = new Vector3(0,-100,0);
     }
 }
