@@ -8,7 +8,7 @@ public class PlayerSkill_Heal : PlayerSkill
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //이팩트를 여기에 추가
-        BattleManager.Field.GetUnit(coord).ChangeHP(20);
+        BattleManager.Field.GetUnit(coord).GetHeal(20, null);
     }
     public override void CancelSelect()
     {

@@ -135,17 +135,6 @@ public class BattleManager : MonoBehaviour
         _phase.OnClickEvent(coord);
     }
 
-    public void StartPhaseClick(Vector2 coord)
-    {
-        if (Field.ColoredTile.Count <= 0)
-            return;
-
-        if (Field.FieldType == FieldColorType.UnitSpawn)
-        {
-            SpawnUnitOnField(coord, true);
-        }
-    }
-
     public void PreparePhaseClick(Vector2 coord)
     {
         if (!Field.ColoredTile.Contains(coord))
@@ -170,7 +159,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void SpawnUnitOnField(Vector2 coord, bool isFirst = false)
+    private void SpawnUnitOnField(Vector2 coord)
     {
         DeckUnit unit = BattleUI.UI_hands.GetSelectedUnit();
         if (!Field.ColoredTile.Contains(coord))
@@ -178,8 +167,7 @@ public class BattleManager : MonoBehaviour
 
         Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
 
-        if (isFirst)
-            unit.FirstTurnDiscountUndo();
+        unit.FirstTurnDiscountUndo();
 
         GetComponent<UnitSpawner>().DeckSpawn(unit, coord);
         GameManager.VisualEffect.StartVisualEffect(
@@ -294,7 +282,6 @@ public class BattleManager : MonoBehaviour
     {
         Field.ClearAllColor();
         Data.BattleOrderRemove(Data.GetNowUnit());
-        //BattleOverCheck();
         BattleUI.UI_darkEssence.Refresh();
         _phase.ChangePhase(_phase.Engage);
     }
@@ -344,8 +331,6 @@ public class BattleManager : MonoBehaviour
         {
             fieldUnit.FieldUnitDdead();
         }
-
-        BattleOverCheck();
     }
 
     public void BattleOverCheck()

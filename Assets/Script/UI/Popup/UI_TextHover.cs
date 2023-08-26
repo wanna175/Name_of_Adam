@@ -17,13 +17,13 @@ public class UI_TextHover : UI_Hover
         float posX;
         float posY;
 
-        if (position.x > 1920 - 200)
-            posX = 1920 - 200;
+        if (position.x > 1920 - 175)
+            posX = 1920 - 175;
         else
             posX = position.x;
 
-        if (position.y < 120)
-            posY = 120;
+        if (position.y < 160)
+            posY = 160;
         else
             posY = position.y;
 

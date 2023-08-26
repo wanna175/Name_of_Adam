@@ -1,22 +1,21 @@
 using UnityEngine;
 
-public class Buff_Stigma_BloodBlessing : Buff
+public class Buff_Stigma_Regeneration : Buff
 {
-    int heal;
-
+    int hpUp = 5;
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
-        _buffEnum = BuffEnum.BloodBlessing;
+        _buffEnum = BuffEnum.Regeneration;
 
-        _name = "축복";
+        _name = "재생력";
 
-        _description = "축복.";
+        _description = "해당 유닛의 턴이 끝날때마다 체력을 5 회복합니다.";
 
         _count = -1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.FIELD_UNIT_DEAD;
+        _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
 
         _caster = caster;
 
@@ -31,13 +30,13 @@ public class Buff_Stigma_BloodBlessing : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-        _owner.GetHeal(heal, caster);
+        _owner.GetHeal(hpUp, caster);
 
         return false;
     }
 
     public override void SetValue(int num)
     {
-        heal = num;
+        hpUp = num;
     }
 }
