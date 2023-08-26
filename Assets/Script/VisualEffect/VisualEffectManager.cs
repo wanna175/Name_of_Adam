@@ -70,6 +70,7 @@ public class VisualEffectManager : MonoBehaviour
         overrideController["VisualEffect"] = clip;
 
         _animator.runtimeAnimatorController = overrideController;
+        go.GetComponent<VisualEffect>().SetLoop(clip.isLooping);
         go.SetActive(true);
 
         return go;
@@ -121,7 +122,6 @@ public class VisualEffectManager : MonoBehaviour
         GameObject go = StartVisualEffect(clip, Vector3.zero);
         go.transform.SetParent(unit.transform);
         go.transform.localPosition = Vector3.zero;
-        go.GetComponent<VisualEffect>().SetLoop(true);
     }
 
     private void CreateEffect(AnimEffects effect)

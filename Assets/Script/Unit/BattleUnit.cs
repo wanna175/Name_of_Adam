@@ -232,7 +232,7 @@ public class BattleUnit : MonoBehaviour
     //애니메이션에서 직접 실행시킴
     public void AnimAttack()
     {
-        StartCoroutine(BattleManager.Instance.UnitAttack());
+        BattleManager.BattleCutScene.isAttack = true;
     }
 
     public Team ChangeTeam(Team team = default)
@@ -278,8 +278,24 @@ public class BattleUnit : MonoBehaviour
         transform.position = dest;
         transform.localScale = new Vector3(s, s, 1);
     }
+    
+    public IEnumerator CutSceneMove(Vector3 moveVec, float moveTime)
+    {
+        Vector3 originVec = transform.position;
+        float time = 0;
 
-    public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove)
+        while (time <= moveTime)
+        {
+            time += Time.deltaTime;
+            float t = time / moveTime;
+
+            transform.position = Vector3.Lerp(originVec, moveVec, t);
+            yield return null;
+        }
+    }
+
+    public IEnumerator MoveFieldPosition(Vector3 dest)
+
     {
         Vector3 dest = BattleManager.Field.GetTilePosition(coord);
 
@@ -382,9 +398,6 @@ public class BattleUnit : MonoBehaviour
         {
             return;
         }
-
-        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/HitEffect", transform.position);
-
         _floatingDamage.Init(value);
 
         ChangeHP(value);

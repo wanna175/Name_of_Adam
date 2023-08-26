@@ -100,6 +100,17 @@ public class BattleManager : MonoBehaviour
     public void SpawnInitialUnit()
     {
         GetComponent<UnitSpawner>().SpawnInitialUnit();
+        EventConversation();
+    }
+
+    private void EventConversation()
+    {
+        StageData data = GameManager.Data.Map.GetCurrentStage();
+        if (data.StageLevel == 11) // 
+        {
+            List<Script> scripts = GameManager.Data.ScriptData["엘리트전_입장_최초"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        }
     }
 
     private void SetBackground()
@@ -227,34 +238,24 @@ public class BattleManager : MonoBehaviour
 
     #endregion
 
-    public IEnumerator UnitAttack()
-    {
-        UnitAttackAction();
-
-        yield return StartCoroutine(BattleCutScene.AfterAttack());
-        yield return new WaitUntil(() => Data.CorruptUnits.Count == 0);
-        yield return new WaitForSeconds(1);
-
-        EndUnitAction();
-    }
-
     public void AttackStart(BattleUnit caster, BattleUnit hit)
     {
         List<BattleUnit> hits = new ();
         hits.Add(hit);
 
-        Data.HitUnits = hits;
-        BattleCutScene.BattleCutScene(caster, Data.HitUnits);
+        AttackStart(caster, hits);
     }
 
     public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
     {
-        Data.HitUnits = hits;
-        BattleCutScene.BattleCutScene(caster, Data.HitUnits);
+        BattleCutSceneData CSData = new BattleCutSceneData(caster, hits);
+        BattleCutScene.InitBattleCutScene(CSData);
+
+        StartCoroutine(BattleCutScene.AttackCutScene(CSData));
     }
 
     // 애니메이션용 추가
-    private void UnitAttackAction()
+    public void UnitAttackAction()
     {
         BattleUnit unit = Data.GetNowUnit();
 
