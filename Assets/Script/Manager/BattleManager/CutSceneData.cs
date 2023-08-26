@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,28 +7,24 @@ public class BattleCutSceneData
     public BattleUnit AttackUnit;
     public List<BattleUnit> HitUnits;
 
-    // °¢ À¯´ÖÀÇ À§Ä¡
+    // ê° ìœ ë‹›ì˜ ìœ„ì¹˜
     public Vector3 AttackPosition;
     public List<Vector3> HitPosition;
-    // °¢ À¯´ÖÀÇ Å¸ÀÏ À§Ä¡
+    // ê° ìœ ë‹›ì˜ íƒ€ì¼ ìœ„ì¹˜
     public Vector2 AttackLocation;
     public List<Vector2> HitLocation;
 
-    // °ø°İ Å¸ÀÔ
+    // ê³µê²© íƒ€ì…
     public CutSceneMoveType MoveType;
-    // ±âÁ¸ÀÇ ÁÜ »çÀÌÁî
-    public float DefaultZoomSize;
-    // ¾ó¸¶³ª ÁÜÇÒ °ÍÀÎÁö
+    // ì–¼ë§ˆë‚˜ ì¤Œí•  ê²ƒì¸ì§€
     public float ZoomSize;
-    // ¾î´ÀÁ¤µµ ±â¿ïÀÏ °ÍÀÎÁö
-    public float GradientPower;
 
-    // È®´ë ÇÒ À§Ä¡
+    // í™•ëŒ€ í•  ìœ„ì¹˜
     public Vector3 ZoomLocation;
-    // ¿òÁ÷ÀÏ À§Ä¡
+    // ì›€ì§ì¼ ìœ„ì¹˜
     public Vector3 MovePosition;
-    // °ø°İ À¯´ÖÀÌ ¾î´À ¹æÇâ¿¡ ÀÖ´ÂÁö
-    public int AttackUnitDirection;
+    // ê³µê²© ìœ ë‹›ì´ ë°”ë¼ë³´ëŠ” ë°©í–¥
+    public int AttackUnitFlipX;
 
     public BattleCutSceneData(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
     {
@@ -36,7 +32,7 @@ public class BattleCutSceneData
         this.HitUnits = HitUnits;
 
         AttackLocation = AttackUnit.Location;
-        AttackPosition = BattleManager.Field.GetTilePosition(AttackUnit.Location);
+        AttackPosition = BattleManager.Field.GetTilePosition(AttackLocation);
         HitLocation = new List<Vector2>();
         HitPosition = new List<Vector3>();
         foreach (BattleUnit unit in HitUnits)
@@ -45,10 +41,8 @@ public class BattleCutSceneData
             HitPosition.Add(BattleManager.Field.GetTilePosition(unit.Location));
         }
 
-        DefaultZoomSize = Camera.main.fieldOfView;
         MoveType = AttackUnit.Data.AnimType.MoveType;
         ZoomSize = AttackUnit.Data.AnimType.ZoomSize;
-        GradientPower = AttackUnit.Data.AnimType.GradientPower;
 
         MovePosition = BattleManager.Field.GetTilePosition(GetMoveLocation(AttackUnit));
         
@@ -66,24 +60,24 @@ public class BattleCutSceneData
         if (AttackUnitTile.x < HitUnitTile.x)
         {
             moveTile.x -= 1;
-            AttackUnitDirection = -1;
+            AttackUnitFlipX = -1;
         }
         else if (HitUnitTile.x < AttackUnitTile.x)
         {
             moveTile.x += 1;
-            AttackUnitDirection = 1;
+            AttackUnitFlipX = 1;
         }
         else
         {
             if (unit.GetFlipX())
             {
                 moveTile.x += 1;
-                AttackUnitDirection = 1;
+                AttackUnitFlipX = 1;
             }
             else
             {
                 moveTile.x -= 1;
-                AttackUnitDirection = -1;
+                AttackUnitFlipX = -1;
             }
         }
 
