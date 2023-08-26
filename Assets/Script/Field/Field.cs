@@ -260,10 +260,6 @@ public class Field : MonoBehaviour
         TileDict[coord].EnterTile(unit);
 
         unit.SetLocate(coord, move);
-        if (move)
-            StartCoroutine(unit.MoveFieldPosition(GetTilePosition(coord)));
-        else
-            unit.SetPosition(GetTilePosition(coord));
     }
 
     private void ExitTile(Vector2 coord)

@@ -12,7 +12,6 @@ public abstract class Buff : MonoBehaviour
     public Sprite Sprite => _sprite;
 
     protected string _description;
-    public string Description => _description;
 
     protected int _count;
     public int Count => _count;
@@ -58,6 +57,19 @@ public abstract class Buff : MonoBehaviour
 
     public virtual void SetValue(int num)
     { 
+    }
+
+    public virtual int GetBuffDisplayNumber()
+    {
+        if (_count > 0)
+            return _count;
+        else
+            return 0;
+    }
+
+    public virtual string GetDescription()
+    {
+        return _description;
     }
 
     public void CountChange(int num)

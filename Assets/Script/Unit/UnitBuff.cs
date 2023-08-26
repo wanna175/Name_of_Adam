@@ -20,7 +20,7 @@ public class UnitBuff : MonoBehaviour
                 return;
             }
         }
-        
+
         _buffList.Add(buff);
     }
 
@@ -93,7 +93,7 @@ public class UnitBuff : MonoBehaviour
                 _buffList[i].CountChange(-1);
                 if (_buffList[i].Count == 0)
                 {
-                    _buffList.RemoveAt(i);
+                    _buffList[i].Owner.DeleteBuff(_buffList[i].BuffEnum);
 
                     i--;
                 }
@@ -107,7 +107,7 @@ public class UnitBuff : MonoBehaviour
         {
             if (_buffList[i].Dispellable)
             {
-                _buffList.RemoveAt(i);
+                _buffList[i].Owner.DeleteBuff(_buffList[i].BuffEnum);
             }
         }
     }
