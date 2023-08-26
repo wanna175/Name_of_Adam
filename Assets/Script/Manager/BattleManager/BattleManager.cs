@@ -100,8 +100,13 @@ public class BattleManager : MonoBehaviour
     public void SpawnInitialUnit()
     {
         GetComponent<UnitSpawner>().SpawnInitialUnit();
+        EventConversation();
+    }
+
+    private void EventConversation()
+    {
         StageData data = GameManager.Data.Map.GetCurrentStage();
-        if (data.ID == 11) // 
+        if (data.StageLevel == 11) // 
         {
             List<Script> scripts = GameManager.Data.ScriptData["엘리트전_입장_최초"];
             GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
