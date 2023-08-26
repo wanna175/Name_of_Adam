@@ -192,6 +192,7 @@ public enum BuffEnum
     Sadism,
     Benediction,
     Sin,
+    Regeneration,
     Gamble,
     BloodBlessing,
     BloodFest,
