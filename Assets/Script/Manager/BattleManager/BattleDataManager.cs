@@ -78,14 +78,37 @@ public class BattleDataManager : MonoBehaviour
 
     public void RemoveDeckUnit(DeckUnit unit) => PlayerDeck.Remove(unit);
 
-    public DeckUnit GetUnitFromDeck(int i)
+    public DeckUnit GetUnitFromDeck()
     {
         if (PlayerDeck.Count == 0)
         {
             return null;
         }
-        DeckUnit unit = PlayerDeck[i];
-        _playerDeck.RemoveAt(i);
+        DeckUnit unit = PlayerDeck[0];
+        _playerDeck.RemoveAt(0);
+
+        return unit;
+    }
+
+    public DeckUnit GetTUnitFromDeck()
+    {
+        if (PlayerDeck.Count == 0)
+        {
+            return null;
+        }
+
+        DeckUnit unit;
+
+        if (PlayerDeck.Count == 4)
+        {
+            unit = PlayerDeck[3];
+            _playerDeck.RemoveAt(3);
+        }
+        else
+        {
+            unit = PlayerDeck[0];
+            _playerDeck.RemoveAt(0);
+        }
 
         return unit;
     }

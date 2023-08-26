@@ -69,14 +69,14 @@ public class BattleUIManager : MonoBehaviour
         {
             if (curID == 1 && GameManager.Data.StageAct == 0)
             {
-                DeckUnit unit = BattleManager.Data.GetUnitFromDeck(0);
+                DeckUnit unit = BattleManager.Data.GetUnitFromDeck();
                 if (unit == null)
                     return;
                 AddHandUnit(unit);
             }
             else if (curID == 2 && GameManager.Data.StageAct == 0)
             {
-                DeckUnit unit = BattleManager.Data.GetRandomUnitFromDeck();
+                DeckUnit unit = BattleManager.Data.GetTUnitFromDeck();
                 if (unit == null)
                     return;
                 AddHandUnit(unit);
