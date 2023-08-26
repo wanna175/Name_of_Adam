@@ -29,7 +29,7 @@ public class Buff_Stigma_Absorption : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-        caster.ChangeHP((int)(damage * 0.3));
+        caster.GetHeal((int)(damage * 0.3), caster);
 
         return false;
     }

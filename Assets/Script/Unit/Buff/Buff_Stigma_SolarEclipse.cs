@@ -34,7 +34,7 @@ public class Buff_Stigma_SolarEclipse : Buff
             receiver.DeleteBuff(BuffEnum.TraceOfLunar);
             receiver.ChangeFall(1);
 
-            caster.ChangeHP(10);
+            caster.GetHeal(10, caster);
         }
         else
         {

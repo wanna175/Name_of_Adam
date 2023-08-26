@@ -31,7 +31,7 @@ public class Buff_Stigma_BloodBlessing : Buff
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
     {
-        _owner.ChangeHP(heal);
+        _owner.GetHeal(heal, caster);
 
         return false;
     }
