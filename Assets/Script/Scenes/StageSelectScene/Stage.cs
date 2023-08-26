@@ -64,7 +64,7 @@ public class Stage : MonoBehaviour
     public void SetSprite()
     {
         if (Datas.Name == StageName.none)
-            return;
+            renderer.color = new Color(1, 1, 1, 0);
 
         string name = Datas.Name.ToString();
 
