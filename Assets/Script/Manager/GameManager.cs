@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public bool Tutorial_Trigger_First = true;
     public bool Tutorial_Trigger_Second = true;
+    public bool Tutorial_Benediction_Trigger = true;
 
     void Awake()
     {
@@ -112,13 +113,5 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
             GameManager.SaveManager.DeleteSaveData();
 
-    }
-    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
-
-    private IEnumerator PlayCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        action();
     }
 }

@@ -67,16 +67,16 @@ public class BattleUIManager : MonoBehaviour
 
         while (BattleManager.Data.PlayerHands.Count < _maxHandCount)
         {
-            if (curID == 15)
+            if (curID == 1 && GameManager.Data.StageAct == 0)
             {
-                DeckUnit unit = BattleManager.Data.GetUnitFromDeck(0);
+                DeckUnit unit = BattleManager.Data.GetUnitFromDeck();
                 if (unit == null)
                     return;
                 AddHandUnit(unit);
             }
-            else if (curID == 16)
+            else if (curID == 2 && GameManager.Data.StageAct == 0)
             {
-                DeckUnit unit = BattleManager.Data.GetRandomUnitFromDeck();
+                DeckUnit unit = BattleManager.Data.GetTUnitFromDeck();
                 if (unit == null)
                     return;
                 AddHandUnit(unit);
@@ -111,67 +111,40 @@ public class BattleUIManager : MonoBehaviour
         */
     }
 
-    //임시, 수정 필요 8.19
     public void ShowTutorial()
     {
         PhaseController phaseController = BattleManager.Phase;
         int curID = GameManager.Data.Map.CurrentTileID;
 
-        GameObject tutorial = GameObject.Find("UI_Tutorial");
+        UI_Tutorial UItutorial = GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>();
 
-        GameObject _Tutorial1 = tutorial.transform.Find("UI_Tutorial1").gameObject;
-        GameObject _Tutorial2 = tutorial.transform.Find("UI_Tutorial2").gameObject;
-        GameObject _Tutorial3 = tutorial.transform.Find("UI_Tutorial3").gameObject;
-        GameObject _Tutorial4 = tutorial.transform.Find("UI_Tutorial4").gameObject;
-        GameObject _Tutorial5 = tutorial.transform.Find("UI_Tutorial5").gameObject;
-        GameObject _Tutorial6 = tutorial.transform.Find("UI_Tutorial6").gameObject;
-        GameObject _Tutorial7 = tutorial.transform.Find("UI_Tutorial7").gameObject;
-        GameObject _Tutorial8 = tutorial.transform.Find("UI_Tutorial8").gameObject;
-        GameObject _Tutorial9 = tutorial.transform.Find("UI_Tutorial9").gameObject;
-        GameObject _Tutorial10 = tutorial.transform.Find("UI_Tutorial10").gameObject;
-        GameObject _Tutorial11 = tutorial.transform.Find("UI_Tutorial11").gameObject;
-        GameObject _Tutorial12 = tutorial.transform.Find("UI_Tutorial12").gameObject;
-        GameObject _Tutorial13 = tutorial.transform.Find("UI_Tutorial13").gameObject;
-        GameObject _Tutorial14 = tutorial.transform.Find("UI_Tutorial14").gameObject;
-
-
-
-        if (curID == 15)
+        if (curID == 1 && GameManager.Data.StageAct == 0)
         {
             if (GameManager.Instance.Tutorial_Trigger_First == true)
             {
                 if (phaseController.Current == phaseController.Prepare)
                 {
-                    _Tutorial1.SetActive(true);
-                    _Tutorial2.SetActive(true);
-                    _Tutorial3.SetActive(true);
-                    _Tutorial4.SetActive(true);
+                    UItutorial.TutorialActive(0);
                 }
                 else if (phaseController.Current == phaseController.Engage)
                 {
-                    _Tutorial5.SetActive(true);
-                    _Tutorial6.SetActive(true);
-                    _Tutorial7.SetActive(true);
+                    UItutorial.TutorialActive(4);
                     GameManager.Instance.Tutorial_Trigger_First = false;
                 }
             }
         }
-        else if (curID == 16)
+        else if (curID == 2 && GameManager.Data.StageAct == 0)
         {
             if (GameManager.Instance.Tutorial_Trigger_Second == true)
             {
                 if (phaseController.Current == phaseController.Prepare)
                 {
-                    _Tutorial8.SetActive(true);
-                    _Tutorial9.SetActive(true);
-                    _Tutorial10.SetActive(true);
+                    UItutorial.TutorialActive(7);
                 }
                 else if (phaseController.Current == phaseController.Engage)
                 {
-                    _Tutorial11.SetActive(true);
-                    _Tutorial12.SetActive(true);
-                    _Tutorial13.SetActive(true);//두번째 페이즈
-                    _Tutorial14.SetActive(true);//신성
+                    UItutorial.TutorialActive(10);
+                    //UItutorial.TutorialActive(13);//신성
                     GameManager.Instance.Tutorial_Trigger_Second = false;
                 }
             }

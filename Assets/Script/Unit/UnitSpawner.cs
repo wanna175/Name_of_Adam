@@ -6,11 +6,9 @@ using UnityEngine;
 [Serializable]
 public struct SpawnData
 {
-    public GameObject prefab;
-    public DeckUnit deckUnit;
+    public UnitDataSO unitData;
     public Vector2 location;
     public Team team;
-    public Stigma[] stigmas;
 }
 
 // 핸드 -> 필드 위에 생성
@@ -19,9 +17,8 @@ public class UnitSpawner : MonoBehaviour
 {
     private Transform parent;
 
-    // 디버그용
-    [SerializeField] List<SpawnData> AnimTest;
-    // 디버그용
+    // BattleScene에서 시작했을 때 생성하는 유닛들(디버그용)
+    [SerializeField] List<SpawnData> TestSpawnUnit;
 
     private void Awake()
     {
@@ -29,13 +26,9 @@ public class UnitSpawner : MonoBehaviour
     }
     private void Start()
     {
-        // 디버그용
-        if (GameManager.Data.Map.CurrentTileID == 0)
-        {
-            foreach (SpawnData data in AnimTest)
-                InitSpawn(data);
-        }
-        // 디버그용
+        // BattleScene에서 시작했을 때 유닛 생성(디버그용)
+        foreach (SpawnData data in TestSpawnUnit)
+            InitSpawn(data);
     }
 
     private void InitSpawn(SpawnData spawndata)
@@ -46,11 +39,12 @@ public class UnitSpawner : MonoBehaviour
         }
         else
         {
-            GameObject go = GameObject.Instantiate(spawndata.prefab, parent);
+            GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
             BattleUnit unit = go.GetComponent<BattleUnit>();
+            unit.DeckUnit.Data = spawndata.unitData;
 
             unit.Init();
-            unit.UnitSetting(spawndata.location, Team.Enemy);
+            unit.UnitSetting(spawndata.location, spawndata.team);
         }
     }
 
@@ -68,6 +62,9 @@ public class UnitSpawner : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
+        if (GameManager.Data.Map.MapObject == null)
+            return;
+
         DataManager _data = GameManager.Data;
         StageData stage = GameManager.Data.Map.GetCurrentStage();
         List<StageUnitData> datas = GameManager.Data.StageDatas[stage.StageLevel].Find(x => x.ID == stage.StageID).Units;
@@ -75,7 +72,7 @@ public class UnitSpawner : MonoBehaviour
         foreach (StageUnitData data in datas)
         {
             SpawnData sd = new SpawnData();
-            sd.prefab = GameManager.Resource.Load<GameObject>($"Prefabs/BattleUnits/{data.Name}");
+            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{data.Name}");
             sd.location = data.Location;
             sd.team = Team.Enemy;
 

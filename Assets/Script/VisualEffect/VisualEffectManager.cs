@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +12,8 @@ public enum AnimEffects
 public class VisualEffectManager : MonoBehaviour
 {
     Transform root;
-    Dictionary<AnimEffects, Queue<GameObject>> EffectQueue;
-    Dictionary<AnimEffects, string> AnimEffectNames;
+    Dictionary<AnimEffects, Queue<GameObject>> EffectQueue; // 애니메이션 이펙트 캐싱
+    Dictionary<AnimEffects, string> AnimEffectNames;        // enum.ToString을 피하기 위한 딕셔너리
 
     public void Init()
     {
@@ -29,18 +29,19 @@ public class VisualEffectManager : MonoBehaviour
         }
 
         for (int i = 0; i < 5; i++)
-        {
             CreateEffect(AnimEffects.VisualEffect);
+        for (int i = 0; i < 2; i++)
             CreateEffect(AnimEffects.Corruption);
-        }
     }
 
+    // VisualEffect를 시작(경로와 위치를 입력)
     public GameObject StartVisualEffect(string str, Vector3 position)
     {
         AnimationClip clip = GameManager.Resource.Load<AnimationClip>(str);
 
         return StartVisualEffect(clip, position);
     }
+    // VisualEffect를 시작(애니메이션과 위치를 입력)
     public GameObject StartVisualEffect(AnimationClip clip, Vector3 position)
     {
         GameObject go;
@@ -72,7 +73,7 @@ public class VisualEffectManager : MonoBehaviour
         go.SetActive(true);
 
         return go;
-        }
+    }
 
     public void StartCorruptionEffect(BattleUnit unit, Vector3 position)
     {

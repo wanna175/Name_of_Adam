@@ -1832,7 +1832,7 @@ MonoBehaviour:
   _selectButton: {fileID: 6603765568581971939}
   _fallGaugePrefab: {fileID: 71125851770971500, guid: 6affe1e06d3e6074ab912f69295f1ccb, type: 3}
   _stigmaPrefab: {fileID: 4338444046490596867, guid: f3acaf644a2213944b3a254bbfda7e21, type: 3}
-  _squarePrefab: {fileID: 343411716019443913, guid: 7378dbec922dbb746806d85fa24c6627, type: 3}
+  _squarePrefab: {fileID: 7388686836549182621, guid: 64250af6c8cba8c44a44e35a50beb391, type: 3}
   _unitInfoName: {fileID: 2011348171584008466}
   _unitInfoFallGrid: {fileID: 2011348171133323722}
   _unitInfoStat: {fileID: 2011348171514619015}
