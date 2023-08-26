@@ -31,7 +31,7 @@ public class Buff_Stigma_LunarEclipse : Buff
     {
         if (receiver.Buff.CheckBuff(BuffEnum.TraceOfSolar))
         {
-            receiver.Buff.DeleteBuff(BuffEnum.TraceOfSolar);
+            receiver.DeleteBuff(BuffEnum.TraceOfSolar);
             receiver.ChangeFall(1);
         }
         else

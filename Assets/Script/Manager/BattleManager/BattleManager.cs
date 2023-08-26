@@ -100,6 +100,12 @@ public class BattleManager : MonoBehaviour
     public void SpawnInitialUnit()
     {
         GetComponent<UnitSpawner>().SpawnInitialUnit();
+        StageData data = GameManager.Data.Map.GetCurrentStage();
+        if (data.ID == 11) // 
+        {
+            List<Script> scripts = GameManager.Data.ScriptData["엘리트전_입장_최초"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        }
     }
 
     private void SetBackground()
@@ -440,6 +446,16 @@ public class BattleManager : MonoBehaviour
 
         if (lastUnit != null)
         {
+            if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
+            {
+                return;
+            }
+
+            if(GameManager.Instance.Tutorial_Benediction_Trigger == true)
+            {
+                GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
+                GameManager.Instance.Tutorial_Benediction_Trigger = false;
+            }
             Buff_Benediction benediction = new();
             lastUnit.SetBuff(benediction, lastUnit);
             GameManager.VisualEffect.StartBenedictionEffect(lastUnit);

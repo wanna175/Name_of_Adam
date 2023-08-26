@@ -138,18 +138,29 @@ public class BattleUnit : MonoBehaviour
 
     public void SetHPBar()
     {
-        _hpBar.SetHPBar(_team, transform);
+        _hpBar.SetHPBar(_team);
         _hpBar.SetFallBar(DeckUnit);
     }
 
-    public void SetLocate(Vector2 coord, bool move) {
+    public void SetLocate(Vector2 coord, bool move)
+    {
+        bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ( (_location - coord).x != 0 );
+        //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
+        //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
+
+        _location = coord;
+
         if (move)
         {
+            StartCoroutine(MoveFieldPosition(coord, backMove));
             ActiveTimingCheck(ActiveTiming.MOVE);
         }
-            _location = coord;
+        else
+        {
+            SetPosition(BattleManager.Field.GetTilePosition(coord));
+        }
     }
-    
+
     public void UnitDiedEvent()
     {
         //자신이 사망 시 체크
@@ -157,7 +168,6 @@ public class BattleUnit : MonoBehaviour
         {
             return;
         }
-
 
         BattleManager.Instance.UnitDeadEvent(this);
         GameManager.VisualEffect.StartUnitDeadEffect(this.transform.position, GetFlipX());
@@ -188,7 +198,7 @@ public class BattleUnit : MonoBehaviour
         {
             return;
         }
-        
+
         //타락 이벤트 시작
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
@@ -203,7 +213,7 @@ public class BattleUnit : MonoBehaviour
         }
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
-        _hpBar.SetHPBar(Team, transform);
+        _hpBar.SetHPBar(Team);
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
@@ -220,7 +230,7 @@ public class BattleUnit : MonoBehaviour
 
     public Team ChangeTeam(Team team = default)
     {
-        if(team != default)
+        if (team != default)
         {
             SetTeam(team);
             return team;
@@ -240,7 +250,7 @@ public class BattleUnit : MonoBehaviour
 
     private void ChangeAnimator()
     {
-        if(Team == Team.Player)
+        if (Team == Team.Player)
         {
             _unitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
             if (Data.CorruptionSkillEffectAnim != null)
@@ -261,7 +271,7 @@ public class BattleUnit : MonoBehaviour
         transform.position = dest;
         transform.localScale = new Vector3(s, s, 1);
     }
-
+    
     public IEnumerator CutSceneMove(Vector3 moveVec, float moveTime)
     {
         Vector3 originVec = transform.position;
@@ -278,7 +288,10 @@ public class BattleUnit : MonoBehaviour
     }
 
     public IEnumerator MoveFieldPosition(Vector3 dest)
+
     {
+        Vector3 dest = BattleManager.Field.GetTilePosition(coord);
+
         float moveTime = 0.2f;
         float backMoveTime = 0.2f;
         Vector3 overDistance = (dest - transform.position) * 0.03f;
@@ -286,6 +299,9 @@ public class BattleUnit : MonoBehaviour
         Vector3 sVel = Vector3.zero;
 
         float addScale = GetModifiedScale();
+
+        if (backMove)
+            SetFlipX(!GetFlipX());
 
         while (Vector3.Distance(dest + overDistance, transform.position) >= 0.03f)
         {
@@ -305,6 +321,7 @@ public class BattleUnit : MonoBehaviour
 
         transform.position = dest;
         transform.localScale = new Vector3(addScale, addScale, 1);
+        
     }
 
     public IEnumerator AttackMove(Vector3 movePosition, float moveTime)
@@ -312,7 +329,7 @@ public class BattleUnit : MonoBehaviour
         float time = 0;
         Vector3 originPosition = transform.position;
 
-        while(time <= moveTime)
+        while (time <= moveTime)
         {
             time += Time.deltaTime;
             float t = time / moveTime;
@@ -326,8 +343,9 @@ public class BattleUnit : MonoBehaviour
     //엑티브 타이밍에 대미지 바꿀 때용
     public int ChangedDamage = 0;
 
-    public void Attack(BattleUnit unit, int damage) {
-        if(unit != null)
+    public void Attack(BattleUnit unit, int damage)
+    {
+        if (unit != null)
         {
             ChangedDamage = damage;
             bool attackSkip = false;
@@ -373,16 +391,16 @@ public class BattleUnit : MonoBehaviour
         {
             return;
         }
-
         _floatingDamage.Init(value);
 
         ChangeHP(value);
-        
+
         //피격 후 체크
         ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, caster);
     }
 
-    public void ChangeHP(int value) {
+    public void ChangeHP(int value)
+    {
         DeckUnit.DeckUnitChangedStat.CurrentHP += value;
         HP.ChangeHP(value);
         _hpBar.RefreshHPBar(HP.FillAmount());
@@ -399,6 +417,14 @@ public class BattleUnit : MonoBehaviour
     {
         Buff.SetBuff(buff, caster, this);
         BattleUnitChangedStat = Buff.GetBuffedStat();
+        _hpBar.AddBuff(buff);
+    }
+
+    public void DeleteBuff(BuffEnum buffEnum)
+    {
+        Buff.DeleteBuff(buffEnum);
+        BattleUnitChangedStat = Buff.GetBuffedStat();
+        _hpBar.DeleteBuff(buffEnum);
     }
 
     private bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int num = 0)

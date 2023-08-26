@@ -10,9 +10,9 @@ public class Buff_Vice : Buff
 
         _description = "공격 시 타락을 1 부여합니다.";
 
-        _count = 2;
+        _count = -1;
 
-        _countDownTiming = ActiveTiming.BEFORE_ATTACK;
+        _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
@@ -32,10 +32,5 @@ public class Buff_Vice : Buff
         receiver.ChangeFall(1);
 
         return false;
-    }
-
-    public override void Stack()
-    {
-        _count += 2;
     }
 }

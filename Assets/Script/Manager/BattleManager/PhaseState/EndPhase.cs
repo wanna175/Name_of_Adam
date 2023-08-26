@@ -19,6 +19,6 @@ public class EndPhase : Phase
     }
     public override void OnStateExit()
     {
-        
+        BattleManager.Instance.BenedictionCheck();
     }
 }

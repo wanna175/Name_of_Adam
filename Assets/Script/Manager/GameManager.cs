@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public bool Tutorial_Trigger_First = true;
     public bool Tutorial_Trigger_Second = true;
+    public bool Tutorial_Benediction_Trigger = true;
 
     void Awake()
     {

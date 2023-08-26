@@ -9,6 +9,8 @@ public class UI_PlayerSkill : UI_Scene
 
     private UI_PlayerSkillCard _selectedCard = null;
 
+    public List<GameObject> curCardList = new();
+
     public bool Used = false;// once per turn
 
 
@@ -16,13 +18,17 @@ public class UI_PlayerSkill : UI_Scene
     {
         for (int i = 0; i < 4; i++)
         {
-            GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
+            //GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
+            GameObject Skill = GameObject.Instantiate(PlayerSkillCardPrefabs, Grid);
+            Skill.GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
+            
+            curCardList.Add(Skill);
         }
     }
 
     public void OnClickHand(UI_PlayerSkillCard card)
     {
-        PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
+        //PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
         
         if (!Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()))
         {
@@ -65,6 +71,22 @@ public class UI_PlayerSkill : UI_Scene
 
         _selectedCard = card;
         _selectedCard.ChangeSelectState(true);
+    }
+
+    public void InableSkill()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if(Used == true)
+            {
+                curCardList[i].GetComponent<UI_PlayerSkillCard>().ChangeInable(true);
+            }
+            else
+            {
+                curCardList[i].GetComponent<UI_PlayerSkillCard>().ChangeInable(false);
+            }
+
+        }
     }
 
     public UI_PlayerSkillCard GetSelectedCard() => _selectedCard;
