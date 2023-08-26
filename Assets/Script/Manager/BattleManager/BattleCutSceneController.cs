@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,8 @@ public class BattleCutSceneController : MonoBehaviour
 {
     [SerializeField] private CameraHandler _CameraHandler;
     public CameraHandler CameraHandler => _CameraHandler;
-
-    BattleCutSceneData CSData;
-    GameObject Blur;
+    [SerializeField] GameObject Blur;
+    [Space(20f)]
 
     public float ZoomTime = 1;
     public float CutSceneTime = 1;
@@ -17,32 +17,61 @@ public class BattleCutSceneController : MonoBehaviour
     public float ShakeMinus = 0.1f;
     public float ShakeTime = 0.1f;
     public float ShakeCount = 5;
-    
 
-    public void BattleCutScene(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
+    [NonSerialized] public bool isAttack = false;
+
+
+    public IEnumerator AttackCutScene(BattleCutSceneData CSData)
     {
-        if (HitUnits.Count == 0)
+        _CameraHandler.SetCutSceneCamera();
+        yield return StartCoroutine(ZoomIn(CSData));
+
+        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", true);
+
+        yield return new WaitUntil(() => isAttack);
+        isAttack = false;
+
+        BattleManager.Instance.UnitAttackAction();
+
+        yield return StartCoroutine(AfterEffect(CSData));
+        yield return new WaitUntil(() => BattleManager.Data.CorruptUnits.Count == 0);
+        yield return StartCoroutine(ZoomOut(CSData));
+
+        _CameraHandler.SetMainCamera();
+        ExitBattleCutScene(CSData);
+        yield return new WaitForSeconds(1);
+
+        BattleManager.Instance.EndUnitAction();
+    }
+
+    public void InitBattleCutScene(BattleCutSceneData CSData)
+    {
+        if (CSData.HitUnits.Count == 0)
             return;
 
         BattleManager.Field.ClearAllColor();
-        CSData = new BattleCutSceneData(AttackUnit, HitUnits);
-        
         CameraHandler.SetCutSceneCamera();
-        UnitFlip();
-        SetUnitRayer(5);
-        
-        StartCoroutine(ZoomIn());
+        UnitFlip(CSData);
+        SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
     }
 
-    private void UnitFlip()
+    public void ExitBattleCutScene(BattleCutSceneData CSData)
     {
-        if(CSData.AttackUnitDirection < 0)
+        SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 2);
+        CameraHandler.SetMainCamera();
+        BattleManager.Field.ClearAllColor();
+        Blur.SetActive(false);
+    }
+
+    private void UnitFlip(BattleCutSceneData CSData)
+    {
+        if(CSData.AttackUnitFlipX < 0)
         {
             CSData.AttackUnit.SetFlipX(false);
             foreach(BattleUnit unit in CSData.HitUnits)
                 unit.SetFlipX(true);
         }
-        else if (CSData.AttackUnitDirection > 0)
+        else if (CSData.AttackUnitFlipX > 0)
         {
             CSData.AttackUnit.SetFlipX(true);
             foreach (BattleUnit unit in CSData.HitUnits)
@@ -56,17 +85,14 @@ public class BattleCutSceneController : MonoBehaviour
         }
     }
 
-    public IEnumerator AfterAttack()
+    public IEnumerator AfterEffect(BattleCutSceneData CSData)
     {
         foreach (BattleUnit unit in CSData.HitUnits)
         {
             if (unit != null)
-            {
                 unit.GetComponent<Animator>().SetBool("isHit", true);
-            }
         }
 
-        //yield return StartCoroutine(AttackTilt());
         yield return StartCoroutine(_CameraHandler.AttackEffect(ShakeCount, ShakeTime, ShakePower, ShakeMinus));
 
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
@@ -75,70 +101,36 @@ public class BattleCutSceneController : MonoBehaviour
             if (unit != null)
                 unit.GetComponent<Animator>().SetBool("isHit", false);
         }
-
-        yield return StartCoroutine(ZoomOut());
-
-        SetUnitRayer(2);
-        CameraHandler.SetMainCamera();
-        BattleManager.Field.ClearAllColor();
-        Destroy(Blur);
-    }
-
-    // 확대 후 컷씬
-    public IEnumerator AttackTilt()
-    {
-        float time = 0;
-
-        while (time <= CutSceneTime)
-        {
-            time += Time.deltaTime;
-            float t = time / CutSceneTime;
-            _CameraHandler.AttackCameraLotate(CSData.GradientPower, -CSData.AttackUnitDirection, t);
-
-            yield return null;
-        }
     }
 
     // 컷씬 지점으로 이동
-    IEnumerator ZoomIn()
+    public IEnumerator ZoomIn(BattleCutSceneData CSData)
     {
-        Blur = GameManager.Resource.Instantiate("TestBlur");
+        Blur.SetActive(true);
 
-        float time = 0;
+        StartCoroutine(_CameraHandler.CameraMove(CSData.ZoomLocation, ZoomTime));
+        StartCoroutine(_CameraHandler.CameraZoom(CSData.ZoomSize, ZoomTime));
+        StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.MovePosition, ZoomTime));
 
-        while (time <= ZoomTime)
-        {
-            time += Time.deltaTime;
-            float t = time / ZoomTime;
-
-            CSData.AttackUnit.transform.position = Vector3.Lerp(CSData.AttackPosition, CSData.MovePosition, t);
-            _CameraHandler.ZoomIn(CSData, t);
-            yield return null;
-        }
-
-        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", true);
+        yield return new WaitForSeconds(ZoomTime);
     }
 
     // 원래 위치로 이동
-    IEnumerator ZoomOut()
+    public IEnumerator ZoomOut(BattleCutSceneData CSData)
     {
-        float time = 0;
+        Blur.SetActive(false);
 
-        while (time <= ZoomTime)
-        {
-            time += Time.deltaTime;
-            float t = time / ZoomTime;
+        StartCoroutine(_CameraHandler.CameraMove(_CameraHandler.GetMainPosition(), ZoomTime));
+        StartCoroutine(_CameraHandler.CameraZoom(_CameraHandler.GetMainFieldOfView(), ZoomTime));
+        StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.AttackPosition, ZoomTime));
 
-            CSData.AttackUnit.transform.position = Vector3.Lerp(CSData.MovePosition, BattleManager.Field.GetTilePosition(CSData.AttackUnit.Location), t);
-            _CameraHandler.CutSceneZoomOut(CSData, t);
-            yield return null;
-        }
+        yield return new WaitForSeconds(ZoomTime);
     }
 
-    private void SetUnitRayer(int rayer)
+    private void SetUnitRayer(BattleUnit AttackUnit, List<BattleUnit> HitUnits, int rayer)
     {
-        CSData.AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
-        foreach (BattleUnit unit in CSData.HitUnits)
+        AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+        foreach (BattleUnit unit in HitUnits)
         {
             if(unit != null)
                 unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;

@@ -7,8 +7,6 @@ public class CameraHandler : MonoBehaviour
     [SerializeField] Camera MainCamera;
     [SerializeField] Camera CutSceneCamera;
 
-    GameObject Blur;
-
     private void Start()
     {
         SetMainCamera();
@@ -31,30 +29,36 @@ public class CameraHandler : MonoBehaviour
     }
 
     
-    public void ZoomIn(BattleCutSceneData CSData, float t)
+    public IEnumerator CameraMove(Vector3 moveVec, float moveTime)
     {
-        CutSceneCamera.transform.localPosition = Vector3.Lerp(MainCamera.transform.localPosition, CSData.ZoomLocation, t);
-        CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.DefaultZoomSize, CSData.ZoomSize, t);
+        Vector3 originVec = CutSceneCamera.transform.localPosition;
+        float time = 0;
+        Debug.Log(originVec);
+        Debug.Log(moveVec);
+        while (time <= moveTime)
+        {
+            time += Time.deltaTime;
+            float t = time / moveTime;
+
+            CutSceneCamera.transform.localPosition = Vector3.Lerp(originVec, moveVec, t);
+            Debug.Log(CutSceneCamera.transform.position);
+            yield return null;
+        }
     }
 
-    // 컷씬 중 카메라 회전
-    public void AttackCameraLotate(float gradient, int AttackDir, float t)
+    public IEnumerator CameraZoom(float zoomSize, float zoomTime)
     {
-        t = t * 4;
+        float originSize = CutSceneCamera.fieldOfView;
+        float time = 0;
 
-        if (1 < t)
+        while (time <= zoomTime)
         {
-            Vector3 v = CutSceneCamera.transform.rotation.eulerAngles + new Vector3(0, 0, 0.005f * AttackDir);
-            CutSceneCamera.transform.eulerAngles = v;
+            time += Time.deltaTime;
+            float t = time / zoomTime;
 
-            return;
+            CutSceneCamera.fieldOfView = Mathf.Lerp(originSize, zoomSize, t);
+            yield return null;
         }
-        
-        float z = CutSceneCamera.transform.eulerAngles.z;
-        z = (z > 180) ? -(360 - z) : z;
-
-        float a = Mathf.Lerp(z, gradient * AttackDir, t);
-        CutSceneCamera.transform.eulerAngles = new Vector3(0, 0, a);
     }
 
     public IEnumerator AttackEffect(float shakeCount, float shakeTime, float shakePower, float shakeMinus)
@@ -90,10 +94,6 @@ public class CameraHandler : MonoBehaviour
         CutSceneCamera.transform.rotation = Quaternion.Euler(vec);
     }
 
-    // 컷씬 후 화면 줌 아웃
-    public void CutSceneZoomOut(BattleCutSceneData CSData, float t)
-    {
-        CutSceneCamera.transform.localPosition = Vector3.Lerp(CSData.ZoomLocation, MainCamera.transform.localPosition, t);
-        CutSceneCamera.fieldOfView = Mathf.Lerp(CSData.ZoomSize, CSData.DefaultZoomSize, t);
-    }
+    public Vector3 GetMainPosition() => MainCamera.transform.localPosition;
+    public float GetMainFieldOfView() => MainCamera.fieldOfView;
 }

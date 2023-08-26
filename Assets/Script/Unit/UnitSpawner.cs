@@ -27,8 +27,11 @@ public class UnitSpawner : MonoBehaviour
     private void Start()
     {
         // BattleScene에서 시작했을 때 유닛 생성(디버그용)
-        foreach (SpawnData data in TestSpawnUnit)
-            InitSpawn(data);
+        if (GameManager.Data.Map.CurrentTileID == 0)
+        {
+            foreach (SpawnData data in TestSpawnUnit)
+                InitSpawn(data);
+        }
     }
 
     private void InitSpawn(SpawnData spawndata)
