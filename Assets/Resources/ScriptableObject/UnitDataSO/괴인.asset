@@ -20,8 +20,7 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 1
     ManaCost: 10
-  _uniqueStigma:
-  - {fileID: 0}
+  _uniqueStigma: []
   _name: "\uAD34\uC778"
   _description: 
   _rarity: 0
