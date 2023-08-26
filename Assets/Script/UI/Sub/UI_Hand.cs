@@ -10,7 +10,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private GameObject _highlight;
     [SerializeField] private UI_UnitCard _unitCard;
     [SerializeField] private GameObject _hand;
-
+    [SerializeField] private Image _unitImage;
     private DeckUnit _handUnit = null;
     private UI_Hands _hands;
 
@@ -34,7 +34,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private void SetUnitInfo()
     {
-        _unitCard.Set(_handUnit.Data.Image, _handUnit.Data.Name, _handUnit.DeckUnitTotalStat.ManaCost.ToString());
+        Debug.Log(_handUnit.Data.Name);
+        _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _handUnit.Data.Name + "_Å¸¶ô");
+        _unitCard.Set(_unitImage.sprite, _handUnit.Data.Name, _handUnit.DeckUnitTotalStat.ManaCost.ToString());
     }
 
     public DeckUnit GetUnit()

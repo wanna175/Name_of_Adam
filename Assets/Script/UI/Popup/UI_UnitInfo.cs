@@ -8,20 +8,17 @@ using System;
 
 public class UI_UnitInfo : UI_Popup
 {
-    [SerializeField] private UI_UnitCard _unitCard;
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private GameObject _fallGaugePrefab;
     [SerializeField] private GameObject _stigmaPrefab;
     [SerializeField] private GameObject _squarePrefab;
 
     [SerializeField] private TextMeshProUGUI _unitInfoName;
-    //[SerializeField] private TextMeshProUGUI _unitInfoCost;
     [SerializeField] private Transform _unitInfoFallGrid;
     [SerializeField] private TextMeshProUGUI _unitInfoStat;
     [SerializeField] private Transform _unitInfoStigmaGrid;
     [SerializeField] private Transform _unitInfoSkillRangeGrid;
-    //[SerializeField] private TextMeshProUGUI _unitInfoSkillDescrption;
-    //[SerializeField] private Transform _unitInfoSkillimage;
+    [SerializeField] private Transform _unitAnimation;
 
     private DeckUnit _unit;
     private Action<DeckUnit> _onSelect;
@@ -35,18 +32,12 @@ public class UI_UnitInfo : UI_Popup
     {
         _onSelect = onSelect;
         _selectButton.SetActive(onSelect != null);
-
-        _unitCard.Set(_unit.Data.Image, _unit.Data.Name, _unit.DeckUnitTotalStat.ManaCost.ToString());
-
         _unitInfoName.text = _unit.Data.Name;
-        //_unitInfoCost.text = _unit.DeckUnitTotalStat.ManaCost.ToString();
 
         _unitInfoStat.text =    "HP:\t" + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
                                     "Cost:\t" + _unit.DeckUnitTotalStat.ManaCost.ToString() + "\n" +
                                     "Attack:\t" + _unit.DeckUnitTotalStat.ATK.ToString() + "\n" +
                                     "Speed:\t" + _unit.DeckUnitTotalStat.SPD.ToString();
-
-        //_unitInfoSkillDescrption.text = _unit.Data.Description.Replace("(ATK)", _unit.DeckUnitTotalStat.ATK.ToString());
 
         for (int i = 0; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
@@ -75,6 +66,14 @@ public class UI_UnitInfo : UI_Popup
                 block.color = Color.grey;
         }
     }
+
+    public void SetAnimation()
+    {
+        AnimationClip clip = Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect");
+        GameManager.VisualEffect.StartVisualEffect(clip, new Vector3(0f, 3.5f, 0f));
+    }
+
+
 
     public void Quit()
     {
