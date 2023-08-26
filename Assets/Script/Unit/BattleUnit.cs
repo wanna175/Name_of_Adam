@@ -294,8 +294,7 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-    public IEnumerator MoveFieldPosition(Vector3 dest)
-
+    public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove)
     {
         Vector3 dest = BattleManager.Field.GetTilePosition(coord);
 
