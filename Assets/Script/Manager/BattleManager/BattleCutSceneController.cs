@@ -12,11 +12,10 @@ public class BattleCutSceneController : MonoBehaviour
 
     public float ZoomTime = 1;
     public float CutSceneTime = 1;
-    
-    public float ShakePower = 0.5f;
-    public float ShakeMinus = 0.1f;
-    public float ShakeTime = 0.1f;
-    public float ShakeCount = 5;
+
+    [Space(10f)]
+    [Header("공격 이펙트(X, Y : 이동할 위치, Z : 머무를 시간")]
+    [SerializeField] public List<Vector3> ShakeInfo;
 
     [NonSerialized] public bool isAttack = false;
 
@@ -93,7 +92,7 @@ public class BattleCutSceneController : MonoBehaviour
                 unit.GetComponent<Animator>().SetBool("isHit", true);
         }
 
-        yield return StartCoroutine(_CameraHandler.AttackEffect(ShakeCount, ShakeTime, ShakePower, ShakeMinus));
+        yield return StartCoroutine(_CameraHandler.AttackEffect(ShakeInfo));
 
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
