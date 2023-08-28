@@ -327,10 +327,12 @@ MonoBehaviour:
   Blur: {fileID: 1661568333}
   ZoomTime: 0.3
   CutSceneTime: 2
-  ShakePower: 0.8
-  ShakeMinus: 0.1
-  ShakeTime: 0.7
-  ShakeCount: 5
+  ShakeInfo:
+  - {x: -0.4, y: 0, z: 0.15}
+  - {x: 0.4, y: 0, z: 0.15}
+  - {x: -0.4, y: 0, z: 0.15}
+  - {x: 0.4, y: 0, z: 0.15}
+  - {x: -0.4, y: 0, z: 0.3}
 --- !u!4 &49041953
 Transform:
   m_ObjectHideFlags: 0
@@ -5102,7 +5104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDeck: []
   _playerHands: []
-  HitUnits: []
   CorruptUnits: []
 --- !u!114 &1589663949
 MonoBehaviour:

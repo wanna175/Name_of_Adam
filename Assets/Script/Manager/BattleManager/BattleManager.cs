@@ -99,6 +99,9 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
+        if (SceneChanger.GetSceneName() == "BattleTestScene")
+            return;
+
         GetComponent<UnitSpawner>().SpawnInitialUnit();
         EventConversation();
     }
@@ -255,11 +258,11 @@ public class BattleManager : MonoBehaviour
     }
 
     // 애니메이션용 추가
-    public void UnitAttackAction()
+    public void UnitAttackAction(List<BattleUnit> HitUnits)
     {
         BattleUnit unit = Data.GetNowUnit();
 
-        foreach (BattleUnit hit in Data.HitUnits)
+        foreach (BattleUnit hit in HitUnits)
         {
             if (hit == null)
                 continue;
@@ -335,6 +338,9 @@ public class BattleManager : MonoBehaviour
 
     public void BattleOverCheck()
     {
+        if (SceneChanger.GetSceneName() == "BattleTestScene")
+            return;
+
         int MyUnit = 0;
         int EnemyUnit = 0;
 

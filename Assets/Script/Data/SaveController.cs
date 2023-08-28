@@ -18,11 +18,11 @@ public class SaveData
     public int GuardCount;
 }
 
-public class SaveController
+public class SaveController : MonoBehaviour
 {
     string path;
 
-    public SaveController()
+    public void Init()
     {
         // 사용자/Appdata//LocalLow에 자신의 파일이 있는지 확인하는 함수(System.IO 필요)
         path = Path.Combine(Application.persistentDataPath, "SaveData.json");

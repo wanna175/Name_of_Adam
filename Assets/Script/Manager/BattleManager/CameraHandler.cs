@@ -33,15 +33,12 @@ public class CameraHandler : MonoBehaviour
     {
         Vector3 originVec = CutSceneCamera.transform.localPosition;
         float time = 0;
-        Debug.Log(originVec);
-        Debug.Log(moveVec);
         while (time <= moveTime)
         {
             time += Time.deltaTime;
             float t = time / moveTime;
 
             CutSceneCamera.transform.localPosition = Vector3.Lerp(originVec, moveVec, t);
-            Debug.Log(CutSceneCamera.transform.position);
             yield return null;
         }
     }
@@ -61,26 +58,16 @@ public class CameraHandler : MonoBehaviour
         }
     }
 
-    public IEnumerator AttackEffect(float shakeCount, float shakeTime, float shakePower, float shakeMinus)
+    public IEnumerator AttackEffect(List<Vector3> shakeInfo)
     {
         Vector3 originPos = CutSceneCamera.transform.position;
 
-        float count = shakeCount;
-        float time = shakeTime / shakeCount;
-
-        Vector3 editVec = new Vector3(shakePower, 0, 0);
-
-        yield return new WaitForSeconds(0.1f);
-
-        float pls = 1;
-        while (count > 0)
+        foreach(Vector3 vec in shakeInfo)
         {
-            pls *= -1;
-            editVec.x -= shakeMinus;
-            count--;
+            Vector3 editVec = new Vector3(vec.x, vec.y, 0);
 
-            CutSceneCamera.transform.position += editVec * pls;
-            yield return new WaitForSeconds(time);
+            CutSceneCamera.transform.position = originPos + editVec;
+            yield return new WaitForSeconds(vec.z);
         }
 
         CutSceneCamera.transform.position = originPos;

@@ -26,6 +26,10 @@ public class UnitSpawner : MonoBehaviour
     }
     private void Start()
     {
+        // TestScene일 경우 예외처리
+        if (SceneChanger.GetSceneName() == "BattleTestScene")
+            return;
+
         // BattleScene에서 시작했을 때 유닛 생성(디버그용)
         if (GameManager.Data.Map.CurrentTileID == 0)
         {
@@ -65,6 +69,10 @@ public class UnitSpawner : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
+        // TestScene일 경우 예외처리
+        if (SceneChanger.GetSceneName() == "BattleTestScene")
+            return;
+
         if (GameManager.Data.Map.MapObject == null)
             return;
 

@@ -246,6 +246,17 @@ public class Field : MonoBehaviour
         _fieldType = fieldType;
     }
 
+    public void SetAllTileColor(FieldColorType fieldType)
+    {
+        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        {
+            items.Value.SetColor(ColorList(fieldType));
+            _coloredTile.Add(items.Key);
+        }
+
+        _fieldType = fieldType;
+    }
+
     public void ClearAllColor()
     {
         foreach (KeyValuePair<Vector2, Tile> items in TileDict)

@@ -327,7 +327,7 @@ public class BattleUnit : MonoBehaviour
 
         transform.position = dest;
         transform.localScale = new Vector3(addScale, addScale, 1);
-        
+
     }
 
     public IEnumerator AttackMove(Vector3 movePosition, float moveTime)
