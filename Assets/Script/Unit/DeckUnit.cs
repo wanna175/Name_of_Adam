@@ -30,11 +30,11 @@ public class DeckUnit
             AddStigma(stigma);
     }
 
-    public void AddStigma(Stigma passive)
+    public void AddStigma(Stigma stigma)
     {
-        if (Stigma.Contains(passive))
+        if (Stigma.Contains(stigma))
         {
-            Debug.Log($"이미 장착된 낙인입니다. : {passive.Name}");
+            Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
             return;
         }
 
@@ -44,7 +44,7 @@ public class DeckUnit
             return;
         }
 
-        Stigma.Add(passive);
+        Stigma.Add(stigma);
     }
 
     private int _firstTurnDiscount = 0;
@@ -56,7 +56,10 @@ public class DeckUnit
 
     public void FirstTurnDiscountUndo()
     {
-        DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
-        _firstTurnDiscount = 0;
+        if (_firstTurnDiscount != 0)
+        { 
+            DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
+            _firstTurnDiscount = 0;
+        }
     }
 }

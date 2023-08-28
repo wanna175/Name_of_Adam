@@ -189,6 +189,10 @@ public class BattleUnit : MonoBehaviour
         }
 
         Destroy(this.gameObject);
+        if (BattleManager.Phase.Current == BattleManager.Phase.Prepare)
+        {
+            BattleManager.Instance.BattleOverCheck();
+        }
     }
 
     public void UnitFallEvent()
@@ -218,7 +222,10 @@ public class BattleUnit : MonoBehaviour
 
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
-        BattleManager.Instance.BattleOverCheck();
+        if (BattleManager.Phase.Current == BattleManager.Phase.Prepare)
+        {
+            BattleManager.Instance.BattleOverCheck();
+        }
         ActiveTimingCheck(ActiveTiming.STIGMA);
     }
 
@@ -398,6 +405,12 @@ public class BattleUnit : MonoBehaviour
         ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, caster);
     }
 
+    public void GetHeal(int value, BattleUnit caster)
+    {
+        _floatingDamage.Init(value);
+        ChangeHP(value);
+    }
+
     public void ChangeHP(int value)
     {
         DeckUnit.DeckUnitChangedStat.CurrentHP += value;
@@ -426,7 +439,7 @@ public class BattleUnit : MonoBehaviour
         _hpBar.DeleteBuff(buffEnum);
     }
 
-    private bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int num = 0)
+    private bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int? num = null)
     {
         bool skipNextAction = false;
 
@@ -440,7 +453,11 @@ public class BattleUnit : MonoBehaviour
 
         foreach (Buff buff in Buff.CheckActiveTiming(activeTiming))
         {
-            buff.SetValue(num);
+            if (num != null)
+            {
+                buff.SetValue((int)num);
+            }
+
             skipNextAction = buff.Active(this, receiver);
         }
 

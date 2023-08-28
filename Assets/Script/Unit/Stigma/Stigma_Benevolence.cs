@@ -12,7 +12,7 @@ public class Stigma_Benevolence : Stigma
         foreach (BattleUnit unit in targetUnits)
         {
             if (unit.Team == caster.Team)
-                unit.ChangeHP(30);
+                unit.GetHeal(30, caster);
         }
     }
 }

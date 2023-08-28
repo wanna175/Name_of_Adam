@@ -16,7 +16,7 @@ public class UI_PlayerSkill : UI_Scene
 
     public void SetSkill(List<PlayerSkill> skillList)
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             //GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
             GameObject Skill = GameObject.Instantiate(PlayerSkillCardPrefabs, Grid);
@@ -75,7 +75,7 @@ public class UI_PlayerSkill : UI_Scene
 
     public void InableSkill()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             if(Used == true)
             {

@@ -43,6 +43,10 @@ public class UI_FloatingDamage : UI_Base
             _damageNumber.color = Color.red;
             damage *= -1;
         }
+        else
+        {
+            _damageNumber.color = Color.green;
+        }
 
         _damageNumber.text = damage.ToString();
         _damageNumber.alpha = 1f;
