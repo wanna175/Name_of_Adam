@@ -10,6 +10,7 @@ public class BattleTestUnit : BattleUnit
 
     private void Awake()
     {
+        srenderer = GetComponent<SpriteRenderer>();
         data = GameObject.Find("@BattleManager").GetComponent<BattleTestManager>().dataContainer;
     }
 

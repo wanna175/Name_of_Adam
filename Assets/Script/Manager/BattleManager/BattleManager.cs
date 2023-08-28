@@ -265,11 +265,11 @@ public class BattleManager : MonoBehaviour
     }
 
     // 애니메이션용 추가
-    public void UnitAttackAction()
+    public void UnitAttackAction(List<BattleUnit> HitUnits)
     {
         BattleUnit unit = Data.GetNowUnit();
 
-        foreach (BattleUnit hit in Data.HitUnits)
+        foreach (BattleUnit hit in HitUnits)
         {
             if (hit == null)
                 continue;

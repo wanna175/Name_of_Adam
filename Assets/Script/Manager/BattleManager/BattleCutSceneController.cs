@@ -31,7 +31,7 @@ public class BattleCutSceneController : MonoBehaviour
         yield return new WaitUntil(() => isAttack);
         isAttack = false;
 
-        BattleManager.Instance.UnitAttackAction();
+        BattleManager.Instance.UnitAttackAction(CSData.HitUnits);
 
         yield return StartCoroutine(AfterEffect(CSData));
         yield return new WaitUntil(() => BattleManager.Data.CorruptUnits.Count == 0);

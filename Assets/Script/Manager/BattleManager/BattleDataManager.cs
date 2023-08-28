@@ -16,7 +16,6 @@ public class BattleDataManager : MonoBehaviour
     [SerializeField] private List<DeckUnit> _playerHands = new();
     public List<DeckUnit> PlayerHands => _playerHands;
 
-    public List<BattleUnit> HitUnits;
     public List<BattleUnit> CorruptUnits;
 
     // 전투를 진행중인 캐릭터가 들어있는 리스트
