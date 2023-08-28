@@ -12,6 +12,6 @@ public static class SceneChanger
     }
     public static string GetSceneName()
     {
-        return SceneManager.GetActiveScene().ToString();
+        return SceneManager.GetActiveScene().name.ToString();
     }
 }

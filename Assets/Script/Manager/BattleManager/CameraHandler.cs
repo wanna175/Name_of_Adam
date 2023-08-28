@@ -33,15 +33,12 @@ public class CameraHandler : MonoBehaviour
     {
         Vector3 originVec = CutSceneCamera.transform.localPosition;
         float time = 0;
-        Debug.Log(originVec);
-        Debug.Log(moveVec);
         while (time <= moveTime)
         {
             time += Time.deltaTime;
             float t = time / moveTime;
 
             CutSceneCamera.transform.localPosition = Vector3.Lerp(originVec, moveVec, t);
-            Debug.Log(CutSceneCamera.transform.position);
             yield return null;
         }
     }
