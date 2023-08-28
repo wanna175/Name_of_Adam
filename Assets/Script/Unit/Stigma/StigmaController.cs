@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using System.Linq;
 
 public class StigmaController
 {
@@ -18,14 +19,16 @@ public class StigmaController
 
     private void LoadStigmaList()
     {
-        string path = "Assets/Resources/Prefabs/Stigma";
-        string[] files = Directory.GetFiles(path, "*.prefab");
+        //string path = "Assets/Resources/Prefabs/Stigma";
+        //string[] files = Directory.GetFiles(path, "*.prefab");
+        GameObject[] stigmaList = Resources.LoadAll("Prefabs/Stigma", typeof(GameObject)).Cast<GameObject>().ToArray();
 
-        foreach (string file in files)
+        //foreach (string file in files) 
+        foreach (GameObject go in stigmaList)
         {
-            string fileName = Path.GetFileNameWithoutExtension(file);
+            //string fileName = Path.GetFileNameWithoutExtension(file);
+            //GameObject go = GameManager.Resource.Load<GameObject>("Prefabs/Stigma/" + fileName);
 
-            GameObject go = GameManager.Resource.Load<GameObject>("Prefabs/Stigma/" + fileName);
             Stigma stigma = go.GetComponent<Stigma>();
 
             if (stigma.Tier == StigmaTier.Tier1)
