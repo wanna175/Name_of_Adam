@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private VisualEffectManager _visualEffect;
     public static VisualEffectManager VisualEffect => Instance._visualEffect;
 
-    private SaveController _saveController;
+    [SerializeField] private SaveController _saveController;
     public static SaveController SaveManager => Instance._saveController;
 
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         if (s_instance != null)
             return;
 
-        _saveController = new SaveController();
+        SaveManager.Init();
         Data.Init();
         Sound.Init();
         VisualEffect.Init();
@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
 
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<GameManager>();
+
+            SaveManager.Init();
+            Data.Init();
+            Sound.Init();
+            VisualEffect.Init();
         }
     }
 
