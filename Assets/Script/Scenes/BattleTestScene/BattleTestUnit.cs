@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +15,7 @@ public class BattleTestUnit : BattleUnit
 
     public void TestUnitDiedEvent()
     {
-        //ÀÚ½ÅÀÌ »ç¸Á ½Ã Ã¼Å©
+        //ìì‹ ì´ ì‚¬ë§ ì‹œ ì²´í¬
         if (ActiveTimingCheck(ActiveTiming.UNIT_DEAD))
         {
             return;
@@ -50,13 +50,13 @@ public class BattleTestUnit : BattleUnit
 
     public void TestUnitFallEvent()
     {
-        //Å¸¶ô ½Ã Ã¼Å©
+        //íƒ€ë½ ì‹œ ì²´í¬
         if (ActiveTimingCheck(ActiveTiming.FALLED))
         {
             return;
         }
 
-        //Å¸¶ô ÀÌº¥Æ® ½ÃÀÛ
+        //íƒ€ë½ ì´ë²¤íŠ¸ ì‹œì‘
         GameManager.Sound.Play("UI/FallSFX/Fall");
 
         GameObject go = GameManager.Resource.Instantiate("Effect/Corruption");

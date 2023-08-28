@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ public class TestUnitSpawner : UnitSpawner
     {
         if (BattleManager.Field.TileDict[spawndata.location].UnitExist)
         {
-            Debug.Log("ÇØ´ç Å¸ÀÏ¿¡ À¯´ÖÀÌ Á¸ÀçÇÕ´Ï´Ù.");
+            Debug.Log("í•´ë‹¹ íƒ€ì¼ì— ìœ ë‹›ì´ ì¡´ì¬í•©ë‹ˆë‹¤.");
         }
         else
         {
