@@ -13,7 +13,7 @@ public class PlayerSkill_Cross : PlayerSkill
         foreach (Vector2 target in targetCoords)
         {
             GameManager.VisualEffect.StartVisualEffect(
-                Resources.Load<AnimationClip>("Arts/EffectAnimation/PlayerSkill/CrossThunder"),
+                "Arts/EffectAnimation/PlayerSkill/CrossThunder",
                 BattleManager.Field.GetTilePosition(target) + new Vector3(0f, 3.5f, 0f));
             BattleUnit targetUnit = BattleManager.Field.GetUnit(target);
 

@@ -78,7 +78,7 @@ public class VisualEffectManager : MonoBehaviour
 
     public void StartCorruptionEffect(BattleUnit unit, Vector3 position)
     {
-        if (EffectQueue.Count == 0)
+        if (EffectQueue[AnimEffects.Corruption].Count == 0)
             CreateEffect(AnimEffects.Corruption);
 
         GameObject go = EffectQueue[AnimEffects.Corruption].Dequeue();
@@ -88,16 +88,14 @@ public class VisualEffectManager : MonoBehaviour
 
     public void StartStigmaEffect(Sprite sprite, Vector3 position)
     {
-        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/StigmaEffect");
-        GameObject go = StartVisualEffect(clip, position);
+        GameObject go = StartVisualEffect("Arts/EffectAnimation/VisualEffect/StigmaEffect", position);
 
         go.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
     public void StartUnitDeadEffect(Vector3 position, bool flip)
     {
-        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitDeadEffect");
-        GameObject go = StartVisualEffect(clip, position);
+        GameObject go = StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitDeadEffect", position);
 
         go.GetComponent<SpriteRenderer>().flipX = flip;
     }
@@ -118,8 +116,7 @@ public class VisualEffectManager : MonoBehaviour
 
     public void StartBenedictionEffect(BattleUnit unit)
     {
-        AnimationClip clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/BenedictionEffect");
-        GameObject go = StartVisualEffect(clip, Vector3.zero);
+        GameObject go = StartVisualEffect("Arts/EffectAnimation/VisualEffect/BenedictionEffect", Vector3.zero);
         go.transform.SetParent(unit.transform);
         go.transform.localPosition = Vector3.zero;
     }
