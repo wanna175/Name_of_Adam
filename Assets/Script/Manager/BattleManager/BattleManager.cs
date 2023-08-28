@@ -99,6 +99,9 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
+        if (SceneChanger.GetSceneName() == "BattleTestScene")
+            return;
+
         GetComponent<UnitSpawner>().SpawnInitialUnit();
         StageData data = GameManager.Data.Map.GetCurrentStage();
         if (data.ID == 11) // 
@@ -345,6 +348,9 @@ public class BattleManager : MonoBehaviour
 
     public void BattleOverCheck()
     {
+        if (SceneChanger.GetSceneName() == "BattleTestScene")
+            return;
+
         int MyUnit = 0;
         int EnemyUnit = 0;
 
