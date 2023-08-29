@@ -75,6 +75,22 @@ public class Stage : MonoBehaviour
         BackLight.SetSprite(name);
     }
 
+    public IEnumerator Fade()
+    {
+        float FadeTime = 1;
+        float time = 0;
+
+        while(time < FadeTime)
+        {
+            time += Time.deltaTime;
+            float t = time / FadeTime;
+
+            renderer.color = new Color(1 - t, 1 - t, 1 - t);
+
+            yield return null;
+        }
+    }
+
     public void SetNextStage()
     {
         isNextStage = true;
