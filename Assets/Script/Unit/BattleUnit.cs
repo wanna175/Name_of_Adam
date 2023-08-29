@@ -39,6 +39,8 @@ public class BattleUnit : MonoBehaviour
 
     private bool[] _moveRangeList;
 
+    private IEnumerator moveCoro;
+
     public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -152,7 +154,12 @@ public class BattleUnit : MonoBehaviour
 
         if (move)
         {
-            StartCoroutine(MoveFieldPosition(coord, backMove));
+            if (moveCoro != null)
+                StopCoroutine(moveCoro);
+
+            moveCoro = MoveFieldPosition(coord, backMove);
+            StartCoroutine(moveCoro);
+
             ActiveTimingCheck(ActiveTiming.MOVE);
         }
         else
@@ -281,6 +288,9 @@ public class BattleUnit : MonoBehaviour
     
     public IEnumerator CutSceneMove(Vector3 moveVec, float moveTime)
     {
+        if (moveCoro != null)
+            StopCoroutine(moveCoro);
+
         Vector3 originVec = transform.position;
         float time = 0;
 
@@ -328,22 +338,6 @@ public class BattleUnit : MonoBehaviour
         transform.position = dest;
         transform.localScale = new Vector3(addScale, addScale, 1);
 
-    }
-
-    public IEnumerator AttackMove(Vector3 movePosition, float moveTime)
-    {
-        float time = 0;
-        Vector3 originPosition = transform.position;
-
-        while (time <= moveTime)
-        {
-            time += Time.deltaTime;
-            float t = time / moveTime;
-
-            transform.position = Vector3.Lerp(originPosition, movePosition, t);
-
-            yield return null;
-        }
     }
 
     //엑티브 타이밍에 대미지 바꿀 때용

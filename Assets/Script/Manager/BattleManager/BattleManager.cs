@@ -202,7 +202,7 @@ public class BattleManager : MonoBehaviour
             MoveLocate(unit, dest);
         }
 
-        Invoke(nameof(MoveWait), 0.8f);
+        Invoke(nameof(MoveWait), 0.2f);
     }
 
     //임시
