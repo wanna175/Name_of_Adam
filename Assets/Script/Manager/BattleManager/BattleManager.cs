@@ -18,6 +18,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] BattleCutSceneController _battlecutScene;
     public static BattleCutSceneController BattleCutScene => Instance._battlecutScene;
 
+    [SerializeField] UnitSpawner _spawner;
+    public static UnitSpawner Spawner => Instance._spawner;
+
     private BattleDataManager _battleData;
     public static BattleDataManager Data => Instance._battleData;
 
@@ -101,9 +104,10 @@ public class BattleManager : MonoBehaviour
     {
         if (SceneChanger.GetSceneName() == "BattleTestScene")
             return;
-
-        GetComponent<UnitSpawner>().SpawnInitialUnit();
-        EventConversation();
+        PlayAfterCoroutine(() => {
+            Spawner.SpawnInitialUnit();
+            EventConversation();
+        }, 1);
     }
 
     private void EventConversation()
@@ -324,6 +328,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleManager.Data.BattleUnitList.Remove(unit);
         BattleManager.Data.BattleOrderRemove(unit);
+        BattleManager.Field.ExitTile(unit.Location);
 
         if (unit.Team == Team.Enemy)
         {

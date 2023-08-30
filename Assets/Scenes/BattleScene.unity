@@ -5052,6 +5052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battlecutScene: {fileID: 49041952}
+  _spawner: {fileID: 1589663947}
   Background:
   - {fileID: 2126475087}
   - {fileID: 55089939}

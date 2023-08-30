@@ -47,6 +47,7 @@ public class BattleUnit : MonoBehaviour
         _unitAnimator = GetComponent<Animator>();
 
         _renderer.sprite = Data.Image;
+        _renderer.color = new Color(1, 1, 1, 1);
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
@@ -125,7 +126,6 @@ public class BattleUnit : MonoBehaviour
     {
         _team = team;
 
-        // 적군일 경우 x축 뒤집기
         SetHPBar();
         ChangeAnimator();
     }
@@ -195,7 +195,8 @@ public class BattleUnit : MonoBehaviour
             yield return null;
         }
 
-        Destroy(this.gameObject);
+        BattleManager.Spawner.RestoreUnit(gameObject);
+
         if (BattleManager.Phase.Current == BattleManager.Phase.Prepare)
         {
             BattleManager.Instance.BattleOverCheck();
