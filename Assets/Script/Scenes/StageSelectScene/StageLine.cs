@@ -13,7 +13,7 @@ public class StageLine : MonoBehaviour
         float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
 
         // 선의 폭을 넓히고싶다면 new Vector2의 y를 수정하면 됨
-        GetComponent<SpriteRenderer>().size = new Vector2(distance, 0.25f);
+        GetComponent<SpriteRenderer>().size = new Vector2(distance, 6.0f);
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
