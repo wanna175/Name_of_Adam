@@ -12,9 +12,10 @@ public class UI_Conversation : UI_Popup
     private List<Script> scripts = new List<Script>();
 
     //[SerializeField] private Text _conversationText;
-    [SerializeField] private Text _nameText;
-    [SerializeField] private GameObject _nameObject;
+    [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _conversation;
+    [SerializeField] private GameObject _nameObject;
+    
     
     // autoStart = false면 따로 실행해줘야 함
     public void Init(List<Script> scripts, bool autoStart = true)
