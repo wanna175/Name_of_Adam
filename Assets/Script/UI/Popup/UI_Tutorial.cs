@@ -9,5 +9,6 @@ public class UI_Tutorial : MonoBehaviour
     public void TutorialActive(int i)
     {
         Tutorial[i].SetActive(true);
+        GameManager.Instance.TimeStop();
     }
 }

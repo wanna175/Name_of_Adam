@@ -22,7 +22,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _myDeck = myDeck;
         _cardUnit = unit;
 
-        _unitCard.Set(_cardUnit.Data.Image, _cardUnit.Data.Name, _cardUnit.DeckUnitTotalStat.ManaCost.ToString());
+        _unitCard.SetCard(_cardUnit.Data.Image, _cardUnit.Data.Name, _cardUnit.DeckUnitTotalStat.ManaCost.ToString());
     }
 
     public void OnPointerEnter(PointerEventData eventData)
