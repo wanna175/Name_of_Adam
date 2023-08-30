@@ -19,8 +19,8 @@ public class UI_Info : UI_Scene
     [SerializeField] private Transform _unitInfoFallGrid;
     [SerializeField] private GameObject _fallGaugePrefab;
 
-    [SerializeField] private Transform _stigmaDescriptionGrid;
-    [SerializeField] private GameObject _stigmaDescriptionPrefab;
+    //[SerializeField] private Transform _stigmaDescriptionGrid;
+    //[SerializeField] private GameObject _stigmaDescriptionPrefab;
 
 
     //색상은 UI에서 정해주는대로
@@ -167,6 +167,13 @@ public class UI_Info : UI_Scene
         _hpBar.RefreshFallGauge(unit.DeckUnitTotalStat.FallCurrentCount);
 
         //_stigmaDescriptionPrefab.SetStigma(unit);
+
+        foreach(Stigma st in unit.Stigma)
+        {
+            //_stigmaDescriptionPrefab.GetComponent<UI_StigmaDescription>().SetStigma(st);
+            
+        }
+        
 
         Sprite attackType;
 
