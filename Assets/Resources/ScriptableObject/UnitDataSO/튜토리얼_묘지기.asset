@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
-  m_Name: "\uBB18\uC9C0\uAE30"
+  m_Name: "\uD29C\uD1A0\uB9AC\uC5BC_\uBB18\uC9C0\uAE30"
   m_EditorClassIdentifier: 
   _rawStat:
     MaxHP: 40
@@ -19,7 +19,7 @@ MonoBehaviour:
     SPD: 75
     FallCurrentCount: 0
     FallMaxCount: 3
-    ManaCost: 30
+    ManaCost: 40
   _uniqueStigma: []
   _name: "\uBB18\uC9C0\uAE30"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C

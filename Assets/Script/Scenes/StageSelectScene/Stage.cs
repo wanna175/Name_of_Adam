@@ -56,6 +56,9 @@ public class Stage : MonoBehaviour
 
         foreach (Stage st in NextStage)
         {
+            if (Datas.ID == 0)
+                return;
+
             StageLine line = GameManager.Resource.Instantiate("Stage/Line", transform).GetComponent<StageLine>();
             line.DrawLine(st);
         }
