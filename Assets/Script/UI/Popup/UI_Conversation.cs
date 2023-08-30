@@ -14,7 +14,6 @@ public class UI_Conversation : UI_Popup
     //[SerializeField] private Text _conversationText;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _conversation;
-    [SerializeField] private GameObject _nameObject;
     
     
     // autoStart = false면 따로 실행해줘야 함
@@ -33,15 +32,6 @@ public class UI_Conversation : UI_Popup
         // 이벤트 스크립트 본문 출력
         foreach (Script script in scripts)
         {
-            // 이름 없으면 이름 창 꺼짐
-            if (script.name == "")
-                _nameObject.SetActive(false);
-            else
-            {
-                _nameObject.SetActive(true);
-                _nameText.text = script.name;
-            }
-
             co_typing = StartCoroutine(TypingEffect(script.script));
 
             yield return new WaitUntil(() => (co_typing == null || GameManager.InputManager.Click));
