@@ -16,6 +16,7 @@ public struct SpawnData
 public class UnitSpawner : MonoBehaviour
 {
     private Transform parent;
+    private Queue<GameObject> UnitQueue;
 
     // BattleScene에서 시작했을 때 생성하는 유닛들(디버그용)
     [SerializeField] List<SpawnData> TestSpawnUnit;
@@ -23,19 +24,12 @@ public class UnitSpawner : MonoBehaviour
     private void Awake()
     {
         parent = SetParent();
+        UnitQueue = new Queue<GameObject>();
     }
     private void Start()
     {
-        // TestScene일 경우 예외처리
-        if (SceneChanger.GetSceneName() == "BattleTestScene")
-            return;
-
-        // BattleScene에서 시작했을 때 유닛 생성(디버그용)
-        if (GameManager.Data.Map.CurrentTileID == 0)
-        {
-            foreach (SpawnData data in TestSpawnUnit)
-                InitSpawn(data);
-        }
+        for (int i = 0; i < 9; i++)
+            CreateUnit();
     }
 
     private void InitSpawn(SpawnData spawndata)
@@ -46,18 +40,19 @@ public class UnitSpawner : MonoBehaviour
         }
         else
         {
-            GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+            GameObject go = GetUnit();
             BattleUnit unit = go.GetComponent<BattleUnit>();
             unit.DeckUnit.Data = spawndata.unitData;
 
             unit.Init();
             unit.UnitSetting(spawndata.location, spawndata.team);
+            GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
         }
     }
 
     public BattleUnit DeckSpawn(DeckUnit deckUnit, Vector2 location)
     {
-        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+        GameObject go = GetUnit();
         BattleUnit unit = go.GetComponent<BattleUnit>();
         unit.DeckUnit = deckUnit;
 
@@ -87,16 +82,36 @@ public class UnitSpawner : MonoBehaviour
             sd.location = data.Location;
             sd.team = Team.Enemy;
 
-            //sd.deckUnit.Data = sd.prefab.GetComponent<BattleUnit>()
             InitSpawn(sd);
-
-            //Spawn(data, data.location);
-            //SpawnTest(data, data.Location);
         }
-        //foreach (SpawnData data in SpawnMonsters)
-        //{
-        //    Spawn(data, data.location);
-        //}
+    }
+
+    private void CreateUnit()
+    {
+        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+        go.SetActive(false);
+
+        UnitQueue.Enqueue(go);
+    }
+
+    private GameObject GetUnit()
+    {
+        GameObject go;
+        
+        if(!UnitQueue.TryDequeue(out go))
+        {
+            CreateUnit();
+            go = UnitQueue.Dequeue();
+        }
+
+        go.SetActive(true);
+        return go;
+    }
+
+    public void RestoreUnit(GameObject go)
+    {
+        UnitQueue.Enqueue(go);
+        go.SetActive(false);
     }
 
     private Transform SetParent()

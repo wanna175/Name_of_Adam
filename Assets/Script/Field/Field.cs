@@ -273,7 +273,7 @@ public class Field : MonoBehaviour
         unit.SetLocate(coord, move);
     }
 
-    private void ExitTile(Vector2 coord)
+    public void ExitTile(Vector2 coord)
     {
         TileDict[coord].ExitTile();
     }

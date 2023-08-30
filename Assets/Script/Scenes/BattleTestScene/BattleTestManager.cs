@@ -13,6 +13,7 @@ public class BattleTestManager : BattleManager
         foreach (BattleUnit unit in Data.BattleUnitList)
         {
             unit.ChangeHP(1000);
+            unit.ChangeFall(-10);
         }
         Field.ClearAllColor();
     }
