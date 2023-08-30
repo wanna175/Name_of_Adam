@@ -152,19 +152,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: -1920
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: -1200
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_LocalScale.x
@@ -208,11 +208,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -240,11 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4722524202120490179, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 870
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 4722524202120490179, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 450
+      value: 509
       objectReference: {fileID: 0}
     - target: {fileID: 6890035795143200654, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_Colors.m_ColorMultiplier
