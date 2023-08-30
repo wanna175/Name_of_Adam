@@ -10,35 +10,10 @@ public class UI_StigmaDescription : MonoBehaviour
     [SerializeField] TextMeshProUGUI _description;
     [SerializeField] Image _image;
 
-    public void SetStigma(BattleUnit unit)
+    public void SetStigma(Stigma stigma)
     {
-        List<Stigma> st = unit.StigmaList;
-
-        for (int i = 0; i < 3; i++)
-        {
-            if(st[i] != null)
-            {
-                _name.text = st[i].Name;
-                _description.text = st[i].Description;
-                _image.sprite = st[i].Sprite;
-            }
-        }
+        _name.text = stigma.Name;
+        _description.text = stigma.Description;
+        _image.sprite = stigma.Sprite;
     }
-
-    public void SetStigma(DeckUnit unit)
-    {
-        List<Stigma> st = unit.Data.UniqueStigma;
-
-        for (int i = 0; i < 3; i++)
-        {
-            if (st[i] != null)
-            {
-                _name.text = st[i].Name;
-                _description.text = st[i].Description;
-                _image.sprite = st[i].Sprite;
-            }
-        }
-    }
-
-
 }
