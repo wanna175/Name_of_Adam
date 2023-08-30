@@ -12,6 +12,61 @@
                 "x": 3,
                 "y": 1
               }
+            }
+          ]
+        },
+        {
+          "ID": 1,
+          "Units": [
+            {
+              "Name": "검병",
+              "Location": {
+                "x": 3,
+                "y": 1
+              }
+            },
+            {
+              "Name": "수녀",
+              "Location": {
+                "x": 4,
+                "y": 1
+              }
+            }
+          ]
+        },
+        {
+          "ID": 2,
+          "Units": [
+            {
+              "Name": "검병",
+              "Location": {
+                "x": 3,
+                "y": 1
+              }
+            },
+            {
+              "Name": "궁병",
+              "Location": {
+                "x": 5,
+                "y": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Level": 1,
+      "StageData": [
+        {
+          "ID": 0,
+          "Units": [
+            {
+              "Name": "검병",
+              "Location": {
+                "x": 3,
+                "y": 1
+              }
             },
             {
               "Name": "궁병",
@@ -63,7 +118,7 @@
       ]
     },
     {
-      "Level": 1,
+      "Level": 2,
       "StageData": [
         {
           "ID": 0,
