@@ -118,7 +118,7 @@ public class StageManager : MonoBehaviour
         {
             if (StageList[i].Datas.Type == StageType.Battle)
             {
-                int x = (StageList[i].Datas.ID <= 1 && addLevel == 0) ? 0 : (int)StageList[i].Datas.StageLevel + addLevel;
+                int x = (StageList[i].Datas.ID <= 1 && addLevel == 0) ? 1 : (int)StageList[i].Datas.StageLevel + addLevel;
                 int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
 
                 Vector2 vec = new Vector2(x, y);
