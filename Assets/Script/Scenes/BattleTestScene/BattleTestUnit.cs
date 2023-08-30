@@ -46,7 +46,7 @@ public class BattleTestUnit : BattleUnit
             yield return null;
         }
 
-        Destroy(this.gameObject);
+        BattleManager.Instance.GetComponent<TestUnitSpawner>().RrestoreUnit(gameObject);
     }
 
     public void TestUnitFallEvent()

@@ -36,7 +36,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         Debug.Log(_handUnit.Data.Name);
         _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _handUnit.Data.Name + "_Å¸¶ô");
-        _unitCard.Set(_unitImage.sprite, _handUnit.Data.Name, _handUnit.DeckUnitTotalStat.ManaCost.ToString());
+        _unitCard.SetHand(_unitImage.sprite, _handUnit.DeckUnitTotalStat.ManaCost.ToString());
     }
 
     public DeckUnit GetUnit()
@@ -63,7 +63,10 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _hands.OnClickHand(this);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            _hands.OnClickHand(this);
+        }
     }
 
     public void ChangeSelectState(bool b)

@@ -119,4 +119,14 @@ public class GameManager : MonoBehaviour
             GameManager.SaveManager.DeleteSaveData();
 
     }
+
+    public void TimeStop()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void TimeStart()
+    {
+        Time.timeScale = 1;
+    }
 }

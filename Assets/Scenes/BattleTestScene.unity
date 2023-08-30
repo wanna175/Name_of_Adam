@@ -5838,7 +5838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnUnits:
-  - unitData: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
+  - unitData: {fileID: 11400000, guid: 69e53bc06fbe80644bf254d5ca3cccc3, type: 2}
     location: {x: 2, y: 1}
     team: 0
   - unitData: {fileID: 11400000, guid: f95af65aca8848443bf5067ca5e54506, type: 2}
@@ -5938,6 +5938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battlecutScene: {fileID: 49041952}
+  _spawner: {fileID: 1589663951}
   Background:
   - {fileID: 2126475087}
   - {fileID: 55089939}

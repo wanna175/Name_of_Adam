@@ -7,17 +7,21 @@ using TMPro;
 public class UI_Info : UI_Scene
 {
     [SerializeField] private TextMeshProUGUI _name;
-    [SerializeField] private TextMeshProUGUI _cost;
     [SerializeField] private TextMeshProUGUI _stat;
 
     [SerializeField] private UI_HPBar _hpBar;
     [SerializeField] private UI_HoverImageBlock _stigma;
     [SerializeField] private Transform _stigmaGrid;
 
-    [SerializeField] private UI_HoverImageBlock _SkillImage;
-
     [SerializeField] private Transform _rangeGrid;
     [SerializeField] private GameObject _squarePrefab;
+
+    [SerializeField] private Transform _unitInfoFallGrid;
+    [SerializeField] private GameObject _fallGaugePrefab;
+
+    [SerializeField] private Transform _stigmaDescriptionGrid;
+    [SerializeField] private GameObject _stigmaDescriptionPrefab;
+
 
     //색상은 UI에서 정해주는대로
     readonly Color goodColor = Color.yellow;
@@ -37,26 +41,26 @@ public class UI_Info : UI_Scene
         _name.text = unit.Data.Name;
         Team team = battleUnit.Team;
 
-        if (unit.DeckUnitChangedStat.ManaCost > 0)
-            _cost.color = badColor;
-        else if (unit.DeckUnitChangedStat.ManaCost < 0)
-            _cost.color = goodColor;
-
-        _cost.text = unit.DeckUnitTotalStat.ManaCost.ToString();
 
         //"<color=\"black\"></color>"
 
-        string statText = "HP:     " + "<color=\"currnetHPColor\">" + battleUnit.BattleUnitTotalStat.CurrentHP.ToString() +
-                                "</color>" + " / " + battleUnit.BattleUnitTotalStat.MaxHP.ToString() + "\n" +
-                                "Attack: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
+        string statText =   "Attack: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
                                 "Speed:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>";
+
+
+        for (int i = 0; i < battleUnit.BattleUnitTotalStat.FallMaxCount; i++)
+        {
+            UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
+            if (i < battleUnit.BattleUnitTotalStat.FallCurrentCount)
+                fg.Set(true);
+            else
+                fg.Set(false);
+
+            fg.Init();
+        }
+
         //일단 작동은 하는데 수정필요 6/28
         //함수화 시켜서 정리하던가 해야함
-
-        if (battleUnit.BattleUnitTotalStat.CurrentHP < battleUnit.BattleUnitTotalStat.MaxHP)
-            statText = statText.Replace("currnetHPColor", badColorStr);
-        else
-            statText = statText.Replace("currnetHPColor", normalColorStr);
 
         /*
         if (unit.DeckUnitChangedStat.MaxHP > 0 || battleUnit.BattleUnitChangedStat.MaxHP > 0)
@@ -89,13 +93,10 @@ public class UI_Info : UI_Scene
         _hpBar.RefreshHPBar((float)battleUnit.BattleUnitTotalStat.CurrentHP / (float)battleUnit.BattleUnitTotalStat.MaxHP);
         _hpBar.RefreshFallGauge(battleUnit.BattleUnitTotalStat.FallCurrentCount);
 
-        /*
-        unit.SetStigma();
-        foreach (Stigma sti in unit.Stigma)
-        {
-            GameObject.Instantiate(_stigma, _stigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
-        }
-        */  
+        //_stigmaDescriptionPrefab.SetStigma(battleUnit);
+
+
+
 
         Sprite attackType;
 
@@ -103,8 +104,6 @@ public class UI_Info : UI_Scene
             attackType = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘");
         else
             attackType = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘");
-
-        _SkillImage.Set(attackType, unit.Data.Description.Replace("(ATK)", unit.DeckUnitTotalStat.ATK.ToString()));
 
         foreach (bool range in unit.Data.AttackRange)
         {
@@ -121,26 +120,20 @@ public class UI_Info : UI_Scene
         //덱 유닛의 경우
         _name.text = unit.Data.Name;
 
-        if (unit.DeckUnitChangedStat.ManaCost > 0)
-            _cost.color = badColor;
-        else if (unit.DeckUnitChangedStat.ManaCost < 0)
-            _cost.color = goodColor;
-
-        _cost.text = unit.DeckUnitTotalStat.ManaCost.ToString();
-
-        //"<color=\"black\"></color>"
-
-        string statText =   "HP:     " + "<color=\"currnetHPColor\">" + unit.DeckUnitTotalStat.CurrentHP.ToString() + 
-                                "</color>" + " / " + unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
-                                "Attack: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
+        string statText = "Attack: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
                                 "Speed:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>";
-        //일단 작동은 하는데 수정필요 6/28
-        //함수화 시켜서 정리하던가 해야함
 
-        if (unit.DeckUnitTotalStat.CurrentHP < unit.DeckUnitTotalStat.MaxHP)
-            statText = statText.Replace("currnetHPColor", badColorStr);
-        else
-            statText = statText.Replace("currnetHPColor", normalColorStr);
+
+        for (int i = 0; i < unit.DeckUnitTotalStat.FallMaxCount; i++)
+        {
+            UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
+            if (i < unit.DeckUnitTotalStat.FallCurrentCount)
+                fg.Set(true);
+            else
+                fg.Set(false);
+
+            fg.Init();
+        }
 
         /*
         if (unit.DeckUnitChangedStat.MaxHP > 0)
@@ -173,11 +166,7 @@ public class UI_Info : UI_Scene
         _hpBar.RefreshHPBar((float)unit.DeckUnitTotalStat.CurrentHP / (float)unit.DeckUnitTotalStat.MaxHP);
         _hpBar.RefreshFallGauge(unit.DeckUnitTotalStat.FallCurrentCount);
 
-        //unit.SetStigma();
-        //foreach (Stigma sti in unit.Stigma)
-        //{
-        //    GameObject.Instantiate(_stigma, _stigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
-        //}
+        //_stigmaDescriptionPrefab.SetStigma(unit);
 
         Sprite attackType;
 
@@ -186,7 +175,7 @@ public class UI_Info : UI_Scene
         else
             attackType = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘");
 
-        _SkillImage.Set(attackType, unit.Data.Description.Replace("(ATK)", unit.DeckUnitTotalStat.ATK.ToString()));
+        //_SkillImage.Set(attackType, unit.Data.Description.Replace("(ATK)", unit.DeckUnitTotalStat.ATK.ToString()));
 
         foreach (bool range in unit.Data.AttackRange)
         {

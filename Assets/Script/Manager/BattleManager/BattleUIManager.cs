@@ -127,7 +127,6 @@ public class BattleUIManager : MonoBehaviour
                 else if (phaseController.Current == phaseController.Engage)
                 {
                     UItutorial.TutorialActive(10);
-                    //UItutorial.TutorialActive(13);//신성
                     GameManager.Instance.Tutorial_Trigger_Second = false;
                 }
             }

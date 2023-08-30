@@ -99,6 +99,7 @@ public class StageManager : MonoBehaviour
     {
         int curID = GameManager.Data.Map.CurrentTileID;
         CurrentStage = StageList.Find(x => x.Datas.ID == curID);
+        StartCoroutine(CurrentStage.Fade());
 
         foreach (Stage st in CurrentStage.NextStage)
             st.SetNextStage();

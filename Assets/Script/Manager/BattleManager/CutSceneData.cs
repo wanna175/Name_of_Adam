@@ -69,15 +69,15 @@ public class BattleCutSceneData
         }
         else
         {
-            if (unit.GetFlipX())
-            {
-                moveTile.x += 1;
-                AttackUnitFlipX = 1;
-            }
-            else
+            if (AttackUnitTile.y > HitUnitTile.y)
             {
                 moveTile.x -= 1;
                 AttackUnitFlipX = -1;
+            }
+            else
+            {
+                moveTile.x += 1;
+                AttackUnitFlipX = 1;
             }
         }
 
