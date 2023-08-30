@@ -11,7 +11,6 @@ public class MovePhase : Phase
         _nowUnit.MoveTurnStart();
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Move);
-        BattleManager.BattleUI.ChangeButtonName();
 
         if (_nowUnit.Team == Team.Enemy)
             BattleManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AIMove, 1);
