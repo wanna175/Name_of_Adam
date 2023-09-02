@@ -18,9 +18,14 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private TextMeshProUGUI _unitInfoStat;
     [SerializeField] private Transform _unitInfoStigmaGrid;
     [SerializeField] private Transform _unitInfoSkillRangeGrid;
-    [SerializeField] private Transform _unitAnimation;
+
+
+    //public AnimationClip _unitAnimationClip;
+
+
 
     private DeckUnit _unit;
+    UnitDataSO Data => _unit.Data;
     private Action<DeckUnit> _onSelect;
 
     public void SetUnit(DeckUnit unit)

@@ -20,6 +20,9 @@ public class StigmaSceneController : MonoBehaviour
 
     private void Init()
     {
+        _unitImage.color = Color.clear;
+        _unitImage.gameObject.SetActive(false);
+        
         List<Script> scripts = new ();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
@@ -85,9 +88,11 @@ public class StigmaSceneController : MonoBehaviour
 
     public void OnSelectStigmatization(DeckUnit unit)
     {
+        _unitImage.gameObject.SetActive(true);
         _stigmatizeUnit = unit;
         _unitImage.sprite = unit.Data.Image;
         _unitImage.color = Color.white;
+        
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
     }
