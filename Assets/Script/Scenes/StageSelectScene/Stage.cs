@@ -101,7 +101,7 @@ public class Stage : MonoBehaviour
     }
 
     public void OnMouseUp() => StageManager.Instance.StageMove(Datas.ID);
-
+    /*
     public void OnMouseEnter()
     {
         if (isNextStage)
@@ -117,7 +117,7 @@ public class Stage : MonoBehaviour
         if (!isClear)
             BackLight.FadeOut();
     }
-
+    */
     public StageData SetBattleStage(int a, int b)
     {
         Datas.StageLevel = a;

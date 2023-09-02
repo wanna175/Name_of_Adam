@@ -10,6 +10,8 @@ public class BattleOverPhase : Phase
         foreach (DeckUnit unit in BattleManager.Data.PlayerHands)
             unit.FirstTurnDiscountUndo();
 
+        BattleManager.BattleUI.RefreshHand();
+
         BattleManager.BattleUI.UI_turnNotify.Off();
     }
 

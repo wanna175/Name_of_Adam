@@ -8,29 +8,35 @@ public class UI_WaitingLine : UI_Scene
     private List<UI_WaitingUnit> _waitingUnitList = new List<UI_WaitingUnit>();
     private Transform _grid;
     private bool _turned = false;
-    [SerializeField] private GameObject _button1;
-    [SerializeField] private GameObject _button2;
+    [SerializeField] private GameObject _buttonDown;
+    [SerializeField] private GameObject _buttonUp;
 
     public void Start()
     {
         _grid = Util.FindChild(gameObject, "Grid", true).transform;
-        _button1.SetActive(false);
-        _button2.SetActive(false);
+        _buttonDown.SetActive(false);
+        _buttonUp.SetActive(false);
     }
 
-    public void ButtonActive()
+    private void ButtonActive()
     {
-        if (_waitingUnitList.Count >= 5)
+        if (_waitingUnitList.Count > 5)
         {
-            _button1.SetActive(true);
+            if (_turned && _waitingUnitList.Count > 5)
+            {
+                _buttonUp.SetActive(true);
+                _buttonDown.SetActive(false);
+            }
+            else if (!_turned && _waitingUnitList.Count > 5)
+            {
+                _buttonDown.SetActive(true);
+                _buttonUp.SetActive(false);
+            }
         }
-        if (_button1.activeSelf == true)
+        else
         {
-            _button2.SetActive(false);
-        }
-        else if (_button2.activeSelf == true)
-        {
-            _button1.SetActive(false);
+            _buttonDown.SetActive(false);
+            _buttonUp.SetActive(false);
         }
     }
 
@@ -41,35 +47,31 @@ public class UI_WaitingLine : UI_Scene
         _waitingUnitList.Add(newUnit);
     }
 
-    public void RemoveUnit(BattleUnit removeUnit)
-    {
-        for(int i=0; i<_waitingUnitList.Count; i++)
-            if(_waitingUnitList[i].GetUnit() == removeUnit)
-                DestroyIcon(_waitingUnitList[i]);
-    }
-
     public void SetWaitingLine(List<BattleUnit> orderList)
     {
-        ClearLine();
+        ClearWaitingLine();
+
+        foreach (BattleUnit unit in orderList)
+            AddUnit(unit);
+
         ButtonActive();
-        for (int i = 0; i < orderList.Count; i++)
-            AddUnit(orderList[i]);
     }
 
-    private void ClearLine()
+    private void ClearWaitingLine()
     {
-        for (int i = _waitingUnitList.Count - 1; i >= 0; i--)
-            DestroyIcon(_waitingUnitList[i]);
-    }
-
-    public void DestroyIcon(UI_WaitingUnit unit)
-    {
-        _waitingUnitList.Remove(unit);
-        Destroy(unit.gameObject);
+        for (int i = 0; i < _waitingUnitList.Count; i++)
+        {
+            UI_WaitingUnit unit = _waitingUnitList[i];
+            _waitingUnitList.Remove(unit);
+            Destroy(unit.gameObject);
+            i--;
+        }
     }
 
     public void OnClickSeeNextUnits()
     {
+        ButtonActive();
+
         _grid.eulerAngles += new Vector3(0f, 180f, 0f);
         if (_turned == false)
             _turned = true;

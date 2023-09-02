@@ -67,49 +67,32 @@ public class BattleUIManager : MonoBehaviour
 
         while (BattleManager.Data.PlayerHands.Count < _maxHandCount)
         {
+            DeckUnit unit;
             if (curID == 1 && GameManager.Data.StageAct == 0)
             {
-                DeckUnit unit = BattleManager.Data.GetUnitFromDeck();
-                if (unit == null)
-                    return;
-                AddHandUnit(unit);
+                unit = BattleManager.Data.GetUnitFromDeck();
             }
             else if (curID == 2 && GameManager.Data.StageAct == 0)
             {
-                DeckUnit unit = BattleManager.Data.GetTUnitFromDeck();
-                if (unit == null)
-                    return;
-                AddHandUnit(unit);
+                unit = BattleManager.Data.GetTUnitFromDeck();
             }
             else
             {
-                DeckUnit unit = BattleManager.Data.GetRandomUnitFromDeck();
-                if (unit == null)
-                    return;
-                AddHandUnit(unit);
+                unit = BattleManager.Data.GetRandomUnitFromDeck();
             }
 
+            if (unit == null)
+                return;
+            AddHandUnit(unit);
         }
     }
 
-    public PlayerSkill GetSelectedPlayerSkill() => UI_playerSkill.GetSelectedCard().GetSkill();
-
-    public void ChangeButtonName()
+    public void RefreshHand()
     {
-        /*
-        PhaseController phaseController = BattleManager.Phase;
-
-        TextMeshProUGUI buttonName = _turnChangeButton.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-        if (phaseController.Current == phaseController.Prepare)
-            buttonName.text = "Next Turn";
-        else if (phaseController.Current == phaseController.Engage)
-            buttonName.text = "";
-        else if (phaseController.Current == phaseController.Move)
-            buttonName.text = "Move Skip";
-        else if (phaseController.Current == phaseController.Action)
-            buttonName.text = "Action Skip";
-        */
+        UI_hands.RefreshCard();
     }
+
+    public PlayerSkill GetSelectedPlayerSkill() => UI_playerSkill.GetSelectedCard().GetSkill();
 
     public void ShowTutorial()
     {

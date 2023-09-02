@@ -11,7 +11,6 @@ public class PreparePhase : Phase
         BattleManager.Data.TurnPlus();
         BattleManager.BattleUI.UI_playerSkill.Used = false;
         BattleManager.BattleUI.UI_playerSkill.InableSkill();
-        BattleManager.BattleUI.ChangeButtonName();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
 
         BattleManager.BattleUI.ShowTutorial();
@@ -39,6 +38,7 @@ public class PreparePhase : Phase
             foreach (DeckUnit unit in BattleManager.Data.PlayerHands)
                 unit.FirstTurnDiscountUndo();
 
+            BattleManager.BattleUI.RefreshHand();
             isFirst = false;
         }
 
