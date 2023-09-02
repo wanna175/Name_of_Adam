@@ -69,7 +69,7 @@ public class FadeController : MonoBehaviour
         SceneCheck();
     }
 
-    void SceneCheck()
+    public void SceneCheck()
     {
         if(scenename != "none")
         {
