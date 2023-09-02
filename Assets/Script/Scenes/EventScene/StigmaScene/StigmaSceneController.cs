@@ -79,7 +79,7 @@ public class StigmaSceneController : MonoBehaviour
     {
         if (_stigmatizeUnit != null)
         {
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, _givestigmatizeUnit.Stigma);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, _givestigmatizeUnit.GetStigma());
         }
     }
 

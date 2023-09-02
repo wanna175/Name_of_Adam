@@ -77,7 +77,7 @@ public class UnitSpawner : MonoBehaviour
 
         foreach (StageUnitData data in datas)
         {
-            SpawnData sd = new SpawnData();
+            SpawnData sd = new();
             sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{data.Name}");
             sd.location = data.Location;
             sd.team = Team.Enemy;

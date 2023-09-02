@@ -61,7 +61,7 @@ public class DataManager : MonoBehaviour
         {
             unit.DeckUnitChangedStat.ClearStat();
             unit.DeckUnitUpgradeStat.ClearStat();
-            unit.Stigma.Clear();
+            unit.ClearStigma();
         }
     }
 
@@ -79,7 +79,7 @@ public class DataManager : MonoBehaviour
         {
             unit.DeckUnitChangedStat.ClearStat();
             unit.DeckUnitUpgradeStat.ClearStat();
-            unit.Stigma.Clear();
+            unit.ClearStigma();
         }
     }
 

@@ -26,13 +26,13 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] private UI_HPBar _hpBar;
     [SerializeField] private UI_FloatingDamage _floatingDamage;
 
-    [SerializeField] public List<Stigma> StigmaList => DeckUnit.Stigma;
+    [SerializeField] public List<Stigma> StigmaList => DeckUnit.GetStigma();
 
     [SerializeField] Vector2 _location;
     public Vector2 Location => _location;
 
     private float _scale;
-    private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (Location.y - 1));
+    private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (_location.y - 1));
 
     private bool _nextMoveSkip = false;
     private bool _nextAttackSkip = false;
@@ -52,6 +52,12 @@ public class BattleUnit : MonoBehaviour
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
 
+        //임시 예외 처리
+        if (Data.Name == "야나")
+        {
+            Action = new UnitAction_Iana();
+        }
+
         Action.Init(this);
         _hpBar.RefreshHPBar(HP.FillAmount());
 
@@ -60,7 +66,6 @@ public class BattleUnit : MonoBehaviour
         _moveRangeList = new bool[Data.MoveRange.Length];
         Array.Copy(Data.MoveRange, _moveRangeList, Data.MoveRange.Length);
 
-        DeckUnit.SetStigma();
         BattleManager.Data.BattleUnitList.Add(this);
 
         GameManager.Sound.Play("Summon/SummonSFX");

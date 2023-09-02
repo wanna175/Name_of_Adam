@@ -168,7 +168,7 @@ public class UI_Info : UI_Scene
 
         //_stigmaDescriptionPrefab.SetStigma(unit);
 
-        foreach(Stigma st in unit.Stigma)
+        foreach(Stigma st in unit.GetStigma())
         {
             //_stigmaDescriptionPrefab.GetComponent<UI_StigmaDescription>().SetStigma(st);
             
