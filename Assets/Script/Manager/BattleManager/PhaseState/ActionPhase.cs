@@ -11,7 +11,6 @@ public class ActionPhase : Phase
         _nowUnit.AttackTurnStart();
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
-        BattleManager.BattleUI.ChangeButtonName();
 
         if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
             BattleManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AISkillUse, 1.5f);

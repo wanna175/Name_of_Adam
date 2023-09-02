@@ -32,6 +32,14 @@ public class UI_Hands : UI_Scene
         Destroy(card.gameObject);
     }
 
+    public void RefreshCard()
+    {
+        foreach (UI_Hand card in _handList)
+        {
+            card.SetUnitInfo();
+        }
+     }
+
     private UI_Hand FindCardByUnit(DeckUnit unit)
     {
         foreach(UI_Hand card in _handList)

@@ -147,6 +147,7 @@ public class BattleDataManager : MonoBehaviour
     private void BattleOrderReplace()
     {
         _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => unit.BattleUnitTotalStat.SPD)
+            .ThenBy(unit => unit.Team)
             .ThenByDescending(unit => unit.Location.y)
             .ThenBy(unit => unit.Location.x)
             .ToList();
@@ -154,7 +155,6 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleOrderRemove(BattleUnit removedUnit)
     {
-        BattleManager.BattleUI.UI_waitingLine.RemoveUnit(removedUnit);
         _battleUnitOrderList.Remove(removedUnit);
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }

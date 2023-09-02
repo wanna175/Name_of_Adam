@@ -32,7 +32,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         SetUnitInfo();
     }
 
-    private void SetUnitInfo()
+    public void SetUnitInfo()
     {
         Debug.Log(_handUnit.Data.Name);
         _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _handUnit.Data.Name + "_Å¸¶ô");
