@@ -7,6 +7,8 @@ public class Buff_Immortal : Buff
 
         _name = "불사";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Immortal_Sprite");
+
         _description = "불사.";
 
         _count = 1;
