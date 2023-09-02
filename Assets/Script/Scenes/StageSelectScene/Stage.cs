@@ -32,9 +32,8 @@ public class Stage : MonoBehaviour
     [Space(10f)]
     [Header("StageInfo")]
     [SerializeField] public StageData Datas;
-    private bool isClear = false;
-    private bool isNextStage = false;
-
+    private bool _isClear = false;
+    private bool _isNextStage = false;
 
     private void Awake()
     {
@@ -51,7 +50,7 @@ public class Stage : MonoBehaviour
         if (GameManager.Data.Map.ClearTileID.Contains(Datas.ID))
         {
             GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-            isClear = true;
+            _isClear = true;
         }
 
         foreach (Stage st in NextStage)
@@ -96,7 +95,7 @@ public class Stage : MonoBehaviour
 
     public void SetNextStage()
     {
-        isNextStage = true;
+        _isNextStage = true;
         BackLight.SetVisible();
     }
 
