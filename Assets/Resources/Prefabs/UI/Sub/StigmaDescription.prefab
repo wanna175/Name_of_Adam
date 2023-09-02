@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7759099968535830261}
   - component: {fileID: 4777056197409683983}
   - component: {fileID: 4236924973594169012}
+  - component: {fileID: 7290860373636680653}
   m_Layer: 5
   m_Name: StigmaDescription
   m_TagString: Untagged
@@ -79,6 +80,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7290860373636680653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924308939142661488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562b2b0b94b14b042a9da3264e463724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: {fileID: 3266831304847432910}
+  _description: {fileID: 7825422884032226394}
+  _image: {fileID: 6241993211367516252}
 --- !u!1 &1472714977491208303
 GameObject:
   m_ObjectHideFlags: 0
