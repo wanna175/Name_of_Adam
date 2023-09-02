@@ -19,11 +19,11 @@ public class EngagePhase : Phase
         }
 
         BattleManager.BattleUI.ShowTutorial();
-        BattleManager.Phase.ChangePhase(BattleManager.Phase.Move);
     }
 
     public override void OnStateUpdate()
     {
+        BattleManager.Phase.ChangePhase(BattleManager.Phase.Move);
     }
 
     public override void OnStateExit()
