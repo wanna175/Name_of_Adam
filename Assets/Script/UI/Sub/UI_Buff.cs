@@ -37,7 +37,6 @@ public class UI_Buff : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(eventData.position);
         _hpbar.BuffHoverIn();
         Vector2 hoverPosition = new(eventData.position.x, eventData.position.y + 160);
         GameManager.UI.ShowHover<UI_TextHover>().SetText(BuffInBlock.GetDescription(), hoverPosition);

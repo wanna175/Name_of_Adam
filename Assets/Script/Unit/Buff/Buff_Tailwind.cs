@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Buff_Tailwind : Buff
 {
-    private int speedUp;
     public override void Init(BattleUnit caster, BattleUnit owner)
     {
         _buffEnum = BuffEnum.Tailwind;
@@ -11,7 +10,7 @@ public class Buff_Tailwind : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
 
-        _description = "속도가 30% 증가합니다.";
+        _description = "속도가 30 증가합니다.";
 
         _count = 1;
 
@@ -28,8 +27,6 @@ public class Buff_Tailwind : Buff
         _dispellable = false;
 
         _stigmaBuff = false;
-
-        speedUp = owner.DeckUnit.DeckUnitTotalStat.SPD / 2;
     }
 
     public override void Stack()
@@ -39,8 +36,8 @@ public class Buff_Tailwind : Buff
 
     public override Stat GetBuffedStat()
     {
-        Stat stat = new();  
-        stat.SPD += speedUp;
+        Stat stat = new();
+        stat.SPD += 30;
 
         return stat;
     }

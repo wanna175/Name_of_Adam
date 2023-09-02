@@ -48,7 +48,7 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 0d36b0c331e13214aa5e8ba1d53a7b19, type: 3}
   _description: "\uC18C\uD658 \uC2DC \uC790\uC2E0\uACFC \uC8FC\uBCC0 4\uCE78\uC5D0
     \n\uC788\uB294 \uC544\uAD70\uC5D0\uAC8C \uACF5\uACA9\uB825 50%\n\r \uC99D\uAC00
-    \uBC84\uD504 1\uD68C\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+    \uBC84\uD504 1\uD68C\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   _activeTiming: 1
   _tier: 0
   _isLock: 0

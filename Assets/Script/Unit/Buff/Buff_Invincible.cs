@@ -9,7 +9,7 @@ public class Buff_Invincible : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Invincible_Sprite");
 
-        _description = "무적.";
+        _description = "적의 공격을 무효화시킵니다.";
 
         _count = 1;
 
