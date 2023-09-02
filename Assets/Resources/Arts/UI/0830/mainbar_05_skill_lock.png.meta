@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d7bfa2d12bf423e4692bdd390373eccf
+guid: 5c20b63062da4e9478c8b48b9ab9c4ef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: esc_popup_0
+      name: mainbar_05_skill_lock_0
       rect:
         serializedVersion: 2
-        x: 525
-        y: 0
-        width: 870
-        height: 1000
+        x: 1278
+        y: 10
+        width: 132
+        height: 132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 527915a5f8db2d9428b450ad6c85be15
-      internalID: 474719810
+      spriteID: 2ea491db3a92bc64a8559502a7a6056d
+      internalID: -146240199
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      esc_popup_0: 474719810
+      mainbar_05_skill_lock_0: -146240199
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d7bfa2d12bf423e4692bdd390373eccf
+guid: ec94893b9514f784fa69a2f7e8412ef4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: esc_popup_0
+      name: mainbar_03_turnendbotton_0
       rect:
         serializedVersion: 2
-        x: 525
-        y: 0
-        width: 870
-        height: 1000
+        x: 1520
+        y: 12
+        width: 181
+        height: 183
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 527915a5f8db2d9428b450ad6c85be15
-      internalID: 474719810
+      spriteID: 15fe1f26f9bc13b45a5277ff21f04883
+      internalID: -751166431
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      esc_popup_0: 474719810
+      mainbar_03_turnendbotton_0: -751166431
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
