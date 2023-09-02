@@ -14,7 +14,7 @@ public class PlayerSkill_Cross : PlayerSkill
         {
             GameManager.VisualEffect.StartVisualEffect(
                 "Arts/EffectAnimation/PlayerSkill/CrossThunder",
-                BattleManager.Field.GetTilePosition(target) + new Vector3(0f, 3.5f, 0f));
+                BattleManager.Field.GetTilePosition(target) + new Vector3(0f, 4f, 0f));
             BattleUnit targetUnit = BattleManager.Field.GetUnit(target);
 
             if (targetUnit != null && targetUnit.Team == Team.Enemy)
