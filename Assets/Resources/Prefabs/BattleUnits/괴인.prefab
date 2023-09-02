@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1270870428466656145, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1722822296286429814, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_RootOrder
@@ -75,13 +75,17 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6008048615859777009, guid: b5f985903313e834580fc378803a516b, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9013690112352841668, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: DeckUnit.Data
       value: 
       objectReference: {fileID: 11400000, guid: a32da97fac1f417468a6e533e64ba8bf, type: 2}
     - target: {fileID: 9027651334718104315, guid: b5f985903313e834580fc378803a516b, type: 3}
       propertyPath: m_Name
-      value: BattleUnit
+      value: "\uAD34\uC778"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5f985903313e834580fc378803a516b, type: 3}

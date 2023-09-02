@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d7bfa2d12bf423e4692bdd390373eccf
+guid: 181a5bcdd297e29438b82a235e64591e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: esc_popup_0
+      name: hp_frame_final_0
       rect:
         serializedVersion: 2
-        x: 525
-        y: 0
-        width: 870
-        height: 1000
+        x: 190
+        y: 87
+        width: 339
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 527915a5f8db2d9428b450ad6c85be15
-      internalID: 474719810
+      spriteID: 93de9408c6252eb4e9684ce3a616da7f
+      internalID: -329433467
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      esc_popup_0: 474719810
+      hp_frame_final_0: -329433467
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

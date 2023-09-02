@@ -15,6 +15,7 @@ public class UI_UnitCard : UI_Scene
         _unitImage.sprite = image;
         _name.text = name;
         _cost.text = cost;
+        
     }
 
     public void SetHand(Sprite image, string cost)
