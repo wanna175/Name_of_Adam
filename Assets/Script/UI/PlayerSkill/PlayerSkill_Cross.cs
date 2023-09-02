@@ -12,6 +12,7 @@ public class PlayerSkill_Cross : PlayerSkill
 
         foreach (Vector2 target in targetCoords)
         {
+            GameManager.Sound.Play("UI/PlayerSkillSFX/Cross");
             GameManager.VisualEffect.StartVisualEffect(
                 "Arts/EffectAnimation/PlayerSkill/CrossThunder",
                 BattleManager.Field.GetTilePosition(target) + new Vector3(0f, 4f, 0f));
