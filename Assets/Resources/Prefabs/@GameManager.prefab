@@ -247,6 +247,8 @@ MonoBehaviour:
   Tutorial_Trigger_First: 1
   Tutorial_Trigger_Second: 1
   Tutorial_Benediction_Trigger: 1
+  escOption: 0
+  isTutorialactive: 0
 --- !u!1 &7143347326594482098
 GameObject:
   m_ObjectHideFlags: 0

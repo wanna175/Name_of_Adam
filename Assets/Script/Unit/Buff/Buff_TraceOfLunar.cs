@@ -7,6 +7,8 @@ public class Buff_TraceOfLunar: Buff
 
         _name = "崔狼 如利";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_TraceOfLunar_Sprite");
+
         _description = "崔狼 如利.";
 
         _count = -1;

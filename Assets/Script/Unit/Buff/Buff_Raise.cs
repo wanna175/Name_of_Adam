@@ -9,6 +9,8 @@ public class Buff_Raise : Buff
 
         _name = "고양";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raise_Sprite");
+
         _description = "공격력이 50% 증가합니다.";
 
         _count = 1;

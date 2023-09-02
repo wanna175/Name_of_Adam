@@ -17,10 +17,10 @@ public class UI_Buff : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         _hpbar = hpbar;
         BuffInBlock = buff;
-        //_buffImage.sprite = BuffInBlock.Sprite;
+        if (_buffImage.sprite != null)
+            _buffImage.sprite = BuffInBlock.Sprite;
 
         RefreshBuffDisplayNumber();
-
     }
 
     public void RefreshBuffDisplayNumber()
@@ -39,7 +39,7 @@ public class UI_Buff : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         Debug.Log(eventData.position);
         _hpbar.BuffHoverIn();
-        Vector2 hoverPosition = new(eventData.position.x, eventData.position.y + 200);
+        Vector2 hoverPosition = new(eventData.position.x, eventData.position.y + 160);
         GameManager.UI.ShowHover<UI_TextHover>().SetText(BuffInBlock.GetDescription(), hoverPosition);
     }
 

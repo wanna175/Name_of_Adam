@@ -8,6 +8,8 @@ public class Buff_DeathStrike : Buff
 
         _name = "결사의 일격";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
+
         _description = "결사의 일격.";
 
         _count = 1;

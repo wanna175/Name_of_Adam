@@ -34,13 +34,21 @@ public class GameManager : MonoBehaviour
     public bool Tutorial_Trigger_First = true;
     public bool Tutorial_Trigger_Second = true;
     public bool Tutorial_Benediction_Trigger = true;
+    public bool isTutorialactive = false;
 
     void Awake()
     {
-        //if (s_instance != null)
-        //    Destroy(gameObject); // 이미 GameManager가 있으면 이 오브젝트를 제거
-        //else
-        //    Init();
+        if (s_instance != null)
+            Destroy(gameObject); // 이미 GameManager가 있으면 이 오브젝트를 제거
+        else
+        {
+            SaveManager.Init();
+            Data.Init();
+            Sound.Init();
+            VisualEffect.Init();
+        }
+
+        /*
         if (s_instance != null)
             return;
 
@@ -48,6 +56,7 @@ public class GameManager : MonoBehaviour
         Data.Init();
         Sound.Init();
         VisualEffect.Init();
+        */
     }
 
     private static void Init()
@@ -72,7 +81,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    bool escOption = false;
+    public bool escOption = false;
 
     private void Update()
     {
@@ -82,6 +91,12 @@ public class GameManager : MonoBehaviour
             {
                 GameManager.UI.ShowPopup<UI_ESCOption>();
                 escOption = true;
+                Time.timeScale = 0;
+            }
+            else if (isTutorialactive)
+            {
+                UI.ClosePopup();
+                escOption = false;
                 Time.timeScale = 0;
             }
             else
@@ -118,15 +133,5 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
             GameManager.SaveManager.DeleteSaveData();
 
-    }
-
-    public void TimeStop()
-    {
-        Time.timeScale = 0;
-    }
-
-    public void TimeStart()
-    {
-        Time.timeScale = 1;
     }
 }

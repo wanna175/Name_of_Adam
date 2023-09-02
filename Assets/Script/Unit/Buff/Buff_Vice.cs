@@ -8,6 +8,8 @@ public class Buff_Vice : Buff
 
         _name = "죄악";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
+
         _description = "공격 시 타락을 1 부여합니다.";
 
         _count = -1;
