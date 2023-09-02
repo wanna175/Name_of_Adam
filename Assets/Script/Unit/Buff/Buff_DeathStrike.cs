@@ -10,7 +10,7 @@ public class Buff_DeathStrike : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
 
-        _description = "결사의 일격.";
+        _description = "3배의 대미지를 입히는 대신 공격 후 사망합니다.";
 
         _count = 1;
 

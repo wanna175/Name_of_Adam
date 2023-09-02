@@ -69,7 +69,12 @@ public abstract class Buff : MonoBehaviour
 
     public virtual string GetDescription()
     {
-        return "<size=110%><b>" + _name + "</b></size>\n<size=30%>\n</size>" + _description;
+        string desc = "<size=110%><b>" + _name + "</b></size>\n<size=30%>\n</size>" + _description;
+
+        if (_countDownTiming != ActiveTiming.NONE)
+            desc = desc + " (" + _count.ToString() + "ȸ)";
+
+        return desc;
     }
 
     public void CountChange(int num)

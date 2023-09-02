@@ -5,42 +5,51 @@ using UnityEngine;
 
 public class BattleCutSceneController : MonoBehaviour
 {
-    [SerializeField] private CameraHandler _CameraHandler;
-    public CameraHandler CameraHandler => _CameraHandler;
-    [SerializeField] GameObject Blur;
+    [SerializeField] private CameraHandler _cameraHandler;
+    public CameraHandler CameraHandler => _cameraHandler;
+    [SerializeField] private GameObject _blur;
     [Space(20f)]
 
-    public float ZoomTime = 1;
-    public float CutSceneTime = 1;
+    readonly float ZoomTime = 1;
 
     [Space(10f)]
     [Header("공격 이펙트(X, Y : 이동할 위치, Z : 머무를 시간")]
-    [SerializeField] public List<Vector3> ShakeInfo;
+    [SerializeField] private List<Vector3> _shakeInfo;
 
-    [NonSerialized] public bool isAttack = false;
-
+    [NonSerialized] public bool IsAttack = false;
 
     public IEnumerator AttackCutScene(BattleCutSceneData CSData)
     {
-        _CameraHandler.SetCutSceneCamera();
+        _cameraHandler.SetCutSceneCamera();
         yield return StartCoroutine(ZoomIn(CSData));
 
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", true);
 
-        yield return new WaitUntil(() => isAttack);
-        isAttack = false;
+        yield return new WaitUntil(() => IsAttack);
+        IsAttack = false;
 
         BattleManager.Instance.UnitAttackAction(CSData.HitUnits);
 
         yield return StartCoroutine(AfterEffect(CSData));
-        yield return new WaitUntil(() => BattleManager.Data.CorruptUnits.Count == 0);
         yield return StartCoroutine(ZoomOut(CSData));
 
-        _CameraHandler.SetMainCamera();
+        _cameraHandler.SetMainCamera();
         ExitBattleCutScene(CSData);
+
+        yield return new WaitUntil(() => FallCheck(CSData.HitUnits));
+
         yield return new WaitForSeconds(1);
 
         BattleManager.Instance.EndUnitAction();
+    }
+
+    private bool FallCheck(List<BattleUnit> units)
+    {
+        foreach (BattleUnit unit in units)
+            if (unit.FallEvent)
+                return false;
+
+        return true;
     }
 
     public void InitBattleCutScene(BattleCutSceneData CSData)
@@ -59,7 +68,7 @@ public class BattleCutSceneController : MonoBehaviour
         SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 2);
         CameraHandler.SetMainCamera();
         BattleManager.Field.ClearAllColor();
-        Blur.SetActive(false);
+        _blur.SetActive(false);
     }
 
     private void UnitFlip(BattleCutSceneData CSData)
@@ -92,7 +101,7 @@ public class BattleCutSceneController : MonoBehaviour
                 unit.GetComponent<Animator>().SetBool("isHit", true);
         }
 
-        yield return StartCoroutine(_CameraHandler.AttackEffect(ShakeInfo));
+        yield return StartCoroutine(_cameraHandler.AttackEffect(_shakeInfo));
 
         CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
@@ -105,10 +114,10 @@ public class BattleCutSceneController : MonoBehaviour
     // 컷씬 지점으로 이동
     public IEnumerator ZoomIn(BattleCutSceneData CSData)
     {
-        Blur.SetActive(true);
+        _blur.SetActive(true);
 
-        StartCoroutine(_CameraHandler.CameraMove(CSData.ZoomLocation, ZoomTime));
-        StartCoroutine(_CameraHandler.CameraZoom(CSData.ZoomSize, ZoomTime));
+        StartCoroutine(_cameraHandler.CameraMove(CSData.ZoomLocation, ZoomTime));
+        StartCoroutine(_cameraHandler.CameraZoom(CSData.ZoomSize, ZoomTime));
         StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.MovePosition, ZoomTime));
 
         yield return new WaitForSeconds(ZoomTime);
@@ -117,10 +126,10 @@ public class BattleCutSceneController : MonoBehaviour
     // 원래 위치로 이동
     public IEnumerator ZoomOut(BattleCutSceneData CSData)
     {
-        Blur.SetActive(false);
+        _blur.SetActive(false);
 
-        StartCoroutine(_CameraHandler.CameraMove(_CameraHandler.GetMainPosition(), ZoomTime));
-        StartCoroutine(_CameraHandler.CameraZoom(_CameraHandler.GetMainFieldOfView(), ZoomTime));
+        StartCoroutine(_cameraHandler.CameraMove(_cameraHandler.GetMainPosition(), ZoomTime));
+        StartCoroutine(_cameraHandler.CameraZoom(_cameraHandler.GetMainFieldOfView(), ZoomTime));
         StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.AttackPosition, ZoomTime));
 
         yield return new WaitForSeconds(ZoomTime);

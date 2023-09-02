@@ -9,7 +9,7 @@ public class Buff_Immortal : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Immortal_Sprite");
 
-        _description = "불사.";
+        _description = "죽음에 이르는 피해를 입을 시 1의 체력으로 살아남습니다.";
 
         _count = 1;
 

@@ -9,7 +9,7 @@ public class Buff_Benediction : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "마지막 남은 유닛의 공격에는 교화가 1 부여됩니다.";
+        _description = "공격 시 적의 신앙을 1 떨어뜨립니다.";
 
         _count = -1;
 

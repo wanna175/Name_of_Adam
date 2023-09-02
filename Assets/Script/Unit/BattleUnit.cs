@@ -40,6 +40,8 @@ public class BattleUnit : MonoBehaviour
     private bool[] _moveRangeList;
 
     private IEnumerator moveCoro;
+    
+    public bool FallEvent = false;
 
     public void Init()
     {
@@ -217,6 +219,8 @@ public class BattleUnit : MonoBehaviour
         }
 
         //타락 이벤트 시작
+        FallEvent = true;
+
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -228,6 +232,7 @@ public class BattleUnit : MonoBehaviour
         {
             Fall.Editfy();
         }
+        FallEvent = false;
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         _hpBar.SetHPBar(Team);
@@ -245,7 +250,7 @@ public class BattleUnit : MonoBehaviour
     //애니메이션에서 직접 실행시킴
     public void AnimAttack()
     {
-        BattleManager.BattleCutScene.isAttack = true;
+        BattleManager.BattleCutScene.IsAttack = true;
     }
 
     public Team ChangeTeam(Team team = default)
@@ -363,7 +368,7 @@ public class BattleUnit : MonoBehaviour
             //대미지 확정 시 체크
             attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit, ChangedDamage);
 
-            if (team != unit.Team)
+            if (unit.FallEvent)
             {
                 //타락시켰을 시 체크
                 ActiveTimingCheck(ActiveTiming.FALL, unit);
