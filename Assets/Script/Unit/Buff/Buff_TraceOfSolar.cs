@@ -7,6 +7,8 @@ public class Buff_TraceOfSolar: Buff
 
         _name = "怕剧狼 如利";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_TraceOfSolar_Sprite");
+
         _description = "怕剧狼 如利.";
 
         _count = -1;

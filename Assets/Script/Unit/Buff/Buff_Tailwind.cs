@@ -9,6 +9,8 @@ public class Buff_Tailwind : Buff
 
         _name = "순풍";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
+
         _description = "속도가 30% 증가합니다.";
 
         _count = 1;

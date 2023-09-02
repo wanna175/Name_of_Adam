@@ -7,6 +7,8 @@ public class Buff_Invincible : Buff
 
         _name = "公利";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Invincible_Sprite");
+
         _description = "公利.";
 
         _count = 1;
