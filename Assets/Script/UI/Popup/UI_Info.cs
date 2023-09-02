@@ -213,7 +213,8 @@ public class UI_Info : UI_Scene
 
         //_stigmaDescriptionPrefab.SetStigma(unit);
 
-        foreach (Stigma stigma in unit.Stigma)
+
+        foreach(Stigma stigma in unit.GetStigma())
         {
             UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
             sd.SetStigma(stigma);

@@ -20,7 +20,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         if (stigmata != null)
         {
             List<Stigma> stigmaList = new();
-            List<Stigma> existStigma = targetUnit.Stigma;
+            List<Stigma> existStigma = targetUnit.GetStigma();
             for (int i = 0; i < stigmata.Count; i++)
             {
                 if(existStigma.Contains(stigmata[i]))
@@ -48,7 +48,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private List<Stigma> CreateStigmaList(DeckUnit targetUnit, int stigmaCount)
     {
         List<Stigma> result = new();
-        List<Stigma> existStigma = targetUnit.Stigma;
+        List<Stigma> existStigma = targetUnit.GetStigma();
 
         while (result.Count < stigmaCount)
         {

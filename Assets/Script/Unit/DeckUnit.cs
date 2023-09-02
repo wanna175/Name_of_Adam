@@ -15,37 +15,41 @@ public class DeckUnit
     public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
-    [SerializeField] public List<Stigma> Stigma = new();
+    private List<Stigma> _stigma =  new();
 
     private readonly int _maxStigmaCount = 3;
 
-    public void SetStigma()
+    public List<Stigma> GetStigma()
     {
-        Stigma = Stigma.Distinct().ToList();
+        List<Stigma> stigmata = new();
 
         foreach (Stigma stigma in Data.UniqueStigma)
-            AddStigma(stigma);
+            stigmata.Add(stigma);
 
-        foreach (Stigma stigma in Stigma)
-            AddStigma(stigma);
+        foreach (Stigma stigma in _stigma)
+            stigmata.Add(stigma);
+
+        return stigmata;
     }
 
     public void AddStigma(Stigma stigma)
     {
-        if (Stigma.Contains(stigma))
+        if (_stigma.Contains(stigma))
         {
             Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
             return;
         }
 
-        if(Stigma.Count >= _maxStigmaCount)
+        if(_stigma.Count >= _maxStigmaCount)
         {
             Debug.Log("최대 낙인 개수");
             return;
         }
 
-        Stigma.Add(stigma);
+        _stigma.Add(stigma);
     }
+
+    public void ClearStigma() => _stigma.Clear();
 
     private int _firstTurnDiscount = 0;
     public void FirstTurnDiscount()

@@ -10,6 +10,9 @@ public class UnitAction : MonoBehaviour
     public void Init(BattleUnit unit)
     {
         _unit = unit;
+
+        _Data = BattleManager.Data;
+        _field = BattleManager.Field;
     }
 
     public virtual void ActionStart(List<BattleUnit> hits)
@@ -38,12 +41,6 @@ public class UnitAction : MonoBehaviour
     //상하좌우 foreach용
 
     protected Dictionary<Vector2, int> TileHPDict = new();
-
-    void Awake()
-    {
-        _Data = BattleManager.Data;
-        _field = BattleManager.Field;
-    }
 
     protected bool SetUnitInAttackRangeList()
     {

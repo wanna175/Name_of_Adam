@@ -50,9 +50,7 @@ public class UI_UnitInfo : UI_Popup
             fg.Init();
         }
 
-        _unit.SetStigma();
-
-        foreach (Stigma sti in _unit.Stigma)
+        foreach (Stigma sti in _unit.GetStigma())
         {
             GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
         }

@@ -30,6 +30,8 @@ public class StigmaController
             //GameObject go = GameManager.Resource.Load<GameObject>("Prefabs/Stigma/" + fileName);
 
             Stigma stigma = go.GetComponent<Stigma>();
+            if (stigma.IsLock)
+                continue;
 
             if (stigma.Tier == StigmaTier.Tier1)
             {
