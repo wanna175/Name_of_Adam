@@ -19,8 +19,13 @@ public class UI_Info : UI_Scene
     [SerializeField] private Transform _unitInfoFallGrid;
     [SerializeField] private GameObject _fallGaugePrefab;
 
-    //[SerializeField] private Transform _stigmaDescriptionGrid;
-    //[SerializeField] private GameObject _stigmaDescriptionPrefab;
+    [SerializeField] private Transform _stigmaDescriptionGrid;
+    [SerializeField] private GameObject _stigmaDescriptionPrefab;
+
+    [SerializeField] private TextMeshProUGUI _hpText;
+    [SerializeField] private TextMeshProUGUI _fallText;
+    [SerializeField] private Image _unitImage;
+
 
 
     //색상은 UI에서 정해주는대로
@@ -44,9 +49,22 @@ public class UI_Info : UI_Scene
 
         //"<color=\"black\"></color>"
 
+        _unitImage.sprite = battleUnit.Data.Image;
+
+        if (battleUnit.Team == Team.Player)
+        {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + battleUnit.DeckUnit.Data.Name + "_타락");
+        }
+        else
+        {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + battleUnit.DeckUnit.Data.Name);
+        }
+
         string statText =   "Attack: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
                                 "Speed:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>";
 
+        string fallText = battleUnit.BattleUnitTotalStat.FallCurrentCount.ToString() + "/" + battleUnit.BattleUnitTotalStat.FallMaxCount.ToString();
+        string hpText = battleUnit.BattleUnitTotalStat.CurrentHP.ToString() + "/" + battleUnit.BattleUnitTotalStat.MaxHP.ToString();
 
         for (int i = 0; i < battleUnit.BattleUnitTotalStat.FallMaxCount; i++)
         {
@@ -85,7 +103,13 @@ public class UI_Info : UI_Scene
         else
             statText = statText.Replace("SpeedColor", normalColorStr);
 
+
+
+
         _stat.text = statText;
+
+        _fallText.text = fallText;
+        _hpText.text = hpText;
 
         _hpBar.SetHPBar(team);
         _hpBar.SetFallBar(unit);
@@ -95,7 +119,12 @@ public class UI_Info : UI_Scene
 
         //_stigmaDescriptionPrefab.SetStigma(battleUnit);
 
-
+        foreach(Stigma stigma in battleUnit.StigmaList)
+        {
+            UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
+            sd.SetStigma(stigma);
+        }
+        
 
 
         Sprite attackType;
@@ -120,9 +149,21 @@ public class UI_Info : UI_Scene
         //덱 유닛의 경우
         _name.text = unit.Data.Name;
 
+        _unitImage.sprite = unit.Data.Image;
+
+        if (team == Team.Player)
+        {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + unit.Data.Name + "_타락");
+        }
+        else
+        {
+            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + unit.Data.Name);
+        }
+
         string statText = "Attack: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
                                 "Speed:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>";
-
+        string fallText = unit.DeckUnitTotalStat.FallCurrentCount.ToString() + "/" + unit.DeckUnitTotalStat.FallMaxCount.ToString();
+        string hpText = unit.DeckUnitTotalStat.CurrentHP.ToString() + "/" + unit.DeckUnitTotalStat.MaxHP.ToString();
 
         for (int i = 0; i < unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
@@ -158,7 +199,11 @@ public class UI_Info : UI_Scene
         else
             statText = statText.Replace("SpeedColor", normalColorStr);
 
+        //fallText = fallText.Replace("textColor" , )
+
         _stat.text = statText;
+        _fallText.text = fallText;
+        _hpText.text = hpText;
 
         _hpBar.SetHPBar(team);
         _hpBar.SetFallBar(unit);
@@ -168,12 +213,13 @@ public class UI_Info : UI_Scene
 
         //_stigmaDescriptionPrefab.SetStigma(unit);
 
+
         foreach(Stigma st in unit.GetStigma())
         {
-            //_stigmaDescriptionPrefab.GetComponent<UI_StigmaDescription>().SetStigma(st);
-            
+            UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
+            sd.SetStigma(stigma);
         }
-        
+
 
         Sprite attackType;
 
