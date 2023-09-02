@@ -20,7 +20,7 @@ public class StigmaSceneController : MonoBehaviour
 
     private void Init()
     {
-        List<Script> scripts = new ();
+        List<Script> scripts = new();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
             scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];

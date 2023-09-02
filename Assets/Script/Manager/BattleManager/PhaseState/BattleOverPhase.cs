@@ -11,6 +11,7 @@ public class BattleOverPhase : Phase
             unit.FirstTurnDiscountUndo();
 
         BattleManager.BattleUI.RefreshHand();
+        BattleManager.Field.ClearAllColor();
 
         BattleManager.BattleUI.UI_turnNotify.Off();
     }

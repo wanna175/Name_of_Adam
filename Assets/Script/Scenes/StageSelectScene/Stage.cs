@@ -100,23 +100,23 @@ public class Stage : MonoBehaviour
     }
 
     public void OnMouseUp() => StageManager.Instance.StageMove(Datas.ID);
-    /*
+    
     public void OnMouseEnter()
     {
-        if (isNextStage)
+        if (_isNextStage)
             return;
-        if (!isClear)
+        if (!_isClear)
             BackLight.FadeIn();
     }
 
     public void OnMouseExit()
     {
-        if (isNextStage)
+        if (_isNextStage)
             return;
-        if (!isClear)
+        if (!_isClear)
             BackLight.FadeOut();
     }
-    */
+    
     public StageData SetBattleStage(int a, int b)
     {
         Datas.StageLevel = a;

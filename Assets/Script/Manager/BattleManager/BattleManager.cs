@@ -116,7 +116,7 @@ public class BattleManager : MonoBehaviour
         if (data.StageLevel == 11) // 
         {
             List<Script> scripts = GameManager.Data.ScriptData["엘리트전_입장_최초"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts, true, true);
         }
     }
 
@@ -193,10 +193,14 @@ public class BattleManager : MonoBehaviour
         BattleUnit unit = Data.GetNowUnit();
         BattleUnit destunit = _field.GetUnit(coord);
 
+        if (coord == unit.Location)
+            return;
+
         if (destunit != null && unit.Team != destunit.Team)
         {
             return;
         }
+
         if (unit.Team == Team.Player)
         {
             if (!Field.ColoredTile.Contains(coord))
@@ -238,6 +242,9 @@ public class BattleManager : MonoBehaviour
                 if (targetUnit.Team != unit.Team)
                     unitList.Add(targetUnit);
             }
+
+            if (unitList.Count == 0)
+                return;
 
             unit.Action.ActionStart(unitList);
         }
@@ -447,10 +454,11 @@ public class BattleManager : MonoBehaviour
 
         if (lastUnit != null)
         {
-            if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
-            {
+            if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction))
                 return;
-            }
+
+            if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
+                return;
 
             if(GameManager.Instance.Tutorial_Benediction_Trigger == true)
             {

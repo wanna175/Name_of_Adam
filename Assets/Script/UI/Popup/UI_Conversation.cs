@@ -9,18 +9,30 @@ public class UI_Conversation : UI_Popup
 {
     private float _typingSpeed = 0.05f;
     private Coroutine co_typing = null;
-    private List<Script> scripts = new List<Script>();
+    private List<Script> scripts = new();
+    private bool _conversationImage;
 
     //[SerializeField] private Text _conversationText;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _conversation;
-    
-    
+    [SerializeField] private Image _unitImage;
+
     // autoStart = false면 따로 실행해줘야 함
-    public void Init(List<Script> scripts, bool autoStart = true)
+    public void Init(List<Script> scripts, bool autoStart = true, bool conversationImage = false)
     {
         this.scripts = scripts;
 
+        _conversationImage = conversationImage;
+
+        if (!_conversationImage)
+        {
+            _unitImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            _conversation.rectTransform.sizeDelta = new(1400, _conversation.rectTransform.sizeDelta.y);
+            _conversation.transform.localPosition = new(-170, 0, 0);
+        }
         if (autoStart == false)
             return;
 
@@ -33,6 +45,12 @@ public class UI_Conversation : UI_Popup
         foreach (Script script in scripts)
         {
             co_typing = StartCoroutine(TypingEffect(script.script));
+            if (_conversationImage)
+            {
+                _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + script.name);
+            }
+
+            _nameText.text = script.name;
 
             yield return new WaitUntil(() => (co_typing == null || GameManager.InputManager.Click));
 
