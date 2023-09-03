@@ -102,9 +102,6 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
     }
 
-
-
-
     public void OnUpgradeSelect(int select)
     {
         GameManager.UI.ClosePopup();
@@ -131,6 +128,10 @@ public class UpgradeSceneController : MonoBehaviour
             script.Init(GameManager.Data.ScriptData["강화소_코스트"], false);
         }
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        GameObject go = GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UpgradeEffect"),
+            _upgradeunitImage.transform.position);
+
         StartCoroutine(QuitScene(script));
     }
 

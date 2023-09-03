@@ -64,6 +64,11 @@ public class UI_Conversation : UI_Popup
             yield return new WaitUntil(() => GameManager.InputManager.Click);
         }
 
+        //--- 임시 ---
+        if (_conversationImage)
+            BattleManager.Phase.ChangePhase(BattleManager.Phase.Prepare);
+        // ---
+
         GameManager.UI.ClosePopup(this);
     }
 

@@ -106,8 +106,16 @@ public class BattleManager : MonoBehaviour
             return;
         PlayAfterCoroutine(() => {
             Spawner.SpawnInitialUnit();
-            EventConversation();
-        }, 1);
+            //임시 처리
+            if (GameManager.Data.Map.GetCurrentStage().StageLevel == 11)
+            {
+                EventConversation();
+            }
+            else
+            {
+                Phase.ChangePhase(Phase.Prepare);
+            }
+        }, 0.5f);
     }
 
     private void EventConversation()
@@ -326,6 +334,11 @@ public class BattleManager : MonoBehaviour
         }
 
         int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
+
+        GameObject go = GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/CardEffect"),
+            BattleUI.UI_hands.FindCardByUnit(Data.PlayerHands[randNum]).transform.position);
+
         BattleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
 
         BattleOverCheck();
@@ -467,10 +480,7 @@ public class BattleManager : MonoBehaviour
             }
             Buff_Benediction benediction = new();
             lastUnit.SetBuff(benediction, lastUnit);
-            GameManager.VisualEffect.StartBenedictionEffect(lastUnit);
         }
-
-
     }
 
     public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
