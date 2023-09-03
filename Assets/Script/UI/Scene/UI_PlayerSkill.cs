@@ -58,8 +58,11 @@ public class UI_PlayerSkill : UI_Scene
         }
     }
 
-    public  void CancelSelect()
+    public void CancelSelect()
     {
+        if (_selectedCard == null)
+            return;
+
         _selectedCard.ChangeSelectState(false);
         _selectedCard = null;
     }

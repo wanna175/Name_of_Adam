@@ -13,6 +13,9 @@ public class UI_TurnChangeButton : UI_Scene
     public void TurnChange()
     {
         PhaseController _phase = BattleManager.Phase;
+        BattleManager.Field.ClearAllColor();
+        BattleManager.BattleUI.UI_hands.CancelSelect();
+        BattleManager.BattleUI.UI_playerSkill.CancelSelect();
 
         if (_phase.Current == _phase.Prepare)
             _phase.ChangePhase(_phase.Engage);
