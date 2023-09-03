@@ -246,6 +246,11 @@ public class BattleUnit : MonoBehaviour
             BattleManager.Instance.BattleOverCheck();
         }
         ActiveTimingCheck(ActiveTiming.STIGMA);
+
+        if (Buff.CheckBuff(BuffEnum.Benediction))
+        {
+            DeleteBuff(BuffEnum.Benediction);
+        }
     }
 
     //애니메이션에서 직접 실행시킴

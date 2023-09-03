@@ -43,6 +43,7 @@ public class UnitBuff : MonoBehaviour
         {
             if (buffEnum == _buffList[i].BuffEnum)
             {
+                _buffList[i].Destroy();
                 _buffList.RemoveAt(i);
 
                 return true;

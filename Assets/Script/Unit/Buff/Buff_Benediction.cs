@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class Buff_Benediction : Buff
-{    public override void Init(BattleUnit caster, BattleUnit owner)
+{
+    GameObject benedictionEffect;
+    public override void Init(BattleUnit caster, BattleUnit owner)
     {
         _buffEnum = BuffEnum.Benediction;
 
@@ -26,6 +28,8 @@ public class Buff_Benediction : Buff
         _dispellable = false;
 
         _stigmaBuff = false;
+
+        benedictionEffect = GameManager.VisualEffect.StartBenedictionEffect(_owner);
     }
 
     public override bool Active(BattleUnit caster, BattleUnit receiver)
@@ -33,5 +37,10 @@ public class Buff_Benediction : Buff
         receiver.ChangeFall(1);
 
         return false;
+    }
+
+    public override void Destroy()
+    {
+        Destroy(benedictionEffect);
     }
 }

@@ -114,11 +114,13 @@ public class VisualEffectManager : MonoBehaviour
         go.GetComponent<SpriteRenderer>().sprite = GameManager.Resource.Load<Sprite>("Arts/EffectAnimation/VisualEffect/Sprite/Fade");
     }
 
-    public void StartBenedictionEffect(BattleUnit unit)
+    public GameObject StartBenedictionEffect(BattleUnit unit)
     {
         GameObject go = StartVisualEffect("Arts/EffectAnimation/VisualEffect/BenedictionEffect", Vector3.zero);
         go.transform.SetParent(unit.transform);
         go.transform.localPosition = Vector3.zero;
+
+        return go;
     }
 
     private void CreateEffect(AnimEffects effect)
