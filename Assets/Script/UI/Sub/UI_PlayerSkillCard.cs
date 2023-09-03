@@ -46,7 +46,14 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        _playerSkill.OnClickHand(this);
+        if(BattleManager.BattleUI.UI_hands._selectedHand != null)
+        {
+            return;
+        }
+        else
+        {
+            _playerSkill.OnClickHand(this);
+        }
     }
 
     public void ChangeSelectState(bool b)

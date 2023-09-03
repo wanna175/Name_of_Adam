@@ -32,6 +32,7 @@ public class PreparePhase : Phase
     {
         if (isFirst) 
         {
+            BattleManager.Data.isDiscount = false;
             foreach (DeckUnit unit in BattleManager.Data.PlayerDeck)
                 unit.FirstTurnDiscountUndo();
 
