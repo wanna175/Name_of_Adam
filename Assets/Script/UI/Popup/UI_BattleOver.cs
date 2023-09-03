@@ -28,6 +28,8 @@ public class UI_BattleOver : UI_Scene
         else if (result == "elite win")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
+            GameManager.Sound.Clear();
+            GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
         }
         else if (result == "lose")
         {
