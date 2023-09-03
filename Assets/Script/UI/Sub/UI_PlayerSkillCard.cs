@@ -9,6 +9,9 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 {
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _inactive;
+    [SerializeField] private GameObject _skillCard;
+    [SerializeField] private TextMeshProUGUI _ManaCost;
+    [SerializeField] private TextMeshProUGUI _essenceCost;
     //[SerializeField] private TextMeshProUGUI _text;
 
     private UI_PlayerSkill _playerSkill;
@@ -31,12 +34,14 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        _skillCard.transform.localScale = new Vector3(1.15f, 1.15f, 1.15f);
         GameManager.UI.ShowHover<UI_SkillHover>().SetSkillHover(_skill.GetName(), _skill.GetManaCost(), _skill.GetDarkEssenceCost(), _skill.GetDescription(), eventData.position);
         _highlight.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        _skillCard.transform.localScale = new Vector3(1f, 1f, 1f);
         GameManager.UI.CloseHover();
 
         if (IsSelected)
