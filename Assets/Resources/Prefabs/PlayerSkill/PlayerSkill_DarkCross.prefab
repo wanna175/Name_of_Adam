@@ -50,4 +50,4 @@ MonoBehaviour:
   description: "\uC9C0\uC815\uD55C \uC801 \uC720\uB2DB \uAE30\uC900\uC73C\uB85C \uAC70\uB300\uD55C
     \uC2ED\uC790\uAC00 \uBC94\uC704\uC5D0 \uC788\uB294 \uBAA8\uB4E0 \uC801\uC5D0\uAC8C
     15\uC758 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4"
-  skillImage: {fileID: 21300000, guid: 4046a63ccbb1a7648a97b005550b6e3d, type: 3}
+  skillImage: {fileID: 21300000, guid: 9a8532f5c087e1940ae86b36d060e7d9, type: 3}

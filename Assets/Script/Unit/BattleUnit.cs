@@ -235,7 +235,8 @@ public class BattleUnit : MonoBehaviour
         FallEvent = false;
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
-        _hpBar.SetHPBar(Team);
+        SetHPBar();
+        
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
