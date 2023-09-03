@@ -9,7 +9,7 @@ public class PreparePhase : Phase
         GameManager.Sound.Play("Stage_Transition/Prepare/PrepareEnter");
         if (!isFirst)
         { 
-            BattleManager.Mana.ChangeMana(20);
+            BattleManager.Mana.ChangeMana(30);
         }
         BattleManager.Data.TurnPlus();
         BattleManager.BattleUI.UI_playerSkill.Used = false;
