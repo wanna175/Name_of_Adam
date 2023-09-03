@@ -71,7 +71,6 @@ public class UnitSpawner : MonoBehaviour
         if (GameManager.Data.Map.MapObject == null)
             return;
 
-        DataManager _data = GameManager.Data;
         StageData stage = GameManager.Data.Map.GetCurrentStage();
         List<StageUnitData> datas = GameManager.Data.StageDatas[stage.StageLevel].Find(x => x.ID == stage.StageID).Units;
 
