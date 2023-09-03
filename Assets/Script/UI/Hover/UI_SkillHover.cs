@@ -19,7 +19,7 @@ public class UI_SkillHover : UI_Hover
         float posY;
 
         _name.text = name;
-        _cost.text = "마나 " + mana + " 검은정수 " + darkessence;
+        _cost.text =  "마나 " + mana + " 검은정수 " + darkessence;
         _description.text = description;
 
         if (position.x > 1920 - 300)

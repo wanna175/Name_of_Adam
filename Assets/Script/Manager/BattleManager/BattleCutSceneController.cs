@@ -111,6 +111,17 @@ public class BattleCutSceneController : MonoBehaviour
         }
     }
 
+    public IEnumerator SkillHitEffect(BattleUnit unit)
+    {
+        if (unit != null)
+            unit.GetComponent<Animator>().SetBool("isHit", true);
+
+        yield return new WaitForSeconds(0.3f);
+
+        if (unit != null)
+            unit.GetComponent<Animator>().SetBool("isHit", false);
+    }
+
     // 컷씬 지점으로 이동
     public IEnumerator ZoomIn(BattleCutSceneData CSData)
     {
