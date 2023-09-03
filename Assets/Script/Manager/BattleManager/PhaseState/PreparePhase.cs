@@ -7,7 +7,10 @@ public class PreparePhase : Phase
     public override void OnStateEnter()
     {
         GameManager.Sound.Play("Stage_Transition/Prepare/PrepareEnter");
-        BattleManager.Mana.ChangeMana(15);
+        if (!isFirst)
+        { 
+            BattleManager.Mana.ChangeMana(15);
+        }
         BattleManager.Data.TurnPlus();
         BattleManager.BattleUI.UI_playerSkill.Used = false;
         BattleManager.BattleUI.UI_playerSkill.InableSkill();

@@ -9,7 +9,7 @@ public class Mana : MonoBehaviour
     [ReadOnly, SerializeField] private int _currentMana = 0;
     private UI_ManaGauge _manaGuage;
 
-    const int _startMana = 35;
+    const int _startMana = 50;
 
     private void Start()
     {

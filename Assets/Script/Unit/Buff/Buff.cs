@@ -72,9 +72,14 @@ public abstract class Buff : MonoBehaviour
         string desc = "<size=110%><b>" + _name + "</b></size>\n<size=30%>\n</size>" + _description;
 
         if (_countDownTiming != ActiveTiming.NONE)
-            desc = desc + " (" + _count.ToString() + "ȸ)";
+            desc = desc + " (" + _count.ToString() + "회)";
 
         return desc;
+    }
+
+    public virtual void Destroy()
+    {
+        
     }
 
     public void CountChange(int num)
