@@ -424,6 +424,9 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeHP(int value)
     {
+        if (HP.GetCurrentHP() + value > BattleUnitTotalStat.MaxHP)
+            value = BattleUnitTotalStat.MaxHP - HP.GetCurrentHP();
+
         DeckUnit.DeckUnitChangedStat.CurrentHP += value;
         HP.ChangeHP(value);
         _hpBar.RefreshHPBar(HP.FillAmount());
