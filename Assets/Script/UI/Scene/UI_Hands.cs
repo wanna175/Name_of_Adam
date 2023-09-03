@@ -8,7 +8,8 @@ public class UI_Hands : UI_Scene
     [SerializeField] private Transform Grid;
 
     private List<UI_Hand> _handList = new List<UI_Hand>();
-    private UI_Hand _selectedHand = null;
+    public UI_Hand _selectedHand = null;
+    private UI_PlayerSkillCard _selectedSkillCard = null;
 
     public void AddUnit(DeckUnit unit)
     {
@@ -55,7 +56,9 @@ public class UI_Hands : UI_Scene
     {
         if (BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost))
         {
-            if (hand != null && hand == _selectedHand)
+            if(BattleManager.BattleUI.UI_playerSkill._selectedCard != null)
+                return;
+            else if (hand != null && hand == _selectedHand)
                 CancelSelect();
             else
                 SelectOneUnit(hand);

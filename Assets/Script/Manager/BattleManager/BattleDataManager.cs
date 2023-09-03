@@ -20,12 +20,15 @@ public class BattleDataManager : MonoBehaviour
     private List<BattleUnit> _battleUnitList = new();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
 
+    public bool isDiscount = false;
+
     private void Init()
     {
         _playerDeck = GameManager.Data.GetDeck().ToList<DeckUnit>();
         foreach (DeckUnit unit in _playerDeck)//UI에서 정보를 표시하기 전에 미리 할인함
         {
             unit.FirstTurnDiscount();
+            BattleManager.Data.isDiscount = true;
         }
     }
 

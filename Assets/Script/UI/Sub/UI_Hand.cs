@@ -74,6 +74,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         IsSelected = b;
         _highlight.SetActive(b);
 
+        /*
         if (IsSelected)
         {
             _selectInfo = BattleManager.BattleUI.ShowInfo();
@@ -83,5 +84,6 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         {
             BattleManager.BattleUI.CloseInfo(_selectInfo);
         }
+        */
     }
 }
