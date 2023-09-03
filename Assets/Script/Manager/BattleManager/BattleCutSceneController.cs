@@ -10,7 +10,7 @@ public class BattleCutSceneController : MonoBehaviour
     [SerializeField] private GameObject _blur;
     [Space(20f)]
 
-    readonly float ZoomTime = 1;
+    readonly float ZoomTime = 0.5f;
 
     [Space(10f)]
     [Header("공격 이펙트(X, Y : 이동할 위치, Z : 머무를 시간")]
