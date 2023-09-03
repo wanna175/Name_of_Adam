@@ -48,13 +48,15 @@ public class UI_UnitInfo : UI_Popup
 
         for (int i = 0; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
-            UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
+            UI_FallUnit fu = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
+            //UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
+            fu.SwitchCountImage(Team.Player);
             if (i < _unit.DeckUnitTotalStat.FallCurrentCount)
-                fg.Set(true);
+                fu.FillGauge();
             else
-                fg.Set(false);
+                fu.EmptyGauge();
 
-            fg.Init();
+            //fg.Init();
         }
 
         foreach (Stigma sti in _unit.GetStigma())
