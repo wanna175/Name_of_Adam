@@ -23,7 +23,6 @@ public class UI_Info : UI_Scene
     [SerializeField] private GameObject _stigmaDescriptionPrefab;
 
     [SerializeField] private TextMeshProUGUI _hpText;
-    [SerializeField] private TextMeshProUGUI _fallText;
     [SerializeField] private Image _unitImage;
 
 
@@ -34,7 +33,7 @@ public class UI_Info : UI_Scene
     readonly Color textColor = new Color(195f, 195f, 195f);
     readonly string goodColorStr = "yellow";
     readonly string badColorStr = "red";
-    readonly string normalColorStr = "grey";
+    readonly string normalColorStr = "white";
     
     
 
@@ -60,34 +59,11 @@ public class UI_Info : UI_Scene
             _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + battleUnit.DeckUnit.Data.Name);
         }
 
-        string statText =   "Attack: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
-                                "Speed:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>";
-
-        string fallText = battleUnit.BattleUnitTotalStat.FallCurrentCount.ToString() + "/" + battleUnit.BattleUnitTotalStat.FallMaxCount.ToString();
+        string statText = "ATK: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
+                                "SPD:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
+                                "COST:  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "</color>";
+                                
         string hpText = battleUnit.BattleUnitTotalStat.CurrentHP.ToString() + "/" + battleUnit.BattleUnitTotalStat.MaxHP.ToString();
-
-        for (int i = 0; i < battleUnit.BattleUnitTotalStat.FallMaxCount; i++)
-        {
-            UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
-            if (i < battleUnit.BattleUnitTotalStat.FallCurrentCount)
-                fg.Set(true);
-            else
-                fg.Set(false);
-
-            fg.Init();
-        }
-
-        //일단 작동은 하는데 수정필요 6/28
-        //함수화 시켜서 정리하던가 해야함
-
-        /*
-        if (unit.DeckUnitChangedStat.MaxHP > 0 || battleUnit.BattleUnitChangedStat.MaxHP > 0)
-            statText = statText.Replace("HPColor", goodColorStr);
-        else if (unit.DeckUnitChangedStat.MaxHP < 0 || battleUnit.BattleUnitChangedStat.MaxHP < 0)
-            statText = statText.Replace("HPColor", badColorStr);
-        else
-            statText = statText.Replace("HPColor", normalColorStr);
-        */
 
         if (unit.DeckUnitChangedStat.ATK > 0 || battleUnit.BattleUnitChangedStat.ATK > 0)
             statText = statText.Replace("AttackColor", goodColorStr);
@@ -103,12 +79,18 @@ public class UI_Info : UI_Scene
         else
             statText = statText.Replace("SpeedColor", normalColorStr);
 
+        if (unit.DeckUnitChangedStat.ManaCost > 0 || battleUnit.BattleUnitChangedStat.ManaCost > 0)
+            statText = statText.Replace("CostColor", goodColorStr);
+        else if (unit.DeckUnitChangedStat.ManaCost < 0 || battleUnit.BattleUnitChangedStat.ManaCost < 0)
+            statText = statText.Replace("CostColor", badColorStr);
+        else
+            statText = statText.Replace("CostColor", normalColorStr);
 
 
 
         _stat.text = statText;
 
-        _fallText.text = fallText;
+        //_fallText.text = fallText;
         _hpText.text = hpText;
 
         _hpBar.SetHPBar(team);
@@ -160,30 +142,11 @@ public class UI_Info : UI_Scene
             _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + unit.Data.Name);
         }
 
-        string statText = "Attack: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
-                                "Speed:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>";
-        string fallText = unit.DeckUnitTotalStat.FallCurrentCount.ToString() + "/" + unit.DeckUnitTotalStat.FallMaxCount.ToString();
+        string statText = "ATK: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
+                                "SPD:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
+                                "COST:  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "</color>";
+
         string hpText = unit.DeckUnitTotalStat.CurrentHP.ToString() + "/" + unit.DeckUnitTotalStat.MaxHP.ToString();
-
-        for (int i = 0; i < unit.DeckUnitTotalStat.FallMaxCount; i++)
-        {
-            UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
-            if (i < unit.DeckUnitTotalStat.FallCurrentCount)
-                fg.Set(true);
-            else
-                fg.Set(false);
-
-            fg.Init();
-        }
-
-        /*
-        if (unit.DeckUnitChangedStat.MaxHP > 0)
-            statText = statText.Replace("HPColor", goodColorStr);
-        else if (unit.DeckUnitChangedStat.MaxHP < 0)
-            statText = statText.Replace("HPColor", badColorStr);
-        else
-            statText = statText.Replace("HPColor", normalColorStr);
-        */
 
         if (unit.DeckUnitChangedStat.ATK > 0)
             statText = statText.Replace("AttackColor", goodColorStr);
@@ -199,10 +162,16 @@ public class UI_Info : UI_Scene
         else
             statText = statText.Replace("SpeedColor", normalColorStr);
 
+        if (unit.DeckUnitChangedStat.ManaCost > 0)
+            statText = statText.Replace("CostColor", goodColorStr);
+        else if (unit.DeckUnitChangedStat.ManaCost < 0)
+            statText = statText.Replace("CostColor", badColorStr);
+        else
+            statText = statText.Replace("CostColor", normalColorStr);
+
         //fallText = fallText.Replace("textColor" , )
 
         _stat.text = statText;
-        _fallText.text = fallText;
         _hpText.text = hpText;
 
         _hpBar.SetHPBar(team);
