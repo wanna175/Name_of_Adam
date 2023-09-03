@@ -7,7 +7,7 @@ public class UI_PlayerSkill : UI_Scene
     [SerializeField] private GameObject PlayerSkillCardPrefabs;
     [SerializeField] private Transform Grid;
 
-    private UI_PlayerSkillCard _selectedCard = null;
+    public UI_PlayerSkillCard _selectedCard = null;
 
     public List<GameObject> curCardList = new();
 

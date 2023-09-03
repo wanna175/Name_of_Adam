@@ -122,11 +122,11 @@ public class BattleUIManager : MonoBehaviour
             {
                 if (phaseController.Current == phaseController.Prepare)
                 {
-                    UItutorial.TutorialActive(7);
+                    UItutorial.TutorialActive(8);
                 }
                 else if (phaseController.Current == phaseController.Engage)
                 {
-                    UItutorial.TutorialActive(10);
+                    UItutorial.TutorialActive(12);
                     GameManager.Instance.Tutorial_Trigger_Second = false;
                 }
             }

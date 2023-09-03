@@ -22,5 +22,13 @@ public class UI_UnitCard : UI_Scene
     {
         _unitImage.sprite = image;
         _cost.text = cost;
+        if (BattleManager.Data.isDiscount == true)
+        {
+            _cost.color = Color.yellow;
+        }
+        else
+        {
+            _cost.color = Color.white;
+        }
     }
 }

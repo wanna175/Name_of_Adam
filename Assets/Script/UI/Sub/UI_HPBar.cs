@@ -28,6 +28,7 @@ public class UI_HPBar : UI_Base
     private void Start()
     {
         Rotation();
+        
     }
 
     public void SetHPBar(Team team)
@@ -64,8 +65,8 @@ public class UI_HPBar : UI_Base
         for (int i = _fallGauge.Count; i<max; i++)
         {
             UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
+            newObject.SwitchCountImage(_team);
             _fallGauge.Add(newObject);
-
             if (i >= current)
                 newObject.EmptyGauge();
         }

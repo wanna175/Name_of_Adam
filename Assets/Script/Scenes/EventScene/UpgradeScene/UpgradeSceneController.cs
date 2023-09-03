@@ -20,6 +20,13 @@ public class UpgradeSceneController : MonoBehaviour
 
     private void Init()
     {
+        _upgradeunitImage.color = Color.clear;
+        _upgradeunitImage.gameObject.SetActive(false);
+
+        _releaseunitImage.color = Color.clear;
+        _releaseunitImage.gameObject.SetActive(false);
+
+
         List<Script> scripts = new List<Script>();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
@@ -74,16 +81,19 @@ public class UpgradeSceneController : MonoBehaviour
 
     public void OnSelectUpgrade(DeckUnit unit)
     {
+        _upgradeunitImage.gameObject.SetActive(true);
         _unit = unit;
         _upgradeunitImage.sprite = unit.Data.Image;
         _upgradeunitImage.color = Color.white;
 
+        
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
     }
 
     public void OnSelectRelease(DeckUnit unit)
     {
+        _releaseunitImage.gameObject.SetActive(true);
         _unit = unit;
         _releaseunitImage.sprite = unit.Data.Image;
         _releaseunitImage.color = Color.white;
