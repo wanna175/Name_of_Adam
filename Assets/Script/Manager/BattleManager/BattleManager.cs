@@ -334,11 +334,6 @@ public class BattleManager : MonoBehaviour
         }
 
         int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
-
-        GameObject go = GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/CardEffect"),
-            BattleUI.UI_hands.FindCardByUnit(Data.PlayerHands[randNum]).transform.position);
-
         BattleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
 
         BattleOverCheck();
