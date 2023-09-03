@@ -29,10 +29,12 @@ public class EngagePhase : Phase
     public override void OnStateExit()
     {
         BattleUnit unit = BattleManager.Data.GetNowUnit();
+        /*
         if (unit != null)
         {
             _engageInfo = BattleManager.BattleUI.ShowInfo();
             _engageInfo.SetInfo(unit);
         }
+        */
     }
 }

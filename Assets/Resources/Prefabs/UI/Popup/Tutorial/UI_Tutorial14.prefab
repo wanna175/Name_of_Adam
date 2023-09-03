@@ -247,8 +247,7 @@ MonoBehaviour:
     \uC2DC\uC791\uB418\uBA74 \n\uB0A8\uC740 \uC801 \uC720\uB2DB\uC740 \uAC01\uC131\uD558\uC5EC
     \uC2E0\uC131\uC744 \uBD80\uC5EC\uBC1B\uC2B5\uB2C8\uB2E4.\r\n\uC2E0\uC131\uC774
     \uBD80\uC5EC\uB41C \uC801 \uC720\uB2DB\uC5D0\uAC8C \uACF5\uACA9\uBC1B\uC744 \uC2DC
-    \uD0C0\uB77D \uAC8C\uC774\uC9C0\uAC00 1 \uC62C\uB77C\uAC00\uBA70\n \uC774 \uC720\uB2DB\uC744
-    \uCC98\uCE58\uD560 \uC2DC \uAC80\uC740 \uC815\uC218\uB97C 2\uAC1C \uC5BB\uC2B5\uB2C8\uB2E4."
+    \uC2E0\uC559\uC774 1\uB5A8\uC5B4\uC9D1\uB2C8\uB2E4.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
