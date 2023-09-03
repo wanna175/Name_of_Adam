@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSkillCardPrefabs: {fileID: 4244837440217407375, guid: 86b5927ed012bce409c76a59e48c8c45, type: 3}
   Grid: {fileID: 8176466027900947826}
+  _selectedCard: {fileID: 0}
   curCardList: []
   Used: 0
 --- !u!1 &3402139549986812419
@@ -746,6 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandPrefabs: {fileID: 9037217407852231977, guid: bf27dc6fa9a3dc44896d9cb58014d4a7, type: 3}
   Grid: {fileID: 9135748489264593948}
+  _selectedHand: {fileID: 0}
 --- !u!1 &6394707155118687603
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,8 +942,8 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 110, y: 110}
-  m_Spacing: {x: 30, y: 0}
+  m_CellSize: {x: 134, y: 134}
+  m_Spacing: {x: 6, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &7280288071824376347

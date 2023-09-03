@@ -30,6 +30,8 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         _skill = skill;
         //_text.text = skill.GetName();
         GetComponent<Image>().sprite = skill.GetSkillImage();
+        _ManaCost.text = skill.GetManaCost().ToString();
+        _essenceCost.text = skill.GetDarkEssenceCost().ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
