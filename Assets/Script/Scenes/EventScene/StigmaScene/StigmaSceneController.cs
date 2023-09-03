@@ -126,6 +126,10 @@ public class StigmaSceneController : MonoBehaviour
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         GameManager.UI.ClosePopup();
 
+        GameObject go = GameManager.VisualEffect.StartVisualEffect(
+            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UpgradeEffect"),
+            _giveunitImage.transform.position + new Vector3(2f, -0.5f, 0));
+
         UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
         string scriptKey = "낙인소_" + stigma.Name;
         script.Init(GameManager.Data.ScriptData[scriptKey], false);
