@@ -18,7 +18,7 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private TextMeshProUGUI _unitInfoStat;
     [SerializeField] private Transform _unitInfoStigmaGrid;
     [SerializeField] private Transform _unitInfoSkillRangeGrid;
-
+    [SerializeField] private Image _unitImage;
 
     //public AnimationClip _unitAnimationClip;
 
@@ -35,6 +35,8 @@ public class UI_UnitInfo : UI_Popup
 
     public void Init(Action<DeckUnit> onSelect=null)
     {
+        _unitImage.GetComponent<Image>();
+        _unitImage.sprite = _unit.Data.Image;
         _onSelect = onSelect;
         _selectButton.SetActive(onSelect != null);
         _unitInfoName.text = _unit.Data.Name;
