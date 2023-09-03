@@ -7,7 +7,7 @@ public class UI_Hands : UI_Scene
     [SerializeField] private GameObject HandPrefabs;
     [SerializeField] private Transform Grid;
 
-    private List<UI_Hand> _handList = new List<UI_Hand>();
+    private List<UI_Hand> _handList = new();
     public UI_Hand _selectedHand = null;
     private UI_PlayerSkillCard _selectedSkillCard = null;
 
@@ -41,7 +41,7 @@ public class UI_Hands : UI_Scene
         }
      }
 
-    private UI_Hand FindCardByUnit(DeckUnit unit)
+    public UI_Hand FindCardByUnit(DeckUnit unit)
     {
         foreach(UI_Hand card in _handList)
         {
@@ -69,8 +69,11 @@ public class UI_Hands : UI_Scene
         }
     }
 
-    private void CancelSelect()
+    public void CancelSelect()
     {
+        if (_selectedHand == null)
+            return;
+
         _selectedHand.ChangeSelectState(false);
         _selectedHand = null;
         BattleManager.Instance.UnitSpawnReady(FieldColorType.none);
