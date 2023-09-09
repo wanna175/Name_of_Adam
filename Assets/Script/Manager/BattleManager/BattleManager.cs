@@ -382,6 +382,14 @@ public class BattleManager : MonoBehaviour
         else if (EnemyUnit == 0)
         {
             BattleOverWin();
+            if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 99)
+            {
+                if (GameManager.Instance.Tutorial_Stage_Trigger == true)
+                {
+                    GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(14);
+                    GameManager.Instance.Tutorial_Stage_Trigger = false;
+                }
+            }
         }
     }
 
@@ -468,7 +476,7 @@ public class BattleManager : MonoBehaviour
             if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
                 return;
 
-            if(GameManager.Instance.Tutorial_Benediction_Trigger == true)
+            if(GameManager.Data.StageAct == 0 && GameManager.Instance.Tutorial_Benediction_Trigger == true)
             {
                 GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
                 GameManager.Instance.Tutorial_Benediction_Trigger = false;

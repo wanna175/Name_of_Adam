@@ -243,11 +243,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC801\uC774 \uD55C\uBA85 \uB0A8\uC740 \uCC44\uB85C \uD50C\uB808\uC774\uC5B4\uD134\uC774
-    \uC2DC\uC791\uB418\uBA74 \n\uB0A8\uC740 \uC801 \uC720\uB2DB\uC740 \uAC01\uC131\uD558\uC5EC
-    \uC2E0\uC131\uC744 \uBD80\uC5EC\uBC1B\uC2B5\uB2C8\uB2E4.\r\n\uC2E0\uC131\uC774
-    \uBD80\uC5EC\uB41C \uC801 \uC720\uB2DB\uC5D0\uAC8C \uACF5\uACA9\uBC1B\uC744 \uC2DC
-    \uC2E0\uC559\uC774 1\uB5A8\uC5B4\uC9D1\uB2C8\uB2E4.\r\n"
+  m_text: "\uD29C\uD1A0\uB9AC\uC5BC\uC774 \uB05D\uB0AC\uC2B5\uB2C8\uB2E4. \n\uC774\uC81C
+    \uC801\uC758 \uAD70\uC138\uB97C \uD0C0\uB77D\uC2DC\uCF1C \uC5EC\uC815\uC758 \uB05D\uC5D0
+    \uC788\uB294 \uAC15\uB825\uD55C \uC801\uC5D0\uAC8C \uB3C4\uC804\uD558\uC2ED\uC2DC\uC624."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
@@ -382,7 +380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2E0\uC131"
+  m_text: "\uD0C0\uB77D\uC758 \uAE38"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
@@ -714,7 +712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1763977ecfe370d488910900c28714f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea25dc6bbfb2c124a80300aec218f0c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -812,7 +810,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5929898870027404888
 MonoBehaviour:
   m_ObjectHideFlags: 0
