@@ -52,6 +52,8 @@ public class DeckUnit
     public void ClearStigma() => _stigma.Clear();
 
     private int _firstTurnDiscount = 0;
+    public bool IsDiscount() => _firstTurnDiscount != 0;
+
     public void FirstTurnDiscount()
     {
         _firstTurnDiscount = (DeckUnitTotalStat.ManaCost + 1) / 2;

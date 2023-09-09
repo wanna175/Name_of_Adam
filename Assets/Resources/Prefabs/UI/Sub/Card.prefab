@@ -218,6 +218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _highlight: {fileID: 7485423462234148684}
   _unitCard: {fileID: 8373466250229985510}
+  _unitImage: {fileID: 6036196029011794144}
+  _name: {fileID: 307864840991548229}
 --- !u!222 &6615710533183551284
 CanvasRenderer:
   m_ObjectHideFlags: 0

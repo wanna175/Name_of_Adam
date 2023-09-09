@@ -28,7 +28,6 @@ public class BattleDataManager : MonoBehaviour
         foreach (DeckUnit unit in _playerDeck)//UI에서 정보를 표시하기 전에 미리 할인함
         {
             unit.FirstTurnDiscount();
-            BattleManager.Data.isDiscount = true;
         }
     }
 

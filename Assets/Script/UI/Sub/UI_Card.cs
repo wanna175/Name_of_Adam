@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _highlight;
-    [SerializeField] private UI_UnitCard _unitCard;
+    [SerializeField] private Image _unitImage;
+    [SerializeField] private TextMeshProUGUI _name;
 
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
@@ -22,7 +24,8 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _myDeck = myDeck;
         _cardUnit = unit;
 
-        _unitCard.SetCard(_cardUnit.Data.Image, _cardUnit.Data.Name, _cardUnit.DeckUnitTotalStat.ManaCost.ToString());
+        _unitImage.sprite = unit.Data.Image;
+        _name.text = unit.Data.Name;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
