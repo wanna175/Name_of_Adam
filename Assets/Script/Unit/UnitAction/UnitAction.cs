@@ -252,24 +252,15 @@ public class UnitAction : MonoBehaviour
 
     protected bool DirectAttackCheck()
     {
-        int playerUnit = 0;
-
         foreach (BattleUnit unit in _Data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
-                playerUnit++;
+                return false;
         }
 
-        if (playerUnit == 0)
-        {
-            BattleManager.Instance.DirectAttack();
-            BattleManager.Instance.EndUnitAction();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        BattleManager.Instance.DirectAttack();
+        BattleManager.Instance.EndUnitAction();
+        return true;
     }
 
     protected void ListClear()

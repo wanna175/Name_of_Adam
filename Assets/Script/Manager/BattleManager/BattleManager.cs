@@ -218,12 +218,6 @@ public class BattleManager : MonoBehaviour
             MoveLocate(unit, dest);
         }
 
-        Invoke(nameof(MoveWait), 0.2f);
-    }
-
-    //임시
-    private void MoveWait()
-    {
         _phase.ChangePhase(_phase.Action);
     }
 

@@ -17,7 +17,7 @@ public class BattleUIManager : MonoBehaviour
 
     private UI_TurnChangeButton _turnChangeButton;
 
-    private int _maxHandCount = 3;
+    private const int _maxHandCount = 3;
 
     private void Start()
     {
@@ -93,6 +93,13 @@ public class BattleUIManager : MonoBehaviour
     }
 
     public PlayerSkill GetSelectedPlayerSkill() => UI_playerSkill.GetSelectedCard().GetSkill();
+
+    public void CancelAllSelect()
+    {
+        BattleManager.Field.ClearAllColor();
+        UI_hands.CancelSelect();
+        UI_playerSkill.CancelSelect();
+    }
 
     public void ShowTutorial()
     {

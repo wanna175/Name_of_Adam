@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PreparePhase : Phase
 {
-    public bool isFirst = true;
+    private bool _isFirst = true;
 
     public override void OnStateEnter()
     {
         GameManager.Sound.Play("Stage_Transition/Prepare/PrepareEnter");
-        if (!isFirst)
+        if (!_isFirst)
         { 
             BattleManager.Mana.ChangeMana(30);
         }
@@ -33,9 +33,8 @@ public class PreparePhase : Phase
 
     public override void OnStateExit()
     {
-        if (isFirst) 
+        if (_isFirst) 
         {
-            BattleManager.Data.isDiscount = false;
             foreach (DeckUnit unit in BattleManager.Data.PlayerDeck)
                 unit.FirstTurnDiscountUndo();
 
@@ -43,9 +42,10 @@ public class PreparePhase : Phase
                 unit.FirstTurnDiscountUndo();
 
             BattleManager.BattleUI.RefreshHand();
-            isFirst = false;
+            _isFirst = false;
         }
 
+        BattleManager.BattleUI.CancelAllSelect();
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
     }
 }
