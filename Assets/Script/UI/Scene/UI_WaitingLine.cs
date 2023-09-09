@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class UI_WaitingLine : UI_Scene
 {
-    private List<UI_WaitingUnit> _waitingUnitList = new List<UI_WaitingUnit>();
-    private Transform _grid;
-    private bool _turned = false;
+    [SerializeField] private Transform _grid;
     [SerializeField] private GameObject _buttonDown;
     [SerializeField] private GameObject _buttonUp;
 
+    private List<UI_WaitingUnit> _waitingUnitList = new();
+    private bool _turned = false;
+
     public void Start()
     {
-        _grid = Util.FindChild(gameObject, "Grid", true).transform;
         _buttonDown.SetActive(false);
         _buttonUp.SetActive(false);
     }

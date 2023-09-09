@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -9,10 +8,10 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 {
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _inactive;
-    [SerializeField] private UI_UnitCard _unitCard;
-    [SerializeField] private GameObject _hand;
     [SerializeField] private Image _unitImage;
-    public DeckUnit _handUnit = null;
+    [SerializeField] private TextMeshProUGUI _cost;
+
+    private DeckUnit _handUnit = null;
     private UI_Hands _hands;
 
     private UI_Info _hoverInfo;
@@ -36,9 +35,17 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void SetUnitInfo()
     {
-        Debug.Log(_handUnit.Data.Name);
         _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _handUnit.Data.Name + "_Å¸¶ô");
-        _unitCard.SetHand(_unitImage.sprite, _handUnit.DeckUnitTotalStat.ManaCost.ToString());
+        _cost.text = _handUnit.DeckUnitTotalStat.ManaCost.ToString();
+
+        if (_handUnit.IsDiscount())
+        {
+            _cost.color = Color.yellow;
+        }
+        else
+        {
+            _cost.color = Color.white;
+        }
     }
 
     public DeckUnit GetUnit()
@@ -49,7 +56,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         _highlight.SetActive(true);
-        _hand.transform.localScale = new Vector3 (1.15f, 1.15f, 1.15f);
+        transform.localScale = new Vector3 (1.15f, 1.15f, 1.15f);
         _hoverInfo = BattleManager.BattleUI.ShowInfo();
         _hoverInfo.SetInfo(_handUnit, Team.Player);
     }
@@ -57,9 +64,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerExit(PointerEventData eventData)
     {
         BattleManager.BattleUI.CloseInfo(_hoverInfo);
-        _hand.transform.localScale = new Vector3(1f, 1f, 1f);
         if (IsSelected)
             return;
+        transform.localScale = new Vector3(1f, 1f, 1f);
         _highlight.SetActive(false);
     }
 
@@ -75,6 +82,8 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         IsSelected = b;
         _highlight.SetActive(b);
+        if (!IsSelected)
+            transform.localScale = new Vector3(1f, 1f, 1f);
 
         /*
         if (IsSelected)

@@ -69,7 +69,7 @@ public class SaveController : MonoBehaviour
     }
 
     // 저장된 데이터가 있는지 확인
-    public bool SaveFileCheck() => File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.json")) ? true : false;
+    public bool SaveFileCheck() => File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.json"));
 
     // 저장된 데이터 삭제
     public void DeleteSaveData() => File.Delete(path);

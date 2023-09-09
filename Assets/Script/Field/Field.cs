@@ -163,9 +163,6 @@ public class Field : MonoBehaviour
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTilePosition(Vector2 coord)
     {
-        if (coord.x < 0 || coord.x >= 6 || coord.y < 0 || coord.y >= 3)
-            return Vector3.zero;
-
         Vector3 position = TileDict[coord].transform.position;
         
         float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
