@@ -73,24 +73,11 @@ public class BattleCutSceneController : MonoBehaviour
 
     private void UnitFlip(BattleCutSceneData CSData)
     {
-        if(CSData.AttackUnitFlipX)
-        {
-            CSData.AttackUnit.SetFlipX(false);
-            foreach(BattleUnit unit in CSData.HitUnits)
-                unit.SetFlipX(true);
-        }
-        else if (!CSData.AttackUnitFlipX)
-        {
-            CSData.AttackUnit.SetFlipX(true);
-            foreach (BattleUnit unit in CSData.HitUnits)
-                unit.SetFlipX(false);
-        }
-        else
-        {
-            bool attackDir = CSData.AttackUnit.GetFlipX();
-            foreach (BattleUnit unit in CSData.HitUnits)
-                unit.SetFlipX(!attackDir);
-        }
+        bool flip = CSData.AttackUnitFlipX;
+
+        CSData.AttackUnit.SetFlipX(!flip);
+        foreach (BattleUnit unit in CSData.HitUnits)
+            unit.SetFlipX(flip);
     }
 
     public IEnumerator AfterEffect(BattleCutSceneData CSData)
