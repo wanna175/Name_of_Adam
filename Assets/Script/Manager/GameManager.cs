@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public bool Tutorial_Trigger_First = true;
     public bool Tutorial_Trigger_Second = true;
     public bool Tutorial_Benediction_Trigger = true;
+    public bool Tutorial_Stage_Trigger = true;
     public bool isTutorialactive = false;
 
     void Awake()
@@ -106,7 +107,6 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -132,6 +132,5 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z))
             GameManager.SaveManager.DeleteSaveData();
-
     }
 }
