@@ -366,7 +366,6 @@ public class BattleUnit : MonoBehaviour
         {
             ChangedDamage = damage;
             bool attackSkip = false;
-            Team team = unit.Team;
 
             //공격 전 체크
             attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
@@ -552,7 +551,7 @@ public class BattleUnit : MonoBehaviour
 
     public List<Vector2> GetSplashRange(Vector2 target, Vector2 caster)
     {
-        List<Vector2> SplashList = new List<Vector2>();
+        List<Vector2> SplashList = new();
 
         int Scolumn = 11;
         int Srow = 5;

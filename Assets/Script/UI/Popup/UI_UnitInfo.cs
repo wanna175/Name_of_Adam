@@ -22,8 +22,6 @@ public class UI_UnitInfo : UI_Popup
 
     //public AnimationClip _unitAnimationClip;
 
-
-
     private DeckUnit _unit;
     UnitDataSO Data => _unit.Data;
     private Action<DeckUnit> _onSelect;
@@ -79,8 +77,6 @@ public class UI_UnitInfo : UI_Popup
         AnimationClip clip = Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect");
         GameManager.VisualEffect.StartVisualEffect(clip, new Vector3(0f, 3.5f, 0f));
     }
-
-
 
     public void Quit()
     {

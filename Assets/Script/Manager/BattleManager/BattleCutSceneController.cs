@@ -73,13 +73,13 @@ public class BattleCutSceneController : MonoBehaviour
 
     private void UnitFlip(BattleCutSceneData CSData)
     {
-        if(CSData.AttackUnitFlipX < 0)
+        if(CSData.AttackUnitFlipX)
         {
             CSData.AttackUnit.SetFlipX(false);
             foreach(BattleUnit unit in CSData.HitUnits)
                 unit.SetFlipX(true);
         }
-        else if (CSData.AttackUnitFlipX > 0)
+        else if (!CSData.AttackUnitFlipX)
         {
             CSData.AttackUnit.SetFlipX(true);
             foreach (BattleUnit unit in CSData.HitUnits)

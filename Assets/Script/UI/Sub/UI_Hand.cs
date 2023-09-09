@@ -61,9 +61,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerExit(PointerEventData eventData)
     {
         BattleManager.BattleUI.CloseInfo(_hoverInfo);
-        transform.localScale = new Vector3(1f, 1f, 1f);
         if (IsSelected)
             return;
+        transform.localScale = new Vector3(1f, 1f, 1f);
         _highlight.SetActive(false);
     }
 
@@ -79,6 +79,8 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         IsSelected = b;
         _highlight.SetActive(b);
+        if (!IsSelected)
+            transform.localScale = new Vector3(1f, 1f, 1f);
 
         /*
         if (IsSelected)

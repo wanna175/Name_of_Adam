@@ -24,17 +24,17 @@ public class BattleCutSceneData
     // 움직일 위치
     public Vector3 MovePosition;
     // 공격 유닛이 바라보는 방향
-    public int AttackUnitFlipX;
+    public bool AttackUnitFlipX;
 
-    public BattleCutSceneData(BattleUnit AttackUnit, List<BattleUnit> HitUnits)
+    public BattleCutSceneData(BattleUnit attackUnit, List<BattleUnit> hitUnits)
     {
-        this.AttackUnit = AttackUnit;
-        this.HitUnits = HitUnits;
+        AttackUnit = attackUnit;
+        HitUnits = hitUnits;
 
         AttackLocation = AttackUnit.Location;
         AttackPosition = BattleManager.Field.GetTilePosition(AttackLocation);
-        HitLocation = new List<Vector2>();
-        HitPosition = new List<Vector3>();
+        HitLocation = new();
+        HitPosition = new();
         foreach (BattleUnit unit in HitUnits)
         {
             HitLocation.Add(unit.Location);
@@ -52,37 +52,40 @@ public class BattleCutSceneData
 
     Vector2 GetMoveLocation(BattleUnit unit)
     {
-        Vector2 AttackUnitTile = AttackLocation;
-        Vector2 HitUnitTile = HitLocation[0];
+        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
+            return unit.Location;
 
-        Vector2 moveTile = HitUnitTile;
+        Vector2 moveTile = HitLocation[0];
 
-        if (AttackUnitTile.x < HitUnitTile.x)
+        if (AttackLocation.x != HitLocation[0].x)
         {
-            moveTile.x -= 1;
-            AttackUnitFlipX = -1;
-        }
-        else if (HitUnitTile.x < AttackUnitTile.x)
-        {
-            moveTile.x += 1;
-            AttackUnitFlipX = 1;
+            AttackUnitFlipX = AttackLocation.x < HitLocation[0].x;
         }
         else
         {
-            if (AttackUnitTile.y > HitUnitTile.y)
-            {
-                moveTile.x -= 1;
-                AttackUnitFlipX = -1;
-            }
-            else
-            {
-                moveTile.x += 1;
-                AttackUnitFlipX = 1;
-            }
+            AttackUnitFlipX = (HitLocation[0].x > 3) ^ ( HitLocation[0].y > AttackLocation.y);/* MaxFieldX / 2 */
         }
 
-        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
-            return unit.Location;
+        if (AttackUnitFlipX)
+        {
+            moveTile.x = HitLocation[0].x - 1;
+
+            if (!BattleManager.Field.IsInRange(moveTile))
+            {
+                moveTile.x = HitLocation[0].x + 1;
+                AttackUnitFlipX = false;
+            }
+        }
+        else
+        {
+            moveTile.x = HitLocation[0].x + 1;
+
+            if (!BattleManager.Field.IsInRange(moveTile))
+            {
+                moveTile.x = HitLocation[0].x - 1;
+                AttackUnitFlipX = true;
+            }
+        }
 
         return moveTile;
     }
