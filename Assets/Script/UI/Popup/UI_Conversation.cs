@@ -10,7 +10,7 @@ public class UI_Conversation : UI_Popup
     private float _typingSpeed = 0.05f;
     private Coroutine co_typing = null;
     private List<Script> scripts = new();
-    private bool _conversationImage;
+    private bool _battleConversation;
 
     //[SerializeField] private Text _conversationText;
     [SerializeField] private TextMeshProUGUI _nameText;
@@ -18,13 +18,13 @@ public class UI_Conversation : UI_Popup
     [SerializeField] private Image _unitImage;
 
     // autoStart = false면 따로 실행해줘야 함
-    public void Init(List<Script> scripts, bool autoStart = true, bool conversationImage = false)
+    public void Init(List<Script> scripts, bool autoStart = true, bool battleConversation= false)
     {
         this.scripts = scripts;
 
-        _conversationImage = conversationImage;
+        _battleConversation = battleConversation;
 
-        if (!_conversationImage)
+        if (!_battleConversation)
         {
             _unitImage.gameObject.SetActive(false);
         }
@@ -33,10 +33,9 @@ public class UI_Conversation : UI_Popup
             _conversation.rectTransform.sizeDelta = new(1400, _conversation.rectTransform.sizeDelta.y);
             _conversation.transform.localPosition = new(-170, 0, 0);
         }
-        if (autoStart == false)
-            return;
 
-        StartCoroutine(PrintScript());
+        if (autoStart)
+            StartCoroutine(PrintScript());
     }
 
     public IEnumerator PrintScript()
@@ -45,7 +44,7 @@ public class UI_Conversation : UI_Popup
         foreach (Script script in scripts)
         {
             co_typing = StartCoroutine(TypingEffect(script.script));
-            if (_conversationImage)
+            if (_battleConversation)
             {
                 _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + script.name);
             }
@@ -64,26 +63,23 @@ public class UI_Conversation : UI_Popup
             yield return new WaitUntil(() => GameManager.InputManager.Click);
         }
 
-        //--- 임시 ---
-        if (_conversationImage)
+        if (_battleConversation)
             BattleManager.Phase.ChangePhase(BattleManager.Phase.Prepare);
-        // ---
 
         GameManager.UI.ClosePopup(this);
     }
 
     private IEnumerator TypingEffect(string script)
     {
-        TextMeshProUGUI text = _conversation;
-        text.text = "";
+        _conversation.text = "";
 
         foreach (char c in script.ToCharArray())
         {
-            text.text += c;
+            _conversation.text += c;
             yield return new WaitForSeconds(_typingSpeed);
         }
 
-        text.text = script;
+        _conversation.text = script;
         co_typing = null;
     }
 

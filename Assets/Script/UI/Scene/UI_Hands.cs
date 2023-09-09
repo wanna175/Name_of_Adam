@@ -54,7 +54,7 @@ public class UI_Hands : UI_Scene
 
     public void OnClickHand(UI_Hand hand)
     {
-        if (BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost))
+        if (BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost) && GameManager.Data.CanUseDarkEssense(hand.GetUnit().Data.DarkEssenseCost))
         {
             if(BattleManager.BattleUI.UI_playerSkill._selectedCard != null)
                 return;

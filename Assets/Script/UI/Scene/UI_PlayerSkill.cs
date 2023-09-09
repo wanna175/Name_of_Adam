@@ -30,7 +30,7 @@ public class UI_PlayerSkill : UI_Scene
     {
         //PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
         
-        if (!Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()))
+        if (!Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()) && GameManager.Data.CanUseDarkEssense(card.GetSkill().GetDarkEssenceCost()))
         {
             if (card != null && card == _selectedCard)
             {

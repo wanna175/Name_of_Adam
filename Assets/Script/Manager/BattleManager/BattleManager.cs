@@ -104,28 +104,29 @@ public class BattleManager : MonoBehaviour
     {
         if (SceneChanger.GetSceneName() == "BattleTestScene")
             return;
+
         PlayAfterCoroutine(() => {
             Spawner.SpawnInitialUnit();
-            //임시 처리
+        }, 0.5f);
+
+        PlayAfterCoroutine(() => {
             if (GameManager.Data.Map.GetCurrentStage().StageLevel == 11)
             {
-                EventConversation();
+                string scriptKey = "엘리트전_입장_최초";
+
+                EventConversation(scriptKey);
             }
             else
             {
                 Phase.ChangePhase(Phase.Prepare);
             }
-        }, 0.5f);
+        }, 1f);
     }
 
-    private void EventConversation()
+    private void EventConversation(string scriptKey)
     {
-        StageData data = GameManager.Data.Map.GetCurrentStage();
-        if (data.StageLevel == 11) // 
-        {
-            List<Script> scripts = GameManager.Data.ScriptData["엘리트전_입장_최초"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts, true, true);
-        }
+        List<Script> scripts = GameManager.Data.ScriptData[scriptKey];
+        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts, true, true);
     }
 
     private void SetBackground()
@@ -291,7 +292,6 @@ public class BattleManager : MonoBehaviour
 
         string unitname = unit.DeckUnit.Data.Name;
         GameManager.Sound.Play("Character/" + unitname + "/" + unitname + "_Attack");
-
     }
 
     public void EndUnitAction()
