@@ -180,7 +180,7 @@ public class BattleManager : MonoBehaviour
         if (!Field.ColoredTile.Contains(coord))
             return;
 
-        Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
+        Mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
 
         unit.FirstTurnDiscountUndo();
 
@@ -191,7 +191,8 @@ public class BattleManager : MonoBehaviour
         GameManager.VisualEffect.StartVisualEffect(
             Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnFrontEffect"),
             BattleManager.Field.GetTilePosition(coord) + new Vector3(0f, 3.5f, 0f));
-        BattleUI.RemoveHandUnit(unit);
+
+        BattleUI.RemoveHandUnit(unit); //유닛 리필
         GameManager.UI.ClosePopup();
         Field.ClearAllColor();
     }

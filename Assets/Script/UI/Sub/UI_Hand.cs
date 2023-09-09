@@ -8,10 +8,11 @@ using UnityEngine.EventSystems;
 public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _inactive;
     [SerializeField] private UI_UnitCard _unitCard;
     [SerializeField] private GameObject _hand;
     [SerializeField] private Image _unitImage;
-    private DeckUnit _handUnit = null;
+    public DeckUnit _handUnit = null;
     private UI_Hands _hands;
 
     private UI_Info _hoverInfo;
@@ -22,7 +23,8 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     private void Start()
     {
         _highlight.SetActive(false);
-        
+        _inactive.SetActive(false);
+
     }
 
     public void SetUnit(UI_Hands hands, DeckUnit unit)
@@ -85,5 +87,10 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             BattleManager.BattleUI.CloseInfo(_selectInfo);
         }
         */
+    }
+
+    public void ChangeInable(bool b)
+    {
+        _inactive.SetActive(b);
     }
 }

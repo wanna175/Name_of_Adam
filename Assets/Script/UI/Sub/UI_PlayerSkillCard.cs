@@ -15,7 +15,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     //[SerializeField] private TextMeshProUGUI _text;
 
     private UI_PlayerSkill _playerSkill;
-    private PlayerSkill _skill;
+    public PlayerSkill _skill;
     public bool IsSelected = false;
 
     private void Start()
@@ -43,11 +43,10 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _skillCard.transform.localScale = new Vector3(1f, 1f, 1f);
         GameManager.UI.CloseHover();
-
         if (IsSelected)
             return;
+        _skillCard.transform.localScale = new Vector3(1f, 1f, 1f);
         _highlight.SetActive(false);
     }
 
@@ -57,7 +56,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         {
             return;
         }
-        else
+        else if(eventData.button == PointerEventData.InputButton.Left)
         {
             _playerSkill.OnClickHand(this);
         }
@@ -67,6 +66,11 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     {
         IsSelected = b;
         _highlight.SetActive(b);
+
+        if (!IsSelected)
+        {
+            _skillCard.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
     }
 
     public void ChangeInable(bool b)

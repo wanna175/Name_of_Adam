@@ -93,4 +93,19 @@ public class UI_Hands : UI_Scene
     {
         return _selectedHand.GetUnit();
     }
+
+    public void InableCheck(int manaValue)
+    {
+        foreach(UI_Hand card in _handList)
+        {
+            if (manaValue < card.GetComponent<UI_Hand>()._handUnit.DeckUnitTotalStat.ManaCost)
+            {
+                card.GetComponent<UI_Hand>().ChangeInable(true);
+            }
+            else
+            {
+                card.GetComponent<UI_Hand>().ChangeInable(false);
+            }
+        }
+    }
 }
