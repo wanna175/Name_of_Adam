@@ -22,7 +22,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     private void Start()
     {
         _highlight.SetActive(false);
-        _inactive.SetActive(false);
+        BattleManager.Mana.ManaInableCheck();
 
     }
 
@@ -97,9 +97,11 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         }
         */
     }
-
+    
     public void ChangeInable(bool b)
     {
         _inactive.SetActive(b);
+        Debug.Log(b);
     }
+    
 }

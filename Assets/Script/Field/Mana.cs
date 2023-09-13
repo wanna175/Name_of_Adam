@@ -32,9 +32,14 @@ public class Mana : MonoBehaviour
             _currentMana += value;
         }
 
+        ManaInableCheck();
+        _manaGuage.DrawGauge(_maxMana, _currentMana);
+    }
+
+    public void ManaInableCheck()
+    {
         BattleManager.BattleUI.UI_playerSkill.InableCheck(_currentMana);
         BattleManager.BattleUI.UI_hands.InableCheck(_currentMana);
-        _manaGuage.DrawGauge(_maxMana, _currentMana);
     }
 
     public bool CanUseMana(int value)
