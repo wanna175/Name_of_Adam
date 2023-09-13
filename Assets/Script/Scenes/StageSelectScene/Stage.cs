@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public enum StageType
@@ -99,7 +100,13 @@ public class Stage : MonoBehaviour
         BackLight.SetVisible();
     }
 
-    public void OnMouseUp() => StageManager.Instance.StageMove(Datas.ID);
+    public void OnMouseUp()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            StageManager.Instance.StageMove(Datas.ID);
+        }
+    }
     
     public void OnMouseEnter()
     {
