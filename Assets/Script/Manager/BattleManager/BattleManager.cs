@@ -154,7 +154,10 @@ public class BattleManager : MonoBehaviour
     public void PreparePhaseClick(Vector2 coord)
     {
         if (!Field.ColoredTile.Contains(coord))
+        {
+            _battleUI.CancelAllSelect();
             return;
+        }
 
         if (Field.FieldType == FieldColorType.UnitSpawn)
         {
