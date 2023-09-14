@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MovePhase : Phase
@@ -13,7 +14,14 @@ public class MovePhase : Phase
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Move);
 
         if (_nowUnit.Team == Team.Enemy)
-            BattleManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AIMove, 1);
+            BattleManager.Instance.StartCoroutine(NowUnitMove());
+    }
+
+    private IEnumerator NowUnitMove()
+    {
+        yield return new WaitForSeconds(1f);
+
+        _nowUnit.Action.AIMove(_nowUnit);
     }
 
     public override void OnStateUpdate()

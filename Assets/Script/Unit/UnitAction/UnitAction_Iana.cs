@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UnitAction_Iana : UnitAction
 {
-    public override void ActionStart(List<BattleUnit> hits)
+    public override void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits)
     {
         foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
         {
@@ -15,11 +15,6 @@ public class UnitAction_Iana : UnitAction
             }
         }
         
-        BattleManager.Instance.AttackStart(_unit, hits.Distinct().ToList());
-    }
-
-    public override void Action(BattleUnit receiver)
-    {
-        _unit.Attack(receiver, _unit.BattleUnitTotalStat.ATK);
+        BattleManager.Instance.AttackStart(attackUnit, hits.Distinct().ToList());
     }
 }

@@ -20,19 +20,12 @@ public class PlayerSkill_Cross : PlayerSkill
 
             if (targetUnit != null && targetUnit.Team == Team.Enemy)
             {
-                BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
+                StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
                 targetUnit.GetAttack(-15, null);
             }
-
-
         }
 
     }
-    private void Attack(Vector2 coord)
-    {
-        BattleManager.Field.GetUnit(coord).GetAttack(-15, null);
-    }
-
 
     public override void CancelSelect()
     {

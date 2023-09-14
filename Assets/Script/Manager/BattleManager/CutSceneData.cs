@@ -52,11 +52,6 @@ public class BattleCutSceneData
 
     Vector2 GetMoveLocation(BattleUnit unit)
     {
-        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
-            return unit.Location;
-
-        Vector2 moveTile = HitLocation[0];
-
         if (AttackLocation.x != HitLocation[0].x)
         {
             AttackUnitFlipX = AttackLocation.x < HitLocation[0].x;
@@ -65,6 +60,11 @@ public class BattleCutSceneData
         {
             AttackUnitFlipX = (HitLocation[0].x > 3) ^ ( HitLocation[0].y > AttackLocation.y);/* MaxFieldX / 2 */
         }
+
+        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
+            return unit.Location;
+
+        Vector2 moveTile = HitLocation[0];
 
         if (AttackUnitFlipX)
         {

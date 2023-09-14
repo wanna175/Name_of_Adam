@@ -5,151 +5,143 @@ public class UnitAction : MonoBehaviour
 {
     protected BattleDataManager _Data;
     protected Field _field;
-
-    protected BattleUnit _unit;
-    public void Init(BattleUnit unit)
+    public void Init()
     {
-        _unit = unit;
-
         _Data = BattleManager.Data;
         _field = BattleManager.Field;
     }
 
-    public virtual void ActionStart(List<BattleUnit> hits)
+    public virtual void AIMove(BattleUnit attackUnit)
     {
-        BattleManager.Instance.AttackStart(_unit, hits);
-    }
+        if (DirectAttackCheck())
+            return;
 
-    public virtual void Action(BattleUnit receiver)
-    {
-        _unit.Attack(receiver, _unit.BattleUnitTotalStat.ATK);
-    }
+        Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
+        Dictionary<Vector2, int> inRangeList = AttackableTileSearch(attackUnit, attackableTile);
 
-    //공격 범위: 움직이지 않고 공격할 수 있는 범위; Attack Range
-    //공격가능 타일: 해당 타일 위로 이동할 경우 공격할 수 있는 타일; Attackable Tile
-
-    protected List<Vector2> UnitInAttackRangeList = new();//
-    //공격 범위 내 유닛
-
-    protected List<Vector2> AttackableTileList = new();
-    //공격 가능 타일 
-
-    protected List<Vector2> AttackableTileInRangeList = new();
-    //공격 가능 + 사거리 내 타일
-
-    readonly protected List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
-    //상하좌우 foreach용
-
-    protected Dictionary<Vector2, int> TileHPDict = new();
-
-    protected bool SetUnitInAttackRangeList()
-    {
-        //유닛의 공격 범위 내에 있는 유닛을 리스트에 담는다.
-        foreach (Vector2 attackRange in _unit.GetAttackRange())
+        if (inRangeList.Count > 0)
         {
-            Vector2 range = _unit.Location + attackRange;
+            List<Vector2> MinHPUnit = MinHPSearch(inRangeList);
 
-            if (!_field.IsInRange(range))
-                continue;
-
-            if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Player)
+            if (!MinHPUnit.Contains(attackUnit.Location))
             {
-                UnitInAttackRangeList.Add(range);
-
-                if (TileHPDict.ContainsKey(range))
-                {
-                    if (TileHPDict[range] >= _field.GetUnit(range).HP.GetCurrentHP()) //여기서 = 이 문제일 수도
-                    {
-                        TileHPDict.Remove(range);
-                        TileHPDict.Add(range, _field.GetUnit(range).HP.GetCurrentHP());
-                    }
-                }
-                else
-                {
-                    TileHPDict.Add(range, _field.GetUnit(range).HP.GetCurrentHP());
-                }
+                MoveUnit(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+            }
+            else
+            {
+                Debug.Log("제자리");
             }
         }
+        else
+        {
+            MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit, attackableTile)));
+        }
 
-        return UnitInAttackRangeList.Count > 0;
+        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
     }
 
-    protected void SetAttackableTile()
+    public virtual void AISkillUse(BattleUnit attackUnit)
+    {
+        Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
+        Dictionary<Vector2, int> unitInattackRange = GetUnitInAttackRangeList(attackUnit, attackableTile);
+
+        if (unitInattackRange.Count > 0)
+        {
+            List<Vector2> MinHPUnit = MinHPSearch(unitInattackRange);
+
+            Attack(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+        }
+        else
+            BattleManager.Instance.EndUnitAction();
+    }
+
+    protected bool DirectAttackCheck()
+    {
+        foreach (BattleUnit unit in _Data.BattleUnitList)
+        {
+            if (unit.Team == Team.Player)
+                return false;
+        }
+
+        BattleManager.Instance.DirectAttack();
+        BattleManager.Instance.EndUnitAction();
+        return true;
+    }
+
+    protected Dictionary<Vector2, int> GetAttackableTile(BattleUnit attackUnit)
     {
         //모든 공격가능 타일을 리스트에 저장한다.
+        Dictionary<Vector2, int> attackableTile = new();
+
         foreach (BattleUnit unit in _Data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
             {
-                foreach (Vector2 range in _unit.GetAttackRange())
+                foreach (Vector2 range in attackUnit.GetAttackRange())
                 {
                     //공격가능 타일은 공격하는 유닛의 공격 범위의 점 대칭이다. 따라서 -.
                     Vector2 attackableRange = unit.Location - range;
                     if (!_field.IsInRange(attackableRange))
                         continue;
 
-                    AttackableTileList.Add(attackableRange);
-
-                    if (TileHPDict.ContainsKey(attackableRange))
+                    if (attackableTile.ContainsKey(attackableRange))
                     {
-                        if (TileHPDict[attackableRange] >= unit.HP.GetCurrentHP())
+                        if (attackableTile[attackableRange] >= unit.GetHP())
                         {
-                            TileHPDict.Remove(attackableRange);
-                            TileHPDict.Add(attackableRange, unit.HP.GetCurrentHP());
+                            attackableTile.Remove(attackableRange);
+                            attackableTile.Add(attackableRange, unit.GetHP());
                         }
                     }
                     else
                     {
-                        TileHPDict.Add(attackableRange, unit.HP.GetCurrentHP());
+                        attackableTile.Add(attackableRange, unit.GetHP());
                     }
                 }
             }
         }
+
+        return attackableTile;
     }
 
-    protected bool AttackableTileSearch()
+    protected Dictionary<Vector2, int> AttackableTileSearch(BattleUnit attackUnit, Dictionary<Vector2, int> attackableTile)
     {
-        //캐스터의 이동 범위 내에 있는 공격가능 타일을 리스트에 담는다.
-        List<Vector2> swapList = new();
+        //유닛의 이동 범위 내에 있는 공격가능 타일을 리스트에 담는다.
+        Dictionary<Vector2, int> swapList = new();
+        Dictionary<Vector2, int> inRangeList = new();
 
-        foreach (Vector2 moveRange in _unit.GetMoveRange())
+        foreach (Vector2 moveRange in attackUnit.GetMoveRange())
         {
-            Vector2 range = _unit.Location + moveRange;
+            Vector2 range = attackUnit.Location + moveRange;
 
-            if (AttackableTileList.Contains(_unit.Location))
-            {
-                AttackableTileInRangeList.Add(_unit.Location);
-            }
-
-            if (AttackableTileList.Contains(range))
+            if (attackableTile.ContainsKey(range))
             {
                 if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Enemy)
-                    swapList.Add(range);
+                    swapList.Add(range, attackableTile[range]);
                 else if (!_field.TileDict[range].UnitExist)
-                    AttackableTileInRangeList.Add(range);
+                    inRangeList.Add(range, attackableTile[range]);
             }
         }
 
-        if (AttackableTileInRangeList.Count == 0)//스왑해야만 공격 가능한지 확인
+        if (inRangeList.Count == 0)//스왑해야만 공격 가능한지 확인
         {
-            foreach (Vector2 vec in swapList)
-                AttackableTileInRangeList.Add(vec);
+            foreach (Vector2 vec in swapList.Keys)
+                inRangeList.Add(vec, attackableTile[vec]);
         }
 
-        return AttackableTileInRangeList.Count > 0;
+        return inRangeList;
     }
 
-    protected List<Vector2> MinHPSearch(List<Vector2> vecList)
+    protected List<Vector2> MinHPSearch(Dictionary<Vector2, int> HPList)
     {
-        //리스트에서 가장 체력이 낮은 적을 찾는다.
+        //리스트에서 가장 체력이 낮은 공격 가능 타일을 찾는다.
         List<Vector2> minHPList = new();
 
-        int minHP = TileHPDict[vecList[0]];
+        int minHP = 10000;
         int currentHP;
 
-        foreach (Vector2 unit in vecList)
+        foreach (Vector2 unit in HPList.Keys)
         {
-            currentHP = TileHPDict[unit];
+            currentHP = HPList[unit];
 
             if (minHP > currentHP)
             {
@@ -166,16 +158,105 @@ public class UnitAction : MonoBehaviour
         return minHPList;
     }
 
-    protected void MoveUnit(Vector2 moveVector)
+    protected Vector2 MoveDirection(BattleUnit attackUnit, Vector2 destination)
     {
-        _field.MoveUnit(_unit.Location, moveVector);
+        //가야하는 위치 destination을 받아 상하좌우 중 어디로 갈지를 정해 moveVec으로 리턴한다
+        Vector2 MyPosition = attackUnit.Location;
+        float minDistance = 100f;
+
+        List<Vector2> moveVectorList = new();
+
+        List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
+
+        foreach (Vector2 direction in UDLR)
+        {
+            Vector2 tempPosition = MyPosition + direction;
+            if (!_field.IsInRange(tempPosition) || _field.TileDict[tempPosition].UnitExist)
+                continue;
+
+            float distance = (tempPosition - destination).sqrMagnitude;
+
+            if (minDistance > distance)
+            {
+                minDistance = distance;
+                moveVectorList.Clear();
+                moveVectorList.Add(tempPosition);
+            }
+            else if (minDistance == distance)
+            {
+                moveVectorList.Add(tempPosition);
+            }
+        }
+
+        if (moveVectorList.Count == 0)
+            return MyPosition;
+        else
+            return moveVectorList[Random.Range(0, moveVectorList.Count)];
     }
 
-    protected void Attack(Vector2 vec)
+    protected Vector2 NearestEnemySearch(BattleUnit attackUnit, Dictionary<Vector2, int> attackableTile)
+    {
+        Vector2 MyPosition = attackUnit.Location;
+
+        float minDistance = 100f;
+
+        List<Vector2> nearestEnemy = new();
+
+        foreach (Vector2 tile in attackableTile.Keys)
+        {
+            float distance = (tile - MyPosition).sqrMagnitude;
+            if (minDistance > distance)
+            {
+                minDistance = distance;
+                nearestEnemy.Clear();
+                nearestEnemy.Add(tile);
+            }
+            else if (minDistance == distance)
+            {
+                nearestEnemy.Add(tile);
+            }
+        }
+
+        return nearestEnemy[Random.Range(0, nearestEnemy.Count)];
+    }
+
+    protected Dictionary<Vector2, int> GetUnitInAttackRangeList(BattleUnit attackUnit, Dictionary<Vector2, int> attackableTile)
+    {
+        //유닛의 공격 범위 내에 있는 유닛.
+        Dictionary<Vector2, int> unitInAttackRangeList = new();
+
+        foreach (Vector2 attackRange in attackUnit.GetAttackRange())
+        {
+            Vector2 range = attackUnit.Location + attackRange;
+
+            if (!_field.IsInRange(range))
+                continue;
+
+            if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Player)
+            {
+                if (unitInAttackRangeList.ContainsKey(range))
+                {
+                    if (unitInAttackRangeList[range] >= _field.GetUnit(range).GetHP())
+                    {
+                        unitInAttackRangeList.Remove(range);
+                        unitInAttackRangeList.Add(range, _field.GetUnit(range).GetHP());
+                    }
+                }
+                else
+                {
+                    unitInAttackRangeList.Add(range, _field.GetUnit(range).GetHP());
+                }
+            }
+        }
+
+        return unitInAttackRangeList;
+    }
+
+    protected void Attack(BattleUnit attackUnit, Vector2 vec)
     {
         List<BattleUnit> hitUnits = new();
 
-        foreach (Vector2 splash in _unit.GetSplashRange(vec, _unit.Location))
+        foreach (Vector2 splash in attackUnit.GetSplashRange(vec, attackUnit.Location))
         {
             if (!_field.IsInRange(splash + vec))
                 continue;
@@ -187,130 +268,10 @@ public class UnitAction : MonoBehaviour
             }
         }
 
-        ActionStart(hitUnits);
+        ActionStart(attackUnit, hitUnits);
     }
 
-    protected Vector2 NearestEnemySearch()
-    {
-        Vector2 MyPosition = _unit.Location;
-
-        float minDistance = 100f;
-
-        List<Vector2> nearestEnemy = new();
-
-        foreach (Vector2 vec in AttackableTileList)
-        {
-            float abs = Mathf.Abs(vec.x - MyPosition.x) + Mathf.Abs(vec.y - MyPosition.y);
-            if (minDistance > abs)
-            {
-                minDistance = abs;
-                nearestEnemy.Clear();
-                nearestEnemy.Add(vec);
-            }
-            else if (minDistance == abs)
-            {
-                nearestEnemy.Add(vec);
-            }
-        }
-
-        return nearestEnemy[Random.Range(0, nearestEnemy.Count)];
-    }
-
-    protected Vector2 MoveDirection(Vector2 destination)
-    {
-        //가야하는 위치 destination을 받아 상하좌우 중 어디로 갈지를 정해 moveVec으로 리턴한다
-        Vector2 MyPosition = _unit.Location;
-        float currntMin = 100f;
-
-        List<Vector2> moveVectorList = new();
-
-        foreach (Vector2 direction in UDLR)
-        {
-            Vector2 vec = new(MyPosition.x + direction.x, MyPosition.y + direction.y);
-            float sqr = (vec - destination).sqrMagnitude;
-
-            if (!_field.IsInRange(vec))
-                continue;
-
-            if (currntMin > sqr && !_field.TileDict[vec].UnitExist)
-            {
-                currntMin = sqr;
-                moveVectorList.Clear();
-                moveVectorList.Add(vec);
-            }
-            else if (currntMin == sqr)
-            {
-                moveVectorList.Add(vec);
-            }
-        }
-
-        if (moveVectorList.Count == 0)
-            return MyPosition;
-        else
-            return moveVectorList[Random.Range(0, moveVectorList.Count)];
-    }
-
-    protected bool DirectAttackCheck()
-    {
-        foreach (BattleUnit unit in _Data.BattleUnitList)
-        {
-            if (unit.Team == Team.Player)
-                return false;
-        }
-
-        BattleManager.Instance.DirectAttack();
-        BattleManager.Instance.EndUnitAction();
-        return true;
-    }
-
-    protected void ListClear()
-    {
-        UnitInAttackRangeList.Clear();
-        AttackableTileList.Clear();
-        AttackableTileInRangeList.Clear();
-        TileHPDict.Clear();
-    }
-
-    public virtual void AIMove()
-    {
-        if (DirectAttackCheck())
-            return;
-
-        ListClear();
-        SetAttackableTile();
-
-        if (AttackableTileSearch())
-        {
-            List<Vector2> MinHPUnit = MinHPSearch(AttackableTileInRangeList);
-
-            if (!MinHPUnit.Contains(_unit.Location))
-            {
-                MoveUnit(MoveDirection(MinHPUnit[Random.Range(0, MinHPUnit.Count)]));
-            }
-            else
-            {
-                Debug.Log("제자리");
-            }
-        }
-        else
-        {
-            MoveUnit(MoveDirection(NearestEnemySearch()));
-        }
-
-        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
-    }
-
-    public virtual void AISkillUse()
-    {
-        ListClear();
-
-        if (SetUnitInAttackRangeList())
-        {
-            List<Vector2> MinHPUnit = MinHPSearch(UnitInAttackRangeList);
-
-            Attack(MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
-        }
-        else
-            BattleManager.Instance.EndUnitAction();
-    }
+    public virtual void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits) => BattleManager.Instance.AttackStart(attackUnit, hits);
+    public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
+    protected void MoveUnit(BattleUnit moveUnit, Vector2 moveVector) => _field.MoveUnit(moveUnit.Location, moveVector);
 }

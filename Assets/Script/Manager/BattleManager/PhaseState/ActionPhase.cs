@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class ActionPhase : Phase
@@ -12,10 +13,17 @@ public class ActionPhase : Phase
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
 
-        if (BattleManager.Data.GetNowUnit().Team == Team.Enemy)
-            BattleManager.Instance.PlayAfterCoroutine(_nowUnit.Action.AISkillUse, 1.5f);
+        if (_nowUnit.Team == Team.Enemy)
+            BattleManager.Instance.StartCoroutine(NowUnitAction());
     }
-    
+
+    private IEnumerator NowUnitAction()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        _nowUnit.Action.AISkillUse(_nowUnit);
+    }
+
     public override void OnStateUpdate()
     {
         

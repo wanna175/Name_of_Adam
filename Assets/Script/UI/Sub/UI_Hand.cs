@@ -45,10 +45,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         }
     }
 
-    public DeckUnit GetUnit()
-    {
-        return _handUnit;
-    }
+    public DeckUnit GetUnit() => _handUnit;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
