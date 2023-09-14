@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System;
 
 public class Field : MonoBehaviour
@@ -302,6 +303,9 @@ public class Field : MonoBehaviour
 
     public void FieldShowInfo(Tile tile)
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (tile.UnitExist)
         {
             BattleUnit unit = tile.Unit;

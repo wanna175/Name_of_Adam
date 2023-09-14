@@ -6,12 +6,12 @@ public class UI_FloatingDamage : UI_Base
 {
     [SerializeField] private TextMeshProUGUI _damageNumber;
 
-    readonly private float _sizeUpTime = 0.3f;
-    readonly private float _displayTime = 0.5f;
-    readonly private float _fadeOutTime = 0.4f;
+    readonly private float _sizeUpTime = 0.4f;
+    readonly private float _displayTime = 0.6f;
+    readonly private float _fadeOutTime = 0.5f;
     //1.2
-    readonly private int _startSize = 80;
-    readonly private int _endSize = 130;
+    readonly private int _startSize = 120;
+    readonly private int _endSize = 195;
 
     private float _accumTime;
 

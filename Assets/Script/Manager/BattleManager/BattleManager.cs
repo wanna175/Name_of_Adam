@@ -153,7 +153,10 @@ public class BattleManager : MonoBehaviour
     public void PreparePhaseClick(Vector2 coord)
     {
         if (!_field.ColoredTile.Contains(coord))
+        {
+            _battleUI.CancelAllSelect();
             return;
+        }
 
         if (_field.FieldType == FieldColorType.UnitSpawn)
         {
@@ -180,7 +183,7 @@ public class BattleManager : MonoBehaviour
         if (!_field.ColoredTile.Contains(coord))
             return;
 
-        _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost);
+        _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
 
         unit.FirstTurnDiscountUndo();
 
@@ -191,7 +194,8 @@ public class BattleManager : MonoBehaviour
         GameManager.VisualEffect.StartVisualEffect(
             Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnFrontEffect"),
             _field.GetTilePosition(coord) + new Vector3(0f, 3.5f, 0f));
-        _battleUI.RemoveHandUnit(unit);
+
+        _battleUI.RemoveHandUnit(unit); //유닛 리필
         GameManager.UI.ClosePopup();
         _field.ClearAllColor();
     }
