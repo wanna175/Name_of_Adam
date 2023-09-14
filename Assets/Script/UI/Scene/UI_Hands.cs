@@ -9,7 +9,6 @@ public class UI_Hands : UI_Scene
 
     private List<UI_Hand> _handList = new();
     public UI_Hand _selectedHand = null;
-    private UI_PlayerSkillCard _selectedSkillCard = null;
 
     public void AddUnit(DeckUnit unit)
     {

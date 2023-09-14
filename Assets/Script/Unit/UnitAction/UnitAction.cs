@@ -34,7 +34,7 @@ public class UnitAction : MonoBehaviour
         }
         else
         {
-            MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit, attackableTile)));
+            MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit)));
         }
 
         BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
@@ -194,7 +194,7 @@ public class UnitAction : MonoBehaviour
             return moveVectorList[Random.Range(0, moveVectorList.Count)];
     }
 
-    protected Vector2 NearestEnemySearch(BattleUnit attackUnit, Dictionary<Vector2, int> attackableTile)
+    protected Vector2 NearestEnemySearch(BattleUnit attackUnit)
     {
         Vector2 MyPosition = attackUnit.Location;
 
@@ -202,7 +202,15 @@ public class UnitAction : MonoBehaviour
 
         List<Vector2> nearestEnemy = new();
 
-        foreach (Vector2 tile in attackableTile.Keys)
+        foreach (BattleUnit unit in _Data.BattleUnitList)
+        {
+            if (unit.Team == Team.Player)
+            {
+                nearestEnemy.Add(unit.Location);
+            }
+        }
+
+        foreach (Vector2 tile in nearestEnemy)
         {
             float distance = (tile - MyPosition).sqrMagnitude;
             if (minDistance > distance)
