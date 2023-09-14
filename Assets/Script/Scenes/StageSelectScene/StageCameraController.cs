@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class StageCameraController : MonoBehaviour
 {
@@ -9,31 +10,16 @@ public class StageCameraController : MonoBehaviour
 
     private void Update()
     {
-        MouseInputs();
-    }
-
-    void MouseInputs()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            lastMousePosition = Input.mousePosition;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            Vector3 delta = Input.mousePosition - lastMousePosition;
-
-            MoveCamera(delta.y);
-
-            lastMousePosition = Input.mousePosition;
-        }
+        float wheel = Input.GetAxis("Mouse ScrollWheel");
+        MoveCamera(wheel);
     }
 
     void MoveCamera(float num)
     {
-        if (num == 0)
+        if (num == 0 || EventSystem.current.IsPointerOverGameObject())
             return;
 
-        transform.position += new Vector3(0, num * -0.01f , 0);
+        transform.position += new Vector3(0, num * 5 , 0);
 
         if (GameManager.Data.StageAct == 0)
         {

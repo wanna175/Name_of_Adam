@@ -72,6 +72,7 @@ public class UI_PlayerSkill : UI_Scene
         if (_selectedCard != null)
             _selectedCard.ChangeSelectState(false);
 
+
         _selectedCard = card;
         _selectedCard.ChangeSelectState(true);
     }
@@ -81,6 +82,22 @@ public class UI_PlayerSkill : UI_Scene
         for (int i = 0; i < 3; i++)
         {
             if(Used == true)
+            {
+                curCardList[i].GetComponent<UI_PlayerSkillCard>().ChangeInable(true);
+            }
+            else
+            {
+                curCardList[i].GetComponent<UI_PlayerSkillCard>().ChangeInable(false);
+            }
+
+        }
+    }
+
+    public void InableCheck(int manaValue)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (manaValue < curCardList[i].GetComponent<UI_PlayerSkillCard>()._skill.GetManaCost())
             {
                 curCardList[i].GetComponent<UI_PlayerSkillCard>().ChangeInable(true);
             }

@@ -425,6 +425,7 @@ MonoBehaviour:
   _skillCard: {fileID: 4244837440217407375}
   _ManaCost: {fileID: 4879159549138539748}
   _essenceCost: {fileID: 3416306688578346951}
+  _skill: {fileID: 0}
   IsSelected: 0
 --- !u!61 &4438675646838010937
 BoxCollider2D:

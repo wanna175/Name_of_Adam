@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _inactive;
     [SerializeField] private Image _unitImage;
     [SerializeField] private TextMeshProUGUI _cost;
 
@@ -21,6 +22,8 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     private void Start()
     {
         _highlight.SetActive(false);
+        BattleManager.Mana.ManaInableCheck();
+
     }
 
     public void SetUnit(UI_Hands hands, DeckUnit unit)
@@ -94,4 +97,11 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         }
         */
     }
+    
+    public void ChangeInable(bool b)
+    {
+        _inactive.SetActive(b);
+        Debug.Log(b);
+    }
+    
 }
