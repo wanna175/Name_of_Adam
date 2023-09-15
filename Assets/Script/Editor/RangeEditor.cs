@@ -17,6 +17,7 @@ public class RangeEditor : Editor
     bool[] atkRange;
     bool[] moveRange;
     bool[] splashRange;
+    bool[] unitSize;
 
     private void OnEnable()
     {
@@ -115,6 +116,36 @@ public class RangeEditor : Editor
             s.boolValue = splashRange[i];
 
             if (i % Acolumn == Acolumn - 1)
+                GUILayout.EndHorizontal();
+        }
+
+        #endregion
+
+        #region UnitSize
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("À¯´Ö Å©±â");
+
+        unitSize = _range.UnitSize;
+        for (int i = 0; i < unitSize.Length; i++)
+        {
+            if (i % Mcolumn == 0)
+                GUILayout.BeginHorizontal();
+
+            GUI.color = Color.white;
+            if (unitSize[i])
+                GUI.color = Color.red;
+
+            if (i == Mrow * Mcolumn >> 1)
+                GUI.color = Color.green;
+
+
+            SerializedProperty b = serializedObject.FindProperty("_unitSize").GetArrayElementAtIndex(i);
+            unitSize[i] = EditorGUILayout.Toggle(unitSize[i]);
+            b.boolValue = unitSize[i];
+
+            if (i % Mcolumn == Mcolumn - 1)
                 GUILayout.EndHorizontal();
         }
 

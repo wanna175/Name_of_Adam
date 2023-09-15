@@ -49,6 +49,42 @@ public class DeckUnit
         _stigma.Add(stigma);
     }
 
+    public int GetUnitSize()
+    {
+        int size = 0;
+
+        for (int i = 0; i < Data.UnitSize.Length; i++)
+        {
+            if (Data.UnitSize[i])
+                size++;
+        }
+
+        return size;
+    }
+
+    public List<Vector2> GetUnitSizeRange()
+    {
+        List<Vector2> RangeList = new();
+
+        int Mrow = 5;
+        int Mcolumn = 5;
+
+        for (int i = 0; i < Data.UnitSize.Length; i++)
+        {
+            if (Data.UnitSize[i])
+            {
+                int x = (i % Mcolumn) - (Mcolumn >> 1);
+                int y = -((i / Mcolumn) - (Mrow >> 1));
+
+                Vector2 vec = new(x, y);
+
+                RangeList.Add(vec);
+            }
+        }
+
+        return RangeList;
+    }
+
     public void ClearStigma() => _stigma.Clear();
 
     private int _firstTurnDiscount = 0;

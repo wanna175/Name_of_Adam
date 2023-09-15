@@ -15,16 +15,16 @@ public struct SpawnData
 // 데이터 -> 필드 생성
 public class UnitSpawner : MonoBehaviour
 {
-    private Transform parent;
-    private Queue<GameObject> UnitQueue;
+    private Transform _parent;
+    private Queue<GameObject> _unitQueue;
 
     // BattleScene에서 시작했을 때 생성하는 유닛들(디버그용)
     [SerializeField] List<SpawnData> TestSpawnUnit;
 
     private void Awake()
     {
-        parent = SetParent();
-        UnitQueue = new Queue<GameObject>();
+        _parent = SetParent();
+        _unitQueue = new Queue<GameObject>();
     }
     private void Start()
     {
@@ -62,6 +62,20 @@ public class UnitSpawner : MonoBehaviour
         return unit;
     }
 
+    public ConnectedUnit ConnectedUnitSpawn(BattleUnit origianlUnit, Vector2 location)
+    {
+        GameObject go = GameManager.Resource.Instantiate("BattleUnits/ConnectedUnit", _parent);
+
+        ConnectedUnit unit = go.GetComponent<ConnectedUnit>();
+        unit.DeckUnit = origianlUnit.DeckUnit;
+
+        unit.SetOriginalUnit(origianlUnit);
+        unit.Init();
+        unit.UnitSetting(location, origianlUnit.Team, true); ;
+
+        return unit;
+    }
+
     public void SpawnInitialUnit()
     {
         // TestScene일 경우 예외처리
@@ -87,20 +101,20 @@ public class UnitSpawner : MonoBehaviour
 
     private void CreateUnit()
     {
-        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", parent);
+        GameObject go = GameManager.Resource.Instantiate("BattleUnits/BattleUnit", _parent);
         go.SetActive(false);
 
-        UnitQueue.Enqueue(go);
+        _unitQueue.Enqueue(go);
     }
 
     private GameObject GetUnit()
     {
         GameObject go;
         
-        if(!UnitQueue.TryDequeue(out go))
+        if(!_unitQueue.TryDequeue(out go))
         {
             CreateUnit();
-            go = UnitQueue.Dequeue();
+            go = _unitQueue.Dequeue();
         }
 
         go.SetActive(true);
@@ -109,7 +123,7 @@ public class UnitSpawner : MonoBehaviour
 
     public void RestoreUnit(GameObject go)
     {
-        UnitQueue.Enqueue(go);
+        _unitQueue.Enqueue(go);
         go.SetActive(false);
     }
 

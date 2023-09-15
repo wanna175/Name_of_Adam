@@ -42,6 +42,9 @@ public class BattleUnit : MonoBehaviour
 
     private IEnumerator moveCoro;
 
+    public bool IsConnectedUnit;
+    public List<ConnectedUnit> ConnectedUnits;
+
     public void Init()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -77,6 +80,19 @@ public class BattleUnit : MonoBehaviour
         SetTeam(team);
         SetFlipX(team == Team.Enemy);
         BattleManager.Field.EnterTile(this, coord);
+
+        IsConnectedUnit = isConnectedUnit;
+
+        if (!isConnectedUnit && DeckUnit.GetUnitSize() > 1)
+        {
+            ConnectedUnits = new();
+
+            foreach (Vector2 range in DeckUnit.GetUnitSizeRange())
+            {
+                if (range + _location != _location)
+                    ConnectedUnits.Add(BattleManager.Spawner.ConnectedUnitSpawn(this, range + _location));
+            }
+        }
 
         //소환 시 체크
         ActiveTimingCheck(ActiveTiming.STIGMA);
@@ -182,6 +198,11 @@ public class BattleUnit : MonoBehaviour
         }
 
         BattleManager.Instance.UnitDeadEvent(this);
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            BattleManager.Instance.UnitDeadEvent(unit);
+            BattleManager.Spawner.RestoreUnit(unit.gameObject);
+        }
         GameManager.VisualEffect.StartUnitDeadEffect(transform.position, GetFlipX());
         StartCoroutine(UnitDeadEffect());
         GameManager.Sound.Play("Dead/DeadSFX");

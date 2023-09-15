@@ -62,5 +62,6 @@ public class UnitDataSO : ScriptableObject
     public bool[] MoveRange => _moveRange;
     [SerializeField] [HideInInspector] private bool[] _splashRange = new bool[Arow * Acolumn];
     public bool[] SplashRange => _splashRange;
-
-}
+    [SerializeField] [HideInInspector] private bool[] _unitSize = new bool[Mrow * Mcolumn];
+    public bool[] UnitSize => _unitSize;
+}   
