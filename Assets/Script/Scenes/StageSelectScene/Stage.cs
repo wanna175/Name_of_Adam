@@ -25,7 +25,7 @@ public class StageData
 
 public class Stage : MonoBehaviour
 {
-    SpriteRenderer renderer;
+    private SpriteRenderer _renderer;
 
     [SerializeField] StageNodeBackLight BackLight;
     [Space(10f)]
@@ -38,7 +38,7 @@ public class Stage : MonoBehaviour
 
     private void Awake()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<SpriteRenderer>();
         StageManager.Instance.InputStageList(this);
     }
     private void Start()
@@ -67,14 +67,14 @@ public class Stage : MonoBehaviour
     public void SetSprite()
     {
         if (Datas.Name == StageName.none)
-            renderer.color = new Color(1, 1, 1, 0);
+            _renderer.color = new Color(1, 1, 1, 0);
 
         string name = Datas.Name.ToString();
 
         if (Datas.Name == StageName.EliteBattle || Datas.Name == StageName.BossBattle)
             name += "_" + Datas.StageID;
 
-        renderer.sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/Node/{name}");
+        _renderer.sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/Node/{name}");
         BackLight.SetSprite(name);
     }
 
@@ -88,7 +88,7 @@ public class Stage : MonoBehaviour
             time += Time.deltaTime;
             float t = time / FadeTime;
 
-            renderer.color = new Color(1 - t, 1 - t, 1 - t);
+            _renderer.color = new Color(1 - t, 1 - t, 1 - t);
 
             yield return null;
         }

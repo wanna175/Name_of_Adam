@@ -136,7 +136,8 @@ public class BattleDataManager : MonoBehaviour
 
         foreach (BattleUnit unit in _battleUnitList)
         {
-            _battleUnitOrderList.Add(unit);
+            if (!unit.IsConnectedUnit)
+                _battleUnitOrderList.Add(unit);
         }
 
         BattleOrderReplace();

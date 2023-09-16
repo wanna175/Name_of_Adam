@@ -18,19 +18,29 @@ public class BattleCutSceneController : MonoBehaviour
 
     [NonSerialized] public bool IsAttack = false;
 
+    public void InitBattleCutScene(BattleCutSceneData CSData)
+    {
+        if (CSData.HitUnits.Count == 0)
+            return;
+
+        BattleManager.Field.ClearAllColor();
+        _cameraHandler.SetCutSceneCamera();
+        UnitFlip(CSData);
+        SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
+    }
+
     public IEnumerator AttackCutScene(BattleCutSceneData CSData)
     {
-        _cameraHandler.SetCutSceneCamera();
         yield return StartCoroutine(ZoomIn(CSData));
 
-        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", true);
+        CSData.AttackUnit.AnimatorSetBool("isAttack", true);
 
         yield return new WaitUntil(() => IsAttack);
         IsAttack = false;
 
-        BattleManager.Instance.UnitAttackAction(CSData.HitUnits);
+        UnitAttackAction(CSData.AttackUnit, CSData.HitUnits);
 
-        yield return StartCoroutine(AfterEffect(CSData));
+        yield return StartCoroutine(AttackedEffect(CSData));
         yield return StartCoroutine(ZoomOut(CSData));
 
         _cameraHandler.SetMainCamera();
@@ -52,21 +62,28 @@ public class BattleCutSceneController : MonoBehaviour
         return true;
     }
 
-    public void InitBattleCutScene(BattleCutSceneData CSData)
+    public void UnitAttackAction(BattleUnit attackUnit, List<BattleUnit> hitUnits)
     {
-        if (CSData.HitUnits.Count == 0)
-            return;
+        foreach (BattleUnit hit in hitUnits)
+        {
+            if (hit == null)
+                continue;
+            
+            //이 함수의 위치 조정 필요
+            attackUnit.Action.Action(attackUnit, hit);
 
-        BattleManager.Field.ClearAllColor();
-        CameraHandler.SetCutSceneCamera();
-        UnitFlip(CSData);
-        SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
+            if (attackUnit.SkillEffectAnim != null)
+                GameManager.VisualEffect.StartVisualEffect(attackUnit.SkillEffectAnim, hit.transform.position);
+        }
+
+        string unitname = attackUnit.DeckUnit.Data.Name;
+        GameManager.Sound.Play("Character/" + unitname + "/" + unitname + "_Attack");
     }
 
     public void ExitBattleCutScene(BattleCutSceneData CSData)
     {
         SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 2);
-        CameraHandler.SetMainCamera();
+        _cameraHandler.SetMainCamera();
         BattleManager.Field.ClearAllColor();
         _blur.SetActive(false);
     }
@@ -80,33 +97,33 @@ public class BattleCutSceneController : MonoBehaviour
             unit.SetFlipX(flip);
     }
 
-    public IEnumerator AfterEffect(BattleCutSceneData CSData)
+    public IEnumerator AttackedEffect(BattleCutSceneData CSData)
     {
         foreach (BattleUnit unit in CSData.HitUnits)
         {
             if (unit != null)
-                unit.GetComponent<Animator>().SetBool("isHit", true);
+                unit.AnimatorSetBool("isHit", true);
         }
 
         yield return StartCoroutine(_cameraHandler.AttackEffect(_shakeInfo));
 
-        CSData.AttackUnit.GetComponent<Animator>().SetBool("isAttack", false);
+        CSData.AttackUnit.AnimatorSetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
         {
             if (unit != null)
-                unit.GetComponent<Animator>().SetBool("isHit", false);
+                unit.AnimatorSetBool("isHit", false);
         }
     }
 
     public IEnumerator SkillHitEffect(BattleUnit unit)
     {
         if (unit != null)
-            unit.GetComponent<Animator>().SetBool("isHit", true);
+            unit.AnimatorSetBool("isHit", true);
 
         yield return new WaitForSeconds(0.3f);
 
         if (unit != null)
-            unit.GetComponent<Animator>().SetBool("isHit", false);
+            unit.AnimatorSetBool("isHit", false);
     }
 
     // 컷씬 지점으로 이동
