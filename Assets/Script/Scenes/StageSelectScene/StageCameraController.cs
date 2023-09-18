@@ -6,7 +6,10 @@ using UnityEngine.EventSystems;
 public class StageCameraController : MonoBehaviour
 {
     [SerializeField] Transform MapTransform;
-    Vector3 lastMousePosition;
+    private void Start()
+    {
+        StartCoroutine(MapScanMove());
+    }
 
     private void Update()
     {
@@ -40,5 +43,32 @@ public class StageCameraController : MonoBehaviour
     public void SetLocate(float y)
     {
         transform.localPosition = new Vector3(0, y, -10);
+    }
+
+    IEnumerator MapScanMove()
+    {
+        if (GameManager.Data.StageAct == 0 || GameManager.Data.Map.CurrentTileID != 0)
+        {
+            yield break;
+        }
+
+        float elapsedTime = 0;
+        float waitTime = 4f;
+        Vector3 TopPos = new Vector3(0, 25, -10);
+        Vector3 BottomPos = new Vector3(0, -5, -10);
+
+        while (elapsedTime < waitTime)
+        {
+            float t = elapsedTime / waitTime;
+            t = Mathf.Sin((t * Mathf.PI) / 2);
+
+            transform.position = Vector3.Lerp(TopPos, BottomPos, t);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.position = BottomPos;
+        yield return null;
     }
 }
