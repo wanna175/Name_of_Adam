@@ -56,6 +56,8 @@ public class BattleUnit : MonoBehaviour
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
 
+        ConnectedUnits = new();
+
         //임시 예외 처리
         if (Data.Name == "야나")
         {
@@ -78,21 +80,20 @@ public class BattleUnit : MonoBehaviour
     public void UnitSetting(Vector2 coord, Team team, bool isConnectedUnit = false)
     {
         SetTeam(team);
-        SetFlipX(team == Team.Enemy);
         BattleManager.Field.EnterTile(this, coord);
+        SetLocation(coord);
 
         IsConnectedUnit = isConnectedUnit;
-
         if (!isConnectedUnit && DeckUnit.GetUnitSize() > 1)
         {
-            ConnectedUnits = new();
-
             foreach (Vector2 range in DeckUnit.GetUnitSizeRange())
             {
                 if (range + _location != _location)
                     ConnectedUnits.Add(BattleManager.Spawner.ConnectedUnitSpawn(this, range + _location));
             }
         }
+
+        SetFlipX(team == Team.Enemy);
 
         //소환 시 체크
         ActiveTimingCheck(ActiveTiming.STIGMA);
@@ -153,8 +154,43 @@ public class BattleUnit : MonoBehaviour
 
     public void SetFlipX(bool flip)
     {
+        //true -> look left, false -> look right
+        if (_renderer.flipX == flip)
+            return;
+
         _renderer.flipX = flip;
         _floatingDamage.DirectionChange(flip);
+
+        if (ConnectedUnits.Count > 0)
+        {
+            int maxX = 0;
+            int minX = 100;
+
+            foreach (ConnectedUnit unit in ConnectedUnits)
+            {
+                if (unit.Location.x < minX)
+                    minX = (int)unit.Location.x;
+                else if (unit.Location.x > maxX)
+                    maxX = (int)unit.Location.x;
+            }
+
+            int size = maxX - minX + 1;
+
+            for (int i = 0; i < size; i++)
+            {
+                foreach (ConnectedUnit unit in ConnectedUnits)
+                {
+                    if (unit.Location.x == minX + i)
+                    {
+                        BattleManager.Field.ExitTile(unit.Location);
+                        unit.SetLocation(new(maxX - i, unit.Location.y));
+                    }
+                }
+            }
+
+            foreach (ConnectedUnit unit in ConnectedUnits)
+                BattleManager.Field.EnterTile(unit, unit.Location);
+        }
     }
 
     public bool GetFlipX() => _renderer.flipX;
@@ -165,28 +201,14 @@ public class BattleUnit : MonoBehaviour
         _hpBar.SetFallBar(DeckUnit);
     }
 
-    public void SetLocate(Vector2 coord, bool move)
+    public void SetLocation(Vector2 coord)
     {
-        bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ( (_location - coord).x != 0 );
-        //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
-        //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
-
         _location = coord;
 
-        if (move)
-        {
-            if (moveCoro != null)
-                StopCoroutine(moveCoro);
+        float scale = GetModifiedScale();
 
-            moveCoro = MoveFieldPosition(coord, backMove);
-            StartCoroutine(moveCoro);
-
-            ActiveTimingCheck(ActiveTiming.MOVE);
-        }
-        else
-        {
-            SetPosition(BattleManager.Field.GetTilePosition(coord));
-        }
+        transform.position = BattleManager.Field.GetTilePosition(coord);
+        transform.localScale = new(scale, scale, 1);
     }
 
     public void UnitDiedEvent()
@@ -223,7 +245,7 @@ public class BattleUnit : MonoBehaviour
 
         BattleManager.Spawner.RestoreUnit(gameObject);
 
-        if (BattleManager.Phase.Current == BattleManager.Phase.Prepare)
+        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
         {
             BattleManager.Instance.BattleOverCheck();
         }
@@ -260,7 +282,7 @@ public class BattleUnit : MonoBehaviour
 
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
-        if (BattleManager.Phase.Current == BattleManager.Phase.Prepare)
+        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
         {
             BattleManager.Instance.BattleOverCheck();
         }
@@ -318,14 +340,6 @@ public class BattleUnit : MonoBehaviour
                 SkillEffectAnim = Data.SkillEffectAnim;
         }
     }
-
-    public void SetPosition(Vector3 dest)
-    {
-        float scale = GetModifiedScale();
-
-        transform.position = dest;
-        transform.localScale = new Vector3(scale, scale, 1);
-    }
     
     public IEnumerator CutSceneMove(Vector3 moveVec, float moveTime)
     {
@@ -345,6 +359,21 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
+    public void UnitMove(Vector2 coord)
+    {
+        bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0);
+        //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
+        //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
+
+        if (moveCoro != null)
+            StopCoroutine(moveCoro);
+
+        moveCoro = MoveFieldPosition(coord, backMove);
+        StartCoroutine(moveCoro);
+
+        ActiveTimingCheck(ActiveTiming.MOVE);
+    }
+
     public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove)
     {
         Vector3 dest = BattleManager.Field.GetTilePosition(coord);
@@ -354,7 +383,9 @@ public class BattleUnit : MonoBehaviour
         Vector3 overDistance = (dest - transform.position) * 0.03f;
         Vector3 pVel = Vector3.zero;
         Vector3 sVel = Vector3.zero;
-
+        
+        _location = coord;
+        //GetModifiedScale check location.y
         float addScale = GetModifiedScale();
 
         if (backMove)
@@ -363,7 +394,7 @@ public class BattleUnit : MonoBehaviour
         while (Vector3.Distance(dest + overDistance, transform.position) >= 0.03f)
         {
             transform.position = Vector3.SmoothDamp(transform.position, dest + overDistance, ref pVel, moveTime);
-            transform.localScale = Vector3.SmoothDamp(transform.localScale, new Vector3(addScale, addScale, 1), ref sVel, moveTime);
+            transform.localScale = Vector3.SmoothDamp(transform.localScale, new(addScale, addScale, 1), ref sVel, moveTime);
             yield return null;
         }
 
@@ -376,9 +407,7 @@ public class BattleUnit : MonoBehaviour
             yield return null;
         }
 
-        transform.position = dest;
-        transform.localScale = new Vector3(addScale, addScale, 1);
-
+        SetLocation(coord);
     }
 
     //엑티브 타이밍에 대미지 바꿀 때용
@@ -463,6 +492,8 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
     }
+
+    public virtual BattleUnit GetOriginalUnit() => this;
 
     public virtual void SetBuff(Buff buff, BattleUnit caster)
     {

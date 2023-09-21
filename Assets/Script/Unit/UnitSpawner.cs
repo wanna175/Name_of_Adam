@@ -57,7 +57,24 @@ public class UnitSpawner : MonoBehaviour
         unit.DeckUnit = deckUnit;
 
         unit.Init();
-        unit.UnitSetting(location, Team.Player);
+
+        List<Vector2> unitSize = deckUnit.GetUnitSizeRange();
+
+        if (BattleManager.Field.UnitSizeCheck(location, unitSize))
+        {
+            unit.UnitSetting(location, Team.Player);
+        }
+        else
+        {
+            foreach (Vector2 tile in unitSize)
+            {
+                if (BattleManager.Field.UnitSizeCheck(location - tile, unitSize))
+                {
+                    unit.UnitSetting(location - tile, Team.Player);
+                    break;
+                }
+            }
+        }
 
         return unit;
     }

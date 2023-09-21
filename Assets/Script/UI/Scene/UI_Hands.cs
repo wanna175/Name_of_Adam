@@ -85,13 +85,10 @@ public class UI_Hands : UI_Scene
         
         _selectedHand = hand;
         _selectedHand.ChangeSelectState(true);
-        BattleManager.Instance.UnitSpawnReady(FieldColorType.UnitSpawn);
+        BattleManager.Instance.UnitSpawnReady(FieldColorType.UnitSpawn, hand.GetUnit().GetUnitSizeRange());
     }
 
-    public DeckUnit GetSelectedUnit()
-    {
-        return _selectedHand.GetUnit();
-    }
+    public DeckUnit GetSelectedUnit() =>_selectedHand.GetUnit();
     
     public void InableCheck(int manaValue)
     {
