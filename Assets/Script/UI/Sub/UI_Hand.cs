@@ -100,7 +100,6 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void ChangeInable(bool b)
     {
         _inactive.SetActive(b);
-        Debug.Log(b);
     }
     
 }
