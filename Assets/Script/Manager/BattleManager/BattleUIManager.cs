@@ -112,11 +112,11 @@ public class BattleUIManager : MonoBehaviour
         {
             if (GameManager.Instance.Tutorial_Trigger_First == true)
             {
-                if (phaseController.Current == phaseController.Prepare)
+                if (phaseController.CurrentPhaseCheck(phaseController.Prepare))
                 {
                     UItutorial.TutorialActive(0);
                 }
-                else if (phaseController.Current == phaseController.Engage)
+                else if (phaseController.CurrentPhaseCheck(phaseController.Engage))
                 {
                     UItutorial.TutorialActive(4);
                     GameManager.Instance.Tutorial_Trigger_First = false;

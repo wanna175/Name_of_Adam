@@ -17,9 +17,9 @@ public class Field : MonoBehaviour
     public List<Vector2> ColoredTile => _coloredTile;
 
     // 필드의 생성을 위한 필드의 위치
-    private Vector3 FieldPosition => new Vector3(0, -1.2f, 2.5f);
-    private Vector3 FieldRotation => new Vector3(24f, 0, 0);
-    private Vector3 FieldScale => new Vector3(16.2f, 6.3f, 1f);
+    private Vector3 FieldPosition => new(0, -1.2f, 2.5f);
+    private Vector3 FieldRotation => new(24f, 0, 0);
+    private Vector3 FieldScale => new(16.2f, 6.3f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
@@ -84,10 +84,13 @@ public class Field : MonoBehaviour
 
     public BattleUnit GetUnit(Vector2 coord)
     {
-        if (IsInRange(coord))
-            return TileDict[coord].Unit;
+        if (!IsInRange(coord) || !TileDict[coord].UnitExist)
+            return null;
 
-        return null;
+        if (TileDict[coord].Unit.IsConnectedUnit)
+            return TileDict[coord].Unit.GetOriginalUnit();
+        else
+            return TileDict[coord].Unit;
     }
 
     public List<BattleUnit> GetArroundUnits(Vector2 unitCoord)
@@ -127,39 +130,7 @@ public class Field : MonoBehaviour
     }
 
     // 타일이 최대 범위를 벗어났는지 확인
-    public bool IsInRange(Vector2 coord)
-    {
-        if (TileDict.ContainsKey(coord))
-            return true;
-        return false;
-    }
-
-    public void MoveUnit(Vector2 current, Vector2 dest)
-    {
-        if (IsInRange(dest) == false || current == dest)
-            return;
-
-        BattleUnit currentUnit = TileDict[current].Unit;
-        BattleUnit destUnit = TileDict[dest].Unit;
-        
-        if (TileDict[dest].UnitExist)
-        {
-            if (currentUnit.Team == destUnit.Team && GetArroundUnits(current).Contains(destUnit))
-            {
-                ExitTile(current);
-                ExitTile(dest);
-
-                EnterTile(currentUnit, dest, true);
-                EnterTile(destUnit, current, true);
-                return;
-            }
-        }
-        else
-        {
-            ExitTile(current);
-            EnterTile(currentUnit, dest, true);
-        }
-    }
+    public bool IsInRange(Vector2 coord) => TileDict.ContainsKey(coord);
 
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTilePosition(Vector2 coord)
@@ -192,18 +163,41 @@ public class Field : MonoBehaviour
         }
     }
 
-    public void SetSpawnTileColor(FieldColorType fieldType)
+    public void SetSpawnTileColor(FieldColorType fieldType, List<Vector2> unitSize)
     {
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        foreach (Vector2 spawnTile in TileDict.Keys)
         {
-            if (!items.Value.UnitExist && IsPlayerRange(items.Key))
+            if (!IsPlayerRange(spawnTile) || TileDict[spawnTile].UnitExist || _coloredTile.Contains(spawnTile))
+                continue;
+
+            List<Vector2> tempList = new();
+
+            if (UnitSizeCheck(spawnTile, unitSize))
             {
-                items.Value.SetColor(ColorList(fieldType));
-                _coloredTile.Add(items.Key);
-            }    
+                foreach (Vector2 size in unitSize)
+                {
+                    TileDict[spawnTile + size].SetColor(ColorList(fieldType));
+                    _coloredTile.Add(spawnTile + size);
+                }
+            }
         }
 
         _fieldType = fieldType;
+    }
+
+    public bool UnitSizeCheck(Vector2 spawnLocation, List<Vector2> unitSize)
+    {
+        foreach (Vector2 size in unitSize)
+        {
+            Vector2 tempVec = spawnLocation + size;
+
+            if (!IsPlayerRange(tempVec) || TileDict[tempVec].UnitExist)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void SetUnitTileColor(FieldColorType fieldType)
@@ -268,26 +262,12 @@ public class Field : MonoBehaviour
         _coloredTile.Clear();
     }
 
-    public void EnterTile(BattleUnit unit, Vector2 coord, bool move = false)
-    {
-        TileDict[coord].EnterTile(unit);
+    public void EnterTile(BattleUnit unit, Vector2 coord) => TileDict[coord].EnterTile(unit);
 
-        unit.SetLocate(coord, move);
-    }
-
-    public void ExitTile(Vector2 coord)
-    {
-        TileDict[coord].ExitTile();
-    }
+    public void ExitTile(Vector2 coord) => TileDict[coord].ExitTile();
 
     // 배치 가능 범위 확인
-    public bool IsPlayerRange(Vector2 coord)
-    {
-        if ((int)coord.x < MaxFieldX / 2)
-            return true;
-
-        return false;
-    }
+    public bool IsPlayerRange(Vector2 coord) => ((int)coord.x < MaxFieldX / 2 && IsInRange(coord));
 
     private UI_Info _hoverInfo;
 

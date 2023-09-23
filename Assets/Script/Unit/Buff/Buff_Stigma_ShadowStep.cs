@@ -57,7 +57,7 @@ public class Buff_Stigma_ShadowStep: Buff
             }
         }
 
-        BattleManager.Field.MoveUnit(caster.Location, moveVector);
+        BattleManager.Instance.MoveUnit(caster, moveVector);
 
         return false;
     }

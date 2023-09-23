@@ -99,7 +99,7 @@ public class UnitAction : MonoBehaviour
                 }
             }
         }
-
+        
         return attackableTile;
     }
 
@@ -115,7 +115,9 @@ public class UnitAction : MonoBehaviour
 
             if (attackableTile.ContainsKey(range))
             {
-                if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Enemy)
+                if (range == attackUnit.Location)
+                    inRangeList.Add(range, attackableTile[range]);
+                else if (_field.TileDict[range].UnitExist && _field.GetUnit(range).Team == Team.Enemy)
                     swapList.Add(range, attackableTile[range]);
                 else if (!_field.TileDict[range].UnitExist)
                     inRangeList.Add(range, attackableTile[range]);
@@ -143,13 +145,13 @@ public class UnitAction : MonoBehaviour
         {
             currentHP = HPList[unit];
 
-            if (minHP > currentHP)
+            if (currentHP < minHP)
             {
                 minHP = currentHP;
                 minHPList.Clear();
                 minHPList.Add(unit);
             }
-            else if (minHP == currentHP)
+            else if (currentHP == minHP)
             {
                 minHPList.Add(unit);
             }
@@ -200,17 +202,19 @@ public class UnitAction : MonoBehaviour
 
         float minDistance = 100f;
 
-        List<Vector2> nearestEnemy = new();
+        List<Vector2> fieldUnit = new();
 
         foreach (BattleUnit unit in _Data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
             {
-                nearestEnemy.Add(unit.Location);
+                fieldUnit.Add(unit.Location);
             }
         }
 
-        foreach (Vector2 tile in nearestEnemy)
+        List<Vector2> nearestEnemy = new();
+
+        foreach (Vector2 tile in fieldUnit)
         {
             float distance = (tile - MyPosition).sqrMagnitude;
             if (minDistance > distance)
@@ -281,5 +285,5 @@ public class UnitAction : MonoBehaviour
 
     public virtual void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits) => BattleManager.Instance.AttackStart(attackUnit, hits);
     public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
-    protected void MoveUnit(BattleUnit moveUnit, Vector2 moveVector) => _field.MoveUnit(moveUnit.Location, moveVector);
+    protected void MoveUnit(BattleUnit moveUnit, Vector2 moveVector) => BattleManager.Instance.MoveUnit(moveUnit, moveVector);
 }

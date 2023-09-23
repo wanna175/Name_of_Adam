@@ -35,7 +35,7 @@ public class PlayerSkillController : MonoBehaviour
 
     public void PlayerSkillReady(FieldColorType colorType, PlayerSkillTargetType TargetType = PlayerSkillTargetType.none)
     {
-        if (Phase.Current != Phase.Prepare)
+        if (!Phase.CurrentPhaseCheck(Phase.Prepare))
             return;
 
         if (colorType == FieldColorType.none)

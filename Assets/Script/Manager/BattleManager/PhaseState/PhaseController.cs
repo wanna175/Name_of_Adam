@@ -33,6 +33,8 @@ public class PhaseController
         _currentPhase.OnStateEnter();
     }
 
+    public bool CurrentPhaseCheck(Phase checkPhase) => _currentPhase == checkPhase;
+
     private void InitializePhase()
     {
         Setup = new SetupPhase();

@@ -202,27 +202,20 @@ public class BattleManager : MonoBehaviour
 
     public void MovePhaseClick(Vector2 coord)
     {
+        if (!_field.ColoredTile.Contains(coord))
+        {
+            return;
+        }
+
         BattleUnit unit = _battleData.GetNowUnit();
-        BattleUnit destunit = _field.GetUnit(coord);
-
-        if (coord == unit.Location)
-            return;
-
-        if (destunit != null && unit.Team != destunit.Team)
+        foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
         {
-            return;
-        }
-
-        if (unit.Team == Team.Player)
-        {
-            if (!_field.ColoredTile.Contains(coord))
+            if (connectUnit.Location == coord)
                 return;
-
-            Vector2 dest = coord - unit.Location;
-            MoveLocate(unit, dest);
         }
 
-        _phase.ChangePhase(_phase.Action);
+        if (MoveUnit(unit, coord))
+            PlayAfterCoroutine(() =>_phase.ChangePhase(_phase.Action), 1f);
     }
 
     public void ActionPhaseClick(Vector2 coord)
@@ -286,13 +279,14 @@ public class BattleManager : MonoBehaviour
     {
         BattleUnit targetUnit = cor.GetTargetUnit();
 
-        if (!targetUnit.Fall.IsEdified)
+        if (targetUnit.Fall.IsEdified)
         {
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+            cor.LoopExit();
+            targetUnit.DeckUnit.ClearStigma();
         }
         else
-        { 
-            cor.LoopExit();
+        {
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
         }
     }
 
@@ -406,26 +400,67 @@ public class BattleManager : MonoBehaviour
     }
 
     // 이동 경로를 받아와 이동시킨다
-    private void MoveLocate(BattleUnit caster, Vector2 coord)
+    public bool MoveUnit(BattleUnit moveUnit, Vector2 dest)
     {
-        _field.MoveUnit(caster.Location, caster.Location + coord);
-        GameManager.Sound.Play("Move/MoveSFX");
+        Vector2 current = moveUnit.Location;
 
-        foreach (ConnectedUnit unit in caster.ConnectedUnits)
+        if (!_field.IsInRange(dest) || current == dest)
+            return false;
+
+        if (_field.TileDict[dest].UnitExist)
         {
-            _field.MoveUnit(unit.Location, unit.Location + coord);
+            BattleUnit destUnit = _field.TileDict[dest].Unit;
+
+            if (Switchable(moveUnit, destUnit))
+            {
+                _field.ExitTile(current);
+                _field.ExitTile(dest);
+
+                moveUnit.UnitMove(dest);
+                _field.EnterTile(moveUnit, dest);
+
+                destUnit.UnitMove(current);
+                _field.EnterTile(destUnit, current);
+            }
+            else
+            {
+                return false;
+            }
         }
+        else
+        {
+            _field.ExitTile(current);
+            _field.EnterTile(moveUnit, dest);
+            moveUnit.UnitMove(dest);
+        }
+
+        foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
+        {
+            MoveUnit(unit, unit.Location + dest - current);
+        }
+
+        GameManager.Sound.Play("Move/MoveSFX");
+        return true;
     }
 
-    public bool UnitSpawnReady(FieldColorType colorType)
+    private bool Switchable(BattleUnit moveUnit, BattleUnit destUnit) => 
+        moveUnit.Team == destUnit.Team &&
+        moveUnit.GetMoveRange().Contains(destUnit.Location) &&
+        destUnit.GetMoveRange().Contains(moveUnit.Location);
+
+    public bool UnitSpawnReady(FieldColorType colorType, List<Vector2> unitSize = null)
     {
-        if (_phase.Current != _phase.Prepare)
+        if (!_phase.CurrentPhaseCheck(_phase.Prepare))
             return false;
 
         if (colorType == FieldColorType.none)
+        {
             _field.ClearAllColor();
-        else
-            _field.SetSpawnTileColor(colorType);
+        }
+        else if (colorType == FieldColorType.UnitSpawn)
+        {
+            _field.SetSpawnTileColor(colorType, unitSize);
+        }
 
         return true;
     }
