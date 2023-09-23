@@ -138,14 +138,14 @@ public class StageManager : MonoBehaviour
         GameManager.Data.Map.StageList = StageDatas;
     }
 
-    public void StageMove(int _id)
+    public void StageMove(int id)
     {
         foreach (Stage st in CurrentStage.NextStage)
         {
-            if (st.Datas.ID == _id)
+            if (st.Datas.ID == id)
             {
                 GameManager.VisualEffect.StartFadeEffect(false);
-                PlayAfterCoroutine(() => _stageChanger.SetNextStage(_id), 0.8f);
+                PlayAfterCoroutine(() => _stageChanger.SetNextStage(id), 0.8f);
             }
         }
     }

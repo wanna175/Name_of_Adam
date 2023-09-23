@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class StageChanger
 {
     public void SetNextStage(int _id)
@@ -12,20 +11,22 @@ public class StageChanger
 
         GameManager.Data.Map.CurrentTileID = _id;
 
-
         if (stage.Type == StageType.Tutorial)
         {
             GameManager.Data.DeckClear();
             SceneChanger.SceneChange("BattleScene");
         }
         else if (stage.Type == StageType.Battle)
-
         {
             SceneChanger.SceneChange("BattleScene");
         }
         else if (stage.Type == StageType.Store)
         {
             SceneChanger.SceneChange("EventScene");
+        }
+        else if (stage.Type == StageType.BattleTest)
+        {
+            SceneChanger.SceneChange("BattleTestScene");
         }
     }
 }
