@@ -10,7 +10,8 @@ public enum StageType
     Store,
     Event,
     Battle,
-    Tutorial
+    Tutorial,
+    BattleTest
 }
 
 [Serializable]
