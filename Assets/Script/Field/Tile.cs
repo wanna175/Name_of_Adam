@@ -27,7 +27,7 @@ public class Tile : MonoBehaviour
     {
         if (UnitExist)
         {
-            Debug.Log("타일에 유닛이 존재합니다.");
+            Debug.Log("타일에 유닛이 존재합니다: " + unit.Data.Name);
             return;
         }
  

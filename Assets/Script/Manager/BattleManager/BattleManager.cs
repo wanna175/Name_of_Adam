@@ -202,17 +202,20 @@ public class BattleManager : MonoBehaviour
 
     public void MovePhaseClick(Vector2 coord)
     {
-        BattleUnit unit = _battleData.GetNowUnit();
-        BattleUnit destunit = _field.GetUnit(coord);
-
-        if (coord == unit.Location || (destunit != null && unit.Team == Team.Enemy) || !_field.ColoredTile.Contains(coord))
+        if (!_field.ColoredTile.Contains(coord))
         {
             return;
         }
 
-        MoveUnit(unit, coord);
+        BattleUnit unit = _battleData.GetNowUnit();
+        foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
+        {
+            if (connectUnit.Location == coord)
+                return;
+        }
 
-        PlayAfterCoroutine(() =>_phase.ChangePhase(_phase.Action), 1f);
+        if (MoveUnit(unit, coord))
+            PlayAfterCoroutine(() =>_phase.ChangePhase(_phase.Action), 1f);
     }
 
     public void ActionPhaseClick(Vector2 coord)
@@ -397,18 +400,18 @@ public class BattleManager : MonoBehaviour
     }
 
     // 이동 경로를 받아와 이동시킨다
-    public void MoveUnit(BattleUnit moveUnit, Vector2 dest)
+    public bool MoveUnit(BattleUnit moveUnit, Vector2 dest)
     {
         Vector2 current = moveUnit.Location;
 
         if (!_field.IsInRange(dest) || current == dest)
-            return;
+            return false;
 
         if (_field.TileDict[dest].UnitExist)
         {
             BattleUnit destUnit = _field.TileDict[dest].Unit;
 
-            if (moveUnit.Team == destUnit.Team/* && _field.GetArroundUnits(current).Contains(destUnit)*/)
+            if (Switchable(moveUnit, destUnit))
             {
                 _field.ExitTile(current);
                 _field.ExitTile(dest);
@@ -418,6 +421,10 @@ public class BattleManager : MonoBehaviour
 
                 destUnit.UnitMove(current);
                 _field.EnterTile(destUnit, current);
+            }
+            else
+            {
+                return false;
             }
         }
         else
@@ -433,7 +440,13 @@ public class BattleManager : MonoBehaviour
         }
 
         GameManager.Sound.Play("Move/MoveSFX");
+        return true;
     }
+
+    private bool Switchable(BattleUnit moveUnit, BattleUnit destUnit) => 
+        moveUnit.Team == destUnit.Team &&
+        moveUnit.GetMoveRange().Contains(destUnit.Location) &&
+        destUnit.GetMoveRange().Contains(moveUnit.Location);
 
     public bool UnitSpawnReady(FieldColorType colorType, List<Vector2> unitSize = null)
     {

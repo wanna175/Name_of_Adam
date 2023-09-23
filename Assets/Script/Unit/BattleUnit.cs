@@ -163,14 +163,14 @@ public class BattleUnit : MonoBehaviour
 
         if (ConnectedUnits.Count > 0)
         {
-            int maxX = 0;
-            int minX = 100;
+            int maxX = (int)_location.x;
+            int minX = (int)_location.x;
 
             foreach (ConnectedUnit unit in ConnectedUnits)
             {
                 if (unit.Location.x < minX)
                     minX = (int)unit.Location.x;
-                else if (unit.Location.x > maxX)
+                if (unit.Location.x > maxX)
                     maxX = (int)unit.Location.x;
             }
 
@@ -178,9 +178,15 @@ public class BattleUnit : MonoBehaviour
 
             for (int i = 0; i < size; i++)
             {
+                if ((int)_location.x == minX + i)
+                {
+                    BattleManager.Field.ExitTile(_location);
+                    SetLocation(new(maxX - i, _location.y));
+                }
+
                 foreach (ConnectedUnit unit in ConnectedUnits)
                 {
-                    if (unit.Location.x == minX + i)
+                    if ((int)unit.Location.x == minX + i)
                     {
                         BattleManager.Field.ExitTile(unit.Location);
                         unit.SetLocation(new(maxX - i, unit.Location.y));
@@ -190,6 +196,7 @@ public class BattleUnit : MonoBehaviour
 
             foreach (ConnectedUnit unit in ConnectedUnits)
                 BattleManager.Field.EnterTile(unit, unit.Location);
+            BattleManager.Field.EnterTile(this, this.Location);
         }
     }
 
@@ -574,7 +581,21 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        return RangeList;
+        List<Vector2> UnitRangeList = new();
+        foreach (Vector2 vec in RangeList)
+        {
+            UnitRangeList.Add(vec);
+        }
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            foreach (Vector2 vec in RangeList)
+            {
+                UnitRangeList.Add(unit.Location - _location + vec);
+            }
+        }
+
+        return UnitRangeList;
     }
 
     public List<Vector2> GetMoveRange()
@@ -603,7 +624,21 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        return RangeList;
+        List<Vector2> UnitRangeList = new();
+        foreach (Vector2 vec in RangeList)
+        {
+            UnitRangeList.Add(vec);
+        }
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            foreach (Vector2 vec in RangeList)
+            {
+                UnitRangeList.Add(unit.Location - _location  + vec);
+            }
+        }
+
+        return UnitRangeList;
     }
 
     public List<Vector2> GetSplashRange(Vector2 target, Vector2 caster)
