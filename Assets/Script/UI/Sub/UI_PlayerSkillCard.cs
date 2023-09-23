@@ -12,6 +12,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private GameObject _skillCard;
     [SerializeField] private TextMeshProUGUI _ManaCost;
     [SerializeField] private TextMeshProUGUI _essenceCost;
+    [SerializeField] private AudioSource _audioSource;
     //[SerializeField] private TextMeshProUGUI _text;
 
     private UI_PlayerSkill _playerSkill;
@@ -58,6 +59,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         }
         else if(eventData.button == PointerEventData.InputButton.Left)
         {
+            _audioSource.Play();
             _playerSkill.OnClickHand(this);
         }
     }

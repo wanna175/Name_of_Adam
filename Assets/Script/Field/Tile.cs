@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Tile : MonoBehaviour
 {
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _tileFrame;
     private SpriteRenderer _renderer;
     private BattleUnit _unit = null;
     public BattleUnit Unit => _unit;
@@ -46,10 +47,40 @@ public class Tile : MonoBehaviour
         else
         {
             _highlight.SetActive(true);
-            color.a = 100 / 255f;
-            _highlight.GetComponent<SpriteRenderer>().color = color;
+            StartCoroutine(ChangeAlphaOverTime(color, _highlight.GetComponent<SpriteRenderer>(), _tileFrame.GetComponent<SpriteRenderer>()));
+            //color.a = 150 / 255f;
+            //_highlight.GetComponent<SpriteRenderer>().color = color;
         }
     }
+
+    private IEnumerator ChangeAlphaOverTime(Color color, SpriteRenderer highlightSprite, SpriteRenderer tileSprite)
+    {
+        float duration = 0.3f;
+        float elapsedTime = 0f;
+        Color tileStartColor = Color.white;
+        tileStartColor.a = 0f;
+        Color tileEndColor = Color.white;
+        Color startColor = color;
+        Color endColor = color; // 최종 알파 값은 1로 설정
+        endColor.a = 100/255f;
+
+        while (elapsedTime < duration)
+        {
+            // 시간에 따라 알파 값을 변경합니다.
+            float t = elapsedTime / duration;
+            highlightSprite.color = Color.Lerp(startColor, endColor, t);
+            tileSprite.color = Color.Lerp(tileStartColor, tileEndColor, t);
+
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 애니메이션 종료 후 최종 알파 값을 보정합니다.
+        tileSprite.color = tileEndColor;
+        highlightSprite.color = endColor;
+    }
+
 
     private void OnMouseDown()
     {

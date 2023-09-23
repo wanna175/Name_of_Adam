@@ -20,7 +20,7 @@ public class PlayerSkill_Cross : PlayerSkill
 
             if (targetUnit != null && targetUnit.Team == Team.Enemy)
             {
-                StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
+                BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
                 targetUnit.GetAttack(-15, null);
             }
         }
