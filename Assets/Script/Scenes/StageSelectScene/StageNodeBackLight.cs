@@ -7,7 +7,8 @@ public class StageNodeBackLight : MonoBehaviour
     private SpriteRenderer _renderer;
     IEnumerator coro;
     const float fadeTime = 0.3f;
-    float curTime = 0;
+    const float blinkFadeTime = 0.5f;
+    private float curTime = 0;
 
     private void Awake()
     {
@@ -71,5 +72,49 @@ public class StageNodeBackLight : MonoBehaviour
         }
         c.a = 0;
         _renderer.color = c;
+    }
+
+
+    public void Blink()
+    {
+        if (coro != null)
+        {
+            StopCoroutine(coro);
+            coro = null;
+        }
+
+        Color c = new Color(1, 1, 1, 0);
+        coro = BlinkCoro(c, 0);
+        StartCoroutine(coro);
+    }
+
+    IEnumerator BlinkCoro(Color startcolor, float startTimer)
+    {
+        float timer = startTimer;
+
+        Color c = startcolor;
+
+        while (true)
+        {
+            while (c.a < 1f)
+            {
+                c.a = Mathf.Lerp(0, 1, timer / blinkFadeTime);
+                _renderer.color = c;
+                timer += Time.deltaTime;
+
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.5f);
+
+            while (c.a > 0f)
+            {
+                c.a = Mathf.Lerp(0, 1, timer / blinkFadeTime);
+                _renderer.color = c;
+                timer -= Time.deltaTime;
+
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }
