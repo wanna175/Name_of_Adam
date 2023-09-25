@@ -98,7 +98,7 @@ public class Stage : MonoBehaviour
     public void SetNextStage()
     {
         _isNextStage = true;
-        BackLight.SetVisible();
+        BackLight.Blink();
     }
 
     public void OnMouseUp()
@@ -108,23 +108,48 @@ public class Stage : MonoBehaviour
             StageManager.Instance.StageMove(Datas.ID);
         }
     }
-    
+
     public void OnMouseEnter()
     {
         if (_isNextStage)
+        {
+            foreach (Stage st in StageManager.Instance.CurrentStage.NextStage)
+            {
+                if (st != this)
+                {
+                    st.BackLight.FadeOut();
+                }
+                else
+                {
+                    BackLight.FadeIn();
+                }
+            }
             return;
+        }
+
         if (!_isClear)
+        {
             BackLight.FadeIn();
+        }
     }
 
     public void OnMouseExit()
     {
         if (_isNextStage)
+        {
+            foreach (Stage st in StageManager.Instance.CurrentStage.NextStage)
+            {
+                st.BackLight.Blink();
+            }
             return;
+        }
+
         if (!_isClear)
+        {
             BackLight.FadeOut();
+        }
     }
-    
+
     public StageData SetBattleStage(int a, int b)
     {
         Datas.StageLevel = a;
