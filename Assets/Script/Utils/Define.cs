@@ -15,7 +15,7 @@ public struct Stat
 
     public static Stat operator +(Stat lhs, Stat rhs)
     {
-        Stat result = new Stat();
+        Stat result = new();
         result.MaxHP = lhs.MaxHP + rhs.MaxHP;
         result.CurrentHP = lhs.CurrentHP + rhs.CurrentHP;
         result.ATK = lhs.ATK + rhs.ATK;
@@ -29,7 +29,7 @@ public struct Stat
 
     public static Stat operator -(Stat lhs, Stat rhs)
     {
-        Stat result = new Stat();
+        Stat result = new();
         result.MaxHP = lhs.MaxHP - rhs.MaxHP;
         result.CurrentHP = lhs.CurrentHP - rhs.CurrentHP;
         result.ATK = lhs.ATK - rhs.ATK;
@@ -75,18 +75,6 @@ public enum StageName
 
 
     Random
-}
-
-[SerializeField]
-public enum BehaviorType
-{
-    원거리,
-    근거리,
-    서포터,
-    탱커,
-    전사,
-    시즈,
-    칼로스,
 }
 
 [SerializeField]

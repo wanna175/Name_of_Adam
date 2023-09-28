@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class UnitAction : MonoBehaviour
 {
-    protected BattleDataManager _Data;
+    protected BattleDataManager _data;
     protected Field _field;
     public void Init()
     {
-        _Data = BattleManager.Data;
+        _data = BattleManager.Data;
         _field = BattleManager.Field;
     }
 
@@ -57,7 +57,7 @@ public class UnitAction : MonoBehaviour
 
     protected bool DirectAttackCheck()
     {
-        foreach (BattleUnit unit in _Data.BattleUnitList)
+        foreach (BattleUnit unit in _data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
                 return false;
@@ -73,7 +73,7 @@ public class UnitAction : MonoBehaviour
         //모든 공격가능 타일을 리스트에 저장한다.
         Dictionary<Vector2, int> attackableTile = new();
 
-        foreach (BattleUnit unit in _Data.BattleUnitList)
+        foreach (BattleUnit unit in _data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
             {
@@ -204,7 +204,7 @@ public class UnitAction : MonoBehaviour
 
         List<Vector2> fieldUnit = new();
 
-        foreach (BattleUnit unit in _Data.BattleUnitList)
+        foreach (BattleUnit unit in _data.BattleUnitList)
         {
             if (unit.Team == Team.Player)
             {

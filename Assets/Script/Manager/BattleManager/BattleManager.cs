@@ -382,7 +382,6 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
             }
-                
         }
         catch
         {
@@ -407,36 +406,61 @@ public class BattleManager : MonoBehaviour
         if (!_field.IsInRange(dest) || current == dest)
             return false;
 
-        if (_field.TileDict[dest].UnitExist)
+        if (moveUnit.ConnectedUnits.Count > 0)
         {
-            BattleUnit destUnit = _field.TileDict[dest].Unit;
-
-            if (Switchable(moveUnit, destUnit))
-            {
-                _field.ExitTile(current);
-                _field.ExitTile(dest);
-
-                moveUnit.UnitMove(dest);
-                _field.EnterTile(moveUnit, dest);
-
-                destUnit.UnitMove(current);
-                _field.EnterTile(destUnit, current);
-            }
-            else
+            if (_field.TileDict[dest].UnitExist)
             {
                 return false;
+            }
+
+            foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
+            {
+                Vector2 unitDest = unit.Location + dest - current;
+
+                if (!_field.IsInRange(unitDest))
+                    return false;
+
+                if (_field.TileDict[unitDest].UnitExist && _field.TileDict[unitDest].Unit.DeckUnit != moveUnit.DeckUnit)
+                    return false;
+            }
+
+            _field.ExitTile(current);
+            _field.EnterTile(moveUnit, dest);
+            moveUnit.UnitMove(dest);
+
+            foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
+            {
+                MoveUnit(unit, unit.Location + dest - current);
             }
         }
         else
         {
-            _field.ExitTile(current);
-            _field.EnterTile(moveUnit, dest);
-            moveUnit.UnitMove(dest);
-        }
+            if (_field.TileDict[dest].UnitExist)
+            {
+                BattleUnit destUnit = _field.TileDict[dest].Unit;
 
-        foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
-        {
-            MoveUnit(unit, unit.Location + dest - current);
+                if (Switchable(moveUnit, destUnit))
+                {
+                    _field.ExitTile(current);
+                    _field.ExitTile(dest);
+
+                    moveUnit.UnitMove(dest);
+                    _field.EnterTile(moveUnit, dest);
+
+                    destUnit.UnitMove(current);
+                    _field.EnterTile(destUnit, current);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                _field.ExitTile(current);
+                _field.EnterTile(moveUnit, dest);
+                moveUnit.UnitMove(dest);
+            }
         }
 
         GameManager.Sound.Play("Move/MoveSFX");
