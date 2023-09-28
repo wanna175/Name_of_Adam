@@ -26,7 +26,7 @@ public class StageManager : MonoBehaviour
     StageChanger _stageChanger;
 
     List<Stage> StageList;
-    Stage CurrentStage;
+    public Stage CurrentStage;
 
 
     private void Awake()
