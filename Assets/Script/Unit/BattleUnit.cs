@@ -58,13 +58,9 @@ public class BattleUnit : MonoBehaviour
 
         ConnectedUnits = new();
 
-        //임시 예외 처리
-        if (Data.Name == "야나")
-        {
-            Action = new UnitAction_Iana();
-        }
-
+        Action = Data.UnitAction;
         Action.Init();
+
         _hpBar.RefreshHPBar(HP.FillAmount());
 
         _scale = transform.localScale.x;

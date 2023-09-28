@@ -106,15 +106,6 @@ public class UI_Info : UI_Scene
             UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
             sd.SetStigma(stigma);
         }
-        
-
-
-        Sprite attackType;
-
-        if (unit.Data.BehaviorType == BehaviorType.근거리)
-            attackType = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘");
-        else
-            attackType = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘");
 
         foreach (bool range in unit.Data.AttackRange)
         {
@@ -188,16 +179,6 @@ public class UI_Info : UI_Scene
             UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
             sd.SetStigma(stigma);
         }
-
-
-        Sprite attackType;
-
-        if (unit.Data.BehaviorType == BehaviorType.근거리)
-            attackType = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/근거리_아이콘");
-        else
-            attackType = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/원거리_아이콘");
-
-        //_SkillImage.Set(attackType, unit.Data.Description.Replace("(ATK)", unit.DeckUnitTotalStat.ATK.ToString()));
 
         foreach (bool range in unit.Data.AttackRange)
         {
