@@ -8,17 +8,16 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _tileFrame;
-    private SpriteRenderer _renderer;
     private BattleUnit _unit = null;
     public BattleUnit Unit => _unit;
-    public bool UnitExist { get { if (Unit == null) return false; return true; } }
+    public bool UnitExist { get { return Unit != null;} }
+
+    private List<EffectTile> _effectTiles = new();
+
     public Action<Tile> OnClickAction = null;
 
     public Tile Init(Vector3 position)
     {
-        _renderer = GetComponent<SpriteRenderer>();
-        //_renderer.color = Color.white;
-        //color.a = 0;
         transform.position = position;
         _highlight.SetActive(false);
         return this;
@@ -53,6 +52,43 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void SetEffect(EffectTileType effectType)
+    {
+        if (CheckEffect(effectType))
+            return;
+
+        EffectTile tileEffect = GameManager.Resource.Instantiate("EffectTile/" + effectType.ToString(), transform).GetComponent<EffectTile>();
+        tileEffect.SetEffect(effectType);
+        _effectTiles.Add(tileEffect);
+    }
+
+    public void ClearEffect(EffectTileType effectType)
+    {
+        for (int i = 0; i < _effectTiles.Count; i++)
+        {
+            if (_effectTiles[i].GetEffect() == effectType)
+            {
+                Destroy(_effectTiles[i].gameObject);
+                _effectTiles.RemoveAt(i);
+
+                return;
+            }
+        }
+    }
+
+    public bool CheckEffect(EffectTileType effectType)
+    {
+        foreach (EffectTile tile in _effectTiles)
+        {
+            if (tile.GetEffect() == effectType)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private IEnumerator ChangeAlphaOverTime(Color color, SpriteRenderer highlightSprite, SpriteRenderer tileSprite)
     {
         float duration = 0.3f;
@@ -80,7 +116,6 @@ public class Tile : MonoBehaviour
         tileSprite.color = tileEndColor;
         highlightSprite.color = endColor;
     }
-
 
     private void OnMouseDown()
     {

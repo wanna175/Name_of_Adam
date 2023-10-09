@@ -16,13 +16,18 @@ public class Field : MonoBehaviour
     private List<Vector2> _coloredTile = new();
     public List<Vector2> ColoredTile => _coloredTile;
 
+    private List<Vector2> _effectTile = new();
+    public List<Vector2> EffectTile => _effectTile;
+
     // 필드의 생성을 위한 필드의 위치
-    private Vector3 FieldPosition => new(0, -1.2f, 2.5f);
-    private Vector3 FieldRotation => new(24f, 0, 0);
-    private Vector3 FieldScale => new(16.2f, 6.3f, 1f);
+    private readonly Vector3 FieldPosition = new(0, -1.2f, 2.5f);
+    private readonly Vector3 FieldRotation = new(24f, 0, 0);
+    private readonly Vector3 FieldScale = new(16.2f, 6.3f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
+
+    readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
     private Color ColorList(FieldColorType color)
     {
@@ -65,7 +70,7 @@ public class Field : MonoBehaviour
     }
 
     // 타일의 좌표값을 리턴한다.
-    public Vector2 FindCoordByTile(Tile tile)
+    public Vector2 GetCoordByTile(Tile tile)
     {
         // 타일이 없으면 -1, -1을 반환
         if(tile == null)
@@ -95,7 +100,6 @@ public class Field : MonoBehaviour
 
     public List<BattleUnit> GetArroundUnits(Vector2 unitCoord)
     {
-        List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
         List<BattleUnit> units = new();
 
         foreach (Vector2 udlr in UDLR)
@@ -112,7 +116,6 @@ public class Field : MonoBehaviour
     //십자가 범위 유닛
     public List<Vector2> GetCrossCoord(Vector2 unitCoord)
     {
-        List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
         List<Vector2> Coords = new();
         Coords.Add(unitCoord);
 
@@ -163,6 +166,23 @@ public class Field : MonoBehaviour
         }
     }
 
+    public void SetEffectTile(List<Vector2> vectorList, EffectTileType effectType)
+    {
+        foreach (Vector2 vec in vectorList)
+        {
+            _tileDict[vec].SetEffect(effectType);
+            _effectTile.Add(vec);
+        }
+    }
+
+    public void ClearEffectTile(List<Vector2> vectorList, EffectTileType effectType)
+    {
+        foreach (Vector2 tile in _effectTile)
+        {
+            _tileDict[tile].ClearEffect(effectType);
+        }
+    }
+
     public void SetSpawnTileColor(FieldColorType fieldType, List<Vector2> unitSize)
     {
         foreach (Vector2 spawnTile in TileDict.Keys)
@@ -183,21 +203,6 @@ public class Field : MonoBehaviour
         }
 
         _fieldType = fieldType;
-    }
-
-    public bool UnitSizeCheck(Vector2 spawnLocation, List<Vector2> unitSize)
-    {
-        foreach (Vector2 size in unitSize)
-        {
-            Vector2 tempVec = spawnLocation + size;
-
-            if (!IsPlayerRange(tempVec) || TileDict[tempVec].UnitExist)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     public void SetUnitTileColor(FieldColorType fieldType)
@@ -260,6 +265,21 @@ public class Field : MonoBehaviour
             items.Value.SetColor(Color.white);
         }
         _coloredTile.Clear();
+    }
+
+    public bool UnitSizeCheck(Vector2 spawnLocation, List<Vector2> unitSize)
+    {
+        foreach (Vector2 size in unitSize)
+        {
+            Vector2 tempVec = spawnLocation + size;
+
+            if (!IsPlayerRange(tempVec) || TileDict[tempVec].UnitExist)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void EnterTile(BattleUnit unit, Vector2 coord) => TileDict[coord].EnterTile(unit);
