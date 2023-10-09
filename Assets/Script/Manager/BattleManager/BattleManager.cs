@@ -146,7 +146,7 @@ public class BattleManager : MonoBehaviour
     #region Click 관련
     public void OnClickTile(Tile tile)
     {
-        Vector2 coord = _field.FindCoordByTile(tile);
+        Vector2 coord = _field.GetCoordByTile(tile);
         _phase.OnClickEvent(coord);
     }
 
@@ -324,7 +324,15 @@ public class BattleManager : MonoBehaviour
 
         foreach (BattleUnit fieldUnit in _battleData.BattleUnitList)
         {
-            fieldUnit.FieldUnitDdead();
+            fieldUnit.FieldUnitDead();
+        }
+    }
+
+    public void UnitSummonEvent()
+    {
+        foreach (BattleUnit fieldUnit in _battleData.BattleUnitList)
+        {
+            fieldUnit.FieldUnitSummon();
         }
     }
 
@@ -382,7 +390,6 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
             }
-                
         }
         catch
         {
@@ -407,36 +414,61 @@ public class BattleManager : MonoBehaviour
         if (!_field.IsInRange(dest) || current == dest)
             return false;
 
-        if (_field.TileDict[dest].UnitExist)
+        if (moveUnit.ConnectedUnits.Count > 0)
         {
-            BattleUnit destUnit = _field.TileDict[dest].Unit;
-
-            if (Switchable(moveUnit, destUnit))
-            {
-                _field.ExitTile(current);
-                _field.ExitTile(dest);
-
-                moveUnit.UnitMove(dest);
-                _field.EnterTile(moveUnit, dest);
-
-                destUnit.UnitMove(current);
-                _field.EnterTile(destUnit, current);
-            }
-            else
+            if (_field.GetUnit(dest) != null)
             {
                 return false;
+            }
+
+            foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
+            {
+                Vector2 unitDest = unit.Location + dest - current;
+
+                if (!_field.IsInRange(unitDest))
+                    return false;
+
+                if (_field.GetUnit(unitDest) != null && _field.GetUnit(unitDest).DeckUnit != moveUnit.DeckUnit)
+                    return false;
+            }
+
+            _field.ExitTile(current);
+            _field.EnterTile(moveUnit, dest);
+            moveUnit.UnitMove(dest);
+
+            foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
+            {
+                MoveUnit(unit, unit.Location + dest - current);
             }
         }
         else
         {
-            _field.ExitTile(current);
-            _field.EnterTile(moveUnit, dest);
-            moveUnit.UnitMove(dest);
-        }
+            if (_field.TileDict[dest].UnitExist)
+            {
+                BattleUnit destUnit = _field.TileDict[dest].Unit;
 
-        foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
-        {
-            MoveUnit(unit, unit.Location + dest - current);
+                if (Switchable(moveUnit, destUnit))
+                {
+                    _field.ExitTile(current);
+                    _field.ExitTile(dest);
+
+                    moveUnit.UnitMove(dest);
+                    _field.EnterTile(moveUnit, dest);
+
+                    destUnit.UnitMove(current);
+                    _field.EnterTile(destUnit, current);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                _field.ExitTile(current);
+                _field.EnterTile(moveUnit, dest);
+                moveUnit.UnitMove(dest);
+            }
         }
 
         GameManager.Sound.Play("Move/MoveSFX");

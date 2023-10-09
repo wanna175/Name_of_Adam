@@ -15,7 +15,7 @@ public struct Stat
 
     public static Stat operator +(Stat lhs, Stat rhs)
     {
-        Stat result = new Stat();
+        Stat result = new();
         result.MaxHP = lhs.MaxHP + rhs.MaxHP;
         result.CurrentHP = lhs.CurrentHP + rhs.CurrentHP;
         result.ATK = lhs.ATK + rhs.ATK;
@@ -29,7 +29,7 @@ public struct Stat
 
     public static Stat operator -(Stat lhs, Stat rhs)
     {
-        Stat result = new Stat();
+        Stat result = new();
         result.MaxHP = lhs.MaxHP - rhs.MaxHP;
         result.CurrentHP = lhs.CurrentHP - rhs.CurrentHP;
         result.ATK = lhs.ATK - rhs.ATK;
@@ -78,18 +78,6 @@ public enum StageName
 }
 
 [SerializeField]
-public enum BehaviorType
-{
-    원거리,
-    근거리,
-    서포터,
-    탱커,
-    전사,
-    시즈,
-    칼로스,
-}
-
-[SerializeField]
 public enum Rarity
 {
     일반,
@@ -113,7 +101,6 @@ public enum Sounds
 
 public enum ActiveTiming
 {
-    //2중 타이밍
     STIGMA, //낙인 발동(소환 시, 낙인 부여 시)
 
     SUMMON, //소환 후
@@ -152,7 +139,9 @@ public enum ActiveTiming
     UNIT_TERMINATE, //유닛을 제거 시(타락시켰을 때, 죽였을 때)
 
 
-    NONE//없음
+    NONE,//없음
+
+    FIELD_UNIT_SUMMON//필드 유닛이 소환 시
 };
 
 public enum StigmaTier
@@ -219,4 +208,20 @@ public enum BuffEnum
     Stun,
 
     InevitableEnd
+}
+
+public enum UnitActionType
+{
+    UnitAction,
+
+    UnitAction_Iana,
+    UnitAction_Nimrod,
+    UnitAction_None
+}
+
+public enum EffectTileType
+{
+    None,
+    Nimrod_Attack_Enemy,
+    Nimrod_Attack_Friendly
 }

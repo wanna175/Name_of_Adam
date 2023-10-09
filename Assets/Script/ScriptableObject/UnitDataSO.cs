@@ -14,6 +14,9 @@ public class UnitDataSO : ScriptableObject
 
     // 변경되지않는 값들
 
+    [SerializeField] private string _id;
+    public string ID => _id;
+
     [SerializeField] private string _name;
     public string Name => _name;
 
@@ -47,8 +50,8 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private int _darkEssenseCost;
     public int DarkEssenseCost => _darkEssenseCost;
 
-    [SerializeField] private BehaviorType _behaviorType;
-    public BehaviorType BehaviorType => _behaviorType;
+    [SerializeField] private UnitActionType _unitActionType;
+    public UnitActionType UnitActionType => _unitActionType;
 
     const int Arow = 5;
     const int Acolumn = 11;

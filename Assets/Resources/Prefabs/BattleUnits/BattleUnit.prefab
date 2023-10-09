@@ -348,7 +348,6 @@ GameObject:
   - component: {fileID: 9013690112352841668}
   - component: {fileID: 1722822296286429812}
   - component: {fileID: -3496854762374506308}
-  - component: {fileID: 5390689723891468034}
   - component: {fileID: 242521100124440565}
   m_Layer: 0
   m_Name: BattleUnit
@@ -490,11 +489,13 @@ MonoBehaviour:
   HP: {fileID: 1722822296286429812}
   Fall: {fileID: -3496854762374506308}
   Buff: {fileID: 242521100124440565}
-  Action: {fileID: 5390689723891468034}
+  Action: {fileID: 0}
   _hpBar: {fileID: 7612116531004456864}
   _floatingDamage: {fileID: 4547132649314457050}
   _location: {x: 0, y: 0}
   FallEvent: 0
+  IsConnectedUnit: 0
+  ConnectedUnits: []
   ChangedDamage: 0
 --- !u!114 &1722822296286429812
 MonoBehaviour:
@@ -552,18 +553,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5390689723891468034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9027651334718104315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06753cc2f8d254645acc29273800a716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &242521100124440565
 MonoBehaviour:
   m_ObjectHideFlags: 0
