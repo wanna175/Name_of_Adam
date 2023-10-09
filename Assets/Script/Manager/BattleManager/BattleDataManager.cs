@@ -139,7 +139,7 @@ public class BattleDataManager : MonoBehaviour
 
         foreach (BattleUnit unit in _battleUnitList)
         {
-            if (!unit.IsConnectedUnit)
+            if (!unit.IsConnectedUnit && unit.Data.UnitActionType != UnitActionType.UnitAction_None)
                 _battleUnitOrderList.Add(unit);
         }
 
@@ -170,4 +170,24 @@ public class BattleDataManager : MonoBehaviour
         return null;
     }
     #endregion
+
+    public UnitAction GetUnitAction(UnitActionType actionType)
+    {
+        if (actionType == UnitActionType.UnitAction)
+        {
+            return new UnitAction();
+        }
+        else if (actionType == UnitActionType.UnitAction_Iana)
+        {
+            return new UnitAction_Iana();
+        }
+        else if (actionType == UnitActionType.UnitAction_Nimrod)
+        {
+            return new UnitAction_Nimrod();
+        }
+        else
+        {
+            return new UnitAction_None();
+        }
+    }
 }
