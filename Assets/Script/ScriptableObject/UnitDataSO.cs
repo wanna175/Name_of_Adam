@@ -50,8 +50,8 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private int _darkEssenseCost;
     public int DarkEssenseCost => _darkEssenseCost;
 
-    [SerializeField] private UnitAction _unitAction;
-    public UnitAction UnitAction => _unitAction;
+    [SerializeField] private UnitActionType _unitActionType;
+    public UnitActionType UnitActionType => _unitActionType;
 
     const int Arow = 5;
     const int Acolumn = 11;

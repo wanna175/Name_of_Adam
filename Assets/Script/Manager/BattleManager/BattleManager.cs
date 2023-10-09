@@ -146,7 +146,7 @@ public class BattleManager : MonoBehaviour
     #region Click 관련
     public void OnClickTile(Tile tile)
     {
-        Vector2 coord = _field.FindCoordByTile(tile);
+        Vector2 coord = _field.GetCoordByTile(tile);
         _phase.OnClickEvent(coord);
     }
 
@@ -324,7 +324,15 @@ public class BattleManager : MonoBehaviour
 
         foreach (BattleUnit fieldUnit in _battleData.BattleUnitList)
         {
-            fieldUnit.FieldUnitDdead();
+            fieldUnit.FieldUnitDead();
+        }
+    }
+
+    public void UnitSummonEvent()
+    {
+        foreach (BattleUnit fieldUnit in _battleData.BattleUnitList)
+        {
+            fieldUnit.FieldUnitSummon();
         }
     }
 
@@ -408,7 +416,7 @@ public class BattleManager : MonoBehaviour
 
         if (moveUnit.ConnectedUnits.Count > 0)
         {
-            if (_field.TileDict[dest].UnitExist)
+            if (_field.GetUnit(dest) != null)
             {
                 return false;
             }
@@ -420,7 +428,7 @@ public class BattleManager : MonoBehaviour
                 if (!_field.IsInRange(unitDest))
                     return false;
 
-                if (_field.TileDict[unitDest].UnitExist && _field.TileDict[unitDest].Unit.DeckUnit != moveUnit.DeckUnit)
+                if (_field.GetUnit(unitDest) != null && _field.GetUnit(unitDest).DeckUnit != moveUnit.DeckUnit)
                     return false;
             }
 

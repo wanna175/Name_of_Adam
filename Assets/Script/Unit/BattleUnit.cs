@@ -58,7 +58,7 @@ public class BattleUnit : MonoBehaviour
 
         ConnectedUnits = new();
 
-        Action = Data.UnitAction;
+        Action = BattleManager.Data.GetUnitAction(Data.UnitActionType);
         Action.Init();
 
         _hpBar.RefreshHPBar(HP.FillAmount());
@@ -94,6 +94,7 @@ public class BattleUnit : MonoBehaviour
         //소환 시 체크
         ActiveTimingCheck(ActiveTiming.STIGMA);
         ActiveTimingCheck(ActiveTiming.SUMMON);
+        BattleManager.Instance.UnitSummonEvent();
     }
 
     public void TurnStart()
@@ -134,10 +135,16 @@ public class BattleUnit : MonoBehaviour
         ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END);
     }
 
-    public void FieldUnitDdead()
+    public void FieldUnitDead()
     {
         //필드 유닛 사망시 체크
         ActiveTimingCheck(ActiveTiming.FIELD_UNIT_DEAD);
+    }
+
+    public void FieldUnitSummon()
+    {
+        //필드 유닛 사망시 체크
+        ActiveTimingCheck(ActiveTiming.FIELD_UNIT_SUMMON);
     }
 
     public void SetTeam(Team team)
@@ -537,6 +544,8 @@ public class BattleUnit : MonoBehaviour
         Buff.CheckCountDownTiming(activeTiming);
 
         BattleUnitChangedStat = Buff.GetBuffedStat();
+
+        Action.ActionTimingCheck(activeTiming, this, receiver);
 
         return skipNextAction;
     }

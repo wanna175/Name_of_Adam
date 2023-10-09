@@ -81,7 +81,7 @@ public class BattleTestManager : BattleManager
                 foreach (RaycastHit2D h in hit)
                 {
                     if (h.transform.name == "Tile")
-                        coord = Field.FindCoordByTile(h.transform.GetComponent<Tile>());
+                        coord = Field.GetCoordByTile(h.transform.GetComponent<Tile>());
                 }
 
                 if (!Field.ColoredTile.Contains(coord))

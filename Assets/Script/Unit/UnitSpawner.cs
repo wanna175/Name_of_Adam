@@ -32,7 +32,7 @@ public class UnitSpawner : MonoBehaviour
             CreateUnit();
     }
 
-    private void InitSpawn(SpawnData spawndata)
+    public void SpawnDataSpawn(SpawnData spawndata)
     {
         if (BattleManager.Field.TileDict[spawndata.location].UnitExist)
         {
@@ -112,7 +112,7 @@ public class UnitSpawner : MonoBehaviour
             sd.location = data.Location;
             sd.team = Team.Enemy;
 
-            InitSpawn(sd);
+            SpawnDataSpawn(sd);
         }
     }
 
@@ -140,8 +140,11 @@ public class UnitSpawner : MonoBehaviour
 
     public void RestoreUnit(GameObject go)
     {
+        Destroy(go);
+        /*
         _unitQueue.Enqueue(go);
         go.SetActive(false);
+        */
     }
 
     private Transform SetParent()
