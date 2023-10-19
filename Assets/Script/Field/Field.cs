@@ -10,14 +10,8 @@ public class Field : MonoBehaviour
     private Dictionary<Vector2, Tile> _tileDict = new();
     public Dictionary<Vector2, Tile> TileDict => _tileDict;
 
-    public FieldColorType FieldType => _fieldType;
     private FieldColorType _fieldType = FieldColorType.none;
-
-    private List<Vector2> _coloredTile = new();
-    public List<Vector2> ColoredTile => _coloredTile;
-
-    private List<Vector2> _effectTile = new();
-    public List<Vector2> EffectTile => _effectTile;
+    public FieldColorType FieldType => _fieldType;
 
     // 필드의 생성을 위한 필드의 위치
     private readonly Vector3 FieldPosition = new(0, -1.2f, 2.5f);
@@ -161,7 +155,6 @@ public class Field : MonoBehaviour
             if (IsInRange(range))
             {
                 TileDict[range].SetColor(ColorList(fieldType));
-                _coloredTile.Add(range);
             }
         }
     }
@@ -171,15 +164,14 @@ public class Field : MonoBehaviour
         foreach (Vector2 vec in vectorList)
         {
             _tileDict[vec].SetEffect(effectType);
-            _effectTile.Add(vec);
         }
     }
 
     public void ClearEffectTile(List<Vector2> vectorList, EffectTileType effectType)
     {
-        foreach (Vector2 tile in _effectTile)
+        foreach (Tile tile in TileDict.Values)
         {
-            _tileDict[tile].ClearEffect(effectType);
+            tile.ClearEffect(effectType);
         }
     }
 
@@ -187,7 +179,7 @@ public class Field : MonoBehaviour
     {
         foreach (Vector2 spawnTile in TileDict.Keys)
         {
-            if (!IsPlayerRange(spawnTile) || TileDict[spawnTile].UnitExist || _coloredTile.Contains(spawnTile))
+            if (!IsPlayerRange(spawnTile) || TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
                 continue;
 
             List<Vector2> tempList = new();
@@ -197,7 +189,6 @@ public class Field : MonoBehaviour
                 foreach (Vector2 size in unitSize)
                 {
                     TileDict[spawnTile + size].SetColor(ColorList(fieldType));
-                    _coloredTile.Add(spawnTile + size);
                 }
             }
         }
@@ -207,12 +198,11 @@ public class Field : MonoBehaviour
 
     public void SetUnitTileColor(FieldColorType fieldType)
     {
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        foreach (Tile tile in TileDict.Values)
         {
-            if (items.Value.UnitExist)
+            if (tile.UnitExist)
             {
-                items.Value.SetColor(ColorList(fieldType));
-                _coloredTile.Add(items.Key);
+                tile.SetColor(ColorList(fieldType));
             }
         }
 
@@ -221,12 +211,11 @@ public class Field : MonoBehaviour
 
     public void SetEnemyUnitTileColor(FieldColorType fieldType)
     {
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        foreach (Tile tile in TileDict.Values)
         {
-            if (items.Value.UnitExist && items.Value.Unit.Team == Team.Enemy)
+            if (tile.UnitExist && tile.Unit.Team == Team.Enemy)
             {
-                items.Value.SetColor(ColorList(fieldType));
-                _coloredTile.Add(items.Key);
+                tile.SetColor(ColorList(fieldType));
             }
         }
 
@@ -235,12 +224,11 @@ public class Field : MonoBehaviour
     
     public void SetFriendlyUnitTileColor(FieldColorType fieldType)
     {
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        foreach (Tile tile in TileDict.Values)
         {
-            if (items.Value.UnitExist && items.Value.Unit.Team == Team.Player)
+            if (tile.UnitExist && tile.Unit.Team == Team.Player)
             {
-                items.Value.SetColor(ColorList(fieldType));
-                _coloredTile.Add(items.Key);
+                tile.SetColor(ColorList(fieldType));
             }
         }
 
@@ -249,10 +237,9 @@ public class Field : MonoBehaviour
 
     public void SetAllTileColor(FieldColorType fieldType)
     {
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        foreach (Tile tile in TileDict.Values)
         {
-            items.Value.SetColor(ColorList(fieldType));
-            _coloredTile.Add(items.Key);
+            tile.SetColor(ColorList(fieldType));
         }
 
         _fieldType = fieldType;
@@ -260,11 +247,10 @@ public class Field : MonoBehaviour
 
     public void ClearAllColor()
     {
-        foreach (KeyValuePair<Vector2, Tile> items in TileDict)
+        foreach (Tile tile in TileDict.Values)
         {
-            items.Value.SetColor(Color.white);
+            tile.SetColor(Color.white);
         }
-        _coloredTile.Clear();
     }
 
     public bool UnitSizeCheck(Vector2 spawnLocation, List<Vector2> unitSize)
