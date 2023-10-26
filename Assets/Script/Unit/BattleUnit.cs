@@ -80,16 +80,20 @@ public class BattleUnit : MonoBehaviour
         SetLocation(coord);
 
         IsConnectedUnit = isConnectedUnit;
-        if (!isConnectedUnit && DeckUnit.GetUnitSize() > 1)
-        {
-            foreach (Vector2 range in DeckUnit.GetUnitSizeRange())
-            {
-                if (range + _location != _location)
-                    ConnectedUnits.Add(BattleManager.Spawner.ConnectedUnitSpawn(this, range + _location));
-            }
-        }
 
-        SetFlipX(team == Team.Enemy);
+        if (!isConnectedUnit)
+        {
+            if (DeckUnit.GetUnitSize() > 1)
+            {
+                foreach (Vector2 range in DeckUnit.GetUnitSizeRange())
+                {
+                    if (range + _location != _location)
+                        ConnectedUnits.Add(BattleManager.Spawner.ConnectedUnitSpawn(this, range + _location));
+                }
+            }
+
+            SetFlipX(team == Team.Enemy);
+        }
 
         //소환 시 체크
         ActiveTimingCheck(ActiveTiming.STIGMA);
@@ -224,7 +228,7 @@ public class BattleUnit : MonoBehaviour
     public void UnitDiedEvent()
     {
         //자신이 사망 시 체크
-        if (ActiveTimingCheck(ActiveTiming.UNIT_DEAD))
+        if (ActiveTimingCheck(ActiveTiming.BEFORE_UNIT_DEAD))
         {
             return;
         }
@@ -252,7 +256,7 @@ public class BattleUnit : MonoBehaviour
 
             yield return null;
         }
-
+        ActiveTimingCheck(ActiveTiming.AFTER_UNIT_DEAD);
         BattleManager.Spawner.RestoreUnit(gameObject);
 
         if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
