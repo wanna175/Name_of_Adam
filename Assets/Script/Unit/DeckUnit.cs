@@ -19,6 +19,8 @@ public class DeckUnit
 
     private readonly int _maxStigmaCount = 3;
 
+    public bool IsMainDeck = false;
+
     public List<Stigma> GetStigma()
     {
         List<Stigma> stigmata = new();
@@ -30,6 +32,11 @@ public class DeckUnit
             stigmata.Add(stigma);
 
         return stigmata;
+    }
+
+    public List<Stigma> GetChangedStigma()
+    {
+        return _stigma;
     }
 
     public void AddStigma(Stigma stigma)
