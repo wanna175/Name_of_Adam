@@ -45,6 +45,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 16c0d5101ffaa1a42b1068e9c51bbb4b, type: 3}
+--- !u!1 &3076005688821877574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5678452538926753555}
+  - component: {fileID: 8618580842691108390}
+  m_Layer: 0
+  m_Name: OutGameDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5678452538926753555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076005688821877574}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7143347325917774971}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8618580842691108390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076005688821877574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a5dc79b15000546b423d56e24bd485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3753618238708733198
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +230,7 @@ MonoBehaviour:
   GameData: {fileID: 11400000, guid: 1c3f1f779abcbdc49b7a0ca29522a837, type: 2}
   GameDataMain: {fileID: 11400000, guid: 1d6f5d8fb3f46fb46ab9f227bc36bf04, type: 2}
   GameDataTutorial: {fileID: 11400000, guid: 79413f12e9c3c2a42ae8afb673f29d07, type: 2}
+  GameDataMainLayout: {fileID: 11400000, guid: 94d7f99765211c7448a4120aedc200ab, type: 2}
   _playerDeck: []
 --- !u!1 &7143347325917774965
 GameObject:
@@ -222,6 +267,7 @@ Transform:
   - {fileID: 1345317370172484304}
   - {fileID: 7709732158267659014}
   - {fileID: 7824037173514620530}
+  - {fileID: 5678452538926753555}
   - {fileID: 1342351768074700690}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -244,6 +290,7 @@ MonoBehaviour:
   _input: {fileID: 3107478602675997737}
   _visualEffect: {fileID: 2544101032453683820}
   _saveController: {fileID: 2775867705196221120}
+  _outGameData: {fileID: 8618580842691108390}
   Tutorial_Trigger_First: 1
   Tutorial_Trigger_Second: 1
   Tutorial_Benediction_Trigger: 1
@@ -419,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
