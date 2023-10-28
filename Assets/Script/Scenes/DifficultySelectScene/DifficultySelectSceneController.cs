@@ -7,6 +7,7 @@ public class DifficultySelectSceneController : MonoBehaviour
     [SerializeField] GameObject UI_Difficulty;
     [SerializeField] GameObject UI_ChampionSelect;
     [SerializeField] GameObject UI_PlayerSkillSelect;
+    [SerializeField] GameObject UI_HallSelect;
 
 
     private bool DifficultySelected;
@@ -18,15 +19,18 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     private void Init()
     {
-        UI_Difficulty.SetActive(true);
+        UI_Difficulty.SetActive(false);//추후 순서대로 수정
         UI_ChampionSelect.SetActive(false);
         UI_PlayerSkillSelect.SetActive(false);
+        UI_HallSelect.SetActive(true);
         DifficultySelected = false;
 
     }
 
     public void Confirm()
     {
+        SceneChanger.SceneChange("StageSelectScene");
+        /*
         if(!DifficultySelected)
         {
             UI_Difficulty.SetActive(false);
@@ -37,6 +41,7 @@ public class DifficultySelectSceneController : MonoBehaviour
         {
 
         }
+        */
     }
 
     public void Quit()

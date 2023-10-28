@@ -46,6 +46,23 @@ public class UI_BattleOver : UI_Scene
         else if (_result == "elite win")
             SceneChanger.SceneChange("EndingCreditScene");
         else if (_result == "lose")
-            SceneChanger.SceneChange("MainScene");
+        {
+            BattleOverDestroy();
+
+            if (GameManager.OutGameData.isTutorialClear())
+            {
+                GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, GameManager.OutGameData.AddHallUnit);
+            }
+            else
+            {
+                SceneChanger.SceneChange("MainScene");
+            }
+
+        }
+    }
+
+    public void BattleOverDestroy()
+    {
+        GameManager.Resource.Destroy(this.gameObject);
     }
 }
