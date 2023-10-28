@@ -13,9 +13,9 @@ public class Buff_Immortal : Buff
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.UNIT_DEAD;
+        _countDownTiming = ActiveTiming.BEFORE_UNIT_DEAD;
 
-        _buffActiveTiming = ActiveTiming.UNIT_DEAD;
+        _buffActiveTiming = ActiveTiming.BEFORE_UNIT_DEAD;
 
         _caster = caster;
 

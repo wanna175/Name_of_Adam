@@ -103,6 +103,7 @@ public enum ActiveTiming
 {
     STIGMA, //낙인 발동(소환 시, 낙인 부여 시)
 
+    FIELD_UNIT_SUMMON,//필드에 유닛이 소환 시
     SUMMON, //소환 후
 
     TURN_START, //턴 시작 시
@@ -131,17 +132,14 @@ public enum ActiveTiming
     FALL, //타락시켰을 때, 그 후
     FALLED, //타락되었을 때 그 전
 
-    UNIT_DEAD, //자신이 사망 전
+    BEFORE_UNIT_DEAD, //자신이 사망 전
+    AFTER_UNIT_DEAD, //자신이 사망 후
     FIELD_UNIT_DEAD, //필드 유닛이 사망 시
 
     UNIT_KILL, //다른 유닛을 죽일 시
+    UNIT_TERMINATE, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
 
-    UNIT_TERMINATE, //유닛을 제거 시(타락시켰을 때, 죽였을 때)
-
-
-    NONE,//없음
-
-    FIELD_UNIT_SUMMON//필드 유닛이 소환 시
+    NONE//없음
 };
 
 public enum StigmaTier
