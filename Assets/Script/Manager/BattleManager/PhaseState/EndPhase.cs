@@ -11,7 +11,7 @@ public class EndPhase : Phase
     }
     public override void OnStateUpdate()
     {
-        _controller.ChangePhase(_controller.Prepare);
+        BattleManager.Phase.ChangePhase(BattleManager.Phase.Prepare);
     }
 
     public override void OnClickEvent(Vector2 coord)

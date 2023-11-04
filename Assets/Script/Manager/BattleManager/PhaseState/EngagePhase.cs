@@ -14,7 +14,7 @@ public class EngagePhase : Phase
 
         if (BattleManager.Data.OrderUnitCount <= 0)
         {
-            _controller.ChangePhase(_controller.End);
+            BattleManager.Phase.ChangePhase(BattleManager.Phase.End);
             return;
         }
 
@@ -23,7 +23,7 @@ public class EngagePhase : Phase
 
     public override void OnStateUpdate()
     {
-        _controller.ChangePhase(_controller.Move);
+        BattleManager.Phase.ChangePhase(BattleManager.Phase.Move);
     }
 
     public override void OnStateExit()
