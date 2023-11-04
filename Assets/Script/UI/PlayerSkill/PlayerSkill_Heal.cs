@@ -6,9 +6,11 @@ public class PlayerSkill_Heal : PlayerSkill
 {
     public override void Use(Vector2 coord)
     {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //이팩트를 여기에 추가
-        BattleManager.Field.GetUnit(coord).GetHeal(20, null);
+        BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+
+        targetUnit.GetHeal(20, null);
     }
     public override void CancelSelect()
     {
@@ -17,7 +19,7 @@ public class PlayerSkill_Heal : PlayerSkill
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Unit);
+        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Friendly);
 
     }
 }
