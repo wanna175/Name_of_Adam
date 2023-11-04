@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8709051566292520465
+--- !u!1 &2025781800743625297
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2476643947047742859}
-  - component: {fileID: 5396263994288018817}
+  - component: {fileID: 742698032057272775}
+  - component: {fileID: 3233695130252107697}
   m_Layer: 0
-  m_Name: PlayerSkill_DarkStrike
+  m_Name: 1_02.PlayerSkill_Bounce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2476643947047742859
+--- !u!4 &742698032057272775
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709051566292520465}
+  m_GameObject: {fileID: 2025781800743625297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,21 +32,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5396263994288018817
+--- !u!114 &3233695130252107697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8709051566292520465}
+  m_GameObject: {fileID: 2025781800743625297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6efb242dedf2c1945a9ec4a68b8bcfe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d8f252347f1ff24991bf5621912fbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSkillName: "\uC554\uD751 \uAC15\uD0C0"
-  manaCost: 40
-  darkEssence: 1
-  description: "\uC801 \uD55C\uBA85\uC5D0\uAC8C 30\uC758 \uB370\uBBF8\uC9C0\uB97C
-    \uC90D\uB2C8\uB2E4."
+  playerSkillName: "\uADC0\uD658"
+  manaCost: 30
+  darkEssence: 2
+  description: "\uC9C0\uC815\uD55C \uC544\uAD70\uC744 \uADC0\uD658\uC2DC\uD0B5\uB2C8\uB2E4"
   skillImage: {fileID: 21300000, guid: 7d96c9752ef267e49a35f489676e7921, type: 3}

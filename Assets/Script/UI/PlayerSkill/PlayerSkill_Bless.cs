@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSkill_DarkStrike : PlayerSkill
+public class PlayerSkill_Bless : PlayerSkill
 
 {
     public override void Use(Vector2 coord)

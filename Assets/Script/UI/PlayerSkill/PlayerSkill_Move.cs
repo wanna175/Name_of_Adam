@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSkillMove : PlayerSkill
+public class PlayerSkill_Move : PlayerSkill
 {
     public override void Use(Vector2 coord)
     {

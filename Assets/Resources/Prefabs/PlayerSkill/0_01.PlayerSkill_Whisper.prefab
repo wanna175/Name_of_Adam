@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2466848811954120024}
   - component: {fileID: 5395026236160498702}
   m_Layer: 0
-  m_Name: 00.PlayerSkill_Whisper
+  m_Name: 0_01.PlayerSkill_Whisper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
