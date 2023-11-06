@@ -173,7 +173,7 @@ public class UnitAction : MonoBehaviour
         foreach (Vector2 direction in UDLR)
         {
             Vector2 tempPosition = MyPosition + direction;
-            if (!_field.IsInRange(tempPosition) || _field.TileDict[tempPosition].UnitExist)
+            if (!_field.IsInRange(tempPosition) || _field.TileDict[tempPosition].UnitExist || !attackUnit.GetMoveRange().Contains(direction))
                 continue;
 
             float distance = (tempPosition - destination).sqrMagnitude;
@@ -283,7 +283,7 @@ public class UnitAction : MonoBehaviour
         ActionStart(attackUnit, hitUnits);
     }
 
-    public virtual void ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) {}
+    public virtual bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) => false;
 
     public virtual void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits) => BattleManager.Instance.AttackStart(attackUnit, hits);
     public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
