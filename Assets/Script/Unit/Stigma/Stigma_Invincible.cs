@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Stigma_Invincible : Stigma
 {
-    public override void Use(BattleUnit caster, BattleUnit receiver)
+    public override void Use(BattleUnit caster)
     {
-        base.Use(caster, receiver);
+        base.Use(caster);
 
         Buff_Invincible invincible = new();
         caster.SetBuff(invincible, caster);

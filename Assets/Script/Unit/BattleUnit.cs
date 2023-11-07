@@ -8,8 +8,8 @@ public class BattleUnit : MonoBehaviour
     public DeckUnit DeckUnit;
     public UnitDataSO Data => DeckUnit.Data;
 
-    [SerializeField] public Stat BattleUnitChangedStat;//버프 등으로 변경된 스탯
-    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat; //실제 적용 중인 스탯
+    [SerializeField] public Stat BattleUnitChangedStat; // 버프 등으로 변경된 스탯
+    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat; // 실제 적용 중인 스탯
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -531,7 +531,7 @@ public class BattleUnit : MonoBehaviour
         {
             if (stigma.ActiveTiming == activeTiming)
             {
-                stigma.Use(this, receiver);
+                stigma.Use(this);
             }
         }
 

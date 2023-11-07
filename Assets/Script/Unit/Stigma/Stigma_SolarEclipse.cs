@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Stigma_SolarEclipse : Stigma
 {
-    public override void Use(BattleUnit caster, BattleUnit receiver)
+    public override void Use(BattleUnit caster)
     {
-        base.Use(caster, receiver);
+        base.Use(caster);
 
         Buff_Stigma_SolarEclipse solarEclipse = new();
         caster.SetBuff(solarEclipse, caster);

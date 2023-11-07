@@ -73,7 +73,7 @@ public class BattleTestUnit : BattleUnit
         {
             if (stigma.ActiveTiming == activeTiming)
             {
-                stigma.Use(this, receiver);
+                stigma.Use(this);
             }
         }
 

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Stigma_Raise : Stigma
 {
-    public override void Use(BattleUnit caster, BattleUnit receiver)
+    public override void Use(BattleUnit caster)
     {
-        base.Use(caster, receiver);
+        base.Use(caster);
 
         List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location);
 

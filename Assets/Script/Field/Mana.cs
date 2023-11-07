@@ -7,13 +7,11 @@ public class Mana : MonoBehaviour
     // Mana Manage
     [SerializeField] private int _maxMana = 100;
     [ReadOnly, SerializeField] private int _currentMana = 0;
-    private UI_ManaGauge _manaGuage;
 
     const int _startMana = 50;
 
     private void Start()
     {
-        _manaGuage = BattleManager.BattleUI.UI_manaGauge;
         ChangeMana(_startMana);
     }
 
@@ -33,7 +31,7 @@ public class Mana : MonoBehaviour
         }
 
         ManaInableCheck();
-        _manaGuage.DrawGauge(_maxMana, _currentMana);
+        BattleManager.BattleUI.UI_manaGauge.DrawGauge(_maxMana, _currentMana);
     }
 
     public void ManaInableCheck()
