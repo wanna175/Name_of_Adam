@@ -30,7 +30,7 @@ MonoBehaviour:
     \uACF5\uACA9\uD558\uBA70 \uAD50\uD654\uB3C4\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.
     \uC57C\uB098\uC5D0\uAC8C \uD53C\uACA9\uB41C \uBAA8\uB4E0 \uC801\uC5D0\uAC8C \uB2EC\uC758
     \uC99D\uD45C\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
-  _rarity: 2
+  _rarity: 1
   _image: {fileID: 21300000, guid: cca1af85aaa350e4cb23eafc14937be8, type: 3}
   _animatorController: {fileID: 9100000, guid: 3c7bf4e4998708646af6c6e7be07e68d, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: c34cb9969fd387f4b8928c217c1de8e8, type: 2}
