@@ -56,6 +56,7 @@ public class DataManager : MonoBehaviour
         GameData.DarkEssence = GameDataMain.DarkEssence;
         GameData.PlayerSkillCount = GameDataMain.PlayerSkillCount;
         GameData.DeckUnits = GameDataMain.DeckUnits;
+        GameData.FallenUnits = GameDataMain.FallenUnits;
         GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
         GameData.isVisitStigma = GameDataMain.isVisitStigma;
 
@@ -77,6 +78,7 @@ public class DataManager : MonoBehaviour
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
         GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
+        GameData.FallenUnits = GameDataTutorial.FallenUnits;
         GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
         GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
 
@@ -96,6 +98,7 @@ public class DataManager : MonoBehaviour
         GameDataMain.DarkEssence = GameDataMainLayout.DarkEssence;
         GameDataMain.PlayerSkillCount = GameDataMainLayout.PlayerSkillCount;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
+        GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
         GameDataMain.isVisitUpgrade = GameDataMainLayout.isVisitUpgrade;
         GameDataMain.isVisitStigma = GameDataMainLayout.isVisitStigma;
 

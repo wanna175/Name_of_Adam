@@ -44,14 +44,18 @@ public class UI_BattleOver : UI_Scene
         if (_result == "win")
             SceneChanger.SceneChange("StageSelectScene");
         else if (_result == "elite win")
-            SceneChanger.SceneChange("EndingCreditScene");
+        {
+            BattleOverDestroy();
+
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, (deckUnit) => {GameManager.OutGameData.AddHallUnit(deckUnit, true);});
+        }
         else if (_result == "lose")
         {
             BattleOverDestroy();
 
             if (GameManager.OutGameData.isTutorialClear())
             {
-                GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, GameManager.OutGameData.AddHallUnit);
+                GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(false, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, false);});
             }
             else
             {

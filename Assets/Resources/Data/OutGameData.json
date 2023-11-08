@@ -13,89 +13,48 @@
     {
       "ID": 0,
       "UnitName": "흑기사",
-      "deckUnit": {
-        "Data": {
-          "instanceID": 25666
-        },
-        "DeckUnitUpgradeStat": {
-          "MaxHP": 0,
-          "CurrentHP": 0,
-          "ATK": 0,
-          "SPD": 0,
-          "FallCurrentCount": 0,
-          "FallMaxCount": 0,
-          "ManaCost": 0
-        },
-        "DeckUnitChangedStat": {
-          "MaxHP": 0,
-          "CurrentHP": 0,
-          "ATK": 0,
-          "SPD": 0,
-          "FallCurrentCount": 0,
-          "FallMaxCount": 0,
-          "ManaCost": 0
-        },
-        "IsMainDeck": true
+      "UpgradedStat": {
+        "MaxHP": 0,
+        "CurrentHP": 0,
+        "ATK": 0,
+        "SPD": 0,
+        "FallCurrentCount": 0,
+        "FallMaxCount": 0,
+        "ManaCost": 0
       },
+      "IsMainDeck": true,
       "Stigmata": []
     },
     {
       "ID": 1,
       "UnitName": "묘지기",
-      "deckUnit": {
-        "Data": {
-          "instanceID": 25786
-        },
-        "DeckUnitUpgradeStat": {
-          "MaxHP": 0,
-          "CurrentHP": 0,
-          "ATK": 0,
-          "SPD": 0,
-          "FallCurrentCount": 0,
-          "FallMaxCount": 0,
-          "ManaCost": 0
-        },
-        "DeckUnitChangedStat": {
-          "MaxHP": 0,
-          "CurrentHP": 0,
-          "ATK": 0,
-          "SPD": 0,
-          "FallCurrentCount": 0,
-          "FallMaxCount": 0,
-          "ManaCost": 0
-        },
-        "IsMainDeck": true
+      "UpgradedStat": {
+        "MaxHP": 0,
+        "CurrentHP": 0,
+        "ATK": 0,
+        "SPD": 0,
+        "FallCurrentCount": 0,
+        "FallMaxCount": 0,
+        "ManaCost": 0
       },
+      "IsMainDeck": true,
       "Stigmata": []
     },
     {
       "ID": 2,
       "UnitName": "죄수",
-      "deckUnit": {
-        "Data": {
-          "instanceID": 25788
-        },
-        "DeckUnitUpgradeStat": {
-          "MaxHP": 0,
-          "CurrentHP": 0,
-          "ATK": 0,
-          "SPD": 0,
-          "FallCurrentCount": 0,
-          "FallMaxCount": 0,
-          "ManaCost": 0
-        },
-        "DeckUnitChangedStat": {
-          "MaxHP": 0,
-          "CurrentHP": 0,
-          "ATK": 0,
-          "SPD": 0,
-          "FallCurrentCount": 0,
-          "FallMaxCount": 0,
-          "ManaCost": 0
-        },
-        "IsMainDeck": true
+      "UpgradedStat": {
+        "MaxHP": 0,
+        "CurrentHP": 0,
+        "ATK": 0,
+        "SPD": 0,
+        "FallCurrentCount": 0,
+        "FallMaxCount": 0,
+        "ManaCost": 0
       },
+      "IsMainDeck": true,
       "Stigmata": []
     }
-  ]
+  ],
+  "TutorialClear": false
 }

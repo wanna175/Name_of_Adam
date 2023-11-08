@@ -31,8 +31,9 @@ public class HallUnit
 {
     public int ID;                // 전당 내에서 식별을 위한 ID
     public string UnitName;       // 지금은 유닛 이름으로 받고있지만 ID로 받는 기능이 추가되면 변경해야함
-    public DeckUnit deckUnit;
-    public List<Stigma> Stigmata; // 유닛이 가지고 있는 낙인
+    public Stat UpgradedStat;     //업그레이드된 스텟
+    public bool IsMainDeck;       //유닛이 메인덱에 포함되었는지 유무 확인
+    public List<Stigma> Stigmata; // 유닛에게 추가된 낙인
 }
 
 
@@ -75,19 +76,25 @@ public class OutGameDataContainer : MonoBehaviour
     public List<DeckUnit> SetHallDeck()
     {
         List<DeckUnit> HallList = new();
-        int LastAddedUnitIndex = data.HallUnit.Count;
 
         foreach (HallUnit unit in data.HallUnit)
         {
-            HallList.Add(unit.deckUnit);
+            DeckUnit deckUnit = new();
+
+            UnitDataSO unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{unit.UnitName}");
+
+            deckUnit.HallUnitID = unit.ID;
+            deckUnit.Data = unitData;
+            deckUnit.DeckUnitUpgradeStat = unit.UpgradedStat;
+            deckUnit.IsMainDeck = unit.IsMainDeck;
+
             foreach (Stigma stigma in unit.Stigmata)
             {
-                unit.deckUnit.AddStigma(stigma);
+                deckUnit.AddStigma(stigma);
             }
+
+            HallList.Add(deckUnit);
         }
-
-        HallList[LastAddedUnitIndex - 1].IsMainDeck = false;
-
         return HallList;
     }
 
@@ -135,7 +142,12 @@ public class OutGameDataContainer : MonoBehaviour
         return data.HallUnit.Find(x => x.ID == ID);
     }
 
-    public void AddHallUnit(DeckUnit unit)
+    public List<HallUnit> FindHallUnitList()
+    {
+        return data.HallUnit;
+    }
+
+    public void AddHallUnit(DeckUnit unit, bool IsBossClear)
     {
         HallUnit newUnit = new();
 
@@ -148,15 +160,26 @@ public class OutGameDataContainer : MonoBehaviour
             }
         }
 
-        newUnit.deckUnit = unit;
         newUnit.UnitName = unit.Data.Name;
+        newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
+        newUnit.UpgradedStat.FallCurrentCount = 0;
+        newUnit.IsMainDeck = false;
         newUnit.Stigmata = unit.GetChangedStigma();
 
         Debug.Log(newUnit.UnitName);
         data.HallUnit.Add(newUnit);
         SaveData();
 
-        SceneChanger.SceneChange("MainScene");
+        GameManager.Data.GameData.FallenUnits.Clear();
+
+        if (IsBossClear)
+        {
+            SceneChanger.SceneChange("EndingCreditScene");
+        }
+        else
+        {
+            SceneChanger.SceneChange("MainScene");
+        }
     }
 
     public void DoneTutorial(bool isclear)

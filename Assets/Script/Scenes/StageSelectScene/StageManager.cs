@@ -79,6 +79,7 @@ public class StageManager : MonoBehaviour
 
                 if(GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
                     GameManager.Data.MainDeckSet();
+                    GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
             }
             else
             {

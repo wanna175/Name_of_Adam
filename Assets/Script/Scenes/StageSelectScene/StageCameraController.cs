@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class StageCameraController : MonoBehaviour
 {
     [SerializeField] Transform MapTransform;
+    private float _cameraSpeed = 4.0f; // 증가할 때 카메라 이동 속도 느려짐
+
     private void Start()
     {
         StartCoroutine(MapScanMove());
@@ -53,13 +55,12 @@ public class StageCameraController : MonoBehaviour
         }
 
         float elapsedTime = 0;
-        float waitTime = 4f;
         Vector3 TopPos = new Vector3(0, 25, -10);
         Vector3 BottomPos = new Vector3(0, -5, -10);
 
-        while (elapsedTime < waitTime)
+        while (elapsedTime < _cameraSpeed)
         {
-            float t = elapsedTime / waitTime;
+            float t = elapsedTime / _cameraSpeed;
             t = Mathf.Sin((t * Mathf.PI) / 2);
 
             transform.position = Vector3.Lerp(TopPos, BottomPos, t);

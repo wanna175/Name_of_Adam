@@ -7,6 +7,7 @@ public class UI_HallCard : MonoBehaviour
 {
     public Image UnitImage;
     private List<DeckUnit> _mainDeck;
+    private List<HallUnit> _hallUnitList;
 
     public bool _isElite;
     public int HallUnitID; //µ¦°ú ´ëÄª½ÃÅ³ ID
@@ -18,6 +19,7 @@ public class UI_HallCard : MonoBehaviour
 
     public void Init()
     {
+        _hallUnitList = GameManager.OutGameData.FindHallUnitList();
         _mainDeck = GameManager.Data.GameDataMain.DeckUnits;
 
         if (_mainDeck.Count <= HallUnitID)
@@ -43,8 +45,10 @@ public class UI_HallCard : MonoBehaviour
         }
 
         _mainDeck[HallUnitID].IsMainDeck = false;
+        _hallUnitList[_mainDeck[HallUnitID].HallUnitID].IsMainDeck = false;
         _mainDeck[HallUnitID] = unit;
         _mainDeck[HallUnitID].IsMainDeck = true;
+        _hallUnitList[_mainDeck[HallUnitID].HallUnitID].IsMainDeck = true;
 
         foreach (Stigma stigma in unit.GetStigma())
         {
