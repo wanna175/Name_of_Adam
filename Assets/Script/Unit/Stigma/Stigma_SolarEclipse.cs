@@ -7,6 +7,6 @@ public class Stigma_SolarEclipse : Stigma
         base.Use(caster);
 
         Buff_Stigma_SolarEclipse solarEclipse = new();
-        caster.SetBuff(solarEclipse, caster);
+        caster.SetBuff(solarEclipse);
     }
 }

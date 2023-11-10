@@ -11,8 +11,6 @@ public class Stigma_Sadism : Stigma
         base.Use(caster);
 
         Buff_Stigma_Sadism sadism = new();
-        caster.SetBuff(sadism, caster);
-
         if (Tier == StigmaTier.Tier1)
         {
             sadism.SetValue(3);
@@ -21,6 +19,7 @@ public class Stigma_Sadism : Stigma
         {
             sadism.SetValue(5);
         }
-       
+
+        caster.SetBuff(sadism);
     }
 }

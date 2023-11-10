@@ -7,6 +7,6 @@ public class Stigma_LunarEclipse : Stigma
         base.Use(caster);
 
         Buff_Stigma_LunarEclipse lunarEclipse = new();
-        caster.SetBuff(lunarEclipse, caster);
+        caster.SetBuff(lunarEclipse);
     }
 }

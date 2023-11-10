@@ -8,6 +8,6 @@ public class Stigma_Martyrdom : Stigma
         base.Use(caster);
 
         Buff_Stigma_Martyrdom martyrdom = new();
-        caster.SetBuff(martyrdom, caster);
+        caster.SetBuff(martyrdom);
     }
 }

@@ -14,10 +14,10 @@ public class Stigma_Raise : Stigma
             if (unit.Team == caster.Team)
             {
                 Buff_Raise raise = new();
-                unit.SetBuff(raise, caster);
+                unit.SetBuff(raise);
                 if (Tier == StigmaTier.Tier2)
                 {
-                    unit.SetBuff(raise, caster);
+                    unit.SetBuff(raise);
                 }
             }
         }

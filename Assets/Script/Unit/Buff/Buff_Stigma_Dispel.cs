@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_Dispel : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init( BattleUnit owner)
     {
         _buffEnum = BuffEnum.Dispel;
 
@@ -16,8 +16,6 @@ public class Buff_Stigma_Dispel : Buff
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -27,9 +25,9 @@ public class Buff_Stigma_Dispel : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
-        receiver.Buff.DispelBuff();
+        caster.Buff.DispelBuff();
 
         return false;
     }

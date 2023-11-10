@@ -4,7 +4,7 @@ public class Buff_Stigma_Absorption : Buff
 {
     int damage = 0;
 
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _name = "Èí¼ö";
 
@@ -16,8 +16,6 @@ public class Buff_Stigma_Absorption : Buff
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -27,7 +25,7 @@ public class Buff_Stigma_Absorption : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         caster.GetHeal((int)(damage * 0.3), caster);
 

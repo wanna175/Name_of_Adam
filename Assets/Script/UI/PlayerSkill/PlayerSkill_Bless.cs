@@ -8,8 +8,11 @@ public class PlayerSkill_Bless : PlayerSkill
     public override void Use(Vector2 coord)
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
-        BattleManager.Field.GetUnit(coord).GetAttack(-30, null);
+        //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+
+        BattleUnit unit = BattleManager.Field.GetUnit(coord);
+        unit.SetBuff(new Buff_Curse());
+        unit.SetBuff(new Buff_Raise());
     }
     public override void CancelSelect()
     {

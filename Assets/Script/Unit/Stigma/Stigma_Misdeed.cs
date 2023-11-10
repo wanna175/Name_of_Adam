@@ -8,6 +8,6 @@ public class Stigma_Misdeed : Stigma
         base.Use(caster);
 
         Buff_Stigma_Misdeed misdeed = new();
-        caster.SetBuff(misdeed, caster);
+        caster.SetBuff(misdeed);
     }
 }

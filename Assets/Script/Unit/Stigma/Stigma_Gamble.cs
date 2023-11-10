@@ -8,6 +8,6 @@ public class Stigma_Gamble : Stigma
         base.Use(caster);
 
         Buff_Stigma_Gamble gamble = new();
-        caster.SetBuff(gamble, caster);
+        caster.SetBuff(gamble);
     }
 }

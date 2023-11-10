@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac803bb941873b4fafc0c839fc31480, type: 3}
   m_Name: GameDataTutorial
   m_EditorClassIdentifier: 
-  Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
+  Incarna: {fileID: 11400000, guid: 42272ad2be0f01542b8da20d7cde2a9c, type: 2}
   UniversalPlayerSkill: {fileID: 0}
   Money: 0
   DarkEssence: 5
@@ -34,8 +34,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -20
-    Stigma: []
+      ManaCost: 0
   - Data: {fileID: 11400000, guid: 0f89f85ebc1402d4a867d675973c6f64, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -52,8 +51,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -20
-    Stigma: []
+      ManaCost: 0
   - Data: {fileID: 11400000, guid: 9ce197328a1c9bb4a92c4ca4b790c6cb, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -70,8 +68,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -20
-    Stigma: []
+      ManaCost: 0
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -88,7 +85,6 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: -35
-    Stigma: []
+      ManaCost: 0
   isVisitUpgrade: 0
   isVisitStigma: 0

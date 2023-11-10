@@ -3,7 +3,7 @@ using UnityEngine;
 public class Buff_Raise : Buff
 {
     private int attackUp;
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Raise;
 
@@ -18,8 +18,6 @@ public class Buff_Raise : Buff
         _countDownTiming = ActiveTiming.DAMAGE_CONFIRM;
 
         _buffActiveTiming = ActiveTiming.NONE;
-
-        _caster = caster;
 
         _owner = owner;
 

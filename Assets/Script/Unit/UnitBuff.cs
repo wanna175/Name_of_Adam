@@ -6,9 +6,9 @@ public class UnitBuff : MonoBehaviour
 {
     [SerializeField] private List<Buff> _buffList;
 
-    public void SetBuff(Buff buff, BattleUnit caster, BattleUnit owner, int num = 0)
+    public void SetBuff(Buff buff, BattleUnit owner, int num = 0)
     {
-        buff.Init(caster, owner);
+        buff.Init(owner);
         buff.SetValue(num);
 
         foreach (Buff listedBuff in _buffList)
@@ -95,7 +95,6 @@ public class UnitBuff : MonoBehaviour
                 if (_buffList[i].Count == 0)
                 {
                     _buffList[i].Owner.DeleteBuff(_buffList[i].BuffEnum);
-
                     i--;
                 }
             }

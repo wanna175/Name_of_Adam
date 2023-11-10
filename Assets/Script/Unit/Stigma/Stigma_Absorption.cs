@@ -6,7 +6,6 @@ public class Stigma_Absorption : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_Absorption absorption = new();
-        caster.SetBuff(absorption, caster);
+        caster.SetBuff(new Buff_Stigma_Absorption());
     }
 }

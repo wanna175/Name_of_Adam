@@ -4,7 +4,7 @@ public class Buff_Stigma_Sadism : Buff
 {
     private int attackUp = 3;
     private int totalUp = 0;
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Sadism;
 
@@ -18,8 +18,6 @@ public class Buff_Stigma_Sadism : Buff
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -29,7 +27,7 @@ public class Buff_Stigma_Sadism : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         totalUp += attackUp;
 

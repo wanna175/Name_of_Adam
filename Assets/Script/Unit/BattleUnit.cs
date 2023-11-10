@@ -509,9 +509,9 @@ public class BattleUnit : MonoBehaviour
 
     public virtual BattleUnit GetOriginalUnit() => this;
 
-    public virtual void SetBuff(Buff buff, BattleUnit caster)
+    public virtual void SetBuff(Buff buff)
     {
-        Buff.SetBuff(buff, caster, this);
+        Buff.SetBuff(buff, this);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.AddBuff(buff);
     }
@@ -542,7 +542,7 @@ public class BattleUnit : MonoBehaviour
                 buff.SetValue((int)num);
             }
 
-            skipNextAction = buff.Active(this, receiver);
+            skipNextAction = buff.Active(receiver);
         }
 
         Buff.CheckCountDownTiming(activeTiming);

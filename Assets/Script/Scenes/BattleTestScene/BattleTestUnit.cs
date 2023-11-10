@@ -80,7 +80,7 @@ public class BattleTestUnit : BattleUnit
         foreach (Buff buff in Buff.CheckActiveTiming(activeTiming))
         {
             buff.SetValue(num);
-            skipNextAction = buff.Active(this, receiver);
+            skipNextAction = buff.Active(receiver);
         }
 
         Buff.CheckCountDownTiming(activeTiming);

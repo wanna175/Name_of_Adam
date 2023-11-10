@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7ba0f17e0a1ac42bfb7baaf8e8e99b, type: 3}
   m_Name: "01.\uD751\uD0C0\uC218"
   m_EditorClassIdentifier: 
-  _name: "\uAC80\uC740\uC120\uC9C0\uC790"
+  _name: "\uD751\uD0C0\uC218"
   _sprite: {fileID: 0}
   _playerSkillList:
-  - {fileID: 5395026236160498702, guid: 63388be1b1c6f2f4e99351a5ce301eff, type: 3}
-  - {fileID: 2617580477930891123, guid: 0f0f13b0029d95f41a480ee9aafb89d8, type: 3}
-  - {fileID: 6495282118563126077, guid: 9f208a0132df5fa49830d87a6943ae81, type: 3}
+  - {fileID: 4925856778809104441, guid: b3fc180a5fda0074e9e14deac46a69cc, type: 3}
+  - {fileID: 3233695130252107697, guid: d7c1eb92d8fbd87418d73002f3cfb65f, type: 3}
+  - {fileID: 5396263994288018817, guid: d1c2e3217eab69d42b0dfeb8f6ac55d6, type: 3}
   _playerSkillCount: 0

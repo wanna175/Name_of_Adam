@@ -8,7 +8,7 @@ public class Stigma_Regeneration : Stigma
         base.Use(caster);
 
         Buff_Stigma_Regeneration regeneration = new();
-        caster.SetBuff(regeneration, caster);
+        caster.SetBuff(regeneration);
 
         if (Tier == StigmaTier.Tier1)
         {

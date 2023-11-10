@@ -14,7 +14,7 @@ public class Stigma_TailWind : Stigma
             if (unit.Team == caster.Team)
             {
                 Buff_Tailwind tailwind = new();
-                unit.SetBuff(tailwind, caster);
+                unit.SetBuff(tailwind);
             }
         }
     }

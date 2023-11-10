@@ -530,8 +530,8 @@ public class BattleManager : MonoBehaviour
                 GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
                 GameManager.Instance.Tutorial_Benediction_Trigger = false;
             }
-            Buff_Benediction benediction = new();
-            lastUnit.SetBuff(benediction, lastUnit);
+            
+            lastUnit.SetBuff(new Buff_Benediction());
         }
     }
 

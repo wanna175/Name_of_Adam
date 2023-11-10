@@ -8,11 +8,11 @@ public class Stigma_Immortal : Stigma
         base.Use(caster);
 
         Buff_Immortal immortal = new();
-        caster.SetBuff(immortal, caster);
+        caster.SetBuff(immortal);
 
         if (Tier == StigmaTier.Tier2)
         {
-            caster.SetBuff(immortal, caster);
+            caster.SetBuff(immortal);
         }
     }
 }
