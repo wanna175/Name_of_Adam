@@ -165,6 +165,7 @@ public enum FieldColorType
 public enum PlayerSkillTargetType
 {
     none,
+    all,
     Unit,
     Enemy,
     Friendly
