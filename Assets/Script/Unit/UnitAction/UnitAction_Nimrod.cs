@@ -54,10 +54,7 @@ public class UnitAction_Nimrod : UnitAction
             BattleManager.Instance.EndUnitAction();
         }
 
-        if (attackUnit.Team == Team.Enemy)
-            BattleManager.Field.ClearEffectTile(_attackTile, EffectTileType.Nimrod_Attack_Enemy);
-        else if (attackUnit.Team == Team.Player)
-            BattleManager.Field.ClearEffectTile(_attackTile, EffectTileType.Nimrod_Attack_Friendly);
+        TileClear(attackUnit.Team);
     }
 
     private void NimrodFaceCheck(BattleUnit caster)
@@ -81,7 +78,7 @@ public class UnitAction_Nimrod : UnitAction
             }
         }
 
-        if (count > 6)
+        if (count >= 5)
         {
             _nimrodFace = 2;
         }
@@ -129,7 +126,7 @@ public class UnitAction_Nimrod : UnitAction
                             continue;
 
                         BattleUnit udrlUnit = BattleManager.Field.GetUnit(unit.Location + udrl);
-                        if (udrlUnit != null && (udrlUnit.Data.ID == "오벨리스크ID" && udrlUnit.Team == caster.Team))
+                        if (udrlUnit != null && (udrlUnit.Data.ID == "오벨리스크ID" && udrlUnit.Team == caster.Team) || udrlUnit == caster)
                         {
                             continue;
                         }
@@ -145,7 +142,7 @@ public class UnitAction_Nimrod : UnitAction
 
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                if ((unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team) || unit == caster)
                 {
                     nonAttackTiles.Add(unit.Location);
                 }
@@ -171,24 +168,53 @@ public class UnitAction_Nimrod : UnitAction
         _attackTile.Add(coord);
     }
 
-    public override void ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
+    private void TileClear(Team team)
+    {
+        if (team == Team.Enemy)
+            BattleManager.Field.ClearEffectTile(_attackTile, EffectTileType.Nimrod_Attack_Enemy);
+        else if (team == Team.Player)
+            BattleManager.Field.ClearEffectTile(_attackTile, EffectTileType.Nimrod_Attack_Friendly);
+    }
+
+    public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
     {
         if (activeTiming == ActiveTiming.TURN_START)
         {
             NimrodFaceCheck(caster);
+            TileClear(caster.Team);
             SetAttackTile(caster);
         }
         else if (activeTiming == ActiveTiming.FIELD_UNIT_SUMMON)
         {
-            SetAttackTile(caster);
+            if (_nimrodFace == 0)
+            {
+                SetAttackTile(caster);
+            }
         }
         else if (activeTiming == ActiveTiming.FIELD_UNIT_DEAD)
         {
             if (_nimrodFace == 1)
             {
+                TileClear(caster.Team);
                 SetAttackTile(caster);
             }
         }
+        else if (activeTiming == ActiveTiming.AFTER_UNIT_DEAD)
+        {
+            int listCount = BattleManager.Data.BattleUnitList.Count;
+            for (int i = 0; i < listCount; i++)
+            {
+                BattleUnit unit = BattleManager.Data.BattleUnitList[i];
+                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                {
+                    unit.UnitDiedEvent();
+                    i--;
+                    listCount--;
+                }
+            }
+        }
+
+        return false;
     }
     /*
     public virtual void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits) => BattleManager.Instance.AttackStart(attackUnit, hits);

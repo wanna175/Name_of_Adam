@@ -185,6 +185,14 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Nimrod();
         }
+        else if (actionType == UnitActionType.UnitAction_Trinity)
+        {
+            return new UnitAction_Trinity();
+        }
+        else if (actionType == UnitActionType.UnitAction_Centaurus)
+        {
+            return new UnitAction_Centaurus();
+        }
         else
         {
             return new UnitAction_None();

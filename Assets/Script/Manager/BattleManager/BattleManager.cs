@@ -152,7 +152,7 @@ public class BattleManager : MonoBehaviour
 
     public void PreparePhaseClick(Vector2 coord)
     {
-        if (!_field.ColoredTile.Contains(coord))
+        if (!_field.TileDict[coord].IsColored)
         {
             _battleUI.CancelAllSelect();
             return;
@@ -180,7 +180,7 @@ public class BattleManager : MonoBehaviour
     private void SpawnUnitOnField(Vector2 coord)
     {
         DeckUnit unit = _battleUI.UI_hands.GetSelectedUnit();
-        if (!_field.ColoredTile.Contains(coord))
+        if (!_field.TileDict[coord].IsColored)
             return;
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
@@ -202,7 +202,7 @@ public class BattleManager : MonoBehaviour
 
     public void MovePhaseClick(Vector2 coord)
     {
-        if (!_field.ColoredTile.Contains(coord))
+        if (!_field.TileDict[coord].IsColored)
         {
             return;
         }
@@ -220,7 +220,7 @@ public class BattleManager : MonoBehaviour
 
     public void ActionPhaseClick(Vector2 coord)
     {
-        if (!_field.ColoredTile.Contains(coord))
+        if (!_field.TileDict[coord].IsColored)
             return;
 
         BattleUnit unit = _battleData.GetNowUnit();

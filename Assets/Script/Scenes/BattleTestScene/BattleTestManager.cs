@@ -84,7 +84,7 @@ public class BattleTestManager : BattleManager
                         coord = Field.GetCoordByTile(h.transform.GetComponent<Tile>());
                 }
 
-                if (!Field.ColoredTile.Contains(coord))
+                if (!Field.TileDict[coord].IsColored)
                     return;
 
                 TestClickEvent(coord);

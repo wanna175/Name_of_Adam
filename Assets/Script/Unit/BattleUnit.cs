@@ -39,6 +39,7 @@ public class BattleUnit : MonoBehaviour
     private bool _nextAttackSkip = false;
 
     private bool[] _moveRangeList;
+    private bool[] _attackRangeList;
 
     private IEnumerator moveCoro;
 
@@ -68,6 +69,9 @@ public class BattleUnit : MonoBehaviour
         _moveRangeList = new bool[Data.MoveRange.Length];
         Array.Copy(Data.MoveRange, _moveRangeList, Data.MoveRange.Length);
 
+        _attackRangeList = new bool[Data.AttackRange.Length];
+        Array.Copy(Data.AttackRange, _attackRangeList, Data.AttackRange.Length);
+        
         BattleManager.Data.BattleUnitList.Add(this);
 
         GameManager.Sound.Play("Summon/SummonSFX");
@@ -80,16 +84,20 @@ public class BattleUnit : MonoBehaviour
         SetLocation(coord);
 
         IsConnectedUnit = isConnectedUnit;
-        if (!isConnectedUnit && DeckUnit.GetUnitSize() > 1)
-        {
-            foreach (Vector2 range in DeckUnit.GetUnitSizeRange())
-            {
-                if (range + _location != _location)
-                    ConnectedUnits.Add(BattleManager.Spawner.ConnectedUnitSpawn(this, range + _location));
-            }
-        }
 
-        SetFlipX(team == Team.Enemy);
+        if (!isConnectedUnit)
+        {
+            if (DeckUnit.GetUnitSize() > 1)
+            {
+                foreach (Vector2 range in DeckUnit.GetUnitSizeRange())
+                {
+                    if (range + _location != _location)
+                        ConnectedUnits.Add(BattleManager.Spawner.ConnectedUnitSpawn(this, range + _location));
+                }
+            }
+
+            SetFlipX(team == Team.Enemy);
+        }
 
         //소환 시 체크
         ActiveTimingCheck(ActiveTiming.STIGMA);
@@ -120,6 +128,7 @@ public class BattleUnit : MonoBehaviour
     {
         //이동 턴 종료 시 체크
         ActiveTimingCheck(ActiveTiming.MOVE_TURN_END);
+        _nextMoveSkip = false;
     }
 
     public void AttackTurnStart()
@@ -133,6 +142,7 @@ public class BattleUnit : MonoBehaviour
     {
         //공격 턴 종료 시 체크
         ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END);
+        _nextAttackSkip = false;
     }
 
     public void FieldUnitDead()
@@ -224,7 +234,7 @@ public class BattleUnit : MonoBehaviour
     public void UnitDiedEvent()
     {
         //자신이 사망 시 체크
-        if (ActiveTimingCheck(ActiveTiming.UNIT_DEAD))
+        if (ActiveTimingCheck(ActiveTiming.BEFORE_UNIT_DEAD))
         {
             return;
         }
@@ -252,7 +262,7 @@ public class BattleUnit : MonoBehaviour
 
             yield return null;
         }
-
+        ActiveTimingCheck(ActiveTiming.AFTER_UNIT_DEAD);
         BattleManager.Spawner.RestoreUnit(gameObject);
 
         if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
@@ -547,17 +557,22 @@ public class BattleUnit : MonoBehaviour
 
         BattleUnitChangedStat = Buff.GetBuffedStat();
 
-        Action.ActionTimingCheck(activeTiming, this, receiver);
+        skipNextAction |= Action.ActionTimingCheck(activeTiming, this, receiver);
 
         return skipNextAction;
     }
 
-    public void AddMoveRange(bool[] rangeList)
+    public void AddMoveRange(bool[] addRangeList)
     {
         for (int i = 0; i < _moveRangeList.Length; i++)
         {
-            _moveRangeList[i] |= rangeList[i];
+            _moveRangeList[i] |= addRangeList[i];
         }
+    }
+
+    public void SetAttackRange(bool[] setRangeList)
+    {
+        Array.Copy(setRangeList, _attackRangeList, setRangeList.Length);
     }
 
     public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
@@ -565,19 +580,19 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetAttackRange()
     {
         List<Vector2> RangeList = new();
-
         if (_nextAttackSkip)
         {
-            _nextAttackSkip = false;
+            RangeList.Add(new Vector2(0, 0));
+
             return RangeList;
         }
 
         int Acolumn = 11;
         int Arow = 5;
 
-        for (int i = 0; i < Data.AttackRange.Length; i++)
+        for (int i = 0; i < _attackRangeList.Length; i++)
         {
-            if (Data.AttackRange[i])
+            if (_attackRangeList[i])
             {
                 int x = (i % Acolumn) - (Acolumn >> 1);
                 int y = (i / Acolumn) - (Arow >> 1);
@@ -608,10 +623,10 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetMoveRange()
     {
         List<Vector2> RangeList = new();
-
         if (_nextMoveSkip)
         {
-            _nextMoveSkip = false;
+            RangeList.Add(new Vector2(0, 0));
+
             return RangeList;
         }
 

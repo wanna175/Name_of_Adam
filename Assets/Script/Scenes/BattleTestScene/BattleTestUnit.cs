@@ -17,11 +17,10 @@ public class BattleTestUnit : BattleUnit
     public void TestUnitDiedEvent()
     {
         //자신이 사망 시 체크
-        if (ActiveTimingCheck(ActiveTiming.UNIT_DEAD))
+        if (ActiveTimingCheck(ActiveTiming.BEFORE_UNIT_DEAD))
         {
             return;
         }
-
 
         BattleManager.Instance.UnitDeadEvent(this);
 

@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     public BattleUnit Unit => _unit;
     public bool UnitExist { get { return Unit != null;} }
 
+    public bool IsColored = false;
     private List<EffectTile> _effectTiles = new();
 
     public Action<Tile> OnClickAction = null;
@@ -42,13 +43,15 @@ public class Tile : MonoBehaviour
     public void SetColor(Color color)
     {
         if (color.Equals(Color.white))
+        {
             _highlight.SetActive(false);
+            IsColored = false;
+        }
         else
         {
             _highlight.SetActive(true);
+            IsColored = true;
             StartCoroutine(ChangeAlphaOverTime(color, _highlight.GetComponent<SpriteRenderer>(), _tileFrame.GetComponent<SpriteRenderer>()));
-            //color.a = 150 / 255f;
-            //_highlight.GetComponent<SpriteRenderer>().color = color;
         }
     }
 

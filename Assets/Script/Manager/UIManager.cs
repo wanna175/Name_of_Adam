@@ -5,8 +5,10 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     private int _order = 10;
-    private Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
+    private Stack<UI_Popup> _popupStack = new();
     private UI_Hover _hover;
+
+    [SerializeField] private UI_ESCOption _escOprion;
 
     public GameObject Root
     {
@@ -16,6 +18,25 @@ public class UIManager : MonoBehaviour
             if (root == null)
                 root = new GameObject("@UI_Root");
             return root;
+        }
+    }
+
+    public void SetESCOption(bool state)
+    {
+        if (!_escOprion.gameObject.activeSelf && state)
+        {
+            _escOprion.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else if (GameManager.Instance.isTutorialactive && !state)
+        {
+            _escOprion.gameObject.SetActive(false);
+            Time.timeScale = 0;
+        }
+        else if (_escOprion.gameObject.activeSelf && !state)
+        {
+            _escOprion.gameObject.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 
@@ -163,5 +184,13 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Resource.Destroy(_hover.gameObject);
         _hover = null;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetESCOption(!_escOprion.gameObject.activeSelf);
+        }
     }
 }
