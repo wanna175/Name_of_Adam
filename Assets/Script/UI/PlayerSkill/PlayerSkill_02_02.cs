@@ -7,9 +7,10 @@ public class PlayerSkill_02_02 : PlayerSkill
     public override void Use(Vector2 coord, out bool isSkillOn)
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
-        BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
+
+        targetUnit.SetBuff(new Buff_Vice());
         targetUnit.ChangeFall(1);
         isSkillOn = false;
     }
@@ -21,6 +22,6 @@ public class PlayerSkill_02_02 : PlayerSkill
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
+        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Friendly);
     }
 }

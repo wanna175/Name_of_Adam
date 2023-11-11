@@ -11,7 +11,6 @@ public class PlayerSkill_Move : PlayerSkill
         selectedUnit = BattleManager.Field.GetUnit(coord);
         BattleManager.Field.SetNextActionTileColor(selectedUnit, FieldColorType.Move);
         isSkillOn = true;
-        Debug.Log("A");
     }
 
     public override void Action(Vector2 coord, ActiveTiming activeTiming, out bool isSkillOn)
