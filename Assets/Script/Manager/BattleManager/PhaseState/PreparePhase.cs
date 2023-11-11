@@ -47,5 +47,6 @@ public class PreparePhase : Phase
 
         BattleManager.BattleUI.CancelAllSelect();
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
+        BattleManager.PlayerSkillController.SetSkillDone();
     }
 }
