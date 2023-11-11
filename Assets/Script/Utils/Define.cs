@@ -211,10 +211,12 @@ public enum BuffEnum
 public enum UnitActionType
 {
     UnitAction,
+    UnitAction_None,
 
     UnitAction_Iana,
     UnitAction_Nimrod,
-    UnitAction_None
+    UnitAction_Trinity,
+    UnitAction_Centaurus
 }
 
 public enum EffectTileType
