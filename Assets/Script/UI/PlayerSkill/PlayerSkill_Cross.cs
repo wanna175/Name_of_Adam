@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSkill_Cross : PlayerSkill
 {
-    public override void Use(Vector2 coord)
+    public override void Use(Vector2 coord, out bool isSkillOn)
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //ÀÌÆÑÆ®¸¦ ¿©±â¿¡ Ãß°¡
@@ -25,6 +25,7 @@ public class PlayerSkill_Cross : PlayerSkill
                 targetUnit.ChangeFall(1);
             }
         }
+        isSkillOn = false;
     }
 
     public override void CancelSelect()

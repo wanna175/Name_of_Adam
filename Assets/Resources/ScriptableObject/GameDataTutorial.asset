@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac803bb941873b4fafc0c839fc31480, type: 3}
   m_Name: GameDataTutorial
   m_EditorClassIdentifier: 
-  Incarna: {fileID: 11400000, guid: 42272ad2be0f01542b8da20d7cde2a9c, type: 2}
+  Incarna: {fileID: 11400000, guid: feadbc338b464984fbbb40a9b9c4f74e, type: 2}
   UniversalPlayerSkill: {fileID: 0}
   Money: 0
   DarkEssence: 5

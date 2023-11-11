@@ -158,21 +158,25 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        if (PlayerSkillController.isSkillOn)
+        {
+            PlayerSkillController.usedPlayerSkill.Action(coord, ActiveTiming.NONE, out PlayerSkillController.isSkillOn);
+            return;
+        }
+
         if (_field.FieldType == FieldColorType.UnitSpawn)
         {
             SpawnUnitOnField(coord);
         }
         else if (_field.FieldType == FieldColorType.PlayerSkill)
         {
-            _battleUI.GetSelectedPlayerSkill().Use(coord);
-            _playerSkillController.PlayerSkillUse();
+            _playerSkillController.PlayerSkillUse(coord);
         }
         else if (_field.FieldType == FieldColorType.UltimatePlayerSkill)
         {
             if (GameManager.Data.PlayerSkillCountChage(-1))
             {
-                _battleUI.GetSelectedPlayerSkill().Use(coord);
-                _playerSkillController.PlayerSkillUse();
+                _playerSkillController.PlayerSkillUse(coord);
             }
         }
     }
