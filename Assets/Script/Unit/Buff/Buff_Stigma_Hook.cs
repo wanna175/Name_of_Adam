@@ -55,7 +55,7 @@ public class Buff_Stigma_Hook : Buff
             }
         }
 
-        BattleManager.Instance.MoveUnit(_owner, moveVector);
+        BattleManager.Instance.MoveUnit(caster, moveVector);
 
         return false;
     }

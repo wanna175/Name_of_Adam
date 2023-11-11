@@ -29,10 +29,10 @@ public class Buff_DeathStrike : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        caster.ChangedDamage *= 3;
+        _owner.ChangedDamage *= 3;
 
         Buff_InevitableEnd inevitableEnd= new();
-        caster.SetBuff(inevitableEnd);
+        _owner.SetBuff(inevitableEnd);
 
         return false;
     }

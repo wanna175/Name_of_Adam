@@ -28,11 +28,11 @@ public class Buff_Stigma_Gamble : Buff
     {
         if (6 >= Random.Range(0, 10))
         {
-            caster.ChangedDamage += caster.BattleUnitTotalStat.ATK;
+            _owner.ChangedDamage += _owner.BattleUnitTotalStat.ATK;
         }
         else
         {
-            caster.ChangedDamage -= caster.BattleUnitTotalStat.ATK / 2;
+            _owner.ChangedDamage -= _owner.BattleUnitTotalStat.ATK / 2;
         }
 
         return false;

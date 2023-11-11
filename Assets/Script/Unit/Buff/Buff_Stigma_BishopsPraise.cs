@@ -35,7 +35,7 @@ public class Buff_Stigma_BishopsPraise : Buff
             false, false, false, false, false
         };
 
-        caster.AddMoveRange(moveRange);
+        _owner.AddMoveRange(moveRange);
 
         return false;
     }

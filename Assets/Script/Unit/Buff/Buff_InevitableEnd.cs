@@ -27,7 +27,7 @@ public class Buff_InevitableEnd : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        caster.UnitDiedEvent();
+        _owner.UnitDiedEvent();
 
         return false;
     }
