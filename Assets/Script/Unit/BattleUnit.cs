@@ -325,6 +325,11 @@ public class BattleUnit : MonoBehaviour
         _unitAnimator.SetBool(varName, boolean);
     }
 
+    public void AnimatorSetInteger(string varName, int integer)
+    {
+        _unitAnimator.SetInteger(varName, integer);
+    }
+
     public Team ChangeTeam(Team team = default)
     {
         if (team != default)
