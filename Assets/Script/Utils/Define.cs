@@ -81,8 +81,8 @@ public enum StageName
 public enum Rarity
 {
     일반,
-    레어,
     엘리트,
+    오리지널,
 }
 
 [SerializeField]

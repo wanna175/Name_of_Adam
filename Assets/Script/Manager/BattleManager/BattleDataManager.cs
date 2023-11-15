@@ -92,7 +92,7 @@ public class BattleDataManager : MonoBehaviour
         return unit;
     }
 
-    public DeckUnit GetTUnitFromDeck()
+    public DeckUnit GetTutorialUnitFromDeck()
     {
         if (PlayerDeck.Count == 0)
         {

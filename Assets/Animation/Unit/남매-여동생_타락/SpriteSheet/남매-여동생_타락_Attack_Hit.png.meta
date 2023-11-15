@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -349,7 +349,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_8": -1165074137
+      "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_3": -448644445
       "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_0": -2130808282
       "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_9": -2042236124
       "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_4": -1328368572
@@ -358,7 +358,7 @@ TextureImporter:
       "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_2": 1099362739
       "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_1": 743315549
       "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_6": 95209974
-      "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_3": -448644445
+      "\uB0A8\uB9E4-\uC5EC\uB3D9\uC0DD_\uD0C0\uB77D_Attack_Hit_8": -1165074137
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

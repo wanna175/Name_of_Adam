@@ -30,12 +30,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SaveController _saveController;
     public static SaveController SaveManager => Instance._saveController;
 
+    [SerializeField] private OutGameDataContainer _outGameData;
+    public static OutGameDataContainer OutGameData => Instance._outGameData;
 
+    
     public bool Tutorial_Trigger_First = true;
     public bool Tutorial_Trigger_Second = true;
     public bool Tutorial_Benediction_Trigger = true;
     public bool Tutorial_Stage_Trigger = true;
     public bool isTutorialactive = false;
+    
 
     void Awake()
     {
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
         else
         {
             SaveManager.Init();
+            OutGameData.Init();
             Data.Init();
             Sound.Init();
             VisualEffect.Init();
@@ -76,6 +81,7 @@ public class GameManager : MonoBehaviour
             s_instance = go.GetComponent<GameManager>();
 
             SaveManager.Init();
+            OutGameData.Init();
             Data.Init();
             Sound.Init();
             VisualEffect.Init();
@@ -109,5 +115,12 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z))
             GameManager.SaveManager.DeleteSaveData();
+
+        //Test용, 나중에 수정
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Data.MainDeckLayoutSet();
+            GameManager.OutGameData.DeleteAllData();
+        }
     }
 }

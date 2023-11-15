@@ -371,6 +371,7 @@ public class BattleManager : MonoBehaviour
                 if (GameManager.Instance.Tutorial_Stage_Trigger == true)
                 {
                     GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(14);
+                    GameManager.OutGameData.DoneTutorial(true);
                     GameManager.Instance.Tutorial_Stage_Trigger = false;
                 }
             }
@@ -405,9 +406,9 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log("YOU LOSE");
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowScene<UI_BattleOver>().SetImage("lose");
+        GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         GameManager.SaveManager.DeleteSaveData();
-        GameManager.Data.DeckClear();
+        //GameManager.Data.DeckClear();
     }
 
     // 이동 경로를 받아와 이동시킨다

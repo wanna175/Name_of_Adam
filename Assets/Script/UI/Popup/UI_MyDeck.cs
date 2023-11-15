@@ -9,6 +9,7 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private Transform Grid;
     private bool _select; //UnitInfo에 전달용
     private List<DeckUnit> _playerDeck = new();
+    private List<DeckUnit> _hallDeck = new();
     private Action<DeckUnit> _onSelect;
 
     public void Init(bool battle=false, Action<DeckUnit> onSelect=null)
@@ -17,6 +18,71 @@ public class UI_MyDeck : UI_Popup
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
             _playerDeck = GameManager.Data.GetDeck();
+
+        if (onSelect != null)
+            _onSelect = onSelect;
+
+        SetCard();
+    }
+
+    //게임오버 후 전당에 저장할 유닛을 고를시 사용하는 덱
+    public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
+    {
+        List<DeckUnit> _normalDeck = new();
+
+        _hallDeck = GameManager.Data.GameData.FallenUnits;
+
+        foreach (DeckUnit unit in _hallDeck)
+        {
+            if (unit.Data.Rarity == Rarity.일반)
+            {
+                _normalDeck.Add(unit);
+            }
+        }
+
+        if (isBossClear)
+        {
+            _playerDeck = _hallDeck;
+        }
+        else
+        {
+            _playerDeck = _normalDeck;
+        }
+
+        if (onSelect != null)
+            _onSelect = onSelect;
+
+        SetCard();
+    }
+
+    //전당에서 메인 게임에 데려갈 유닛을 선택하는 덱
+    public void HallDeckInit(bool isElite = false, Action<DeckUnit> onSelect = null)
+    {
+        List<DeckUnit> _eliteDeck = new();
+        List<DeckUnit> _normalDeck = new();
+
+        _hallDeck = GameManager.Data.GetDeck();
+
+        foreach (DeckUnit unit in _hallDeck)
+        {
+            if (unit.Data.Rarity == Rarity.일반)
+            {
+                _normalDeck.Add(unit);
+            }
+            else
+            {
+                _eliteDeck.Add(unit);
+            }
+        }
+
+        if (isElite)
+        {
+            _playerDeck = _eliteDeck;
+        }
+        else
+        {
+            _playerDeck = _normalDeck;
+        }
 
         if (onSelect != null)
             _onSelect = onSelect;
