@@ -22,7 +22,7 @@ public class MainSceneController : MonoBehaviour
         Destroy(GameManager.Instance.gameObject);
 
         GameManager.SaveManager.DeleteSaveData();
-        SceneChanger.SceneChange("CutScene");
+        SceneChanger.SceneChange("HubScene");
     }
 
     public void ContinueBotton()

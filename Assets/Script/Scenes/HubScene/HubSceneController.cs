@@ -16,7 +16,16 @@ public class HubSceneController : MonoBehaviour
 
     public void GameStart()
     {
-        SceneChanger.SceneChange("CutScene");
+        if (GameManager.OutGameData.isTutorialClear())
+        {
+            GameManager.Data.HallDeckSet();
+            GameManager.Data.HallSelectedDeckSet();
+            SceneChanger.SceneChange("DifficultySelectScene");
+        }
+        else
+        {
+            SceneChanger.SceneChange("CutScene");
+        }
     }
 
     public void ProgressStore()
@@ -24,9 +33,10 @@ public class HubSceneController : MonoBehaviour
         SceneChanger.SceneChange("ProgressScene");
     }
 
-    public void Temple()
+    public void Hall()
     {
-        SceneChanger.SceneChange("TempleScene");
+        GameManager.Data.HallDeckSet();
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false);
     }
 
     public void Dictionary()

@@ -11,6 +11,7 @@ public class GameData : ScriptableObject
     public int DarkEssence;
     public int PlayerSkillCount;
     public List<DeckUnit> DeckUnits = new();
+    public List<DeckUnit> FallenUnits = new();
     public bool isVisitUpgrade = false;
     public bool isVisitStigma = false;
 }

@@ -30,7 +30,7 @@ MonoBehaviour:
     1\uBD80\uC5EC\uD558\uBA70 \uD55C\uBA85\uB2F9 \uCCB4\uB825\uC744 10 \uD68C\uBCF5\uD569\uB2C8\uB2E4.
     \uC5D8\uB9AC\uC6B0\uC2A4\uC5D0\uAC8C \uD53C\uACA9\uB41C \uBAA8\uB4E0 \uC801\uC5D0\uAC8C
     \uD574\uC758 \uC99D\uD45C\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
-  _rarity: 2
+  _rarity: 1
   _image: {fileID: 21300000, guid: 101229687224338458a3238b895207e2, type: 3}
   _animatorController: {fileID: 9100000, guid: 7e062985ae110c647a9643f7c5f53361, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 6630072a3f6014849b19d3be34e8b26e, type: 2}

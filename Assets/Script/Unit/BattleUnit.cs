@@ -279,6 +279,8 @@ public class BattleUnit : MonoBehaviour
             return;
         }
 
+        GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
+
         //타락 이벤트 시작
         FallEvent = true;
 

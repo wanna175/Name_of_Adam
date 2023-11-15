@@ -953,7 +953,7 @@ PrefabInstance:
       objectReference: {fileID: 2064249065}
     - target: {fileID: 5909236810512369953, guid: 3d496e3e51fa22646ab7729a923411f3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Temple
+      value: Hall
       objectReference: {fileID: 0}
     - target: {fileID: 5909236810512369953, guid: 3d496e3e51fa22646ab7729a923411f3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -978,6 +978,10 @@ PrefabInstance:
     - target: {fileID: 5909236810512369958, guid: 3d496e3e51fa22646ab7729a923411f3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909236810512369959, guid: 3d496e3e51fa22646ab7729a923411f3, type: 3}
+      propertyPath: m_Name
+      value: HallBTN
       objectReference: {fileID: 0}
     - target: {fileID: 5909236810890058328, guid: 3d496e3e51fa22646ab7729a923411f3, type: 3}
       propertyPath: m_Name

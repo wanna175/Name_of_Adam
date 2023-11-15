@@ -74,7 +74,7 @@ public class BattleUIManager : MonoBehaviour
             }
             else if (curID == 2 && GameManager.Data.StageAct == 0)
             {
-                unit = BattleManager.Data.GetTUnitFromDeck();
+                unit = BattleManager.Data.GetTutorialUnitFromDeck();
             }
             else
             {
@@ -138,11 +138,6 @@ public class BattleUIManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void tutorialHandUnit()
-    {
-        
     }
     
 

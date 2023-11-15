@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 기능은 있지만 현재 사용하고있지 않은 클래스
 // 진척도 & 전당 유닛 등의 인자를 저장 & 불러오는 기능
 
 [Serializable]
@@ -13,6 +12,7 @@ public class OutGameData
     public int ProgressCoin;                 // 진척도 코인
     public List<ProgressItem> ProgressItems; // 진척도 상점의 상품들
     public List<HallUnit> HallUnit;          // 전당 유닛
+    public bool TutorialClear = false;
 }
 
 [Serializable]
@@ -31,8 +31,9 @@ public class HallUnit
 {
     public int ID;                // 전당 내에서 식별을 위한 ID
     public string UnitName;       // 지금은 유닛 이름으로 받고있지만 ID로 받는 기능이 추가되면 변경해야함
-    public List<string> Stigmata; // 유닛이 가지고 있는 낙인, 지금은 임시로 string으로 받는 중
-                                  // SO 또는 프리팹으로 받고싶은 경우 해당 형식으로 변경 가능
+    public Stat UpgradedStat;     //업그레이드된 스텟
+    public bool IsMainDeck;       //유닛이 메인덱에 포함되었는지 유무 확인
+    public List<Stigma> Stigmata; // 유닛에게 추가된 낙인
 }
 
 
@@ -45,7 +46,7 @@ public class OutGameDataContainer : MonoBehaviour
     public void Init()
     {
         // 사용자\AppData\localLow에 있는 SaveData.json의 경로
-        path = Path.Combine(Application.persistentDataPath, "SaveData.json");
+        path = Path.Combine(Application.persistentDataPath, "OutGameSaveData.json");
 
         LoadData();
     }
@@ -70,6 +71,31 @@ public class OutGameDataContainer : MonoBehaviour
             Debug.Log(e);
             CreateData();
         }
+    }
+
+    public List<DeckUnit> SetHallDeck()
+    {
+        List<DeckUnit> HallList = new();
+
+        foreach (HallUnit unit in data.HallUnit)
+        {
+            DeckUnit deckUnit = new();
+
+            UnitDataSO unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{unit.UnitName}");
+
+            deckUnit.HallUnitID = unit.ID;
+            deckUnit.Data = unitData;
+            deckUnit.DeckUnitUpgradeStat = unit.UpgradedStat;
+            deckUnit.IsMainDeck = unit.IsMainDeck;
+
+            foreach (Stigma stigma in unit.Stigmata)
+            {
+                deckUnit.AddStigma(stigma);
+            }
+
+            HallList.Add(deckUnit);
+        }
+        return HallList;
     }
 
     public void CreateData()
@@ -111,17 +137,17 @@ public class OutGameDataContainer : MonoBehaviour
         SetProgressCoin(item.Cost);
     }
 
-    public List<HallUnit> GetHallUnits()
-    {
-        return data.HallUnit;
-    }
-
     public HallUnit FindHallUnitID(int ID)
     {
         return data.HallUnit.Find(x => x.ID == ID);
     }
 
-    public void AddHallUnit(string unitName, List<Stigma> stigmata)
+    public List<HallUnit> FindHallUnitList()
+    {
+        return data.HallUnit;
+    }
+
+    public void AddHallUnit(DeckUnit unit, bool IsBossClear)
     {
         HallUnit newUnit = new();
 
@@ -133,16 +159,43 @@ public class OutGameDataContainer : MonoBehaviour
                 break;
             }
         }
-        newUnit.UnitName = unitName;
-        newUnit.Stigmata = new List<string>();
-        foreach(Stigma st in stigmata)
-            newUnit.Stigmata.Add(st.Name);
 
+        newUnit.UnitName = unit.Data.Name;
+        newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
+        newUnit.UpgradedStat.FallCurrentCount = 0;
+        newUnit.IsMainDeck = false;
+        newUnit.Stigmata = unit.GetChangedStigma();
+
+        Debug.Log(newUnit.UnitName);
         data.HallUnit.Add(newUnit);
+        SaveData();
+
+        GameManager.Data.GameData.FallenUnits.Clear();
+
+        if (IsBossClear)
+        {
+            SceneChanger.SceneChange("EndingCreditScene");
+        }
+        else
+        {
+            SceneChanger.SceneChange("MainScene");
+        }
+    }
+
+    public void DoneTutorial(bool isclear)
+    {
+        data.TutorialClear = isclear;
+    }
+
+    public bool isTutorialClear()
+    {
+        return data.TutorialClear;
     }
 
     public void RemoveHallUnit(int ID)
     {
         data.HallUnit.Remove(FindHallUnitID(ID));
     }
+
+    public void DeleteAllData() => File.Delete(path);
 }
