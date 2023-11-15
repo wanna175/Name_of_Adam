@@ -529,7 +529,7 @@ public class BattleUnit : MonoBehaviour
         _hpBar.DeleteBuff(buffEnum);
     }
 
-    private bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int? num = null)
+    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int? num = null)
     {
         bool skipNextAction = false;
 

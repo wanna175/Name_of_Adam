@@ -11,13 +11,13 @@ public class Buff_Stigma_ShadowStep: Buff
 
         _name = "그림자 밟기";
 
-        _description = "그림자 밟기.";
+        _description = "피격 대상이 한명일 경우, 공격 후 피격 대상의 배후로 넘어갑니다.";
 
         _count = -1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
+        _buffActiveTiming = ActiveTiming.AFTER_ATTACK_CUTSCENE;
 
         _owner = owner;
 
@@ -30,6 +30,16 @@ public class Buff_Stigma_ShadowStep: Buff
 
     public override bool Active(BattleUnit caster)
     {
+        Vector2 vec = (caster.GetFlipX()) ? caster.Location + Vector2.right : caster.Location + Vector2.left;
+        if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
+        {
+            BattleManager.Instance.MoveUnit(_owner, vec);
+            _owner.SetFlipX(!_owner.GetFlipX());
+        }
+
+        return false;
+
+        /*
         float currntMax = 0f;
         Vector2 moveVector = caster.Location;
 
@@ -58,5 +68,6 @@ public class Buff_Stigma_ShadowStep: Buff
         BattleManager.Instance.MoveUnit(_owner, moveVector);
 
         return false;
+        */
     }
 }
