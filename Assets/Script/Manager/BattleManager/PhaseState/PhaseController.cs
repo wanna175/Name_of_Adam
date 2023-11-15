@@ -29,7 +29,6 @@ public class PhaseController
             _currentPhase.OnStateExit();
 
         _currentPhase = nextPhase;
-        _currentPhase.SetController(this);
         _currentPhase.OnStateEnter();
     }
 

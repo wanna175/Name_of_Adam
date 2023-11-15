@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_InevitableEnd : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.InevitableEnd;
 
@@ -16,8 +16,6 @@ public class Buff_InevitableEnd : Buff
 
         _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -27,9 +25,9 @@ public class Buff_InevitableEnd : Buff
         _stigmaBuff = false;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
-        caster.UnitDiedEvent();
+        _owner.UnitDiedEvent();
 
         return false;
     }

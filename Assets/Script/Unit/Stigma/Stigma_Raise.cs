@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Stigma_Raise : Stigma
 {
-    public override void Use(BattleUnit caster, BattleUnit receiver)
+    public override void Use(BattleUnit caster)
     {
-        base.Use(caster, receiver);
+        base.Use(caster);
 
         List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location);
 
@@ -14,10 +14,10 @@ public class Stigma_Raise : Stigma
             if (unit.Team == caster.Team)
             {
                 Buff_Raise raise = new();
-                unit.SetBuff(raise, caster);
+                unit.SetBuff(raise);
                 if (Tier == StigmaTier.Tier2)
                 {
-                    unit.SetBuff(raise, caster);
+                    unit.SetBuff(raise);
                 }
             }
         }

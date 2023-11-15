@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Buff_Immortal : Buff
-{    public override void Init(BattleUnit caster, BattleUnit owner)
+{    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Immortal;
 
@@ -17,8 +17,6 @@ public class Buff_Immortal : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_UNIT_DEAD;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -28,9 +26,9 @@ public class Buff_Immortal : Buff
         _stigmaBuff = false;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
-        caster.ChangeHP(-1 * caster.HP.GetCurrentHP() + 1);
+        _owner.ChangeHP(-1 * caster.HP.GetCurrentHP() + 1);
         return true;
     }
 

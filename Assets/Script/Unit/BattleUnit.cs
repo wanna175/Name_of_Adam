@@ -8,8 +8,8 @@ public class BattleUnit : MonoBehaviour
     public DeckUnit DeckUnit;
     public UnitDataSO Data => DeckUnit.Data;
 
-    [SerializeField] public Stat BattleUnitChangedStat;//버프 등으로 변경된 스탯
-    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat; //실제 적용 중인 스탯
+    [SerializeField] public Stat BattleUnitChangedStat; // 버프 등으로 변경된 스탯
+    public Stat BattleUnitTotalStat => DeckUnit.DeckUnitTotalStat + BattleUnitChangedStat; // 실제 적용 중인 스탯
 
     [SerializeField] private Team _team;
     public Team Team => _team;
@@ -153,7 +153,7 @@ public class BattleUnit : MonoBehaviour
 
     public void FieldUnitSummon()
     {
-        //필드 유닛 사망시 체크
+        //필드 유닛 소화시 체크
         ActiveTimingCheck(ActiveTiming.FIELD_UNIT_SUMMON);
     }
 
@@ -517,9 +517,9 @@ public class BattleUnit : MonoBehaviour
 
     public virtual BattleUnit GetOriginalUnit() => this;
 
-    public virtual void SetBuff(Buff buff, BattleUnit caster)
+    public virtual void SetBuff(Buff buff)
     {
-        Buff.SetBuff(buff, caster, this);
+        Buff.SetBuff(buff, this);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.AddBuff(buff);
     }
@@ -531,7 +531,7 @@ public class BattleUnit : MonoBehaviour
         _hpBar.DeleteBuff(buffEnum);
     }
 
-    private bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int? num = null)
+    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int? num = null)
     {
         bool skipNextAction = false;
 
@@ -539,7 +539,7 @@ public class BattleUnit : MonoBehaviour
         {
             if (stigma.ActiveTiming == activeTiming)
             {
-                stigma.Use(this, receiver);
+                stigma.Use(this);
             }
         }
 
@@ -550,7 +550,7 @@ public class BattleUnit : MonoBehaviour
                 buff.SetValue((int)num);
             }
 
-            skipNextAction = buff.Active(this, receiver);
+            skipNextAction = buff.Active(receiver);
         }
 
         Buff.CheckCountDownTiming(activeTiming);

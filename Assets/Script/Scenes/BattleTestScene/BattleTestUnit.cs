@@ -73,14 +73,14 @@ public class BattleTestUnit : BattleUnit
         {
             if (stigma.ActiveTiming == activeTiming)
             {
-                stigma.Use(this, receiver);
+                stigma.Use(this);
             }
         }
 
         foreach (Buff buff in Buff.CheckActiveTiming(activeTiming))
         {
             buff.SetValue(num);
-            skipNextAction = buff.Active(this, receiver);
+            skipNextAction = buff.Active(receiver);
         }
 
         Buff.CheckCountDownTiming(activeTiming);

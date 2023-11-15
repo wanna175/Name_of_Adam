@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSkill_Cross : PlayerSkill
 {
-    public override void Use(Vector2 coord)
+    public override void Use(Vector2 coord, out bool isSkillOn)
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //ÀÌÆÑÆ®¸¦ ¿©±â¿¡ Ãß°¡
@@ -21,10 +21,11 @@ public class PlayerSkill_Cross : PlayerSkill
             if (targetUnit != null && targetUnit.Team == Team.Enemy)
             {
                 BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
-                targetUnit.GetAttack(-15, null);
+                targetUnit.GetAttack(-20, null);
+                targetUnit.ChangeFall(1);
             }
         }
-
+        isSkillOn = false;
     }
 
     public override void CancelSelect()

@@ -4,7 +4,7 @@ public class Buff_Stigma_BloodBlessing : Buff
 {
     int heal;
 
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.BloodBlessing;
 
@@ -18,8 +18,6 @@ public class Buff_Stigma_BloodBlessing : Buff
 
         _buffActiveTiming = ActiveTiming.FIELD_UNIT_DEAD;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -29,7 +27,7 @@ public class Buff_Stigma_BloodBlessing : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         _owner.GetHeal(heal, caster);
 

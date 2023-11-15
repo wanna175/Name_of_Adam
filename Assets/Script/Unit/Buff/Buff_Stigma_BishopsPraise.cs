@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_BishopsPraise : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.BishopsPraise;
 
@@ -16,8 +16,6 @@ public class Buff_Stigma_BishopsPraise : Buff
 
         _buffActiveTiming = ActiveTiming.MOVE_TURN_START;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -27,7 +25,7 @@ public class Buff_Stigma_BishopsPraise : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         bool[] moveRange = new bool[] {
             false, false, false, false, false,
@@ -37,7 +35,7 @@ public class Buff_Stigma_BishopsPraise : Buff
             false, false, false, false, false
         };
 
-        caster.AddMoveRange(moveRange);
+        _owner.AddMoveRange(moveRange);
 
         return false;
     }

@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Stigma_BloodBlessing : Stigma
 {
-    public override void Use(BattleUnit caster, BattleUnit receiver)
+    public override void Use(BattleUnit caster)
     {
-        base.Use(caster, receiver);
+        base.Use(caster);
 
         Buff_Stigma_BloodBlessing bloodBlessing = new();
-        caster.SetBuff(bloodBlessing, caster);
+        caster.SetBuff(bloodBlessing);
 
         if (Tier == StigmaTier.Tier1)
         {

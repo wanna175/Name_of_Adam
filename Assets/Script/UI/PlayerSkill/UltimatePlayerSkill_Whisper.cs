@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UltimatePlayerSkill_Whisper : PlayerSkill
 {
-    public override void Use(Vector2 coord)
+    public override void Use(Vector2 coord, out bool isNotOverYet)
     {
         foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
         {
@@ -15,6 +15,7 @@ public class UltimatePlayerSkill_Whisper : PlayerSkill
                 unit.ChangeFall(1);
             }
         }
+        isNotOverYet = false;
     }
 
     public override void CancelSelect()

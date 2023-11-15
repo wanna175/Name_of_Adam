@@ -48,6 +48,8 @@ public class BattleCutSceneController : MonoBehaviour
 
         yield return new WaitUntil(() => FallCheck(CSData.HitUnits));
 
+        CSData.AttackUnit.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK_CUTSCENE, CSData.HitUnits[0]);
+
         yield return new WaitForSeconds(1);
 
         BattleManager.Instance.EndUnitAction();

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 742698032057272775}
-  - component: {fileID: 3233695130252107697}
+  - component: {fileID: 3750906278982967589}
   m_Layer: 0
-  m_Name: PlayerSkill_Bounce
+  m_Name: 2_02.PlayerSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3233695130252107697
+--- !u!114 &3750906278982967589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2025781800743625297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d8f252347f1ff24991bf5621912fbc9, type: 3}
+  m_Script: {fileID: 11500000, guid: e9e8d13f33b4be043b1e0b07c91beddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSkillName: "\uADC0\uD658"
-  manaCost: 30
-  darkEssence: 2
-  description: "\uD544\uB4DC \uC704\uC758 \uC544\uAD70\uC744 \uC9C0\uC815\uD558\uC5EC
-    \uB2E4\uC2DC \uB371\uC73C\uB85C \uBD88\uB7EC\uC635\uB2C8\uB2E4. (\uCCB4\uB825\uC740
-    \uC804\uBD80 \uD68C\uBCF5\uB418\uBA70 \uBC84\uD504\uB294 \uCD08\uAE30\uD654\uB429\uB2C8\uB2E4.)"
+  playerSkillName: 
+  manaCost: 20
+  darkEssence: 3
+  description: "\uC9C0\uC815\uD55C \uC544\uAD70\uC5D0\uAC8C \uC545\uC131 \uBC84\uD504\uB97C
+    \uBD80\uC5EC\uD558\uACE0 \uC2E0\uC559\uC744 1 \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4"
   skillImage: {fileID: 21300000, guid: 7d96c9752ef267e49a35f489676e7921, type: 3}

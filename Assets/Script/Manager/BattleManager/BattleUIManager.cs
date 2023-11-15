@@ -15,8 +15,6 @@ public class BattleUIManager : MonoBehaviour
     public UI_TurnCount UI_turnCount;
     public UI_TurnNotify UI_turnNotify;
 
-    private UI_TurnChangeButton _turnChangeButton;
-
     private const int _maxHandCount = 3;
 
     private void Start()
@@ -31,7 +29,6 @@ public class BattleUIManager : MonoBehaviour
 
 
         //컨트롤바
-        _turnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
         UI_ControlBar control = GameManager.UI.ShowScene<UI_ControlBar>();
 
         UI_playerSkill = control.UI_PlayerSkill;

@@ -67,7 +67,7 @@ public class UnitAction_Centaurus : UnitAction
             if (_isMove)
             {
                 Buff_Stun stun = new();
-                caster.SetBuff(stun, caster);
+                caster.SetBuff(stun);
 
                 _isMove = false;
             }

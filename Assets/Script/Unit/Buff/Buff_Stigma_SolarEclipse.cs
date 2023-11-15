@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_SolarEclipse : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.SolarEclipse;
 
@@ -16,8 +16,6 @@ public class Buff_Stigma_SolarEclipse : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -27,19 +25,19 @@ public class Buff_Stigma_SolarEclipse : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
-        if (receiver.Buff.CheckBuff(BuffEnum.TraceOfLunar))
+        if (caster.Buff.CheckBuff(BuffEnum.TraceOfLunar))
         {
-            receiver.DeleteBuff(BuffEnum.TraceOfLunar);
-            receiver.ChangeFall(1);
+            caster.DeleteBuff(BuffEnum.TraceOfLunar);
+            caster.ChangeFall(1);
 
             caster.GetHeal(10, caster);
         }
         else
         {
             Buff_TraceOfSolar traceOfSolar = new();
-            receiver.SetBuff(traceOfSolar, caster);
+            caster.SetBuff(traceOfSolar);
         }
 
         return false;

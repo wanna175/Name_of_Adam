@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Tailwind : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Tailwind;
 
@@ -17,8 +17,6 @@ public class Buff_Tailwind : Buff
         _countDownTiming = ActiveTiming.AFTER_ATTACK;
 
         _buffActiveTiming = ActiveTiming.NONE;
-
-        _caster = caster;
 
         _owner = owner;
 

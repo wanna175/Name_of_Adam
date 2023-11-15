@@ -127,6 +127,8 @@ public enum ActiveTiming
     BEFORE_ATTACKED, //피격 전
     AFTER_ATTACKED, //피격 후
 
+    AFTER_ATTACK_CUTSCENE, //공격 컷씬 후
+
     ATTACK_TURN_END, //공격턴 후
 
     FALL, //타락시켰을 때, 그 후
@@ -165,6 +167,7 @@ public enum FieldColorType
 public enum PlayerSkillTargetType
 {
     none,
+    all,
     Unit,
     Enemy,
     Friendly

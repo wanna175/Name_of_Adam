@@ -5,7 +5,7 @@ public class Buff_Stigma_Hook : Buff
 {
     private readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Hook;
 
@@ -19,8 +19,6 @@ public class Buff_Stigma_Hook : Buff
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -30,14 +28,14 @@ public class Buff_Stigma_Hook : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         float currntMin = 100f;
-        Vector2 moveVector = receiver.Location;
+        Vector2 moveVector = _owner.Location;
 
         foreach (Vector2 direction in UDLR)
         {
-            Vector2 vec = receiver.Location + direction;
+            Vector2 vec = _owner.Location + direction;
             float sqr = (vec - caster.Location).sqrMagnitude;
 
             if (currntMin > sqr)
@@ -57,7 +55,7 @@ public class Buff_Stigma_Hook : Buff
             }
         }
 
-        BattleManager.Instance.MoveUnit(receiver, moveVector);
+        BattleManager.Instance.MoveUnit(caster, moveVector);
 
         return false;
     }

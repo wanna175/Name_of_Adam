@@ -2,13 +2,6 @@ using UnityEngine;
 
 public abstract class Phase
 {
-    protected PhaseController _controller;
-
-    public void SetController(PhaseController controller)
-    {
-        this._controller = controller;
-    }
-
     public abstract void OnStateEnter();
     // 시작할 때 한 번 실행
 

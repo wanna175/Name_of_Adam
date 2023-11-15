@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Buff_Stun : Buff
-{    public override void Init(BattleUnit caster, BattleUnit owner)
+{    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Stun;
 
@@ -15,8 +15,6 @@ public class Buff_Stun : Buff
 
         _buffActiveTiming = ActiveTiming.ACTION_TURN_START;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -26,7 +24,7 @@ public class Buff_Stun : Buff
         _stigmaBuff = false;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         return true;
     }
