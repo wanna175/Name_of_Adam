@@ -37,7 +37,7 @@ public class MovePhase : Phase
 
     public override void OnStateExit()
     {
-        _nowUnit.MoveTurnStart();
+        _nowUnit.MoveTurnEnd();
         _nowUnit = null;
 
         BattleManager.Field.ClearAllColor();

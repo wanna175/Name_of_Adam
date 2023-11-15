@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 2;
         if (Input.GetKeyDown(KeyCode.Alpha3))
             Time.timeScale = 4;
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            Time.timeScale = 0.2f;
 
         if (Input.GetKeyDown(KeyCode.O))
         {
