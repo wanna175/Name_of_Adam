@@ -13,15 +13,16 @@ public class PlayerSkill_Move : PlayerSkill
         isSkillOn = true;
     }
 
-    public override void Action(Vector2 coord, ActiveTiming activeTiming, out bool isSkillOn)
+    public override void Action(ActiveTiming activeTiming, Vector2 coord, out bool isSkillOn)
     {
-        base.Action(coord, activeTiming, out isSkillOn);
+        base.Action(activeTiming, coord, out isSkillOn);
         if (!isSkillOn)
             return;
 
         switch (activeTiming)
         {
-            case ActiveTiming.NONE:
+            case ActiveTiming.TURN_START:
+                selectedUnit.SetBuff(new Buff_Tailwind());
                 BattleManager.Instance.MoveUnit(selectedUnit, coord);
                 BattleManager.Field.ClearAllColor();
                 BattleManager.PlayerSkillController.SetSkillDone();

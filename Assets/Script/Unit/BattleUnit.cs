@@ -153,7 +153,7 @@ public class BattleUnit : MonoBehaviour
 
     public void FieldUnitSummon()
     {
-        //필드 유닛 사망시 체크
+        //필드 유닛 소화시 체크
         ActiveTimingCheck(ActiveTiming.FIELD_UNIT_SUMMON);
     }
 

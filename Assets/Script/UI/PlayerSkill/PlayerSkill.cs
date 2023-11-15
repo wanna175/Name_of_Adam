@@ -17,7 +17,7 @@ public abstract class PlayerSkill : MonoBehaviour
     public Sprite GetSkillImage() => skillImage;
 
     public abstract void Use(Vector2 coord, out bool isSkillDone);
-    public virtual void Action(Vector2 coord, ActiveTiming activeTiming, out bool isSkillOn) 
+    public virtual void Action(ActiveTiming activeTiming, Vector2 coord, out bool isSkillOn) 
     {
         isSkillOn = BattleManager.PlayerSkillController.isSkillOn;
     }

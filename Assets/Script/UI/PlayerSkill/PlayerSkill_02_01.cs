@@ -14,9 +14,9 @@ public class PlayerSkill_02_01 : PlayerSkill
         isSkillOn = true;
     }
 
-    public override void Action(Vector2 coord, ActiveTiming activeTiming, out bool isNotOverYet)
+    public override void Action(ActiveTiming activeTiming, Vector2 coord, out bool isNotOverYet)
     {
-        base.Action(coord, activeTiming, out isNotOverYet);
+        base.Action(activeTiming, coord, out isNotOverYet);
         if (!isNotOverYet)
             return;
 
