@@ -229,7 +229,7 @@ public class BattleManager : MonoBehaviour
 
         BattleUnit unit = _battleData.GetNowUnit();
 
-        if (coord != unit.Location)
+        if (_field.GetUnit(coord) != unit)
         {
             List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
             List<BattleUnit> unitList = new();
@@ -246,10 +246,8 @@ public class BattleManager : MonoBehaviour
                     unitList.Add(targetUnit);
             }
 
-            if (unitList.Count == 0)
+            if (!unit.Action.ActionStart(unit, unitList, coord))
                 return;
-
-            unit.Action.ActionStart(unit, unitList);
         }
     }
 

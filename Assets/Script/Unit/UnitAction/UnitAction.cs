@@ -5,6 +5,7 @@ public class UnitAction : MonoBehaviour
 {
     protected BattleDataManager _data;
     protected Field _field;
+
     public void Init()
     {
         _data = BattleManager.Data;
@@ -280,12 +281,19 @@ public class UnitAction : MonoBehaviour
             }
         }
 
-        ActionStart(attackUnit, hitUnits);
+        ActionStart(attackUnit, hitUnits, vec);
+    }
+
+    public virtual bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
+    {
+        if (hits.Count == 0)
+            return false;
+
+        BattleManager.Instance.AttackStart(attackUnit, hits);
+        return true;
     }
 
     public virtual bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) => false;
-
-    public virtual void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits) => BattleManager.Instance.AttackStart(attackUnit, hits);
     public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
     protected void MoveUnit(BattleUnit moveUnit, Vector2 moveVector) => BattleManager.Instance.MoveUnit(moveUnit, moveVector);
 }

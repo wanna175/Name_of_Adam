@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class UnitAction_Trinity : UnitAction
 {
-    //0 = staff, 1 = sword, 2 = bow
+    //0 = sword, 1 = staff, 2 = book
     private int _trinityState  = 0;
     private bool _isStateUpdate = false;
 
@@ -47,7 +47,14 @@ public class UnitAction_Trinity : UnitAction
                 }
             }
 
-            ActionStart(attackUnit, hitUnits);
+            if (hitUnits.Count > 0)
+            {
+                ActionStart(attackUnit, hitUnits, new());
+            }
+            else
+            {
+                BattleManager.Instance.EndUnitAction();
+            }
         }
         else
         { 
@@ -67,7 +74,7 @@ public class UnitAction_Trinity : UnitAction
         }
     }
 
-    public override void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits)
+    public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {
         if (_trinityState != 2)
         {
@@ -83,10 +90,21 @@ public class UnitAction_Trinity : UnitAction
                 }
             }
 
-            BattleManager.Instance.AttackStart(attackUnit, inRangeUnits);
+            if (inRangeUnits.Count > 0)
+            {
+                BattleManager.Instance.AttackStart(attackUnit, inRangeUnits);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
+        { 
             BattleManager.Instance.AttackStart(attackUnit, hits);
+            return false;
+        }
     }
 
 
