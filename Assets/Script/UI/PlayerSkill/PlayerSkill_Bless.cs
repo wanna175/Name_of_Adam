@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSkill_Bless : PlayerSkill
 
 {
-    public override void Use(Vector2 coord, out bool isSkillOn)
+    public override bool Use(Vector2 coord)
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
@@ -13,7 +13,7 @@ public class PlayerSkill_Bless : PlayerSkill
         BattleUnit unit = BattleManager.Field.GetUnit(coord);
         unit.SetBuff(new Buff_Curse());
         unit.SetBuff(new Buff_Raise());
-        isSkillOn = false;
+        return false;
     }
     public override void CancelSelect()
     {

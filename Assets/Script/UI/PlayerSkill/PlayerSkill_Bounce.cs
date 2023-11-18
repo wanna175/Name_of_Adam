@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSkill_Bounce : PlayerSkill
 {
-    public override void Use(Vector2 coord, out bool isSkillOn)
+    public override bool Use(Vector2 coord)
     {
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //이팩트를 여기에 추가
@@ -17,7 +17,7 @@ public class PlayerSkill_Bounce : PlayerSkill
         BattleManager.BattleUI.FillHand();
         BattleManager.Field.FieldCloseInfo(BattleManager.Field.TileDict[coord]);
         Destroy(unit.gameObject);
-        isSkillOn = false;
+        return false;
     }
 
     public override void CancelSelect()

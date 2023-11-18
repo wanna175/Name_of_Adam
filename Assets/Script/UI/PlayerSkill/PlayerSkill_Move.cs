@@ -6,19 +6,15 @@ public class PlayerSkill_Move : PlayerSkill
 {
     private BattleUnit selectedUnit;
 
-    public override void Use(Vector2 coord, out bool isSkillOn)
+    public override bool Use(Vector2 coord)
     {
         selectedUnit = BattleManager.Field.GetUnit(coord);
         BattleManager.Field.SetNextActionTileColor(selectedUnit, FieldColorType.Move);
-        isSkillOn = true;
+        return true;
     }
 
-    public override void Action(ActiveTiming activeTiming, Vector2 coord, out bool isSkillOn)
+    public override bool Action(ActiveTiming activeTiming, Vector2 coord)
     {
-        base.Action(activeTiming, coord, out isSkillOn);
-        if (!isSkillOn)
-            return;
-
         switch (activeTiming)
         {
             case ActiveTiming.TURN_START:
@@ -26,8 +22,9 @@ public class PlayerSkill_Move : PlayerSkill
                 BattleManager.Instance.MoveUnit(selectedUnit, coord);
                 BattleManager.Field.ClearAllColor();
                 BattleManager.PlayerSkillController.SetSkillDone();
-                break;
+                return false;
         }
+        return true;
     }
 
     public override void CancelSelect()

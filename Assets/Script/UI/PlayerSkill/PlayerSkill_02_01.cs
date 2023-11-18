@@ -6,21 +6,17 @@ public class PlayerSkill_02_01 : PlayerSkill
 {
     private Vector2 tilePos;
 
-    public override void Use(Vector2 coord, out bool isSkillOn)
+    public override bool Use(Vector2 coord)
     {
         tilePos = coord;
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
-        isSkillOn = true;
+        return true;
     }
 
-    public override void Action(ActiveTiming activeTiming, Vector2 coord, out bool isNotOverYet)
+    public override bool Action(ActiveTiming activeTiming, Vector2 coord)
     {
-        base.Action(activeTiming, coord, out isNotOverYet);
-        if (!isNotOverYet)
-            return;
-
-        
+        return base.Action(activeTiming, coord);
     }
 
     public override void CancelSelect()

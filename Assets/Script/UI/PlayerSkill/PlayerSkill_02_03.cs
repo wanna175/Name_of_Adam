@@ -8,7 +8,7 @@ public class PlayerSkill_02_03 : PlayerSkill
     [SerializeField]
     private DeckUnit createUnit;
 
-    public override void Use(Vector2 coord, out bool isSkillOn)
+    public override bool Use(Vector2 coord)
     {
         // GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
@@ -23,7 +23,7 @@ public class PlayerSkill_02_03 : PlayerSkill
 
         BattleManager.Field.ClearAllColor();
 
-        isSkillOn = false;
+        return false;
     }
 
     public override void CancelSelect()

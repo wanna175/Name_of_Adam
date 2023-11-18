@@ -13,7 +13,7 @@ public class PlayerSkillController : MonoBehaviour
     PhaseController Phase;
     Mana Mana;
 
-    public PlayerSkill usedPlayerSkill;
+    PlayerSkill usedPlayerSkill;
     public bool isSkillOn;
 
     void Awake()
@@ -29,7 +29,7 @@ public class PlayerSkillController : MonoBehaviour
     {
         Field.ClearAllColor();
         usedPlayerSkill = BattleUI.GetSelectedPlayerSkill();
-        usedPlayerSkill.Use(coord, out isSkillOn);
+        isSkillOn = usedPlayerSkill.Use(coord);
 
         Mana.ChangeMana(-1 * usedPlayerSkill.GetManaCost());
         Data.DarkEssenseChage(-1 * usedPlayerSkill.GetDarkEssenceCost());
@@ -39,6 +39,11 @@ public class PlayerSkillController : MonoBehaviour
         BattleUI.UI_playerSkill.CancelSelect();
         BattleUI.UI_playerSkill.Used = true;
         BattleUI.UI_playerSkill.InableSkill();
+    }
+
+    public void ActionSkill(ActiveTiming activeTiming, Vector2 coord)
+    {
+        isSkillOn = usedPlayerSkill.Action(activeTiming, coord);
     }
 
     public void SetSkillDone()
