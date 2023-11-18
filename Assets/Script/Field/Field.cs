@@ -92,11 +92,11 @@ public class Field : MonoBehaviour
             return TileDict[coord].Unit;
     }
 
-    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord)
+    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord, List<Vector2> areaCoords)
     {
         List<BattleUnit> units = new();
 
-        foreach (Vector2 udlr in UDLR)
+        foreach (Vector2 udlr in areaCoords)
         {
             BattleUnit targetUnit = GetUnit(unitCoord + udlr);
             if (targetUnit == null)
@@ -106,6 +106,8 @@ public class Field : MonoBehaviour
 
         return units;
     }
+
+    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord) => GetArroundUnits(unitCoord, UDLR);
 
     //십자가 범위 유닛
     public List<Vector2> GetCrossCoord(Vector2 unitCoord)
