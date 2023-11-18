@@ -3,7 +3,7 @@ using UnityEngine;
 public class Buff_Stigma_Regeneration : Buff
 {
     int hpUp = 5;
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Regeneration;
 
@@ -17,8 +17,6 @@ public class Buff_Stigma_Regeneration : Buff
 
         _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -28,7 +26,7 @@ public class Buff_Stigma_Regeneration : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         _owner.GetHeal(hpUp, caster);
 

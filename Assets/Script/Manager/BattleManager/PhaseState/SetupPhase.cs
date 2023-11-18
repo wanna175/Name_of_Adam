@@ -7,7 +7,7 @@ public class SetupPhase : Phase
 
     public override void OnStateUpdate()
     {
-        _controller.ChangePhase(_controller.Spawn);
+        BattleManager.Phase.ChangePhase(BattleManager.Phase.Spawn);
     }
 
     public override void OnStateExit()

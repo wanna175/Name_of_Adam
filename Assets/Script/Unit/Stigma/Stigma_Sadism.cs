@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 public class Stigma_Sadism : Stigma
 {
-    public override void Use(BattleUnit caster, BattleUnit receiver)
+    public override void Use(BattleUnit caster)
     {
-        base.Use(caster, receiver);
+        base.Use(caster);
 
         Buff_Stigma_Sadism sadism = new();
-        caster.SetBuff(sadism, caster);
-
         if (Tier == StigmaTier.Tier1)
         {
             sadism.SetValue(3);
@@ -21,6 +19,7 @@ public class Stigma_Sadism : Stigma
         {
             sadism.SetValue(5);
         }
-       
+
+        caster.SetBuff(sadism);
     }
 }

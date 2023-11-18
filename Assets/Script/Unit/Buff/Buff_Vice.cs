@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Vice : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Vice;
 
@@ -18,8 +18,6 @@ public class Buff_Vice : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -29,9 +27,9 @@ public class Buff_Vice : Buff
         _stigmaBuff = false;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
-        receiver.ChangeFall(1);
+        caster.ChangeFall(1);
 
         return false;
     }

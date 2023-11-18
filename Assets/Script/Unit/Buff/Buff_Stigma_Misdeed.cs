@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_Misdeed : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Misdeed;
 
@@ -16,8 +16,6 @@ public class Buff_Stigma_Misdeed : Buff
 
         _buffActiveTiming = ActiveTiming.UNIT_TERMINATE;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -27,11 +25,9 @@ public class Buff_Stigma_Misdeed : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
-        Buff_Vice vice = new();
-
-        caster.SetBuff(vice, caster);
+        caster.SetBuff(new Buff_Vice());
 
         return false;
     }

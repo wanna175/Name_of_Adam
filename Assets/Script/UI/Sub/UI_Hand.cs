@@ -24,7 +24,6 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         _highlight.SetActive(false);
         BattleManager.Mana.ManaInableCheck();
-
     }
 
     public void SetUnit(UI_Hands hands, DeckUnit unit)

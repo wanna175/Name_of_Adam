@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Buff_Stigma_Gamble : Buff
-{    public override void Init(BattleUnit caster, BattleUnit owner)
+{    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Gamble;
 
@@ -15,8 +15,6 @@ public class Buff_Stigma_Gamble : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -26,15 +24,15 @@ public class Buff_Stigma_Gamble : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         if (6 >= Random.Range(0, 10))
         {
-            caster.ChangedDamage += caster.BattleUnitTotalStat.ATK;
+            _owner.ChangedDamage += _owner.BattleUnitTotalStat.ATK;
         }
         else
         {
-            caster.ChangedDamage -= caster.BattleUnitTotalStat.ATK / 2;
+            _owner.ChangedDamage -= _owner.BattleUnitTotalStat.ATK / 2;
         }
 
         return false;

@@ -21,6 +21,8 @@ public class DataManager : MonoBehaviour
     [SerializeField] public GameData GameDataMain;
     [SerializeField] public GameData GameDataTutorial;
 
+    [SerializeField] public GameData GameDataMainLayout; //디버깅용 데이터
+
     public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
     public StigmaController StigmaController;
 
@@ -54,15 +56,19 @@ public class DataManager : MonoBehaviour
         GameData.DarkEssence = GameDataMain.DarkEssence;
         GameData.PlayerSkillCount = GameDataMain.PlayerSkillCount;
         GameData.DeckUnits = GameDataMain.DeckUnits;
+        GameData.FallenUnits = GameDataMain.FallenUnits;
         GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
         GameData.isVisitStigma = GameDataMain.isVisitStigma;
 
+        //OutGame에서 업그레이드 된 스탯 + 낙인 불러와야해서 ClearStat 사용하면 안됨, 파생되는 문제 발생 시 수정 필요 
+        /*
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
             unit.DeckUnitChangedStat.ClearStat();
             unit.DeckUnitUpgradeStat.ClearStat();
             unit.ClearStigma();
         }
+        */
     }
 
     public void DeckClear()
@@ -72,6 +78,7 @@ public class DataManager : MonoBehaviour
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
         GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
+        GameData.FallenUnits = GameDataTutorial.FallenUnits;
         GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
         GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
 
@@ -81,6 +88,57 @@ public class DataManager : MonoBehaviour
             unit.DeckUnitUpgradeStat.ClearStat();
             unit.ClearStigma();
         }
+    }
+
+    //디버깅용 메서드
+    public void MainDeckLayoutSet()
+    {
+        GameDataMain.Incarna = GameDataMainLayout.Incarna;
+        GameDataMain.Money = GameDataMainLayout.Money;
+        GameDataMain.DarkEssence = GameDataMainLayout.DarkEssence;
+        GameDataMain.PlayerSkillCount = GameDataMainLayout.PlayerSkillCount;
+        GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
+        GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
+        GameDataMain.isVisitUpgrade = GameDataMainLayout.isVisitUpgrade;
+        GameDataMain.isVisitStigma = GameDataMainLayout.isVisitStigma;
+
+        foreach (DeckUnit unit in GameDataMain.DeckUnits)
+        {
+            unit.DeckUnitChangedStat.ClearStat();
+            unit.DeckUnitUpgradeStat.ClearStat();
+            unit.ClearStigma();
+        }
+    }
+
+    public void HallSelectedDeckSet()
+    {
+        List<DeckUnit> EliteHallHandDeck = new();
+        List<DeckUnit> NormalHallHandDeck = new();
+
+        foreach (DeckUnit unit in GameData.DeckUnits)
+        {
+            if (unit.IsMainDeck)
+            {
+                if(unit.Data.Rarity != Rarity.일반)
+                {
+                    EliteHallHandDeck.Add(unit);
+                    Debug.Log(unit.Data.Name);
+                }
+                else
+                {
+                    NormalHallHandDeck.Add(unit);
+                }
+            }
+        }
+
+        EliteHallHandDeck.AddRange(NormalHallHandDeck);
+
+        GameDataMain.DeckUnits = EliteHallHandDeck;
+    }
+
+    public void HallDeckSet()
+    {
+        GameData.DeckUnits = GameManager.OutGameData.SetHallDeck();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

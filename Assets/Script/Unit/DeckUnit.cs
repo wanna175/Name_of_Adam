@@ -19,6 +19,9 @@ public class DeckUnit
 
     private readonly int _maxStigmaCount = 3;
 
+    [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
+    public bool IsMainDeck = false;
+
     public List<Stigma> GetStigma()
     {
         List<Stigma> stigmata = new();
@@ -30,6 +33,11 @@ public class DeckUnit
             stigmata.Add(stigma);
 
         return stigmata;
+    }
+
+    public List<Stigma> GetChangedStigma()
+    {
+        return _stigma;
     }
 
     public void AddStigma(Stigma stigma)
@@ -89,6 +97,11 @@ public class DeckUnit
 
     private int _firstTurnDiscount = 0;
     public bool IsDiscount() => _firstTurnDiscount != 0;
+
+    public int GetHallUnitID()
+    {
+        return HallUnitID;
+    }
 
     public void FirstTurnDiscount()
     {

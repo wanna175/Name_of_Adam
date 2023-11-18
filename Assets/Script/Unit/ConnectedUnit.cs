@@ -13,7 +13,7 @@ public class ConnectedUnit : BattleUnit
 
     public override void GetHeal(int value, BattleUnit caster) => _origianlUnit.GetHeal(value, caster);
 
-    public override void SetBuff(Buff buff, BattleUnit caster) => _origianlUnit.SetBuff(buff, caster);
+    public override void SetBuff(Buff buff) => _origianlUnit.SetBuff(buff);
 
     public override int GetHP() => _origianlUnit.GetHP();
 }

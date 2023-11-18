@@ -70,6 +70,24 @@ public class UIManager : MonoBehaviour
         return scene;
     }
 
+    public T ShowSingleScene<T>(string name = null) where T : UI_Scene
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        T existingScene = Root.GetComponentInChildren<T>();
+        if (existingScene != null)
+        {
+            return existingScene;
+        }
+
+        GameObject go = GameManager.Resource.Instantiate($"UI/Scene/{name}", Root.transform);
+        T scene = go.GetOrAddComponent<T>();
+        SetCanvas(go, false);
+
+        return scene;
+    }
+
     /// <summary>
     /// Popup UI를 띄울 때 사용합니다.
     /// (UI의 컴포넌트와 Prefab의 이름이 다를 시 반드시 name 필수)

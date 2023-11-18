@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Buff_TraceOfLunar: Buff
-{    public override void Init(BattleUnit caster, BattleUnit owner)
+{    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.TraceOfLunar;
 
@@ -16,8 +16,6 @@ public class Buff_TraceOfLunar: Buff
         _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.NONE;
-
-        _caster = caster;
 
         _owner = owner;
 

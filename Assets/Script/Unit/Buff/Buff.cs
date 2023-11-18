@@ -22,68 +22,49 @@ public abstract class Buff : MonoBehaviour
     protected ActiveTiming _buffActiveTiming;
     public ActiveTiming BuffActiveTiming => _buffActiveTiming;
 
-    protected BattleUnit _caster;
-    public BattleUnit Caster => _caster;
-
     protected BattleUnit _owner;
     public BattleUnit Owner => _owner;
 
     protected bool _statBuff;
+
     public bool StatBuff => _statBuff;
 
     protected bool _dispellable;
+
     public bool Dispellable => _dispellable;
 
     protected bool _stigmaBuff;
+
     public bool StigmaBuff => _stigmaBuff;
 
-    public abstract void Init(BattleUnit caster, BattleUnit owner);
 
-    public virtual bool Active(BattleUnit caster = null, BattleUnit receiver = null)
-    {
-        return false;
-    }
+    public abstract void Init(BattleUnit owner);
 
-    public virtual void Stack()
-    {
-    }
+    public virtual bool Active(BattleUnit caster = null) => false;
 
-    public virtual Stat GetBuffedStat()
-    {
-        Stat stat = new();
+    public virtual Stat GetBuffedStat() => new Stat();
 
-        return stat;
-    }
+    public virtual void SetValue(int num) { }
 
-    public virtual void SetValue(int num)
-    { 
-    }
+    public virtual void Stack() { }
 
     public virtual int GetBuffDisplayNumber()
     {
-        if (_count > 0)
-            return _count;
-        else
-            return 0;
+        if (_count > 0) return _count;
+        else return 0;
     }
+
+    public virtual void Destroy() { }
+
+    public void CountChange(int num) => _count += num;
 
     public virtual string GetDescription()
     {
         string desc = "<size=110%><b>" + _name + "</b></size>\n<size=30%>\n</size>" + _description;
 
         if (_countDownTiming != ActiveTiming.NONE)
-            desc = desc + " (" + _count.ToString() + "회)";
+            desc += " (" + _count.ToString() + "회)";
 
         return desc;
-    }
-
-    public virtual void Destroy()
-    {
-        
-    }
-
-    public void CountChange(int num)
-    {
-        _count += num;
     }
 }

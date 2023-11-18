@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_Martyrdom : Buff
 {
-    public override void Init(BattleUnit caster, BattleUnit owner)
+    public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Martyrdom;
 
@@ -16,8 +16,6 @@ public class Buff_Stigma_Martyrdom : Buff
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
-        _caster = caster;
-
         _owner = owner;
 
         _statBuff = false;
@@ -27,10 +25,10 @@ public class Buff_Stigma_Martyrdom : Buff
         _stigmaBuff = true;
     }
 
-    public override bool Active(BattleUnit caster, BattleUnit receiver)
+    public override bool Active(BattleUnit caster)
     {
         if (_owner.BattleUnitTotalStat.FallMaxCount / 2 >= _owner.Fall.GetCurrentFallCount())
-            receiver.ChangeFall(1);
+            caster.ChangeFall(1);
 
         return false;
     }
