@@ -206,7 +206,9 @@ public enum BuffEnum
 
     Stun,
 
-    InevitableEnd
+    InevitableEnd,
+
+    Assasination,
 }
 
 public enum UnitActionType

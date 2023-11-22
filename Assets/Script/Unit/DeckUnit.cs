@@ -21,6 +21,7 @@ public class DeckUnit
 
     [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
     public bool IsMainDeck = false;
+    public bool CanSpawnInEnemyField => BattleManager.Instance.CheckStigma(this, new Stigma_Assasination());
 
     public List<Stigma> GetStigma()
     {

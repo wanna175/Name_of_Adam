@@ -33,6 +33,6 @@ public class PlayerSkill_02_03 : PlayerSkill
 
     public override void OnSelect()
     {
-        BattleManager.Field.SetSpawnTileColor(FieldColorType.PlayerSkill, createUnit.GetUnitSizeRange());
+        BattleManager.Field.SetSpawnTileColor(FieldColorType.PlayerSkill, createUnit);
     }
 }

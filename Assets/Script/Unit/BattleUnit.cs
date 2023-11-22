@@ -346,7 +346,7 @@ public class BattleUnit : MonoBehaviour
         bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0);
         //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
         //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
-
+        BattleManager.Instance.CheckStigma(DeckUnit, new Stigma_Assasination());
         if (moveCoro != null)
             StopCoroutine(moveCoro);
 

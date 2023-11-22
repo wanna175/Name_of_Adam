@@ -487,7 +487,7 @@ public class BattleManager : MonoBehaviour
         moveUnit.GetMoveRange().Contains(destUnit.Location) &&
         destUnit.GetMoveRange().Contains(moveUnit.Location);
 
-    public bool UnitSpawnReady(FieldColorType colorType, List<Vector2> unitSize = null)
+    public bool UnitSpawnReady(FieldColorType colorType, DeckUnit deckUnit = null)
     {
         if (!_phase.CurrentPhaseCheck(_phase.Prepare))
             return false;
@@ -498,7 +498,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (colorType == FieldColorType.UnitSpawn)
         {
-            _field.SetSpawnTileColor(colorType, unitSize);
+            _field.SetSpawnTileColor(colorType, deckUnit);
         }
 
         return true;
@@ -549,6 +549,16 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         action();
+    }
+
+    public bool CheckStigma(DeckUnit deckUnit, Stigma findStigma)
+    {
+        foreach (Stigma stigma in deckUnit.GetStigma())
+        {
+            if (findStigma.GetType() == stigma.GetType())
+                return true;
+        }
+        return false;
     }
 
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)

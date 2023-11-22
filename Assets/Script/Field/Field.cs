@@ -177,18 +177,20 @@ public class Field : MonoBehaviour
         }
     }
 
-    public void SetSpawnTileColor(FieldColorType fieldType, List<Vector2> unitSize)
+    public void SetSpawnTileColor(FieldColorType fieldType, DeckUnit deckUnit)
     {
         foreach (Vector2 spawnTile in TileDict.Keys)
         {
-            if (!IsPlayerRange(spawnTile) || TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
+            if (!deckUnit.CanSpawnInEnemyField && !IsPlayerRange(spawnTile))
+                continue;
+            if (TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
                 continue;
 
             List<Vector2> tempList = new();
 
-            if (UnitSizeCheck(spawnTile, unitSize))
+            if (UnitSizeCheck(spawnTile, deckUnit))
             {
-                foreach (Vector2 size in unitSize)
+                foreach (Vector2 size in deckUnit.GetUnitSizeRange())
                 {
                     TileDict[spawnTile + size].SetColor(ColorList(fieldType));
                 }
@@ -255,13 +257,13 @@ public class Field : MonoBehaviour
         }
     }
 
-    public bool UnitSizeCheck(Vector2 spawnLocation, List<Vector2> unitSize)
+    public bool UnitSizeCheck(Vector2 spawnLocation, DeckUnit deckUnit)
     {
-        foreach (Vector2 size in unitSize)
+        foreach (Vector2 size in deckUnit.GetUnitSizeRange())
         {
             Vector2 tempVec = spawnLocation + size;
 
-            if (!IsPlayerRange(tempVec) || TileDict[tempVec].UnitExist)
+            if ((!deckUnit.CanSpawnInEnemyField && !IsPlayerRange(tempVec)) || TileDict[tempVec].UnitExist)
             {
                 return false;
             }
