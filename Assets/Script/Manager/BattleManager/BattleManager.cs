@@ -76,9 +76,10 @@ public class BattleManager : MonoBehaviour
 
     public void TurnStart()
     {
+        //턴 시작 시 체크
         foreach (BattleUnit unit in _battleData.BattleUnitList)
         {
-            unit.TurnStart();
+            ActiveTimingCheck(ActiveTiming.TURN_START, unit);
         }
     }
 
@@ -86,7 +87,8 @@ public class BattleManager : MonoBehaviour
     {
         foreach (BattleUnit unit in _battleData.BattleUnitList)
         {
-            unit.TurnEnd();
+            //턴 종료 시 체크
+            ActiveTimingCheck(ActiveTiming.TURN_END, unit);
         }
     }
 
@@ -547,5 +549,31 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         action();
+    }
+
+    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
+    {
+        bool skipNextAction = false;
+
+        foreach (Stigma stigma in caster.StigmaList)
+        {
+            if (stigma.ActiveTiming == activeTiming)
+            {
+                stigma.Use(caster);
+            }
+        }
+
+        foreach (Buff buff in caster.Buff.CheckActiveTiming(activeTiming))
+        {
+            skipNextAction = buff.Active(receiver);
+        }
+
+        caster.Buff.CheckCountDownTiming(activeTiming);
+
+        caster.BattleUnitChangedStat = caster.Buff.GetBuffedStat();
+
+        skipNextAction |= caster.Action.ActionTimingCheck(activeTiming, caster, receiver);
+
+        return skipNextAction;
     }
 }
