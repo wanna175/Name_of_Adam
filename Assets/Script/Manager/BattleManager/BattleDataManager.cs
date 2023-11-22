@@ -58,6 +58,7 @@ public class BattleDataManager : MonoBehaviour
 
         GameManager.Data.SetDeck(_playerDeck);
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+        GameManager.OutGameData.SaveData();
         GameManager.SaveManager.SaveGame();
     }
 
