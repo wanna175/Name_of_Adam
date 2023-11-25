@@ -14,9 +14,15 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private StigmaSceneController _sc;
     public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaSceneController sc = null)
     {
+        
         _afterPopupAction = afterPopupAction;
         _targetUnit = targetUnit;
         _sc = sc;
+        if (targetUnit == null)
+        {
+            GiveStigmaInit(stigmata);
+            return;
+        }
         if (stigmata != null)
         {
             List<Stigma> stigmaList = new();
@@ -44,7 +50,10 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
             SetStigmaSelectButtons(stigmaList);
         }
     }
-
+    private void GiveStigmaInit(List<Stigma> stigmaList)
+    {
+        SetStigmaSelectButtons(stigmaList);
+    }
     private List<Stigma> CreateStigmaList(DeckUnit targetUnit, int stigmaCount)
     {
         List<Stigma> result = new();
@@ -76,15 +85,27 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void OnClick(Stigma stigma)
     {
-        _targetUnit.AddStigma(stigma);
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-
-        if(_afterPopupAction != null)
+        if (_targetUnit != null)
         {
-            _afterPopupAction.Invoke();
+            _targetUnit.AddStigma(stigma);
+            GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+            if (_afterPopupAction != null)
+            {
+                _afterPopupAction.Invoke();
+            }
+        }
+        else
+        {
+            StigmaSceneController._giveStigma = stigma;
+            //GameManager.Sound.Play("");무슨 소리를 할지 모름
         }
         GameManager.UI.ClosePopup();
 
         
+    }
+    public void QuitBtn()
+    {
+        this.transform.SetAsFirstSibling();
+        this.gameObject.SetActive(false);
     }
 }
