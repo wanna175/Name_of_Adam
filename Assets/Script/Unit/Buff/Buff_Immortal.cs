@@ -28,7 +28,7 @@ public class Buff_Immortal : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        _owner.ChangeHP(-1 * caster.HP.GetCurrentHP() + 1);
+        _owner.ChangeHP(-1 * _owner.HP.GetCurrentHP() + 1);
         return true;
     }
 

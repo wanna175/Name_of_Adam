@@ -85,7 +85,9 @@ public class UI_Hands : UI_Scene
         
         _selectedHand = hand;
         _selectedHand.ChangeSelectState(true);
-        BattleManager.Instance.UnitSpawnReady(FieldColorType.UnitSpawn, hand.GetUnit().GetUnitSizeRange());
+
+        BattleManager.Instance.UnitSpawnReady(FieldColorType.none);
+        BattleManager.Instance.UnitSpawnReady(FieldColorType.UnitSpawn, hand.GetUnit());
     }
 
     public DeckUnit GetSelectedUnit() =>_selectedHand.GetUnit();

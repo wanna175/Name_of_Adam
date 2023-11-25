@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerSkill_Whisper : PlayerSkill
 {
-    public override void Use(Vector2 coord, out bool isSkillOn)
+    public override bool Use(Vector2 coord)
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
         GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
         BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
         targetUnit.ChangeFall(1);
-        isSkillOn = false;
+        return false;
     }
 
     public override void CancelSelect()

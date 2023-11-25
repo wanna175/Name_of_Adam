@@ -48,8 +48,6 @@ public class BattleCutSceneController : MonoBehaviour
 
         yield return new WaitUntil(() => FallCheck(CSData.HitUnits));
 
-        CSData.AttackUnit.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK_CUTSCENE, CSData.HitUnits[0]);
-
         yield return new WaitForSeconds(1);
 
         BattleManager.Instance.EndUnitAction();
@@ -147,7 +145,7 @@ public class BattleCutSceneController : MonoBehaviour
 
         StartCoroutine(_cameraHandler.CameraMove(_cameraHandler.GetMainPosition(), ZoomTime));
         StartCoroutine(_cameraHandler.CameraZoom(_cameraHandler.GetMainFieldOfView(), ZoomTime));
-        StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.AttackPosition, ZoomTime));
+        StartCoroutine(CSData.AttackUnit.CutSceneMove(BattleManager.Field.GetTilePosition(CSData.AttackUnit.Location), ZoomTime));
 
         yield return new WaitForSeconds(ZoomTime);
     }

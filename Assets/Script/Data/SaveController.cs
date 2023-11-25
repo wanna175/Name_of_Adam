@@ -12,6 +12,7 @@ public class SaveData
     public Incarna IncarnaData;
     public PlayerSkill UniversalPlayerSkillData;
     public List<DeckUnit> DeckUnitData;
+    public List<DeckUnit> FallenUnitsData;
     public int DarkEssence;
     public int PlayerSkillCount;
     public int DefaultMana;
@@ -39,6 +40,7 @@ public class SaveController : MonoBehaviour
 
         newData.IncarnaData = CurGameData.Incarna;
         newData.DeckUnitData = CurGameData.DeckUnits;
+        newData.FallenUnitsData = CurGameData.FallenUnits;
         newData.UniversalPlayerSkillData = CurGameData.UniversalPlayerSkill;
         newData.DarkEssence = CurGameData.DarkEssence;
         newData.PlayerSkillCount = CurGameData.PlayerSkillCount;
@@ -63,6 +65,7 @@ public class SaveController : MonoBehaviour
         GameManager.Data.GameData.Incarna = loadData.IncarnaData;
         GameManager.Data.GameData.UniversalPlayerSkill = loadData.UniversalPlayerSkillData;
         GameManager.Data.GameData.DeckUnits = loadData.DeckUnitData;
+        GameManager.Data.GameData.FallenUnits = loadData.FallenUnitsData;
         GameManager.Data.GameData.DarkEssence = loadData.DarkEssence;
         //CurGameData.DefaultMana
         //CurGameData.GuardCount

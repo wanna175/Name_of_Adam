@@ -50,8 +50,10 @@ public abstract class Buff : MonoBehaviour
 
     public virtual int GetBuffDisplayNumber()
     {
-        if (_count > 0) return _count;
-        else return 0;
+        if (_count > 0) 
+            return _count;
+        else 
+            return 0;
     }
 
     public virtual void Destroy() { }

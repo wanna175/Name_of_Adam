@@ -17,7 +17,7 @@ public class Buff_Stigma_ShadowStep: Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.AFTER_ATTACK_CUTSCENE;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
@@ -30,7 +30,7 @@ public class Buff_Stigma_ShadowStep: Buff
 
     public override bool Active(BattleUnit caster)
     {
-        Vector2 vec = (caster.GetFlipX()) ? caster.Location + Vector2.right : caster.Location + Vector2.left;
+        Vector2 vec = caster.Location + (caster.Location - _owner.Location).normalized;
         if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
         {
             BattleManager.Instance.MoveUnit(_owner, vec);

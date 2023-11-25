@@ -13,11 +13,11 @@ public class Stigma_Sadism : Stigma
         Buff_Stigma_Sadism sadism = new();
         if (Tier == StigmaTier.Tier1)
         {
-            sadism.SetValue(3);
+            sadism.SetValue(2);
         }
         else if (Tier == StigmaTier.Tier2)
         {
-            sadism.SetValue(5);
+            sadism.SetValue(3);
         }
 
         caster.SetBuff(sadism);

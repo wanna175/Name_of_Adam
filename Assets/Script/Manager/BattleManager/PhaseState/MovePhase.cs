@@ -9,7 +9,10 @@ public class MovePhase : Phase
     public override void OnStateEnter()
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
-        _nowUnit.MoveTurnStart();
+
+        //�̵� �� ���� �� üũ
+        _nowUnit.NextMoveSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE_TURN_START, _nowUnit);
+        _nowUnit.NextMoveSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Move);
 
@@ -37,7 +40,8 @@ public class MovePhase : Phase
 
     public override void OnStateExit()
     {
-        _nowUnit.MoveTurnEnd();
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE_TURN_END, _nowUnit);
+        _nowUnit.NextMoveSkip = false;
         _nowUnit = null;
 
         BattleManager.Field.ClearAllColor();
