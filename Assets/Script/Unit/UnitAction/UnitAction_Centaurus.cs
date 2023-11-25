@@ -22,7 +22,6 @@ public class UnitAction_Centaurus : UnitAction
     {
         Dictionary<Vector2, int> AttackableFour = new();
         List<Vector2> attackRange = caster.GetAttackRange();
-        Debug.Log(attackRange[0]);
 
         foreach (Vector2 direction in UDLR)
         {
@@ -46,12 +45,7 @@ public class UnitAction_Centaurus : UnitAction
                 }
             }
         }
-        
-        foreach (Vector2 cev in AttackableFour.Keys)
-        {
-            Debug.Log(cev);
-        }
-
+       
         return MinHPSearch(AttackableFour);
     }
 
@@ -76,14 +70,10 @@ public class UnitAction_Centaurus : UnitAction
         return false;
     }
 
-    public override void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits)
+    public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {
-        if (hits.Count != 1)
-        {
-            Debug.Log("Centaurus Attack Error");
-
-            return;
-        }
+        if (hits.Count == 0)
+            return false;
 
         BattleUnit receiver = hits[0];
 
@@ -93,7 +83,7 @@ public class UnitAction_Centaurus : UnitAction
             {
                 BattleManager.Instance.AttackStart(attackUnit, hits);
                 _isMove = false;
-                return;
+                return true;
             }
         }
 
@@ -125,6 +115,8 @@ public class UnitAction_Centaurus : UnitAction
 
         BattleManager.Instance.MoveUnit(attackUnit, moveVector);
         BattleManager.Instance.AttackStart(attackUnit, hits);
+
+        return true;
     }
 
 
