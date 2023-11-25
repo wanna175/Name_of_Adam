@@ -35,7 +35,16 @@ public class DeckUnit
 
         return stigmata;
     }
+    
+    public List<Stigma> GetStigma(int eventNum)
+    {
+        List<Stigma> stigmata = new();
 
+        foreach (Stigma stigma in _stigma)
+            stigmata.Add(stigma);
+
+        return stigmata;
+    }
     public List<Stigma> GetChangedStigma()
     {
         return _stigma;

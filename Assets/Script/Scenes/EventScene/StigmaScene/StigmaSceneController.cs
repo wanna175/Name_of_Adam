@@ -58,9 +58,7 @@ public class StigmaSceneController : MonoBehaviour
         isTargetStigmaSelect = false;
         scripts = new ();
         _giveStigma = null;
-        UI_MyDeck ud = new ();
-        if (ud.DeckCount == 0)
-            _stigma_transfer_btn.SetActive(false);
+        //옮길 낙인유닛이 없다면 선택지가 안 뜨게 해야한다.
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
             scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
@@ -96,14 +94,6 @@ public class StigmaSceneController : MonoBehaviour
         isGiveStigmaSelect = true;
         UI_MyDeck ud =GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ud.Init(false, OnSelectStigmatransfergiver, (int)CUR_EVENT.GIVE_STIGMA);
-        if (ud.DeckCount == 0)
-        {
-            isGiveStigmaSelect = false;
-            Debug.Log("낙인 이동할 유닛이 없습니다. 나중에 어떻게 처리할 지 말해봐야 할듯");
-            GameManager.UI.ClosePopup();
-        }
-        else
-            _menu_select.SetActive(false);
     }
 
     // 낙인 선택지가 뜨는 함수

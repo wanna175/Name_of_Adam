@@ -10,8 +10,8 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private GameObject Quit_btn;//종료버튼
     [SerializeField] private TextMeshProUGUI _title_txt;//제목 텍스트
     private List<DeckUnit> _playerDeck = new();
+    private List<DeckUnit> _hallDeck = new();
     private Action<DeckUnit> _onSelect;
-    public int DeckCount { get; set; }
     private int evNum=0;
 
     public void Init(bool battle=false, Action<DeckUnit> onSelect=null,int Eventnum = 0)
@@ -31,25 +31,77 @@ public class UI_MyDeck : UI_Popup
             SetCard();
         
     }
+    public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
+    {
+        List<DeckUnit> _normalDeck = new();
 
+        _hallDeck = GameManager.Data.GameData.FallenUnits;
+
+        foreach (DeckUnit unit in _hallDeck)
+        {
+            if (unit.Data.Rarity == Rarity.일반)
+            {
+                _normalDeck.Add(unit);
+            }
+        }
+
+        if (isBossClear)
+        {
+            _playerDeck = _hallDeck;
+        }
+        else
+        {
+            _playerDeck = _normalDeck;
+        }
+        if (onSelect != null)
+            _onSelect = onSelect;
+        SetCard();
+    }
+    public void HallDeckInit(bool isElite = false, Action<DeckUnit> onSelect = null)
+    {
+        List<DeckUnit> _eliteDeck = new();
+        List<DeckUnit> _normalDeck = new();
+
+        _hallDeck = GameManager.Data.GetDeck();
+
+        foreach (DeckUnit unit in _hallDeck)
+        {
+            if (unit.Data.Rarity == Rarity.일반)
+            {
+                _normalDeck.Add(unit);
+            }
+            else
+            {
+                _eliteDeck.Add(unit);
+            }
+        }
+
+        if (isElite)
+        {
+            _playerDeck = _eliteDeck;
+        }
+        else
+            _playerDeck = _normalDeck;
+
+        if (onSelect != null)
+            _onSelect = onSelect;
+
+        SetCard();
+    }
     public void SetCard()//낙인을 옮길 수 있는 사람만 셋팅하는 용도 
     {
-        DeckCount = 0;
         foreach (DeckUnit unit in _playerDeck)
         {
             AddCard(unit);
-            ++DeckCount;
         }
         
     }
     private void SetCard(int EventNum)
     {
-        DeckCount = 0;
         foreach (DeckUnit unit in _playerDeck)
         {
             if (unit.GetStigma(EventNum).Count != 0)
             {
-                ++DeckCount;
                 AddCard(unit);
             }
         }
