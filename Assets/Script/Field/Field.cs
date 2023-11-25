@@ -107,6 +107,25 @@ public class Field : MonoBehaviour
         return units;
     }
 
+    public List<BattleUnit> GetUnitsInRange(Vector2 originCoord, List<Vector2> areaCoords, Team team)
+    {
+        List<BattleUnit> units = new();
+
+        foreach (Vector2 coord in areaCoords)
+        {
+            BattleUnit unit = BattleManager.Field.GetUnit(originCoord + coord);
+            if (unit != null)
+            {
+                if (unit.Team == team)
+                {
+                    units.Add(unit);
+                }
+            }
+        }
+
+        return units;
+    }
+
     public List<BattleUnit> GetArroundUnits(Vector2 unitCoord) => GetArroundUnits(unitCoord, UDLR);
 
     //십자가 범위 유닛
@@ -181,7 +200,7 @@ public class Field : MonoBehaviour
     {
         foreach (Vector2 spawnTile in TileDict.Keys)
         {
-            if (!deckUnit.CanSpawnInEnemyField && !IsPlayerRange(spawnTile))
+            if (CheckSpawnTile(deckUnit, spawnTile))
                 continue;
             if (TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
                 continue;
@@ -263,7 +282,7 @@ public class Field : MonoBehaviour
         {
             Vector2 tempVec = spawnLocation + size;
 
-            if ((!deckUnit.CanSpawnInEnemyField && !IsPlayerRange(tempVec)) || TileDict[tempVec].UnitExist)
+            if (CheckSpawnTile(deckUnit, tempVec) || TileDict[tempVec].UnitExist)
             {
                 return false;
             }
@@ -276,8 +295,9 @@ public class Field : MonoBehaviour
 
     public void ExitTile(Vector2 coord) => TileDict[coord].ExitTile();
 
-    // 배치 가능 범위 확인
-    public bool IsPlayerRange(Vector2 coord) => ((int)coord.x < MaxFieldX / 2 && IsInRange(coord));
+    private bool CheckSpawnTile(DeckUnit deckUnit, Vector2 spawnTile) => !deckUnit.CanSpawnInEnemyField && !IsPlayerRange(spawnTile);
+
+    private bool IsPlayerRange(Vector2 coord) => ((int)coord.x < MaxFieldX / 2 && IsInRange(coord));
 
     private UI_Info _hoverInfo;
 
