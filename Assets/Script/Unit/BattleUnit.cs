@@ -241,6 +241,15 @@ public class BattleUnit : MonoBehaviour
 
         GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
 
+        if(DeckUnit.Data.Rarity == Rarity.Normal)
+        {
+            GameManager.Data.GameData.Progress.NormalFall++;
+        }
+        else if(DeckUnit.Data.Rarity == Rarity.Elite)
+        {
+            GameManager.Data.GameData.Progress.EliteFall++;
+        }
+
         //타락 이벤트 시작
         FallEvent = true;
 

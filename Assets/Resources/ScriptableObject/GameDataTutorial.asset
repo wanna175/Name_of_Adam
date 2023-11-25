@@ -97,3 +97,8 @@ MonoBehaviour:
   FallenUnits: []
   isVisitUpgrade: 0
   isVisitStigma: 0
+  Progress:
+    NormalWin: 0
+    EliteWin: 0
+    BossWin: 0
+    NormalKill: 0

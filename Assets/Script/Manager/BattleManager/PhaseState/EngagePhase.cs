@@ -10,13 +10,13 @@ public class EngagePhase : Phase
 
         BattleManager.BattleUI.CloseInfo(_engageInfo);
 
-        BattleManager.Instance.BattleOverCheck();
-
         if (BattleManager.Data.OrderUnitCount <= 0)
         {
             BattleManager.Phase.ChangePhase(BattleManager.Phase.End);
             return;
         }
+
+        BattleManager.Instance.BattleOverCheck();
 
         BattleManager.BattleUI.ShowTutorial();
     }

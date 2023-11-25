@@ -45,9 +45,11 @@ public class UI_BattleOver : UI_Scene
             SceneChanger.SceneChange("StageSelectScene");
         else if (_result == "elite win")
         {
+            GameManager.Data.GameData.Progress.LeftDarkEssence = GameManager.Data.DarkEssense;
+
             BattleOverDestroy();
 
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, (deckUnit) => {GameManager.OutGameData.AddHallUnit(deckUnit, true);});
+            GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
         }
         else if (_result == "lose")
         {
@@ -55,7 +57,7 @@ public class UI_BattleOver : UI_Scene
 
             if (GameManager.OutGameData.isTutorialClear())
             {
-                GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(false, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, false);});
+                GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
             }
             else
             {
