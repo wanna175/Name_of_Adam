@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 public class UnitAction_Trinity : UnitAction
 {
-    //0 = staff, 1 = sword, 2 = bow
+    //0 = sword, 1 = staff, 2 = book
     private int _trinityState  = 0;
+    private bool _isStateUpdate = false;
 
     bool[] staffRange = new bool[] {
             true, true, true, true, true, true, true, true, true, true, true,
@@ -46,7 +47,14 @@ public class UnitAction_Trinity : UnitAction
                 }
             }
 
-            ActionStart(attackUnit, hitUnits);
+            if (hitUnits.Count > 0)
+            {
+                ActionStart(attackUnit, hitUnits, new());
+            }
+            else
+            {
+                BattleManager.Instance.EndUnitAction();
+            }
         }
         else
         { 
@@ -66,7 +74,7 @@ public class UnitAction_Trinity : UnitAction
         }
     }
 
-    public override void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits)
+    public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {
         if (_trinityState != 2)
         {
@@ -82,30 +90,47 @@ public class UnitAction_Trinity : UnitAction
                 }
             }
 
-            BattleManager.Instance.AttackStart(attackUnit, inRangeUnits);
+            if (inRangeUnits.Count > 0)
+            {
+                BattleManager.Instance.AttackStart(attackUnit, inRangeUnits);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
+        { 
             BattleManager.Instance.AttackStart(attackUnit, hits);
+            return false;
+        }
     }
 
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
     {
-        if (activeTiming == ActiveTiming.ATTACK_TURN_END)
+        if (activeTiming == ActiveTiming.TURN_START)
         {
+            _isStateUpdate = false;
+        }
+        else if ((activeTiming == ActiveTiming.AFTER_ATTACK || activeTiming == ActiveTiming.ATTACK_TURN_END) && !_isStateUpdate)
+        {
+            _isStateUpdate = true;
+
             switch (UpdateTrinityState())
             {
                 case 0:
                     caster.SetAttackRange(staffRange);
-                    //애니메이션 변경
+                    caster.AnimatorSetInteger("state", 0);
                     break;
                 case 1:
                     caster.SetAttackRange(swordRange);
-                    //애니메이션 변경
+                    caster.AnimatorSetInteger("state", 1);
                     break;
                 case 2:
                     caster.SetAttackRange(bowRange);
-                    //애니메이션 변경
+                    caster.AnimatorSetInteger("state", 2);
                     break;
                 default:
                     break;
@@ -113,8 +138,12 @@ public class UnitAction_Trinity : UnitAction
         }
         else if (activeTiming == ActiveTiming.MOVE_TURN_START)
         {
-            //for move skip
-            return _trinityState == 0;
+            bool moveSkip = false;
+            if (_trinityState == 0)
+                moveSkip = true;
+
+            return moveSkip;
+
         }
         else if (activeTiming == ActiveTiming.BEFORE_ATTACK)
         {

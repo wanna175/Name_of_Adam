@@ -14,7 +14,7 @@ public class Buff_Stigma_Dispel : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 

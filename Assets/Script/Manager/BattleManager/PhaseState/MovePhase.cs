@@ -10,7 +10,7 @@ public class MovePhase : Phase
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
 
-        //ÀÌµ¿ ÅÏ ½ÃÀÛ ½Ã Ã¼Å©
+        //ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¼Å©
         _nowUnit.NextMoveSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE_TURN_START, _nowUnit);
         _nowUnit.NextMoveSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);
 

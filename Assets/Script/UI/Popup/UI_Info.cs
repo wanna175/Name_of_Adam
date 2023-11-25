@@ -109,9 +109,6 @@ public class UI_Info : UI_Scene
 
         List<int> rangeIntegerList = new();
 
-        int Acolumn = 11;
-        int Arow = 5;
-
         foreach (Vector2 vec in battleUnit.GetAttackRange())
         {
             int rangeInteger = 27 + (int)vec.x + (int)vec.y * 11;
