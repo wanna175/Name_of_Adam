@@ -193,6 +193,10 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Centaurus();
         }
+        else if (actionType == UnitActionType.UnitAction_Horus)
+        {
+            return new UnitAction_Horus();
+        }
         else
         {
             return new UnitAction_None();

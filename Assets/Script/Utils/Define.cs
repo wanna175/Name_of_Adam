@@ -219,7 +219,8 @@ public enum UnitActionType
     UnitAction_Iana,
     UnitAction_Nimrod,
     UnitAction_Trinity,
-    UnitAction_Centaurus
+    UnitAction_Centaurus,
+    UnitAction_Horus
 }
 
 public enum EffectTileType
