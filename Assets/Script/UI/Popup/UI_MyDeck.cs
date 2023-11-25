@@ -25,8 +25,7 @@ public class UI_MyDeck : UI_Popup
         SetCard();
     }
 
-    //게임오버 후 전당에 저장할 유닛을 고를시 사용하는 덱
-    public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
+    public void InitHallSave(bool isBossClear, Action<DeckUnit> onSelect = null)
     {
         List<DeckUnit> _normalDeck = new();
 
@@ -34,7 +33,7 @@ public class UI_MyDeck : UI_Popup
 
         foreach (DeckUnit unit in _hallDeck)
         {
-            if (unit.Data.Rarity == Rarity.일반)
+            if (unit.Data.Rarity == Rarity.Normal)
             {
                 _normalDeck.Add(unit);
             }
@@ -55,8 +54,7 @@ public class UI_MyDeck : UI_Popup
         SetCard();
     }
 
-    //전당에서 메인 게임에 데려갈 유닛을 선택하는 덱
-    public void HallDeckInit(bool isElite = false, Action<DeckUnit> onSelect = null)
+    public void InitHallDeck(bool isElite = false, Action<DeckUnit> onSelect = null)
     {
         List<DeckUnit> _eliteDeck = new();
         List<DeckUnit> _normalDeck = new();
@@ -65,7 +63,7 @@ public class UI_MyDeck : UI_Popup
 
         foreach (DeckUnit unit in _hallDeck)
         {
-            if (unit.Data.Rarity == Rarity.일반)
+            if (unit.Data.Rarity == Rarity.Normal)
             {
                 _normalDeck.Add(unit);
             }

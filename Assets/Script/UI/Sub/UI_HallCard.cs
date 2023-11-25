@@ -33,7 +33,7 @@ public class UI_HallCard : MonoBehaviour
 
     public void OnClick()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallDeckInit(_isElite, OnSelect);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").InitHallDeck(_isElite, OnSelect);
     }
 
     //선택한 유닛 GameDataMain 에 저장되게 하기
