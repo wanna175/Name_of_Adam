@@ -7,7 +7,11 @@ public class Stigma_TailWind : Stigma
     {
         base.Use(caster);
 
-        List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location);
+        List<Vector2> areaCoords = new List<Vector2>();
+        for (int i = -2; i < 3; i++)
+            areaCoords.Add(new Vector2(0, i));
+
+        List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location, areaCoords);
 
         foreach (BattleUnit unit in targetUnits)
         {

@@ -23,7 +23,7 @@ public class Stigma : MonoBehaviour
     public bool IsLock => _isLock;
     
 
-    public virtual void Use(BattleUnit caster)
+    public virtual void Use(BattleUnit caster = null)
     {
         StigmaEffect(caster);
         return;

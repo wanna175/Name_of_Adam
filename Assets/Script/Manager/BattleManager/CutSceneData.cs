@@ -8,7 +8,6 @@ public class BattleCutSceneData
     public List<BattleUnit> HitUnits;
 
     // 각 유닛의 위치
-    public Vector3 AttackPosition;
     public List<Vector3> HitPosition;
     // 각 유닛의 타일 위치
     public Vector2 AttackLocation;
@@ -32,7 +31,6 @@ public class BattleCutSceneData
         HitUnits = hitUnits;
 
         AttackLocation = AttackUnit.Location;
-        AttackPosition = BattleManager.Field.GetTilePosition(AttackLocation);
         HitLocation = new();
         HitPosition = new();
         foreach (BattleUnit unit in HitUnits)

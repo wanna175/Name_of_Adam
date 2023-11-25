@@ -9,7 +9,10 @@ public class ActionPhase : Phase
     public override void OnStateEnter()
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
-        _nowUnit.AttackTurnStart();
+
+        //공격 턴 시작 시 체크
+        _nowUnit.NextAttackSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_START, _nowUnit);
+        _nowUnit.NextAttackSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
 
@@ -39,7 +42,9 @@ public class ActionPhase : Phase
     {
         BattleManager.Field.ClearAllColor();
 
-        _nowUnit.AttackTurnEnd();
+        //공격 턴 종료 시 체크
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END, _nowUnit);
+        _nowUnit.NextAttackSkip = false;
         _nowUnit = null;
     }
 }

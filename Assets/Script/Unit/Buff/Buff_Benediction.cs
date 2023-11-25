@@ -17,7 +17,7 @@ public class Buff_Benediction : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
+        _buffActiveTiming = ActiveTiming.DAMAGE_CONFIRM;
 
         _owner = owner;
 

@@ -92,11 +92,11 @@ public class Field : MonoBehaviour
             return TileDict[coord].Unit;
     }
 
-    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord)
+    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord, List<Vector2> areaCoords)
     {
         List<BattleUnit> units = new();
 
-        foreach (Vector2 udlr in UDLR)
+        foreach (Vector2 udlr in areaCoords)
         {
             BattleUnit targetUnit = GetUnit(unitCoord + udlr);
             if (targetUnit == null)
@@ -106,6 +106,8 @@ public class Field : MonoBehaviour
 
         return units;
     }
+
+    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord) => GetArroundUnits(unitCoord, UDLR);
 
     //십자가 범위 유닛
     public List<Vector2> GetCrossCoord(Vector2 unitCoord)
@@ -175,18 +177,20 @@ public class Field : MonoBehaviour
         }
     }
 
-    public void SetSpawnTileColor(FieldColorType fieldType, List<Vector2> unitSize)
+    public void SetSpawnTileColor(FieldColorType fieldType, DeckUnit deckUnit)
     {
         foreach (Vector2 spawnTile in TileDict.Keys)
         {
-            if (!IsPlayerRange(spawnTile) || TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
+            if (!deckUnit.CanSpawnInEnemyField && !IsPlayerRange(spawnTile))
+                continue;
+            if (TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
                 continue;
 
             List<Vector2> tempList = new();
 
-            if (UnitSizeCheck(spawnTile, unitSize))
+            if (UnitSizeCheck(spawnTile, deckUnit))
             {
-                foreach (Vector2 size in unitSize)
+                foreach (Vector2 size in deckUnit.GetUnitSizeRange())
                 {
                     TileDict[spawnTile + size].SetColor(ColorList(fieldType));
                 }
@@ -253,13 +257,13 @@ public class Field : MonoBehaviour
         }
     }
 
-    public bool UnitSizeCheck(Vector2 spawnLocation, List<Vector2> unitSize)
+    public bool UnitSizeCheck(Vector2 spawnLocation, DeckUnit deckUnit)
     {
-        foreach (Vector2 size in unitSize)
+        foreach (Vector2 size in deckUnit.GetUnitSizeRange())
         {
             Vector2 tempVec = spawnLocation + size;
 
-            if (!IsPlayerRange(tempVec) || TileDict[tempVec].UnitExist)
+            if ((!deckUnit.CanSpawnInEnemyField && !IsPlayerRange(tempVec)) || TileDict[tempVec].UnitExist)
             {
                 return false;
             }

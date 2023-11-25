@@ -16,11 +16,11 @@ public class Buff_Stigma_Sadism : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
-        _statBuff = false;
+        _statBuff = true;
 
         _dispellable = false;
 
@@ -30,6 +30,7 @@ public class Buff_Stigma_Sadism : Buff
     public override bool Active(BattleUnit caster)
     {
         totalUp += attackUp;
+        Debug.Log(attackUp + " / " + totalUp);
 
         return false;
     }

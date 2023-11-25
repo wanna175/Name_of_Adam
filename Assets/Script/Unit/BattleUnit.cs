@@ -35,9 +35,6 @@ public class BattleUnit : MonoBehaviour
     private float _scale;
     private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (_location.y - 1));
 
-    private bool _nextMoveSkip = false;
-    private bool _nextAttackSkip = false;
-
     private bool[] _moveRangeList;
     private bool[] _attackRangeList;
 
@@ -45,6 +42,9 @@ public class BattleUnit : MonoBehaviour
 
     public bool IsConnectedUnit;
     public List<ConnectedUnit> ConnectedUnits;
+
+    public bool NextMoveSkip = false;
+    public bool NextAttackSkip = false;
 
     public void Init()
     {
@@ -100,61 +100,21 @@ public class BattleUnit : MonoBehaviour
         }
 
         //소환 시 체크
-        ActiveTimingCheck(ActiveTiming.STIGMA);
-        ActiveTimingCheck(ActiveTiming.SUMMON);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
         BattleManager.Instance.UnitSummonEvent();
-    }
-
-    public void TurnStart()
-    {
-        //턴 시작 시 체크
-        ActiveTimingCheck(ActiveTiming.TURN_START);
-    }
-
-    public void TurnEnd()
-    {
-        //턴 종료 시 체크
-        ActiveTimingCheck(ActiveTiming.TURN_END);
-    }
-
-    public void MoveTurnStart()
-    {
-        //이동 턴 시작 시 체크
-        _nextMoveSkip = ActiveTimingCheck(ActiveTiming.MOVE_TURN_START);
-        _nextMoveSkip |= ActiveTimingCheck(ActiveTiming.ACTION_TURN_START);
-    }
-
-    public void MoveTurnEnd()
-    {
-        //이동 턴 종료 시 체크
-        ActiveTimingCheck(ActiveTiming.MOVE_TURN_END);
-        _nextMoveSkip = false;
-    }
-
-    public void AttackTurnStart()
-    {
-        //공격 턴 시작 시 체크
-        _nextAttackSkip = ActiveTimingCheck(ActiveTiming.ATTACK_TURN_START);
-        _nextAttackSkip |= ActiveTimingCheck(ActiveTiming.ACTION_TURN_START);
-    }
-
-    public void AttackTurnEnd()
-    {
-        //공격 턴 종료 시 체크
-        ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END);
-        _nextAttackSkip = false;
     }
 
     public void FieldUnitDead()
     {
         //필드 유닛 사망시 체크
-        ActiveTimingCheck(ActiveTiming.FIELD_UNIT_DEAD);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FIELD_UNIT_DEAD, this);
     }
 
     public void FieldUnitSummon()
     {
         //필드 유닛 소화시 체크
-        ActiveTimingCheck(ActiveTiming.FIELD_UNIT_SUMMON);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FIELD_UNIT_SUMMON, this);
     }
 
     public void SetTeam(Team team)
@@ -234,7 +194,7 @@ public class BattleUnit : MonoBehaviour
     public void UnitDiedEvent()
     {
         //자신이 사망 시 체크
-        if (ActiveTimingCheck(ActiveTiming.BEFORE_UNIT_DEAD))
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_UNIT_DEAD, this))
         {
             return;
         }
@@ -262,7 +222,7 @@ public class BattleUnit : MonoBehaviour
 
             yield return null;
         }
-        ActiveTimingCheck(ActiveTiming.AFTER_UNIT_DEAD);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_UNIT_DEAD, this);
         BattleManager.Spawner.RestoreUnit(gameObject);
 
         if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
@@ -274,7 +234,7 @@ public class BattleUnit : MonoBehaviour
     public void UnitFallEvent()
     {
         //타락 시 체크
-        if (ActiveTimingCheck(ActiveTiming.FALLED))
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
         {
             return;
         }
@@ -308,7 +268,7 @@ public class BattleUnit : MonoBehaviour
         {
             BattleManager.Instance.BattleOverCheck();
         }
-        ActiveTimingCheck(ActiveTiming.STIGMA);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
         if (Buff.CheckBuff(BuffEnum.Benediction))
         {
@@ -391,14 +351,14 @@ public class BattleUnit : MonoBehaviour
         bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0);
         //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
         //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
-
+        BattleManager.Instance.CheckStigma(DeckUnit, new Stigma_Assasination());
         if (moveCoro != null)
             StopCoroutine(moveCoro);
 
         moveCoro = MoveFieldPosition(coord, backMove);
         StartCoroutine(moveCoro);
 
-        ActiveTimingCheck(ActiveTiming.MOVE);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE, this);
     }
 
     public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove)
@@ -448,16 +408,16 @@ public class BattleUnit : MonoBehaviour
             bool attackSkip = false;
 
             //공격 전 체크
-            attackSkip |= ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, unit);
+            attackSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, this, unit);
 
             //대미지 확정 시 체크
-            attackSkip |= ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, unit, ChangedDamage);
+            attackSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, this, unit);
 
             if (unit.FallEvent)
             {
                 //타락시켰을 시 체크
-                ActiveTimingCheck(ActiveTiming.FALL, unit);
-                ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, unit);
+                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALL, this, unit);
+                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
 
                 attackSkip = true;
             }
@@ -468,12 +428,12 @@ public class BattleUnit : MonoBehaviour
             unit.GetAttack(-ChangedDamage, this);
 
             //공격 후 체크
-            ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, unit, ChangedDamage);
+            BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, this, unit);
 
             if (unit.GetHP() <= 0)
             {
-                ActiveTimingCheck(ActiveTiming.UNIT_KILL, unit);
-                ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, unit);
+                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_KILL, this, unit);
+                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
             }
 
             ChangedDamage = 0;
@@ -483,7 +443,7 @@ public class BattleUnit : MonoBehaviour
     public virtual void GetAttack(int value, BattleUnit caster)
     {
         //피격 전 체크
-        if (ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, caster))
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, this, caster))
         {
             return;
         }
@@ -492,7 +452,7 @@ public class BattleUnit : MonoBehaviour
         ChangeHP(value);
 
         //피격 후 체크
-        ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, caster);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_ATTACKED, this, caster);
     }
 
     public virtual void GetHeal(int value, BattleUnit caster)
@@ -536,37 +496,6 @@ public class BattleUnit : MonoBehaviour
         _hpBar.DeleteBuff(buffEnum);
     }
 
-    public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit receiver = null, int? num = null)
-    {
-        bool skipNextAction = false;
-
-        foreach (Stigma stigma in StigmaList)
-        {
-            if (stigma.ActiveTiming == activeTiming)
-            {
-                stigma.Use(this);
-            }
-        }
-
-        foreach (Buff buff in Buff.CheckActiveTiming(activeTiming))
-        {
-            if (num != null)
-            {
-                buff.SetValue((int)num);
-            }
-
-            skipNextAction = buff.Active(receiver);
-        }
-
-        Buff.CheckCountDownTiming(activeTiming);
-
-        BattleUnitChangedStat = Buff.GetBuffedStat();
-
-        skipNextAction |= Action.ActionTimingCheck(activeTiming, this, receiver);
-
-        return skipNextAction;
-    }
-
     public void AddMoveRange(bool[] addRangeList)
     {
         for (int i = 0; i < _moveRangeList.Length; i++)
@@ -585,7 +514,7 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetAttackRange()
     {
         List<Vector2> RangeList = new();
-        if (_nextAttackSkip)
+        if (NextAttackSkip)
         {
             RangeList.Add(new Vector2(0, 0));
 
@@ -628,7 +557,7 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetMoveRange()
     {
         List<Vector2> RangeList = new();
-        if (_nextMoveSkip)
+        if (NextMoveSkip)
         {
             RangeList.Add(new Vector2(0, 0));
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSkill_02_02 : PlayerSkill
 {
-    public override void Use(Vector2 coord, out bool isSkillOn)
+    public override bool Use(Vector2 coord)
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
@@ -12,7 +12,7 @@ public class PlayerSkill_02_02 : PlayerSkill
 
         targetUnit.SetBuff(new Buff_Vice());
         targetUnit.ChangeFall(1);
-        isSkillOn = false;
+        return false;
     }
 
     public override void CancelSelect()
