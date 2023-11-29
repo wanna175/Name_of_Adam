@@ -121,6 +121,7 @@ public class UI_MyDeck : UI_Popup
     }
     private void isEventScene(int EventScene)
     {
+        _title_txt.gameObject.SetActive(true);
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
         {
