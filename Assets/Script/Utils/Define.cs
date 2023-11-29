@@ -99,47 +99,48 @@ public enum Sounds
     MaxCount,
 }
 
+[Flags]
 public enum ActiveTiming
 {
-    STIGMA, //낙인 발동(소환 시, 낙인 부여 시)
+    STIGMA = 1 << 1, //낙인 발동(소환 시, 낙인 부여 시)
 
-    FIELD_UNIT_SUMMON,//필드에 유닛이 소환 시
-    SUMMON, //소환 후
+    FIELD_UNIT_SUMMON = 1 << 2,//필드에 유닛이 소환 시
+    SUMMON = 1 << 3, //소환 후
 
-    TURN_START, //턴 시작 시
-    TURN_END, //턴 종료 시
+    TURN_START = 1 << 4, //턴 시작 시
+    TURN_END = 1 << 5, //턴 종료 시
 
-    ACTION_TURN_START, //이동턴 전, 공격턴 전 통합
+    ACTION_TURN_START = 1 << 6, //이동턴 전, 공격턴 전 통합
 
-    MOVE_TURN_START, //이동턴 전
+    MOVE_TURN_START = 1 << 7, //이동턴 전
 
-    MOVE, //이동 후
+    MOVE = 1 << 8, //이동 후
 
-    MOVE_TURN_END, //이동턴 후
+    MOVE_TURN_END = 1 << 9, //이동턴 후
 
-    ATTACK_TURN_START, //공격턴 전
+    ATTACK_TURN_START = 1 << 10, //공격턴 전
 
-    BEFORE_ATTACK, //공격 전
-    AFTER_ATTACK, //공격 후
+    BEFORE_ATTACK = 1 << 11, //공격 전
+    AFTER_ATTACK = 1 << 12, //공격 후
 
-    DAMAGE_CONFIRM, //대미지 확정
+    DAMAGE_CONFIRM = 1 << 13, //대미지 확정
 
-    BEFORE_ATTACKED, //피격 전
-    AFTER_ATTACKED, //피격 후
+    BEFORE_ATTACKED = 1 << 14, //피격 전
+    AFTER_ATTACKED = 1 << 15, //피격 후
 
-    ATTACK_TURN_END, //공격턴 후
+    ATTACK_TURN_END = 1 << 16, //공격턴 후
 
-    FALL, //타락시켰을 때, 그 후
-    FALLED, //타락되었을 때 그 전
+    FALL = 1 << 17, //타락시켰을 때, 그 후
+    FALLED = 1 << 18, //타락되었을 때 그 전
 
-    BEFORE_UNIT_DEAD, //자신이 사망 전
-    AFTER_UNIT_DEAD, //자신이 사망 후
-    FIELD_UNIT_DEAD, //필드 유닛이 사망 시
+    BEFORE_UNIT_DEAD = 1 << 19, //자신이 사망 전
+    AFTER_UNIT_DEAD = 1 << 20, //자신이 사망 후
+    FIELD_UNIT_DEAD = 1 << 21, //필드 유닛이 사망 시
 
-    UNIT_KILL, //다른 유닛을 죽일 시
-    UNIT_TERMINATE, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
+    UNIT_KILL = 1 << 22, //다른 유닛을 죽일 시
+    UNIT_TERMINATE = 1 << 23, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
 
-    NONE//없음
+    NONE = 1 << 24 //없음
 };
 
 public enum StigmaTier
@@ -209,6 +210,8 @@ public enum BuffEnum
     InevitableEnd,
 
     Assasination,
+    Berserker,
+
 }
 
 public enum UnitActionType

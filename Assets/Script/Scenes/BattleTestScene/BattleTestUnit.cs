@@ -71,7 +71,7 @@ public class BattleTestUnit : BattleUnit
 
         foreach (Stigma stigma in StigmaList)
         {
-            if (stigma.ActiveTiming == activeTiming)
+            if ((activeTiming & stigma.ActiveTiming) == stigma.ActiveTiming)
             {
                 stigma.Use(this);
             }
