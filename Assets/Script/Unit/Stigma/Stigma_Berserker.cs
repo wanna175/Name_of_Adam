@@ -8,9 +8,10 @@ public class Stigma_Berserker : Stigma
     {
         base.Use(caster);
 
-        if (caster.Fall.GetCurrentFallCount() / 2 >= caster.BattleUnitTotalStat.FallCurrentCount)
+        if (caster.Fall.GetCurrentFallCount() >= caster.BattleUnitTotalStat.FallMaxCount / 2)
         {
-            caster.SetBuff(new Buff_Stigma_Berserker());
+            if (!caster.Buff.CheckBuff(BuffEnum.Berserker))
+                caster.SetBuff(new Buff_Stigma_Berserker());
         }
     }
 }
