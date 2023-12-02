@@ -14,13 +14,13 @@ public class UI_Tutorial : MonoBehaviour
 
     public void TutorialTimeStop()
     {
-        GameManager.Instance.isTutorialactive = true;
+        GameManager.Data.isTutorialactive = true;
         Time.timeScale = 0;
     }
 
     public void TutorialTimeStart()
     {
-        GameManager.Instance.isTutorialactive = false;
+        GameManager.Data.isTutorialactive = false;
         Time.timeScale = 1;
     }
 }

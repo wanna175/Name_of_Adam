@@ -85,9 +85,15 @@ public class StageManager : MonoBehaviour
                 GameManager.Data.StageAct++;
                 GameManager.Data.Map = new MapData();
 
-                if(GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
+                if (GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
+                {
                     GameManager.Data.MainDeckSet();
-                    GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+
+                    if(GameManager.Data.GameData.FallenUnits.Count == 0)
+                    {
+                        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+                    }
+                }
             }
             else
             {

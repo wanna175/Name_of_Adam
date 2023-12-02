@@ -78,7 +78,7 @@ public class DataManager : MonoBehaviour
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
         GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
-        GameData.FallenUnits = GameDataTutorial.FallenUnits;
+        GameData.FallenUnits.Clear();
         GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
         GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
 

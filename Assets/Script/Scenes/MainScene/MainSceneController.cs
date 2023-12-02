@@ -22,13 +22,33 @@ public class MainSceneController : MonoBehaviour
         Destroy(GameManager.Instance.gameObject);
 
         GameManager.SaveManager.DeleteSaveData();
-        SceneChanger.SceneChange("HubScene");
+
+        if (GameManager.OutGameData.isTutorialClear())
+        {
+            GameManager.Data.HallDeckSet();
+            GameManager.Data.HallSelectedDeckSet();
+            SceneChanger.SceneChange("DifficultySelectScene");
+        }
+        else
+        {
+            SceneChanger.SceneChange("CutScene");
+        }
     }
 
     public void ContinueBotton()
     {
         if (GameManager.SaveManager.SaveFileCheck())
             SceneChanger.SceneChange("StageSelectScene");
+    }
+    public void ProgressButton()
+    {
+        SceneChanger.SceneChange("ProgressScene");
+    }
+
+    public void HallButton()
+    {
+        GameManager.Data.HallDeckSet();
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false);
     }
 
     public void OptionButton()
