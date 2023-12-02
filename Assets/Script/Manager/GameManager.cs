@@ -31,15 +31,7 @@ public class GameManager : MonoBehaviour
     public static SaveController SaveManager => Instance._saveController;
 
     [SerializeField] private OutGameDataContainer _outGameData;
-    public static OutGameDataContainer OutGameData => Instance._outGameData;
-
-    
-    public bool Tutorial_Trigger_First = true;
-    public bool Tutorial_Trigger_Second = true;
-    public bool Tutorial_Benediction_Trigger = true;
-    public bool Tutorial_Stage_Trigger = true;
-    public bool isTutorialactive = false;
-    
+    public static OutGameDataContainer OutGameData => Instance._outGameData;    
 
     void Awake()
     {

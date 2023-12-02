@@ -236,6 +236,12 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public bool Tutorial_Trigger_First = true;
+    public bool Tutorial_Trigger_Second = true;
+    public bool Tutorial_Benediction_Trigger = true;
+    public bool Tutorial_Stage_Trigger = true;
+    public bool isTutorialactive = false;
+
     public List<PlayerSkill> GetPlayerSkillList()
     {
         List<PlayerSkill> skillList = new ();
