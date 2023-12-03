@@ -577,7 +577,7 @@ public class BattleManager : MonoBehaviour
 
         foreach (Stigma stigma in caster.StigmaList)
         {
-            if ((activeTiming & stigma.ActiveTiming) == stigma.ActiveTiming)
+            if ((activeTiming & stigma.ActiveTiming) == activeTiming)
             {
                 stigma.Use(caster);
             }

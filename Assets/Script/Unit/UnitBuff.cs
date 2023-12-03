@@ -73,7 +73,7 @@ public class UnitBuff : MonoBehaviour
 
         foreach (Buff buff in _buffList)
         {
-            if ((activeTiming & buff.BuffActiveTiming) == buff.BuffActiveTiming)
+            if ((activeTiming & buff.BuffActiveTiming) == activeTiming)
             {
                 checkedBuffList.Add(buff);
             }

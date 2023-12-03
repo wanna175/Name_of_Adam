@@ -6,7 +6,7 @@ public class Buff_Stigma_PrayInAid : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.DeathStrike;
+        _buffEnum = BuffEnum.PrayInAid;
 
         _name = "Áßº¸";
 
