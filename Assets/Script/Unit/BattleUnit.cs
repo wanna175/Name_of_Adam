@@ -45,6 +45,7 @@ public class BattleUnit : MonoBehaviour
 
     public bool NextMoveSkip = false;
     public bool NextAttackSkip = false;
+    public int AttackUnitNum;
 
     public void Init()
     {

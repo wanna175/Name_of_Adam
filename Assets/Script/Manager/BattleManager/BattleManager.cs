@@ -288,6 +288,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleCutSceneData CSData = new(caster, hits);
         _battlecutScene.InitBattleCutScene(CSData);
+        caster.AttackUnitNum = hits.Count;
 
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
     }
