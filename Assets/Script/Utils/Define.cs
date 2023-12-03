@@ -211,7 +211,8 @@ public enum BuffEnum
 
     Assasination,
     Berserker,
-
+    PrayInAid,
+    Karma,
 }
 
 public enum UnitActionType
