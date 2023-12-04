@@ -213,6 +213,8 @@ public enum BuffEnum
     Berserker,
     PrayInAid,
     Karma,
+    ForbiddenPact,
+
 }
 
 public enum UnitActionType

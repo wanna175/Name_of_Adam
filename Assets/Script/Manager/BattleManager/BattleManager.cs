@@ -161,7 +161,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (PlayerSkillController.isSkillOn)
+        if (PlayerSkillController.IsSkillOn)
         {
             PlayerSkillController.ActionSkill(ActiveTiming.TURN_START, coord);
             return;
