@@ -12,13 +12,13 @@ public class Buff_Stigma_Berserker : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "공격력 50% 증가합니다.";
+        _description = "매 턴 공격력 50% 증가합니다.";
 
-        _count = -1;
+        _count = 1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.NONE;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
@@ -34,10 +34,15 @@ public class Buff_Stigma_Berserker : Buff
         return false;
     }
 
+    public override void Stack()
+    {
+        _count += 1;
+    }
+
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK = (int)(_owner.DeckUnit.DeckUnitTotalStat.ATK * 0.5);
+        stat.ATK = (int)(_owner.Data.RawStat.ATK * _count * 0.5);
 
         return stat;
     }

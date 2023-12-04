@@ -46,8 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\uAD11\uD654"
   _sprite: {fileID: 21300000, guid: 605a48317ce99844e8c066ca9a089c36, type: 3}
-  _description: "\uAD50\uD654\uAC00 \uC808\uBC18 \uCC28\uBA74 \uAD11\uD654 \uBC84\uD504\uAC00
-    \uBC1C\uB3D9\uD55C\uB2E4."
-  _activeTiming: 32778
+  _description: "\uC2E0\uC559 \uCD5C\uB300 \uC218\uCE58\uAC00 1\uB85C \uACE0\uC815\uB429\uB2C8\uB2E4.
+    \uB300\uC2E0 \uB9E4\uD134 \uACF5\uACA9\uB825\uC774 50% \uC99D\uAC00\uD558\uB294
+    \uBC84\uD504\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+  _activeTiming: 65538
   _tier: 0
   _isLock: 0
