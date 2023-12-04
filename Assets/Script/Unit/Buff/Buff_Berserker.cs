@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_Stigma_Berserker : Buff
+public class Buff_Berserker : Buff
 {
     public override void Init(BattleUnit owner)
     {

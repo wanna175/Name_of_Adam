@@ -30,7 +30,7 @@ public class Buff_Stigma_Karma : Buff
     public override bool Active(BattleUnit caster)
     {
         if(!_owner.Buff.CheckBuff(BuffEnum.Sin))
-            _owner.SetBuff(new Buff_Stigma_Sin());
+            _owner.SetBuff(new Buff_Sin());
 
         return false;
     }
