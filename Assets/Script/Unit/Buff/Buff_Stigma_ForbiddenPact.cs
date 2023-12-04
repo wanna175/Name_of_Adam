@@ -22,11 +22,11 @@ public class Buff_Stigma_ForbiddenPact : Buff
 
         _owner = owner;
 
-        _statBuff = true;
+        _statBuff = false;
 
         _dispellable = false;
 
-        _stigmaBuff = false;
+        _stigmaBuff = true;
     }
 
     public override bool Active(BattleUnit caster)
