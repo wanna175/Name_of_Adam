@@ -164,6 +164,12 @@ public class BattleDataManager : MonoBehaviour
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }
 
+    public void BattleOrderInsert(int index, BattleUnit addUnit)
+    {
+        _battleUnitOrderList.Insert(index, addUnit);
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+    }
+
     public BattleUnit GetNowUnit()
     {
         if (_battleUnitOrderList.Count > 0)

@@ -27,7 +27,8 @@ public class Buff_Stigma_Misdeed : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        _owner.SetBuff(new Buff_Vice());
+        if (!_owner.Buff.CheckBuff(BuffEnum.Vice))
+            _owner.SetBuff(new Buff_Vice());
 
         return false;
     }

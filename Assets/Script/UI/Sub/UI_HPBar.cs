@@ -101,8 +101,6 @@ public class UI_HPBar : UI_Base
         newBuff.gameObject.SetActive(false);
 
         _buffBlockList.Add(newBuff);
-
-        RefreshBuff();
     }
 
     public void DeleteBuff(BuffEnum buffEnum)
@@ -117,8 +115,6 @@ public class UI_HPBar : UI_Base
                 break;
             }
         }
-
-        RefreshBuff();
     }
 
     private bool rotateStop = false;

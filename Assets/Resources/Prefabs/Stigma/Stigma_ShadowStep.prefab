@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7344141825059537036
+--- !u!1 &6516491720742692485
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8615493925179001436}
-  - component: {fileID: 5050624876792812542}
+  - component: {fileID: 2950990188252653416}
+  - component: {fileID: 6292025498003757114}
   m_Layer: 0
-  m_Name: Stigma_Martyrdom
+  m_Name: Stigma_ShadowStep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8615493925179001436
+--- !u!4 &2950990188252653416
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7344141825059537036}
+  m_GameObject: {fileID: 6516491720742692485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,21 +32,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5050624876792812542
+--- !u!114 &6292025498003757114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7344141825059537036}
+  m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d381a4f2afae85d4191aa5d6d2cb0999, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d128ca77ed9abd4fbc9a58f4b7ddc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\uC21C\uAD50"
+  _name: "\uADF8\uB9BC\uC790 \uBC1F\uAE30"
   _sprite: {fileID: 0}
-  _description: "\uC21C\uAD50"
-  _activeTiming: 0
-  _tier: 4
-  _isLock: 1
+  _description: "\uD53C\uACA9 \uC720\uB2DB\uC774 \uD55C\uBA85\uC77C \uACBD\uC6B0
+    \uACF5\uACA9 \uD6C4 \uD53C\uACA9 \uB300\uC0C1\uC758 \uBC30\uD6C4\uB85C \uB118\uC5B4\uAC11\uB2C8\uB2E4"
+  _activeTiming: 2
+  _tier: 0
+  _isLock: 0

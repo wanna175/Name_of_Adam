@@ -38,8 +38,16 @@ public class StageManager : MonoBehaviour
         // 맵 프리팹이 존재하지 않다면(스테이지 최초 진입 시) 맵중에 랜덤으로 하나 가져오기
         if (GameManager.Data.Map.MapObject == null)
         {
-            if (GameManager.Data.StageAct == 0)
+            if (GameManager.Data.StageAct == 0 && GameManager.OutGameData.isTutorialClear())
+            {
+                GameManager.Data.StageAct++;
+                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps");
+                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
+            }
+            else if (GameManager.Data.StageAct == 0)
+            {
                 GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/TutorialMap");
+            }
             else
             {
                 GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps");
@@ -77,9 +85,15 @@ public class StageManager : MonoBehaviour
                 GameManager.Data.StageAct++;
                 GameManager.Data.Map = new MapData();
 
-                if(GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
+                if (GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
+                {
                     GameManager.Data.MainDeckSet();
-                    GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+
+                    if(GameManager.Data.GameData.FallenUnits.Count == 0)
+                    {
+                        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+                    }
+                }
             }
             else
             {

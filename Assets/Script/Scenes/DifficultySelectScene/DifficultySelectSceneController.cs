@@ -46,6 +46,6 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Quit()
     {
-        SceneChanger.SceneChange("HubScene");
+        SceneChanger.SceneChange("MainScene");
     }
 }

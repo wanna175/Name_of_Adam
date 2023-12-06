@@ -9,8 +9,12 @@ public class PlayerSkill_02_01 : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         tilePos = coord;
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
-        //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+        BattleUnit unit = BattleManager.Field.GetUnit(tilePos);
+        unit.ChangeHP(-30);
+
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+                
         return true;
     }
 
@@ -26,6 +30,6 @@ public class PlayerSkill_02_01 : PlayerSkill
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.all);
+        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
     }
 }

@@ -11,7 +11,7 @@ public class Buff_Stigma_Hook : Buff
 
         _name = "갈고리";
 
-        _description = "갈고리.";
+        _description = "피격된 유닛을 한 칸 끌어옵니다.";
 
         _count = -1;
 

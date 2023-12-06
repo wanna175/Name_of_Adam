@@ -110,11 +110,11 @@ public class UnitAction_Trinity : UnitAction
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
     {
-        if (activeTiming == ActiveTiming.TURN_START)
+        if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
             _isStateUpdate = false;
         }
-        else if ((activeTiming == ActiveTiming.AFTER_ATTACK || activeTiming == ActiveTiming.ATTACK_TURN_END) && !_isStateUpdate)
+        else if (((activeTiming & ActiveTiming.AFTER_ATTACK) == ActiveTiming.AFTER_ATTACK || (activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END) && !_isStateUpdate)
         {
             _isStateUpdate = true;
 
@@ -136,7 +136,7 @@ public class UnitAction_Trinity : UnitAction
                     break;
             }
         }
-        else if (activeTiming == ActiveTiming.MOVE_TURN_START)
+        else if ((activeTiming & ActiveTiming.MOVE_TURN_START) == ActiveTiming.MOVE_TURN_START)
         {
             bool moveSkip = false;
             if (_trinityState == 0)
@@ -145,7 +145,7 @@ public class UnitAction_Trinity : UnitAction
             return moveSkip;
 
         }
-        else if (activeTiming == ActiveTiming.BEFORE_ATTACK)
+        else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
         {
             if (_trinityState == 0)
             {

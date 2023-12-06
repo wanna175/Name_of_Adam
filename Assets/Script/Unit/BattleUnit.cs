@@ -37,6 +37,7 @@ public class BattleUnit : MonoBehaviour
 
     private bool[] _moveRangeList;
     private bool[] _attackRangeList;
+    private bool _isTeleportOn => Buff.CheckBuff(BuffEnum.Teleport);
 
     private IEnumerator moveCoro;
 
@@ -45,6 +46,7 @@ public class BattleUnit : MonoBehaviour
 
     public bool NextMoveSkip = false;
     public bool NextAttackSkip = false;
+    public int AttackUnitNum;
 
     public void Init()
     {
@@ -179,6 +181,7 @@ public class BattleUnit : MonoBehaviour
     {
         _hpBar.SetHPBar(_team);
         _hpBar.SetFallBar(DeckUnit);
+        _hpBar.RefreshBuff();
     }
 
     public void SetLocation(Vector2 coord)
@@ -351,7 +354,6 @@ public class BattleUnit : MonoBehaviour
         bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0);
         //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
         //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
-        BattleManager.Instance.CheckStigma(DeckUnit, new Stigma_Assasination());
         if (moveCoro != null)
             StopCoroutine(moveCoro);
 
@@ -487,6 +489,7 @@ public class BattleUnit : MonoBehaviour
         Buff.SetBuff(buff, this);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.AddBuff(buff);
+        _hpBar.RefreshBuff();
     }
 
     public void DeleteBuff(BuffEnum buffEnum)
@@ -494,6 +497,7 @@ public class BattleUnit : MonoBehaviour
         Buff.DeleteBuff(buffEnum);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.DeleteBuff(buffEnum);
+        _hpBar.RefreshBuff();
     }
 
     public void AddMoveRange(bool[] addRangeList)
@@ -557,11 +561,17 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetMoveRange()
     {
         List<Vector2> RangeList = new();
+        List<Vector2> UnitRangeList = new();
+
         if (NextMoveSkip)
         {
-            RangeList.Add(new Vector2(0, 0));
-
-            return RangeList;
+            UnitRangeList.Add(new Vector2(0, 0));
+            return UnitRangeList;
+        }
+        if (_isTeleportOn)
+        {
+            UnitRangeList = BattleManager.Field.GetUnitAllCoord();
+            return UnitRangeList;
         }
 
         int Mrow = 5;
@@ -580,7 +590,6 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        List<Vector2> UnitRangeList = new();
         foreach (Vector2 vec in RangeList)
         {
             UnitRangeList.Add(vec);
@@ -600,6 +609,7 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetSplashRange(Vector2 target, Vector2 caster)
     {
         List<Vector2> SplashList = new();
+        SplashList.Add(Vector2.zero);
 
         int Scolumn = 11;
         int Srow = 5;
@@ -610,6 +620,9 @@ public class BattleUnit : MonoBehaviour
             {
                 int x = (i % Scolumn) - (Scolumn >> 1);
                 int y = (i / Scolumn) - (Srow >> 1);
+
+                if (x == 0 && y == 0)
+                    continue;
 
                 if ((target - caster).x > 0) SplashList.Add(new Vector2(x, y)); //오른쪽
                 else if ((target - caster).x < 0) SplashList.Add(new Vector2(-x, y)); //왼쪽

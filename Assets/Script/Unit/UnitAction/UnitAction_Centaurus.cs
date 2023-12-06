@@ -51,12 +51,12 @@ public class UnitAction_Centaurus : UnitAction
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver)
     {
-        if (activeTiming == ActiveTiming.DAMAGE_CONFIRM)
+        if ((activeTiming & ActiveTiming.DAMAGE_CONFIRM) == ActiveTiming.DAMAGE_CONFIRM)
         {
             if (_isMove)
                 caster.ChangedDamage *= 2;
         }
-        else if (activeTiming == ActiveTiming.ATTACK_TURN_END)
+        else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
         {
             if (_isMove)
             {

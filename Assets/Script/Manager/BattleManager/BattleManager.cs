@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 // 전투를 담당하는 매니저
@@ -160,7 +161,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (PlayerSkillController.isSkillOn)
+        if (PlayerSkillController.IsSkillOn)
         {
             PlayerSkillController.ActionSkill(ActiveTiming.TURN_START, coord);
             return;
@@ -229,28 +230,48 @@ public class BattleManager : MonoBehaviour
         if (!_field.TileDict[coord].IsColored)
             return;
 
-        BattleUnit unit = _battleData.GetNowUnit();
+        BattleUnit nowUnit = _battleData.GetNowUnit();
+        BattleUnit selectUnit = _field.GetUnit(coord);
+        if (selectUnit == null || selectUnit.Team == Team.Player)
+            return;
 
-        if (_field.GetUnit(coord) != unit)
+        List<Vector2> attackCoords = new();
+        List<BattleUnit> unitList = new();
+        attackCoords.Add(coord);
+        
+        if (nowUnit.DeckUnit.CheckStigma(new Stigma_Additional_Punishment()))
         {
-            List<Vector2> splashRange = unit.GetSplashRange(coord, unit.Location);
-            List<BattleUnit> unitList = new();
-
-            foreach (Vector2 splash in splashRange)
+            List<BattleUnit> additionalEnemies = _field.GetUnitsInRange(nowUnit.Location, nowUnit.GetAttackRange(), Team.Enemy);
+            additionalEnemies.Remove(selectUnit);
+            if (additionalEnemies.Count > 0)
             {
-                BattleUnit targetUnit = _field.GetUnit(coord + splash);
-
-                if (targetUnit == null)
-                    continue;
-
-                // 힐러의 예외처리 필요
-                if (targetUnit.Team != unit.Team)
-                    unitList.Add(targetUnit);
+                BattleUnit additionalEnemy = additionalEnemies[UnityEngine.Random.Range(0, additionalEnemies.Count)];
+                attackCoords.Add(additionalEnemy.Location);
             }
-
-            if (!unit.Action.ActionStart(unit, unitList, coord))
-                return;
         }
+
+        foreach (var attackCoord in attackCoords)
+        {
+            if (_field.GetUnit(attackCoord) != nowUnit)
+            {
+                List<Vector2> splashRange = nowUnit.GetSplashRange(attackCoord, nowUnit.Location);
+                
+                foreach (Vector2 splash in splashRange)
+                {
+                    BattleUnit targetUnit = _field.GetUnit(attackCoord + splash);
+
+                    if (targetUnit == null)
+                        continue;
+
+                    // 힐러의 예외처리 필요
+                    if (targetUnit.Team != nowUnit.Team)
+                        unitList.Add(targetUnit);
+                }
+            }
+        }
+
+        if (!nowUnit.Action.ActionStart(nowUnit, unitList, coord))
+            return;
     }
 
     #endregion
@@ -267,6 +288,7 @@ public class BattleManager : MonoBehaviour
     {
         BattleCutSceneData CSData = new(caster, hits);
         _battlecutScene.InitBattleCutScene(CSData);
+        caster.AttackUnitNum = hits.Count;
 
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
     }
@@ -368,11 +390,11 @@ public class BattleManager : MonoBehaviour
             BattleOverWin();
             if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 99)
             {
-                if (GameManager.Instance.Tutorial_Stage_Trigger == true)
+                if (GameManager.Data.Tutorial_Stage_Trigger == true)
                 {
                     GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(14);
                     GameManager.OutGameData.DoneTutorial(true);
-                    GameManager.Instance.Tutorial_Stage_Trigger = false;
+                    GameManager.Data.Tutorial_Stage_Trigger = false;
                 }
             }
         }
@@ -530,10 +552,10 @@ public class BattleManager : MonoBehaviour
             if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
                 return;
 
-            if(GameManager.Data.StageAct == 0 && GameManager.Instance.Tutorial_Benediction_Trigger == true)
+            if(GameManager.Data.StageAct == 0 && GameManager.Data.Tutorial_Benediction_Trigger == true)
             {
                 GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
-                GameManager.Instance.Tutorial_Benediction_Trigger = false;
+                GameManager.Data.Tutorial_Benediction_Trigger = false;
             }
             
             lastUnit.SetBuff(new Buff_Benediction());
@@ -549,23 +571,13 @@ public class BattleManager : MonoBehaviour
         action();
     }
 
-    public bool CheckStigma(DeckUnit deckUnit, Stigma findStigma)
-    {
-        foreach (Stigma stigma in deckUnit.GetStigma())
-        {
-            if (findStigma.GetType() == stigma.GetType())
-                return true;
-        }
-        return false;
-    }
-
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
     {
         bool skipNextAction = false;
 
         foreach (Stigma stigma in caster.StigmaList)
         {
-            if (stigma.ActiveTiming == activeTiming)
+            if ((activeTiming & stigma.ActiveTiming) == activeTiming)
             {
                 stigma.Use(caster);
             }
@@ -579,6 +591,8 @@ public class BattleManager : MonoBehaviour
         caster.Buff.CheckCountDownTiming(activeTiming);
 
         caster.BattleUnitChangedStat = caster.Buff.GetBuffedStat();
+
+        caster.SetHPBar();
 
         skipNextAction |= caster.Action.ActionTimingCheck(activeTiming, caster, receiver);
 
