@@ -53,6 +53,9 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private UnitActionType _unitActionType;
     public UnitActionType UnitActionType => _unitActionType;
 
+    [SerializeField] private UnitMoveType _unitMoveType;
+    public UnitMoveType UnitMoveType => _unitMoveType;
+
     const int Arow = 5;
     const int Acolumn = 11;
 

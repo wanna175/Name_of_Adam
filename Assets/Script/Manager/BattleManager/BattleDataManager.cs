@@ -178,6 +178,10 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction();
         }
+        else if (actionType == UnitActionType.UnitAction_Laser)
+        {
+            return new UnitAction_Laser();
+        }
         else if (actionType == UnitActionType.UnitAction_Iana)
         {
             return new UnitAction_Iana();

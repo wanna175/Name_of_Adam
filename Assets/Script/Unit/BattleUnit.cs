@@ -102,19 +102,7 @@ public class BattleUnit : MonoBehaviour
         //소환 시 체크
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
-        BattleManager.Instance.UnitSummonEvent();
-    }
-
-    public void FieldUnitDead()
-    {
-        //필드 유닛 사망시 체크
-        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FIELD_UNIT_DEAD, this);
-    }
-
-    public void FieldUnitSummon()
-    {
-        //필드 유닛 소화시 체크
-        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FIELD_UNIT_SUMMON, this);
+        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, this);
     }
 
     public void SetTeam(Team team)
@@ -128,7 +116,7 @@ public class BattleUnit : MonoBehaviour
     public void SetFlipX(bool flip)
     {
         //true -> look left, false -> look right
-        if (_renderer.flipX == flip)
+        if (_renderer.flipX == flip || Data.UnitMoveType == UnitMoveType.UnitMove_None)
             return;
 
         _renderer.flipX = flip;
@@ -274,6 +262,8 @@ public class BattleUnit : MonoBehaviour
         {
             DeleteBuff(BuffEnum.Benediction);
         }
+
+        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);
     }
 
     //애니메이션에서 직접 실행시킴
@@ -346,7 +336,7 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-    public void UnitMove(Vector2 coord)
+    public void UnitMove(Vector2 coord, float moveSpeed)
     {
         bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0);
         //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
@@ -355,18 +345,18 @@ public class BattleUnit : MonoBehaviour
         if (moveCoro != null)
             StopCoroutine(moveCoro);
 
-        moveCoro = MoveFieldPosition(coord, backMove);
+        moveCoro = MoveFieldPosition(coord, backMove, moveSpeed);
         StartCoroutine(moveCoro);
 
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE, this);
     }
 
-    public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove)
+    public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove, float moveSpeed)
     {
         Vector3 dest = BattleManager.Field.GetTilePosition(coord);
 
-        float moveTime = 0.2f;
-        float backMoveTime = 0.2f;
+        float moveTime = 0.2f / moveSpeed;
+        float backMoveTime = 0.2f / moveSpeed;
         Vector3 overDistance = (dest - transform.position) * 0.03f;
         Vector3 pVel = Vector3.zero;
         Vector3 sVel = Vector3.zero;

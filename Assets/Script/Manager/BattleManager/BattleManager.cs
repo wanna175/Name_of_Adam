@@ -326,17 +326,29 @@ public class BattleManager : MonoBehaviour
             GameManager.Data.DarkEssenseChage(unit.Data.DarkEssenseDrop);
         }
 
-        foreach (BattleUnit fieldUnit in _battleData.BattleUnitList)
-        {
-            fieldUnit.FieldUnitDead();
-        }
+        FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_DEAD, unit);
     }
 
-    public void UnitSummonEvent()
+    public void FieldActiveEventCheck(ActiveTiming timing, BattleUnit parameterUnit = null)
     {
-        foreach (BattleUnit fieldUnit in _battleData.BattleUnitList)
+        List<BattleUnit> checkEndList = new();
+
+        int startCount = _battleData.BattleUnitList.Count;
+
+        for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
         {
-            fieldUnit.FieldUnitSummon();
+            if (startCount != _battleData.BattleUnitList.Count)
+            {
+                i = -1;
+                startCount = _battleData.BattleUnitList.Count;
+                continue;
+            }
+
+            if (checkEndList.Contains(_battleData.BattleUnitList[i]))
+                continue;
+
+            checkEndList.Add(_battleData.BattleUnitList[i]);
+            ActiveTimingCheck(timing, _battleData.BattleUnitList[i], parameterUnit);
         }
     }
 
@@ -412,7 +424,7 @@ public class BattleManager : MonoBehaviour
     }
 
     // 이동 경로를 받아와 이동시킨다
-    public bool MoveUnit(BattleUnit moveUnit, Vector2 dest)
+    public bool MoveUnit(BattleUnit moveUnit, Vector2 dest, float moveSpeed = 1)
     {
         Vector2 current = moveUnit.Location;
 
@@ -439,7 +451,7 @@ public class BattleManager : MonoBehaviour
 
             _field.ExitTile(current);
             _field.EnterTile(moveUnit, dest);
-            moveUnit.UnitMove(dest);
+            moveUnit.UnitMove(dest, moveSpeed);
 
             foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
             {
@@ -457,10 +469,10 @@ public class BattleManager : MonoBehaviour
                     _field.ExitTile(current);
                     _field.ExitTile(dest);
 
-                    moveUnit.UnitMove(dest);
+                    moveUnit.UnitMove(dest, moveSpeed);
                     _field.EnterTile(moveUnit, dest);
 
-                    destUnit.UnitMove(current);
+                    destUnit.UnitMove(current, moveSpeed);
                     _field.EnterTile(destUnit, current);
                 }
                 else
@@ -472,7 +484,7 @@ public class BattleManager : MonoBehaviour
             {
                 _field.ExitTile(current);
                 _field.EnterTile(moveUnit, dest);
-                moveUnit.UnitMove(dest);
+                moveUnit.UnitMove(dest, moveSpeed);
             }
         }
 

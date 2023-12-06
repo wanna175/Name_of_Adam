@@ -17,25 +17,28 @@ public class UnitAction : MonoBehaviour
         if (DirectAttackCheck())
             return;
 
-        Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
-        Dictionary<Vector2, int> inRangeList = AttackableTileSearch(attackUnit, attackableTile);
-
-        if (inRangeList.Count > 0)
+        if (attackUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None)
         {
-            List<Vector2> MinHPUnit = MinHPSearch(inRangeList);
+            Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
+            Dictionary<Vector2, int> inRangeList = AttackableTileSearch(attackUnit, attackableTile);
 
-            if (!MinHPUnit.Contains(attackUnit.Location))
+            if (inRangeList.Count > 0)
             {
-                MoveUnit(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+                List<Vector2> MinHPUnit = MinHPSearch(inRangeList);
+
+                if (!MinHPUnit.Contains(attackUnit.Location))
+                {
+                    MoveUnit(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+                }
+                else
+                {
+                    Debug.Log("力磊府");
+                }
             }
             else
             {
-                Debug.Log("力磊府");
+                MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit)));
             }
-        }
-        else
-        {
-            MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit)));
         }
 
         BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);

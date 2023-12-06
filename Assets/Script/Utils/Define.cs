@@ -128,9 +128,11 @@ public enum ActiveTiming
     AFTER_ATTACKED, //피격 후
 
     ATTACK_TURN_END, //공격턴 후
+    FIELD_ATTACK_TURN_END, //필드 유닛의 공격턴 후
 
     FALL, //타락시켰을 때, 그 후
     FALLED, //타락되었을 때 그 전
+    FIELD_UNIT_FALLED, //필드 유닛이 타락 시
 
     BEFORE_UNIT_DEAD, //자신이 사망 전
     AFTER_UNIT_DEAD, //자신이 사망 후
@@ -220,7 +222,14 @@ public enum UnitActionType
     UnitAction_Nimrod,
     UnitAction_Trinity,
     UnitAction_Centaurus,
-    UnitAction_Horus
+    UnitAction_Horus,
+    UnitAction_Laser
+}
+
+public enum UnitMoveType
+{
+    UnitMove,
+    UnitMove_None
 }
 
 public enum EffectTileType
