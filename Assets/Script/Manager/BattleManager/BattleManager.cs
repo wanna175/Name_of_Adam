@@ -368,11 +368,11 @@ public class BattleManager : MonoBehaviour
             BattleOverWin();
             if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 99)
             {
-                if (GameManager.Instance.Tutorial_Stage_Trigger == true)
+                if (GameManager.Data.Tutorial_Stage_Trigger == true)
                 {
                     GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(14);
                     GameManager.OutGameData.DoneTutorial(true);
-                    GameManager.Instance.Tutorial_Stage_Trigger = false;
+                    GameManager.Data.Tutorial_Stage_Trigger = false;
                 }
             }
         }
@@ -530,10 +530,10 @@ public class BattleManager : MonoBehaviour
             if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
                 return;
 
-            if(GameManager.Data.StageAct == 0 && GameManager.Instance.Tutorial_Benediction_Trigger == true)
+            if(GameManager.Data.StageAct == 0 && GameManager.Data.Tutorial_Benediction_Trigger == true)
             {
                 GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
-                GameManager.Instance.Tutorial_Benediction_Trigger = false;
+                GameManager.Data.Tutorial_Benediction_Trigger = false;
             }
             
             lastUnit.SetBuff(new Buff_Benediction());
