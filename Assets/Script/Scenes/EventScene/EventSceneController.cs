@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum CUR_EVENT
+{
+    UPGRADE = 1,
+    RELEASE,
+    COMPLETE_UPGRADE,
+    COMPLETE_RELEASE,//<===complete 하나로도 충분히 될것 같은데???
+    STIGMA,
+    GIVE_STIGMA,
+    RECEIVE_STIGMA,
+    COMPLETE_STIGMA
+};
 public class EventSceneController : MonoBehaviour
 {
     [SerializeField] GameObject _upgrade;
