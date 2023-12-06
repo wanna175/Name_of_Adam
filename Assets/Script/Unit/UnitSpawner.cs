@@ -32,11 +32,13 @@ public class UnitSpawner : MonoBehaviour
             CreateUnit();
     }
 
-    public void SpawnDataSpawn(SpawnData spawndata)
+    public BattleUnit SpawnDataSpawn(SpawnData spawndata)
     {
         if (BattleManager.Field.TileDict[spawndata.location].UnitExist)
         {
             Debug.Log("해당 타일에 유닛이 존재합니다.");
+
+            return null;
         }
         else
         {
@@ -47,6 +49,8 @@ public class UnitSpawner : MonoBehaviour
             unit.Init();
             unit.UnitSetting(spawndata.location, spawndata.team);
             GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
+
+            return unit;
         }
     }
 

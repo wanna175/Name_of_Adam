@@ -184,6 +184,10 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction();
         }
+        else if (actionType == UnitActionType.UnitAction_Laser)
+        {
+            return new UnitAction_Laser();
+        }
         else if (actionType == UnitActionType.UnitAction_Iana)
         {
             return new UnitAction_Iana();
@@ -199,6 +203,10 @@ public class BattleDataManager : MonoBehaviour
         else if (actionType == UnitActionType.UnitAction_Centaurus)
         {
             return new UnitAction_Centaurus();
+        }
+        else if (actionType == UnitActionType.UnitAction_Horus)
+        {
+            return new UnitAction_Horus();
         }
         else
         {

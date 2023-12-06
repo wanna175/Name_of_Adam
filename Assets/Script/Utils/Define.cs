@@ -129,18 +129,20 @@ public enum ActiveTiming
     AFTER_ATTACKED = 1 << 15, //피격 후
 
     ATTACK_TURN_END = 1 << 16, //공격턴 후
+    FIELD_ATTACK_TURN_END = 1 << 17, //필드 유닛의 공격턴 후
 
-    FALL = 1 << 17, //타락시켰을 때, 그 후
-    FALLED = 1 << 18, //타락되었을 때 그 전
+    FALL = 1 << 18, //타락시켰을 때, 그 후
+    FALLED = 1 << 19, //타락되었을 때 그 전
+    FIELD_UNIT_FALLED = 1 << 20, //필드 유닛이 타락 시
 
-    BEFORE_UNIT_DEAD = 1 << 19, //자신이 사망 전
-    AFTER_UNIT_DEAD = 1 << 20, //자신이 사망 후
-    FIELD_UNIT_DEAD = 1 << 21, //필드 유닛이 사망 시
+    BEFORE_UNIT_DEAD = 1 << 21, //자신이 사망 전
+    AFTER_UNIT_DEAD = 1 << 22, //자신이 사망 후
+    FIELD_UNIT_DEAD = 1 << 23, //필드 유닛이 사망 시
 
-    UNIT_KILL = 1 << 22, //다른 유닛을 죽일 시
-    UNIT_TERMINATE = 1 << 23, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
+    UNIT_KILL = 1 << 24, //다른 유닛을 죽일 시
+    UNIT_TERMINATE = 1 << 25, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
 
-    NONE = 1 << 24 //없음
+    NONE = 1 << 26 //없음
 };
 
 public enum StigmaTier
@@ -226,7 +228,15 @@ public enum UnitActionType
     UnitAction_Iana,
     UnitAction_Nimrod,
     UnitAction_Trinity,
-    UnitAction_Centaurus
+    UnitAction_Centaurus,
+    UnitAction_Horus,
+    UnitAction_Laser
+}
+
+public enum UnitMoveType
+{
+    UnitMove,
+    UnitMove_None
 }
 
 public enum EffectTileType

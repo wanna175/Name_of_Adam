@@ -56,6 +56,10 @@ public class UnitAction_Centaurus : UnitAction
             if (_isMove)
                 caster.ChangedDamage *= 2;
         }
+        else if ((activeTiming & ActiveTiming.AFTER_ATTACK) == ActiveTiming.AFTER_ATTACK)
+        {
+            caster.AnimatorSetBool("isAttackStart", false);
+        }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
         {
             if (_isMove)
@@ -72,7 +76,7 @@ public class UnitAction_Centaurus : UnitAction
 
     public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {
-        if (hits.Count == 0)
+        if (hits.Count != 1)
             return false;
 
         BattleUnit receiver = hits[0];
@@ -113,9 +117,10 @@ public class UnitAction_Centaurus : UnitAction
         }
         _isMove = true;
 
-        BattleManager.Instance.MoveUnit(attackUnit, moveVector);
+        attackUnit.AnimatorSetBool("isAttackStart", true);
+        BattleManager.Instance.MoveUnit(attackUnit, moveVector, 5f);
         BattleManager.Instance.AttackStart(attackUnit, hits);
-
+        
         return true;
     }
 
