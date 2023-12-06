@@ -4,21 +4,16 @@ using UnityEngine;
 public class UnitAction_Horus : UnitAction
 {
     readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
-    private List<string> _summonOrder = new() { "°Ëº´", "±Ãº´", "¼ö³à" };
+    private List<string> _summonList = new() { "°Ëº´", "±Ãº´", "¼ö³à" };
+    private int _summonOrder = 0;
     private List<BattleUnit> _summonedUnit = new();
     private bool _isSummon = false;
-
-    public override void AIMove(BattleUnit attackUnit)
-    {
-        if (DirectAttackCheck())
-            return;
-
-        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
-    }
+    private int _deadUnit = 0, _falledUnit = 0;
 
     public override void AISkillUse(BattleUnit attackUnit)
     {
         SpawnUnitNearEnemy(attackUnit.Team);
+        BattleManager.Instance.EndUnitAction();
     }
 
     public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
@@ -28,7 +23,7 @@ public class UnitAction_Horus : UnitAction
 
         SpawnUnit(coord, attackUnit.Team);
         BattleManager.Instance.EndUnitAction();
-        _isSummon = true;
+
         return true;
     }
 
@@ -37,19 +32,66 @@ public class UnitAction_Horus : UnitAction
         if (activeTiming == ActiveTiming.SUMMON)
         {
             BattleManager.Field.TileDict[caster.Location].ExitTile();
-            caster.transform.position = new Vector3(-10, 0, 00);
+            if (caster.Team == Team.Player)
+            {
+                caster.transform.position = new Vector3(-9, 0, 0);
+            }
+            else
+            {
+                caster.transform.position = new Vector3(9, 0, 0);
+
+            }
+        }
+        else if (activeTiming == ActiveTiming.FALLED)
+        {
+            if (caster.Team == Team.Player)
+            {
+                caster.transform.position = new Vector3(-9, 0, 0);
+            }
+            else
+            {
+                caster.transform.position = new Vector3(9, 0, 0);
+
+            }
         }
         else if (activeTiming == ActiveTiming.ATTACK_TURN_END)
         {
             if (!_isSummon)
             {
                 SpawnUnitNearEnemy(caster.Team);
-                _isSummon = false;
             }
+
+            _isSummon = false;
         }
         else if (activeTiming == ActiveTiming.FIELD_UNIT_DEAD)
-        { 
-        
+        {
+            if (_summonedUnit.Contains(receiver))
+            {
+                _summonedUnit.Remove(receiver);
+                _deadUnit++;
+            }
+        }
+        else if (activeTiming == ActiveTiming.FIELD_UNIT_FALLED)
+        {
+            if (_summonedUnit.Contains(receiver))
+            {
+                _summonedUnit.Remove(receiver);
+                _falledUnit++;
+            }
+        }
+        else if (activeTiming == ActiveTiming.FIELD_ATTACK_TURN_END)
+        {
+            if (_falledUnit > 0)
+            {
+                caster.ChangeFall(_falledUnit);
+                _falledUnit = 0;
+            }
+
+            if (_deadUnit > 0)
+            {
+                caster.GetAttack(-10 * _deadUnit, null);
+                _deadUnit = 0;
+            }
         }
 
         return false;
@@ -67,7 +109,7 @@ public class UnitAction_Horus : UnitAction
                 {
                     Vector2 checkVec = unit.Location + udrl;
 
-                    if (BattleManager.Field.GetUnit(checkVec) == null)
+                    if (BattleManager.Field.GetUnit(checkVec) == null && BattleManager.Field.IsInRange(checkVec))
                     {
                         summonVectorList.Add(checkVec);
                     }
@@ -95,11 +137,20 @@ public class UnitAction_Horus : UnitAction
     }
     private void SpawnUnit(Vector2 spawnLocation, Team team)
     {
+        _isSummon = true;
+
         SpawnData sd = new();
         sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/¿Àº§¸®½ºÅ©");
         sd.location = spawnLocation;
         sd.team = team;
 
-        _summonedUnit.Add(BattleManager.Spawner.SpawnDataSpawn(sd));
+        BattleUnit unit = BattleManager.Spawner.SpawnDataSpawn(sd);
+
+        UnitAction_Horus_Egg eggAction = unit.Action as UnitAction_Horus_Egg;
+
+        eggAction.SetUnitSO(_summonList[_summonOrder]);
+        _summonOrder = (_summonOrder + 1) % 3;
+
+        _summonedUnit.Add(unit);
     }
 }
