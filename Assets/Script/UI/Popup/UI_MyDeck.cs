@@ -100,7 +100,7 @@ public class UI_MyDeck : UI_Popup
     {
         foreach (DeckUnit unit in _playerDeck)
         {
-            if (unit.GetStigma(EventNum).Count != 0)
+            if (unit.GetStigma(true).Count != 0)
             {
                 AddCard(unit);
             }
