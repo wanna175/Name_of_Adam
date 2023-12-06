@@ -89,10 +89,8 @@ public class StageManager : MonoBehaviour
                 {
                     GameManager.Data.MainDeckSet();
 
-                    if(GameManager.Data.GameData.FallenUnits.Count == 0)
-                    {
-                        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
-                    }
+                    GameManager.Data.GameData.FallenUnits.Clear();
+                    GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
                 }
             }
             else
