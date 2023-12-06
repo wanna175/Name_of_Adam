@@ -48,7 +48,7 @@ MonoBehaviour:
       ManaCost: 0
     DeckUnitChangedStat:
       MaxHP: 0
-      CurrentHP: -9
+      CurrentHP: 0
       ATK: 0
       SPD: 0
       FallCurrentCount: 0
@@ -75,63 +75,6 @@ MonoBehaviour:
       ManaCost: 0
     HallUnitID: 0
     IsMainDeck: 1
-  FallenUnits:
-  - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 1
-  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: -9
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 1
-  - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 1
+  FallenUnits: []
   isVisitUpgrade: 0
   isVisitStigma: 0

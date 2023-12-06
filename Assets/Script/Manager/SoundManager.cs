@@ -30,8 +30,11 @@ public class SoundManager : MonoBehaviour
     {
         foreach (AudioSource audioSource in _audioSources)
         {
+            if (audioSource == _audioSources[(int)Sounds.BGM])
+            {
+                audioSource.Stop();
+            }
             audioSource.clip = null;
-            audioSource.Stop();
         }
         _audioClips.Clear();
     }
@@ -110,14 +113,15 @@ public class SoundManager : MonoBehaviour
         {
             Clear();
         }
+        else if(scenename == "StageSelectScene")
+        {
+            Clear();
+            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+        }
         else if (scenename != "LogoScene")
         {
             Clear();
             Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
         }
     }
-   
-
-
-
 }

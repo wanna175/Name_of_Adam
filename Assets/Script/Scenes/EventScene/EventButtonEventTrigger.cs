@@ -14,7 +14,7 @@ public class EventButtonEventTrigger : EventTrigger
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         PointerClick(gameObject);
     }
 }

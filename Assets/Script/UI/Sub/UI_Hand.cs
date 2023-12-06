@@ -10,7 +10,6 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private GameObject _inactive;
     [SerializeField] private Image _unitImage;
     [SerializeField] private TextMeshProUGUI _cost;
-    [SerializeField] private AudioSource _audioSource;
 
     private DeckUnit _handUnit = null;
     private UI_Hands _hands;
@@ -72,7 +71,6 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             _hands.OnClickHand(this);
-            _audioSource.Play();
         }
     }
 

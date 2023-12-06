@@ -12,6 +12,7 @@ public class UI_MapEnterEffect : MonoBehaviour
     {
         if(GameManager.Data.Map.CurrentTileID == 0)
         {
+            GameManager.Sound.Play("Stage_Transition/StageSelectScene_Enter/StageSelectScene_Enter");
             MapEnterEffect.SetActive(true);
         }
         else

@@ -55,7 +55,9 @@ public class UI_Hands : UI_Scene
     {
         if (BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost) && GameManager.Data.CanUseDarkEssense(hand.GetUnit().Data.DarkEssenseCost))
         {
-            if(BattleManager.BattleUI.UI_playerSkill._selectedCard != null)
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+            if (BattleManager.BattleUI.UI_playerSkill._selectedCard != null)
                 return;
             else if (hand != null && hand == _selectedHand)
                 CancelSelect();
@@ -64,6 +66,7 @@ public class UI_Hands : UI_Scene
         }
         else
         {
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX"); 
             Debug.Log("Can't");
         }
     }

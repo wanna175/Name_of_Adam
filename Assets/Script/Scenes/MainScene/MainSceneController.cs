@@ -22,6 +22,7 @@ public class MainSceneController : MonoBehaviour
         Destroy(GameManager.Instance.gameObject);
 
         GameManager.SaveManager.DeleteSaveData();
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
         if (GameManager.OutGameData.isTutorialClear())
         {
@@ -37,29 +38,36 @@ public class MainSceneController : MonoBehaviour
 
     public void ContinueBotton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (GameManager.SaveManager.SaveFileCheck())
             SceneChanger.SceneChange("StageSelectScene");
     }
     public void ProgressButton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         SceneChanger.SceneChange("ProgressScene");
     }
 
     public void HallButton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.Data.HallDeckSet();
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false);
     }
 
     public void OptionButton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_Option go = GameManager.UI.ShowPopup<UI_Option>();
         //GameObject go = Resources.Load<GameObject>("Prefabs/UI/Popup/UI_Option");
         //GameObject.Instantiate(go, Canvas.transform);
     }
 
+
+
     public void ExitButton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         Application.Quit();
     }
 }

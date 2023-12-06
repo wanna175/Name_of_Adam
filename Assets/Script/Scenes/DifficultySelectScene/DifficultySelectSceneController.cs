@@ -29,6 +29,7 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Confirm()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         SceneChanger.SceneChange("StageSelectScene");
         /*
         if(!DifficultySelected)
@@ -46,6 +47,7 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Quit()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         SceneChanger.SceneChange("MainScene");
     }
 }

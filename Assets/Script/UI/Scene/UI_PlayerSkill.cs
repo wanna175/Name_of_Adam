@@ -40,6 +40,7 @@ public class UI_PlayerSkill : UI_Scene
         
         if (!Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()) && GameManager.Data.CanUseDarkEssense(card.GetSkill().GetDarkEssenceCost()))
         {
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
             if (card != null && card == _selectedCard)
             {
                 //선택 취소
@@ -62,6 +63,7 @@ public class UI_PlayerSkill : UI_Scene
         }
         else
         {
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
             Debug.Log("Can't");
         }
     }
