@@ -128,6 +128,28 @@ public class Field : MonoBehaviour
 
     public List<BattleUnit> GetArroundUnits(Vector2 unitCoord) => GetArroundUnits(unitCoord, UDLR);
 
+    public List<Vector2> GetFieldAllCoord()
+    {
+        List<Vector2> Coords = new();
+
+        for (int i = 0; i < MaxFieldY; i++)
+            for (int j = 0; j < MaxFieldX; j++)
+                Coords.Add(new Vector2(j, i));
+
+        return Coords;
+    }
+
+    public List<Vector2> GetUnitAllCoord()
+    {
+        List<Vector2> Coords = new();
+
+        for (int i = -MaxFieldY; i <= MaxFieldY; i++)
+            for (int j = -MaxFieldX; j <= MaxFieldX; j++)
+                Coords.Add(new Vector2(j, i));
+
+        return Coords;
+    }
+
     //십자가 범위 유닛
     public List<Vector2> GetCrossCoord(Vector2 unitCoord)
     {

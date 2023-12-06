@@ -37,6 +37,7 @@ public class BattleUnit : MonoBehaviour
 
     private bool[] _moveRangeList;
     private bool[] _attackRangeList;
+    private bool _isTeleportOn => Buff.CheckBuff(BuffEnum.Teleport);
 
     private IEnumerator moveCoro;
 
@@ -180,6 +181,7 @@ public class BattleUnit : MonoBehaviour
     {
         _hpBar.SetHPBar(_team);
         _hpBar.SetFallBar(DeckUnit);
+        _hpBar.RefreshBuff();
     }
 
     public void SetLocation(Vector2 coord)
@@ -487,6 +489,7 @@ public class BattleUnit : MonoBehaviour
         Buff.SetBuff(buff, this);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.AddBuff(buff);
+        _hpBar.RefreshBuff();
     }
 
     public void DeleteBuff(BuffEnum buffEnum)
@@ -494,6 +497,7 @@ public class BattleUnit : MonoBehaviour
         Buff.DeleteBuff(buffEnum);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.DeleteBuff(buffEnum);
+        _hpBar.RefreshBuff();
     }
 
     public void AddMoveRange(bool[] addRangeList)
@@ -557,11 +561,17 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetMoveRange()
     {
         List<Vector2> RangeList = new();
+        List<Vector2> UnitRangeList = new();
+
         if (NextMoveSkip)
         {
-            RangeList.Add(new Vector2(0, 0));
-
-            return RangeList;
+            UnitRangeList.Add(new Vector2(0, 0));
+            return UnitRangeList;
+        }
+        if (_isTeleportOn)
+        {
+            UnitRangeList = BattleManager.Field.GetUnitAllCoord();
+            return UnitRangeList;
         }
 
         int Mrow = 5;
@@ -580,7 +590,6 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        List<Vector2> UnitRangeList = new();
         foreach (Vector2 vec in RangeList)
         {
             UnitRangeList.Add(vec);

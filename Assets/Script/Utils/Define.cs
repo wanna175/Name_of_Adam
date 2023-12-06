@@ -214,7 +214,7 @@ public enum BuffEnum
     PrayInAid,
     Karma,
     ForbiddenPact,
-
+    Teleport,
 }
 
 public enum UnitActionType
