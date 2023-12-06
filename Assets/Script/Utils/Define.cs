@@ -215,6 +215,7 @@ public enum BuffEnum
     Karma,
     ForbiddenPact,
     Teleport,
+    KillingSpree,
 }
 
 public enum UnitActionType
