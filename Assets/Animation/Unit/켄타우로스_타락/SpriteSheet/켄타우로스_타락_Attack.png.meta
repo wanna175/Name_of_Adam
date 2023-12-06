@@ -179,6 +179,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_3"
+      rect:
+        serializedVersion: 2
+        x: 1648
+        y: 0
+        width: 824
+        height: 360
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 619486a35402daa4588e8430b3dff637
+      internalID: 185197545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -193,6 +214,7 @@ TextureImporter:
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_0": 2050365683
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_2": 255697146
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_1": 1686676768
+      "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_3": 185197545
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
