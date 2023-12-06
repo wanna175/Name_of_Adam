@@ -49,6 +49,8 @@ public class UI_UnitInfo : UI_Popup
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
         }
+        if (evNum == (int)CUR_EVENT.STIGMA_EXCEPTION)
+            Select();
         _unitInfoName.text = _unit.Data.Name;
 
         _unitInfoStat.text =    "HP:\t" + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
@@ -110,6 +112,7 @@ public class UI_UnitInfo : UI_Popup
     {
         switch (evNum)
         {
+            case (int)CUR_EVENT.STIGMA_EXCEPTION:
             case (int)CUR_EVENT.UPGRADE:
             case (int)CUR_EVENT.STIGMA://강화하기, 스티그마 부여하기
             case (int)CUR_EVENT.GIVE_STIGMA:

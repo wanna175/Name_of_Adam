@@ -11,7 +11,8 @@ enum CUR_EVENT
     STIGMA,
     GIVE_STIGMA,
     RECEIVE_STIGMA,
-    COMPLETE_STIGMA
+    COMPLETE_STIGMA,
+    STIGMA_EXCEPTION
 };
 public class EventSceneController : MonoBehaviour
 {

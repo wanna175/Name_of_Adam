@@ -8,12 +8,13 @@ public class StigmaSceneController : MonoBehaviour
     private DeckUnit _givestigmatizeUnit;
     private DeckUnit _stigmatizeUnit;
     private List<Script> scripts;
-    
-    
+
+    private bool _isStigmaFull = false;
+
     [SerializeField] private GameObject _stigma_transfer_btn = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     private Stigma _giveStigma = null;
-
+    private Stigma _delStigma = null;
     void Start()
     {
         Init();
@@ -22,7 +23,8 @@ public class StigmaSceneController : MonoBehaviour
     {
         scripts = new ();
         _giveStigma = null;
-        
+        _delStigma = null;
+        _isStigmaFull = false;
 
         //옮길 낙인유닛이 없다면 선택지가 안 뜨게
         bool isStigmaEmpty = true;
@@ -83,10 +85,18 @@ public class StigmaSceneController : MonoBehaviour
     {
         GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _givestigmatizeUnit.GetStigma());
     }
+    private void IsStigmaFull()
+    {
+        Debug.Log("스티그마 꽉 찼을 때 예외처리");
+        _isStigmaFull = true;
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(),0,null,this);
+
+    }
+ 
     public void OnSelectStigmatization(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
-        if (_stigmatizeUnit._stigmaCount < _stigmatizeUnit._maxStigmaCount)
+        if (_stigmatizeUnit._stigmaCount< _stigmatizeUnit._maxStigmaCount)
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
@@ -94,7 +104,7 @@ public class StigmaSceneController : MonoBehaviour
         else
         {
             Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
-            //TODO:낙인이 넘어갔을 때 예외처리
+            IsStigmaFull();
         }
     }
     private void SetUnitStigma(Stigma stigma)
@@ -116,26 +126,36 @@ public class StigmaSceneController : MonoBehaviour
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             SetUnitStigma(_giveStigma);
+
         }
         else
         {
             Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
-            //TODO:낙인이 넘어갔을 때 예외처리
+            IsStigmaFull();
         }
     }
 
     public void OnSelectStigmatransfergiver(DeckUnit unit)
     {
         _givestigmatizeUnit = unit;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _givestigmatizeUnit.GetStigma(true),0,AfterSelectGiveUnit,this);
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _givestigmatizeUnit.GetStigma(true),0,null,this);
     }
-    public void AfterSelectGiveUnit()
-    {
-        Debug.Log("여기까지 오나요ㅕ???");
-    }
-
     public void OnStigmaSelected(Stigma stigma)
     {
+        if (_isStigmaFull)//스티그마 예외처리
+        {
+            Debug.Log("스티그마 꽉차있서요");
+            _isStigmaFull = false;
+            _stigmatizeUnit.DeleteStigma(stigma);
+            GameManager.UI.CloseAllPopup();
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(_stigmatizeUnit);
+            if (_givestigmatizeUnit == null)
+                unitInfo.Init(OnSelectStigmatization,(int)CUR_EVENT.STIGMA_EXCEPTION);
+            else
+                unitInfo.Init(OnSelectStigmatransfertarget,(int)CUR_EVENT.STIGMA_EXCEPTION);
+            return;
+        }
         if (_givestigmatizeUnit==null) {//낙인 부여일때
             Debug.Log("낙인 부여일때");
             SetUnitStigma(stigma);

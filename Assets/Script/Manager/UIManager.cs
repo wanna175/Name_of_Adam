@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
             _escOprion.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
-        else if (GameManager.Instance.isTutorialactive && !state)
+        else if (GameManager.Data.isTutorialactive && !state)
         {
             _escOprion.gameObject.SetActive(false);
             Time.timeScale = 0;
