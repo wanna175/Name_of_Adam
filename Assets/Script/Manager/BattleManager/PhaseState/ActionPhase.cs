@@ -45,6 +45,7 @@ public class ActionPhase : Phase
         //공격 턴 종료 시 체크
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END, _nowUnit);
         _nowUnit.NextAttackSkip = false;
+        _nowUnit.AttackUnitNum = 0;
         _nowUnit = null;
     }
 }

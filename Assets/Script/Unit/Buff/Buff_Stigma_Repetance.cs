@@ -8,7 +8,7 @@ public class Buff_Stigma_Repetance : Buff
 
         _name = "참회";
 
-        _description = "참회.";
+        _description = "해당 유닛의 체력이 절반 이하일때 피격 대상의 신앙을 1 떨어뜨립니다";
 
         _count = -1;
 

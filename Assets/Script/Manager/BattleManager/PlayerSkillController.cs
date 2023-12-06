@@ -14,7 +14,12 @@ public class PlayerSkillController : MonoBehaviour
     Mana Mana;
 
     PlayerSkill usedPlayerSkill;
-    public bool isSkillOn;
+
+    private bool _isSkillOn;
+    public bool IsSkillOn => _isSkillOn;
+
+    private bool _isManaFree;
+    public bool IsManaFree => _isManaFree;
 
     void Awake()
     {
@@ -29,11 +34,19 @@ public class PlayerSkillController : MonoBehaviour
     {
         Field.ClearAllColor();
         usedPlayerSkill = BattleUI.GetSelectedPlayerSkill();
-        isSkillOn = usedPlayerSkill.Use(coord);
+        _isSkillOn = usedPlayerSkill.Use(coord);
 
-        Mana.ChangeMana(-1 * usedPlayerSkill.GetManaCost());
+        if (!_isManaFree)
+            Mana.ChangeMana(-1 * usedPlayerSkill.GetManaCost());
+        else
+        {
+            _isManaFree = false;
+            BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
+        }
+
         Data.DarkEssenseChage(-1 * usedPlayerSkill.GetDarkEssenceCost());
-        if (!isSkillOn)
+
+        if (!IsSkillOn)
             usedPlayerSkill = null;
 
         BattleUI.UI_playerSkill.CancelSelect();
@@ -43,14 +56,16 @@ public class PlayerSkillController : MonoBehaviour
 
     public void ActionSkill(ActiveTiming activeTiming, Vector2 coord)
     {
-        isSkillOn = usedPlayerSkill.Action(activeTiming, coord);
+        _isSkillOn = usedPlayerSkill.Action(activeTiming, coord);
     }
 
     public void SetSkillDone()
     {
-        isSkillOn = false;
+        _isSkillOn = false;
         usedPlayerSkill = null;
     }
+
+    public void SetManaFree(bool isActive) => _isManaFree = isActive;
 
     public void PlayerSkillReady(FieldColorType colorType, PlayerSkillTargetType TargetType = PlayerSkillTargetType.none)
     {

@@ -11,7 +11,14 @@ public abstract class PlayerSkill : MonoBehaviour
     [SerializeField] private Sprite skillImage;
 
     public int GetDarkEssenceCost() => darkEssence;
-    public int GetManaCost() => manaCost;
+    public int GetManaCost()
+    {
+        if (BattleManager.PlayerSkillController.IsManaFree)
+            return 0;
+        else
+            return manaCost;
+    }
+
     public string GetName() => playerSkillName;
     public string GetDescription() => description;
     public Sprite GetSkillImage() => skillImage;

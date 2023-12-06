@@ -178,20 +178,20 @@ public class UnitAction_Nimrod : UnitAction
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
     {
-        if (activeTiming == ActiveTiming.TURN_START)
+        if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
             NimrodFaceCheck(caster);
             TileClear(caster.Team);
             SetAttackTile(caster);
         }
-        else if (activeTiming == ActiveTiming.FIELD_UNIT_SUMMON)
+        else if ((activeTiming & ActiveTiming.FIELD_UNIT_SUMMON) == ActiveTiming.FIELD_UNIT_SUMMON)
         {
             if (_nimrodFace == 0)
             {
                 SetAttackTile(caster);
             }
         }
-        else if (activeTiming == ActiveTiming.FIELD_UNIT_DEAD)
+        else if ((activeTiming & ActiveTiming.FIELD_UNIT_DEAD) == ActiveTiming.FIELD_UNIT_DEAD)
         {
             if (_nimrodFace == 1)
             {
@@ -199,7 +199,7 @@ public class UnitAction_Nimrod : UnitAction
                 SetAttackTile(caster);
             }
         }
-        else if (activeTiming == ActiveTiming.AFTER_UNIT_DEAD)
+        else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD)
         {
             int listCount = BattleManager.Data.BattleUnitList.Count;
             for (int i = 0; i < listCount; i++)
