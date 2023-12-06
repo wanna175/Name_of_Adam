@@ -12,6 +12,7 @@ public class UI_TurnChangeButton : UI_Scene
 
     public void TurnChange()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         PhaseController _phase = BattleManager.Phase;
 
         if (_phase.CurrentPhaseCheck(_phase.Prepare))

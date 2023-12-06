@@ -61,6 +61,8 @@ public class UI_Conversation : UI_Popup
             _conversation.text = script.script;
 
             yield return new WaitUntil(() => GameManager.InputManager.Click);
+
+            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         }
 
         if (_battleConversation)

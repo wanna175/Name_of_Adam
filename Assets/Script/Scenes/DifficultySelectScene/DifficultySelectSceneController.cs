@@ -29,6 +29,14 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Confirm()
     {
+        if (UI_HallSelect)
+        {
+            GameManager.Data.MainDeckSet();
+            GameManager.Data.GameData.FallenUnits.Clear();
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+        }
+
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         SceneChanger.SceneChange("StageSelectScene");
         /*
         if(!DifficultySelected)
@@ -46,6 +54,7 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Quit()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         SceneChanger.SceneChange("MainScene");
     }
 }

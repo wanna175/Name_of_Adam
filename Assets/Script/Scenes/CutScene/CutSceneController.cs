@@ -17,6 +17,12 @@ public class CutSceneController : MonoBehaviour
     {
         SceneChanger.SceneChange("StageSelectScene");
     }
+    public void SkipButton()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        SceneChanger.SceneChange("StageSelectScene");
+    }
+
 
     private void Update()
     {

@@ -20,6 +20,7 @@ public class UI_Option : UI_Popup
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
             QuitOption();
         }
     }

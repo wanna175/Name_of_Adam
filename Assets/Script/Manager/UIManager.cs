@@ -190,6 +190,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
             SetESCOption(!_escOprion.gameObject.activeSelf);
         }
     }
