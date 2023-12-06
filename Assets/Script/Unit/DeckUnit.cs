@@ -17,7 +17,8 @@ public class DeckUnit
 
     private List<Stigma> _stigma =  new();
 
-    private readonly int _maxStigmaCount = 3;
+    public readonly int _maxStigmaCount = 3;
+    public int _stigmaCount => _stigma.Count;
 
     [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
     public bool IsMainDeck = false;
@@ -33,19 +34,20 @@ public class DeckUnit
         return false;
     }
 
-    public List<Stigma> GetStigma()
+    public List<Stigma> GetStigma(bool isEventScene = false)
     {
         List<Stigma> stigmata = new();
-
-        foreach (Stigma stigma in Data.UniqueStigma)
-            stigmata.Add(stigma);
-
+        if (!isEventScene)
+        {
+            foreach (Stigma stigma in Data.UniqueStigma)
+                stigmata.Add(stigma);
+        }
         foreach (Stigma stigma in _stigma)
             stigmata.Add(stigma);
 
         return stigmata;
     }
-
+    
     public List<Stigma> GetChangedStigma()
     {
         return _stigma;
@@ -66,6 +68,10 @@ public class DeckUnit
         }
 
         _stigma.Add(stigma);
+    }
+    public void DeleteStigma(Stigma stigma)
+    {
+        _stigma.Remove(stigma);
     }
 
     public int GetUnitSize()
