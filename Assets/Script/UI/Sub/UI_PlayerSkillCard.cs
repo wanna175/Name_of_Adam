@@ -31,10 +31,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         _skill = skill;
         //_text.text = skill.GetName();
         GetComponent<Image>().sprite = skill.GetSkillImage();
-        if (!BattleManager.PlayerSkillController.IsManaFree)
-            _ManaCost.text = skill.GetManaCost().ToString();
-        else
-            _ManaCost.text = "0";
+        _ManaCost.text = skill.GetManaCost().ToString();
         _essenceCost.text = skill.GetDarkEssenceCost().ToString();
     }
 

@@ -600,6 +600,7 @@ public class BattleUnit : MonoBehaviour
     public List<Vector2> GetSplashRange(Vector2 target, Vector2 caster)
     {
         List<Vector2> SplashList = new();
+        SplashList.Add(Vector2.zero);
 
         int Scolumn = 11;
         int Srow = 5;
@@ -610,6 +611,9 @@ public class BattleUnit : MonoBehaviour
             {
                 int x = (i % Scolumn) - (Scolumn >> 1);
                 int y = (i / Scolumn) - (Srow >> 1);
+
+                if (x == 0 && y == 0)
+                    continue;
 
                 if ((target - caster).x > 0) SplashList.Add(new Vector2(x, y)); //오른쪽
                 else if ((target - caster).x < 0) SplashList.Add(new Vector2(-x, y)); //왼쪽

@@ -30,11 +30,14 @@ public class Buff_Stigma_ShadowStep: Buff
 
     public override bool Active(BattleUnit caster)
     {
-        Vector2 vec = caster.Location + (caster.Location - _owner.Location).normalized;
-        if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
+        if (_owner.AttackUnitNum == 1)
         {
-            BattleManager.Instance.MoveUnit(_owner, vec);
-            _owner.SetFlipX(!_owner.GetFlipX());
+            Vector2 vec = caster.Location + (caster.Location - _owner.Location).normalized;
+            if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
+            {
+                BattleManager.Instance.MoveUnit(_owner, vec);
+                _owner.SetFlipX(!_owner.GetFlipX());
+            }
         }
 
         return false;
