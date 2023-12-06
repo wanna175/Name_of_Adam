@@ -145,12 +145,13 @@ public class UnitAction_Horus : UnitAction
         sd.team = team;
 
         BattleUnit unit = BattleManager.Spawner.SpawnDataSpawn(sd);
-
+        /*
         UnitAction_Horus_Egg eggAction = unit.Action as UnitAction_Horus_Egg;
 
         eggAction.SetUnitSO(_summonList[_summonOrder]);
         _summonOrder = (_summonOrder + 1) % 3;
 
         _summonedUnit.Add(unit);
+        */
     }
 }
