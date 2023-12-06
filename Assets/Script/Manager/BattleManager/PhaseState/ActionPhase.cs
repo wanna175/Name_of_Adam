@@ -47,6 +47,7 @@ public class ActionPhase : Phase
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_ATTACK_TURN_END);
         
         _nowUnit.NextAttackSkip = false;
+        _nowUnit.AttackUnitNum = 0;
         _nowUnit = null;
     }
 }

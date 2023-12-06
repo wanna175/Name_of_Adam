@@ -78,7 +78,7 @@ public class DataManager : MonoBehaviour
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
         GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
-        GameData.FallenUnits = GameDataTutorial.FallenUnits;
+        GameData.FallenUnits.Clear();
         GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
         GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
 
@@ -235,6 +235,12 @@ public class DataManager : MonoBehaviour
             return true;
         }
     }
+
+    public bool Tutorial_Trigger_First = true;
+    public bool Tutorial_Trigger_Second = true;
+    public bool Tutorial_Benediction_Trigger = true;
+    public bool Tutorial_Stage_Trigger = true;
+    public bool isTutorialactive = false;
 
     public List<PlayerSkill> GetPlayerSkillList()
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Buff_Stigma_Sin : Buff
+public class Buff_Sin : Buff
 {
     public override void Init(BattleUnit owner)
     {
@@ -22,7 +22,7 @@ public class Buff_Stigma_Sin : Buff
 
         _dispellable = false;
 
-        _stigmaBuff = true;
+        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)

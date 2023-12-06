@@ -26,6 +26,14 @@ public class UI_PlayerSkill : UI_Scene
         }
     }
 
+    public void RefreshSkill(List<PlayerSkill> skillList)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            curCardList[i].GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
+        }
+    }
+
     public void OnClickHand(UI_PlayerSkillCard card)
     {
         //PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;

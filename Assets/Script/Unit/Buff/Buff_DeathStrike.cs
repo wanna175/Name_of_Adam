@@ -12,9 +12,9 @@ public class Buff_DeathStrike : Buff
 
         _description = "3배의 대미지를 입히는 대신 공격 후 사망합니다.";
 
-        _count = 1;
+        _count = -1;
 
-        _countDownTiming = ActiveTiming.DAMAGE_CONFIRM;
+        _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.DAMAGE_CONFIRM;
 

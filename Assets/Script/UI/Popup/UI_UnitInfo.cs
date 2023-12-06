@@ -9,6 +9,9 @@ using System;
 public class UI_UnitInfo : UI_Popup
 {
     [SerializeField] private GameObject _selectButton;
+    [SerializeField] private GameObject _quitButton;
+    [SerializeField] private GameObject _eventButton;
+    [SerializeField] private GameObject _completeButton;
     [SerializeField] private GameObject _fallGaugePrefab;
     [SerializeField] private GameObject _stigmaPrefab;
     [SerializeField] private GameObject _squarePrefab;
@@ -25,18 +28,27 @@ public class UI_UnitInfo : UI_Popup
     private DeckUnit _unit;
     UnitDataSO Data => _unit.Data;
     private Action<DeckUnit> _onSelect;
-
+    private Action _endEvent;
+    private int evNum = 0;
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
     }
 
-    public void Init(Action<DeckUnit> onSelect=null)
+    public void Init(Action<DeckUnit> onSelect=null,int Eventnum=0,Action endEvent=null)
     {
         _unitImage.GetComponent<Image>();
         _unitImage.sprite = _unit.Data.Image;
         _onSelect = onSelect;
+        _endEvent = endEvent;
         _selectButton.SetActive(onSelect != null);
+        evNum = Eventnum;
+        if (evNum == (int)CUR_EVENT.COMPLETE_UPGRADE|| evNum == (int)CUR_EVENT.COMPLETE_RELEASE
+            ||evNum == (int)CUR_EVENT.COMPLETE_STIGMA)
+        {
+            _quitButton.SetActive(false);
+            _completeButton.SetActive(true);
+        }
         _unitInfoName.text = _unit.Data.Name;
 
         _unitInfoStat.text =    "HP:\t" + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
@@ -71,7 +83,6 @@ public class UI_UnitInfo : UI_Popup
                 block.color = Color.grey;
         }
     }
-
     public void SetAnimation()
     {
         AnimationClip clip = Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect");
@@ -86,5 +97,35 @@ public class UI_UnitInfo : UI_Popup
     public void Select()
     {
         _onSelect(_unit);
+        if (currentSceneName().Equals("EventScene"))
+        {
+            _quitButton.SetActive(false);
+            _selectButton.SetActive(false);
+            _eventButton.SetActive(true);
+            
+            //선택하기 버튼 없애고, 껏다켯다 버튼 만든다.
+        }
+    }
+    public void eventButtonClick()
+    {
+        switch (evNum)
+        {
+            case (int)CUR_EVENT.UPGRADE:
+            case (int)CUR_EVENT.STIGMA://강화하기, 스티그마 부여하기
+            case (int)CUR_EVENT.GIVE_STIGMA:
+                Transform e = this.transform.parent.GetChild(0);
+                e.SetAsLastSibling();
+                e.gameObject.SetActive(true);
+                break;
+            case (int)CUR_EVENT.RECEIVE_STIGMA:
+                break;
+            default:
+                break;
+        }
+    }
+    public void compeleteClick()
+    {
+        if (_endEvent != null)
+            _endEvent.Invoke();
     }
 }

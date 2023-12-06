@@ -16,4 +16,10 @@ public class UI_UpgradeSelectButton : UI_Popup
     {
         _uc.OnUpgradeSelect(select);
     }
+    public void QuitBtn()
+    {
+        this.transform.SetAsFirstSibling();
+        this.gameObject.SetActive(false);
+    }
+
 }

@@ -107,7 +107,7 @@ public class BattleUIManager : MonoBehaviour
 
         if (curID == 1 && GameManager.Data.StageAct == 0)
         {
-            if (GameManager.Instance.Tutorial_Trigger_First == true)
+            if (GameManager.Data.Tutorial_Trigger_First == true)
             {
                 if (phaseController.CurrentPhaseCheck(phaseController.Prepare))
                 {
@@ -116,13 +116,13 @@ public class BattleUIManager : MonoBehaviour
                 else if (phaseController.CurrentPhaseCheck(phaseController.Engage))
                 {
                     UItutorial.TutorialActive(4);
-                    GameManager.Instance.Tutorial_Trigger_First = false;
+                    GameManager.Data.Tutorial_Trigger_First = false;
                 }
             }
         }
         else if (curID == 2 && GameManager.Data.StageAct == 0)
         {
-            if (GameManager.Instance.Tutorial_Trigger_Second == true)
+            if (GameManager.Data.Tutorial_Trigger_Second == true)
             {
                 if (phaseController.Current == phaseController.Prepare)
                 {
@@ -131,7 +131,7 @@ public class BattleUIManager : MonoBehaviour
                 else if (phaseController.Current == phaseController.Engage)
                 {
                     UItutorial.TutorialActive(12);
-                    GameManager.Instance.Tutorial_Trigger_Second = false;
+                    GameManager.Data.Tutorial_Trigger_Second = false;
                 }
             }
         }
