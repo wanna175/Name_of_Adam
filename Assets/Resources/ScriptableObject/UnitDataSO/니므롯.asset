@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: "\uB2C8\uBBC0\uB86F"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 55
-    CurrentHP: 55
-    ATK: 15
+    MaxHP: 120
+    CurrentHP: 120
+    ATK: 20
     SPD: 0
     FallCurrentCount: 0
-    FallMaxCount: 7
+    FallMaxCount: 10
     ManaCost: 0
   _uniqueStigma: []
   _id: 
