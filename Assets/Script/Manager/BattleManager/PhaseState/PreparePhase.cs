@@ -6,7 +6,7 @@ public class PreparePhase : Phase
 
     public override void OnStateEnter()
     {
-        GameManager.Sound.Play("Stage_Transition/Prepare/PrepareEnter");
+        //GameManager.Sound.Play("Stage_Transition/Prepare/Prepare_Enter_2nd");
         if (!_isFirst)
         { 
             BattleManager.Mana.ChangeMana(30);

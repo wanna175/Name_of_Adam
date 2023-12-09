@@ -27,12 +27,14 @@ public class UpgradeSceneController : MonoBehaviour
     // 업그레이드 할 유닛을 고릅니다.
     public void OnUpgradeUnitButtonClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectUpgrade,(int)CUR_EVENT.UPGRADE);
     }
 
     // 교화를 풀 유닛을 고릅니다.
     public void OnReleaseUnitButtonClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectRelease,(int)CUR_EVENT.RELEASE);
     }
 
@@ -96,6 +98,7 @@ public class UpgradeSceneController : MonoBehaviour
     }
     public void OnQuitClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
         if (GameManager.Data.GameData.isVisitUpgrade == false)
         {

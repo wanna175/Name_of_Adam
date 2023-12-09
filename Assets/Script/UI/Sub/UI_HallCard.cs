@@ -33,6 +33,7 @@ public class UI_HallCard : MonoBehaviour
 
     public void OnClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallDeckInit(_isElite, OnSelect);
     }
 

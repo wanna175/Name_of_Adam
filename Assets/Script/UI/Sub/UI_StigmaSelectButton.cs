@@ -29,8 +29,9 @@ public class UI_StigmaSelectButton : UI_Base
     public void OnClick()
     {
         //if()
-        
-        if(_sc != null)
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+        if (_sc != null)
         {
             _sc.OnStigmaSelected(_stigma);
         }

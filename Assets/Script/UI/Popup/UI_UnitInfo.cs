@@ -93,11 +93,13 @@ public class UI_UnitInfo : UI_Popup
 
     public void Quit()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         GameManager.UI.ClosePopup();
     }
 
     public void Select()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         _onSelect(_unit);
         if (currentSceneName().Equals("EventScene"))
         {
@@ -128,6 +130,7 @@ public class UI_UnitInfo : UI_Popup
     }
     public void compeleteClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (_endEvent != null)
             _endEvent.Invoke();
     }

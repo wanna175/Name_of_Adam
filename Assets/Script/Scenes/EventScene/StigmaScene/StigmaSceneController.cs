@@ -57,6 +57,7 @@ public class StigmaSceneController : MonoBehaviour
     // 낙인 부여를 선택했을 시
     public void OnStigmaUnitButtonClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization,(int)CUR_EVENT.STIGMA);
     }
 
@@ -70,6 +71,7 @@ public class StigmaSceneController : MonoBehaviour
     // 낙인을 주는 유닛을 고르는 함수,낙인 이동을 눌렀을 경우에
     public void OnStigmaGiveUnitButtonClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_MyDeck ud =GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ud.Init(false, OnSelectStigmatransfergiver, (int)CUR_EVENT.GIVE_STIGMA);
     }
@@ -77,6 +79,7 @@ public class StigmaSceneController : MonoBehaviour
     // 낙인소 나가기 
     public void OnQuitClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
     }
 
