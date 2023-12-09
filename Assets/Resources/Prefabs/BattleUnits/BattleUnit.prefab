@@ -476,6 +476,8 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+    HallUnitID: 0
+    IsMainDeck: 0
   BattleUnitChangedStat:
     MaxHP: 0
     CurrentHP: 0
@@ -496,6 +498,9 @@ MonoBehaviour:
   FallEvent: 0
   IsConnectedUnit: 0
   ConnectedUnits: []
+  NextMoveSkip: 0
+  NextAttackSkip: 0
+  AttackUnitNum: 0
   ChangedDamage: 0
 --- !u!114 &1722822296286429812
 MonoBehaviour:
@@ -575,7 +580,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3051833336369639759, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4904455930949447026, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
       propertyPath: m_PresetInfoIsWorld

@@ -153,7 +153,7 @@ public class UI_MyDeck : UI_Popup
     }
     public void Quit()
     {
-        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         GameManager.UI.ClosePopup();
     }
 }

@@ -7,42 +7,42 @@
           "ID": 0,
           "Units": [
             {
-              "Name": "검병",
+              "Name": "처형자",
               "Location": {
                 "x": 3,
                 "y": 0
               }
             },
             {
-              "Name": "니므롯",
+              "Name": "노동자",
               "Location": {
                 "x": 3,
                 "y": 1
               }
             },
             {
-              "Name": "니므롯",
+              "Name": "중갑병",
               "Location": {
                 "x": 3,
                 "y": 2
               }
             },
             {
-              "Name": "니므롯",
+              "Name": "암살자",
               "Location": {
                 "x": 1,
                 "y": 0
               }
             },
             {
-              "Name": "니므롯",
+              "Name": "궁병",
               "Location": {
                 "x": 1,
                 "y": 1
               }
             },
             {
-              "Name": "니므롯",
+              "Name": "검병",
               "Location": {
                 "x": 1,
                 "y": 2
@@ -54,9 +54,9 @@
           "ID": 1,
           "Units": [
             {
-              "Name": "검병",
+              "Name": "켄타우로스",
               "Location": {
-                "x": 3,
+                "x": 5,
                 "y": 1
               }
             },
@@ -64,7 +64,7 @@
               "Name": "수녀",
               "Location": {
                 "x": 4,
-                "y": 1
+                "y": 0
               }
             }
           ]
@@ -73,16 +73,9 @@
           "ID": 2,
           "Units": [
             {
-              "Name": "검병",
+              "Name": "니므롯",
               "Location": {
                 "x": 3,
-                "y": 1
-              }
-            },
-            {
-              "Name": "궁병",
-              "Location": {
-                "x": 5,
                 "y": 1
               }
             }
