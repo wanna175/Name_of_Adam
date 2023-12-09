@@ -40,10 +40,16 @@ public class DeckUnit
         if (!isEventScene)
         {
             foreach (Stigma stigma in Data.UniqueStigma)
+            {
                 stigmata.Add(stigma);
+                Debug.Log(stigma.name);
+            }
         }
         foreach (Stigma stigma in _stigma)
+        {
             stigmata.Add(stigma);
+            Debug.Log(stigma.name);
+        }
 
         return stigmata;
     }
@@ -55,7 +61,7 @@ public class DeckUnit
 
     public void AddStigma(Stigma stigma)
     {
-        if (_stigma.Contains(stigma))
+        if (_stigma.Contains(stigma) || Data.UniqueStigma.Contains(stigma))
         {
             Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
             return;
@@ -67,6 +73,7 @@ public class DeckUnit
             return;
         }
 
+        Debug.Log($"낙인 추가 완료 {stigma.name}");
         _stigma.Add(stigma);
     }
     public void DeleteStigma(Stigma stigma)
