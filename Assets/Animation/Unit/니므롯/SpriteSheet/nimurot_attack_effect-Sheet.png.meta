@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -122,10 +122,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_1
       rect:
         serializedVersion: 2
-        x: 348
+        x: 349
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_2
       rect:
         serializedVersion: 2
-        x: 696
+        x: 698
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_3
       rect:
         serializedVersion: 2
-        x: 1044
+        x: 1047
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,12 +204,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_4
       rect:
         serializedVersion: 2
-        x: 1392
+        x: 1396
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1740
+        x: 1745
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,12 +246,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_6
       rect:
         serializedVersion: 2
-        x: 2088
+        x: 2094
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,12 +267,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_7
       rect:
         serializedVersion: 2
-        x: 2436
+        x: 2443
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,12 +288,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_8
       rect:
         serializedVersion: 2
-        x: 2784
+        x: 2792
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -309,12 +309,12 @@ TextureImporter:
       name: nimurot_attack_effect-Sheet_9
       rect:
         serializedVersion: 2
-        x: 3132
+        x: 3141
         y: 0
-        width: 348
+        width: 349
         height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -322,27 +322,6 @@ TextureImporter:
       bones: []
       spriteID: 6a674db2accab264f80152352153c0e0
       internalID: 1529414029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_10
-      rect:
-        serializedVersion: 2
-        x: 3480
-        y: 0
-        width: 348
-        height: 900
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83009b8335a6d2245b3b4d5f793862ea
-      internalID: 1329588837
       vertices: []
       indices: 
       edges: []
@@ -366,7 +345,6 @@ TextureImporter:
       nimurot_attack_effect-Sheet_1: 912839348
       nimurot_attack_effect-Sheet_8: 1754583251
       nimurot_attack_effect-Sheet_7: -1285305811
-      nimurot_attack_effect-Sheet_10: 1329588837
       nimurot_attack_effect-Sheet_9: 1529414029
       nimurot_attack_effect-Sheet_2: -2001918111
   spritePackingTag: 
