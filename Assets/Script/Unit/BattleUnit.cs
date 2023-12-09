@@ -224,11 +224,14 @@ public class BattleUnit : MonoBehaviour
 
     public void UnitFallEvent()
     {
-        //타락 시 체크
-        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
+        if (Data.Rarity == Rarity.오리지널)
         {
+            ChangeHP(-HP.GetCurrentHP());
             return;
         }
+
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
+            return;
 
         GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
 
