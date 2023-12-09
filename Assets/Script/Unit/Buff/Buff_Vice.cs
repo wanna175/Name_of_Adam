@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Buff_Vice : Buff
@@ -6,15 +7,15 @@ public class Buff_Vice : Buff
     {
         _buffEnum = BuffEnum.Vice;
 
-        _name = "ÁË¾Ç";
+        _name = "¾Ç¼º";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
 
         _description = "°ø°Ý ½Ã ÀûÀÇ ½Å¾ÓÀ» 1 ¶³¾î¶ß¸³´Ï´Ù.";
 
-        _count = -1;
+        _count = 1;
 
-        _countDownTiming = ActiveTiming.NONE;
+        _countDownTiming = ActiveTiming.BEFORE_ATTACK;
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
@@ -25,6 +26,11 @@ public class Buff_Vice : Buff
         _dispellable = true;
 
         _stigmaBuff = false;
+    }
+
+    public override void Stack()
+    {
+        _count += 1;
     }
 
     public override bool Active(BattleUnit caster)

@@ -8,13 +8,13 @@ public class Buff_Stigma_Misdeed : Buff
 
         _name = "¾Ç¾÷";
 
-        _description = "¾Ç¾÷.";
+        _description = "°ø°Ý ½Ã Àû ½Å¾ÓÀÌ 1 ¶³¾î¶ß¸®´Â ¾Ç¾÷ ¹öÇÁ¸¦ 2°³ È¹µæÇÕ´Ï´Ù";
 
         _count = -1;
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.UNIT_TERMINATE;
+        _buffActiveTiming = ActiveTiming.STIGMA;
 
         _owner = owner;
 
@@ -28,7 +28,8 @@ public class Buff_Stigma_Misdeed : Buff
     public override bool Active(BattleUnit caster)
     {
         if (!_owner.Buff.CheckBuff(BuffEnum.Vice))
-            _owner.SetBuff(new Buff_Vice());
+            for (int i = 0; i < 2; i++)
+                _owner.SetBuff(new Buff_Vice());
 
         return false;
     }
