@@ -85,15 +85,17 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void OnClick(Stigma stigma)
     {
+        if (_targetUnit != null)
+            _targetUnit.AddStigma(stigma);
+
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         if (_afterPopupAction != null)
         {
             _afterPopupAction.Invoke();
         }
         GameManager.UI.ClosePopup();
-
-        
     }
+
     public void QuitBtn()
     {
         this.transform.SetAsFirstSibling();
