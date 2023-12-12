@@ -34,7 +34,7 @@ public class UnitAction_Centaurus : UnitAction
 
                 BattleUnit unit = _field.GetUnit(tempPosition);
 
-                if (unit != null)
+                if (unit != null && unit.Team != caster.Team)
                 {
                     if (attackRange.Contains(direction * i))
                     {
@@ -45,7 +45,7 @@ public class UnitAction_Centaurus : UnitAction
                 }
             }
         }
-       
+
         return MinHPSearch(AttackableFour);
     }
 
@@ -81,14 +81,11 @@ public class UnitAction_Centaurus : UnitAction
 
         BattleUnit receiver = hits[0];
 
-        foreach (Vector2 direction in UDLR)
+        if (BattleManager.Field.GetArroundUnits(attackUnit.Location, UDLR).Contains(receiver))
         {
-            if (receiver.Location + direction == attackUnit.Location)
-            {
-                BattleManager.Instance.AttackStart(attackUnit, hits);
-                _isMove = false;
-                return true;
-            }
+            BattleManager.Instance.AttackStart(attackUnit, hits);
+            _isMove = false;
+            return true;
         }
 
         float currntMin = 100f;
@@ -120,10 +117,7 @@ public class UnitAction_Centaurus : UnitAction
         attackUnit.AnimatorSetBool("isAttackStart", true);
         BattleManager.Instance.MoveUnit(attackUnit, moveVector, 5f);
         BattleManager.Instance.AttackStart(attackUnit, hits);
-        
+
         return true;
     }
-
-
-    public override void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
 }
