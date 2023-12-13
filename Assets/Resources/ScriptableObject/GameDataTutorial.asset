@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac803bb941873b4fafc0c839fc31480, type: 3}
   m_Name: GameDataTutorial
   m_EditorClassIdentifier: 
-  Incarna: {fileID: 11400000, guid: feadbc338b464984fbbb40a9b9c4f74e, type: 2}
+  Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
   UniversalPlayerSkill: {fileID: 0}
   Money: 0
   DarkEssence: 5
   PlayerSkillCount: 0
   DeckUnits:
-  - Data: {fileID: 11400000, guid: 9ce197328a1c9bb4a92c4ca4b790c6cb, type: 2}
+  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0
@@ -29,15 +29,15 @@ MonoBehaviour:
       ManaCost: 0
     DeckUnitChangedStat:
       MaxHP: 0
-      CurrentHP: -45
+      CurrentHP: 0
       ATK: 0
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 0
+      ManaCost: 20
     HallUnitID: 0
     IsMainDeck: 0
-  - Data: {fileID: 11400000, guid: 0f89f85ebc1402d4a867d675973c6f64, type: 2}
+  - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0
@@ -48,26 +48,7 @@ MonoBehaviour:
       ManaCost: 0
     DeckUnitChangedStat:
       MaxHP: 0
-      CurrentHP: -45
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
-  - Data: {fileID: 11400000, guid: 9ce197328a1c9bb4a92c4ca4b790c6cb, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
       CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: -45
       ATK: 0
       SPD: 0
       FallCurrentCount: 0
@@ -91,9 +72,29 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
+      ManaCost: 20
+    HallUnitID: 0
+    IsMainDeck: 0
+  - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
       ManaCost: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 35
     HallUnitID: 0
     IsMainDeck: 0
   FallenUnits: []
   isVisitUpgrade: 0
   isVisitStigma: 0
+  isVisitHarlot: 0

@@ -30,8 +30,8 @@ public class UI_Conversation : UI_Popup
         }
         else
         {
-            _conversation.rectTransform.sizeDelta = new(1400, _conversation.rectTransform.sizeDelta.y);
-            _conversation.transform.localPosition = new(-170, 0, 0);
+            _conversation.rectTransform.sizeDelta = new(1200, _conversation.rectTransform.sizeDelta.y);
+            _conversation.transform.localPosition = new(-150, 0, 0);
         }
 
         if (autoStart)

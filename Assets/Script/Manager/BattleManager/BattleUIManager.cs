@@ -105,33 +105,36 @@ public class BattleUIManager : MonoBehaviour
 
         UI_Tutorial UItutorial = GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>();
 
-        if (curID == 1 && GameManager.Data.StageAct == 0)
+        if (!GameManager.OutGameData.isTutorialClear())
         {
-            if (GameManager.Data.Tutorial_Trigger_First == true)
+            if (curID == 1 && GameManager.Data.StageAct == 0)
             {
-                if (phaseController.CurrentPhaseCheck(phaseController.Prepare))
+                if (GameManager.Data.Tutorial_Trigger_First == true)
                 {
-                    UItutorial.TutorialActive(0);
-                }
-                else if (phaseController.CurrentPhaseCheck(phaseController.Engage))
-                {
-                    UItutorial.TutorialActive(4);
-                    GameManager.Data.Tutorial_Trigger_First = false;
+                    if (phaseController.CurrentPhaseCheck(phaseController.Prepare))
+                    {
+                        UItutorial.TutorialActive(0);
+                    }
+                    else if (phaseController.CurrentPhaseCheck(phaseController.Engage))
+                    {
+                        UItutorial.TutorialActive(4);
+                        GameManager.Data.Tutorial_Trigger_First = false;
+                    }
                 }
             }
-        }
-        else if (curID == 2 && GameManager.Data.StageAct == 0)
-        {
-            if (GameManager.Data.Tutorial_Trigger_Second == true)
+            else if (curID == 2 && GameManager.Data.StageAct == 0)
             {
-                if (phaseController.Current == phaseController.Prepare)
+                if (GameManager.Data.Tutorial_Trigger_Second == true)
                 {
-                    UItutorial.TutorialActive(8);
-                }
-                else if (phaseController.Current == phaseController.Engage)
-                {
-                    UItutorial.TutorialActive(12);
-                    GameManager.Data.Tutorial_Trigger_Second = false;
+                    if (phaseController.Current == phaseController.Prepare)
+                    {
+                        UItutorial.TutorialActive(8);
+                    }
+                    else if (phaseController.Current == phaseController.Engage)
+                    {
+                        UItutorial.TutorialActive(12);
+                        GameManager.Data.Tutorial_Trigger_Second = false;
+                    }
                 }
             }
         }

@@ -42,12 +42,20 @@ public class UI_BattleOver : UI_Scene
     public void OnClick()
     {
         if (_result == "win")
+        {
             SceneChanger.SceneChange("StageSelectScene");
+        }
         else if (_result == "elite win")
         {
-            BattleOverDestroy();
-
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, (deckUnit) => {GameManager.OutGameData.AddHallUnit(deckUnit, true);});
+            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            {
+                BattleOverDestroy();
+                GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, true); });
+            }
+            else
+            {
+                SceneChanger.SceneChange("StageSelectScene");
+            }
         }
         else if (_result == "lose")
         {

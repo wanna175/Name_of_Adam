@@ -38,15 +38,18 @@ public class StageManager : MonoBehaviour
         // 맵 프리팹이 존재하지 않다면(스테이지 최초 진입 시) 맵중에 랜덤으로 하나 가져오기
         if (GameManager.Data.Map.MapObject == null)
         {
-            if (GameManager.Data.StageAct == 0 && GameManager.OutGameData.isTutorialClear())
-            {
-                GameManager.Data.StageAct++;
-                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps");
-                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-            }
-            else if (GameManager.Data.StageAct == 0)
+            if (GameManager.Data.StageAct == 0)
             {
                 GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/TutorialMap");
+            }
+            else if (GameManager.Data.StageAct == 1)
+            {
+                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/Map");
+                //GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/ProtoMap1");
+            }
+            else if (GameManager.Data.StageAct == 2)
+            {
+                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/ProtoMap2");
             }
             else
             {
@@ -80,11 +83,11 @@ public class StageManager : MonoBehaviour
         // 마지막 스테이지 조건을 보스일 때로 하고싶지만, 튜토리얼 스테이지의 경우에 의해 보스일 때로는 하지 못함
         if (GameManager.Data.Map.CurrentTileID == 99)
         {
-            if (GameManager.Data.StageAct < 1) // 여기의 상수는 최대 막의 수, 지금은 1막밖에 없기에 1임
+            if (GameManager.Data.StageAct < 2) // 여기의 상수는 최대 막의 수, 지금은 1막밖에 없기에 1임
             {
                 GameManager.Data.StageAct++;
                 GameManager.Data.Map = new MapData();
-
+                /*
                 if (GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
                 {
                     GameManager.Data.MainDeckSet();
@@ -92,6 +95,7 @@ public class StageManager : MonoBehaviour
                     GameManager.Data.GameData.FallenUnits.Clear();
                     GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
                 }
+                */
             }
             else
             {
@@ -123,15 +127,17 @@ public class StageManager : MonoBehaviour
     private void SetStageData()
     {
         List<StageData> StageDatas = new List<StageData>();
-        int maxLevel = 2; // 한 막에 몇가지 레벨이 존재하느냐에 따라 값이 증가함. ex) 한 맵에 3가지 레벨이 존재한다 -> maxLevel = 3
-        int addLevel = (GameManager.Data.StageAct - 1) * maxLevel;
+        //int maxLevel = 2; // 한 막에 몇가지 레벨이 존재하느냐에 따라 값이 증가함. ex) 한 맵에 3가지 레벨이 존재한다 -> maxLevel = 3
+        //int addLevel = (GameManager.Data.StageAct - 1) * maxLevel;
         List<Vector2> existStage = new List<Vector2>();
 
         for (int i = 0; i < StageList.Count; i++)
         {
-            if (StageList[i].Datas.Type == StageType.Battle)
+            if (StageList[i].Datas.Type == StageType.Battle && StageList[i].Datas.Name == StageName.CommonBattle)
             {
-                int x = (StageList[i].Datas.ID <= 1 && addLevel == 0) ? 1 : (int)StageList[i].Datas.StageLevel + addLevel;
+                //12/20 프로토타입 버전은 레벨별 데이터 차이 없음, 추후 사용 가능성 다수
+                //int x = (StageList[i].Datas.ID <= 1 && addLevel == 0) ? 1 : (int)StageList[i].Datas.StageLevel + addLevel;
+                int x = GameManager.Data.StageAct + 1;
                 int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
 
                 Vector2 vec = new Vector2(x, y);
@@ -145,7 +151,10 @@ public class StageManager : MonoBehaviour
                     i--;
             }
             else
+            {
                 StageDatas.Add(StageList[i].Datas);
+            }
+
         }
 
         GameManager.Data.Map.StageList = StageDatas;

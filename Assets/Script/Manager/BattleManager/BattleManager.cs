@@ -113,7 +113,7 @@ public class BattleManager : MonoBehaviour
         }, 0.5f);
 
         PlayAfterCoroutine(() => {
-            if (GameManager.Data.Map.GetCurrentStage().StageLevel == 11)
+            if (GameManager.Data.Map.GetCurrentStage().StageLevel == 10)
             {
                 string scriptKey = "엘리트전_입장_최초";
 
@@ -400,14 +400,19 @@ public class BattleManager : MonoBehaviour
         else if (EnemyUnit == 0)
         {
             BattleOverWin();
-            if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 99)
+            if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
             {
+                GameManager.OutGameData.DoneTutorial(true);
+                Debug.Log("Tutorial Clear!");
+
+                //튜토리얼 마지막 창 12/20 프로토타입에선 우선 제외
+                /*
                 if (GameManager.Data.Tutorial_Stage_Trigger == true)
                 {
                     GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(14);
-                    GameManager.OutGameData.DoneTutorial(true);
                     GameManager.Data.Tutorial_Stage_Trigger = false;
                 }
+                */
             }
         }
     }
@@ -420,10 +425,14 @@ public class BattleManager : MonoBehaviour
         StageData data = GameManager.Data.Map.GetCurrentStage();
         try
         {
-            if (data.StageLevel >= 10)
+            if (data.StageLevel == 20)
             {
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
                 GameManager.SaveManager.DeleteSaveData();
+            }
+            else if (data.StageLevel == 10)
+            {
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
             }
             else
             {
@@ -563,11 +572,13 @@ public class BattleManager : MonoBehaviour
 
             if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
                 return;
-
-            if(GameManager.Data.StageAct == 0 && GameManager.Data.Tutorial_Benediction_Trigger == true)
+            if (!GameManager.OutGameData.isTutorialClear())
             {
-                GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
-                GameManager.Data.Tutorial_Benediction_Trigger = false;
+                if (GameManager.Data.StageAct == 0 && GameManager.Data.Tutorial_Benediction_Trigger == true)
+                {
+                    GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
+                    GameManager.Data.Tutorial_Benediction_Trigger = false;
+                }
             }
             
             lastUnit.SetBuff(new Buff_Benediction());
