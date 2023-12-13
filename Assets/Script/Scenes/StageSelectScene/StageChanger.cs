@@ -13,7 +13,6 @@ public class StageChanger
 
         if (stage.Type == StageType.Tutorial)
         {
-            GameManager.Data.DeckClear();
             SceneChanger.SceneChange("BattleScene");
         }
         else if (stage.Type == StageType.Battle)

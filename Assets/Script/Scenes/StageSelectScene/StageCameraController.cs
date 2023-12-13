@@ -26,6 +26,11 @@ public class StageCameraController : MonoBehaviour
 
         transform.position += new Vector3(0, num * 5 , 0);
 
+        if (transform.position.y < -5 && transform.position.y > -20)
+            transform.position = new Vector3(0, -5, -10);
+        if (transform.position.y > 25)
+            transform.position = new Vector3(0, 25, -10);
+        /*
         if (GameManager.Data.StageAct == 0)
         {
             if (transform.position.y < -50)
@@ -40,6 +45,7 @@ public class StageCameraController : MonoBehaviour
             if (transform.position.y > 25)
                 transform.position = new Vector3(0, 25, -10);
         }
+        */
     }
 
     public void SetLocate(float y)
@@ -49,7 +55,7 @@ public class StageCameraController : MonoBehaviour
 
     IEnumerator MapScanMove()
     {
-        if (GameManager.Data.StageAct == 0 || GameManager.Data.Map.CurrentTileID != 0)
+        if (GameManager.Data.Map.CurrentTileID != 0)
         {
             yield break;
         }
