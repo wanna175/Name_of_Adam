@@ -67,7 +67,7 @@ public class DeckUnit
             return;
         }
 
-        if(_stigma.Count >= _maxStigmaCount)
+        if(_stigma.Count + Data.UniqueStigma.Count >= _maxStigmaCount)
         {
             Debug.Log("최대 낙인 개수");
             return;
