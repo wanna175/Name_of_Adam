@@ -14,7 +14,6 @@ public class StigmaSceneController : MonoBehaviour
     [SerializeField] private GameObject _stigma_transfer_btn = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     private Stigma _giveStigma = null;
-    private Stigma _delStigma = null;
     void Start()
     {
         Init();
@@ -23,7 +22,6 @@ public class StigmaSceneController : MonoBehaviour
     {
         scripts = new ();
         _giveStigma = null;
-        _delStigma = null;
         _isStigmaFull = false;
 
         //옮길 낙인유닛이 없다면 선택지가 안 뜨게
@@ -92,14 +90,15 @@ public class StigmaSceneController : MonoBehaviour
     {
         Debug.Log("스티그마 꽉 찼을 때 예외처리");
         _isStigmaFull = true;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(),0,null,this);
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(true),0,null,this);
 
     }
  
     public void OnSelectStigmatization(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
-        if (_stigmatizeUnit._stigmaCount< _stigmatizeUnit._maxStigmaCount)
+
+        if (_stigmatizeUnit.GetStigmaCount()< _stigmatizeUnit._maxStigmaCount)
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
@@ -125,7 +124,7 @@ public class StigmaSceneController : MonoBehaviour
     public void OnSelectStigmatransfertarget(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
-        if (_stigmatizeUnit._stigmaCount < _stigmatizeUnit._maxStigmaCount)
+        if (_stigmatizeUnit.GetStigmaCount() <_stigmatizeUnit._maxStigmaCount)
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             SetUnitStigma(_giveStigma);

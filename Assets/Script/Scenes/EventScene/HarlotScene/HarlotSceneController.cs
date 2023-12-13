@@ -7,12 +7,10 @@ public class HarlotSceneController : MonoBehaviour
 {
     private DeckUnit _stigmatizeUnit;
     private Stigma stigma;
-    [SerializeField] private Image _unitImage; // 낙인 부여 유닛
-    [SerializeField] private Image _stigmaImage; // 타락 낙인 이미지
-    [SerializeField] private GameObject _menuChoose;
-    [SerializeField] private GameObject _stigmazation;
-    [SerializeField] private GameObject _getEliteUnit;
+    [SerializeField] private GameObject _SelectStigmaButton = null;
+    [SerializeField] private GameObject _getOriginUnitButton = null;
 
+    List<Script> scripts = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
 
     void Start()
@@ -22,23 +20,24 @@ public class HarlotSceneController : MonoBehaviour
 
     private void Init()
     {
-        //_stigmaImage = GameManager.Resource.Load<Image>("");
-        _menuChoose.SetActive(true);
-        _stigmazation.SetActive(false);
-        _getEliteUnit.SetActive(false);
+        scripts = new List<Script>();
 
-        List<Script> scripts = new List<Script>();
-
-        if (GameManager.Data.GameData.isVisitUpgrade == false)
-            scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
+        if (GameManager.Data.GameData.isVisitHarlot == false)
+            scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
         else
-            scripts = GameManager.Data.ScriptData["낙인소_입장"];
+            scripts = GameManager.Data.ScriptData["탕녀_입장"];
 
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        //GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
         stigma = GameManager.Data.StigmaController.GetRandomStigma(GameManager.Data.GetProbability());
+        //랜덤으로 타락스티그마를 받아오는 건가?? 그럼 타락스티그마랑 스티그마랑 같은 종류인가?
 
         Debug.Log(stigma.Name);
+        int current_DarkEssense = GameManager.Data.DarkEssense;
+        if (current_DarkEssense < 12)
+            _getOriginUnitButton.SetActive(false);
+        if (current_DarkEssense < 7)
+            _SelectStigmaButton.SetActive(false);
         /*
         if(GameManager.Data.GameData)
         {
@@ -50,26 +49,10 @@ public class HarlotSceneController : MonoBehaviour
         }
         */
     }
-
-    public void ClickStigmatization()
+    //유닛을 검은 정수로 환원하는 버튼
+    public void OnUnitRestorationClick()
     {
-        _menuChoose.SetActive(false);
-
-        _stigmazation.SetActive(true);
-    }
-
-    public void ClickGetEliteUnit()
-    {
-        _menuChoose.SetActive(false);
-        _getEliteUnit.SetActive(true);
-
-        // 유닛 얻는 내용
-    }
-
-    // 유닛 고르기 버튼
-    public void ClickUnitSelectBTN()
-    {
-        GameManager.UI.ShowPopup<UI_MyDeck>().Init(false, OnSelect);
+        //GameManager.UI.ShowPopup<UI_MyDeck>().Init(false,)
     }
 
     // 유닛 선택 후 타락 관련 낙인 부여 버튼
@@ -85,34 +68,12 @@ public class HarlotSceneController : MonoBehaviour
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigmata);
         }
     }
-
-    public void OnSelect(DeckUnit unit)
+    //대화하기 버튼을 클릭했을 경우
+    public void OnConversationButtonClick()
     {
-        _stigmatizeUnit = unit;
-        _unitImage.sprite = unit.Data.Image;
-        _unitImage.color = Color.white;
-
-        GameManager.UI.ClosePopup();
-        GameManager.UI.ClosePopup();
+        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
     }
-
-    
-
-    public void OnStigmaSelect(Stigma stigma)
-    {
-        _stigmatizeUnit.AddStigma(stigma);
-        GameManager.UI.ClosePopup();
-        AddStigmaScript(stigma);
-    }
-
-    public void AddStigmaScript(Stigma stigma)
-    {
-        UI_Conversation script = GameManager.UI.ShowPopup<UI_Conversation>();
-        string scriptKey = "낙인소_" + stigma.Name;
-        script.Init(GameManager.Data.ScriptData[scriptKey], false);
-        StartCoroutine(QuitScene(script));
-    }
-
+    //나가기 버튼을 클릭했을 경우
     public void ClickQuit()
     {
         StartCoroutine(QuitScene());
@@ -120,19 +81,24 @@ public class HarlotSceneController : MonoBehaviour
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        if (GameManager.Data.GameData.isVisitStigma == false)
-        {
-            GameManager.Data.GameData.isVisitStigma = true;
-        }
-
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
+
+
+        if (GameManager.Data.GameData.isVisitHarlot == false)
+        {
+            GameManager.Data.GameData.isVisitHarlot = true;
+            quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
+        }
+        else
+            quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장"], false);
 
         yield return StartCoroutine(quitScript.PrintScript());
+        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+        GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
 }

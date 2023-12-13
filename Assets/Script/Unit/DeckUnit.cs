@@ -141,4 +141,8 @@ public class DeckUnit
             _firstTurnDiscount = 0;
         }
     }
+    public int GetStigmaCount()
+    {
+        return _stigmaCount+ Data.UniqueStigma.Count;
+    }
 }

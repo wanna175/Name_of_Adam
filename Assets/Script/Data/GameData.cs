@@ -14,4 +14,5 @@ public class GameData : ScriptableObject
     public List<DeckUnit> FallenUnits = new();
     public bool isVisitUpgrade = false;
     public bool isVisitStigma = false;
+    public bool isVisitHarlot = false;
 }
