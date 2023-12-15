@@ -85,6 +85,8 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void OnClick(Stigma stigma)
     {
+        GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(false);
+
         if (_targetUnit != null)
             _targetUnit.AddStigma(stigma);
 
@@ -98,6 +100,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void QuitBtn()
     {
+        GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
         this.transform.SetAsFirstSibling();
         this.gameObject.SetActive(false);
     }
