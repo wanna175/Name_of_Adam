@@ -17,8 +17,6 @@ public class UI_MyDeck : UI_Popup
 
     public void Init(bool battle=false, Action<DeckUnit> onSelect=null,int Eventnum = 0)
     {
-        _title_img.gameObject.SetActive(false);
-
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
@@ -40,8 +38,7 @@ public class UI_MyDeck : UI_Popup
         List<DeckUnit> _normalDeck = new();
 
         _hallDeck = GameManager.Data.GameData.FallenUnits;
-        _title_img.gameObject.SetActive(true);
-        _title_txt.text = "전당 선택";
+        _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
 
         foreach (DeckUnit unit in _hallDeck)
         {
@@ -71,8 +68,7 @@ public class UI_MyDeck : UI_Popup
 
         _hallDeck = GameManager.Data.GetDeck();
 
-        _title_img.gameObject.SetActive(true);
-        _title_txt.text = "전당 선택";
+        _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
 
         foreach (DeckUnit unit in _hallDeck)
         {
@@ -134,21 +130,20 @@ public class UI_MyDeck : UI_Popup
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
         {
-            _title_img.gameObject.SetActive(true);
             Quit_btn.SetActive(false);
-            //임시로 걍 여기서 부제목 쓰자잉
+
             if (EventScene == (int)CUR_EVENT.UPGRADE)
-                _title_txt.text = "강화";
+                _title_txt.text = "강화할 유닛을 선택하세요";
             else if (EventScene == (int)CUR_EVENT.RELEASE)
-                _title_txt.text = "신앙 회복";
+                _title_txt.text = "신앙을 회복시킬 유닛을 선택하세요";
             else if (EventScene == (int)CUR_EVENT.STIGMA||EventScene == (int)CUR_EVENT.RECEIVE_STIGMA)
-                _title_txt.text = "낙인 부여";
+                _title_txt.text = "낙인을 부여할 유닛을 선택하세요";
             else if (EventScene == (int)CUR_EVENT.GIVE_STIGMA)
-                _title_txt.text = "유닛 희생";
+                _title_txt.text = "희생시킬 유닛을 선택하세요";
         }
         else
         {
-            _title_img.gameObject.SetActive(false);
+            _title_txt.text = "보유 유닛";
         }
     }
     public void Quit()
