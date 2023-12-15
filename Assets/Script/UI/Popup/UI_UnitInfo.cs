@@ -130,6 +130,7 @@ public class UI_UnitInfo : UI_Popup
     }
     public void compeleteClick()
     {
+        gameObject.SetActive(false);
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (_endEvent != null)
             _endEvent.Invoke();
