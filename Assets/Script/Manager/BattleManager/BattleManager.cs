@@ -615,7 +615,7 @@ public class BattleManager : MonoBehaviour
 
         caster.BattleUnitChangedStat = caster.Buff.GetBuffedStat();
 
-        caster.SetHPBar();
+        caster.RefreshHPBar();
 
         skipNextAction |= caster.Action.ActionTimingCheck(activeTiming, caster, receiver);
 

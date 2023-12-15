@@ -172,6 +172,13 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshBuff();
     }
 
+    public void RefreshHPBar()
+    {
+        _hpBar.RefreshHPBar(HP.FillAmount());
+        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        _hpBar.RefreshBuff();
+    }
+
     public void SetLocation(Vector2 coord)
     {
         _location = coord;
