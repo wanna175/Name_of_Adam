@@ -123,7 +123,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
                 {
-                    string scriptKey = "켄타우로스전_입장";
+                    string scriptKey = "투발카인전_입장";
 
                     EventConversation(scriptKey);
                 }

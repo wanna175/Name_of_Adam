@@ -241,7 +241,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4"
+  m_Name: "\uD22C\uBC1C\uCE74\uC778"
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAttack
