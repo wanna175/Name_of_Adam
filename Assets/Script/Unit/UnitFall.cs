@@ -31,7 +31,6 @@ public class UnitFall : MonoBehaviour
         else if (_currentCount >= _maxCount)
         {
             UnitFallEvent.Invoke();
-            _currentCount = 0;
         }
 
         // Add Fall Change Event (EX. UI)

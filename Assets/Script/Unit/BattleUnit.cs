@@ -262,6 +262,7 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
         _hpBar.RefreshHPBar(HP.FillAmount());
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
 
