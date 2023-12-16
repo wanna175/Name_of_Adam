@@ -38,7 +38,7 @@ public class UI_UnitInfo : UI_Popup
     public void Init(Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum=0,Action endEvent=null)
     {
         _unitImage.GetComponent<Image>();
-        _unitImage.sprite = _unit.Data.Image;
+        _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Corrupted/" + _unit.Data.Name);
         _onSelect = onSelect;
         _endEvent = endEvent;
         _selectButton.SetActive(onSelect != null);
