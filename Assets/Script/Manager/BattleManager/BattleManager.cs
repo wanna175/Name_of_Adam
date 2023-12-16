@@ -115,9 +115,27 @@ public class BattleManager : MonoBehaviour
         PlayAfterCoroutine(() => {
             if (GameManager.Data.Map.GetCurrentStage().StageLevel == 10)
             {
-                string scriptKey = "엘리트전_입장_최초";
+                if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
+                {
+                    string scriptKey = "엘리우스_야나전_입장";
 
-                EventConversation(scriptKey);
+                    EventConversation(scriptKey);
+                }
+                else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
+                {
+                    string scriptKey = "켄타우로스전_입장";
+
+                    EventConversation(scriptKey);
+                }
+            }
+            else if (GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            {
+                if (GameManager.Data.Map.GetCurrentStage().StageID == 0)
+                {
+                    string scriptKey = "니므롯전_입장";
+
+                    EventConversation(scriptKey);
+                }
             }
             else
             {
@@ -312,6 +330,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
             GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
         }
     }
