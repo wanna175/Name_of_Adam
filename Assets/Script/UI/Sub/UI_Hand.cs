@@ -10,6 +10,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private GameObject _inactive;
     [SerializeField] private Image _unitImage;
     [SerializeField] private TextMeshProUGUI _cost;
+    [SerializeField] private TextMeshProUGUI _darkessensecost;
 
     private DeckUnit _handUnit = null;
     private UI_Hands _hands;
@@ -37,13 +38,23 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _handUnit.Data.Name + "_Å¸¶ô");
         _cost.text = _handUnit.DeckUnitTotalStat.ManaCost.ToString();
 
+        if (_handUnit.Data.DarkEssenseCost > 0)
+        {
+            _darkessensecost.gameObject.SetActive(true);
+            _darkessensecost.text = _handUnit.Data.DarkEssenseCost.ToString();
+        }
+            
+
+
         if (_handUnit.IsDiscount())
         {
             _cost.color = Color.yellow;
+            _darkessensecost.color = Color.yellow;
         }
         else
         {
             _cost.color = Color.white;
+            _darkessensecost.color = Color.white;
         }
     }
 
