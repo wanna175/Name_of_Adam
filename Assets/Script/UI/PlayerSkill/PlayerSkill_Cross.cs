@@ -21,8 +21,9 @@ public class PlayerSkill_Cross : PlayerSkill
             if (targetUnit != null && targetUnit.Team == Team.Enemy)
             {
                 BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
-                targetUnit.GetAttack(-20, null);
                 targetUnit.ChangeFall(1);
+                if (!targetUnit.FallEvent)
+                    targetUnit.GetAttack(-20, null);
             }
         }
         return false;
