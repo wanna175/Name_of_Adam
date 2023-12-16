@@ -26,7 +26,9 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _myDeck = myDeck;
         _cardUnit = unit;
 
-        _unitImage.sprite = unit.Data.Image;
+        //_unitImage.sprite = unit.Data.Image;
+        _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Corrupted/" + _cardUnit.Data.Name);
+
         _name.text = unit.Data.Name;
 
         if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
