@@ -259,8 +259,8 @@ MonoBehaviour:
   CardPrefabs: {fileID: 325290038368432305, guid: bbd49e123bae1ea4aa0cdbf7545f6073, type: 3}
   Grid: {fileID: 1825009602211347770}
   Quit_btn: {fileID: 8935441726979602624}
+  _quit_txt: {fileID: 7262528611728451752}
   _title_txt: {fileID: 5706204376287826852}
-  _title_img: {fileID: 7120136368424462297}
 --- !u!223 &2243454614133999682
 Canvas:
   m_ObjectHideFlags: 0
