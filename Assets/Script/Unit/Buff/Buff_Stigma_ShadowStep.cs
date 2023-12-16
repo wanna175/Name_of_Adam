@@ -41,36 +41,5 @@ public class Buff_Stigma_ShadowStep: Buff
         }
 
         return false;
-
-        /*
-        float currntMax = 0f;
-        Vector2 moveVector = caster.Location;
-
-        foreach (Vector2 direction in UDLR)
-        {
-            Vector2 vec = _owner.Location + direction;
-            float sqr = (vec - caster.Location).sqrMagnitude;
-
-            if (currntMax < sqr)
-            {
-                currntMax = sqr;
-                if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
-                {
-                    moveVector = vec;
-                }
-            }
-            else if (currntMax == sqr)
-            {
-                if (direction.x != 0 && BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
-                {
-                    moveVector = vec;
-                }
-            }
-        }
-
-        BattleManager.Instance.MoveUnit(_owner, moveVector);
-
-        return false;
-        */
     }
 }

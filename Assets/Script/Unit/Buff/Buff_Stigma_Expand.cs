@@ -35,7 +35,7 @@ public class Buff_Stigma_Expand : Buff
             false, false, true, false, false
         };
 
-        caster.AddMoveRange(moveRange);
+        _owner.AddMoveRange(moveRange);
 
         return false;
     }

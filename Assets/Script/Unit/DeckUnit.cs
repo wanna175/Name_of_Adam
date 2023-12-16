@@ -42,13 +42,11 @@ public class DeckUnit
             foreach (Stigma stigma in Data.UniqueStigma)
             {
                 stigmata.Add(stigma);
-                Debug.Log(stigma.name);
             }
         }
         foreach (Stigma stigma in _stigma)
         {
             stigmata.Add(stigma);
-            Debug.Log(stigma.name);
         }
 
         return stigmata;

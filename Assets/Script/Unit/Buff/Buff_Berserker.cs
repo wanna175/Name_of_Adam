@@ -12,7 +12,7 @@ public class Buff_Berserker : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "매 턴 공격력 50% 증가합니다.";
+        _description = "매 턴 공격력 50% 증가 합니다.";
 
         _count = 1;
 
@@ -42,7 +42,7 @@ public class Buff_Berserker : Buff
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK = (int)(_owner.Data.RawStat.ATK * _count * 0.5);
+        stat.ATK = (int)(_owner.DeckUnit.DeckUnitTotalStat.ATK * _count * 0.5);
 
         return stat;
     }

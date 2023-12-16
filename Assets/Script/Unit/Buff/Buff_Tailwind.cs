@@ -10,7 +10,7 @@ public class Buff_Tailwind : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
 
-        _description = "속도가 30 증가합니다.";
+        _description = "공격 턴에서 가장 먼저 공격 턴을 가집니다.";
 
         _count = 1;
 
@@ -35,7 +35,7 @@ public class Buff_Tailwind : Buff
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.SPD += 30;
+        stat.SPD += 100;
 
         return stat;
     }

@@ -30,7 +30,6 @@ public class Buff_Stigma_Sadism : Buff
     public override bool Active(BattleUnit caster)
     {
         totalUp += attackUp;
-        Debug.Log(attackUp + " / " + totalUp);
 
         return false;
     }

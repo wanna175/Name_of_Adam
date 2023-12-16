@@ -34,7 +34,6 @@ public class Buff_Stigma_Hook : Buff
         Vector2Int hookDirInt = new Vector2Int(Mathf.RoundToInt(hookDir.x), Mathf.RoundToInt(hookDir.y));
         Vector2 vec = caster.Location + hookDirInt;
 
-        Debug.Log($"{hookDirInt}");
         if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
             BattleManager.Instance.MoveUnit(caster, vec);
 
