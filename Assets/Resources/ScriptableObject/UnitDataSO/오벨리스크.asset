@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 1
-    CurrentHP: 1
-    ATK: 15
-    SPD: 55
+    MaxHP: 20
+    CurrentHP: 20
+    ATK: 0
+    SPD: 0
     FallCurrentCount: 0
-    FallMaxCount: 4
+    FallMaxCount: 2
     ManaCost: 0
-  _uniqueStigma: []
+  _uniqueStigma:
+  - {fileID: 2908782542212454162, guid: 717587f8c58ffc84ca90cf99759b61d8, type: 3}
   _id: "\uC624\uBCA8\uB9AC\uC2A4\uD06CID"
   _name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
@@ -33,7 +34,7 @@ MonoBehaviour:
   _corruptionSkillEffectAnim: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
   _darkEssenseDrop: 0
-  _darkEssenseCost: 1
+  _darkEssenseCost: 0
   _unitActionType: 1
   _unitMoveType: 1
   _attackRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
