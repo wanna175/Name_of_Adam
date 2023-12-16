@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: "\uC790\uBE44"
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 8f5fda87925a50d488d3948b087a292d, type: 3}
   _description: "\uACF5\uACA9\uB825\uC774 0\uC774 \uB418\uB294 \uB300\uC2E0 \uD53C\uACA9
     \uB300\uC0C1\uC758 \uC2E0\uC559\uC744 1 \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4"
   _activeTiming: 2
   _tier: 4
-  _isLock: 1
+  _isLock: 0

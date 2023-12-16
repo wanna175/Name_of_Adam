@@ -48,6 +48,6 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: d8da815e635e74743965aef94b3fbe6f, type: 3}
   _description: "\uC18C\uD658 \uC2DC \uC801\uC758 \uACF5\uACA9\uC744 2\uD68C \uBB34\uD6A8\uD654\uD558\uB294
     \uBC84\uD504\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
-  _activeTiming: 8
+  _activeTiming: 2
   _tier: 1
   _isLock: 0

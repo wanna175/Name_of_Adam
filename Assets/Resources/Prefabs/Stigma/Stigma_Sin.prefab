@@ -47,6 +47,6 @@ MonoBehaviour:
   _name: "\uB300\uC8C4"
   _sprite: {fileID: 0}
   _description: "\uC18C\uD658\uC2DC \uB300\uC8C4 \uBC84\uD504\uB97C \uBC1B\uC2B5\uB2C8\uB2E4"
-  _activeTiming: 8
+  _activeTiming: 2
   _tier: 4
   _isLock: 1
