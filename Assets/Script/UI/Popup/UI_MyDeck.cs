@@ -8,12 +8,13 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private GameObject CardPrefabs;
     [SerializeField] private Transform Grid;
     [SerializeField] private GameObject Quit_btn;//종료버튼
+    [SerializeField] private TextMeshProUGUI _quit_txt;//제목 텍스트
     [SerializeField] private TextMeshProUGUI _title_txt;//제목 텍스트
-    [SerializeField] private GameObject _title_img;
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
     private Action<DeckUnit> _onSelect;
     private int evNum=0;
+    private bool _isBossClear;
 
     public void Init(bool battle=false, Action<DeckUnit> onSelect=null,int Eventnum = 0)
     {
@@ -35,8 +36,10 @@ public class UI_MyDeck : UI_Popup
 
     public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
     {
-        List<DeckUnit> _normalDeck = new();
+        _quit_txt.text = "선택 안함";
+        _isBossClear = isBossClear;
 
+        List<DeckUnit> _normalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
         _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
 
@@ -149,6 +152,21 @@ public class UI_MyDeck : UI_Popup
     public void Quit()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
-        GameManager.UI.ClosePopup();
+
+        if (_quit_txt.text == "선택 안함")
+        {
+            if (_isBossClear)
+            {
+                SceneChanger.SceneChange("EndingCreditScene");
+            }
+            else
+            {
+                SceneChanger.SceneChange("MainScene");
+            }
+        }
+        else
+        {
+            GameManager.UI.ClosePopup();
+        }
     }
 }
