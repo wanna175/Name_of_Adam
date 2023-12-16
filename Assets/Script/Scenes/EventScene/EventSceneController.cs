@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum CUR_EVENT
+public enum CUR_EVENT
 {
-    UPGRADE = 1,
+    NONE,
+    UPGRADE,
     RELEASE,
     COMPLETE_UPGRADE,
-    COMPLETE_RELEASE,//<===complete 하나로도 충분히 될것 같은데???
+    COMPLETE_RELEASE,
     STIGMA,
     GIVE_STIGMA,
     RECEIVE_STIGMA,

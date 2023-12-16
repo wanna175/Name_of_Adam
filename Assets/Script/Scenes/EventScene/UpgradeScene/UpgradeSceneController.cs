@@ -28,14 +28,14 @@ public class UpgradeSceneController : MonoBehaviour
     public void OnUpgradeUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectUpgrade,(int)CUR_EVENT.UPGRADE);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectUpgrade,CUR_EVENT.UPGRADE);
     }
 
     // 교화를 풀 유닛을 고릅니다.
     public void OnReleaseUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectRelease,(int)CUR_EVENT.RELEASE);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectRelease,CUR_EVENT.RELEASE);
     }
 
     //대화하기 버튼
@@ -61,7 +61,7 @@ public class UpgradeSceneController : MonoBehaviour
         }
         UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
         unitInfo.SetUnit(_unit);
-        unitInfo.Init(null, (int)CUR_EVENT.COMPLETE_RELEASE,OnQuitClick);
+        unitInfo.Init(null, CUR_EVENT.COMPLETE_RELEASE,OnQuitClick);
     }
 
     public void OnUpgradeSelect(int select)
@@ -95,7 +95,7 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         UI_UnitInfo _UnitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
         _UnitInfo.SetUnit(_unit);
-        _UnitInfo.Init(null, (int)CUR_EVENT.COMPLETE_UPGRADE,OnQuitClick);
+        _UnitInfo.Init(null, CUR_EVENT.COMPLETE_UPGRADE,OnQuitClick);
     }
     public void OnQuitClick()
     {

@@ -73,4 +73,10 @@ public class StigmaController
             return _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
         }
      }
+    public Stigma GetHarlotStigmas()
+    {
+        int size = _harlotStigmaList.Count;
+        int randNum = Random.Range(0, size);
+        return _harlotStigmaList[randNum];
+    }
 }

@@ -29,13 +29,13 @@ public class UI_UnitInfo : UI_Popup
     UnitDataSO Data => _unit.Data;
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
-    private int evNum = 0;
+    private CUR_EVENT evNum = 0;
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
     }
 
-    public void Init(Action<DeckUnit> onSelect=null,int Eventnum=0,Action endEvent=null)
+    public void Init(Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum=0,Action endEvent=null)
     {
         _unitImage.GetComponent<Image>();
         _unitImage.sprite = _unit.Data.Image;
@@ -43,13 +43,13 @@ public class UI_UnitInfo : UI_Popup
         _endEvent = endEvent;
         _selectButton.SetActive(onSelect != null);
         evNum = Eventnum;
-        if (evNum == (int)CUR_EVENT.COMPLETE_UPGRADE|| evNum == (int)CUR_EVENT.COMPLETE_RELEASE
-            ||evNum == (int)CUR_EVENT.COMPLETE_STIGMA)
+        if (evNum == CUR_EVENT.COMPLETE_UPGRADE|| evNum == CUR_EVENT.COMPLETE_RELEASE
+            ||evNum == CUR_EVENT.COMPLETE_STIGMA)
         {
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
         }
-        if (evNum == (int)CUR_EVENT.STIGMA_EXCEPTION)
+        if (evNum == CUR_EVENT.STIGMA_EXCEPTION)
             Select();
         _unitInfoName.text = _unit.Data.Name;
 
@@ -125,15 +125,15 @@ public class UI_UnitInfo : UI_Popup
     {
         switch (evNum)
         {
-            case (int)CUR_EVENT.STIGMA_EXCEPTION:
-            case (int)CUR_EVENT.UPGRADE:
-            case (int)CUR_EVENT.STIGMA://강화하기, 스티그마 부여하기
-            case (int)CUR_EVENT.GIVE_STIGMA:
+            case CUR_EVENT.STIGMA_EXCEPTION:
+            case CUR_EVENT.UPGRADE:
+            case CUR_EVENT.STIGMA://강화하기, 스티그마 부여하기
+            case CUR_EVENT.GIVE_STIGMA:
                 Transform e = this.transform.parent.GetChild(0);
                 e.SetAsLastSibling();
                 e.gameObject.SetActive(true);
                 break;
-            case (int)CUR_EVENT.RECEIVE_STIGMA:
+            case CUR_EVENT.RECEIVE_STIGMA:
                 break;
             default:
                 break;

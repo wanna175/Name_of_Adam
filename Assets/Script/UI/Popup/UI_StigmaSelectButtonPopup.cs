@@ -11,8 +11,8 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private DeckUnit _targetUnit;
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private Transform _grid;
-    private StigmaSceneController _sc;
-    public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaSceneController sc = null)
+    private StigmaInterface _sc;
+    public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
     {
         
         _afterPopupAction = afterPopupAction;

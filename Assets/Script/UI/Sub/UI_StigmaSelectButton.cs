@@ -11,11 +11,11 @@ public class UI_StigmaSelectButton : UI_Base
     [SerializeReference] private TextMeshProUGUI _stigmaName;
     [SerializeReference] private TextMeshProUGUI _stigmaDescription;
 
-    private StigmaSceneController _sc;
+    private StigmaInterface _sc;
     private UI_StigmaSelectButtonPopup _popup;
     private Stigma _stigma;
 
-    public void Init(Stigma stigma, StigmaSceneController sc = null, UI_StigmaSelectButtonPopup popup = null)
+    public void Init(Stigma stigma, StigmaInterface sc = null, UI_StigmaSelectButtonPopup popup = null)
     {
         _popup = popup;
         _sc = sc;

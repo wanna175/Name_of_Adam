@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StigmaSceneController : MonoBehaviour
+public class StigmaSceneController : MonoBehaviour,StigmaInterface
 {
     private DeckUnit _givestigmatizeUnit;
     private DeckUnit _stigmatizeUnit;
@@ -56,14 +56,14 @@ public class StigmaSceneController : MonoBehaviour
     public void OnStigmaUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization,(int)CUR_EVENT.STIGMA);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
     }
 
     //낙인을 받는 유닛을 고르는 함수
     public void OnSelectStigmaTargetUnit()
     {
         GameManager.UI.CloseAllPopup();
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatransfertarget, (int)CUR_EVENT.RECEIVE_STIGMA);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatransfertarget, CUR_EVENT.RECEIVE_STIGMA);
     }
 
     // 낙인을 주는 유닛을 고르는 함수,낙인 이동을 눌렀을 경우에
@@ -71,7 +71,7 @@ public class StigmaSceneController : MonoBehaviour
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_MyDeck ud =GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        ud.Init(false, OnSelectStigmatransfergiver, (int)CUR_EVENT.GIVE_STIGMA);
+        ud.Init(false, OnSelectStigmatransfergiver, CUR_EVENT.GIVE_STIGMA);
     }
 
     // 낙인소 나가기 
@@ -86,7 +86,7 @@ public class StigmaSceneController : MonoBehaviour
     {
         GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _givestigmatizeUnit.GetStigma());
     }
-    private void IsStigmaFull()
+    public void IsStigmaFull()
     {
         Debug.Log("스티그마 꽉 찼을 때 예외처리");
         _isStigmaFull = true;
@@ -119,7 +119,7 @@ public class StigmaSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
         ui.SetUnit(_stigmatizeUnit);
-        ui.Init(null, (int)CUR_EVENT.COMPLETE_STIGMA,OnQuitClick);
+        ui.Init(null, CUR_EVENT.COMPLETE_STIGMA,OnQuitClick);
     }
     public void OnSelectStigmatransfertarget(DeckUnit unit)
     {
@@ -153,9 +153,9 @@ public class StigmaSceneController : MonoBehaviour
             UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
             unitInfo.SetUnit(_stigmatizeUnit);
             if (_givestigmatizeUnit == null)
-                unitInfo.Init(OnSelectStigmatization,(int)CUR_EVENT.STIGMA_EXCEPTION);
+                unitInfo.Init(OnSelectStigmatization, CUR_EVENT.STIGMA_EXCEPTION);
             else
-                unitInfo.Init(OnSelectStigmatransfertarget,(int)CUR_EVENT.STIGMA_EXCEPTION);
+                unitInfo.Init(OnSelectStigmatransfertarget, CUR_EVENT.STIGMA_EXCEPTION);
             return;
         }
         if (_givestigmatizeUnit==null) {//낙인 부여일때

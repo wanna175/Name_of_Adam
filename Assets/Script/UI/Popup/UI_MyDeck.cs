@@ -13,10 +13,10 @@ public class UI_MyDeck : UI_Popup
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
     private Action<DeckUnit> _onSelect;
-    private int evNum=0;
+    private CUR_EVENT evNum = CUR_EVENT.NONE;
     private bool _isBossClear;
 
-    public void Init(bool battle=false, Action<DeckUnit> onSelect=null,int Eventnum = 0)
+    public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE)
     {
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
@@ -27,7 +27,7 @@ public class UI_MyDeck : UI_Popup
             _onSelect = onSelect;
         isEventScene(Eventnum);
         evNum = Eventnum;
-        if (Eventnum == (int)CUR_EVENT.GIVE_STIGMA)
+        if (evNum == CUR_EVENT.GIVE_STIGMA)
             SetCard(evNum);
         else
             SetCard();
@@ -97,7 +97,7 @@ public class UI_MyDeck : UI_Popup
 
         SetCard();
     }
-    public void SetCard()//낙인을 옮길 수 있는 사람만 셋팅하는 용도 
+    public void SetCard() 
     {
         foreach (DeckUnit unit in _playerDeck)
         {
@@ -105,7 +105,7 @@ public class UI_MyDeck : UI_Popup
         }
         
     }
-    private void SetCard(int EventNum)
+    private void SetCard(CUR_EVENT EventNum)
     {
         foreach (DeckUnit unit in _playerDeck)
         {
@@ -128,20 +128,20 @@ public class UI_MyDeck : UI_Popup
         ui.SetUnit(unit);
         ui.Init(_onSelect,evNum);
     }
-    private void isEventScene(int EventScene)
+    private void isEventScene(CUR_EVENT EventScene)
     {
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
         {
             Quit_btn.SetActive(false);
 
-            if (EventScene == (int)CUR_EVENT.UPGRADE)
+            if (EventScene == CUR_EVENT.UPGRADE)
                 _title_txt.text = "강화할 유닛을 선택하세요";
-            else if (EventScene == (int)CUR_EVENT.RELEASE)
+            else if (EventScene == CUR_EVENT.RELEASE)
                 _title_txt.text = "신앙을 회복시킬 유닛을 선택하세요";
-            else if (EventScene == (int)CUR_EVENT.STIGMA||EventScene == (int)CUR_EVENT.RECEIVE_STIGMA)
+            else if (EventScene == CUR_EVENT.STIGMA||EventScene == CUR_EVENT.RECEIVE_STIGMA)
                 _title_txt.text = "낙인을 부여할 유닛을 선택하세요";
-            else if (EventScene == (int)CUR_EVENT.GIVE_STIGMA)
+            else if (EventScene == CUR_EVENT.GIVE_STIGMA)
                 _title_txt.text = "희생시킬 유닛을 선택하세요";
         }
         else
