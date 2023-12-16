@@ -22,10 +22,10 @@ MonoBehaviour:
     ManaCost: 80
   _uniqueStigma: []
   _id: 
-  _name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4"
+  _name: "\uD22C\uBC1C\uCE74\uC778"
   _description: 
   _rarity: 1
-  _image: {fileID: -1021615806, guid: f5ec245628c09de4cb244cf171bf864c, type: 3}
+  _image: {fileID: 21300000, guid: 839b3446a948a0d42b5bf448b2701129, type: 3}
   _animatorController: {fileID: 9100000, guid: 3a1672da7b7e1974d99d41340a676204, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 4cc8d916932aad54f8611ba415ff69a1, type: 2}
   _skillEffectAnim: {fileID: 0}
