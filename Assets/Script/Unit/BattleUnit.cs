@@ -172,6 +172,13 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshBuff();
     }
 
+    public void RefreshHPBar()
+    {
+        _hpBar.RefreshHPBar(HP.FillAmount());
+        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        _hpBar.RefreshBuff();
+    }
+
     public void SetLocation(Vector2 coord)
     {
         _location = coord;
@@ -251,13 +258,13 @@ public class BattleUnit : MonoBehaviour
         }
         FallEvent = false;
 
-        HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
-        SetHPBar();
-        
-        _hpBar.RefreshHPBar(HP.FillAmount());
-
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+
+        HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
+        _hpBar.RefreshHPBar(HP.FillAmount());
+        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+
         if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
         {
             BattleManager.Instance.BattleOverCheck();

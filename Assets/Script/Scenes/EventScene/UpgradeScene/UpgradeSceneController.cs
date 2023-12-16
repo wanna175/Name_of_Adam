@@ -79,6 +79,7 @@ public class UpgradeSceneController : MonoBehaviour
         else if (select == 2)
         {
             _unit.DeckUnitUpgradeStat.MaxHP += 15;
+            _unit.DeckUnitUpgradeStat.CurrentHP += 15;
             //script.Init(GameManager.Data.ScriptData["강화소_체력"], false);
         }
         else if (select == 3)

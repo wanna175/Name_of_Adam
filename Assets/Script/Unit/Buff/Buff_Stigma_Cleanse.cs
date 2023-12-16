@@ -31,7 +31,6 @@ public class Buff_Stigma_Cleanse : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        Debug.Log("현재 감지된 버프 개수 : " + _owner.Buff.GetHasBuffNum());
         if (_owner.Buff.GetHasBuffNum() >= 2)
             caster.ChangeFall(1);
 

@@ -76,6 +76,7 @@ public class UI_HPBar : UI_Base
     {
         for (int i = 0; i < _fallGauge.Count; i++)
         {
+            _fallGauge[i].SwitchCountImage(_team);
             if (i < current)
                 _fallGauge[i].FillGauge();
             else
