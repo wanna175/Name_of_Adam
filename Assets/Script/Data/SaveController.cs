@@ -72,7 +72,7 @@ public class SaveController : MonoBehaviour
         newData.FallenUnitsData = saveFallenUnitList;
         newData.IncarnaData = CurGameData.Incarna;
         newData.UniversalPlayerSkillData = CurGameData.UniversalPlayerSkill;
-        newData.DarkEssence = CurGameData.DarkEssence;
+        newData.DarkEssence = GameManager.Data.DarkEssense;
         newData.PlayerSkillCount = CurGameData.PlayerSkillCount;
         newData.DefaultMana = 50; // 진척도에 따라 바뀌는 인자들
         newData.GuardCount = 1;   // 이 인자들을 적용하는 곳이 생기면 연동하기
