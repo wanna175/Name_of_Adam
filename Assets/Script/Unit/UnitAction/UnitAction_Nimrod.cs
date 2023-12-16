@@ -62,35 +62,41 @@ public class UnitAction_Nimrod : UnitAction
         if (_recentFace[0] == -1)
         {
             _nimrodFace = 0;
-
-            _recentFace[0] = _nimrodFace;
-
-            return;
         }
+        else 
+        {
+            int count = 0;
 
-        int count = 0;
+            foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
+            {
+                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                {
+                    count++;
+                }
+            }
+
+            if (count >= 5)
+            {
+                _nimrodFace = 2;
+            }
+            else
+            {
+                if (_recentFace[0] == _recentFace[1])
+                {
+                    _nimrodFace = _recentFace[0] == 0 ? 1 : 0;
+                }
+                else
+                {
+                    _nimrodFace = Random.Range(0, 2);
+                }
+            }
+        }
 
         foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
         {
             if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
             {
-                count++;
-            }
-        }
-
-        if (count >= 5)
-        {
-            _nimrodFace = 2;
-        }
-        else
-        {
-            if (_recentFace[0] == _recentFace[1])
-            {
-                _nimrodFace = _recentFace[0] == 0 ? 1 : 0;
-            }
-            else
-            { 
-                _nimrodFace = Random.Range(0, 2);
+                unit.AnimatorSetBool("isBright", _nimrodFace == 2);
             }
         }
 
@@ -100,8 +106,7 @@ public class UnitAction_Nimrod : UnitAction
 
     private void SetAttackTile(BattleUnit caster)
     {
-        _attackTile.Clear();
-
+        TileClear(caster.Team);
         if (_nimrodFace == 0)
         {
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
@@ -140,9 +145,15 @@ public class UnitAction_Nimrod : UnitAction
         {
             List<Vector2> nonAttackTiles = new();
 
+            foreach (ConnectedUnit unit in caster.ConnectedUnits)
+            {
+                nonAttackTiles.Add(unit.Location);
+            }
+            nonAttackTiles.Add(caster.Location);
+
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if ((unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team) || unit == caster)
+                if ((unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team))
                 {
                     nonAttackTiles.Add(unit.Location);
                 }
@@ -158,9 +169,13 @@ public class UnitAction_Nimrod : UnitAction
         }
 
         if (caster.Team == Team.Enemy)
+        {
             BattleManager.Field.SetEffectTile(_attackTile, EffectTileType.Nimrod_Attack_Enemy);
+        }
         else if (caster.Team == Team.Player)
+        {
             BattleManager.Field.SetEffectTile(_attackTile, EffectTileType.Nimrod_Attack_Friendly);
+        }
     }
 
     private void TileAdd(Vector2 coord)
@@ -170,6 +185,8 @@ public class UnitAction_Nimrod : UnitAction
 
     private void TileClear(Team team)
     {
+        _attackTile.Clear();
+
         if (team == Team.Enemy)
             BattleManager.Field.ClearEffectTile(_attackTile, EffectTileType.Nimrod_Attack_Enemy);
         else if (team == Team.Player)
@@ -181,7 +198,6 @@ public class UnitAction_Nimrod : UnitAction
         if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
             NimrodFaceCheck(caster);
-            TileClear(caster.Team);
             SetAttackTile(caster);
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_SUMMON) == ActiveTiming.FIELD_UNIT_SUMMON)
@@ -195,7 +211,6 @@ public class UnitAction_Nimrod : UnitAction
         {
             if (_nimrodFace == 1)
             {
-                TileClear(caster.Team);
                 SetAttackTile(caster);
             }
         }
@@ -216,8 +231,4 @@ public class UnitAction_Nimrod : UnitAction
 
         return false;
     }
-    /*
-    public virtual void ActionStart(BattleUnit attackUnit, List<BattleUnit> hits) => BattleManager.Instance.AttackStart(attackUnit, hits);
-    public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
-    */
 }
