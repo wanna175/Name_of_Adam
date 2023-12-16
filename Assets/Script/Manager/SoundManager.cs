@@ -28,13 +28,18 @@ public class SoundManager : MonoBehaviour
 
     public void Clear()
     {
-        foreach (AudioSource audioSource in _audioSources)
+        for (int i = 0; i < _audioSources.Length; i++)
         {
-            if (audioSource == _audioSources[(int)Sounds.BGM])
+            AudioSource audioSource = _audioSources[i];
+
+            if (audioSource != null)
             {
-                audioSource.Stop();
+                if (audioSource == _audioSources[(int)Sounds.BGM])
+                {
+                    audioSource.Stop();
+                }
+                audioSource.clip = null;
             }
-            audioSource.clip = null;
         }
         _audioClips.Clear();
     }
