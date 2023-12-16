@@ -100,7 +100,10 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void QuitBtn()
     {
-        GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
+        if (SceneChanger.GetSceneName() == "BattleScene")
+        {
+            GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
+        }
         this.transform.SetAsFirstSibling();
         this.gameObject.SetActive(false);
     }
