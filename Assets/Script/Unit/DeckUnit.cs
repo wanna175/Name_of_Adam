@@ -74,6 +74,15 @@ public class DeckUnit
         Debug.Log($"낙인 추가 완료 {stigma.name}");
         _stigma.Add(stigma);
     }
+
+    public void AddAllStigma(List<Stigma> stigmaList)
+    {
+        foreach (Stigma stigma in stigmaList)
+        {
+            AddStigma(stigma);
+        }
+    }
+
     public void DeleteStigma(Stigma stigma)
     {
         _stigma.Remove(stigma);
