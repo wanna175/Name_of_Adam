@@ -296,6 +296,7 @@ public class UnitAction : MonoBehaviour
         return true;
     }
 
+    public virtual void SetValue(int value) { }
     public virtual bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) => false;
     public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
     protected void MoveUnit(BattleUnit moveUnit, Vector2 moveVector) => BattleManager.Instance.MoveUnit(moveUnit, moveVector);

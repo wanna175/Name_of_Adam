@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6516491720742692485
+--- !u!1 &4336905129740952956
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2950990188252653416}
-  - component: {fileID: 2908782542212454162}
+  - component: {fileID: 2796238890783750973}
+  - component: {fileID: 171247975755226261}
   m_Layer: 0
-  m_Name: Stigma_LegacyOfBabel
+  m_Name: Stigma_LunarEclipse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2950990188252653416
+--- !u!4 &2796238890783750973
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6516491720742692485}
+  m_GameObject: {fileID: 4336905129740952956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,23 +32,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2908782542212454162
+--- !u!114 &171247975755226261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6516491720742692485}
+  m_GameObject: {fileID: 4336905129740952956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f954b3f2199b34eb60eb52205bd771, type: 3}
+  m_Script: {fileID: 11500000, guid: 2aa3d07844582f3428a589a7d6456aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\uBC14\uBCA8\uC758 \uC720\uC0B0"
-  _sprite: {fileID: 0}
-  _description: "\uC624\uBCA8\uB9AC\uC2A4\uD06C\uB294 \uC544\uBB34\uB7F0 \uD589\uB3D9\uB3C4
-    \uD558\uC9C0 \uBABB\uD558\uBA70, \uC2E0\uC559\uC774 \uBAA8\uB450 \uB5A8\uC5B4\uC9C0\uAC70\uB098,
-    \uB2C8\uBBC0\uB86F\uC774 \uC0AC\uB77C\uC9C0\uBA74 \uD30C\uAD34\uB429\uB2C8\uB2E4."
+  _name: "\uC6D4\uC2DD"
+  _sprite: {fileID: 21300000, guid: a8805cb784edabc4d88e4224acb8688d, type: 3}
+  _description: "\uACF5\uACA9 \uC2DC \uACF5\uACA9 \uB300\uC0C1\uACFC \uB354\uBD88\uC5B4
+    \n\uD0DC\uC591\uC758 \uD754\uC801\uC774 \uC788\uB294 \uC801\uC744 \n\uC804\uBD80
+    \uACF5\uACA9\uD558\uBA70 \uD53C\uACA9\uB41C \uBAA8\uB4E0 \n\uC801 \uC720\uB2DB\uC5D0\uAC8C
+    \uB2EC\uC758 \uD754\uC801\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   _activeTiming: 2
   _tier: 3
   _isLock: 0
