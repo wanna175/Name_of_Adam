@@ -218,6 +218,11 @@ public enum BuffEnum
     ForbiddenPact,
     Teleport,
     KillingSpree,
+
+    Collapse,
+    PermanenceOfBabel,
+    LegacyOfBabel,
+    WrathOfBabel,
 }
 
 public enum UnitActionType
