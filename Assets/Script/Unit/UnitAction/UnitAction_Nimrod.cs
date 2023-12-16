@@ -75,20 +75,21 @@ public class UnitAction_Nimrod : UnitAction
                 }
             }
 
-            if (count >= 5)
+            if (count >= 6)
             {
                 _nimrodFace = 2;
             }
+            else if (count == 0)
+            {
+                _nimrodFace = 0;
+            }
+            else if (_recentFace[0] == _recentFace[1])
+            {
+                _nimrodFace = _recentFace[0] == 0 ? 1 : 0;
+            }
             else
             {
-                if (_recentFace[0] == _recentFace[1])
-                {
-                    _nimrodFace = _recentFace[0] == 0 ? 1 : 0;
-                }
-                else
-                {
-                    _nimrodFace = Random.Range(0, 2);
-                }
+                _nimrodFace = Random.Range(0, 2);
             }
         }
 
@@ -214,7 +215,7 @@ public class UnitAction_Nimrod : UnitAction
                 SetAttackTile(caster);
             }
         }
-        else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD)
+        else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD || (activeTiming & ActiveTiming.FALLED) == ActiveTiming.FALLED)
         {
             int listCount = BattleManager.Data.BattleUnitList.Count;
             for (int i = 0; i < listCount; i++)
