@@ -53,10 +53,21 @@ public class UI_UnitInfo : UI_Popup
             Select();
         _unitInfoName.text = _unit.Data.Name;
 
-        _unitInfoStat.text =    "HP:\t" + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
-                                    "Cost:\t" + _unit.DeckUnitTotalStat.ManaCost.ToString() + "\n" +
-                                    "Attack:\t" + _unit.DeckUnitTotalStat.ATK.ToString() + "\n" +
-                                    "Speed:\t" + _unit.DeckUnitTotalStat.SPD.ToString();
+        if (_unit.Data.DarkEssenseCost > 0)
+        {
+            _unitInfoStat.text = "HP: " + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
+                                        "Cost: " + _unit.DeckUnitTotalStat.ManaCost.ToString() + "/" + _unit.Data.DarkEssenseCost.ToString() + "\n" +
+                                        "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + "\n" +
+                                        "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString();
+        }
+        else
+        {
+            _unitInfoStat.text = "HP: " + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
+                                        "Cost: " + _unit.DeckUnitTotalStat.ManaCost.ToString() + "\n" +
+                                        "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + "\n" +
+                                        "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString();
+        }
+
 
         for (int i = 0; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {

@@ -59,9 +59,21 @@ public class UI_Info : UI_Scene
             _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + battleUnit.DeckUnit.Data.Name);
         }
 
-        string statText = "ATK: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
-                                "SPD:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
-                                "COST:  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "</color>";
+        string statText;
+
+        if (unit.Data.DarkEssenseCost > 0)
+        {
+                statText = "ATK: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
+                        "SPD:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
+                        "COST:  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
+        }
+        else
+        {
+                statText = "ATK: " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
+                        "SPD:  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
+                        "COST:  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "</color>";
+        }
+
                                 
         string hpText = battleUnit.BattleUnitTotalStat.CurrentHP.ToString() + "/" + battleUnit.BattleUnitTotalStat.MaxHP.ToString();
 
@@ -141,9 +153,20 @@ public class UI_Info : UI_Scene
             _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + unit.Data.Name);
         }
 
-        string statText = "ATK: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
-                                "SPD:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
-                                "COST:  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "</color>";
+        string statText;
+
+        if (unit.Data.DarkEssenseCost > 0)
+        {
+            statText = "ATK: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
+                    "SPD:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
+                    "COST:  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
+        }
+        else
+        {
+            statText = "ATK: " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n\n" +
+                    "SPD:  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n\n" +
+                    "COST:  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "</color>";
+        }
 
         string hpText = unit.DeckUnitTotalStat.CurrentHP.ToString() + "/" + unit.DeckUnitTotalStat.MaxHP.ToString();
 
