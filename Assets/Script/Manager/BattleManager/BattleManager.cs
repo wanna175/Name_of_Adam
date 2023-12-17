@@ -175,7 +175,8 @@ public class BattleManager : MonoBehaviour
     {
         if (!_field.TileDict[coord].IsColored)
         {
-            _battleUI.CancelAllSelect();
+            if (!PlayerSkillController.IsSkillOn)
+                _battleUI.CancelAllSelect();
             return;
         }
 
