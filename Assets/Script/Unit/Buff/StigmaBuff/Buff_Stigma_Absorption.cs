@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Buff_Stigma_Absorption : Buff
 {
-    int damage = 0;
-
     public override void Init(BattleUnit owner)
     {
         _name = "흡수";
@@ -14,7 +12,7 @@ public class Buff_Stigma_Absorption : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
@@ -27,13 +25,9 @@ public class Buff_Stigma_Absorption : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        _owner.GetHeal((int)(_owner.BattleUnitTotalStat.ATK * 0.3), caster);
+        if (!caster.Buff.CheckBuff(BuffEnum.Invincible)) // 무효화 버프가 없을 때만 발동
+            _owner.GetHeal((int)(_owner.BattleUnitTotalStat.ATK * 0.3), caster);
 
         return false;
-    }
-
-    public override void SetValue(int num)
-    {
-        damage = num;
     }
 }
