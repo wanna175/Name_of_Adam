@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2456496302950370281
+--- !u!1 &4336905129740952956
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 813428053459571622}
-  - component: {fileID: 6563323703217561898}
+  - component: {fileID: 2796238890783750973}
+  - component: {fileID: 171247975755226261}
   m_Layer: 0
-  m_Name: Stigma_SolarEclipse
+  m_Name: Stigma_Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &813428053459571622
+--- !u!4 &2796238890783750973
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2456496302950370281}
+  m_GameObject: {fileID: 4336905129740952956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,23 +32,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6563323703217561898
+--- !u!114 &171247975755226261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2456496302950370281}
+  m_GameObject: {fileID: 4336905129740952956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b08ffc7351fd7b47bf49545719644e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2aa3d07844582f3428a589a7d6456aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\uC77C\uC2DD"
+  _name: "\uD669\uD63C"
   _sprite: {fileID: 21300000, guid: 87200bc753da53446b4679e51def119c, type: 3}
-  _description: "\uD53C\uACA9\uB41C \uC801\uC5D0\uAC8C \uD0DC\uC591\uC758 \uD754\uC801\uC744
-    \uBD80\uC5EC\uD558\uBA70\r \n\uB2EC\uC758 \uD754\uC801\uC774 \uC788\uB294 \uC801
-    \uACF5\uACA9\uC2DC \n\uC790\uC2E0\uC758 \uCCB4\uB825\uC744 10 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+  _description: "\uACF5\uACA9\uC2DC \uD669\uD63C \uB514\uBC84\uD504\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4.\r\n\uD669\uD63C:
+    \uC911\uCCA9\uB9C8\uB2E4 \uD6A8\uACFC\uAC00 \uCD94\uAC00\uB429\uB2C8\uB2E4\r"
   _activeTiming: 2
   _tier: 3
   _isLock: 0

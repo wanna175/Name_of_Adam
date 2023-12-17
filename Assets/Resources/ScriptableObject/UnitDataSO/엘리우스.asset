@@ -21,7 +21,7 @@ MonoBehaviour:
     FallMaxCount: 4
     ManaCost: 60
   _uniqueStigma:
-  - {fileID: 6563323703217561898, guid: 9f4c3246ea2397144b13e6e1eb69269b, type: 3}
+  - {fileID: 171247975755226261, guid: e2453f4d561b4694d8202f89587122af, type: 3}
   _id: 
   _name: "\uC5D8\uB9AC\uC6B0\uC2A4"
   _description: "\uC804\uBC29 3\uCE78\uC5D0 \uC788\uB294 \uC801\uC5D0\uAC8C (ATK)\uC758

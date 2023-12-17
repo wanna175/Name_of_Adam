@@ -125,4 +125,16 @@ public class UnitBuff : MonoBehaviour
 
         return buffNum;
     }
+
+    public int GetBuffStack(BuffEnum buffEnum)
+    {
+        for (int i = 0; i < _buffList.Count; i++)
+        {
+            if (_buffList[i].BuffEnum == buffEnum)
+            {
+                return _buffList[i].Count;
+            }
+        }
+        return 0;
+    }
 }
