@@ -193,8 +193,8 @@ public enum BuffEnum
     Expand,
     BishopsPraise,
     Thirst,
-    SolarEclipse,
-    LunarEclipse,
+    TraceOfDust,
+    Dust,
 
     DeathStrike,
 
