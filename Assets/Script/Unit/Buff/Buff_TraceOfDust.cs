@@ -14,7 +14,7 @@ public class Buff_TraceOfDust: Buff
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.AFTER_ATTACK;
+        _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.NONE;
 
