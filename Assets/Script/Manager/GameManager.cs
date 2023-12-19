@@ -100,6 +100,12 @@ public class GameManager : MonoBehaviour
                     break;
 
                 unit.ChangeHP(-100);
+
+                foreach (DeckUnit units in BattleManager.Data.PlayerDeck)
+                    units.FirstTurnDiscountUndo();
+
+                foreach (DeckUnit units in BattleManager.Data.PlayerHands)
+                    units.FirstTurnDiscountUndo();
             }
             BattleManager.Instance.BattleOverCheck();
         }
