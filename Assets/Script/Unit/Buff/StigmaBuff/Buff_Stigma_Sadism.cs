@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_Sadism : Buff
 {
-    private int attackUp = 3;
+    private int attackUp;
     private int totalUp = 0;
     public override void Init(BattleUnit owner)
     {
@@ -16,7 +16,7 @@ public class Buff_Stigma_Sadism : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
+        _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
 
         _owner = owner;
 
@@ -29,7 +29,7 @@ public class Buff_Stigma_Sadism : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        totalUp += attackUp;
+        totalUp += _owner.AttackUnitNum * attackUp;
 
         return false;
     }
