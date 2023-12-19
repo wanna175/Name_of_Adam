@@ -20,7 +20,8 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 4
     ManaCost: 80
-  _uniqueStigma: []
+  _uniqueStigma:
+  - {fileID: 2365623459316079155, guid: 46c0e013379eac24b956f1378c4218f3, type: 3}
   _id: 
   _name: "\uD22C\uBC1C\uCE74\uC778"
   _description: 

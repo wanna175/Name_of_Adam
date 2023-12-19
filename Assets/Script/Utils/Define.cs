@@ -223,6 +223,7 @@ public enum BuffEnum
     PermanenceOfBabel,
     LegacyOfBabel,
     WrathOfBabel,
+    Charge,
 }
 
 public enum UnitActionType

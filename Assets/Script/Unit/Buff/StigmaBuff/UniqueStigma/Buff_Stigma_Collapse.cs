@@ -6,7 +6,7 @@ public class Buff_Stigma_Collapse : Buff
     {
         _buffEnum = BuffEnum.Collapse;
 
-        _name = "바벨의 유산";
+        _name = "붕괴";
 
         _description = "오벨리스크는 아무런 행동도 하지 못하며, 신앙이 모두 떨어지거나, 니므롯이 사라지면 파괴됩니다.";
 
