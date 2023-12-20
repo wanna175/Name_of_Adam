@@ -7,6 +7,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 {
     private DeckUnit _stigmatizeUnit;
     private Stigma stigma;
+    private List<DeckUnit> _RestorationUnits;
     [SerializeField] private GameObject _SelectStigmaButton = null;
     [SerializeField] private GameObject _getOriginUnitButton = null;
 
@@ -23,6 +24,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         scripts = new List<Script>();
         _isStigmaFull = false;
+        _RestorationUnits = new List<DeckUnit>();
         /*if (GameManager.Data.GameData.isVisitHarlot == false)
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
         else
@@ -37,7 +39,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         int current_DarkEssense = GameManager.Data.DarkEssense;
         if (current_DarkEssense < 12)
             _getOriginUnitButton.SetActive(false);
-        if (current_DarkEssense < 1)
+        if (current_DarkEssense < 7)
             _SelectStigmaButton.SetActive(false);
         /*
         if(GameManager.Data.GameData)
@@ -53,9 +55,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
     {
-        //GameManager.UI.ShowPopup<UI_MyDeck>().Init(false,)
+        GameManager.UI.ShowPopup<UI_MyDeck>().Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
     }
-
+    public void OnSelectRestoration(DeckUnit unit)
+    {
+        _RestorationUnits.Add(unit);
+        GameManager.UI.ClosePopup();
+    }
     // 유닛 선택 후 타락 관련 낙인 부여 버튼
     public void OnStigmaButtonClick()
     {
@@ -124,6 +130,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnQuitClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        if (_RestorationUnits.Count != 0)
+        {
+            GameManager.Data.DarkEssenseChage(_RestorationUnits.Count * 3);//일단 유닛당 검은정수 3준다고 가정하자
+            foreach(DeckUnit delunit in _RestorationUnits)
+                GameManager.Data.RemoveDeckUnit(delunit);
+        }
+
         StartCoroutine(QuitScene());
     }
     private IEnumerator QuitScene(UI_Conversation eventScript = null)

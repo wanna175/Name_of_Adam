@@ -8,16 +8,20 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private GameObject CardPrefabs;
     [SerializeField] private Transform Grid;
     [SerializeField] private GameObject Quit_btn;//종료버튼
+    [SerializeField] private GameObject Set_btn;//결정 버튼
     [SerializeField] private TextMeshProUGUI _quit_txt;//제목 텍스트
     [SerializeField] private TextMeshProUGUI _title_txt;//제목 텍스트
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
+    private Dictionary<DeckUnit,UI_Card> _card_dic = new();
     private Action<DeckUnit> _onSelect;
+    private Action _endEvent;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
     private bool _isBossClear;
 
-    public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE)
+    public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE,Action endEvent=null)
     {
+        Set_btn.SetActive(false);
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
@@ -25,6 +29,8 @@ public class UI_MyDeck : UI_Popup
 
         if (onSelect != null)
             _onSelect = onSelect;
+        if (endEvent != null)
+            _endEvent = endEvent;
         isEventScene(Eventnum);
         evNum = Eventnum;
         if (evNum == CUR_EVENT.GIVE_STIGMA)
@@ -119,6 +125,8 @@ public class UI_MyDeck : UI_Popup
     {
         UI_Card newCard = GameObject.Instantiate(CardPrefabs, Grid).GetComponent<UI_Card>();
         newCard.SetCardInfo(this, unit);
+
+        _card_dic[unit] = newCard;
     }
 
     public void OnClickCard(DeckUnit unit)
@@ -126,7 +134,19 @@ public class UI_MyDeck : UI_Popup
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
 
         ui.SetUnit(unit);
-        ui.Init(_onSelect,evNum);
+        if (evNum == CUR_EVENT.HARLOT_RESTORATION)
+            ui.Restoration(_onSelect,evNum, OnSelectRestorationUnit);
+        else
+            ui.Init(_onSelect, evNum);
+    }
+    public void OnSelectRestorationUnit(DeckUnit unit)
+    {
+        _card_dic[unit].SelectCard();
+    }
+    //유닛 환원 시 결정버튼...
+    public void SetButtonClick()
+    {
+        _endEvent.Invoke();
     }
     private void isEventScene(CUR_EVENT EventScene)
     {
@@ -139,10 +159,15 @@ public class UI_MyDeck : UI_Popup
                 _title_txt.text = "강화할 유닛을 선택하세요";
             else if (EventScene == CUR_EVENT.RELEASE)
                 _title_txt.text = "신앙을 회복시킬 유닛을 선택하세요";
-            else if (EventScene == CUR_EVENT.STIGMA||EventScene == CUR_EVENT.RECEIVE_STIGMA)
+            else if (EventScene == CUR_EVENT.STIGMA || EventScene == CUR_EVENT.RECEIVE_STIGMA)
                 _title_txt.text = "낙인을 부여할 유닛을 선택하세요";
             else if (EventScene == CUR_EVENT.GIVE_STIGMA)
                 _title_txt.text = "희생시킬 유닛을 선택하세요";
+            else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
+            {
+                _title_txt.text = "환원시킬 유닛을 선택하세요";
+                Set_btn.SetActive(true);
+            }
         }
         else
         {

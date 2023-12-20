@@ -36,7 +36,10 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             SetDisable(unit);
         }
     }
-
+    public void SelectCard()
+    {
+        this._highlight.SetActive(true);
+    }
     public void SetDisable(DeckUnit unit)
     {
         _disable.SetActive(unit.IsMainDeck);
