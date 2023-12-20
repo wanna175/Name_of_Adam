@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class UnitAction_Centaurus : UnitAction
+public class UnitAction_Tubalcain : UnitAction
 {
     private List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
     private bool _isMove = false;
 
     public override void AISkillUse(BattleUnit attackUnit)
     {
-        List<Vector2> MinHPUnit = CentaurusAttackSearch(attackUnit);
+        List<Vector2> MinHPUnit = ChargeAttackSearch(attackUnit);
 
         if (MinHPUnit.Count > 0)
         {
@@ -18,7 +18,7 @@ public class UnitAction_Centaurus : UnitAction
             BattleManager.Instance.EndUnitAction();
     }
 
-    private List<Vector2> CentaurusAttackSearch(BattleUnit caster)
+    private List<Vector2> ChargeAttackSearch(BattleUnit caster)
     {
         Dictionary<Vector2, int> AttackableFour = new();
         List<Vector2> attackRange = caster.GetAttackRange();
