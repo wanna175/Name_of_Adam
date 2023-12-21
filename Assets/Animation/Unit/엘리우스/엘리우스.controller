@@ -57,7 +57,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC624\uBE60_Attack"
+  m_Name: "\uC5D8\uB9AC\uC6B0\uC2A4_Attack"
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -84,7 +84,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC624\uBE60_Idle"
+  m_Name: "\uC5D8\uB9AC\uC6B0\uC2A4_Idle"
   m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
@@ -224,7 +224,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC624\uBE60_Hit"
+  m_Name: "\uC5D8\uB9AC\uC6B0\uC2A4_Hit"
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

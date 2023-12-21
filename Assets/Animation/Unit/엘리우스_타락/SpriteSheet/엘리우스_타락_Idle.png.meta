@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 602cc68a1f8937243a5ebe80fe96a798
+guid: 04789a132d27f7a4dbabc63fed63b431
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,38 +113,131 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: elite bro2_white_0
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 250
-        height: 256
-      alignment: 9
+        width: 300
+        height: 192
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d45724c6f547f7342beb67ac9debf00a
-      internalID: -578576059
+      spriteID: 2a05ace1fa2503a4b968ff6aa13e43f9
+      internalID: 1989925656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_1"
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c53981c734addec42896e5d880df3125
+      internalID: 660476453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_2"
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7492829053f9ede478bf3daf3a244fc7
+      internalID: 1038757566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_3"
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05ccb9174731a547aa29793407465b3
+      internalID: 43170012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_4"
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0570ae5fef843414796b84d72c53bd74
+      internalID: 873097167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_5"
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d1d158aaa6636746acf0311f67f8d3d
+      internalID: 25591861
       vertices: []
       indices: 
       edges: []
@@ -160,7 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      elite bro2_white_0: -578576059
+      "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_2": 1038757566
+      "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_4": 873097167
+      "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_1": 660476453
+      "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_3": 43170012
+      "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_0": 1989925656
+      "\uC5D8\uB9AC\uC6B0\uC2A4_\uD0C0\uB77D_Idle_5": 25591861
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
