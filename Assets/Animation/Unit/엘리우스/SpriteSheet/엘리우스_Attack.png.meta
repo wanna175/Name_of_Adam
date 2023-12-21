@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b4d2f4ef610af324c9b1c37dfab0ccd7
+guid: 5deefbeb151905746b9841c39f41638e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,38 +113,131 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: elite bro2_white_0
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 250
-        height: 256
-      alignment: 9
+        width: 300
+        height: 192
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d45724c6f547f7342beb67ac9debf00a
-      internalID: -578576059
+      spriteID: f0f000e037691f14bbf2eeeb596f20b2
+      internalID: 1443584346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_1"
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507d49978b2c2cf49ab49953c07419a4
+      internalID: -601279088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_2"
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e9bd94d8c9b3ce4c95ab2c0543e869e
+      internalID: -15083863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_3"
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad490947d292f144856a739eaeaca9e
+      internalID: -2064608417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_4"
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46ae112a7a4dcca4b8f9a43b83e21ce4
+      internalID: -1953172908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_5"
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 300
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7dbe5e4419530f4a8a1e5d9bae58329
+      internalID: -767712980
       vertices: []
       indices: 
       edges: []
@@ -160,7 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      elite bro2_white_0: -578576059
+      "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_3": -2064608417
+      "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_1": -601279088
+      "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_0": 1443584346
+      "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_2": -15083863
+      "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_4": -1953172908
+      "\uC5D8\uB9AC\uC6B0\uC2A4_Attack_5": -767712980
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
