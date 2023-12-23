@@ -9,6 +9,7 @@ using TMPro;
 public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _selectHighlight;
     [SerializeField] private GameObject _disable;
     [SerializeField] private Image _unitImage;
     [SerializeField] private TextMeshProUGUI _name;
@@ -19,6 +20,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     private void Start()
     {
         _highlight.SetActive(false);
+        _selectHighlight.SetActive(false);
     }
 
     public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit)
@@ -38,8 +40,12 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     }
     public void SelectCard()
     {
-        this._highlight.SetActive(true);
+        if (!_selectHighlight.activeInHierarchy)
+            this._selectHighlight.SetActive(true);
+        else
+            this._selectHighlight.SetActive(false);
     }
+
     public void SetDisable(DeckUnit unit)
     {
         _disable.SetActive(unit.IsMainDeck);

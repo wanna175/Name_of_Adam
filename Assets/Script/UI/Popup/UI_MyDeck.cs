@@ -165,7 +165,7 @@ public class UI_MyDeck : UI_Popup
                 _title_txt.text = "희생시킬 유닛을 선택하세요";
             else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
             {
-                _title_txt.text = "환원시킬 유닛을 선택하세요";
+                _title_txt.text = "환원시킬 유닛들을 선택하세요";
                 Set_btn.SetActive(true);
             }
         }

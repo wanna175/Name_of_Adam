@@ -45,7 +45,7 @@ public class UI_UnitInfo : UI_Popup
         _selectButton.SetActive(onSelect != null);
         evNum = Eventnum;
         if (evNum == CUR_EVENT.COMPLETE_UPGRADE|| evNum == CUR_EVENT.COMPLETE_RELEASE
-            ||evNum == CUR_EVENT.COMPLETE_STIGMA)
+            ||evNum == CUR_EVENT.COMPLETE_STIGMA ||evNum == CUR_EVENT.COMPLETE_HAELOT)
         {
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
@@ -150,6 +150,8 @@ public class UI_UnitInfo : UI_Popup
     }
     public void compeleteClick()
     {
+        if (evNum == CUR_EVENT.COMPLETE_HAELOT && _onSelect != null)
+            _onSelect(_unit);
         gameObject.SetActive(false);
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (_endEvent != null)

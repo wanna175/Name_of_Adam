@@ -10,6 +10,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     private List<DeckUnit> _RestorationUnits;
     [SerializeField] private GameObject _SelectStigmaButton = null;
     [SerializeField] private GameObject _getOriginUnitButton = null;
+    [SerializeField] private List<DeckUnit> _originUnits = null;
 
     List<Script> scripts = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
@@ -37,7 +38,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         Debug.Log(stigma.Name);
         Debug.Log("검은 정수: " + GameManager.Data.DarkEssense);
         int current_DarkEssense = GameManager.Data.DarkEssense;
-        if (current_DarkEssense < 12)
+        if (current_DarkEssense < 1)
             _getOriginUnitButton.SetActive(false);
         if (current_DarkEssense < 7)
             _SelectStigmaButton.SetActive(false);
@@ -51,6 +52,24 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             _forbiddenButton.gameObject.SetActive(false);
         }
         */
+    }
+    //오리지날 유닛 연성하기
+    public void OnMakeOriginUnitClick()
+    {
+        //연출하기 애니매이션 끝나면 
+        //Debug.Log(GameManager.Data.GameData.DeckUnits);
+       
+        UI_UnitInfo _ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
+        _ui.SetUnit(_originUnits[2]);
+        _ui.Init(OnSelectMakeUnit,CUR_EVENT.COMPLETE_HAELOT,OnQuitClick);
+
+    }
+    public void OnSelectMakeUnit(DeckUnit unit)
+    {
+        Debug.Log("시발시발 왜 안되냐");
+        GameManager.Data.AddDeckUnit(unit);
+        Debug.Log("시발 : "+unit.Data.name);
+    
     }
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
@@ -130,9 +149,14 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnQuitClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
-        if (_RestorationUnits.Count != 0)
+        if (_RestorationUnits.Count == GameManager.Data.GetDeck().Count)
         {
-            GameManager.Data.DarkEssenseChage(_RestorationUnits.Count * 3);//일단 유닛당 검은정수 3준다고 가정하자
+            Debug.Log("유닛은 하나 이상 남겨야 합니다.");
+            return;
+        }
+        else if (_RestorationUnits.Count != 0)
+        {
+            GameManager.Data.DarkEssenseChage(_RestorationUnits.Count);
             foreach(DeckUnit delunit in _RestorationUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
