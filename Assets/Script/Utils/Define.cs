@@ -250,3 +250,15 @@ public enum EffectTileType
     Nimrod_Attack_Enemy,
     Nimrod_Attack_Friendly
 }
+
+public enum TutorialStep
+{
+    UI_PlayerTurn = TutorialManager.STEP_BOUNDARY,
+
+    Tooltip_ManaInfo = UI_PlayerTurn - TutorialManager.STEP_BOUNDARY,
+    Tooltip_UnitInfo,
+    Tooltip_PlayerSkillInfo,
+    Tooltip_DeckUnitSelect,
+    Tooltip_UnitSpawnSelect,
+    Tooltip_TurnEnd,
+}

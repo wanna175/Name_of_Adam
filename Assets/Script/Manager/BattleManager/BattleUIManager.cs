@@ -98,49 +98,6 @@ public class BattleUIManager : MonoBehaviour
         UI_playerSkill.CancelSelect();
     }
 
-    public void ShowTutorial()
-    {
-        PhaseController phaseController = BattleManager.Phase;
-        int curID = GameManager.Data.Map.CurrentTileID;
-
-        UI_Tutorial UItutorial = GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>();
-
-        if (!GameManager.OutGameData.isTutorialClear())
-        {
-            if (curID == 1 && GameManager.Data.StageAct == 0)
-            {
-                if (GameManager.Data.Tutorial_Trigger_First == true)
-                {
-                    if (phaseController.CurrentPhaseCheck(phaseController.Prepare))
-                    {
-                        UItutorial.TutorialActive(0);
-                    }
-                    else if (phaseController.CurrentPhaseCheck(phaseController.Engage))
-                    {
-                        UItutorial.TutorialActive(4);
-                        GameManager.Data.Tutorial_Trigger_First = false;
-                    }
-                }
-            }
-            else if (curID == 2 && GameManager.Data.StageAct == 0)
-            {
-                if (GameManager.Data.Tutorial_Trigger_Second == true)
-                {
-                    if (phaseController.Current == phaseController.Prepare)
-                    {
-                        UItutorial.TutorialActive(8);
-                    }
-                    else if (phaseController.Current == phaseController.Engage)
-                    {
-                        UItutorial.TutorialActive(12);
-                        GameManager.Data.Tutorial_Trigger_Second = false;
-                    }
-                }
-            }
-        }
-    }
-    
-
     private List<UI_Info> infoList = new();
 
     public UI_Info ShowInfo()

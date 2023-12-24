@@ -593,10 +593,10 @@ public class BattleManager : MonoBehaviour
                 return;
             if (!GameManager.OutGameData.isTutorialClear())
             {
-                if (GameManager.Data.StageAct == 0 && GameManager.Data.Tutorial_Benediction_Trigger == true)
+                if (GameManager.Data.StageAct == 0 && TutorialManager.Instance.Tutorial_Benediction_Trigger == true)
                 {
                     GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
-                    GameManager.Data.Tutorial_Benediction_Trigger = false;
+                    TutorialManager.Instance.Tutorial_Benediction_Trigger = false;
                 }
             }
             

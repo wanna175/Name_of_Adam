@@ -1,10 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UI_Tutorial : MonoBehaviour
 {
-    [SerializeField] List<GameObject> Tutorial;
+    [SerializeField] 
+    private List<GameObject> Tutorial;
+
+    [SerializeField]
+    private GameObject tooltip;
+
+    public bool isWorkableTooltip;
+
+    private void Start()
+    {
+        CloseToolTip();
+        SetWorkableToolTip(false);
+    }
 
     public void TutorialActive(int i)
     {
@@ -15,23 +28,41 @@ public class UI_Tutorial : MonoBehaviour
 
     public void TutorialTimeStop()
     {
-        GameManager.Data.isTutorialactive = true;
+        TutorialManager.Instance.isTutorialactive = true;
         Time.timeScale = 0;
     }
 
-    public void TutorialTimeStart()
+    private void TutorialTimeStart()
     {
-        GameManager.Data.isTutorialactive = false;
+        TutorialManager.Instance.isTutorialactive = false;
         Time.timeScale = 1;
     }
 
-    public void CloseButton()
+    public void OnCloseButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        TutorialManager.Instance.SetNextStep();
+        TutorialManager.Instance.ShowTutorial();
+        TutorialTimeStart();
     }
 
     public void NextButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
     }
+
+    public void ShowTooltip(string text)
+    {
+        tooltip.SetActive(true);
+        tooltip.GetComponentInChildren<TMP_Text>().SetText(text);
+        SetWorkableToolTip(true);
+    }
+
+    public void CloseToolTip()
+    {
+        tooltip.SetActive(false);
+        SetWorkableToolTip(false);
+    }
+
+    public void SetWorkableToolTip(bool isWorkable) => isWorkableTooltip = isWorkable;
 }

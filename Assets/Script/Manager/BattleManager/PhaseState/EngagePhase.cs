@@ -18,7 +18,8 @@ public class EngagePhase : Phase
             return;
         }
 
-        BattleManager.BattleUI.ShowTutorial();
+        if (!GameManager.OutGameData.isTutorialClear())
+            TutorialManager.Instance.ShowTutorial();
     }
 
     public override void OnStateUpdate()

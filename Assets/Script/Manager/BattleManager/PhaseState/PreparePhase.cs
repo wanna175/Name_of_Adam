@@ -16,7 +16,8 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_playerSkill.InableSkill();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
 
-        BattleManager.BattleUI.ShowTutorial();
+        if (!GameManager.OutGameData.isTutorialClear())
+            TutorialManager.Instance.ShowTutorial();
 
         BattleManager.Instance.TurnStart();
     }
