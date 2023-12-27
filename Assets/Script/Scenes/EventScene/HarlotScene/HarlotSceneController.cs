@@ -66,9 +66,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     }
     public void OnSelectMakeUnit(DeckUnit unit)
     {
-        Debug.Log("시발시발 왜 안되냐");
         GameManager.Data.AddDeckUnit(unit);
-        Debug.Log("시발 : "+unit.Data.name);
     
     }
     //유닛을 검은 정수로 환원하는 버튼
@@ -78,7 +76,11 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     }
     public void OnSelectRestoration(DeckUnit unit)
     {
-        _RestorationUnits.Add(unit);
+        if (!_RestorationUnits.Contains(unit))
+            _RestorationUnits.Add(unit);
+        else
+            _RestorationUnits.Remove(unit);
+
         GameManager.UI.ClosePopup();
     }
     // 유닛 선택 후 타락 관련 낙인 부여 버튼

@@ -13,7 +13,7 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private TextMeshProUGUI _title_txt;//제목 텍스트
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
-    private Dictionary<DeckUnit,UI_Card> _card_dic = new();
+    private Dictionary<DeckUnit,UI_Card> _card_dic = new();//선택된 유닛
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
