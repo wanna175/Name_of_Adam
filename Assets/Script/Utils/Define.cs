@@ -255,10 +255,25 @@ public enum TutorialStep
 {
     UI_PlayerTurn = TutorialManager.STEP_BOUNDARY,
 
-    Tooltip_ManaInfo = UI_PlayerTurn - TutorialManager.STEP_BOUNDARY,
+    Tooltip_ManaInfo,
     Tooltip_UnitInfo,
     Tooltip_PlayerSkillInfo,
     Tooltip_DeckUnitSelect,
     Tooltip_UnitSpawnSelect,
     Tooltip_TurnEnd,
+    Tooltip_SpeedTable,
+    Tooltip_UnitMove,
+    Tooltip_UnitAttack,
+    Tutorial_End,
+
+    UI_FallSystem = TutorialManager.STEP_BOUNDARY * 2,
+
+}
+
+public struct Tooltip
+{
+    public string info;
+    public int indexToTooltip;
+    public bool isCtrl;
+    public bool isEnd;
 }

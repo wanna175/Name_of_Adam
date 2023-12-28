@@ -34,10 +34,10 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 35
+      ManaCost: 0
     HallUnitID: 0
     IsMainDeck: 0
-  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
+  - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0
@@ -53,10 +53,10 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 20
+      ManaCost: 0
     HallUnitID: 0
     IsMainDeck: 0
-  - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
+  - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0

@@ -81,6 +81,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            if (!GameManager.OutGameData.isTutorialClear() && TutorialManager.Instance.CheckStep(TutorialStep.Tooltip_DeckUnitSelect))
+                TutorialManager.Instance.ShowNextTutorial();
+
             _hands.OnClickHand(this);
         }
     }

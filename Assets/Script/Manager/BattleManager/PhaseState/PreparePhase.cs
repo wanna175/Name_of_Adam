@@ -17,7 +17,13 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
 
         if (!GameManager.OutGameData.isTutorialClear())
+        {
+            Stat stat = new Stat();
+            stat.MaxHP = stat.CurrentHP = -20;
+            BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
+            BattleManager.Data.BattleUnitList[0].HP.Init(10, 10);
             TutorialManager.Instance.ShowTutorial();
+        }
 
         BattleManager.Instance.TurnStart();
     }

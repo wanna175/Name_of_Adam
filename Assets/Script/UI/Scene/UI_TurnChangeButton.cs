@@ -15,6 +15,9 @@ public class UI_TurnChangeButton : UI_Scene
         GameManager.Sound.Play("Stage_Transition/Engage/EngageEnter");
         PhaseController _phase = BattleManager.Phase;
 
+        if (!GameManager.OutGameData.isTutorialClear() && TutorialManager.Instance.CheckStep(TutorialStep.Tooltip_TurnEnd))
+            TutorialManager.Instance.ShowNextTutorial();
+
         if (_phase.CurrentPhaseCheck(_phase.Prepare))
             _phase.ChangePhase(_phase.Engage);
         else if (_phase.CurrentPhaseCheck(_phase.Move) && BattleManager.Data.GetNowUnit().Team == Team.Player)

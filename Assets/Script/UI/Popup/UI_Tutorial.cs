@@ -2,31 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class UI_Tutorial : MonoBehaviour
 {
-    [SerializeField] 
-    private List<GameObject> Tutorial;
+    [SerializeField]
+    private List<GameObject> UIPages;
+
+    [SerializeField]
+    private List<GameObject> UIMasks;
 
     [SerializeField]
     private GameObject tooltip;
 
-    public bool isWorkableTooltip;
+    public bool ValidToPassTooltip;
+
+    private int currentIndexToTooltip;
 
     private void Start()
     {
+        SetUIPage(-1);
+        SetUIMask(-1);
         CloseToolTip();
-        SetWorkableToolTip(false);
+        SetValidToPassToolTip(false);
     }
 
     public void TutorialActive(int i)
     {
-        GameManager.Sound.Play("UI/TutorialSFX/TutorialPopupSFX"); 
-        Tutorial[i].SetActive(true);
+        GameManager.Sound.Play("UI/TutorialSFX/TutorialPopupSFX");
+        SetUIPage(i);
         TutorialTimeStop();
     }
 
-    public void TutorialTimeStop()
+    private void TutorialTimeStop()
     {
         TutorialManager.Instance.isTutorialactive = true;
         Time.timeScale = 0;
@@ -41,8 +49,7 @@ public class UI_Tutorial : MonoBehaviour
     public void OnCloseButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
-        TutorialManager.Instance.SetNextStep();
-        TutorialManager.Instance.ShowTutorial();
+        TutorialManager.Instance.ShowNextTutorial();
         TutorialTimeStart();
     }
 
@@ -51,18 +58,48 @@ public class UI_Tutorial : MonoBehaviour
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
     }
 
-    public void ShowTooltip(string text)
+    public void ShowTooltip(string text, int indexToTooltip)
     {
         tooltip.SetActive(true);
         tooltip.GetComponentInChildren<TMP_Text>().SetText(text);
-        SetWorkableToolTip(true);
+        SetCurrentIndexToTooltip(indexToTooltip);
     }
+
+    public IEnumerator ShowTooltip(string text, int indexToTooltip, float openTime)
+    {
+        yield return new WaitForSeconds(openTime);
+        ShowTooltip(text, indexToTooltip);
+    }
+
+    public void SetCurrentIndexToTooltip(int index) => currentIndexToTooltip = index;
 
     public void CloseToolTip()
     {
         tooltip.SetActive(false);
-        SetWorkableToolTip(false);
+        SetValidToPassToolTip(false);
     }
 
-    public void SetWorkableToolTip(bool isWorkable) => isWorkableTooltip = isWorkable;
+    public void SetValidToPassToolTip(bool isValidToPass)
+    {
+        ValidToPassTooltip = isValidToPass;
+        UIMasks[currentIndexToTooltip].GetComponent<AlphaClicker>().SetEnable(!isValidToPass);
+    }
+
+    public void SetUIPage(int index)
+    {
+        foreach (GameObject go in UIPages)
+            go.SetActive(false);
+
+        if (index >= 0)
+            UIPages[index].SetActive(true);
+    }
+
+    public void SetUIMask(int index)
+    {
+        foreach (GameObject go in UIMasks)
+            go.SetActive(false);
+
+        if (index >= 0)
+            UIMasks[index].SetActive(true);
+    }
 }
