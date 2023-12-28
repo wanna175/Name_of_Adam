@@ -231,7 +231,7 @@ public class BattleUnit : MonoBehaviour
 
     public void UnitFallEvent()
     {
-        if (Data.Rarity == Rarity.오리지널)
+        if (Data.Rarity == Rarity.Original)
         {
             ChangeHP(-HP.GetCurrentHP());
             return;

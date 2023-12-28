@@ -74,13 +74,13 @@ public class UI_ProgressSummary : UI_Scene
     
     public void OnClick()
     {
-        if(_progress.EliteWin > 0)
+        if(_progress.BossWin > 0)
         {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").InitHallSave(true, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, true); });
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, true); });
         }
         else
         {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").InitHallSave(false, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, false); });
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(false, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, false); });
         }
         GameObject.Find("UI_ProgressSummary").gameObject.SetActive(false);
     }

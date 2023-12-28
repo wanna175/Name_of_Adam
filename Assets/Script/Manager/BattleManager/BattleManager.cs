@@ -457,20 +457,37 @@ public class BattleManager : MonoBehaviour
         {
             if (data.StageLevel == 20)
             {
+                GameManager.Data.GameData.Progress.BossWin++;
+
+                foreach (DeckUnit unit in Data.PlayerDeck)
+                {
+                    if (unit.Data.Rarity == Rarity.Boss)
+                    {
+                        GameManager.Data.GameData.Progress.SurvivedBoss++;
+                    }
+                    else if (unit.Data.Rarity == Rarity.Elite)
+                    {
+                        GameManager.Data.GameData.Progress.SurvivedElite++;
+                    }
+                    else
+                    {
+                        GameManager.Data.GameData.Progress.SurvivedNormal++;
+                    }
+                }
+
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
                 GameManager.SaveManager.DeleteSaveData();
             }
             else if (data.StageLevel == 10)
             {
+                GameManager.Data.GameData.Progress.EliteWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
             }
             else
             {
+                GameManager.Data.GameData.Progress.NormalWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
             }
-
-            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
-            GameManager.SaveManager.DeleteSaveData();
 
             return;
         }
