@@ -234,7 +234,7 @@ public enum UnitActionType
     UnitAction_Iana,
     UnitAction_Nimrod,
     UnitAction_Trinity,
-    UnitAction_Centaurus,
+    UnitAction_Tubalcain,
     UnitAction_Horus,
     UnitAction_Laser
 }
