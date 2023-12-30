@@ -51,7 +51,7 @@ public class UI_MyDeck : UI_Popup
 
         foreach (DeckUnit unit in _hallDeck)
         {
-            if (unit.Data.Rarity == Rarity.일반)
+            if (unit.Data.Rarity == Rarity.Normal)
             {
                 _normalDeck.Add(unit);
             }
@@ -81,7 +81,7 @@ public class UI_MyDeck : UI_Popup
 
         foreach (DeckUnit unit in _hallDeck)
         {
-            if (unit.Data.Rarity == Rarity.일반)
+            if (unit.Data.Rarity == Rarity.Normal)
             {
                 _normalDeck.Add(unit);
             }
