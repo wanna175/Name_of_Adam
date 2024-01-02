@@ -52,7 +52,11 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(BattleManager.BattleUI.UI_hands._selectedHand != null)
+        PhaseController _phase = BattleManager.Phase;
+        if (!_phase.CurrentPhaseCheck(_phase.Prepare))
+            return;
+
+        if (BattleManager.BattleUI.UI_hands._selectedHand != null)
         {
             return;
         }

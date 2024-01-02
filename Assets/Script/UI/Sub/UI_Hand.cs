@@ -79,6 +79,10 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        PhaseController _phase = BattleManager.Phase;
+        if (!_phase.CurrentPhaseCheck(_phase.Prepare))
+            return;
+
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (TutorialManager.Instance.IsEnable())
