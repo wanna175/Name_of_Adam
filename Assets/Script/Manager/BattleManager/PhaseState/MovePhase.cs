@@ -10,6 +10,10 @@ public class MovePhase : Phase
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
 
+        Debug.Log($"{_nowUnit.Data.name} : {_nowUnit.Team}");
+        if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.isTutorialClear())
+            TutorialManager.Instance.ShowNextTutorial();
+
         //�̵� �� ���� �� üũ
         _nowUnit.NextMoveSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE_TURN_START, _nowUnit);
         _nowUnit.NextMoveSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);

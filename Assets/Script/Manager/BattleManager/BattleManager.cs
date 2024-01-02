@@ -209,7 +209,7 @@ public class BattleManager : MonoBehaviour
         if (!_field.TileDict[coord].IsColored)
             return;
 
-        if (!GameManager.OutGameData.isTutorialClear() && TutorialManager.Instance.CheckStep(TutorialStep.Tooltip_UnitSpawnSelect))
+        if (TutorialManager.Instance.IsEnable())
             TutorialManager.Instance.ShowNextTutorial();
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
@@ -236,9 +236,6 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        if (!GameManager.OutGameData.isTutorialClear() && TutorialManager.Instance.CheckStep(TutorialStep.Tooltip_UnitMove))
-            TutorialManager.Instance.ShowNextTutorial();
-
         BattleUnit unit = _battleData.GetNowUnit();
         foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
         {
@@ -255,8 +252,8 @@ public class BattleManager : MonoBehaviour
         if (!_field.TileDict[coord].IsColored)
             return;
 
-        if (!GameManager.OutGameData.isTutorialClear() && TutorialManager.Instance.CheckStep(TutorialStep.Tooltip_UnitAttack))
-            TutorialManager.Instance.ShowNextTutorial();
+        if (!GameManager.OutGameData.isTutorialClear())
+            TutorialManager.Instance.DisableToolTip();
 
         BattleUnit nowUnit = _battleData.GetNowUnit();
         BattleUnit selectUnit = _field.GetUnit(coord);

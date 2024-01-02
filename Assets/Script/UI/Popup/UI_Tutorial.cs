@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using Mono.Cecil;
 
 public class UI_Tutorial : MonoBehaviour
 {
     [SerializeField]
+    private Transform UIPageParent; 
+
     private List<GameObject> UIPages;
 
     [SerializeField]
+    private Transform UIMaskParent;
+
     private List<GameObject> UIMasks;
 
     [SerializeField]
@@ -21,6 +26,14 @@ public class UI_Tutorial : MonoBehaviour
 
     private void Start()
     {
+        UIPages = new List<GameObject>();
+        for (int i = 0; i < UIPageParent.childCount; i++)
+            UIPages.Add(UIPageParent.GetChild(i).gameObject);
+
+        UIMasks = new List<GameObject>();
+        for (int i = 0; i < UIMaskParent.childCount; i++)
+            UIMasks.Add(UIMaskParent.GetChild(i).gameObject);
+
         SetUIPage(-1);
         SetUIMask(-1);
         CloseToolTip();

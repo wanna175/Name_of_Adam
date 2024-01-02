@@ -58,6 +58,9 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         }
         else if(eventData.button == PointerEventData.InputButton.Left)
         {
+            if (TutorialManager.Instance.IsEnable())
+                TutorialManager.Instance.ShowNextTutorial();
+
             _playerSkill.OnClickHand(this);
         }
     }

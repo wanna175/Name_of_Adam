@@ -264,16 +264,34 @@ public enum TutorialStep
     Tooltip_SpeedTable,
     Tooltip_UnitMove,
     Tooltip_UnitAttack,
-    Tutorial_End,
+    Tutorial_End_1,
 
     UI_FallSystem = TutorialManager.STEP_BOUNDARY * 2,
 
+    Tooltip_FallInfo = TutorialManager.STEP_BOUNDARY + Tutorial_End_1,
+    Tooltip_DarkEssenceInfo,
+    Tooltip_BlackKnightDeck,
+    Tooltip_BlackKnightSpawn,
+    Tooltip_BuffInfo,
+    Tooltip_TurnEnd_2,
+    Tooltip_TurnEnd_3,
+    Tooltip_UnitAttack_2,
+    Tooltip_PlayerSkillDeck,
+    Tooltip_PlayerSkillUse,
+    Tooltip_FallSelect,
+    Tooltip_TurnEnd_4,
+    Tooltip_UnitSwap,
+    Tooltip_UnitAttack_3,
+    Tooltip_UnitSwap_2,
+    Tooltip_UnitAttack_4,
+    Tutorial_End_2,
 }
 
-public struct Tooltip
+public struct TooltipData
 {
-    public string info;
-    public int indexToTooltip;
-    public bool isCtrl;
-    public bool isEnd;
+    public TutorialStep Step;
+    public string Info;
+    public int IndexToTooltip;
+    public bool IsCtrl;
+    public bool IsEnd;
 }

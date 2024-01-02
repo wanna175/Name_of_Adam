@@ -10,6 +10,9 @@ public class ActionPhase : Phase
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
 
+        if (_nowUnit.Team == Team.Player && TutorialManager.Instance.IsEnable())
+            TutorialManager.Instance.ShowNextTutorial();
+
         //공격 턴 시작 시 체크
         _nowUnit.NextAttackSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_START, _nowUnit);
         _nowUnit.NextAttackSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);
