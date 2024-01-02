@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,9 +42,12 @@ public class TutorialManager : MonoBehaviour
         "수녀를 공격하세요.[CTRL]",
         "흑기사를 클릭해 겸벙과 위치를 변경하세요.[CTRL]",
         "수녀를 처치하세요.[CTRL]",
+        "",
     };
 
-    public const int STEP_BOUNDARY = 1000;
+    public const int STEP_BOUNDARY = 100;
+
+    private const float RECLICK_TIME = 0.5f;
 
     private static TutorialManager _instance;
     public static TutorialManager Instance
@@ -69,13 +73,9 @@ public class TutorialManager : MonoBehaviour
 
     private TooltipData currentTooltip;
 
+    public bool IsTutorialactive;
     private bool isEnable;
-
-    public bool Tutorial_Trigger_First = true;
-    public bool Tutorial_Trigger_Second = true;
-    public bool Tutorial_Benediction_Trigger = true;
-    public bool Tutorial_Stage_Trigger = true;
-    public bool isTutorialactive = false;
+    private bool isCanClick;
 
     private void Awake()
     {
@@ -90,7 +90,10 @@ public class TutorialManager : MonoBehaviour
         {
             case 1: _step = TutorialStep.UI_PlayerTurn; break;
             case 2: _step = TutorialStep.UI_FallSystem; break;
+            case 3: _step = TutorialStep.UI_UnitDead; break;
         }
+
+        isCanClick = true;
     }
 
     private void Update()
@@ -100,8 +103,9 @@ public class TutorialManager : MonoBehaviour
 
         if (UI.ValidToPassTooltip)
         {
-            if (GameManager.InputManager.Click)
+            if (isCanClick && GameManager.InputManager.Click)
             {
+                StartCoroutine(ClickCoolTime());
                 ShowNextTutorial();
             }
         }
@@ -109,24 +113,40 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowNextTutorial()
     {
+        if (CheckStep(TutorialStep.UI_Defeat) || CheckStep(TutorialStep.UI_Last))
+            return; // 마지막 UI 튜토리얼 관련 Step은 조건부 동작이기 때문에 예외 처리
+
         SetNextStep();
+        ShowTutorial();
+    }
+
+    public void ShowPreviousTutorial()
+    {
+        SetPreviousStep();
         ShowTutorial();
     }
 
     public bool IsEnable()
         => !GameManager.OutGameData.isTutorialClear() && isEnable;
 
-    private void SetNextStep()
+    public void SetNextStep()
     {
         TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
         int next = Array.IndexOf(steps, _step) + 1;
         _step = (steps.Length == next) ? steps[0] : steps[next];
     }
 
+    private void SetPreviousStep()
+    {
+        TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
+        int next = Array.IndexOf(steps, _step) - 1;
+        _step = (steps.Length == -1) ? steps[steps.Length - 1] : steps[next];
+    }
+
     private bool IsToolTip(TutorialStep step)
         => (int)step % STEP_BOUNDARY != 0;
 
-    private TooltipData AnalyzeStep(TutorialStep step)
+    private TooltipData AnalyzeTooltip(TutorialStep step)
     {
         TooltipData tooltip = new TooltipData();
         int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
@@ -137,20 +157,26 @@ public class TutorialManager : MonoBehaviour
         tooltip.IsCtrl = TooltipTexts[indexToTooltip].Contains("[CTRL]");
         tooltip.IsEnd = false;
 
-        if (CheckStep(TutorialStep.Tutorial_End_1) || CheckStep(TutorialStep.Tutorial_End_2))
+        if (CheckStep(TutorialStep.Tutorial_End_1) || 
+            CheckStep(TutorialStep.Tutorial_End_2) || 
+            CheckStep(TutorialStep.Tutorial_End_3))
             tooltip.IsEnd = true;
 
         return tooltip;
     }
 
+    private int AnalyzeUI(TutorialStep step) => (int)step / STEP_BOUNDARY - 1;
+
     public bool CheckStep(TutorialStep step) => this.Step == step;
 
     public void ShowTutorial()
     {
+        Debug.Log(Step);
+
         if (IsToolTip(_step))
         {
             // Tooltip 모드
-            currentTooltip = AnalyzeStep(_step);
+            currentTooltip = AnalyzeTooltip(_step);
             if (currentTooltip.IsEnd)
                 DisableToolTip();
             else
@@ -159,48 +185,10 @@ public class TutorialManager : MonoBehaviour
         else
         {
             // UI 모드
+            int indexToUI = AnalyzeUI(_step);
             isEnable = true;
-            switch (_step)
-            {
-                case TutorialStep.UI_PlayerTurn:
-                    UI.TutorialActive(0);
-                    break;
-                case TutorialStep.UI_FallSystem:
-                    UI.TutorialActive(1);
-                    break;
-            }
+            UI.TutorialActive(indexToUI);
         }
-
-        //if (curID == 1 && GameManager.Data.StageAct == 0)
-        //{
-        //    if (Tutorial_Trigger_First == true)
-        //    {
-        //        if (phaseController.CurrentPhaseCheck(phaseController.Prepare))
-        //        {
-        //            UI.TutorialActive(0);
-        //        }
-        //        else if (phaseController.CurrentPhaseCheck(phaseController.Engage))
-        //        {
-        //            UI.TutorialActive(1);
-        //            Tutorial_Trigger_First = false;
-        //        }
-        //    }
-        //}
-        //else if (curID == 2 && GameManager.Data.StageAct == 0)
-        //{
-        //    if (Tutorial_Trigger_Second == true)
-        //    {
-        //        if (phaseController.Current == phaseController.Prepare)
-        //        {
-        //            UI.TutorialActive(8);
-        //        }
-        //        else if (phaseController.Current == phaseController.Engage)
-        //        {
-        //            UI.TutorialActive(12);
-        //            Tutorial_Trigger_Second = false;
-        //        }
-        //    }
-        //}
     }
 
     public void DisableToolTip()
@@ -223,7 +211,6 @@ public class TutorialManager : MonoBehaviour
 
     private void SetTutorialField(TutorialStep step)
     {
-        Debug.Log(Step);
         SetActiveAllTiles(false);
 
         switch (step)
@@ -265,5 +252,12 @@ public class TutorialManager : MonoBehaviour
     {
         foreach (Tile tile in BattleManager.Field.TileDict.Values)
             tile.SetActiveCollider(isActive);
+    }
+
+    private IEnumerator ClickCoolTime()
+    {
+        isCanClick = false;
+        yield return new WaitForSeconds(RECLICK_TIME);
+        isCanClick = true;
     }
 }

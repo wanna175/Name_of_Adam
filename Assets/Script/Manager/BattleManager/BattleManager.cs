@@ -595,15 +595,15 @@ public class BattleManager : MonoBehaviour
             if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction))
                 return;
 
-            if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
-                return;
             if (!GameManager.OutGameData.isTutorialClear())
             {
-                if (GameManager.Data.StageAct == 0 && TutorialManager.Instance.Tutorial_Benediction_Trigger == true)
+                if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Defeat))
                 {
-                    GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
-                    TutorialManager.Instance.Tutorial_Benediction_Trigger = false;
+                    TutorialManager.Instance.SetNextStep();
+                    TutorialManager.Instance.ShowTutorial();
                 }
+                else
+                    return;
             }
             
             lastUnit.SetBuff(new Buff_Benediction());

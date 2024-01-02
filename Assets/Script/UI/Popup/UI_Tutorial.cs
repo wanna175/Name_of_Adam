@@ -49,13 +49,13 @@ public class UI_Tutorial : MonoBehaviour
 
     private void TutorialTimeStop()
     {
-        TutorialManager.Instance.isTutorialactive = true;
+        TutorialManager.Instance.IsTutorialactive = true;
         Time.timeScale = 0;
     }
 
     private void TutorialTimeStart()
     {
-        TutorialManager.Instance.isTutorialactive = false;
+        TutorialManager.Instance.IsTutorialactive = false;
         Time.timeScale = 1;
     }
 
@@ -69,6 +69,13 @@ public class UI_Tutorial : MonoBehaviour
     public void NextButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        TutorialManager.Instance.ShowNextTutorial();
+    }
+
+    public void PreviousButton()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        TutorialManager.Instance.ShowPreviousTutorial();
     }
 
     public void ShowTooltip(string text, int indexToTooltip)

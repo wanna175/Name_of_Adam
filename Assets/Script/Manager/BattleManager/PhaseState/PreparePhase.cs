@@ -20,6 +20,7 @@ public class PreparePhase : Phase
         {
             if (TutorialManager.Instance.CheckStep(TutorialStep.UI_PlayerTurn))
             {
+                // 첫번째 튜토리얼 설정
                 Stat stat = new Stat();
                 stat.MaxHP = stat.CurrentHP = -20;
                 BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
@@ -29,6 +30,7 @@ public class PreparePhase : Phase
             }
             else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_FallSystem))
             {
+                // 두번째 튜토리얼 설정
                 Stat stat = new Stat();
                 stat.MaxHP = stat.CurrentHP = -15;
                 BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
@@ -36,6 +38,9 @@ public class PreparePhase : Phase
                 BattleManager.Data.BattleUnitList[0].ChangeFall(2);
                 TutorialManager.Instance.ShowTutorial();
             }
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_UnitDead))
+                // 세번째 튜토리얼 설정
+                TutorialManager.Instance.ShowTutorial();
             else
                 TutorialManager.Instance.ShowNextTutorial();
         }

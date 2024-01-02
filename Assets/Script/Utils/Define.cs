@@ -254,6 +254,7 @@ public enum EffectTileType
 public enum TutorialStep
 {
     UI_PlayerTurn = TutorialManager.STEP_BOUNDARY,
+    UI_UnitTurn = UI_PlayerTurn + TutorialManager.STEP_BOUNDARY,
 
     Tooltip_ManaInfo,
     Tooltip_UnitInfo,
@@ -266,9 +267,12 @@ public enum TutorialStep
     Tooltip_UnitAttack,
     Tutorial_End_1,
 
-    UI_FallSystem = TutorialManager.STEP_BOUNDARY * 2,
+    UI_FallSystem = UI_UnitTurn + TutorialManager.STEP_BOUNDARY,
+    UI_DarkEssenceInfo = UI_FallSystem + TutorialManager.STEP_BOUNDARY,
+    UI_Stigma_1 = UI_DarkEssenceInfo + TutorialManager.STEP_BOUNDARY,
+    UI_Stigma_2 = UI_Stigma_1 + TutorialManager.STEP_BOUNDARY,
 
-    Tooltip_FallInfo = TutorialManager.STEP_BOUNDARY + Tutorial_End_1,
+    Tooltip_FallInfo = UI_Stigma_2 + Tutorial_End_1 % TutorialManager.STEP_BOUNDARY,
     Tooltip_DarkEssenceInfo,
     Tooltip_BlackKnightDeck,
     Tooltip_BlackKnightSpawn,
@@ -285,6 +289,12 @@ public enum TutorialStep
     Tooltip_UnitSwap_2,
     Tooltip_UnitAttack_4,
     Tutorial_End_2,
+
+    UI_UnitDead = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
+    UI_Defeat = UI_UnitDead + TutorialManager.STEP_BOUNDARY,
+    UI_Last = UI_Defeat + TutorialManager.STEP_BOUNDARY,
+
+    Tutorial_End_3 = UI_Last + Tutorial_End_2 % TutorialManager.STEP_BOUNDARY,
 }
 
 public struct TooltipData
