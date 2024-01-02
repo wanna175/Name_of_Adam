@@ -12,6 +12,7 @@ public struct Stat
     public int FallCurrentCount;
     public int FallMaxCount;
     public int ManaCost;
+    public int CurrentUpgradeCount;
 
     public static Stat operator +(Stat lhs, Stat rhs)
     {
@@ -23,6 +24,7 @@ public struct Stat
         result.FallCurrentCount = lhs.FallCurrentCount + rhs.FallCurrentCount;
         result.FallMaxCount = lhs.FallMaxCount + rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost + rhs.ManaCost;
+        result.CurrentUpgradeCount = lhs.CurrentUpgradeCount + rhs.CurrentUpgradeCount;
 
         return result;
     }
@@ -37,6 +39,7 @@ public struct Stat
         result.FallCurrentCount = lhs.FallCurrentCount - rhs.FallCurrentCount;
         result.FallMaxCount = lhs.FallMaxCount - rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost - rhs.ManaCost;
+        result.CurrentUpgradeCount = lhs.CurrentUpgradeCount - rhs.CurrentUpgradeCount;
 
         return result;
     }
@@ -50,6 +53,7 @@ public struct Stat
         FallCurrentCount = 0;
         FallMaxCount = 0;
         ManaCost = 0;
+        CurrentUpgradeCount = 0;
     }
 }
 

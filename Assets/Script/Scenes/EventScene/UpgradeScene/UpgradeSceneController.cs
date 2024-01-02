@@ -69,7 +69,8 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
-        
+
+        _unit.DeckUnitUpgradeStat.CurrentUpgradeCount++;
 
         if (select == 1)
         {

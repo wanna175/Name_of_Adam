@@ -16,6 +16,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
+    private CUR_EVENT evNum = CUR_EVENT.NONE;
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
-            SetDisable(unit);
+            SetDisableMain(unit);
         }
     }
     public void SelectCard()
@@ -46,9 +47,17 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             this._selectHighlight.SetActive(false);
     }
 
-    public void SetDisable(DeckUnit unit)
+    public void SetDisableMain(DeckUnit unit)
     {
         _disable.SetActive(unit.IsMainDeck);
+    }
+
+    public void SetDisableUpgrade(DeckUnit unit)
+    {
+        if(unit.DeckUnitStat.CurrentUpgradeCount == unit.MaxUpgradeCount)
+        {
+            _disable.SetActive(true);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
