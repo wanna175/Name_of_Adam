@@ -359,7 +359,15 @@ public class BattleManager : MonoBehaviour
         _field.ExitTile(unit.Location);
 
         if (unit.IsConnectedUnit)
+        {
+            if (unit.Data.Name == "니므롯")
+            {
+                GameManager.Data.GameData.Progress.NimrodKill++;
+            }
+
             return;
+        }
+
 
         _battleData.BattleOrderRemove(unit);
 
@@ -373,7 +381,7 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.Data.GameData.Progress.EliteKill++;
             }
-            
+
             GameManager.Data.DarkEssenseChage(unit.Data.DarkEssenseDrop);
         }
 
