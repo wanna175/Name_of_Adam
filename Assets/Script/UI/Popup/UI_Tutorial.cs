@@ -120,6 +120,10 @@ public class UI_Tutorial : MonoBehaviour
             go.SetActive(false);
 
         if (index >= 0)
+        {
             UIMasks[index].SetActive(true);
+            var effect = UIMasks[index].GetComponentInChildren<TutorialArrow>();
+            effect.StartEffect();
+        }
     }
 }

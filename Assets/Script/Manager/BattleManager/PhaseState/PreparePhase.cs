@@ -33,9 +33,10 @@ public class PreparePhase : Phase
                 // 두번째 튜토리얼 설정
                 Stat stat = new Stat();
                 stat.MaxHP = stat.CurrentHP = -15;
+                stat.SPD = -50;
                 BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
-                BattleManager.Data.BattleUnitList[0].ChangeFall(2);
+                BattleManager.Data.BattleUnitList[0].ChangeFall(1);
                 TutorialManager.Instance.ShowTutorial();
             }
             else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_UnitDead))

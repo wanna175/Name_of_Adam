@@ -256,6 +256,7 @@ public enum TutorialStep
     UI_PlayerTurn = TutorialManager.STEP_BOUNDARY,
     UI_UnitTurn = UI_PlayerTurn + TutorialManager.STEP_BOUNDARY,
 
+    Tooltip_PlayerTurn,
     Tooltip_ManaInfo,
     Tooltip_UnitInfo,
     Tooltip_PlayerSkillInfo,
@@ -272,8 +273,7 @@ public enum TutorialStep
     UI_Stigma_1 = UI_DarkEssenceInfo + TutorialManager.STEP_BOUNDARY,
     UI_Stigma_2 = UI_Stigma_1 + TutorialManager.STEP_BOUNDARY,
 
-    Tooltip_FallInfo = UI_Stigma_2 + Tutorial_End_1 % TutorialManager.STEP_BOUNDARY,
-    Tooltip_DarkEssenceInfo,
+    Tooltip_DarkEssenceInfo = UI_Stigma_2 + Tutorial_End_1 % TutorialManager.STEP_BOUNDARY,
     Tooltip_BlackKnightDeck,
     Tooltip_BlackKnightSpawn,
     Tooltip_BuffInfo,
