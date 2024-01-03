@@ -75,24 +75,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void TurnStart()
-    {
-        //턴 시작 시 체크
-        foreach (BattleUnit unit in _battleData.BattleUnitList)
-        {
-            ActiveTimingCheck(ActiveTiming.TURN_START, unit);
-        }
-    }
-
-    public void TurnEnd()
-    {
-        foreach (BattleUnit unit in _battleData.BattleUnitList)
-        {
-            //턴 종료 시 체크
-            ActiveTimingCheck(ActiveTiming.TURN_END, unit);
-        }
-    }
-
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
@@ -250,9 +232,6 @@ public class BattleManager : MonoBehaviour
             return;
 
         BattleUnit nowUnit = _battleData.GetNowUnit();
-        BattleUnit selectUnit = _field.GetUnit(coord);
-        if (selectUnit == null || selectUnit.Team == Team.Player)
-            return;
 
         List<Vector2> attackCoords = new();
         List<BattleUnit> unitList = new();
@@ -260,6 +239,10 @@ public class BattleManager : MonoBehaviour
         
         if (nowUnit.DeckUnit.CheckStigma(new Stigma_Additional_Punishment()))
         {
+            BattleUnit selectUnit = _field.GetUnit(coord);
+            if (selectUnit == null || selectUnit.Team == Team.Player)
+                return;
+
             List<BattleUnit> additionalEnemies = _field.GetUnitsInRange(nowUnit.Location, nowUnit.GetAttackRange(), Team.Enemy);
             additionalEnemies.Remove(selectUnit);
             if (additionalEnemies.Count > 0)
@@ -351,6 +334,12 @@ public class BattleManager : MonoBehaviour
         _battleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
 
         BattleOverCheck();
+    }
+
+    public void UnitSummonEvent(BattleUnit unit)
+    {
+        _battleData.BattleUnitOrderReplace();
+        FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, unit);
     }
 
     public void UnitDeadEvent(BattleUnit unit)

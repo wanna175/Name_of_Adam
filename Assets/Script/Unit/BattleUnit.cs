@@ -104,7 +104,7 @@ public class BattleUnit : MonoBehaviour
         //소환 시 체크
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
-        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, this);
+        BattleManager.Instance.UnitSummonEvent(this);
     }
 
     public void SetTeam(Team team)
@@ -233,7 +233,8 @@ public class BattleUnit : MonoBehaviour
     {
         if (Data.Rarity == Rarity.오리지널)
         {
-            ChangeHP(-HP.GetCurrentHP());
+            UnitDiedEvent();
+            //ChangeHP(-HP.GetCurrentHP());
             return;
         }
 

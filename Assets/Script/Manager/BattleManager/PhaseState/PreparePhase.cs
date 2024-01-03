@@ -18,7 +18,8 @@ public class PreparePhase : Phase
 
         BattleManager.BattleUI.ShowTutorial();
 
-        BattleManager.Instance.TurnStart();
+        BattleManager.Data.BattleUnitOrderReplace();
+        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.TURN_START);
     }
 
     public override void OnStateUpdate()
