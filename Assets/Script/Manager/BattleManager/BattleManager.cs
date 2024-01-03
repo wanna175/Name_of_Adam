@@ -354,6 +354,15 @@ public class BattleManager : MonoBehaviour
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
+            if(unit.Data.Rarity == Rarity.Normal)
+            {
+                GameManager.Data.GameData.Progress.NormalKill++;
+            }
+            else if(unit.Data.Rarity == Rarity.Elite)
+            {
+                GameManager.Data.GameData.Progress.EliteKill++;
+            }
+            
             GameManager.Data.DarkEssenseChage(unit.Data.DarkEssenseDrop);
         }
 
@@ -432,26 +441,53 @@ public class BattleManager : MonoBehaviour
         _battleData.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
         StageData data = GameManager.Data.Map.GetCurrentStage();
-        try
+
+        if (data.StageLevel >= 10)
         {
             if (data.StageLevel == 20)
             {
+                GameManager.Data.GameData.Progress.BossWin++;
+
+                foreach (DeckUnit unit in Data.PlayerDeck)
+                {
+                    if (unit.Data.Rarity == Rarity.Boss)
+                    {
+                        GameManager.Data.GameData.Progress.SurvivedBoss++;
+                    }
+                    else if (unit.Data.Rarity == Rarity.Elite)
+                    {
+                        GameManager.Data.GameData.Progress.SurvivedElite++;
+                    }
+                    else
+                    {
+                        GameManager.Data.GameData.Progress.SurvivedNormal++;
+                    }
+                }
+
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
                 GameManager.SaveManager.DeleteSaveData();
             }
             else if (data.StageLevel == 10)
             {
+                GameManager.Data.GameData.Progress.EliteWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
             }
             else
             {
+                GameManager.Data.GameData.Progress.NormalWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
             }
+
+            return;
         }
-        catch
+        else
         {
+            GameManager.Data.GameData.Progress.NormalWin++;
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
         }
+
+        GameManager.OutGameData.SaveData();
+        GameManager.SaveManager.SaveGame();
     }
 
     private void BattleOverLose()
@@ -460,7 +496,6 @@ public class BattleManager : MonoBehaviour
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         GameManager.SaveManager.DeleteSaveData();
-        //GameManager.Data.DeckClear();
     }
 
     // 이동 경로를 받아와 이동시킨다

@@ -29,13 +29,14 @@ public class UI_UnitInfo : UI_Popup
     UnitDataSO Data => _unit.Data;
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
+    private Action<DeckUnit> _selectRestorationUnit;
     private CUR_EVENT evNum = 0;
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
     }
 
-    public void Init(Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum=0,Action endEvent=null)
+    public void Init(Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum=CUR_EVENT.NONE,Action endEvent=null)
     {
         _unitImage.GetComponent<Image>();
         _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Corrupted/" + _unit.Data.Name);
@@ -44,7 +45,7 @@ public class UI_UnitInfo : UI_Popup
         _selectButton.SetActive(onSelect != null);
         evNum = Eventnum;
         if (evNum == CUR_EVENT.COMPLETE_UPGRADE|| evNum == CUR_EVENT.COMPLETE_RELEASE
-            ||evNum == CUR_EVENT.COMPLETE_STIGMA)
+            ||evNum == CUR_EVENT.COMPLETE_STIGMA ||evNum == CUR_EVENT.COMPLETE_HAELOT)
         {
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
@@ -96,6 +97,11 @@ public class UI_UnitInfo : UI_Popup
                 block.color = Color.grey;
         }
     }
+    public void Restoration(Action<DeckUnit> OnSelect=null, CUR_EVENT Eventnum = CUR_EVENT.NONE,Action<DeckUnit> selectRestorationUnit=null)
+    {
+        this.Init(OnSelect,Eventnum);
+        _selectRestorationUnit = selectRestorationUnit;
+    } 
     public void SetAnimation()
     {
         AnimationClip clip = Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect");
@@ -111,8 +117,11 @@ public class UI_UnitInfo : UI_Popup
     public void Select()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if(_selectRestorationUnit!=null)
+            _selectRestorationUnit(_unit);
         _onSelect(_unit);
-        if (currentSceneName().Equals("EventScene"))
+
+        if (currentSceneName().Equals("EventScene")&&evNum!=CUR_EVENT.HARLOT_RESTORATION)
         {
             _quitButton.SetActive(false);
             _selectButton.SetActive(false);
@@ -141,6 +150,8 @@ public class UI_UnitInfo : UI_Popup
     }
     public void compeleteClick()
     {
+        if (evNum == CUR_EVENT.COMPLETE_HAELOT && _onSelect != null)
+            _onSelect(_unit);
         gameObject.SetActive(false);
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (_endEvent != null)

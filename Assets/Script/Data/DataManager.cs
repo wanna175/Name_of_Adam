@@ -59,6 +59,8 @@ public class DataManager : MonoBehaviour
         GameData.FallenUnits = GameDataMain.FallenUnits;
         GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
         GameData.isVisitStigma = GameDataMain.isVisitStigma;
+        GameData.Progress.ClearProgress();
+        _darkEssense = GameData.DarkEssence;
 
         //OutGame에서 업그레이드 된 스탯 + 낙인 불러와야해서 ClearStat 사용하면 안됨, 파생되는 문제 발생 시 수정 필요 
         /*
@@ -81,6 +83,7 @@ public class DataManager : MonoBehaviour
         GameData.FallenUnits.Clear();
         GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
         GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
+        GameData.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
@@ -101,6 +104,7 @@ public class DataManager : MonoBehaviour
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
         GameDataMain.isVisitUpgrade = GameDataMainLayout.isVisitUpgrade;
         GameDataMain.isVisitStigma = GameDataMainLayout.isVisitStigma;
+        GameDataMain.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameDataMain.DeckUnits)
         {
@@ -119,7 +123,7 @@ public class DataManager : MonoBehaviour
         {
             if (unit.IsMainDeck)
             {
-                if(unit.Data.Rarity != Rarity.일반)
+                if(unit.Data.Rarity != Rarity.Normal)
                 {
                     EliteHallHandDeck.Add(unit);
                     Debug.Log(unit.Data.Name);

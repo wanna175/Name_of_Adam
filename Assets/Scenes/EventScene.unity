@@ -1961,7 +1961,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1069566723}
         m_TargetAssemblyTypeName: HarlotSceneController, Assembly-CSharp
-        m_MethodName: OnUnitRestorationClick
+        m_MethodName: OnMakeOriginUnitClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2793,6 +2793,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SelectStigmaButton: {fileID: 985360534}
   _getOriginUnitButton: {fileID: 723931135}
+  _originUnits:
+  - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    HallUnitID: 0
+    IsMainDeck: 0
+  - Data: {fileID: 11400000, guid: c57a6375c60477349b3f81bc9d1c8bcf, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    HallUnitID: 0
+    IsMainDeck: 0
+  - Data: {fileID: 11400000, guid: 1cd4486fdc84ed9448d2f39965d0023e, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    HallUnitID: 0
+    IsMainDeck: 0
   _forbiddenButton: {fileID: 2084415030}
 --- !u!1 &1075067777
 GameObject:
