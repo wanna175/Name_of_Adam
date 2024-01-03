@@ -19,6 +19,7 @@ public class UI_HPBar : UI_Base
     [SerializeField] private GameObject _buff; // 타락 게이지 각 보석
 
     private List<UI_FallUnit> _fallGauge = new();
+    private int _fallGaugeCount = 0;
     private List<UI_Buff> _buffBlockList = new();
     private int _rotationMax = 0;
     private int _rotationCurrent = 0;
@@ -28,7 +29,6 @@ public class UI_HPBar : UI_Base
     private void Start()
     {
         Rotation();
-        
     }
 
     public void SetHPBar(Team team)
@@ -60,28 +60,35 @@ public class UI_HPBar : UI_Base
         int max = unit.DeckUnitTotalStat.FallMaxCount;
         int current = unit.DeckUnitTotalStat.FallCurrentCount;
 
-        if (max > 6) max = 6; // 스마게까지 타락 Max 6
-        
-        for (int i = _fallGauge.Count; i<max; i++)
+        //if (max > 6) max = 6; // 스마게까지 타락 Max 6
+        _fallGaugeCount = max - current;
+        for (int i = 0; i<4; i++)
         {
             UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
             newObject.SwitchCountImage(_team);
+            newObject.gameObject.SetActive(false);//여기까지 작성 햇슴 시발
             _fallGauge.Add(newObject);
-            if (i >= current)
-                newObject.EmptyGauge();
+   
         }
+
+        /*for(int i = 0; i < _fallGaugeCount; ++i)
+        {
+            if (i < 4)
+                _fallGauge[i].FillGauge();
+            else
+                _fallGauge[i - 4].FillGauge();
+        }*/
     }
 
     public void RefreshFallGauge(int current)
     {
-        for (int i = 0; i < _fallGauge.Count; i++)
+        
+        Debug.Log("현재 fall : " + current);
+        for (int i = 0; i < 4; ++i)
         {
             _fallGauge[i].SwitchCountImage(_team);
-            if (i < current)
-                _fallGauge[i].FillGauge();
-            else
-                _fallGauge[i].EmptyGauge();
         }
+
     }
 
     public void AddBuff(Buff buff)

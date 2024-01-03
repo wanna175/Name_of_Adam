@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0387ad3ad9244478995e9454ca8faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgrade: {fileID: 672831071934056095}
+  _upgrade: {fileID: 1069566721}
   _stigma: {fileID: 1282508234448683314}
   _harlot: {fileID: 1069566721}
 --- !u!1 &674760459
