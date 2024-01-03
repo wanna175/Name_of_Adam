@@ -92,31 +92,16 @@ public class Field : MonoBehaviour
             return TileDict[coord].Unit;
     }
 
-    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord, List<Vector2> areaCoords)
-    {
-        List<BattleUnit> units = new();
-
-        foreach (Vector2 udlr in areaCoords)
-        {
-            BattleUnit targetUnit = GetUnit(unitCoord + udlr);
-            if (targetUnit == null)
-                continue;
-            units.Add(targetUnit);
-        }
-
-        return units;
-    }
-
-    public List<BattleUnit> GetUnitsInRange(Vector2 originCoord, List<Vector2> areaCoords, Team team)
+    public List<BattleUnit> GetUnitsInRange(Vector2 originCoord, List<Vector2> areaCoords, Team? team = null)
     {
         List<BattleUnit> units = new();
 
         foreach (Vector2 coord in areaCoords)
         {
-            BattleUnit unit = BattleManager.Field.GetUnit(originCoord + coord);
+            BattleUnit unit = GetUnit(originCoord + coord);
             if (unit != null)
             {
-                if (unit.Team == team)
+                if (team == null || unit.Team == team)
                 {
                     units.Add(unit);
                 }
@@ -126,7 +111,8 @@ public class Field : MonoBehaviour
         return units;
     }
 
-    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord) => GetArroundUnits(unitCoord, UDLR);
+    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord) => GetUnitsInRange(unitCoord, UDLR);
+    public List<BattleUnit> GetArroundUnits(Vector2 unitCoord, Team team) => GetUnitsInRange(unitCoord, UDLR, team);
 
     public List<Vector2> GetFieldAllCoord()
     {
