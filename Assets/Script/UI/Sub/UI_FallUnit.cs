@@ -52,8 +52,16 @@ public class UI_FallUnit : MonoBehaviour
         }
         else
         {
-            _redCount.gameObject.SetActive(true);
-            _whiteCount.gameObject.SetActive(false);
+            if (FallCount < 2)
+            {
+                _redCount.gameObject.SetActive(true);
+                _whiteCount.gameObject.SetActive(false);
+            }
+            else
+            {
+                _redCount.gameObject.SetActive(false);
+                _whiteCount.gameObject.SetActive(true);
+            }
         }
     }
 }

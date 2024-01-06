@@ -19,7 +19,9 @@ public class UI_HPBar : UI_Base
     [SerializeField] private GameObject _buff; // 타락 게이지 각 보석
 
     private List<UI_FallUnit> _fallGauge = new();
-    private int _fallGaugeCount = 0;
+    private int _fallCountIdx = -1;
+    private int _UnitfallGaugeMax = 0;
+    private int _UnitfallGaugeCur = 0;
     private List<UI_Buff> _buffBlockList = new();
     private int _rotationMax = 0;
     private int _rotationCurrent = 0;
@@ -55,40 +57,69 @@ public class UI_HPBar : UI_Base
             _enemyBar.fillAmount = amount;
     }
 
-    public void SetFallBar(DeckUnit unit)
+    public void SetFallBar(DeckUnit unit) // unit FallMaxCount에 따라서 일단 fallbar를 셋팅한다.
     {
+        
         int max = unit.DeckUnitTotalStat.FallMaxCount;
         int current = unit.DeckUnitTotalStat.FallCurrentCount;
 
         //if (max > 6) max = 6; // 스마게까지 타락 Max 6
-        _fallGaugeCount = max - current;
+        _UnitfallGaugeMax = max;
+        _UnitfallGaugeCur = max - current;
         for (int i = 0; i<4; i++)
         {
             UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
             newObject.SwitchCountImage(_team);
-            newObject.gameObject.SetActive(false);//여기까지 작성 햇슴 시발
+            newObject.EmptyGauge();
             _fallGauge.Add(newObject);
-   
         }
-
-        /*for(int i = 0; i < _fallGaugeCount; ++i)
+        
+        if (_UnitfallGaugeCur > 4)
         {
-            if (i < 4)
+            int doubleCnt = _UnitfallGaugeCur - 4;
+            _fallCountIdx = doubleCnt - 1; 
+            for(int i = 0; i < doubleCnt; ++i)
+            {
+                _fallGauge[i].EmptyGauge();
+            }
+        }
+        else
+        {
+            _fallCountIdx = _UnitfallGaugeCur-1;
+            for (int i = 3; i > _fallCountIdx; --i)
+            {
                 _fallGauge[i].FillGauge();
-            else
-                _fallGauge[i - 4].FillGauge();
-        }*/
+            }
+        }
+        
     }
 
     public void RefreshFallGauge(int current)
     {
-        
-        Debug.Log("현재 fall : " + current);
+
+        int diff = _UnitfallGaugeCur - current;
+        _UnitfallGaugeCur = current;
+
+        if (diff == -1)
+        {
+            _fallGauge[_fallCountIdx--].FillGauge();
+            if (_fallCountIdx < 0 && _UnitfallGaugeMax != _UnitfallGaugeCur)
+                _fallCountIdx = 3;
+        }
+        else if (diff == 1)
+        {
+            _fallCountIdx++;
+            if (_fallCountIdx == 4 && _fallGauge[3].GetDouble()!=2)
+                _fallCountIdx = 0;
+            _fallGauge[_fallCountIdx].EmptyGauge();
+        }
+        else
+            Debug.Log("Same");
+
         for (int i = 0; i < 4; ++i)
         {
             _fallGauge[i].SwitchCountImage(_team);
         }
-
     }
 
     public void AddBuff(Buff buff)
