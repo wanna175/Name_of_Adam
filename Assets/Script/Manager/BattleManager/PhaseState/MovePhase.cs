@@ -10,7 +10,9 @@ public class MovePhase : Phase
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
 
-        Debug.Log($"{_nowUnit.Data.name} : {_nowUnit.Team}");
+        if (_nowUnit.Team == Team.Player)
+            BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
+        
         if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.isTutorialClear())
             TutorialManager.Instance.ShowNextTutorial();
 

@@ -236,6 +236,8 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        BattleUI.UI_TurnChangeButton.SetEnable(false);
+
         BattleUnit unit = _battleData.GetNowUnit();
         foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
         {
@@ -251,6 +253,8 @@ public class BattleManager : MonoBehaviour
     {
         if (!_field.TileDict[coord].IsColored)
             return;
+
+        BattleUI.UI_TurnChangeButton.SetEnable(false);
 
         if (!GameManager.OutGameData.isTutorialClear())
             TutorialManager.Instance.DisableToolTip();
@@ -353,8 +357,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
-        _battleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
+        BattleUI.UI_playerHP.DecreaseHP(1);
 
         BattleOverCheck();
     }
@@ -405,21 +408,15 @@ public class BattleManager : MonoBehaviour
         if (SceneChanger.GetSceneName() == "BattleTestScene")
             return;
 
-        int MyUnit = 0;
         int EnemyUnit = 0;
 
         foreach (BattleUnit unit in Data.BattleUnitList)
         {
-            if (unit.Team == Team.Player)//아군이면
-                MyUnit++;
-            else
+            if (unit.Team == Team.Enemy)//아군이면
                 EnemyUnit++;
         }
 
-        MyUnit += _battleData.PlayerDeck.Count;
-        MyUnit += _battleData.PlayerHands.Count;
-
-        if (MyUnit == 0)
+        if (GameManager.Data.GameData.PlayerHP <= 0)
         {
             BattleOverLose();
         }

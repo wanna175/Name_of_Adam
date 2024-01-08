@@ -15,6 +15,7 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_playerSkill.Used = false;
         BattleManager.BattleUI.UI_playerSkill.InableSkill();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
 
         if (!GameManager.OutGameData.isTutorialClear())
         {
@@ -75,6 +76,7 @@ public class PreparePhase : Phase
 
         BattleManager.BattleUI.CancelAllSelect();
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         BattleManager.PlayerSkillController.SetSkillDone();
     }
 }
