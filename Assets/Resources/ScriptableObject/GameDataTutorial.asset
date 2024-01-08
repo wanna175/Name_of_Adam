@@ -16,6 +16,7 @@ MonoBehaviour:
   UniversalPlayerSkill: {fileID: 0}
   Money: 0
   DarkEssence: 5
+  PlayerHP: 3
   PlayerSkillCount: 0
   DeckUnits:
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
@@ -34,7 +35,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 0
+      ManaCost: -35
     HallUnitID: 0
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
@@ -53,7 +54,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 0
+      ManaCost: -15
     HallUnitID: 0
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
@@ -72,7 +73,7 @@ MonoBehaviour:
       SPD: 0
       FallCurrentCount: 0
       FallMaxCount: 0
-      ManaCost: 0
+      ManaCost: -15
     HallUnitID: 0
     IsMainDeck: 0
   FallenUnits: []

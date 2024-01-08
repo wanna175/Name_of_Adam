@@ -171,8 +171,6 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowTutorial()
     {
-        Debug.Log(Step);
-
         if (IsToolTip(_step))
         {
             // Tooltip ¸ðµå
