@@ -51,6 +51,7 @@ public class UI_ProgressSummary : UI_Scene
 
         TMP_Text totalscore = GameObject.Find("TotalSum").GetComponent<TMP_Text>();
         totalscore.text = TotalScore.ToString();
+        GameManager.OutGameData.SetProgressCoin(TotalScore);
     }
 
     public void SetProgressText(int count, int point, string text, ProgressText progressText)

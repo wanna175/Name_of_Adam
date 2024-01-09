@@ -2,11 +2,310 @@
   "ProgressCoin": 0,
   "ProgressItems": [
     {
+      "ID": 0,
+      "Name": "시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "IsLock": false,
+      "IsUnlocked": true,
+      "Description": "시작"
+    },
+    {
       "ID": 1,
-      "Name": "진척도",
+      "Name": "강화",
+      "Cost": 10,
+      "Prequest": 0,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화 설명"
+    },
+    {
+      "ID": 2,
+      "Name": "강화2",
+      "Cost": 20,
+      "Prequest": 1,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화2 설명"
+    },
+    {
+      "ID": 3,
+      "Name": "강화3",
+      "Cost": 30,
+      "Prequest": 1,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화3 설명"
+    },
+    {
+      "ID": 4,
+      "Name": "강화4",
+      "Cost": 40,
+      "Prequest": 1,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화4 설명"
+    },
+    {
+      "ID": 5,
+      "Name": "강화5",
+      "Cost": 50,
+      "Prequest": 4,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화5 설명"
+    },
+    {
+      "ID": 6,
+      "Name": "강화6",
+      "Cost": 60,
+      "Prequest": 4,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화6 설명"
+    },
+    {
+      "ID": 7,
+      "Name": "강화7",
+      "Cost": 70,
+      "Prequest": 4,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화7 설명"
+    },
+    {
+      "ID": 8,
+      "Name": "강화8",
+      "Cost": 80,
+      "Prequest": 7,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화8 설명"
+    },
+    {
+      "ID": 9,
+      "Name": "강화9",
+      "Cost": 90,
+      "Prequest": 7,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화9 설명"
+    },
+    {
+      "ID": 10,
+      "Name": "강화10",
       "Cost": 100,
-      "Prequest": [],
-      "isLock": false
+      "Prequest": 7,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화10 설명"
+    },
+    {
+      "ID": 11,
+      "Name": "강화11",
+      "Cost": 110,
+      "Prequest": 10,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화11 설명"
+    },
+    {
+      "ID": 12,
+      "Name": "강화12",
+      "Cost": 120,
+      "Prequest": 10,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화12 설명"
+    },
+    {
+      "ID": 13,
+      "Name": "강화13",
+      "Cost": 130,
+      "Prequest": 10,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화13 설명"
+    },
+    {
+      "ID": 14,
+      "Name": "강화14",
+      "Cost": 140,
+      "Prequest": 13,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화14 설명"
+    },
+    {
+      "ID": 15,
+      "Name": "강화15",
+      "Cost": 150,
+      "Prequest": 13,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화15 설명"
+    },
+    {
+      "ID": 16,
+      "Name": "강화16",
+      "Cost": 160,
+      "Prequest": 15,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화16 설명"
+    },
+    {
+      "ID": 17,
+      "Name": "강화17",
+      "Cost": 170,
+      "Prequest": 15,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화17 설명"
+    },
+    {
+      "ID": 18,
+      "Name": "강화18",
+      "Cost": 180,
+      "Prequest": 15,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "강화18 설명"
+    },
+    {
+      "ID": 50,
+      "Name": "화신1 시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "IsLock": false,
+      "IsUnlocked": true,
+      "Description": "화신 설명"
+    },
+    {
+      "ID": 51,
+      "Cost": 10,
+      "Prequest": 50,
+      "IsLock": false,
+      "IsUnlocked": true,
+      "Description": "화신1 강화1 설명",
+      "Name": "화신강화1"
+    },
+    {
+      "ID": 52,
+      "Name": "화신강화2",
+      "Cost": 20,
+      "Prequest": 51,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신1 강화2 설명"
+    },
+    {
+      "ID": 53,
+      "Name": "화신강화3",
+      "Cost": 30,
+      "Prequest": 52,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신1 강화3 설명"
+    },
+    {
+      "ID": 54,
+      "Name": "화신강화4",
+      "Cost": 40,
+      "Prequest": 53,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신1 강화4 설명"
+    },
+    {
+      "ID": 60,
+      "Name": "화신2 시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "IsLock": false,
+      "IsUnlocked": true,
+      "Description": "강화 설명"
+    },
+    {
+      "ID": 61,
+      "Name": "화신강화1",
+      "Cost": 10,
+      "Prequest": 60,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신2 강화1 설명"
+    },
+    {
+      "ID": 62,
+      "Name": "화신강화2",
+      "Cost": 20,
+      "Prequest": 61,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신2 강화2 설명"
+    },
+    {
+      "ID": 63,
+      "Name": "화신강화3",
+      "Cost": 30,
+      "Prequest": 62,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신2 강화3 설명"
+    },
+    {
+      "ID": 64,
+      "Name": "화신강화4",
+      "Cost": 40,
+      "Prequest": 63,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신2 강화4 설명"
+    },
+    {
+      "ID": 70,
+      "Name": "화신3 시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "IsLock": false,
+      "IsUnlocked": true,
+      "Description": "강화 설명"
+    },
+    {
+      "ID": 71,
+      "Name": "화신강화1",
+      "Cost": 10,
+      "Prequest": 70,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신3 강화1 설명"
+    },
+    {
+      "ID": 72,
+      "Name": "화신강화2",
+      "Cost": 20,
+      "Prequest": 71,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신3 강화2 설명"
+    },
+    {
+      "ID": 73,
+      "Name": "화신강화3",
+      "Cost": 30,
+      "Prequest": 72,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신3 강화3 설명"
+    },
+    {
+      "ID": 74,
+      "Name": "화신강화4",
+      "Cost": 40,
+      "Prequest": 73,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "화신3 강화4 설명"
     }
   ],
   "HallUnit": [

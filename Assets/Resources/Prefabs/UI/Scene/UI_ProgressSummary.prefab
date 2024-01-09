@@ -3905,6 +3905,7 @@ MonoBehaviour:
   - ProgressObject: {fileID: 3994626580090512608}
     Progress_Count: {fileID: 3994626580090512610}
     Progress_Point: {fileID: 3994626580887782235}
+  TotalScore: 0
 --- !u!1 &3994626580240126054
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,7 +4793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 600, y: -25}
+  m_AnchoredPosition: {x: 300, y: -25}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3994626580821994588
