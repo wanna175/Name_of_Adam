@@ -11,9 +11,6 @@ public class UnitAction_Nimrod : UnitAction
 
     public override void AIMove(BattleUnit attackUnit)
     {
-        if (DirectAttackCheck())
-            return;
-
         BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
     }
      

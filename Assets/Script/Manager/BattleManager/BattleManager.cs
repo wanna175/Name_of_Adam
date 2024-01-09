@@ -322,6 +322,15 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
     }
 
+    public void AttackPlayer(BattleUnit caster)
+    {
+        BattleUnit playerUnit = GameObject.Find("PlayerUnit").GetComponent<BattleUnit>();
+        BattleCutSceneData CSData = new(caster, new List<BattleUnit> { playerUnit });
+        _battlecutScene.InitBattleCutScene(CSData);
+
+        StartCoroutine(_battlecutScene.AttackCutScene(CSData));
+    }
+
     public void EndUnitAction()
     {
         _field.ClearAllColor();
@@ -346,20 +355,10 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void DirectAttack()
+    public void DirectAttack(BattleUnit attackUnit)
     {
-        //핸드에 있는 유닛을 하나 무작위로 제거하고 배틀 종료 체크
+        AttackPlayer(attackUnit);
         Debug.Log("Direct Attack");
-
-        if (_battleData.PlayerHands.Count == 0)
-        {
-            BattleOverCheck();
-            return;
-        }
-
-        BattleUI.UI_playerHP.DecreaseHP(1);
-
-        BattleOverCheck();
     }
 
     public void UnitDeadEvent(BattleUnit unit)
