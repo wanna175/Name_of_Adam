@@ -15,8 +15,37 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_playerSkill.Used = false;
         BattleManager.BattleUI.UI_playerSkill.InableSkill();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
 
-        BattleManager.BattleUI.ShowTutorial();
+        if (!GameManager.OutGameData.isTutorialClear())
+        {
+            if (TutorialManager.Instance.CheckStep(TutorialStep.UI_PlayerTurn))
+            {
+                // 첫번째 튜토리얼 설정
+                Stat stat = new Stat();
+                stat.MaxHP = stat.CurrentHP = -20;
+                BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
+                BattleManager.Data.BattleUnitList[0].HP.Init(10, 10);
+                TutorialManager.Instance.ShowTutorial();
+
+            }
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_FallSystem))
+            {
+                // 두번째 튜토리얼 설정
+                Stat stat = new Stat();
+                stat.MaxHP = stat.CurrentHP = -15;
+                stat.SPD = -50;
+                BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
+                BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
+                BattleManager.Data.BattleUnitList[0].ChangeFall(1);
+                TutorialManager.Instance.ShowTutorial();
+            }
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_UnitDead))
+                // 세번째 튜토리얼 설정
+                TutorialManager.Instance.ShowTutorial();
+            else
+                TutorialManager.Instance.ShowNextTutorial();
+        }
 
         BattleManager.Data.BattleUnitOrderReplace();
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.TURN_START);
@@ -48,6 +77,7 @@ public class PreparePhase : Phase
 
         BattleManager.BattleUI.CancelAllSelect();
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         BattleManager.PlayerSkillController.SetSkillDone();
     }
 }

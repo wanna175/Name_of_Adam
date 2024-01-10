@@ -24,6 +24,8 @@ public class BattleCutSceneData
     public Vector3 MovePosition;
     // 공격 유닛이 바라보는 방향
     public bool AttackUnitFlipX;
+    // 플레이어 직접 공격 여부
+    public bool isPlayerAttack;
 
     public BattleCutSceneData(BattleUnit attackUnit, List<BattleUnit> hitUnits)
     {
@@ -44,8 +46,19 @@ public class BattleCutSceneData
 
         MovePosition = BattleManager.Field.GetTilePosition(GetMoveLocation(AttackUnit));
         
-        Vector3 vec = Vector3.Lerp(MovePosition, HitPosition[0], 0.5f);
-        ZoomLocation = new Vector3(vec.x, vec.y, 0);
+        
+
+        if (HitUnits != null && HitUnits.Count > 0 && HitUnits[0].gameObject.name == "PlayerUnit")
+        {
+            isPlayerAttack = true;
+            ZoomLocation = new Vector3(0f, -3f, 0);
+        }
+        else
+        {
+            isPlayerAttack = false;
+            Vector3 vec = Vector3.Lerp(MovePosition, HitPosition[0], 0.5f);
+            ZoomLocation = new Vector3(vec.x, vec.y, 0);
+        }
     }
 
     Vector2 GetMoveLocation(BattleUnit unit)

@@ -25,8 +25,10 @@ public class BattleCutSceneController : MonoBehaviour
 
         BattleManager.Field.ClearAllColor();
         _cameraHandler.SetCutSceneCamera();
-        UnitFlip(CSData);
+
         SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
+        if (!CSData.isPlayerAttack)
+            UnitFlip(CSData);
     }
 
     public IEnumerator AttackCutScene(BattleCutSceneData CSData)
@@ -38,7 +40,7 @@ public class BattleCutSceneController : MonoBehaviour
         yield return new WaitUntil(() => IsAttack);
         IsAttack = false;
 
-        UnitAttackAction(CSData.AttackUnit, CSData.HitUnits);
+        UnitAttackAction(CSData);
 
         yield return StartCoroutine(AttackedEffect(CSData));
         yield return StartCoroutine(ZoomOut(CSData));
@@ -62,21 +64,30 @@ public class BattleCutSceneController : MonoBehaviour
         return true;
     }
 
-    public void UnitAttackAction(BattleUnit attackUnit, List<BattleUnit> hitUnits)
+    public void UnitAttackAction(BattleCutSceneData CSData)
     {
-        foreach (BattleUnit hit in hitUnits)
+        foreach (BattleUnit hit in CSData.HitUnits)
         {
             if (hit == null)
                 continue;
             
             //이 함수의 위치 조정 필요
-            attackUnit.Action.Action(attackUnit, hit);
-
-            if (attackUnit.SkillEffectAnim != null)
-                GameManager.VisualEffect.StartVisualEffect(attackUnit.SkillEffectAnim, hit.transform.position);
+            if (!CSData.isPlayerAttack)
+            {
+                CSData.AttackUnit.Action.Action(CSData.AttackUnit, hit);
+            }
+            else
+            {
+                BattleManager.BattleUI.UI_playerHP.DecreaseHP(1);
+                GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+                GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", new Vector3(0, -8));
+            }
+            
+            if (CSData.AttackUnit.SkillEffectAnim != null)
+                GameManager.VisualEffect.StartVisualEffect(CSData.AttackUnit.SkillEffectAnim, hit.transform.position);
         }
 
-        string unitname = attackUnit.DeckUnit.Data.Name;
+        string unitname = CSData.AttackUnit.DeckUnit.Data.Name;
         GameManager.Sound.Play("Character/" + unitname + "/" + unitname + "_Attack");
     }
 
@@ -101,7 +112,7 @@ public class BattleCutSceneController : MonoBehaviour
     {
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            if (unit != null)
+            if (unit != null && !CSData.isPlayerAttack)
                 unit.AnimatorSetBool("isHit", true);
         }
 
@@ -110,7 +121,7 @@ public class BattleCutSceneController : MonoBehaviour
         CSData.AttackUnit.AnimatorSetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            if (unit != null)
+            if (unit != null && !CSData.isPlayerAttack)
                 unit.AnimatorSetBool("isHit", false);
         }
     }
@@ -156,7 +167,7 @@ public class BattleCutSceneController : MonoBehaviour
         foreach (BattleUnit unit in HitUnits)
         {
             if(unit != null)
-                unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+               unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
         }
     }
 }

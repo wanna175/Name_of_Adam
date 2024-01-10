@@ -262,3 +262,58 @@ public enum EffectTileType
     Nimrod_Attack_Enemy,
     Nimrod_Attack_Friendly
 }
+
+public enum TutorialStep
+{
+    UI_PlayerTurn = TutorialManager.STEP_BOUNDARY,
+    UI_UnitTurn = UI_PlayerTurn + TutorialManager.STEP_BOUNDARY,
+
+    Tooltip_PlayerTurn,
+    Tooltip_ManaInfo,
+    Tooltip_UnitInfo,
+    Tooltip_PlayerSkillInfo,
+    Tooltip_DeckUnitSelect,
+    Tooltip_UnitSpawnSelect,
+    Tooltip_TurnEnd,
+    Tooltip_SpeedTable,
+    Tooltip_UnitMove,
+    Tooltip_UnitAttack,
+    Tutorial_End_1,
+
+    UI_FallSystem = UI_UnitTurn + TutorialManager.STEP_BOUNDARY,
+    UI_DarkEssenceInfo = UI_FallSystem + TutorialManager.STEP_BOUNDARY,
+    UI_Stigma_1 = UI_DarkEssenceInfo + TutorialManager.STEP_BOUNDARY,
+    UI_Stigma_2 = UI_Stigma_1 + TutorialManager.STEP_BOUNDARY,
+
+    Tooltip_DarkEssenceInfo = UI_Stigma_2 + Tutorial_End_1 % TutorialManager.STEP_BOUNDARY,
+    Tooltip_BlackKnightDeck,
+    Tooltip_BlackKnightSpawn,
+    Tooltip_BuffInfo,
+    Tooltip_TurnEnd_2,
+    Tooltip_TurnEnd_3,
+    Tooltip_UnitAttack_2,
+    Tooltip_PlayerSkillDeck,
+    Tooltip_PlayerSkillUse,
+    Tooltip_FallSelect,
+    Tooltip_TurnEnd_4,
+    Tooltip_UnitSwap,
+    Tooltip_UnitAttack_3,
+    Tooltip_UnitSwap_2,
+    Tooltip_UnitAttack_4,
+    Tutorial_End_2,
+
+    UI_UnitDead = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
+    UI_Defeat = UI_UnitDead + TutorialManager.STEP_BOUNDARY,
+    UI_Last = UI_Defeat + TutorialManager.STEP_BOUNDARY,
+
+    Tutorial_End_3 = UI_Last + Tutorial_End_2 % TutorialManager.STEP_BOUNDARY,
+}
+
+public struct TooltipData
+{
+    public TutorialStep Step;
+    public string Info;
+    public int IndexToTooltip;
+    public bool IsCtrl;
+    public bool IsEnd;
+}

@@ -14,6 +14,8 @@ public class UnitAction : MonoBehaviour
 
     public virtual void AIMove(BattleUnit attackUnit)
     {
+        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
+
         if (DirectAttackCheck())
             return;
 
@@ -40,12 +42,16 @@ public class UnitAction : MonoBehaviour
                 MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit)));
             }
         }
-
-        BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
     }
 
     public virtual void AISkillUse(BattleUnit attackUnit)
     {
+        if (DirectAttackCheck())
+        {
+            BattleManager.Instance.DirectAttack(attackUnit);
+            return;
+        }
+
         Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
         Dictionary<Vector2, int> unitInattackRange = GetUnitInAttackRangeList(attackUnit, attackableTile);
 
@@ -67,8 +73,6 @@ public class UnitAction : MonoBehaviour
                 return false;
         }
 
-        BattleManager.Instance.DirectAttack();
-        BattleManager.Instance.EndUnitAction();
         return true;
     }
 

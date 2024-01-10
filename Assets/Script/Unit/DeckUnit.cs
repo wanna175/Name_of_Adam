@@ -61,19 +61,22 @@ public class DeckUnit
 
     public void AddStigma(Stigma stigma)
     {
-        if (_stigma.Contains(stigma) || Data.UniqueStigma.Contains(stigma))
+        if (_stigma.Contains(stigma) || (Data.UniqueStigma != null && Data.UniqueStigma.Contains(stigma)))
         {
             Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
             return;
         }
 
-        if(_stigma.Count + Data.UniqueStigma.Count >= _maxStigmaCount)
+        int uniqueStigmaCount = 0;
+        if (Data.UniqueStigma != null)
+            uniqueStigmaCount = Data.UniqueStigma.Count;
+
+        if(_stigma.Count + uniqueStigmaCount >= _maxStigmaCount)
         {
             Debug.Log("최대 낙인 개수");
             return;
         }
 
-        Debug.Log($"낙인 추가 완료 {stigma.name}");
         _stigma.Add(stigma);
     }
 

@@ -1,0 +1,261 @@
+using Newtonsoft.Json.Bson;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class TutorialManager : MonoBehaviour
+{
+    /// <summary>
+    /// 툴팁에 출력될 문자열
+    /// [CTRL]로 끝나는 문자열은 유저가 직접 액션을 하는 단계를 의미
+    /// 즉, 유저의 특정 행동으로 다음 튜토리얼 진행 가능
+    /// </summary>
+    private readonly string[] TooltipTexts =
+    {
+        // 튜토리얼 1 시작
+        "<color=#FF9696>플레이어 턴<color=white>에는 유닛을 소환하거나 스킬을 쓸 수 있습니다.",
+        "유닛을 소환하거나 스킬을 사용할때 필요한 <color=#FF9696>마나<color=white>입니다.\n플레이어 턴이 될 때마다 <color=#FF9696>30<color=white>씩 회복합니다.",
+        "현재 소환할 수 있는 유닛들입니다.\n<color=#9696FF>첫번째 플레이어 턴<color=white>에는 <color=#FF9696>절반의 마나<color=white>를 사용하여 유닛을 소환할 수 있습니다.",
+        "전투를 보조하는 스킬들입니다.",
+        "묘지기를 소환해보세요.[CTRL]",
+        "묘지기를 소환해보세요.[CTRL]",
+        "턴을 종료하면 <color=#FF9696>유닛 턴<color=white>으로 넘어갑니다.[CTRL]",
+        "<color=#FF9696>유닛 턴<color=white>에는 필드에 있는 각 유닛들이 속도에 따라 움직입니다.\n우측의 <color=#FF9696>속도표<color=white>에서 상단에 있는 유닛일수록 먼저 행동합니다.",
+        "각 유닛은 한칸 이동 후 적을 공격할 수 있으며 이동이나 공격을 하지 않고 싶다면 <color=#FF9696>턴 종료 버튼<color=white>을 눌러 턴을 넘길 수도 있습니다.\n묘지기를 앞으로 한칸 이동시켜보세요.[CTRL]",
+        "검병을 공격해보세요.[CTRL]",
+
+        // 튜토리얼 2 시작
+        "특정 유닛을 사용하거나 스킬을 사용할 때 필요한 <color=#FF9696>검은 정수<color=white>입니다.\n적을 처치할때마다 하나씩 얻을 수 있습니다.",
+        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 낙인을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
+        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 낙인을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
+        "공격 시 적의 <color=#FF9696>신앙<color=white>을 떨어뜨리는 <color=#FF9696>악성 버프<color=white>입니다.\n흑기사는 이 악성 버프를 <color=#FF9696>2회<color=white> 얻는 낙인을 가지고 있습니다.\n잘 활용하여 적을 타락시켜보세요.",
+        "<color=#FF9696>턴 종료 버튼<color=white>을 눌러 유닛 턴으로 넘어가세요.[CTRL]",
+        "이동이 필요가 없는 경우 <color=#FF9696>턴 종료 버튼<color=white>을 눌러 턴을 넘길 수 있어요.[CTRL]",
+        "검병을 공격하여 <color=#FF9696>신앙<color=white>을 떨어뜨리세요.[CTRL]",
+        "<color=#FF9696>신앙<color=white>을 떨어뜨리는 스킬 <color=#FF9696>속삭임<color=white>을 사용하요 적을 타락시켜 보세요.[CTRL]",
+        "<color=#FF9696>신앙<color=white>을 떨어뜨리는 스킬 <color=#FF9696>속삭임<color=white>을 사용하요 적을 타락시켜 보세요.[CTRL]",
+        "적을 타락시킬 경우 해당 적을 아군으로 만들며 <color=#FF9696>낙인<color=white>을 부여할 수 있습니다.\n검병에게 부여할 낙인을 선택하세요.[CTRL]",
+        "이제 검병은 당신의 유닛이 되었습니다.\n이제 턴 종료를 누르세요.[CTRL]",
+        "아군이 이미 있는 위치로 이동할 시 두 유닛은 서로 위치를 바꿉니다.\n흑기사를 이동시키세요.[CTRL]",
+        "수녀를 공격하여 무적 버프를 없애보세요.[CTRL]",
+        "검병을 이동시키세요.[CTRL]",
+        "부적 버프가 사라진 수녀를 마무리하세요.[CTRL]",
+        "",
+    };
+
+    public const int STEP_BOUNDARY = 100;
+
+    private const float RECLICK_TIME = 0.5f;
+
+    private static TutorialManager _instance;
+    public static TutorialManager Instance
+    {
+        set
+        {
+            if (_instance == null)
+                _instance = value;
+        }
+        get
+        {
+            return _instance;
+        }
+    }
+
+    [SerializeField]
+    private UI_Tutorial UI;
+
+    [SerializeField]
+    private TutorialStep _step;
+
+    public TutorialStep Step => _step;
+
+    private TooltipData currentTooltip;
+
+    public bool IsTutorialactive;
+    private bool isEnable;
+    private bool isCanClick;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        int curID = GameManager.Data.Map.CurrentTileID;
+
+        switch (curID)
+        {
+            case 1: _step = TutorialStep.UI_PlayerTurn; break;
+            case 2: _step = TutorialStep.UI_FallSystem; break;
+            case 3: _step = TutorialStep.UI_UnitDead; break;
+        }
+
+        isCanClick = true;
+    }
+
+    private void Update()
+    {
+        if (!isEnable)
+            return;
+
+        if (UI.ValidToPassTooltip)
+        {
+            if (isCanClick && GameManager.InputManager.Click)
+            {
+                StartCoroutine(ClickCoolTime());
+                ShowNextTutorial();
+            }
+        }
+    }
+
+    public void ShowNextTutorial()
+    {
+        if (CheckStep(TutorialStep.UI_Defeat) || CheckStep(TutorialStep.UI_Last))
+            return; // 마지막 UI 튜토리얼 관련 Step은 조건부 동작이기 때문에 예외 처리
+
+        SetNextStep();
+        ShowTutorial();
+    }
+
+    public void ShowPreviousTutorial()
+    {
+        SetPreviousStep();
+        ShowTutorial();
+    }
+
+    public bool IsEnable()
+        => !GameManager.OutGameData.isTutorialClear() && isEnable;
+
+    public void SetNextStep()
+    {
+        TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
+        int next = Array.IndexOf(steps, _step) + 1;
+        _step = (steps.Length == next) ? steps[0] : steps[next];
+    }
+
+    private void SetPreviousStep()
+    {
+        TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
+        int next = Array.IndexOf(steps, _step) - 1;
+        _step = (steps.Length == -1) ? steps[steps.Length - 1] : steps[next];
+    }
+
+    private bool IsToolTip(TutorialStep step)
+        => (int)step % STEP_BOUNDARY != 0;
+
+    private TooltipData AnalyzeTooltip(TutorialStep step)
+    {
+        TooltipData tooltip = new TooltipData();
+        int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
+
+        tooltip.Step = step;
+        tooltip.Info = TooltipTexts[indexToTooltip].Replace("[CTRL]", "");
+        tooltip.IndexToTooltip = indexToTooltip;
+        tooltip.IsCtrl = TooltipTexts[indexToTooltip].Contains("[CTRL]");
+        tooltip.IsEnd = false;
+
+        if (CheckStep(TutorialStep.Tutorial_End_1) || 
+            CheckStep(TutorialStep.Tutorial_End_2) || 
+            CheckStep(TutorialStep.Tutorial_End_3))
+            tooltip.IsEnd = true;
+
+        return tooltip;
+    }
+
+    private int AnalyzeUI(TutorialStep step) => (int)step / STEP_BOUNDARY - 1;
+
+    public bool CheckStep(TutorialStep step) => this.Step == step;
+
+    public void ShowTutorial()
+    {
+        if (IsToolTip(_step))
+        {
+            // Tooltip 모드
+            currentTooltip = AnalyzeTooltip(_step);
+            if (currentTooltip.IsEnd)
+                DisableToolTip();
+            else
+                EnableToolTip(currentTooltip);
+        }
+        else
+        {
+            // UI 모드
+            int indexToUI = AnalyzeUI(_step);
+            isEnable = true;
+            UI.TutorialActive(indexToUI);
+        }
+    }
+
+    public void DisableToolTip()
+    {
+        UI.CloseToolTip();
+        UI.SetUIMask(-1);
+        UI.SetValidToPassToolTip(false);
+        SetActiveAllTiles(true);
+        isEnable = false;
+    }
+
+    public void EnableToolTip(TooltipData data)
+    {
+        UI.ShowTooltip(data.Info, data.IndexToTooltip);
+        UI.SetUIMask(data.IndexToTooltip);
+        UI.SetValidToPassToolTip(!data.IsCtrl);
+        SetTutorialField(data.Step);
+        isEnable = true;
+    }
+
+    private void SetTutorialField(TutorialStep step)
+    {
+        SetActiveAllTiles(false);
+
+        switch (step)
+        {
+            case TutorialStep.Tooltip_UnitSpawnSelect:
+                BattleManager.Field.TileDict[new Vector2(1, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_UnitMove:
+                BattleManager.Field.TileDict[new Vector2(2, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_UnitAttack:
+                BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_BlackKnightSpawn:
+                BattleManager.Field.TileDict[new Vector2(2, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_UnitAttack_2:
+                BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_PlayerSkillUse:
+                BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_UnitSwap:
+                BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_UnitAttack_3:
+                BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_UnitSwap_2:
+                BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Tooltip_UnitAttack_4:
+                BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
+                break;
+        }
+    }
+
+    private void SetActiveAllTiles(bool isActive)
+    {
+        foreach (Tile tile in BattleManager.Field.TileDict.Values)
+            tile.SetActiveCollider(isActive);
+    }
+
+    private IEnumerator ClickCoolTime()
+    {
+        isCanClick = false;
+        yield return new WaitForSeconds(RECLICK_TIME);
+        isCanClick = true;
+    }
+}
