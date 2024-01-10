@@ -15,6 +15,8 @@ public class DeckUnit
     public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
+    public readonly int MaxUpgradeCount = 3;
+
     private List<Stigma> _stigma =  new();
 
     public readonly int _maxStigmaCount = 3;

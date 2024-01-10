@@ -75,24 +75,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void TurnStart()
-    {
-        //턴 시작 시 체크
-        foreach (BattleUnit unit in _battleData.BattleUnitList)
-        {
-            ActiveTimingCheck(ActiveTiming.TURN_START, unit);
-        }
-    }
-
-    public void TurnEnd()
-    {
-        foreach (BattleUnit unit in _battleData.BattleUnitList)
-        {
-            //턴 종료 시 체크
-            ActiveTimingCheck(ActiveTiming.TURN_END, unit);
-        }
-    }
-
     public void SetupField()
     {
         GameObject fieldObject = GameObject.Find("Field");
@@ -260,9 +242,6 @@ public class BattleManager : MonoBehaviour
             TutorialManager.Instance.DisableToolTip();
 
         BattleUnit nowUnit = _battleData.GetNowUnit();
-        BattleUnit selectUnit = _field.GetUnit(coord);
-        if (selectUnit == null || selectUnit.Team == Team.Player)
-            return;
 
         List<Vector2> attackCoords = new();
         List<BattleUnit> unitList = new();
@@ -270,6 +249,10 @@ public class BattleManager : MonoBehaviour
         
         if (nowUnit.DeckUnit.CheckStigma(new Stigma_Additional_Punishment()))
         {
+            BattleUnit selectUnit = _field.GetUnit(coord);
+            if (selectUnit == null || selectUnit.Team == Team.Player)
+                return;
+
             List<BattleUnit> additionalEnemies = _field.GetUnitsInRange(nowUnit.Location, nowUnit.GetAttackRange(), Team.Enemy);
             additionalEnemies.Remove(selectUnit);
             if (additionalEnemies.Count > 0)
@@ -361,13 +344,27 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Direct Attack");
     }
 
+    public void UnitSummonEvent(BattleUnit unit)
+    {
+        _battleData.BattleUnitOrderReplace();
+        FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, unit);
+    }
+
     public void UnitDeadEvent(BattleUnit unit)
     {
         _battleData.BattleUnitList.Remove(unit);
         _field.ExitTile(unit.Location);
 
         if (unit.IsConnectedUnit)
+        {
+            if (unit.Data.Name == "니므롯")
+            {
+                GameManager.Data.GameData.Progress.NimrodKill++;
+            }
+
             return;
+        }
+
 
         _battleData.BattleOrderRemove(unit);
 
@@ -381,7 +378,7 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.Data.GameData.Progress.EliteKill++;
             }
-            
+
             GameManager.Data.DarkEssenseChage(unit.Data.DarkEssenseDrop);
         }
 

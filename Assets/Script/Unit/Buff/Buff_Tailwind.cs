@@ -14,7 +14,7 @@ public class Buff_Tailwind : Buff
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.AFTER_ATTACK;
+        _countDownTiming = ActiveTiming.TURN_END;
 
         _buffActiveTiming = ActiveTiming.NONE;
 

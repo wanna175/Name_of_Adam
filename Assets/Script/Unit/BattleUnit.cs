@@ -104,7 +104,7 @@ public class BattleUnit : MonoBehaviour
         //소환 시 체크
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
-        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, this);
+        BattleManager.Instance.UnitSummonEvent(this);
     }
 
     public void SetTeam(Team team)
@@ -233,7 +233,8 @@ public class BattleUnit : MonoBehaviour
     {
         if (Data.Rarity == Rarity.Original)
         {
-            ChangeHP(-HP.GetCurrentHP());
+            UnitDiedEvent();
+            //ChangeHP(-HP.GetCurrentHP());
             return;
         }
 
@@ -249,6 +250,10 @@ public class BattleUnit : MonoBehaviour
         else if(DeckUnit.Data.Rarity == Rarity.Elite)
         {
             GameManager.Data.GameData.Progress.EliteFall++;
+        }
+        else if (DeckUnit.Data.Name == "니므롯")
+        {
+            GameManager.Data.GameData.Progress.NimrodFall++;
         }
 
         //타락 이벤트 시작
