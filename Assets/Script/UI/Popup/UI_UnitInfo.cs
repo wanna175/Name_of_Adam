@@ -14,12 +14,14 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private GameObject _completeButton;
     [SerializeField] private GameObject _fallGaugePrefab;
     [SerializeField] private GameObject _stigmaPrefab;
+    [SerializeField] private GameObject _upgradeCountPrefab;
     [SerializeField] private GameObject _squarePrefab;
 
     [SerializeField] private TextMeshProUGUI _unitInfoName;
     [SerializeField] private Transform _unitInfoFallGrid;
     [SerializeField] private TextMeshProUGUI _unitInfoStat;
     [SerializeField] private Transform _unitInfoStigmaGrid;
+    [SerializeField] private Transform _unitInfoUpgradeCountGrid;
     [SerializeField] private Transform _unitInfoSkillRangeGrid;
     [SerializeField] private Image _unitImage;
 
@@ -86,6 +88,11 @@ public class UI_UnitInfo : UI_Popup
         foreach (Stigma sti in _unit.GetStigma())
         {
             GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
+        }
+
+        for (int i = 0; i < _unit.DeckUnitTotalStat.CurrentUpgradeCount; i++)
+        {
+            GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid);
         }
 
         foreach (bool range in _unit.Data.AttackRange)

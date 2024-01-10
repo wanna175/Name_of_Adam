@@ -46,11 +46,14 @@ public class UI_MyDeck : UI_Popup
         _isBossClear = isBossClear;
 
         List<DeckUnit> _normalDeck = new();
+        List<DeckUnit> _totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
         _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
 
         foreach (DeckUnit unit in _hallDeck)
         {
+            _totalDeck.Add(unit);
+
             if (unit.Data.Rarity == Rarity.Normal)
             {
                 _normalDeck.Add(unit);
@@ -59,7 +62,7 @@ public class UI_MyDeck : UI_Popup
 
         if (isBossClear)
         {
-            _playerDeck = _hallDeck;
+            _playerDeck = _totalDeck;
         }
         else
         {
@@ -126,6 +129,11 @@ public class UI_MyDeck : UI_Popup
         UI_Card newCard = GameObject.Instantiate(CardPrefabs, Grid).GetComponent<UI_Card>();
         newCard.SetCardInfo(this, unit);
 
+        if(evNum == CUR_EVENT.UPGRADE)
+        {
+            newCard.SetDisableUpgrade(unit);
+        }
+
         _card_dic[unit] = newCard;
     }
 
@@ -174,6 +182,7 @@ public class UI_MyDeck : UI_Popup
             _title_txt.text = "보유 유닛";
         }
     }
+
     public void Quit()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
