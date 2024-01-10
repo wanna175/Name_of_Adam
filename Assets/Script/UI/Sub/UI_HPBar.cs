@@ -59,19 +59,29 @@ public class UI_HPBar : UI_Base
 
     public void SetFallBar(DeckUnit unit) // unit FallMaxCount에 따라서 일단 fallbar를 셋팅한다.
     {
-        
         int max = unit.DeckUnitTotalStat.FallMaxCount;
         int current = unit.DeckUnitTotalStat.FallCurrentCount;
-
-        //if (max > 6) max = 6; // 스마게까지 타락 Max 6
-        _UnitfallGaugeMax = max;
-        _UnitfallGaugeCur = max - current;
-        for (int i = 0; i<4; i++)
+        if (max > 4 && _team == Team.Player)
         {
-            UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
-            newObject.SwitchCountImage(_team);
-            newObject.EmptyGauge();
-            _fallGauge.Add(newObject);
+            max = 4;
+        }
+       
+        _UnitfallGaugeMax = max;
+        _UnitfallGaugeCur = max;//마름모의 갯수
+        if (_fallGauge.Count == 0)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
+                newObject.SwitchCountImage(_team);
+                _fallGauge.Add(newObject);
+            }
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            _fallGauge[i].SwitchCountImage(_team);
+            _fallGauge[i].EmptyGauge();
         }
         
         if (_UnitfallGaugeCur > 4)
@@ -97,16 +107,15 @@ public class UI_HPBar : UI_Base
     public void RefreshFallGauge(int current)
     {
 
-        int diff = _UnitfallGaugeCur - current;
-        _UnitfallGaugeCur = current;
-
-        if (diff == -1)
+        int diff = _UnitfallGaugeCur - (_UnitfallGaugeMax - current);
+        _UnitfallGaugeCur = _UnitfallGaugeMax - current;
+        if (diff == 1)
         {
             _fallGauge[_fallCountIdx--].FillGauge();
             if (_fallCountIdx < 0 && _UnitfallGaugeMax != _UnitfallGaugeCur)
                 _fallCountIdx = 3;
         }
-        else if (diff == 1)
+        else if (diff == -1)
         {
             _fallCountIdx++;
             if (_fallCountIdx == 4 && _fallGauge[3].GetDouble()!=2)

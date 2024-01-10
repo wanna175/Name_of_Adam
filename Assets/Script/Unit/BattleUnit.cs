@@ -48,8 +48,9 @@ public class BattleUnit : MonoBehaviour
     public bool NextAttackSkip = false;
     public int AttackUnitNum;
 
-    public void Init()
+    public void Init(Team team)
     {
+        Debug.Log("ddddddddddddddddddddd" + team);
         _renderer = GetComponent<SpriteRenderer>();
         _unitAnimator = GetComponent<Animator>();
 
@@ -57,7 +58,7 @@ public class BattleUnit : MonoBehaviour
         _renderer.color = new Color(1, 1, 1, 1);
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
-        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,team);
 
         ConnectedUnits = new();
 
@@ -77,11 +78,11 @@ public class BattleUnit : MonoBehaviour
         BattleManager.Data.BattleUnitList.Add(this);
 
         GameManager.Sound.Play("Summon/SummonSFX");
+        SetTeam(team);
     }
 
-    public void UnitSetting(Vector2 coord, Team team, bool isConnectedUnit = false)
+    public void UnitSetting(Vector2 coord, bool isConnectedUnit = false)
     {
-        SetTeam(team);
         BattleManager.Field.EnterTile(this, coord);
         SetLocation(coord);
 
@@ -98,7 +99,7 @@ public class BattleUnit : MonoBehaviour
                 }
             }
 
-            SetFlipX(team == Team.Enemy);
+            SetFlipX(_team == Team.Enemy);
         }
 
         //소환 시 체크
@@ -271,8 +272,9 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
-        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,_team);
         _hpBar.RefreshHPBar(HP.FillAmount());
+        _hpBar.SetFallBar(DeckUnit);
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
 
         if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
