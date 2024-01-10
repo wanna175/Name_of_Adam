@@ -54,6 +54,7 @@ public class DataManager : MonoBehaviour
         GameData.Incarna = GameDataMain.Incarna;
         GameData.Money = GameDataMain.Money;
         GameData.DarkEssence = GameDataMain.DarkEssence;
+        GameData.PlayerHP = GameDataMain.PlayerHP;
         GameData.PlayerSkillCount = GameDataMain.PlayerSkillCount;
         GameData.DeckUnits = GameDataMain.DeckUnits;
         GameData.FallenUnits = GameDataMain.FallenUnits;
@@ -78,6 +79,7 @@ public class DataManager : MonoBehaviour
         GameData.Incarna = GameDataTutorial.Incarna;
         GameData.Money = GameDataTutorial.Money;
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
+        GameData.PlayerHP = GameDataTutorial.PlayerHP;
         GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
         GameData.FallenUnits.Clear();
@@ -99,6 +101,7 @@ public class DataManager : MonoBehaviour
         GameDataMain.Incarna = GameDataMainLayout.Incarna;
         GameDataMain.Money = GameDataMainLayout.Money;
         GameDataMain.DarkEssence = GameDataMainLayout.DarkEssence;
+        GameDataMain.PlayerHP = GameDataMainLayout.PlayerHP;
         GameDataMain.PlayerSkillCount = GameDataMainLayout.PlayerSkillCount;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
@@ -239,12 +242,6 @@ public class DataManager : MonoBehaviour
             return true;
         }
     }
-
-    public bool Tutorial_Trigger_First = true;
-    public bool Tutorial_Trigger_Second = true;
-    public bool Tutorial_Benediction_Trigger = true;
-    public bool Tutorial_Stage_Trigger = true;
-    public bool isTutorialactive = false;
 
     public List<PlayerSkill> GetPlayerSkillList()
     {

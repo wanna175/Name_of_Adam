@@ -22,6 +22,8 @@ public class BattleDataManager : MonoBehaviour
 
     public bool isDiscount = false;
 
+    public bool isGameDone = false;
+
     private void Init()
     {
         _playerDeck = GameManager.Data.GetDeck().ToList<DeckUnit>();
@@ -188,6 +190,10 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Laser();
         }
+        else if (actionType == UnitActionType.UnitAction_CenteredSplash)
+        {
+            return new UnitAction_CenteredSplash();
+        }
         else if (actionType == UnitActionType.UnitAction_Iana)
         {
             return new UnitAction_Iana();
@@ -207,6 +213,10 @@ public class BattleDataManager : MonoBehaviour
         else if (actionType == UnitActionType.UnitAction_Horus)
         {
             return new UnitAction_Horus();
+        }
+        else if (actionType == UnitActionType.UnitAction_Horus_Egg)
+        {
+            return new UnitAction_Horus_Egg();
         }
         else
         {

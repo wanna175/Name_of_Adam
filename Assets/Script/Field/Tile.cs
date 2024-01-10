@@ -17,10 +17,13 @@ public class Tile : MonoBehaviour
 
     public Action<Tile> OnClickAction = null;
 
+    private new Collider2D collider;
+
     public Tile Init(Vector3 position)
     {
         transform.position = position;
         _highlight.SetActive(false);
+        collider = GetComponent<Collider2D>();
         return this;
     }
 
@@ -34,6 +37,8 @@ public class Tile : MonoBehaviour
  
         _unit = unit;
     }
+
+    public void SetActiveCollider(bool isActive) => collider.enabled = isActive;
 
     public void ExitTile()
     {

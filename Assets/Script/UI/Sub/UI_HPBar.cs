@@ -122,8 +122,6 @@ public class UI_HPBar : UI_Base
                 _fallCountIdx = 0;
             _fallGauge[_fallCountIdx].EmptyGauge();
         }
-        else
-            Debug.Log("Same");
 
         for (int i = 0; i < 4; ++i)
         {
