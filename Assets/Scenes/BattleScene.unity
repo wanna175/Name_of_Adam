@@ -9997,7 +9997,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48da17a7a17eb1459188801bb81328f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tutorial: []
+  UIPageParent: {fileID: 2070406151}
+  UIMaskParent: {fileID: 1019072440}
+  tooltip: {fileID: 1371115079}
+  ValidToPassTooltip: 0
 --- !u!1001 &1162615310
 PrefabInstance:
   m_ObjectHideFlags: 0
