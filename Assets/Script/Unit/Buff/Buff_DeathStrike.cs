@@ -31,8 +31,8 @@ public class Buff_DeathStrike : Buff
     {
         _owner.ChangedDamage *= 3;
 
-        Buff_InevitableEnd inevitableEnd= new();
-        _owner.SetBuff(inevitableEnd);
+        Buff_AfterAttackDead afterAttackDead = new();
+        _owner.SetBuff(afterAttackDead);
 
         return false;
     }
