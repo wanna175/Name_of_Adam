@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class UnitAction_Nimrod : UnitAction
 {
     //0 index is vary last face, 1 index is second last face
-    private int[] _recentFace = {-1, -1};
+    private int[] _recentState = {-1, -1};
     //0 = smile, 1 = weep, 2 = mad
-    private int _nimrodFace = 0;
+    private int _nimrodState = 0;
     private List<Vector2> _attackTile = new();
 
     public override void AIMove(BattleUnit attackUnit)
@@ -59,9 +59,9 @@ public class UnitAction_Nimrod : UnitAction
 
     private void NimrodFaceCheck(BattleUnit caster)
     {
-        if (_recentFace[0] == -1)
+        if (_recentState[0] == -1)
         {
-            _nimrodFace = 0;
+            _nimrodState = 0;
         }
         else 
         {
@@ -77,19 +77,19 @@ public class UnitAction_Nimrod : UnitAction
 
             if (count >= 6)
             {
-                _nimrodFace = 2;
+                _nimrodState = 2;
             }
             else if (count == 0)
             {
-                _nimrodFace = 0;
+                _nimrodState = 0;
             }
-            else if (_recentFace[0] == _recentFace[1])
+            else if (_recentState[0] == _recentState[1])
             {
-                _nimrodFace = _recentFace[0] == 0 ? 1 : 0;
+                _nimrodState = _recentState[0] == 0 ? 1 : 0;
             }
             else
             {
-                _nimrodFace = Random.Range(0, 2);
+                _nimrodState = Random.Range(0, 2);
             }
         }
 
@@ -97,18 +97,18 @@ public class UnitAction_Nimrod : UnitAction
         {
             if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
             {
-                unit.AnimatorSetBool("isBright", _nimrodFace == 2);
+                unit.AnimatorSetBool("isBright", _nimrodState == 2);
             }
         }
 
-        _recentFace[0] = _nimrodFace;
-        _recentFace[1] = _recentFace[0];
+        _recentState[0] = _nimrodState;
+        _recentState[1] = _recentState[0];
     }
 
     private void SetAttackTile(BattleUnit caster)
     {
         TileClear(caster.Team);
-        if (_nimrodFace == 0)
+        if (_nimrodState == 0)
         {
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
@@ -118,7 +118,7 @@ public class UnitAction_Nimrod : UnitAction
                 }
             }
         }
-        else if (_nimrodFace == 1)
+        else if (_nimrodState == 1)
         {
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
@@ -142,7 +142,7 @@ public class UnitAction_Nimrod : UnitAction
                 }
             }
         }
-        else if (_nimrodFace == 2)
+        else if (_nimrodState == 2)
         {
             List<Vector2> nonAttackTiles = new();
 
@@ -203,14 +203,14 @@ public class UnitAction_Nimrod : UnitAction
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_SUMMON) == ActiveTiming.FIELD_UNIT_SUMMON)
         {
-            if (_nimrodFace == 0)
+            if (_nimrodState == 0)
             {
                 SetAttackTile(caster);
             }
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_DEAD) == ActiveTiming.FIELD_UNIT_DEAD)
         {
-            if (_nimrodFace == 1)
+            if (_nimrodState == 1)
             {
                 SetAttackTile(caster);
             }

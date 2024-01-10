@@ -229,6 +229,9 @@ public enum BuffEnum
     LegacyOfBabel,
     WrathOfBabel,
     Charge,
+
+    Leah,
+    Rachel,
 }
 
 public enum UnitActionType
@@ -241,7 +244,10 @@ public enum UnitActionType
     UnitAction_Trinity,
     UnitAction_Tubalcain,
     UnitAction_Horus,
-    UnitAction_Laser
+    UnitAction_Horus_Egg,
+    UnitAction_Laser,
+    UnitAction_temp,
+    UnitAction_CenteredSplash
 }
 
 public enum UnitMoveType

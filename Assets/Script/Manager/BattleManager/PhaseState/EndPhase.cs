@@ -6,7 +6,7 @@ public class EndPhase : Phase
 {
     public override void OnStateEnter()
     {
-        BattleManager.Instance.TurnEnd();
+        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.TURN_END);
         BattleManager.Instance.BattleOverCheck();
     }
     public override void OnStateUpdate()
