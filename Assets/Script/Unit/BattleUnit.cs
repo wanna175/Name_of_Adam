@@ -231,7 +231,7 @@ public class BattleUnit : MonoBehaviour
 
     public void UnitFallEvent()
     {
-        if (Data.Rarity == Rarity.오리지널)
+        if (Data.Rarity == Rarity.Original)
         {
             ChangeHP(-HP.GetCurrentHP());
             return;
@@ -241,6 +241,15 @@ public class BattleUnit : MonoBehaviour
             return;
 
         GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
+
+        if(DeckUnit.Data.Rarity == Rarity.Normal)
+        {
+            GameManager.Data.GameData.Progress.NormalFall++;
+        }
+        else if(DeckUnit.Data.Rarity == Rarity.Elite)
+        {
+            GameManager.Data.GameData.Progress.EliteFall++;
+        }
 
         //타락 이벤트 시작
         FallEvent = true;

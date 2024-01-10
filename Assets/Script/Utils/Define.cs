@@ -80,9 +80,10 @@ public enum StageName
 [SerializeField]
 public enum Rarity
 {
-    일반,
-    엘리트,
-    오리지널,
+    Normal,
+    Elite,
+    Original,
+    Boss
 }
 
 [SerializeField]
@@ -223,6 +224,7 @@ public enum BuffEnum
     PermanenceOfBabel,
     LegacyOfBabel,
     WrathOfBabel,
+    Charge,
 }
 
 public enum UnitActionType
@@ -233,7 +235,7 @@ public enum UnitActionType
     UnitAction_Iana,
     UnitAction_Nimrod,
     UnitAction_Trinity,
-    UnitAction_Centaurus,
+    UnitAction_Tubalcain,
     UnitAction_Horus,
     UnitAction_Laser
 }

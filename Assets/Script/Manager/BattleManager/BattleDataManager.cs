@@ -200,9 +200,9 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Trinity();
         }
-        else if (actionType == UnitActionType.UnitAction_Centaurus)
+        else if (actionType == UnitActionType.UnitAction_Tubalcain)
         {
-            return new UnitAction_Centaurus();
+            return new UnitAction_Tubalcain();
         }
         else if (actionType == UnitActionType.UnitAction_Horus)
         {

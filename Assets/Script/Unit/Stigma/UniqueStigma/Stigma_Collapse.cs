@@ -8,6 +8,6 @@ public class Stigma_Collapse : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_LegacyOfBabel());
+        caster.SetBuff(new Buff_Stigma_Collapse());
     }
 }

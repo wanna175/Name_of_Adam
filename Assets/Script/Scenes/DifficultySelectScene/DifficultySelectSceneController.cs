@@ -38,18 +38,6 @@ public class DifficultySelectSceneController : MonoBehaviour
 
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         SceneChanger.SceneChange("StageSelectScene");
-        /*
-        if(!DifficultySelected)
-        {
-            UI_Difficulty.SetActive(false);
-            UI_ChampionSelect.SetActive(true);
-            DifficultySelected=true;
-        }
-        else
-        {
-
-        }
-        */
     }
 
     public void Quit()

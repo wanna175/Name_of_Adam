@@ -15,5 +15,50 @@ public class GameData : ScriptableObject
     public List<DeckUnit> FallenUnits = new();
     public bool isVisitUpgrade = false;
     public bool isVisitStigma = false;
-    public bool isVisitHarlot = false;
+    public Progress Progress;
+}
+
+[Serializable]
+public class Progress
+{
+    public int NormalWin;
+    public int EliteWin;
+    public int BossWin;
+    public int NormalKill;
+    public int EliteKill;
+    public int NimrodKill;
+    public int HorusKill;
+    public int FishKill;
+    public int NormalFall;
+    public int EliteFall;
+    public int NimrodFall;
+    public int HorusFall;
+    public int FishFall;
+    public int SecChapterClear;
+    public int LeftDarkEssence;
+    public int SurvivedNormal;
+    public int SurvivedElite;
+    public int SurvivedBoss;
+
+    public void ClearProgress()
+    {
+        NormalWin = 0;
+        EliteWin = 0;
+        BossWin = 0;
+        NormalKill = 0;
+        EliteKill = 0;
+        NimrodKill = 0;
+        HorusKill = 0;
+        FishKill = 0;
+        NormalFall = 0;
+        EliteFall = 0;
+        NimrodFall = 0;
+        HorusFall = 0;
+        FishFall = 0;
+        SecChapterClear = 0;
+        LeftDarkEssence = 0;
+        SurvivedNormal = 0;
+        SurvivedElite = 0;
+        SurvivedBoss = 0;
+    }
 }
