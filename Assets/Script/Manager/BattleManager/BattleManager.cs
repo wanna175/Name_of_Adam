@@ -367,6 +367,32 @@ public class BattleManager : MonoBehaviour
         }
 
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_DEAD, unit);
+        
+        if (unit.Team == Team.Enemy && (unit.Data.Rarity == Rarity.Elite || unit.Data.Rarity == Rarity.Boss))
+        {
+            bool isBossRemain = true;
+
+            foreach (BattleUnit remainUnit in _battleData.BattleUnitList)
+            {
+                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy)
+                {
+                    isBossRemain = false;
+                    break;
+                }
+            }
+
+            if (isBossRemain)
+            {
+                for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
+                {
+                    BattleUnit remainUnit = _battleData.BattleUnitList.Find(x => x.Team == Team.Enemy);
+                    if (unit == null)
+                        break;
+
+                    remainUnit.UnitDiedEvent(false);
+                }
+            }
+        }
     }
 
     public void FieldActiveEventCheck(ActiveTiming timing, BattleUnit parameterUnit = null)
@@ -610,7 +636,7 @@ public class BattleManager : MonoBehaviour
 
         if (lastUnit != null)
         {
-            if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction))
+            if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction) || lastUnit.Data.Rarity != Rarity.Normal)
                 return;
 
             if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
