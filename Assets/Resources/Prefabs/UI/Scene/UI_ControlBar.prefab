@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 3750490137655130548}
   - component: {fileID: 4032207429780869984}
   - component: {fileID: 8019756150546835070}
+  - component: {fileID: 5212996423649826763}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -191,6 +192,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5212996423649826763
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250956179937439658}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a6bd58d38dd284247b0f2bd0b9d2c71e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2873535083125702405
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bluemanaIMG: {fileID: 8019756150546835070}
+  ManaAnimator: {fileID: 5212996423649826763}
   _currentMana: {fileID: 9194759721847281045}
 --- !u!1 &7230500483516047834
 GameObject:
