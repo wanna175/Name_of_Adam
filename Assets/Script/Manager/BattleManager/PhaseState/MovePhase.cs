@@ -8,6 +8,9 @@ public class MovePhase : Phase
 
     public override void OnStateEnter()
     {
+        if (BattleManager.Data.isGameDone)
+            return;
+
         _nowUnit = BattleManager.Data.GetNowUnit();
 
         if (_nowUnit.Team == Team.Player)
