@@ -25,12 +25,10 @@ public class BattleCutSceneController : MonoBehaviour
 
         BattleManager.Field.ClearAllColor();
         _cameraHandler.SetCutSceneCamera();
-        
+
+        SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
         if (!CSData.isPlayerAttack)
-        {
             UnitFlip(CSData);
-            SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
-        }
     }
 
     public IEnumerator AttackCutScene(BattleCutSceneData CSData)
@@ -81,6 +79,8 @@ public class BattleCutSceneController : MonoBehaviour
             else
             {
                 BattleManager.BattleUI.UI_playerHP.DecreaseHP(1);
+                GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+                GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", new Vector3(0, -8));
             }
             
             if (CSData.AttackUnit.SkillEffectAnim != null)
@@ -167,7 +167,7 @@ public class BattleCutSceneController : MonoBehaviour
         foreach (BattleUnit unit in HitUnits)
         {
             if(unit != null)
-                unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+               unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
         }
     }
 }
