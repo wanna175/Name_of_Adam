@@ -81,6 +81,7 @@ public class BattleCutSceneController : MonoBehaviour
                 BattleManager.BattleUI.UI_playerHP.DecreaseHP(1);
                 GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
                 GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", new Vector3(0, -8));
+                BattleManager.Instance.BattleOverCheck();
             }
             
             if (CSData.AttackUnit.SkillEffectAnim != null)

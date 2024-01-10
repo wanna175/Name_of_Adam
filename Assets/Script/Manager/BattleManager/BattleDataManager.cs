@@ -22,6 +22,8 @@ public class BattleDataManager : MonoBehaviour
 
     public bool isDiscount = false;
 
+    public bool isGameDone = false;
+
     private void Init()
     {
         _playerDeck = GameManager.Data.GetDeck().ToList<DeckUnit>();

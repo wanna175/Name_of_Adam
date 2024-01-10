@@ -346,7 +346,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitSummonEvent(BattleUnit unit)
     {
-        _battleData.BattleUnitOrderReplace();
+        _battleData.BattleUnitOrder();
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, unit);
     }
 
@@ -410,6 +410,9 @@ public class BattleManager : MonoBehaviour
 
     public void BattleOverCheck()
     {
+        if (Data.isGameDone)
+            return;
+
         if (SceneChanger.GetSceneName() == "BattleTestScene")
             return;
 
@@ -432,15 +435,6 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.OutGameData.DoneTutorial(true);
                 Debug.Log("Tutorial Clear!");
-
-                //튜토리얼 마지막 창 12/20 프로토타입에선 우선 제외
-                /*
-                if (GameManager.Data.Tutorial_Stage_Trigger == true)
-                {
-                    GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(14);
-                    GameManager.Data.Tutorial_Stage_Trigger = false;
-                }
-                */
             }
         }
     }
@@ -448,6 +442,7 @@ public class BattleManager : MonoBehaviour
     private void BattleOverWin()
     {
         Debug.Log("YOU WIN");
+        Data.isGameDone = true;
         _battleData.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
         StageData data = GameManager.Data.Map.GetCurrentStage();
@@ -503,6 +498,7 @@ public class BattleManager : MonoBehaviour
     private void BattleOverLose()
     {
         Debug.Log("YOU LOSE");
+        Data.isGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         GameManager.SaveManager.DeleteSaveData();
