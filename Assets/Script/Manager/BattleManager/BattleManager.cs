@@ -218,8 +218,6 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        BattleUI.UI_TurnChangeButton.SetEnable(false);
-
         BattleUnit unit = _battleData.GetNowUnit();
         foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
         {
@@ -234,9 +232,7 @@ public class BattleManager : MonoBehaviour
     public void ActionPhaseClick(Vector2 coord)
     {
         if (!_field.TileDict[coord].IsColored)
-            return;
-
-        BattleUI.UI_TurnChangeButton.SetEnable(false);
+            return;  
 
         if (!GameManager.OutGameData.isTutorialClear())
             TutorialManager.Instance.DisableToolTip();
@@ -511,6 +507,8 @@ public class BattleManager : MonoBehaviour
 
         if (!_field.IsInRange(dest) || current == dest)
             return false;
+
+        BattleUI.UI_TurnChangeButton.SetEnable(false);
 
         if (moveUnit.ConnectedUnits.Count > 0)
         {
