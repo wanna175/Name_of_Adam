@@ -55,7 +55,7 @@ public class OutGameDataContainer : MonoBehaviour
 
     public void SaveData()
     {
-        string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
     }
 

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 
 public class ProgressShopManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI info_name;
     [SerializeField] private TextMeshProUGUI info_description;
-    [SerializeField] private TextMeshProUGUI info_cost;
-    [SerializeField] private TextMeshProUGUI info_btn_text;
+    [SerializeField] private TextMeshProUGUI active_info_cost;
+    [SerializeField] private TextMeshProUGUI disabled_info_cost;
+    [SerializeField] private GameObject activeBtn;
+    [SerializeField] private GameObject disabledBtn;
     [SerializeField] private TMP_Text ProgressCoin;
     private int selectedID;
 
@@ -26,30 +30,46 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnClickShopNode(int id)
     {
-        if(selectedID == id && ItemInfo.activeSelf == true)
+        ShopNode foundNode = ShopNodes.FirstOrDefault(node => node.ItemID == selectedID);
+        ShopNode newfoundNode = ShopNodes.FirstOrDefault(node => node.ItemID == id);
+
+        if (selectedID == id && ItemInfo.activeSelf == true)
         {
+            newfoundNode.Highlighted.SetActive(false);
             ItemInfo.SetActive(false);
         }
         else if (selectedID == id && ItemInfo.activeSelf == false)
         {
+            newfoundNode.Highlighted.SetActive(true);
             ItemInfo.SetActive(true);
         }
         else
         {
+            foundNode.Highlighted.SetActive(false);
+            newfoundNode.Highlighted.SetActive(true);
+
             selectedID = id;
 
             ItemInfo.SetActive(true);
 
             info_name.text = GameManager.OutGameData.GetProgressItem(id).Name;
-            info_description.text = GameManager.OutGameData.GetProgressItem(id).Description;
+            info_description.text = GameManager.OutGameData.GetProgressItem(id).Description.Replace("\\n", "\n");
 
             if (!GameManager.OutGameData.GetBuyable(id) && !GameManager.OutGameData.GetProgressItem(id).IsLock)
             {
-                info_cost.text = "구매 완료";
+                ChangeBtnImage(false);
+                disabled_info_cost.text = "구매 완료";
+            }
+            else if (!GameManager.OutGameData.GetBuyable(id) && GameManager.OutGameData.GetProgressItem(id).IsLock)
+            {
+                ChangeBtnImage(false);
+                disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
+
             }
             else
             {
-                info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
+                ChangeBtnImage(true);
+                active_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
             }
         }
     }
@@ -64,8 +84,23 @@ public class ProgressShopManager : MonoBehaviour
         GameManager.OutGameData.GetProgressItem(selectedID).IsUnlocked = true;
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
-        info_cost.text = "구매 완료";
+        ChangeBtnImage(false);
+        disabled_info_cost.text = "구매 완료";
         SetNodeImage();
+    }
+
+    public void ChangeBtnImage(bool isActive)
+    {
+        if (isActive)
+        {
+            activeBtn.SetActive(true);
+            disabledBtn.SetActive(false);
+        }
+        else
+        {
+            activeBtn.SetActive(false);
+            disabledBtn.SetActive(true);
+        }
     }
 
     public void SetNodeImage()
