@@ -117,7 +117,7 @@ public class Stage : MonoBehaviour
         {
             foreach (Stage st in StageManager.Instance.CurrentStage.NextStage)
             {
-                if (st != this)
+                if (st != this && st != null)
                 {
                     st.BackLight.FadeOut();
                 }
@@ -141,7 +141,10 @@ public class Stage : MonoBehaviour
         {
             foreach (Stage st in StageManager.Instance.CurrentStage.NextStage)
             {
-                st.BackLight.Blink();
+                if(st != null)
+                {
+                    st.BackLight.Blink();
+                }
             }
             return;
         }
