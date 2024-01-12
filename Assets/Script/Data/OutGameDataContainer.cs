@@ -138,10 +138,18 @@ public class OutGameDataContainer : MonoBehaviour
         return true;
     }
 
+    public bool IsUnlockedItem(int ID)
+    {
+        ProgressItem item = GetProgressItem(ID);
+
+        return item.IsUnlocked;
+    }
+
     public void BuyProgressItem(int ID)
     {
         ProgressItem item = GetProgressItem(ID);
         item.IsLock = false;
+        item.IsUnlocked = true;
         SetProgressCoin(item.Cost);
     }
 

@@ -81,7 +81,6 @@ public class ProgressShopManager : MonoBehaviour
             return;
         }
 
-        GameManager.OutGameData.GetProgressItem(selectedID).IsUnlocked = true;
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
         ChangeBtnImage(false);
