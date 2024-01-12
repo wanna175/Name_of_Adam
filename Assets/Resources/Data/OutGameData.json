@@ -12,165 +12,165 @@
     },
     {
       "ID": 1,
-      "Name": "강화",
+      "Name": "신앙 회복",
       "Cost": 10,
       "Prequest": 0,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화 설명"
+      "Description": "강화소의 새로운 기능 신앙 회복이 해금됩니다.\n\n원하는 유닛의 신앙을 회복시킬 수 있게 됩니다."
     },
     {
       "ID": 2,
-      "Name": "강화2",
+      "Name": "운명",
       "Cost": 20,
       "Prequest": 1,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화2 설명"
+      "Description": "낙인 운명이 등장할 수 있게 됩니다.\n\n운명 - 공격 시 데미지가 50% 확률로 2배, 50% 확률로 1/2배가 됩니다."
     },
     {
       "ID": 3,
-      "Name": "강화3",
+      "Name": "시작 마나 I",
       "Cost": 30,
       "Prequest": 1,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화3 설명"
+      "Description": "시작 마나가 50에서 55로 상승합니다."
     },
     {
       "ID": 4,
-      "Name": "강화4",
+      "Name": "오리지널 연성",
       "Cost": 40,
       "Prequest": 1,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화4 설명"
+      "Description": "탕녀의 새로운 기능 오리지널 연성이 해금됩니다.\n\n검은 정수를 지불하여 흑기사같은 오리지널 유닛 하나를 무작위로 소환할 수 있게 됩니다."
     },
     {
       "ID": 5,
-      "Name": "강화5",
+      "Name": "보복",
       "Cost": 50,
       "Prequest": 4,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화5 설명"
+      "Description": "낙인 보복이 등장할 수 있게 됩니다.\n\n보복 - 사거리 내의 적에게 피격 시 반격합니다."
     },
     {
       "ID": 6,
-      "Name": "강화6",
+      "Name": "시작 검은 정수 I",
       "Cost": 60,
       "Prequest": 4,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화6 설명"
+      "Description": "시작 검은 정수가 4에서 7로 상승합니다."
     },
     {
       "ID": 7,
-      "Name": "강화7",
+      "Name": "엘리트 클리어 보상",
       "Cost": 70,
       "Prequest": 4,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화7 설명"
+      "Description": "엘리트 클리어 시 보상으로 모든 유닛이 신앙을 1 회복합니다."
     },
     {
       "ID": 8,
-      "Name": "강화8",
+      "Name": "척살",
       "Cost": 80,
       "Prequest": 7,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화8 설명"
+      "Description": "낙인 척살이 등장할 수 있게 됩니다.\n\n척살 - 적 처치 시 한번 더 턴을 가집니다."
     },
     {
       "ID": 9,
-      "Name": "강화9",
+      "Name": "시작 마나 II",
       "Cost": 90,
       "Prequest": 7,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화9 설명"
+      "Description": "시작 마나가 55에서 60으로 상승합니다."
     },
     {
       "ID": 10,
-      "Name": "강화10",
+      "Name": "낙인 이동",
       "Cost": 100,
       "Prequest": 7,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화10 설명"
+      "Description": "낙인소의 새로운 기능 낙인 이동이 해금됩니다.\n\n유닛 하나를 희생해 해당 유닛의 낙인 하나를 다른 유닛에게 부여할 수 있게 됩니다."
     },
     {
       "ID": 11,
-      "Name": "강화11",
+      "Name": "갈망",
       "Cost": 110,
       "Prequest": 10,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화11 설명"
+      "Description": "낙인 갈망이 등장할 수 있게 됩니다.\n\n갈망 - 적 처치 시 체력 5, 공격력 2가 영구적으로 상승합니다. (단, 전당에서는 초기화됩니다.)"
     },
     {
       "ID": 12,
-      "Name": "강화12",
+      "Name": "최대 강화 횟수",
       "Cost": 120,
       "Prequest": 10,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화12 설명"
+      "Description": "최대 강화 횟수 2회에서 3회로 상승합니다."
     },
     {
       "ID": 13,
-      "Name": "강화13",
+      "Name": "전당 잠금 해제 I",
       "Cost": 130,
       "Prequest": 10,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화13 설명"
+      "Description": "묘지기와 죄수 자리에 전당의 유닛을 편성하여 플레이할 수 있게 됩니다."
     },
     {
       "ID": 14,
-      "Name": "강화14",
+      "Name": "순간이동",
       "Cost": 140,
       "Prequest": 13,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화14 설명"
+      "Description": "낙인 순간이동이 등장할 수 있게 됩니다.\n\n순간이동 - 적 처치시 순보를 1회 획득합니다. (순보: 원하는 위치 어디든 이동할 수 있습니다.)"
     },
     {
       "ID": 15,
-      "Name": "강화15",
+      "Name": "전당 잠금 해제 II",
       "Cost": 150,
       "Prequest": 13,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화15 설명"
+      "Description": "일반 유닛들 자리에 오리지널이나 엘리트를 편성하여 플레이할 수 있게 됩니다."
     },
     {
       "ID": 16,
-      "Name": "강화16",
+      "Name": "금지된 계약",
       "Cost": 160,
       "Prequest": 15,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화16 설명"
+      "Description": "낙인 금지된 계약이 등장할 수 있게 됩니다.\n\n금지된 계약 - 소환시 해당 유닛이 기절 1회에 걸리는 대신 다음 스킬의 마나 코스트가 사라집니다."
     },
     {
       "ID": 17,
-      "Name": "강화17",
+      "Name": "시작 검은 정수 II",
       "Cost": 170,
       "Prequest": 15,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화17 설명"
+      "Description": "시작 검은 정수가 7에서 10으로 상승합니다."
     },
     {
       "ID": 18,
-      "Name": "강화18",
+      "Name": "대죄",
       "Cost": 180,
       "Prequest": 15,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화18 설명"
+      "Description": "낙인 대죄가 탕녀에서 등장할 수 있게 됩니다.\n\n대죄 - 공격 시 적의 신앙을 1 떨어뜨립니다."
     },
     {
       "ID": 50,
@@ -183,39 +183,39 @@
     },
     {
       "ID": 51,
+      "Name": "선지자 I",
       "Cost": 10,
       "Prequest": 50,
       "IsLock": false,
       "IsUnlocked": true,
-      "Description": "화신1 강화1 설명",
-      "Name": "화신강화1"
+      "Description": "화신 (선지자)를 해금합니다."
     },
     {
       "ID": 52,
-      "Name": "화신강화2",
+      "Name": "선지자 II",
       "Cost": 20,
       "Prequest": 51,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신1 강화2 설명"
+      "Description": "속삭임의 마나 코스트가 5 감소합니다."
     },
     {
       "ID": 53,
-      "Name": "화신강화3",
+      "Name": "선지자 III",
       "Cost": 30,
       "Prequest": 52,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신1 강화3 설명"
+      "Description": "신속의 검은 정수 코스트가 없어집니다."
     },
     {
       "ID": 54,
-      "Name": "화신강화4",
+      "Name": "선지자 IV",
       "Cost": 40,
       "Prequest": 53,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신1 강화4 설명"
+      "Description": "검은 십자가에 피격된 적의 신앙을 1 떨어뜨립니다."
     },
     {
       "ID": 60,
@@ -228,39 +228,39 @@
     },
     {
       "ID": 61,
-      "Name": "화신강화1",
+      "Name": "흑타수 I",
       "Cost": 10,
       "Prequest": 60,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신2 강화1 설명"
+      "Description": "화신 (흑타수)를 해금합니다."
     },
     {
       "ID": 62,
-      "Name": "화신강화2",
+      "Name": "흑타수 II",
       "Cost": 20,
       "Prequest": 61,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신2 강화2 설명"
+      "Description": "회복의 회복량이 5 증가합니다."
     },
     {
       "ID": 63,
-      "Name": "화신강화3",
+      "Name": "흑타수 III",
       "Cost": 30,
       "Prequest": 62,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신2 강화3 설명"
+      "Description": "귀환의 검은 정수 코스트가 1 감소합니다."
     },
     {
       "ID": 64,
-      "Name": "화신강화4",
+      "Name": "흑타수 IV",
       "Cost": 40,
       "Prequest": 63,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신2 강화4 설명"
+      "Description": "(3스킬)가 적에게 공격력 증가를 부여하지 않습니다."
     },
     {
       "ID": 70,
@@ -273,39 +273,39 @@
     },
     {
       "ID": 71,
-      "Name": "화신강화1",
+      "Name": "루시퍼 I",
       "Cost": 10,
       "Prequest": 70,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신3 강화1 설명"
+      "Description": "화신 (루시퍼)를 해금합니다."
     },
     {
       "ID": 72,
-      "Name": "화신강화2",
+      "Name": "루시퍼 II",
       "Cost": 20,
       "Prequest": 71,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신3 강화2 설명"
+      "Description": "천벌의 마나 코스트가 10 감소합니다."
     },
     {
       "ID": 73,
-      "Name": "화신강화3",
+      "Name": "루시퍼 III",
       "Cost": 30,
       "Prequest": 72,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신3 강화3 설명"
+      "Description": "(2스킬)이 추가적으로 악성을 2회 부여합니다."
     },
     {
       "ID": 74,
-      "Name": "화신강화4",
+      "Name": "루시퍼 IV",
       "Cost": 40,
       "Prequest": 73,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신3 강화4 설명"
+      "Description": "강림의 지속시간이 1턴 증가합니다."
     }
   ],
   "HallUnit": [
