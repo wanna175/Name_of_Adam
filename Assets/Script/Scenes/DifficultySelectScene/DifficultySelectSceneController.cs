@@ -36,6 +36,15 @@ public class DifficultySelectSceneController : MonoBehaviour
         if (UI_IncarnaSelect.activeSelf == true)
         {
             //화신 데이터에 저장
+            if (GameManager.OutGameData.IsUnlockedItem(18))
+            {
+                GameManager.Data.GameDataMain.DarkEssence = 10;
+            }
+            else if (GameManager.OutGameData.IsUnlockedItem(6))
+            {
+                GameManager.Data.GameDataMain.DarkEssence = 7;
+            }
+
             GameManager.Data.GameDataMain.Incarna = incarnaData;
             UI_IncarnaSelect.SetActive(false);
             UI_HallSelect.SetActive(true);

@@ -8,10 +8,23 @@ public class Mana : MonoBehaviour
     [SerializeField] private int _maxMana = 100;
     [ReadOnly, SerializeField] private int _currentMana = 0;
 
-    const int _startMana = 50;
+    private int _startMana;
 
     private void Start()
     {
+        if (GameManager.OutGameData.IsUnlockedItem(9))
+        {
+            _startMana = 60;
+        }
+        else if (GameManager.OutGameData.IsUnlockedItem(3))
+        {
+            _startMana = 55;
+        }
+        else
+        {
+            _startMana = 50;
+        }
+
         ChangeMana(_startMana);
     }
 
