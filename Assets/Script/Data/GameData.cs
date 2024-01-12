@@ -9,6 +9,7 @@ public class GameData : ScriptableObject
     public PlayerSkill UniversalPlayerSkill;
     public int Money;
     public int DarkEssence;
+    public int PlayerHP;
     public int PlayerSkillCount;
     public List<DeckUnit> DeckUnits = new();
     public List<DeckUnit> FallenUnits = new();

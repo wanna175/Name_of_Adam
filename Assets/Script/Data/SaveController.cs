@@ -14,10 +14,12 @@ public class SaveData
     public List<SaveUnit> DeckUnitData;
     public List<SaveUnit> FallenUnitsData;
     public int DarkEssence;
+    public int PlayerHP;
     public int PlayerSkillCount;
     public int DefaultMana;
     public int GuardCount;
     public Progress ProgressData;
+    public int StageAct;
 }
 
 [Serializable]
@@ -74,10 +76,12 @@ public class SaveController : MonoBehaviour
         newData.IncarnaData = CurGameData.Incarna;
         newData.UniversalPlayerSkillData = CurGameData.UniversalPlayerSkill;
         newData.DarkEssence = GameManager.Data.DarkEssense;
+        newData.PlayerHP = 3;
         newData.PlayerSkillCount = CurGameData.PlayerSkillCount;
         newData.DefaultMana = 50; // 진척도에 따라 바뀌는 인자들
         newData.GuardCount = 1;   // 이 인자들을 적용하는 곳이 생기면 연동하기
         newData.ProgressData = CurGameData.Progress;
+        newData.StageAct = GameManager.Data.StageAct;
 
         string json = JsonUtility.ToJson(newData, true);
 
@@ -120,7 +124,9 @@ public class SaveController : MonoBehaviour
         GameManager.Data.GameData.Incarna = loadData.IncarnaData;
         GameManager.Data.GameData.UniversalPlayerSkill = loadData.UniversalPlayerSkillData;
         GameManager.Data.GameData.DarkEssence = loadData.DarkEssence;
+        GameManager.Data.GameData.PlayerHP = loadData.PlayerHP;
         GameManager.Data.GameData.Progress = loadData.ProgressData;
+        GameManager.Data.StageAct = loadData.StageAct;
         //CurGameData.DefaultMana
         //CurGameData.GuardCount
     }

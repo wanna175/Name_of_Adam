@@ -11,7 +11,7 @@ public class Stigma_TailWind : Stigma
         for (int i = -2; i < 3; i++)
             areaCoords.Add(new Vector2(0, i));
 
-        List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location, areaCoords);
+        List<BattleUnit> targetUnits = BattleManager.Field.GetUnitsInRange(caster.Location, areaCoords);
 
         foreach (BattleUnit unit in targetUnits)
         {

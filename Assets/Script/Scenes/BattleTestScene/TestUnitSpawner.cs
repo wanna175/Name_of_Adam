@@ -37,8 +37,8 @@ public class TestUnitSpawner : UnitSpawner
             BattleUnit unit = go.GetComponent<BattleTestUnit>();
             unit.DeckUnit.Data = spawndata.unitData;
 
-            unit.Init();
-            unit.UnitSetting(spawndata.location, spawndata.team);
+            unit.Init(spawndata.team);
+            unit.UnitSetting(spawndata.location);
             GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
         }
     }

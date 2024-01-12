@@ -46,8 +46,8 @@ public class UnitSpawner : MonoBehaviour
             BattleUnit unit = go.GetComponent<BattleUnit>();
             unit.DeckUnit.Data = spawndata.unitData;
 
-            unit.Init();
-            unit.UnitSetting(spawndata.location, spawndata.team);
+            unit.Init(spawndata.team);
+            unit.UnitSetting(spawndata.location);
             GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
 
             return unit;
@@ -60,11 +60,11 @@ public class UnitSpawner : MonoBehaviour
         BattleUnit unit = go.GetComponent<BattleUnit>();
         unit.DeckUnit = deckUnit;
 
-        unit.Init();
+        unit.Init(Team.Player);
 
         if (BattleManager.Field.UnitSizeCheck(location, deckUnit))
         {
-            unit.UnitSetting(location, Team.Player);
+            unit.UnitSetting(location);
         }
         else
         {
@@ -72,7 +72,7 @@ public class UnitSpawner : MonoBehaviour
             {
                 if (BattleManager.Field.UnitSizeCheck(location - tile, deckUnit))
                 {
-                    unit.UnitSetting(location - tile, Team.Player);
+                    unit.UnitSetting(location - tile);
                     break;
                 }
             }
@@ -89,8 +89,8 @@ public class UnitSpawner : MonoBehaviour
         unit.DeckUnit = origianlUnit.DeckUnit;
 
         unit.SetOriginalUnit(origianlUnit);
-        unit.Init();
-        unit.UnitSetting(location, origianlUnit.Team, true); ;
+        unit.Init(origianlUnit.Team);
+        unit.UnitSetting(location, true);
 
         return unit;
     }

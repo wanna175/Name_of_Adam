@@ -14,30 +14,30 @@ public class UnitAction : MonoBehaviour
 
     public virtual void AIMove(BattleUnit attackUnit)
     {
-        if (DirectAttackCheck())
-            return;
-
-        if (attackUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None)
+        if (!DirectAttackCheck())
         {
-            Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
-            Dictionary<Vector2, int> inRangeList = AttackableTileSearch(attackUnit, attackableTile);
-
-            if (inRangeList.Count > 0)
+            if (attackUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None)
             {
-                List<Vector2> MinHPUnit = MinHPSearch(inRangeList);
+                Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
+                Dictionary<Vector2, int> inRangeList = AttackableTileSearch(attackUnit, attackableTile);
 
-                if (!MinHPUnit.Contains(attackUnit.Location))
+                if (inRangeList.Count > 0)
                 {
-                    MoveUnit(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+                    List<Vector2> MinHPUnit = MinHPSearch(inRangeList);
+
+                    if (!MinHPUnit.Contains(attackUnit.Location))
+                    {
+                        MoveUnit(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+                    }
+                    else
+                    {
+                        Debug.Log("力磊府");
+                    }
                 }
                 else
                 {
-                    Debug.Log("力磊府");
+                    MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit)));
                 }
-            }
-            else
-            {
-                MoveUnit(attackUnit, MoveDirection(attackUnit, NearestEnemySearch(attackUnit)));
             }
         }
 
@@ -46,6 +46,12 @@ public class UnitAction : MonoBehaviour
 
     public virtual void AISkillUse(BattleUnit attackUnit)
     {
+        if (DirectAttackCheck())
+        {
+            BattleManager.Instance.DirectAttack(attackUnit);
+            return;
+        }
+
         Dictionary<Vector2, int> attackableTile = GetAttackableTile(attackUnit);
         Dictionary<Vector2, int> unitInattackRange = GetUnitInAttackRangeList(attackUnit, attackableTile);
 
@@ -67,8 +73,6 @@ public class UnitAction : MonoBehaviour
                 return false;
         }
 
-        BattleManager.Instance.DirectAttack();
-        BattleManager.Instance.EndUnitAction();
         return true;
     }
 

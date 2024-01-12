@@ -26,7 +26,11 @@ public class Corruption : MonoBehaviour
     {
         _animator.SetBool("LoopStart", true);
         if (_unit.Team == Team.Enemy)
+        {
+            if (TutorialManager.Instance.IsEnable())
+                TutorialManager.Instance.ShowNextTutorial();
             StigmaSelectEvent(this);
+        }
         else
             LoopExit();
     }

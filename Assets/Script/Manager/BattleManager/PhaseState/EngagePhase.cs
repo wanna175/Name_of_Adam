@@ -15,10 +15,6 @@ public class EngagePhase : Phase
             BattleManager.Phase.ChangePhase(BattleManager.Phase.End);
             return;
         }
-
-        BattleManager.Instance.BattleOverCheck();
-
-        BattleManager.BattleUI.ShowTutorial();
     }
 
     public override void OnStateUpdate()

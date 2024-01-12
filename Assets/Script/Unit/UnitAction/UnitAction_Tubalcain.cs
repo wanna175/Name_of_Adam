@@ -86,7 +86,7 @@ public class UnitAction_Tubalcain : UnitAction
 
         BattleUnit receiver = hits[0];
 
-        if (BattleManager.Field.GetArroundUnits(attackUnit.Location, UDLR).Contains(receiver))
+        if (BattleManager.Field.GetArroundUnits(attackUnit.Location).Contains(receiver))
         {
             BattleManager.Instance.AttackStart(attackUnit, hits);
             _isMove = false;

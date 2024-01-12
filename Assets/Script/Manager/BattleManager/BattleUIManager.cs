@@ -8,12 +8,14 @@ public class BattleUIManager : MonoBehaviour
 {
     public UI_Hands UI_hands;
     public UI_PlayerSkill UI_playerSkill;
+    public UI_PlayerHP UI_playerHP;
     public UI_DarkEssence UI_darkEssence;
     public UI_ManaGauge UI_manaGauge;
 
     public UI_WaitingLine UI_waitingLine;
     public UI_TurnCount UI_turnCount;
     public UI_TurnNotify UI_turnNotify;
+    public UI_TurnChangeButton UI_TurnChangeButton;
 
     private const int _maxHandCount = 3;
 
@@ -26,11 +28,12 @@ public class BattleUIManager : MonoBehaviour
         UI_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
         //UI_turnCount = GameManager.UI.ShowScene<UI_TurnCount>();
         UI_turnNotify = GameManager.UI.ShowScene<UI_TurnNotify>();
-
+        UI_TurnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
 
         //컨트롤바
         UI_ControlBar control = GameManager.UI.ShowScene<UI_ControlBar>();
 
+        UI_playerHP = control.UI_PlayerHP;
         UI_playerSkill = control.UI_PlayerSkill;
         UI_playerSkill.SetSkill(GameManager.Data.GetPlayerSkillList());
         UI_hands = control.UI_Hands;
@@ -97,49 +100,6 @@ public class BattleUIManager : MonoBehaviour
         UI_hands.CancelSelect();
         UI_playerSkill.CancelSelect();
     }
-
-    public void ShowTutorial()
-    {
-        PhaseController phaseController = BattleManager.Phase;
-        int curID = GameManager.Data.Map.CurrentTileID;
-
-        UI_Tutorial UItutorial = GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>();
-
-        if (!GameManager.OutGameData.isTutorialClear())
-        {
-            if (curID == 1 && GameManager.Data.StageAct == 0)
-            {
-                if (GameManager.Data.Tutorial_Trigger_First == true)
-                {
-                    if (phaseController.CurrentPhaseCheck(phaseController.Prepare))
-                    {
-                        UItutorial.TutorialActive(0);
-                    }
-                    else if (phaseController.CurrentPhaseCheck(phaseController.Engage))
-                    {
-                        UItutorial.TutorialActive(4);
-                        GameManager.Data.Tutorial_Trigger_First = false;
-                    }
-                }
-            }
-            else if (curID == 2 && GameManager.Data.StageAct == 0)
-            {
-                if (GameManager.Data.Tutorial_Trigger_Second == true)
-                {
-                    if (phaseController.Current == phaseController.Prepare)
-                    {
-                        UItutorial.TutorialActive(8);
-                    }
-                    else if (phaseController.Current == phaseController.Engage)
-                    {
-                        UItutorial.TutorialActive(12);
-                        GameManager.Data.Tutorial_Trigger_Second = false;
-                    }
-                }
-            }
-        }
-    }
-    
 
     private List<UI_Info> infoList = new();
 
