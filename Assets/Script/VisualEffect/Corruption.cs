@@ -44,6 +44,7 @@ public class Corruption : MonoBehaviour
     public void CorruptionEnd()
     {
         GameManager.VisualEffect.RestoreEffect(AnimEffects.Corruption, gameObject);
+        BattleManager.Instance.BattleOverCheck();
     }
 
     public BattleUnit GetTargetUnit()

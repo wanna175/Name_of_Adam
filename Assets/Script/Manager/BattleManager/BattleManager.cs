@@ -316,6 +316,7 @@ public class BattleManager : MonoBehaviour
         _battleData.BattleOrderRemove(Data.GetNowUnit());
         _battleUI.UI_darkEssence.Refresh();
         _phase.ChangePhase(_phase.Engage);
+        BattleOverCheck();
     }
 
     public void StigmaSelectEvent(Corruption cor)

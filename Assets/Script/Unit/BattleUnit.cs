@@ -204,8 +204,9 @@ public class BattleUnit : MonoBehaviour
             BattleManager.Instance.UnitDeadEvent(unit);
             BattleManager.Spawner.RestoreUnit(unit.gameObject);
         }
-        GameManager.VisualEffect.StartUnitDeadEffect(transform.position, GetFlipX());
+
         StartCoroutine(UnitDeadEffect());
+        GameManager.VisualEffect.StartUnitDeadEffect(transform.position, GetFlipX());
         GameManager.Sound.Play("Dead/DeadSFX");
     }
 
@@ -221,13 +222,9 @@ public class BattleUnit : MonoBehaviour
 
             yield return null;
         }
+
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_UNIT_DEAD, this);
         BattleManager.Spawner.RestoreUnit(gameObject);
-
-        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
-        {
-            BattleManager.Instance.BattleOverCheck();
-        }
     }
 
     public void UnitFallEvent()
@@ -282,10 +279,6 @@ public class BattleUnit : MonoBehaviour
         _hpBar.SetFallBar(DeckUnit);
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
 
-        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
-        {
-            BattleManager.Instance.BattleOverCheck();
-        }
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
         if (Buff.CheckBuff(BuffEnum.Benediction))
