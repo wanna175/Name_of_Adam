@@ -7,19 +7,17 @@ public class Stigma_Raise : Stigma
     {
         base.Use(caster);
 
-        List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location);
+        List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location, caster.Team);
+
         caster.SetBuff(new Buff_Raise());
         if (Tier == StigmaTier.Tier2)
             caster.SetBuff(new Buff_Raise());
 
         foreach (BattleUnit unit in targetUnits)
         {
-            if (unit.Team == caster.Team)
-            {
+            unit.SetBuff(new Buff_Raise());
+            if (Tier == StigmaTier.Tier2)
                 unit.SetBuff(new Buff_Raise());
-                if (Tier == StigmaTier.Tier2)
-                    unit.SetBuff(new Buff_Raise());
-            }
         }
     }
 }

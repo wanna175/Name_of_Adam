@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
                 if (unit == null)
                     break;
 
-                unit.ChangeHP(-100);
+                unit.UnitDiedEvent();
 
                 foreach (DeckUnit units in BattleManager.Data.PlayerDeck)
                     units.FirstTurnDiscountUndo();

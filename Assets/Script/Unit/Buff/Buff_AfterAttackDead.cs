@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class Buff_InevitableEnd : Buff
+public class Buff_AfterAttackDead : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.InevitableEnd;
+        _buffEnum = BuffEnum.AfterAttackDead;
 
-        _name = "필연적 끝";
+        _name = "공격 후 사망";
 
-        _description = "필연적 끝";
+        _description = "공격 후 사망";
 
         _count = 1;
 
