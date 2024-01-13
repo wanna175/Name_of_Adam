@@ -509,7 +509,8 @@ public class BattleManager : MonoBehaviour
         if (!_field.IsInRange(dest) || current == dest)
             return false;
 
-        BattleUI.UI_TurnChangeButton.SetEnable(false);
+        if (Phase.CurrentPhaseCheck(Phase.Move))
+            BattleUI.UI_TurnChangeButton.SetEnable(false);
 
         if (moveUnit.ConnectedUnits.Count > 0)
         {
