@@ -346,7 +346,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitSummonEvent(BattleUnit unit)
     {
-        _battleData.BattleUnitOrder();
+        _battleData.BattleUnitOrderReplace();
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, unit);
     }
 

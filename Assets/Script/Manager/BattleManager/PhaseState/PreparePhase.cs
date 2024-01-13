@@ -47,7 +47,7 @@ public class PreparePhase : Phase
                 TutorialManager.Instance.ShowNextTutorial();
         }
 
-        BattleManager.Data.BattleUnitOrder();
+        BattleManager.Data.BattleUnitOrderReplace();
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.TURN_START);
     }
 
