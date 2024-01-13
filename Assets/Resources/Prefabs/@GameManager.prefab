@@ -232,11 +232,6 @@ MonoBehaviour:
   GameDataTutorial: {fileID: 11400000, guid: 79413f12e9c3c2a42ae8afb673f29d07, type: 2}
   GameDataMainLayout: {fileID: 11400000, guid: 94d7f99765211c7448a4120aedc200ab, type: 2}
   _playerDeck: []
-  Tutorial_Trigger_First: 1
-  Tutorial_Trigger_Second: 1
-  Tutorial_Benediction_Trigger: 1
-  Tutorial_Stage_Trigger: 1
-  isTutorialactive: 0
 --- !u!1 &7143347325917774965
 GameObject:
   m_ObjectHideFlags: 0

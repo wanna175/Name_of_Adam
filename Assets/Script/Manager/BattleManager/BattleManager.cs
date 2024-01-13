@@ -191,6 +191,9 @@ public class BattleManager : MonoBehaviour
         if (!_field.TileDict[coord].IsColored)
             return;
 
+        if (TutorialManager.Instance.IsEnable())
+            TutorialManager.Instance.ShowNextTutorial();
+
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
 
         unit.FirstTurnDiscountUndo();
@@ -215,6 +218,8 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        BattleUI.UI_TurnChangeButton.SetEnable(false);
+
         BattleUnit unit = _battleData.GetNowUnit();
         foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
         {
@@ -230,6 +235,11 @@ public class BattleManager : MonoBehaviour
     {
         if (!_field.TileDict[coord].IsColored)
             return;
+
+        BattleUI.UI_TurnChangeButton.SetEnable(false);
+
+        if (!GameManager.OutGameData.isTutorialClear())
+            TutorialManager.Instance.DisableToolTip();
 
         BattleUnit nowUnit = _battleData.GetNowUnit();
 
@@ -295,6 +305,15 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
     }
 
+    public void AttackPlayer(BattleUnit caster)
+    {
+        BattleUnit playerUnit = GameObject.Find("PlayerUnit").GetComponent<BattleUnit>();
+        BattleCutSceneData CSData = new(caster, new List<BattleUnit> { playerUnit });
+        _battlecutScene.InitBattleCutScene(CSData);
+
+        StartCoroutine(_battlecutScene.AttackCutScene(CSData));
+    }
+
     public void EndUnitAction()
     {
         _field.ClearAllColor();
@@ -319,26 +338,15 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void DirectAttack()
+    public void DirectAttack(BattleUnit attackUnit)
     {
-        //핸드에 있는 유닛을 하나 무작위로 제거하고 배틀 종료 체크
+        AttackPlayer(attackUnit);
         Debug.Log("Direct Attack");
-
-        if (_battleData.PlayerHands.Count == 0)
-        {
-            BattleOverCheck();
-            return;
-        }
-
-        int randNum = UnityEngine.Random.Range(0, Data.PlayerHands.Count);
-        _battleUI.RemoveHandUnit(Data.PlayerHands[randNum]);
-
-        BattleOverCheck();
     }
 
     public void UnitSummonEvent(BattleUnit unit)
     {
-        _battleData.BattleUnitOrderReplace();
+        _battleData.BattleUnitOrder();
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, unit);
     }
 
@@ -348,7 +356,15 @@ public class BattleManager : MonoBehaviour
         _field.ExitTile(unit.Location);
 
         if (unit.IsConnectedUnit)
+        {
+            if (unit.Data.Name == "니므롯")
+            {
+                GameManager.Data.GameData.Progress.NimrodKill++;
+            }
+
             return;
+        }
+
 
         _battleData.BattleOrderRemove(unit);
 
@@ -362,7 +378,7 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.Data.GameData.Progress.EliteKill++;
             }
-            
+
             GameManager.Data.DarkEssenseChage(unit.Data.DarkEssenseDrop);
         }
 
@@ -420,24 +436,21 @@ public class BattleManager : MonoBehaviour
 
     public void BattleOverCheck()
     {
+        if (Data.isGameDone)
+            return;
+
         if (SceneChanger.GetSceneName() == "BattleTestScene")
             return;
 
-        int MyUnit = 0;
         int EnemyUnit = 0;
 
         foreach (BattleUnit unit in Data.BattleUnitList)
         {
-            if (unit.Team == Team.Player)//아군이면
-                MyUnit++;
-            else
+            if (unit.Team == Team.Enemy)//아군이면
                 EnemyUnit++;
         }
 
-        MyUnit += _battleData.PlayerDeck.Count;
-        MyUnit += _battleData.PlayerHands.Count;
-
-        if (MyUnit == 0)
+        if (GameManager.Data.GameData.PlayerHP <= 0)
         {
             BattleOverLose();
         }
@@ -448,15 +461,6 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.OutGameData.DoneTutorial(true);
                 Debug.Log("Tutorial Clear!");
-
-                //튜토리얼 마지막 창 12/20 프로토타입에선 우선 제외
-                /*
-                if (GameManager.Data.Tutorial_Stage_Trigger == true)
-                {
-                    GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(14);
-                    GameManager.Data.Tutorial_Stage_Trigger = false;
-                }
-                */
             }
         }
     }
@@ -464,6 +468,7 @@ public class BattleManager : MonoBehaviour
     private void BattleOverWin()
     {
         Debug.Log("YOU WIN");
+        Data.isGameDone = true;
         _battleData.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
         StageData data = GameManager.Data.Map.GetCurrentStage();
@@ -519,6 +524,7 @@ public class BattleManager : MonoBehaviour
     private void BattleOverLose()
     {
         Debug.Log("YOU LOSE");
+        Data.isGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         GameManager.SaveManager.DeleteSaveData();
@@ -639,15 +645,15 @@ public class BattleManager : MonoBehaviour
             if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction) || lastUnit.Data.Rarity != Rarity.Normal)
                 return;
 
-            if(GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 1)
-                return;
             if (!GameManager.OutGameData.isTutorialClear())
             {
-                if (GameManager.Data.StageAct == 0 && GameManager.Data.Tutorial_Benediction_Trigger == true)
+                if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Defeat))
                 {
-                    GameObject.Find("UI_Tutorial").GetComponent<UI_Tutorial>().TutorialActive(13);
-                    GameManager.Data.Tutorial_Benediction_Trigger = false;
+                    TutorialManager.Instance.SetNextStep();
+                    TutorialManager.Instance.ShowTutorial();
                 }
+                else
+                    return;
             }
             
             lastUnit.SetBuff(new Buff_Benediction());

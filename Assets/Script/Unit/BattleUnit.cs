@@ -252,6 +252,10 @@ public class BattleUnit : MonoBehaviour
         {
             GameManager.Data.GameData.Progress.EliteFall++;
         }
+        else if (DeckUnit.Data.Name == "니므롯")
+        {
+            GameManager.Data.GameData.Progress.NimrodFall++;
+        }
 
         //타락 이벤트 시작
         FallEvent = true;

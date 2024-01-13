@@ -37,6 +37,8 @@ public class UI_StigmaSelectButton : UI_Base
         }
         else if(_popup != null)
         {
+            if (TutorialManager.Instance.IsEnable())
+                TutorialManager.Instance.ShowNextTutorial();
             _popup.OnClick(_stigma);
         }
 

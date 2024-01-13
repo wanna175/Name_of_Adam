@@ -16,6 +16,7 @@ MonoBehaviour:
   UniversalPlayerSkill: {fileID: 0}
   Money: 0
   DarkEssence: 5
+  PlayerHP: 3
   PlayerSkillCount: 0
   DeckUnits:
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
@@ -173,3 +174,4 @@ MonoBehaviour:
     IsMainDeck: 1
   isVisitUpgrade: 0
   isVisitStigma: 0
+  isVisitHarlot: 0
