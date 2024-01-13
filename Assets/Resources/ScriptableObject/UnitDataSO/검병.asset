@@ -17,8 +17,8 @@ MonoBehaviour:
     CurrentHP: 30
     ATK: 9
     SPD: 40
-    FallCurrentCount: 5
-    FallMaxCount: 8
+    FallCurrentCount: 0
+    FallMaxCount: 3
     ManaCost: 30
     CurrentUpgradeCount: 0
   _uniqueStigma: []
