@@ -399,7 +399,7 @@ public class BattleManager : MonoBehaviour
                 for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
                 {
                     BattleUnit remainUnit = _battleData.BattleUnitList.Find(x => x.Team == Team.Enemy);
-                    if (unit == null)
+                    if (remainUnit == null)
                         break;
 
                     remainUnit.UnitDiedEvent(false);
