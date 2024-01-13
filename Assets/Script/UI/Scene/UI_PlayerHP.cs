@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class UI_PlayerHP : MonoBehaviour
 {
     [SerializeField]
+    private Image HPBackImage, HPEffectImage;
+
+    [SerializeField]
     private GameObject[] HPJemImages;
 
     // Start is called before the first frame update
@@ -41,4 +44,7 @@ public class UI_PlayerHP : MonoBehaviour
             effect.StartDecreaseHPEffect();
         }
     }
+
+    public void StartEffect()
+        => BattleManager.BattleUI.UI_animator.SetBool("isPlayerHit", true);
 }
