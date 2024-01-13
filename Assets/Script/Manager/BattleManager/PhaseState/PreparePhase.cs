@@ -47,13 +47,13 @@ public class PreparePhase : Phase
                 TutorialManager.Instance.ShowNextTutorial();
         }
 
-        BattleManager.Data.BattleUnitOrder();
+        BattleManager.Data.BattleUnitOrderReplace();
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.TURN_START);
     }
 
     public override void OnStateUpdate()
     {
-        BattleManager.Data.BattleUnitOrder();
+        BattleManager.Data.BattleUnitOrderSorting();
     }
 
     public override void OnClickEvent(Vector2 coord)

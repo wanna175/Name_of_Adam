@@ -133,31 +133,57 @@ public class BattleDataManager : MonoBehaviour
     }
 
     #region OrderedList
+    private List<(BattleUnit, int?)> _battleUnitOrderUnits = new();
     private List<BattleUnit> _battleUnitOrderList = new();
     public int OrderUnitCount => _battleUnitOrderList.Count;
 
-    public void BattleUnitOrder()
+    public void BattleUnitOrderReplace()
     {
+        if (!BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
+            return;
+
+        _battleUnitOrderUnits.Clear();
         _battleUnitOrderList.Clear();
 
         foreach (BattleUnit unit in _battleUnitList)
         {
-            if (!unit.IsConnectedUnit && unit.Data.UnitActionType != UnitActionType.UnitAction_None)
-                _battleUnitOrderList.Add(unit);
+            if (unit.IsConnectedUnit ||
+                unit.Data.UnitActionType == UnitActionType.UnitAction_None ||
+                unit.Data.UnitActionType == UnitActionType.UnitAction_Horus_Egg
+            )
+                continue;
+
+            _battleUnitOrderUnits.Add(new(unit, null));
+            _battleUnitOrderList.Add(unit);
         }
 
-        BattleOrderReplace();
-
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        BattleUnitOrderSorting();
     }
 
-    private void BattleOrderReplace()
+    public void BattleUnitOrderSorting()
     {
-        _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => unit.BattleUnitTotalStat.SPD)
+        List<(BattleUnit, int?)> tempOrderList = new(_battleUnitOrderUnits);
+
+        _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => {
+            (BattleUnit, int?) result = tempOrderList.FirstOrDefault(item => item.Item1 == unit);
+
+            if (result.Item2 == null)
+            {
+                tempOrderList.Remove(result);
+                return unit.BattleUnitTotalStat.SPD;
+            }
+            else
+            {
+                tempOrderList.Remove(result);
+                return result.Item2;
+            }
+        })
             .ThenBy(unit => unit.Team)
             .ThenByDescending(unit => unit.Location.y)
             .ThenBy(unit => unit.Location.x)
             .ToList();
+
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }
 
     public void BattleOrderRemove(BattleUnit removedUnit)
@@ -166,9 +192,10 @@ public class BattleDataManager : MonoBehaviour
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }
 
-    public void BattleOrderInsert(int index, BattleUnit addUnit)
+    public void BattleOrderInsert(int index, BattleUnit addUnit, int? speed = null)
     {
         _battleUnitOrderList.Insert(index, addUnit);
+        _battleUnitOrderUnits.Add(new(addUnit, speed));
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }
 
@@ -217,6 +244,10 @@ public class BattleDataManager : MonoBehaviour
         else if (actionType == UnitActionType.UnitAction_Horus_Egg)
         {
             return new UnitAction_Horus_Egg();
+        }
+        else if (actionType == UnitActionType.UnitAction_temp)
+        {
+            return new UnitAction_temp();
         }
         else
         {

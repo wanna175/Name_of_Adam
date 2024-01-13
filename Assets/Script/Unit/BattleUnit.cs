@@ -33,7 +33,7 @@ public class BattleUnit : MonoBehaviour
     public bool FallEvent = false;
 
     private float _scale;
-    private float GetModifiedScale() => _scale + ((_scale * 0.1f) * (_location.y - 1));
+    private float GetModifiedScale() => _scale/* + ((_scale * 0.01f) * (_location.y - 1))*/;
 
     private bool[] _moveRangeList;
     private bool[] _attackRangeList;
@@ -98,14 +98,14 @@ public class BattleUnit : MonoBehaviour
                         ConnectedUnits.Add(BattleManager.Spawner.ConnectedUnitSpawn(this, range + _location));
                 }
             }
-
+            
             SetFlipX(_team == Team.Enemy);
+       
+            //소환 시 체크
+            BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
+            BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
+            BattleManager.Instance.UnitSummonEvent(this);
         }
-
-        //소환 시 체크
-        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
-        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
-        BattleManager.Instance.UnitSummonEvent(this);
     }
 
     public void SetTeam(Team team)
@@ -190,12 +190,13 @@ public class BattleUnit : MonoBehaviour
         transform.localScale = new(scale, scale, 1);
     }
 
-    public void UnitDiedEvent()
+    public void UnitDiedEvent(bool isDeathAvoidable = true)
     {
         //자신이 사망 시 체크
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_UNIT_DEAD, this))
         {
-            return;
+            if (isDeathAvoidable)
+                return;
         }
 
         BattleManager.Instance.UnitDeadEvent(this);
