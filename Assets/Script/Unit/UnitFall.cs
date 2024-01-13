@@ -12,10 +12,13 @@ public class UnitFall : MonoBehaviour
     [Header("타락 이벤트")]
     public UnityEvent UnitFallEvent;
 
-    public void Init(int CurrentCount, int maxCount)
+    public void Init(int CurrentCount, int maxCount,Team team)
     {
         _currentCount = CurrentCount;
-        _maxCount = maxCount;
+        if (team == Team.Player && maxCount>4)
+            _maxCount = 4;
+        else
+            _maxCount = maxCount;
     }
 
     public void ChangeFall(int value)
