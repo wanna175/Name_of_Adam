@@ -46,7 +46,7 @@ public class MainSceneController : MonoBehaviour
     public void ProgressButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        SceneChanger.SceneChange("ProgressScene");
+        SceneChanger.SceneChange("ProgressShopScene");
     }
 
     public void HallButton()

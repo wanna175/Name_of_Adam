@@ -30,8 +30,14 @@ public class StigmaController
             //GameObject go = GameManager.Resource.Load<GameObject>("Prefabs/Stigma/" + fileName);
 
             Stigma stigma = go.GetComponent<Stigma>();
+
+            CheckUnlockedStigma(stigma);
+
             if (stigma.IsLock)
+            {
                 continue;
+            }
+
 
             if (stigma.Tier == StigmaTier.Tier1)
             {
@@ -73,10 +79,43 @@ public class StigmaController
             return _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
         }
      }
+
     public Stigma GetHarlotStigmas()
     {
         int size = _harlotStigmaList.Count;
         int randNum = Random.Range(0, size);
         return _harlotStigmaList[randNum];
+    }
+
+    public void CheckUnlockedStigma(Stigma stigma)
+    {
+        if (GameManager.OutGameData.IsUnlockedItem(1) && stigma.Name == "운명")
+        {
+            stigma.UnlockStigma();
+        }
+        if (GameManager.OutGameData.IsUnlockedItem(4) && stigma.Name == "보복")
+        {
+            stigma.UnlockStigma();
+        }
+        if (GameManager.OutGameData.IsUnlockedItem(7) && stigma.Name == "척살")
+        {
+            stigma.UnlockStigma();
+        }
+        if (GameManager.OutGameData.IsUnlockedItem(10) && stigma.Name == "갈망")
+        {
+            stigma.UnlockStigma();
+        }
+        if (GameManager.OutGameData.IsUnlockedItem(13) && stigma.Name == "순간이동")
+        {
+            stigma.UnlockStigma();
+        }
+        if (GameManager.OutGameData.IsUnlockedItem(16) && stigma.Name == "금지된 계약")
+        {
+            stigma.UnlockStigma();
+        }
+        if (GameManager.OutGameData.IsUnlockedItem(20) && stigma.Name == "대죄")
+        {
+            stigma.UnlockStigma();
+        }
     }
 }
