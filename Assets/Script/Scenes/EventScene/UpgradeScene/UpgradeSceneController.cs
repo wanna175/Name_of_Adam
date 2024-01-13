@@ -55,7 +55,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
-        if (_unit.DeckUnitUpgradeStat.FallCurrentCount > 0)
+        if (_unit.DeckUnitStat.FallCurrentCount > 0)
         {
             _unit.DeckUnitUpgradeStat.FallCurrentCount -= 1;
         }
