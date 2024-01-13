@@ -50,7 +50,6 @@ public class BattleUnit : MonoBehaviour
 
     public void Init(Team team)
     {
-        Debug.Log("ddddddddddddddddddddd" + team);
         _renderer = GetComponent<SpriteRenderer>();
         _unitAnimator = GetComponent<Animator>();
 
