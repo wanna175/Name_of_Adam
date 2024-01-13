@@ -178,7 +178,7 @@ public class OutGameDataContainer : MonoBehaviour
 
         newUnit.UnitName = unit.Data.Name;
         newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
-        newUnit.UpgradedStat.FallCurrentCount = 0;
+        newUnit.UpgradedStat.FallCurrentCount = 4-unit.Data.RawStat.FallMaxCount;
         newUnit.IsMainDeck = false;
         newUnit.Stigmata = unit.GetChangedStigma();
 
