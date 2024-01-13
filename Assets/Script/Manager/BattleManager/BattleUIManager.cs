@@ -17,6 +17,8 @@ public class BattleUIManager : MonoBehaviour
     public UI_TurnNotify UI_turnNotify;
     public UI_TurnChangeButton UI_TurnChangeButton;
 
+    public Animator UI_animator;
+
     private const int _maxHandCount = 3;
 
     private void Start()
@@ -39,6 +41,8 @@ public class BattleUIManager : MonoBehaviour
         UI_hands = control.UI_Hands;
         UI_darkEssence = control.UI_DarkEssence;
         UI_manaGauge = control.UI_ManaGauge;
+
+        UI_animator = control.UI_Aniamtor;
 
         FillHand();
     }

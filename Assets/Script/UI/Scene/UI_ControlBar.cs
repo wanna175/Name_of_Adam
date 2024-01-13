@@ -10,4 +10,8 @@ public class UI_ControlBar : UI_Scene
     [SerializeField] public UI_PlayerSkill UI_PlayerSkill;
     [SerializeField] public UI_DarkEssence UI_DarkEssence;
     [SerializeField] public UI_ManaGauge UI_ManaGauge;
+    [SerializeField] public Animator UI_Aniamtor;
+
+    public void EndPlayerHit()
+        => UI_Aniamtor.SetBool("isPlayerHit", false);
 }
