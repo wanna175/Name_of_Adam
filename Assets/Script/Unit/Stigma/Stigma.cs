@@ -29,10 +29,16 @@ public class Stigma : MonoBehaviour
         return;
     }
 
+    public void UnlockStigma()
+    {
+        _isLock = false;
+    }
+
     private void StigmaEffect(BattleUnit caster)
     {
         Vector3 pos = caster.transform.position + new Vector3(0, caster.transform.lossyScale.y * 0.5f, 0);
         GameManager.VisualEffect.StartStigmaEffect(Sprite, pos);
         return;
     }
+
 }
