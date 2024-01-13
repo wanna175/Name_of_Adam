@@ -24,7 +24,7 @@ public class PreparePhase : Phase
 
     public override void OnStateUpdate()
     {
-        BattleManager.Data.BattleUnitOrder();
+        BattleManager.Data.BattleUnitOrderSorting();
     }
 
     public override void OnClickEvent(Vector2 coord)
