@@ -18,8 +18,9 @@ MonoBehaviour:
     ATK: 9
     SPD: 40
     FallCurrentCount: 0
-    FallMaxCount: 1
+    FallMaxCount: 3
     ManaCost: 30
+    CurrentUpgradeCount: 0
   _uniqueStigma: []
   _id: 
   _name: "\uAC80\uBCD1"
