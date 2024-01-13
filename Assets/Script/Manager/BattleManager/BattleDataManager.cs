@@ -247,7 +247,7 @@ public class BattleDataManager : MonoBehaviour
         }
         else if (actionType == UnitActionType.UnitAction_temp)
         {
-            return new UnitAction_temp();
+            return null;
         }
         else
         {
