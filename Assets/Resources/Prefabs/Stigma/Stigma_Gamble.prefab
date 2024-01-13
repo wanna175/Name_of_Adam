@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69b68e26959e20468ae7b2bba6c214d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\uB3C4\uBC15"
+  _name: "\uC6B4\uBA85"
   _sprite: {fileID: 21300000, guid: f5f37927b3e195148ae4ad8f9b5f374f, type: 3}
   _description: "\uACF5\uACA9 \uC2DC 50%\uC758 \uD655\uB960\uB85C \n2\uBC30\uC758
     \uB370\uBBF8\uC9C0, \n50%\uC758 \uD655\uB960\uB85C\r \n\uC808\uBC18\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC785\uD799\uB2C8\uB2E4."
   _activeTiming: 2
   _tier: 2
-  _isLock: 0
+  _isLock: 1

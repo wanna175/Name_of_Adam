@@ -21,10 +21,12 @@ public class ProgressItem
     public int ID;             // 진척도 ID
     public string Name;        // 이름
     public int Cost;           // 가격
-    public List<int> Prequest; // 선행 조건 ID
-    public bool isLock;        // 잠겨있는지 여부
-                               // 조건, 요구사항 등에 따라 설명, 이미지 등의 인자가 들어갈 수 있음
+    public int Prequest;       // 선행 조건 ID
+    public bool IsLock;        // 구매 가능한지 여부
+    public bool IsUnlocked;    // 구매 완료 여부
+    public string Description; // 설명
 }
+
 
 [Serializable]
 public class HallUnit
@@ -53,7 +55,7 @@ public class OutGameDataContainer : MonoBehaviour
 
     public void SaveData()
     {
-        string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
     }
 
@@ -113,27 +115,41 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
     }
 
+    public int GetProgressCoin()
+    {
+        return data.ProgressCoin;
+    }
+
     public ProgressItem GetProgressItem(int ID)
     {
         return data.ProgressItems.Find(x => x.ID == ID);
     }
 
     // 현재 확인하는 아이템이 구매 가능한 아이템인지 확인
-    public bool GetBuyable(ProgressItem item)
+    public bool GetBuyable(int ID)
     {
-        foreach(int id in item.Prequest)
+        ProgressItem item = GetProgressItem(ID);
+
+        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock)
         {
-            if (GetProgressItem(id).isLock)
-                return false;
+            return false;
         }
 
         return true;
     }
 
+    public bool IsUnlockedItem(int ID)
+    {
+        ProgressItem item = GetProgressItem(ID);
+
+        return item.IsUnlocked;
+    }
+
     public void BuyProgressItem(int ID)
     {
         ProgressItem item = GetProgressItem(ID);
-        item.isLock = false;
+        item.IsLock = false;
+        item.IsUnlocked = true;
         SetProgressCoin(item.Cost);
     }
 

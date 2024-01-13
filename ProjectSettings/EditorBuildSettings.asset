@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/EndingCreditScene.unity
     guid: 23f8b5c773b1a0c43a99cb3c42999841
   - enabled: 1
+    path: Assets/Scenes/ProgressShopScene.unity
+    guid: 892586cb541b8d14f8c9ee5036d3f3e9
+  - enabled: 1
     path: Assets/Scenes/HubScene.unity
     guid: 6ca3abbdf26956a458e045166ee63328
   - enabled: 1
