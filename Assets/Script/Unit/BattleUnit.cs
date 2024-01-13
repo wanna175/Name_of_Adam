@@ -99,12 +99,12 @@ public class BattleUnit : MonoBehaviour
             }
 
             SetFlipX(team == Team.Enemy);
+       
+            //소환 시 체크
+            BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
+            BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
+            BattleManager.Instance.UnitSummonEvent(this);
         }
-
-        //소환 시 체크
-        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
-        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
-        BattleManager.Instance.UnitSummonEvent(this);
     }
 
     public void SetTeam(Team team)

@@ -210,7 +210,8 @@ public enum BuffEnum
 
     Stun,
 
-    InevitableEnd,
+    AfterAttackDead,
+    AfterAttackBounce,
 
     Assasination,
     Berserker,
@@ -225,6 +226,7 @@ public enum BuffEnum
     LegacyOfBabel,
     WrathOfBabel,
     Charge,
+    Rebirth,
 
     Leah,
     Rachel,
