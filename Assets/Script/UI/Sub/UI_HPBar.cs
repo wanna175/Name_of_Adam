@@ -61,13 +61,15 @@ public class UI_HPBar : UI_Base
     {
         int max = unit.DeckUnitTotalStat.FallMaxCount;
         int current = unit.DeckUnitTotalStat.FallCurrentCount;
+        Debug.Log("unit.DeckUnitTotalStat.FallMaxCount : " + unit.DeckUnitTotalStat.FallMaxCount 
+            + "\n unit.DeckUnitTotalStat.FallCurrentCount :" + unit.DeckUnitTotalStat.FallCurrentCount);
         if (max > 4 && _team == Team.Player)
         {
             max = 4;
         }
        
         _UnitfallGaugeMax = max;
-        _UnitfallGaugeCur = max;//마름모의 갯수
+        _UnitfallGaugeCur = max-current;//마름모의 갯수
         if (_fallGauge.Count == 0)
         {
             for (int i = 0; i < 4; i++)
