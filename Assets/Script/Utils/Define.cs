@@ -179,6 +179,41 @@ public enum PlayerSkillTargetType
     Friendly
 }
 
+public enum StigmaEnum
+{
+    Absorption,
+    Additional_Punishment,
+    Assasination,
+    Benevolence,
+    Berserker,
+    BishopsPraise,
+    Blessing,
+    BloodBlessing,
+    Cleanse,
+    DeathStrike,
+    Dispel,
+    Expand,
+    ForbiddenPact,
+    Gamble,
+    Hook,
+    Immortal,
+    Invincible,
+    Karma,
+    Killing_Spree,
+    Martyrdom,
+    Mercy,
+    Misdeed,
+    Pray_In_Aid,
+    Raise,
+    Regeneration,
+    Repetance,
+    Sadism,
+    Shadow_Step,
+    Sin,
+    Tail_Wind,
+    Teleport,
+}
+
 public enum BuffEnum
 {
     Hook,
