@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Stigma : MonoBehaviour
 {
+    [SerializeField] private StigmaEnum _stigmaEnum;
+    public StigmaEnum StigmaEnum => _stigmaEnum;
+
     [SerializeField] private string _name;
     public string Name => _name;
 

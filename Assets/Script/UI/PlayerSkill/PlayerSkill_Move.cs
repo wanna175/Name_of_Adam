@@ -9,6 +9,7 @@ public class PlayerSkill_Move : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         selectedUnit = BattleManager.Field.GetUnit(coord);
+        selectedUnit.SetBuff(new Buff_Tailwind());
         BattleManager.Field.SetNextActionTileColor(selectedUnit, FieldColorType.Move);
         return true;
     }
@@ -18,7 +19,6 @@ public class PlayerSkill_Move : PlayerSkill
         switch (activeTiming)
         {
             case ActiveTiming.TURN_START:
-                selectedUnit.SetBuff(new Buff_Tailwind());
                 BattleManager.Instance.MoveUnit(selectedUnit, coord);
                 BattleManager.Field.ClearAllColor();
                 BattleManager.PlayerSkillController.SetSkillDone();
