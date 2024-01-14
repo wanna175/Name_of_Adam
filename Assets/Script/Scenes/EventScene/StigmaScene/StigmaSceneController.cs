@@ -13,6 +13,9 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
     [SerializeField] private GameObject _stigma_transfer_btn = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+    [SerializeField] private GameObject _ui_SelectMenu;
+
+    private UI_Conversation uiConversation;
     private Stigma _giveStigma = null;
     void Start()
     {
@@ -41,17 +44,21 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         }
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
+        {
             scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+            uiConversation = FindObjectOfType<UI_Conversation>();
+            uiConversation.ConversationEnded += OnConversationEnded;
+        }
         else
+        {
             scripts = GameManager.Data.ScriptData["낙인소_입장"];
-
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+            uiConversation = FindObjectOfType<UI_Conversation>();
+            uiConversation.ConversationEnded += OnConversationEnded;
+        }
     }
 
-    //대화하기 버튼을 클릭했을 경우
-    public void OnConversationButtonClick()
-    {
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-    }
     // 낙인 부여를 선택했을 시
     public void OnStigmaUnitButtonClick()
     {
@@ -198,5 +205,10 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
+    }
+
+    private void OnConversationEnded()
+    {
+        _ui_SelectMenu.SetActive(true);
     }
 }
