@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0071be71ae30bb848b7b470244ab8675
+guid: 0d82ffae8473dcd4ea3d29120b326a04
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 150
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,164 +113,173 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: destruct_cor_attack_0
+      name: "\uAD34\uC778_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01488e0a650262040af44a68a2cececd
-      internalID: -2011843908
+      spriteID: dbd1cc86439b40444b28c74847f35726
+      internalID: 1398514861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_cor_attack_1
+      name: "\uAD34\uC778_Attack_1"
       rect:
         serializedVersion: 2
-        x: 160
+        x: 256
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62f10c24e7340644f816d06173c53f2d
-      internalID: -241573404
+      spriteID: b798a291f656397468cf4e060b72d76b
+      internalID: -1651906130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_cor_attack_2
+      name: "\uAD34\uC778_Attack_2"
       rect:
         serializedVersion: 2
-        x: 320
+        x: 512
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b05a08fd3a707614fad4369b4d95d574
-      internalID: -573046109
+      spriteID: e308d85a5218f004697691cf9c87d51f
+      internalID: -736620236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_cor_attack_3
+      name: "\uAD34\uC778_Attack_3"
       rect:
         serializedVersion: 2
-        x: 480
+        x: 768
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7be738614e1f7a048ade78bcdb909688
-      internalID: -574747406
+      spriteID: 93f2997b675085e4581a3fc07be895b6
+      internalID: 638681085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_cor_attack_4
+      name: "\uAD34\uC778_Attack_4"
       rect:
         serializedVersion: 2
-        x: 640
+        x: 1024
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b41159ca30ef8cb4a89f9e674034cc9b
-      internalID: 1544778074
+      spriteID: 680f0bce53a4c144f9bc71f2ed4975e1
+      internalID: 2059257342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_cor_attack_5
+      name: "\uAD34\uC778_Attack_5"
       rect:
         serializedVersion: 2
-        x: 800
+        x: 1280
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc7f03543925af04385e9ada3e02e51e
-      internalID: -1132056221
+      spriteID: 1e73524a846de3b4292ba19f4ebce127
+      internalID: -963566669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_cor_attack_6
+      name: "\uAD34\uC778_Attack_6"
       rect:
         serializedVersion: 2
-        x: 960
+        x: 1536
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35a84d634a954d34da898d65eb346532
-      internalID: 440427948
+      spriteID: 7bc9a45e39be66b44ac3a2af119b7dc1
+      internalID: -684321731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uAD34\uC778_Attack_7"
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd9a7b1f3251cd44b13696f66fd7afe
+      internalID: 1259865042
       vertices: []
       indices: 
       edges: []
@@ -286,13 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      destruct_cor_attack_2: -573046109
-      destruct_cor_attack_5: -1132056221
-      destruct_cor_attack_1: -241573404
-      destruct_cor_attack_0: -2011843908
-      destruct_cor_attack_6: 440427948
-      destruct_cor_attack_4: 1544778074
-      destruct_cor_attack_3: -574747406
+      "\uAD34\uC778_Attack_7": 1259865042
+      "\uAD34\uC778_Attack_1": -1651906130
+      "\uAD34\uC778_Attack_0": 1398514861
+      "\uAD34\uC778_Attack_2": -736620236
+      "\uAD34\uC778_Attack_3": 638681085
+      "\uAD34\uC778_Attack_4": 2059257342
+      "\uAD34\uC778_Attack_5": -963566669
+      "\uAD34\uC778_Attack_6": -684321731
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

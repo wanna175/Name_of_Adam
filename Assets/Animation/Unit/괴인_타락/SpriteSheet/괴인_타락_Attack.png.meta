@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ddd22f39687e52a46a1e3c4960e6f8d2
+guid: 2a357d43e116f5941a0a734ef428e5b0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 150
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,185 +113,152 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: destruct_attack_0
+      name: "\uAD34\uC778_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baba6c4d71c037e468ea5275cc46eea5
-      internalID: -449138422
+      spriteID: d52be32f8ad672b4b87e378c85c4c1c1
+      internalID: -2093060858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_attack_1
+      name: "\uAD34\uC778_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
-        x: 160
+        x: 256
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38d0f8796ccaf9b4594ef4f71d10d915
-      internalID: -1708381239
+      spriteID: 3df5b07a806128841819e8f9d63c09cf
+      internalID: -473527577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_attack_2
+      name: "\uAD34\uC778_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
-        x: 320
+        x: 512
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fcdbcea665cc6948818070689bc0202
-      internalID: 241182140
+      spriteID: 6884ecb7522e21b498d5a8501ce3b57b
+      internalID: 2132425327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_attack_3
+      name: "\uAD34\uC778_\uD0C0\uB77D_Attack_3"
       rect:
         serializedVersion: 2
-        x: 480
+        x: 768
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 151536f28358b4740b1e35233c536a63
-      internalID: 452911454
+      spriteID: d69fecb092401d54ebc8e41e7230d34a
+      internalID: -1422482783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_attack_4
+      name: "\uAD34\uC778_\uD0C0\uB77D_Attack_4"
       rect:
         serializedVersion: 2
-        x: 640
+        x: 1024
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92178842082fb7148b45e70996bd5b53
-      internalID: 683967228
+      spriteID: 3a308c9e30e9dea4d87e0ee067b79577
+      internalID: 1206248915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_attack_5
+      name: "\uAD34\uC778_\uD0C0\uB77D_Attack_5"
       rect:
         serializedVersion: 2
-        x: 800
+        x: 1280
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8956f601f0191864b974ca2a70e6f05b
-      internalID: 1583570199
+      spriteID: 7291b6d07dc0d5b4bbe907169563c8d6
+      internalID: 949773698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: destruct_attack_6
+      name: "\uAD34\uC778_\uD0C0\uB77D_Attack_6"
       rect:
         serializedVersion: 2
-        x: 960
+        x: 1536
         y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 163896cfd39fb0b4ca78e0e773f95530
-      internalID: -1291701829
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: destruct_attack_7
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 0
-        width: 160
-        height: 140
-      alignment: 9
-      pivot: {x: 0.5, y: 0.06}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 73d681721127cab42aef7ba866fedc03
-      internalID: -1805172714
+      spriteID: 178cb6a84933a5346a7f0a53f59598ef
+      internalID: 185747400
       vertices: []
       indices: 
       edges: []
@@ -307,14 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      destruct_attack_7: -1805172714
-      destruct_attack_2: 241182140
-      destruct_attack_5: 1583570199
-      destruct_attack_4: 683967228
-      destruct_attack_3: 452911454
-      destruct_attack_6: -1291701829
-      destruct_attack_0: -449138422
-      destruct_attack_1: -1708381239
+      "\uAD34\uC778_\uD0C0\uB77D_Attack_2": 2132425327
+      "\uAD34\uC778_\uD0C0\uB77D_Attack_6": 185747400
+      "\uAD34\uC778_\uD0C0\uB77D_Attack_3": -1422482783
+      "\uAD34\uC778_\uD0C0\uB77D_Attack_0": -2093060858
+      "\uAD34\uC778_\uD0C0\uB77D_Attack_4": 1206248915
+      "\uAD34\uC778_\uD0C0\uB77D_Attack_1": -473527577
+      "\uAD34\uC778_\uD0C0\uB77D_Attack_5": 949773698
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

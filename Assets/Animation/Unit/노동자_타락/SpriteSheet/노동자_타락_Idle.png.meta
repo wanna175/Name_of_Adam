@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6119cc15abefec6489e441d7b70bcfbb
+guid: b11f794603e43154481e3f9b311a9e84
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,29 +113,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_worker_cor_breath-Sheet_0
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,41 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79f2ac6f3eb090744b0df2509a96c48f
-      internalID: 681516101
+      spriteID: e1bb25d7fd9f3704a8c1226cb8ca4c65
+      internalID: 318942024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_cor_breath-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02183e70e53d13e4eb1665263a35ad60
-      internalID: 249924827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_worker_cor_breath-Sheet_2
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_1"
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,41 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a172cacc3564cd45b61c8b40f20254c
-      internalID: -357902938
+      spriteID: 5c274ebceefa49648a193d929184935e
+      internalID: -1052111722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_cor_breath-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3067c6305b726f14286357fcce0dd92f
-      internalID: -1142180956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_worker_cor_breath-Sheet_4
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_2"
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c476824a4808a04c924f629b304cefe
-      internalID: -452122336
+      spriteID: 9975d1913a5a31342b864ca1e9b93fb3
+      internalID: -1189451790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_cor_breath-Sheet_5
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_3"
       rect:
         serializedVersion: 2
-        x: 640
+        x: 768
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,8 +194,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8ab03723786a1644a0da07492bd7228
-      internalID: -2118354323
+      spriteID: c226bff5ea967404ebc8280c6c1ebfd5
+      internalID: 852292610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_4"
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6373164fdc51b4c89a27881307bdb5
+      internalID: 1384889329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_5"
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f89b11fb6db83cd4ea8f14b40925abff
+      internalID: -409470941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_6"
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17463013aaa91af4b888d0f6adcc0b95
+      internalID: 960266234
       vertices: []
       indices: 
       edges: []
@@ -265,12 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_worker_cor_breath-Sheet_0: 681516101
-      bavel_worker_cor_breath-Sheet_2: -357902938
-      bavel_worker_cor_breath-Sheet_4: -452122336
-      bavel_worker_cor_breath-Sheet_3: -1142180956
-      bavel_worker_cor_breath-Sheet_1: 249924827
-      bavel_worker_cor_breath-Sheet_5: -2118354323
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_2": -1189451790
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_4": 1384889329
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_3": 852292610
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_5": -409470941
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_0": 318942024
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_1": -1052111722
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Idle_6": 960266234
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

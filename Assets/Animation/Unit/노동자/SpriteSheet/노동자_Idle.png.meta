@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f142ba1fcc1435c44b554d1458dcb957
+guid: 85a0bb6c10fcfe84bbb5966b3f82ef83
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,29 +113,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_worker_breath-Sheet_0
+      name: "\uB178\uB3D9\uC790_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,41 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e473c7497aaf2f40a0cc8212e363e07
-      internalID: -1129659325
+      spriteID: a5c6a14d7ef9d184099f3affa0ea60c4
+      internalID: 228347623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_breath-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c910cb6890661b4f87b783fc19af07a
-      internalID: -658825520
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_worker_breath-Sheet_2
+      name: "\uB178\uB3D9\uC790_Idle_1"
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,41 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc8b5aa975fc084da5668da9ea0dc1c
-      internalID: -389526748
+      spriteID: 2c3819dd8d1839b479f0e5f01a256c4a
+      internalID: -1978186232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_worker_breath-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1180e5a2090dcbb4cbe47879bb89127a
-      internalID: 37519466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_worker_breath-Sheet_4
+      name: "\uB178\uB3D9\uC790_Idle_2"
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,8 +173,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b7d91ff47cc2b24ea85617df8f98c6a
-      internalID: 2048549622
+      spriteID: 9780a094624706941abfd5cee9858fe6
+      internalID: 133914704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB178\uB3D9\uC790_Idle_3"
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ea442bfcb1c8e4f8ea32540f9ac19d
+      internalID: -376783575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB178\uB3D9\uC790_Idle_4"
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf8e38dfc035cf04aa8dd4b21fa113ee
+      internalID: 9325715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB178\uB3D9\uC790_Idle_5"
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5b30da4b1d4f04bae678d1e7345bcf
+      internalID: -1362334207
       vertices: []
       indices: 
       edges: []
@@ -244,11 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_worker_breath-Sheet_2: -389526748
-      bavel_worker_breath-Sheet_3: 37519466
-      bavel_worker_breath-Sheet_4: 2048549622
-      bavel_worker_breath-Sheet_1: -658825520
-      bavel_worker_breath-Sheet_0: -1129659325
+      "\uB178\uB3D9\uC790_Idle_3": -376783575
+      "\uB178\uB3D9\uC790_Idle_2": 133914704
+      "\uB178\uB3D9\uC790_Idle_1": -1978186232
+      "\uB178\uB3D9\uC790_Idle_5": -1362334207
+      "\uB178\uB3D9\uC790_Idle_4": 9325715
+      "\uB178\uB3D9\uC790_Idle_0": 228347623
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

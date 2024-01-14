@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fa1e8b793c618ef4a8c5240d015fb1d9
+guid: daa4575db157eef4b84a994dcfa95d17
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,38 +113,89 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_worker_hit-Sheet_white_0
+      name: "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 0
-        width: 128
-        height: 128
-      alignment: 9
+        width: 350
+        height: 256
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16876532977972e4e8f8a597680b8762
-      internalID: -1948887676
+      spriteID: f573e1105180865499d9c91575472386
+      internalID: 1735588604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_1"
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 350
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6a6ad8f430b344e94caca5b1d216ec
+      internalID: 357106494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_2"
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 350
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc2ce7b82a1354b49beb8ec78c3e119f
+      internalID: -346600778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_3"
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 350
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b95bdbd8f0f16684eac8d491f968f623
+      internalID: -460096967
       vertices: []
       indices: 
       edges: []
@@ -160,7 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_worker_hit-Sheet_white_0: -1948887676
+      "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_3": -460096967
+      "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_2": -346600778
+      "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_0": 1735588604
+      "\uB3C4\uC0B4\uC790_\uD0C0\uB77D_Attack_1": 357106494
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
