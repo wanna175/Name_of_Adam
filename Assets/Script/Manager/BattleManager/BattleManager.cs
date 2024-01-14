@@ -195,6 +195,7 @@ public class BattleManager : MonoBehaviour
             TutorialManager.Instance.ShowNextTutorial();
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
+        _battleData.DarkEssenseChage(-unit.Data.DarkEssenseCost);
 
         unit.FirstTurnDiscountUndo();
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 73f7cc731f155de438f87093f027ed21
+guid: d40b324e7d2ba2e48a2c0628e66a6dc2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 115
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uD751\uAE30\uC0AC_Idle_0"
+      name: "\uC804\uB839_Hit_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7407d3bb6f64bd943918839c540794d6
-      internalID: -783407593
+      spriteID: bc442295adc9a7a4ea43545ea76cdb92
+      internalID: -1460756023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD751\uAE30\uC0AC_Idle_1"
+      name: "\uC804\uB839_Hit_1"
       rect:
         serializedVersion: 2
         x: 256
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63b3431ebb1ecdf488658e6af899da2e
-      internalID: -746880838
+      spriteID: c951635aae8a20446881535c21ef039f
+      internalID: 1365488442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD751\uAE30\uC0AC_Idle_2"
+      name: "\uC804\uB839_Hit_2"
       rect:
         serializedVersion: 2
         x: 512
@@ -173,71 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2abf245d2a11f724ca5a144d870a4eb6
-      internalID: 1567126140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uD751\uAE30\uC0AC_Idle_3"
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39b85cdc4ddbf7840a263990de3dff29
-      internalID: 1155880662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uD751\uAE30\uC0AC_Idle_4"
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b3f6bb2dc2ee72479f023f16e5c72c5
-      internalID: -628964231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uD751\uAE30\uC0AC_Idle_5"
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 683316ea856e28843bc6bb1a6a7628d7
-      internalID: 2026348143
+      spriteID: 6690ddf0962b5674c9464d5796a64899
+      internalID: 1576349234
       vertices: []
       indices: 
       edges: []
@@ -253,12 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uD751\uAE30\uC0AC_Idle_4": -628964231
-      "\uD751\uAE30\uC0AC_Idle_5": 2026348143
-      "\uD751\uAE30\uC0AC_Idle_1": -746880838
-      "\uD751\uAE30\uC0AC_Idle_3": 1155880662
-      "\uD751\uAE30\uC0AC_Idle_2": 1567126140
-      "\uD751\uAE30\uC0AC_Idle_0": -783407593
+      "\uC804\uB839_Hit_0": -1460756023
+      "\uC804\uB839_Hit_2": 1576349234
+      "\uC804\uB839_Hit_1": 1365488442
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
