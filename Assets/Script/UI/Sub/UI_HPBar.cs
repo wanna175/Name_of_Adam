@@ -61,8 +61,7 @@ public class UI_HPBar : UI_Base
     {
         int max = unit.DeckUnitTotalStat.FallMaxCount;
         int current = unit.DeckUnitTotalStat.FallCurrentCount;
-        Debug.Log("unit.DeckUnitTotalStat.FallMaxCount : " + unit.DeckUnitTotalStat.FallMaxCount 
-            + "\n unit.DeckUnitTotalStat.FallCurrentCount :" + unit.DeckUnitTotalStat.FallCurrentCount);
+
         if (max > 4 && _team == Team.Player)
         {
             max = 4;
