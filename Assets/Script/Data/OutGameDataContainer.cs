@@ -201,6 +201,7 @@ public class OutGameDataContainer : MonoBehaviour
     public void DoneTutorial(bool isclear)
     {
         data.TutorialClear = isclear;
+        SaveData();
     }
 
     public bool isTutorialClear()
