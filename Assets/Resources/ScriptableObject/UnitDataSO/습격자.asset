@@ -15,20 +15,21 @@ MonoBehaviour:
   _rawStat:
     MaxHP: 25
     CurrentHP: 25
-    ATK: 20
-    SPD: 90
+    ATK: 12
+    SPD: 80
     FallCurrentCount: 0
     FallMaxCount: 2
-    ManaCost: 40
+    ManaCost: 20
     CurrentUpgradeCount: 0
-  _uniqueStigma: []
+  _uniqueStigma:
+  - {fileID: 6292025498003757114, guid: f8df3eb9ce641e94e9315928e8c3e8b9, type: 3}
   _id: 
   _name: "\uC2B5\uACA9\uC790"
   _description: 
   _rarity: 0
-  _image: {fileID: -750297405, guid: a567a83302829f643981e3c1d2685514, type: 3}
-  _animatorController: {fileID: 9100000, guid: 572c5cef2c7bb744bbf7a4c17b8541b7, type: 2}
-  _corruptionAnimatorController: {fileID: 9100000, guid: 7b7be95bcb5ce1e4b82ddbb4bace7b70, type: 2}
+  _image: {fileID: 21300000, guid: 73400dd6283f1ef49b0aa8bc94005589, type: 3}
+  _animatorController: {fileID: 9100000, guid: e70f0d88f77bc99429890ca0bb7bc13c, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: f13961e55019cf24286085456b919806, type: 2}
   _skillEffectAnim: {fileID: 0}
   _corruptionSkillEffectAnim: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
