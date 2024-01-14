@@ -85,7 +85,11 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void OnClick(Stigma stigma)
     {
-        GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(false);
+        if (SceneChanger.GetSceneName() == "BattleScene")
+        {
+            BattleManager.Data.CorruptionPopups.RemoveAt(BattleManager.Data.CorruptionPopups.Count - 1);
+            GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(false);
+        }
 
         if (_targetUnit != null)
             _targetUnit.AddStigma(stigma);

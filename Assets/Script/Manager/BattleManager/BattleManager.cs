@@ -331,8 +331,22 @@ public class BattleManager : MonoBehaviour
         else
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+            UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
+            popup.Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+            popup.gameObject.SetActive(false);
+            Data.CorruptionPopups.Add(popup);
         }
+    }
+
+    public bool IsExistedCorruptionPopup()
+        => Data.CorruptionPopups.Count != 0;
+
+    public void ShowLastCorruptionPopup()
+    {
+        foreach (var item in Data.CorruptionPopups)
+            item.gameObject.SetActive(false);
+        var popup = Data.CorruptionPopups[Data.CorruptionPopups.Count - 1];
+        popup.gameObject.SetActive(true);
     }
 
     public void DirectAttack(BattleUnit attackUnit)

@@ -29,7 +29,10 @@ public class Corruption : MonoBehaviour
         {
             if (TutorialManager.Instance.IsEnable())
                 TutorialManager.Instance.ShowNextTutorial();
+
             StigmaSelectEvent(this);
+            if (BattleManager.Instance.IsExistedCorruptionPopup())
+                BattleManager.Instance.ShowLastCorruptionPopup();
         }
         else
             LoopExit();
@@ -39,6 +42,9 @@ public class Corruption : MonoBehaviour
     {
         _animator.SetBool("LoopExit", true);
         _unit.Corrupted();
+
+        if (BattleManager.Instance.IsExistedCorruptionPopup())
+            BattleManager.Instance.ShowLastCorruptionPopup();
     }
 
     public void CorruptionEnd()
