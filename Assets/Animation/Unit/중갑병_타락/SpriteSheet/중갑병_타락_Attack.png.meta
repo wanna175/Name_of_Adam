@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07315ad9f6535594bb8898257f9eab6b
+guid: dcff81327a86af84e8d406eba72afd57
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,12 +117,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: standard_cor_sword_hit-Sheet_0
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 400
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -131,19 +131,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad6a64a4442bfce4ba02f13ef1faa11a
-      internalID: 93729262
+      spriteID: 1573eeeff5aadc44c9715a92605a49f6
+      internalID: 1678953608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor_sword_hit-Sheet_1
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
-        x: 400
+        x: 256
         y: 0
-        width: 400
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -152,19 +152,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c5a7532ba325d840a1d4fd769d6ad88
-      internalID: 61735180
+      spriteID: 00d184f801a352f43b35c70a626bd6ef
+      internalID: 1929536417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor_sword_hit-Sheet_2
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
-        x: 800
+        x: 512
         y: 0
-        width: 400
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b4239a09e3aceb4aade430129ae33a7
-      internalID: -443761468
+      spriteID: 0e8a783e845db0c4bb6ee7d2db6a755b
+      internalID: -1704804054
       vertices: []
       indices: 
       edges: []
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      standard_cor_sword_hit-Sheet_2: -443761468
-      standard_cor_sword_hit-Sheet_0: 93729262
-      standard_cor_sword_hit-Sheet_1: 61735180
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Attack_1": 1929536417
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Attack_0": 1678953608
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Attack_2": -1704804054
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

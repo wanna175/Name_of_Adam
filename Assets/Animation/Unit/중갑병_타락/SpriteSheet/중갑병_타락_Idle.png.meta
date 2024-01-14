@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e29d95ef3face4446b604efac76d22b6
+guid: b6d8c2cb1827ba24083fdb040216f24b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,211 +117,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_0
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d620188b51d6d8f49ae9ab0df8b2c261
-      internalID: -323162354
+      spriteID: 31e21529f7c8cd84daeb104aac1e069b
+      internalID: 356949835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_1
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_1"
       rect:
         serializedVersion: 2
-        x: 349
+        x: 256
         y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afbcaeac20733a041a88cba492032ba7
-      internalID: 912839348
+      spriteID: 2eac3bceabdf74f4b802af4342415a27
+      internalID: 437443179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_2
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_2"
       rect:
         serializedVersion: 2
-        x: 698
+        x: 512
         y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3236fffe52f65dd4eb20e14b51774153
-      internalID: -2001918111
+      spriteID: 4f9b8ba0b3132724690674cc62fc9fea
+      internalID: -1674729049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_3
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_3"
       rect:
         serializedVersion: 2
-        x: 1047
+        x: 768
         y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7885896fba2492a42b43d085a0d03902
-      internalID: 1838455184
+      spriteID: 5a6be4abd526c0b42b17610373b4650c
+      internalID: -398692335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_4
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_4"
       rect:
         serializedVersion: 2
-        x: 1396
+        x: 1024
         y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 867838e02bc0da840802b2eed984ba2b
-      internalID: -549057513
+      spriteID: 7bafca763415baa46958b8cc7075ef05
+      internalID: 767563105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_5
+      name: "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_5"
       rect:
         serializedVersion: 2
-        x: 1745
+        x: 1280
         y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
+        width: 256
+        height: 256
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21b6565ff10193f4d9227007114a49d0
-      internalID: -1177555347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 2094
-        y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98178b50da32b6e45970267cbdcc6b12
-      internalID: -1147948846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 2443
-        y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e64f6c2d27b6e4419ccd9749cf8dbf7
-      internalID: -1285305811
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 2792
-        y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc1b8540681d17f4a90b1ff863d1ccbb
-      internalID: 1754583251
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nimurot_attack_effect-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 3141
-        y: 0
-        width: 349
-        height: 900
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a674db2accab264f80152352153c0e0
-      internalID: 1529414029
+      spriteID: 87dfd33c2666b7c45b79ac30e6787087
+      internalID: 2052796725
       vertices: []
       indices: 
       edges: []
@@ -337,16 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      nimurot_attack_effect-Sheet_3: 1838455184
-      nimurot_attack_effect-Sheet_4: -549057513
-      nimurot_attack_effect-Sheet_0: -323162354
-      nimurot_attack_effect-Sheet_5: -1177555347
-      nimurot_attack_effect-Sheet_6: -1147948846
-      nimurot_attack_effect-Sheet_1: 912839348
-      nimurot_attack_effect-Sheet_8: 1754583251
-      nimurot_attack_effect-Sheet_7: -1285305811
-      nimurot_attack_effect-Sheet_9: 1529414029
-      nimurot_attack_effect-Sheet_2: -2001918111
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_1": 437443179
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_0": 356949835
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_4": 767563105
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_2": -1674729049
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_3": -398692335
+      "\uC911\uAC11\uBCD1_\uD0C0\uB77D_Idle_5": 2052796725
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
