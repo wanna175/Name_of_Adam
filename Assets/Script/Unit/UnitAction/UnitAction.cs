@@ -296,8 +296,6 @@ public class UnitAction : MonoBehaviour
         if (hits.Count == 0)
             return false;
 
-        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Action))
-            BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         BattleManager.Instance.AttackStart(attackUnit, hits);
         return true;
     }
