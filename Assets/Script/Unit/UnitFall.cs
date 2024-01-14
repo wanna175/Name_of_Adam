@@ -14,9 +14,12 @@ public class UnitFall : MonoBehaviour
 
     public void Init(int CurrentCount, int maxCount,Team team)
     {
+       //자기팀이면서 타락 된애,원래자기팀, 적팀
         _currentCount = CurrentCount;
-        if (team == Team.Player && maxCount>4)
+        if (team == Team.Player)
+        {
             _maxCount = 4;
+        }
         else
             _maxCount = maxCount;
     }

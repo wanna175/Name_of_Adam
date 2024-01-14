@@ -71,16 +71,13 @@ public class UI_UnitInfo : UI_Popup
                                         "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString();
         }
 
-
-        for (int i = 0; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
+        Debug.Log("current:" + _unit.DeckUnitTotalStat.FallCurrentCount + "max:" + _unit.DeckUnitTotalStat.FallMaxCount);
+        for (int i = _unit.DeckUnitTotalStat.FallCurrentCount; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
             UI_FallUnit fu = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
             //UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
             fu.SwitchCountImage(Team.Player);
-            if (i < _unit.DeckUnitTotalStat.FallCurrentCount)
-                fu.FillGauge();
-            else
-                fu.EmptyGauge();
+            fu.EmptyGauge();
 
             //fg.Init();
         }
