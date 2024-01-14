@@ -269,9 +269,10 @@ public class BattleUnit : MonoBehaviour
             Fall.Editfy();
         }
         FallEvent = false;
-
+        
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
-        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 4 - DeckUnit.Data.RawStat.FallMaxCount; ;
+        DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.Data.RawStat.FallMaxCount;
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,_team);

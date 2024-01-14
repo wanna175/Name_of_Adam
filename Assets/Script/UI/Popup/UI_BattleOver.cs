@@ -21,6 +21,7 @@ public class UI_BattleOver : UI_Scene
 
         if (result == "win") 
         {
+            //여기서 보상 화면을 set Active해주면 되겟다.
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
             GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
