@@ -1518,7 +1518,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dbdd9df9943e08c49b115db945610964, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d53963cc33037c40b9e224b23e8303c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0387ad3ad9244478995e9454ca8faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgrade: {fileID: 672831071934056095}
+  _upgrade: {fileID: 1069566721}
   _stigma: {fileID: 1282508234448683314}
   _harlot: {fileID: 1069566721}
 --- !u!1 &674760459
@@ -2398,7 +2398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &827751769
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3609,7 +3609,7 @@ Animator:
   m_GameObject: {fileID: 1346919484}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1886d41b0886bd4bbcc27a1c67fa2c5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 592c596a5ffb8d348a250a9d23d2e8e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3639,7 +3639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6454e8d920c41e848b56fca90119abcc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3dcf58b5da400e540a216503b6204ad3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
