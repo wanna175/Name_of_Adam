@@ -205,7 +205,7 @@ public class UnitAction_Nimrod : UnitAction
             {
                 _nimrod_Animation = GameManager.Resource.Instantiate("BattleUnits/Nimrod_Animtion").GetComponent<Nimrod_Animation>();
                 _nimrod_Animation.ChangeAnimator(caster.Team);
-                //caster.gameObject.SetActive(false);
+                caster.gameObject.SetActive(false);
             }
         }
         else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
