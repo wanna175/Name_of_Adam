@@ -107,7 +107,6 @@ public class UI_HPBar : UI_Base
 
     public void RefreshFallGauge(int current)
     {
-
         int diff = _UnitfallGaugeCur - (_UnitfallGaugeMax - current);
         _UnitfallGaugeCur = _UnitfallGaugeMax - current;
         if (diff == 1)

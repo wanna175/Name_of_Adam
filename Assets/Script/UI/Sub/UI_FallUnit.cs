@@ -8,7 +8,7 @@ public class UI_FallUnit : MonoBehaviour
     [SerializeField] private GameObject _fill;
     [SerializeField] private Image _redCount;
     [SerializeField] private Image _whiteCount;
-    [SerializeField] private float _fadeTime;
+    [SerializeField] private Animator anim;
 
     private int FallCount = 0;
     public int GetDouble()
@@ -17,10 +17,10 @@ public class UI_FallUnit : MonoBehaviour
     }
     public void FillGauge()
     {
+        anim.SetBool("isBreak", true);
         switch (FallCount)
         {
             case 1:
-                this.gameObject.SetActive(false);
                 FallCount--;
                 break;
             case 2:
@@ -29,8 +29,14 @@ public class UI_FallUnit : MonoBehaviour
         }
     }
 
+    public void EndFillAnim()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     public void EmptyGauge()
     {
+        anim.SetBool("isBreak", false);
         switch (FallCount)
         {
             case 0:
