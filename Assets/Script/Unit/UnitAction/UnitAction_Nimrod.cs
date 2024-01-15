@@ -8,6 +8,7 @@ public class UnitAction_Nimrod : UnitAction
     //0 = smile, 1 = weep, 2 = mad
     private int _nimrodState = 0;
     private List<Vector2> _attackTile = new();
+    private Nimrod_Animation _nimrod_Animation = null;
 
     public override void AIMove(BattleUnit attackUnit)
     {
@@ -16,6 +17,11 @@ public class UnitAction_Nimrod : UnitAction
      
     public override void AISkillUse(BattleUnit attackUnit)
     {
+        if (DirectAttackCheck())
+        {
+            BattleManager.Instance.DirectAttack(attackUnit);
+        }
+
         List<BattleUnit> targetUnits = new();
         List<Vector2> emptyTiles = new();
 
@@ -54,7 +60,7 @@ public class UnitAction_Nimrod : UnitAction
         TileClear(attackUnit.Team);
     }
 
-    private void NimrodFaceCheck(BattleUnit caster)
+    private void NimrodStateCheck(BattleUnit caster)
     {
         if (_recentState[0] == -1)
         {
@@ -193,9 +199,18 @@ public class UnitAction_Nimrod : UnitAction
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
     {
-        if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
+        if ((activeTiming & ActiveTiming.SUMMON) == ActiveTiming.SUMMON)
         {
-            NimrodFaceCheck(caster);
+            if (_nimrod_Animation == null)
+            {
+                _nimrod_Animation = GameManager.Resource.Instantiate("BattleUnits/Nimrod_Animtion").GetComponent<Nimrod_Animation>();
+                _nimrod_Animation.ChangeAnimator(caster.Team);
+                caster.gameObject.SetActive(false);
+            }
+        }
+        else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
+        {
+            NimrodStateCheck(caster);
             SetAttackTile(caster);
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_SUMMON) == ActiveTiming.FIELD_UNIT_SUMMON)
@@ -225,6 +240,14 @@ public class UnitAction_Nimrod : UnitAction
                     listCount--;
                 }
             }
+        }
+        else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
+        {
+            _nimrod_Animation.SetBool("isAttack", true);
+        }
+        else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
+        {
+            _nimrod_Animation.SetBool("isAttack", false);
         }
 
         return false;

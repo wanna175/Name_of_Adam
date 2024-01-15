@@ -8,6 +8,12 @@ public class UnitAction_Tubalcain : UnitAction
 
     public override void AISkillUse(BattleUnit attackUnit)
     {
+        if (DirectAttackCheck())
+        {
+            BattleManager.Instance.DirectAttack(attackUnit);
+            return;
+        }
+
         List<Vector2> MinHPUnit = ChargeAttackSearch(attackUnit);
 
         if (MinHPUnit.Count > 0)

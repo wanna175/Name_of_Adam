@@ -48,7 +48,8 @@ public class UnitSpawner : MonoBehaviour
 
             unit.Init(spawndata.team);
             unit.UnitSetting(spawndata.location);
-            GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
+            if (unit.Data.UnitActionType != UnitActionType.UnitAction_None && unit.Data.UnitActionType != UnitActionType.UnitAction_Nimrod)
+                GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
 
             return unit;
         }

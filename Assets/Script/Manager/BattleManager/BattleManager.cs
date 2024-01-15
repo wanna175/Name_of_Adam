@@ -134,16 +134,27 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        // string str = GameManager.Data.CurrentStageData.FactionName;
-
-        for (int i = 0; i < 3; i++)
+        /*
+        for (int i = 0; i < 4; i++)
         {
             Background[i].SetActive(false);
-            
-            // if (((Faction)i + 1).ToString() == str)
+
             if (i == 0)
                 Background[i].SetActive(true);
         }
+        */
+
+        if (GameManager.Data.Map.GetCurrentStage().StageLevel == 20 && GameManager.Data.Map.GetCurrentStage().StageID == 0)
+        {
+            Background[0].SetActive(false);
+            Background[3].SetActive(true);
+        }
+        else
+        {
+            Background[3].SetActive(false);
+            Background[0].SetActive(true);
+        }
+
     }
 
     #region Click 관련
@@ -195,6 +206,7 @@ public class BattleManager : MonoBehaviour
             TutorialManager.Instance.ShowNextTutorial();
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
+        _battleData.DarkEssenseChage(-unit.Data.DarkEssenseCost);
 
         unit.FirstTurnDiscountUndo();
 
