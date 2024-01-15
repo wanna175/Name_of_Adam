@@ -36,6 +36,7 @@ public class UI_FallUnit : MonoBehaviour
 
     public void EmptyGauge()
     {
+        anim.SetBool("isBreak", false);
         switch (FallCount)
         {
             case 0:
