@@ -8,6 +8,6 @@ public class Stigma_Karma : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Karma());
+        caster.SetBuff(new Buff_Karma());
     }
 }
