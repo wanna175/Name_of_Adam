@@ -291,6 +291,7 @@ MonoBehaviour:
   _visualEffect: {fileID: 2544101032453683820}
   _saveController: {fileID: 2775867705196221120}
   _outGameData: {fileID: 8618580842691108390}
+  _unitIDManager: {fileID: 0}
 --- !u!1 &7143347326594482098
 GameObject:
   m_ObjectHideFlags: 0

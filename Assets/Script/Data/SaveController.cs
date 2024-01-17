@@ -102,7 +102,6 @@ public class SaveController : MonoBehaviour
         foreach (SaveUnit saveUnit in loadData.DeckUnitData)
         {
             DeckUnit deckunit = new();
-
             deckunit = saveUnit.unit;
             deckunit.AddAllStigma(saveUnit.Stigmata);
 
@@ -112,10 +111,8 @@ public class SaveController : MonoBehaviour
         foreach (SaveUnit saveUnit in loadData.FallenUnitsData)
         {
             DeckUnit deckunit = new();
-
             deckunit = saveUnit.unit;
             deckunit.AddAllStigma(saveUnit.Stigmata);
-
             savedFallenUnitList.Add(deckunit);
         }
 

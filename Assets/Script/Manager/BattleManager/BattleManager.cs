@@ -42,6 +42,10 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] List<GameObject> Background;
 
+    private UnitIDManager unitIDManager;
+    public static UnitIDManager _unitIDManager => Instance.unitIDManager;
+    private RewardController _rc;
+
     private void Awake()
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
@@ -49,7 +53,10 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
-
+        unitIDManager = new UnitIDManager();
+        unitIDManager.Init(GameManager.Data.GetDeck());
+        _rc = new RewardController();
+        _rc.Init(GameManager.Data.GetDeck(), GameManager.Data.DarkEssense);
         SetBackground();
     }
 
@@ -480,10 +487,12 @@ public class BattleManager : MonoBehaviour
         if (GameManager.Data.GameData.PlayerHP <= 0)
         {
             BattleOverLose();
+            unitIDManager.resetID();
         }
         else if (EnemyUnit == 0)
         {
             BattleOverWin();
+            unitIDManager.resetID();
             if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
             {
                 GameManager.OutGameData.DoneTutorial(true);
@@ -522,18 +531,18 @@ public class BattleManager : MonoBehaviour
                     }
                 }
 
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
                 GameManager.SaveManager.DeleteSaveData();
             }
             else if (data.StageLevel == 10)
             {
                 GameManager.Data.GameData.Progress.EliteWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
             }
             else
             {
                 GameManager.Data.GameData.Progress.NormalWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win",_rc);
             }
 
             return;
@@ -541,9 +550,8 @@ public class BattleManager : MonoBehaviour
         else
         {
             GameManager.Data.GameData.Progress.NormalWin++;
-            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win",_rc);
         }
-
         GameManager.OutGameData.SaveData();
         GameManager.SaveManager.SaveGame();
     }
@@ -554,6 +562,7 @@ public class BattleManager : MonoBehaviour
         Data.isGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
+        //GameManager.UnitIDController.resetID();
         GameManager.SaveManager.DeleteSaveData();
     }
 

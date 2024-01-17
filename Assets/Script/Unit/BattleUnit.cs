@@ -240,7 +240,6 @@ public class BattleUnit : MonoBehaviour
             return;
 
         GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
-
         if(DeckUnit.Data.Rarity == Rarity.Normal)
         {
             GameManager.Data.GameData.Progress.NormalFall++;
@@ -256,7 +255,11 @@ public class BattleUnit : MonoBehaviour
 
         //타락 이벤트 시작
         FallEvent = true;
-
+        for(int i = 0; i < GameManager.Data.GetDeck().Count; ++i)
+        {
+            Debug.Log("유닛 타락후 아이디 :"+GameManager.Data.GetDeck()[i].UnitID);
+        }
+        DeckUnit.UnitID = BattleManager._unitIDManager.GetID();
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -273,7 +276,6 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 4 - DeckUnit.Data.RawStat.FallMaxCount; ;
         DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.Data.RawStat.FallMaxCount;
-
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,_team);
         Buff.DispelBuff();
