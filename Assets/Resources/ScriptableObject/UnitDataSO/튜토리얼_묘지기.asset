@@ -17,9 +17,10 @@ MonoBehaviour:
     CurrentHP: 40
     ATK: 10
     SPD: 75
-    FallCurrentCount: 0
-    FallMaxCount: 3
+    FallCurrentCount: 1
+    FallMaxCount: 4
     ManaCost: 40
+    CurrentUpgradeCount: 0
   _uniqueStigma: []
   _id: 
   _name: "\uBB18\uC9C0\uAE30"
@@ -35,6 +36,7 @@ MonoBehaviour:
   _darkEssenseDrop: 1
   _darkEssenseCost: 0
   _unitActionType: 0
+  _unitMoveType: 0
   _attackRange: 00000000000000000000000000000000010000000000000000000101010000000000000000000100000000000000000000000000000000
   _moveRange: 00000000000000010000000101010000000100000000000000
   _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
