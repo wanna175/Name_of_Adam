@@ -134,16 +134,27 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        // string str = GameManager.Data.CurrentStageData.FactionName;
-
-        for (int i = 0; i < 3; i++)
+        /*
+        for (int i = 0; i < 4; i++)
         {
             Background[i].SetActive(false);
-            
-            // if (((Faction)i + 1).ToString() == str)
+
             if (i == 0)
                 Background[i].SetActive(true);
         }
+        */
+
+        if (GameManager.Data.Map.GetCurrentStage().StageLevel == 20 && GameManager.Data.Map.GetCurrentStage().StageID == 0)
+        {
+            Background[0].SetActive(false);
+            Background[3].SetActive(true);
+        }
+        else
+        {
+            Background[3].SetActive(false);
+            Background[0].SetActive(true);
+        }
+
     }
 
     #region Click 관련
@@ -195,6 +206,7 @@ public class BattleManager : MonoBehaviour
             TutorialManager.Instance.ShowNextTutorial();
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
+        _battleData.DarkEssenseChage(-unit.Data.DarkEssenseCost);
 
         unit.FirstTurnDiscountUndo();
 
@@ -278,6 +290,9 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        if (Phase.CurrentPhaseCheck(Phase.Action) && nowUnit != null && unitList.Count > 0)
+            BattleUI.UI_TurnChangeButton.SetEnable(false);
+
         if (!nowUnit.Action.ActionStart(nowUnit, unitList, coord))
             return;
     }
@@ -316,6 +331,7 @@ public class BattleManager : MonoBehaviour
         _battleData.BattleOrderRemove(Data.GetNowUnit());
         _battleUI.UI_darkEssence.Refresh();
         _phase.ChangePhase(_phase.Engage);
+        BattleOverCheck();
     }
 
     public void StigmaSelectEvent(Corruption cor)
@@ -330,8 +346,23 @@ public class BattleManager : MonoBehaviour
         else
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+            UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
+
+            popup.Init(targetUnit.DeckUnit, null, 2, cor.LoopExit);
+            popup.gameObject.SetActive(false);
+            Data.CorruptionPopups.Add(popup);
         }
+    }
+
+    public bool IsExistedCorruptionPopup()
+        => Data.CorruptionPopups.Count != 0;
+
+    public void ShowLastCorruptionPopup()
+    {
+        foreach (var item in Data.CorruptionPopups)
+            item.gameObject.SetActive(false);
+        var popup = Data.CorruptionPopups[Data.CorruptionPopups.Count - 1];
+        popup.gameObject.SetActive(true);
     }
 
     public void DirectAttack(BattleUnit attackUnit)
@@ -534,7 +565,8 @@ public class BattleManager : MonoBehaviour
         if (!_field.IsInRange(dest) || current == dest)
             return false;
 
-        BattleUI.UI_TurnChangeButton.SetEnable(false);
+        if (Phase.CurrentPhaseCheck(Phase.Move))
+            BattleUI.UI_TurnChangeButton.SetEnable(false);
 
         if (moveUnit.ConnectedUnits.Count > 0)
         {

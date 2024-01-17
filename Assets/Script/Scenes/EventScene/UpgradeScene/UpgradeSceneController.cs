@@ -8,20 +8,33 @@ public class UpgradeSceneController : MonoBehaviour
     private DeckUnit _unit;
 
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+    [SerializeField] private GameObject _ui_SelectMenu;
     private List<Script> scripts;
-    private UI_Conversation script = null;
+
+    private UI_Conversation uiConversation;
+
     void Start()
     {
         Init();
     }
     private void Init()
     {
-        scripts = new List<Script>();
+        scripts = new ();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
+        {
             scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+            uiConversation = FindObjectOfType<UI_Conversation>();
+            uiConversation.ConversationEnded += OnConversationEnded;
+        }
         else
+        {
             scripts = GameManager.Data.ScriptData["강화소_입장"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+            uiConversation = FindObjectOfType<UI_Conversation>();
+            uiConversation.ConversationEnded += OnConversationEnded;
+        }
     }
 
     // 업그레이드 할 유닛을 고릅니다.
@@ -132,5 +145,10 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
+    }
+
+    private void OnConversationEnded()
+    {
+        _ui_SelectMenu.SetActive(true);
     }
 }

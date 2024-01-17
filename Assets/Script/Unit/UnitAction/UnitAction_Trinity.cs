@@ -33,6 +33,12 @@ public class UnitAction_Trinity : UnitAction
 
     public override void AISkillUse(BattleUnit attackUnit)
     {
+        if (DirectAttackCheck())
+        {
+            BattleManager.Instance.DirectAttack(attackUnit);
+            return;
+        }
+
         if (_trinityState != 2)
         {
             List<BattleUnit> hitUnits = new();

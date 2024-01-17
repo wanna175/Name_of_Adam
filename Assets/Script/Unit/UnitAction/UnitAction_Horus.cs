@@ -10,6 +10,12 @@ public class UnitAction_Horus : UnitAction
 
     public override void AISkillUse(BattleUnit attackUnit)
     {
+        if (DirectAttackCheck())
+        {
+            BattleManager.Instance.DirectAttack(attackUnit);
+            return;
+        }
+
         SpawnUnitNearEnemy(attackUnit);
         BattleManager.Instance.EndUnitAction();
     }

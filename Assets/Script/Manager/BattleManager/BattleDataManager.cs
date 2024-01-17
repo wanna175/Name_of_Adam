@@ -20,6 +20,9 @@ public class BattleDataManager : MonoBehaviour
     private List<BattleUnit> _battleUnitList = new();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
 
+    private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
+    public List<UI_StigmaSelectButtonPopup> CorruptionPopups => _corruptionPopups;
+
     public bool isDiscount = false;
 
     public bool isGameDone = false;

@@ -16,11 +16,15 @@ public class UI_Conversation : UI_Popup
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _conversation;
     [SerializeField] private Image _unitImage;
+    [SerializeField] private GameObject _panel;
+
+    public event Action ConversationEnded;
 
     // autoStart = false면 따로 실행해줘야 함
     public void Init(List<Script> scripts, bool autoStart = true, bool battleConversation= false)
     {
         this.scripts = scripts;
+        _panel.SetActive(battleConversation);
 
         _battleConversation = battleConversation;
 
@@ -67,6 +71,8 @@ public class UI_Conversation : UI_Popup
 
         if (_battleConversation)
             BattleManager.Phase.ChangePhase(BattleManager.Phase.Prepare);
+
+        ConversationEnded?.Invoke();
 
         GameManager.UI.ClosePopup(this);
     }

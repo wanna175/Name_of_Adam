@@ -104,6 +104,7 @@ public class UnitBuff : MonoBehaviour
     {
         for (int i = 0; i < _buffList.Count; i++)
         {
+            Debug.Log(_buffList[i].Name + " / " + _buffList[i].Dispellable);
             if (_buffList[i].Dispellable)
             {
                 _buffList[i].Owner.DeleteBuff(_buffList[i].BuffEnum);

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d56c16185b668d6419b534e629972112
+guid: b2b1e44ca1095ad4fa33938390191169
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,18 +113,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -134,17 +122,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 170
-        height: 177
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.4, y: 0}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb08f56c152838748a0d2e074cac3233
-      internalID: 1760607650
+      spriteID: 1040e1b542c566c4eb046858552e96ee
+      internalID: 821135994
       vertices: []
       indices: 
       edges: []
@@ -153,19 +141,19 @@ TextureImporter:
       name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
-        x: 170
+        x: 256
         y: 0
-        width: 170
-        height: 177
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.4, y: 0}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1a8ff87aa2e4514e9ae23825935ae1e
-      internalID: 1600794843
+      spriteID: 202684d26d2811b4d929ae4ade419050
+      internalID: -1179823968
       vertices: []
       indices: 
       edges: []
@@ -174,19 +162,19 @@ TextureImporter:
       name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
-        x: 340
+        x: 512
         y: 0
-        width: 170
-        height: 177
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.4, y: 0}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6a47a8bb87aee54cb879a71dfb29579
-      internalID: 207156392
+      spriteID: bad7794a38f7e0149810883187b87967
+      internalID: -2051578039
       vertices: []
       indices: 
       edges: []
@@ -195,19 +183,19 @@ TextureImporter:
       name: "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_3"
       rect:
         serializedVersion: 2
-        x: 510
+        x: 768
         y: 0
-        width: 170
-        height: 177
+        width: 256
+        height: 256
       alignment: 9
-      pivot: {x: 0.4, y: 0}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 869ab49b4c956844b81fec3221cdc9c6
-      internalID: 1215516473
+      spriteID: 611c57f3685a1244aade5c1ce8ce2ae9
+      internalID: -1587202204
       vertices: []
       indices: 
       edges: []
@@ -223,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_2": 207156392
-      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_0": 1760607650
-      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_1": 1600794843
-      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_3": 1215516473
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_2": -2051578039
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_0": 821135994
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_1": -1179823968
+      "\uB178\uB3D9\uC790_\uD0C0\uB77D_Attack_3": -1587202204
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

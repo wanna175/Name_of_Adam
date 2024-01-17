@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c93a617c05a3c543b931bfda71c9aae
+guid: c3df82e9209b7b54e83f93a6db1ce23b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 180
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,85 +117,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_0"
+      name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 824
-        height: 360
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 427
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de22a7c5305e45a4d86537c2039ebb5b
-      internalID: 2050365683
+      spriteID: 2267d6498ea3d67429be621c867fc94e
+      internalID: -235516368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_1"
+      name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
-        x: 824
+        x: 427
         y: 0
-        width: 824
-        height: 360
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 427
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89178addd4b83d94eb68b3563abc60b1
-      internalID: 1686676768
+      spriteID: 22c99898b6a052c4fb5f56d936611724
+      internalID: 1517872217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_2"
+      name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
-        x: 1648
+        x: 854
         y: 0
-        width: 824
-        height: 360
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 427
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eaeb46cc3f45a948826c2d008faf48f
-      internalID: 255697146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_3"
-      rect:
-        serializedVersion: 2
-        x: 1648
-        y: 0
-        width: 824
-        height: 360
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 619486a35402daa4588e8430b3dff637
-      internalID: 185197545
+      spriteID: 6f532a2fea33f8b4180783f662b5c033
+      internalID: -1762348421
       vertices: []
       indices: 
       edges: []
@@ -211,10 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_0": 2050365683
-      "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_2": 255697146
-      "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_1": 1686676768
-      "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_3": 185197545
+      "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_0": -235516368
+      "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_1": 1517872217
+      "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_2": -1762348421
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

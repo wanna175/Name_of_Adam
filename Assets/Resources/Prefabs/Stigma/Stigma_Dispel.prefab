@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54ccb86f41ab3845be61ebf0370e58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stigmaEnum: 10
   _name: "\uD574\uC81C"
   _sprite: {fileID: 21300000, guid: 347ae7711174de94c95c9f699a6a9273, type: 3}
   _description: "\uD53C\uACA9\uB41C \uC801\uC758 \uBC84\uD504\uB97C \n\uC804\uBD80

@@ -7,8 +7,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_Start"
-  m_Speed: 1
+  m_Name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_Start"
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5473550814632302016}
@@ -34,8 +34,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack"
-  m_Speed: 1
+  m_Name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack"
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3609009898727185002}
@@ -61,7 +61,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Idle"
+  m_Name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Idle"
   m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:
@@ -140,7 +140,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Hit"
+  m_Name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Hit"
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -341,7 +341,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_\uD0C0\uB77D_Attack_End"
+  m_Name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_End"
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

@@ -38,7 +38,6 @@ public class StigmaController
                 continue;
             }
 
-
             if (stigma.Tier == StigmaTier.Tier1)
             {
                 _tier1StigmaList.Add(stigma);
@@ -62,23 +61,51 @@ public class StigmaController
         }
     }
 
-    public Stigma GetRandomStigma(List<int> probability)
+    public Stigma GetRandomStigma(string unitName)
     {
-        int randNum = Random.Range(0, 100);
+        Stigma stigma = null;
+        List<int> probability = new List<int>() { 99, 89 };
+        int randNum;
 
-        if (randNum >= probability[0])
+        do
         {
-            return _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
-        }
-        else if (randNum >= probability[1])
+            randNum = Random.Range(0, 100);
+
+            if (randNum >= probability[0])
+            {
+                if (_tier3StigmaList.Count > 0)
+                    stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
+            }
+            else if (randNum >= probability[1])
+            {
+                if (_tier2StigmaList.Count > 0)
+                    stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
+            }
+            else
+            {
+                if (_tier1StigmaList.Count > 0)
+                    stigma = _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
+            }
+        } while (stigma == null || IsLockStigmaAsUnit(stigma, unitName));
+
+        return stigma;
+    }
+
+    private bool IsLockStigmaAsUnit(Stigma stigma, string unitName)
+    {
+        switch (unitName) 
         {
-            return _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
+            case "검병":
+                if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.isTutorialClear())
+                {
+                    Debug.Log($"{stigma.StigmaEnum} 차단");
+                    return true;
+                }
+                break;
         }
-        else
-        {
-            return _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
-        }
-     }
+
+        return false;
+    }
 
     public Stigma GetHarlotStigmas()
     {
