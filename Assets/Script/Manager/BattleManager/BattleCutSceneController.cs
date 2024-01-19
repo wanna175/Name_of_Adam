@@ -119,12 +119,17 @@ public class BattleCutSceneController : MonoBehaviour
 
         yield return StartCoroutine(_cameraHandler.AttackEffect(_shakeInfo));
 
-        CSData.AttackUnit.AnimatorSetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
         {
             if (unit != null && !CSData.isPlayerAttack)
                 unit.AnimatorSetBool("isHit", false);
         }
+
+        yield return new WaitUntil(() => CSData.AttackUnit.AnimatorIsMotionEnd());
+
+        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.ATTACK_MOTION_END);
+        CSData.AttackUnit.AnimatorSetBool("isAttack", false);
+
     }
 
     public IEnumerator SkillHitEffect(BattleUnit unit)
@@ -164,11 +169,11 @@ public class BattleCutSceneController : MonoBehaviour
 
     private void SetUnitRayer(BattleUnit AttackUnit, List<BattleUnit> HitUnits, int rayer)
     {
-        AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+        AttackUnit.UnitRenderer.sortingOrder = rayer;
         foreach (BattleUnit unit in HitUnits)
         {
             if(unit != null)
-               unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+               unit.UnitRenderer.sortingOrder = rayer;
         }
     }
 }
