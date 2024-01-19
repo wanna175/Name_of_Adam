@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bfb4b63e8d6ba4c47b8cc6dbf7b4edd1
+guid: b38ca92d446166b4cb14a59575078035
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,68 +101,122 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: standard_cor_hook_hit-Sheet_0
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 388
+        width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c381ae55c7166343ae1b945def4ca18
-      internalID: -1963781470
+      spriteID: 5d4e5144cdf20ca4bbc874e27434ece9
+      internalID: -56247891
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor_hook_hit-Sheet_1
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
-        x: 387
+        x: 256
         y: 0
-        width: 388
+        width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd013fe90a6bacb49a6869feb325d0d5
-      internalID: 729425034
+      spriteID: f5fdc5631a5bd2d4a82262397fd03b4b
+      internalID: 1564756023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor_hook_hit-Sheet_2
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
-        x: 776
+        x: 512
         y: 0
-        width: 388
+        width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 400955b4991a52c429e4e61087f68012
-      internalID: -1661585433
+      spriteID: e2cee5eb925bd164082551545719f927
+      internalID: 888673058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_3"
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5a40d10a59ab248b897f901ce538cc
+      internalID: -148944590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_4"
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7de1c7d2a1a67bf4cb494ca19be47527
+      internalID: -1218148684
       vertices: []
       indices: 
       edges: []
@@ -178,9 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      standard_cor_hook_hit-Sheet_1: 729425034
-      standard_cor_hook_hit-Sheet_0: -1963781470
-      standard_cor_hook_hit-Sheet_2: -1661585433
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_0": -56247891
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_2": 888673058
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_1": 1564756023
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_4": -1218148684
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Attack_3": -148944590
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

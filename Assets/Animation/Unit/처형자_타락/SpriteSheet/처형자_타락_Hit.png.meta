@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 84fa0ec2aa557e44888cd83d2c645c79
+guid: f593c127e1dca2341b3821078dcbbb7d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,68 +101,80 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: standard_hook_hit-Sheet_0
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Hit_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 388
+        width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f433f06229becd44b779eb95df9c85d
-      internalID: -1970667784
+      spriteID: 230d82acf5faeeb498c184bdcec092b9
+      internalID: -802506220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_hook_hit-Sheet_1
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Hit_1"
       rect:
         serializedVersion: 2
-        x: 388
+        x: 256
         y: 0
-        width: 388
+        width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 215e2a9620a2fab4e8675b5a0a907e08
-      internalID: 408308270
+      spriteID: 8b59de10e66804f4ea12c669abca543c
+      internalID: 885614186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_hook_hit-Sheet_2
+      name: "\uCC98\uD615\uC790_\uD0C0\uB77D_Hit_2"
       rect:
         serializedVersion: 2
-        x: 776
+        x: 512
         y: 0
-        width: 388
+        width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc06a0c3cd0fa64280fea5369c4f13d
-      internalID: -2044945935
+      spriteID: 94d623799050a134a9d6354f8a23c06e
+      internalID: -94850250
       vertices: []
       indices: 
       edges: []
@@ -178,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      standard_hook_hit-Sheet_2: -2044945935
-      standard_hook_hit-Sheet_0: -1970667784
-      standard_hook_hit-Sheet_1: 408308270
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Hit_2": -94850250
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Hit_0": -802506220
+      "\uCC98\uD615\uC790_\uD0C0\uB77D_Hit_1": 885614186
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

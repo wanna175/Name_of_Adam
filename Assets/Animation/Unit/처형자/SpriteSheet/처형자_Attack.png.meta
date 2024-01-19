@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f13fb1f54cc2ae247b1c9c86a36217d7
+guid: 29f181bff97ecec4cacc9a78f42a48c3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,131 +101,143 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: standard_cor (4)-Sheet_0
+      name: "\uCC98\uD615\uC790_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 223
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d69dedb8278813948a8821bdb2b45918
-      internalID: -43172736
+      spriteID: 5a1189a74caba4d41982f6383d84e074
+      internalID: 1247690723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor (4)-Sheet_1
+      name: "\uCC98\uD615\uC790_Attack_1"
       rect:
         serializedVersion: 2
-        x: 223
+        x: 256
         y: 0
-        width: 223
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c7142352043f034e92281ac4eec0331
-      internalID: 1468274308
+      spriteID: aeca69ed9a44dcb41adf809098d9f411
+      internalID: -1236535905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor (4)-Sheet_2
+      name: "\uCC98\uD615\uC790_Attack_2"
       rect:
         serializedVersion: 2
-        x: 446
+        x: 512
         y: 0
-        width: 223
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3255bab8d4dcd640a4bd462d125ed74
-      internalID: 746715539
+      spriteID: e1d19264aa835c9488ee6c36c0eebf57
+      internalID: 519246376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor (4)-Sheet_3
+      name: "\uCC98\uD615\uC790_Attack_3"
       rect:
         serializedVersion: 2
-        x: 669
+        x: 768
         y: 0
-        width: 223
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd429999a2af4754fac010aa311f5e85
-      internalID: 446640657
+      spriteID: 727331b19e2d15946b1450ffcd71d217
+      internalID: -801273616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor (4)-Sheet_4
+      name: "\uCC98\uD615\uC790_Attack_4"
       rect:
         serializedVersion: 2
-        x: 892
+        x: 1024
         y: 0
-        width: 223
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a90927787f3d41443ad4b38cb2cb8139
-      internalID: 321672177
+      spriteID: 928b897a703258b45b1d34a7b45911c1
+      internalID: -1842589288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: standard_cor (4)-Sheet_5
+      name: "\uCC98\uD615\uC790_Attack_5"
       rect:
         serializedVersion: 2
-        x: 1115
+        x: 1280
         y: 0
-        width: 223
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 232168537a6ad9e4b810ea9f228b2ffe
-      internalID: 1692538232
+      spriteID: c15844f718421ae418fd391a2c6bda7a
+      internalID: -871857494
       vertices: []
       indices: 
       edges: []
@@ -241,12 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      standard_cor (4)-Sheet_4: 321672177
-      standard_cor (4)-Sheet_1: 1468274308
-      standard_cor (4)-Sheet_2: 746715539
-      standard_cor (4)-Sheet_3: 446640657
-      standard_cor (4)-Sheet_5: 1692538232
-      standard_cor (4)-Sheet_0: -43172736
+      "\uCC98\uD615\uC790_Attack_2": 519246376
+      "\uCC98\uD615\uC790_Attack_1": -1236535905
+      "\uCC98\uD615\uC790_Attack_4": -1842589288
+      "\uCC98\uD615\uC790_Attack_3": -801273616
+      "\uCC98\uD615\uC790_Attack_0": 1247690723
+      "\uCC98\uD615\uC790_Attack_5": -871857494
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
