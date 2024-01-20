@@ -116,31 +116,18 @@ public class StigmaController
 
     public void CheckUnlockedStigma(Stigma stigma)
     {
-        if (GameManager.OutGameData.IsUnlockedItem(1) && stigma.Name == "운명")
-        {
-            stigma.UnlockStigma();
-        }
-        if (GameManager.OutGameData.IsUnlockedItem(4) && stigma.Name == "보복")
-        {
-            stigma.UnlockStigma();
-        }
-        if (GameManager.OutGameData.IsUnlockedItem(7) && stigma.Name == "척살")
-        {
-            stigma.UnlockStigma();
-        }
-        if (GameManager.OutGameData.IsUnlockedItem(10) && stigma.Name == "갈망")
-        {
-            stigma.UnlockStigma();
-        }
-        if (GameManager.OutGameData.IsUnlockedItem(13) && stigma.Name == "순간이동")
-        {
-            stigma.UnlockStigma();
-        }
-        if (GameManager.OutGameData.IsUnlockedItem(16) && stigma.Name == "금지된 계약")
-        {
-            stigma.UnlockStigma();
-        }
-        if (GameManager.OutGameData.IsUnlockedItem(20) && stigma.Name == "대죄")
+        UnlockStigma(stigma, 20, StigmaEnum.Sin);
+        UnlockStigma(stigma, 16, StigmaEnum.ForbiddenPact);
+        UnlockStigma(stigma, 13, StigmaEnum.Teleport);
+        //UnlockStigma(stigma, 10, 갈망);
+        UnlockStigma(stigma, 7, StigmaEnum.Killing_Spree);
+        //UnlockStigma(stigma, 4, 보복);
+        UnlockStigma(stigma, 1, StigmaEnum.Gamble);
+    }
+
+    public void UnlockStigma(Stigma stigma, int ID, StigmaEnum unlockedstigma)
+    {
+        if(GameManager.OutGameData.IsUnlockedItem(ID) && stigma.StigmaEnum == unlockedstigma)
         {
             stigma.UnlockStigma();
         }
