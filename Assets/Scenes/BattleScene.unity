@@ -5269,6 +5269,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1343040618248260712, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3753618238708733198, guid: 4448e6e8a4f759f469cdd488bfe8abf5, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -16685,6 +16689,8 @@ MonoBehaviour:
     ManaCost: 0
     CurrentUpgradeCount: 0
   _team: 0
+  UnitRenderer: {fileID: 0}
+  UnitAnimator: {fileID: 0}
   SkillEffectAnim: {fileID: 0}
   HP: {fileID: 6850471092878851450}
   Fall: {fileID: 540959683015239602}
