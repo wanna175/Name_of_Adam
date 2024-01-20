@@ -248,9 +248,9 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Horus_Egg();
         }
-        else if (actionType == UnitActionType.UnitAction_temp)
+        else if (actionType == UnitActionType.UnitAction_RaquelLeah)
         {
-            return null;
+            return new UnitAction_RaquelLeah();
         }
         else
         {

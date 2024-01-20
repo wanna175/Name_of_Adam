@@ -29,6 +29,11 @@ public class Buff_AfterAttackDead : Buff
     {
         _owner.UnitDiedEvent();
 
+        if (_owner != null)
+        {
+            _owner.UnitRenderer.color = new(1, 1, 1, 1);
+        }
+
         return false;
     }
 }
