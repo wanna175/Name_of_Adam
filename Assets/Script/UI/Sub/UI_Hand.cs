@@ -35,7 +35,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void SetUnitInfo()
     {
-        _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + _handUnit.Data.Name + "_Å¸¶ô");
+        _unitImage.sprite = _handUnit.Data.CorruptPortraitImage;
         _cost.text = _handUnit.DeckUnitTotalStat.ManaCost.ToString();
 
         if (_handUnit.Data.DarkEssenseCost > 0)
@@ -44,8 +44,6 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             _darkessensecost.text = _handUnit.Data.DarkEssenseCost.ToString();
         }
             
-
-
         if (_handUnit.IsDiscount())
         {
             _cost.color = Color.yellow;

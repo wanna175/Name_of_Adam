@@ -366,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 9027651334718104315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5493838240895486385}
@@ -469,6 +469,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -477,6 +478,9 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
+    HallUnitID: 0
+    IsMainDeck: 0
   BattleUnitChangedStat:
     MaxHP: 0
     CurrentHP: 0
@@ -485,7 +489,10 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 0
     ManaCost: 0
+    CurrentUpgradeCount: 0
   _team: 0
+  UnitRenderer: {fileID: 0}
+  UnitAnimator: {fileID: 0}
   SkillEffectAnim: {fileID: 0}
   HP: {fileID: 1722822296286429812}
   Fall: {fileID: -3496854762374506308}
@@ -497,6 +504,9 @@ MonoBehaviour:
   FallEvent: 0
   IsConnectedUnit: 0
   ConnectedUnits: []
+  NextMoveSkip: 0
+  NextAttackSkip: 0
+  AttackUnitNum: 0
   ChangedDamage: 0
 --- !u!114 &1722822296286429812
 MonoBehaviour:

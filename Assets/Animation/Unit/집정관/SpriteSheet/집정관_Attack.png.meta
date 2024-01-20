@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 854c16e1f2b069a4ab7f224a143123e6
+guid: 774d96c3a3441a44a800e8382e571ffe
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,19 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,106 +117,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_fourhands_attack-Sheet_0
+      name: "\uC9D1\uC815\uAD00_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 169
-        height: 175
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c012f84d70134f47b11680f015b7a24
-      internalID: -20150672
+      spriteID: 25396d534b9abe34fa1f95847958bcdb
+      internalID: -849547646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_attack-Sheet_1
+      name: "\uC9D1\uC815\uAD00_Attack_1"
       rect:
         serializedVersion: 2
-        x: 169
+        x: 256
         y: 0
-        width: 169
-        height: 175
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41af6dcbfbb6d7e4fbd3f5ec370385f3
-      internalID: -1260385997
+      spriteID: bc3662682a02da54ba17446cb5db2ffb
+      internalID: -1427403935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_attack-Sheet_2
+      name: "\uC9D1\uC815\uAD00_Attack_2"
       rect:
         serializedVersion: 2
-        x: 338
+        x: 512
         y: 0
-        width: 169
-        height: 175
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d93b681e2547124884a9225cd37204b
-      internalID: -1622934142
+      spriteID: 0899d763e7fccd84a9c529fa56e72c3e
+      internalID: 1980732201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_attack-Sheet_3
+      name: "\uC9D1\uC815\uAD00_Attack_3"
       rect:
         serializedVersion: 2
-        x: 507
+        x: 768
         y: 0
-        width: 169
-        height: 175
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb6c5faa781b64b47a723a3051a4f6f5
-      internalID: 1952319645
+      spriteID: 7b86eca2cbac59f499f4c934afc8b4c4
+      internalID: -961857264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_attack-Sheet_4
+      name: "\uC9D1\uC815\uAD00_Attack_4"
       rect:
         serializedVersion: 2
-        x: 676
+        x: 1024
         y: 0
-        width: 169
-        height: 175
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fb09554e2f25154dbde920267da036e
-      internalID: 762011556
+      spriteID: 0151bc02ef454b9438efc23c7baebf82
+      internalID: 1322908390
       vertices: []
       indices: 
       edges: []
@@ -244,11 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_fourhands_attack-Sheet_1: -1260385997
-      bavel_fourhands_attack-Sheet_0: -20150672
-      bavel_fourhands_attack-Sheet_3: 1952319645
-      bavel_fourhands_attack-Sheet_2: -1622934142
-      bavel_fourhands_attack-Sheet_4: 762011556
+      "\uC9D1\uC815\uAD00_Attack_1": -1427403935
+      "\uC9D1\uC815\uAD00_Attack_2": 1980732201
+      "\uC9D1\uC815\uAD00_Attack_4": 1322908390
+      "\uC9D1\uC815\uAD00_Attack_0": -849547646
+      "\uC9D1\uC815\uAD00_Attack_3": -961857264
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

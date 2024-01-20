@@ -45,18 +45,13 @@ public class UI_Info : UI_Scene
         _name.text = unit.Data.Name;
         Team team = battleUnit.Team;
 
-
-        //"<color=\"black\"></color>"
-
-        _unitImage.sprite = battleUnit.Data.Image;
-
         if (battleUnit.Team == Team.Player)
         {
-            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + battleUnit.DeckUnit.Data.Name + "_타락");
+            _unitImage.sprite = unit.Data.CorruptDiaPortraitImage;
         }
         else
         {
-            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + battleUnit.DeckUnit.Data.Name);
+            _unitImage.sprite = unit.Data.DiaPortraitImage;
         }
 
         string statText;
@@ -146,11 +141,11 @@ public class UI_Info : UI_Scene
 
         if (team == Team.Player)
         {
-            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + unit.Data.Name + "_타락");
+            _unitImage.sprite = unit.Data.CorruptDiaPortraitImage;
         }
         else
         {
-            _unitImage.GetComponent<Image>().sprite = GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Dia_Portrait/" + unit.Data.Name);
+            _unitImage.sprite = unit.Data.DiaPortraitImage;
         }
 
         string statText;

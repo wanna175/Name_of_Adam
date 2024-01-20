@@ -14,9 +14,9 @@ public class Field : MonoBehaviour
     public FieldColorType FieldType => _fieldType;
 
     // 필드의 생성을 위한 필드의 위치
-    private readonly Vector3 FieldPosition = new(0.07f, -1.3f, 2.5f);
+    private readonly Vector3 FieldPosition = new(0.05f, -1.06f, 0);
     private readonly Vector3 FieldRotation = new(24f, 0, 0);
-    private readonly Vector3 FieldScale = new(17.8f, 7.7f, 1f);
+    private readonly Vector3 FieldScale = new(14.2f, 6.1f, 1f);
 
     private const int MaxFieldX = 6;
     private const int MaxFieldY = 3;
