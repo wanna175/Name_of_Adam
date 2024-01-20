@@ -19,14 +19,14 @@ public class Stigma_Undertaker : Stigma
             caster.SetBuff(new Buff_Vice());
 
             SpawnData sd = new();
-            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/ÁË¼ö");
+            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/ÀåÀÇ»ç_ÁË¼ö");
             sd.location = caster.Location + Vector2.right;
             sd.team = caster.Team;
 
             BattleUnit spawnUnit = BattleManager.Spawner.SpawnDataSpawn(sd);
             spawnUnit.SetBuff(new Buff_Vice());
 
-            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/¹¦Áö±â");
+            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/ÀåÀÇ»ç_¹¦Áö±â");
             sd.location = caster.Location + Vector2.right + Vector2.right;
             sd.team = caster.Team;
 

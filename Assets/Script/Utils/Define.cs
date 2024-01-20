@@ -147,6 +147,8 @@ public enum ActiveTiming
     UNIT_KILL = 1 << 24, //다른 유닛을 죽일 시
     UNIT_TERMINATE = 1 << 25, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
 
+    ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
+
     NONE = 1 << 26 //없음
 };
 
@@ -249,6 +251,7 @@ public enum BuffEnum
 
     Stun,
 
+    AfterMotionTransparent,
     AfterAttackDead,
     AfterAttackBounce,
 
@@ -283,7 +286,7 @@ public enum UnitActionType
     UnitAction_Horus,
     UnitAction_Horus_Egg,
     UnitAction_Laser,
-    UnitAction_temp,
+    UnitAction_RaquelLeah,
     UnitAction_CenteredSplash
 }
 

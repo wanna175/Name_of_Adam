@@ -15,7 +15,7 @@ public class Buff_Stigma_Rebirth : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
+        _buffActiveTiming = ActiveTiming.ATTACK_MOTION_END;
 
         _owner = owner;
 
@@ -28,8 +28,8 @@ public class Buff_Stigma_Rebirth : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        Buff_AfterAttackBounce afterAttackBounce = new();
-        _owner.SetBuff(afterAttackBounce);
+        _owner.SetBuff(new Buff_AfterMotionTransparent());
+        _owner.SetBuff(new Buff_AfterAttackBounce());
 
         return false;
     }

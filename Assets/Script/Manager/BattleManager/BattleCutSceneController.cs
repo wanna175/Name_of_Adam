@@ -50,7 +50,7 @@ public class BattleCutSceneController : MonoBehaviour
 
         yield return new WaitUntil(() => FallCheck(CSData.HitUnits));
 
-        yield return new WaitForSeconds(1);
+        //yield return new WaitForSeconds(1);
 
         BattleManager.Instance.EndUnitAction();
     }
@@ -119,12 +119,16 @@ public class BattleCutSceneController : MonoBehaviour
 
         yield return StartCoroutine(_cameraHandler.AttackEffect(_shakeInfo));
 
-        CSData.AttackUnit.AnimatorSetBool("isAttack", false);
         foreach (BattleUnit unit in CSData.HitUnits)
         {
             if (unit != null && !CSData.isPlayerAttack)
                 unit.AnimatorSetBool("isHit", false);
         }
+
+        yield return new WaitUntil(() => CSData.AttackUnit.AnimatorIsMotionEnd());
+
+        CSData.AttackUnit.AnimatorSetBool("isAttack", false);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_MOTION_END, CSData.AttackUnit);
     }
 
     public IEnumerator SkillHitEffect(BattleUnit unit)
@@ -164,11 +168,14 @@ public class BattleCutSceneController : MonoBehaviour
 
     private void SetUnitRayer(BattleUnit AttackUnit, List<BattleUnit> HitUnits, int rayer)
     {
-        AttackUnit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+        AttackUnit.UnitRenderer.sortingOrder = rayer;
         foreach (BattleUnit unit in HitUnits)
         {
-            if(unit != null)
-               unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+            if (unit != null)
+            {
+                //unit.UnitRenderer.sortingOrder = rayer;
+                unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+            }
         }
     }
 }

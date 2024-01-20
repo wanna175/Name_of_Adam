@@ -48,6 +48,7 @@ public class UnitAction_Nimrod : UnitAction
 
             BattleManager.Spawner.SpawnDataSpawn(sd);
         }
+
         if (targetUnits.Count > 0)
         {
             BattleManager.Instance.AttackStart(attackUnit, targetUnits);
@@ -205,7 +206,6 @@ public class UnitAction_Nimrod : UnitAction
             {
                 _nimrod_Animation = GameManager.Resource.Instantiate("BattleUnits/Nimrod_Animtion").GetComponent<Nimrod_Animation>();
                 _nimrod_Animation.ChangeAnimator(caster.Team);
-                caster.gameObject.SetActive(false);
             }
         }
         else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
@@ -245,11 +245,70 @@ public class UnitAction_Nimrod : UnitAction
         {
             _nimrod_Animation.SetBool("isAttack", true);
         }
+        else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
+        {
+            foreach (Vector2 tile in _attackTile)
+            {
+                BattleManager.Field.TileDict[tile].IsColored = true;
+            }
+        }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
         {
             _nimrod_Animation.SetBool("isAttack", false);
         }
 
         return false;
+    }
+
+    public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
+    {
+        if (!_attackTile.Contains(coord))
+            return false;
+
+        List<BattleUnit> targetUnits = new();
+        List<Vector2> emptyTiles = new();
+
+        foreach (Vector2 tile in _attackTile)
+        {
+            BattleUnit unitOnTile = BattleManager.Field.GetUnit(tile);
+
+            if (unitOnTile != null && unitOnTile.Team != attackUnit.Team)
+            {
+                targetUnits.Add(unitOnTile);
+            }
+            else if (unitOnTile == null)
+            {
+                emptyTiles.Add(tile);
+            }
+        }
+
+        SpawnData sd = new();
+        sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/오벨리스크");
+        sd.team = attackUnit.Team;
+
+
+        if (hits.Count == 0)
+        {
+            sd.location = coord;
+            BattleManager.Spawner.SpawnDataSpawn(sd);
+        }
+        else if (emptyTiles.Count > 0)
+        {
+            sd.location = emptyTiles[Random.Range(0, emptyTiles.Count)];
+            BattleManager.Spawner.SpawnDataSpawn(sd);
+        }
+
+        if (targetUnits.Count > 0)
+        {
+            BattleManager.Instance.AttackStart(attackUnit, targetUnits);
+        }
+        else
+        {
+            BattleManager.Instance.EndUnitAction();
+        }
+
+        TileClear(attackUnit.Team);
+
+        return true;
     }
 }

@@ -17,9 +17,10 @@ MonoBehaviour:
     CurrentHP: 40
     ATK: 10
     SPD: 75
-    FallCurrentCount: 0
-    FallMaxCount: 3
+    FallCurrentCount: 1
+    FallMaxCount: 4
     ManaCost: 30
+    CurrentUpgradeCount: 0
   _uniqueStigma: []
   _id: 
   _name: "\uBB18\uC9C0\uAE30"
@@ -27,6 +28,11 @@ MonoBehaviour:
     \uC90D\uB2C8\uB2E4."
   _rarity: 0
   _image: {fileID: 21300000, guid: 514786a5b91d72e4fb785fb5f9e79add, type: 3}
+  _corruptImage: {fileID: 0}
+  _portraitImage: {fileID: 21300000, guid: 2f10d712fb0a84d41b8d35d0879aeea0, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: 5c3fa1d98af5bb9449c81f7a72a6ccdb, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 221ad9def9fe22846b52ecaba41bf14f, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 6cca94828b537e5458b81e11fa6446c2, type: 3}
   _animatorController: {fileID: 9100000, guid: a2fd4ee1f371a4a488a25670c7dbf079, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 946137005c1873b4889dd8cc51d6c525, type: 2}
   _skillEffectAnim: {fileID: 0}
@@ -35,6 +41,8 @@ MonoBehaviour:
   _darkEssenseDrop: 1
   _darkEssenseCost: 0
   _unitActionType: 0
+  _unitMoveType: 0
+  _isBattleOnly: 0
   _attackRange: 00000000000000000000000000000000010000000000000000000101010000000000000000000100000000000000000000000000000000
   _moveRange: 00000000000000010000000101010000000100000000000000
   _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000

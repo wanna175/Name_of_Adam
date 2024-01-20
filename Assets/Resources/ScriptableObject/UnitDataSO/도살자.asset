@@ -17,8 +17,8 @@ MonoBehaviour:
     CurrentHP: 45
     ATK: 8
     SPD: 15
-    FallCurrentCount: 0
-    FallMaxCount: 3
+    FallCurrentCount: 1
+    FallMaxCount: 4
     ManaCost: 60
     CurrentUpgradeCount: 0
   _uniqueStigma:
@@ -29,6 +29,11 @@ MonoBehaviour:
     \uC90D\uB2C8\uB2E4."
   _rarity: 0
   _image: {fileID: 21300000, guid: 74da47bbf25732049a86ed48ff343a24, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 0de9357cfe900b3448c4d3c74c5dad2a, type: 3}
+  _portraitImage: {fileID: 21300000, guid: 90f9bf1f79b27b34c9af4fe798a41d06, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: fb764cdd0b7d0214289918ea70be925b, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 90f9bf1f79b27b34c9af4fe798a41d06, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: fb764cdd0b7d0214289918ea70be925b, type: 3}
   _animatorController: {fileID: 9100000, guid: fe36bace5be9263418cdf8ca21193cc1, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 6dfd17b6f40805949a1d9c1a3fba6e02, type: 2}
   _skillEffectAnim: {fileID: 0}
@@ -38,6 +43,7 @@ MonoBehaviour:
   _darkEssenseCost: 0
   _unitActionType: 0
   _unitMoveType: 0
+  _isBattleOnly: 0
   _attackRange: 00000000000100000000000000000000010000000000000000010101010100000000000000000100000000000000000000010000000000
   _moveRange: 00000000000000010000000101010000000100000000000000
   _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000

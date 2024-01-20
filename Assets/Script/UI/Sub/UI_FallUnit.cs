@@ -8,6 +8,8 @@ public class UI_FallUnit : MonoBehaviour
     [SerializeField] private GameObject _fill;
     [SerializeField] private Image _redCount;
     [SerializeField] private Image _whiteCount;
+    [SerializeField] private Image _doubleCount;
+    [SerializeField] private Image _tripleCount;
     [SerializeField] private Animator anim;
 
     private int FallCount = 0;
@@ -15,9 +17,12 @@ public class UI_FallUnit : MonoBehaviour
     {
         return FallCount;
     }
+    public void SetAnimation()
+    {
+        anim.SetBool("isBreak", false);
+    }
     public void FillGauge()
     {
-        anim.SetBool("isBreak", true);
         switch (FallCount)
         {
             case 1:
@@ -26,12 +31,24 @@ public class UI_FallUnit : MonoBehaviour
             case 2:
                 FallCount--;
                 break;
+            case 3:
+                FallCount--;
+                break;
         }
+        anim.SetBool("isBreak", true);
     }
 
     public void EndFillAnim()
     {
-        this.gameObject.SetActive(false);
+        if (FallCount == 0)
+            this.gameObject.SetActive(false);
+        else if (FallCount == 1)
+        {
+            this._doubleCount.gameObject.SetActive(false);
+        }
+        else if (FallCount == 2)
+            this._tripleCount.gameObject.SetActive(false);
+        anim.Rebind();
     }
 
     public void EmptyGauge()
@@ -44,6 +61,11 @@ public class UI_FallUnit : MonoBehaviour
                 FallCount++;
                 break;
             case 1:
+                this._doubleCount.gameObject.SetActive(true);
+                FallCount++;
+                break;
+            case 2:
+                this._tripleCount.gameObject.SetActive(true);
                 FallCount++;
                 break;
         }
@@ -58,16 +80,8 @@ public class UI_FallUnit : MonoBehaviour
         }
         else
         {
-            if (FallCount < 2)
-            {
-                _redCount.gameObject.SetActive(true);
-                _whiteCount.gameObject.SetActive(false);
-            }
-            else
-            {
-                _redCount.gameObject.SetActive(false);
-                _whiteCount.gameObject.SetActive(true);
-            }
+            _redCount.gameObject.SetActive(true);
+            _whiteCount.gameObject.SetActive(false);
         }
     }
 }

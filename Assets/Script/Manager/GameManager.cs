@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public static SaveController SaveManager => Instance._saveController;
 
     [SerializeField] private OutGameDataContainer _outGameData;
-    public static OutGameDataContainer OutGameData => Instance._outGameData;    
+    public static OutGameDataContainer OutGameData => Instance._outGameData;
 
     void Awake()
     {
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
             Data.Init();
             Sound.Init();
             VisualEffect.Init();
+            
         }
 
         /*
