@@ -23,16 +23,17 @@ public class FadeController : MonoBehaviour
         }
     }
 
-    public void StartFadeIn() // 호출 함수 Fade In을 시작
+    public void StartFadeIn(int waitTime = 0) // 호출 함수 Fade In을 시작
     {
         if (fadeCor != null)
             StopCoroutine(fadeCor);
-
-        fadeCor = StartCoroutine(FadeIn());
+        
+        fadeCor = StartCoroutine(FadeIn(waitTime));
     }
 
-    private IEnumerator FadeIn() // 코루틴을 통해 페이드 인 시간 조절
+    private IEnumerator FadeIn(int waitTime=0) // 코루틴을 통해 페이드 인 시간 조절
     {
+        yield return new WaitForSeconds(waitTime);
         while (accumTime < fadeTime)
         {
             cg.alpha = Mathf.Lerp(0f, 1f, accumTime / fadeTime);
@@ -75,5 +76,10 @@ public class FadeController : MonoBehaviour
         {
             SceneChanger.SceneChange(scenename);
         }
+    }
+    public void EndFade()
+    {
+        StopAllCoroutines();//나중에 오류가 생길 수도 있을거 같긴한데ㅜㅜ
+        cg.alpha = 1;
     }
 }
