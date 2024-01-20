@@ -7,8 +7,9 @@ using UnityEngine;
 [Serializable]
 public class DeckUnit
 {
+    public int UnitID { get; set; }
     public UnitDataSO Data; // 유닛 기초 정보
-    
+
     [SerializeField] public Stat DeckUnitUpgradeStat; // 영구 변화 수치
     [SerializeField] public Stat DeckUnitChangedStat; // 일시적 변화 수치, 한 전투 내에서만 적용
 
@@ -17,7 +18,7 @@ public class DeckUnit
 
     public readonly int MaxUpgradeCount = 3;
 
-    private List<Stigma> _stigma =  new();
+    private List<Stigma> _stigma = new();
 
     public readonly int _maxStigmaCount = 3;
     public int _stigmaCount => _stigma.Count;
@@ -25,7 +26,15 @@ public class DeckUnit
     [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
     public bool IsMainDeck = false;
     public bool CanSpawnInEnemyField => CheckStigma(new Stigma_Assasination());
-
+    
+    public DeckUnit()
+    {
+        this.UnitID = -1;
+        //this.UnitID = GameManager.UnitIDController.GetID();
+    }
+    /*~DeckUnit() {//배틀이 끝났을때마다 초기화 해주자.
+        //GameManager.UnitIDController.ReturnID(this.UnitID);
+    }*/
     public bool CheckStigma(Stigma findStigma)
     {
         foreach (Stigma stigma in GetStigma())

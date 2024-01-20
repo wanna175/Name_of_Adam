@@ -12,7 +12,7 @@ public class UI_BattleOver : UI_Scene
 
     private string _result;
 
-    public void SetImage(string result)
+    public void SetImage(string result,RewardController rc = null)
     {
         fc.GetComponent<FadeController>().StartFadeIn();
 
@@ -21,6 +21,7 @@ public class UI_BattleOver : UI_Scene
 
         if (result == "win") 
         {
+            rc.RewardSetting(GameManager.Data.GetDeck(), this);
             //여기서 보상 화면을 set Active해주면 되겟다.
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
