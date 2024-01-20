@@ -71,6 +71,9 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private UnitMoveType _unitMoveType;
     public UnitMoveType UnitMoveType => _unitMoveType;
 
+    [SerializeField] bool _isBattleOnly;
+    public bool IsBattleOnly => _isBattleOnly;
+
     const int Arow = 5;
     const int Acolumn = 11;
 

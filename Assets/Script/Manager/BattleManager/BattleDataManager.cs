@@ -42,7 +42,7 @@ public class BattleDataManager : MonoBehaviour
 
         foreach (BattleUnit unit in _battleUnitList)
         {
-            if (unit.IsConnectedUnit)
+            if (unit.IsConnectedUnit || unit.Data.IsBattleOnly)
                 continue;
 
             unit.DeckUnit.DeckUnitChangedStat.ClearStat();
