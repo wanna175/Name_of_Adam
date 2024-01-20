@@ -31,6 +31,11 @@ MonoBehaviour:
     \uC8FC\uBA70 \uD0C0\uB77D\uB3C4 1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   _rarity: 3
   _image: {fileID: -561143384, guid: 1a22865a3ea972d46b40720e5f4d1a7b, type: 3}
+  _corruptImage: {fileID: 0}
+  _portraitImage: {fileID: 21300000, guid: 2de7b2f59476eba4c907cd8cd331af4f, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: d39f64d6a63e99047b816e4e681ebea1, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: f549d1c859741b240aede3973f652df9, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 1533f6ee37c7bb641b505ac0a5e3188e, type: 3}
   _animatorController: {fileID: 9100000, guid: ef3a4bb4a32c6514d964a8ab24dc1641, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: ef3a4bb4a32c6514d964a8ab24dc1641, type: 2}
   _skillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}

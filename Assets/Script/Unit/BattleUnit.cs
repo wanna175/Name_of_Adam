@@ -14,8 +14,8 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] private Team _team;
     public Team Team => _team;
 
-    private SpriteRenderer _renderer;
-    private Animator _unitAnimator;
+    public SpriteRenderer UnitRenderer;
+    public Animator UnitAnimator;
     public AnimationClip SkillEffectAnim;
 
     //[SerializeField] public UnitAIController AI;
@@ -50,11 +50,11 @@ public class BattleUnit : MonoBehaviour
 
     public void Init(Team team)
     {
-        _renderer = GetComponent<SpriteRenderer>();
-        _unitAnimator = GetComponent<Animator>();
+        UnitRenderer = GetComponent<SpriteRenderer>();
+        UnitAnimator = GetComponent<Animator>();
 
-        _renderer.sprite = Data.Image;
-        _renderer.color = new Color(1, 1, 1, 1);
+        UnitRenderer.sprite = Data.Image;
+        UnitRenderer.color = new Color(1, 1, 1, 1);
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,team);
@@ -118,10 +118,10 @@ public class BattleUnit : MonoBehaviour
     public void SetFlipX(bool flip)
     {
         //true -> look left, false -> look right
-        if (_renderer.flipX == flip || Data.UnitMoveType == UnitMoveType.UnitMove_None)
+        if (UnitRenderer.flipX == flip || Data.UnitMoveType == UnitMoveType.UnitMove_None)
             return;
 
-        _renderer.flipX = flip;
+        UnitRenderer.flipX = flip;
         _floatingDamage.DirectionChange(flip);
 
         if (ConnectedUnits.Count > 0)
@@ -163,7 +163,7 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-    public bool GetFlipX() => _renderer.flipX;
+    public bool GetFlipX() => UnitRenderer.flipX;
 
     public void SetHPBar()
     {
@@ -212,13 +212,13 @@ public class BattleUnit : MonoBehaviour
 
     private IEnumerator UnitDeadEffect()
     {
-        Color c = _renderer.color;
+        Color c = UnitRenderer.color;
 
         while (c.a > 0)
         {
             c.a -= 0.01f;
 
-            _renderer.color = c;
+            UnitRenderer.color = c;
 
             yield return null;
         }
@@ -301,13 +301,15 @@ public class BattleUnit : MonoBehaviour
 
     public void AnimatorSetBool(string varName, bool boolean)
     {
-        _unitAnimator.SetBool(varName, boolean);
+        UnitAnimator.SetBool(varName, boolean);
     }
 
     public void AnimatorSetInteger(string varName, int integer)
     {
-        _unitAnimator.SetInteger(varName, integer);
+        UnitAnimator.SetInteger(varName, integer);
     }
+
+    public bool AnimatorIsMotionEnd() => UnitAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
 
     public Team ChangeTeam(Team team = default)
     {
@@ -333,13 +335,13 @@ public class BattleUnit : MonoBehaviour
     {
         if (Team == Team.Player)
         {
-            _unitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
+            UnitAnimator.runtimeAnimatorController = Data.CorruptionAnimatorController;
             if (Data.CorruptionSkillEffectAnim != null)
                 SkillEffectAnim = Data.CorruptionSkillEffectAnim;
         }
         else
         {
-            _unitAnimator.runtimeAnimatorController = Data.AnimatorController;
+            UnitAnimator.runtimeAnimatorController = Data.AnimatorController;
             if (Data.SkillEffectAnim != null)
                 SkillEffectAnim = Data.SkillEffectAnim;
         }

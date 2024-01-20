@@ -29,6 +29,21 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] private Sprite _image;
     public Sprite Image => _image;
 
+    [SerializeField] private Sprite _corruptImage;
+    public Sprite CorruptImage => _corruptImage;
+
+    [SerializeField] private Sprite _portraitImage;
+    public Sprite PortraitImage => _portraitImage;
+
+    [SerializeField] private Sprite _corruptPortraitImage;
+    public Sprite CorruptPortraitImage => _corruptPortraitImage;
+
+    [SerializeField] private Sprite _diaPortraitImage;
+    public Sprite DiaPortraitImage => _diaPortraitImage;
+
+    [SerializeField] private Sprite _corruptDiaPortraitImage;
+    public Sprite CorruptDiaPortraitImage => _corruptDiaPortraitImage;
+
     [SerializeField] private RuntimeAnimatorController _animatorController;
     public RuntimeAnimatorController AnimatorController => _animatorController;
 
@@ -55,6 +70,9 @@ public class UnitDataSO : ScriptableObject
 
     [SerializeField] private UnitMoveType _unitMoveType;
     public UnitMoveType UnitMoveType => _unitMoveType;
+
+    [SerializeField] bool _isBattleOnly;
+    public bool IsBattleOnly => _isBattleOnly;
 
     const int Arow = 5;
     const int Acolumn = 11;

@@ -23,11 +23,17 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 5157526946429990662, guid: 9cc8b427fb7401e48875ac17e8039a8f, type: 3}
+  - {fileID: 8770504715940027605, guid: 7192766d98827a146a264f8137e4f70f, type: 3}
   _id: 
   _name: "\uAD34\uC778"
   _description: 
   _rarity: 0
-  _image: {fileID: -449138422, guid: ddd22f39687e52a46a1e3c4960e6f8d2, type: 3}
+  _image: {fileID: 21300000, guid: 0bec0e3735519964891548a3d72a1dfb, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 46610b9f3aa040743b63bce45040b2b2, type: 3}
+  _portraitImage: {fileID: 21300000, guid: 428c5c9c13175ed42859608d67e97802, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: 9edb13b626a94ce4cb54a7a62faf0671, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 2ed56d4e84e6d5449a21c7a77ac25786, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 737ebb4564cd1fd48a4c142cc18c7acb, type: 3}
   _animatorController: {fileID: 9100000, guid: fd0126330f43b574784b40eea7cfbb4f, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: bf02f1f223c93414facf783dd1735bed, type: 2}
   _skillEffectAnim: {fileID: 0}

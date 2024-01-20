@@ -27,7 +27,12 @@ MonoBehaviour:
   _name: "\uCC98\uD615\uC790"
   _description: 
   _rarity: 0
-  _image: {fileID: -402227834, guid: 7ccd6ba41392a1b4aaa1f11139ef40bb, type: 3}
+  _image: {fileID: 21300000, guid: bf083994e2641bb4cbbd5652607c7151, type: 3}
+  _corruptImage: {fileID: 21300000, guid: cdc0820f09325a74db0a12f219914530, type: 3}
+  _portraitImage: {fileID: 21300000, guid: da8f5044bfceb804e86d50f14094f150, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: cd37a50910ffee4479c7e493edd9912a, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 28862a07eccee0544b418129921d4a48, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: fcdc4477e8a5b864c82b0c7a78830282, type: 3}
   _animatorController: {fileID: 9100000, guid: 89771eb5155fc664f827f0ba8abb7e97, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 4bad99a27bc75294f800490cb9d1a3cb, type: 2}
   _skillEffectAnim: {fileID: 0}

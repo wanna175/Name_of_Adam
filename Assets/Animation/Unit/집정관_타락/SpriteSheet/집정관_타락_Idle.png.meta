@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c2d5f4b2033c5e84380b50c837e29365
+guid: 2992a8ba1b72aba43b324b2db7d6c4ab
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,19 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,106 +117,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_fourhands_cor_breath-Sheet_0
+      name: "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc16d3bff1c4736469baaac5c5d177b4
-      internalID: -1646967278
+      spriteID: 2b5adcc6067e2614087a8ff7eef74486
+      internalID: 1035177108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_cor_breath-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aca315e970d0ff847bd073c274b6c702
-      internalID: -1848887943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_fourhands_cor_breath-Sheet_2
+      name: "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_1"
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe533e35e78b88a44abd93d86929d650
-      internalID: 1124126831
+      spriteID: c7bfa6b7841ea144db4637b7613acaea
+      internalID: -1671413917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_cor_breath-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33d0d54103ff01e4d952ee95dfe693d6
-      internalID: 2039480403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_fourhands_cor_breath-Sheet_4
+      name: "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_2"
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4e21c580f13a5f4095db430250e8b3b
-      internalID: 328406729
+      spriteID: e70dc9b4f3264b240887e16483e192df
+      internalID: -1525391495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_3"
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003a9fb16f4664444be4b6c5b43b5243
+      internalID: -610334711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_4"
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702f0a71c2759da4493c5e374dfbc009
+      internalID: 287680583
       vertices: []
       indices: 
       edges: []
@@ -244,11 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_fourhands_cor_breath-Sheet_2: 1124126831
-      bavel_fourhands_cor_breath-Sheet_0: -1646967278
-      bavel_fourhands_cor_breath-Sheet_1: -1848887943
-      bavel_fourhands_cor_breath-Sheet_3: 2039480403
-      bavel_fourhands_cor_breath-Sheet_4: 328406729
+      "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_0": 1035177108
+      "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_2": -1525391495
+      "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_1": -1671413917
+      "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_3": -610334711
+      "\uC9D1\uC815\uAD00_\uD0C0\uB77D_Idle_4": 287680583
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
