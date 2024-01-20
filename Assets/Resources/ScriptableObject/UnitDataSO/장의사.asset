@@ -28,6 +28,11 @@ MonoBehaviour:
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: 3faeab71a81d98144a4ad0a233fbb63b, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 3faeab71a81d98144a4ad0a233fbb63b, type: 3}
+  _portraitImage: {fileID: 21300000, guid: bc9bf1cbae8b4f04ab45507435141fd7, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: bc9bf1cbae8b4f04ab45507435141fd7, type: 3}
+  _diaPortraitImage: {fileID: 0}
+  _corruptDiaPortraitImage: {fileID: 0}
   _animatorController: {fileID: 9100000, guid: a2f42ca3fbea86b4ab7dfe5f5ff1d05c, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: a2f42ca3fbea86b4ab7dfe5f5ff1d05c, type: 2}
   _skillEffectAnim: {fileID: 0}

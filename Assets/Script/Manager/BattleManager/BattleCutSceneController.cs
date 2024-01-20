@@ -50,7 +50,7 @@ public class BattleCutSceneController : MonoBehaviour
 
         yield return new WaitUntil(() => FallCheck(CSData.HitUnits));
 
-        yield return new WaitForSeconds(1);
+        //yield return new WaitForSeconds(1);
 
         BattleManager.Instance.EndUnitAction();
     }
@@ -127,9 +127,8 @@ public class BattleCutSceneController : MonoBehaviour
 
         yield return new WaitUntil(() => CSData.AttackUnit.AnimatorIsMotionEnd());
 
-        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.ATTACK_MOTION_END);
         CSData.AttackUnit.AnimatorSetBool("isAttack", false);
-
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_MOTION_END, CSData.AttackUnit);
     }
 
     public IEnumerator SkillHitEffect(BattleUnit unit)
@@ -172,8 +171,11 @@ public class BattleCutSceneController : MonoBehaviour
         AttackUnit.UnitRenderer.sortingOrder = rayer;
         foreach (BattleUnit unit in HitUnits)
         {
-            if(unit != null)
-               unit.UnitRenderer.sortingOrder = rayer;
+            if (unit != null)
+            {
+                //unit.UnitRenderer.sortingOrder = rayer;
+                unit.GetComponent<SpriteRenderer>().sortingOrder = rayer;
+            }
         }
     }
 }
