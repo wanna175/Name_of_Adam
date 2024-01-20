@@ -8,8 +8,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     private DeckUnit _stigmatizeUnit;
     private Stigma stigma;
     private List<DeckUnit> _RestorationUnits;
-    [SerializeField] private GameObject _SelectStigmaButton = null;
-    [SerializeField] private GameObject _getOriginUnitButton = null;
+    [SerializeField] private GameObject _SelectStigmaButton;
+    [SerializeField] private GameObject _SelectStigmaButton_disabled;
+    [SerializeField] private GameObject _getOriginUnitButton;
+    [SerializeField] private GameObject _getOriginUnitButton_disabled;
     [SerializeField] private List<DeckUnit> _originUnits = null;
 
     List<Script> scripts = null;
@@ -38,10 +40,23 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         Debug.Log(stigma.Name);
         Debug.Log("검은 정수: " + GameManager.Data.DarkEssense);
         int current_DarkEssense = GameManager.Data.DarkEssense;
-        if (current_DarkEssense < 1)
+
+        if (!GameManager.OutGameData.IsUnlockedItem(5))
+        {
             _getOriginUnitButton.SetActive(false);
+        }
+        else if (current_DarkEssense < 10)
+        {
+            _getOriginUnitButton_disabled.SetActive(true);
+            _getOriginUnitButton.SetActive(false);
+        }
+
         if (current_DarkEssense < 7)
+        {
+            _SelectStigmaButton_disabled.SetActive(true);
             _SelectStigmaButton.SetActive(false);
+        }
+
         /*
         if(GameManager.Data.GameData)
         {

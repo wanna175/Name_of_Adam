@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StigmaSceneController : MonoBehaviour,StigmaInterface
 {
@@ -12,6 +13,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     private bool _isStigmaFull = false;
 
     [SerializeField] private GameObject _stigma_transfer_btn = null;
+    [SerializeField] private GameObject _stigma_transfer_btn_disabled;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _ui_SelectMenu;
 
@@ -38,9 +40,15 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
                 break;
             }
         }
-        if (isStigmaEmpty)
+
+        if (!GameManager.OutGameData.IsUnlockedItem(11))
         {
-            _stigma_transfer_btn.gameObject.SetActive(false);
+            _stigma_transfer_btn.SetActive(false);
+        }
+        else if (isStigmaEmpty)
+        {
+            _stigma_transfer_btn.SetActive(false);
+            _stigma_transfer_btn_disabled.SetActive(true);
         }
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
@@ -77,7 +85,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     public void OnStigmaGiveUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_MyDeck ud =GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ud.Init(false, OnSelectStigmatransfergiver, CUR_EVENT.GIVE_STIGMA);
     }
 

@@ -8,6 +8,7 @@ public class UpgradeSceneController : MonoBehaviour
     private DeckUnit _unit;
 
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+    [SerializeField] private GameObject _restoreFall_Btn;
     [SerializeField] private GameObject _ui_SelectMenu;
     private List<Script> scripts;
 
@@ -19,6 +20,11 @@ public class UpgradeSceneController : MonoBehaviour
     }
     private void Init()
     {
+        if (!GameManager.OutGameData.IsUnlockedItem(2))
+        {
+            _restoreFall_Btn.SetActive(false);
+        }
+
         scripts = new ();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
@@ -48,7 +54,7 @@ public class UpgradeSceneController : MonoBehaviour
     public void OnReleaseUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectRelease,CUR_EVENT.RELEASE);
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectRelease, CUR_EVENT.RELEASE);
     }
 
     //대화하기 버튼
