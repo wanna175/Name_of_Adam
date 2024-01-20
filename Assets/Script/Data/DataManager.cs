@@ -32,7 +32,6 @@ public class DataManager : MonoBehaviour
         StageDatas = LoadJson<StageLoader, int, List<StageSpawnData>>("StageData").MakeDict();
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
         StigmaController = new StigmaController();
-
         Map = new MapData();
 
         if (GameManager.SaveManager.SaveFileCheck())
@@ -62,7 +61,7 @@ public class DataManager : MonoBehaviour
         GameData.isVisitStigma = GameDataMain.isVisitStigma;
         GameData.Progress.ClearProgress();
         _darkEssense = GameData.DarkEssence;
-
+        Debug.Log("GameData.DeckUnit: " + GameData.DeckUnits.Count);
         //OutGame에서 업그레이드 된 스탯 + 낙인 불러와야해서 ClearStat 사용하면 안됨, 파생되는 문제 발생 시 수정 필요 
         /*
         foreach (DeckUnit unit in GameData.DeckUnits)

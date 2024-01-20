@@ -75,32 +75,34 @@ public class UI_HPBar : UI_Base
             {
                 UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
                 newObject.SwitchCountImage(_team);
+                newObject.gameObject.SetActive(false);
                 _fallGauge.Add(newObject);
             }
         }
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < _UnitfallGaugeCur; i++)
         {
-            _fallGauge[i].SwitchCountImage(_team);
-            _fallGauge[i].EmptyGauge();
+            int idx = i;
+            if (i > 3) { 
+                idx -= 4;}
+            if (i > 7)
+                idx -= 4;
+            _fallGauge[idx].SwitchCountImage(_team);
+            _fallGauge[idx].EmptyGauge();
         }
         
         if (_UnitfallGaugeCur > 4)
         {
             int doubleCnt = _UnitfallGaugeCur - 4;
             _fallCountIdx = doubleCnt - 1; 
-            for(int i = 0; i < doubleCnt; ++i)
-            {
-                _fallGauge[i].EmptyGauge();
-            }
+        }
+        else if (_UnitfallGaugeCur > 8)
+        {
+            _fallCountIdx = _UnitfallGaugeCur - 9;
         }
         else
         {
             _fallCountIdx = _UnitfallGaugeCur-1;
-            for (int i = 3; i > _fallCountIdx; --i)
-            {
-                _fallGauge[i].FillGauge();
-            }
         }
         
     }
@@ -118,9 +120,14 @@ public class UI_HPBar : UI_Base
         else if (diff == -1)
         {
             _fallCountIdx++;
-            if (_fallCountIdx == 4 && _fallGauge[3].GetDouble()!=2)
+            if (_fallCountIdx == 4 && _fallGauge[3].GetDouble() != 2)
                 _fallCountIdx = 0;
-            _fallGauge[_fallCountIdx].EmptyGauge();
+            else if (_fallCountIdx == 4 && _fallGauge[3].GetDouble() != 3)
+                _fallCountIdx = 0;
+            if (_fallCountIdx == 4 && _fallGauge[3].GetDouble() == 3)
+                Debug.Log("최대갯수를 초과 하였습니다.");
+            else
+                _fallGauge[_fallCountIdx].EmptyGauge();
         }
 
         for (int i = 0; i < 4; ++i)
