@@ -47,8 +47,10 @@ public class UI_BattleOver : UI_Scene
     {
         if (_result == "win")
         {
-            if(_rewardScene.FadeEnd==false)
+            if (_rewardScene.FadeEnd == false)
+            {
                 _rewardScene.EndFadeIn();
+            }
             else
                 SceneChanger.SceneChange("StageSelectScene");
         }

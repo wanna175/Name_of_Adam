@@ -22,9 +22,11 @@ public class UI_UnitReward : MonoBehaviour
         diff.text = _diff.ToString();
         fc = this.GetComponent<FadeController>();
     }
-    public void FadeIn(int time)
+    public bool FadeIn(float time,int count)
     {
+        time -= (float)0.5 * time;
         fc.StartFadeIn(time);
+        return (count - 1 == time);
     }
     public void EndFadeIn()
     {

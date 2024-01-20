@@ -23,7 +23,7 @@ public class FadeController : MonoBehaviour
         }
     }
 
-    public void StartFadeIn(int waitTime = 0) // 호출 함수 Fade In을 시작
+    public void StartFadeIn(float waitTime = 0) // 호출 함수 Fade In을 시작
     {
         if (fadeCor != null)
             StopCoroutine(fadeCor);
@@ -31,7 +31,7 @@ public class FadeController : MonoBehaviour
         fadeCor = StartCoroutine(FadeIn(waitTime));
     }
 
-    private IEnumerator FadeIn(int waitTime=0) // 코루틴을 통해 페이드 인 시간 조절
+    private IEnumerator FadeIn(float waitTime=0) // 코루틴을 통해 페이드 인 시간 조절
     {
         yield return new WaitForSeconds(waitTime);
         while (accumTime < fadeTime)
