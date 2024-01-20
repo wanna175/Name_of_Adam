@@ -52,7 +52,7 @@ public class RewardController
             {
                 
                 fallunit = new RewardUnit(units[i].Data.Name, units[i].DeckUnitStat.FallCurrentCount, 
-                    GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + units[i].Data.Name + "_타락"));
+                    GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + units[i].Data.Name + "_타락_Portrait"));
                 rewardScene.setContent(Rewardidx, fallunit);
             }
             Rewardidx++;
