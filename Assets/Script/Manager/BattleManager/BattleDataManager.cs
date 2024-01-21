@@ -20,6 +20,7 @@ public class BattleDataManager : MonoBehaviour
     private List<BattleUnit> _battleUnitList = new();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
 
+    // 중복 타락을 처리하기 위한 팝업 리스트
     private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
     public List<UI_StigmaSelectButtonPopup> CorruptionPopups => _corruptionPopups;
 

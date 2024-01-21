@@ -61,7 +61,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
         while (result.Count < stigmaCount)
         {
-            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigma(targetUnit.Data.name);
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
 
             if (existStigma.Contains(stigma))
                 continue;

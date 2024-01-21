@@ -61,32 +61,36 @@ public class StigmaController
         }
     }
 
-    public Stigma GetRandomStigma(string unitName)
+    // probability는 { 99, 89 } 처럼 2개 인자를 보유
+    public Stigma GetRandomStigma(int[] probability)
     {
-        Stigma stigma = null;
-        List<int> probability = new List<int>() { 99, 89 };
-        int randNum;
+        Stigma stigma;
+        int randNum = Random.Range(0, 100);
+
+        if (_tier3StigmaList.Count > 0 && randNum >= probability[0])
+        {
+            stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
+        }
+        else if (_tier2StigmaList.Count > 0 && randNum >= probability[1])
+        {
+            stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
+        }
+        else
+        {
+            stigma = _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
+        }
+
+        return stigma;
+    }
+
+    public Stigma GetRandomStigmaAsUnit(int[] probability, string unitName)
+    {
+        Stigma stigma;
 
         do
         {
-            randNum = Random.Range(0, 100);
-
-            if (randNum >= probability[0])
-            {
-                if (_tier3StigmaList.Count > 0)
-                    stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
-            }
-            else if (randNum >= probability[1])
-            {
-                if (_tier2StigmaList.Count > 0)
-                    stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
-            }
-            else
-            {
-                if (_tier1StigmaList.Count > 0)
-                    stigma = _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
-            }
-        } while (stigma == null || IsLockStigmaAsUnit(stigma, unitName));
+            stigma = GameManager.Data.StigmaController.GetRandomStigma(probability);
+        } while (GameManager.Data.StigmaController.IsLockStigmaAsUnit(stigma, unitName));
 
         return stigma;
     }
