@@ -1810,6 +1810,7 @@ MonoBehaviour:
   _unitInfoStat: {fileID: 2011348171514619015}
   _unitInfoStigmaGrid: {fileID: 2011348171186883976}
   _unitInfoUpgradeCountGrid: {fileID: 2905315505506636394}
+  _AddedUpgradeCountSocket: {fileID: 7914652675998417305}
   _unitInfoSkillRangeGrid: {fileID: 2011348171586248750}
   _unitImage: {fileID: 3971180329563916908}
 --- !u!1 &2011348171514619017
@@ -3588,7 +3589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8207072047997624333
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3604,10 +3605,10 @@ RectTransform:
   m_Father: {fileID: 5252465659085321547}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 305, y: -57.5}
+  m_SizeDelta: {x: 88, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3211792083910404128
 CanvasRenderer:
