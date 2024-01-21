@@ -31,7 +31,7 @@ public class RewardController
         foreach (DeckUnit unit in units)
         {
             dic_units.Add(unit.UnitID, new RewardUnit(unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, 
-                GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + unit.Data.Name + "_타락")));
+                GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + unit.Data.Name + "_타락_Portrait")));
         }
     }
     public void RewardSetting(List<DeckUnit> units, UI_RewardScene rewardScene)//리워드씬에서 값 세팅해주기
@@ -52,7 +52,7 @@ public class RewardController
             {
                 
                 fallunit = new RewardUnit(units[i].Data.Name, units[i].DeckUnitStat.FallCurrentCount, 
-                    GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + units[i].Data.Name + "_타락"));
+                    GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + units[i].Data.Name + "_타락_Portrait"));
                 rewardScene.setContent(Rewardidx, fallunit);
             }
             Rewardidx++;

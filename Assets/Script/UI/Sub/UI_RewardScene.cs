@@ -29,14 +29,14 @@ public class UI_RewardScene : MonoBehaviour
     {
         UI_UnitReward content = contents[idx].GetComponent<UI_UnitReward>();
         content.Init(rewardUnit.image, rewardUnit.name, rewardUnit.DarkEssence);
-        content.FadeIn(idx);
-        
+        FadeEnd = content.FadeIn((float)idx,count);
     }
     public void EndFadeIn()
     {
+        FadeEnd = true;
         for (int i = 0; i < this.count; i++)
             contents[i].GetComponent<UI_UnitReward>().EndFadeIn();
-        FadeEnd = true;
+        //StopAllCoroutines();
     }
     #endregion
 }
