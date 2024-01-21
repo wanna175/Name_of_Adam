@@ -58,7 +58,7 @@ public class UI_BattleOver : UI_Scene
             else
             {
                 BattleOverDestroy();
-                GameObject.Find("@UI_Root").transform.Find("UI_EliteReward").GetComponent<UI_EliteReward>().SetRewardPanel();
+                GameManager.UI.ShowPopup<UI_EliteReward>("UI_EliteReward").SetRewardPanel();
             }
         }
         else if (_result == "lose")

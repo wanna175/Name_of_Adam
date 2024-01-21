@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_EliteReward : UI_Scene
+public class UI_EliteReward : UI_Popup
 {
     private readonly int[] probabilityAsStage = new int[] { 99, 89 };
 
@@ -13,19 +13,6 @@ public class UI_EliteReward : UI_Scene
     private List<UI_EliteCard> uI_EliteCards;
 
     private int stageAct;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Init();
-    }
-
-    private void Init()
-    {
-        stageAct = GameManager.Data.StageAct;
-
-        EnablePanel(false);
-    }
 
     private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists)
     {
@@ -69,6 +56,7 @@ public class UI_EliteReward : UI_Scene
     public void SetRewardPanel()
     {
         List<UnitDataSO> normalUnits = new List<UnitDataSO>();
+        stageAct = GameManager.Data.StageAct;
 
         var units = GameManager.Resource.LoadAll<UnitDataSO>($"ScriptableObject/UnitDataSO");
         foreach (var unit in units)
