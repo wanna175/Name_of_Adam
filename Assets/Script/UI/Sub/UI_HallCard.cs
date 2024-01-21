@@ -65,11 +65,13 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             if (i < stigmas.Count)
             {
+                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetStigma(stigmas[i]);
                 _stigmaImages[i].sprite = stigmas[i].Sprite_28;
                 _stigmaImages[i].color = Color.white;
             }
             else
             {
+                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
                 _stigmaImages[i].color = new Color(1f, 1f, 1f, 0f);            
             }
         }
