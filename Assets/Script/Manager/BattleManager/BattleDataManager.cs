@@ -228,13 +228,13 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Iana();
         }
-        else if (actionType == UnitActionType.UnitAction_Nimrod)
+        else if (actionType == UnitActionType.UnitAction_Phanuel)
         {
-            return new UnitAction_Nimrod();
+            return new UnitAction_Phanuel();
         }
-        else if (actionType == UnitActionType.UnitAction_Trinity)
+        else if (actionType == UnitActionType.UnitAction_Appaim)
         {
-            return new UnitAction_Trinity();
+            return new UnitAction_Appaim();
         }
         else if (actionType == UnitActionType.UnitAction_Tubalcain)
         {

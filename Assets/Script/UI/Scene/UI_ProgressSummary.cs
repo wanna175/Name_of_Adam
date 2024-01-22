@@ -35,12 +35,12 @@ public class UI_ProgressSummary : UI_Scene
         SetProgressText(_progress.BossWin, 500, $"보스 전투 {_progress.BossWin}회 승리", ProgressList[2]); //
         SetProgressText(_progress.NormalKill, 10, $"일반 유닛 {_progress.NormalKill}회 처치", ProgressList[3]); //
         SetProgressText(_progress.EliteKill, 50, $"엘리트 유닛 {_progress.EliteKill}회 처치", ProgressList[4]); //
-        SetProgressText(_progress.NimrodKill, 100, "니므롯 처치", ProgressList[5]); //
+        SetProgressText(_progress.PhanuelKill, 100, "바누엘 처치", ProgressList[5]); //
         SetProgressText(_progress.HorusKill, 100, "호루스 처치", ProgressList[6]); 
         SetProgressText(_progress.FishKill, 100, "물고기 처치", ProgressList[7]); 
         SetProgressText(_progress.NormalFall, 20, $"일반 유닛 {_progress.NormalFall}회 타락", ProgressList[8]); //
         SetProgressText(_progress.EliteFall, 100, $"엘리트 유닛 {_progress.EliteFall}회 타락", ProgressList[9]); //
-        SetProgressText(_progress.NimrodFall, 500, "니므롯 타락", ProgressList[10]); //
+        SetProgressText(_progress.PhanuelFall, 500, "바누엘 타락", ProgressList[10]); //
         SetProgressText(_progress.HorusFall, 500, "호루스 타락", ProgressList[11]); 
         SetProgressText(_progress.FishFall, 500, "물고기 타락", ProgressList[12]); 
         SetProgressText(_progress.SecChapterClear, 1000, "2장까지 클리어", ProgressList[13]); 
