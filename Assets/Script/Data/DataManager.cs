@@ -248,12 +248,39 @@ public class DataManager : MonoBehaviour
 
         foreach (PlayerSkill skill in GameData.Incarna.PlayerSkillList)
         {
+            SetSkillCost(skill);
             skillList.Add(skill);
         }
 
         //skillList.Insert(2, GameData.UniversalPlayerSkill); //Universal Skill 보류
 
         return skillList;
+    }
+
+    public void SetSkillCost(PlayerSkill playerSkill)
+    {
+        ChangeSkillCost(playerSkill, 1, 52, 5, 0);
+        ChangeSkillCost(playerSkill, 3, 53, 0, 1);
+        ChangeSkillCost(playerSkill, 5, 63, 0, 1);
+        ChangeSkillCost(playerSkill, 7, 72, 10, 0);
+    }
+
+    public void ChangeSkillCost(PlayerSkill playerSkill, int ID, int shopID, int mana, int darkessence)
+    {
+        int tmpMana = playerSkill.GetOriginalManaCost() - mana;
+        int tmpDarkEssence = playerSkill.GetOriginalDarkEssenceCost() - darkessence;
+
+        if (playerSkill.GetID() == ID)
+        {
+            if (GameManager.OutGameData.IsUnlockedItem(shopID))
+            {
+                playerSkill.ChangeCost(tmpMana, tmpDarkEssence);
+            }
+            else
+            {
+                playerSkill.ChangeCost(playerSkill.GetOriginalManaCost(), playerSkill.GetOriginalDarkEssenceCost());
+            }
+        }
     }
 
     public List<int> GetProbability()
