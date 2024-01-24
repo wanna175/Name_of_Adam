@@ -62,6 +62,20 @@ public class BattleDataManager : MonoBehaviour
 
         PlayerHands.Clear();
 
+        // 혜원님 엘리티 보스 처치 후 모든 덱 유닛 신앙 1증가 여기에 조건 추가해주세요
+        if (true)
+        {
+            StageData data = GameManager.Data.Map.GetCurrentStage();
+            if (data.StageLevel == 10)
+            {
+                foreach (DeckUnit unit in PlayerDeck)
+                {
+                    if (unit.DeckUnitStat.FallCurrentCount > 0)
+                        unit.DeckUnitUpgradeStat.FallCurrentCount--;
+                }
+            }
+        }
+
         GameManager.Data.SetDeck(_playerDeck);
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.OutGameData.SaveData();
