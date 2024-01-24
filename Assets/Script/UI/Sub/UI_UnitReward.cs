@@ -10,13 +10,17 @@ public class UI_UnitReward : MonoBehaviour
     [SerializeField] private Image unitImage;
     [SerializeField] private TMP_Text unitName;
     [SerializeField] private TMP_Text diff;
-
+    [SerializeField] private Image NewImage;
     private FadeController fc;
     #endregion
 
     #region ÇÔ¼ö
-    public void Init(Sprite _unitImg, string _unitName, int _diff)
+    public void Init(Sprite _unitImg, string _unitName, int _diff, bool isNew = false)
     {
+        if (isNew)
+            NewImage.gameObject.SetActive(true);
+        else
+            NewImage.gameObject.SetActive(false);
         unitImage.sprite = _unitImg;
         unitName.text = _unitName;
         diff.text = _diff.ToString();
