@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0937800292309438d296448255fcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalmanaCost: 11
+  originaldarkEssence: 1
   playerSkillName: 
+  playerSkillID: 9
   manaCost: 11
   darkEssence: 1
   description: "\uB8E8\uC2DC\uD37C\uAC00 \uD544\uB4DC \uC704\uC5D0 \uC9C1\uC811 \uAC15\uB9BC\uD569\uB2C8\uB2E4"
@@ -59,6 +62,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -67,5 +71,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
+      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0

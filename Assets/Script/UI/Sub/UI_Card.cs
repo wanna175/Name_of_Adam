@@ -52,10 +52,21 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void SetDisableUpgrade(DeckUnit unit)
     {
-        if(unit.DeckUnitStat.CurrentUpgradeCount == unit.MaxUpgradeCount)
+        if (!GameManager.OutGameData.IsUnlockedItem(12))
         {
-            _disable.SetActive(true);
+            if (unit.DeckUnitStat.CurrentUpgradeCount == unit.MaxUpgradeCount)
+            {
+                _disable.SetActive(true);
+            }
         }
+        else
+        {
+            if (unit.DeckUnitStat.CurrentUpgradeCount == unit.UpgradedMaxUpgradeCount)
+            {
+                _disable.SetActive(true);
+            }
+        }
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

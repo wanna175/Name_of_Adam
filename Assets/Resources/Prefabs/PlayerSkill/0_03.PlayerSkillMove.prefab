@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a7e4c28d010f948b6c595a624e1ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalmanaCost: 15
+  originaldarkEssence: 1
   playerSkillName: "\uC2E0\uC18D"
-  manaCost: 20
+  playerSkillID: 3
+  manaCost: 15
   darkEssence: 1
   description: "\uC544\uAD70\uC744 \uD55C\uCE78 \uC774\uB3D9\uC2DC\uD0A4\uACE0 \uC18D\uB3C4
     \uC99D\uAC00 \uBC84\uD504\uB97C \uBC1B\uC2B5\uB2C8\uB2E4"
