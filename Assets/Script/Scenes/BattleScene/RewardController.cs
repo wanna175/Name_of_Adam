@@ -28,10 +28,10 @@ public class RewardController
         this.dic_units = new Dictionary<int, RewardUnit>();
         this.prev_DarkEssence = DarkEssence;
 
+        
         foreach (DeckUnit unit in units)
         {
-            dic_units.Add(unit.UnitID, new RewardUnit(unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, 
-                GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + unit.Data.Name + "_타락_Portrait")));
+            dic_units.Add(unit.UnitID, new RewardUnit(unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, unit.Data.CorruptPortraitImage));
         }
     }
     public void RewardSetting(List<DeckUnit> units, UI_RewardScene rewardScene)//리워드씬에서 값 세팅해주기
@@ -49,8 +49,8 @@ public class RewardController
             else//새로 플레이어 덱에 들어온 친구들
             {
                 
-                fallunit = new RewardUnit(units[i].Data.Name, units[i].Data.RawStat.FallMaxCount-units[i].Data.RawStat.FallCurrentCount-units[i].DeckUnitStat.FallCurrentCount, 
-                    GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + units[i].Data.Name + "_타락_Portrait"));
+                fallunit = new RewardUnit(units[i].Data.Name, units[i].Data.RawStat.FallMaxCount-units[i].Data.RawStat.FallCurrentCount
+                    -units[i].DeckUnitStat.FallCurrentCount, units[i].Data.CorruptPortraitImage);
                 rewardScene.setContent(i, fallunit,true);
             }
         }
