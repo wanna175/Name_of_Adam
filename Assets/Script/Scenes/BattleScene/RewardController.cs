@@ -36,32 +36,30 @@ public class RewardController
     }
     public void RewardSetting(List<DeckUnit> units, UI_RewardScene rewardScene)//리워드씬에서 값 세팅해주기
     {
-        Debug.Log("현재 덱에 있는 유닛 갯수 : " + units.Count);
         rewardScene.Init(units.Count,GameManager.Data.DarkEssense - prev_DarkEssence);
         RewardUnit unit,fallunit;
-        int Rewardidx = 0;
-        for (int i=units.Count-1;i>=0;--i)
+        for (int i=0;i<units.Count;++i)
         {
             if(dic_units.TryGetValue(units[i].UnitID,out unit))//기존에 있던 친구들
             {
                 unit.DarkEssence -= units[i].DeckUnitStat.FallCurrentCount;
-                rewardScene.setContent(Rewardidx, unit);
+                rewardScene.setContent(i, unit);
                 dic_units.Remove(units[i].UnitID);
             }
             else//새로 플레이어 덱에 들어온 친구들
             {
                 
-                fallunit = new RewardUnit(units[i].Data.Name, units[i].DeckUnitStat.FallCurrentCount, 
+                fallunit = new RewardUnit(units[i].Data.Name, units[i].Data.RawStat.FallMaxCount-units[i].Data.RawStat.FallCurrentCount-units[i].DeckUnitStat.FallCurrentCount, 
                     GameManager.Resource.Load<Sprite>($"Arts/Units/Unit_Portrait/" + units[i].Data.Name + "_타락_Portrait"));
-                rewardScene.setContent(Rewardidx, fallunit);
+                rewardScene.setContent(i, fallunit,true);
             }
-            Rewardidx++;
         }
         foreach(var u in dic_units)//죽은 친구들
         {
             unit = u.Value;
             Debug.Log("죽은 친구들 : " + unit.name);
         }
+        dic_units.Clear();
     }
    
     #endregion
