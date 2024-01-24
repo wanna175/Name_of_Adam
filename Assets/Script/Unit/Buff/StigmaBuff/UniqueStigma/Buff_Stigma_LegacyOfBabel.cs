@@ -24,4 +24,6 @@ public class Buff_Stigma_LegacyOfBabel : Buff
 
         _stigmaBuff = true;
     }
+
+
 }
