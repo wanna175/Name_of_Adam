@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e5fdeffdb9d2cf48af7fbf51b62f046
+guid: 0126817701795814284699c5a96dc629
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,185 +113,173 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spawn-back_0
+      name: UnitspawnEffec2t_0
       rect:
         serializedVersion: 2
         x: 0
         y: 512
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce1a202792f5fe84aa1dca0e0c4942cd
-      internalID: -1025588225
+      spriteID: 020d2950fbeae5044a0d093260a31433
+      internalID: -1782875955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spawn-back_1
+      name: UnitspawnEffec2t_1
       rect:
         serializedVersion: 2
         x: 256
         y: 512
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b22521a08bc933b4d9d07c45b2ae40de
-      internalID: -1059327083
+      spriteID: ebb3208a47ddd2845a6e71ec3aa28767
+      internalID: 1198734560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spawn-back_2
+      name: UnitspawnEffec2t_2
       rect:
         serializedVersion: 2
         x: 512
         y: 512
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a1f6f8477c3c514c98121750e99f220
-      internalID: -1805826660
+      spriteID: b59befe871492db4dab81055f284ce01
+      internalID: 271541934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spawn-back_3
+      name: UnitspawnEffec2t_3
       rect:
         serializedVersion: 2
         x: 0
         y: 256
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33bd69b0286a0414aa41ffb5db72a0de
-      internalID: 902932290
+      spriteID: 4edad5a80e5b680449ee661263f3ae98
+      internalID: 1010207366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spawn-back_4
+      name: UnitspawnEffec2t_4
       rect:
         serializedVersion: 2
         x: 256
         y: 256
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff4d2c4e02e371e428d23dbd971272cd
-      internalID: -849902776
+      spriteID: 727dae24622a21d47a9eb967691e5593
+      internalID: -2092585840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spawn-back_5
+      name: UnitspawnEffec2t_5
       rect:
         serializedVersion: 2
         x: 512
         y: 256
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53eeac5498aeea54db901c24e5149209
-      internalID: -1318369153
+      spriteID: fab5e0051963e084c952c90242a1be5a
+      internalID: 424695802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spawn-back_6
+      name: UnitspawnEffec2t_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d17cfc6e8be05b540a252cbbb592e7c0
-      internalID: -717565614
+      spriteID: 42ce1501a90c4474b8666276a914183c
+      internalID: -976021693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spawn-back_7
+      name: UnitspawnEffec2t_7
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4470bf62ef34e494da24cd28c4042885
-      internalID: -889018833
+      spriteID: 6e7afee01d1ab3747af24e5c6ed02c96
+      internalID: -688206174
       vertices: []
       indices: 
       edges: []
@@ -307,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spawn-back_0: -1025588225
-      spawn-back_6: -717565614
-      spawn-back_7: -889018833
-      spawn-back_5: -1318369153
-      spawn-back_3: 902932290
-      spawn-back_4: -849902776
-      spawn-back_2: -1805826660
-      spawn-back_1: -1059327083
+      UnitspawnEffec2t_4: -2092585840
+      UnitspawnEffec2t_3: 1010207366
+      UnitspawnEffec2t_1: 1198734560
+      UnitspawnEffec2t_6: -976021693
+      UnitspawnEffec2t_5: 424695802
+      UnitspawnEffec2t_2: 271541934
+      UnitspawnEffec2t_7: -688206174
+      UnitspawnEffec2t_0: -1782875955
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
