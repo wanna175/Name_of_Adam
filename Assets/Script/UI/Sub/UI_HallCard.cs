@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_HallCard : MonoBehaviour
 {
     public Image UnitImage;
+    public GameObject IsDisabled;
     private List<DeckUnit> _mainDeck;
     private List<HallUnit> _hallUnitList;
 
@@ -29,10 +30,26 @@ public class UI_HallCard : MonoBehaviour
 
         UnitImage.sprite = _mainDeck[HallUnitID].Data.Image;
         UnitImage.color = Color.white;
+
+        if (!GameManager.OutGameData.IsUnlockedItem(14))
+        {
+            if (HallUnitID == 1 || HallUnitID == 2)
+            {
+                IsDisabled.SetActive(true);
+            }
+        }
     }
 
     public void OnClick()
     {
+        if (HallUnitID == 1 || HallUnitID == 2)
+        {
+            if (!GameManager.OutGameData.IsUnlockedItem(14))
+            {
+                return;
+            }
+        }
+
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallDeckInit(_isElite, OnSelect);
     }

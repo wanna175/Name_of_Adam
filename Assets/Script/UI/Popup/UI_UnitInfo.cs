@@ -22,6 +22,7 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private TextMeshProUGUI _unitInfoStat;
     [SerializeField] private Transform _unitInfoStigmaGrid;
     [SerializeField] private Transform _unitInfoUpgradeCountGrid;
+    [SerializeField] private GameObject _AddedUpgradeCountSocket;
     [SerializeField] private Transform _unitInfoSkillRangeGrid;
     [SerializeField] private Image _unitImage;
 
@@ -99,6 +100,11 @@ public class UI_UnitInfo : UI_Popup
                 block.color = Color.red;
             else
                 block.color = Color.grey;
+        }
+
+        if (GameManager.OutGameData.IsUnlockedItem(12))
+        {
+            _AddedUpgradeCountSocket.SetActive(true);
         }
     }
     public void Restoration(Action<DeckUnit> OnSelect=null, CUR_EVENT Eventnum = CUR_EVENT.NONE,Action<DeckUnit> selectRestorationUnit=null)

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public abstract class PlayerSkill : MonoBehaviour
 {
+    [SerializeField] private int originalmanaCost;
+    [SerializeField] private int originaldarkEssence;
+
     [SerializeField] private string playerSkillName;
+    [SerializeField] private int playerSkillID;
     [SerializeField] private int manaCost;
     [SerializeField] private int darkEssence;
     [SerializeField] private string description;
@@ -19,12 +23,26 @@ public abstract class PlayerSkill : MonoBehaviour
             return manaCost;
     }
 
+    public void ChangeCost(int mana, int darkessence)
+    {
+        manaCost = mana;
+        darkEssence = darkessence;
+    }
+
+    public int GetOriginalManaCost() => originalmanaCost;
+    public int GetOriginalDarkEssenceCost() => originaldarkEssence;
     public string GetName() => playerSkillName;
-    public string GetDescription() => description;
+    public int GetID() => playerSkillID;
+    public virtual string GetDescription() => description;
     public Sprite GetSkillImage() => skillImage;
 
     public abstract bool Use(Vector2 coord);
     public virtual bool Action(ActiveTiming activeTiming, Vector2 coord) => false;
     public abstract void CancelSelect();
     public abstract void OnSelect();
+
+    public void SetDescription(string newDescription)
+    {
+        description = newDescription;
+    }
 }

@@ -25,10 +25,10 @@ public class UI_RewardScene : MonoBehaviour
         }
         darkness.text = changeDarkness.ToString();
     }
-    public void setContent(int idx, RewardUnit rewardUnit)
+    public void setContent(int idx, RewardUnit rewardUnit,bool isNew = false)
     {
         UI_UnitReward content = contents[idx].GetComponent<UI_UnitReward>();
-        content.Init(rewardUnit.image, rewardUnit.name, rewardUnit.DarkEssence);
+        content.Init(rewardUnit.image, rewardUnit.name, rewardUnit.DarkEssence, isNew);
         FadeEnd = content.FadeIn((float)idx,count);
     }
     public void EndFadeIn()
