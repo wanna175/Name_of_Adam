@@ -218,12 +218,6 @@ public class BattleManager : MonoBehaviour
         unit.FirstTurnDiscountUndo();
 
         _spawner.DeckSpawn(unit, coord);
-        GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect"),
-            _field.GetTilePosition(coord) + new Vector3(0f, 3.5f, 0f));
-        GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnFrontEffect"),
-            _field.GetTilePosition(coord) + new Vector3(0f, 3.5f, 0f));
 
         _battleUI.RemoveHandUnit(unit); //유닛 리필
         GameManager.UI.ClosePopup();
@@ -245,7 +239,9 @@ public class BattleManager : MonoBehaviour
         }
 
         if (MoveUnit(unit, coord))
-            PlayAfterCoroutine(() =>_phase.ChangePhase(_phase.Action), 1f);
+            PlayAfterCoroutine(() => _phase.ChangePhase(_phase.Action), 1f);
+        else if (coord == unit.Location)
+            _phase.ChangePhase(_phase.Action);
     }
 
     public void ActionPhaseClick(Vector2 coord)
@@ -330,6 +326,10 @@ public class BattleManager : MonoBehaviour
         _battlecutScene.InitBattleCutScene(CSData);
 
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
+
+        ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, caster);
+        ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, caster);
+        ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, caster);
     }
 
     public void EndUnitAction()
@@ -710,6 +710,9 @@ public class BattleManager : MonoBehaviour
 
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
     {
+        if (caster.IsConnectedUnit)
+            return false;
+
         bool skipNextAction = false;
 
         foreach (Stigma stigma in caster.StigmaList)

@@ -49,7 +49,7 @@ public class UnitSpawner : MonoBehaviour
             unit.Init(spawndata.team);
             unit.UnitSetting(spawndata.location);
             if (unit.Data.UnitActionType != UnitActionType.UnitAction_None && unit.Data.UnitActionType != UnitActionType.UnitAction_Phanuel)
-                GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
+                GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffectWhite", unit.transform.position);
 
             return unit;
         }
@@ -78,6 +78,8 @@ public class UnitSpawner : MonoBehaviour
                 }
             }
         }
+
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
 
         return unit;
     }

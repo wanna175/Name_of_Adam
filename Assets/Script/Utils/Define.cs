@@ -149,7 +149,7 @@ public enum ActiveTiming
 
     ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
 
-    NONE = 1 << 26 //없음
+    NONE = 1 << 27 //없음
 };
 
 public enum StigmaTier
