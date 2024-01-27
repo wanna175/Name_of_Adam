@@ -26,8 +26,8 @@ MonoBehaviour:
   _name: "\uB77C\uD5EC\uB808\uC544"
   _description: 
   _rarity: 1
-  _image: {fileID: 21300000, guid: ca3039b7641dadc4ba694525b02be063, type: 3}
-  _corruptImage: {fileID: 0}
+  _image: {fileID: 21300000, guid: 8ca6f45fba2fb634c88cbbe17bce7c45, type: 3}
+  _corruptImage: {fileID: 21300000, guid: fa88335eaf2216f439db64b032e29457, type: 3}
   _portraitImage: {fileID: 21300000, guid: 35e8cdc3c5f113141846a0e91b45a043, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: d95e0f9b37b78634c890561dac6fec71, type: 3}
   _diaPortraitImage: {fileID: 21300000, guid: 29a5b6910a338dd45995748deb2f6936, type: 3}
