@@ -290,6 +290,11 @@ public class BattleUnit : MonoBehaviour
             DeleteBuff(BuffEnum.Benediction);
         }
 
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            unit.ChangeTeam();
+        }
+
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);
     }
 
