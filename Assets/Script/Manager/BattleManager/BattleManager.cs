@@ -121,7 +121,7 @@ public class BattleManager : MonoBehaviour
             {
                 if (GameManager.Data.Map.GetCurrentStage().StageID == 0)
                 {
-                    string scriptKey = "니므롯전_입장";
+                    string scriptKey = "바누엘전_입장";
 
                     EventConversation(scriptKey);
                 }
@@ -391,9 +391,9 @@ public class BattleManager : MonoBehaviour
 
         if (unit.IsConnectedUnit)
         {
-            if (unit.Data.Name == "니므롯")
+            if (unit.Data.Name == "바누엘")
             {
-                GameManager.Data.GameData.Progress.NimrodKill++;
+                GameManager.Data.GameData.Progress.PhanuelKill++;
             }
 
             return;

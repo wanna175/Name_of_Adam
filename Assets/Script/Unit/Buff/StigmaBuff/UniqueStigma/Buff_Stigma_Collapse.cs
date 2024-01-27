@@ -8,7 +8,7 @@ public class Buff_Stigma_Collapse : Buff
 
         _name = "붕괴";
 
-        _description = "오벨리스크는 아무런 행동도 하지 못하며, 신앙이 모두 떨어지거나, 니므롯이 사라지면 파괴됩니다.";
+        _description = "오벨리스크는 아무런 행동도 하지 못하며, 신앙이 모두 떨어지거나, 바누엘이 사라지면 파괴됩니다.";
 
         _count = -1;
 
