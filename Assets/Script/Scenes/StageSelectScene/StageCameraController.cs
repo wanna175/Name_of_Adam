@@ -17,6 +17,25 @@ public class StageCameraController : MonoBehaviour
     {
         float wheel = Input.GetAxis("Mouse ScrollWheel");
         MoveCamera(wheel);
+
+        float mousePosition = Input.mousePosition.y;
+
+        if (mousePosition > Screen.height * 0.98f)
+        {
+            MoveCamera(0.03f);
+        }
+        else if(mousePosition > Screen.height * 0.93f)
+        {
+            MoveCamera(0.01f);
+        }
+        else if (mousePosition < Screen.height * 0.02f)
+        {
+            MoveCamera(-0.03f);
+        }
+        else if (mousePosition < Screen.height * 0.07f)
+        {
+            MoveCamera(-0.01f);
+        }
     }
 
     void MoveCamera(float num)
