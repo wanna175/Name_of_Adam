@@ -10,6 +10,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private GameObject _inactive;
     [SerializeField] private Image _unitImage;
     [SerializeField] private TextMeshProUGUI _cost;
+    [SerializeField] private GameObject _darkessense;
     [SerializeField] private TextMeshProUGUI _darkessensecost;
 
     private DeckUnit _handUnit = null;
@@ -40,6 +41,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if (_handUnit.Data.DarkEssenseCost > 0)
         {
+            _darkessense.SetActive(true);
             _darkessensecost.gameObject.SetActive(true);
             _darkessensecost.text = _handUnit.Data.DarkEssenseCost.ToString();
         }
