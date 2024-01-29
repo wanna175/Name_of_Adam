@@ -32,7 +32,7 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         foreach (var frame in _stigmaFrames)
             frame.SetActive(true);
 
-        UnitImage.sprite = _deckUnit.Data.Image;
+        UnitImage.sprite = _deckUnit.Data.CorruptImage;
         UnitImage.color = Color.white;
         _nameText.SetText(_deckUnit.Data.name);
 
