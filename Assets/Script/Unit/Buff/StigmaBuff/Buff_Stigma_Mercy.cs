@@ -32,7 +32,8 @@ public class Buff_Stigma_Mercy : Buff
     public override bool Active(BattleUnit caster)
     {
         _owner.ChangedDamage = 0;
-        caster.ChangeFall(1);
+        if (caster != null)
+            caster.ChangeFall(1);
 
         return false;
     }

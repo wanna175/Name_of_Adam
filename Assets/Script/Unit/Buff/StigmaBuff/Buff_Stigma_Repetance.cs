@@ -27,7 +27,7 @@ public class Buff_Stigma_Repetance : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (_owner.BattleUnitTotalStat.MaxHP / 2 >= _owner.HP.GetCurrentHP())
+        if (caster != null && _owner.BattleUnitTotalStat.MaxHP / 2 >= _owner.HP.GetCurrentHP())
             caster.ChangeFall(1);
 
         return false;

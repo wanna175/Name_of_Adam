@@ -24,6 +24,9 @@ public class BattleDataManager : MonoBehaviour
     private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
     public List<UI_StigmaSelectButtonPopup> CorruptionPopups => _corruptionPopups;
 
+    [SerializeField] private BattleUnit incarnaUnit;
+    public BattleUnit IncarnaUnit => incarnaUnit;
+
     public bool isDiscount = false;
 
     public bool isGameDone = false;
