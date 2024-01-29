@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 // 전투를 담당하는 매니저
@@ -121,7 +120,7 @@ public class BattleManager : MonoBehaviour
             {
                 if (GameManager.Data.Map.GetCurrentStage().StageID == 0)
                 {
-                    string scriptKey = "니므롯전_입장";
+                    string scriptKey = "바누엘전_입장";
 
                     EventConversation(scriptKey);
                 }
@@ -218,12 +217,6 @@ public class BattleManager : MonoBehaviour
         unit.FirstTurnDiscountUndo();
 
         _spawner.DeckSpawn(unit, coord);
-        GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect"),
-            _field.GetTilePosition(coord) + new Vector3(0f, 3.5f, 0f));
-        GameManager.VisualEffect.StartVisualEffect(
-            Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnFrontEffect"),
-            _field.GetTilePosition(coord) + new Vector3(0f, 3.5f, 0f));
 
         _battleUI.RemoveHandUnit(unit); //유닛 리필
         GameManager.UI.ClosePopup();
@@ -245,7 +238,9 @@ public class BattleManager : MonoBehaviour
         }
 
         if (MoveUnit(unit, coord))
-            PlayAfterCoroutine(() =>_phase.ChangePhase(_phase.Action), 1f);
+            PlayAfterCoroutine(() => _phase.ChangePhase(_phase.Action), 1f);
+        else if (coord == unit.Location)
+            _phase.ChangePhase(_phase.Action);
     }
 
     public void ActionPhaseClick(Vector2 coord)
@@ -330,6 +325,10 @@ public class BattleManager : MonoBehaviour
         _battlecutScene.InitBattleCutScene(CSData);
 
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
+
+        ActiveTimingCheck(ActiveTiming.BEFORE_ATTACK, caster);
+        ActiveTimingCheck(ActiveTiming.DAMAGE_CONFIRM, caster);
+        ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, caster);
     }
 
     public void EndUnitAction()
@@ -391,9 +390,9 @@ public class BattleManager : MonoBehaviour
 
         if (unit.IsConnectedUnit)
         {
-            if (unit.Data.Name == "니므롯")
+            if (unit.Data.Name == "바누엘")
             {
-                GameManager.Data.GameData.Progress.NimrodKill++;
+                GameManager.Data.GameData.Progress.PhanuelKill++;
             }
 
             return;
@@ -710,6 +709,9 @@ public class BattleManager : MonoBehaviour
 
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
     {
+        if (caster.IsConnectedUnit)
+            return false;
+
         bool skipNextAction = false;
 
         foreach (Stigma stigma in caster.StigmaList)

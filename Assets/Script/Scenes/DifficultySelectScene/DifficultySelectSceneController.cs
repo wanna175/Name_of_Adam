@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class DifficultySelectSceneController : MonoBehaviour
@@ -10,10 +11,12 @@ public class DifficultySelectSceneController : MonoBehaviour
     [SerializeField] GameObject UI_ConfirmBtn;
 
     public GameObject UI_Incarna_List;
+    public List<GameObject> Incarna_Card;
     public List<GameObject> Incarna_Info;
 
     private Incarna incarnaData;
     private bool DifficultySelected;
+    private Color cardColor;
 
     void Start()
     {
@@ -27,6 +30,9 @@ public class DifficultySelectSceneController : MonoBehaviour
         UI_HallSelect.SetActive(false);
         UI_ConfirmBtn.SetActive(false);
         DifficultySelected = false;
+
+        LockIncarna(61, 1);
+        LockIncarna(71, 2);
     }
 
     public void Confirm()
@@ -35,7 +41,6 @@ public class DifficultySelectSceneController : MonoBehaviour
 
         if (UI_IncarnaSelect.activeSelf == true)
         {
-            //화신 데이터에 저장
             if (GameManager.OutGameData.IsUnlockedItem(18))
             {
                 GameManager.Data.GameDataMain.DarkEssence = 10;
@@ -61,10 +66,28 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void OnIncarnaClick(int i)
     {
+        if(i == 1 && !GameManager.OutGameData.IsUnlockedItem(61))
+        {
+            return;
+        }
+
+        if(i == 2 && !GameManager.OutGameData.IsUnlockedItem(71))
+        {
+            return;
+        }
+
         UI_Incarna_List.SetActive(false);
         UI_ConfirmBtn.SetActive(true);
         Incarna_Info[i].SetActive(true);
         incarnaData = GameManager.Resource.Load<Incarna>($"ScriptableObject/Incarna/{Incarna_Info[i].name}");
+    }
+
+    public void LockIncarna(int progressID, int incarnaID)
+    {
+        if (!GameManager.OutGameData.IsUnlockedItem(progressID))
+        {
+            Incarna_Card[incarnaID].transform.Find("Blocker").gameObject.SetActive(true);
+        }
     }
 
     public void Quit()

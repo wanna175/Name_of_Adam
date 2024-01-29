@@ -149,7 +149,7 @@ public enum ActiveTiming
 
     ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
 
-    NONE = 1 << 26 //없음
+    NONE = 1 << 27 //없음
 };
 
 public enum StigmaTier
@@ -280,8 +280,8 @@ public enum UnitActionType
     UnitAction_None,
 
     UnitAction_Iana,
-    UnitAction_Nimrod,
-    UnitAction_Trinity,
+    UnitAction_Phanuel,
+    UnitAction_Appaim,
     UnitAction_Tubalcain,
     UnitAction_Horus,
     UnitAction_Horus_Egg,
@@ -299,8 +299,8 @@ public enum UnitMoveType
 public enum EffectTileType
 {
     None,
-    Nimrod_Attack_Enemy,
-    Nimrod_Attack_Friendly
+    Phanuel_Attack_Enemy,
+    Phanuel_Attack_Friendly
 }
 
 public enum TutorialStep

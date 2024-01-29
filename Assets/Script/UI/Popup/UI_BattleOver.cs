@@ -9,6 +9,7 @@ public class UI_BattleOver : UI_Scene
 {
     [SerializeField] private Image _textImage;
     [SerializeField] private FadeController fc;
+    [SerializeField] private UI_RewardScene _rewardScene;
 
     private string _result;
 
@@ -21,9 +22,10 @@ public class UI_BattleOver : UI_Scene
 
         if (result == "win") 
         {
-            rc.RewardSetting(GameManager.Data.GetDeck(), this);
-            //여기서 보상 화면을 set Active해주면 되겟다.
-            _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
+            rc.RewardSetting(GameManager.Data.GetDeck(), _rewardScene);
+            _rewardScene.gameObject.SetActive(true);
+            _textImage.gameObject.SetActive(false);
+            //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
             GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
         }
@@ -45,7 +47,12 @@ public class UI_BattleOver : UI_Scene
     {
         if (_result == "win")
         {
-            SceneChanger.SceneChange("StageSelectScene");
+            if (_rewardScene.FadeEnd == false)
+            {
+                _rewardScene.EndFadeIn();
+            }
+            else
+                SceneChanger.SceneChange("StageSelectScene");
         }
         else if (_result == "elite win")
         {
@@ -76,7 +83,6 @@ public class UI_BattleOver : UI_Scene
 
         }
     }
-
     public void BattleOverDestroy()
     {
         GameManager.Resource.Destroy(this.gameObject);

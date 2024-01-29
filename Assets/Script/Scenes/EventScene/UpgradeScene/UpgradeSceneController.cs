@@ -8,6 +8,7 @@ public class UpgradeSceneController : MonoBehaviour
     private DeckUnit _unit;
 
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+    [SerializeField] private GameObject _restoreFall_Btn;
     [SerializeField] private GameObject _ui_SelectMenu;
     private List<Script> scripts;
 
@@ -19,6 +20,11 @@ public class UpgradeSceneController : MonoBehaviour
     }
     private void Init()
     {
+        if (!GameManager.OutGameData.IsUnlockedItem(2))
+        {
+            _restoreFall_Btn.SetActive(false);
+        }
+
         scripts = new ();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
@@ -41,14 +47,20 @@ public class UpgradeSceneController : MonoBehaviour
     public void OnUpgradeUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectUpgrade,CUR_EVENT.UPGRADE);
+        this._ui_SelectMenu.SetActive(false);
+        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        ui.Init(false, OnSelectUpgrade, CUR_EVENT.UPGRADE, null);
+        ui.SetEventMenu(this._ui_SelectMenu);
     }
 
     // 교화를 풀 유닛을 고릅니다.
     public void OnReleaseUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectRelease,CUR_EVENT.RELEASE);
+        this._ui_SelectMenu.SetActive(false);
+        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        ui.Init(false, OnSelectRelease, CUR_EVENT.RELEASE);
+        ui.SetEventMenu(this._ui_SelectMenu);
     }
 
     //대화하기 버튼

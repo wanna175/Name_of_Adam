@@ -27,8 +27,8 @@ MonoBehaviour:
   _name: "\uD22C\uBC1C\uCE74\uC778"
   _description: 
   _rarity: 1
-  _image: {fileID: 21300000, guid: 839b3446a948a0d42b5bf448b2701129, type: 3}
-  _corruptImage: {fileID: 0}
+  _image: {fileID: 21300000, guid: 2514a085a9370e0428141c03e26f2aa6, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 706744c357bee2d459a1b01107b58ecc, type: 3}
   _portraitImage: {fileID: 21300000, guid: d2dac2b07f607614a833e59343217fc5, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: 3122edf7484ef2445859d3ed056e735a, type: 3}
   _diaPortraitImage: {fileID: 21300000, guid: cecf97c865fb09545a2a47a9da57aed5, type: 3}
@@ -42,6 +42,7 @@ MonoBehaviour:
   _darkEssenseCost: 1
   _unitActionType: 5
   _unitMoveType: 0
+  _isBattleOnly: 0
   _attackRange: 00000000000100000000000000000000010000000000010101010101010101010100000000000100000000000000000000010000000000
   _moveRange: 00000000000000010000000101010000000100000000000000
   _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000

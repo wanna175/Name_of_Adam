@@ -23,12 +23,13 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private GameObject infoButton;
 
     public Image UnitImage;
+    public GameObject IsDisabled;
     private List<DeckUnit> _mainDeck;
     private List<HallUnit> _hallUnitList;
 
     private bool _isEnable;
     public bool _isElite;
-    public int HallUnitID; //µ¦°ú ´ëÄª½ÃÅ³ ID
+    public int HallUnitID; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Äªï¿½ï¿½Å³ ID
 
     void Start()
     {
@@ -86,15 +87,31 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         infoButton.SetActive(false);
         foreach (var frame in _stigmaFrames)
             frame.SetActive(false);
+
+        if (!GameManager.OutGameData.IsUnlockedItem(14))
+        {
+            if (HallUnitID == 1 || HallUnitID == 2)
+            {
+                IsDisabled.SetActive(true);
+            }
+        }
     }
 
     public void OnClick()
     {
+        if (HallUnitID == 1 || HallUnitID == 2)
+        {
+            if (!GameManager.OutGameData.IsUnlockedItem(14))
+            {
+                return;
+            }
+        }
+
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallDeckInit(_isElite, OnSelect);
     }
 
-    //¼±ÅÃÇÑ À¯´Ö GameDataMain ¿¡ ÀúÀåµÇ°Ô ÇÏ±â
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ GameDataMain ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ ï¿½Ï±ï¿½
     public void OnSelect(DeckUnit unit)
     {
         if (_mainDeck.Count <= HallUnitID)

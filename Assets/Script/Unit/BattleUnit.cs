@@ -248,9 +248,9 @@ public class BattleUnit : MonoBehaviour
         {
             GameManager.Data.GameData.Progress.EliteFall++;
         }
-        else if (DeckUnit.Data.Name == "니므롯")
+        else if (DeckUnit.Data.Name == "바누엘")
         {
-            GameManager.Data.GameData.Progress.NimrodFall++;
+            GameManager.Data.GameData.Progress.PhanuelFall++;
         }
 
         //타락 이벤트 시작
@@ -288,6 +288,11 @@ public class BattleUnit : MonoBehaviour
         if (Buff.CheckBuff(BuffEnum.Benediction))
         {
             DeleteBuff(BuffEnum.Benediction);
+        }
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            unit.ChangeTeam();
         }
 
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);

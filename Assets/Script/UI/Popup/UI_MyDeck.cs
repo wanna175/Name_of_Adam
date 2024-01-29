@@ -19,9 +19,13 @@ public class UI_MyDeck : UI_Popup
     private CUR_EVENT evNum = CUR_EVENT.NONE;
     private bool _isBossClear;
 
+    private GameObject eventMenu = null;
+
     public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE,Action endEvent=null)
     {
         Set_btn.SetActive(false);
+        if (Eventnum == CUR_EVENT.RECEIVE_STIGMA)
+            Quit_btn.SetActive(false);
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
@@ -156,12 +160,16 @@ public class UI_MyDeck : UI_Popup
     {
         _endEvent.Invoke();
     }
+    public void SetEventMenu(GameObject obj)
+    {
+        this.eventMenu = obj;
+    }
     private void isEventScene(CUR_EVENT EventScene)
     {
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
         {
-            Quit_btn.SetActive(false);
+            //Quit_btn.SetActive(false);
 
             if (EventScene == CUR_EVENT.UPGRADE)
                 _title_txt.text = "강화할 유닛을 선택하세요";
@@ -200,7 +208,10 @@ public class UI_MyDeck : UI_Popup
         }
         else
         {
+            if (eventMenu != null)
+                eventMenu.SetActive(true);
             GameManager.UI.ClosePopup();
+
         }
     }
 }
