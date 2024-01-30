@@ -4275,6 +4275,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4349,6 +4350,18 @@ Transform:
   m_Father: {fileID: 1688846948}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a3f6168fe2cfa4fb945c41610754f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &595067091
 GameObject:
   m_ObjectHideFlags: 0
@@ -10044,7 +10057,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -10059,7 +10072,7 @@ Canvas:
   m_GameObject: {fileID: 1158067337}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -11733,10 +11746,6 @@ PrefabInstance:
     - target: {fileID: 3994626579581517693, guid: ff950fcd9f0399644bbdcc7d49c16e6c, type: 3}
       propertyPath: m_Name
       value: UI_ProgressSummary
-      objectReference: {fileID: 0}
-    - target: {fileID: 3994626579581517693, guid: ff950fcd9f0399644bbdcc7d49c16e6c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994626579581517694, guid: ff950fcd9f0399644bbdcc7d49c16e6c, type: 3}
       propertyPath: m_Pivot.x
@@ -16344,10 +16353,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1511417338}
     m_Modifications:
-    - target: {fileID: 8360276734180153098, guid: 05a92247246d99849967be035c1c7f6c, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8360276734180153100, guid: 05a92247246d99849967be035c1c7f6c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -16435,10 +16440,6 @@ PrefabInstance:
     - target: {fileID: 8360276734180153101, guid: 05a92247246d99849967be035c1c7f6c, type: 3}
       propertyPath: m_Name
       value: UI_StigmaSelectBlocker
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360276734180153101, guid: 05a92247246d99849967be035c1c7f6c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05a92247246d99849967be035c1c7f6c, type: 3}

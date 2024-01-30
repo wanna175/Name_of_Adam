@@ -59,6 +59,9 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.Data.GameData.DeckUnits.Add(_deckUnit);
+        GameManager.OutGameData.SaveData();
+        GameManager.SaveManager.SaveGame();
+
         SceneChanger.SceneChange("StageSelectScene");
     }
 
