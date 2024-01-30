@@ -64,7 +64,8 @@ public class UI_BattleOver : UI_Scene
             }
             else
             {
-                SceneChanger.SceneChange("StageSelectScene");
+                BattleOverDestroy();
+                GameManager.UI.ShowPopup<UI_EliteReward>("UI_EliteReward").SetRewardPanel();
             }
         }
         else if (_result == "lose")

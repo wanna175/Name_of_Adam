@@ -30,7 +30,8 @@ public class Buff_Karma : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        caster.ChangeFall(1);
+        if (caster != null)
+            caster.ChangeFall(1);
 
         return false;
     }

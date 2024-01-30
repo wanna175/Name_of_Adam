@@ -10,7 +10,12 @@ public class PlayerSkill_02_02 : PlayerSkill
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
-        targetUnit.SetBuff(new Buff_Vice());
+        int count = 3;
+        if (true) // 혜원님 진척도 해방 시 조건을 여기에 작성해주세요.
+            count = 5;
+
+        for (int i = 0; i < count; i++)
+            targetUnit.SetBuff(new Buff_Vice());
         targetUnit.ChangeFall(1);
         return false;
     }

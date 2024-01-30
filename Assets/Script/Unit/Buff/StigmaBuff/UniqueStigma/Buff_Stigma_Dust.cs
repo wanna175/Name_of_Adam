@@ -28,6 +28,9 @@ public class Buff_Stigma_Dust : Buff
 
     public override bool Active(BattleUnit caster)
     {
+        if (caster == null)
+            return false;
+
         int count = caster.Buff.GetBuffStack(BuffEnum.TraceOfDust);
         
         if (count >= 1)

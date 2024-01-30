@@ -23,7 +23,7 @@ public class UI_StigmaSelectButton : UI_Base
 
         _stigmaName.text = stigma.Name;
         _stigmaDescription.text = stigma.Description;
-        _stigmaImage.sprite = stigma.Sprite;
+        _stigmaImage.sprite = stigma.Sprite_164;
     }
 
     public void OnClick()

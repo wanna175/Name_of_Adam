@@ -320,8 +320,7 @@ public class BattleManager : MonoBehaviour
 
     public void AttackPlayer(BattleUnit caster)
     {
-        BattleUnit playerUnit = GameObject.Find("PlayerUnit").GetComponent<BattleUnit>();
-        BattleCutSceneData CSData = new(caster, new List<BattleUnit> { playerUnit });
+        BattleCutSceneData CSData = new(caster, new List<BattleUnit> { Data.IncarnaUnit });
         _battlecutScene.InitBattleCutScene(CSData);
 
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
@@ -709,7 +708,7 @@ public class BattleManager : MonoBehaviour
 
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
     {
-        if (caster.IsConnectedUnit)
+        if (caster.IsConnectedUnit || receiver == Data.IncarnaUnit)
             return false;
 
         bool skipNextAction = false;
