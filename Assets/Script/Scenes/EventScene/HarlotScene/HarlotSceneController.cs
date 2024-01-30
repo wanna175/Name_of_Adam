@@ -28,11 +28,16 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         scripts = new List<Script>();
         _isStigmaFull = false;
         _RestorationUnits = new List<DeckUnit>();
-        /*if (GameManager.Data.GameData.isVisitHarlot == false)
-            scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
+        if (GameManager.Data.GameData.isVisitDarkShop == false)
+        {
+            //scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
+            GameManager.Data.GameData.isVisitDarkShop = true;
+        }
         else
-            scripts = GameManager.Data.ScriptData["탕녀_입장"];
-        */
+        {
+            //scripts = GameManager.Data.ScriptData["탕녀_입장"];
+        }
+        
         //GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
         stigma = GameManager.Data.StigmaController.GetHarlotStigmas();

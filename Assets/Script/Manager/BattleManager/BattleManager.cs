@@ -402,6 +402,8 @@ public class BattleManager : MonoBehaviour
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
+            if(GameManager.Data.GameData.isVisitUpgrade)
+                GameManager.Data.GameData.npcQuest.upgradeQuest++;
             if(unit.Data.Rarity == Rarity.Normal)
             {
                 GameManager.Data.GameData.Progress.NormalKill++;
