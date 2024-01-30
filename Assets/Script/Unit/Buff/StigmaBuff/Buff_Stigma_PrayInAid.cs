@@ -31,7 +31,7 @@ public class Buff_Stigma_PrayInAid : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (_owner.AttackUnitNum > 1)
+        if (caster != null && _owner.AttackUnitNum > 1)
             caster.ChangeFall(1);
 
         return false;

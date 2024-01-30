@@ -302,7 +302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: 311}
+  m_AnchoredPosition: {x: 23, y: 320}
   m_SizeDelta: {x: 252, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &478166179237250847
@@ -757,7 +757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55, y: 122}
+  m_AnchoredPosition: {x: 55, y: 100}
   m_SizeDelta: {x: 194, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3240065358225708771
@@ -1313,11 +1313,14 @@ MonoBehaviour:
   _completeButton: {fileID: 0}
   _fallGaugePrefab: {fileID: 71125851770971500, guid: 6affe1e06d3e6074ab912f69295f1ccb, type: 3}
   _stigmaPrefab: {fileID: 4338444046490596867, guid: f3acaf644a2213944b3a254bbfda7e21, type: 3}
+  _upgradeCountPrefab: {fileID: 0}
   _squarePrefab: {fileID: 7388686836549182621, guid: 64250af6c8cba8c44a44e35a50beb391, type: 3}
   _unitInfoName: {fileID: 0}
   _unitInfoFallGrid: {fileID: 1673216230573987565}
   _unitInfoStat: {fileID: 4591988288601404032}
   _unitInfoStigmaGrid: {fileID: 2024442360250769832}
+  _unitInfoUpgradeCountGrid: {fileID: 0}
+  _AddedUpgradeCountSocket: {fileID: 0}
   _unitInfoSkillRangeGrid: {fileID: 2507197638731994257}
   _unitImage: {fileID: 0}
 --- !u!1 &5605913605923015419
@@ -1436,7 +1439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23, y: 200}
+  m_AnchoredPosition: {x: 23, y: 195}
   m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5401067005694047544
@@ -1571,8 +1574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -122.74649, y: 116.752075}
-  m_SizeDelta: {x: 123.493, y: 85.4958}
+  m_AnchoredPosition: {x: -127, y: 100}
+  m_SizeDelta: {x: 123.493, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8940027173848845887
 CanvasRenderer:
@@ -1643,9 +1646,9 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 3
   m_wordSpacing: 0
-  m_lineSpacing: 15
+  m_lineSpacing: 35
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1669,7 +1672,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -6.8739014, z: 0, w: 0}
+  m_margin: {x: 0, y: -0.010192871, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1741,7 +1744,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5185f16598740c8489e61e6f1a999207, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1995,11 +1998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6913700447399924222, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6913700447399924222, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 228
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 6913700447399924222, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2028,6 +2031,10 @@ PrefabInstance:
     - target: {fileID: 8078627109196648211, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
       propertyPath: m_Name
       value: HPBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078627109196648211, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bc81f622db04e647b101895185f15b1, type: 3}

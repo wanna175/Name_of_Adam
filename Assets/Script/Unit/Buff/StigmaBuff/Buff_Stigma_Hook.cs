@@ -30,6 +30,9 @@ public class Buff_Stigma_Hook : Buff
 
     public override bool Active(BattleUnit caster)
     {
+        if (caster == null)
+            return false;
+
         Vector2 hookDir = (_owner.Location - caster.Location).normalized;
         Vector2Int hookDirInt = new Vector2Int(Mathf.RoundToInt(hookDir.x), Mathf.RoundToInt(hookDir.y));
         Vector2 vec = caster.Location + hookDirInt;

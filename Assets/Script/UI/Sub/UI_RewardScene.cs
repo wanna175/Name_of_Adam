@@ -9,27 +9,31 @@ public class UI_RewardScene : MonoBehaviour
     [SerializeField] private List<GameObject> contents;//일단 10개까지만 가능하도록 일단 만들자.
     [SerializeField] private TMP_Text darkness;
 
-    private int count=10;
+    [SerializeField] private GameObject content_prefab;
+    [SerializeField] private Transform view_grid;
+    private int count;
     public bool FadeEnd = false;
     #endregion
 
     #region 함수
-    public void Init(int count,int changeDarkness)
+    public void Init(int changeDarkness)
     {
         this.GetComponent<FadeController>().StartFadeIn();
-        if (count > 10) this.count = 10;
-        else this.count = count;
-        for(int i = 0; i < this.count; ++i)
-        {
-            contents[i].SetActive(true);
-        }
+   
         darkness.text = changeDarkness.ToString();
     }
-    public void setContent(int idx, RewardUnit rewardUnit)
+    public void setContent(int idx, RewardUnit rewardUnit,int curFall,UnitState unitState)
     {
+        if (idx >= contents.Count)
+        {
+            GameObject newObject = GameObject.Instantiate(content_prefab, view_grid);
+            contents.Add(newObject);
+        }
+        contents[idx].SetActive(true);
         UI_UnitReward content = contents[idx].GetComponent<UI_UnitReward>();
-        content.Init(rewardUnit.image, rewardUnit.name, rewardUnit.DarkEssence);
-        FadeEnd = content.FadeIn((float)idx,count);
+        content.Init(rewardUnit.image, rewardUnit.name,curFall, rewardUnit.DarkEssence, unitState);
+        
+        //FadeEnd = content.FadeIn((float)idx,count);
     }
     public void EndFadeIn()
     {

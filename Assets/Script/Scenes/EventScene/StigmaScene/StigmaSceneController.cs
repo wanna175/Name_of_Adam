@@ -71,22 +71,30 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     public void OnStigmaUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        this._ui_SelectMenu.SetActive(false);
+        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        ud.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        ud.SetEventMenu(this._ui_SelectMenu);
     }
 
     //낙인을 받는 유닛을 고르는 함수
     public void OnSelectStigmaTargetUnit()
     {
         GameManager.UI.CloseAllPopup();
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatransfertarget, CUR_EVENT.RECEIVE_STIGMA);
+        this._ui_SelectMenu.SetActive(false);
+        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        ud.Init(false, OnSelectStigmatransfertarget, CUR_EVENT.RECEIVE_STIGMA);
+        ud.SetEventMenu(this._ui_SelectMenu);
     }
 
     // 낙인을 주는 유닛을 고르는 함수,낙인 이동을 눌렀을 경우에
     public void OnStigmaGiveUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        this._ui_SelectMenu.SetActive(false);
         UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ud.Init(false, OnSelectStigmatransfergiver, CUR_EVENT.GIVE_STIGMA);
+        ud.SetEventMenu(this._ui_SelectMenu);
     }
 
     // 낙인소 나가기 

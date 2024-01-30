@@ -46,7 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 26
   _name: "\uAC00\uD559\u2160"
-  _sprite: {fileID: 21300000, guid: 605a48317ce99844e8c066ca9a089c36, type: 3}
+  _sprite_28: {fileID: 21300000, guid: 037a38c5f98af5f41980d6bf6c00aff0, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 24387459eeeda1e4f828ce83e7c4a4dc, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 04a9f71a92395274da1f76ba18c3b63a, type: 3}
   _description: "\uC801\uC744 \uACF5\uACA9\uD560 \uC2DC \n\uD53C\uACA9 \uB300\uC0C1
     \uD55C\uBA85\uB2F9\r \n\uACF5\uACA9\uB825\uC774 2 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   _activeTiming: 2

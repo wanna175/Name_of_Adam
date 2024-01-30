@@ -25,7 +25,7 @@ public class Buff_Stigma_Absorption : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (!caster.Buff.CheckBuff(BuffEnum.Invincible)) // 무효화 버프가 없을 때만 발동
+        if (caster != null && !caster.Buff.CheckBuff(BuffEnum.Invincible)) // 무효화 버프가 없을 때만 발동
             _owner.GetHeal((int)(_owner.BattleUnitTotalStat.ATK * 0.3), caster);
 
         return false;

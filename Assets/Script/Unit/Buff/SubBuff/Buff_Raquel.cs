@@ -29,6 +29,9 @@ public class Buff_Raquel : Buff
 
     public override bool Active(BattleUnit caster)
     {
+        if (caster == null)
+            return false;
+
         if (_owner.AttackUnitNum == 1)
         {
             BattleManager.Instance.PlayAfterCoroutine(() =>

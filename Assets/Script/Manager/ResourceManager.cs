@@ -16,6 +16,19 @@ public class ResourceManager
         return resource;
     }
 
+    public T[] LoadAll<T>(string path) where T : Object
+    {
+        T[] resources = Resources.LoadAll<T>(path);
+
+        if (resources == null || resources.Length == 0)
+        {
+            Debug.Log($"Failed to load Resource : {path}");
+            return null;
+        }
+
+        return resources;
+    }
+
     public T LoadSO<T>(string path) where T : Object { return Load<T>($"ScriptObjects/{path}"); }
 
     public GameObject Instantiate(string path, Transform parent = null)

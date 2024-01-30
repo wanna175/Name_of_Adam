@@ -12426,7 +12426,6 @@ Transform:
   - {fileID: 1589663946}
   - {fileID: 774167857}
   - {fileID: 1004954825}
-  - {fileID: 6850471092878851448}
   - {fileID: 668061506}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -13632,7 +13631,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6850471092878851448}
   m_Father: {fileID: 1410153077}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13669,6 +13669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDeck: []
   _playerHands: []
+  incarnaUnit: {fileID: 3886181582815056074}
   isDiscount: 0
   isGameDone: 0
 --- !u!1 &1604424397
@@ -16639,7 +16640,7 @@ GameObject:
   - component: {fileID: 540959683015239602}
   - component: {fileID: 5450737970528319739}
   m_Layer: 0
-  m_Name: PlayerUnit
+  m_Name: IncarnaUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16689,7 +16690,7 @@ MonoBehaviour:
     ManaCost: 0
     CurrentUpgradeCount: 0
   _team: 0
-  UnitRenderer: {fileID: 0}
+  UnitRenderer: {fileID: 8560112977457052162}
   UnitAnimator: {fileID: 0}
   SkillEffectAnim: {fileID: 0}
   HP: {fileID: 6850471092878851450}
@@ -16726,13 +16727,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3869115341004250613}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1410153077}
-  m_RootOrder: 4
+  m_Father: {fileID: 1589663946}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6850471092878851450
 MonoBehaviour:
@@ -16832,6 +16833,6 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

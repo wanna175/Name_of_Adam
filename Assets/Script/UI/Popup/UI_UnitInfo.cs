@@ -22,6 +22,7 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private TextMeshProUGUI _unitInfoStat;
     [SerializeField] private Transform _unitInfoStigmaGrid;
     [SerializeField] private Transform _unitInfoUpgradeCountGrid;
+    [SerializeField] private GameObject _AddedUpgradeCountSocket;
     [SerializeField] private Transform _unitInfoSkillRangeGrid;
     [SerializeField] private Image _unitImage;
 
@@ -82,9 +83,17 @@ public class UI_UnitInfo : UI_Popup
             //fg.Init();
         }
 
-        foreach (Stigma sti in _unit.GetStigma())
+        List<Stigma> stigmas = _unit.GetStigma();
+        for (int i = 0; i < _unit._maxStigmaCount; i++)
         {
-            GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>().Set(sti.Sprite, sti.Description);
+            UI_HoverImageBlock ui = GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>();
+            if (i < stigmas.Count)
+            {
+                ui.Set(stigmas[i].Sprite_88, stigmas[i].Description);
+                ui.EnableUI(true);
+            }
+            else
+                ui.EnableUI(false);
         }
 
         for (int i = 0; i < _unit.DeckUnitTotalStat.CurrentUpgradeCount; i++)
@@ -99,6 +108,11 @@ public class UI_UnitInfo : UI_Popup
                 block.color = Color.red;
             else
                 block.color = Color.grey;
+        }
+
+        if (GameManager.OutGameData.IsUnlockedItem(12))
+        {
+            _AddedUpgradeCountSocket.SetActive(true);
         }
     }
     public void Restoration(Action<DeckUnit> OnSelect=null, CUR_EVENT Eventnum = CUR_EVENT.NONE,Action<DeckUnit> selectRestorationUnit=null)

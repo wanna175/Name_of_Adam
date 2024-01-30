@@ -30,6 +30,9 @@ public class Buff_Stigma_ShadowStep: Buff
 
     public override bool Active(BattleUnit caster)
     {
+        if (caster == null)
+            return false;
+
         if (_owner.AttackUnitNum == 1)
         {
             Vector2 vec = caster.Location + (caster.Location - _owner.Location).normalized;

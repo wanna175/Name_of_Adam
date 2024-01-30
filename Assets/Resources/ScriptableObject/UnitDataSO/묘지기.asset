@@ -27,8 +27,8 @@ MonoBehaviour:
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
     \uC90D\uB2C8\uB2E4."
   _rarity: 0
-  _image: {fileID: 21300000, guid: 514786a5b91d72e4fb785fb5f9e79add, type: 3}
-  _corruptImage: {fileID: 0}
+  _image: {fileID: 21300000, guid: c5f9a9b578d96b246b4857972b27d642, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 63ceed3ec40f06d448dd876ea91bf573, type: 3}
   _portraitImage: {fileID: 21300000, guid: 2f10d712fb0a84d41b8d35d0879aeea0, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: 5c3fa1d98af5bb9449c81f7a72a6ccdb, type: 3}
   _diaPortraitImage: {fileID: 21300000, guid: 221ad9def9fe22846b52ecaba41bf14f, type: 3}
