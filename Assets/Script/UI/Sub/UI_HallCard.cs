@@ -77,6 +77,15 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
         }
 
+        if (!GameManager.OutGameData.IsUnlockedItem(14))
+        {
+            if (HallUnitID == 1 || HallUnitID == 2)
+            {
+                _isEnable = false;
+                IsDisabled.SetActive(true);
+            }
+        }
+
         _highlight.SetActive(false);
     }
 
@@ -87,14 +96,6 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         infoButton.SetActive(false);
         foreach (var frame in _stigmaFrames)
             frame.SetActive(false);
-
-        if (!GameManager.OutGameData.IsUnlockedItem(14))
-        {
-            if (HallUnitID == 1 || HallUnitID == 2)
-            {
-                IsDisabled.SetActive(true);
-            }
-        }
     }
 
     public void OnClick()
