@@ -27,7 +27,8 @@ public class Buff_Stigma_Dispel : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        caster.Buff.DispelBuff();
+        if (caster != null)
+            caster.Buff.DispelBuff();
 
         return false;
     }

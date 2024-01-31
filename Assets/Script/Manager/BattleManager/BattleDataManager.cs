@@ -20,8 +20,12 @@ public class BattleDataManager : MonoBehaviour
     private List<BattleUnit> _battleUnitList = new();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
 
+    // 중복 타락을 처리하기 위한 팝업 리스트
     private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
     public List<UI_StigmaSelectButtonPopup> CorruptionPopups => _corruptionPopups;
+
+    [SerializeField] private BattleUnit incarnaUnit;
+    public BattleUnit IncarnaUnit => incarnaUnit;
 
     public bool isDiscount = false;
 
@@ -60,6 +64,19 @@ public class BattleDataManager : MonoBehaviour
         }
 
         PlayerHands.Clear();
+
+        if (GameManager.OutGameData.IsUnlockedItem(8))
+        {
+            StageData data = GameManager.Data.Map.GetCurrentStage();
+            if (data.StageLevel == 10)
+            {
+                foreach (DeckUnit unit in PlayerDeck)
+                {
+                    if (unit.DeckUnitStat.FallCurrentCount > 0)
+                        unit.DeckUnitUpgradeStat.FallCurrentCount--;
+                }
+            }
+        }
 
         GameManager.Data.SetDeck(_playerDeck);
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);

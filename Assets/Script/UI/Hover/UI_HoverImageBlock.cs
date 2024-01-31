@@ -8,6 +8,7 @@ public class UI_HoverImageBlock : UI_Base, IPointerEnterHandler, IPointerExitHan
 {
     [SerializeField] Image Image;
     private string _text;
+    private bool _isEnable;
 
     public void Set(Sprite image, string text)
     {
@@ -15,13 +16,24 @@ public class UI_HoverImageBlock : UI_Base, IPointerEnterHandler, IPointerExitHan
         _text = text;
     }
 
+    public void EnableUI(bool isEnable)
+    {
+        _isEnable = isEnable;
+        if (_isEnable) 
+            Image.color = new Color(1f, 1f, 1f, 1f);
+        else
+            Image.color = new Color(1f, 1f, 1f, 0f);
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameManager.UI.ShowHover<UI_TextHover>().SetText(_text, eventData.position);
+        if (_isEnable)
+            GameManager.UI.ShowHover<UI_TextHover>().SetText(_text, eventData.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.UI.CloseHover();
+        if (_isEnable)
+            GameManager.UI.CloseHover();
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 // 전투를 담당하는 매니저
@@ -321,8 +320,7 @@ public class BattleManager : MonoBehaviour
 
     public void AttackPlayer(BattleUnit caster)
     {
-        BattleUnit playerUnit = GameObject.Find("PlayerUnit").GetComponent<BattleUnit>();
-        BattleCutSceneData CSData = new(caster, new List<BattleUnit> { playerUnit });
+        BattleCutSceneData CSData = new(caster, new List<BattleUnit> { Data.IncarnaUnit });
         _battlecutScene.InitBattleCutScene(CSData);
 
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
@@ -404,6 +402,8 @@ public class BattleManager : MonoBehaviour
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
+            if(GameManager.Data.GameData.isVisitUpgrade)
+                GameManager.Data.GameData.npcQuest.upgradeQuest++;
             if(unit.Data.Rarity == Rarity.Normal)
             {
                 GameManager.Data.GameData.Progress.NormalKill++;
@@ -710,7 +710,7 @@ public class BattleManager : MonoBehaviour
 
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
     {
-        if (caster.IsConnectedUnit)
+        if (caster.IsConnectedUnit || receiver == Data.IncarnaUnit)
             return false;
 
         bool skipNextAction = false;

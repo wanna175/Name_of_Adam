@@ -19,7 +19,7 @@ public class UI_FallUnit : MonoBehaviour
     }
     public void SetAnimation()
     {
-        anim.SetBool("isBreak", false);
+        anim.SetBool("isBreak", true);
     }
     public void FillGauge()
     {

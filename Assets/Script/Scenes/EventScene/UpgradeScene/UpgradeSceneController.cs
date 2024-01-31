@@ -33,6 +33,7 @@ public class UpgradeSceneController : MonoBehaviour
             GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
             uiConversation = FindObjectOfType<UI_Conversation>();
             uiConversation.ConversationEnded += OnConversationEnded;
+            GameManager.Data.GameData.isVisitUpgrade = true;
         }
         else
         {

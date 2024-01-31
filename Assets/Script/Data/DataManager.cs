@@ -63,6 +63,7 @@ public class DataManager : MonoBehaviour
         GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
         GameData.isVisitStigma = GameDataMain.isVisitStigma;
         GameData.Progress.ClearProgress();
+        GameData.npcQuest.ClearQuest();
         _darkEssense = GameData.DarkEssence;
         Debug.Log("GameData.DeckUnit: " + GameData.DeckUnits.Count);
         //OutGame에서 업그레이드 된 스탯 + 낙인 불러와야해서 ClearStat 사용하면 안됨, 파생되는 문제 발생 시 수정 필요 
@@ -88,6 +89,7 @@ public class DataManager : MonoBehaviour
         GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
         GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
         GameData.Progress.ClearProgress();
+        GameData.npcQuest.ClearQuest();
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {

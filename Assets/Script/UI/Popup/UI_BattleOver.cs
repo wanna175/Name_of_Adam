@@ -47,12 +47,7 @@ public class UI_BattleOver : UI_Scene
     {
         if (_result == "win")
         {
-            if (_rewardScene.FadeEnd == false)
-            {
-                _rewardScene.EndFadeIn();
-            }
-            else
-                SceneChanger.SceneChange("StageSelectScene");
+            SceneChanger.SceneChange("StageSelectScene");
         }
         else if (_result == "elite win")
         {
@@ -64,7 +59,8 @@ public class UI_BattleOver : UI_Scene
             }
             else
             {
-                SceneChanger.SceneChange("StageSelectScene");
+                BattleOverDestroy();
+                GameManager.UI.ShowPopup<UI_EliteReward>("UI_EliteReward").SetRewardPanel();
             }
         }
         else if (_result == "lose")

@@ -10,8 +10,14 @@ public class Stigma : MonoBehaviour
     [SerializeField] private string _name;
     public string Name => _name;
 
-    [SerializeField] private Sprite _sprite;
-    public Sprite Sprite => _sprite;
+    [SerializeField] private Sprite _sprite_28;
+    public Sprite Sprite_28 => _sprite_28;
+
+    [SerializeField] private Sprite _sprite_88;
+    public Sprite Sprite_88 => _sprite_88;
+
+    [SerializeField] private Sprite _sprite_164;
+    public Sprite Sprite_164 => _sprite_164;
 
     [SerializeField, TextArea] private string _description;
     public string Description => _description;
@@ -40,7 +46,7 @@ public class Stigma : MonoBehaviour
     private void StigmaEffect(BattleUnit caster)
     {
         Vector3 pos = caster.transform.position + new Vector3(0, caster.transform.lossyScale.y * 0.5f, 0);
-        GameManager.VisualEffect.StartStigmaEffect(Sprite, pos);
+        GameManager.VisualEffect.StartStigmaEffect(Sprite_28, pos);
         return;
     }
 

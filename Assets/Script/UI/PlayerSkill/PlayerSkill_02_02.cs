@@ -10,7 +10,12 @@ public class PlayerSkill_02_02 : PlayerSkill
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
-        targetUnit.SetBuff(new Buff_Vice());
+        int count = 3;
+        if (GameManager.OutGameData.IsUnlockedItem(73))
+            count = 5;
+
+        for (int i = 0; i < count; i++)
+            targetUnit.SetBuff(new Buff_Vice());
         targetUnit.ChangeFall(1);
         return false;
     }

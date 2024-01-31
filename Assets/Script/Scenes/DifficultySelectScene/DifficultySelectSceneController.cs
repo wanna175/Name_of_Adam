@@ -86,7 +86,7 @@ public class DifficultySelectSceneController : MonoBehaviour
     {
         if (!GameManager.OutGameData.IsUnlockedItem(progressID))
         {
-            Incarna_Card[incarnaID].GetComponent<Image>().color = Color.gray;
+            Incarna_Card[incarnaID].transform.Find("Blocker").gameObject.SetActive(true);
         }
     }
 

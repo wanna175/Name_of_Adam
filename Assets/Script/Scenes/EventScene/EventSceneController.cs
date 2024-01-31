@@ -15,7 +15,8 @@ public enum CUR_EVENT
     COMPLETE_STIGMA,
     STIGMA_EXCEPTION,
     HARLOT_RESTORATION,
-    COMPLETE_HAELOT
+    COMPLETE_HAELOT,
+    HOLL
 };
 public class EventSceneController : MonoBehaviour
 {

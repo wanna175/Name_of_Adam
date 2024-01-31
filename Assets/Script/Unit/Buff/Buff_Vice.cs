@@ -35,7 +35,8 @@ public class Buff_Vice : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        caster.ChangeFall(1);
+        if (caster != null)
+            caster.ChangeFall(1);
 
         return false;
     }

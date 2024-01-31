@@ -48,7 +48,7 @@ public class BattleCutSceneData
         
         
 
-        if (HitUnits != null && HitUnits.Count > 0 && HitUnits[0].gameObject.name == "PlayerUnit")
+        if (HitUnits != null && HitUnits.Count > 0 && HitUnits[0] == BattleManager.Data.IncarnaUnit)
         {
             isPlayerAttack = true;
             ZoomLocation = new Vector3(0f, -3f, 0);
