@@ -11,7 +11,7 @@ public class PlayerSkill_02_02 : PlayerSkill
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
         int count = 3;
-        if (true) // 혜원님 진척도 해방 시 조건을 여기에 작성해주세요.
+        if (GameManager.OutGameData.IsUnlockedItem(73))
             count = 5;
 
         for (int i = 0; i < count; i++)

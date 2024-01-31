@@ -51,8 +51,9 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn_disabled.SetActive(true);
         }
 
-        if (GameManager.Data.GameData.isVisitUpgrade == false)
+        if (GameManager.Data.GameData.isVisitStigma == false)
         {
+            GameManager.Data.GameData.isVisitStigma = true;
             scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
             GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
             uiConversation = FindObjectOfType<UI_Conversation>();
@@ -184,6 +185,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         if (_givestigmatizeUnit==null) {//낙인 부여일때
             Debug.Log("낙인 부여일때");
             SetUnitStigma(stigma);
+            GameManager.Data.GameData.npcQuest.stigmaQuest++;
         }
         else//낙인 이동일때
         {

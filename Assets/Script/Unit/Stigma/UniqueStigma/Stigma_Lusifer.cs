@@ -9,7 +9,7 @@ public class Stigma_Lusifer : Stigma
         //base.Use(caster);
 
         int count = 1;
-        if (true) // 혜원님 여기에 진척도 해금 적용하시면 됩니다
+        if (GameManager.OutGameData.IsUnlockedItem(74))
             count = 2;
 
         for (int i = 0; i < count; i++)

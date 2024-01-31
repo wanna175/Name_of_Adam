@@ -15,7 +15,9 @@ public class GameData : ScriptableObject
     public List<DeckUnit> FallenUnits = new();
     public bool isVisitUpgrade = false;
     public bool isVisitStigma = false;
+    public bool isVisitDarkShop = false;
     public Progress Progress;
+    public NPCQuest npcQuest;
 }
 
 [Serializable]
@@ -60,5 +62,19 @@ public class Progress
         SurvivedNormal = 0;
         SurvivedElite = 0;
         SurvivedBoss = 0;
+    }
+}
+
+[Serializable]
+public class NPCQuest
+{
+    public int upgradeQuest;
+    public int stigmaQuest;
+    public int darkshopQuest;
+    public void ClearQuest()
+    {
+        upgradeQuest = 0;//Á×ÀÎ Àû È½¼ö
+        stigmaQuest = 0;//³«ÀÎ ºÎ¿©È½¼ö
+        darkshopQuest = 0;//Àû Å¸¶ôÈ½¼ö
     }
 }

@@ -239,6 +239,9 @@ public class BattleUnit : MonoBehaviour
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
+        if(GameManager.Data.GameData.isVisitDarkShop)
+            GameManager.Data.GameData.npcQuest.darkshopQuest++;
+
         GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
         if(DeckUnit.Data.Rarity == Rarity.Normal)
         {
@@ -255,10 +258,6 @@ public class BattleUnit : MonoBehaviour
 
         //타락 이벤트 시작
         FallEvent = true;
-        for(int i = 0; i < GameManager.Data.GetDeck().Count; ++i)
-        {
-            Debug.Log("유닛 타락후 아이디 :"+GameManager.Data.GetDeck()[i].UnitID);
-        }
         DeckUnit.UnitID = BattleManager._unitIDManager.GetID();
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
