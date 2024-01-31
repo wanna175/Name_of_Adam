@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -55,6 +56,37 @@ public struct Stat
         ManaCost = 0;
         CurrentUpgradeCount = 0;
     }
+}
+
+public struct Upgrade
+{
+    public string UpgradeName;
+    public string UpgradeDescription;
+    public Sprite UpgradeImage;
+    public Sprite UpgradeDecorationImage;
+    public Stat UpgradeStat;
+    public UpgradeData UpgradeData;
+}
+
+[Serializable]
+public class UpgradeData
+{
+    public string ID;
+    public int Rarity;
+    public string Name;
+    public string Description;
+    public string Image;
+
+    public string HP;
+    public string ATK;
+    public string SPD;
+    public string COST;
+}
+
+[Serializable]
+public class UpgradeLoader
+{
+    public List<UpgradeData> UpgradeData = new();
 }
 
 [Serializable]
