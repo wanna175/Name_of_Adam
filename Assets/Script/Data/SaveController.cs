@@ -72,7 +72,6 @@ public class SaveController : MonoBehaviour
             saveFallenUnitList.Add(saveUnit);
         }
 
-
         newData.MapData = GameManager.Data.Map;
         newData.DeckUnitData = saveDeckUnitList;
         newData.FallenUnitsData = saveFallenUnitList;

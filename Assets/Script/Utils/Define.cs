@@ -301,6 +301,7 @@ public enum BuffEnum
     WrathOfBabel,
     Charge,
     Rebirth,
+    Trinity,
 
     Leah,
     Rachel,

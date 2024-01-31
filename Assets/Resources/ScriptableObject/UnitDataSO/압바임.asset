@@ -21,7 +21,8 @@ MonoBehaviour:
     FallMaxCount: 4
     ManaCost: 0
     CurrentUpgradeCount: 0
-  _uniqueStigma: []
+  _uniqueStigma:
+  - {fileID: 2411140555896991723, guid: cf06ecb5b5e98224fb3071fe052b2400, type: 3}
   _id: 
   _name: "\uC555\uBC14\uC778"
   _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
