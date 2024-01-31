@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2950990188252653416}
   - component: {fileID: -7328026603544270719}
   m_Layer: 0
-  m_Name: Stigma_Undertaker
+  m_Name: Stigma_Funeral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 0
-  _name: "\uC7A5\uC758\uC0AC"
+  _name: "\uC7A5\uC1A1"
   _sprite: {fileID: 21300000, guid: 87200bc753da53446b4679e51def119c, type: 3}
   _description: "\uC7A5\uC758\uC0AC"
   _activeTiming: 2
