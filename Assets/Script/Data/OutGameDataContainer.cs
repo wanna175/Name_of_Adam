@@ -130,7 +130,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         ProgressItem item = GetProgressItem(ID);
 
-        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock)
+        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock || data.ProgressCoin < item.Cost)
         {
             return false;
         }
@@ -150,7 +150,7 @@ public class OutGameDataContainer : MonoBehaviour
         ProgressItem item = GetProgressItem(ID);
         item.IsLock = false;
         item.IsUnlocked = true;
-        SetProgressCoin(item.Cost);
+        SetProgressCoin(-item.Cost);
     }
 
     public HallUnit FindHallUnitID(int ID)

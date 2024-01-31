@@ -14,19 +14,19 @@ public class UI_EliteReward : UI_Popup
 
     private int stageAct;
 
-    private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists)
+    private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists, List<int> selectedUnitNumbers)
     {
         DeckUnit deckUnit = new DeckUnit();
-        List<int> unitNumbers = new List<int>();
+        
         int unitNumber = Random.Range(0, unitLists.Count);
 
-        while (unitNumbers.Contains(unitNumber))
+        while (selectedUnitNumbers.Contains(unitNumber))
         {
             unitNumber = Random.Range(0, unitLists.Count);
         }
 
         deckUnit.Data = unitLists[unitNumber];
-        unitNumbers.Add(unitNumber);
+        selectedUnitNumbers.Add(unitNumber);
 
         SetRandomStigmas(deckUnit);
 
@@ -56,12 +56,13 @@ public class UI_EliteReward : UI_Popup
     public void SetRewardPanel()
     {
         List<UnitDataSO> normalUnits = new List<UnitDataSO>();
+        List<int> selectedUnitNumbers = new List<int>();
         stageAct = GameManager.Data.StageAct;
 
         var units = GameManager.Resource.LoadAll<UnitDataSO>($"ScriptableObject/UnitDataSO");
         foreach (var unit in units)
         {
-            if (unit.Rarity == Rarity.Normal)
+            if (unit.Rarity == Rarity.Normal && !unit.IsBattleOnly)
             {
                 normalUnits.Add(unit);
             }
@@ -69,7 +70,7 @@ public class UI_EliteReward : UI_Popup
 
         foreach (var card in uI_EliteCards)
         {
-            DeckUnit randUnit = GetRandomUnit(normalUnits);
+            DeckUnit randUnit = GetRandomUnit(normalUnits, selectedUnitNumbers);
             card.Init(randUnit);
         }
 

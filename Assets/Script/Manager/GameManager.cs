@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -117,11 +118,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
             GameManager.SaveManager.DeleteSaveData();
 
-        //Test용, 나중에 수정
         if (Input.GetKeyDown(KeyCode.D))
         {
             Data.MainDeckLayoutSet();
             GameManager.OutGameData.DeleteAllData();
         }
+        */
     }
 }
