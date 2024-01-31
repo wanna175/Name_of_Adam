@@ -85,6 +85,7 @@ public class SaveController : MonoBehaviour
         newData.NpcQuestData = CurGameData.npcQuest;
         newData.StageAct = GameManager.Data.StageAct;
 
+        GameManager.OutGameData.setNPCQuest();
         string json = JsonUtility.ToJson(newData, true);
 
         File.WriteAllText(path, json);
@@ -125,6 +126,7 @@ public class SaveController : MonoBehaviour
         GameManager.Data.GameData.DarkEssence = loadData.DarkEssence;
         GameManager.Data.GameData.PlayerHP = loadData.PlayerHP;
         GameManager.Data.GameData.Progress = loadData.ProgressData;
+        GameManager.Data.GameData.npcQuest = loadData.NpcQuestData;
         GameManager.Data.StageAct = loadData.StageAct;
         //CurGameData.DefaultMana
         //CurGameData.GuardCount

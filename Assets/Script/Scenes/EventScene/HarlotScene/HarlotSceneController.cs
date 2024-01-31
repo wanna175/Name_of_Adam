@@ -8,6 +8,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     private DeckUnit _stigmatizeUnit;
     private Stigma stigma;
     private List<DeckUnit> _RestorationUnits;
+
+    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject fall_background;
+
     [SerializeField] private GameObject _SelectStigmaButton;
     [SerializeField] private GameObject _SelectStigmaButton_disabled;
     [SerializeField] private GameObject _getOriginUnitButton;
@@ -18,6 +22,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     private bool _isStigmaFull;
 
+    private bool isNPCFall = false;
     void Start()
     {
         Init();
@@ -25,6 +30,24 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
     private void Init()
     {
+        if(GameManager.Data.GameData.npcQuest.darkshopQuest>30){//
+            background.SetActive(false);
+            fall_background.SetActive(true);
+            this.isNPCFall = true;
+        }
+        else if (GameManager.Data.GameData.npcQuest.darkshopQuest > 30 * 3 / 4)
+        {
+            //안개이미지 변경
+        }
+        else if (GameManager.Data.GameData.npcQuest.darkshopQuest > 30 / 2)
+        {
+            //안개이미지 변경
+        }
+        else if (GameManager.Data.GameData.npcQuest.darkshopQuest > 30 / 4)
+        {
+            //안개이미지 변경
+        }
+
         scripts = new List<Script>();
         _isStigmaFull = false;
         _RestorationUnits = new List<DeckUnit>();
@@ -50,13 +73,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             _getOriginUnitButton.SetActive(false);
         }
-        else if (current_DarkEssense < 10)
+        else if (current_DarkEssense < ((isNPCFall) ? 8 : 10)) 
         {
             _getOriginUnitButton_disabled.SetActive(true);
             _getOriginUnitButton.SetActive(false);
         }
 
-        if (current_DarkEssense < 7)
+        if (current_DarkEssense < ((isNPCFall) ? 5 : 7))
         {
             _SelectStigmaButton_disabled.SetActive(true);
             _SelectStigmaButton.SetActive(false);
@@ -87,7 +110,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnSelectMakeUnit(DeckUnit unit)
     {
         GameManager.Data.AddDeckUnit(unit);
-    
+        GameManager.Data.DarkEssenseChage(((isNPCFall) ? 8 : 10));
     }
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
@@ -133,6 +156,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
             IsStigmaFull();
         }
+        GameManager.Data.DarkEssenseChage(((isNPCFall) ? 5 : 7));
     }
     private void SetUnitStigma(Stigma stigma)
     {
@@ -178,7 +202,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         }
         else if (_RestorationUnits.Count != 0)
         {
-            GameManager.Data.DarkEssenseChage(_RestorationUnits.Count);
+            GameManager.Data.DarkEssenseChage(isNPCFall?2*_RestorationUnits.Count:_RestorationUnits.Count);
             foreach(DeckUnit delunit in _RestorationUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
