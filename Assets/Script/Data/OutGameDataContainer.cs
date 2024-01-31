@@ -36,6 +36,7 @@ public class HallUnit
     public Stat UpgradedStat;     //업그레이드된 스텟
     public bool IsMainDeck;       //유닛이 메인덱에 포함되었는지 유무 확인
     public List<Stigma> Stigmata; // 유닛에게 추가된 낙인
+    public List<Upgrade> Upgrades; //유닛에게 추가된 강화
 }
 
 
@@ -93,6 +94,11 @@ public class OutGameDataContainer : MonoBehaviour
             foreach (Stigma stigma in unit.Stigmata)
             {
                 deckUnit.AddStigma(stigma);
+            }
+
+            foreach (Upgrade upgrade in unit.Upgrades)
+            {
+                deckUnit.DeckUnitUpgrade.Add(upgrade);
             }
 
             HallList.Add(deckUnit);
@@ -181,6 +187,7 @@ public class OutGameDataContainer : MonoBehaviour
         newUnit.UpgradedStat.FallCurrentCount = 4-unit.Data.RawStat.FallMaxCount;
         newUnit.IsMainDeck = false;
         newUnit.Stigmata = unit.GetChangedStigma();
+        newUnit.Upgrades = unit.DeckUnitUpgrade;
 
         Debug.Log(newUnit.UnitName);
         data.HallUnit.Add(newUnit);

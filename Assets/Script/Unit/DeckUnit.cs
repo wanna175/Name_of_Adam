@@ -13,7 +13,23 @@ public class DeckUnit
     [SerializeField] public Stat DeckUnitUpgradeStat; // 영구 변화 수치
     [SerializeField] public Stat DeckUnitChangedStat; // 일시적 변화 수치, 한 전투 내에서만 적용
 
-    public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
+    public List<Upgrade> DeckUnitUpgrade = new();
+    public Stat DeckUnitStat
+    {
+        get 
+        {
+            Stat result = Data.RawStat + DeckUnitUpgradeStat;
+
+            foreach (Upgrade upgrade in DeckUnitUpgrade)
+            {
+                result += upgrade.UpgradeStat;
+            }
+
+            return result;
+        }
+    }
+
+    //public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
     public readonly int UpgradedMaxUpgradeCount = 3;
@@ -140,6 +156,25 @@ public class DeckUnit
     }
 
     public void ClearStigma() => _stigma.Clear();
+
+    public List<UpgradeData> GetUpgradeData()
+    {
+        List<UpgradeData> dataList = new();
+        foreach (Upgrade upgrade in DeckUnitUpgrade)
+        {
+            dataList.Add(upgrade.UpgradeData);
+        }
+
+        return dataList;
+    }
+
+    public void SetUpgrade(List<UpgradeData> dataList)
+    {
+        foreach (UpgradeData data in dataList)
+        {
+            DeckUnitUpgrade.Add(GameManager.Data.UpgradeController.DataToUpgrade(data));
+        }
+    }
 
     private int _firstTurnDiscount = 0;
     public bool IsDiscount() => _firstTurnDiscount != 0;
