@@ -12,6 +12,9 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
     private bool _isStigmaFull = false;
 
+    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject fall_background;
+
     [SerializeField] private GameObject _stigma_transfer_btn = null;
     [SerializeField] private GameObject _stigma_transfer_btn_disabled;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
@@ -19,12 +22,33 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
     private UI_Conversation uiConversation;
     private Stigma _giveStigma = null;
+
+    private bool isNPCFall = false;
+
     void Start()
     {
         Init();
     }
     private void Init()
     {
+        if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50)
+        {
+            background.SetActive(false);
+            fall_background.SetActive(true);
+            this.isNPCFall = true;
+        }
+        else if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50 * 3 / 4)
+        {
+            //안개이미지 변경
+        }
+        else if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50 / 2)
+        {
+            //안개이미지 변경
+        }
+        else if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50 / 4)
+        {
+            //안개이미지 변경
+        }
         scripts = new ();
         _giveStigma = null;
         _isStigmaFull = false;
@@ -183,17 +207,17 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             return;
         }
         if (_givestigmatizeUnit==null) {//낙인 부여일때
-            Debug.Log("낙인 부여일때");
             SetUnitStigma(stigma);
             GameManager.Data.GameData.npcQuest.stigmaQuest++;
         }
         else//낙인 이동일때
         {
-            Debug.Log("낙인 이동일때");
             _giveStigma = stigma;
-            GameManager.Data.RemoveDeckUnit(_givestigmatizeUnit);
+            if(!isNPCFall)
+                GameManager.Data.RemoveDeckUnit(_givestigmatizeUnit);
+            else
+                _givestigmatizeUnit.DeleteStigma(stigma);
             GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-            Debug.Log("받을 스티그마: " + _giveStigma.Description);
             OnSelectStigmaTargetUnit();
         }
     }
