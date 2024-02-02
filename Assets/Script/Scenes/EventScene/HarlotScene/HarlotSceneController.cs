@@ -16,11 +16,14 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     [SerializeField] private GameObject _SelectStigmaButton_disabled;
     [SerializeField] private GameObject _getOriginUnitButton;
     [SerializeField] private GameObject _getOriginUnitButton_disabled;
+    [SerializeField] private GameObject _ui_SelectMenu;
     [SerializeField] private List<DeckUnit> _originUnits = null;
 
     List<Script> scripts = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     private bool _isStigmaFull;
+
+    private UI_Conversation uiConversation;
 
     private bool isNPCFall = false;
     void Start()
@@ -54,11 +57,17 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         if (GameManager.Data.GameData.isVisitDarkShop == false)
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+            uiConversation = FindObjectOfType<UI_Conversation>();
+            uiConversation.ConversationEnded += OnConversationEnded;
             GameManager.Data.GameData.isVisitDarkShop = true;
         }
         else
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+            uiConversation = FindObjectOfType<UI_Conversation>();
+            uiConversation.ConversationEnded += OnConversationEnded;
         }
         
         //GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
@@ -230,5 +239,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
+    }
+
+    private void OnConversationEnded()
+    {
+        _ui_SelectMenu.SetActive(true);
     }
 }

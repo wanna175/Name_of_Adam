@@ -457,6 +457,7 @@ MonoBehaviour:
   _SelectStigmaButton_disabled: {fileID: 3580172554839696511}
   _getOriginUnitButton: {fileID: 3580172555074689459}
   _getOriginUnitButton_disabled: {fileID: 3580172553957845171}
+  _ui_SelectMenu: {fileID: 3580172553881018137}
   _originUnits:
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
