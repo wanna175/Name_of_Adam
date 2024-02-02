@@ -7,7 +7,7 @@ public class PlayerSkill_02_02 : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/SoulDeal");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
         int count = 3;
