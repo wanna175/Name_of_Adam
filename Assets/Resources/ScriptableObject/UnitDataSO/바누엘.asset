@@ -40,7 +40,7 @@ MonoBehaviour:
   _corruptionAnimatorController: {fileID: 9100000, guid: ef3a4bb4a32c6514d964a8ab24dc1641, type: 2}
   _skillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
-  _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
+  _animType: {fileID: 11400000, guid: 9c5500ed16c73bb4cb5cbb732dcaf0cb, type: 2}
   _darkEssenseDrop: 0
   _darkEssenseCost: 1
   _unitActionType: 3

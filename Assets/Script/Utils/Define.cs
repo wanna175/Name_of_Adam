@@ -126,7 +126,8 @@ public enum Rarity
 public enum CutSceneMoveType
 {
     stand,
-    tracking
+    tracking,
+    noneMove
 }
 
 public enum Sounds
@@ -286,6 +287,7 @@ public enum BuffEnum
     AfterMotionTransparent,
     AfterAttackDead,
     AfterAttackBounce,
+    MarkOfRaquel,
 
     Assasination,
     Berserker,
@@ -304,7 +306,7 @@ public enum BuffEnum
     Trinity,
 
     Leah,
-    Rachel,
+    Raquel,
 }
 
 public enum UnitActionType
