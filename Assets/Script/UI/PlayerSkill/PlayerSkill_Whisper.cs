@@ -7,7 +7,7 @@ public class PlayerSkill_Whisper : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Whisper");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
         BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
         targetUnit.ChangeFall(1);

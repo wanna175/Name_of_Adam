@@ -7,7 +7,7 @@ public class PlayerSkill_Bless : PlayerSkill
 {
     public override bool Use(Vector2 coord)
     {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Bless");
         //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
         BattleUnit unit = BattleManager.Field.GetUnit(coord);

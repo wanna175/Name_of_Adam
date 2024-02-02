@@ -8,6 +8,7 @@ public class PlayerSkill_Move : PlayerSkill
 
     public override bool Use(Vector2 coord)
     {
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Move");
         selectedUnit = BattleManager.Field.GetUnit(coord);
         selectedUnit.SetBuff(new Buff_Tailwind());
         BattleManager.Field.SetNextActionTileColor(selectedUnit, FieldColorType.Move);

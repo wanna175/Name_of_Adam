@@ -204,6 +204,7 @@ public class UnitAction_Phanuel : UnitAction
         {
             if (_phanuel_Animation == null)
             {
+                GameManager.Sound.Play("PhanuelSummon/Phanuel_Summon");
                 _phanuel_Animation = GameManager.Resource.Instantiate("BattleUnits/Phanuel_Animation").GetComponent<Phanuel_Animation>();
                 _phanuel_Animation.ChangeAnimator(caster.Team);
             }
