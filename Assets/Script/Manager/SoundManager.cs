@@ -62,6 +62,7 @@ public class SoundManager : MonoBehaviour
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
+            audioSource.volume = GetBGMVolume();
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
             audioSource.Play();
@@ -69,10 +70,30 @@ public class SoundManager : MonoBehaviour
         else
         {
             AudioSource audioSource = _audioSources[(int)Sounds.Effect];
+
+            audioSource.volume = GetSEVolume();
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(audioClip);
         }
     }
+
+    public void SetSoundVolume(Sounds type)
+    {
+        if (type == Sounds.BGM)
+        {
+            AudioSource audioSource = _audioSources[(int)Sounds.BGM];
+            audioSource.volume = GetBGMVolume();
+        }
+        else
+        {
+            AudioSource audioSource = _audioSources[(int)Sounds.Effect];
+            audioSource.volume = GetSEVolume();
+        }
+    }
+
+    private float GetBGMVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetBGMSoundPower();
+
+    private float GetSEVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetSESoundPower();
 
     AudioClip GetOrAddAudioClip(string path, Sounds type = Sounds.Effect)
     {

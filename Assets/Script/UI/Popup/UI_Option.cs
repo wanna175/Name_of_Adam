@@ -11,10 +11,16 @@ public class UI_Option : UI_Popup
     [SerializeField] private TMP_Dropdown languageDropdown;
     [SerializeField] private Toggle WindowToggle;
 
-    private List<Resolution> resolutions;
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider BGMSlider;
+    [SerializeField] private Slider SESlider;
 
-    private Resolution currentResolution;
+    private List<Resolution> resolutions;
+    private int currentResolution;
     private bool isWindowed = false;
+    private float masterPower;
+    private float BGMPower;
+    private float SEPower;
 
     private void Update()
     {
@@ -34,17 +40,15 @@ public class UI_Option : UI_Popup
     private void InitUI()
     {
         // 저장된 데이터 불러오기
-        currentResolution = new Resolution();
-        currentResolution.width = GameManager.OutGameData.GetResolutionWidth();
-        currentResolution.height = GameManager.OutGameData.GetResolutionHeight();
+        resolutions = GameManager.OutGameData.GetAllResolution();
+        currentResolution = GameManager.OutGameData.GetResolution();
         isWindowed = GameManager.OutGameData.IsWindowed();
 
-        // UI 세팅
-        resolutions = new List<Resolution>();
-        resolutions.Add(GetResolution(1920, 1080, 144));
-        resolutions.Add(GetResolution(1280, 720, 144));
-        resolutions.Add(GetResolution(640, 480, 144));
+        masterPower = GameManager.OutGameData.GetMasterSoundPower();
+        BGMPower = GameManager.OutGameData.GetBGMSoundPower();
+        SEPower = GameManager.OutGameData.GetSESoundPower();
 
+        // UI 세팅
         resolutionDropdown.onValueChanged.AddListener(ResolutionDropdownChanged);
         resolutionDropdown.options.Clear();
 
@@ -56,49 +60,66 @@ public class UI_Option : UI_Popup
         }
 
         resolutionDropdown.RefreshShownValue();
+        resolutionDropdown.value = currentResolution;
 
         WindowToggle.onValueChanged.AddListener(WindowToggleChanged);
         WindowToggle.isOn = isWindowed;
+
+        masterSlider.onValueChanged.AddListener(MasterSliderChanged);
+        BGMSlider.onValueChanged.AddListener(BGMSliderChanged);
+        SESlider.onValueChanged.AddListener(SESliderChanged);
+
+        masterSlider.value = masterPower;
+        BGMSlider.value = BGMPower;
+        SESlider.value = SEPower;
     }
 
-    private Resolution GetResolution(int width, int height, int refreshRate)
+    private void ResolutionDropdownChanged(int idx)
     {
-        Resolution resolution = new Resolution();
-        resolution.width = width;
-        resolution.height = height;
-        resolution.refreshRate = refreshRate;
-        return resolution;
+        GameManager.OutGameData.SetResolution(idx);
     }
 
-    public void ResolutionDropdownChanged(int idx)
+    private void WindowToggleChanged(bool isOn)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
-        currentResolution = resolutions[idx];
-
-        GameManager.OutGameData.SetResolution(currentResolution);
-    }
-
-    public void WindowToggleChanged(bool isOn)
-    {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         isWindowed = isOn;
-
         GameManager.OutGameData.SetWindow(isWindowed);
     }
 
-    public void UpdateVolume(GameObject go)
+    private void MasterSliderChanged(float power)
     {
-        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
-        string text = go.transform.GetChild(0).GetComponent<Text>().text;
-        float slider = go.transform.GetChild(1).GetComponent<Slider>().value;
-        slider = (slider == -40) ? -80 : slider;
+        masterPower = power;
+        GameManager.OutGameData.SetMasterSoundPower(power);
+        GameManager.Sound.SetSoundVolume(Sounds.BGM);
+        GameManager.Sound.SetSoundVolume(Sounds.Effect);
+    }
+
+    private void BGMSliderChanged(float power)
+    {
+        BGMPower = power;
+        GameManager.OutGameData.SetBGMSoundPower(power);
+        GameManager.Sound.SetSoundVolume(Sounds.BGM);
+    }
+
+    private void SESliderChanged(float power)
+    {
+        SEPower = power;
+        GameManager.OutGameData.SetSESoundPower(power);
+        GameManager.Sound.SetSoundVolume(Sounds.Effect);
+    }
+
+    public void ReSetOption()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        GameManager.OutGameData.ReSetOption();
+        InitUI();
     }
 
     public void QuitOption()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
         GameManager.UI.ClosePopup(this);
         GameManager.UI.IsCanESC = true;
 
-        // 저장 추가
+        GameManager.OutGameData.SaveData();
     }
 }
