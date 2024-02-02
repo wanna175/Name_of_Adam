@@ -321,12 +321,15 @@ public class Field : MonoBehaviour
 
     public void FieldShowInfo(Tile tile)
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
-
         if (tile.UnitExist)
         {
             BattleUnit unit = tile.Unit;
+
+            if (unit.IsConnectedUnit)
+            {
+                unit = unit.GetOriginalUnit();
+            }
+            
             _hoverInfo = BattleManager.BattleUI.ShowInfo();
             _hoverInfo.SetInfo(unit);
         }
