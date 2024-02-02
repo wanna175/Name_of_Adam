@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 진척도 & 전당 유닛 등의 인자를 저장 & 불러오는 기능
+//NPC타락퀘스트 & 진척도 & 전당 유닛 등의 인자를 저장 & 불러오는 기능
 
 [Serializable]
 public class OutGameData
@@ -13,6 +13,10 @@ public class OutGameData
     public List<ProgressItem> ProgressItems; // 진척도 상점의 상품들
     public List<HallUnit> HallUnit;          // 전당 유닛
     public bool TutorialClear = false;
+    public bool isVisitUpgrade = false;
+    public bool isVisitStigma = false;
+    public bool isVisitDarkShop = false;
+    public NPCQuest npcQuest;                //npc타락퀘스트
 }
 
 [Serializable]
@@ -216,6 +220,21 @@ public class OutGameDataContainer : MonoBehaviour
         return data.TutorialClear;
     }
 
+    public void setNPCQuest()
+    {
+        data.npcQuest = GameManager.Data.GameData.npcQuest;
+        data.isVisitUpgrade = GameManager.Data.GameData.isVisitUpgrade;
+        data.isVisitStigma = GameManager.Data.GameData.isVisitStigma;
+        data.isVisitDarkShop = GameManager.Data.GameData.isVisitDarkShop;
+        SaveData();
+    }
+    public NPCQuest getNPCQuest()
+    {
+        return data.npcQuest;
+    }
+    public bool getVisitUpgrade() { return data.isVisitUpgrade; }
+    public bool getVisitStigma() { return data.isVisitStigma; }
+    public bool getVisitDarkshop() { return data.isVisitDarkShop; }
     public void RemoveHallUnit(int ID)
     {
         data.HallUnit.Remove(FindHallUnitID(ID));

@@ -7,12 +7,16 @@ public class UpgradeSceneController : MonoBehaviour
 {
     private DeckUnit _unit;
 
+    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject fall_background;
+
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _restoreFall_Btn;
     [SerializeField] private GameObject _ui_SelectMenu;
-    
+
     private List<Script> _scripts;
     private UI_Conversation _conversationUI;
+    private bool isNPCFall = false;
 
     void Start()
     {
@@ -20,7 +24,25 @@ public class UpgradeSceneController : MonoBehaviour
     }
     private void Init()
     {
-        if (!GameManager.OutGameData.IsUnlockedItem(2))
+        if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100)
+        {
+            background.SetActive(false);
+            fall_background.SetActive(true);
+            this.isNPCFall = true;
+            Debug.Log("타락됨");
+        }
+        else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 * 3 / 4 )
+        {
+            //안개이미지 변경
+        }else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 2)
+        {
+            //안개이미지 변경
+        }else if(GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 4)
+        {
+            //안개이미지 변경
+        }
+
+            if (!GameManager.OutGameData.IsUnlockedItem(2))
         {
             _restoreFall_Btn.SetActive(false);
         }
@@ -82,6 +104,10 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
         if (_unit.DeckUnitStat.FallCurrentCount > 0)
+        {
+            _unit.DeckUnitUpgradeStat.FallCurrentCount -= 1;
+        }
+        if (isNPCFall && _unit.DeckUnitStat.FallCurrentCount > 0)
         {
             _unit.DeckUnitUpgradeStat.FallCurrentCount -= 1;
         }
