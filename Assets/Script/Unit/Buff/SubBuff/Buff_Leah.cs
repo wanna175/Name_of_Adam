@@ -16,7 +16,7 @@ public class Buff_Leah : Buff
 
         _countDownTiming = ActiveTiming.ATTACK_TURN_END;
 
-        _buffActiveTiming = ActiveTiming.NONE;
+        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
@@ -33,5 +33,28 @@ public class Buff_Leah : Buff
         stat.ATK -= 10;
 
         return stat;
+    }
+
+    public override bool Active(BattleUnit caster)
+    {
+        if (caster == null)
+            return false;
+
+        if (caster.Buff.CheckBuff(BuffEnum.MarkOfRaquel))
+        {
+            caster.DeleteBuff(BuffEnum.MarkOfRaquel);
+            caster.ChangeFall(1);
+
+            if (caster.FallEvent)
+            {
+                return true;
+            }
+            else
+            {
+                caster.GetAttack(-10, _owner);
+            }
+        }
+
+        return false;
     }
 }

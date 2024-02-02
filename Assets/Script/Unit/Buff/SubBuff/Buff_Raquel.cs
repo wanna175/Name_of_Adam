@@ -4,7 +4,7 @@ public class Buff_Raquel : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Rachel;
+        _buffEnum = BuffEnum.Raquel;
 
         _name = "∂Û«Ô";
 
@@ -44,6 +44,8 @@ public class Buff_Raquel : Buff
                 }
             }, 0.5f);
         }
+
+        caster.SetBuff(new Buff_MarkOfRaquel());
 
         return false;
     }

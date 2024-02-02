@@ -82,7 +82,7 @@ public class UnitAction_RaquelLeah : UnitAction
 
         if (_isChanged)
         {
-            _owner.DeleteBuff(BuffEnum.Rachel);
+            _owner.DeleteBuff(BuffEnum.Raquel);
             _owner.SetBuff(new Buff_Leah());
         }
         else

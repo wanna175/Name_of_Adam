@@ -25,7 +25,7 @@ public class BattleCutSceneData
     // 공격 유닛이 바라보는 방향
     public bool AttackUnitFlipX;
     // 플레이어 직접 공격 여부
-    public bool isPlayerAttack;
+    public bool IsPlayerAttack;
 
     public BattleCutSceneData(BattleUnit attackUnit, List<BattleUnit> hitUnits)
     {
@@ -45,19 +45,22 @@ public class BattleCutSceneData
         ZoomSize = AttackUnit.Data.AnimType.ZoomSize;
 
         MovePosition = BattleManager.Field.GetTilePosition(GetMoveLocation(AttackUnit));
-        
-        
 
         if (HitUnits != null && HitUnits.Count > 0 && HitUnits[0] == BattleManager.Data.IncarnaUnit)
         {
-            isPlayerAttack = true;
+            IsPlayerAttack = true;
             ZoomLocation = new Vector3(0f, -3f, 0);
         }
         else
         {
-            isPlayerAttack = false;
+            IsPlayerAttack = false;
             Vector3 vec = Vector3.Lerp(MovePosition, HitPosition[0], 0.5f);
             ZoomLocation = new Vector3(vec.x, vec.y, 0);
+        }
+
+        if (AttackUnit.Data.AnimType.MoveType == CutSceneMoveType.noneMove)
+        {
+            ZoomLocation = new Vector3(0, 0, 0);
         }
     }
 
@@ -72,7 +75,7 @@ public class BattleCutSceneData
             AttackUnitFlipX = (HitLocation[0].x > 3) ^ ( HitLocation[0].y > AttackLocation.y);/* MaxFieldX / 2 */
         }
 
-        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand)
+        if (unit.Data.AnimType.MoveType == CutSceneMoveType.stand || unit.Data.AnimType.MoveType == CutSceneMoveType.noneMove)
             return unit.Location;
 
         Vector2 moveTile = HitLocation[0];
