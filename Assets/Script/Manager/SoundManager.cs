@@ -64,6 +64,7 @@ public class SoundManager : MonoBehaviour
 
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.loop = true;
             audioSource.Play();
         }
         else
@@ -112,7 +113,7 @@ public class SoundManager : MonoBehaviour
         {
             Clear();
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
-            Play(scenename + "/" + storeName);
+            Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
         }
         else if(scenename == "CutScene")
         {
