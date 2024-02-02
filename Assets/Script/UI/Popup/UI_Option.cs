@@ -7,14 +7,14 @@ using TMPro;
 
 public class UI_Option : UI_Popup
 {
-    [SerializeField] AudioMixer MasterMixer;
-    [SerializeField] List<GameObject> SoundSliders;
-    [SerializeField] TextMeshProUGUI ResolutionText;
-    [SerializeField] Toggle WindowToggle;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown languageDropdown;
+    [SerializeField] private Toggle WindowToggle;
 
-    int ScreenX = 1920;
-    int ScreenY = 1080;
-    bool isWindow = false;
+    private List<Resolution> resolutions;
+
+    private Resolution currentResolution;
+    private bool isWindowed = false;
 
     private void Update()
     {
@@ -28,47 +28,62 @@ public class UI_Option : UI_Popup
 
     private void OnEnable()
     {
-        SetSlider();
-        //SetResolution();
+        InitUI();
     }
 
-    private void SetSlider()
+    private void InitUI()
     {
-        foreach (GameObject slider in SoundSliders)
+        // 저장된 데이터 불러오기
+        currentResolution = new Resolution();
+        currentResolution.width = GameManager.OutGameData.GetResolutionWidth();
+        currentResolution.height = GameManager.OutGameData.GetResolutionHeight();
+        isWindowed = GameManager.OutGameData.IsWindowed();
+
+        // UI 세팅
+        resolutions = new List<Resolution>();
+        resolutions.Add(GetResolution(1920, 1080, 144));
+        resolutions.Add(GetResolution(1280, 720, 144));
+        resolutions.Add(GetResolution(640, 480, 144));
+
+        resolutionDropdown.onValueChanged.AddListener(ResolutionDropdownChanged);
+        resolutionDropdown.options.Clear();
+
+        foreach (var resolution in resolutions)
         {
-            string text = slider.transform.GetChild(0).GetComponent<Text>().text;
-            float value;
-
-            MasterMixer.GetFloat(text, out value);
-            slider.transform.GetChild(1).GetComponent<Slider>().value = value;
+            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
+            option.text = $"{resolution.width} x {resolution.height}";
+            resolutionDropdown.options.Add(option);
         }
+
+        resolutionDropdown.RefreshShownValue();
+
+        WindowToggle.onValueChanged.AddListener(WindowToggleChanged);
+        WindowToggle.isOn = isWindowed;
     }
 
-    private void SetResolution()
+    private Resolution GetResolution(int width, int height, int refreshRate)
     {
-        ScreenX = Screen.currentResolution.width;
-        ScreenY = Screen.currentResolution.height;
-        bool window = !Screen.fullScreen;
-
-        ResolutionText.text = ScreenX + " x " + ScreenY;
-        WindowToggle.isOn = window;
+        Resolution resolution = new Resolution();
+        resolution.width = width;
+        resolution.height = height;
+        resolution.refreshRate = refreshRate;
+        return resolution;
     }
 
-
-    public void ChangeResolution(TextMeshProUGUI text)
+    public void ResolutionDropdownChanged(int idx)
     {
-        ScreenX = Int32.Parse(text.text.Split(" x ")[0]);
-        ScreenY = Int32.Parse(text.text.Split(" x ")[1]);
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        currentResolution = resolutions[idx];
 
-        SetScreen();
+        GameManager.OutGameData.SetResolution(currentResolution);
     }
 
-    public void ChangeWindow(Toggle toggle)
+    public void WindowToggleChanged(bool isOn)
     {
-        //GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
-        isWindow = toggle.isOn;
+        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        isWindowed = isOn;
 
-        SetScreen();
+        GameManager.OutGameData.SetWindow(isWindowed);
     }
 
     public void UpdateVolume(GameObject go)
@@ -77,17 +92,13 @@ public class UI_Option : UI_Popup
         string text = go.transform.GetChild(0).GetComponent<Text>().text;
         float slider = go.transform.GetChild(1).GetComponent<Slider>().value;
         slider = (slider == -40) ? -80 : slider;
-
-        MasterMixer.SetFloat(text, slider);
     }
-    
-    private void SetScreen() => Screen.SetResolution(ScreenX, ScreenY, !isWindow);
 
-    public void QuitOption() => GameManager.UI.ClosePopup();
-
-    public void ExitButton()
+    public void QuitOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
-        Application.Quit();
+        GameManager.UI.ClosePopup(this);
+        GameManager.UI.IsCanESC = true;
+
+        // 저장 추가
     }
 }

@@ -17,6 +17,9 @@ public class OutGameData
     public bool isVisitStigma = false;
     public bool isVisitDarkShop = false;
     public NPCQuest npcQuest;                //npc타락퀘스트
+    public int resolutionWidth;
+    public int resolutionHeight;
+    public bool isWindowed;
 }
 
 [Serializable]
@@ -55,6 +58,7 @@ public class OutGameDataContainer : MonoBehaviour
         path = Path.Combine(Application.persistentDataPath, "OutGameSaveData.json");
 
         LoadData();
+        SetResolution();
     }
 
     public void SaveData()
@@ -109,6 +113,10 @@ public class OutGameDataContainer : MonoBehaviour
         // Resources폴더 안에 있는 데이터를 복사하여 저장
         TextAsset text = GameManager.Resource.Load<TextAsset>("Data/OutGameData");
         data = JsonUtility.FromJson<OutGameData>(text.text);
+
+        data.resolutionWidth = 1920;
+        data.resolutionHeight = 1080;
+        data.isWindowed = false;
 
         SaveData();
     }
@@ -234,4 +242,27 @@ public class OutGameDataContainer : MonoBehaviour
     }
 
     public void DeleteAllData() => File.Delete(path);
+
+    private void SetResolution()
+    {
+        Screen.SetResolution(data.resolutionWidth, data.resolutionHeight, !data.isWindowed);
+        SaveData();
+    }
+
+    public void SetWindow(bool isWindowed)
+    {
+        data.isWindowed = isWindowed;
+        SetResolution();
+    }
+
+    public void SetResolution(Resolution resolution)
+    {
+        data.resolutionWidth = resolution.width;
+        data.resolutionHeight = resolution.height;
+        SetResolution();
+    }
+
+    public int GetResolutionWidth() => data.resolutionWidth;
+    public int GetResolutionHeight() => data.resolutionHeight;
+    public bool IsWindowed() => data.isWindowed;
 }
