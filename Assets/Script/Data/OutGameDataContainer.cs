@@ -140,7 +140,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         ProgressItem item = GetProgressItem(ID);
 
-        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock || data.ProgressCoin < item.Cost)
+        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock)
         {
             return false;
         }

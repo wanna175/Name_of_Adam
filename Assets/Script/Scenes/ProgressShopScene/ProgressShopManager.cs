@@ -66,6 +66,12 @@ public class ProgressShopManager : MonoBehaviour
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
 
             }
+            else if (GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(id).Cost)
+            {
+                ChangeBtnImage(false);
+                disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
+                disabled_info_cost.color = Color.gray;
+            }
             else
             {
                 ChangeBtnImage(true);
@@ -76,7 +82,7 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnBuyBtnClick()
     {
-        if (!GameManager.OutGameData.GetBuyable(selectedID))
+        if (!GameManager.OutGameData.GetBuyable(selectedID) || GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(selectedID).Cost)
         {
             return;
         }
