@@ -64,6 +64,7 @@ public class SoundManager : MonoBehaviour
 
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.loop = true;
             audioSource.Play();
         }
         else
@@ -106,13 +107,28 @@ public class SoundManager : MonoBehaviour
         {
             Clear();
             Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
-            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            {
+                if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
+                {
+                    Play(scenename + "/BossBattle/Horus_BGM", Sounds.BGM);
+                }
+                else if(GameManager.Data.Map.GetCurrentStage().StageID == 1)
+                {
+                    //호루스 브금
+                }
+
+            }
+            else
+            {
+                Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+            }
         }
         else if(scenename == "EventScene")
         {
             Clear();
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
-            Play(scenename + "/" + storeName);
+            Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
         }
         else if(scenename == "CutScene")
         {

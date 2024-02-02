@@ -6,7 +6,7 @@ public class Buff_DeathStrike : Buff
     {
         _buffEnum = BuffEnum.DeathStrike;
 
-        _name = "결사의 일격";
+        _name = "죽음의 일격";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
 

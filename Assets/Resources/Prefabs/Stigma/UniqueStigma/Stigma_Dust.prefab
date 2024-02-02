@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa3d07844582f3428a589a7d6456aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stigmaEnum: 0
   _name: "\uD669\uD63C"
-  _sprite: {fileID: 21300000, guid: 87200bc753da53446b4679e51def119c, type: 3}
+  _sprite_28: {fileID: 21300000, guid: 2824c2219a61c6242ab54de0faa7550e, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 910c3e7d8ea9f064f998297add8497d8, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 9d2a81758309b184a9dcdb2252e3e3e7, type: 3}
   _description: "\uACF5\uACA9\uC2DC \uD669\uD63C \uB514\uBC84\uD504\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4.\r\n\uD669\uD63C:
     \uC911\uCCA9\uB9C8\uB2E4 \uD6A8\uACFC\uAC00 \uCD94\uAC00\uB429\uB2C8\uB2E4\r"
   _activeTiming: 2
