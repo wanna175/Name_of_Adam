@@ -49,8 +49,8 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: 7f80167dbef9f7940914f01ffa78ba09, type: 3}
   _sprite_88: {fileID: 21300000, guid: 49920057240a4df42b4a8c5ba1229b31, type: 3}
   _sprite_164: {fileID: 21300000, guid: 33f5645b9fa6f9e419414f6693c0c6d9, type: 3}
-  _description: "\uC801\uC744 \uCC98\uCE58\uD558\uBA74 \uC545\uC131 \uBC84\uD504\uB97C
-    \uBD80\uC5EC\uBC1B\uC2B5\uB2C8\uB2E4."
+  _description: "\uC18C\uD658 \uC2DC \uC545\uC131\uC744 2\uD68C \uD68D\uB4DD\uD569\uB2C8\uB2E4.\r\n\uC545\uC131:
+    \uACF5\uACA9 \uC2DC \uC801 \uC2E0\uC559\uC744 1 \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4."
   _activeTiming: 2
   _tier: 4
   _isLock: 0
