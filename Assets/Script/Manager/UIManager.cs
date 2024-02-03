@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class UIManager : MonoBehaviour
     private Stack<UI_Popup> _popupStack = new();
     private UI_Hover _hover;
 
-    [SerializeField] private UI_ESCOption _escOprion;
+    public bool IsCanESC = true;
+    private bool isOnESCOption = false;
+    private UI_ESCOption ESCOption;
 
     public GameObject Root
     {
@@ -21,17 +24,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetESCOption(bool state)
+    public void OnOffESCOption()
     {
-        if (!_escOprion.gameObject.activeSelf && state)
+        if (!IsCanESC)
+            return;
+
+        isOnESCOption = !isOnESCOption;
+
+        if (isOnESCOption)
         {
-            _escOprion.gameObject.SetActive(true);
             Time.timeScale = 0;
+            ESCOption = ShowPopup<UI_ESCOption>();
         }
-        else if (_escOprion.gameObject.activeSelf && !state)
+        else
         {
-            _escOprion.gameObject.SetActive(false);
             Time.timeScale = 1;
+            ClosePopup(ESCOption);
         }
     }
 
@@ -185,8 +193,11 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (SceneManager.GetActiveScene().name == "MainScene")
+                return;
+
             GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
-            SetESCOption(!_escOprion.gameObject.activeSelf);
+            OnOffESCOption();
         }
     }
 }

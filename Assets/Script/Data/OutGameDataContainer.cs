@@ -17,6 +17,12 @@ public class OutGameData
     public bool isVisitStigma = false;
     public bool isVisitDarkShop = false;
     public NPCQuest npcQuest;                //npc타락퀘스트
+
+    public int resolution;
+    public bool isWindowed;
+    public float masterSoundPower; // 0 ~ 1
+    public float BGMSoundPower; // 0 ~ 1
+    public float SESoundPower; // 0 ~ 1
 }
 
 [Serializable]
@@ -49,13 +55,20 @@ public class OutGameDataContainer : MonoBehaviour
     // 현재 진행중인 게임에서 관리하는 아웃게임데이터
     OutGameData data;
     string path;
+    List<Resolution> resolutions;
 
     public void Init()
     {
         // 사용자\AppData\localLow에 있는 SaveData.json의 경로
         path = Path.Combine(Application.persistentDataPath, "OutGameSaveData.json");
 
+        resolutions = new List<Resolution>();
+        resolutions.Add(GetResolution(1920, 1080, 144));
+        resolutions.Add(GetResolution(1280, 720, 144));
+        resolutions.Add(GetResolution(640, 480, 144));
+
         LoadData();
+        SetResolution();
     }
 
     public void SaveData()
@@ -116,6 +129,7 @@ public class OutGameDataContainer : MonoBehaviour
         TextAsset text = GameManager.Resource.Load<TextAsset>("Data/OutGameData");
         data = JsonUtility.FromJson<OutGameData>(text.text);
 
+        ReSetOption();
         SaveData();
     }
 
@@ -241,4 +255,47 @@ public class OutGameDataContainer : MonoBehaviour
     }
 
     public void DeleteAllData() => File.Delete(path);
+
+    private Resolution GetResolution(int width, int height, int refreshRate)
+    {
+        Resolution resolution = new Resolution();
+        resolution.width = width;
+        resolution.height = height;
+        resolution.refreshRate = refreshRate;
+        return resolution;
+    }
+
+    private void SetResolution()
+    {
+        Resolution resolution = resolutions[data.resolution];
+        Screen.SetResolution(resolution.width, resolution.height, !data.isWindowed);
+        SaveData();
+    }
+
+    public void SetWindow(bool isWindowed)
+    {
+        data.isWindowed = isWindowed;
+        SetResolution();
+    }
+
+    public void SetResolution(int resolution)
+    {
+        data.resolution = resolution;
+        SetResolution();
+    }
+    public List<Resolution> GetAllResolution() => resolutions;
+    public int GetResolution() => data.resolution;
+    public bool IsWindowed() => data.isWindowed;
+    public float GetMasterSoundPower() => data.masterSoundPower;
+    public float GetBGMSoundPower() => data.BGMSoundPower;
+    public float GetSESoundPower() => data.SESoundPower;
+    public float SetMasterSoundPower(float power) => data.masterSoundPower = power;
+    public float SetBGMSoundPower(float power) => data.BGMSoundPower = power;
+    public float SetSESoundPower(float power) => data.SESoundPower = power;
+    public void ReSetOption()
+    {
+        data.resolution = 0;
+        data.isWindowed = false;
+        data.masterSoundPower = data.BGMSoundPower = data.SESoundPower = 0.5f;
+    }
 }
