@@ -40,7 +40,7 @@ public class UI_UnitInfo : UI_Popup
         _unit = unit;
     }
 
-    public void Init(Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum=CUR_EVENT.NONE,Action endEvent=null)
+    public void Init(Action<DeckUnit> onSelect = null, CUR_EVENT Eventnum = CUR_EVENT.NONE, Action endEvent=null)
     {
         _unitImage.sprite = _unit.Data.CorruptImage;
 
@@ -57,7 +57,7 @@ public class UI_UnitInfo : UI_Popup
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
         }
-        else if (_evNum == CUR_EVENT.STIGMA_EXCEPTION)
+        else if (_evNum == CUR_EVENT.STIGMA_EXCEPTION || _evNum == CUR_EVENT.UPGRADE_EXCEPTION)
         {
             Select();
         }
@@ -82,11 +82,9 @@ public class UI_UnitInfo : UI_Popup
         for (int i = _unit.DeckUnitTotalStat.FallCurrentCount; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
             UI_FallUnit fu = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
-            //UI_FallGauge fg = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallGauge>();
             fu.SwitchCountImage(Team.Player);
             fu.EmptyGauge();
 
-            //fg.Init();
         }
 
         List<Stigma> stigmas = _unit.GetStigma();
@@ -123,11 +121,13 @@ public class UI_UnitInfo : UI_Popup
             _AddedUpgradeCountSocket.SetActive(true);
         }
     }
+
     public void Restoration(Action<DeckUnit> OnSelect=null, CUR_EVENT Eventnum = CUR_EVENT.NONE,Action<DeckUnit> selectRestorationUnit=null)
     {
         this.Init(OnSelect,Eventnum);
         _selectRestorationUnit = selectRestorationUnit;
     } 
+
     public void SetAnimation()
     {
         AnimationClip clip = Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect");
@@ -143,9 +143,15 @@ public class UI_UnitInfo : UI_Popup
     public void Select()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        if(_selectRestorationUnit!=null)
+        if (_selectRestorationUnit != null)
+        {
             _selectRestorationUnit(_unit);
-        _onSelect(_unit);
+        }
+
+        if (_onSelect != null)
+        {
+            _onSelect(_unit);
+        }
 
         if (currentSceneName().Equals("EventScene") && _evNum != CUR_EVENT.HARLOT_RESTORATION)
         {
@@ -163,6 +169,7 @@ public class UI_UnitInfo : UI_Popup
         {
             case CUR_EVENT.STIGMA_EXCEPTION:
             case CUR_EVENT.UPGRADE:
+            case CUR_EVENT.UPGRADE_EXCEPTION:
             case CUR_EVENT.STIGMA://강화하기, 스티그마 부여하기
             case CUR_EVENT.GIVE_STIGMA:
                 Transform e = this.transform.parent.GetChild(0);

@@ -16,8 +16,10 @@ public class UpgradeSceneController : MonoBehaviour
 
     private List<Script> _scripts;
     private UI_Conversation _conversationUI;
-    private bool _isNPCFall = false;
     private List<Upgrade> _upgradeList = new();
+
+    private bool _isUpgradeFull = false;
+    private bool _isNPCFall = false;
 
     void Start()
     {
@@ -31,7 +33,6 @@ public class UpgradeSceneController : MonoBehaviour
             background.SetActive(false);
             fall_background.SetActive(true);
             _isNPCFall = true;
-            Debug.Log("타락됨");
         }
         else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 * 3 / 4 )
         {
@@ -107,8 +108,17 @@ public class UpgradeSceneController : MonoBehaviour
                 _upgradeList.Add(upgrade);
             }
         }
-        
-        GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
+
+        if (_unit.DeckUnitUpgrade.Count == 2 || (_unit.DeckUnitUpgrade.Count == 3 && GameManager.OutGameData.IsUnlockedItem(12)))
+        {
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _unit.DeckUnitUpgrade);
+            _isUpgradeFull = true;
+        }
+        else
+        {
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
+            _isUpgradeFull = false;
+        }
     }
 
     public void OnSelectRelease(DeckUnit unit)
@@ -135,20 +145,31 @@ public class UpgradeSceneController : MonoBehaviour
 
     public void OnUpgradeSelect(int select)
     {
-        GameManager.UI.ClosePopup();
-        GameManager.UI.ClosePopup();
-        GameManager.UI.ClosePopup();
+        GameManager.UI.CloseAllPopup();
 
-        _unit.DeckUnitUpgradeStat.CurrentUpgradeCount++;
+        if (_isUpgradeFull)
+        {
+            _isUpgradeFull = false;
 
-        _unit.DeckUnitUpgrade.Add(_upgradeList[select-1]);
-        //인자와 리스트 인덱스가 차이나서 1을 빼고 있음
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(_unit);
+            unitInfo.Init(null, CUR_EVENT.UPGRADE_EXCEPTION);
 
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        unitInfo.SetUnit(_unit);
-        unitInfo.Init(null, CUR_EVENT.COMPLETE_UPGRADE,OnQuitClick);
+            _unit.DeckUnitUpgrade.Remove(_unit.DeckUnitUpgrade[select]);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
+        }
+        else
+        {
+            _unit.DeckUnitUpgrade.Add(_upgradeList[select]);
+            GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(_unit);
+            unitInfo.Init(null, CUR_EVENT.COMPLETE_UPGRADE, OnQuitClick);
+
+        }
     }
+
     public void OnQuitClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");

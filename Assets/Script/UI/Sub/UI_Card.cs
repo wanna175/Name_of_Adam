@@ -50,25 +50,6 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _disable.SetActive(unit.IsMainDeck);
     }
 
-    public void SetDisableUpgrade(DeckUnit unit)
-    {
-        if (!GameManager.OutGameData.IsUnlockedItem(12))
-        {
-            if (unit.DeckUnitStat.CurrentUpgradeCount == unit.MaxUpgradeCount)
-            {
-                _disable.SetActive(true);
-            }
-        }
-        else
-        {
-            if (unit.DeckUnitStat.CurrentUpgradeCount == unit.UpgradedMaxUpgradeCount)
-            {
-                _disable.SetActive(true);
-            }
-        }
-
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!_cardUnit.IsMainDeck)

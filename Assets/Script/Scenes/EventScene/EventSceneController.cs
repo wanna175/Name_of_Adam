@@ -6,6 +6,7 @@ public enum CUR_EVENT
 {
     NONE,
     UPGRADE,
+    UPGRADE_EXCEPTION,
     RELEASE,
     COMPLETE_UPGRADE,
     COMPLETE_RELEASE,
@@ -25,7 +26,6 @@ public class EventSceneController : MonoBehaviour
     [SerializeField] GameObject _harlot;
 
     private string _sceneName;
-
 
     private void Awake()
     {

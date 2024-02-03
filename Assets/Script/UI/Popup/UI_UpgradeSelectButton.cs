@@ -8,16 +8,25 @@ public class UI_UpgradeSelectButton : UI_Popup
 {
     [SerializeField] private List<TextMeshProUGUI> _buttonTextList;
     [SerializeField] private List<Image> _buttonGemImageList;
+    [SerializeField] private List<GameObject> _button;
 
     private UpgradeSceneController _uc;
+
     public void Init(UpgradeSceneController uc, List<Upgrade> upgrades)
     {
         _uc = uc;
 
         for (int i = 0; i < 3; i++)
         {
-            _buttonTextList[i].text = upgrades[i].UpgradeDescription;
-            _buttonGemImageList[i].sprite = upgrades[i].UpgradeImage160;
+            if (i < upgrades.Count)
+            {
+                _buttonTextList[i].text = upgrades[i].UpgradeDescription;
+                _buttonGemImageList[i].sprite = upgrades[i].UpgradeImage160;
+            }
+            else
+            {
+                _button[i].SetActive(false);
+            }
         }
     }
 
