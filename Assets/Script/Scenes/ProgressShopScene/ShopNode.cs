@@ -31,7 +31,7 @@ public class ShopNode : MonoBehaviour
         }
         else // 구매 가능한 노드
         {
-            NodeImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/ProgressShop/wlscjreh_icon_02 lock");
+            NodeImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/ProgressShop/wlscjreh_icon_02_lock");
         }
 
     }

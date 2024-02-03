@@ -105,13 +105,13 @@ public class BattleManager : MonoBehaviour
             {
                 if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
                 {
-                    string scriptKey = "엘리우스_야나전_입장";
+                    string scriptKey = "투발카인전_입장";
 
                     EventConversation(scriptKey);
                 }
                 else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
                 {
-                    string scriptKey = "투발카인전_입장";
+                    string scriptKey = "엘리우스_야나전_입장";
 
                     EventConversation(scriptKey);
                 }
