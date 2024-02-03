@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
@@ -16,6 +15,7 @@ public class UI_Option : UI_Popup
     [SerializeField] private Slider SESlider;
 
     private List<Resolution> resolutions;
+    private int currentLanguage;
     private int currentResolution;
     private bool isWindowed = false;
     private float masterPower;
@@ -41,6 +41,7 @@ public class UI_Option : UI_Popup
     {
         // 저장된 데이터 불러오기
         resolutions = GameManager.OutGameData.GetAllResolution();
+        currentLanguage = GameManager.OutGameData.GetLanguage();
         currentResolution = GameManager.OutGameData.GetResolution();
         isWindowed = GameManager.OutGameData.IsWindowed();
 
@@ -49,6 +50,7 @@ public class UI_Option : UI_Popup
         SEPower = GameManager.OutGameData.GetSESoundPower();
 
         // UI 세팅
+        languageDropdown.onValueChanged.AddListener(GameManager.OutGameData.LanguageChanged);
         resolutionDropdown.onValueChanged.AddListener(ResolutionDropdownChanged);
         resolutionDropdown.options.Clear();
 
@@ -59,6 +61,7 @@ public class UI_Option : UI_Popup
             resolutionDropdown.options.Add(option);
         }
 
+        languageDropdown.value = currentLanguage;
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.value = currentResolution;
 

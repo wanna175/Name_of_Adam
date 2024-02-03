@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
-  m_Name: DefaultTable
+  m_Name: CutSceneTable
   m_EditorClassIdentifier: 
-  m_SharedTableData: {fileID: 11400000, guid: 276c601bc74577a4e81e14325488e89a, type: 2}
+  m_SharedTableData: {fileID: 11400000, guid: 3e51c2c974e450e499109f468e03ebc1, type: 2}
   m_Tables:
-  - {fileID: 11400000, guid: ef3f737df606f2b44b91791b7d2d9647, type: 2}
-  - {fileID: 11400000, guid: 21a8236509a94aa45ac31f32b4805898, type: 2}
+  - {fileID: 11400000, guid: fc0582219402581489851c36d9b9228c, type: 2}
+  - {fileID: 11400000, guid: 30350f4bcbfcb744f991abbff5b36d1f, type: 2}
   m_Extensions: []
   m_Group: String Table
   references:

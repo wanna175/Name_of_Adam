@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 //NPC타락퀘스트 & 진척도 & 전당 유닛 등의 인자를 저장 & 불러오는 기능
 
@@ -18,6 +19,7 @@ public class OutGameData
     public bool isVisitDarkShop = false;
     public NPCQuest npcQuest;                //npc타락퀘스트
 
+    public int language;
     public int resolution;
     public bool isWindowed;
     public float masterSoundPower; // 0 ~ 1
@@ -56,18 +58,22 @@ public class OutGameDataContainer : MonoBehaviour
     OutGameData data;
     string path;
     List<Resolution> resolutions;
+    bool isChangingLanguage = false;
 
     public void Init()
     {
         // 사용자\AppData\localLow에 있는 SaveData.json의 경로
         path = Path.Combine(Application.persistentDataPath, "OutGameSaveData.json");
 
-        resolutions = new List<Resolution>();
-        resolutions.Add(GetResolution(1920, 1080, 144));
-        resolutions.Add(GetResolution(1280, 720, 144));
-        resolutions.Add(GetResolution(640, 480, 144));
+        resolutions = new List<Resolution>
+        {
+            GetResolution(1920, 1080, 144),
+            GetResolution(1280, 720, 144),
+            GetResolution(640, 480, 144)
+        };
 
         LoadData();
+        LanguageChanged(data.language);
         SetResolution();
     }
 
@@ -272,6 +278,26 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
     }
 
+    public void LanguageChanged(int localeIndex)
+    {
+        if (isChangingLanguage)
+            return;
+
+        StartCoroutine(ChangeLanuage(localeIndex));
+    }
+
+    IEnumerator ChangeLanuage(int localeIndex)
+    {
+        isChangingLanguage = true;
+
+        yield return LocalizationSettings.InitializationOperation;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeIndex];
+        SetLanguage(localeIndex);
+        Debug.Log(LocalizationSettings.SelectedLocale.LocaleName);
+
+        isChangingLanguage = false;
+    }
+
     public void SetWindow(bool isWindowed)
     {
         data.isWindowed = isWindowed;
@@ -284,6 +310,8 @@ public class OutGameDataContainer : MonoBehaviour
         SetResolution();
     }
     public List<Resolution> GetAllResolution() => resolutions;
+    public int GetLanguage() => data.language;
+    public int SetLanguage(int language) => data.language = language;
     public int GetResolution() => data.resolution;
     public bool IsWindowed() => data.isWindowed;
     public float GetMasterSoundPower() => data.masterSoundPower;

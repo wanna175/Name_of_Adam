@@ -21,6 +21,35 @@ MonoBehaviour:
     m_Address: Assets/Locale/Tables/DefaultTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 80d80ac9151ba6345aad2675d9ed0565
+    m_Address: Assets/Locale/Tables/MainScene/MainSceneTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 3e51c2c974e450e499109f468e03ebc1
+    m_Address: Assets/Locale/Tables/CutScene/CutSceneTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2c995b0a22a73404eb644c2977683ff5
+    m_Address: Assets/Locale/Tables/UI/UITable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 038ab53d059731e43b9c09bef9066f95
+    m_Address: Assets/Locale/Tables/Word/WordTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 1daf54f06b91db444a031f06141169ca
+    m_Address: Assets/Locale/Tables/Incarna/IncarnaTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7f888bb31011ce34ba9becbae772456b
+    m_Address: Assets/Locale/Tables/Scene/ProgressScene/ProgressSceneTable Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2f40ef7fde28c6b4796fedadd07c9dae
+    m_Address: Assets/Locale/Tables/TutorialTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:

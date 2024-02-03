@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 7221660223852821053}
   - component: {fileID: 8784020158613753302}
   - component: {fileID: 4717830038162428460}
+  - component: {fileID: 8450606809365420210}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -262,6 +263,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8450606809365420210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129182899084833483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:038ab53d059731e43b9c09bef9066f95
+    m_TableEntryReference:
+      m_KeyId: 4995584000
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4717830038162428460}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1202350960967228567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2207,7 +2248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7237604133749302950, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000010740021
+      value: 0.00021627492
       objectReference: {fileID: 0}
     - target: {fileID: 7237604133749302950, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

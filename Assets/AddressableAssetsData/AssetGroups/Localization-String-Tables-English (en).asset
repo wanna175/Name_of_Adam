@@ -18,7 +18,49 @@ MonoBehaviour:
   m_GUID: cfb88e327cb84a44989e0102d8d19145
   m_SerializeEntries:
   - m_GUID: ef3f737df606f2b44b91791b7d2d9647
-    m_Address: DefaultTable_en
+    m_Address: OptionTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 7cf6d3f6e266d7c478cd4dff53fadc91
+    m_Address: MainSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: fc0582219402581489851c36d9b9228c
+    m_Address: CutSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 28a2b37d5e9e4f649a1b3cd8b33b448f
+    m_Address: UITable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 28a1bf596c645ba4886b90c8cc695992
+    m_Address: WordTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: b19cb169c9a23274182ccac6f042bf1e
+    m_Address: IncarnaTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c7851556255f1b8468e6836aa387a9a0
+    m_Address: ProgressSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: b85af8cb787a5ed4a990a28c11aacbd7
+    m_Address: TutorialTable_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

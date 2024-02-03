@@ -6309,6 +6309,62 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3732832542127709398, guid: 35a0c06bcf3eccc429b1decce3c52d90, type: 3}
   m_PrefabInstance: {fileID: 946934499}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &946934504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5411691715552894541, guid: 35a0c06bcf3eccc429b1decce3c52d90, type: 3}
+  m_PrefabInstance: {fileID: 946934499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &946934505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3621131028805030261, guid: 35a0c06bcf3eccc429b1decce3c52d90, type: 3}
+  m_PrefabInstance: {fileID: 946934499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946934504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &946934506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946934504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 946934505}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &947943877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11105,7 +11161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1441675199969829317, guid: 05d57b138a12b2441bee7f112597c584, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1606174045591830207, guid: 05d57b138a12b2441bee7f112597c584, type: 3}
       propertyPath: m_text

@@ -12,8 +12,43 @@ public class TutorialManager : MonoBehaviour
     /// [CTRL]로 끝나는 문자열은 유저가 직접 액션을 하는 단계를 의미
     /// 즉, 유저의 특정 행동으로 다음 튜토리얼 진행 가능
     /// </summary>
-    private readonly string[] TooltipTexts =
+    private readonly string[][] TooltipTexts =
     {
+        // 영문
+        new string[] {
+        // 튜토리얼 1 시작
+        "During the<color=#FF9696>player turn<color=white>, you can summon units or use skills.",
+        "<color=#FF9696>Mana<color=white> is required for summoning units or using skills.\nMana recovers by <color=#FF9696>30<color=white> each player turn",
+        "These are the currently summonable units.\n<color=#FF9696>On the first player turn<color=white>, you can summon units using only <color=#FF9696>half of<color=white> the required mana.",
+        "These are the skills that aid you in combat.",
+        "Summon a Gravekeeper.[CTRL]",
+        "Summon a Gravekeeper.[CTRL]",
+        "When the player turn ends, the <color=#FF9696>unit turn<color=white> comes.[CTRL]",
+        "During the <color=#FF9696>unit turn<color=white>, units on the field move according to their speed.\nUnits at the top of the <color=#FF9696>speed bar<color=white> on the right act first.",
+        "Each unit can move one step and then attack the enemies.\nMove the Gravekeeper one step forward.[CTRL]",
+        "Attack the Swordsman.[CTRL]",
+
+        // 튜토리얼 2 시작
+        "특정 유닛을 사용하거나 스킬을 사용할 때 필요한 <color=#FF9696>검은 정수<color=white>입니다.\n적을 처치할 때마다 하나씩 얻을 수 있습니다.",
+        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 낙인을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
+        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 낙인을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
+        "공격 시 적의 <color=#FF9696>신앙<color=white>을 떨어뜨리는 <color=#FF9696>악성 버프<color=white>입니다.\n흑기사는 이 악성 버프를 <color=#FF9696>2회<color=white> 얻는 낙인을 가지고 있습니다.\n잘 활용하여 적을 타락시켜보세요.",
+        "<color=#FF9696>턴 종료 버튼<color=white>을 눌러 유닛 턴으로 넘어가세요.[CTRL]",
+        "이동이 필요가 없는 경우 <color=#FF9696>턴 종료 버튼<color=white>을 눌러 턴을 넘길 수 있어요.[CTRL]",
+        "검병을 공격하여 <color=#FF9696>신앙<color=white>을 떨어뜨리세요.[CTRL]",
+        "<color=#FF9696>신앙<color=white>을 떨어뜨리는 스킬 <color=#FF9696>속삭임<color=white>을 사용하여 적을 타락시켜 보세요.[CTRL]",
+        "<color=#FF9696>신앙<color=white>을 떨어뜨리는 스킬 <color=#FF9696>속삭임<color=white>을 사용하여 적을 타락시켜 보세요.[CTRL]",
+        "적을 타락시킬 경우 해당 적을 아군으로 만들며 <color=#FF9696>낙인<color=white>을 부여할 수 있습니다.\n검병에게 부여할 낙인을 선택하세요.[CTRL]",
+        "이제 검병은 당신의 유닛이 되었습니다.\n이제 턴 종료를 누르세요.[CTRL]",
+        "아군이 이미 있는 위치로 이동할 시 두 유닛은 서로 위치를 바꿉니다.\n흑기사를 이동시키세요.[CTRL]",
+        "수녀를 공격하여 무적 버프를 없애보세요.[CTRL]",
+        "검병을 이동시키세요.[CTRL]",
+        "부적 버프가 사라진 수녀를 마무리하세요.[CTRL]",
+        "",
+        },
+
+        // 한국
+        new string[] {
         // 튜토리얼 1 시작
         "<color=#FF9696>플레이어 턴<color=white>에는 유닛을 소환하거나 스킬을 쓸 수 있습니다.",
         "유닛을 소환하거나 스킬을 사용할때 필요한 <color=#FF9696>마나<color=white>입니다.\n플레이어 턴이 될 때마다 <color=#FF9696>30<color=white>씩 회복합니다.",
@@ -43,6 +78,7 @@ public class TutorialManager : MonoBehaviour
         "검병을 이동시키세요.[CTRL]",
         "부적 버프가 사라진 수녀를 마무리하세요.[CTRL]",
         "",
+        },
     };
 
     public const int STEP_BOUNDARY = 100;
@@ -152,9 +188,9 @@ public class TutorialManager : MonoBehaviour
         int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
 
         tooltip.Step = step;
-        tooltip.Info = TooltipTexts[indexToTooltip].Replace("[CTRL]", "");
+        tooltip.Info = TooltipTexts[GameManager.OutGameData.GetLanguage()][indexToTooltip].Replace("[CTRL]", "");
         tooltip.IndexToTooltip = indexToTooltip;
-        tooltip.IsCtrl = TooltipTexts[indexToTooltip].Contains("[CTRL]");
+        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.GetLanguage()][indexToTooltip].Contains("[CTRL]");
         tooltip.IsEnd = false;
 
         if (CheckStep(TutorialStep.Tutorial_End_1) || 
