@@ -57,15 +57,15 @@ public class UI_UnitReward : MonoBehaviour
 
         fc = this.GetComponent<FadeController>();
     }
-    public bool FadeIn(float time,int count)
+    public void FadeIn(float time)
     {
-        time -= (float)0.5 * time;
+        time *= (float)0.3;
         fc.StartFadeIn(time);
-        return (count - 1 == time);
     }
     public void EndFadeIn()
     {
-        fc.EndFade();
+        if(this.gameObject.activeInHierarchy)
+            fc.EndFade();
     }
 
     #endregion
