@@ -117,442 +117,442 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_0"
+      name: "\uBC14\uB204\uC5D8_Appear_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 684
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f40af433b134814290805d9d54ccc86
-      internalID: 1912837090
+      spriteID: cf15a7f016eadef47818ff749397ba8d
+      internalID: 1405262415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_1"
+      name: "\uBC14\uB204\uC5D8_Appear_1"
       rect:
         serializedVersion: 2
         x: 246
         y: 684
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcc6c281aa660e94fb7aa0106399ada2
-      internalID: 71612564
+      spriteID: 94b7b5f19814a6d4299e1c8a4706f432
+      internalID: -1440037902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_2"
+      name: "\uBC14\uB204\uC5D8_Appear_2"
       rect:
         serializedVersion: 2
         x: 492
         y: 684
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e3322fcf2553c14cae727b0738494e5
-      internalID: 400277093
+      spriteID: 5daaedfe8f1765046b26252e4419aa99
+      internalID: 1245275267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_3"
+      name: "\uBC14\uB204\uC5D8_Appear_3"
       rect:
         serializedVersion: 2
         x: 738
         y: 684
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec6e5a988c27eb747a787701127c4873
-      internalID: 561832108
+      spriteID: 822bdacc790bea34ca72797bf02b0b25
+      internalID: -1548106564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_4"
+      name: "\uBC14\uB204\uC5D8_Appear_4"
       rect:
         serializedVersion: 2
         x: 984
         y: 684
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 526e3c8c58d604e49a49e06b512f8bcc
-      internalID: -1652581492
+      spriteID: b2fa0310d9644294cb99cbdf0ac972e4
+      internalID: -2088591330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_5"
+      name: "\uBC14\uB204\uC5D8_Appear_5"
       rect:
         serializedVersion: 2
         x: 0
         y: 513
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cec51c87e9b342c429258b02e2748d67
-      internalID: 161943398
+      spriteID: 749b6918713e0e54eb41dfd59bdf78ed
+      internalID: 1382723331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_6"
+      name: "\uBC14\uB204\uC5D8_Appear_6"
       rect:
         serializedVersion: 2
         x: 246
         y: 513
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72d64de4cb1dceb4ea2b3d49d115aca5
-      internalID: 1399162156
+      spriteID: c9a9102d41a9c0c40a30cfd8fbf2f7dd
+      internalID: -2129392793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_7"
+      name: "\uBC14\uB204\uC5D8_Appear_7"
       rect:
         serializedVersion: 2
         x: 492
         y: 513
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a248ea8b161edbc4593e99f553bbc70e
-      internalID: -746707969
+      spriteID: 6b86f235e4463be40b1d836ad9539f08
+      internalID: -1370679395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_8"
+      name: "\uBC14\uB204\uC5D8_Appear_8"
       rect:
         serializedVersion: 2
         x: 738
         y: 513
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f502fb476234ec47b677f994cf70d44
-      internalID: -1442426843
+      spriteID: 5bce196a22cc6ac48b1581403ba69849
+      internalID: -119400912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_9"
+      name: "\uBC14\uB204\uC5D8_Appear_9"
       rect:
         serializedVersion: 2
         x: 984
         y: 513
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 960d02d872b28f34c9d80d0c511f6cd3
-      internalID: 901265867
+      spriteID: e8fdcd373427a144e9b9f1e919c8de4d
+      internalID: -1161498830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_10"
+      name: "\uBC14\uB204\uC5D8_Appear_10"
       rect:
         serializedVersion: 2
         x: 0
         y: 342
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b51e4c90c2df1e0428fa8625920d5460
-      internalID: 156792888
+      spriteID: e59c4f3392e32fc4ebd1755ca63b7135
+      internalID: -47192941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_11"
+      name: "\uBC14\uB204\uC5D8_Appear_11"
       rect:
         serializedVersion: 2
         x: 246
         y: 342
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd932a43f599ef849bafa516ee498134
-      internalID: 1276781381
+      spriteID: ae08945d0ecccc64c855f503f0f88657
+      internalID: -2020035695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_12"
+      name: "\uBC14\uB204\uC5D8_Appear_12"
       rect:
         serializedVersion: 2
         x: 492
         y: 342
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1535de3c786a614390cc7e6bada0515
-      internalID: -1255096849
+      spriteID: 84d9987173500ca4385cb12bd4f7df87
+      internalID: 718992797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_13"
+      name: "\uBC14\uB204\uC5D8_Appear_13"
       rect:
         serializedVersion: 2
         x: 738
         y: 342
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23b2d36dee5cf374bb6ae678110daff5
-      internalID: -1730957966
+      spriteID: 67588517f51980e4fa797a00f28c552b
+      internalID: 164576053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_14"
+      name: "\uBC14\uB204\uC5D8_Appear_14"
       rect:
         serializedVersion: 2
         x: 984
         y: 342
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 283ec6ded73974b48abbd48ee92c9078
-      internalID: -1766415511
+      spriteID: 987b957396fbf534eb3181cbea0f3403
+      internalID: 391171332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_15"
+      name: "\uBC14\uB204\uC5D8_Appear_15"
       rect:
         serializedVersion: 2
         x: 0
         y: 171
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74f662cf90327fb4c8017d36888d0b8d
-      internalID: -2111563866
+      spriteID: 76e076eb2365ee84195ce5985ab730c9
+      internalID: -1865057231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_16"
+      name: "\uBC14\uB204\uC5D8_Appear_16"
       rect:
         serializedVersion: 2
         x: 246
         y: 171
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bfbf95e74d5075429446920ab832709
-      internalID: 1747654304
+      spriteID: c57377773d8c8d64bac67af314021ca3
+      internalID: -1334128327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_17"
+      name: "\uBC14\uB204\uC5D8_Appear_17"
       rect:
         serializedVersion: 2
         x: 492
         y: 171
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35d4b834fa8e7b34291f072904dca6ee
-      internalID: 477373410
+      spriteID: 50c3c76e4861f2c4593ed7200a1fe65d
+      internalID: 1277040932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_18"
+      name: "\uBC14\uB204\uC5D8_Appear_18"
       rect:
         serializedVersion: 2
         x: 738
         y: 171
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 184bd944f839cdd409f98985018bfcc4
-      internalID: 1465183890
+      spriteID: cf57dc522cf43594cbb089cc7153f46c
+      internalID: 247728277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_19"
+      name: "\uBC14\uB204\uC5D8_Appear_19"
       rect:
         serializedVersion: 2
         x: 984
         y: 171
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9218ba6ef7748fe4caae1cef0c0de3ff
-      internalID: 1062649654
+      spriteID: 4f4b88d474aece64fac943b13c768142
+      internalID: -1348644341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Appear_20"
+      name: "\uBC14\uB204\uC5D8_Appear_20"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 246
         height: 171
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5e112c3dad7e114e8a106055a8c0beb
-      internalID: 1809790189
+      spriteID: 028b0a3063705da4aa5f47c3455150e6
+      internalID: 764193520
       vertices: []
       indices: 
       edges: []
@@ -568,27 +568,27 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uB2C8\uBBC0\uB86F_Appear_19": 1062649654
-      "\uB2C8\uBBC0\uB86F_Appear_14": -1766415511
-      "\uB2C8\uBBC0\uB86F_Appear_7": -746707969
-      "\uB2C8\uBBC0\uB86F_Appear_20": 1809790189
-      "\uB2C8\uBBC0\uB86F_Appear_5": 161943398
-      "\uB2C8\uBBC0\uB86F_Appear_15": -2111563866
-      "\uB2C8\uBBC0\uB86F_Appear_9": 901265867
-      "\uB2C8\uBBC0\uB86F_Appear_10": 156792888
-      "\uB2C8\uBBC0\uB86F_Appear_18": 1465183890
-      "\uB2C8\uBBC0\uB86F_Appear_3": 561832108
-      "\uB2C8\uBBC0\uB86F_Appear_11": 1276781381
-      "\uB2C8\uBBC0\uB86F_Appear_16": 1747654304
-      "\uB2C8\uBBC0\uB86F_Appear_12": -1255096849
-      "\uB2C8\uBBC0\uB86F_Appear_0": 1912837090
-      "\uB2C8\uBBC0\uB86F_Appear_2": 400277093
-      "\uB2C8\uBBC0\uB86F_Appear_4": -1652581492
-      "\uB2C8\uBBC0\uB86F_Appear_6": 1399162156
-      "\uB2C8\uBBC0\uB86F_Appear_17": 477373410
-      "\uB2C8\uBBC0\uB86F_Appear_1": 71612564
-      "\uB2C8\uBBC0\uB86F_Appear_8": -1442426843
-      "\uB2C8\uBBC0\uB86F_Appear_13": -1730957966
+      "\uBC14\uB204\uC5D8_Appear_0": 1405262415
+      "\uBC14\uB204\uC5D8_Appear_10": -47192941
+      "\uBC14\uB204\uC5D8_Appear_2": 1245275267
+      "\uBC14\uB204\uC5D8_Appear_1": -1440037902
+      "\uBC14\uB204\uC5D8_Appear_13": 164576053
+      "\uBC14\uB204\uC5D8_Appear_15": -1865057231
+      "\uBC14\uB204\uC5D8_Appear_16": -1334128327
+      "\uBC14\uB204\uC5D8_Appear_17": 1277040932
+      "\uBC14\uB204\uC5D8_Appear_9": -1161498830
+      "\uBC14\uB204\uC5D8_Appear_11": -2020035695
+      "\uBC14\uB204\uC5D8_Appear_14": 391171332
+      "\uBC14\uB204\uC5D8_Appear_4": -2088591330
+      "\uBC14\uB204\uC5D8_Appear_18": 247728277
+      "\uBC14\uB204\uC5D8_Appear_8": -119400912
+      "\uBC14\uB204\uC5D8_Appear_19": -1348644341
+      "\uBC14\uB204\uC5D8_Appear_12": 718992797
+      "\uBC14\uB204\uC5D8_Appear_20": 764193520
+      "\uBC14\uB204\uC5D8_Appear_5": 1382723331
+      "\uBC14\uB204\uC5D8_Appear_7": -1370679395
+      "\uBC14\uB204\uC5D8_Appear_3": -1548106564
+      "\uBC14\uB204\uC5D8_Appear_6": -2129392793
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

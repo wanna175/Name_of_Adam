@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f335f3dfd8e3a3449f212b5fe35a9ee, type: 3}
   m_Name: "Default_\uC815\uC9C0"
   m_EditorClassIdentifier: 
-  _moveType: 0
-  _zoomSize: 60
+  _moveType: 2
+  _zoomSize: 63
   _gradientPower: 5

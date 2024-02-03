@@ -45,9 +45,16 @@ public class UI_BattleOver : UI_Scene
 
     public void OnClick()
     {
+        Debug.Log("Å¬¸¯dhlsjfkdlsjfdksfjdsklfjdkslfjdsklfjdslfjdsklfjsldjflsdjfds");
         if (_result == "win")
         {
-            SceneChanger.SceneChange("StageSelectScene");
+            if(_rewardScene.isEndFade)
+                SceneChanger.SceneChange("StageSelectScene");
+            else
+            {
+                Debug.Log("dhlsjfkdlsjfdksfjdsklfjdkslfjdsklfjdslfjdsklfjsldjflsdjfds");
+                _rewardScene.EndFadeIn();
+            }
         }
         else if (_result == "elite win")
         {
