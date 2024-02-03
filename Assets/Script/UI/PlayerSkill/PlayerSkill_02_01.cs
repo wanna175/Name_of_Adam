@@ -12,7 +12,7 @@ public class PlayerSkill_02_01 : PlayerSkill
         BattleUnit unit = BattleManager.Field.GetUnit(tilePos);
         unit.ChangeHP(-30);
 
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Punishment");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
                 
         return true;
