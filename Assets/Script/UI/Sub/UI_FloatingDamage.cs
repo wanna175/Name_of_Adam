@@ -6,12 +6,12 @@ public class UI_FloatingDamage : UI_Base
 {
     [SerializeField] private TextMeshProUGUI _damageNumber;
 
-    readonly private float _sizeUpTime = 0.4f;
-    readonly private float _displayTime = 0.6f;
-    readonly private float _fadeOutTime = 0.5f;
+    readonly private float _sizeUpTime = 0.3f;
+    readonly private float _displayTime = 0.3f;
+    readonly private float _fadeOutTime = 0.3f;
     //1.2
-    readonly private int _startSize = 120;
-    readonly private int _endSize = 195;
+    readonly private int _startSize = 190;
+    readonly private int _endSize = 220;
 
     private float _accumTime;
 
@@ -62,7 +62,7 @@ public class UI_FloatingDamage : UI_Base
             _damageNumber.fontSize = Mathf.Lerp(_startSize, _endSize, _accumTime / _sizeUpTime);
             _damageNumber.alpha = Mathf.Lerp(0f, 1f, _accumTime / _sizeUpTime);
 
-            _damageNumber.transform.position += new Vector3(0f, 0.001f, 0f);
+            _damageNumber.transform.position += new Vector3(0f, 0.003f, 0f);
 
             _accumTime += Time.deltaTime;
             yield return null;
