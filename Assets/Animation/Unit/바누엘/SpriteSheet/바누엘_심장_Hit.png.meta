@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b1e5d7a317d7a10488b26b80d151a643
+guid: 5d1e083026f8446419d622c083871b88
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,22 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nimurot_hit_0
+      name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 246
-        height: 171
+        width: 310
+        height: 262
       alignment: 9
-      pivot: {x: 0.25, y: 0}
+      pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee6ac66098d421b42b2b902d2f4a83d6
-      internalID: -1868858913
+      spriteID: cccc38c4fdfa7f548a8c3dad88d1e89e
+      internalID: 684801611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Idle_1"
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 0
+        width: 310
+        height: 262
+      alignment: 9
+      pivot: {x: 0.25, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef9c84c6cada2943a9630e88e48ebb7
+      internalID: -873275276
       vertices: []
       indices: 
       edges: []
@@ -148,7 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      nimurot_hit_0: -1868858913
+      "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Idle_0": 684801611
+      "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Idle_1": -873275276
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dba42bd7c7a46ef4c8b161fc11105462
+guid: 7240e518bd70d69479ab0e5558c3764d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,127 +117,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nimurot_heart_0
+      name: Leah_AttackEffect_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 110
         y: 0
-        width: 310
-        height: 262
-      alignment: 9
-      pivot: {x: 0.3, y: 0.35}
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ec8d467a7697834499e5cce4b2ef453
-      internalID: -649514062
+      spriteID: 431a0354cf5bad24492e5c29e2e811cf
+      internalID: 137402834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_heart_1
+      name: Leah_AttackEffect_1
       rect:
         serializedVersion: 2
-        x: 310
+        x: 220
         y: 0
-        width: 310
-        height: 262
-      alignment: 9
-      pivot: {x: 0.3, y: 0.35}
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42885f187cc645f4cad688710b68736e
-      internalID: -1485075576
+      spriteID: 7b0bcaf0b128a654c98a93905e94a506
+      internalID: -1806013319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_heart_2
+      name: Leah_AttackEffect_2
       rect:
         serializedVersion: 2
-        x: 620
+        x: 330
         y: 0
-        width: 310
-        height: 262
-      alignment: 9
-      pivot: {x: 0.3, y: 0.35}
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a18f854a8608b0c4787c1f5352a755df
-      internalID: 278101316
+      spriteID: c65667c342bae324e86ba0598cf2fe4b
+      internalID: 1732758966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_heart_3
+      name: Leah_AttackEffect_3
       rect:
         serializedVersion: 2
-        x: 930
+        x: 440
         y: 0
-        width: 310
-        height: 262
-      alignment: 9
-      pivot: {x: 0.3, y: 0.35}
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33761753e0bf4c84e83a0d94365ca68a
-      internalID: -716824766
+      spriteID: 0a92e0a695a6a234ea38e286cf180d12
+      internalID: -1349450765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_heart_4
+      name: Leah_AttackEffect_4
       rect:
         serializedVersion: 2
-        x: 1240
+        x: 550
         y: 0
-        width: 310
-        height: 262
-      alignment: 9
-      pivot: {x: 0.3, y: 0.35}
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aee1c5d63dcd4ad48a432a7de8890fe6
-      internalID: 10772397
+      spriteID: 28022dd4b89d0734cba83e58733f36f9
+      internalID: 981348314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_heart_5
+      name: Leah_AttackEffect_5
       rect:
         serializedVersion: 2
-        x: 1550
+        x: 660
         y: 0
-        width: 310
-        height: 262
-      alignment: 9
-      pivot: {x: 0.3, y: 0.35}
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54f5c8d5b29373e448175f01ea4b6383
-      internalID: 1652731719
+      spriteID: 61194475b4191fc48a04a4c172b805c7
+      internalID: -993506430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leah_AttackEffect_6
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 0
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0186877faed6db54d835a32143adc0f9
+      internalID: -1459471417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leah_AttackEffect_7
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 0
+        width: 110
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d26966e2f5b3f4a860ca1b85775125
+      internalID: 1061767972
       vertices: []
       indices: 
       edges: []
@@ -253,12 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      nimurot_heart_3: -716824766
-      nimurot_heart_4: 10772397
-      nimurot_heart_5: 1652731719
-      nimurot_heart_1: -1485075576
-      nimurot_heart_2: 278101316
-      nimurot_heart_0: -649514062
+      Leah_AttackEffect_6: -1459471417
+      Leah_AttackEffect_4: 981348314
+      Leah_AttackEffect_2: 1732758966
+      Leah_AttackEffect_3: -1349450765
+      Leah_AttackEffect_5: -993506430
+      Leah_AttackEffect_7: 1061767972
+      Leah_AttackEffect_1: -1806013319
+      Leah_AttackEffect_0: 137402834
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
