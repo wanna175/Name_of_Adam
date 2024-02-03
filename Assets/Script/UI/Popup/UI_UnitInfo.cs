@@ -33,7 +33,8 @@ public class UI_UnitInfo : UI_Popup
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
     private Action<DeckUnit> _selectRestorationUnit;
-    private CUR_EVENT evNum = 0;
+    private CUR_EVENT _evNum = 0;
+
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
@@ -41,20 +42,26 @@ public class UI_UnitInfo : UI_Popup
 
     public void Init(Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum=CUR_EVENT.NONE,Action endEvent=null)
     {
-        _unitImage.GetComponent<Image>();
         _unitImage.sprite = _unit.Data.CorruptImage;
+
         _onSelect = onSelect;
         _endEvent = endEvent;
+
         _selectButton.SetActive(onSelect != null);
-        evNum = Eventnum;
-        if (evNum == CUR_EVENT.COMPLETE_UPGRADE|| evNum == CUR_EVENT.COMPLETE_RELEASE
-            ||evNum == CUR_EVENT.COMPLETE_STIGMA ||evNum == CUR_EVENT.COMPLETE_HAELOT)
+
+        _evNum = Eventnum;
+
+        if (_evNum == CUR_EVENT.COMPLETE_UPGRADE || _evNum == CUR_EVENT.COMPLETE_RELEASE
+            || _evNum == CUR_EVENT.COMPLETE_STIGMA || _evNum == CUR_EVENT.COMPLETE_HAELOT)
         {
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
         }
-        if (evNum == CUR_EVENT.STIGMA_EXCEPTION)
+        else if (_evNum == CUR_EVENT.STIGMA_EXCEPTION)
+        {
             Select();
+        }
+
         _unitInfoName.text = _unit.Data.Name;
 
         if (_unit.Data.DarkEssenseCost > 0)
@@ -72,7 +79,6 @@ public class UI_UnitInfo : UI_Popup
                                         "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString();
         }
 
-        Debug.Log("current:" + _unit.DeckUnitTotalStat.FallCurrentCount + "max:" + _unit.DeckUnitTotalStat.FallMaxCount);
         for (int i = _unit.DeckUnitTotalStat.FallCurrentCount; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
             UI_FallUnit fu = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
@@ -96,9 +102,11 @@ public class UI_UnitInfo : UI_Popup
                 ui.EnableUI(false);
         }
 
-        for (int i = 0; i < _unit.DeckUnitTotalStat.CurrentUpgradeCount; i++)
+        foreach (Upgrade upgrade in _unit.DeckUnitUpgrade)
         {
-            GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid);
+            UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
+            ui.Set(upgrade.UpgradeImage88, upgrade.UpgradeDescription);
+            ui.EnableUI(true);
         }
 
         foreach (bool range in _unit.Data.AttackRange)
@@ -139,7 +147,7 @@ public class UI_UnitInfo : UI_Popup
             _selectRestorationUnit(_unit);
         _onSelect(_unit);
 
-        if (currentSceneName().Equals("EventScene")&&evNum!=CUR_EVENT.HARLOT_RESTORATION)
+        if (currentSceneName().Equals("EventScene") && _evNum != CUR_EVENT.HARLOT_RESTORATION)
         {
             _quitButton.SetActive(false);
             _selectButton.SetActive(false);
@@ -148,9 +156,10 @@ public class UI_UnitInfo : UI_Popup
             //선택하기 버튼 없애고, 껏다켯다 버튼 만든다.
         }
     }
-    public void eventButtonClick()
+
+    public void EventButtonClick()
     {
-        switch (evNum)
+        switch (_evNum)
         {
             case CUR_EVENT.STIGMA_EXCEPTION:
             case CUR_EVENT.UPGRADE:
@@ -166,9 +175,10 @@ public class UI_UnitInfo : UI_Popup
                 break;
         }
     }
-    public void compeleteClick()
+
+    public void CompeleteButtonClick()
     {
-        if (evNum == CUR_EVENT.COMPLETE_HAELOT && _onSelect != null)
+        if (_evNum == CUR_EVENT.COMPLETE_HAELOT && _onSelect != null)
             _onSelect(_unit);
         gameObject.SetActive(false);
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");

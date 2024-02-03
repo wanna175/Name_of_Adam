@@ -62,8 +62,8 @@ public struct Upgrade
 {
     public string UpgradeName;
     public string UpgradeDescription;
-    public Sprite UpgradeImage;
-    public Sprite UpgradeDecorationImage;
+    public Sprite UpgradeImage88;
+    public Sprite UpgradeImage160;
     public Stat UpgradeStat;
     public UpgradeData UpgradeData;
 }

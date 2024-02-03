@@ -21,11 +21,13 @@ public class UI_MyDeck : UI_Popup
 
     private GameObject eventMenu = null;
 
-    public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE,Action endEvent=null)
+    public void Init(bool battle=false, Action<DeckUnit> onSelect = null, CUR_EVENT Eventnum = CUR_EVENT.NONE, Action endEvent = null)
     {
         Set_btn.SetActive(false);
+
         if (Eventnum == CUR_EVENT.RECEIVE_STIGMA)
             Quit_btn.SetActive(false);
+
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
@@ -35,8 +37,10 @@ public class UI_MyDeck : UI_Popup
             _onSelect = onSelect;
         if (endEvent != null)
             _endEvent = endEvent;
-        isEventScene(Eventnum);
+
+        IsEventScene(Eventnum);
         evNum = Eventnum;
+        
         if (evNum == CUR_EVENT.GIVE_STIGMA)
             SetCard(evNum);
         else
@@ -164,7 +168,7 @@ public class UI_MyDeck : UI_Popup
     {
         this.eventMenu = obj;
     }
-    private void isEventScene(CUR_EVENT EventScene)
+    private void IsEventScene(CUR_EVENT EventScene)
     {
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
