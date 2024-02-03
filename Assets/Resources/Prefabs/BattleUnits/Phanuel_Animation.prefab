@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3497353805713512583}
   - component: {fileID: 9069348428340880176}
   m_Layer: 0
-  m_Name: "\uB2C8\uBBC0\uB86F_\uC804\uC6A9\uBB34\uB300_\uBCBD_\uADF8\uB77C\uB370\uC774\uC158"
+  m_Name: Phanuel_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3687526238731741140}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.59, y: -0.23, z: 0}
+  m_LocalPosition: {x: -0.03, y: -0.23, z: 0}
   m_LocalScale: {x: 0.317, y: 0.14, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -111,8 +111,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7372597385520961866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 4, z: 10}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3497353805713512583}
@@ -168,7 +168,7 @@ SpriteRenderer:
   m_Size: {x: 2.58, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &7372597385520961864

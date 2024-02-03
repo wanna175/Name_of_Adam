@@ -13,9 +13,9 @@ public class UpgradeSceneController : MonoBehaviour
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _restoreFall_Btn;
     [SerializeField] private GameObject _ui_SelectMenu;
-    private List<Script> scripts;
 
-    private UI_Conversation uiConversation;
+    private List<Script> _scripts;
+    private UI_Conversation _conversationUI;
     private bool isNPCFall = false;
 
     void Start()
@@ -47,22 +47,22 @@ public class UpgradeSceneController : MonoBehaviour
             _restoreFall_Btn.SetActive(false);
         }
 
-        scripts = new ();
+        _scripts = new ();
 
         if (GameManager.Data.GameData.isVisitUpgrade == false)
         {
-            scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-            uiConversation = FindObjectOfType<UI_Conversation>();
-            uiConversation.ConversationEnded += OnConversationEnded;
+            _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
+            _conversationUI = FindObjectOfType<UI_Conversation>();
+            _conversationUI.ConversationEnded += OnConversationEnded;
             GameManager.Data.GameData.isVisitUpgrade = true;
         }
         else
         {
-            scripts = GameManager.Data.ScriptData["강화소_입장"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-            uiConversation = FindObjectOfType<UI_Conversation>();
-            uiConversation.ConversationEnded += OnConversationEnded;
+            _scripts = GameManager.Data.ScriptData["강화소_입장"];
+            GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
+            _conversationUI = FindObjectOfType<UI_Conversation>();
+            _conversationUI.ConversationEnded += OnConversationEnded;
         }
     }
 
@@ -70,26 +70,26 @@ public class UpgradeSceneController : MonoBehaviour
     public void OnUpgradeUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        this._ui_SelectMenu.SetActive(false);
+        _ui_SelectMenu.SetActive(false);
         UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ui.Init(false, OnSelectUpgrade, CUR_EVENT.UPGRADE, null);
-        ui.SetEventMenu(this._ui_SelectMenu);
+        ui.SetEventMenu(_ui_SelectMenu);
     }
 
     // 교화를 풀 유닛을 고릅니다.
     public void OnReleaseUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        this._ui_SelectMenu.SetActive(false);
+        _ui_SelectMenu.SetActive(false);
         UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ui.Init(false, OnSelectRelease, CUR_EVENT.RELEASE);
-        ui.SetEventMenu(this._ui_SelectMenu);
+        ui.SetEventMenu(_ui_SelectMenu);
     }
 
     //대화하기 버튼
     public void OnConversationButtonClick()
     {
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
     public void OnSelectUpgrade(DeckUnit unit)
     {
@@ -126,7 +126,8 @@ public class UpgradeSceneController : MonoBehaviour
 
         if (select == 1)
         {
-            _unit.DeckUnitUpgradeStat.ATK += 5;
+            _unit.DeckUnitUpgrade.Add(GameManager.Data.UpgradeController.GetRandomUpgrade());
+            //_unit.DeckUnitUpgradeStat.ATK += 5;
           // script.Init(GameManager.Data.ScriptData["강화소_공격력"], false);
         }
         else if (select == 2)

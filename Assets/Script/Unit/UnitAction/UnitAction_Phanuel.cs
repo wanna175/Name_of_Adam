@@ -51,6 +51,7 @@ public class UnitAction_Phanuel : UnitAction
 
         if (targetUnits.Count > 0)
         {
+            _phanuel_Animation.SetBool("isAttack", true);
             BattleManager.Instance.AttackStart(attackUnit, targetUnits);
         }
         else
@@ -204,6 +205,7 @@ public class UnitAction_Phanuel : UnitAction
         {
             if (_phanuel_Animation == null)
             {
+                GameManager.Sound.Play("PhanuelSummon/Phanuel_Summon");
                 _phanuel_Animation = GameManager.Resource.Instantiate("BattleUnits/Phanuel_Animation").GetComponent<Phanuel_Animation>();
                 _phanuel_Animation.ChangeAnimator(caster.Team);
             }
@@ -240,10 +242,6 @@ public class UnitAction_Phanuel : UnitAction
                     listCount--;
                 }
             }
-        }
-        else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
-        {
-            _phanuel_Animation.SetBool("isAttack", true);
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
         {

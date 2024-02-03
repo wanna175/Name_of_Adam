@@ -82,13 +82,15 @@ public class UnitAction_RaquelLeah : UnitAction
 
         if (_isChanged)
         {
-            _owner.DeleteBuff(BuffEnum.Rachel);
+            _owner.DeleteBuff(BuffEnum.Raquel);
             _owner.SetBuff(new Buff_Leah());
+            _owner.SkillEffectAnim = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/AttackEffect/Leah_AttackEffect");
         }
         else
         {
             _owner.DeleteBuff(BuffEnum.Leah);
             _owner.SetBuff(new Buff_Raquel());
+            _owner.SkillEffectAnim = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/AttackEffect/Raquel_AttackEffect");
         }
     }
 }

@@ -9,7 +9,8 @@ public class PlayerSkill_Cross : PlayerSkill
         //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
         //ÀÌÆÑÆ®¸¦ ¿©±â¿¡ Ãß°¡
         List<Vector2> targetCoords = BattleManager.Field.GetCrossCoord(coord);
-        
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Cross");
+
         // 좌표상 위에서부터 글 읽듯이 정렬
         targetCoords.Sort(delegate (Vector2 a, Vector2 b)
         {
@@ -28,7 +29,6 @@ public class PlayerSkill_Cross : PlayerSkill
 
         foreach (Vector2 target in targetCoords)
         {
-            GameManager.Sound.Play("UI/PlayerSkillSFX/Cross");
             GameManager.VisualEffect.StartVisualEffect(
                 "Arts/EffectAnimation/PlayerSkill/CrossThunder",
                 BattleManager.Field.GetTilePosition(target) + new Vector3(0f, 4f, 0f));

@@ -79,7 +79,7 @@ public class FadeController : MonoBehaviour
     }
     public void EndFade()
     {
-        StopAllCoroutines();//나중에 오류가 생길 수도 있을거 같긴한데ㅜㅜ
-        cg.alpha = 1;
+        StopAllCoroutines();
+        cg.alpha = 1f;
     }
 }

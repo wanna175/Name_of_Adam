@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -123,6 +123,6 @@ public class GameManager : MonoBehaviour
             Data.MainDeckLayoutSet();
             GameManager.OutGameData.DeleteAllData();
         }
-        */
+        
     }
 }

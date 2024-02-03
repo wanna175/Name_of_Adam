@@ -27,27 +27,34 @@ public class UI_BattleOver : UI_Scene
             _textImage.gameObject.SetActive(false);
             //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
         }
         else if (result == "elite win")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
         }
         else if (result == "lose")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Lose/LoseBGM", Sounds.BGM);
         }
     }
 
     public void OnClick()
     {
+        Debug.Log("Å¬¸¯dhlsjfkdlsjfdksfjdsklfjdkslfjdsklfjdslfjdsklfjsldjflsdjfds");
         if (_result == "win")
         {
-            SceneChanger.SceneChange("StageSelectScene");
+            if(_rewardScene.isEndFade)
+                SceneChanger.SceneChange("StageSelectScene");
+            else
+            {
+                Debug.Log("dhlsjfkdlsjfdksfjdsklfjdkslfjdsklfjdslfjdsklfjsldjflsdjfds");
+                _rewardScene.EndFadeIn();
+            }
         }
         else if (_result == "elite win")
         {

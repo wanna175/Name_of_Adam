@@ -7,7 +7,7 @@ public class PlayerSkill_Heal : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Heal");
         //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
         if (GameManager.OutGameData.IsUnlockedItem(62))

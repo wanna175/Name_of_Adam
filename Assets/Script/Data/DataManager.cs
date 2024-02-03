@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public interface ILoader<Key, Value>
 {
     Dictionary<Key, Value> MakeDict();
@@ -13,7 +12,7 @@ public interface ILoader<Key, Value>
 public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
-    public Dictionary<int, List<StageSpawnData>> StageDatas = new Dictionary<int, List<StageSpawnData>>();
+    public Dictionary<int, List<StageSpawnData>> StageDatas = new();
     public MapData Map;
     public int StageAct; // 현재 맵이 몇 막인지 기록하는 변수. 0 : 튜토리얼, 1 : 1막, 2 : 2막 이런식으로
 
@@ -23,15 +22,19 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] public GameData GameDataMainLayout; //디버깅용 데이터
 
-    public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
+    public Dictionary<string, List<Script>> ScriptData = new();
     public StigmaController StigmaController;
+    public UpgradeController UpgradeController;
 
-    public void Init()
+
+    public void Init()  
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageLoader, int, List<StageSpawnData>>("StageData").MakeDict();
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
+
         StigmaController = new StigmaController();
+        UpgradeController = new UpgradeController();
         Map = new MapData();
 
         if (GameManager.SaveManager.SaveFileCheck())

@@ -60,8 +60,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uB2C8\uBBC0\uB86F_Attack"
-  m_Speed: 1
+  m_Name: Unit_Attack
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3107674651362516716}
@@ -74,7 +74,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 00a5320aefaf361438f2c26072fd4df1, type: 2}
+  m_Motion: {fileID: 7400000, guid: 978a54af5cb3a7e4f8f57ca3f8c3d684, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -171,8 +171,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uB2C8\uBBC0\uB86F_Idle"
-  m_Speed: 0.7
+  m_Name: Unit_Idle
+  m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 9129795909802905260}
@@ -199,7 +199,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uB2C8\uBBC0\uB86F_Hit"
+  m_Name: Unit_Hit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
