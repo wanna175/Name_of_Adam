@@ -19,7 +19,14 @@ public class Corruption : MonoBehaviour
         _animator.SetBool("LoopExit", false);
 
         gameObject.SetActive(true);
-        _animator.Play("Corruption_Start");
+        if (unit.Team == Team.Enemy)
+        {
+            _animator.Play("Corruption_Start");
+        }
+        else
+        {
+            _animator.Play("Corruption_Lotus_Start");
+        }
     }
 
     public void LoopStart()
