@@ -23,17 +23,16 @@ public class FadeController : MonoBehaviour
         }
     }
 
-    public void StartFadeIn(float waitTime = 0) // 호출 함수 Fade In을 시작
+    public void StartFadeIn() // 호출 함수 Fade In을 시작
     {
         if (fadeCor != null)
             StopCoroutine(fadeCor);
         
-        fadeCor = StartCoroutine(FadeIn(waitTime));
+        fadeCor = StartCoroutine(FadeIn());
     }
 
-    private IEnumerator FadeIn(float waitTime=0) // 코루틴을 통해 페이드 인 시간 조절
+    private IEnumerator FadeIn() // 코루틴을 통해 페이드 인 시간 조절
     {
-        yield return new WaitForSeconds(waitTime);
         while (accumTime < fadeTime)
         {
             cg.alpha = Mathf.Lerp(0f, 1f, accumTime / fadeTime);
@@ -79,7 +78,7 @@ public class FadeController : MonoBehaviour
     }
     public void EndFade()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         cg.alpha = 1f;
     }
 }
