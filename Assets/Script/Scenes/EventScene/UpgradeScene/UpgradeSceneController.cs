@@ -109,7 +109,7 @@ public class UpgradeSceneController : MonoBehaviour
             }
         }
 
-        if (_unit.DeckUnitUpgrade.Count == 2 || (_unit.DeckUnitUpgrade.Count == 3 && GameManager.OutGameData.IsUnlockedItem(12)))
+        if (_unit.DeckUnitUpgrade.Count == 3 || (_unit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
         {
             GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _unit.DeckUnitUpgrade);
             _isUpgradeFull = true;
