@@ -137,12 +137,28 @@ public class StageManager : MonoBehaviour
             {
                 //12/20 프로토타입 버전은 레벨별 데이터 차이 없음, 추후 사용 가능성 다수
                 //int x = (StageList[i].Datas.ID <= 1 && addLevel == 0) ? 1 : (int)StageList[i].Datas.StageLevel + addLevel;
-                int x = GameManager.Data.StageAct + 1;
-                int y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
+
+                int x = 0;
+                int y = 0;
+
+                if(GameManager.Data.StageAct == 0)
+                {
+                    x = 3;
+                }
+                else if(GameManager.Data.StageAct == 1)
+                {
+                    x = 5;
+                }
+                else if (GameManager.Data.StageAct == 2)
+                {
+                    x = 7;
+                }
+
+                y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
 
                 Vector2 vec = new Vector2(x, y);
 
-                if (!existStage.Contains(vec))
+                if (!existStage.Contains(vec)) // 중복처리
                 {
                     existStage.Add(vec);
                     StageDatas.Add(StageList[i].SetBattleStage(x, y));
