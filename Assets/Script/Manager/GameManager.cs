@@ -102,12 +102,6 @@ public class GameManager : MonoBehaviour
                     break;
 
                 unit.UnitDiedEvent();
-
-                foreach (DeckUnit units in BattleManager.Data.PlayerDeck)
-                    units.FirstTurnDiscountUndo();
-
-                foreach (DeckUnit units in BattleManager.Data.PlayerHands)
-                    units.FirstTurnDiscountUndo();
             }
             BattleManager.Instance.BattleOverCheck();
         }

@@ -17,7 +17,7 @@ public class UI_RewardScene : MonoBehaviour
     #endregion
 
     #region ÇÔ¼ö
-    public void Init(int changeDarkness,int cnt)
+    public void Init(int changeDarkness, int cnt)
     {
         this.count = cnt;
         if (count > contents.Count)
