@@ -59,15 +59,11 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        PhaseController _phase = BattleManager.Phase;
-        if (!_phase.CurrentPhaseCheck(_phase.Prepare))
+        PhaseController phase = BattleManager.Phase;
+        if (!phase.CurrentPhaseCheck(phase.Prepare))
             return;
 
-        if (BattleManager.BattleUI.UI_hands._selectedHand != null)
-        {
-            return;
-        }
-        else if(eventData.button == PointerEventData.InputButton.Left)
+        if(eventData.button == PointerEventData.InputButton.Left)
         {
             if (TutorialManager.Instance.IsEnable())
                 TutorialManager.Instance.ShowNextTutorial();

@@ -8,7 +8,7 @@ public class UI_Hands : UI_Scene
     [SerializeField] private Transform Grid;
 
     private List<UI_Hand> _handList = new();
-    public UI_Hand _selectedHand = null;
+    private UI_Hand _selectedHand = null;
 
     public void AddUnit(DeckUnit unit)
     {
@@ -57,9 +57,12 @@ public class UI_Hands : UI_Scene
         {
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
-            if (BattleManager.BattleUI.UI_playerSkill._selectedCard != null)
-                return;
-            else if (hand != null && hand == _selectedHand)
+            if (BattleManager.BattleUI.UI_playerSkill.GetSelectedCard() != null)
+            {
+                BattleManager.BattleUI.UI_playerSkill.CancelSelect();
+            }
+            
+            if (hand != null && hand == _selectedHand)
                 CancelSelect();
             else
                 SelectOneUnit(hand);
@@ -93,8 +96,12 @@ public class UI_Hands : UI_Scene
         BattleManager.Instance.UnitSpawnReady(FieldColorType.UnitSpawn, hand.GetUnit());
     }
 
+    public bool IsSelectedHandNull => _selectedHand == null;
+
     public DeckUnit GetSelectedUnit() =>_selectedHand.GetUnit();
-    
+
+
+
     public void InableCheck(int manaValue)
     {
         foreach (UI_Hand card in _handList)
