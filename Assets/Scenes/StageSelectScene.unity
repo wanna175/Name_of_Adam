@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_SizeDelta.y
@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 3093512753303704948, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -254,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 3093512753303704949, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
       propertyPath: m_Name
       value: UI_DeckButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025098135953337710, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13d2a2079e882244ba3b4ef76f83600f, type: 3}
@@ -1372,11 +1376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1067083960631694781, guid: ba55e606565da8e4587c13de3dc4c230, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 102
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1067083960631694781, guid: ba55e606565da8e4587c13de3dc4c230, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 1067083960631694781, guid: ba55e606565da8e4587c13de3dc4c230, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1408,7 +1412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1067083960631694781, guid: ba55e606565da8e4587c13de3dc4c230, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 780
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 1067083960631694781, guid: ba55e606565da8e4587c13de3dc4c230, type: 3}
       propertyPath: m_AnchoredPosition.y
