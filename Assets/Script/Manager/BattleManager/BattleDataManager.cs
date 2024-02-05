@@ -51,7 +51,6 @@ public class BattleDataManager : MonoBehaviour
 
             unit.DeckUnit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit.DeckUnit);
-            Debug.Log(unit.Data.Name);
         }
 
         _battleUnitList.Clear();
@@ -60,7 +59,6 @@ public class BattleDataManager : MonoBehaviour
         {
             unit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit);
-            Debug.Log(unit.Data.Name);
         }
 
         PlayerHands.Clear();

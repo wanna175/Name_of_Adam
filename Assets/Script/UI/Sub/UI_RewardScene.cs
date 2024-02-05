@@ -5,7 +5,7 @@ using TMPro;
 
 public class UI_RewardScene : MonoBehaviour
 {
-    #region º¯¼ö
+    #region ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private List<UI_UnitReward> contents;
     [SerializeField] private TMP_Text darkness;
 
@@ -15,7 +15,7 @@ public class UI_RewardScene : MonoBehaviour
     public bool isEndFade => FadeEnd;
     #endregion
 
-    #region ÇÔ¼ö
+    #region ï¿½Ô¼ï¿½
     public void Init(int changeDarkness)
     {
         this.GetComponent<FadeController>().StartFadeIn();

@@ -432,7 +432,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2011348171451695890}
         m_TargetAssemblyTypeName: UI_UnitInfo, Assembly-CSharp
-        m_MethodName: compeleteClick
+        m_MethodName: CompeleteButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_text: Skill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: -6.8739014, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2011348170336184546
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_text: Stigma
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: -6.8739014, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2011348171133323723
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_text: Skill Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0.085754395, z: 1.1939697, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2011348171279360125
@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_text: Cost
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
-  m_sharedMaterial: {fileID: -7184271403509868466, guid: 608a6bcad10fb664bbb4a84066a4b904, type: 2}
+  m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: -6.8739014, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2011348171451695895
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   _completeButton: {fileID: 1678336242258710085}
   _fallGaugePrefab: {fileID: 473178149966286213, guid: f54070cb177cc9145b39c1e3a1cabd67, type: 3}
   _stigmaPrefab: {fileID: 4338444046490596867, guid: f3acaf644a2213944b3a254bbfda7e21, type: 3}
-  _upgradeCountPrefab: {fileID: 473178149966286213, guid: f54070cb177cc9145b39c1e3a1cabd67, type: 3}
+  _upgradeCountPrefab: {fileID: 4338444046490596867, guid: 4b803f125075ac64b9f14369634d2f9b, type: 3}
   _squarePrefab: {fileID: 7388686836549182621, guid: 64250af6c8cba8c44a44e35a50beb391, type: 3}
   _unitInfoName: {fileID: 2011348171584008466}
   _unitInfoFallGrid: {fileID: 1881952774681317587}
@@ -2865,7 +2865,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2011348171451695890}
         m_TargetAssemblyTypeName: UI_UnitInfo, Assembly-CSharp
-        m_MethodName: eventButtonClick
+        m_MethodName: EventButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

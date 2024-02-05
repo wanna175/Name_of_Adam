@@ -44,8 +44,8 @@ public class UpgradeController
         upgrade.UpgradeData = data;
 
         upgrade.UpgradeName = data.Name;
-        upgrade.UpgradeImage = GameManager.Resource.Load<Sprite>($"Arts/Upgrade/Upgrade_Red");
-        upgrade.UpgradeDecorationImage = GameManager.Resource.Load<Sprite>($"Arts/Upgrade/Upgrade_Red");
+        upgrade.UpgradeImage88 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_88");
+        upgrade.UpgradeImage160 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_160");
 
         upgrade.UpgradeStat = new();
 

@@ -13,19 +13,21 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private TextMeshProUGUI _title_txt;//제목 텍스트
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
-    private Dictionary<DeckUnit,UI_Card> _card_dic = new();//선택된 유닛
+    private Dictionary<DeckUnit, UI_Card> _card_dic = new();//선택된 유닛
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
     private bool _isBossClear;
 
-    private GameObject eventMenu = null;
+    private GameObject _eventMenu = null;
 
-    public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE,Action endEvent=null)
+    public void Init(bool battle=false, Action<DeckUnit> onSelect = null, CUR_EVENT Eventnum = CUR_EVENT.NONE, Action endEvent = null)
     {
         Set_btn.SetActive(false);
+
         if (Eventnum == CUR_EVENT.RECEIVE_STIGMA)
             Quit_btn.SetActive(false);
+
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
@@ -35,13 +37,14 @@ public class UI_MyDeck : UI_Popup
             _onSelect = onSelect;
         if (endEvent != null)
             _endEvent = endEvent;
-        isEventScene(Eventnum);
+
+        IsEventScene(Eventnum);
         evNum = Eventnum;
+        
         if (evNum == CUR_EVENT.GIVE_STIGMA)
             SetCard(evNum);
         else
             SetCard();
-        
     }
 
     public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
@@ -49,38 +52,40 @@ public class UI_MyDeck : UI_Popup
         _quit_txt.text = "선택 안함";
         _isBossClear = isBossClear;
 
-        List<DeckUnit> _normalDeck = new();
-        List<DeckUnit> _totalDeck = new();
+        List<DeckUnit> normalDeck = new();
+        List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
         _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
 
         foreach (DeckUnit unit in _hallDeck)
         {
-            _totalDeck.Add(unit);
+            totalDeck.Add(unit);
 
             if (unit.Data.Rarity == Rarity.Normal)
             {
-                _normalDeck.Add(unit);
+                normalDeck.Add(unit);
             }
         }
 
         if (isBossClear)
         {
-            _playerDeck = _totalDeck;
+            _playerDeck = totalDeck;
         }
         else
         {
-            _playerDeck = _normalDeck;
+            _playerDeck = normalDeck;
         }
+
         if (onSelect != null)
             _onSelect = onSelect;
+
         SetCard();
     }
 
     public void HallDeckInit(bool isElite = false, Action<DeckUnit> onSelect = null)
     {
-        List<DeckUnit> _eliteDeck = new();
-        List<DeckUnit> _normalDeck = new();
+        List<DeckUnit> eliteDeck = new();
+        List<DeckUnit> normalDeck = new();
 
         _hallDeck = GameManager.Data.GetDeck();
 
@@ -90,26 +95,27 @@ public class UI_MyDeck : UI_Popup
         {
             if (unit.Data.Rarity == Rarity.Normal)
             {
-                _normalDeck.Add(unit);
+                normalDeck.Add(unit);
             }
             else
             {
-                _eliteDeck.Add(unit);
+                eliteDeck.Add(unit);
             }
         }
 
         if (isElite)
         {
-            _playerDeck = _eliteDeck;
+            _playerDeck = eliteDeck;
         }
         else
-            _playerDeck = _normalDeck;
+            _playerDeck = normalDeck;
 
         if (onSelect != null)
             _onSelect = onSelect;
 
         SetCard();
     }
+
     public void SetCard() 
     {
         foreach (DeckUnit unit in _playerDeck)
@@ -118,6 +124,7 @@ public class UI_MyDeck : UI_Popup
         }
         
     }
+
     private void SetCard(CUR_EVENT EventNum)
     {
         foreach (DeckUnit unit in _playerDeck)
@@ -133,38 +140,37 @@ public class UI_MyDeck : UI_Popup
         UI_Card newCard = GameObject.Instantiate(CardPrefabs, Grid).GetComponent<UI_Card>();
         newCard.SetCardInfo(this, unit);
 
-        if(evNum == CUR_EVENT.UPGRADE)
-        {
-            newCard.SetDisableUpgrade(unit);
-        }
-
         _card_dic[unit] = newCard;
     }
 
     public void OnClickCard(DeckUnit unit)
     {
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
-
         ui.SetUnit(unit);
+
         if (evNum == CUR_EVENT.HARLOT_RESTORATION)
-            ui.Restoration(_onSelect,evNum, OnSelectRestorationUnit);
+            ui.Restoration(_onSelect, evNum, OnSelectRestorationUnit);
         else
             ui.Init(_onSelect, evNum);
     }
+
     public void OnSelectRestorationUnit(DeckUnit unit)
     {
         _card_dic[unit].SelectCard();
     }
+
     //유닛 환원 시 결정버튼...
     public void SetButtonClick()
     {
         _endEvent.Invoke();
     }
+
     public void SetEventMenu(GameObject obj)
     {
-        this.eventMenu = obj;
+        _eventMenu = obj;
     }
-    private void isEventScene(CUR_EVENT EventScene)
+
+    private void IsEventScene(CUR_EVENT EventScene)
     {
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
@@ -208,10 +214,10 @@ public class UI_MyDeck : UI_Popup
         }
         else
         {
-            if (eventMenu != null)
-                eventMenu.SetActive(true);
-            GameManager.UI.ClosePopup();
+            if (_eventMenu != null)
+                _eventMenu.SetActive(true);
 
+            GameManager.UI.ClosePopup();
         }
     }
 }

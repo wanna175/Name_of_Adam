@@ -8,22 +8,16 @@ using TMPro;
 
 public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] 
-    private GameObject _highlight;
+    [SerializeField] private GameObject _highlight;
+    [SerializeField] private List<GameObject> _stigmaFrames;
+    [SerializeField] private TMP_Text _nameText;
+    [SerializeField] private GameObject infoButton;
 
-    [SerializeField]
-    private List<GameObject> _stigmaFrames;
-
-    private List<Image> _stigmaImages;
-
-    [SerializeField]
-    private TMP_Text _nameText;
-
-    [SerializeField]
-    private GameObject infoButton;
 
     public Image UnitImage;
     public GameObject IsDisabled;
+
+    private List<Image> _stigmaImages;
     private List<DeckUnit> _mainDeck;
     private List<HallUnit> _hallUnitList;
 
@@ -56,7 +50,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             frame.SetActive(true);
 
         _isEnable = true;
-        UnitImage.sprite = _mainDeck[HallUnitID].Data.Image;
+        UnitImage.sprite = _mainDeck[HallUnitID].Data.CorruptImage;
         UnitImage.color = Color.white;
         _nameText.SetText(_mainDeck[HallUnitID].Data.name);
         infoButton.SetActive(true);

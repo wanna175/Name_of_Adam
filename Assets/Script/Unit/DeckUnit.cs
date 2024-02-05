@@ -193,11 +193,12 @@ public class DeckUnit
     public void FirstTurnDiscountUndo()
     {
         if (_firstTurnDiscount != 0)
-        { 
+        {
             DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
             _firstTurnDiscount = 0;
         }
     }
+
     public int GetStigmaCount()
     {
         return _stigmaCount+ Data.UniqueStigma.Count;

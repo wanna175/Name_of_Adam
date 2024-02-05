@@ -16,33 +16,38 @@ public class UpgradeSceneController : MonoBehaviour
 
     private List<Script> _scripts;
     private UI_Conversation _conversationUI;
-    private bool isNPCFall = false;
+    private List<Upgrade> _upgradeList = new();
+
+    private bool _isUpgradeFull = false;
+    private bool _isNPCFall = false;
 
     void Start()
     {
         Init();
     }
+
     private void Init()
     {
         if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100)
         {
             background.SetActive(false);
             fall_background.SetActive(true);
-            this.isNPCFall = true;
-            Debug.Log("타락됨");
+            _isNPCFall = true;
         }
         else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 * 3 / 4 )
         {
             //안개이미지 변경
-        }else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 2)
+        }
+        else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 2)
         {
             //안개이미지 변경
-        }else if(GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 4)
+        }
+        else if(GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 4)
         {
             //안개이미지 변경
         }
 
-            if (!GameManager.OutGameData.IsUnlockedItem(2))
+        if (!GameManager.OutGameData.IsUnlockedItem(2))
         {
             _restoreFall_Btn.SetActive(false);
         }
@@ -52,18 +57,16 @@ public class UpgradeSceneController : MonoBehaviour
         if (GameManager.Data.GameData.isVisitUpgrade == false)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
-            _conversationUI = FindObjectOfType<UI_Conversation>();
-            _conversationUI.ConversationEnded += OnConversationEnded;
             GameManager.Data.GameData.isVisitUpgrade = true;
         }
         else
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
-            _conversationUI = FindObjectOfType<UI_Conversation>();
-            _conversationUI.ConversationEnded += OnConversationEnded;
         }
+
+        _conversationUI = GameManager.UI.ShowPopup<UI_Conversation>();
+        _conversationUI.Init(_scripts);
+        _conversationUI.ConversationEnded += OnConversationEnded;
     }
 
     // 업그레이드 할 유닛을 고릅니다.
@@ -91,10 +94,31 @@ public class UpgradeSceneController : MonoBehaviour
     {
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
+
     public void OnSelectUpgrade(DeckUnit unit)
     {
         _unit = unit;
-        GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this);
+
+        while (_upgradeList.Count < 3)
+        {
+            Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade();
+
+            if (!_upgradeList.Contains(upgrade))
+            {
+                _upgradeList.Add(upgrade);
+            }
+        }
+
+        if (_unit.DeckUnitUpgrade.Count == 2 || (_unit.DeckUnitUpgrade.Count == 3 && GameManager.OutGameData.IsUnlockedItem(12)))
+        {
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _unit.DeckUnitUpgrade);
+            _isUpgradeFull = true;
+        }
+        else
+        {
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
+            _isUpgradeFull = false;
+        }
     }
 
     public void OnSelectRelease(DeckUnit unit)
@@ -103,14 +127,17 @@ public class UpgradeSceneController : MonoBehaviour
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
+
         if (_unit.DeckUnitStat.FallCurrentCount > 0)
         {
             _unit.DeckUnitUpgradeStat.FallCurrentCount -= 1;
         }
-        if (isNPCFall && _unit.DeckUnitStat.FallCurrentCount > 0)
+
+        if (_isNPCFall && _unit.DeckUnitStat.FallCurrentCount > 0)
         {
             _unit.DeckUnitUpgradeStat.FallCurrentCount -= 1;
         }
+
         UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
         unitInfo.SetUnit(_unit);
         unitInfo.Init(null, CUR_EVENT.COMPLETE_RELEASE,OnQuitClick);
@@ -118,39 +145,31 @@ public class UpgradeSceneController : MonoBehaviour
 
     public void OnUpgradeSelect(int select)
     {
-        GameManager.UI.ClosePopup();
-        GameManager.UI.ClosePopup();
-        GameManager.UI.ClosePopup();
+        GameManager.UI.CloseAllPopup();
 
-        _unit.DeckUnitUpgradeStat.CurrentUpgradeCount++;
+        if (_isUpgradeFull)
+        {
+            _isUpgradeFull = false;
 
-        if (select == 1)
-        {
-            _unit.DeckUnitUpgrade.Add(GameManager.Data.UpgradeController.GetRandomUpgrade());
-            //_unit.DeckUnitUpgradeStat.ATK += 5;
-          // script.Init(GameManager.Data.ScriptData["강화소_공격력"], false);
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(_unit);
+            unitInfo.Init(null, CUR_EVENT.UPGRADE_EXCEPTION);
+
+            _unit.DeckUnitUpgrade.Remove(_unit.DeckUnitUpgrade[select]);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
         }
-        else if (select == 2)
+        else
         {
-            _unit.DeckUnitUpgradeStat.MaxHP += 15;
-            _unit.DeckUnitUpgradeStat.CurrentHP += 15;
-            //script.Init(GameManager.Data.ScriptData["강화소_체력"], false);
+            _unit.DeckUnitUpgrade.Add(_upgradeList[select]);
+            GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(_unit);
+            unitInfo.Init(null, CUR_EVENT.COMPLETE_UPGRADE, OnQuitClick);
+
         }
-        else if (select == 3)
-        {
-            _unit.DeckUnitUpgradeStat.SPD += 25;
-           // script.Init(GameManager.Data.ScriptData["강화소_속도"], false);
-        }
-        else if (select == 4)
-        {
-            _unit.DeckUnitUpgradeStat.ManaCost -= 10;
-            //script.Init(GameManager.Data.ScriptData["강화소_코스트"], false);
-        }
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        UI_UnitInfo _UnitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        _UnitInfo.SetUnit(_unit);
-        _UnitInfo.Init(null, CUR_EVENT.COMPLETE_UPGRADE,OnQuitClick);
     }
+
     public void OnQuitClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
@@ -163,10 +182,12 @@ public class UpgradeSceneController : MonoBehaviour
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
+        /*
         if (GameManager.Data.GameData.isVisitStigma == false)
         {
             GameManager.Data.GameData.isVisitStigma = true;
         }
+        */
 
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
