@@ -193,13 +193,6 @@ public class BattleManager : MonoBehaviour
         {
             _playerSkillController.PlayerSkillUse(coord);
         }
-        else if (_field.FieldType == FieldColorType.UltimatePlayerSkill)
-        {
-            if (GameManager.Data.PlayerSkillCountChage(-1))
-            {
-                _playerSkillController.PlayerSkillUse(coord);
-            }
-        }
     }
 
     private void SpawnUnitOnField(Vector2 coord)
@@ -385,6 +378,7 @@ public class BattleManager : MonoBehaviour
     public void UnitDeadEvent(BattleUnit unit)
     {
         _battleData.BattleUnitList.Remove(unit);
+        _field.FieldCloseInfo(_field.TileDict[unit.Location]);
         _field.ExitTile(unit.Location);
 
         if (unit.IsConnectedUnit)

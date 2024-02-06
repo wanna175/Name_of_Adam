@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 72488b908bdc20742b13f6d78bcf0bb4
+guid: e0537ce4030294e48af9ba0625804091
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -115,7 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -129,232 +129,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CrossThunder_0
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_0"
       rect:
         serializedVersion: 2
-        x: 300
-        y: 1335
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9dbb4d91a54e97a4b8ceb693de16ccbe
-      internalID: -1651049067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 890
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6aaf55564d98d8478da2fabd7748993
-      internalID: -1808539124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_4
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 890
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a89b72f8afaf0ad4e81a65cad25bed96
-      internalID: 1408936755
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_5
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 890
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 771b3169ac294d249b4afbb4e461a68d
-      internalID: 401204394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_6
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 890
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49e1dd4569980f64fa0c2184b1ecec6b
-      internalID: -1443433958
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 445
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7583e445db3208043aae69eedfcf2c8e
-      internalID: -327987036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_8
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 445
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82db94afbf002d04cb485adb895a0491
-      internalID: -990427785
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_9
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 445
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa63f008ccdc55b4e955e49b493c13c0
-      internalID: -659564083
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_10
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 445
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.65}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 761c17624aae38a41888f23a286b1b7c
-      internalID: -1193748760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrossThunder_11
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 387
         y: 0
-        width: 300
-        height: 445
+        width: 387
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6f9c0e881ca2ed4f8191a27c28c6cfe
-      internalID: -1972825316
+      spriteID: 7d2bbd8648657d440832014e36638c6e
+      internalID: -1185786844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CrossThunder_12
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_1"
       rect:
         serializedVersion: 2
-        x: 300
+        x: 774
         y: 0
-        width: 300
-        height: 445
+        width: 387
+        height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.65}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04b9765d155b76d469bd9f133a24b4cf
-      internalID: -200875412
+      spriteID: eed9cfb6e822cdd46b38055a8f752199
+      internalID: -1230753202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_2"
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 503cdbd3378d78e42be47995a4fdaf19
+      internalID: -1913498094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_3"
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3ab1973dc8cf249be248dbed864a08
+      internalID: -2127756227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_4"
+      rect:
+        serializedVersion: 2
+        x: 1935
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dfc888697759a44993e300c690e002e
+      internalID: 1288631989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_5"
+      rect:
+        serializedVersion: 2
+        x: 2322
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b9a37da8c05f446829b486dc9fec62
+      internalID: 389993806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_6"
+      rect:
+        serializedVersion: 2
+        x: 2709
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 654aa678821d38e4fba0dbc6a48d8df7
+      internalID: -2014531449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_7"
+      rect:
+        serializedVersion: 2
+        x: 3096
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e83e61352d58bd143ae8543a8be2b761
+      internalID: -335950605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_8"
+      rect:
+        serializedVersion: 2
+        x: 3483
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0054c5b11c83c344e919a706589fc08d
+      internalID: -1447023182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_9"
+      rect:
+        serializedVersion: 2
+        x: 3870
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 303b13b7d5b26f5489b13ebeb53a2296
+      internalID: -562025863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_10"
+      rect:
+        serializedVersion: 2
+        x: 4257
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28008da10a8f6724bb23fca79f1a3f73
+      internalID: -2080955188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_11"
+      rect:
+        serializedVersion: 2
+        x: 4644
+        y: 0
+        width: 387
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa52668046d6a7344bffb093af1c9b7e
+      internalID: 76476040
       vertices: []
       indices: 
       edges: []
@@ -370,19 +391,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CrossThunder_2: 2029690158
-      CrossThunder_9: -659564083
-      CrossThunder_8: -990427785
-      CrossThunder_7: -327987036
-      CrossThunder_10: -1193748760
-      CrossThunder_0: -1651049067
-      CrossThunder_11: -1972825316
-      CrossThunder_12: -200875412
-      CrossThunder_5: 401204394
-      CrossThunder_1: 54483814
-      CrossThunder_3: -1808539124
-      CrossThunder_4: 1408936755
-      CrossThunder_6: -1443433958
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_7": -335950605
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_6": -2014531449
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_1": -1230753202
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_5": 389993806
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_3": -2127756227
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_4": 1288631989
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_8": -1447023182
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_2": -1913498094
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_10": -2080955188
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_11": 76476040
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_0": -1185786844
+      "\uC57C\uB098_\uD0C0\uB77D_Attack_Effect_9": -562025863
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

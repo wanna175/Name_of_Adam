@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: "Default_\uC815\uC9C0"
   m_EditorClassIdentifier: 
   _moveType: 2
-  _zoomSize: 63
+  _zoomSize: 60
   _gradientPower: 5

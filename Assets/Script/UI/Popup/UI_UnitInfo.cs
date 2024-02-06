@@ -35,12 +35,15 @@ public class UI_UnitInfo : UI_Popup
     private Action<DeckUnit> _selectRestorationUnit;
     private CUR_EVENT _evNum = 0;
 
+    readonly string UpColorStr = "red";
+    readonly string DownColorStr = "blue";
+
     public void SetUnit(DeckUnit unit)
     {
         _unit = unit;
     }
 
-    public void Init(Action<DeckUnit> onSelect = null, CUR_EVENT Eventnum = CUR_EVENT.NONE, Action endEvent=null)
+    public void Init(Action<DeckUnit> onSelect = null, CUR_EVENT eventNum = CUR_EVENT.NONE, Action endEvent=null)
     {
         _unitImage.sprite = _unit.Data.CorruptImage;
 
@@ -49,7 +52,7 @@ public class UI_UnitInfo : UI_Popup
 
         _selectButton.SetActive(onSelect != null);
 
-        _evNum = Eventnum;
+        _evNum = eventNum;
 
         if (_evNum == CUR_EVENT.COMPLETE_UPGRADE || _evNum == CUR_EVENT.COMPLETE_RELEASE
             || _evNum == CUR_EVENT.COMPLETE_STIGMA || _evNum == CUR_EVENT.COMPLETE_HAELOT)
@@ -64,20 +67,52 @@ public class UI_UnitInfo : UI_Popup
 
         _unitInfoName.text = _unit.Data.Name;
 
-        if (_unit.Data.DarkEssenseCost > 0)
+        string darkEssenseCost = (_unit.Data.DarkEssenseCost > 0) ? " / " + _unit.Data.DarkEssenseCost.ToString() : "";
+
+        string hpChange = "";
+        if (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP > 0)
         {
-            _unitInfoStat.text = "HP: " + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
-                                        "Cost: " + _unit.DeckUnitTotalStat.ManaCost.ToString() + "/" + _unit.Data.DarkEssenseCost.ToString() + "\n" +
-                                        "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + "\n" +
-                                        "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString();
+            hpChange = " <color=\"" + UpColorStr + "\">(+" + (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP).ToString() + ")</color>";
         }
-        else
+        else if (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP < 0)
         {
-            _unitInfoStat.text = "HP: " + _unit.DeckUnitTotalStat.MaxHP.ToString() + "\n" +
-                                        "Cost: " + _unit.DeckUnitTotalStat.ManaCost.ToString() + "\n" +
-                                        "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + "\n" +
-                                        "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString();
+            hpChange = " <color=\"" + DownColorStr + "\">(" + (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP).ToString() + ")</color>";
         }
+
+        string costChange = "";
+        if (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost > 0)
+        {
+            costChange = " <color=\"" + DownColorStr + "\">(+" + (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost).ToString() + ")</color>";
+        }
+        else if (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost < 0)
+        {
+            costChange = " <color=\"" + UpColorStr + "\">(" + (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost).ToString() + ")</color>";
+        }
+
+        string attackChange = "";
+        if (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK > 0)
+        {
+            attackChange = " <color=\"" + UpColorStr + "\">(+" + (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK).ToString() + ")</color>";
+        }
+        else if (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK < 0)
+        {
+            attackChange = " <color=\"" + DownColorStr + "\">(" + (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK).ToString() + ")</color>";
+        }
+
+        string speedChange = "";
+        if (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD > 0)
+        {
+            speedChange = " <color=\"" + UpColorStr + "\">(+" + (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD).ToString() + ")</color>";
+        }
+        else if (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD < 0)
+        {
+            speedChange = " <color=\"" + DownColorStr + "\">(" + (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD).ToString() + ")</color>";
+        }
+
+        _unitInfoStat.text = "HP: " + _unit.DeckUnitTotalStat.MaxHP.ToString() + hpChange + "\n" +
+                                    "Cost: " + _unit.DeckUnitTotalStat.ManaCost.ToString() + costChange + darkEssenseCost + "\n" +
+                                    "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + attackChange + "\n" +
+                                    "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString() + speedChange;
 
         for (int i = _unit.DeckUnitTotalStat.FallCurrentCount; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
