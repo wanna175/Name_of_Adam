@@ -93,6 +93,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void QuitBtn()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (SceneChanger.GetSceneName() == "BattleScene")
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);

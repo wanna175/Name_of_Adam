@@ -45,6 +45,8 @@ public class UI_BattleOver : UI_Scene
 
     public void OnClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
         if (_result == "win")
         {
             if (_rewardScene.isEndFade)
