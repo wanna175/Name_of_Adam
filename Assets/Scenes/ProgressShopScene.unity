@@ -9412,6 +9412,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7159389475023241167, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159389475023241167, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159389475023241167, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1052977420}
+    - target: {fileID: 7159389475023241167, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159389475023241167, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDisabledBtnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159389475023241167, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ProgressShopManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159389475023241167, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7378401661424467505, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
       propertyPath: m_text
       value: 'Upgrade description

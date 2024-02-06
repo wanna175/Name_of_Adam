@@ -110,7 +110,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         //연출하기 애니매이션 끝나면 
         //Debug.Log(GameManager.Data.GameData.DeckUnits);
-       
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_UnitInfo _ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
         _ui.SetUnit(_originUnits[2]);
         _ui.Init(OnSelectMakeUnit,CUR_EVENT.COMPLETE_HAELOT,OnQuitClick);
@@ -124,6 +124,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>().Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
     }
     public void OnSelectRestoration(DeckUnit unit)
