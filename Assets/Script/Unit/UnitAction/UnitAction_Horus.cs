@@ -16,8 +16,17 @@ public class UnitAction_Horus : UnitAction
             return;
         }
 
-        SpawnUnitNearEnemy(attackUnit);
-        BattleManager.Instance.EndUnitAction();
+        attackUnit.AnimatorSetBool("isAttack", true);
+        BattleManager.Instance.PlayAfterCoroutine(() =>
+        {
+            attackUnit.AnimatorSetBool("isAttack", false);
+        }, 3f);
+
+        BattleManager.Instance.PlayAfterCoroutine(() =>
+        {
+            SpawnUnitNearEnemy(attackUnit);
+            BattleManager.Instance.EndUnitAction();
+        }, 1.5f);
     }
 
     public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
@@ -38,11 +47,11 @@ public class UnitAction_Horus : UnitAction
             BattleManager.Field.TileDict[caster.Location].ExitTile();
             if (caster.Team == Team.Player)
             {
-                caster.transform.position = new Vector3(-9, 0, 0);
+                caster.transform.position = new Vector3(-9, 3, 0);
             }
             else
             {
-                caster.transform.position = new Vector3(9, 0, 0);
+                caster.transform.position = new Vector3(9, 3, 0);
 
             }
         }
@@ -50,11 +59,11 @@ public class UnitAction_Horus : UnitAction
         {
             if (caster.Team == Team.Player)
             {
-                caster.transform.position = new Vector3(-9, 0, 0);
+                caster.transform.position = new Vector3(-9, 3, 0);
             }
             else
             {
-                caster.transform.position = new Vector3(9, 0, 0);
+                caster.transform.position = new Vector3(9, 3, 0);
             }
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
