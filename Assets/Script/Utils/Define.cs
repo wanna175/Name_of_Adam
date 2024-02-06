@@ -198,7 +198,8 @@ public enum FieldColorType
     Attack,
     Select,
     PlayerSkill,
-    UltimatePlayerSkill
+    EnemyPlayerSkill,
+    PlayerPlayerSkill
 }
 
 public enum PlayerSkillTargetType
