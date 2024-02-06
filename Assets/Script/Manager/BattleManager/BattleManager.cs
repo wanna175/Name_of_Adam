@@ -378,6 +378,7 @@ public class BattleManager : MonoBehaviour
     public void UnitDeadEvent(BattleUnit unit)
     {
         _battleData.BattleUnitList.Remove(unit);
+        _field.FieldCloseInfo(_field.TileDict[unit.Location]);
         _field.ExitTile(unit.Location);
 
         if (unit.IsConnectedUnit)
