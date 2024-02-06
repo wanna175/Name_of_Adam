@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uD638\uB8E8\uC2A4"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    MaxHP: 100
+    CurrentHP: 100
+    ATK: 30
+    SPD: 0
+    FallCurrentCount: 0
+    FallMaxCount: 1
+    ManaCost: 100
+    CurrentUpgradeCount: 0
+  _uniqueStigma: []
+  _id: 
+  _name: "\uD638\uB8E8\uC2A4"
+  _description: "\uACF5\uACA9 \uB300\uC2E0 \uC5F0\uAF43\uC744 \uC18C\uD658\uD569\uB2C8\uB2E4."
+  _rarity: 3
+  _image: {fileID: 21300000, guid: ca3039b7641dadc4ba694525b02be063, type: 3}
+  _corruptImage: {fileID: 0}
+  _portraitImage: {fileID: 0}
+  _corruptPortraitImage: {fileID: 0}
+  _diaPortraitImage: {fileID: 0}
+  _corruptDiaPortraitImage: {fileID: 0}
+  _animatorController: {fileID: 9100000, guid: e0ce6552cd4dd0a4aaf251c1e131a974, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: cce5a544b9ef2984bac36360dc11a8ac, type: 2}
+  _skillEffectAnim: {fileID: 0}
+  _corruptionSkillEffectAnim: {fileID: 0}
+  _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
+  _darkEssenseDrop: 10
+  _darkEssenseCost: 1
+  _unitActionType: 6
+  _unitMoveType: 0
+  _isBattleOnly: 0
+  _attackRange: 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+  _moveRange: 00000000000000000000000000000000000000000000000000
+  _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+  _unitSize: 00000000000000000000000001000000000000000000000000
