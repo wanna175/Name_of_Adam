@@ -31,7 +31,7 @@ public abstract class PlayerSkill : MonoBehaviour
 
     public int GetOriginalManaCost() => originalmanaCost;
     public int GetOriginalDarkEssenceCost() => originaldarkEssence;
-    public string GetName() => playerSkillName;
+    public string GetName() => GameManager.Locale.GetLocalizedPlayerSkillName(playerSkillName);
     public int GetID() => playerSkillID;
     public virtual string GetDescription() => description;
     public Sprite GetSkillImage() => skillImage;

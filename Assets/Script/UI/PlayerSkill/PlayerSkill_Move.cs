@@ -37,4 +37,23 @@ public class PlayerSkill_Move : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Friendly);
     }
+
+    public override string GetDescription()
+    {
+        SetDescription();
+        return base.GetDescription();
+    }
+
+    public void SetDescription()
+    {
+        string description = "";
+
+        switch (GameManager.Locale.CurrentLocaleIndex)
+        {
+            case 0: description = "Moves an ally one space and grants a speed boost."; break;
+            case 1: description = "아군을 한칸 이동시키고 속도 증가를 부여합니다."; break;
+        }
+
+        base.SetDescription(description);
+    }
 }

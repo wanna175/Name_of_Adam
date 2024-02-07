@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5974f8022204b8b469fc197934ae988b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\uC5C5\uBCF4"
-  _sprite: {fileID: 21300000, guid: 1d20ef984f77be741ae66f8f983a9347, type: 3}
-  _description: "\uC18C\uD658 \uC2DC \uC5C5\uBCF4\uB97C 2\uD68C \uD68D\uB4DD\uD569\uB2C8\uB2E4.\r\n\uC5C5\uBCF4:
-    \uD53C\uACA9\uC2DC \uACF5\uACA9\uD55C \uC801 \uC720\uB2DB\uC758 \uC2E0\uC559\uC744
-    1 \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4."
+  _stigmaEnum: 0
+  _name: Karma
+  _sprite_28: {fileID: 0}
+  _sprite_88: {fileID: 0}
+  _sprite_164: {fileID: 0}
+  _description: Karma Info
   _activeTiming: 2
   _tier: 3
   _isLock: 0

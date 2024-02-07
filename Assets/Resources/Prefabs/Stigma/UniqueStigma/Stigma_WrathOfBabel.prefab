@@ -45,14 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 0
-  _name: "\uBC14\uBCA8\uC758 \uC9C4\uB178"
+  _name: Wrath of Babel
   _sprite_28: {fileID: 21300000, guid: 3adc74dfb08c7e646b9296cf30435927, type: 3}
   _sprite_88: {fileID: 21300000, guid: afebee306f9b5754a86935c50c0092af, type: 3}
   _sprite_164: {fileID: 21300000, guid: 8e782dc92e19fd2458ca5fdb9b887030, type: 3}
-  _description: "\uD544\uB4DC\uC5D0 \uC624\uBCA8\uB9AC\uC2A4\uD06C\uAC00 6\uAC1C
-    \uC774\uC0C1\uC774 \uB418\uBA74 \uACBD\uC6B0 \uC624\uBCA8\uB9AC\uC2A4\uD06C\uAC00
-    \uC788\uB294 \uD0C0\uC77C\uC744 \uC81C\uC678\uD55C \uD0C0\uC77C\uC744 \uC804\uBD80
-    \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  _description: Wrath of Babel Info
   _activeTiming: 2
   _tier: 3
   _isLock: 0

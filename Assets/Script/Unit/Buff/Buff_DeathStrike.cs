@@ -6,11 +6,11 @@ public class Buff_DeathStrike : Buff
     {
         _buffEnum = BuffEnum.DeathStrike;
 
-        _name = "죽음의 일격";
+        _name = "Death Strike";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
 
-        _description = "3배의 대미지를 입히는 대신 공격 후 사망합니다.";
+        _description = "Damage triples, but dies after attacking.";
 
         _count = -1;
 

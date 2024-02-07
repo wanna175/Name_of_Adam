@@ -29,4 +29,23 @@ public class PlayerSkill_02_02 : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Friendly);
     }
+
+    public override string GetDescription()
+    {
+        SetDescription();
+        return base.GetDescription();
+    }
+
+    public void SetDescription()
+    {
+        string description = "";
+
+        switch (GameManager.Locale.CurrentLocaleIndex)
+        {
+            case 0: description = "Bestows malevolence 3 times and reduces faith by 1 to the designated ally."; break;
+            case 1: description = "지정한 아군에게 악성을 3회 부여하고 신앙을 1 떨어뜨립니다."; break;
+        }
+
+        base.SetDescription(description);
+    }
 }

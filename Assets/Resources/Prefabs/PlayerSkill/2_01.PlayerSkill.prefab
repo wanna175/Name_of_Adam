@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 30
   originaldarkEssence: 1
-  playerSkillName: 
+  playerSkillName: Divine Punishment
   playerSkillID: 7
   manaCost: 30
   darkEssence: 1

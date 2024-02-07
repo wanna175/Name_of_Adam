@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 20
   originaldarkEssence: 2
-  playerSkillName: 
+  playerSkillName: Trade of Souls
   playerSkillID: 8
   manaCost: 20
   darkEssence: 2

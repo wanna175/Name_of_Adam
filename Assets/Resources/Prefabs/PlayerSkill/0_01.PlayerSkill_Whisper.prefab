@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 20
   originaldarkEssence: 2
-  playerSkillName: "\uC18D\uC0AD\uC784"
+  playerSkillName: Whisper
   playerSkillID: 1
   manaCost: 20
   darkEssence: 2

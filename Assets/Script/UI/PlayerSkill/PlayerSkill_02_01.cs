@@ -32,4 +32,23 @@ public class PlayerSkill_02_01 : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
     }
+
+    public override string GetDescription()
+    {
+        SetDescription();
+        return base.GetDescription();
+    }
+
+    public void SetDescription()
+    {
+        string description = "";
+
+        switch (GameManager.Locale.CurrentLocaleIndex)
+        {
+            case 0: description = "Deals 30 damage to the designated unit."; break;
+            case 1: description = "지정한 유닛에게 데미지를 30 줍니다."; break;
+        }
+
+        base.SetDescription(description);
+    }
 }

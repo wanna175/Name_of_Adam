@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: BuffNameTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: BuffNameTable
+  m_TableCollectionNameGuidString: 006b695ab866e394fb2675df1bc55717
+  m_Entries:
+  - m_Id: 12116094976
+    m_Key: Divine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51949400064
+    m_Key: Attack Increase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 83377319936
+    m_Key: Speed Increase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 112586452992
+    m_Key: Death Strike
+    m_Metadata:
+      m_Items: []
+  - m_Id: 136456237056
+    m_Key: Sadism
+    m_Metadata:
+      m_Items: []
+  - m_Id: 159411662848
+    m_Key: Immortality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 179976335360
+    m_Key: Invincibility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200973021184
+    m_Key: Sacred Step
+    m_Metadata:
+      m_Items: []
+  - m_Id: 235454394368
+    m_Key: Stun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 257545793536
+    m_Key: Malevolence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282799697920
+    m_Key: Mark of the Beast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 306728202240
+    m_Key: Sin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336331599872
+    m_Key: Dusk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 383777566720
+    m_Key: Karma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 413548736512
+    m_Key: Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 440706854912
+    m_Key: Staff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 489692131328
+    m_Key: Book
+    m_Metadata:
+      m_Items: []
+  - m_Id: 503696912384
+    m_Key: Curse
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8030905667344924678
+  references:
+    version: 2
+    RefIds:
+    - rid: 8030905667344924678
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1707312636474

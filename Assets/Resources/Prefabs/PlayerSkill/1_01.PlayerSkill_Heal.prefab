@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 20
   originaldarkEssence: 1
-  playerSkillName: "\uD68C\uBCF5"
+  playerSkillName: Recovery
   playerSkillID: 4
   manaCost: 20
   darkEssence: 1

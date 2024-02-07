@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 50
   originaldarkEssence: 3
-  playerSkillName: "\uAE30\uB3C4"
+  playerSkillName: Prayer
   playerSkillID: 6
   manaCost: 50
   darkEssence: 3

@@ -29,4 +29,23 @@ public class PlayerSkill_Bounce : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Friendly);
     }
+
+    public override string GetDescription()
+    {
+        SetDescription();
+        return base.GetDescription();
+    }
+
+    public void SetDescription()
+    {
+        string description = "";
+
+        switch (GameManager.Locale.CurrentLocaleIndex)
+        {
+            case 0: description = "Brings back a designated ally."; break;
+            case 1: description = "지정한 아군을 귀환시킵니다."; break;
+        }
+
+        base.SetDescription(description);
+    }
 }

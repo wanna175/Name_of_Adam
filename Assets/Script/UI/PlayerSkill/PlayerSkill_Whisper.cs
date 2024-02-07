@@ -23,4 +23,23 @@ public class PlayerSkill_Whisper : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
     }
+
+    public override string GetDescription()
+    {
+        SetDescription();
+        return base.GetDescription();
+    }
+
+    public void SetDescription()
+    {
+        string description = "";
+
+        switch (GameManager.Locale.CurrentLocaleIndex)
+        {
+            case 0: description = "Lowers the faith of a designated enemy by 1."; break;
+            case 1: description = "적 한명을 지정하여 신앙을 1 떨어뜨립니다"; break;
+        }
+
+        base.SetDescription(description);
+    }
 }

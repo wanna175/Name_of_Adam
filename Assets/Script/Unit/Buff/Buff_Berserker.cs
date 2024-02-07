@@ -8,11 +8,11 @@ public class Buff_Berserker : Buff
     {
         _buffEnum = BuffEnum.Berserker;
 
-        _name = "광화";
+        _name = "Attack Increase";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "매 턴 공격력 50% 증가 합니다.";
+        _description = "Attacks with a 50% increase in damage.";
 
         _count = 1;
 
