@@ -45,13 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 15
-  _name: "\uBD88\uC0AC\u2161"
+  _name: Immortality II
   _sprite_28: {fileID: 21300000, guid: e6c25ec2655b40b42a62a92a1d1d1fb8, type: 3}
   _sprite_88: {fileID: 21300000, guid: 92a454b61b0fede4587eff2e90bbbf9f, type: 3}
   _sprite_164: {fileID: 21300000, guid: 0caf7616d3cdad24089eef3a0b5ae8dd, type: 3}
-  _description: "\uC18C\uD658\uC2DC \uC8FD\uC74C\uC5D0 \uC774\uB974\uB294 \uD53C\uD574\uB97C
-    \uC785\uC744 \uC2DC 1\uC758 \uCCB4\uB825\uC73C\uB85C 2\uD68C \uBC84\uD2F0\uB294
-    \uBC84\uD504\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+  _description: Earns immortality 2 times upon summoning.
   _activeTiming: 2
   _tier: 1
   _isLock: 0

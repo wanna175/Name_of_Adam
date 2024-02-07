@@ -50,6 +50,18 @@ MonoBehaviour:
     m_Address: Assets/Locale/Tables/TutorialTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 3d737ad490d95664a8234e313e796524
+    m_Address: Assets/Locale/Tables/Unit/UnitTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 8f1c5be855cafc94da994ed88f5d504b
+    m_Address: Assets/Locale/Tables/Stigma/StigmaTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 6b058525e4109d1409a30aaf2c99f35f
+    m_Address: Assets/Locale/Tables/Stigma/StigmaInfoTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:

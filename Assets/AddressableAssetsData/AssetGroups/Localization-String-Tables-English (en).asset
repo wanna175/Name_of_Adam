@@ -42,7 +42,7 @@ MonoBehaviour:
     - Locale-en
     - Preload
   - m_GUID: 28a1bf596c645ba4886b90c8cc695992
-    m_Address: WordTable_en
+    m_Address: ItemTable_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
@@ -61,6 +61,24 @@ MonoBehaviour:
     - Preload
   - m_GUID: b85af8cb787a5ed4a990a28c11aacbd7
     m_Address: TutorialTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 5b9d2f33ce4ad154396de90473eda7d3
+    m_Address: UnitTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 20f3199f5876a76429084260b1b4b2d7
+    m_Address: StigmaNameTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: d089ec37932e9774e9df8757592686e2
+    m_Address: StigmaInfoTable_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

@@ -58,7 +58,6 @@ public class OutGameDataContainer : MonoBehaviour
     OutGameData data;
     string path;
     List<Resolution> resolutions;
-    bool isChangingLanguage = false;
 
     public void Init()
     {
@@ -73,7 +72,6 @@ public class OutGameDataContainer : MonoBehaviour
         };
 
         LoadData();
-        LanguageChanged(data.language);
         SetResolution();
     }
 
@@ -276,26 +274,6 @@ public class OutGameDataContainer : MonoBehaviour
         Resolution resolution = resolutions[data.resolution];
         Screen.SetResolution(resolution.width, resolution.height, !data.isWindowed);
         SaveData();
-    }
-
-    public void LanguageChanged(int localeIndex)
-    {
-        if (isChangingLanguage)
-            return;
-
-        StartCoroutine(ChangeLanuage(localeIndex));
-    }
-
-    IEnumerator ChangeLanuage(int localeIndex)
-    {
-        isChangingLanguage = true;
-
-        yield return LocalizationSettings.InitializationOperation;
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeIndex];
-        SetLanguage(localeIndex);
-        Debug.Log(LocalizationSettings.SelectedLocale.LocaleName);
-
-        isChangingLanguage = false;
     }
 
     public void SetWindow(bool isWindowed)

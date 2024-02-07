@@ -50,7 +50,7 @@ public class UI_Option : UI_Popup
         SEPower = GameManager.OutGameData.GetSESoundPower();
 
         // UI ¼¼ÆÃ
-        languageDropdown.onValueChanged.AddListener(GameManager.OutGameData.LanguageChanged);
+        languageDropdown.onValueChanged.AddListener(GameManager.Locale.LanguageChanged);
         resolutionDropdown.onValueChanged.AddListener(ResolutionDropdownChanged);
         resolutionDropdown.options.Clear();
 

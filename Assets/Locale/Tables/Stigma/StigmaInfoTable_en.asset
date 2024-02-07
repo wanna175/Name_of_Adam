@@ -1,0 +1,185 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StigmaInfoTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 6b058525e4109d1409a30aaf2c99f35f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 17036013568
+    m_Localized: Pulls the enemy one tile closer upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1062504034304
+    m_Localized: Removes all buffs from the enemy upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1089838313472
+    m_Localized: Moves behind the attacked enemy if there is only one enemy targeted
+      with the attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1175741853696
+    m_Localized: Acquires the Death strike upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1213641584640
+    m_Localized: Recovers 30% of the damage dealt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1262668804096
+    m_Localized: Upon attacking, targets an additional enemy within the attack range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1312883011584
+    m_Localized: Able to summon anywhere on the field.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502159368192
+    m_Localized: Recovers 5 mana upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1751317803008
+    m_Localized: Oneself and nearby allies within 4 tiles gain an attack boost for
+      1 turns upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1873627901952
+    m_Localized: Oneself and nearby allies within 4 tiles gain an attack boost for
+      2 turns upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1890304454656
+    m_Localized: All allies in the same row as the summoner gain a one-time speed
+      increase upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2000841142272
+    m_Localized: "Attack power increases by 2 for each target attacked. \n(Resets
+      at the end of the stage.)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2181942800384
+    m_Localized: "Attack power increases by 3 for each target attacked. \n(Resets
+      at the end of the stage.)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2236426809344
+    m_Localized: Recovers 10 health when an enemy or an ally dies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2356740419584
+    m_Localized: Recovers 20 health when an enemy or an ally dies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2420078604288
+    m_Localized: Recovers 5 health after the end of its turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2460759158784
+    m_Localized: Recovers 10 health after the end of its turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2549326082048
+    m_Localized: Restores 30 health to allies within 4 adjacent tiles upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2613922557952
+    m_Localized: Earns immortality 1 times upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2705945587712
+    m_Localized: Earns immortality 2 times upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2745237827584
+    m_Localized: Earns invincibility 1 times upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2856676290560
+    m_Localized: Earns invincibility 2 times upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2911923662848
+    m_Localized: Becomes capable of moving one additional step in the cross direction.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3085446213632
+    m_Localized: Becomes capable of moving one step diagonally.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3199489339392
+    m_Localized: Earns increase in attack each turn, but the maximum faith value
+      becomes fixed to 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3269714571264
+    m_Localized: The unit becomes stunned once, but the mana cost of the next skill
+      is eliminated upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3422802472960
+    m_Localized: When attacking, there is a 50% chance for damage to be doubled and
+      a 50% chance for it to be halved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3515362373632
+    m_Localized: Gains an extra turn upon defeating an enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3607628673024
+    m_Localized: Gains 1 Sacred Step upon defeating an enemy, .
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3932058087424
+    m_Localized: Instead of reducing the attack to 0, decreases the enemy's faith
+      by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4027667247104
+    m_Localized: All buffs and debuffs acquired by this unit are replaced with malevolence.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4114728415232
+    m_Localized: When the faith of this unit is 2 or below, it reduces the enemy's
+      faith by 1 upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4198899707904
+    m_Localized: When the health of this unit is below half, it reduces the enemy's
+      faith by 1 upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4287227555840
+    m_Localized: "\uC801\uC744 \uCC98\uCE58\uD558\uAC70\uB098 \uD0C0\uB77D\uC2DC\uCF30\uC744
+      \uC2DC \uD574\uB2F9 \uC720\uB2DB\uC5D0\uAC8C \uB300\uC8C4\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4454450262016
+    m_Localized: When attacking two or more enemies at once, it reduces faith by
+      1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4568623411200
+    m_Localized: Earns malevolence 99 times upon summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7908400885760
+    m_Localized: Earns malevolence two times upon summoning.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

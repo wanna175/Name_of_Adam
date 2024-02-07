@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private OutGameDataContainer _outGameData;
     public static OutGameDataContainer OutGameData => Instance._outGameData;
 
+    [SerializeField] private LocaleManager _locale;
+    public static LocaleManager Locale => Instance._locale;
+
     void Awake()
     {
         if (s_instance != null)
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
             Data.Init();
             Sound.Init();
             VisualEffect.Init();
-            
+            Locale.Init();
         }
 
         /*

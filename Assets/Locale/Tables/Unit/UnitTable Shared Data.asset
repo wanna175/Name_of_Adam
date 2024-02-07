@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UnitTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UnitTable
+  m_TableCollectionNameGuidString: 3d737ad490d95664a8234e313e796524
+  m_Entries:
+  - m_Id: 2490169618432
+    m_Key: Dark Knight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138458386198528
+    m_Key: The conjoined twins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138523389521920
+    m_Key: Undertaker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138574560030720
+    m_Key: Heir of Vice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138606537404416
+    m_Key: Gravekeeper
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138633112514560
+    m_Key: Prisoner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138655476543488
+    m_Key: Swordsman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138676607447040
+    m_Key: Archer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138695980937216
+    m_Key: Nun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138716692410368
+    m_Key: Laborer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139332231688192
+    m_Key: Soldier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139363194040320
+    m_Key: Executioner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139394332553216
+    m_Key: Assassin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139419968139264
+    m_Key: Skirmisher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139513161379840
+    m_Key: Raider
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139549890899968
+    m_Key: Monster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139586473619456
+    m_Key: Messenger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139622016151552
+    m_Key: Slaughterer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139642572435456
+    m_Key: Consul
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139688399400960
+    m_Key: Beholder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139713363898368
+    m_Key: The triad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139767420088320
+    m_Key: Elieus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139879194095616
+    m_Key: Yana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139929794179072
+    m_Key: Tubalcain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139948827930624
+    m_Key: RahelLea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140106198216704
+    m_Key: King Herod
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140130516791296
+    m_Key: Obelisk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140153170227200
+    m_Key: The savior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 140613729972224
+    m_Key: Lucifer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1412190752796672
+    m_Key: Scorched
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8030905576787279880
+  references:
+    version: 2
+    RefIds:
+    - rid: 8030905576787279880
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1706967835812

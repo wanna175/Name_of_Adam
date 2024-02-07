@@ -43,7 +43,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7081742733312
     m_Localized: "The gem next to an enemy unit's health represents <color=#FF9696>faith<color=white>.\r
-      If you deplete an enemy's Faith entirely, they convert to an ally. Conversely,
+      \nIf you deplete an enemy's Faith entirely, they convert to an ally. Conversely,
       if your unit loses all Faith, it becomes an enemy."
     m_Metadata:
       m_Items: []
@@ -58,6 +58,31 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7923766038528
     m_Localized: Stigmata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7972952641536
+    m_Localized: <color=#FF9696>Stigmata <color=white>is the passive skill of a unit.
+      <color=#FF9696>Stigmata<color=white> can be applied to an enemy when <color=#FF9696>corrupted.<color=white>Corrupting
+      an enemy allows you to give the unit up to three <color=#FF9696>Stigmata.<color=white>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1485006017720320
+    m_Localized: Divine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1485860405833728
+    m_Localized: Enemies with the <color=#FF9696>Divine buff<color=white> reduce
+      faith when attacking. <color=#FF9696>If only one enemy remains,<color=white>
+      it gains the Divine buff, and some enemies start with the buff from the beginning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1487027324121088
+    m_Localized: Conditions for Defeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1487393277145088
+    m_Localized: "If there are no ally units on the field, enemies will directly
+      attack the player.\r"
     m_Metadata:
       m_Items: []
   references:

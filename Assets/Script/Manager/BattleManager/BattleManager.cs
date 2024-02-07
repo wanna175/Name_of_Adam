@@ -686,7 +686,7 @@ public class BattleManager : MonoBehaviour
 
             if (!GameManager.OutGameData.isTutorialClear())
             {
-                if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Defeat))
+                if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Devine))
                 {
                     TutorialManager.Instance.SetNextStep();
                     TutorialManager.Instance.ShowTutorial();

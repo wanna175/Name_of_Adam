@@ -55,6 +55,22 @@ MonoBehaviour:
     m_Key: 'Stigmata: info'
     m_Metadata:
       m_Items: []
+  - m_Id: 1485006017720320
+    m_Key: Divine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1485860405833728
+    m_Key: 'Divine: info'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1487027324121088
+    m_Key: Conditions for Defeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1487393277145088
+    m_Key: 'Conditions for Defeat: info'
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

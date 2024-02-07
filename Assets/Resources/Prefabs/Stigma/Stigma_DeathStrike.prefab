@@ -45,13 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 9
-  _name: "\uC8FD\uC74C\uC758 \uC77C\uACA9"
+  _name: Death Strike
   _sprite_28: {fileID: 21300000, guid: e579b8187f2753746a8d57ca6fcb6a4d, type: 3}
   _sprite_88: {fileID: 21300000, guid: 9677051e3d354f44083b5f36ab5174c0, type: 3}
   _sprite_164: {fileID: 21300000, guid: 1094b711fca3ea54da59c3b8ac08e70a, type: 3}
-  _description: "\uC18C\uD658 \uC2DC \uB300\uBBF8\uC9C0\uAC00 3\uBC30\uAC00 \uB418\uB294
-    \uB300\uC2E0 \uACF5\uACA9 \uD6C4 \uC0AC\uB9DD\uD558\uB294 \uBC84\uD504\uB97C
-    \uC5BB\uC2B5\uB2C8\uB2E4."
+  _description: Acquires the Death strike upon summoning.
   _activeTiming: 2
   _tier: 0
   _isLock: 0

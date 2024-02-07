@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour
         // 영문
         new string[] {
         // 튜토리얼 1 시작
-        "During the<color=#FF9696>player turn<color=white>, you can summon units or use skills.",
+        "During the <color=#FF9696>player turn<color=white>, you can summon units or use skills.",
         "<color=#FF9696>Mana<color=white> is required for summoning units or using skills.\nMana recovers by <color=#FF9696>30<color=white> each player turn",
         "These are the currently summonable units.\n<color=#FF9696>On the first player turn<color=white>, you can summon units using only <color=#FF9696>half of<color=white> the required mana.",
         "These are the skills that aid you in combat.",
@@ -29,21 +29,21 @@ public class TutorialManager : MonoBehaviour
         "Attack the Swordsman.[CTRL]",
 
         // 튜토리얼 2 시작
-        "특정 유닛을 사용하거나 스킬을 사용할 때 필요한 <color=#FF9696>검은 정수<color=white>입니다.\n적을 처치할 때마다 하나씩 얻을 수 있습니다.",
-        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 낙인을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
-        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 낙인을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
-        "공격 시 적의 <color=#FF9696>신앙<color=white>을 떨어뜨리는 <color=#FF9696>악성 버프<color=white>입니다.\n흑기사는 이 악성 버프를 <color=#FF9696>2회<color=white> 얻는 낙인을 가지고 있습니다.\n잘 활용하여 적을 타락시켜보세요.",
+        "This is the <color=#FF9696>dark essence<color=white> needed for using specific units or skills.\nDark essence is obtained by defeating enemies",
+        "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
+        "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
+        "The <color=#FF9696>malevolence buff<color=white> reduces an enemy's <color=#FF9696>faith<color=white> when attacking.\nThe Dark Knight has the stigmata that provides the malevolence <color=#FF9696>buff twice.<color=white>\nEffectively utilize these instructions to corrupt enemies.",
         "<color=#FF9696>턴 종료 버튼<color=white>을 눌러 유닛 턴으로 넘어가세요.[CTRL]",
-        "이동이 필요가 없는 경우 <color=#FF9696>턴 종료 버튼<color=white>을 눌러 턴을 넘길 수 있어요.[CTRL]",
-        "검병을 공격하여 <color=#FF9696>신앙<color=white>을 떨어뜨리세요.[CTRL]",
-        "<color=#FF9696>신앙<color=white>을 떨어뜨리는 스킬 <color=#FF9696>속삭임<color=white>을 사용하여 적을 타락시켜 보세요.[CTRL]",
-        "<color=#FF9696>신앙<color=white>을 떨어뜨리는 스킬 <color=#FF9696>속삭임<color=white>을 사용하여 적을 타락시켜 보세요.[CTRL]",
-        "적을 타락시킬 경우 해당 적을 아군으로 만들며 <color=#FF9696>낙인<color=white>을 부여할 수 있습니다.\n검병에게 부여할 낙인을 선택하세요.[CTRL]",
+        "Press the <color=#FF9696>Turn End button<color=white> to skip to the next turn when moving is unnecessary.[CTRL]",
+        "Attack the swordsman to reduce <color=#FF9696>faith.<color=white>[CTRL]",
+        "Use the skill <color=#FF9696>Whisper<color=white> to reduce the enemy's faith and  corrupt them.[CTRL]",
+        "Use the skill <color=#FF9696>Whisper<color=white> to reduce the enemy's faith and  corrupt them.[CTRL]",
+        "When corrupting an enemy, you can choose a <color=#FF9696>stigmata<color=white> to apply and convert them into an ally.\nSelect a stigmata to bestow upon the swordsman.[CTRL]",
         "이제 검병은 당신의 유닛이 되었습니다.\n이제 턴 종료를 누르세요.[CTRL]",
-        "아군이 이미 있는 위치로 이동할 시 두 유닛은 서로 위치를 바꿉니다.\n흑기사를 이동시키세요.[CTRL]",
-        "수녀를 공격하여 무적 버프를 없애보세요.[CTRL]",
-        "검병을 이동시키세요.[CTRL]",
-        "부적 버프가 사라진 수녀를 마무리하세요.[CTRL]",
+        "When a unit moves to a position where an ally already exists, the two units change places.\nMove the dark knight.[CTRL]",
+        "Attack the Nun to remove her invincibility buff.[CTRL]",
+        "Move the Swordsman.[CTRL]",
+        "Finish off the Nun, now that the invincibility buff has disappeared.[CTRL]",
         "",
         },
 
@@ -126,7 +126,7 @@ public class TutorialManager : MonoBehaviour
         {
             case 1: _step = TutorialStep.UI_PlayerTurn; break;
             case 2: _step = TutorialStep.UI_FallSystem; break;
-            case 3: _step = TutorialStep.UI_UnitDead; break;
+            case 3: _step = TutorialStep.UI_Defeat; break;
         }
 
         isCanClick = true;
@@ -149,7 +149,7 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowNextTutorial()
     {
-        if (CheckStep(TutorialStep.UI_Defeat) || CheckStep(TutorialStep.UI_Last))
+        if (CheckStep(TutorialStep.UI_Devine) || CheckStep(TutorialStep.UI_Last))
             return; // 마지막 UI 튜토리얼 관련 Step은 조건부 동작이기 때문에 예외 처리
 
         SetNextStep();
@@ -207,6 +207,8 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowTutorial()
     {
+        Debug.Log(_step);
+
         if (IsToolTip(_step))
         {
             // Tooltip 모드

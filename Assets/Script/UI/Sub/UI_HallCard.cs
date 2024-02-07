@@ -58,7 +58,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         _isEnable = true;
         UnitImage.sprite = _mainDeck[HallUnitID].Data.Image;
         UnitImage.color = Color.white;
-        _nameText.SetText(_mainDeck[HallUnitID].Data.name);
+        _nameText.SetText(_mainDeck[HallUnitID].Data.Name);
         infoButton.SetActive(true);
 
         List<Stigma> stigmas = _mainDeck[HallUnitID].GetStigma();

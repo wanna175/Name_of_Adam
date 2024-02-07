@@ -41,7 +41,7 @@ MonoBehaviour:
     - Locale-ko
     - Preload
   - m_GUID: cca2438402bcf9b488aeb6ae894a7b16
-    m_Address: WordTable_ko
+    m_Address: ItemTable_ko
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko
@@ -60,6 +60,24 @@ MonoBehaviour:
     - Preload
   - m_GUID: 8be7a6d144bd19245937cdd7490ce92d
     m_Address: TutorialTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: c9b8e0045ccd742498d5b9c777b569e2
+    m_Address: UnitTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 6aee0956488fa534ebb2ae758e304d75
+    m_Address: StigmaNameTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 183c4bdb5e25dd543b62839dc06c8c60
+    m_Address: StigmaInfoTable_ko
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko
