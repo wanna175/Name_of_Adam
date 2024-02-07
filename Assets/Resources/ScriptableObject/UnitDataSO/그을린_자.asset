@@ -23,8 +23,8 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 133568484166777680, guid: a46f781cb16be0d49b0bf50816d71ef0, type: 3}
-  _id: 
-  _name: "\uADF8\uC744\uB9B0_\uC790"
+  _id: "\uADF8\uC744\uB9B0_\uC790"
+  _name: Scorched
   _description: 
   _rarity: 2
   _image: {fileID: 21300000, guid: a88523e247267aa4691c1f2802ea0693, type: 3}

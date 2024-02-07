@@ -74,6 +74,14 @@ MonoBehaviour:
     m_Address: Assets/Locale/Tables/PlayerSkill/PlayerSkillTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 16f10f4ab855b854bbb5f3144f462bd1
+    m_Address: Assets/Locale/Tables/Script/ScriptNameTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2acbcb6b143f0fa47a3defdf9318e0bf
+    m_Address: Assets/Locale/Tables/Script/ScriptInfoTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:

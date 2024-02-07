@@ -23,8 +23,8 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: -8096215998959275874, guid: 779a956cb397b6646955c2d17cb88908, type: 3}
-  _id: 
-  _name: "\uD53C\uBD80\uC0AC"
+  _id: "\uC30D\uC0DD\uC544"
+  _name: The conjoined twins
   _description: 
   _rarity: 2
   _image: {fileID: 21300000, guid: fcec2505b5ece774d8bac99dbc711949, type: 3}

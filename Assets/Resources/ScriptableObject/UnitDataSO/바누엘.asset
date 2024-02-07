@@ -25,10 +25,9 @@ MonoBehaviour:
   - {fileID: -1096335051127237467, guid: cd5ed88c6bfe63e4e84e2e734f01dcc3, type: 3}
   - {fileID: -508501736621560720, guid: 34fc05444e997cd40bf7be4e3a0de2e5, type: 3}
   - {fileID: -1213146846785058329, guid: b0be4fdad88a10244b88f531a3bbcb82, type: 3}
-  _id: 
-  _name: "\uBC14\uB204\uC5D8"
-  _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
-    \uC8FC\uBA70 \uD0C0\uB77D\uB3C4 1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  _id: "\uBC14\uB204\uC5D8"
+  _name: King Herod
+  _description: 
   _rarity: 3
   _image: {fileID: -561143384, guid: 1a22865a3ea972d46b40720e5f4d1a7b, type: 3}
   _corruptImage: {fileID: 0}

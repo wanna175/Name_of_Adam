@@ -17,16 +17,16 @@
       "title": "엘리우스_야나전_입장",
       "contents": [
         {
-          "name": "엘리우스",
-          "script": "너는 이 낙원에 어울리지 않는 이구나."
+          "name": "Elieus",
+          "script": "You do not belong within this paradise."
         },
         {
-          "name": "엘리우스",
-          "script": "해와 달이 동시에 너의 머리 위로 뜨니, 영원한 어둠 속에 잠기리라."
+          "name": "Elieus",
+          "script": "With the sun and moon both rising above you, you shall be submerged in eternal darkness."
         },
         {
-          "name": "야나",
-          "script": "아담의 이름으로 비나이다."
+          "name": "Yana",
+          "script": "In the name of the divine."
         }
       ]
     },
@@ -34,12 +34,12 @@
       "title": "투발카인전_입장",
       "contents": [
         {
-          "name": "투발카인",
-          "script": "오너라 거짓된 선지자여"
+          "name": "Tubalcain",
+          "script": "A true knight does not yield to fear. En garde! Shall you be vanquished in no time."
         },
         {
-          "name": "투발카인",
-          "script": "오너라 검은 물결이여"
+          "name": "Tubalcain",
+          "script": "This is it. This is the true beauty I sought!"
         }
       ]
     },
@@ -47,8 +47,8 @@
       "title": "바누엘전_입장",
       "contents": [
         {
-          "name": "바누엘",
-          "script": "아아... 안식은 미몽이었을 뿐이라..."
+          "name": "King Herod",
+          "script": "Wisdom, power, and might. The power of the trinity can subjugate all."
         }
       ]
     },

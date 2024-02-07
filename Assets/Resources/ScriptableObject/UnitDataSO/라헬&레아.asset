@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
-  m_Name: "\uB77C\uD5EC\uB808\uC544"
+  m_Name: "\uB77C\uD5EC&\uB808\uC544"
   m_EditorClassIdentifier: 
   _rawStat:
     MaxHP: 100
@@ -22,8 +22,8 @@ MonoBehaviour:
     ManaCost: 100
     CurrentUpgradeCount: 0
   _uniqueStigma: []
-  _id: 
-  _name: "\uB77C\uD5EC\uB808\uC544"
+  _id: "\uB77C\uD5EC&\uB808\uC544"
+  _name: Rahel&Lea
   _description: 
   _rarity: 1
   _image: {fileID: 21300000, guid: 8ca6f45fba2fb634c88cbbe17bce7c45, type: 3}
