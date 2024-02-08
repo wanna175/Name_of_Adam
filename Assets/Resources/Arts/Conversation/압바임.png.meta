@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b0b926476c52fed4cb223c40c1fccb44
+guid: 1d0f7a19ee21cac4eabea86decb9180d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,22 +117,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nimurot_conversation_2_0
+      name: "\uC555\uBC14\uC784_0"
       rect:
         serializedVersion: 2
-        x: 116
-        y: 0
-        width: 340
-        height: 170
+        x: 12
+        y: 71
+        width: 120
+        height: 60
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89255338b3292814fa7d7fb40d55be10
-      internalID: -1441277384
+      spriteID: a5fbbe87ff27b6944b42a80fe8dfa20e
+      internalID: 795979671
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      nimurot_conversation_2_0: -1441277384
+      "\uC555\uBC14\uC784_0": 795979671
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
