@@ -20,13 +20,16 @@ public class UI_ESCOption : UI_Popup
 
     public void GoToMainButton()
     {
-        // 메인으로 돌아갈 때 저장 필요?
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.SaveManager.DeleteSaveData();
+        SceneChanger.SceneChange("MainScene");
+        Time.timeScale = 1;
     }
 
     public void ExitButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.SaveManager.SaveGame();
         Application.Quit();
-        // 게임 나갈 때 저장 필요?
     }
 }
