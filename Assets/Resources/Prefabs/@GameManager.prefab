@@ -285,7 +285,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -294,7 +293,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
 --- !u!1 &7143347325917774965

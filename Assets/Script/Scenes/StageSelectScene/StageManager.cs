@@ -35,21 +35,29 @@ public class StageManager : MonoBehaviour
 
         ActClearCheck();
 
-        // 맵 프리팹이 존재하지 않다면(스테이지 최초 진입 시) 맵중에 랜덤으로 하나 가져오기
         if (GameManager.Data.Map.MapObject == null)
         {
             if (GameManager.Data.StageAct == 0)
             {
-                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/TutorialMap");
+                if (!GameManager.OutGameData.isTutorialClear())
+                {
+                    GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/TutorialMap/TutorialMap");
+                }
+                else
+                {
+                    GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct0");
+                    GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
+                }
             }
             else if (GameManager.Data.StageAct == 1)
             {
-                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/Map");
-                //GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/ProtoMap1");
+                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct1");
+                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
             }
             else if (GameManager.Data.StageAct == 2)
             {
-                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/ProtoMap2");
+                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct2");
+                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
             }
             else
             {
@@ -57,6 +65,8 @@ public class StageManager : MonoBehaviour
                 GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
             }
         }
+
+
         Instantiate(GameManager.Data.Map.MapObject);
     }
 
@@ -87,15 +97,6 @@ public class StageManager : MonoBehaviour
             {
                 GameManager.Data.StageAct++;
                 GameManager.Data.Map = new MapData();
-                /*
-                if (GameManager.Data.StageAct == 1) // 1막일 때(튜토리얼 클리어, 게임 시작) 기본 덱으로 세팅
-                {
-                    GameManager.Data.MainDeckSet();
-
-                    GameManager.Data.GameData.FallenUnits.Clear();
-                    GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
-                }
-                */
             }
             else
             {
@@ -126,54 +127,112 @@ public class StageManager : MonoBehaviour
 
     private void SetStageData()
     {
-        List<StageData> StageDatas = new List<StageData>();
-        //int maxLevel = 2; // 한 막에 몇가지 레벨이 존재하느냐에 따라 값이 증가함. ex) 한 맵에 3가지 레벨이 존재한다 -> maxLevel = 3
-        //int addLevel = (GameManager.Data.StageAct - 1) * maxLevel;
+        List<StageData> stageDatas = new List<StageData>();
         List<Vector2> existStage = new List<Vector2>();
 
         for (int i = 0; i < StageList.Count; i++)
         {
-            if (StageList[i].Datas.Type == StageType.Battle && StageList[i].Datas.Name == StageName.CommonBattle)
+            StageData stageData = StageList[i].Datas;
+
+            int x = 0;
+            int y = 0;
+
+            if (stageData.Type == StageType.Battle && stageData.Name == StageName.CommonBattle) // 일반 배틀
             {
-                //12/20 프로토타입 버전은 레벨별 데이터 차이 없음, 추후 사용 가능성 다수
-                //int x = (StageList[i].Datas.ID <= 1 && addLevel == 0) ? 1 : (int)StageList[i].Datas.StageLevel + addLevel;
-
-                int x = 0;
-                int y = 0;
-
-                if(GameManager.Data.StageAct == 0)
+                if (GameManager.Data.StageAct == 0)
                 {
-                    x = 3;
+                    if (stageData.ID < 4)
+                    {
+                        x = GameManager.OutGameData.isHorusClear() ? 21 : (GameManager.OutGameData.isPhanuelClear() ? 11 : 1);
+                    }
+                    else
+                    {
+                        x = GameManager.OutGameData.isHorusClear() ? 22 : (GameManager.OutGameData.isPhanuelClear() ? 12 : 2);
+                    }
                 }
-                else if(GameManager.Data.StageAct == 1)
+                else if (GameManager.Data.StageAct == 1)
                 {
-                    x = 5;
+                    x = GameManager.OutGameData.isHorusClear() ? 23 : (GameManager.OutGameData.isPhanuelClear() ? 13 : 3);
                 }
                 else if (GameManager.Data.StageAct == 2)
                 {
-                    x = 7;
+                    x = GameManager.OutGameData.isHorusClear() ? 24 : (GameManager.OutGameData.isPhanuelClear() ? 14 : 4);
                 }
 
                 y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
 
                 Vector2 vec = new Vector2(x, y);
 
-                if (!existStage.Contains(vec)) // 중복처리
+                if (!existStage.Contains(vec))
                 {
                     existStage.Add(vec);
-                    StageDatas.Add(StageList[i].SetBattleStage(x, y));
+                    stageDatas.Add(StageList[i].SetBattleStage(x, y));
                 }
                 else
+                {
                     i--;
+                }
+            }
+            else if (stageData.StageLevel == 90) // 엘리트 배틀
+            {
+                x = stageData.StageLevel;
+
+                if (GameManager.OutGameData.isHorusClear())
+                {
+                    if(GameManager.Data.StageAct == 0)
+                    {
+                        y = UnityEngine.Random.Range(0, 2);
+                    }
+                    else if(GameManager.Data.StageAct == 1)
+                    {
+                        y = UnityEngine.Random.Range(2, 4);
+                    }
+                }
+                else if (GameManager.OutGameData.isPhanuelClear())
+                {
+                    y = GameManager.Data.StageAct == 0 ? 1 : 3;
+                }
+                else
+                {
+                    y = GameManager.Data.StageAct == 0 ? 0 : 2;
+                }
+
+                if (!existStage.Contains(new Vector2(x, y)))
+                {
+                    existStage.Add(new Vector2(x, y));
+                    stageDatas.Add(StageList[i].SetBattleStage(x, y));
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            else if (stageData.StageLevel == 100) // 보스 배틀
+            {
+                x = stageData.StageLevel;
+
+                if (GameManager.OutGameData.isHorusClear())
+                {
+                    y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
+                }
+                else if (GameManager.OutGameData.isPhanuelClear())
+                {
+                    y = 1;
+                }
+                else
+                {
+                    y = 0;
+                }
+
+                stageDatas.Add(StageList[i].SetBattleStage(x, y));
             }
             else
             {
-                StageDatas.Add(StageList[i].Datas);
+                stageDatas.Add(stageData);
             }
-
         }
 
-        GameManager.Data.Map.StageList = StageDatas;
+        GameManager.Data.Map.StageList = stageDatas;
     }
 
     public void StageMove(int id)

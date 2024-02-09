@@ -12,7 +12,11 @@ public class OutGameData
     public int ProgressCoin;                 // 진척도 코인
     public List<ProgressItem> ProgressItems; // 진척도 상점의 상품들
     public List<HallUnit> HallUnit;          // 전당 유닛
+    
     public bool TutorialClear = false;
+    public bool PhanuelClear = false;
+    public bool HorusClear = false;
+
     public bool isVisitUpgrade = false;
     public bool isVisitStigma = false;
     public bool isVisitDarkShop = false;
@@ -229,6 +233,28 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
     }
 
+    public void ClearPhanuel(bool isclear)
+    {
+        data.PhanuelClear = isclear;
+        SaveData();
+    }
+
+    public void ClearHorus(bool isclear)
+    {
+        data.HorusClear = isclear;
+        SaveData();
+    }
+
+    public bool isPhanuelClear()
+    {
+        return data.PhanuelClear;
+    }
+
+    public bool isHorusClear()
+    {
+        return data.HorusClear;
+    }
+
     public bool isTutorialClear()
     {
         return data.TutorialClear;
@@ -249,6 +275,7 @@ public class OutGameDataContainer : MonoBehaviour
     public bool getVisitUpgrade() { return data.isVisitUpgrade; }
     public bool getVisitStigma() { return data.isVisitStigma; }
     public bool getVisitDarkshop() { return data.isVisitDarkShop; }
+
     public void RemoveHallUnit(int ID)
     {
         data.HallUnit.Remove(FindHallUnitID(ID));

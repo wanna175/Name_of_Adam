@@ -10,6 +10,7 @@ public class CutSceneController : MonoBehaviour
     private void Start()
     {
         GameManager.Sound.Clear();
+        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         //GameManager.Sound.Play("Stage_Transition/CutScene/CutSceneBGM");
     }
 

@@ -500,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Upgrade
       objectReference: {fileID: 0}
+    - target: {fileID: 5581034977863573192, guid: 17e5fc11e7216104f9d687b8c1c706d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5581034977863573195, guid: 17e5fc11e7216104f9d687b8c1c706d6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2945,6 +2949,7 @@ MonoBehaviour:
   _SelectStigmaButton_disabled: {fileID: 2016052798}
   _getOriginUnitButton: {fileID: 1311538162}
   _getOriginUnitButton_disabled: {fileID: 213551858}
+  _ui_SelectMenu: {fileID: 0}
   _originUnits:
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
@@ -2955,7 +2960,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -2964,7 +2968,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: c57a6375c60477349b3f81bc9d1c8bcf, type: 2}
@@ -2976,7 +2979,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -2985,7 +2987,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: 1cd4486fdc84ed9448d2f39965d0023e, type: 2}
@@ -2997,7 +2998,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -3006,7 +3006,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
   _forbiddenButton: {fileID: 2084415030}
@@ -4644,6 +4643,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3580172553881018137, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3580172554542908286, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5833,6 +5836,10 @@ PrefabInstance:
     - target: {fileID: 1941623453305881854, guid: 0a986496b83385c439b5ed7393a59c81, type: 3}
       propertyPath: m_Name
       value: UI_Stigma
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941623453305881854, guid: 0a986496b83385c439b5ed7393a59c81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1941623453305881855, guid: 0a986496b83385c439b5ed7393a59c81, type: 3}
       propertyPath: m_Pivot.x
