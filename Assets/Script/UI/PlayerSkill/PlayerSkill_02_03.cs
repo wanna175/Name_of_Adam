@@ -40,23 +40,4 @@ public class PlayerSkill_02_03 : PlayerSkill
     {
         BattleManager.Field.SetSpawnTileColor(FieldColorType.PlayerSkill, createUnit);
     }
-
-    public override string GetDescription()
-    {
-        SetDescription();
-        return base.GetDescription();
-    }
-
-    public void SetDescription()
-    {
-        string description = "";
-
-        switch (GameManager.Locale.CurrentLocaleIndex)
-        {
-            case 0: description = "Summons the apostle onto the battlefield."; break;
-            case 1: description = "필드 위에 자신의 사도를 소환합니다."; break;
-        }
-
-        base.SetDescription(description);
-    }
 }

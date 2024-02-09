@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: PlayerSkillInfoTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: ed5595dd5f26ae04d9796ad64a4a468e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 48146583552
+    m_Localized: Lowers the faith of a designated enemy by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152433758208
+    m_Localized: Deals 20 damage in a massive cross range near the designated enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 185921081344
+    m_Localized: Deals 20 damage in a massive cross range near the designated enemy.
+      it reduces the enemy's faith by 1 upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333950652416
+    m_Localized: Moves an ally one space and grants a speed boost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435905794048
+    m_Localized: Heals the designated ally or enemy by 20 health.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 472060694528
+    m_Localized: Heals the designated ally or enemy by 15 health.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 521163411456
+    m_Localized: Brings back a designated ally.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694547550208
+    m_Localized: Bestows a curse on the designated enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717616222208
+    m_Localized: Bestows a curse and increases attack on the designated enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 823568535552
+    m_Localized: Deals 30 damage to the designated unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890564153344
+    m_Localized: Bestows malevolence 3 times and reduces faith by 1 to the designated
+      ally.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 953277386752
+    m_Localized: Summons the apostle onto the battlefield.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

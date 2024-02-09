@@ -11,7 +11,6 @@ public abstract class PlayerSkill : MonoBehaviour
     [SerializeField] private int playerSkillID;
     [SerializeField] private int manaCost;
     [SerializeField] private int darkEssence;
-    [SerializeField] private string description;
     [SerializeField] private Sprite skillImage;
 
     public int GetDarkEssenceCost() => darkEssence;
@@ -33,16 +32,11 @@ public abstract class PlayerSkill : MonoBehaviour
     public int GetOriginalDarkEssenceCost() => originaldarkEssence;
     public string GetName() => GameManager.Locale.GetLocalizedPlayerSkillName(playerSkillName);
     public int GetID() => playerSkillID;
-    public virtual string GetDescription() => description;
+    public virtual string GetDescription() => GameManager.Locale.GetLocalizedPlayerSkillInfo(playerSkillID);
     public Sprite GetSkillImage() => skillImage;
 
     public abstract bool Use(Vector2 coord);
     public virtual bool Action(ActiveTiming activeTiming, Vector2 coord) => false;
     public abstract void CancelSelect();
     public abstract void OnSelect();
-
-    public void SetDescription(string newDescription)
-    {
-        description = newDescription;
-    }
 }

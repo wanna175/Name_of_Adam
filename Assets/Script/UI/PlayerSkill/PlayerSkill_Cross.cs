@@ -59,34 +59,4 @@ public class PlayerSkill_Cross : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
     }
-
-    public override string GetDescription()
-    {
-        SetDescription();
-        return base.GetDescription();
-    }
-
-    public void SetDescription()
-    {
-        string description = "";
-
-        if (GameManager.OutGameData.IsUnlockedItem(54))
-        {
-            switch (GameManager.Locale.CurrentLocaleIndex)
-            {
-                case 0: description = "Deals 20 damage in a massive cross range near the designated enemy. 피격된 적의 신앙을 1 떨어뜨립니다."; break;
-                case 1: description = "적을 지정하여 거대한 십자 범위에 20의 데미지를 줍니다. 피격된 적의 신앙을 1 떨어뜨립니다."; break;
-            }    
-        }
-        else
-        {
-            switch (GameManager.Locale.CurrentLocaleIndex)
-            {
-                case 0: description = "Deals 20 damage in a massive cross range near the designated enemy."; break;
-                case 1: description = "적을 지정하여 거대한 십자 범위에 20의 데미지를 줍니다."; break;
-            }
-        }
-
-        base.SetDescription(description);
-    }
 }
