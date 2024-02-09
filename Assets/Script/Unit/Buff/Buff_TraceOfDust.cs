@@ -10,7 +10,7 @@ public class Buff_TraceOfDust: Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_TraceOfLunar_Sprite");
 
-        _description = "(Dusk: Provides additional effects with each stack.\n1 stack: When attacked by Elieus or Yana, adjacent allies are also attacked.\n2 stacks: When attacked by Elieus or Yana, one's faith decreases by 1.)";
+        _description = "Dust Info";
 
         _count = 1;
 

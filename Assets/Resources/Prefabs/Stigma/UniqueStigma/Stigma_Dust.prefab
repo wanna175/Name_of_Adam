@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 0
   _name: Dust
-  _sprite_28: {fileID: 21300000, guid: 2824c2219a61c6242ab54de0faa7550e, type: 3}
-  _sprite_88: {fileID: 21300000, guid: 910c3e7d8ea9f064f998297add8497d8, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 9d2a81758309b184a9dcdb2252e3e3e7, type: 3}
+  _sprite_28: {fileID: 21300000, guid: c2805ae0d637c414587c95cf16cc5dfd, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 2f27098d2445cdd4bb358970810caee9, type: 3}
+  _sprite_164: {fileID: 21300000, guid: bdc031d4ad372c2448252f0026d3f48f, type: 3}
   _description: Dust Info
   _activeTiming: 2
   _tier: 3

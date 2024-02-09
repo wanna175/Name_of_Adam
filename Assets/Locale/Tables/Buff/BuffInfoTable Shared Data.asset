@@ -102,6 +102,10 @@ MonoBehaviour:
     m_Key: Faith decreases by 1 after every turn of this unit.
     m_Metadata:
       m_Items: []
+  - m_Id: 743255583133696
+    m_Key: Dust Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

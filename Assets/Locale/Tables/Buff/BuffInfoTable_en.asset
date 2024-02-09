@@ -106,6 +106,16 @@ MonoBehaviour:
     m_Localized: Faith decreases by 1 after every turn of this unit.
     m_Metadata:
       m_Items: []
+  - m_Id: 743255583133696
+    m_Localized: 'Dusk: Provides additional effects with each stack
+
+      1 stack:
+      When attacked by Elieus or Yana, adjacent allies are also attacked.
+
+      2
+      stacks: When attacked by Elieus or Yana, one''s faith decreases by 1.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
