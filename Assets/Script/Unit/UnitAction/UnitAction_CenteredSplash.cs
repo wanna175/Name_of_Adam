@@ -12,6 +12,11 @@ public class UnitAction_CenteredSplash : UnitAction
 
         List<BattleUnit> units = BattleManager.Field.GetUnitsInRange(attackUnit.Location, attackUnit.GetSplashRange(coord, attackUnit.Location), attackUnit.Team == Team.Player ? Team.Enemy : Team.Player);
 
+        foreach (BattleUnit unit in hits)
+        {
+            units.Add(unit);
+        }
+
         BattleManager.Instance.AttackStart(attackUnit, units.Distinct().ToList());
         return true;
     }
