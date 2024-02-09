@@ -98,6 +98,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             if (!GameManager.OutGameData.IsUnlockedItem(14))
             {
+                GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
                 return;
             }
         }

@@ -110,7 +110,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         //연출하기 애니매이션 끝나면 
         //Debug.Log(GameManager.Data.GameData.DeckUnits);
-       
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_UnitInfo _ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
         _ui.SetUnit(_originUnits[2]);
         _ui.Init(OnSelectMakeUnit,CUR_EVENT.COMPLETE_HAELOT,OnQuitClick);
@@ -124,7 +124,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>().Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>();
+        _ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        _ui.SetEventMenu(_ui_SelectMenu);
     }
     public void OnSelectRestoration(DeckUnit unit)
     {
@@ -139,7 +142,9 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnStigmaButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        _ui.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        _ui.SetEventMenu(_ui_SelectMenu);
     }
     public void IsStigmaFull()
     {

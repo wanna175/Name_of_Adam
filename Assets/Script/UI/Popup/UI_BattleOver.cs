@@ -45,6 +45,8 @@ public class UI_BattleOver : UI_Scene
 
     public void OnClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
         if (_result == "win")
         {
             if (_rewardScene.isEndFade)
@@ -58,7 +60,7 @@ public class UI_BattleOver : UI_Scene
         }
         else if (_result == "elite win")
         {
-            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 100)
             {
                 GameManager.Data.GameData.Progress.LeftDarkEssence = GameManager.Data.DarkEssense;
                 BattleOverDestroy();

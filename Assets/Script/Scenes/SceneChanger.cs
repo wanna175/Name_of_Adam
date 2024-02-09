@@ -7,11 +7,15 @@ public static class SceneChanger
 {
     public static void SceneChange(string scenename)
     {
-        if (scenename != "ProgressShopScene" && SceneManager.GetActiveScene().name != "ProgressShopScene")
+        if (scenename == "ProgressShopScene" || SceneManager.GetActiveScene().name == "ProgressShopScene")
         {
-            GameManager.Sound.SceneBGMPlay(scenename);
+            SceneManager.LoadScene(scenename);
+            return;
         }
+
         SceneManager.LoadScene(scenename);
+        GameManager.Sound.SceneBGMPlay(scenename);
+        
     }
     public static string GetSceneName()
     {

@@ -21,6 +21,7 @@ public class DifficultySelectSceneController : MonoBehaviour
     void Start()
     {
         Init();
+        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
     }
 
     private void Init()
@@ -37,10 +38,10 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Confirm()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-
         if (UI_IncarnaSelect.activeSelf == true)
         {
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
             if (GameManager.OutGameData.IsUnlockedItem(18))
             {
                 GameManager.Data.GameDataMain.DarkEssence = 10;
@@ -56,6 +57,8 @@ public class DifficultySelectSceneController : MonoBehaviour
         }
         else if (UI_HallSelect.activeSelf == true)
         {
+            GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+
             GameManager.Data.MainDeckSet();
             GameManager.Data.GameData.FallenUnits.Clear();
             GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
@@ -66,16 +69,18 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void OnIncarnaClick(int i)
     {
-        if(i == 1 && !GameManager.OutGameData.IsUnlockedItem(61))
+        if (i == 1 && !GameManager.OutGameData.IsUnlockedItem(61))
         {
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
             return;
         }
 
         if(i == 2 && !GameManager.OutGameData.IsUnlockedItem(71))
         {
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
             return;
         }
-
+        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         UI_Incarna_List.SetActive(false);
         UI_ConfirmBtn.SetActive(true);
         Incarna_Info[i].SetActive(true);
