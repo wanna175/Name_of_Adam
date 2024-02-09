@@ -361,7 +361,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C"
+  m_Name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C_\uD0C0\uB77D"
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAttack
@@ -551,7 +551,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uB2C8\uBBC0\uB86F_\uC624\uBCA8\uB9AC\uC2A4\uD06C_Appear"
+  m_Name: Unit_Appear
   m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:
@@ -603,7 +603,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C_Idle"
+  m_Name: Unit_Idle
   m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:

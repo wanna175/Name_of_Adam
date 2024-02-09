@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0db2ffb56198d084dbfd38da89731cba
+guid: 10f5da78d7262d044b48cb634f899d3f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Phanuel_EffectTile_0
+      name: nimurot_circle-Sheet (7)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79c25a0f91079c84da44ea93197266b4
-      internalID: -1876494102
+      spriteID: 13c0e11a66706de4b8e9e0ef651d2b49
+      internalID: -1805750382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_1
+      name: nimurot_circle-Sheet (7)_1
       rect:
         serializedVersion: 2
-        x: 172
+        x: 158
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11c69eabd5a0a484b893c500d10d1165
-      internalID: -877397870
+      spriteID: be2ca87b1c9055a4bbb8695b7086be0f
+      internalID: -1765285874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_2
+      name: nimurot_circle-Sheet (7)_2
       rect:
         serializedVersion: 2
-        x: 344
+        x: 316
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f120be1ceed17ba458c56922230dc1e7
-      internalID: -608049122
+      spriteID: ebe1f9fc274c91545bbf777bd1d05eb2
+      internalID: 344036128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_3
+      name: nimurot_circle-Sheet (7)_3
       rect:
         serializedVersion: 2
-        x: 516
+        x: 474
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67d604defad10eb4e81ff3287b510b69
-      internalID: 1189068480
+      spriteID: 21a04e48e10f9fd4c81993c20300926f
+      internalID: -101232136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_4
+      name: nimurot_circle-Sheet (7)_4
       rect:
         serializedVersion: 2
-        x: 688
+        x: 632
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3eb58706ba19bc46985958b28d7f2c4
-      internalID: -463964680
+      spriteID: 2dfe40252ac4ce049a17d51317721235
+      internalID: 1825222460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_5
+      name: nimurot_circle-Sheet (7)_5
       rect:
         serializedVersion: 2
-        x: 860
+        x: 790
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d1f29d6a94039e44ac0b23bb8de6e9d
-      internalID: -1477354176
+      spriteID: 841ac0e4e8ee1864688ba0d1e139d2bc
+      internalID: 608714326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_6
+      name: nimurot_circle-Sheet (7)_6
       rect:
         serializedVersion: 2
-        x: 1032
+        x: 948
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6a0b8972fb91714b8039f6a8e21f60f
-      internalID: 1949976187
+      spriteID: ed227d428fb90fa4785d7428c3c6a8ba
+      internalID: 1579173137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_7
+      name: nimurot_circle-Sheet (7)_7
       rect:
         serializedVersion: 2
-        x: 1204
+        x: 1106
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 729ab9a65319f654a96c6a69b73c60c6
-      internalID: 84561415
+      spriteID: 91ab99ad53681c448aa8c2ff9b9da541
+      internalID: -1387576831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phanuel_EffectTile_8
+      name: nimurot_circle-Sheet (7)_8
       rect:
         serializedVersion: 2
-        x: 1376
+        x: 1264
         y: 0
-        width: 172
-        height: 172
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,8 +299,197 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8fea679510d07f4984650888e0a15c2
-      internalID: 1646744055
+      spriteID: bc8fca761b91645449957cc9a80eed8f
+      internalID: 403416768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_9
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 859806a5b2adda04ea4a1dee25b5555e
+      internalID: 980820631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_10
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b40a6de60feb1f47a804f1738a2e36c
+      internalID: -1531141121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_11
+      rect:
+        serializedVersion: 2
+        x: 1738
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa92d5c4640cc8489d6d5abd7d91771
+      internalID: 1698524290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_12
+      rect:
+        serializedVersion: 2
+        x: 1896
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bba39fbef3dd5a4488f8376de0a7b7c
+      internalID: -2055491431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_13
+      rect:
+        serializedVersion: 2
+        x: 2054
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4d2e2020639ae48bffb9e13e13309b
+      internalID: 1073531507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_14
+      rect:
+        serializedVersion: 2
+        x: 2212
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8131169770c5cb7458a605b8a6a42b40
+      internalID: -931206956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_15
+      rect:
+        serializedVersion: 2
+        x: 2370
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad7b5b10fc3025f41af16b1e1a71bddd
+      internalID: -1498637415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_16
+      rect:
+        serializedVersion: 2
+        x: 2528
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d245173ec09223d4da159a5d82df3990
+      internalID: 496810260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nimurot_circle-Sheet (7)_17
+      rect:
+        serializedVersion: 2
+        x: 2686
+        y: 0
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54afaa5556a7b2f4781f3c516a3fc229
+      internalID: 313077073
       vertices: []
       indices: 
       edges: []
@@ -316,15 +505,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Phanuel_EffectTile_5: -1477354176
-      Phanuel_EffectTile_4: -463964680
-      Phanuel_EffectTile_1: -877397870
-      Phanuel_EffectTile_3: 1189068480
-      Phanuel_EffectTile_7: 84561415
-      Phanuel_EffectTile_8: 1646744055
-      Phanuel_EffectTile_2: -608049122
-      Phanuel_EffectTile_0: -1876494102
-      Phanuel_EffectTile_6: 1949976187
+      nimurot_circle-Sheet (7)_10: -1531141121
+      nimurot_circle-Sheet (7)_15: -1498637415
+      nimurot_circle-Sheet (7)_16: 496810260
+      nimurot_circle-Sheet (7)_12: -2055491431
+      nimurot_circle-Sheet (7)_9: 980820631
+      nimurot_circle-Sheet (7)_0: -1805750382
+      nimurot_circle-Sheet (7)_7: -1387576831
+      nimurot_circle-Sheet (7)_8: 403416768
+      nimurot_circle-Sheet (7)_5: 608714326
+      nimurot_circle-Sheet (7)_11: 1698524290
+      nimurot_circle-Sheet (7)_4: 1825222460
+      nimurot_circle-Sheet (7)_1: -1765285874
+      nimurot_circle-Sheet (7)_6: 1579173137
+      nimurot_circle-Sheet (7)_13: 1073531507
+      nimurot_circle-Sheet (7)_17: 313077073
+      nimurot_circle-Sheet (7)_14: -931206956
+      nimurot_circle-Sheet (7)_3: -101232136
+      nimurot_circle-Sheet (7)_2: 344036128
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
