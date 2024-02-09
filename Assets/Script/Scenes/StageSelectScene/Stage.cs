@@ -105,8 +105,6 @@ public class Stage : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            GameManager.Sound.Clear();
-            GameManager.Sound.Play("Node/NodeClickSFX");  
             StageManager.Instance.StageMove(Datas.ID);
         }
     }

@@ -25,9 +25,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] StageCameraController CameraController;
     StageChanger _stageChanger;
 
-    List<Stage> StageList;
+    private List<Stage> StageList;
     public Stage CurrentStage;
-
 
     private void Awake()
     {
@@ -241,6 +240,8 @@ public class StageManager : MonoBehaviour
         {
             if (st.Datas.ID == id)
             {
+                GameManager.Sound.Clear();
+                GameManager.Sound.Play("Node/NodeClickSFX");
                 GameManager.VisualEffect.StartFadeEffect(false);
                 PlayAfterCoroutine(() => _stageChanger.SetNextStage(id), 0.8f);
             }
