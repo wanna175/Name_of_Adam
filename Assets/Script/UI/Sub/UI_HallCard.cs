@@ -12,6 +12,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private List<GameObject> _stigmaFrames;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private GameObject infoButton;
+    [SerializeField] private Image _frameImage;
 
 
     public Image UnitImage;
@@ -24,6 +25,8 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private bool _isEnable;
     public bool _isElite;
     public int HallUnitID; //���� ��Ī��ų ID
+    public Sprite NormalImage;
+    public Sprite EliteImage;
 
     void Start()
     {
@@ -104,7 +107,15 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
 
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallDeckInit(_isElite, OnSelect);
+
+        if (GameManager.OutGameData.IsUnlockedItem(17))
+        {
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallFullDeckInit(OnSelect);
+        }
+        else
+        {
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallDeckInit(_isElite, OnSelect);
+        }
     }
 
     //������ ���� GameDataMain �� ����ǰ� �ϱ�
@@ -124,6 +135,15 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         foreach (Stigma stigma in unit.GetStigma())
         {
             _mainDeck[HallUnitID].AddStigma(stigma);
+        }
+
+        if(unit.Data.Rarity == Rarity.Normal)
+        {
+            _frameImage.sprite = NormalImage;
+        }
+        else
+        {
+            _frameImage.sprite = EliteImage;
         }
 
         UnitImage.sprite = _mainDeck[HallUnitID].Data.Image;
