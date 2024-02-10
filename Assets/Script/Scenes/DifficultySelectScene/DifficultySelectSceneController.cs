@@ -22,6 +22,7 @@ public class DifficultySelectSceneController : MonoBehaviour
     {
         Init();
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.Sound.SceneBGMPlay("DifficultySelectScene");
     }
 
     private void Init()
