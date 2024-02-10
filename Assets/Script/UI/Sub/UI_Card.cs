@@ -15,6 +15,10 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private Image _frameImage;
     [SerializeField] private TextMeshProUGUI _name;
 
+    [SerializeField]
+    private List<GameObject> _stigmaFrames;
+
+    private List<Image> _stigmaImages;
 
     public Sprite NormalFrame;
     public Sprite EliteFrame;
@@ -48,6 +52,29 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
             SetDisableMain(unit);
+        }
+
+        _stigmaImages = new List<Image>();
+        foreach (var frame in _stigmaFrames)
+            _stigmaImages.Add(frame.GetComponentsInChildren<Image>()[1]);
+
+        foreach (var frame in _stigmaFrames)
+            frame.SetActive(true);
+
+        List<Stigma> stigmas = unit.GetStigma();
+        for (int i = 0; i < _stigmaImages.Count; i++)
+        {
+            if (i < stigmas.Count)
+            {
+                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetStigma(stigmas[i]);
+                _stigmaImages[i].sprite = stigmas[i].Sprite_28;
+                _stigmaImages[i].color = Color.white;
+            }
+            else
+            {
+                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
+                _stigmaImages[i].color = new Color(1f, 1f, 1f, 0f);
+            }
         }
     }
     public void SelectCard()
