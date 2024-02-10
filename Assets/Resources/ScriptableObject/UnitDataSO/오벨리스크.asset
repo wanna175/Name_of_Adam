@@ -20,7 +20,6 @@ MonoBehaviour:
     FallCurrentCount: 2
     FallMaxCount: 4
     ManaCost: 0
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 2908782542212454162, guid: 717587f8c58ffc84ca90cf99759b61d8, type: 3}
   _id: "\uC624\uBCA8\uB9AC\uC2A4\uD06CID"
@@ -35,7 +34,7 @@ MonoBehaviour:
   _diaPortraitImage: {fileID: 21300000, guid: 8814726454f22a149a4ef48012884839, type: 3}
   _corruptDiaPortraitImage: {fileID: 21300000, guid: a813b46d177bc0b49978f3ecb745e1d8, type: 3}
   _animatorController: {fileID: 9100000, guid: cba751191fcb85a4b97f7d7dcfaf2262, type: 2}
-  _corruptionAnimatorController: {fileID: 9100000, guid: cba751191fcb85a4b97f7d7dcfaf2262, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: f6055d5976f69864792c3452cfb9c714, type: 2}
   _skillEffectAnim: {fileID: 0}
   _corruptionSkillEffectAnim: {fileID: 0}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}

@@ -402,7 +402,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unit_Hit 0
+  m_Name: Unit_Hit_2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -551,7 +551,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uB2C8\uBBC0\uB86F_\uC624\uBCA8\uB9AC\uC2A4\uD06C_Appear"
+  m_Name: Unit_Appear
   m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:
@@ -603,7 +603,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C_Idle"
+  m_Name: Unit_Idle
   m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:
@@ -632,7 +632,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unit_Attack 0
+  m_Name: Unit_Attack_2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -659,7 +659,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C_\uBC1C\uAD11_Idle"
+  m_Name: Unit_Idle_2
   m_Speed: 0.4
   m_CycleOffset: 0
   m_Transitions:
