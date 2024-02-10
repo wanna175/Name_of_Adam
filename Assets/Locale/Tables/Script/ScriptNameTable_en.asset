@@ -34,6 +34,18 @@ MonoBehaviour:
     m_Localized: King Herod
     m_Metadata:
       m_Items: []
+  - m_Id: 362822823936
+    m_Localized: Messenger of faith
+    m_Metadata:
+      m_Items: []
+  - m_Id: 879510745088
+    m_Localized: Messenger of hope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1063993012224
+    m_Localized: Messenger of love
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

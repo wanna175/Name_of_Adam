@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 326152024064
-    m_Key: "In the name of the divine.\r"
+    m_Key: In the name of the divine.
     m_Metadata:
       m_Items: []
   - m_Id: 457081417728
@@ -39,10 +39,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 557933457408
     m_Key: Wisdom, power, and might. The power of the trinity can subjugate all.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1835564593152
-    m_Key: New Entry
     m_Metadata:
       m_Items: []
   m_Metadata:

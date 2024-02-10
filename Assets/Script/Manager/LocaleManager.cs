@@ -55,6 +55,10 @@ public class LocaleManager : MonoBehaviour
 
     public string GetLocalizedPlayerSkillName(string playerSkillName) => GetLocalizedString("PlayerSkillNameTable", playerSkillName);
 
+    public string GetLocalizedScriptName(string scriptName) => GetLocalizedString("ScriptNameTable", scriptName);
+
+    public string GetLocalizedScriptInfo(string scriptInfo) => GetLocalizedString("ScriptInfoTable", scriptInfo);
+
     public string GetLocalizedBuffName(string buffName) => GetLocalizedString("BuffNameTable", buffName);
 
     public string GetLocalizedBuffInfo(string buffInfo) => GetLocalizedString("BuffInfoTable", buffInfo);
