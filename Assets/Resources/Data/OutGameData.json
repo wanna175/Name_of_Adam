@@ -30,12 +30,12 @@
     },
     {
       "ID": 3,
-      "Name": "시작 마나 I",
-      "Cost": 30,
+      "Name": "시작 검은 정수 I",
+      "Cost": 60,
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "시작 마나가 50에서 55로 상승합니다."
+      "Description": "시작 검은 정수가 4에서 7로 상승합니다."
     },
     {
       "ID": 4,
@@ -57,12 +57,12 @@
     },
     {
       "ID": 6,
-      "Name": "시작 검은 정수 I",
-      "Cost": 60,
-      "Prequest": 5,
+      "Name": "시작 검은 정수 II",
+      "Cost": 170,
+      "Prequest": 3,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "시작 검은 정수가 4에서 7로 상승합니다."
+      "Description": "시작 검은 정수가 7에서 10으로 상승합니다."
     },
     {
       "ID": 7,
@@ -84,12 +84,12 @@
     },
     {
       "ID": 9,
-      "Name": "시작 마나 II",
-      "Cost": 90,
+      "Name": "최대 강화 횟수",
+      "Cost": 120,
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "시작 마나가 55에서 60으로 상승합니다."
+      "Description": "최대 강화 횟수 2회에서 3회로 상승합니다."
     },
     {
       "ID": 10,
@@ -111,12 +111,12 @@
     },
     {
       "ID": 12,
-      "Name": "최대 강화 횟수",
-      "Cost": 120,
+      "Name": "시작 마나 I",
+      "Cost": 30,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "최대 강화 횟수 2회에서 3회로 상승합니다."
+      "Description": "시작 마나가 50에서 55로 상승합니다."
     },
     {
       "ID": 13,
@@ -137,6 +137,15 @@
       "Description": "묘지기와 죄수 자리에 전당의 유닛을 편성하여 플레이할 수 있게 됩니다."
     },
     {
+      "ID": 15,
+      "Name": "시작 마나 II",
+      "Cost": 90,
+      "Prequest": 12,
+      "IsLock": true,
+      "IsUnlocked": false,
+      "Description": "시작 마나가 55에서 60으로 상승합니다."
+    },
+    {
       "ID": 16,
       "Name": "금지된 계약",
       "Cost": 160,
@@ -153,15 +162,6 @@
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "일반 유닛들 자리에 오리지널이나 엘리트를 편성하여 플레이할 수 있게 됩니다."
-    },
-    {
-      "ID": 18,
-      "Name": "시작 검은 정수 II",
-      "Cost": 170,
-      "Prequest": 17,
-      "IsLock": true,
-      "IsUnlocked": false,
-      "Description": "시작 검은 정수가 7에서 10으로 상승합니다."
     },
     {
       "ID": 20,
@@ -193,20 +193,20 @@
     {
       "ID": 52,
       "Name": "선지자 II",
-      "Cost": 20,
+      "Cost": 30,
       "Prequest": 51,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "속삭임의 마나 코스트가 5 감소합니다."
+      "Description": "신속의 검은 정수 코스트가 없어집니다."
     },
     {
       "ID": 53,
       "Name": "선지자 III",
-      "Cost": 30,
+      "Cost": 20,
       "Prequest": 52,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "신속의 검은 정수 코스트가 없어집니다."
+      "Description": "속삭임의 마나 코스트가 5 감소합니다."
     },
     {
       "ID": 54,
@@ -283,20 +283,20 @@
     {
       "ID": 72,
       "Name": "루시퍼 II",
-      "Cost": 20,
+      "Cost": 30,
       "Prequest": 71,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "천벌의 마나 코스트가 10 감소합니다."
+      "Description": "(2스킬)이 추가적으로 악성을 2회 부여합니다."
     },
     {
       "ID": 73,
       "Name": "루시퍼 III",
-      "Cost": 30,
+      "Cost": 20,
       "Prequest": 72,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "(2스킬)이 추가적으로 악성을 2회 부여합니다."
+      "Description": "천벌의 마나 코스트가 10 감소합니다."
     },
     {
       "ID": 74,
