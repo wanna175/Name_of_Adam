@@ -12,8 +12,12 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private GameObject _selectHighlight;
     [SerializeField] private GameObject _disable;
     [SerializeField] private Image _unitImage;
+    [SerializeField] private Image _frameImage;
     [SerializeField] private TextMeshProUGUI _name;
 
+
+    public Sprite NormalFrame;
+    public Sprite EliteFrame;
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
@@ -31,6 +35,15 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
+
+        if(unit.Data.Rarity == Rarity.Normal)
+        {
+            _frameImage.sprite = NormalFrame;
+        }
+        else
+        {
+            _frameImage.sprite = EliteFrame;
+        }
 
         if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
@@ -52,14 +65,26 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!_cardUnit.IsMainDeck)
+        if (_cardUnit.IsMainDeck && SceneManager.GetActiveScene().name == "DifficultySelectScene")
+        {
+            return;
+        }
+        else
+        {
             _highlight.SetActive(true);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!_cardUnit.IsMainDeck)
+        if (_cardUnit.IsMainDeck && SceneManager.GetActiveScene().name == "DifficultySelectScene")
+        {
+            return;
+        }
+        else
+        {
             _highlight.SetActive(false);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

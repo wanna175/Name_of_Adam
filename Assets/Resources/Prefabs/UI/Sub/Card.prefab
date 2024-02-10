@@ -222,7 +222,10 @@ MonoBehaviour:
   _selectHighlight: {fileID: 8917943158103797682}
   _disable: {fileID: 3490229503165786981}
   _unitImage: {fileID: 2064008452888787189}
+  _frameImage: {fileID: 5695395522971841362}
   _name: {fileID: 307864840991548229}
+  NormalFrame: {fileID: 21300000, guid: bb9b6f90fa563e14a8d2652b3ccf3593, type: 3}
+  EliteFrame: {fileID: 21300000, guid: a6533967012981841b1268a335ae1bad, type: 3}
 --- !u!222 &6615710533183551284
 CanvasRenderer:
   m_ObjectHideFlags: 0
