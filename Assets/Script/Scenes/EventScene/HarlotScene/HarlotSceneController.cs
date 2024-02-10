@@ -125,7 +125,9 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnUnitRestorationClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>().Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>();
+        _ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        _ui.SetEventMenu(_ui_SelectMenu);
     }
     public void OnSelectRestoration(DeckUnit unit)
     {
@@ -140,7 +142,9 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnStigmaButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        _ui.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        _ui.SetEventMenu(_ui_SelectMenu);
     }
     public void IsStigmaFull()
     {

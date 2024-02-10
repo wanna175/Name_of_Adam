@@ -73,7 +73,7 @@ public class Stage : MonoBehaviour
         string name = Datas.Name.ToString();
 
         if (Datas.Name == StageName.EliteBattle || Datas.Name == StageName.BossBattle)
-            name += "_" + Datas.StageID;
+            name += "_" + GameManager.Data.Map.GetStage(Datas.ID).StageID;
 
         _renderer.sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/Node/{name}");
         BackLight.SetSprite(name);
