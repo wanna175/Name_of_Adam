@@ -92,7 +92,6 @@ public class DifficultySelectSceneController : MonoBehaviour
 
         for (int j = 2; j < texts.Count; j++)
         {
-            Debug.Log(3 * i + j - 1);
             texts[j].SetText(GameManager.Locale.GetLocalizedPlayerSkillInfo(3 * i + j - 1));
         }
     }

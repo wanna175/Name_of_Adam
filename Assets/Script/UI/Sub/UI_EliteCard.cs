@@ -65,6 +65,15 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         SceneChanger.SceneChange("StageSelectScene");
     }
 
+    public void OnInfoButton()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
+
+        ui.SetUnit(_deckUnit);
+        ui.Init();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
         => _highlight.SetActive(true);
 

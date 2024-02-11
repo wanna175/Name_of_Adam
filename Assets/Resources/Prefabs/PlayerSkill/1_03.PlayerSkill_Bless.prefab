@@ -50,6 +50,4 @@ MonoBehaviour:
   playerSkillID: 6
   manaCost: 50
   darkEssence: 3
-  description: "\uC9C0\uC815\uD55C \uC801\uC5D0\uAC8C \uC800\uC8FC\uC640 \uACF5\uACA9\uB825
-    \uC99D\uAC00\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
-  skillImage: {fileID: 21300000, guid: 7d96c9752ef267e49a35f489676e7921, type: 3}
+  skillImage: {fileID: 21300000, guid: 9e3e3bec60a89ad42862d5474b1cf195, type: 3}
