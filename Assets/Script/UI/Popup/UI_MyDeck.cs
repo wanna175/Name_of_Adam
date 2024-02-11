@@ -21,6 +21,12 @@ public class UI_MyDeck : UI_Popup
 
     private GameObject eventMenu = null;
 
+    [SerializeField] private TMP_Text pageText;
+    [SerializeField] private GameObject prePageButton;
+    [SerializeField] private GameObject postPageButton;
+    private int currentPageIndex;
+    private int maxPageIndex;
+
     public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE,Action endEvent=null)
     {
         Set_btn.SetActive(false);
@@ -30,6 +36,14 @@ public class UI_MyDeck : UI_Popup
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
             _playerDeck = GameManager.Data.GetDeck();
+
+        currentPageIndex = 0;
+        maxPageIndex = (_playerDeck.Count - 1) / 10;
+        if (maxPageIndex < 0)
+            maxPageIndex = 0;
+
+        ClearCard();
+        SetPageAllUI();
 
         if (onSelect != null)
             _onSelect = onSelect;
@@ -52,6 +66,12 @@ public class UI_MyDeck : UI_Popup
         List<DeckUnit> _normalDeck = new();
         List<DeckUnit> _totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
+
+        currentPageIndex = 0;
+        maxPageIndex = (_hallDeck.Count - 1) / 10;
+        if (maxPageIndex < 0)
+            maxPageIndex = 0;
+
         _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
 
         foreach (DeckUnit unit in _hallDeck)
@@ -74,6 +94,7 @@ public class UI_MyDeck : UI_Popup
         }
         if (onSelect != null)
             _onSelect = onSelect;
+
         SetCard();
     }
 
@@ -83,6 +104,14 @@ public class UI_MyDeck : UI_Popup
         List<DeckUnit> _normalDeck = new();
 
         _hallDeck = GameManager.Data.GetDeck();
+
+        currentPageIndex = 0;
+        maxPageIndex = (_hallDeck.Count - 1) / 10;
+        if (maxPageIndex < 0)
+            maxPageIndex = 0;
+
+        ClearCard();
+        SetPageAllUI();
 
         _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
 
@@ -112,20 +141,35 @@ public class UI_MyDeck : UI_Popup
     }
     public void SetCard() 
     {
-        foreach (DeckUnit unit in _playerDeck)
+        var dumpCards = Grid.GetComponentsInChildren<UI_Card>();
+        foreach (var card in dumpCards)
+            GameManager.Resource.Destroy(card.gameObject);
+
+        for (int i = 10 * currentPageIndex; i < (currentPageIndex + 1) * 10; i++)
         {
-            AddCard(unit);
+            if (i >= _playerDeck.Count)
+                break;
+
+            AddCard(_playerDeck[i]);
         }
-        
+    }
+    private void ClearCard()
+    {
+        var dumpCards = Grid.GetComponentsInChildren<UI_Card>();
+        foreach (var card in dumpCards)
+            GameManager.Resource.Destroy(card.gameObject);
     }
     private void SetCard(CUR_EVENT EventNum)
     {
-        foreach (DeckUnit unit in _playerDeck)
+        ClearCard();
+
+        for (int i = 10 * currentPageIndex; i < (currentPageIndex + 1) * 10; i++)
         {
-            if (unit.GetStigma(true).Count != 0)
-            {
-                AddCard(unit);
-            }
+            if (i >= _playerDeck.Count)
+                break;
+
+            if (_playerDeck[i].GetStigma(true).Count != 0)
+                AddCard(_playerDeck[i]);
         }
     }
     public void AddCard(DeckUnit unit)
@@ -213,5 +257,50 @@ public class UI_MyDeck : UI_Popup
             GameManager.UI.ClosePopup();
 
         }
+    }
+
+    private void SetPageAllUI()
+    {
+        SetPageText();
+        SetPreButtonUI();
+        SetPostButtonUI();
+    }
+
+    private void SetPageText()
+    {
+        if (maxPageIndex == 0)
+            pageText.SetText("");
+        else
+            pageText.SetText($"( {currentPageIndex + 1} / {maxPageIndex + 1} )");
+    }
+
+    private void SetPreButtonUI()
+    {
+        if (currentPageIndex == 0)
+            prePageButton.SetActive(false);
+        else
+            prePageButton.SetActive(true);
+    }
+
+    private void SetPostButtonUI()
+    {
+        if (currentPageIndex == maxPageIndex)
+            postPageButton.SetActive(false);
+        else
+            postPageButton.SetActive(true);
+    }
+
+    public void OnPrePageButton()
+    {
+        currentPageIndex--;
+        SetCard();
+        SetPageAllUI();
+    }
+
+    public void OnPostPageButton()
+    {
+        currentPageIndex++;
+        SetCard();
+        SetPageAllUI();
     }
 }
