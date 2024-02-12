@@ -11,7 +11,7 @@ public class PlayerSkill_02_02 : PlayerSkill
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
         int count = 3;
-        if (GameManager.OutGameData.IsUnlockedItem(73))
+        if (GameManager.OutGameData.IsUnlockedItem(72))
             count = 5;
 
         for (int i = 0; i < count; i++)

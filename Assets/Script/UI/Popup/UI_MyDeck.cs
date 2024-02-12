@@ -116,6 +116,18 @@ public class UI_MyDeck : UI_Popup
         SetCard();
     }
 
+    public void HallFullDeckInit(Action<DeckUnit> onSelect = null)
+    {
+        _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
+
+        _playerDeck = GameManager.Data.GetDeck();
+
+        if (onSelect != null)
+            _onSelect = onSelect;
+
+        SetCard();
+    }
+
     public void SetCard() 
     {
         foreach (DeckUnit unit in _playerDeck)

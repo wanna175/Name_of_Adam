@@ -22,6 +22,7 @@ public class DifficultySelectSceneController : MonoBehaviour
     {
         Init();
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.Sound.SceneBGMPlay("DifficultySelectScene");
     }
 
     private void Init()
@@ -42,11 +43,11 @@ public class DifficultySelectSceneController : MonoBehaviour
         {
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
-            if (GameManager.OutGameData.IsUnlockedItem(18))
+            if (GameManager.OutGameData.IsUnlockedItem(6))
             {
                 GameManager.Data.GameDataMain.DarkEssence = 10;
             }
-            else if (GameManager.OutGameData.IsUnlockedItem(6))
+            else if (GameManager.OutGameData.IsUnlockedItem(3))
             {
                 GameManager.Data.GameDataMain.DarkEssence = 7;
             }
