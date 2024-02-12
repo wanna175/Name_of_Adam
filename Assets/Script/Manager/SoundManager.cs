@@ -147,8 +147,7 @@ public class SoundManager : MonoBehaviour
         else if (scenename == "DifficultySelectScene")
         {
             Clear();
-            string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
-            Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
+            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
         }
         else if(scenename == "EventScene")
         {

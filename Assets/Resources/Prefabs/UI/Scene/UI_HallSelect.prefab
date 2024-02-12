@@ -105,10 +105,13 @@ MonoBehaviour:
   - {fileID: 2452400052255911877}
   _nameText: {fileID: 2452400053438599871}
   infoButton: {fileID: 2452400052053727648}
+  _frameImage: {fileID: 6768484132370902015}
   UnitImage: {fileID: 1057483126811824832}
   IsDisabled: {fileID: 8650280047793387690}
   _isElite: 0
   HallUnitID: 2
+  NormalImage: {fileID: 21300000, guid: c2bdb22446563be4580eb1a6338fed80, type: 3}
+  EliteImage: {fileID: 21300000, guid: 5f70a2c0e9fb84c4d8f90d47a8e565eb, type: 3}
 --- !u!114 &2931927003126694764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4176,10 +4179,13 @@ MonoBehaviour:
   - {fileID: 2452400052938909090}
   _nameText: {fileID: 2452400053441692600}
   infoButton: {fileID: 2452400053647292222}
+  _frameImage: {fileID: 8084304326969405082}
   UnitImage: {fileID: 2554566609618950053}
   IsDisabled: {fileID: 1760264696161504598}
   _isElite: 0
   HallUnitID: 3
+  NormalImage: {fileID: 21300000, guid: c2bdb22446563be4580eb1a6338fed80, type: 3}
+  EliteImage: {fileID: 21300000, guid: 5f70a2c0e9fb84c4d8f90d47a8e565eb, type: 3}
 --- !u!114 &391540031824709129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4489,10 +4495,13 @@ MonoBehaviour:
   - {fileID: 2452400052737401311}
   _nameText: {fileID: 2452400053439655897}
   infoButton: {fileID: 2452400051727591051}
+  _frameImage: {fileID: 6980630014453169639}
   UnitImage: {fileID: 3720744304732947672}
   IsDisabled: {fileID: 5493584223046827006}
   _isElite: 0
   HallUnitID: 1
+  NormalImage: {fileID: 21300000, guid: c2bdb22446563be4580eb1a6338fed80, type: 3}
+  EliteImage: {fileID: 21300000, guid: 5f70a2c0e9fb84c4d8f90d47a8e565eb, type: 3}
 --- !u!114 &1566723139755496820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4744,10 +4753,13 @@ MonoBehaviour:
   - {fileID: 2452400052525431682}
   _nameText: {fileID: 2452400052710033865}
   infoButton: {fileID: 2452400051572362268}
+  _frameImage: {fileID: 2193078745064072694}
   UnitImage: {fileID: 5561367504921795785}
   IsDisabled: {fileID: 2167448606694555576}
   _isElite: 1
   HallUnitID: 0
+  NormalImage: {fileID: 21300000, guid: c2bdb22446563be4580eb1a6338fed80, type: 3}
+  EliteImage: {fileID: 21300000, guid: 5f70a2c0e9fb84c4d8f90d47a8e565eb, type: 3}
 --- !u!114 &7724044006374182245
 MonoBehaviour:
   m_ObjectHideFlags: 0

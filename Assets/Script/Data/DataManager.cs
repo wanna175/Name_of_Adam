@@ -245,10 +245,10 @@ public class DataManager : MonoBehaviour
 
     public void SetSkillCost(PlayerSkill playerSkill)
     {
-        ChangeSkillCost(playerSkill, 1, 52, 5, 0);
-        ChangeSkillCost(playerSkill, 3, 53, 0, 1);
+        ChangeSkillCost(playerSkill, 1, 53, 5, 0);
+        ChangeSkillCost(playerSkill, 3, 52, 0, 1);
         ChangeSkillCost(playerSkill, 5, 63, 0, 1);
-        ChangeSkillCost(playerSkill, 7, 72, 10, 0);
+        ChangeSkillCost(playerSkill, 7, 73, 10, 0);
     }
 
     public void ChangeSkillCost(PlayerSkill playerSkill, int ID, int shopID, int mana, int darkessence)
