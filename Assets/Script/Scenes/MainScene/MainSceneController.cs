@@ -6,6 +6,7 @@ public class MainSceneController : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject ContinueBox;
+    [SerializeField] GameObject UI_ResetAlert;
 
     private void Start()
     {
@@ -17,24 +18,7 @@ public class MainSceneController : MonoBehaviour
 
     public void StartButton()
     {
-        // 게임오브젝트를 생성해서 보내주기 & 생성한 오브젝트가 맵 선택 씬에 도달했을 때 활성화되서 튜토 이미지 띄우고 자신 삭제하기
-        GameManager.Data.DeckClear();
-        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
-        Destroy(GameManager.Instance.gameObject);
-
-        GameManager.SaveManager.DeleteSaveData();
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-
-        if (GameManager.OutGameData.isTutorialClear())
-        {
-            GameManager.Data.HallDeckSet();
-            GameManager.Data.HallSelectedDeckSet();
-            SceneChanger.SceneChange("DifficultySelectScene");
-        }
-        else
-        {
-            SceneChanger.SceneChange("CutScene");
-        }
+        UI_ResetAlert.SetActive(true);
     }
 
     public void ContinueBotton()
@@ -64,6 +48,32 @@ public class MainSceneController : MonoBehaviour
         //GameObject.Instantiate(go, Canvas.transform);
     }
 
+    public void ResetAlertYesButton()
+    {
+        // 게임오브젝트를 생성해서 보내주기 & 생성한 오브젝트가 맵 선택 씬에 도달했을 때 활성화되서 튜토 이미지 띄우고 자신 삭제하기
+        GameManager.Data.DeckClear();
+        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+        Destroy(GameManager.Instance.gameObject);
+
+        GameManager.SaveManager.DeleteSaveData();
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+        if (GameManager.OutGameData.isTutorialClear())
+        {
+            GameManager.Data.HallDeckSet();
+            GameManager.Data.HallSelectedDeckSet();
+            SceneChanger.SceneChange("DifficultySelectScene");
+        }
+        else
+        {
+            SceneChanger.SceneChange("CutScene");
+        }
+    }
+
+    public void ResetAlertNoButton()
+    {
+        UI_ResetAlert.SetActive(false);
+    }
 
 
     public void ExitButton()
