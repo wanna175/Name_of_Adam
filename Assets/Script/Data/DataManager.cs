@@ -41,14 +41,6 @@ public class DataManager : MonoBehaviour
             GameManager.SaveManager.LoadGame();
 
         _darkEssense = GameData.DarkEssence;
-        if(GameData.Incarna != null)
-        {
-            _playerSkillCount = GameData.Incarna.PlayerSkillCount;
-        }
-        else
-        {
-            _playerSkillCount = 0;
-        }
     }
 
     public void MainDeckSet()
@@ -57,15 +49,13 @@ public class DataManager : MonoBehaviour
         GameData.Money = GameDataMain.Money;
         GameData.DarkEssence = GameDataMain.DarkEssence;
         GameData.PlayerHP = GameDataMain.PlayerHP;
-        GameData.PlayerSkillCount = GameDataMain.PlayerSkillCount;
         GameData.DeckUnits = GameDataMain.DeckUnits;
         GameData.FallenUnits = GameDataMain.FallenUnits;
-        GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
-        GameData.isVisitStigma = GameDataMain.isVisitStigma;
+        GameData.IsVisitUpgrade = GameDataMain.IsVisitUpgrade;
+        GameData.IsVisitStigma = GameDataMain.IsVisitStigma;
         GameData.Progress.ClearProgress();
-        this.NPCQuestSet();
+        NPCQuestSet();
         _darkEssense = GameData.DarkEssence;
-        Debug.Log("GameData.DeckUnit: " + GameData.DeckUnits.Count);
         //OutGame에서 업그레이드 된 스탯 + 낙인 불러와야해서 ClearStat 사용하면 안됨, 파생되는 문제 발생 시 수정 필요 
         /*
         foreach (DeckUnit unit in GameData.DeckUnits)
@@ -83,12 +73,13 @@ public class DataManager : MonoBehaviour
         GameData.Money = GameDataTutorial.Money;
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
         GameData.PlayerHP = GameDataTutorial.PlayerHP;
-        GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
         GameData.FallenUnits.Clear();
-        GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
-        GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
+        GameData.IsVisitUpgrade = GameDataTutorial.IsVisitUpgrade;
+        GameData.IsVisitStigma = GameDataTutorial.IsVisitStigma;
         GameData.Progress.ClearProgress();
+        GameData.StageBenediction = new();
+
         //GameData.npcQuest.ClearQuest();
 
         foreach (DeckUnit unit in GameData.DeckUnits)
@@ -106,11 +97,10 @@ public class DataManager : MonoBehaviour
         GameDataMain.Money = GameDataMainLayout.Money;
         GameDataMain.DarkEssence = GameDataMainLayout.DarkEssence;
         GameDataMain.PlayerHP = GameDataMainLayout.PlayerHP;
-        GameDataMain.PlayerSkillCount = GameDataMainLayout.PlayerSkillCount;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
-        GameDataMain.isVisitUpgrade = GameDataMainLayout.isVisitUpgrade;
-        GameDataMain.isVisitStigma = GameDataMainLayout.isVisitStigma;
+        GameDataMain.IsVisitUpgrade = GameDataMainLayout.IsVisitUpgrade;
+        GameDataMain.IsVisitStigma = GameDataMainLayout.IsVisitStigma;
         GameDataMain.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameDataMain.DeckUnits)
@@ -151,12 +141,13 @@ public class DataManager : MonoBehaviour
     {
         GameData.DeckUnits = GameManager.OutGameData.SetHallDeck();
     }
+
     public void NPCQuestSet()
     {
-        GameData.isVisitUpgrade = GameManager.OutGameData.getVisitUpgrade();
-        GameData.isVisitStigma = GameManager.OutGameData.getVisitStigma();
-        GameData.isVisitDarkShop = GameManager.OutGameData.getVisitDarkshop();
-        GameData.npcQuest = GameManager.OutGameData.getNPCQuest();
+        GameData.IsVisitUpgrade = GameManager.OutGameData.getVisitUpgrade();
+        GameData.IsVisitStigma = GameManager.OutGameData.getVisitStigma();
+        GameData.IsVisitDarkShop = GameManager.OutGameData.getVisitDarkshop();
+        GameData.NpcQuest = GameManager.OutGameData.getNPCQuest();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -235,23 +226,6 @@ public class DataManager : MonoBehaviour
 
         Debug.Log("not enough Dark Essense");
         return false;
-    }
-
-    private int _playerSkillCount = 0;
-    public int PlayerSkillCount => _playerSkillCount;
-
-    public bool PlayerSkillCountChage(int cost)
-    {
-        Debug.Log("Player Skill Count: " + _playerSkillCount + " Change: " + cost);
-        if (_playerSkillCount + cost < 0)
-        {
-            return false;
-        }
-        else
-        {
-            _playerSkillCount += cost;
-            return true;
-        }
     }
 
     public List<PlayerSkill> GetPlayerSkillList()

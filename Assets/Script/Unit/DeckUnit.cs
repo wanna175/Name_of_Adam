@@ -200,6 +200,6 @@ public class DeckUnit
 
     public int GetStigmaCount()
     {
-        return _stigmaCount+ Data.UniqueStigma.Count;
+        return _stigmaCount + Data.UniqueStigma.Count;
     }
 }

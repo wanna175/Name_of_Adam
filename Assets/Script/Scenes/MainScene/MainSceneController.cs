@@ -64,8 +64,6 @@ public class MainSceneController : MonoBehaviour
         //GameObject.Instantiate(go, Canvas.transform);
     }
 
-
-
     public void ExitButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");

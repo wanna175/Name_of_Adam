@@ -239,8 +239,8 @@ public class BattleUnit : MonoBehaviour
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
-        if(GameManager.Data.GameData.isVisitDarkShop)
-            GameManager.Data.GameData.npcQuest.darkshopQuest++;
+        if(GameManager.Data.GameData.IsVisitDarkShop)
+            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
 
         GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
         if(DeckUnit.Data.Rarity == Rarity.Normal)
