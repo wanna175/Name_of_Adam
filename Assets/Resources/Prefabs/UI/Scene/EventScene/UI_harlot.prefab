@@ -253,7 +253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36010b9de51790642865268681c09e0c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 905854ef5b03e2a408486821523a7ee5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -468,7 +468,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -477,7 +476,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: c57a6375c60477349b3f81bc9d1c8bcf, type: 2}
@@ -489,7 +487,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -498,7 +495,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: 1cd4486fdc84ed9448d2f39965d0023e, type: 2}
@@ -510,7 +506,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -519,7 +514,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     HallUnitID: 0
     IsMainDeck: 0
   _forbiddenButton: {fileID: 3580172554771727479}
@@ -2771,7 +2765,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3580172555508547197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 10.000187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2780,9 +2774,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 488}
-  m_SizeDelta: {x: 587, y: 966}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -12}
+  m_SizeDelta: {x: 679, y: 1034}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3580172555508547073
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2811,7 +2805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6454e8d920c41e848b56fca90119abcc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e937f0ffeaa9b9e43a8add395c8e03c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2831,7 +2825,7 @@ Animator:
   m_GameObject: {fileID: 3580172555508547197}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1886d41b0886bd4bbcc27a1c67fa2c5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 794e678e65e349b458ede313be5c06a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
