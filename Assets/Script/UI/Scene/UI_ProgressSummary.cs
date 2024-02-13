@@ -17,6 +17,7 @@ public class UI_ProgressSummary : UI_Scene
     [SerializeField]
     public List<ProgressText> ProgressList;
     public int TotalScore;
+    public TMP_Text Title;
 
     private Progress _progress;
     

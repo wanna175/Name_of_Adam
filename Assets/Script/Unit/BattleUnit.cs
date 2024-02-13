@@ -242,7 +242,11 @@ public class BattleUnit : MonoBehaviour
         if(GameManager.Data.GameData.isVisitDarkShop)
             GameManager.Data.GameData.npcQuest.darkshopQuest++;
 
-        GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
+        if (_team == Team.Enemy)
+        {
+            GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
+        }
+
         if(DeckUnit.Data.Rarity == Rarity.Normal)
         {
             GameManager.Data.GameData.Progress.NormalFall++;

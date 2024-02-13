@@ -62,6 +62,7 @@ public class DataManager : MonoBehaviour
         GameData.FallenUnits = GameDataMain.FallenUnits;
         GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
         GameData.isVisitStigma = GameDataMain.isVisitStigma;
+        GameData.isVisitDarkShop = GameDataMain.isVisitDarkShop;
         GameData.Progress.ClearProgress();
         this.NPCQuestSet();
         _darkEssense = GameData.DarkEssence;
@@ -88,6 +89,7 @@ public class DataManager : MonoBehaviour
         GameData.FallenUnits.Clear();
         GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
         GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
+        GameData.isVisitDarkShop = GameDataTutorial.isVisitDarkShop;
         GameData.Progress.ClearProgress();
         //GameData.npcQuest.ClearQuest();
 
@@ -111,6 +113,7 @@ public class DataManager : MonoBehaviour
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
         GameDataMain.isVisitUpgrade = GameDataMainLayout.isVisitUpgrade;
         GameDataMain.isVisitStigma = GameDataMainLayout.isVisitStigma;
+        GameDataMain.isVisitDarkShop = GameDataMainLayout.isVisitDarkShop;
         GameDataMain.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameDataMain.DeckUnits)
