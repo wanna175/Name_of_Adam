@@ -98,6 +98,7 @@ public class BattleManager : MonoBehaviour
 
         PlayAfterCoroutine(() => {
             _spawner.SpawnInitialUnit();
+            //SpawnBeneditionCheck();
         }, 0.5f);
 
         PlayAfterCoroutine(() => {
@@ -409,13 +410,13 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-
         _battleData.BattleOrderRemove(unit);
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
-            if(GameManager.Data.GameData.isVisitUpgrade)
-                GameManager.Data.GameData.npcQuest.upgradeQuest++;
+            if(GameManager.Data.GameData.IsVisitUpgrade)
+                GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
+            
             if(unit.Data.Rarity == Rarity.Normal)
             {
                 GameManager.Data.GameData.Progress.NormalKill++;

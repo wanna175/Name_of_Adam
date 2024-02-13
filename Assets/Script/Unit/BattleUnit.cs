@@ -266,11 +266,17 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        FallEvent = false;
+
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
-        FallEvent = false;
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            unit.ChangeTeam();
+        }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 4 - DeckUnit.Data.RawStat.FallMaxCount; ;
@@ -287,11 +293,6 @@ public class BattleUnit : MonoBehaviour
         if (Buff.CheckBuff(BuffEnum.Benediction))
         {
             DeleteBuff(BuffEnum.Benediction);
-        }
-
-        foreach (ConnectedUnit unit in ConnectedUnits)
-        {
-            unit.ChangeTeam();
         }
 
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);

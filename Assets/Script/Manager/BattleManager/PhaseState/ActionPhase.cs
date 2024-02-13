@@ -10,8 +10,6 @@ public class ActionPhase : Phase
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
 
-        Debug.Log("Action Enter");
-
         if (_nowUnit.Team == Team.Player)
             BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
 

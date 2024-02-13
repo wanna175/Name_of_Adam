@@ -207,7 +207,6 @@ public class DataManager : MonoBehaviour
 
     public bool DarkEssenseChage(int cost)
     {
-        Debug.Log("Dark Essense: " + _darkEssense + " Change: " + cost);
         if (_darkEssense + cost < 0)
         {
             return false;
