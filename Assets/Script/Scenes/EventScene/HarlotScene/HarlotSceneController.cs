@@ -232,14 +232,14 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
 
 
-        /*if (GameManager.Data.GameData.isVisitHarlot == false)
+        if (GameManager.Data.GameData.isVisitDarkShop == false)
         {
-            GameManager.Data.GameData.isVisitHarlot = true;
+            GameManager.Data.GameData.isVisitDarkShop = true;
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장"], false);
-        */
+        
         yield return StartCoroutine(quitScript.PrintScript());
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();

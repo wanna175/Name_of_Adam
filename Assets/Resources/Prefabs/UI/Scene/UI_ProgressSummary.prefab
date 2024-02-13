@@ -3788,6 +3788,7 @@ MonoBehaviour:
     Progress_Count: {fileID: 3994626580090512610}
     Progress_Point: {fileID: 3994626580887782235}
   TotalScore: 0
+  Title: {fileID: 2561776417176968760}
 --- !u!1 &3994626580240126054
 GameObject:
   m_ObjectHideFlags: 0
