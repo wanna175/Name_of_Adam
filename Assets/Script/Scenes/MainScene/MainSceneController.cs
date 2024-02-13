@@ -18,7 +18,30 @@ public class MainSceneController : MonoBehaviour
 
     public void StartButton()
     {
-        UI_ResetAlert.SetActive(true);
+        if (GameManager.SaveManager.SaveFileCheck())
+        {
+            UI_ResetAlert.SetActive(true);
+        }
+        else
+        {
+            GameManager.Data.DeckClear();
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+            Destroy(GameManager.Instance.gameObject);
+
+            GameManager.SaveManager.DeleteSaveData();
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+            if (GameManager.OutGameData.isTutorialClear())
+            {
+                GameManager.Data.HallDeckSet();
+                GameManager.Data.HallSelectedDeckSet();
+                SceneChanger.SceneChange("DifficultySelectScene");
+            }
+            else
+            {
+                SceneChanger.SceneChange("CutScene");
+            }
+        }
     }
 
     public void ContinueBotton()
