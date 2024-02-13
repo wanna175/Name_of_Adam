@@ -65,6 +65,7 @@ public class UI_BattleOver : UI_Scene
                 GameManager.Data.GameData.Progress.LeftDarkEssence = GameManager.Data.DarkEssense;
                 BattleOverDestroy();
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
+                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Victory";
             }
             else
             {
@@ -79,6 +80,7 @@ public class UI_BattleOver : UI_Scene
             if (GameManager.OutGameData.isTutorialClear())
             {
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
+                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";
             }
             else
             {
