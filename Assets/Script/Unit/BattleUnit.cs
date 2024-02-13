@@ -239,8 +239,8 @@ public class BattleUnit : MonoBehaviour
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
-        if(GameManager.Data.GameData.isVisitDarkShop)
-            GameManager.Data.GameData.npcQuest.darkshopQuest++;
+        if(GameManager.Data.GameData.IsVisitDarkShop)
+            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
 
         if (_team == Team.Enemy)
         {
@@ -270,11 +270,17 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        FallEvent = false;
+
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
-        FallEvent = false;
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            unit.ChangeTeam();
+        }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 4 - DeckUnit.Data.RawStat.FallMaxCount; ;
@@ -291,11 +297,6 @@ public class BattleUnit : MonoBehaviour
         if (Buff.CheckBuff(BuffEnum.Benediction))
         {
             DeleteBuff(BuffEnum.Benediction);
-        }
-
-        foreach (ConnectedUnit unit in ConnectedUnits)
-        {
-            unit.ChangeTeam();
         }
 
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);

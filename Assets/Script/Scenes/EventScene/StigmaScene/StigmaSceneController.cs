@@ -8,7 +8,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 {
     private DeckUnit _givestigmatizeUnit;
     private DeckUnit _stigmatizeUnit;
-    private List<Script> scripts;
+    private List<Script> _scripts;
 
     private bool _isStigmaFull = false;
 
@@ -31,25 +31,26 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     }
     private void Init()
     {
-        if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50)
+        if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50)
         {
             background.SetActive(false);
             fall_background.SetActive(true);
             this.isNPCFall = true;
         }
-        else if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50 * 3 / 4)
+        else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 * 3 / 4)
         {
             //안개이미지 변경
         }
-        else if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50 / 2)
+        else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 2)
         {
             //안개이미지 변경
         }
-        else if (GameManager.Data.GameData.npcQuest.stigmaQuest > 50 / 4)
+        else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 4)
         {
             //안개이미지 변경
         }
-        scripts = new ();
+
+        _scripts = new();
         _giveStigma = null;
         _isStigmaFull = false;
 
@@ -75,21 +76,19 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn_disabled.SetActive(true);
         }
 
-        if (GameManager.Data.GameData.isVisitStigma == false)
+        if (GameManager.Data.GameData.IsVisitStigma == false)
         {
-            GameManager.Data.GameData.isVisitStigma = true;
-            scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-            uiConversation = FindObjectOfType<UI_Conversation>();
-            uiConversation.ConversationEnded += OnConversationEnded;
+            GameManager.Data.GameData.IsVisitStigma = true;
+            _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
         }
         else
         {
-            scripts = GameManager.Data.ScriptData["낙인소_입장"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-            uiConversation = FindObjectOfType<UI_Conversation>();
-            uiConversation.ConversationEnded += OnConversationEnded;
+            _scripts = GameManager.Data.ScriptData["낙인소_입장"];
         }
+
+        GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
+        uiConversation = FindObjectOfType<UI_Conversation>();
+        uiConversation.ConversationEnded += OnConversationEnded;
     }
 
     // 낙인 부여를 선택했을 시
@@ -134,12 +133,12 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     {
         GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _givestigmatizeUnit.GetStigma());
     }
+
     public void IsStigmaFull()
     {
         Debug.Log("스티그마 꽉 찼을 때 예외처리");
         _isStigmaFull = true;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(true),0,null,this);
-
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(true), 0, null, this);
     }
  
     public void OnSelectStigmatization(DeckUnit unit)
@@ -165,10 +164,12 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
+
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
         ui.SetUnit(_stigmatizeUnit);
         ui.Init(null, CUR_EVENT.COMPLETE_STIGMA,OnQuitClick);
     }
+
     public void OnSelectStigmatransfertarget(DeckUnit unit)
     {
         _stigmatizeUnit = unit;
@@ -200,15 +201,17 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             GameManager.UI.CloseAllPopup();
             UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
             unitInfo.SetUnit(_stigmatizeUnit);
+
             if (_givestigmatizeUnit == null)
                 unitInfo.Init(OnSelectStigmatization, CUR_EVENT.STIGMA_EXCEPTION);
             else
                 unitInfo.Init(OnSelectStigmatransfertarget, CUR_EVENT.STIGMA_EXCEPTION);
             return;
         }
-        if (_givestigmatizeUnit==null) {//낙인 부여일때
+        if (_givestigmatizeUnit == null) 
+        {//낙인 부여일때
             SetUnitStigma(stigma);
-            GameManager.Data.GameData.npcQuest.stigmaQuest++;
+            GameManager.Data.GameData.NpcQuest.StigmaQuest++;
         }
         else//낙인 이동일때
         {
@@ -223,21 +226,21 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     }
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        if (GameManager.Data.GameData.isVisitStigma == false)
+        /*
+        if (GameManager.Data.GameData.IsVisitStigma == false)
         {
-            GameManager.Data.GameData.isVisitStigma = true;
+            GameManager.Data.GameData.IsVisitStigma = true;
         }
+        */
 
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-
-
-        if (GameManager.Data.GameData.isVisitStigma == false)
+        if (GameManager.Data.GameData.IsVisitStigma == false)
         {
-            GameManager.Data.GameData.isVisitStigma = true;
+            GameManager.Data.GameData.IsVisitStigma = true;
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
         }
         else

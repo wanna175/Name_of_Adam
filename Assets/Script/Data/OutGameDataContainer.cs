@@ -262,10 +262,10 @@ public class OutGameDataContainer : MonoBehaviour
 
     public void setNPCQuest()
     {
-        data.npcQuest = GameManager.Data.GameData.npcQuest;
-        data.isVisitUpgrade = GameManager.Data.GameData.isVisitUpgrade;
-        data.isVisitStigma = GameManager.Data.GameData.isVisitStigma;
-        data.isVisitDarkShop = GameManager.Data.GameData.isVisitDarkShop;
+        data.npcQuest = GameManager.Data.GameData.NpcQuest;
+        data.isVisitUpgrade = GameManager.Data.GameData.IsVisitUpgrade;
+        data.isVisitStigma = GameManager.Data.GameData.IsVisitStigma;
+        data.isVisitDarkShop = GameManager.Data.GameData.IsVisitDarkShop;
         SaveData();
     }
     public NPCQuest getNPCQuest()

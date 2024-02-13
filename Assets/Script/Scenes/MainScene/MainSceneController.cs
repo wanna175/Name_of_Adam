@@ -73,7 +73,7 @@ public class MainSceneController : MonoBehaviour
 
     public void ResetAlertYesButton()
     {
-        // °ÔÀÓ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇØ¼­ º¸³»ÁÖ±â & »ı¼ºÇÑ ¿ÀºêÁ§Æ®°¡ ¸Ê ¼±ÅÃ ¾À¿¡ µµ´ŞÇßÀ» ¶§ È°¼ºÈ­µÇ¼­ Æ©Åä ÀÌ¹ÌÁö ¶ç¿ì°í ÀÚ½Å »èÁ¦ÇÏ±â
+        // ê²Œì„ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•´ì„œ ë³´ë‚´ì£¼ê¸° & ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ê°€ ë§µ ì„ íƒ ì”¬ì— ë„ë‹¬í–ˆì„ ë•Œ í™œì„±í™”ë˜ì„œ íŠœí†  ì´ë¯¸ì§€ ë„ìš°ê³  ìì‹  ì‚­ì œí•˜ê¸°
         GameManager.Data.DeckClear();
         GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
         Destroy(GameManager.Instance.gameObject);

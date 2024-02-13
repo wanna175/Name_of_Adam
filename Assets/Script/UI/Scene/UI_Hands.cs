@@ -100,8 +100,6 @@ public class UI_Hands : UI_Scene
 
     public DeckUnit GetSelectedUnit() =>_selectedHand.GetUnit();
 
-
-
     public void InableCheck(int manaValue)
     {
         foreach (UI_Hand card in _handList)

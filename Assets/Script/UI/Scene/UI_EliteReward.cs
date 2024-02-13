@@ -12,7 +12,7 @@ public class UI_EliteReward : UI_Popup
     [SerializeField]
     private List<UI_EliteCard> uI_EliteCards;
 
-    private int stageAct;
+    private int _stageAct;
 
     private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists, List<int> selectedUnitNumbers)
     {
@@ -37,7 +37,7 @@ public class UI_EliteReward : UI_Popup
     {
         int addStigmaNum = 1;
 
-        switch (stageAct)
+        switch (_stageAct)
         {
             case 0: addStigmaNum = 1; break;
             case 1: addStigmaNum = 2; break;
@@ -55,9 +55,9 @@ public class UI_EliteReward : UI_Popup
 
     public void SetRewardPanel()
     {
-        List<UnitDataSO> normalUnits = new List<UnitDataSO>();
-        List<int> selectedUnitNumbers = new List<int>();
-        stageAct = GameManager.Data.StageAct;
+        List<UnitDataSO> normalUnits = new();
+        List<int> selectedUnitNumbers = new();
+        _stageAct = GameManager.Data.StageAct;
 
         var units = GameManager.Resource.LoadAll<UnitDataSO>($"ScriptableObject/UnitDataSO");
         foreach (var unit in units)

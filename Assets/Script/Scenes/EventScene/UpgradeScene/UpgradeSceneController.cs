@@ -28,21 +28,21 @@ public class UpgradeSceneController : MonoBehaviour
 
     private void Init()
     {
-        if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100)
+        if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100)
         {
             background.SetActive(false);
             fall_background.SetActive(true);
             _isNPCFall = true;
         }
-        else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 * 3 / 4 )
+        else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 * 3 / 4 )
         {
             //안개이미지 변경
         }
-        else if (GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 2)
+        else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 2)
         {
             //안개이미지 변경
         }
-        else if(GameManager.Data.GameData.npcQuest.upgradeQuest > 100 / 4)
+        else if(GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 4)
         {
             //안개이미지 변경
         }
@@ -54,10 +54,10 @@ public class UpgradeSceneController : MonoBehaviour
 
         _scripts = new ();
 
-        if (GameManager.Data.GameData.isVisitUpgrade == false)
+        if (GameManager.Data.GameData.IsVisitUpgrade == false)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
-            GameManager.Data.GameData.isVisitUpgrade = true;
+            GameManager.Data.GameData.IsVisitUpgrade = true;
         }
         else
         {
@@ -174,9 +174,9 @@ public class UpgradeSceneController : MonoBehaviour
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
-        if (GameManager.Data.GameData.isVisitUpgrade == false)
+        if (GameManager.Data.GameData.IsVisitUpgrade == false)
         {
-            GameManager.Data.GameData.isVisitUpgrade = true;
+            GameManager.Data.GameData.IsVisitUpgrade = true;
         }
     }
 
@@ -194,9 +194,9 @@ public class UpgradeSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.Data.GameData.isVisitUpgrade == false)
+        if (GameManager.Data.GameData.IsVisitUpgrade == false)
         {
-            GameManager.Data.GameData.isVisitUpgrade = true;
+            GameManager.Data.GameData.IsVisitUpgrade = true;
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
         }
         else
