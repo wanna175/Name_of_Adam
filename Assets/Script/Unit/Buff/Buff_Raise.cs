@@ -15,7 +15,7 @@ public class Buff_Raise : Buff
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.DAMAGE_CONFIRM;
+        _countDownTiming = ActiveTiming.ATTACK_MOTION_END;
 
         _buffActiveTiming = ActiveTiming.NONE;
 

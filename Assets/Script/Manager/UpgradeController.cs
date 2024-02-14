@@ -6,6 +6,9 @@ using System.Linq;
 
 public class UpgradeController
 {
+    readonly string UpColorStr = "red";
+    readonly string DownColorStr = "blue";
+
     public UpgradeController()
     {
         LoadUpgradeList();
@@ -44,8 +47,10 @@ public class UpgradeController
         upgrade.UpgradeData = data;
 
         upgrade.UpgradeName = data.Name;
-        upgrade.UpgradeImage = GameManager.Resource.Load<Sprite>($"Arts/Upgrade/Upgrade_Red");
-        upgrade.UpgradeDecorationImage = GameManager.Resource.Load<Sprite>($"Arts/Upgrade/Upgrade_Red");
+        upgrade.UpgradeImage88 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_88");
+        upgrade.UpgradeImage160 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_160");
+
+        upgrade.UpgradeDescription = data.Description;
 
         upgrade.UpgradeStat = new();
 
@@ -67,6 +72,15 @@ public class UpgradeController
             upgrade.UpgradeStat.MaxHP += int.Parse(data.HP);
         }
 
+        if (upgrade.UpgradeStat.MaxHP > 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(HP)", "<color=\"" + UpColorStr + "\">(HP)</color>");
+        }
+        else if (upgrade.UpgradeStat.MaxHP < 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(HP)", "<color=\"" + DownColorStr + "\">(HP)</color>");
+        }
+
         //ATK
         if (data.ATK.Contains("~"))
         {
@@ -80,6 +94,15 @@ public class UpgradeController
         else
         {
             upgrade.UpgradeStat.ATK += int.Parse(data.ATK);
+        }
+
+        if (upgrade.UpgradeStat.ATK > 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(ATK)", "<color=\"" + UpColorStr + "\">(ATK)</color>");
+        }
+        else if (upgrade.UpgradeStat.ATK < 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(ATK)", "<color=\"" + DownColorStr + "\">(ATK)</color>");
         }
 
         //SPD
@@ -97,6 +120,15 @@ public class UpgradeController
             upgrade.UpgradeStat.SPD += int.Parse(data.SPD);
         }
 
+        if (upgrade.UpgradeStat.SPD > 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(SPD)", "<color=\"" + UpColorStr + "\">(SPD)</color>");
+        }
+        else if (upgrade.UpgradeStat.SPD < 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(SPD)", "<color=\"" + DownColorStr + "\">(SPD)</color>");
+        }
+
         //COST
         if (data.COST.Contains("~"))
         {
@@ -112,7 +144,16 @@ public class UpgradeController
             upgrade.UpgradeStat.ManaCost += int.Parse(data.COST);
         }
 
-        upgrade.UpgradeDescription = data.Description
+        if (upgrade.UpgradeStat.ManaCost > 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(COST)", "<color=\"" + DownColorStr + "\">(COST)</color>");
+        }
+        else if (upgrade.UpgradeStat.ManaCost < 0)
+        {
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(COST)", "<color=\"" + UpColorStr + "\">(COST)</color>");
+        }
+
+        upgrade.UpgradeDescription = upgrade.UpgradeDescription
                                                 .Replace("(HP)", upgrade.UpgradeStat.MaxHP.ToString())
                                                 .Replace("(ATK)", upgrade.UpgradeStat.ATK.ToString())
                                                 .Replace("(SPD)", upgrade.UpgradeStat.SPD.ToString())

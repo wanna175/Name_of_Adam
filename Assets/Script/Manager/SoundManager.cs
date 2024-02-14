@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-
 public class SoundManager : MonoBehaviour
 {
     AudioSource[] _audioSources = new AudioSource[(int)Sounds.MaxCount];
@@ -144,6 +143,11 @@ public class SoundManager : MonoBehaviour
             {
                 Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
             }
+        }
+        else if (scenename == "DifficultySelectScene")
+        {
+            Clear();
+            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
         }
         else if(scenename == "EventScene")
         {

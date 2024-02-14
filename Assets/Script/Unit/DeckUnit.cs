@@ -29,7 +29,6 @@ public class DeckUnit
         }
     }
 
-    //public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
     public readonly int UpgradedMaxUpgradeCount = 3;
@@ -87,6 +86,12 @@ public class DeckUnit
 
     public void AddStigma(Stigma stigma)
     {
+        if (stigma == null)
+        {
+            Debug.Log("추가하려는 낙인이 null입니다.");
+            return;
+        }
+
         if (_stigma.Contains(stigma) || (Data.UniqueStigma != null && Data.UniqueStigma.Contains(stigma)))
         {
             Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
@@ -193,13 +198,14 @@ public class DeckUnit
     public void FirstTurnDiscountUndo()
     {
         if (_firstTurnDiscount != 0)
-        { 
+        {
             DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
             _firstTurnDiscount = 0;
         }
     }
+
     public int GetStigmaCount()
     {
-        return _stigmaCount+ Data.UniqueStigma.Count;
+        return _stigmaCount + Data.UniqueStigma.Count;
     }
 }

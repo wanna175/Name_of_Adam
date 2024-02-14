@@ -21,6 +21,7 @@ public class SaveData
     public Progress ProgressData;
     public NPCQuest NpcQuestData;
     public int StageAct;
+    public Vector2 StageBenediction;
 }
 
 [Serializable]
@@ -76,15 +77,15 @@ public class SaveController : MonoBehaviour
         newData.DeckUnitData = saveDeckUnitList;
         newData.FallenUnitsData = saveFallenUnitList;
         newData.IncarnaData = CurGameData.Incarna;
-        newData.UniversalPlayerSkillData = CurGameData.UniversalPlayerSkill;
         newData.DarkEssence = GameManager.Data.DarkEssense;
         newData.PlayerHP = CurGameData.PlayerHP;
         newData.PlayerSkillCount = CurGameData.PlayerSkillCount;
         newData.DefaultMana = 50; // 진척도에 따라 바뀌는 인자들
         newData.GuardCount = 1;   // 이 인자들을 적용하는 곳이 생기면 연동하기
         newData.ProgressData = CurGameData.Progress;
-        newData.NpcQuestData = CurGameData.npcQuest;
+        newData.NpcQuestData = CurGameData.NpcQuest;
         newData.StageAct = GameManager.Data.StageAct;
+        newData.StageBenediction = CurGameData.StageBenediction;
 
         GameManager.OutGameData.setNPCQuest();
         string json = JsonUtility.ToJson(newData, true);
@@ -98,15 +99,14 @@ public class SaveController : MonoBehaviour
     {
         string json = File.ReadAllText(path);
         SaveData loadData = JsonUtility.FromJson<SaveData>(json);
-        GameData CurGameData = GameManager.Data.GameData;
+
         GameManager.Data.Map = loadData.MapData;
         List<DeckUnit> savedDeckUnitList = new();
         List<DeckUnit> savedFallenUnitList = new();
 
         foreach (SaveUnit saveUnit in loadData.DeckUnitData)
         {
-            DeckUnit deckunit = new();
-            deckunit = saveUnit.unit;
+            DeckUnit deckunit = saveUnit.unit;
             deckunit.AddAllStigma(saveUnit.Stigmata);
             deckunit.SetUpgrade(saveUnit.Upgrades);
 
@@ -115,8 +115,7 @@ public class SaveController : MonoBehaviour
 
         foreach (SaveUnit saveUnit in loadData.FallenUnitsData)
         {
-            DeckUnit deckunit = new();
-            deckunit = saveUnit.unit;
+            DeckUnit deckunit = saveUnit.unit;
             deckunit.AddAllStigma(saveUnit.Stigmata);
             deckunit.SetUpgrade(saveUnit.Upgrades);
 
@@ -126,12 +125,13 @@ public class SaveController : MonoBehaviour
         GameManager.Data.GameData.DeckUnits = savedDeckUnitList;
         GameManager.Data.GameData.FallenUnits = savedFallenUnitList;
         GameManager.Data.GameData.Incarna = loadData.IncarnaData;
-        GameManager.Data.GameData.UniversalPlayerSkill = loadData.UniversalPlayerSkillData;
         GameManager.Data.GameData.DarkEssence = loadData.DarkEssence;
         GameManager.Data.GameData.PlayerHP = loadData.PlayerHP;
         GameManager.Data.GameData.Progress = loadData.ProgressData;
-        GameManager.Data.GameData.npcQuest = loadData.NpcQuestData;
+        GameManager.Data.GameData.NpcQuest = loadData.NpcQuestData;
         GameManager.Data.StageAct = loadData.StageAct;
+        GameManager.Data.GameData.StageBenediction = loadData.StageBenediction;
+
         //CurGameData.DefaultMana
         //CurGameData.GuardCount
     }

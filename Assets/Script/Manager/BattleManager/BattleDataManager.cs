@@ -51,7 +51,6 @@ public class BattleDataManager : MonoBehaviour
 
             unit.DeckUnit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit.DeckUnit);
-            Debug.Log(unit.Data.Name);
         }
 
         _battleUnitList.Clear();
@@ -60,7 +59,6 @@ public class BattleDataManager : MonoBehaviour
         {
             unit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit);
-            Debug.Log(unit.Data.Name);
         }
 
         PlayerHands.Clear();
@@ -68,7 +66,7 @@ public class BattleDataManager : MonoBehaviour
         if (GameManager.OutGameData.IsUnlockedItem(8))
         {
             StageData data = GameManager.Data.Map.GetCurrentStage();
-            if (data.StageLevel == 10)
+            if (data.StageLevel == 90)
             {
                 foreach (DeckUnit unit in PlayerDeck)
                 {

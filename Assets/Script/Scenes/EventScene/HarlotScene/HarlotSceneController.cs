@@ -33,20 +33,20 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
     private void Init()
     {
-        if(GameManager.Data.GameData.npcQuest.darkshopQuest>30){//
+        if(GameManager.Data.GameData.NpcQuest.DarkshopQuest>30){//
             background.SetActive(false);
             fall_background.SetActive(true);
             this.isNPCFall = true;
         }
-        else if (GameManager.Data.GameData.npcQuest.darkshopQuest > 30 * 3 / 4)
+        else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 * 3 / 4)
         {
             //안개이미지 변경
         }
-        else if (GameManager.Data.GameData.npcQuest.darkshopQuest > 30 / 2)
+        else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 2)
         {
             //안개이미지 변경
         }
-        else if (GameManager.Data.GameData.npcQuest.darkshopQuest > 30 / 4)
+        else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 4)
         {
             //안개이미지 변경
         }
@@ -54,13 +54,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         scripts = new List<Script>();
         _isStigmaFull = false;
         _RestorationUnits = new List<DeckUnit>();
-        if (GameManager.Data.GameData.isVisitDarkShop == false)
+        if (GameManager.Data.GameData.IsVisitDarkShop == false)
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
             GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
             uiConversation = FindObjectOfType<UI_Conversation>();
             uiConversation.ConversationEnded += OnConversationEnded;
-            GameManager.Data.GameData.isVisitDarkShop = true;
+            GameManager.Data.GameData.IsVisitDarkShop = true;
         }
         else
         {
@@ -110,7 +110,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         //연출하기 애니매이션 끝나면 
         //Debug.Log(GameManager.Data.GameData.DeckUnits);
-       
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_UnitInfo _ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
         _ui.SetUnit(_originUnits[2]);
         _ui.Init(OnSelectMakeUnit,CUR_EVENT.COMPLETE_HAELOT,OnQuitClick);
@@ -124,7 +124,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
     {
-        GameManager.UI.ShowPopup<UI_MyDeck>().Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>();
+        _ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        _ui.SetEventMenu(_ui_SelectMenu);
     }
     public void OnSelectRestoration(DeckUnit unit)
     {
@@ -139,7 +142,9 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnStigmaButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        _ui.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        _ui.SetEventMenu(_ui_SelectMenu);
     }
     public void IsStigmaFull()
     {
@@ -227,14 +232,14 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
 
 
-        /*if (GameManager.Data.GameData.isVisitHarlot == false)
+        if (GameManager.Data.GameData.IsVisitDarkShop == false)
         {
-            GameManager.Data.GameData.isVisitHarlot = true;
+            GameManager.Data.GameData.IsVisitDarkShop = true;
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장"], false);
-        */
+        
         yield return StartCoroutine(quitScript.PrintScript());
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();

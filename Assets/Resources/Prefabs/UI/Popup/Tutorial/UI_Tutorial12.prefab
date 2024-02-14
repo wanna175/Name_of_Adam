@@ -408,8 +408,8 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 2
-  m_wordSpacing: 0
-  m_lineSpacing: 20
+  m_wordSpacing: 3
+  m_lineSpacing: 30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

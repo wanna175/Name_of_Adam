@@ -7,7 +7,7 @@ public class UI_PlayerSkill : UI_Scene
     [SerializeField] private GameObject PlayerSkillCardPrefabs;
     [SerializeField] private Transform Grid;
 
-    public UI_PlayerSkillCard _selectedCard = null;
+    private UI_PlayerSkillCard _selectedCard = null;
 
     public List<GameObject> curCardList = new();
 
@@ -37,9 +37,13 @@ public class UI_PlayerSkill : UI_Scene
     public void OnClickHand(UI_PlayerSkillCard card)
     {
         //PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
-        
         if (!Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()) && GameManager.Data.CanUseDarkEssense(card.GetSkill().GetDarkEssenceCost()))
         {
+            if (!BattleManager.BattleUI.UI_hands.IsSelectedHandNull)
+            {
+                BattleManager.BattleUI.UI_hands.CancelSelect();
+            }
+
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
             if (card != null && card == _selectedCard)
             {

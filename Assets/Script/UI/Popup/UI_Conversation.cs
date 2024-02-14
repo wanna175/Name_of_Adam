@@ -60,7 +60,7 @@ public class UI_Conversation : UI_Popup
 
             yield return new WaitUntil(() => (co_typing == null || GameManager.InputManager.Click));
 
-            if(co_typing != null)
+            if (co_typing != null)
             {
                 StopCoroutine(co_typing);
                 co_typing = null;
@@ -69,7 +69,7 @@ public class UI_Conversation : UI_Popup
 
             yield return new WaitUntil(() => GameManager.InputManager.Click);
 
-            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         }
 
         if (_battleConversation)

@@ -13,7 +13,6 @@ public struct Stat
     public int FallCurrentCount;
     public int FallMaxCount;
     public int ManaCost;
-    public int CurrentUpgradeCount;
 
     public static Stat operator +(Stat lhs, Stat rhs)
     {
@@ -25,7 +24,6 @@ public struct Stat
         result.FallCurrentCount = lhs.FallCurrentCount + rhs.FallCurrentCount;
         result.FallMaxCount = lhs.FallMaxCount + rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost + rhs.ManaCost;
-        result.CurrentUpgradeCount = lhs.CurrentUpgradeCount + rhs.CurrentUpgradeCount;
 
         return result;
     }
@@ -40,7 +38,6 @@ public struct Stat
         result.FallCurrentCount = lhs.FallCurrentCount - rhs.FallCurrentCount;
         result.FallMaxCount = lhs.FallMaxCount - rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost - rhs.ManaCost;
-        result.CurrentUpgradeCount = lhs.CurrentUpgradeCount - rhs.CurrentUpgradeCount;
 
         return result;
     }
@@ -54,7 +51,6 @@ public struct Stat
         FallCurrentCount = 0;
         FallMaxCount = 0;
         ManaCost = 0;
-        CurrentUpgradeCount = 0;
     }
 }
 
@@ -62,8 +58,8 @@ public struct Upgrade
 {
     public string UpgradeName;
     public string UpgradeDescription;
-    public Sprite UpgradeImage;
-    public Sprite UpgradeDecorationImage;
+    public Sprite UpgradeImage88;
+    public Sprite UpgradeImage160;
     public Stat UpgradeStat;
     public UpgradeData UpgradeData;
 }
@@ -202,7 +198,8 @@ public enum FieldColorType
     Attack,
     Select,
     PlayerSkill,
-    UltimatePlayerSkill
+    EnemyPlayerSkill,
+    PlayerPlayerSkill
 }
 
 public enum PlayerSkillTargetType

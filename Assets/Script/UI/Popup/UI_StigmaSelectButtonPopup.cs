@@ -14,46 +14,39 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private StigmaInterface _sc;
     public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
     {
-        
         _afterPopupAction = afterPopupAction;
         _targetUnit = targetUnit;
         _sc = sc;
+
         if (targetUnit == null)
         {
-            GiveStigmaInit(stigmata);
-            return;
-        }
-        if (stigmata != null)
-        {
-            List<Stigma> stigmaList = new();
-            List<Stigma> existStigma = targetUnit.GetStigma();
-            for (int i = 0; i < stigmata.Count; i++)
-            {
-                if(existStigma.Contains(stigmata[i]))
-                {
-                    continue;
-                }
-                else if(stigmata[i] == null)
-                {
-                    continue;
-                }
-                else
-                {
-                    stigmaList.Add(stigmata[i]);
-                }
-            }
-            SetStigmaSelectButtons(stigmaList);
+            SetStigmaSelectButtons(stigmata);
         }
         else
         {
-            List<Stigma> stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
+            List<Stigma> stigmaList = new();
+
+            if (stigmata != null)
+            {
+                List<Stigma> existStigma = targetUnit.GetStigma();
+
+                foreach (Stigma stigma in stigmata)
+                {
+                    if (!existStigma.Contains(stigma) && stigma != null)
+                    {
+                        stigmaList.Add(stigma);
+                    }
+                }
+            }
+            else
+            {
+                stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
+            }
+
             SetStigmaSelectButtons(stigmaList);
         }
     }
-    private void GiveStigmaInit(List<Stigma> stigmaList)
-    {
-        SetStigmaSelectButtons(stigmaList);
-    }
+
     private List<Stigma> CreateStigmaList(DeckUnit targetUnit, int stigmaCount)
     {
         List<Stigma> result = new();
@@ -63,13 +56,8 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         {
             Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
 
-            if (existStigma.Contains(stigma))
-                continue;
-
-            if (result.Contains(stigma))
-                continue;
-
-            result.Add(stigma);
+            if (!existStigma.Contains(stigma) && !result.Contains(stigma))
+                result.Add(stigma);
         }
 
         return result;
@@ -77,9 +65,9 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     private void SetStigmaSelectButtons(List<Stigma> stigmaList)
     {
-        for (int i = 0; i < stigmaList.Count; i++)
+        foreach (Stigma stigma in stigmaList)
         {
-            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().Init(stigmaList[i], _sc, this);
+            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().Init(stigma, _sc, this);
         }
     }
 
@@ -99,11 +87,13 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         {
             _afterPopupAction.Invoke();
         }
+
         GameManager.UI.ClosePopup();
     }
 
     public void QuitBtn()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (SceneChanger.GetSceneName() == "BattleScene")
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);

@@ -19,14 +19,14 @@ public class Stigma_Funeral : Stigma
             caster.SetBuff(new Buff_Vice());
 
             SpawnData sd = new();
-            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/장의사_죄수");
+            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/원령");
             sd.location = caster.Location + Vector2.right;
             sd.team = caster.Team;
 
             BattleUnit spawnUnit = BattleManager.Spawner.SpawnDataSpawn(sd);
             spawnUnit.SetBuff(new Buff_Vice());
 
-            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/장의사_묘지기");
+            sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/망령");
             sd.location = caster.Location + Vector2.right + Vector2.right;
             sd.team = caster.Team;
 

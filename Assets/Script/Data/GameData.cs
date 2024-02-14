@@ -6,18 +6,17 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public Incarna Incarna;
-    public PlayerSkill UniversalPlayerSkill;
     public int Money;
     public int DarkEssence;
     public int PlayerHP;
-    public int PlayerSkillCount;
     public List<DeckUnit> DeckUnits = new();
     public List<DeckUnit> FallenUnits = new();
-    public bool isVisitUpgrade = false;
-    public bool isVisitStigma = false;
-    public bool isVisitDarkShop = false;
+    public bool IsVisitUpgrade = false;
+    public bool IsVisitStigma = false;
+    public bool IsVisitDarkShop = false;
     public Progress Progress;
-    public NPCQuest npcQuest;
+    public NPCQuest NpcQuest;
+    public Vector2 StageBenediction;
 }
 
 [Serializable]
@@ -68,13 +67,13 @@ public class Progress
 [Serializable]
 public class NPCQuest
 {
-    public int upgradeQuest;
-    public int stigmaQuest;
-    public int darkshopQuest;
+    public int UpgradeQuest;
+    public int StigmaQuest;
+    public int DarkshopQuest;
     public void ClearQuest()
     {
-        upgradeQuest = 0;//Á×ÀÎ Àû È½¼ö
-        stigmaQuest = 0;//³«ÀÎ ºÎ¿©È½¼ö
-        darkshopQuest = 0;//Àû Å¸¶ôÈ½¼ö
+        UpgradeQuest = 0;//Á×ÀÎ Àû È½¼ö
+        StigmaQuest = 0;//³«ÀÎ ºÎ¿©È½¼ö
+        DarkshopQuest = 0;//Àû Å¸¶ôÈ½¼ö
     }
 }

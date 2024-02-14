@@ -44,11 +44,38 @@
       ]
     },
     {
+      "title": "라헬레아전_입장",
+      "contents": [
+        {
+          "name": "라헬레아",
+          "script": "라헬레아 스크립트"
+        }
+      ]
+    },
+    {
+      "title": "압바임전_입장",
+      "contents": [
+        {
+          "name": "압바임",
+          "script": "압바임 스크립트"
+        }
+      ]
+    },
+    {
       "title": "바누엘전_입장",
       "contents": [
         {
           "name": "King Herod",
           "script": "Wisdom, power, and might. The power of the trinity can subjugate all."
+        }
+      ]
+    },
+    {
+      "title": "호루스전_입장",
+      "contents": [
+        {
+          "name": "호루스",
+          "script": "호루스전 스크립트"
         }
       ]
     },
@@ -418,6 +445,24 @@
         {
           "name": "Messenger of love",
           "script": "Messenger of love 입장 스크립트."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_퇴장_최초",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "탕녀 퇴장 최초 스크립트."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_퇴장",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "탕녀 퇴장 스크립트."
         }
       ]
     }

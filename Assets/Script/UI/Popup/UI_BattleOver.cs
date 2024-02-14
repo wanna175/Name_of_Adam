@@ -45,24 +45,27 @@ public class UI_BattleOver : UI_Scene
 
     public void OnClick()
     {
-        Debug.Log("Å¬¸¯dhlsjfkdlsjfdksfjdsklfjdkslfjdsklfjdslfjdsklfjsldjflsdjfds");
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
         if (_result == "win")
         {
-            if(_rewardScene.isEndFade)
+            if (_rewardScene.isEndFade)
+            {
                 SceneChanger.SceneChange("StageSelectScene");
+            }
             else
             {
-                Debug.Log("dhlsjfkdlsjfdksfjdsklfjdkslfjdsklfjdslfjdsklfjsldjflsdjfds");
                 _rewardScene.EndFadeIn();
             }
         }
         else if (_result == "elite win")
         {
-            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 100)
             {
                 GameManager.Data.GameData.Progress.LeftDarkEssence = GameManager.Data.DarkEssense;
                 BattleOverDestroy();
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
+                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Victory";
             }
             else
             {
@@ -77,6 +80,7 @@ public class UI_BattleOver : UI_Scene
             if (GameManager.OutGameData.isTutorialClear())
             {
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
+                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";
             }
             else
             {

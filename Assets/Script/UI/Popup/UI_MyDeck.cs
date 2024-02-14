@@ -7,19 +7,19 @@ public class UI_MyDeck : UI_Popup
 {
     [SerializeField] private GameObject CardPrefabs;
     [SerializeField] private Transform Grid;
-    [SerializeField] private GameObject Quit_btn;//Á¾·á¹öÆ°
-    [SerializeField] private GameObject Set_btn;//°áÁ¤ ¹öÆ°
-    [SerializeField] private TextMeshProUGUI _quit_txt;//Á¦¸ñ ÅØ½ºÆ®
-    [SerializeField] private TextMeshProUGUI _title_txt;//Á¦¸ñ ÅØ½ºÆ®
+    [SerializeField] private GameObject Quit_btn;//ï¿½ï¿½ï¿½ï¿½ï¿½Æ°
+    [SerializeField] private GameObject Set_btn;//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    [SerializeField] private TextMeshProUGUI _quit_txt;//ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    [SerializeField] private TextMeshProUGUI _title_txt;//ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
-    private Dictionary<DeckUnit,UI_Card> _card_dic = new();//¼±ÅÃµÈ À¯´Ö
+    private Dictionary<DeckUnit, UI_Card> _card_dic = new();//ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
     private bool _isBossClear;
 
-    private GameObject eventMenu = null;
+    private GameObject _eventMenu = null;
 
     [SerializeField] private TMP_Text pageText;
     [SerializeField] private GameObject prePageButton;
@@ -30,8 +30,10 @@ public class UI_MyDeck : UI_Popup
     public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE,Action endEvent=null)
     {
         Set_btn.SetActive(false);
+
         if (Eventnum == CUR_EVENT.RECEIVE_STIGMA)
             Quit_btn.SetActive(false);
+
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
@@ -49,22 +51,23 @@ public class UI_MyDeck : UI_Popup
             _onSelect = onSelect;
         if (endEvent != null)
             _endEvent = endEvent;
-        isEventScene(Eventnum);
+
+        IsEventScene(Eventnum);
         evNum = Eventnum;
+        
         if (evNum == CUR_EVENT.GIVE_STIGMA)
             SetCard(evNum);
         else
             SetCard();
-        
     }
 
     public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
     {
-        _quit_txt.text = "¼±ÅÃ ¾ÈÇÔ";
+        _quit_txt.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½";
         _isBossClear = isBossClear;
 
-        List<DeckUnit> _normalDeck = new();
-        List<DeckUnit> _totalDeck = new();
+        List<DeckUnit> normalDeck = new();
+        List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
 
         currentPageIndex = 0;
@@ -72,26 +75,27 @@ public class UI_MyDeck : UI_Popup
         if (maxPageIndex < 0)
             maxPageIndex = 0;
 
-        _title_txt.text = "Àü´ç¿¡ µ¥·Á°¥ À¯´ÖÀ» ¼±ÅÃÇÏ¼¼¿ä";
+        _title_txt.text = "ï¿½ï¿½ï¿½ç¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
 
         foreach (DeckUnit unit in _hallDeck)
         {
-            _totalDeck.Add(unit);
+            totalDeck.Add(unit);
 
             if (unit.Data.Rarity == Rarity.Normal)
             {
-                _normalDeck.Add(unit);
+                normalDeck.Add(unit);
             }
         }
 
         if (isBossClear)
         {
-            _playerDeck = _totalDeck;
+            _playerDeck = totalDeck;
         }
         else
         {
-            _playerDeck = _normalDeck;
+            _playerDeck = normalDeck;
         }
+
         if (onSelect != null)
             _onSelect = onSelect;
 
@@ -100,8 +104,8 @@ public class UI_MyDeck : UI_Popup
 
     public void HallDeckInit(bool isElite = false, Action<DeckUnit> onSelect = null)
     {
-        List<DeckUnit> _eliteDeck = new();
-        List<DeckUnit> _normalDeck = new();
+        List<DeckUnit> eliteDeck = new();
+        List<DeckUnit> normalDeck = new();
 
         _hallDeck = GameManager.Data.GetDeck();
 
@@ -113,32 +117,45 @@ public class UI_MyDeck : UI_Popup
         ClearCard();
         SetPageAllUI();
 
-        _title_txt.text = "Àü´ç¿¡ µ¥·Á°¥ À¯´ÖÀ» ¼±ÅÃÇÏ¼¼¿ä";
+        _title_txt.text = "ï¿½ï¿½ï¿½ç¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
 
         foreach (DeckUnit unit in _hallDeck)
         {
             if (unit.Data.Rarity == Rarity.Normal)
             {
-                _normalDeck.Add(unit);
+                normalDeck.Add(unit);
             }
             else
             {
-                _eliteDeck.Add(unit);
+                eliteDeck.Add(unit);
             }
         }
 
         if (isElite)
         {
-            _playerDeck = _eliteDeck;
+            _playerDeck = eliteDeck;
         }
         else
-            _playerDeck = _normalDeck;
+            _playerDeck = normalDeck;
 
         if (onSelect != null)
             _onSelect = onSelect;
 
         SetCard();
     }
+
+    public void HallFullDeckInit(Action<DeckUnit> onSelect = null)
+    {
+        _title_txt.text = "ï¿½ï¿½ï¿½ç¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
+
+        _playerDeck = GameManager.Data.GetDeck();
+
+        if (onSelect != null)
+            _onSelect = onSelect;
+
+        SetCard();
+    }
+
     public void SetCard() 
     {
         var dumpCards = Grid.GetComponentsInChildren<UI_Card>();
@@ -159,6 +176,7 @@ public class UI_MyDeck : UI_Popup
         foreach (var card in dumpCards)
             GameManager.Resource.Destroy(card.gameObject);
     }
+
     private void SetCard(CUR_EVENT EventNum)
     {
         ClearCard();
@@ -177,38 +195,37 @@ public class UI_MyDeck : UI_Popup
         UI_Card newCard = GameObject.Instantiate(CardPrefabs, Grid).GetComponent<UI_Card>();
         newCard.SetCardInfo(this, unit);
 
-        if(evNum == CUR_EVENT.UPGRADE)
-        {
-            newCard.SetDisableUpgrade(unit);
-        }
-
         _card_dic[unit] = newCard;
     }
 
     public void OnClickCard(DeckUnit unit)
     {
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
-
         ui.SetUnit(unit);
+
         if (evNum == CUR_EVENT.HARLOT_RESTORATION)
-            ui.Restoration(_onSelect,evNum, OnSelectRestorationUnit);
+            ui.Restoration(_onSelect, evNum, OnSelectRestorationUnit);
         else
             ui.Init(_onSelect, evNum);
     }
+
     public void OnSelectRestorationUnit(DeckUnit unit)
     {
         _card_dic[unit].SelectCard();
     }
-    //À¯´Ö È¯¿ø ½Ã °áÁ¤¹öÆ°...
+
+    //ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°...
     public void SetButtonClick()
     {
         _endEvent.Invoke();
     }
+
     public void SetEventMenu(GameObject obj)
     {
-        this.eventMenu = obj;
+        _eventMenu = obj;
     }
-    private void isEventScene(CUR_EVENT EventScene)
+
+    private void IsEventScene(CUR_EVENT EventScene)
     {
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
@@ -216,22 +233,22 @@ public class UI_MyDeck : UI_Popup
             //Quit_btn.SetActive(false);
 
             if (EventScene == CUR_EVENT.UPGRADE)
-                _title_txt.text = "°­È­ÇÒ À¯´ÖÀ» ¼±ÅÃÇÏ¼¼¿ä";
+                _title_txt.text = "ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
             else if (EventScene == CUR_EVENT.RELEASE)
-                _title_txt.text = "½Å¾ÓÀ» È¸º¹½ÃÅ³ À¯´ÖÀ» ¼±ÅÃÇÏ¼¼¿ä";
+                _title_txt.text = "ï¿½Å¾ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
             else if (EventScene == CUR_EVENT.STIGMA || EventScene == CUR_EVENT.RECEIVE_STIGMA)
-                _title_txt.text = "³«ÀÎÀ» ºÎ¿©ÇÒ À¯´ÖÀ» ¼±ÅÃÇÏ¼¼¿ä";
+                _title_txt.text = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
             else if (EventScene == CUR_EVENT.GIVE_STIGMA)
-                _title_txt.text = "Èñ»ý½ÃÅ³ À¯´ÖÀ» ¼±ÅÃÇÏ¼¼¿ä";
+                _title_txt.text = "ï¿½ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
             else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
             {
-                _title_txt.text = "È¯¿ø½ÃÅ³ À¯´ÖµéÀ» ¼±ÅÃÇÏ¼¼¿ä";
+                _title_txt.text = "È¯ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½";
                 Set_btn.SetActive(true);
             }
         }
         else
         {
-            _title_txt.text = "º¸À¯ À¯´Ö";
+            _title_txt.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½";
         }
     }
 
@@ -239,7 +256,7 @@ public class UI_MyDeck : UI_Popup
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
 
-        if (_quit_txt.text == "¼±ÅÃ ¾ÈÇÔ")
+        if (_quit_txt.text == "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")
         {
             if (_isBossClear)
             {
@@ -252,10 +269,10 @@ public class UI_MyDeck : UI_Popup
         }
         else
         {
-            if (eventMenu != null)
-                eventMenu.SetActive(true);
-            GameManager.UI.ClosePopup();
+            if (_eventMenu != null)
+                _eventMenu.SetActive(true);
 
+            GameManager.UI.ClosePopup();
         }
     }
 

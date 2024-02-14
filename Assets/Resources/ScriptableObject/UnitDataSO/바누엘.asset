@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: "\uBC14\uB204\uC5D8"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 120
-    CurrentHP: 120
+    MaxHP: 200
+    CurrentHP: 200
     ATK: 20
     SPD: 0
     FallCurrentCount: 0
     FallMaxCount: 4
     ManaCost: 0
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: -1096335051127237467, guid: cd5ed88c6bfe63e4e84e2e734f01dcc3, type: 3}
   - {fileID: -508501736621560720, guid: 34fc05444e997cd40bf7be4e3a0de2e5, type: 3}
@@ -29,8 +28,8 @@ MonoBehaviour:
   _name: King Herod
   _description: 
   _rarity: 3
-  _image: {fileID: -561143384, guid: 1a22865a3ea972d46b40720e5f4d1a7b, type: 3}
-  _corruptImage: {fileID: 0}
+  _image: {fileID: 21300000, guid: a9eb8b29dd26cab4bbd563e4fd7a3169, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 7586f16f1cfc2484499d48cdad387fb3, type: 3}
   _portraitImage: {fileID: 21300000, guid: 2de7b2f59476eba4c907cd8cd331af4f, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: d39f64d6a63e99047b816e4e681ebea1, type: 3}
   _diaPortraitImage: {fileID: 21300000, guid: f549d1c859741b240aede3973f652df9, type: 3}

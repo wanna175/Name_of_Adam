@@ -36,7 +36,7 @@ public class RewardController
     }
     public void RewardSetting(List<DeckUnit> units, UI_RewardScene rewardScene)//리워드씬에서 값 세팅해주기
     {
-        rewardScene.Init(GameManager.Data.DarkEssense - prev_DarkEssence,dic_units.Count+units.Count);
+        rewardScene.Init(GameManager.Data.DarkEssense - prev_DarkEssence);
         RewardUnit unit,fallunit;
         for (int i=0;i<units.Count;++i)
         {
@@ -60,8 +60,8 @@ public class RewardController
             fallunit = new RewardUnit(u.Value.name, 0, u.Value.image);
             rewardScene.setContent(idx++, fallunit, 0, UnitState.Die);
         }
+        rewardScene.setFadeIn(units.Count+dic_units.Count);
         dic_units.Clear();
-        //rewardScene.EndFadeIn(false);
     }
    
     #endregion

@@ -12,8 +12,16 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private GameObject _selectHighlight;
     [SerializeField] private GameObject _disable;
     [SerializeField] private Image _unitImage;
+    [SerializeField] private Image _frameImage;
     [SerializeField] private TextMeshProUGUI _name;
 
+    [SerializeField]
+    private List<GameObject> _stigmaFrames;
+
+    private List<Image> _stigmaImages;
+
+    public Sprite NormalFrame;
+    public Sprite EliteFrame;
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
@@ -32,9 +40,41 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
 
+        if(unit.Data.Rarity == Rarity.Normal)
+        {
+            _frameImage.sprite = NormalFrame;
+        }
+        else
+        {
+            _frameImage.sprite = EliteFrame;
+        }
+
         if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
             SetDisableMain(unit);
+        }
+
+        _stigmaImages = new List<Image>();
+        foreach (var frame in _stigmaFrames)
+            _stigmaImages.Add(frame.GetComponentsInChildren<Image>()[1]);
+
+        foreach (var frame in _stigmaFrames)
+            frame.SetActive(true);
+
+        List<Stigma> stigmas = unit.GetStigma();
+        for (int i = 0; i < _stigmaImages.Count; i++)
+        {
+            if (i < stigmas.Count)
+            {
+                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetStigma(stigmas[i]);
+                _stigmaImages[i].sprite = stigmas[i].Sprite_28;
+                _stigmaImages[i].color = Color.white;
+            }
+            else
+            {
+                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
+                _stigmaImages[i].color = new Color(1f, 1f, 1f, 0f);
+            }
         }
     }
     public void SelectCard()
@@ -50,35 +90,28 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _disable.SetActive(unit.IsMainDeck);
     }
 
-    public void SetDisableUpgrade(DeckUnit unit)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!GameManager.OutGameData.IsUnlockedItem(12))
+        if (_cardUnit.IsMainDeck && SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
-            if (unit.DeckUnitStat.CurrentUpgradeCount == unit.MaxUpgradeCount)
-            {
-                _disable.SetActive(true);
-            }
+            return;
         }
         else
         {
-            if (unit.DeckUnitStat.CurrentUpgradeCount == unit.UpgradedMaxUpgradeCount)
-            {
-                _disable.SetActive(true);
-            }
-        }
-
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (!_cardUnit.IsMainDeck)
             _highlight.SetActive(true);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!_cardUnit.IsMainDeck)
+        if (_cardUnit.IsMainDeck && SceneManager.GetActiveScene().name == "DifficultySelectScene")
+        {
+            return;
+        }
+        else
+        {
             _highlight.SetActive(false);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

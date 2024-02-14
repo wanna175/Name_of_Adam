@@ -36,17 +36,19 @@ public class PlayerSkillController : MonoBehaviour
         usedPlayerSkill = BattleUI.GetSelectedPlayerSkill();
         _isSkillOn = usedPlayerSkill.Use(coord);
 
-        if (!_isManaFree)
-            Mana.ChangeMana(-1 * usedPlayerSkill.GetManaCost());
-        else
+        if (_isManaFree)
         {
             _isManaFree = false;
             BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
         }
+        else
+        {
+            Mana.ChangeMana(-1 * usedPlayerSkill.GetManaCost());
+        }
 
         Data.DarkEssenseChage(-1 * usedPlayerSkill.GetDarkEssenceCost());
 
-        if (!IsSkillOn)
+        if (!_isSkillOn)
             usedPlayerSkill = null;
 
         BattleUI.UI_playerSkill.CancelSelect();

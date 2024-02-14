@@ -13,7 +13,11 @@ public class OutGameData
     public int ProgressCoin;                 // 진척도 코인
     public List<ProgressItem> ProgressItems; // 진척도 상점의 상품들
     public List<HallUnit> HallUnit;          // 전당 유닛
+    
     public bool TutorialClear = false;
+    public bool PhanuelClear = false;
+    public bool HorusClear = false;
+
     public bool isVisitUpgrade = false;
     public bool isVisitStigma = false;
     public bool isVisitDarkShop = false;
@@ -158,7 +162,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         ProgressItem item = GetProgressItem(ID);
 
-        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock || data.ProgressCoin < item.Cost)
+        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock)
         {
             return false;
         }
@@ -233,6 +237,28 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
     }
 
+    public void ClearPhanuel(bool isclear)
+    {
+        data.PhanuelClear = isclear;
+        SaveData();
+    }
+
+    public void ClearHorus(bool isclear)
+    {
+        data.HorusClear = isclear;
+        SaveData();
+    }
+
+    public bool isPhanuelClear()
+    {
+        return data.PhanuelClear;
+    }
+
+    public bool isHorusClear()
+    {
+        return data.HorusClear;
+    }
+
     public bool isTutorialClear()
     {
         return data.TutorialClear;
@@ -240,10 +266,10 @@ public class OutGameDataContainer : MonoBehaviour
 
     public void setNPCQuest()
     {
-        data.npcQuest = GameManager.Data.GameData.npcQuest;
-        data.isVisitUpgrade = GameManager.Data.GameData.isVisitUpgrade;
-        data.isVisitStigma = GameManager.Data.GameData.isVisitStigma;
-        data.isVisitDarkShop = GameManager.Data.GameData.isVisitDarkShop;
+        data.npcQuest = GameManager.Data.GameData.NpcQuest;
+        data.isVisitUpgrade = GameManager.Data.GameData.IsVisitUpgrade;
+        data.isVisitStigma = GameManager.Data.GameData.IsVisitStigma;
+        data.isVisitDarkShop = GameManager.Data.GameData.IsVisitDarkShop;
         SaveData();
     }
     public NPCQuest getNPCQuest()
@@ -253,6 +279,7 @@ public class OutGameDataContainer : MonoBehaviour
     public bool getVisitUpgrade() { return data.isVisitUpgrade; }
     public bool getVisitStigma() { return data.isVisitStigma; }
     public bool getVisitDarkshop() { return data.isVisitDarkShop; }
+
     public void RemoveHallUnit(int ID)
     {
         data.HallUnit.Remove(FindHallUnitID(ID));
