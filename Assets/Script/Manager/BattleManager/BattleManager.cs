@@ -360,6 +360,10 @@ public class BattleManager : MonoBehaviour
             cor.LoopExit();
             targetUnit.DeckUnit.ClearStigma();
         }
+        else if (targetUnit.Data.Rarity == Rarity.Boss)
+        {
+            cor.LoopExit();
+        }
         else
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
