@@ -79,7 +79,6 @@ public class SaveController : MonoBehaviour
         newData.IncarnaData = CurGameData.Incarna;
         newData.DarkEssence = GameManager.Data.DarkEssense;
         newData.PlayerHP = CurGameData.PlayerHP;
-        newData.PlayerSkillCount = CurGameData.PlayerSkillCount;
         newData.DefaultMana = 50; // 진척도에 따라 바뀌는 인자들
         newData.GuardCount = 1;   // 이 인자들을 적용하는 곳이 생기면 연동하기
         newData.ProgressData = CurGameData.Progress;
