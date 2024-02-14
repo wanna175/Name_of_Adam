@@ -7,11 +7,11 @@ public class Buff_Karma : Buff
     {
         _buffEnum = BuffEnum.Karma;
 
-        _name = "업보";
+        _name = "Karma";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "업보.";
+        _description = "When attacked, reduces the faith of the attacking enemy unit by 1.";
 
         _count = 2;
 

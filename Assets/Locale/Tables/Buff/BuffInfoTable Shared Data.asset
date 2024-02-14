@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: BuffInfoTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: BuffInfoTable
+  m_TableCollectionNameGuidString: 854d29d828bd5fa44b2570785eca7734
+  m_Entries:
+  - m_Id: 4755091456
+    m_Key: Decreases the enemy's faith upon attacking. (Unable to remove)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54424039424
+    m_Key: Attacks with a 50% increase in damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87252856832
+    m_Key: Attacks first regardless of speed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 115275001856
+    m_Key: Damage triples, but dies after attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143120986112
+    m_Key: Currently attack has increased by n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252978196480
+    m_Key: Withstands once with the health of 1, when reaching death.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286473908224
+    m_Key: Invalidates damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315448160256
+    m_Key: Becomes able to move to any desired position.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 347706552320
+    m_Key: Unable to move.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 374298439680
+    m_Key: Decreases the enemy's faith by 1 upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 403427880960
+    m_Key: Faith decreases by 1 upon being attacked by Rahel and Lea.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 429461925888
+    m_Key: 'Provides additional effects with each stack
+
+      1 stack: When attacked
+      by Elieus or Yana, adjacent allies are also attacked.
+
+      2 stacks: When
+      attacked by Elieus or Yana, one''s faith decreases by 1.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483732025344
+    m_Key: When attacked, reduces the faith of the attacking enemy unit by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 527289872384
+    m_Key: Attacks in an area effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 587926925312
+    m_Key: Attacking range becomes infinite.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 606004375552
+    m_Key: Attacks in an area effect, and becomes immobile but decreases the enemy's
+      faith by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 645355335680
+    m_Key: The enemy attacks the tile it was standing at the player turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 695686983680
+    m_Key: Attacks the adjacent 4 tiles near all obelisks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 728159285248
+    m_Key: Attacks every area.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 754625343488
+    m_Key: Faith decreases by 1 after every turn of this unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 743255583133696
+    m_Key: Dust Info
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8030905667344924683
+  references:
+    version: 2
+    RefIds:
+    - rid: 8030905667344924683
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1707313018476

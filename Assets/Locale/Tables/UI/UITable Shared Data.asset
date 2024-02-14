@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UITable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UITable
+  m_TableCollectionNameGuidString: 2c995b0a22a73404eb644c2977683ff5
+  m_Entries:
+  - m_Id: 7117901824
+    m_Key: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 384571707392
+    m_Key: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 892191543296
+    m_Key: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1299500404736
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1347105755136
+    m_Key: Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1404437696512
+    m_Key: Stigma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1446535925760
+    m_Key: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7653527031808
+    m_Key: Start
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3866797750321414223
+  references:
+    version: 2
+    RefIds:
+    - rid: 3866797750321414223
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1706948851443

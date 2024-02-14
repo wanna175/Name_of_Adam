@@ -7,11 +7,11 @@ public class Buff_Vice : Buff
     {
         _buffEnum = BuffEnum.Vice;
 
-        _name = "¾Ç¼º";
+        _name = "Malevolence";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
 
-        _description = "°ø°Ý ½Ã ÀûÀÇ ½Å¾ÓÀ» 1 ¶³¾î¶ß¸³´Ï´Ù.";
+        _description = "Decreases the enemy's faith by 1 upon attacking.";
 
         _count = 1;
 

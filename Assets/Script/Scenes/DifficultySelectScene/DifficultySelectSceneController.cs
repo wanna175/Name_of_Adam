@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class DifficultySelectSceneController : MonoBehaviour
 {
@@ -86,6 +87,19 @@ public class DifficultySelectSceneController : MonoBehaviour
         UI_ConfirmBtn.SetActive(true);
         Incarna_Info[i].SetActive(true);
         incarnaData = GameManager.Resource.Load<Incarna>($"ScriptableObject/Incarna/{Incarna_Info[i].name}");
+
+        List<TMP_Text> texts = new List<TMP_Text>();
+        for (int j = 0; j < Incarna_Info[i].transform.childCount; j++)
+        {
+            TMP_Text text = Incarna_Info[i].transform.GetChild(j).GetComponent<TMP_Text>();
+            if (text != null)
+                texts.Add(text);
+        }
+
+        for (int j = 2; j < texts.Count; j++)
+        {
+            texts[j].SetText(GameManager.Locale.GetLocalizedPlayerSkillInfo(3 * i + j - 1));
+        }
     }
 
     public void LockIncarna(int progressID, int incarnaID)

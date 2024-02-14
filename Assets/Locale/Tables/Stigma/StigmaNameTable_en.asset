@@ -1,0 +1,227 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StigmaNameTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8f1c5be855cafc94da994ed88f5d504b, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 7259090944
+    m_Localized: Hook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41815961600
+    m_Localized: Dispel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79409508352
+    m_Localized: Shadow Step
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101656096768
+    m_Localized: Death Strike
+    m_Metadata:
+      m_Items: []
+  - m_Id: 146119913472
+    m_Localized: Absorption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 293079937024
+    m_Localized: Additional Punishment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2496133918720
+    m_Localized: Assasination
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2525573738496
+    m_Localized: Blessing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2552828325888
+    m_Localized: Raise I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 136906908954624
+    m_Localized: Raise II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 136938819219456
+    m_Localized: Tailwind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137074660143104
+    m_Localized: Sadism I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137097707843584
+    m_Localized: Sadism II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137166058221568
+    m_Localized: Blood Blessing I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137241786380288
+    m_Localized: Blood Blessing II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137273327546368
+    m_Localized: Regeneration I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137325504688128
+    m_Localized: Regeneration II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137359235280896
+    m_Localized: Benevolence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137394207387648
+    m_Localized: Immortality I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137444568395776
+    m_Localized: Immortality II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137491657846784
+    m_Localized: Invinciblity I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137710671818752
+    m_Localized: Invinciblity II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137737045602304
+    m_Localized: Revenge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137774911778816
+    m_Localized: Expand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137816326336512
+    m_Localized: Bishop's Praise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137873012355072
+    m_Localized: Berserker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137905929252864
+    m_Localized: Forbidden Pact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137958978809856
+    m_Localized: Thirst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138001043484672
+    m_Localized: Destiny
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138031565434880
+    m_Localized: Killing Spree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138073625915392
+    m_Localized: Teleport
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138109344608256
+    m_Localized: Mercy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138142068568064
+    m_Localized: Cleanse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138245189726208
+    m_Localized: Martyrdom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138310415347712
+    m_Localized: Repetance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138349242019840
+    m_Localized: Karma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138386491633664
+    m_Localized: Pray In Aid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 138448022073344
+    m_Localized: Sin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1406610193575936
+    m_Localized: Misdeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443889284968448
+    m_Localized: Dusk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1443988576727040
+    m_Localized: Charge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444059020062720
+    m_Localized: Karma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444226800611328
+    m_Localized: Permanence of Babel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444278075977728
+    m_Localized: Legacy of Babel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444308463710208
+    m_Localized: Wrath of Babel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444341699375104
+    m_Localized: Collapse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444363912409088
+    m_Localized: Misdeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444419000397824
+    m_Localized: Symbiosis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444465750110208
+    m_Localized: Rebirth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444506535522304
+    m_Localized: Trinity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1444587946962944
+    m_Localized: Funeral
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

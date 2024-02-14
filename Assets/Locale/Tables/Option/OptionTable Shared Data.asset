@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: OptionTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: OptionTable
+  m_TableCollectionNameGuidString: 276c601bc74577a4e81e14325488e89a
+  m_Entries:
+  - m_Id: 6437791240192
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6521828315136
+    m_Key: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6572197711872
+    m_Key: Window Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12284718125056
+    m_Key: Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12304045477888
+    m_Key: BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12334731005952
+    m_Key: SE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13095351259136
+    m_Key: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13175756066816
+    m_Key: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30057825472512
+    m_Key: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30178961166336
+    m_Key: Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30239065542656
+    m_Key: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30329528291328
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3866797750321414169
+  references:
+    version: 2
+    RefIds:
+    - rid: 3866797750321414169
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1706940161235

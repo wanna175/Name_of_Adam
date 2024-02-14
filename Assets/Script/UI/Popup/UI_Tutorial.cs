@@ -59,6 +59,13 @@ public class UI_Tutorial : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void OnLastCloseButton()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        TutorialManager.Instance.SetNextStep();
+        TutorialTimeStart();
+    }
+
     public void OnCloseButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");

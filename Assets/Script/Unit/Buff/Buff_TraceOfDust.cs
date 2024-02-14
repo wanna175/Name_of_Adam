@@ -6,11 +6,11 @@ public class Buff_TraceOfDust: Buff
     {
         _buffEnum = BuffEnum.TraceOfDust;
 
-        _name = "황혼";
+        _name = "Dusk";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_TraceOfLunar_Sprite");
 
-        _description = "1중첩: 엘리우스, 야나에게 피격시 주변 4칸의 아군도 피격됩니다.\n2중첩: 엘리우스, 야나에게 피격시 신앙이 떨어집니다.";
+        _description = "Dust Info";
 
         _count = 1;
 

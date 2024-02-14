@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 17
-  _name: "\uACFC\uC5C5"
-  _sprite: {fileID: 0}
+  _name: Karma
+  _sprite_28: {fileID: 0}
+  _sprite_88: {fileID: 0}
+  _sprite_164: {fileID: 0}
   _description: "\uC801\uC744 \uCC98\uCE58\uD558\uAC70\uB098 \uD0C0\uB77D\uC2DC\uCF30\uC744
-    \uC2DC \uD574\uB2F9 \uC720\uB2DB\uC5D0\uAC8C \uB300\uC8C4 \uBC84\uD504\uB97C
-    \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+    \uC2DC \uD574\uB2F9 \uC720\uB2DB\uC5D0\uAC8C \uB300\uC8C4\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   _activeTiming: 2
   _tier: 0
   _isLock: 1

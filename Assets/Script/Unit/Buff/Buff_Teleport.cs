@@ -12,7 +12,7 @@ public class Buff_Teleport : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raise_Sprite");
 
-        _description = "이동 턴에서 어느 타일이든 이동할 수 있습니다";
+        _description = "Gains 1 Sacred Step upon defeating an enemy. Sacred Step Becomes able to move to any desired position.";
 
         _count = 1;
 

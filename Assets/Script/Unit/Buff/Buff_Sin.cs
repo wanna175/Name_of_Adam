@@ -6,9 +6,9 @@ public class Buff_Sin : Buff
     {
         _buffEnum = BuffEnum.Sin;
 
-        _name = "대죄";
+        _name = "Malevolence";
 
-        _description = "공격 시 타락을 1 부여합니다.";
+        _description = "Decreases the enemy's faith by 1 upon attacking.";
 
         _count = -1;
 

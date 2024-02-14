@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 3
-  _name: "\uC790\uC560"
+  _name: Benevolence
   _sprite_28: {fileID: 21300000, guid: 368196ef0d38ebd4da97accb90f6a295, type: 3}
   _sprite_88: {fileID: 21300000, guid: ef5ada14c8a6cad4380e59d80578b8e7, type: 3}
   _sprite_164: {fileID: 21300000, guid: cbda7b463322e2f49b014e325414adbb, type: 3}
-  _description: "\uC18C\uD658 \uC2DC \uC8FC\uBCC0 4\uCE78\uC5D0 \uC788\uB294 \n\uC544\uAD70\uC758
-    \uCCB4\uB825\uC744\r \n30 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
+  _description: Restores 30 health to allies within 4 adjacent tiles upon summoning.
   _activeTiming: 2
   _tier: 0
   _isLock: 0

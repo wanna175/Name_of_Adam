@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 0
-  _name: "\uB8E8\uC2DC\uD37C"
+  _name: Lucifer
   _sprite_28: {fileID: 0}
   _sprite_88: {fileID: 0}
   _sprite_164: {fileID: 0}
-  _description: "\uB8E8\uC2DC\uD37C\uAC00 \uAC15\uB9BC\uD558\uC600\uC2B5\uB2C8\uB2E4."
+  _description: Lucifer
   _activeTiming: 2
   _tier: 3
   _isLock: 0

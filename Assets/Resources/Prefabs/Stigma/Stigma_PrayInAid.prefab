@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 22
-  _name: "\uC911\uBCF4"
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
-  _description: "\uD55C\uBC88\uC5D0 \uB450 \uC720\uB2DB \uC774\uC0C1\uC744 \uACF5\uACA9
-    \uC2DC \uD53C\uACA9 \uB300\uC0C1\uB4E4\uC758 \uC2E0\uC559\uC744 1 \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4"
+  _name: Pray In Aid
+  _sprite_28: {fileID: 21300000, guid: 3f21ab2c784e93447b63fd54c7d9e400, type: 3}
+  _sprite_88: {fileID: 21300000, guid: d14ddd8637b816d499ffbab5694494f0, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 5fceef63b4608004891fd2250aa0a8ce, type: 3}
+  _description: When attacking two or more enemies at once, it reduces faith by 1.
   _activeTiming: 2
   _tier: 0
-  _isLock: 1
+  _isLock: 0

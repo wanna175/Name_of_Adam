@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 15
   originaldarkEssence: 1
-  playerSkillName: "\uC2E0\uC18D"
+  playerSkillName: Swiftness
   playerSkillID: 3
   manaCost: 15
   darkEssence: 1

@@ -16,7 +16,108 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 7c4eb7d0ba46d2b4bbca0536eafec0eb
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 21a8236509a94aa45ac31f32b4805898
+    m_Address: OptionTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+  - m_GUID: 628e54955ca997b459e5ac12c8e638d0
+    m_Address: MainSceneTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 30350f4bcbfcb744f991abbff5b36d1f
+    m_Address: CutSceneTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 77d59b4963d0dca4983518b748c7bbf8
+    m_Address: UITable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: cca2438402bcf9b488aeb6ae894a7b16
+    m_Address: ItemTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: d0fc9bf92b437a64d937a885990df720
+    m_Address: IncarnaTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: cb6ce63b6061f48459b2f734bb6055c4
+    m_Address: ProgressSceneTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 8be7a6d144bd19245937cdd7490ce92d
+    m_Address: TutorialTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: c9b8e0045ccd742498d5b9c777b569e2
+    m_Address: UnitTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 6aee0956488fa534ebb2ae758e304d75
+    m_Address: StigmaNameTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 183c4bdb5e25dd543b62839dc06c8c60
+    m_Address: StigmaInfoTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: d8ade0fe0a722614a8bc7706ad3a9031
+    m_Address: BuffNameTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: fc1d8e5b31239824695526cfc446f4db
+    m_Address: BuffInfoTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: ff30a04f8ec82094aa6dd83e53546335
+    m_Address: PlayerSkillNameTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 0468634f18c72b547ad239f167ad42d1
+    m_Address: ScriptNameTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: 3f7e559f8b9734e42a0c915c1d9a35c0
+    m_Address: ScriptInfoTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
+  - m_GUID: ef82052c7a228fa43bcea3fcbdf76830
+    m_Address: PlayerSkillInfoTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:

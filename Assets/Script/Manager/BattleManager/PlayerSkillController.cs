@@ -54,6 +54,8 @@ public class PlayerSkillController : MonoBehaviour
         BattleUI.UI_playerSkill.CancelSelect();
         BattleUI.UI_playerSkill.Used = true;
         BattleUI.UI_playerSkill.InableSkill();
+
+        BattleManager.Instance.BattleOverCheck();
     }
 
     public void ActionSkill(ActiveTiming activeTiming, Vector2 coord)

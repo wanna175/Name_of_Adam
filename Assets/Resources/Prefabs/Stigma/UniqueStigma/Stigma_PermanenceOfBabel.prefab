@@ -45,15 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 0
-  _name: "\uBC14\uBCA8\uC758 \uC601\uC18D"
-  _sprite_28: {fileID: 21300000, guid: 67fc695593e062e41995bbbd804228b4, type: 3}
-  _sprite_88: {fileID: 21300000, guid: 7adac6d7ac2e9264c9b16627fda1ada5, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 50e9bbf44fe3fc6489ae4b03d71a6970, type: 3}
-  _description: "\uC801 \uC720\uB2DB\uC774 \uD50C\uB808\uC774\uC5B4\uD134\uC5D0 \uC788\uB358
-    \uD0C0\uC77C\uC744 \uACF5\uACA9\uD558\uAC70\uB098, \uC624\uBCA8\uB9AC\uC2A4\uD06C
-    \uC8FC\uC704\uC758 \uC801 \uC720\uB2DB\uB4E4\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4.\n\uB2C8\uBBC0\uB86F\uC774
-    \uACF5\uACA9\uD560 \uD0C0\uC77C\uC740 \uD50C\uB808\uC774\uC5B4\uD134\uBD80\uD130
-    \uD45C\uC2DC\uB429\uB2C8\uB2E4."
+  _name: Permanence of Babel
+  _sprite_28: {fileID: 21300000, guid: 5029ebd3a0a7cd945a75a3ebdc4e145b, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 0a7fff491aafa7847bf6ef4a42c594c8, type: 3}
+  _sprite_164: {fileID: 0}
+  _description: Permanence of Babel Info
   _activeTiming: 2
   _tier: 3
   _isLock: 0

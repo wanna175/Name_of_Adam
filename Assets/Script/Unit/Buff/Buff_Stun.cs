@@ -7,9 +7,9 @@ public class Buff_Stun : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
 
-        _name = "기절";
+        _name = "Stun";
 
-        _description = "기절.";
+        _description = "Unable to move.";
 
         _count = 1;
 
