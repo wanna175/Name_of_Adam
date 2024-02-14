@@ -17,7 +17,7 @@ public class Stigma_Sadism : Stigma
         }
         else if (Tier == StigmaTier.Tier2)
         {
-            sadism.SetValue(3);
+            sadism.SetValue(4);
         }
 
         caster.SetBuff(sadism);
