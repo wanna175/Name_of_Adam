@@ -256,7 +256,10 @@ public class UnitAction_Phanuel : UnitAction
         }
         else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
         {
-            receiver.ChangeFall(1);
+            if (receiver != null)
+            {
+                receiver.ChangeFall(1);
+            }
         }
 
         return false;
