@@ -23,8 +23,8 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 5157526946429990662, guid: 9cc8b427fb7401e48875ac17e8039a8f, type: 3}
-  _id: 
-  _name: "\uAD34\uC778"
+  _id: "\uAD34\uC778"
+  _name: Monster
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: 0bec0e3735519964891548a3d72a1dfb, type: 3}

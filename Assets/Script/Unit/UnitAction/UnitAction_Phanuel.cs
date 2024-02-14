@@ -74,7 +74,7 @@ public class UnitAction_Phanuel : UnitAction
 
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
                 {
                     count++;
                 }
@@ -100,7 +100,7 @@ public class UnitAction_Phanuel : UnitAction
 
         foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
         {
-            if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+            if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
             {
                 unit.AnimatorSetBool("isBright", _phanuelState == 2);
             }
@@ -127,7 +127,7 @@ public class UnitAction_Phanuel : UnitAction
         {
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
                 {
                     List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
@@ -137,7 +137,7 @@ public class UnitAction_Phanuel : UnitAction
                             continue;
 
                         BattleUnit udrlUnit = BattleManager.Field.GetUnit(unit.Location + udrl);
-                        if (udrlUnit != null && (udrlUnit.Data.ID == "오벨리스크ID" && udrlUnit.Team == caster.Team) || udrlUnit == caster)
+                        if (udrlUnit != null && (udrlUnit.Data.ID == "오벨리스크" && udrlUnit.Team == caster.Team) || udrlUnit == caster)
                         {
                             continue;
                         }
@@ -159,7 +159,7 @@ public class UnitAction_Phanuel : UnitAction
 
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if ((unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team))
+                if ((unit.Data.ID == "오벨리스크" && unit.Team == caster.Team))
                 {
                     nonAttackTiles.Add(unit.Location);
                 }
@@ -235,7 +235,7 @@ public class UnitAction_Phanuel : UnitAction
             for (int i = 0; i < listCount; i++)
             {
                 BattleUnit unit = BattleManager.Data.BattleUnitList[i];
-                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
                 {
                     unit.UnitDiedEvent();
                     i--;

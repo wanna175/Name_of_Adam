@@ -46,12 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 11
   originaldarkEssence: 1
-  playerSkillName: 
+  playerSkillName: Advent
   playerSkillID: 9
-  manaCost: 11
-  darkEssence: 1
-  description: "\uB8E8\uC2DC\uD37C\uAC00 \uD544\uB4DC \uC704\uC5D0 \uC9C1\uC811 \uAC15\uB9BC\uD569\uB2C8\uB2E4"
-  skillImage: {fileID: 21300000, guid: 7d96c9752ef267e49a35f489676e7921, type: 3}
+  manaCost: 66
+  darkEssence: 6
+  skillImage: {fileID: 21300000, guid: bd2cb3b394d47cc4c9ef278ebf043b0b, type: 3}
   createUnit:
     Data: {fileID: 11400000, guid: bcdad2aacd6d97c44a694b9252aca7bc, type: 2}
     DeckUnitUpgradeStat:

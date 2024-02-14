@@ -23,14 +23,9 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 171247975755226261, guid: e2453f4d561b4694d8202f89587122af, type: 3}
-  _id: 
-  _name: "\uC57C\uB098"
-  _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
-    \uC90D\uB2C8\uB2E4. \uD574\uC758 \uC99D\uD45C\uAC00 \uBD80\uC5EC\uB41C \uC801\uC744
-    \uAC70\uB9AC\uC5D0 \uC0C1\uAD00 \uC5C6\uC774 \uB3D9\uC77C\uD55C \uB370\uBBF8\uC9C0\uB85C
-    \uACF5\uACA9\uD558\uBA70 \uAD50\uD654\uB3C4\uB97C 1 \uBD80\uC5EC\uD569\uB2C8\uB2E4.
-    \uC57C\uB098\uC5D0\uAC8C \uD53C\uACA9\uB41C \uBAA8\uB4E0 \uC801\uC5D0\uAC8C \uB2EC\uC758
-    \uC99D\uD45C\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+  _id: "\uC57C\uB098"
+  _name: Yana
+  _description: 
   _rarity: 1
   _image: {fileID: 21300000, guid: 00205db14f13d414cbcca5066a2f37c3, type: 3}
   _corruptImage: {fileID: 21300000, guid: 798e8807e2b67ee4dba21c8ea96aa75c, type: 3}

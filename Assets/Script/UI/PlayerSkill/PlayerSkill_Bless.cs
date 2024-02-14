@@ -29,26 +29,4 @@ public class PlayerSkill_Bless : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
     }
-
-    public override string GetDescription()
-    {
-        SetDescription();
-        return base.GetDescription();
-    }
-
-    public void SetDescription()
-    {
-        string description;
-
-        if (GameManager.OutGameData.IsUnlockedItem(64))
-        {
-            description = "지정한 적에게 저주를 부여합니다";
-        }
-        else
-        {
-            description = "지정한 적에게 저주와 공격력 증가를 부여합니다";
-        }
-
-        base.SetDescription(description);
-    }
 }

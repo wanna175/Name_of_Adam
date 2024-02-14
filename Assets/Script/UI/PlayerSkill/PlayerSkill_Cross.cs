@@ -59,26 +59,4 @@ public class PlayerSkill_Cross : PlayerSkill
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
     }
-
-    public override string GetDescription()
-    {
-        SetDescription();
-        return base.GetDescription();
-    }
-
-    public void SetDescription()
-    {
-        string description;
-
-        if (GameManager.OutGameData.IsUnlockedItem(54))
-        {
-            description = "적을 지정하여 거대한 십자 범위에 20의 데미지를 줍니다. 피격된 적의 신앙을 1 떨어뜨립니다.";
-        }
-        else
-        {
-            description = "적을 지정하여 거대한 십자 범위에 20의 데미지를 줍니다.";
-        }
-
-        base.SetDescription(description);
-    }
 }

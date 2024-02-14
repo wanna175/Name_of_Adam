@@ -88,8 +88,8 @@ public class BattleCutSceneController : MonoBehaviour
                 GameManager.VisualEffect.StartVisualEffect(CSData.AttackUnit.SkillEffectAnim, hit.transform.position);
         }
 
-        string unitname = CSData.AttackUnit.DeckUnit.Data.Name;
-        GameManager.Sound.Play("Character/" + unitname + "/" + unitname + "_Attack");
+        string unitID = CSData.AttackUnit.DeckUnit.Data.ID;
+        GameManager.Sound.Play("Character/" + unitID + "/" + unitID + "_Attack");
     }
 
     public void ExitBattleCutScene(BattleCutSceneData CSData)

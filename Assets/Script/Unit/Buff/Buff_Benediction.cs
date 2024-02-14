@@ -7,11 +7,11 @@ public class Buff_Benediction : Buff
     {
         _buffEnum = BuffEnum.Benediction;
 
-        _name = "신성";
+        _name = "Divine";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "공격 시 적의 신앙을 1 떨어뜨립니다.";
+        _description = "Decreases the enemy's faith upon attacking. (Unable to remove)";
 
         _count = -1;
 

@@ -23,8 +23,8 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: -4331434750233731713, guid: 009dd1fb5fd28f346bdb6095c73ad5ec, type: 3}
-  _id: 
-  _name: "\uC554\uC0B4\uC790"
+  _id: "\uC554\uC0B4\uC790"
+  _name: Assassin
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: 149d6bcd24ff7a44e9d549487b372b54, type: 3}

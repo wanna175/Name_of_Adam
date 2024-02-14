@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 0
-  _name: "\uC0BC\uC704\uC77C\uCCB4"
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
+  _name: Trinity
+  _sprite_28: {fileID: 21300000, guid: 3e991243212f4904fbb7bf87d85d693c, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 689e70701d0aad44eab44388713da81f, type: 3}
   _sprite_164: {fileID: 0}
-  _description: "\uB9E4 \uD134 \uBB34\uAE30\uB97C \uBC14\uAFD4 \uC0AC\uAC70\uB9AC\uC640
-    \uD6A8\uACFC\uAC00 \uB2EC\uB77C\uC9D1\uB2C8\uB2E4."
+  _description: Trinity Info
   _activeTiming: 2
   _tier: 3
   _isLock: 0

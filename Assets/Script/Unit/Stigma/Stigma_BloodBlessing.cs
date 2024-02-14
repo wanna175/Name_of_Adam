@@ -16,7 +16,7 @@ public class Stigma_BloodBlessing : Stigma
         }
         else if (Tier == StigmaTier.Tier2)
         {
-            bloodBlessing.SetValue(20);
+            bloodBlessing.SetValue(15);
         }
     }
 }

@@ -21,6 +21,71 @@ MonoBehaviour:
     m_Address: Assets/Locale/Tables/DefaultTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 80d80ac9151ba6345aad2675d9ed0565
+    m_Address: Assets/Locale/Tables/MainScene/MainSceneTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 3e51c2c974e450e499109f468e03ebc1
+    m_Address: Assets/Locale/Tables/CutScene/CutSceneTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2c995b0a22a73404eb644c2977683ff5
+    m_Address: Assets/Locale/Tables/UI/UITable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 038ab53d059731e43b9c09bef9066f95
+    m_Address: Assets/Locale/Tables/Word/WordTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 1daf54f06b91db444a031f06141169ca
+    m_Address: Assets/Locale/Tables/Incarna/IncarnaTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7f888bb31011ce34ba9becbae772456b
+    m_Address: Assets/Locale/Tables/Scene/ProgressScene/ProgressSceneTable Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2f40ef7fde28c6b4796fedadd07c9dae
+    m_Address: Assets/Locale/Tables/TutorialTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 3d737ad490d95664a8234e313e796524
+    m_Address: Assets/Locale/Tables/Unit/UnitTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 8f1c5be855cafc94da994ed88f5d504b
+    m_Address: Assets/Locale/Tables/Stigma/StigmaTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 6b058525e4109d1409a30aaf2c99f35f
+    m_Address: Assets/Locale/Tables/Stigma/StigmaInfoTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 006b695ab866e394fb2675df1bc55717
+    m_Address: Assets/Locale/Tables/Buff/BuffTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 854d29d828bd5fa44b2570785eca7734
+    m_Address: Assets/Locale/Tables/Buff/BuffInfoTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 31b1b0979159f884a96431214517d460
+    m_Address: Assets/Locale/Tables/PlayerSkill/PlayerSkillTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 16f10f4ab855b854bbb5f3144f462bd1
+    m_Address: Assets/Locale/Tables/Script/ScriptNameTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2acbcb6b143f0fa47a3defdf9318e0bf
+    m_Address: Assets/Locale/Tables/Script/ScriptInfoTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: ed5595dd5f26ae04d9796ad64a4a468e
+    m_Address: Assets/Locale/Tables/PlayerSkill/PlayerSkillInfoTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:
