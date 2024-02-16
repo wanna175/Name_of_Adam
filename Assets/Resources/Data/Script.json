@@ -84,7 +84,7 @@
       "contents": [
         {
           "name": "",
-          "script": "빛이 없는 세상이 이리도 아름다웠음을 이제야 깨닫습니다."
+          "script": "In this world devoid of light, I now realize its beauty."
         }
       ]
     },
@@ -93,7 +93,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "유닛을 강화하거나 신성을 제거하십시오."
+          "script": "Upgrade a unit or restore its faith."
         }
       ]
     },
@@ -102,7 +102,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "유닛을 강화하거나 신성을 제거하십시오."
+          "script": "Upgrade a unit or restore its faith."
         }
       ]
     },
@@ -111,7 +111,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "신께서 가르쳐주신 사랑을 저는 믿습니다. \n부디 당신도 그 믿음 속에서 은총을 받기를."
+          "script": "I believe in the love that the Divine has taught us.\nMay you also receive grace within that faith."
         }
       ]
     },
@@ -120,7 +120,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "신께서 가르쳐주신 사랑을 저는 믿습니다. \n부디 이번에는 당신도 그 믿음 속에서 은총을 받기를."
+          "script": "I believe in the love that the Divine has taught us.\nMay you also receive grace within that faith."
         }
       ]
     },
@@ -174,7 +174,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "낙인을 부여할 유닛을 선택해주세요."
+          "script": "Select a unit to bestow stigmata."
         }
       ]
     },
@@ -183,7 +183,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "낙인을 부여할 유닛을 선택해주세요."
+          "script": "Select a unit to bestow stigmata."
         }
       ]
     },
@@ -192,7 +192,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
+          "script": "May the divine prayers grace your journey."
         }
       ]
     },
@@ -201,7 +201,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
+          "script": "May the divine prayers grace your journey."
         }
       ]
     },
@@ -471,7 +471,7 @@
       "contents": [
         {
           "name": "탕녀",
-          "script": "탕녀 퇴장 최초 스크립트."
+          "script": "당신도 이 세상을 사랑할 수 있기를."
         }
       ]
     },
@@ -480,7 +480,7 @@
       "contents": [
         {
           "name": "탕녀",
-          "script": "탕녀 퇴장 스크립트."
+          "script": "당신도 이 세상을 사랑할 수 있기를."
         }
       ]
     }
