@@ -16,6 +16,7 @@ public class StigmaController
     private List<Stigma> _tier3StigmaList = new();
     private List<Stigma> _uniqueStigmaList = new();
     private List<Stigma> _harlotStigmaList = new();
+    public List<Stigma> get_harlotStigmaList => _harlotStigmaList;
 
     private void LoadStigmaList()
     {

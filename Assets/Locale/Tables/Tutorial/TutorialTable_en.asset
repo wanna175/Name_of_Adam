@@ -85,6 +85,15 @@ MonoBehaviour:
       attack the player.\r"
     m_Metadata:
       m_Items: []
+  - m_Id: 4670637067112448
+    m_Localized: Stigmata (2)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4670673779855360
+    m_Localized: The nun possesses an <color=#FF9696>invincibility <color=white>stigmata
+      that nullifies an attack once. Devise a strategy to defeat the nun.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

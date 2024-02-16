@@ -7,13 +7,13 @@ public class UI_MyDeck : UI_Popup
 {
     [SerializeField] private GameObject CardPrefabs;
     [SerializeField] private Transform Grid;
-    [SerializeField] private GameObject Quit_btn;//�����ư
-    [SerializeField] private GameObject Set_btn;//���� ��ư
-    [SerializeField] private TextMeshProUGUI _quit_txt;//���� �ؽ�Ʈ
-    [SerializeField] private TextMeshProUGUI _title_txt;//���� �ؽ�Ʈ
+    [SerializeField] private GameObject Quit_btn;//종료버튼
+    [SerializeField] private GameObject Set_btn;//결정 버튼
+    [SerializeField] private TextMeshProUGUI _quit_txt;//제목 텍스트
+    [SerializeField] private TextMeshProUGUI _title_txt;//제목 텍스트
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
-    private Dictionary<DeckUnit, UI_Card> _card_dic = new();//���õ� ����
+    private Dictionary<DeckUnit, UI_Card> _card_dic = new();//선택된 유닛
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
@@ -63,7 +63,7 @@ public class UI_MyDeck : UI_Popup
 
     public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
     {
-        _quit_txt.text = "���� ����";
+        _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
         _isBossClear = isBossClear;
 
         List<DeckUnit> normalDeck = new();
@@ -75,7 +75,10 @@ public class UI_MyDeck : UI_Popup
         if (maxPageIndex < 0)
             maxPageIndex = 0;
 
-        _title_txt.text = "���翡 ������ ������ �����ϼ���";
+        ClearCard();
+        SetPageAllUI();
+
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
         {
@@ -117,7 +120,7 @@ public class UI_MyDeck : UI_Popup
         ClearCard();
         SetPageAllUI();
 
-        _title_txt.text = "���翡 ������ ������ �����ϼ���";
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
         {
@@ -146,12 +149,20 @@ public class UI_MyDeck : UI_Popup
 
     public void HallFullDeckInit(Action<DeckUnit> onSelect = null)
     {
-        _title_txt.text = "���翡 ������ ������ �����ϼ���";
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         _playerDeck = GameManager.Data.GetDeck();
 
         if (onSelect != null)
             _onSelect = onSelect;
+
+        currentPageIndex = 0;
+        maxPageIndex = (_playerDeck.Count - 1) / 10;
+        if (maxPageIndex < 0)
+            maxPageIndex = 0;
+
+        ClearCard();
+        SetPageAllUI();
 
         SetCard();
     }
@@ -233,22 +244,22 @@ public class UI_MyDeck : UI_Popup
             //Quit_btn.SetActive(false);
 
             if (EventScene == CUR_EVENT.UPGRADE)
-                _title_txt.text = "��ȭ�� ������ �����ϼ���";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to upgrade.");
             else if (EventScene == CUR_EVENT.RELEASE)
-                _title_txt.text = "�ž��� ȸ����ų ������ �����ϼ���";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to restore faith.");
             else if (EventScene == CUR_EVENT.STIGMA || EventScene == CUR_EVENT.RECEIVE_STIGMA)
-                _title_txt.text = "������ �ο��� ������ �����ϼ���";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bestow stigmata.");
             else if (EventScene == CUR_EVENT.GIVE_STIGMA)
-                _title_txt.text = "�����ų ������ �����ϼ���";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to sacrifice.");
             else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
             {
-                _title_txt.text = "ȯ����ų ���ֵ��� �����ϼ���";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select units to revert.");
                 Set_btn.SetActive(true);
             }
         }
         else
         {
-            _title_txt.text = "���� ����";
+            _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
         }
     }
 
@@ -256,7 +267,7 @@ public class UI_MyDeck : UI_Popup
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
 
-        if (_quit_txt.text == "���� ����")
+        if (_quit_txt.text == "Skip" || _quit_txt.text == "선택 안함")
         {
             if (_isBossClear)
             {
