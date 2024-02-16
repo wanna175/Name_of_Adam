@@ -63,7 +63,7 @@ public class UI_MyDeck : UI_Popup
 
     public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
     {
-        _quit_txt.text = "선택 안함";
+        _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
         _isBossClear = isBossClear;
 
         List<DeckUnit> normalDeck = new();
@@ -78,7 +78,7 @@ public class UI_MyDeck : UI_Popup
         ClearCard();
         SetPageAllUI();
 
-        _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
         {
@@ -120,7 +120,7 @@ public class UI_MyDeck : UI_Popup
         ClearCard();
         SetPageAllUI();
 
-        _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
         {
@@ -149,7 +149,7 @@ public class UI_MyDeck : UI_Popup
 
     public void HallFullDeckInit(Action<DeckUnit> onSelect = null)
     {
-        _title_txt.text = "전당에 데려갈 유닛을 선택하세요";
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         _playerDeck = GameManager.Data.GetDeck();
 
@@ -244,22 +244,22 @@ public class UI_MyDeck : UI_Popup
             //Quit_btn.SetActive(false);
 
             if (EventScene == CUR_EVENT.UPGRADE)
-                _title_txt.text = "강화할 유닛을 선택하세요";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to upgrade.");
             else if (EventScene == CUR_EVENT.RELEASE)
-                _title_txt.text = "신앙을 회복시킬 유닛을 선택하세요";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to restore faith.");
             else if (EventScene == CUR_EVENT.STIGMA || EventScene == CUR_EVENT.RECEIVE_STIGMA)
-                _title_txt.text = "낙인을 부여할 유닛을 선택하세요";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bestow stigmata.");
             else if (EventScene == CUR_EVENT.GIVE_STIGMA)
-                _title_txt.text = "희생시킬 유닛을 선택하세요";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to sacrifice.");
             else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
             {
-                _title_txt.text = "환원시킬 유닛들을 선택하세요";
+                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select units to revert.");
                 Set_btn.SetActive(true);
             }
         }
         else
         {
-            _title_txt.text = "보유 유닛";
+            _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
         }
     }
 
@@ -267,7 +267,7 @@ public class UI_MyDeck : UI_Popup
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
 
-        if (_quit_txt.text == "선택 안함")
+        if (_quit_txt.text == "Skip" || _quit_txt.text == "선택 안함")
         {
             if (_isBossClear)
             {

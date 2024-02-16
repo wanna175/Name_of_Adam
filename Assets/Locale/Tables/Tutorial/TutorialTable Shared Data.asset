@@ -71,6 +71,15 @@ MonoBehaviour:
     m_Key: 'Conditions for Defeat: info'
     m_Metadata:
       m_Items: []
+  - m_Id: 4670637067112448
+    m_Key: Stigmata (2)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4670673779855360
+    m_Key: The nun possesses an <color=#FF9696>invincibility <color=white>stigmata
+      that nullifies an attack once. Devise a strategy to defeat the nun.
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

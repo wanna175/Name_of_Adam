@@ -4559,6 +4559,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Harlot
       objectReference: {fileID: 0}
+    - target: {fileID: 3580172553705515330, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
+      propertyPath: _originUnits.Array.data[0].Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 34fa111edf579e0459bd33afa6afea60, type: 2}
+    - target: {fileID: 3580172553705515330, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
+      propertyPath: _originUnits.Array.data[1].Data
+      value: 
+      objectReference: {fileID: 11400000, guid: b28b4906d12f2bd4e8246b36b3b64ca5, type: 2}
+    - target: {fileID: 3580172553705515330, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
+      propertyPath: _originUnits.Array.data[2].Data
+      value: 
+      objectReference: {fileID: 11400000, guid: d37f2fd75daeb014a84d86ceaaf86e20, type: 2}
     - target: {fileID: 3580172553705515331, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
