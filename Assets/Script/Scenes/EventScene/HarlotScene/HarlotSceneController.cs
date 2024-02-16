@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HarlotSceneController : MonoBehaviour,StigmaInterface
 {
     private DeckUnit _stigmatizeUnit;
-    private Stigma stigma;
+    private List<Stigma> stigma; //타락낙인 저장하는 곳
     private List<DeckUnit> _RestorationUnits;
 
     [SerializeField] private GameObject background;
@@ -69,13 +69,11 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             uiConversation = FindObjectOfType<UI_Conversation>();
             uiConversation.ConversationEnded += OnConversationEnded;
         }
-        
+
         //GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
 
-        stigma = GameManager.Data.StigmaController.GetHarlotStigmas();
+        stigma = GameManager.Data.StigmaController.get_harlotStigmaList;
 
-        Debug.Log(stigma.Name);
-        Debug.Log("검은 정수: " + GameManager.Data.DarkEssense);
         int current_DarkEssense = GameManager.Data.DarkEssense;
 
         if (!GameManager.OutGameData.IsUnlockedItem(5))
@@ -111,8 +109,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         //연출하기 애니매이션 끝나면 
         //Debug.Log(GameManager.Data.GameData.DeckUnits);
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+        int unitidx = Random.Range(0, 3);
         UI_UnitInfo _ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        _ui.SetUnit(_originUnits[2]);
+        _ui.SetUnit(_originUnits[unitidx]);
         _ui.Init(OnSelectMakeUnit,CUR_EVENT.COMPLETE_HAELOT,OnQuitClick);
 
     }
@@ -161,9 +161,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             //GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
-            List<Stigma> stigmata = new();
-            stigmata.Add(stigma);
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigmata,0,null,this);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigma,0,null,this);
         }
         else
         {

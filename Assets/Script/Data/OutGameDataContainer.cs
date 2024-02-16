@@ -208,7 +208,7 @@ public class OutGameDataContainer : MonoBehaviour
             }
         }
 
-        newUnit.UnitName = unit.Data.Name;
+        newUnit.UnitName = unit.Data.ID;
         newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
         newUnit.UpgradedStat.FallCurrentCount = 4-unit.Data.RawStat.FallMaxCount;
         newUnit.IsMainDeck = false;
