@@ -98,7 +98,7 @@ public class BattleManager : MonoBehaviour
 
         PlayAfterCoroutine(() => {
             _spawner.SpawnInitialUnit();
-            //SpawnBeneditionCheck();
+            SpawnBeneditionCheck();
         }, 0.5f);
 
         PlayAfterCoroutine(() => {
@@ -151,6 +151,46 @@ public class BattleManager : MonoBehaviour
         }, 1f);
     }
 
+    public void SpawnBeneditionCheck()
+    {
+        Dictionary<int, int> threshold = new() {
+            {0, 0},
+            {1, 0},
+            {2, 30},
+            {3, 40},
+            {4, 50}
+        };
+
+        if (GameManager.Data.Map.GetCurrentStage().StageLevel % 10 == 0 || GameManager.Data.Map.GetCurrentStage().StageLevel == 1)
+            return;
+        //0 = tutorial, boss, elite (0, 100, 90), 1 = chater 1 first half
+        
+        if (GameManager.Data.GameData.StageBenediction.x == 1 && GameManager.Data.GameData.StageBenediction.y == 1)
+        {
+            GameManager.Data.GameData.StageBenediction = new();
+        }
+        else if (GameManager.Data.GameData.StageBenediction.x == -1 && GameManager.Data.GameData.StageBenediction.y == -1)
+        {
+            BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
+            buffUnit.SetBuff(new Buff_Benediction());
+
+            GameManager.Data.GameData.StageBenediction = new();
+        }
+        else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 10])
+        {
+            BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
+            buffUnit.SetBuff(new Buff_Benediction());
+
+            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
+            GameManager.Data.GameData.StageBenediction.x = 1;
+        }
+        else
+        {
+            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
+            GameManager.Data.GameData.StageBenediction.x = -1;
+        }
+    }
+
     private void EventConversation(string scriptKey)
     {
         List<Script> scripts = GameManager.Data.ScriptData[scriptKey];
@@ -172,11 +212,11 @@ public class BattleManager : MonoBehaviour
         if (GameManager.Data.Map.GetCurrentStage().StageLevel == 100 && GameManager.Data.Map.GetCurrentStage().StageID == 0)
         {
             Background[0].SetActive(false);
-            Background[3].SetActive(true);
+            Background[1].SetActive(true);
         }
         else
         {
-            Background[3].SetActive(false);
+            Background[1].SetActive(false);
             Background[0].SetActive(true);
         }
 
@@ -359,6 +399,10 @@ public class BattleManager : MonoBehaviour
         {
             cor.LoopExit();
             targetUnit.DeckUnit.ClearStigma();
+        }
+        else if (targetUnit.Data.Rarity == Rarity.Boss)
+        {
+            cor.LoopExit();
         }
         else
         {

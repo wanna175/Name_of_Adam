@@ -95,8 +95,11 @@ public class UnitAction_Horus_Egg : UnitAction
         BattleManager.Data.BattleUnitList.Remove(caster);
         BattleManager.Data.BattleOrderRemove(caster);
 
-        _parentUnit.Action.SetUnit("Horus_Egg", caster);
-        _parentUnit.Action.SetUnit("Horus_Egg", unit);
+        if (_parentUnit != null)
+        {
+            _parentUnit.Action.SetUnit("Horus_Egg", caster);
+            _parentUnit.Action.SetUnit("Horus_Egg", unit);
+        }
 
         BattleManager.Spawner.RestoreUnit(caster.gameObject);
     }
