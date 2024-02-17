@@ -31,12 +31,24 @@ public class UnitAction_Horus : UnitAction
 
     public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {
-        if (hits.Count != 0)
+        if (hits.Count != 0 || _isSummon)
             return false;
 
-        SpawnUnit(coord, attackUnit);
-        BattleManager.Instance.EndUnitAction();
+        _isSummon = true;
 
+        attackUnit.AnimatorSetBool("isAttack", true);
+        BattleManager.Instance.PlayAfterCoroutine(() =>
+        {
+            attackUnit.AnimatorSetBool("isAttack", false);
+        }, 3f);
+
+        BattleManager.Instance.PlayAfterCoroutine(() =>
+        {
+            SpawnUnit(coord, attackUnit);
+            BattleManager.Instance.EndUnitAction();
+        }, 1.5f);
+
+        
         return true;
     }
 
