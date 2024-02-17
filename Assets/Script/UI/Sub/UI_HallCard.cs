@@ -110,7 +110,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         if (GameManager.OutGameData.IsUnlockedItem(17))
         {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallFullDeckInit(OnSelect);
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallEliteDeckInit(_isElite, OnSelect);
         }
         else
         {
