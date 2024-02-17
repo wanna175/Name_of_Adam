@@ -13,7 +13,7 @@
     {
       "ID": 1,
       "Name": "운명",
-      "Cost": 20,
+      "Cost": 50,
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
@@ -22,7 +22,7 @@
     {
       "ID": 2,
       "Name": "신앙 회복",
-      "Cost": 10,
+      "Cost": 150,
       "Prequest": 0,
       "IsLock": true,
       "IsUnlocked": false,
@@ -31,7 +31,7 @@
     {
       "ID": 3,
       "Name": "시작 검은 정수 I",
-      "Cost": 60,
+      "Cost": 100,
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
@@ -49,7 +49,7 @@
     {
       "ID": 5,
       "Name": "오리지널 연성",
-      "Cost": 40,
+      "Cost": 200,
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
@@ -58,7 +58,7 @@
     {
       "ID": 6,
       "Name": "시작 검은 정수 II",
-      "Cost": 170,
+      "Cost": 125,
       "Prequest": 3,
       "IsLock": true,
       "IsUnlocked": false,
@@ -67,7 +67,7 @@
     {
       "ID": 7,
       "Name": "척살",
-      "Cost": 80,
+      "Cost": 50,
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
@@ -76,7 +76,7 @@
     {
       "ID": 8,
       "Name": "엘리트 클리어 보상",
-      "Cost": 70,
+      "Cost": 250,
       "Prequest": 5,
       "IsLock": true,
       "IsUnlocked": false,
@@ -85,7 +85,7 @@
     {
       "ID": 9,
       "Name": "최대 강화 횟수",
-      "Cost": 120,
+      "Cost": 200,
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
@@ -94,7 +94,7 @@
     {
       "ID": 10,
       "Name": "갈망",
-      "Cost": 110,
+      "Cost": 100,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
@@ -103,7 +103,7 @@
     {
       "ID": 11,
       "Name": "낙인 이동",
-      "Cost": 100,
+      "Cost": 300,
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
@@ -112,7 +112,7 @@
     {
       "ID": 12,
       "Name": "시작 마나 I",
-      "Cost": 30,
+      "Cost": 150,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
@@ -121,7 +121,7 @@
     {
       "ID": 13,
       "Name": "순간이동",
-      "Cost": 140,
+      "Cost": 100,
       "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
@@ -130,7 +130,7 @@
     {
       "ID": 14,
       "Name": "전당 잠금 해제 I",
-      "Cost": 130,
+      "Cost": 400,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
@@ -139,7 +139,7 @@
     {
       "ID": 15,
       "Name": "시작 마나 II",
-      "Cost": 90,
+      "Cost": 200,
       "Prequest": 12,
       "IsLock": true,
       "IsUnlocked": false,
@@ -148,7 +148,7 @@
     {
       "ID": 16,
       "Name": "금지된 계약",
-      "Cost": 160,
+      "Cost": 100,
       "Prequest": 17,
       "IsLock": true,
       "IsUnlocked": false,
@@ -157,7 +157,7 @@
     {
       "ID": 17,
       "Name": "전당 잠금 해제 II",
-      "Cost": 150,
+      "Cost": 500,
       "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
@@ -166,7 +166,7 @@
     {
       "ID": 20,
       "Name": "대죄",
-      "Cost": 180,
+      "Cost": 100,
       "Prequest": 17,
       "IsLock": true,
       "IsUnlocked": false,
@@ -193,7 +193,7 @@
     {
       "ID": 52,
       "Name": "선지자 II",
-      "Cost": 30,
+      "Cost": 200,
       "Prequest": 51,
       "IsLock": true,
       "IsUnlocked": false,
@@ -202,7 +202,7 @@
     {
       "ID": 53,
       "Name": "선지자 III",
-      "Cost": 20,
+      "Cost": 300,
       "Prequest": 52,
       "IsLock": true,
       "IsUnlocked": false,
@@ -211,7 +211,7 @@
     {
       "ID": 54,
       "Name": "선지자 IV",
-      "Cost": 40,
+      "Cost": 400,
       "Prequest": 53,
       "IsLock": true,
       "IsUnlocked": false,
@@ -229,7 +229,7 @@
     {
       "ID": 61,
       "Name": "흑타수 I",
-      "Cost": 10,
+      "Cost": 800,
       "Prequest": 60,
       "IsLock": true,
       "IsUnlocked": false,
@@ -238,7 +238,7 @@
     {
       "ID": 62,
       "Name": "흑타수 II",
-      "Cost": 20,
+      "Cost": 200,
       "Prequest": 61,
       "IsLock": true,
       "IsUnlocked": false,
@@ -247,7 +247,7 @@
     {
       "ID": 63,
       "Name": "흑타수 III",
-      "Cost": 30,
+      "Cost": 300,
       "Prequest": 62,
       "IsLock": true,
       "IsUnlocked": false,
@@ -256,11 +256,11 @@
     {
       "ID": 64,
       "Name": "흑타수 IV",
-      "Cost": 40,
+      "Cost": 400,
       "Prequest": 63,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "(3스킬)가 적에게 공격력 증가를 부여하지 않습니다."
+      "Description": "기도가 적에게 공격력 증가를 부여하지 않습니다."
     },
     {
       "ID": 70,
@@ -274,7 +274,7 @@
     {
       "ID": 71,
       "Name": "루시퍼 I",
-      "Cost": 10,
+      "Cost": 400,
       "Prequest": 70,
       "IsLock": true,
       "IsUnlocked": false,
@@ -283,16 +283,16 @@
     {
       "ID": 72,
       "Name": "루시퍼 II",
-      "Cost": 30,
+      "Cost": 200,
       "Prequest": 71,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "(2스킬)이 추가적으로 악성을 2회 부여합니다."
+      "Description": "영혼 거래가 추가적으로 악성을 2회 부여합니다."
     },
     {
       "ID": 73,
       "Name": "루시퍼 III",
-      "Cost": 20,
+      "Cost": 300,
       "Prequest": 72,
       "IsLock": true,
       "IsUnlocked": false,
@@ -301,7 +301,7 @@
     {
       "ID": 74,
       "Name": "루시퍼 IV",
-      "Cost": 40,
+      "Cost": 400,
       "Prequest": 73,
       "IsLock": true,
       "IsUnlocked": false,
