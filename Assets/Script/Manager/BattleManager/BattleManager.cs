@@ -540,22 +540,6 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("Horus Clear");
                 }
 
-                foreach (DeckUnit unit in Data.PlayerDeck)
-                {
-                    if (unit.Data.Rarity == Rarity.Boss)
-                    {
-                        GameManager.Data.GameData.Progress.SurvivedBoss++;
-                    }
-                    else if (unit.Data.Rarity == Rarity.Elite)
-                    {
-                        GameManager.Data.GameData.Progress.SurvivedElite++;
-                    }
-                    else
-                    {
-                        GameManager.Data.GameData.Progress.SurvivedNormal++;
-                    }
-                }
-
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
                 GameManager.SaveManager.DeleteSaveData();
             }
