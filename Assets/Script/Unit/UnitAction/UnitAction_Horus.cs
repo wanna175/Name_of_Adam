@@ -153,7 +153,7 @@ public class UnitAction_Horus : UnitAction
     {
         if (sender == "Horus_Egg")
         {
-            if (unit.Data.ID == "È£·ç½º_¾Ë")
+            if (unit.Data.ID == "Èñ»ýÀÇ_²É")
             {
                 _summonedUnit.Remove(unit);
             }
@@ -169,7 +169,7 @@ public class UnitAction_Horus : UnitAction
         _isSummon = true;
 
         SpawnData sd = new();
-        sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/È£·ç½º_¾Ë");
+        sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/Èñ»ýÀÇ_²É");
         sd.location = spawnLocation;
         sd.team = unit.Team;
 
