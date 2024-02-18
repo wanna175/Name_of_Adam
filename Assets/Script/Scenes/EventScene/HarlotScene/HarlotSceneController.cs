@@ -119,7 +119,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnSelectMakeUnit(DeckUnit unit)
     {
         GameManager.Data.AddDeckUnit(unit);
-        GameManager.Data.DarkEssenseChage(((isNPCFall) ? 8 : 10));
+        GameManager.Data.DarkEssenseChage(((isNPCFall) ? -8 : -10));
     }
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
@@ -161,14 +161,14 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             //GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigma,0,null,this);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigma,2,null,this);
         }
         else
         {
             Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
             IsStigmaFull();
         }
-        GameManager.Data.DarkEssenseChage(((isNPCFall) ? 5 : 7));
+        GameManager.Data.DarkEssenseChage(((isNPCFall) ? -5 : -7));
     }
     private void SetUnitStigma(Stigma stigma)
     {
@@ -214,7 +214,8 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         }
         else if (_RestorationUnits.Count != 0)
         {
-            GameManager.Data.DarkEssenseChage(isNPCFall?2*_RestorationUnits.Count:_RestorationUnits.Count);
+            int cost = isNPCFall ? 2 * _RestorationUnits.Count : _RestorationUnits.Count;
+            GameManager.Data.DarkEssenseChage(cost);
             foreach(DeckUnit delunit in _RestorationUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
