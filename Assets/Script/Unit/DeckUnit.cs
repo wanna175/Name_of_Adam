@@ -64,6 +64,7 @@ public class DeckUnit
     public List<Stigma> GetStigma(bool isEventScene = false)
     {
         List<Stigma> stigmata = new();
+
         if (!isEventScene)
         {
             foreach (Stigma stigma in Data.UniqueStigma)
@@ -71,6 +72,7 @@ public class DeckUnit
                 stigmata.Add(stigma);
             }
         }
+
         foreach (Stigma stigma in _stigma)
         {
             stigmata.Add(stigma);
