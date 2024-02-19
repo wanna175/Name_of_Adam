@@ -7,11 +7,13 @@ using TMPro;
 
 public class UI_StigmaSelectButtonPopup : UI_Popup
 {
-    private Action _afterPopupAction;
-    private DeckUnit _targetUnit;
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private Transform _grid;
+
+    private Action _afterPopupAction;
+    private DeckUnit _targetUnit;
     private StigmaInterface _sc;
+
     public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
     {
         _afterPopupAction = afterPopupAction;
@@ -24,8 +26,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         }
         else
         {
-            List<Stigma> stigmaList = new();
-            stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
+            List<Stigma> stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
             /*if (stigmata != null)
             {
                 List<Stigma> existStigma = targetUnit.GetStigma();
@@ -55,10 +56,14 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         while (result.Count < stigmaCount)
         {
             Stigma stigma;
-            if (_sc.GetType() != typeof(HarlotSceneController))
-                stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
-            else
+            if (_sc != null && _sc.GetType() == typeof(HarlotSceneController))
+            {
                 stigma = GameManager.Data.StigmaController.GetHarlotStigmas();
+            }
+            else
+            {
+                stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
+            }
 
             if (!existStigma.Contains(stigma) && !result.Contains(stigma))
                 result.Add(stigma);
