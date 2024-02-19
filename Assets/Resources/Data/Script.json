@@ -107,6 +107,24 @@
       ]
     },
     {
+      "title": "타락_강화소_입장",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "I can no longer believe in anything."
+        }
+      ]
+    },
+    {
+      "title": "타락_강화소_입장_50",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "I am uncertain... Could belief and love save everyone?"
+        }
+      ]
+    },
+    {
       "title": "강화소_퇴장_최초",
       "contents": [
         {
@@ -121,6 +139,24 @@
         {
           "name": "Messenger of faith",
           "script": "I believe in the love that the Divine has taught us.\nMay you also receive grace within that faith."
+        }
+      ]
+    },
+    {
+      "title": "타락_강화소_퇴장",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "May you show us a new path of salvation."
+        }
+      ]
+    },
+    {
+      "title": "타락_강화소_퇴장_50",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "May you show us a new path of salvation."
         }
       ]
     },
@@ -188,6 +224,24 @@
       ]
     },
     {
+      "title": "타락_낙인소_입장",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "타락"
+        }
+      ]
+    },
+    {
+      "title": "타락_낙인소_입장_50",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "타락50"
+        }
+      ]
+    },
+    {
       "title": "낙인소_퇴장",
       "contents": [
         {
@@ -202,6 +256,24 @@
         {
           "name": "Messenger of hope",
           "script": "May the divine prayers grace your journey."
+        }
+      ]
+    },
+    {
+      "title": "타락_낙인소_퇴장",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "타락퇴장"
+        }
+      ]
+    },
+    {
+      "title": "타락_낙인소_퇴장_50",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "타락50퇴장"
         }
       ]
     },
@@ -481,6 +553,78 @@
         {
           "name": "탕녀",
           "script": "당신도 이 세상을 사랑할 수 있기를."
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_입장_100",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "탕녀타락100."
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_입장_75",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "타락75"
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_입장_50",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "타락50"
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_입장_25",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "타락25"
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_퇴장_100",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "탕녀타락100."
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_퇴장_75",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "타락75"
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_퇴장_50",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "타락50"
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_퇴장_25",
+      "contents": [
+        {
+          "name": "탕녀",
+          "script": "타락25"
         }
       ]
     }

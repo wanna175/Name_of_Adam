@@ -61,7 +61,30 @@ public class UpgradeSceneController : MonoBehaviour
         }
         else
         {
-            _scripts = GameManager.Data.ScriptData["강화소_입장"];
+            if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100)
+            {
+                _scripts = GameManager.Data.ScriptData["타락_강화소_입장"];
+                background.SetActive(false);
+                fall_background.SetActive(true);
+                _isNPCFall = true;
+            }
+            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 * 3 / 4)
+            {
+                _scripts = GameManager.Data.ScriptData["타락_강화소_입장_50"];
+                //안개이미지 변경
+            }
+            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 2)
+            {
+                _scripts = GameManager.Data.ScriptData["타락_강화소_입장_50"];
+                //안개이미지 변경
+            }
+            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 4)
+            {
+                _scripts = GameManager.Data.ScriptData["강화소_입장"];
+                //안개이미지 변경
+            }
+            else
+                _scripts = GameManager.Data.ScriptData["강화소_입장"];
         }
 
         _conversationUI = GameManager.UI.ShowPopup<UI_Conversation>();
@@ -200,8 +223,18 @@ public class UpgradeSceneController : MonoBehaviour
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
         }
         else
-            quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장"], false);
-
+        {
+            if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100)
+            {
+                quitScript.Init(GameManager.Data.ScriptData["타락_강화소_퇴장"], false);
+            }
+            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 2)
+            {
+                quitScript.Init(GameManager.Data.ScriptData["타락_강화소_퇴장_50"], false);
+            }
+            else
+                quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장"], false);
+        }
         yield return StartCoroutine(quitScript.PrintScript());
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
