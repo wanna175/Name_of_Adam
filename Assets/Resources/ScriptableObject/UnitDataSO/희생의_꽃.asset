@@ -18,7 +18,7 @@ MonoBehaviour:
     ATK: 0
     SPD: 0
     FallCurrentCount: 0
-    FallMaxCount: 1
+    FallMaxCount: 4
     ManaCost: 10
   _uniqueStigma: []
   _id: "\uD76C\uC0DD\uC758_\uAF43"
