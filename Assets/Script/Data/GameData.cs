@@ -57,10 +57,6 @@ public class Progress
         HorusFall = 0;
         FishFall = 0;
         SecChapterClear = 0;
-        LeftDarkEssence = 0;
-        SurvivedNormal = 0;
-        SurvivedElite = 0;
-        SurvivedBoss = 0;
     }
 }
 

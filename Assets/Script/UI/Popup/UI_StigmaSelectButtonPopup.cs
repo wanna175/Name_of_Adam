@@ -25,8 +25,8 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         else
         {
             List<Stigma> stigmaList = new();
-
-            if (stigmata != null)
+            stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
+            /*if (stigmata != null)
             {
                 List<Stigma> existStigma = targetUnit.GetStigma();
 
@@ -41,7 +41,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
             else
             {
                 stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
-            }
+            }*/
 
             SetStigmaSelectButtons(stigmaList);
         }
@@ -54,7 +54,11 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
         while (result.Count < stigmaCount)
         {
-            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
+            Stigma stigma;
+            if (_sc.GetType() != typeof(HarlotSceneController))
+                stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
+            else
+                stigma = GameManager.Data.StigmaController.GetHarlotStigmas();
 
             if (!existStigma.Contains(stigma) && !result.Contains(stigma))
                 result.Add(stigma);

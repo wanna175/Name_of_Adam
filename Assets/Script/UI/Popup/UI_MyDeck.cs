@@ -105,7 +105,7 @@ public class UI_MyDeck : UI_Popup
         SetCard();
     }
 
-    public void HallDeckInit(bool isElite = false, Action<DeckUnit> onSelect = null)
+    public void HallDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
     {
         List<DeckUnit> eliteDeck = new();
         List<DeckUnit> normalDeck = new();
@@ -134,7 +134,7 @@ public class UI_MyDeck : UI_Popup
             }
         }
 
-        if (isElite)
+        if (isBoss)
         {
             _playerDeck = eliteDeck;
         }
@@ -147,14 +147,13 @@ public class UI_MyDeck : UI_Popup
         SetCard();
     }
 
-    public void HallFullDeckInit(Action<DeckUnit> onSelect = null)
+    public void HallEliteDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
     {
+        List<DeckUnit> eliteDeck = new();
+
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
-        _playerDeck = GameManager.Data.GetDeck();
-
-        if (onSelect != null)
-            _onSelect = onSelect;
+        _hallDeck = GameManager.Data.GetDeck();
 
         currentPageIndex = 0;
         maxPageIndex = (_playerDeck.Count - 1) / 10;
@@ -163,6 +162,26 @@ public class UI_MyDeck : UI_Popup
 
         ClearCard();
         SetPageAllUI();
+
+        foreach (DeckUnit unit in _hallDeck)
+        {
+            if (unit.Data.Rarity != Rarity.Boss)
+            {
+                eliteDeck.Add(unit);
+            }
+        }
+
+        if (isBoss)
+        {
+            _playerDeck = _hallDeck;
+        }
+        else
+        {
+            _playerDeck = eliteDeck;
+        }
+
+        if (onSelect != null)
+            _onSelect = onSelect;
 
         SetCard();
     }

@@ -31,24 +31,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     }
     private void Init()
     {
-        if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50)
-        {
-            background.SetActive(false);
-            fall_background.SetActive(true);
-            this.isNPCFall = true;
-        }
-        else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 * 3 / 4)
-        {
-            //안개이미지 변경
-        }
-        else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 2)
-        {
-            //안개이미지 변경
-        }
-        else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 4)
-        {
-            //안개이미지 변경
-        }
+        
 
         _scripts = new();
         _giveStigma = null;
@@ -83,7 +66,30 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         }
         else
         {
-            _scripts = GameManager.Data.ScriptData["낙인소_입장"];
+            if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50)
+            {
+                _scripts = GameManager.Data.ScriptData["타락_낙인소_입장"];
+                background.SetActive(false);
+                fall_background.SetActive(true);
+                this.isNPCFall = true;
+            }
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 * 3 / 4)
+            {
+                _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
+                //안개이미지 변경
+            }
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 2)
+            {
+                _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
+                //안개이미지 변경
+            }
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 4)
+            {
+                _scripts = GameManager.Data.ScriptData["낙인소_입장"];
+                //안개이미지 변경
+            }
+            else
+                _scripts = GameManager.Data.ScriptData["낙인소_입장"];
         }
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
@@ -244,8 +250,18 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
         }
         else
-            quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
-
+        {
+            if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50)
+            {
+                quitScript.Init(GameManager.Data.ScriptData["타락_낙인소_퇴장_100"], false);
+            }
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 2)
+            {
+                quitScript.Init(GameManager.Data.ScriptData["타락_낙인소_퇴장_50"], false);
+            }
+            else
+                quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
+        }
         yield return StartCoroutine(quitScript.PrintScript());
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
