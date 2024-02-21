@@ -19,35 +19,35 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4769091584
-    m_Localized: Attack (ATK) Increase
+    m_Localized: Attack (ATK)
     m_Metadata:
       m_Items: []
   - m_Id: 54329837678592
-    m_Localized: Health (HP) Increase
+    m_Localized: Health (HP)
     m_Metadata:
       m_Items: []
   - m_Id: 54490383052800
-    m_Localized: Speed (SPD) Increase
+    m_Localized: Speed (SPD)
     m_Metadata:
       m_Items: []
   - m_Id: 54642728562688
-    m_Localized: Cost (COST) Decrease
+    m_Localized: Cost (COST)
     m_Metadata:
       m_Items: []
   - m_Id: 55016092921856
-    m_Localized: Speed (SPD) Decrease
+    m_Localized: Speed (SPD)
     m_Metadata:
       m_Items: []
   - m_Id: 55062167351296
-    m_Localized: Health (HP) Decrease
+    m_Localized: Health (HP)
     m_Metadata:
       m_Items: []
   - m_Id: 55199056850944
-    m_Localized: Attack (ATK) Decrease
+    m_Localized: Attack (ATK)
     m_Metadata:
       m_Items: []
   - m_Id: 55316430254080
-    m_Localized: Cost (COST) Increase
+    m_Localized: Cost (COST)
     m_Metadata:
       m_Items: []
   references:

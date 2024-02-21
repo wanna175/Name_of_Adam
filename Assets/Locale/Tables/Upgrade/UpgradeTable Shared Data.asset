@@ -16,35 +16,35 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 5e95eeb8b81b08940929515e19b20441
   m_Entries:
   - m_Id: 4769091584
-    m_Key: Attack (ATK) Increase
+    m_Key: Attack (ATK)
     m_Metadata:
       m_Items: []
   - m_Id: 54329837678592
-    m_Key: Health (HP) Increase
+    m_Key: Health (HP)
     m_Metadata:
       m_Items: []
   - m_Id: 54490383052800
-    m_Key: Speed (SPD) Increase
+    m_Key: Speed (SPD)
     m_Metadata:
       m_Items: []
   - m_Id: 54642728562688
-    m_Key: Cost (COST) Decrease
+    m_Key: Cost (COST)
     m_Metadata:
       m_Items: []
   - m_Id: 55016092921856
-    m_Key: Speed (SPD) Decrease
+    m_Key: 'Speed (SPD) '
     m_Metadata:
       m_Items: []
   - m_Id: 55062167351296
-    m_Key: Health (HP) Decrease
+    m_Key: 'Health (HP) '
     m_Metadata:
       m_Items: []
   - m_Id: 55199056850944
-    m_Key: Attack (ATK) Decrease
+    m_Key: 'Attack (ATK) '
     m_Metadata:
       m_Items: []
   - m_Id: 55316430254080
-    m_Key: Cost (COST) Increase
+    m_Key: 'Cost (COST) '
     m_Metadata:
       m_Items: []
   m_Metadata:

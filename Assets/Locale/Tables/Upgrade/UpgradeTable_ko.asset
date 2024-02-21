@@ -19,35 +19,35 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4769091584
-    m_Localized: "\uACF5\uACA9\uB825 (ATK) \uC99D\uAC00"
+    m_Localized: "\uACF5\uACA9\uB825 (ATK)"
     m_Metadata:
       m_Items: []
   - m_Id: 54329837678592
-    m_Localized: "\uCCB4\uB825 (HP) \uC99D\uAC00"
+    m_Localized: "\uCCB4\uB825 (HP)"
     m_Metadata:
       m_Items: []
   - m_Id: 54490383052800
-    m_Localized: "\uC18D\uB3C4 (SPD) \uC99D\uAC00"
+    m_Localized: "\uC18D\uB3C4 (SPD)"
     m_Metadata:
       m_Items: []
   - m_Id: 54642728562688
-    m_Localized: "\uCF54\uC2A4\uD2B8 (COST) \uAC10\uC18C"
+    m_Localized: "\uCF54\uC2A4\uD2B8 (COST)"
     m_Metadata:
       m_Items: []
   - m_Id: 55016092921856
-    m_Localized: "\uC18D\uB3C4 (SPD) \uAC10\uC18C"
+    m_Localized: "\uC18D\uB3C4 (SPD)"
     m_Metadata:
       m_Items: []
   - m_Id: 55062167351296
-    m_Localized: "\uCCB4\uB825 (HP) \uAC10\uC18C"
+    m_Localized: "\uCCB4\uB825 (HP)"
     m_Metadata:
       m_Items: []
   - m_Id: 55199056850944
-    m_Localized: "\uACF5\uACA9\uB825 (ATK) \uAC10\uC18C"
+    m_Localized: "\uACF5\uACA9\uB825 (ATK)"
     m_Metadata:
       m_Items: []
   - m_Id: 55316430254080
-    m_Localized: "\uCF54\uC2A4\uD2B8 (COST) \uC99D\uAC00"
+    m_Localized: "\uCF54\uC2A4\uD2B8 (COST)"
     m_Metadata:
       m_Items: []
   references:
