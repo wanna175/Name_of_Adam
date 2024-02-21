@@ -52,8 +52,7 @@ public class PlayerSkillController : MonoBehaviour
             usedPlayerSkill = null;
 
         BattleUI.UI_playerSkill.CancelSelect();
-        BattleUI.UI_playerSkill.Used = true;
-        BattleUI.UI_playerSkill.InableSkill();
+        BattleUI.UI_playerSkill.InableSkill(true);
 
         BattleManager.Instance.BattleOverCheck();
     }

@@ -5,44 +5,44 @@ using UnityEngine;
 using TMPro;
 public class UI_MyDeck : UI_Popup
 {
-    [SerializeField] private GameObject CardPrefabs;
-    [SerializeField] private Transform Grid;
-    [SerializeField] private GameObject Quit_btn;//종료버튼
-    [SerializeField] private GameObject Set_btn;//결정 버튼
+    [SerializeField] private GameObject _cardPrefabs;
+    [SerializeField] private Transform _grid;
+    [SerializeField] private GameObject _quitButton;//종료버튼
+    [SerializeField] private GameObject _setButton;//결정 버튼
     [SerializeField] private TextMeshProUGUI _quit_txt;//제목 텍스트
     [SerializeField] private TextMeshProUGUI _title_txt;//제목 텍스트
+    [SerializeField] private TMP_Text _pageText;
+    [SerializeField] private GameObject _prePageButton;
+    [SerializeField] private GameObject _postPageButton;
+
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
     private Dictionary<DeckUnit, UI_Card> _card_dic = new();//선택된 유닛
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
-    private CUR_EVENT evNum = CUR_EVENT.NONE;
+    private CUR_EVENT _eventNum = CUR_EVENT.NONE;
     private bool _isBossClear;
-
     private GameObject _eventMenu = null;
+    private int _currentPageIndex;
+    private int _maxPageIndex;
 
-    [SerializeField] private TMP_Text pageText;
-    [SerializeField] private GameObject prePageButton;
-    [SerializeField] private GameObject postPageButton;
-    private int currentPageIndex;
-    private int maxPageIndex;
-
-    public void Init(bool battle=false, Action<DeckUnit> onSelect=null,CUR_EVENT Eventnum = CUR_EVENT.NONE,Action endEvent=null)
+    public void Init(bool battle = false, Action<DeckUnit> onSelect = null, CUR_EVENT eventNum = CUR_EVENT.NONE, Action endEvent=null)
     {
-        Set_btn.SetActive(false);
+        _setButton.SetActive(false);
 
-        if (Eventnum == CUR_EVENT.RECEIVE_STIGMA)
-            Quit_btn.SetActive(false);
+        if (eventNum == CUR_EVENT.RECEIVE_STIGMA)
+            _quitButton.SetActive(false);
 
         if (battle)
             _playerDeck = BattleManager.Data.PlayerDeck;
         else
             _playerDeck = GameManager.Data.GetDeck();
 
-        currentPageIndex = 0;
-        maxPageIndex = (_playerDeck.Count - 1) / 10;
-        if (maxPageIndex < 0)
-            maxPageIndex = 0;
+        _currentPageIndex = 0;
+        _maxPageIndex = (_playerDeck.Count - 1) / 10;
+        
+        if (_maxPageIndex < 0)
+            _maxPageIndex = 0;
 
         ClearCard();
         SetPageAllUI();
@@ -52,11 +52,12 @@ public class UI_MyDeck : UI_Popup
         if (endEvent != null)
             _endEvent = endEvent;
 
-        IsEventScene(Eventnum);
-        evNum = Eventnum;
-        
-        if (evNum == CUR_EVENT.GIVE_STIGMA)
-            SetCard(evNum);
+        _eventNum = eventNum;
+
+        EventSceneCheck(_eventNum);
+
+        if (_eventNum == CUR_EVENT.GIVE_STIGMA || _eventNum == CUR_EVENT.STIGMA)
+            SetCard(_eventNum);
         else
             SetCard();
     }
@@ -70,10 +71,10 @@ public class UI_MyDeck : UI_Popup
         List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
 
-        currentPageIndex = 0;
-        maxPageIndex = (_hallDeck.Count - 1) / 10;
-        if (maxPageIndex < 0)
-            maxPageIndex = 0;
+        _currentPageIndex = 0;
+        _maxPageIndex = (_hallDeck.Count - 1) / 10;
+        if (_maxPageIndex < 0)
+            _maxPageIndex = 0;
 
         ClearCard();
         SetPageAllUI();
@@ -112,10 +113,10 @@ public class UI_MyDeck : UI_Popup
 
         _hallDeck = GameManager.Data.GetDeck();
 
-        currentPageIndex = 0;
-        maxPageIndex = (_hallDeck.Count - 1) / 10;
-        if (maxPageIndex < 0)
-            maxPageIndex = 0;
+        _currentPageIndex = 0;
+        _maxPageIndex = (_hallDeck.Count - 1) / 10;
+        if (_maxPageIndex < 0)
+            _maxPageIndex = 0;
 
         ClearCard();
         SetPageAllUI();
@@ -155,10 +156,10 @@ public class UI_MyDeck : UI_Popup
 
         _hallDeck = GameManager.Data.GetDeck();
 
-        currentPageIndex = 0;
-        maxPageIndex = (_playerDeck.Count - 1) / 10;
-        if (maxPageIndex < 0)
-            maxPageIndex = 0;
+        _currentPageIndex = 0;
+        _maxPageIndex = (_playerDeck.Count - 1) / 10;
+        if (_maxPageIndex < 0)
+            _maxPageIndex = 0;
 
         ClearCard();
         SetPageAllUI();
@@ -188,11 +189,9 @@ public class UI_MyDeck : UI_Popup
 
     public void SetCard() 
     {
-        var dumpCards = Grid.GetComponentsInChildren<UI_Card>();
-        foreach (var card in dumpCards)
-            GameManager.Resource.Destroy(card.gameObject);
+        ClearCard();
 
-        for (int i = 10 * currentPageIndex; i < (currentPageIndex + 1) * 10; i++)
+        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
         {
             if (i >= _playerDeck.Count)
                 break;
@@ -200,29 +199,40 @@ public class UI_MyDeck : UI_Popup
             AddCard(_playerDeck[i]);
         }
     }
-    private void ClearCard()
-    {
-        var dumpCards = Grid.GetComponentsInChildren<UI_Card>();
-        foreach (var card in dumpCards)
-            GameManager.Resource.Destroy(card.gameObject);
-    }
 
-    private void SetCard(CUR_EVENT EventNum)
+    private void SetCard(CUR_EVENT eventNum)
     {
         ClearCard();
 
-        for (int i = 10 * currentPageIndex; i < (currentPageIndex + 1) * 10; i++)
+        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
         {
             if (i >= _playerDeck.Count)
                 break;
 
-            if (_playerDeck[i].GetStigma(true).Count != 0)
+            if (eventNum == CUR_EVENT.GIVE_STIGMA)
+            {
+                if (_playerDeck[i].GetStigma(true).Count != 0)
+                    AddCard(_playerDeck[i]);
+            }
+            else if (eventNum == CUR_EVENT.STIGMA)
+            {
                 AddCard(_playerDeck[i]);
+                _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
+            }
+
         }
     }
+
+    private void ClearCard()
+    {
+        var dumpCards = _grid.GetComponentsInChildren<UI_Card>();
+        foreach (var card in dumpCards)
+            GameManager.Resource.Destroy(card.gameObject);
+    }
+
     public void AddCard(DeckUnit unit)
     {
-        UI_Card newCard = GameObject.Instantiate(CardPrefabs, Grid).GetComponent<UI_Card>();
+        UI_Card newCard = GameObject.Instantiate(_cardPrefabs, _grid).GetComponent<UI_Card>();
         newCard.SetCardInfo(this, unit);
 
         _card_dic[unit] = newCard;
@@ -233,10 +243,10 @@ public class UI_MyDeck : UI_Popup
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
         ui.SetUnit(unit);
 
-        if (evNum == CUR_EVENT.HARLOT_RESTORATION)
-            ui.Restoration(_onSelect, evNum, OnSelectRestorationUnit);
+        if (_eventNum == CUR_EVENT.HARLOT_RESTORATION)
+            ui.Restoration(_onSelect, _eventNum, OnSelectRestorationUnit);
         else
-            ui.Init(_onSelect, evNum);
+            ui.Init(_onSelect, _eventNum);
     }
 
     public void OnSelectRestorationUnit(DeckUnit unit)
@@ -255,7 +265,7 @@ public class UI_MyDeck : UI_Popup
         _eventMenu = obj;
     }
 
-    private void IsEventScene(CUR_EVENT EventScene)
+    private void EventSceneCheck(CUR_EVENT EventScene)
     {
         string sceneName = currentSceneName();
         if (sceneName.Equals("EventScene"))
@@ -273,7 +283,7 @@ public class UI_MyDeck : UI_Popup
             else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
             {
                 _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select units to revert.");
-                Set_btn.SetActive(true);
+                _setButton.SetActive(true);
             }
         }
         else
@@ -315,38 +325,38 @@ public class UI_MyDeck : UI_Popup
 
     private void SetPageText()
     {
-        if (maxPageIndex == 0)
-            pageText.SetText("");
+        if (_maxPageIndex == 0)
+            _pageText.SetText("");
         else
-            pageText.SetText($"( {currentPageIndex + 1} / {maxPageIndex + 1} )");
+            _pageText.SetText($"( {_currentPageIndex + 1} / {_maxPageIndex + 1} )");
     }
 
     private void SetPreButtonUI()
     {
-        if (currentPageIndex == 0)
-            prePageButton.SetActive(false);
+        if (_currentPageIndex == 0)
+            _prePageButton.SetActive(false);
         else
-            prePageButton.SetActive(true);
+            _prePageButton.SetActive(true);
     }
 
     private void SetPostButtonUI()
     {
-        if (currentPageIndex == maxPageIndex)
-            postPageButton.SetActive(false);
+        if (_currentPageIndex == _maxPageIndex)
+            _postPageButton.SetActive(false);
         else
-            postPageButton.SetActive(true);
+            _postPageButton.SetActive(true);
     }
 
     public void OnPrePageButton()
     {
-        currentPageIndex--;
+        _currentPageIndex--;
         SetCard();
         SetPageAllUI();
     }
 
     public void OnPostPageButton()
     {
-        currentPageIndex++;
+        _currentPageIndex++;
         SetCard();
         SetPageAllUI();
     }

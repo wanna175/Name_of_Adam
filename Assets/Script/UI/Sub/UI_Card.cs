@@ -15,13 +15,12 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private Image _frameImage;
     [SerializeField] private TextMeshProUGUI _name;
 
-    [SerializeField]
-    private List<GameObject> _stigmaFrames;
+    [SerializeField] private List<GameObject> _stigmaFrames;
 
     private List<Image> _stigmaImages;
 
-    public Sprite NormalFrame;
-    public Sprite EliteFrame;
+    [SerializeField] public Sprite NormalFrame;
+    [SerializeField] public Sprite EliteFrame;
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
     private CUR_EVENT evNum = CUR_EVENT.NONE;
@@ -51,7 +50,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
-            SetDisableMain(unit);
+            SetDisable(unit.IsMainDeck);
         }
 
         _stigmaImages = new List<Image>();
@@ -85,9 +84,9 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             this._selectHighlight.SetActive(false);
     }
 
-    public void SetDisableMain(DeckUnit unit)
+    public void SetDisable(bool disable)
     {
-        _disable.SetActive(unit.IsMainDeck);
+        _disable.SetActive(disable);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
