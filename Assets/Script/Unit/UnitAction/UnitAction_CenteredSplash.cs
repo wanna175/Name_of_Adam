@@ -10,7 +10,7 @@ public class UnitAction_CenteredSplash : UnitAction
         if (hits.Count == 0)
             return false;
 
-        List<BattleUnit> units = BattleManager.Field.GetUnitsInRange(attackUnit.Location, attackUnit.GetSplashRange(coord, attackUnit.Location), attackUnit.Team == Team.Player ? Team.Enemy : Team.Player);
+        List<BattleUnit> units = BattleManager.Field.GetUnitsInRange(attackUnit.Location, attackUnit.GetAttackRange(), attackUnit.Team == Team.Player ? Team.Enemy : Team.Player);
 
         foreach (BattleUnit unit in hits)
         {

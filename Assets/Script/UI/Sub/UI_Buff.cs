@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class UI_Buff : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class UI_Buff : UI_Base, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI _buffText;
     [SerializeField] private Image _buffImage;
@@ -46,10 +46,5 @@ public class UI_Buff : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         _hpbar.BuffHoverOut();
         GameManager.UI.CloseHover();
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log(eventData.position);
     }
 }

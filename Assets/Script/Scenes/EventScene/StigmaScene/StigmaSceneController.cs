@@ -31,8 +31,6 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     }
     private void Init()
     {
-        
-
         _scripts = new();
         _giveStigma = null;
         _isStigmaFull = false;

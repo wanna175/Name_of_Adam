@@ -166,7 +166,7 @@ public class UpgradeController
     public Upgrade GetRandomUpgrade()
     {
         UpgradeData upgrade = new();
-        List<int> probability = new() { 96, 87 };
+        List<int> probability = new() { 97, 84 };
         int randNum;
 
         randNum = Random.Range(0, 100);
