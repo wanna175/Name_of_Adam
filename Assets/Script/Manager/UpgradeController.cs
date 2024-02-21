@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class UpgradeController
 {
@@ -50,7 +51,7 @@ public class UpgradeController
         upgrade.UpgradeImage88 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_88");
         upgrade.UpgradeImage160 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_160");
 
-        upgrade.UpgradeDescription = data.Description;
+        upgrade.UpgradeDescription = GameManager.Locale.GetLocalizedUpgrade(data.Description);
 
         upgrade.UpgradeStat = new();
 

@@ -70,8 +70,7 @@ public class UpgradeData
     public string ID;
     public int Rarity;
     public string Name;
-    [SerializeField] private string description;
-    public string Description => GameManager.Locale.GetLocalizedUpgrade(description);
+    public string Description;
     public string Image;
 
     public string HP;
