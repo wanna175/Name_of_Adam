@@ -389,3 +389,17 @@ public struct TooltipData
     public bool IsCtrl;
     public bool IsEnd;
 }
+
+[Serializable]
+public struct CutSceneData
+{
+    public CutSceneType cutSceneType;
+    public bool IsDoneStart;
+    public bool IsDoneElite;
+    public bool IsDoneBoss;
+}
+
+public enum CutSceneType
+{
+    Start,
+}

@@ -20,11 +20,16 @@ public class PlayerSkill_Move : PlayerSkill
         switch (activeTiming)
         {
             case ActiveTiming.TURN_START:
-                BattleManager.Instance.MoveUnit(selectedUnit, coord);
-                BattleManager.Field.ClearAllColor();
-                BattleManager.PlayerSkillController.SetSkillDone();
-                return false;
+                if (BattleManager.Instance.MoveUnit(selectedUnit, coord))
+                {
+                    BattleManager.Field.ClearAllColor();
+                    BattleManager.PlayerSkillController.SetSkillDone();
+                    return false;
+                }
+                break;
         }
+
+        // 사용 취소된 경우
         return true;
     }
 
