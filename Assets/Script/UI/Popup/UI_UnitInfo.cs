@@ -10,6 +10,7 @@ public class UI_UnitInfo : UI_Popup
 {
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private GameObject _quitButton;
+    [SerializeField] private TextMeshProUGUI _quitButtonTxt;
     [SerializeField] private GameObject _eventButton;
     [SerializeField] private GameObject _completeButton;
     [SerializeField] private GameObject _fallGaugePrefab;
@@ -63,6 +64,10 @@ public class UI_UnitInfo : UI_Popup
         else if (_evNum == CUR_EVENT.STIGMA_EXCEPTION || _evNum == CUR_EVENT.UPGRADE_EXCEPTION)
         {
             Select();
+        }
+        else if (_evNum == CUR_EVENT.UPGRADE)
+        {
+            _quitButtonTxt.text = "뒤로가기";
         }
 
         _unitInfoName.text = _unit.Data.Name;
