@@ -4,14 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum CutSceneType
-{
-    noneMove,
-    tracking,
-    center
-}
-
-
 // RangeSO의 커스텀 에디터
 //[CustomEditor(typeof(RangeSO))]
 //public class RangeEditor : Editor

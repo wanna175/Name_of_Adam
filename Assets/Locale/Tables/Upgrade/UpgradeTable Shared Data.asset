@@ -19,6 +19,34 @@ MonoBehaviour:
     m_Key: Attack (ATK) Increase
     m_Metadata:
       m_Items: []
+  - m_Id: 54329837678592
+    m_Key: Health (HP) Increase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54490383052800
+    m_Key: Speed (SPD) Increase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54642728562688
+    m_Key: Cost (COST) Decrease
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55016092921856
+    m_Key: Speed (SPD) Decrease
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55062167351296
+    m_Key: Health (HP) Decrease
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55199056850944
+    m_Key: Attack (ATK) Decrease
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55316430254080
+    m_Key: Cost (COST) Increase
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -18,6 +18,8 @@ public class StigmaController
     private List<Stigma> _harlotStigmaList = new();
     public List<Stigma> get_harlotStigmaList => _harlotStigmaList;
 
+    private Dictionary<StigmaEnum, string[]> _lockStigmaDic = new(); // [Key, Value] = [낙인, 해당 낙인은 등장하지 않는 유닛 이름들]
+
     private void LoadStigmaList()
     {
         //string path = "Assets/Resources/Prefabs/Stigma";
@@ -60,6 +62,10 @@ public class StigmaController
                 _harlotStigmaList.Add(stigma);
             }
         }
+
+        _lockStigmaDic.Add(StigmaEnum.Hook, new string[] { "흑기사", "쌍생아", "그을린 자", "묘지기", "검병",
+            "노동자", "중갑병", "처형자", "암살자", "습격자", "괴인", "엘리우스", "투발카인" });
+        _lockStigmaDic.Add(StigmaEnum.Additional_Punishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아" });
     }
 
     // probability는 { 99, 89 } 처럼 2개 인자를 보유
@@ -98,15 +104,25 @@ public class StigmaController
 
     private bool IsLockStigmaAsUnit(Stigma stigma, string unitName)
     {
-        switch (unitName) 
+        // 검병 튜토리얼 특수 케이스
+        if (unitName.Equals("검병"))
         {
-            case "검병":
-                if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.isTutorialClear())
-                {
-                    Debug.Log($"{stigma.StigmaEnum} 차단");
-                    return true;
-                }
-                break;
+            if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.isTutorialClear())
+            {
+                Debug.Log($"검병 튜토리얼: {stigma.StigmaEnum} 차단");
+                return true;
+            }
+        }
+
+        // 그 외 체크
+        string[] strings;
+        if (_lockStigmaDic.TryGetValue(stigma.StigmaEnum, out strings))
+        {
+            if (strings.Contains(unitName))
+            {
+                Debug.Log($"{unitName} : {stigma.StigmaEnum} 차단");
+                return true;
+            }
         }
 
         return false;

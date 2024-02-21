@@ -36,11 +36,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 435905794048
-    m_Localized: Heals the designated ally or enemy by 20 health.
+    m_Localized: Heals the designated ally by 20 health.
     m_Metadata:
       m_Items: []
   - m_Id: 472060694528
-    m_Localized: Heals the designated ally or enemy by 15 health.
+    m_Localized: Heals the designated ally by 15 health.
     m_Metadata:
       m_Items: []
   - m_Id: 521163411456

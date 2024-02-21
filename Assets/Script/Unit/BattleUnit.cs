@@ -542,8 +542,6 @@ public class BattleUnit : MonoBehaviour
         Array.Copy(setRangeList, _attackRangeList, setRangeList.Length);
     }
 
-    public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
-
     public List<Vector2> GetAttackRange()
     {
         List<Vector2> RangeList = new();
