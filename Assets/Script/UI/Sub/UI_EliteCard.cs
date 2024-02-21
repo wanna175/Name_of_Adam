@@ -34,7 +34,7 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         UnitImage.sprite = _deckUnit.Data.CorruptImage;
         UnitImage.color = Color.white;
-        _nameText.SetText(_deckUnit.Data.name);
+        _nameText.SetText(_deckUnit.Data.Name);
 
         List<Stigma> stigmas = _deckUnit.GetStigma();
         for (int i = 0; i < _stigmaImages.Count; i++)

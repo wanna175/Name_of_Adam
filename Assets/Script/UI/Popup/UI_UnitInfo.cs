@@ -65,10 +65,6 @@ public class UI_UnitInfo : UI_Popup
         {
             Select();
         }
-        else if (_evNum == CUR_EVENT.UPGRADE)
-        {
-            _quitButtonTxt.text = "뒤로가기";
-        }
 
         _unitInfoName.text = _unit.Data.Name;
 

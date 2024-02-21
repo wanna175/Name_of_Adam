@@ -66,6 +66,10 @@ MonoBehaviour:
     m_Localized: Select a unit to bring to the Divine Hall.
     m_Metadata:
       m_Items: []
+  - m_Id: 1931057719734272
+    m_Localized: Select a unit to receive as a reward.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
