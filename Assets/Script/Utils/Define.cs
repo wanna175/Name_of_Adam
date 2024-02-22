@@ -284,7 +284,7 @@ public enum BuffEnum
     AfterMotionTransparent,
     AfterAttackDead,
     AfterAttackBounce,
-    MarkOfRaquel,
+    MarkOfBeast,
 
     Assasination,
     Berserker,

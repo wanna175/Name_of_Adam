@@ -8,8 +8,6 @@ public class Buff_Raquel : Buff
 
         _name = "∂Û«Ô";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
-
         _description = "∂Û«Ô.";
 
         _count = -1;
@@ -45,7 +43,13 @@ public class Buff_Raquel : Buff
             }, 0.5f);
         }
 
-        caster.SetBuff(new Buff_MarkOfRaquel());
+        if (caster.Buff.CheckBuff(BuffEnum.MarkOfBeast))
+        {
+            caster.DeleteBuff(BuffEnum.MarkOfBeast);
+            caster.ChangeFall(1);
+        }
+
+        caster.SetBuff(new Buff_MarkOfBeast());
 
         return false;
     }

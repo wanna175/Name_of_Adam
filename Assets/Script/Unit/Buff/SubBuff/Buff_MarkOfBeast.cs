@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Buff_MarkOfRaquel : Buff
+public class Buff_MarkOfBeast : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.MarkOfRaquel;
+        _buffEnum = BuffEnum.MarkOfBeast;
 
-        _name = "라헬의 표식";
+        _name = "짐승의 낙인";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
 
-        _description = "레아에게 공격받을 시 10 대미지를 입고 신앙이 1 떨어집니다.";
+        _description = "라헬, 레아에게 공격 받으면 신앙이 1 떨어집니다.";
 
         _count = -1;
 
