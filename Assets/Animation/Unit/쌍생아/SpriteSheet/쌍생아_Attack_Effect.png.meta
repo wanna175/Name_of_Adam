@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8f99b715e2761ef489d864452ccfcd69
+guid: f6ee8859486f1cb42a268e999cb2a1cf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC30D\uC0DD\uC544_Attack_0"
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfb802371deaaab4ab08bd1fcb125a4d
-      internalID: -720980133
+      spriteID: c8b6cdfedac51204a805dfae5919560b
+      internalID: 1393630366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC30D\uC0DD\uC544_Attack_1"
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_1"
       rect:
         serializedVersion: 2
         x: 256
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d843d36e66d0ad54d9ee7be33d3735ea
-      internalID: 577274069
+      spriteID: 42926303662e84143a2fae82d24ea928
+      internalID: 1928944184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC30D\uC0DD\uC544_Attack_2"
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_2"
       rect:
         serializedVersion: 2
         x: 512
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b951c2bb9eb45944940d392273d3606
-      internalID: -422056445
+      spriteID: 2d3c01b591f43be449d8e84dd78ab5de
+      internalID: 774654426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC30D\uC0DD\uC544_Attack_3"
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_3"
       rect:
         serializedVersion: 2
         x: 768
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a3e346a30c1b6f48ba41b0b6fd12b2e
-      internalID: 295427168
+      spriteID: 3d90c88ba6a60af46ba92d7e37e71493
+      internalID: -2122072144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC30D\uC0DD\uC544_Attack_4"
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_4"
       rect:
         serializedVersion: 2
         x: 1024
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adbdf7e0b00b447409c3994bc866a00f
-      internalID: -1549672355
+      spriteID: 49ab2df9205399443b3367f46b0c9b6a
+      internalID: 1158787951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC30D\uC0DD\uC544_Attack_5"
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_5"
       rect:
         serializedVersion: 2
         x: 1280
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa0aa53fdf806f94fb0f21dae130e728
-      internalID: 37697762
+      spriteID: 4790b0ea015689c4f98a74cb0149f61f
+      internalID: 2126037039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC30D\uC0DD\uC544_Attack_6"
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_6"
       rect:
         serializedVersion: 2
         x: 1536
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ec8d1318bff68047885b955b475151c
-      internalID: -1442006860
+      spriteID: 46adc1a7149c1c74186c96fcd51323b0
+      internalID: 1821059149
       vertices: []
       indices: 
       edges: []
@@ -274,13 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uC30D\uC0DD\uC544_Attack_0": -720980133
-      "\uC30D\uC0DD\uC544_Attack_1": 577274069
-      "\uC30D\uC0DD\uC544_Attack_6": -1442006860
-      "\uC30D\uC0DD\uC544_Attack_2": -422056445
-      "\uC30D\uC0DD\uC544_Attack_4": -1549672355
-      "\uC30D\uC0DD\uC544_Attack_5": 37697762
-      "\uC30D\uC0DD\uC544_Attack_3": 295427168
+      "\uC30D\uC0DD\uC544_Attack_Effect_1": 1928944184
+      "\uC30D\uC0DD\uC544_Attack_Effect_6": 1821059149
+      "\uC30D\uC0DD\uC544_Attack_Effect_3": -2122072144
+      "\uC30D\uC0DD\uC544_Attack_Effect_2": 774654426
+      "\uC30D\uC0DD\uC544_Attack_Effect_5": 2126037039
+      "\uC30D\uC0DD\uC544_Attack_Effect_4": 1158787951
+      "\uC30D\uC0DD\uC544_Attack_Effect_0": 1393630366
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
