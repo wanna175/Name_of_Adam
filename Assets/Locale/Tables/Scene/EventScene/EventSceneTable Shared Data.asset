@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Key: Select a unit to bring to the Divine Hall.
     m_Metadata:
       m_Items: []
+  - m_Id: 1931057719734272
+    m_Key: Select a unit to receive as a reward.
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -51,6 +51,8 @@ public class LocaleManager : MonoBehaviour
         return "";
     }
 
+    public string GetLocalizedUpgrade(string upgradeInfo) => GetLocalizedString("UpgradeTable", upgradeInfo);
+
     public string GetLocalizedEventScene(string eventSceneStr) => GetLocalizedString("EventSceneTable", eventSceneStr);
 
     public string GetLocalizedPlayerSkillInfo(string playerSkillInfo) => GetLocalizedString("PlayerSkillInfoTable", playerSkillInfo);

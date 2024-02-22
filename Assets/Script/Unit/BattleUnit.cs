@@ -259,6 +259,10 @@ public class BattleUnit : MonoBehaviour
         {
             GameManager.Data.GameData.Progress.PhanuelFall++;
         }
+        else if (DeckUnit.Data.Name == "호루스")
+        {
+            GameManager.Data.GameData.Progress.HorusFall++;
+        }
 
         //타락 이벤트 시작
         FallEvent = true;
@@ -537,8 +541,6 @@ public class BattleUnit : MonoBehaviour
     {
         Array.Copy(setRangeList, _attackRangeList, setRangeList.Length);
     }
-
-    public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
 
     public List<Vector2> GetAttackRange()
     {

@@ -22,6 +22,7 @@ public class OutGameData
     public bool isVisitStigma = false;
     public bool isVisitDarkShop = false;
     public NPCQuest npcQuest;                //npc타락퀘스트
+    public CutSceneData cutSceneData;        //현재 진행된 컷씬
 
     public int language;
     public int resolution;
@@ -329,6 +330,6 @@ public class OutGameDataContainer : MonoBehaviour
     {
         data.resolution = 0;
         data.isWindowed = false;
-        data.masterSoundPower = data.BGMSoundPower = data.SESoundPower = 0.5f;
+        data.masterSoundPower = data.BGMSoundPower = data.SESoundPower = 1f;
     }
 }

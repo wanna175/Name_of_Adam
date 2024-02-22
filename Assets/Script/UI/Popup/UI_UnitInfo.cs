@@ -10,6 +10,7 @@ public class UI_UnitInfo : UI_Popup
 {
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private GameObject _quitButton;
+    [SerializeField] private TextMeshProUGUI _quitButtonTxt;
     [SerializeField] private GameObject _eventButton;
     [SerializeField] private GameObject _completeButton;
     [SerializeField] private GameObject _fallGaugePrefab;
