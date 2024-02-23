@@ -45,9 +45,13 @@ public class UI_FallUnit : MonoBehaviour
         else if (FallCount == 1)
         {
             this._doubleCount.gameObject.SetActive(false);
+            this._tripleCount.gameObject.SetActive(false);
         }
         else if (FallCount == 2)
+        {
             this._tripleCount.gameObject.SetActive(false);
+            this._doubleCount.gameObject.SetActive(true);
+        }
         anim.Rebind();
     }
 
