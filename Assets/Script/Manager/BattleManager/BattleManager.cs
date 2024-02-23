@@ -41,8 +41,9 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] List<GameObject> Background;
 
-    private UnitIDManager unitIDManager;
-    public static UnitIDManager _unitIDManager => Instance.unitIDManager;
+    private UnitIDManager _unitIDManager;
+    public static UnitIDManager UnitIDManager => Instance._unitIDManager;
+
     private RewardController _rc;
 
     private void Awake()
@@ -52,8 +53,8 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
-        unitIDManager = new UnitIDManager();
-        unitIDManager.Init(GameManager.Data.GetDeck());
+        _unitIDManager = new UnitIDManager();
+        _unitIDManager.Init(GameManager.Data.GetDeck());
         _rc = new RewardController();
         _rc.Init(GameManager.Data.GetDeck(), GameManager.Data.DarkEssense);
         SetBackground();
@@ -479,25 +480,59 @@ public class BattleManager : MonoBehaviour
         }
 
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_DEAD, unit);
-        
+
+        BossDeadCheck(unit);
+    }
+
+    public void UnitFallEvent(BattleUnit unit)
+    {
+        if (GameManager.Data.GameData.IsVisitDarkShop)
+            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
+
+        if (unit.Team == Team.Enemy)
+        {
+            GameManager.Data.GameData.FallenUnits.Add(unit.DeckUnit);
+        }
+
+        if (unit.DeckUnit.Data.Rarity == Rarity.Normal)
+        {
+            GameManager.Data.GameData.Progress.NormalFall++;
+        }
+        else if (unit.DeckUnit.Data.Rarity == Rarity.Elite)
+        {
+            GameManager.Data.GameData.Progress.EliteFall++;
+        }
+        else if (unit.DeckUnit.Data.ID == "바누엘")
+        {
+            GameManager.Data.GameData.Progress.PhanuelFall++;
+        }
+        else if (unit.DeckUnit.Data.ID == "호루스")
+        {
+            GameManager.Data.GameData.Progress.HorusFall++;
+        }
+
+        BossDeadCheck(unit);
+    }
+
+    private void BossDeadCheck(BattleUnit unit)
+    {
         if (unit.Team == Team.Enemy && (unit.Data.Rarity == Rarity.Elite || unit.Data.Rarity == Rarity.Boss))
         {
-            bool isBossRemain = true;
-
+            bool isBossClear = true;
             foreach (BattleUnit remainUnit in _battleData.BattleUnitList)
             {
-                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy)
+                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy && remainUnit != unit)
                 {
-                    isBossRemain = false;
+                    isBossClear = false;
                     break;
                 }
             }
 
-            if (isBossRemain)
+            if (isBossClear)
             {
                 for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
                 {
-                    BattleUnit remainUnit = _battleData.BattleUnitList.Find(x => x.Team == Team.Enemy);
+                    BattleUnit remainUnit = _battleData.BattleUnitList.Find(x => x.Team == Team.Enemy && x != unit);
                     if (remainUnit == null)
                         break;
 
@@ -549,12 +584,12 @@ public class BattleManager : MonoBehaviour
         if (GameManager.Data.GameData.PlayerHP <= 0)
         {
             BattleOverLose();
-            unitIDManager.resetID();
+            _unitIDManager.resetID();
         }
         else if (EnemyUnit == 0)
         {
             BattleOverWin();
-            unitIDManager.resetID();
+            _unitIDManager.resetID();
             if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
             {
                 GameManager.OutGameData.DoneTutorial(true);

@@ -231,42 +231,16 @@ public class BattleUnit : MonoBehaviour
     {
         if (Data.Rarity == Rarity.Original)
         {
-            UnitDiedEvent();
-            //ChangeHP(-HP.GetCurrentHP());
+            UnitDiedEvent(false);
             return;
         }
 
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
-        if(GameManager.Data.GameData.IsVisitDarkShop)
-            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
-
-        if (_team == Team.Enemy)
-        {
-            GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
-        }
-
-        if(DeckUnit.Data.Rarity == Rarity.Normal)
-        {
-            GameManager.Data.GameData.Progress.NormalFall++;
-        }
-        else if(DeckUnit.Data.Rarity == Rarity.Elite)
-        {
-            GameManager.Data.GameData.Progress.EliteFall++;
-        }
-        else if (DeckUnit.Data.Name == "바누엘")
-        {
-            GameManager.Data.GameData.Progress.PhanuelFall++;
-        }
-        else if (DeckUnit.Data.Name == "호루스")
-        {
-            GameManager.Data.GameData.Progress.HorusFall++;
-        }
-
         //타락 이벤트 시작
         FallEvent = true;
-        DeckUnit.UnitID = BattleManager._unitIDManager.GetID();
+        DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -275,6 +249,7 @@ public class BattleUnit : MonoBehaviour
     {
         //타락 이벤트 종료
         FallEvent = false;
+        BattleManager.Instance.UnitFallEvent(this);
 
         if (ChangeTeam() == Team.Enemy)
         {
