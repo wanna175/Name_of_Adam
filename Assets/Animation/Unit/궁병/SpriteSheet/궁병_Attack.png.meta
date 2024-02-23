@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 120
+  spritePixelsToUnits: 105
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uAD81\uC218_Attack_0"
+      name: "\uAD81\uBCD1_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 258
-        height: 258
+        width: 256
+        height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5941ded690b0b4b4897e78ebfd82ed33
-      internalID: 1114102527
+      spriteID: 07a020c81f48578468cef4c9152163fc
+      internalID: -368413410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAD81\uC218_Attack_1"
+      name: "\uAD81\uBCD1_Attack_1"
       rect:
         serializedVersion: 2
-        x: 258
+        x: 256
         y: 0
-        width: 258
-        height: 258
+        width: 256
+        height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49e3415302f639041b130963bf4aaf24
-      internalID: -1396502822
+      spriteID: 5028d509e1c071240a472511ed074914
+      internalID: 591192201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAD81\uC218_Attack_2"
+      name: "\uAD81\uBCD1_Attack_2"
       rect:
         serializedVersion: 2
-        x: 516
+        x: 512
         y: 0
-        width: 258
-        height: 258
+        width: 256
+        height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88d4d36c5cabc9443be5e2f4431b545e
-      internalID: -1557927930
+      spriteID: 0cae9dd475be7af489d6f7f8e2829c9e
+      internalID: 544716985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAD81\uC218_Attack_3"
+      name: "\uAD81\uBCD1_Attack_3"
       rect:
         serializedVersion: 2
-        x: 774
+        x: 768
         y: 0
-        width: 258
-        height: 258
+        width: 256
+        height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8cfb46c66ef161448e84dc59db18d52
-      internalID: 1521913737
+      spriteID: a027b34df68a1374799a1cfc9dcb9cb9
+      internalID: 2077971295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAD81\uC218_Attack_4"
+      name: "\uAD81\uBCD1_Attack_4"
       rect:
         serializedVersion: 2
-        x: 1032
+        x: 1024
         y: 0
-        width: 258
-        height: 258
+        width: 256
+        height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.08}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,8 +227,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96b156f70e4973f47a1914d93210c343
-      internalID: -1614367811
+      spriteID: c087285e8d1bc9842b35955f7043e74f
+      internalID: -2134858231
       vertices: []
       indices: 
       edges: []
@@ -244,11 +244,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uAD81\uC218_Attack_3": 1521913737
-      "\uAD81\uC218_Attack_2": -1557927930
-      "\uAD81\uC218_Attack_0": 1114102527
-      "\uAD81\uC218_Attack_1": -1396502822
-      "\uAD81\uC218_Attack_4": -1614367811
+      "\uAD81\uBCD1_Attack_3": 2077971295
+      "\uAD81\uBCD1_Attack_1": 591192201
+      "\uAD81\uBCD1_Attack_2": 544716985
+      "\uAD81\uBCD1_Attack_0": -368413410
+      "\uAD81\uBCD1_Attack_4": -2134858231
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -116,7 +116,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uAD81\uC218_Hit"
+  m_Name: Unit_Hit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -143,7 +143,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uAD81\uC218_Attack"
+  m_Name: Unit_Attack
   m_Speed: 0.8
   m_CycleOffset: 0
   m_Transitions:
@@ -223,7 +223,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uAD81\uC218_Idle"
+  m_Name: Unit_Idle
   m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
