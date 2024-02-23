@@ -46,24 +46,24 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         }
         else
         {
-            if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30)
+            if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >=30)
             {//
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_100"];
                 background.SetActive(false);
                 fall_background.SetActive(true);
                 this.isNPCFall = true;
             }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 * 3 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 * 3 / 4)
             {
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_75"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 2)
+            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 / 2)
             {
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_50"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 / 4)
             {
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_25"];
                 //안개이미지 변경
