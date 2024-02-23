@@ -20,11 +20,13 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 1
     ManaCost: 100
-    CurrentUpgradeCount: 0
-  _uniqueStigma: []
-  _id: 
-  _name: "\uD638\uB8E8\uC2A4"
-  _description: "\uACF5\uACA9 \uB300\uC2E0 \uC5F0\uAF43\uC744 \uC18C\uD658\uD569\uB2C8\uB2E4."
+  _uniqueStigma:
+  - {fileID: -5896623541476058823, guid: 60a463a9567dc154ba35198988e8eee2, type: 3}
+  - {fileID: -7708356846838002624, guid: 1104cf3140531a34cbae71f64613a2e3, type: 3}
+  - {fileID: 6201786277953421197, guid: d2301340bf409fa439b56d6cdb0da651, type: 3}
+  _id: "\uD638\uB8E8\uC2A4"
+  _name: 
+  _description: 
   _rarity: 3
   _image: {fileID: 21300000, guid: ca3039b7641dadc4ba694525b02be063, type: 3}
   _corruptImage: {fileID: 0}

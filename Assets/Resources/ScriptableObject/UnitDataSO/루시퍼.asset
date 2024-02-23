@@ -20,7 +20,6 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 4
     ManaCost: 0
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: -2313120215319490512, guid: c36058c8458e8e541b5ac2ccbbb73c5e, type: 3}
   _id: "\uB8E8\uC2DC\uD37C"
@@ -33,11 +32,11 @@ MonoBehaviour:
   _corruptPortraitImage: {fileID: 21300000, guid: 7e12e886de18e954891d43c2f899989f, type: 3}
   _diaPortraitImage: {fileID: 21300000, guid: 5185f16598740c8489e61e6f1a999207, type: 3}
   _corruptDiaPortraitImage: {fileID: 21300000, guid: e7cb1974d1c91924a8a3f544debd7a78, type: 3}
-  _animatorController: {fileID: 9100000, guid: 7e062985ae110c647a9643f7c5f53361, type: 2}
-  _corruptionAnimatorController: {fileID: 9100000, guid: 6630072a3f6014849b19d3be34e8b26e, type: 2}
-  _skillEffectAnim: {fileID: 7400000, guid: 4995aac03d4963b4c95801d6ac8f04f5, type: 2}
-  _corruptionSkillEffectAnim: {fileID: 7400000, guid: a85fe40e59ab2fc43a5e627e2cbc975c, type: 2}
-  _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
+  _animatorController: {fileID: 9100000, guid: fe8cfd03231a02b458e79afd0208ccda, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: fe8cfd03231a02b458e79afd0208ccda, type: 2}
+  _skillEffectAnim: {fileID: 7400000, guid: a7d3248d864ea1a4085e5abc7cb2df3a, type: 2}
+  _corruptionSkillEffectAnim: {fileID: 7400000, guid: a7d3248d864ea1a4085e5abc7cb2df3a, type: 2}
+  _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
   _darkEssenseDrop: 10
   _darkEssenseCost: 0
   _unitActionType: 0

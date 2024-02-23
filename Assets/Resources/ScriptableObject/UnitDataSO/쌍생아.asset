@@ -26,8 +26,8 @@ MonoBehaviour:
   _name: The conjoined twins
   _description: 
   _rarity: 2
-  _image: {fileID: 21300000, guid: fcec2505b5ece774d8bac99dbc711949, type: 3}
-  _corruptImage: {fileID: 21300000, guid: fcec2505b5ece774d8bac99dbc711949, type: 3}
+  _image: {fileID: 21300000, guid: 259003894ea8a8746894db0a3e317d84, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 259003894ea8a8746894db0a3e317d84, type: 3}
   _portraitImage: {fileID: 21300000, guid: fcec2505b5ece774d8bac99dbc711949, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: fcec2505b5ece774d8bac99dbc711949, type: 3}
   _diaPortraitImage: {fileID: 21300000, guid: 20cbe834bcd6286459022d8a75f5e7c9, type: 3}
