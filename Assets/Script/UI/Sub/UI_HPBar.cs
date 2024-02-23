@@ -90,7 +90,7 @@ public class UI_HPBar : UI_Base
             _fallGauge[idx].EmptyGauge();
         }
         
-        if (_UnitfallGaugeCur > 4)
+        if (_UnitfallGaugeCur > 4&&_UnitfallGaugeCur<=8)
         {
             int doubleCnt = _UnitfallGaugeCur - 4;
             _fallCountIdx = doubleCnt - 1; 
@@ -112,6 +112,7 @@ public class UI_HPBar : UI_Base
         _UnitfallGaugeCur = _UnitfallGaugeMax - current;
         if (diff == 1)
         {
+            Debug.Log("idx qqqqqqqqqqqqq: " + _fallCountIdx);
             _fallGauge[_fallCountIdx--].FillGauge();
             if (_fallCountIdx < 0 && _UnitfallGaugeMax != _UnitfallGaugeCur)
                 _fallCountIdx = 3;

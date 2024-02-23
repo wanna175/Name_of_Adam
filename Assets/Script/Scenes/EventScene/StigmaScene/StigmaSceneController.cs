@@ -64,24 +64,25 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         }
         else
         {
-            if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50)
+            if (GameManager.Data.GameData.NpcQuest.StigmaQuest >=50)
             {
+                Debug.Log("dddddddd : " + GameManager.Data.GameData.NpcQuest.StigmaQuest);
                 _scripts = GameManager.Data.ScriptData["타락_낙인소_입장"];
                 background.SetActive(false);
                 fall_background.SetActive(true);
                 this.isNPCFall = true;
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 * 3 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 * 3 / 4)
             {
                 _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 2)
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 / 2)
             {
                 _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 / 4)
             {
                 _scripts = GameManager.Data.ScriptData["낙인소_입장"];
                 //안개이미지 변경
