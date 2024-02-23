@@ -555,11 +555,6 @@ public class BattleManager : MonoBehaviour
         {
             BattleOverWin();
             unitIDManager.resetID();
-            if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
-            {
-                GameManager.OutGameData.DoneTutorial(true);
-                Debug.Log("Tutorial Clear!");
-            }
         }
     }
 
