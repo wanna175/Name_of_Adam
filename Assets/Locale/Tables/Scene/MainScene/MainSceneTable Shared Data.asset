@@ -39,6 +39,23 @@ MonoBehaviour:
     m_Key: Quit
     m_Metadata:
       m_Items: []
+  - m_Id: 7238332881629184
+    m_Key: 'Abandon saved journey?
+
+      
+
+      You have an existing journey.
+      Are you sure you want to abandon it and start a new journey?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7238564579176448
+    m_Key: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7238590810353664
+    m_Key: Yes
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

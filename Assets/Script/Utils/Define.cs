@@ -393,8 +393,8 @@ public struct TooltipData
 [Serializable]
 public struct CutSceneData
 {
-    public CutSceneType cutSceneType;
     public bool IsDoneStart;
+    public bool IsDoneTutorial;
     public bool IsDoneElite;
     public bool IsDoneBoss;
 }
@@ -402,4 +402,7 @@ public struct CutSceneData
 public enum CutSceneType
 {
     Start,
+    Tutorial,
+    Elite,
+    Boss,
 }
