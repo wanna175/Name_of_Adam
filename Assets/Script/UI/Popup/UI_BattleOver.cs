@@ -49,6 +49,14 @@ public class UI_BattleOver : UI_Scene
 
         if (_result == "win")
         {
+            if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
+            {
+                GameManager.OutGameData.DoneTutorial(true);
+                SceneChanger.SceneChangeToCutScene(CutSceneType.Tutorial);
+                Debug.Log("Tutorial Clear!");
+                return;
+            }
+
             if (_rewardScene.isEndFade)
             {
                 SceneChanger.SceneChange("StageSelectScene");

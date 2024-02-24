@@ -49,7 +49,7 @@ public class MainSceneController : MonoBehaviour
             }
             else
             {
-                SceneChanger.SceneChange("CutScene");
+                SceneChanger.SceneChangeToCutScene(CutSceneType.Start);
             }
         }
     }

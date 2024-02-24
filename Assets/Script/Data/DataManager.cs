@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
     public Dictionary<int, List<StageSpawnData>> StageDatas = new();
     public MapData Map;
     public int StageAct; // 현재 맵이 몇 막인지 기록하는 변수. 0 : 튜토리얼, 1 : 1막, 2 : 2막 이런식으로
+    public CutSceneType CutSceneToDisplay; // 출력할 컷씬 기록하는 변수
 
     [SerializeField] public GameData GameData;
     [SerializeField] public GameData GameDataMain;
