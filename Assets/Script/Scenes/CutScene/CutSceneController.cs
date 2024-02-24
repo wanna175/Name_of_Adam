@@ -7,30 +7,48 @@ public class CutSceneController : MonoBehaviour
 {
     [SerializeField] private VideoPlayer video;
 
+    private VideoClip videoClip;
+    private CutSceneType cutSceneToDisplay;
+
     private void Start()
     {
         GameManager.Sound.Clear();
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         //GameManager.Sound.Play("Stage_Transition/CutScene/CutSceneBGM");
 
+        string language = "EN";
+        if (GameManager.Locale.CurrentLocaleIndex == 1)
+            language = "KR";
+
+        cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
+        videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{cutSceneToDisplay}_{language}");
+     
+        video.clip = videoClip;
         video.loopPointReached += EndReached;
+        video.Play();
+
+        Debug.Log($"{cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
     }
 
     public void SceneChange()
     {
-        SceneChanger.SceneChange("StageSelectScene");
+        switch (cutSceneToDisplay)
+        {
+            case CutSceneType.Main: SceneChanger.SceneChange("StageSelectScene"); break;
+            case CutSceneType.Tutorial: SceneChanger.SceneChange("StageSelectScene"); break;
+        }
     }
 
     public void SkipButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        SceneChanger.SceneChange("StageSelectScene");
+        SceneChange();
     }
 
     private void EndReached(VideoPlayer vp)
     {
 #if UNITY_EDITOR
-        Debug.Log("End Cutscene!");
+        Debug.Log($"End CutScene: {cutSceneToDisplay}");
 #endif
         SceneChange();
     }

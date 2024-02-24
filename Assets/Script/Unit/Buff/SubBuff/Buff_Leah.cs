@@ -8,8 +8,6 @@ public class Buff_Leah : Buff
 
         _name = "레아";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
-
         _description = "레아.";
 
         _count = 1;
@@ -40,19 +38,10 @@ public class Buff_Leah : Buff
         if (caster == null)
             return false;
 
-        if (caster.Buff.CheckBuff(BuffEnum.MarkOfRaquel))
+        if (caster.Buff.CheckBuff(BuffEnum.MarkOfBeast))
         {
-            caster.DeleteBuff(BuffEnum.MarkOfRaquel);
+            caster.DeleteBuff(BuffEnum.MarkOfBeast);
             caster.ChangeFall(1);
-
-            if (caster.FallEvent)
-            {
-                return true;
-            }
-            else
-            {
-                caster.GetAttack(-10, _owner);
-            }
         }
 
         return false;

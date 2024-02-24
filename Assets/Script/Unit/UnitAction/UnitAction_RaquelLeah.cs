@@ -58,19 +58,7 @@ public class UnitAction_RaquelLeah : UnitAction
 
         int ChangedSpeed = _owner.BattleUnitTotalStat.SPD - _speedDifference;
 
-        int InsertIndex = 0;
-
-        /*
-        foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
-        {
-            if (unit.BattleUnitTotalStat.SPD > ChangedSpeed)
-            {
-                InsertIndex++;
-            }
-        }
-        */
-
-        BattleManager.Data.BattleOrderInsert(InsertIndex, _owner, ChangedSpeed);
+        BattleManager.Data.BattleOrderInsert(0, _owner, ChangedSpeed);
 
     }
 

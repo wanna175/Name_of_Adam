@@ -18,9 +18,8 @@ MonoBehaviour:
     ATK: 15
     SPD: 45
     FallCurrentCount: 0
-    FallMaxCount: 4
+    FallMaxCount: 6
     ManaCost: 60
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 171247975755226261, guid: e2453f4d561b4694d8202f89587122af, type: 3}
   _id: "\uC5D8\uB9AC\uC6B0\uC2A4"

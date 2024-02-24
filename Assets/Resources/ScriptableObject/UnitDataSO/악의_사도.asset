@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uC545\uC758_\uC0AC\uB3C4"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    MaxHP: 666
+    CurrentHP: 666
+    ATK: 30
+    SPD: 66
+    FallCurrentCount: 0
+    FallMaxCount: 12
+    ManaCost: 0
+  _uniqueStigma:
+  - {fileID: -2313120215319490512, guid: c36058c8458e8e541b5ac2ccbbb73c5e, type: 3}
+  _id: "\uC545\uC758 \uC0AC\uB3C4"
+  _name: Lucifer
+  _description: 
+  _rarity: 1
+  _image: {fileID: 21300000, guid: 101229687224338458a3238b895207e2, type: 3}
+  _corruptImage: {fileID: 0}
+  _portraitImage: {fileID: 21300000, guid: 0293a0bb69daf94428d2416e8dbf3d27, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: 7e12e886de18e954891d43c2f899989f, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 5185f16598740c8489e61e6f1a999207, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: e7cb1974d1c91924a8a3f544debd7a78, type: 3}
+  _animatorController: {fileID: 9100000, guid: fe8cfd03231a02b458e79afd0208ccda, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: fe8cfd03231a02b458e79afd0208ccda, type: 2}
+  _skillEffectAnim: {fileID: 7400000, guid: a7d3248d864ea1a4085e5abc7cb2df3a, type: 2}
+  _corruptionSkillEffectAnim: {fileID: 7400000, guid: a7d3248d864ea1a4085e5abc7cb2df3a, type: 2}
+  _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
+  _darkEssenseDrop: 10
+  _darkEssenseCost: 0
+  _unitActionType: 0
+  _unitMoveType: 0
+  _isBattleOnly: 1
+  _attackRange: 00000000000000000000000000000000010000000000000000000101010000000000000000000100000000000000000000000000000000
+  _moveRange: 00000000000000010000000101010000000100000000000000
+  _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+  _unitSize: 00000000000000000000000001000000000000000000000000

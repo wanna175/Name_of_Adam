@@ -35,11 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 12304045477888
-    m_Localized: BGM
+    m_Localized: Music
     m_Metadata:
       m_Items: []
   - m_Id: 12334731005952
-    m_Localized: SE
+    m_Localized: SFX
     m_Metadata:
       m_Items: []
   - m_Id: 13095351259136

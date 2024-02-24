@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeSceneController : MonoBehaviour
 {
+    private readonly int[] enterDialogNums = { 3, 3, 3, 3, 3 };
+    private readonly int[] exitDialogNums = { 1, 1, 1, 1, 1 };
+
     private DeckUnit _unit;
 
     [SerializeField] private GameObject background;
@@ -13,6 +17,8 @@ public class UpgradeSceneController : MonoBehaviour
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _restoreFall_Btn;
     [SerializeField] private GameObject _ui_SelectMenu;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text descriptionText;
 
     private List<Script> _scripts;
     private UI_Conversation _conversationUI;
@@ -28,25 +34,6 @@ public class UpgradeSceneController : MonoBehaviour
 
     private void Init()
     {
-        if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100)
-        {
-            background.SetActive(false);
-            fall_background.SetActive(true);
-            _isNPCFall = true;
-        }
-        else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 * 3 / 4 )
-        {
-            //안개이미지 변경
-        }
-        else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 2)
-        {
-            //안개이미지 변경
-        }
-        else if(GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 4)
-        {
-            //안개이미지 변경
-        }
-
         if (!GameManager.OutGameData.IsUnlockedItem(2))
         {
             _restoreFall_Btn.SetActive(false);
@@ -54,37 +41,31 @@ public class UpgradeSceneController : MonoBehaviour
 
         _scripts = new ();
 
-        if (GameManager.Data.GameData.IsVisitUpgrade == false)
+        if (GameManager.OutGameData.getVisitUpgrade() == false)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
-            GameManager.Data.GameData.IsVisitUpgrade = true;
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["강화소_선택_0"][0].name));
+            //GameManager.OutGameData.setVisitUpgrade(true);
         }
         else
         {
-            if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100)
+            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
+            if (questLevel > 4) questLevel = 4;
+            _scripts = GameManager.Data.ScriptData[$"강화소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
+
+            if (questLevel == 4)
             {
-                _scripts = GameManager.Data.ScriptData["타락_강화소_입장"];
                 background.SetActive(false);
                 fall_background.SetActive(true);
                 _isNPCFall = true;
             }
-            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 * 3 / 4)
+            else if (questLevel > 0)
             {
-                _scripts = GameManager.Data.ScriptData["타락_강화소_입장_50"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 2)
-            {
-                _scripts = GameManager.Data.ScriptData["타락_강화소_입장_50"];
-                //안개이미지 변경
-            }
-            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 4)
-            {
-                _scripts = GameManager.Data.ScriptData["강화소_입장"];
-                //안개이미지 변경
-            }
-            else
-                _scripts = GameManager.Data.ScriptData["강화소_입장"];
         }
 
         _conversationUI = GameManager.UI.ShowPopup<UI_Conversation>();
@@ -205,35 +186,26 @@ public class UpgradeSceneController : MonoBehaviour
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        /*
-        if (GameManager.Data.GameData.isVisitStigma == false)
+        if (GameManager.Data.GameData.IsVisitUpgrade == false)
         {
-            GameManager.Data.GameData.isVisitStigma = true;
+            GameManager.Data.GameData.IsVisitUpgrade = true;
         }
-        */
 
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.Data.GameData.IsVisitUpgrade == false)
+        if (GameManager.OutGameData.getVisitUpgrade() == false)
         {
-            GameManager.Data.GameData.IsVisitUpgrade = true;
+            GameManager.OutGameData.setVisitUpgrade(true);
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
         }
         else
         {
-            if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100)
-            {
-                quitScript.Init(GameManager.Data.ScriptData["타락_강화소_퇴장"], false);
-            }
-            else if (GameManager.Data.GameData.NpcQuest.UpgradeQuest > 100 / 2)
-            {
-                quitScript.Init(GameManager.Data.ScriptData["타락_강화소_퇴장_50"], false);
-            }
-            else
-                quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장"], false);
+            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
+            if (questLevel > 4) questLevel = 4;
+            quitScript.Init(GameManager.Data.ScriptData[$"강화소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
         yield return StartCoroutine(quitScript.PrintScript());
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);

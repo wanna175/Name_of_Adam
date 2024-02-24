@@ -22,6 +22,7 @@ public class OutGameData
     public bool isVisitStigma = false;
     public bool isVisitDarkShop = false;
     public NPCQuest npcQuest;                //npc타락퀘스트
+    public bool isGameOver = false;          //바로 전에 게임이 오버되었는지 체크
     public CutSceneData cutSceneData;        //현재 진행된 컷씬
 
     public int language;
@@ -278,9 +279,37 @@ public class OutGameDataContainer : MonoBehaviour
         return data.npcQuest;
     }
     public bool getVisitUpgrade() { return data.isVisitUpgrade; }
+    public void setVisitUpgrade(bool _isVisit)
+    {
+        data.isVisitUpgrade = _isVisit;
+        SaveData();
+    }
     public bool getVisitStigma() { return data.isVisitStigma; }
+    public void setVisitStigma(bool _isVisit)
+    {
+        data.isVisitStigma = _isVisit;
+        SaveData();
+    }
     public bool getVisitDarkshop() { return data.isVisitDarkShop; }
-
+    public void setVisitDarkshop(bool _isVisit)
+    {
+        data.isVisitDarkShop = _isVisit;
+        SaveData();
+    }
+    public bool isGameOverCheck() { return data.isGameOver; }
+    public void set_isGameOverCheck(bool _isGameOver) {
+        data.isGameOver = _isGameOver;
+        SaveData();
+    }
+    public void resetNPCQuest()
+    {
+        Debug.Log("npc데이터 리셋되었다.");
+        data.isVisitUpgrade = false;
+        data.isVisitDarkShop = false;
+        data.isVisitStigma = false;
+        data.npcQuest.ClearQuest();
+        SaveData();
+    }
     public void RemoveHallUnit(int ID)
     {
         data.HallUnit.Remove(FindHallUnitID(ID));

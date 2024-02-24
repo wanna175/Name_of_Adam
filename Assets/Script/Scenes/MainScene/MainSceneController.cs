@@ -31,6 +31,16 @@ public class MainSceneController : MonoBehaviour
             GameManager.SaveManager.DeleteSaveData();
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
+            if (GameManager.OutGameData.isGameOverCheck()==false)
+            {
+                //npc관련 데이터 초기화
+                GameManager.OutGameData.resetNPCQuest();
+            }
+            else
+            {
+                GameManager.OutGameData.set_isGameOverCheck(false);
+            }
+
             if (GameManager.OutGameData.isTutorialClear())
             {
                 GameManager.Data.HallDeckSet();
@@ -39,7 +49,7 @@ public class MainSceneController : MonoBehaviour
             }
             else
             {
-                SceneChanger.SceneChange("CutScene");
+                SceneChanger.SceneChangeToCutScene(CutSceneType.Main);
             }
         }
     }
@@ -80,6 +90,15 @@ public class MainSceneController : MonoBehaviour
 
         GameManager.SaveManager.DeleteSaveData();
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if (GameManager.OutGameData.isGameOverCheck() == false)
+        {
+            //npc관련 데이터 초기화
+            GameManager.OutGameData.resetNPCQuest();
+        }
+        else
+        {
+            GameManager.OutGameData.set_isGameOverCheck(false);
+        }
 
         if (GameManager.OutGameData.isTutorialClear())
         {

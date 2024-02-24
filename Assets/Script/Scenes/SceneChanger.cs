@@ -22,4 +22,11 @@ public static class SceneChanger
     {
         return SceneManager.GetActiveScene().name.ToString();
     }
+
+    public static void SceneChangeToCutScene(CutSceneType cutSceneType)
+    {
+        Time.timeScale = 1.0f;
+        GameManager.Data.CutSceneToDisplay = cutSceneType;
+        SceneChange("CutScene");
+    }
 }

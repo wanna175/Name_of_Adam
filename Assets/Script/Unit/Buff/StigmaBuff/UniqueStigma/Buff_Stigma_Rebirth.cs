@@ -15,7 +15,7 @@ public class Buff_Stigma_Rebirth : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.ATTACK_MOTION_END;
+        _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
         _owner = owner;
 

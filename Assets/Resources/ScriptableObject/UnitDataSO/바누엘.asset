@@ -18,14 +18,14 @@ MonoBehaviour:
     ATK: 20
     SPD: 0
     FallCurrentCount: 0
-    FallMaxCount: 4
+    FallMaxCount: 12
     ManaCost: 0
   _uniqueStigma:
   - {fileID: -1096335051127237467, guid: cd5ed88c6bfe63e4e84e2e734f01dcc3, type: 3}
   - {fileID: -508501736621560720, guid: 34fc05444e997cd40bf7be4e3a0de2e5, type: 3}
   - {fileID: -1213146846785058329, guid: b0be4fdad88a10244b88f531a3bbcb82, type: 3}
   _id: "\uBC14\uB204\uC5D8"
-  _name: King Herod
+  _name: Phanuel
   _description: 
   _rarity: 3
   _image: {fileID: 21300000, guid: a9eb8b29dd26cab4bbd563e4fd7a3169, type: 3}
@@ -35,7 +35,7 @@ MonoBehaviour:
   _diaPortraitImage: {fileID: 21300000, guid: f549d1c859741b240aede3973f652df9, type: 3}
   _corruptDiaPortraitImage: {fileID: 21300000, guid: 1533f6ee37c7bb641b505ac0a5e3188e, type: 3}
   _animatorController: {fileID: 9100000, guid: ef3a4bb4a32c6514d964a8ab24dc1641, type: 2}
-  _corruptionAnimatorController: {fileID: 9100000, guid: ef3a4bb4a32c6514d964a8ab24dc1641, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: dbca2ab497c71b9449355213fb8f22a7, type: 2}
   _skillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
   _animType: {fileID: 11400000, guid: 9c5500ed16c73bb4cb5cbb732dcaf0cb, type: 2}

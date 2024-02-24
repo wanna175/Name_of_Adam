@@ -53,13 +53,13 @@ public class ProgressShopManager : MonoBehaviour
 
             ItemInfo.SetActive(true);
 
-            info_name.text = GameManager.OutGameData.GetProgressItem(id).Name;
-            info_description.text = GameManager.OutGameData.GetProgressItem(id).Description.Replace("\\n", "\n");
+            info_name.text = GameManager.Locale.GetLocalizedProgress(GameManager.OutGameData.GetProgressItem(id).Name);
+            info_description.text = GameManager.Locale.GetLocalizedProgress(GameManager.OutGameData.GetProgressItem(id).Description).Replace("\\n", "\n");
 
             if (!GameManager.OutGameData.GetBuyable(id) && !GameManager.OutGameData.GetProgressItem(id).IsLock)
             {
                 ChangeBtnImage(false);
-                disabled_info_cost.text = "구매 완료";
+                disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
             }
             else if (!GameManager.OutGameData.GetBuyable(id) && GameManager.OutGameData.GetProgressItem(id).IsLock)
             {
@@ -92,7 +92,7 @@ public class ProgressShopManager : MonoBehaviour
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
         ChangeBtnImage(false);
-        disabled_info_cost.text = "구매 완료";
+        disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
         SetNodeImage();
     }
 

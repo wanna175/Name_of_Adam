@@ -39,7 +39,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 197354754048
-    m_Localized: Devine Hall
+    m_Localized: Divine Hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7238332881629184
+    m_Localized: 'Abandon saved journey?
+
+
+
+      You have an existing journey. Are
+      you sure you want to abandon it and start a new journey?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7238564579176448
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7238590810353664
+    m_Localized: Yes
     m_Metadata:
       m_Items: []
   references:

@@ -284,7 +284,7 @@ public enum BuffEnum
     AfterMotionTransparent,
     AfterAttackDead,
     AfterAttackBounce,
-    MarkOfRaquel,
+    MarkOfBeast,
 
     Assasination,
     Berserker,
@@ -393,13 +393,16 @@ public struct TooltipData
 [Serializable]
 public struct CutSceneData
 {
-    public CutSceneType cutSceneType;
     public bool IsDoneStart;
+    public bool IsDoneTutorial;
     public bool IsDoneElite;
     public bool IsDoneBoss;
 }
 
 public enum CutSceneType
 {
-    Start,
+    Main,
+    Tutorial,
+    Elite,
+    Boss,
 }
