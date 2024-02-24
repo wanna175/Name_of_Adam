@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: PlayerSkillInfoTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: PlayerSkillInfoTable
+  m_TableCollectionNameGuidString: ed5595dd5f26ae04d9796ad64a4a468e
+  m_Entries:
+  - m_Id: 48146583552
+    m_Key: Lowers the faith of a designated enemy by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152433758208
+    m_Key: Deals 20 damage in a massive cross range near the designated enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 185921081344
+    m_Key: Deals 20 damage in a massive cross range near the designated enemy. it
+      reduces the enemy's faith by 1 upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333950652416
+    m_Key: Moves an ally one space and grants a speed boost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 435905794048
+    m_Key: Heals the designated ally or enemy by 20 health.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 472060694528
+    m_Key: Heals the designated ally or enemy by 15 health.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 521163411456
+    m_Key: Brings back a designated ally.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 694547550208
+    m_Key: Bestows a curse on the designated enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717616222208
+    m_Key: Bestows a curse and increases attack on the designated enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 823568535552
+    m_Key: Deals 30 damage to the designated unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890564153344
+    m_Key: Bestows malevolence 3 times and reduces faith by 1 to the designated ally.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 953277386752
+    m_Key: Summons the apostle onto the battlefield.
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3866797891000991746
+  references:
+    version: 2
+    RefIds:
+    - rid: 3866797891000991746
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1707479272037

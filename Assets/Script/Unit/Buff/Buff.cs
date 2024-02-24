@@ -6,7 +6,7 @@ public abstract class Buff : MonoBehaviour
     public BuffEnum BuffEnum => _buffEnum;
 
     protected string _name;
-    public string Name => _name;
+    public string Name => GameManager.Locale.GetLocalizedBuffName(_name);
 
     protected Sprite _sprite;
     public Sprite Sprite => _sprite;
@@ -62,10 +62,15 @@ public abstract class Buff : MonoBehaviour
 
     public virtual string GetDescription()
     {
-        string desc = "<size=110%><b>" + _name + "</b></size>\n<size=30%>\n</size>" + _description;
+        string desc = "<size=110%><b>" + Name + "</b></size>\n<size=30%>\n</size>" + GameManager.Locale.GetLocalizedBuffInfo(_description); ;
 
         if (_countDownTiming != ActiveTiming.NONE)
-            desc += " (" + _count.ToString() + "회)";
+        {
+            if (GameManager.Locale.CurrentLocaleIndex == 0)
+                desc += " (Remaining: " + _count.ToString() + ")";
+            else
+                desc += " (남은 횟수: " + _count.ToString() + ")";
+        }    
 
         return desc;
     }

@@ -8,9 +8,9 @@ public class UnitAction_Horus_Egg : UnitAction
     private UnitDataSO _spawnUnitSO = null;
     private Dictionary<int, string> _intToUnitName = new()
         {
-            {1, "검병"},
-            {2, "궁병"},
-            {3, "수녀"}
+            {1, "호루스의_검병"},
+            {2, "호루스의_궁병" },
+            {3, "호루스의_수녀" }
         };
 
     public override void AISkillUse(BattleUnit attackUnit)
@@ -95,8 +95,11 @@ public class UnitAction_Horus_Egg : UnitAction
         BattleManager.Data.BattleUnitList.Remove(caster);
         BattleManager.Data.BattleOrderRemove(caster);
 
-        _parentUnit.Action.SetUnit("Horus_Egg", caster);
-        _parentUnit.Action.SetUnit("Horus_Egg", unit);
+        if (_parentUnit != null)
+        {
+            _parentUnit.Action.SetUnit("Horus_Egg", caster);
+            _parentUnit.Action.SetUnit("Horus_Egg", unit);
+        }
 
         BattleManager.Spawner.RestoreUnit(caster.gameObject);
     }

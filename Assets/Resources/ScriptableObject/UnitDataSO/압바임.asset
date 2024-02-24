@@ -22,11 +22,10 @@ MonoBehaviour:
     ManaCost: 0
     CurrentUpgradeCount: 0
   _uniqueStigma:
-  - {fileID: 4891567991765696922, guid: 8dd6772932cefc84988838b0cbed6647, type: 3}
-  _id: 
-  _name: "\uC555\uBC14\uC778"
-  _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
-    \uC8FC\uBA70 \uD0C0\uB77D\uB3C4 1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  - {fileID: 2411140555896991723, guid: cf06ecb5b5e98224fb3071fe052b2400, type: 3}
+  _id: "\uC555\uBC14\uC784"
+  _name: The Triad
+  _description: 
   _rarity: 1
   _image: {fileID: 21300000, guid: 9dd600eca1c6d554d9ba71ce84e610cd, type: 3}
   _corruptImage: {fileID: 21300000, guid: b8a5c9d8d5195cf4bb90251c6aa760f8, type: 3}

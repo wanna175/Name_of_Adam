@@ -5,11 +5,11 @@ public class Buff_Immortal : Buff
     {
         _buffEnum = BuffEnum.Immortal;
 
-        _name = "불사";
+        _name = "Immortality";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Immortal_Sprite");
 
-        _description = "죽음에 이르는 피해를 입을 시 1의 체력으로 살아남습니다.";
+        _description = "Withstands once with the health of 1, when reaching death.";
 
         _count = 1;
 

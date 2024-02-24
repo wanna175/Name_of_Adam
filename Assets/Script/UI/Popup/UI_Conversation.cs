@@ -47,26 +47,29 @@ public class UI_Conversation : UI_Popup
         // 이벤트 스크립트 본문 출력
         foreach (Script script in scripts)
         {
-            co_typing = StartCoroutine(TypingEffect(script.script));
+            string name = GameManager.Locale.GetLocalizedScriptName(script.name);
+            string dialog = GameManager.Locale.GetLocalizedScriptInfo(script.script);
+
+            co_typing = StartCoroutine(TypingEffect(dialog));
             if (_battleConversation)
             {
-                _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + script.name);
+                _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + name);
             }
 
-            _nameText.text = script.name;
+            _nameText.text = name;
 
             yield return new WaitUntil(() => (co_typing == null || GameManager.InputManager.Click));
 
-            if(co_typing != null)
+            if (co_typing != null)
             {
                 StopCoroutine(co_typing);
                 co_typing = null;
             }
-            _conversation.text = script.script;
+            _conversation.text = dialog;
 
             yield return new WaitUntil(() => GameManager.InputManager.Click);
 
-            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         }
 
         if (_battleConversation)

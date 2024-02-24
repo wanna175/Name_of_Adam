@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 50
   originaldarkEssence: 1
-  playerSkillName: "\uAC80\uC740 \uC2ED\uC790\uAC00"
+  playerSkillName: Dark Cross
   playerSkillID: 2
   manaCost: 50
   darkEssence: 1

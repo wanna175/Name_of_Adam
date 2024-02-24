@@ -17,16 +17,16 @@
       "title": "엘리우스_야나전_입장",
       "contents": [
         {
-          "name": "엘리우스",
-          "script": "너는 이 낙원에 어울리지 않는 이구나."
+          "name": "Elieus",
+          "script": "You do not belong within this paradise."
         },
         {
-          "name": "엘리우스",
-          "script": "해와 달이 동시에 너의 머리 위로 뜨니, 영원한 어둠 속에 잠기리라."
+          "name": "Elieus",
+          "script": "With the sun and moon both rising above you, you shall be submerged in eternal darkness."
         },
         {
-          "name": "야나",
-          "script": "아담의 이름으로 비나이다."
+          "name": "Yana",
+          "script": "In the name of the divine."
         }
       ]
     },
@@ -34,12 +34,30 @@
       "title": "투발카인전_입장",
       "contents": [
         {
-          "name": "투발카인",
-          "script": "오너라 거짓된 선지자여"
+          "name": "Tubalcain",
+          "script": "A true knight does not yield to fear. En garde! Shall you be vanquished in no time."
         },
         {
-          "name": "투발카인",
-          "script": "오너라 검은 물결이여"
+          "name": "Tubalcain",
+          "script": "This is it. This is the true beauty I sought!"
+        }
+      ]
+    },
+    {
+      "title": "라헬레아전_입장",
+      "contents": [
+        {
+          "name": "라헬레아",
+          "script": "In His grace, I shall be eternally beautiful. Step aside, you mortal."
+        }
+      ]
+    },
+    {
+      "title": "압바임전_입장",
+      "contents": [
+        {
+          "name": "압바임",
+          "script": "Wisdom, power, and might. The power of the trinity can subjugate all"
         }
       ]
     },
@@ -47,8 +65,17 @@
       "title": "바누엘전_입장",
       "contents": [
         {
-          "name": "바누엘",
-          "script": "아아... 안식은 미몽이었을 뿐이라..."
+          "name": "King Herod",
+          "script": ""
+        }
+      ]
+    },
+    {
+      "title": "호루스전_입장",
+      "contents": [
+        {
+          "name": "호루스",
+          "script": "호루스전 스크립트"
         }
       ]
     },
@@ -57,7 +84,7 @@
       "contents": [
         {
           "name": "",
-          "script": "빛이 없는 세상이 이리도 아름다웠음을 이제야 깨닫습니다."
+          "script": "In this world devoid of light, I now realize its beauty."
         }
       ]
     },
@@ -65,8 +92,8 @@
       "title": "강화소_입장_최초",
       "contents": [
         {
-          "name": "라반",
-          "script": "유닛을 강화하거나 신성을 제거하십시오."
+          "name": "Messenger of faith",
+          "script": "저는 죄인도 믿음과 사랑으로 구원을 받을 수 있다고 믿습니다. 당신의 손에 100명의 피가 묻는다 하더라도 저는 당신을 믿겠습니다."
         }
       ]
     },
@@ -74,8 +101,26 @@
       "title": "강화소_입장",
       "contents": [
         {
-          "name": "라반",
-          "script": "유닛을 강화하거나 신성을 제거하십시오."
+          "name": "Messenger of faith",
+          "script": "신께서는 이웃을 사랑하라고 말씀하셨습니다. 당신에게 죄가 있어도 죄를 미워하지 죄인을 미워하지 말라는 말씀을 따르기에 당신을 책망하지 않겠습니다."
+        }
+      ]
+    },
+    {
+      "title": "타락_강화소_입장",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "애초에 이 세상에 믿음과 사랑 같은 관념적인 것이 존재하기는 했던가? 아득하게 비현실적으로 느껴지는군."
+        }
+      ]
+    },
+    {
+      "title": "타락_강화소_입장_50",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "언제 손에 이렇게 많은 피를 묻히셨습니까? 하지만 괜찮습니다. 그럼에도, 당신을... 신뢰하겠습니다."
         }
       ]
     },
@@ -83,8 +128,8 @@
       "title": "강화소_퇴장_최초",
       "contents": [
         {
-          "name": "라반",
-          "script": "신께서 가르쳐주신 사랑을 저는 믿습니다. \n부디 당신도 그 믿음 속에서 은총을 받기를."
+          "name": "Messenger of faith",
+          "script": "신의 가르침 중에는 틀린 말 하나 없습니다. 더 많은 이들이 이를 깨우쳤으면 좋겠습니다."
         }
       ]
     },
@@ -92,8 +137,26 @@
       "title": "강화소_퇴장",
       "contents": [
         {
-          "name": "라반",
-          "script": "신께서 가르쳐주신 사랑을 저는 믿습니다. \n부디 이번에는 당신도 그 믿음 속에서 은총을 받기를."
+          "name": "Messenger of faith",
+          "script": "신께서 가르쳐주신 사랑을 저는 믿습니다. 부디 이번에는 당신도 그 믿음 속에서 은총을 받기를."
+        }
+      ]
+    },
+    {
+      "title": "타락_강화소_퇴장",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "당신이 우리에게 새로운 구원의 길을 알려줄 수 있기를."
+        }
+      ]
+    },
+    {
+      "title": "타락_강화소_퇴장_50",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "이제 모든 것이 두렵다. 그것은 내가 본 진짜 모습일까?"
         }
       ]
     },
@@ -101,7 +164,7 @@
       "title": "강화소_강화",
       "contents": [
         {
-          "name": "라반",
+          "name": "Messenger of faith",
           "script": "신께서는 이웃에게 사랑을 실천하라고 하셨습니다. \n이 또한 그 방도 중 하나라고 믿습니다."
         }
       ]
@@ -110,7 +173,7 @@
       "title": "강화소_체력",
       "contents": [
         {
-          "name": "라반",
+          "name": "Messenger of faith",
           "script": "더 오래 버티는 자가 최종승자이리라."
         }
       ]
@@ -119,7 +182,7 @@
       "title": "강화소_공격력",
       "contents": [
         {
-          "name": "라반",
+          "name": "Messenger of faith",
           "script": "강한 자는 칼 끝에도 그 강함이 서리니."
         }
       ]
@@ -128,7 +191,7 @@
       "title": "강화소_속도",
       "contents": [
         {
-          "name": "라반",
+          "name": "Messenger of faith",
           "script": "집중 속에서 적들보다 한 발 앞서리라."
         }
       ]
@@ -137,7 +200,7 @@
       "title": "강화소_코스트",
       "contents": [
         {
-          "name": "라반",
+          "name": "Messenger of faith",
           "script": "믿음이 증가하니 더 빨리 응답하리."
         }
       ]
@@ -146,8 +209,8 @@
       "title": "낙인소_입장_최초",
       "contents": [
         {
-          "name": "미리암",
-          "script": "낙인을 부여할 유닛을 선택해주세요."
+          "name": "Messenger of hope",
+          "script": "신께서는 제게 그대들의 간절한 기도에 화답할 수 있는 권능을 낙인이라는 형태로 내려주셨어요. 나그네여, 제가 내릴 수 있는 은총에 대한 모든 형태의 기도를 올릴 수 있기를."
         }
       ]
     },
@@ -155,8 +218,26 @@
       "title": "낙인소_입장",
       "contents": [
         {
-          "name": "미리암",
-          "script": "낙인을 부여할 유닛을 선택해주세요."
+          "name": "Messenger of hope",
+          "script": "당신은.. 남들과 다른 소망을 가졌던 나그네군요. 이번에는 무엇을 위해 기도하시나요?"
+        }
+      ]
+    },
+    {
+      "title": "타락_낙인소_입장",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "당신의 기도만 들을게요. 다른 이들의 어리석은 기도는 더 이상 듣고 싶지 않아요."
+        }
+      ]
+    },
+    {
+      "title": "타락_낙인소_입장_50",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "나의 이 모든 고됨과 고통에 끝이 있기를."
         }
       ]
     },
@@ -164,7 +245,7 @@
       "title": "낙인소_퇴장",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
         }
       ]
@@ -173,7 +254,25 @@
       "title": "낙인소_퇴장_최초",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
+          "script": "당신은 신기한 사람이에요. 그 눈을 보면 볼수록, 확신이 생겨요."
+        }
+      ]
+    },
+    {
+      "title": "타락_낙인소_퇴장",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "당신의 여정에 평화와 안녕이 있기를 기도합니다."
+        }
+      ]
+    },
+    {
+      "title": "타락_낙인소_퇴장_50",
+      "contents": [
+        {
+          "name": "Messenger of hope",
           "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
         }
       ]
@@ -182,7 +281,7 @@
       "title": "낙인소_낙인",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "신께서 당신의 기도에 응답하여 축복을 내리십니다."
         }
       ]
@@ -191,7 +290,7 @@
       "title": "낙인소_해제",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "그 두 손으로 그들을 깨끗이 사면해주리라."
         }
       ]
@@ -200,7 +299,7 @@
       "title": "낙인소_대죄",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "심판자의 권능으로 죄 또한 부여되리라."
         }
       ]
@@ -209,7 +308,7 @@
       "title": "낙인소_흡수",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "적의 고통이 곧 그대의 기쁨이니, 어찌 그 기쁨을 감추겠는가."
         }
       ]
@@ -218,7 +317,7 @@
       "title": "낙인소_축복",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "그들이 흘린 피는 곧 은총으로 돌아올지어니."
         }
       ]
@@ -227,7 +326,7 @@
       "title": "낙인소_고양Ⅰ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
         }
       ]
@@ -236,7 +335,7 @@
       "title": "낙인소_고양Ⅱ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
         }
       ]
@@ -245,7 +344,7 @@
       "title": "낙인소_순풍",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "바람이 마음대로 불매 그 소리를 들은 자들은 망설임 없이 나아가리라."
         }
       ]
@@ -254,7 +353,7 @@
       "title": "낙인소_가학Ⅰ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "손속에 자비가 없으니 가히 가학적이다고 할 수 있구나."
         }
       ]
@@ -263,7 +362,7 @@
       "title": "낙인소_가학Ⅱ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "손속에 자비가 없으니 가히 가학적이다고 할 수 있구나."
         }
       ]
@@ -272,7 +371,7 @@
       "title": "낙인소_피의 축복Ⅰ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "피는 모두에게 평등하여, 그 신성함으로 그 목을 축이리라."
         }
       ]
@@ -281,7 +380,7 @@
       "title": "낙인소_피의 축복Ⅱ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "피는 모두에게 평등하여, 그 신성함으로 그 목을 축이리라."
         }
       ]
@@ -290,7 +389,7 @@
       "title": "낙인소_재생력",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "스스로를 돌볼 줄 아는 자는 신께서도 눈여겨 보시리라."
         }
       ]
@@ -299,7 +398,7 @@
       "title": "낙인소_자애",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "자애로움은 은총과 같으니 이를 받은 이들은 치유되리라."
         }
       ]
@@ -308,7 +407,7 @@
       "title": "낙인소_불사Ⅰ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "신께 받은 마지막 기회가 그대를 한번 더 일으켜 세울지어니."
         }
       ]
@@ -317,7 +416,7 @@
       "title": "낙인소_불사Ⅱ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "신께 받은 마지막 기회가 그대를 한번 더 일으켜 세울지어니."
         }
       ]
@@ -326,7 +425,7 @@
       "title": "낙인소_무적Ⅰ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "그 어떤 창과 화살도 그대를 쓰러뜨리지 못하리니."
         }
       ]
@@ -335,7 +434,7 @@
       "title": "낙인소_무적Ⅱ",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "그 어떤 창과 화살도 그대를 쓰러뜨리지 못하리니."
         }
       ]
@@ -344,7 +443,7 @@
       "title": "낙인소_확장",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "자유로워진 몸으로 어디든 갈 수 있을지어다."
         }
       ]
@@ -353,7 +452,7 @@
       "title": "낙인소_주교의 축복",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "그대의 걸음이 곧 그를 따를지어니, 방위에 존재하지 않는 곳으로 움직이리라."
         }
       ]
@@ -362,7 +461,7 @@
       "title": "낙인소_도박",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "믿음이 부족하여 운과 희망에 기대는 것이 아니리라. 오히려 믿음으로써 내 모든 것을 맡기는 것이니라."
         }
       ]
@@ -371,7 +470,7 @@
       "title": "낙인소_결사의 일격",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "죽기 전에 마지막 소명을 다할지어니 죽음도 그대를 막을 수 없을지어다."
         }
       ]
@@ -380,7 +479,7 @@
       "title": "낙인소_악업",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
         }
       ]
@@ -389,7 +488,7 @@
       "title": "낙인소_일식",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
         }
       ]
@@ -398,8 +497,80 @@
       "title": "낙인소_월식",
       "contents": [
         {
-          "name": "미리암",
+          "name": "Messenger of hope",
           "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_최초",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "가진 세월로 우람해진 그들은 늘 저를 무섭게 내려다보아요. 그 중에서도 특별히 더 강해 저를 벌벌 떨게 하는 그들은 그것이 본 모습이 아닐거에요."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "죽는 것은 싫어요. 죽음은 슬프거든요. 아픈 것도 싫어요. 남들도 아프지 않았으면 좋겠어요."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_퇴장_최초",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "이 세상에 얼마나 많은 이들이 진실된 모습을 보여주고 있을까요?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_퇴장",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "당신도 이 세상을 사랑할 수 있기를."
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_입장_100",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "이제 보니 당신은 죄인인가요? 저는 죄인마저 믿고 사랑하려고한건가요?"
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_입장_50",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "증명해주지 말아주세요. 아니, 증명해주세요."
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_퇴장_50",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "이제 보니 당신은 죄인인가요? 저는 죄인마저 믿고 사랑하려고한건가요?"
+        }
+      ]
+    },
+    {
+      "title": "타락_탕녀_퇴장_100",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "더 많은 이들의 당신의 사랑을 깨우치기를."
         }
       ]
     }

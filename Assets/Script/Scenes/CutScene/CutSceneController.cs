@@ -5,32 +5,33 @@ using UnityEngine.Video;
 
 public class CutSceneController : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer sr;
+    [SerializeField] private VideoPlayer video;
 
     private void Start()
     {
         GameManager.Sound.Clear();
+        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         //GameManager.Sound.Play("Stage_Transition/CutScene/CutSceneBGM");
+
+        video.loopPointReached += EndReached;
     }
 
     public void SceneChange()
     {
         SceneChanger.SceneChange("StageSelectScene");
     }
+
     public void SkipButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         SceneChanger.SceneChange("StageSelectScene");
     }
 
-
-    private void Update()
+    private void EndReached(VideoPlayer vp)
     {
-        if(sr.color.r <=0)
-        {
-            SceneChange();
-        }
+#if UNITY_EDITOR
+        Debug.Log("End Cutscene!");
+#endif
+        SceneChange();
     }
-
-    
 }

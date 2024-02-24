@@ -30,6 +30,7 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnClickShopNode(int id)
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         ShopNode foundNode = ShopNodes.FirstOrDefault(node => node.ItemID == selectedID);
         ShopNode newfoundNode = ShopNodes.FirstOrDefault(node => node.ItemID == id);
 
@@ -66,6 +67,12 @@ public class ProgressShopManager : MonoBehaviour
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
 
             }
+            else if (GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(id).Cost)
+            {
+                ChangeBtnImage(false);
+                disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
+                disabled_info_cost.color = Color.gray;
+            }
             else
             {
                 ChangeBtnImage(true);
@@ -76,11 +83,12 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnBuyBtnClick()
     {
-        if (!GameManager.OutGameData.GetBuyable(selectedID))
+        if (!GameManager.OutGameData.GetBuyable(selectedID) || GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(selectedID).Cost)
         {
             return;
         }
 
+        GameManager.Sound.Play("UI/ClickSFX/UIClick3");
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
         ChangeBtnImage(false);
@@ -100,6 +108,11 @@ public class ProgressShopManager : MonoBehaviour
             activeBtn.SetActive(false);
             disabledBtn.SetActive(true);
         }
+    }
+
+    public void OnDisabledBtnClick()
+    {
+        GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
     }
 
     public void SetNodeImage()

@@ -23,8 +23,8 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 3379680801946979821, guid: 87445e5f131ab3c47b2d1a869475a90d, type: 3}
-  _id: 
-  _name: "\uCC99\uD6C4\uBCD1"
+  _id: "\uCC99\uD6C4\uBCD1"
+  _name: Skirmisher
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: 0430fa9b2b09f8c4c990f14c0a606baf, type: 3}

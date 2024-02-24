@@ -13,7 +13,22 @@ public class DeckUnit
     [SerializeField] public Stat DeckUnitUpgradeStat; // 영구 변화 수치
     [SerializeField] public Stat DeckUnitChangedStat; // 일시적 변화 수치, 한 전투 내에서만 적용
 
-    public Stat DeckUnitStat => Data.RawStat + DeckUnitUpgradeStat;//실제 스탯
+    public List<Upgrade> DeckUnitUpgrade = new();
+    public Stat DeckUnitStat
+    {
+        get 
+        {
+            Stat result = Data.RawStat + DeckUnitUpgradeStat;
+
+            foreach (Upgrade upgrade in DeckUnitUpgrade)
+            {
+                result += upgrade.UpgradeStat;
+            }
+
+            return result;
+        }
+    }
+
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
     public readonly int UpgradedMaxUpgradeCount = 3;
@@ -49,6 +64,7 @@ public class DeckUnit
     public List<Stigma> GetStigma(bool isEventScene = false)
     {
         List<Stigma> stigmata = new();
+
         if (!isEventScene)
         {
             foreach (Stigma stigma in Data.UniqueStigma)
@@ -56,6 +72,7 @@ public class DeckUnit
                 stigmata.Add(stigma);
             }
         }
+
         foreach (Stigma stigma in _stigma)
         {
             stigmata.Add(stigma);
@@ -71,6 +88,12 @@ public class DeckUnit
 
     public void AddStigma(Stigma stigma)
     {
+        if (stigma == null)
+        {
+            Debug.Log("추가하려는 낙인이 null입니다.");
+            return;
+        }
+
         if (_stigma.Contains(stigma) || (Data.UniqueStigma != null && Data.UniqueStigma.Contains(stigma)))
         {
             Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
@@ -141,6 +164,25 @@ public class DeckUnit
 
     public void ClearStigma() => _stigma.Clear();
 
+    public List<UpgradeData> GetUpgradeData()
+    {
+        List<UpgradeData> dataList = new();
+        foreach (Upgrade upgrade in DeckUnitUpgrade)
+        {
+            dataList.Add(upgrade.UpgradeData);
+        }
+
+        return dataList;
+    }
+
+    public void SetUpgrade(List<UpgradeData> dataList)
+    {
+        foreach (UpgradeData data in dataList)
+        {
+            DeckUnitUpgrade.Add(GameManager.Data.UpgradeController.DataToUpgrade(data));
+        }
+    }
+
     private int _firstTurnDiscount = 0;
     public bool IsDiscount() => _firstTurnDiscount != 0;
 
@@ -158,13 +200,14 @@ public class DeckUnit
     public void FirstTurnDiscountUndo()
     {
         if (_firstTurnDiscount != 0)
-        { 
+        {
             DeckUnitChangedStat.ManaCost += _firstTurnDiscount;
             _firstTurnDiscount = 0;
         }
     }
+
     public int GetStigmaCount()
     {
-        return _stigmaCount+ Data.UniqueStigma.Count;
+        return _stigmaCount + Data.UniqueStigma.Count;
     }
 }

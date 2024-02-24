@@ -12,8 +12,8 @@ public class PreparePhase : Phase
             BattleManager.Mana.ChangeMana(30);
         }
         BattleManager.Data.TurnPlus();
-        BattleManager.BattleUI.UI_playerSkill.Used = false;
-        BattleManager.BattleUI.UI_playerSkill.InableSkill();
+        BattleManager.BattleUI.UI_playerSkill.InableSkill(false);
+        BattleManager.Mana.ManaInableCheck();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
 
@@ -40,7 +40,7 @@ public class PreparePhase : Phase
                 BattleManager.Data.BattleUnitList[0].ChangeFall(1);
                 TutorialManager.Instance.ShowTutorial();
             }
-            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_UnitDead))
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Defeat))
                 // 세번째 튜토리얼 설정
                 TutorialManager.Instance.ShowTutorial();
             else

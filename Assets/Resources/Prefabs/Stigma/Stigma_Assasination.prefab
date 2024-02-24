@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 2
-  _name: "\uC554\uC0B4"
+  _name: Assasination
   _sprite_28: {fileID: 21300000, guid: 408ce5cd8914d3143ad8a913619c8706, type: 3}
   _sprite_88: {fileID: 21300000, guid: 5fbe9840df56bd24290ae62412fccafc, type: 3}
   _sprite_164: {fileID: 21300000, guid: e3021710c3b87234594a35c9eec87dff, type: 3}
-  _description: "\uB9F5 \uC5B4\uB514\uB4E0 \uC18C\uD658 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+  _description: Able to summon anywhere on the field.
   _activeTiming: 2
   _tier: 0
   _isLock: 0

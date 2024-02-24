@@ -98,29 +98,48 @@ public class BattleManager : MonoBehaviour
 
         PlayAfterCoroutine(() => {
             _spawner.SpawnInitialUnit();
+            SpawnBeneditionCheck();
         }, 0.5f);
 
         PlayAfterCoroutine(() => {
-            if (GameManager.Data.Map.GetCurrentStage().StageLevel == 10)
+            if (GameManager.Data.Map.GetCurrentStage().StageLevel == 90)
             {
                 if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
-                {
-                    string scriptKey = "엘리우스_야나전_입장";
-
-                    EventConversation(scriptKey);
-                }
-                else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
                 {
                     string scriptKey = "투발카인전_입장";
 
                     EventConversation(scriptKey);
                 }
+                else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
+                {
+                    string scriptKey = "엘리우스_야나전_입장";
+
+                    EventConversation(scriptKey);
+                }
+                else if (GameManager.Data.Map.GetCurrentStage().StageID == 2)
+                {
+                    string scriptKey = "라헬레아전_입장";
+
+                    EventConversation(scriptKey);
+                }
+                else if (GameManager.Data.Map.GetCurrentStage().StageID == 3)
+                {
+                    string scriptKey = "압바임전_입장";
+
+                    EventConversation(scriptKey);
+                }
             }
-            else if (GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            else if (GameManager.Data.Map.GetCurrentStage().StageLevel == 100)
             {
                 if (GameManager.Data.Map.GetCurrentStage().StageID == 0)
                 {
                     string scriptKey = "바누엘전_입장";
+
+                    EventConversation(scriptKey);
+                }
+                else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
+                {
+                    string scriptKey = "호루스전_입장";
 
                     EventConversation(scriptKey);
                 }
@@ -130,6 +149,46 @@ public class BattleManager : MonoBehaviour
                 _phase.ChangePhase(_phase.Prepare);
             }
         }, 1f);
+    }
+
+    public void SpawnBeneditionCheck()
+    {
+        Dictionary<int, int> threshold = new() {
+            {0, 0},
+            {1, 0},
+            {2, 30},
+            {3, 40},
+            {4, 50}
+        };
+
+        if (GameManager.Data.Map.GetCurrentStage().StageLevel % 10 == 0 || GameManager.Data.Map.GetCurrentStage().StageLevel == 1)
+            return;
+        //0 = tutorial, boss, elite (0, 100, 90), 1 = chater 1 first half
+        
+        if (GameManager.Data.GameData.StageBenediction.x == 1 && GameManager.Data.GameData.StageBenediction.y == 1)
+        {
+            GameManager.Data.GameData.StageBenediction = new();
+        }
+        else if (GameManager.Data.GameData.StageBenediction.x == -1 && GameManager.Data.GameData.StageBenediction.y == -1)
+        {
+            BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
+            buffUnit.SetBuff(new Buff_Benediction());
+
+            GameManager.Data.GameData.StageBenediction = new();
+        }
+        else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 10])
+        {
+            BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
+            buffUnit.SetBuff(new Buff_Benediction());
+
+            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
+            GameManager.Data.GameData.StageBenediction.x = 1;
+        }
+        else
+        {
+            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
+            GameManager.Data.GameData.StageBenediction.x = -1;
+        }
     }
 
     private void EventConversation(string scriptKey)
@@ -150,14 +209,14 @@ public class BattleManager : MonoBehaviour
         }
         */
 
-        if (GameManager.Data.Map.GetCurrentStage().StageLevel == 20 && GameManager.Data.Map.GetCurrentStage().StageID == 0)
+        if (GameManager.Data.Map.GetCurrentStage().StageLevel == 100 && GameManager.Data.Map.GetCurrentStage().StageID == 0)
         {
             Background[0].SetActive(false);
-            Background[3].SetActive(true);
+            Background[1].SetActive(true);
         }
         else
         {
-            Background[3].SetActive(false);
+            Background[1].SetActive(false);
             Background[0].SetActive(true);
         }
 
@@ -192,13 +251,6 @@ public class BattleManager : MonoBehaviour
         else if (_field.FieldType == FieldColorType.PlayerSkill)
         {
             _playerSkillController.PlayerSkillUse(coord);
-        }
-        else if (_field.FieldType == FieldColorType.UltimatePlayerSkill)
-        {
-            if (GameManager.Data.PlayerSkillCountChage(-1))
-            {
-                _playerSkillController.PlayerSkillUse(coord);
-            }
         }
     }
 
@@ -348,6 +400,10 @@ public class BattleManager : MonoBehaviour
             cor.LoopExit();
             targetUnit.DeckUnit.ClearStigma();
         }
+        else if (targetUnit.Data.Rarity == Rarity.Boss)
+        {
+            cor.LoopExit();
+        }
         else
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
@@ -385,7 +441,13 @@ public class BattleManager : MonoBehaviour
     public void UnitDeadEvent(BattleUnit unit)
     {
         _battleData.BattleUnitList.Remove(unit);
+        _field.FieldCloseInfo(_field.TileDict[unit.Location]);
         _field.ExitTile(unit.Location);
+
+        if (unit.Data.Name == "호루스")
+        {
+            GameManager.Data.GameData.Progress.HorusKill++;
+        }
 
         if (unit.IsConnectedUnit)
         {
@@ -397,11 +459,13 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-
         _battleData.BattleOrderRemove(unit);
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
+            if(GameManager.Data.GameData.IsVisitUpgrade)
+                GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
+            
             if(unit.Data.Rarity == Rarity.Normal)
             {
                 GameManager.Data.GameData.Progress.NormalKill++;
@@ -503,36 +567,32 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log("YOU WIN");
         Data.isGameDone = true;
-        _battleData.OnBattleOver();
         _phase.ChangePhase(new BattleOverPhase());
+        _battleData.OnBattleOver();
         StageData data = GameManager.Data.Map.GetCurrentStage();
 
-        if (data.StageLevel >= 10)
+        if (data.StageLevel >= 90)
         {
-            if (data.StageLevel == 20)
+            if (data.StageLevel == 100)
             {
+                CheckBossCycle(data);
                 GameManager.Data.GameData.Progress.BossWin++;
 
-                foreach (DeckUnit unit in Data.PlayerDeck)
+                if(data.StageID == 0)
                 {
-                    if (unit.Data.Rarity == Rarity.Boss)
-                    {
-                        GameManager.Data.GameData.Progress.SurvivedBoss++;
-                    }
-                    else if (unit.Data.Rarity == Rarity.Elite)
-                    {
-                        GameManager.Data.GameData.Progress.SurvivedElite++;
-                    }
-                    else
-                    {
-                        GameManager.Data.GameData.Progress.SurvivedNormal++;
-                    }
+                    GameManager.OutGameData.ClearPhanuel(true);
+                    Debug.Log("Phanuel Clear");
+                }
+                else if(data.StageID == 1)
+                {
+                    GameManager.OutGameData.ClearHorus(true);
+                    Debug.Log("Horus Clear");
                 }
 
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
                 GameManager.SaveManager.DeleteSaveData();
             }
-            else if (data.StageLevel == 10)
+            else if (data.StageLevel == 90)
             {
                 GameManager.Data.GameData.Progress.EliteWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
@@ -562,6 +622,19 @@ public class BattleManager : MonoBehaviour
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         //GameManager.UnitIDController.resetID();
         GameManager.SaveManager.DeleteSaveData();
+        GameManager.OutGameData.set_isGameOverCheck(true);
+    }
+
+    private void CheckBossCycle(StageData data)
+    {
+        if(data.StageID == 0 && !GameManager.OutGameData.isPhanuelClear())
+        {
+            GameManager.OutGameData.ClearPhanuel(true);
+        }
+        else if(data.StageID == 1 && !GameManager.OutGameData.isHorusClear())
+        {
+            GameManager.OutGameData.ClearHorus(true);
+        }
     }
 
     // 이동 경로를 받아와 이동시킨다
@@ -684,7 +757,7 @@ public class BattleManager : MonoBehaviour
 
             if (!GameManager.OutGameData.isTutorialClear())
             {
-                if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Defeat))
+                if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Devine))
                 {
                     TutorialManager.Instance.SetNextStep();
                     TutorialManager.Instance.ShowTutorial();

@@ -51,7 +51,6 @@ public class BattleDataManager : MonoBehaviour
 
             unit.DeckUnit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit.DeckUnit);
-            Debug.Log(unit.Data.Name);
         }
 
         _battleUnitList.Clear();
@@ -60,16 +59,14 @@ public class BattleDataManager : MonoBehaviour
         {
             unit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit);
-            Debug.Log(unit.Data.Name);
         }
 
         PlayerHands.Clear();
 
-        // 혜원님 엘리티 보스 처치 후 모든 덱 유닛 신앙 1증가 여기에 조건 추가해주세요
-        if (true)
+        if (GameManager.OutGameData.IsUnlockedItem(8))
         {
             StageData data = GameManager.Data.Map.GetCurrentStage();
-            if (data.StageLevel == 10)
+            if (data.StageLevel == 90)
             {
                 foreach (DeckUnit unit in PlayerDeck)
                 {

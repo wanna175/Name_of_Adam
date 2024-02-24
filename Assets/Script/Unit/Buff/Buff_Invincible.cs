@@ -5,11 +5,11 @@ public class Buff_Invincible : Buff
     {
         _buffEnum = BuffEnum.Invincible;
 
-        _name = "무적";
+        _name = "Invincibility";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Invincible_Sprite");
 
-        _description = "적의 공격을 무효화시킵니다.";
+        _description = "Invalidates damage.";
 
         _count = 1;
 

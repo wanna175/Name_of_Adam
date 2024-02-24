@@ -8,6 +8,9 @@ public class StageCameraController : MonoBehaviour
     [SerializeField] Transform MapTransform;
     private float _cameraSpeed = 4.0f; // 증가할 때 카메라 이동 속도 느려짐
 
+    private Vector3 bottompos = new Vector3(0, -5, -10);
+    private Vector3 toppos = new Vector3(0, 25, -10);
+
     private void Start()
     {
         StartCoroutine(MapScanMove());
@@ -45,26 +48,10 @@ public class StageCameraController : MonoBehaviour
 
         transform.position += new Vector3(0, num * 5 , 0);
 
-        if (transform.position.y < -5 && transform.position.y > -20)
+        if (transform.position.y < -5)
             transform.position = new Vector3(0, -5, -10);
         if (transform.position.y > 25)
             transform.position = new Vector3(0, 25, -10);
-        /*
-        if (GameManager.Data.StageAct == 0)
-        {
-            if (transform.position.y < -50)
-                transform.position = new Vector3(0, -50, -10);
-            if (transform.position.y > -40 && transform.position.y < -20)
-                transform.position = new Vector3(0, -40, -10);
-        }
-        else
-        {
-            if (transform.position.y < -5 && transform.position.y > -20)
-                transform.position = new Vector3(0, -5, -10);
-            if (transform.position.y > 25)
-                transform.position = new Vector3(0, 25, -10);
-        }
-        */
     }
 
     public void SetLocate(float y)

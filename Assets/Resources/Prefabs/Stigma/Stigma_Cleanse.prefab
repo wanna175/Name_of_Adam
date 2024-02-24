@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 8
-  _name: "\uACB0\uC2E0"
-  _sprite: {fileID: 21300000, guid: e2e590da5efab764caccf5a069999053, type: 3}
-  _description: "\uD574\uB2F9 \uC720\uB2DB\uC774 \uBC84\uD504\uAC00 \uB450\uAC1C
-    \uC774\uC0C1\uC77C\uB54C \uACF5\uACA9\uC2DC \uD53C\uACA9 \uB300\uC0C1\uC758 \uC2E0\uC559\uC744
-    1 \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4"
+  _name: Cleanse
+  _sprite_28: {fileID: 21300000, guid: 8e76799609e6e9b4eb111025301c466f, type: 3}
+  _sprite_88: {fileID: 21300000, guid: e5b03df0763754b42835f57f2fe81882, type: 3}
+  _sprite_164: {fileID: 21300000, guid: a230276c174523242ae6e8f92df62f6a, type: 3}
+  _description: All buffs and debuffs acquired by this unit are replaced with malevolence.
   _activeTiming: 2
   _tier: 4
   _isLock: 0

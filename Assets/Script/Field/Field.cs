@@ -30,6 +30,8 @@ public class Field : MonoBehaviour
             FieldColorType.Move => new Color32(23, 114, 102, 40),
             FieldColorType.Attack => new Color32(220, 20, 60, 40),
             FieldColorType.PlayerSkill => new Color32(220, 20, 60, 40),
+            FieldColorType.EnemyPlayerSkill => new Color32(220, 20, 60, 40),
+            FieldColorType.PlayerPlayerSkill => new Color32(23, 114, 102, 40),
             FieldColorType.none => new Color32(0, 0, 0, 0),
             _ => new Color32(23, 114, 102, 40),
         };
@@ -229,15 +231,8 @@ public class Field : MonoBehaviour
 
     public void SetUnitTileColor(FieldColorType fieldType)
     {
-        foreach (Tile tile in TileDict.Values)
-        {
-            if (tile.UnitExist)
-            {
-                tile.SetColor(ColorList(fieldType));
-            }
-        }
-
-        _fieldType = fieldType;
+        SetEnemyUnitTileColor(fieldType);
+        SetFriendlyUnitTileColor(fieldType);
     }
 
     public void SetEnemyUnitTileColor(FieldColorType fieldType)
@@ -246,7 +241,7 @@ public class Field : MonoBehaviour
         {
             if (tile.UnitExist && tile.Unit.Team == Team.Enemy)
             {
-                tile.SetColor(ColorList(fieldType));
+                tile.SetColor(ColorList(FieldColorType.EnemyPlayerSkill));
             }
         }
 
@@ -259,7 +254,7 @@ public class Field : MonoBehaviour
         {
             if (tile.UnitExist && tile.Unit.Team == Team.Player)
             {
-                tile.SetColor(ColorList(fieldType));
+                tile.SetColor(ColorList(FieldColorType.PlayerPlayerSkill));
             }
         }
 
@@ -321,12 +316,15 @@ public class Field : MonoBehaviour
 
     public void FieldShowInfo(Tile tile)
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
-
         if (tile.UnitExist)
         {
             BattleUnit unit = tile.Unit;
+
+            if (unit.IsConnectedUnit)
+            {
+                unit = unit.GetOriginalUnit();
+            }
+            
             _hoverInfo = BattleManager.BattleUI.ShowInfo();
             _hoverInfo.SetInfo(unit);
         }

@@ -23,10 +23,10 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: -7328026603544270719, guid: 2e3ccb2560a3b684dbae583d1d5a8815, type: 3}
-  _id: 
-  _name: "\uC7A5\uC758\uC0AC"
+  _id: "\uC7A5\uC758\uC0AC"
+  _name: Undertaker
   _description: 
-  _rarity: 0
+  _rarity: 2
   _image: {fileID: 21300000, guid: 3faeab71a81d98144a4ad0a233fbb63b, type: 3}
   _corruptImage: {fileID: 21300000, guid: 3faeab71a81d98144a4ad0a233fbb63b, type: 3}
   _portraitImage: {fileID: 21300000, guid: bc9bf1cbae8b4f04ab45507435141fd7, type: 3}

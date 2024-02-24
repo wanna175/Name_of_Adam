@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 28
-  _name: "\uB300\uC8C4"
-  _sprite: {fileID: 0}
-  _description: "\uC18C\uD658\uC2DC \uB300\uC8C4 \uBC84\uD504\uB97C \uBC1B\uC2B5\uB2C8\uB2E4"
+  _name: Sin
+  _sprite_28: {fileID: 21300000, guid: 67fc695593e062e41995bbbd804228b4, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 7adac6d7ac2e9264c9b16627fda1ada5, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 50e9bbf44fe3fc6489ae4b03d71a6970, type: 3}
+  _description: Earns malevolence 99 times upon summoning.
   _activeTiming: 2
   _tier: 4
   _isLock: 1

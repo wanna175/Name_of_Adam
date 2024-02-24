@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-
 public class SoundManager : MonoBehaviour
 {
     AudioSource[] _audioSources = new AudioSource[(int)Sounds.MaxCount];
@@ -62,17 +61,39 @@ public class SoundManager : MonoBehaviour
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
+            audioSource.volume = GetBGMVolume();
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.loop = true;
             audioSource.Play();
         }
         else
         {
             AudioSource audioSource = _audioSources[(int)Sounds.Effect];
+
+            audioSource.volume = GetSEVolume();
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(audioClip);
         }
     }
+
+    public void SetSoundVolume(Sounds type)
+    {
+        if (type == Sounds.BGM)
+        {
+            AudioSource audioSource = _audioSources[(int)Sounds.BGM];
+            audioSource.volume = GetBGMVolume();
+        }
+        else
+        {
+            AudioSource audioSource = _audioSources[(int)Sounds.Effect];
+            audioSource.volume = GetSEVolume();
+        }
+    }
+
+    private float GetBGMVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetBGMSoundPower();
+
+    private float GetSEVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetSESoundPower();
 
     AudioClip GetOrAddAudioClip(string path, Sounds type = Sounds.Effect)
     {
@@ -106,13 +127,33 @@ public class SoundManager : MonoBehaviour
         {
             Clear();
             Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
+            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            {
+                if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
+                {
+                    Play(scenename + "/BossBattle/Horus_BGM", Sounds.BGM);
+                }
+                else if(GameManager.Data.Map.GetCurrentStage().StageID == 1)
+                {
+                    //호루스 브금
+                }
+
+            }
+            else
+            {
+                Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+            }
+        }
+        else if (scenename == "DifficultySelectScene")
+        {
+            Clear();
             Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
         }
         else if(scenename == "EventScene")
         {
             Clear();
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
-            Play(scenename + "/" + storeName);
+            Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
         }
         else if(scenename == "CutScene")
         {

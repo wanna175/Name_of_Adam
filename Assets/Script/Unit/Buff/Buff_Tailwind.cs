@@ -6,15 +6,15 @@ public class Buff_Tailwind : Buff
     {
         _buffEnum = BuffEnum.Tailwind;
 
-        _name = "순풍";
+        _name = "Tailwind";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
 
-        _description = "공격 턴에서 가장 먼저 공격 턴을 가집니다.";
+        _description = "All allies in the same row as the summoner gain a one-time speed increase upon summoning.";
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.TURN_END;
+        _countDownTiming = ActiveTiming.MOVE_TURN_END;
 
         _buffActiveTiming = ActiveTiming.NONE;
 

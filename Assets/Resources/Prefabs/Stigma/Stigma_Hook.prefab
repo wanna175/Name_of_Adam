@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 14
-  _name: "\uAC08\uACE0\uB9AC"
+  _name: Hook
   _sprite_28: {fileID: 21300000, guid: edfcc8d3b4ae22f4eb049d5405d66737, type: 3}
   _sprite_88: {fileID: 21300000, guid: 6bf7095632d38444ba81ade961771177, type: 3}
   _sprite_164: {fileID: 21300000, guid: 10297e1817b765548b42d5a6e445a6f7, type: 3}
-  _description: "\uD53C\uACA9\uB41C \uC720\uB2DB\uC744 \uD55C \uCE78 \uB04C\uC5B4\uC635\uB2C8\uB2E4."
+  _description: Pulls the enemy one tile closer upon attacking.
   _activeTiming: 2
   _tier: 0
   _isLock: 0

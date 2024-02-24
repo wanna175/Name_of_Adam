@@ -7,15 +7,15 @@ public class Buff_Raise : Buff
     {
         _buffEnum = BuffEnum.Raise;
 
-        _name = "고양";
+        _name = "Attack Increase";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raise_Sprite");
 
-        _description = "50% 증가한 공격력으로 공격합니다.";
+        _description = "Attacks with a 50% increase in damage.";
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.DAMAGE_CONFIRM;
+        _countDownTiming = ActiveTiming.ATTACK_MOTION_END;
 
         _buffActiveTiming = ActiveTiming.NONE;
 

@@ -14,6 +14,6 @@ public class UI_StigmaDescription : MonoBehaviour
     {
         _name.text = stigma.Name;
         _description.text = stigma.Description;
-        _image.sprite = stigma.Sprite_164;
+        _image.sprite = stigma.Sprite_28;
     }
 }

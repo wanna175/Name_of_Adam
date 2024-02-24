@@ -27,7 +27,7 @@ public class BattleCutSceneController : MonoBehaviour
         _cameraHandler.SetCutSceneCamera();
 
         SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
-        if (!CSData.isPlayerAttack)
+        if (!CSData.IsPlayerAttack)
             UnitFlip(CSData);
     }
 
@@ -72,7 +72,7 @@ public class BattleCutSceneController : MonoBehaviour
                 continue;
             
             //이 함수의 위치 조정 필요
-            if (!CSData.isPlayerAttack)
+            if (!CSData.IsPlayerAttack)
             {
                 CSData.AttackUnit.Action.Action(CSData.AttackUnit, hit);
             }
@@ -88,8 +88,8 @@ public class BattleCutSceneController : MonoBehaviour
                 GameManager.VisualEffect.StartVisualEffect(CSData.AttackUnit.SkillEffectAnim, hit.transform.position);
         }
 
-        string unitname = CSData.AttackUnit.DeckUnit.Data.Name;
-        GameManager.Sound.Play("Character/" + unitname + "/" + unitname + "_Attack");
+        string unitID = CSData.AttackUnit.DeckUnit.Data.ID;
+        GameManager.Sound.Play("Character/" + unitID + "/" + unitID + "_Attack");
     }
 
     public void ExitBattleCutScene(BattleCutSceneData CSData)
@@ -113,7 +113,7 @@ public class BattleCutSceneController : MonoBehaviour
     {
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            if (unit != null && !CSData.isPlayerAttack)
+            if (unit != null && !CSData.IsPlayerAttack)
                 unit.AnimatorSetBool("isHit", true);
         }
 
@@ -121,7 +121,7 @@ public class BattleCutSceneController : MonoBehaviour
 
         foreach (BattleUnit unit in CSData.HitUnits)
         {
-            if (unit != null && !CSData.isPlayerAttack)
+            if (unit != null && !CSData.IsPlayerAttack)
                 unit.AnimatorSetBool("isHit", false);
         }
 

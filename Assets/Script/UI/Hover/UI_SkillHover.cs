@@ -18,8 +18,13 @@ public class UI_SkillHover : UI_Hover
         float posX;
         float posY;
 
+        switch (GameManager.Locale.CurrentLocaleIndex)
+        {
+            case 0: _cost.text = "Mana " + mana + " Dark Essence " + darkessence; break;
+            case 1: _cost.text = "마나 " + mana + " 검은정수 " + darkessence; break;
+        }
+
         _name.text = name;
-        _cost.text =  "마나 " + mana + " 검은정수 " + darkessence;
         _description.text = description;
 
         if (position.x > 1920 - 300)

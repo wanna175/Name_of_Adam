@@ -46,10 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalmanaCost: 20
   originaldarkEssence: 1
-  playerSkillName: "\uD68C\uBCF5"
+  playerSkillName: Recovery
   playerSkillID: 4
   manaCost: 20
   darkEssence: 1
-  description: "\uC9C0\uC815\uD55C \uC801\uC774\uB098 \uC544\uAD70\uC758 \uCCB4\uB825\uC744
-    15 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4"
-  skillImage: {fileID: 21300000, guid: 7d96c9752ef267e49a35f489676e7921, type: 3}
+  skillImage: {fileID: 21300000, guid: 96aded495cee0064580992bc169851a6, type: 3}

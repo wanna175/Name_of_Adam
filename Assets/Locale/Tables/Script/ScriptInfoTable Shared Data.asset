@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: ScriptInfoTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: ScriptInfoTable
+  m_TableCollectionNameGuidString: 2acbcb6b143f0fa47a3defdf9318e0bf
+  m_Entries:
+  - m_Id: 3794595840
+    m_Key: You do not belong within this paradise.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 256878899200
+    m_Key: With the sun and moon both rising above you, you shall be submerged in
+      eternal darkness.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326152024064
+    m_Key: In the name of the divine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 457081417728
+    m_Key: A true knight does not yield to fear. En garde! Shall you be vanquished
+      in no time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 497464176640
+    m_Key: This is it. This is the true beauty I sought!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 557933457408
+    m_Key: Wisdom, power, and might. The power of the trinity can subjugate all.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3107023696859136
+    m_Key: Select a unit to bestow stigmata.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3107123424825344
+    m_Key: May the divine prayers grace your journey.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3107267004239872
+    m_Key: Upgrade a unit or restore its faith.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3107543148826624
+    m_Key: I believe in the love that the Divine has taught us.\nMay you also receive
+      grace within that faith.
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8030905671281541123
+  references:
+    version: 2
+    RefIds:
+    - rid: 8030905671281541123
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1707326014898

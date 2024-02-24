@@ -23,8 +23,8 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 4784613263288014970, guid: 0806f23385db0e24796c6d5552287ae2, type: 3}
-  _id: 
-  _name: "\uC911\uAC11\uBCD1"
+  _id: "\uC911\uAC11\uBCD1"
+  _name: Soldier
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: 0b16049b2fe4b6c4d964cf70b5f8890f, type: 3}

@@ -17,6 +17,7 @@ public class UI_ProgressSummary : UI_Scene
     [SerializeField]
     public List<ProgressText> ProgressList;
     public int TotalScore;
+    public TMP_Text Title;
 
     private Progress _progress;
     
@@ -30,24 +31,20 @@ public class UI_ProgressSummary : UI_Scene
 
     public void SetProgressText()
     {
-        SetProgressText(_progress.NormalWin, 50, $"일반 전투 {_progress.NormalWin}회 승리", ProgressList[0]); //연결된 값 들
-        SetProgressText(_progress.EliteWin, 300, $"엘리트 전투 {_progress.EliteWin}회 승리", ProgressList[1]); //
-        SetProgressText(_progress.BossWin, 500, $"보스 전투 {_progress.BossWin}회 승리", ProgressList[2]); //
-        SetProgressText(_progress.NormalKill, 10, $"일반 유닛 {_progress.NormalKill}회 처치", ProgressList[3]); //
-        SetProgressText(_progress.EliteKill, 50, $"엘리트 유닛 {_progress.EliteKill}회 처치", ProgressList[4]); //
-        SetProgressText(_progress.PhanuelKill, 100, "바누엘 처치", ProgressList[5]); //
-        SetProgressText(_progress.HorusKill, 100, "호루스 처치", ProgressList[6]); 
-        SetProgressText(_progress.FishKill, 100, "물고기 처치", ProgressList[7]); 
-        SetProgressText(_progress.NormalFall, 20, $"일반 유닛 {_progress.NormalFall}회 타락", ProgressList[8]); //
-        SetProgressText(_progress.EliteFall, 100, $"엘리트 유닛 {_progress.EliteFall}회 타락", ProgressList[9]); //
-        SetProgressText(_progress.PhanuelFall, 500, "바누엘 타락", ProgressList[10]); //
-        SetProgressText(_progress.HorusFall, 500, "호루스 타락", ProgressList[11]); 
-        SetProgressText(_progress.FishFall, 500, "물고기 타락", ProgressList[12]); 
+        SetProgressText(_progress.NormalWin, 10, $"일반 전투 {_progress.NormalWin}회 승리", ProgressList[0]); //연결된 값 들
+        SetProgressText(_progress.EliteWin, 50, $"엘리트 전투 {_progress.EliteWin}회 승리", ProgressList[1]); //
+        SetProgressText(_progress.BossWin, 100, $"보스 전투 {_progress.BossWin}회 승리", ProgressList[2]); //
+        SetProgressText(_progress.NormalKill, 2, $"일반 유닛 {_progress.NormalKill}회 처치", ProgressList[3]); //
+        SetProgressText(_progress.EliteKill, 5, $"엘리트 유닛 {_progress.EliteKill}회 처치", ProgressList[4]); //
+        SetProgressText(_progress.PhanuelKill, 30, "바누엘 처치", ProgressList[5]); //
+        SetProgressText(_progress.HorusKill, 30, "호루스 처치", ProgressList[6]); //
+        SetProgressText(_progress.FishKill, 30, "물고기 처치", ProgressList[7]); 
+        SetProgressText(_progress.NormalFall, 5, $"일반 유닛 {_progress.NormalFall}회 타락", ProgressList[8]); //
+        SetProgressText(_progress.EliteFall, 50, $"엘리트 유닛 {_progress.EliteFall}회 타락", ProgressList[9]); //
+        SetProgressText(_progress.PhanuelFall, 200, "바누엘 타락", ProgressList[10]); //
+        SetProgressText(_progress.HorusFall, 200, "호루스 타락", ProgressList[11]); //
+        SetProgressText(_progress.FishFall, 200, "물고기 타락", ProgressList[12]); 
         SetProgressText(_progress.SecChapterClear, 1000, "2장까지 클리어", ProgressList[13]); 
-        SetProgressText(_progress.LeftDarkEssence, 10, $"남은 검은 정수 {_progress.LeftDarkEssence}개", ProgressList[14]); //
-        SetProgressText(_progress.SurvivedNormal, 15, $"생존한 일반 유닛 {_progress.SurvivedNormal}명", ProgressList[15]); //
-        SetProgressText(_progress.SurvivedElite, 25, $"생존한 엘리트 유닛 {_progress.SurvivedElite}명", ProgressList[16]); //
-        SetProgressText(_progress.SurvivedBoss, 50, $"생존한 보스 유닛 {_progress.SurvivedBoss}명", ProgressList[17]); //
 
         TMP_Text totalscore = GameObject.Find("TotalSum").GetComponent<TMP_Text>();
         totalscore.text = TotalScore.ToString();

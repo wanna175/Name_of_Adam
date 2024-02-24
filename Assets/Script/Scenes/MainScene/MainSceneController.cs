@@ -6,6 +6,7 @@ public class MainSceneController : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject ContinueBox;
+    [SerializeField] GameObject UI_ResetAlert;
 
     private void Start()
     {
@@ -17,23 +18,39 @@ public class MainSceneController : MonoBehaviour
 
     public void StartButton()
     {
-        // °ÔÀÓ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇØ¼­ º¸³»ÁÖ±â & »ı¼ºÇÑ ¿ÀºêÁ§Æ®°¡ ¸Ê ¼±ÅÃ ¾À¿¡ µµ´ŞÇßÀ» ¶§ È°¼ºÈ­µÇ¼­ Æ©Åä ÀÌ¹ÌÁö ¶ç¿ì°í ÀÚ½Å »èÁ¦ÇÏ±â
-        GameManager.Data.DeckClear();
-        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
-        Destroy(GameManager.Instance.gameObject);
-
-        GameManager.SaveManager.DeleteSaveData();
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-
-        if (GameManager.OutGameData.isTutorialClear())
+        if (GameManager.SaveManager.SaveFileCheck())
         {
-            GameManager.Data.HallDeckSet();
-            GameManager.Data.HallSelectedDeckSet();
-            SceneChanger.SceneChange("DifficultySelectScene");
+            UI_ResetAlert.SetActive(true);
         }
         else
         {
-            SceneChanger.SceneChange("CutScene");
+            GameManager.Data.DeckClear();
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+            Destroy(GameManager.Instance.gameObject);
+
+            GameManager.SaveManager.DeleteSaveData();
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+            if (GameManager.OutGameData.isGameOverCheck()==false)
+            {
+                //npcê´€ë ¨ ë°ì´í„° ì´ˆê¸°í™”
+                GameManager.OutGameData.resetNPCQuest();
+            }
+            else
+            {
+                GameManager.OutGameData.set_isGameOverCheck(false);
+            }
+
+            if (GameManager.OutGameData.isTutorialClear())
+            {
+                GameManager.Data.HallDeckSet();
+                GameManager.Data.HallSelectedDeckSet();
+                SceneChanger.SceneChange("DifficultySelectScene");
+            }
+            else
+            {
+                SceneChanger.SceneChange("CutScene");
+            }
         }
     }
 
@@ -64,6 +81,41 @@ public class MainSceneController : MonoBehaviour
         //GameObject.Instantiate(go, Canvas.transform);
     }
 
+    public void ResetAlertYesButton()
+    {
+        // ê²Œì„ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•´ì„œ ë³´ë‚´ì£¼ê¸° & ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ê°€ ë§µ ì„ íƒ ì”¬ì— ë„ë‹¬í–ˆì„ ë•Œ í™œì„±í™”ë˜ì„œ íŠœí†  ì´ë¯¸ì§€ ë„ìš°ê³  ìì‹  ì‚­ì œí•˜ê¸°
+        GameManager.Data.DeckClear();
+        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+        Destroy(GameManager.Instance.gameObject);
+
+        GameManager.SaveManager.DeleteSaveData();
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if (GameManager.OutGameData.isGameOverCheck() == false)
+        {
+            //npcê´€ë ¨ ë°ì´í„° ì´ˆê¸°í™”
+            GameManager.OutGameData.resetNPCQuest();
+        }
+        else
+        {
+            GameManager.OutGameData.set_isGameOverCheck(false);
+        }
+
+        if (GameManager.OutGameData.isTutorialClear())
+        {
+            GameManager.Data.HallDeckSet();
+            GameManager.Data.HallSelectedDeckSet();
+            SceneChanger.SceneChange("DifficultySelectScene");
+        }
+        else
+        {
+            SceneChanger.SceneChange("CutScene");
+        }
+    }
+
+    public void ResetAlertNoButton()
+    {
+        UI_ResetAlert.SetActive(false);
+    }
 
 
     public void ExitButton()

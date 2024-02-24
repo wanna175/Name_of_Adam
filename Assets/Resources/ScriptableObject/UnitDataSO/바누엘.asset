@@ -13,25 +13,23 @@ MonoBehaviour:
   m_Name: "\uBC14\uB204\uC5D8"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 120
-    CurrentHP: 120
+    MaxHP: 200
+    CurrentHP: 200
     ATK: 20
     SPD: 0
     FallCurrentCount: 0
     FallMaxCount: 4
     ManaCost: 0
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: -1096335051127237467, guid: cd5ed88c6bfe63e4e84e2e734f01dcc3, type: 3}
   - {fileID: -508501736621560720, guid: 34fc05444e997cd40bf7be4e3a0de2e5, type: 3}
   - {fileID: -1213146846785058329, guid: b0be4fdad88a10244b88f531a3bbcb82, type: 3}
-  _id: 
-  _name: "\uBC14\uB204\uC5D8"
-  _description: "\uB2E8\uC77C \uC801\uC5D0\uAC8C (ATK)\uC758 \uB370\uBBF8\uC9C0\uB97C
-    \uC8FC\uBA70 \uD0C0\uB77D\uB3C4 1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  _id: "\uBC14\uB204\uC5D8"
+  _name: King Herod
+  _description: 
   _rarity: 3
-  _image: {fileID: -561143384, guid: 1a22865a3ea972d46b40720e5f4d1a7b, type: 3}
-  _corruptImage: {fileID: 0}
+  _image: {fileID: 21300000, guid: a9eb8b29dd26cab4bbd563e4fd7a3169, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 7586f16f1cfc2484499d48cdad387fb3, type: 3}
   _portraitImage: {fileID: 21300000, guid: 2de7b2f59476eba4c907cd8cd331af4f, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: d39f64d6a63e99047b816e4e681ebea1, type: 3}
   _diaPortraitImage: {fileID: 21300000, guid: f549d1c859741b240aede3973f652df9, type: 3}
@@ -40,7 +38,7 @@ MonoBehaviour:
   _corruptionAnimatorController: {fileID: 9100000, guid: ef3a4bb4a32c6514d964a8ab24dc1641, type: 2}
   _skillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
-  _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
+  _animType: {fileID: 11400000, guid: 9c5500ed16c73bb4cb5cbb732dcaf0cb, type: 2}
   _darkEssenseDrop: 0
   _darkEssenseCost: 1
   _unitActionType: 3

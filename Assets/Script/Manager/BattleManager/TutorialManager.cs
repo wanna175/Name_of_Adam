@@ -12,8 +12,43 @@ public class TutorialManager : MonoBehaviour
     /// [CTRL]로 끝나는 문자열은 유저가 직접 액션을 하는 단계를 의미
     /// 즉, 유저의 특정 행동으로 다음 튜토리얼 진행 가능
     /// </summary>
-    private readonly string[] TooltipTexts =
+    private readonly string[][] TooltipTexts =
     {
+        // 영문
+        new string[] {
+        // 튜토리얼 1 시작
+        "During the <color=#FF9696>player turn<color=white>, you can summon units or use skills.",
+        "<color=#FF9696>Mana<color=white> is required for summoning units or using skills.\nMana recovers by <color=#FF9696>30<color=white> each player turn",
+        "These are the currently summonable units.\n<color=#FF9696>On the first player turn<color=white>, you can summon units using only <color=#FF9696>half of<color=white> the required mana.",
+        "These are the skills that aid you in combat.",
+        "Summon a Gravekeeper.[CTRL]",
+        "Summon a Gravekeeper.[CTRL]",
+        "When the player turn ends, the <color=#FF9696>unit turn<color=white> comes.[CTRL]",
+        "During the <color=#FF9696>unit turn<color=white>, units on the field move according to their speed.\nUnits at the top of the <color=#FF9696>speed bar<color=white> on the right act first.",
+        "Each unit can move one step and then attack the enemies.\nMove the Gravekeeper one step forward.[CTRL]",
+        "Attack the Swordsman.[CTRL]",
+
+        // 튜토리얼 2 시작
+        "This is the <color=#FF9696>dark essence<color=white> needed for using specific units or skills.\nDark essence is obtained by defeating enemies",
+        "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
+        "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
+        "The <color=#FF9696>malevolence buff<color=white> reduces an enemy's <color=#FF9696>faith<color=white> when attacking.\nThe Dark Knight has the stigmata that provides the malevolence <color=#FF9696>buff twice.<color=white>\nEffectively utilize these instructions to corrupt enemies.",
+        "Click the <color=#FF9696>'Turn End' <color=white>button to move to the unit turn.[CTRL]",
+        "Press the <color=#FF9696>Turn End button<color=white> to skip to the next turn when moving is unnecessary.[CTRL]",
+        "Attack the swordsman to reduce <color=#FF9696>faith.<color=white>[CTRL]",
+        "Use the skill <color=#FF9696>Whisper<color=white> to reduce the enemy's faith and  corrupt them.[CTRL]",
+        "Use the skill <color=#FF9696>Whisper<color=white> to reduce the enemy's faith and  corrupt them.[CTRL]",
+        "When corrupting an enemy, you can choose a <color=#FF9696>stigmata<color=white> to apply and convert them into an ally.\nSelect a stigmata to bestow upon the swordsman.[CTRL]",
+        "The swordsman has become your unit. Now, click 'Turn End'.[CTRL]",
+        "When a unit moves to a position where an ally already exists, the two units change places.\nMove the dark knight.[CTRL]",
+        "Attack the Nun to remove her invincibility buff.[CTRL]",
+        "Move the Swordsman.[CTRL]",
+        "Finish off the Nun, now that the invincibility buff has disappeared.[CTRL]",
+        "",
+        },
+
+        // 한국
+        new string[] {
         // 튜토리얼 1 시작
         "<color=#FF9696>플레이어 턴<color=white>에는 유닛을 소환하거나 스킬을 쓸 수 있습니다.",
         "유닛을 소환하거나 스킬을 사용할때 필요한 <color=#FF9696>마나<color=white>입니다.\n플레이어 턴이 될 때마다 <color=#FF9696>30<color=white>씩 회복합니다.",
@@ -43,6 +78,7 @@ public class TutorialManager : MonoBehaviour
         "검병을 이동시키세요.[CTRL]",
         "부적 버프가 사라진 수녀를 마무리하세요.[CTRL]",
         "",
+        },
     };
 
     public const int STEP_BOUNDARY = 100;
@@ -90,7 +126,7 @@ public class TutorialManager : MonoBehaviour
         {
             case 1: _step = TutorialStep.UI_PlayerTurn; break;
             case 2: _step = TutorialStep.UI_FallSystem; break;
-            case 3: _step = TutorialStep.UI_UnitDead; break;
+            case 3: _step = TutorialStep.UI_Defeat; break;
         }
 
         isCanClick = true;
@@ -113,7 +149,7 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowNextTutorial()
     {
-        if (CheckStep(TutorialStep.UI_Defeat) || CheckStep(TutorialStep.UI_Last))
+        if (CheckStep(TutorialStep.UI_Devine) || CheckStep(TutorialStep.UI_Last))
             return; // 마지막 UI 튜토리얼 관련 Step은 조건부 동작이기 때문에 예외 처리
 
         SetNextStep();
@@ -152,9 +188,9 @@ public class TutorialManager : MonoBehaviour
         int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
 
         tooltip.Step = step;
-        tooltip.Info = TooltipTexts[indexToTooltip].Replace("[CTRL]", "");
+        tooltip.Info = TooltipTexts[GameManager.OutGameData.GetLanguage()][indexToTooltip].Replace("[CTRL]", "");
         tooltip.IndexToTooltip = indexToTooltip;
-        tooltip.IsCtrl = TooltipTexts[indexToTooltip].Contains("[CTRL]");
+        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.GetLanguage()][indexToTooltip].Contains("[CTRL]");
         tooltip.IsEnd = false;
 
         if (CheckStep(TutorialStep.Tutorial_End_1) || 
@@ -171,6 +207,8 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowTutorial()
     {
+        Debug.Log(_step);
+
         if (IsToolTip(_step))
         {
             // Tooltip 모드

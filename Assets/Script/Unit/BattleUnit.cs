@@ -239,7 +239,14 @@ public class BattleUnit : MonoBehaviour
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
-        GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
+        if(GameManager.Data.GameData.IsVisitDarkShop)
+            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
+
+        if (_team == Team.Enemy)
+        {
+            GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
+        }
+
         if(DeckUnit.Data.Rarity == Rarity.Normal)
         {
             GameManager.Data.GameData.Progress.NormalFall++;
@@ -252,13 +259,13 @@ public class BattleUnit : MonoBehaviour
         {
             GameManager.Data.GameData.Progress.PhanuelFall++;
         }
+        else if (DeckUnit.Data.Name == "호루스")
+        {
+            GameManager.Data.GameData.Progress.HorusFall++;
+        }
 
         //타락 이벤트 시작
         FallEvent = true;
-        for(int i = 0; i < GameManager.Data.GetDeck().Count; ++i)
-        {
-            Debug.Log("유닛 타락후 아이디 :"+GameManager.Data.GetDeck()[i].UnitID);
-        }
         DeckUnit.UnitID = BattleManager._unitIDManager.GetID();
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
@@ -267,11 +274,17 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        FallEvent = false;
+
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
         }
-        FallEvent = false;
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            unit.ChangeTeam();
+        }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 4 - DeckUnit.Data.RawStat.FallMaxCount; ;
@@ -288,11 +301,6 @@ public class BattleUnit : MonoBehaviour
         if (Buff.CheckBuff(BuffEnum.Benediction))
         {
             DeleteBuff(BuffEnum.Benediction);
-        }
-
-        foreach (ConnectedUnit unit in ConnectedUnits)
-        {
-            unit.ChangeTeam();
         }
 
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);
@@ -533,8 +541,6 @@ public class BattleUnit : MonoBehaviour
     {
         Array.Copy(setRangeList, _attackRangeList, setRangeList.Length);
     }
-
-    public CutSceneType GetCutSceneType() => CutSceneType.center; // Skill 없어져서 바꿨어요
 
     public List<Vector2> GetAttackRange()
     {

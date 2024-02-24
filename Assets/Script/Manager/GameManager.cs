@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private OutGameDataContainer _outGameData;
     public static OutGameDataContainer OutGameData => Instance._outGameData;
 
+    [SerializeField] private LocaleManager _locale;
+    public static LocaleManager Locale => Instance._locale;
+
     void Awake()
     {
         if (s_instance != null)
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
             Data.Init();
             Sound.Init();
             VisualEffect.Init();
-            
+            Locale.Init();
         }
 
         /*
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -101,12 +105,6 @@ public class GameManager : MonoBehaviour
                     break;
 
                 unit.UnitDiedEvent();
-
-                foreach (DeckUnit units in BattleManager.Data.PlayerDeck)
-                    units.FirstTurnDiscountUndo();
-
-                foreach (DeckUnit units in BattleManager.Data.PlayerHands)
-                    units.FirstTurnDiscountUndo();
             }
             BattleManager.Instance.BattleOverCheck();
         }
@@ -117,11 +115,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
             GameManager.SaveManager.DeleteSaveData();
 
-        //Test용, 나중에 수정
         if (Input.GetKeyDown(KeyCode.D))
         {
             Data.MainDeckLayoutSet();
             GameManager.OutGameData.DeleteAllData();
         }
+        
     }
 }

@@ -38,4 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleTestScene.unity
     guid: 6934d48c5c68af542bec999eca592a61
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 6f8dbae9d8820864390e2653c566630e, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: e5205da6931b44d45962ce38fea2b621, type: 2}

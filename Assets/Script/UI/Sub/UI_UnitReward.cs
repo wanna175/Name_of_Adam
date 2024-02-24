@@ -57,11 +57,9 @@ public class UI_UnitReward : MonoBehaviour
 
         fc = this.GetComponent<FadeController>();
     }
-    public bool FadeIn(float time,int count)
+    public void FadeIn()
     {
-        time -= (float)0.5 * time;
-        fc.StartFadeIn(time);
-        return (count - 1 == time);
+        fc.StartFadeIn();
     }
     public void EndFadeIn()
     {

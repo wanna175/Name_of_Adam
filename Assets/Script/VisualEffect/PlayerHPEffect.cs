@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class PlayerHPEffect : MonoBehaviour
 {
-    private readonly string HP_DECREASE_ANIMNAME = "DecreasePlayerHP";
-
-    private Animation anim;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animation>();
+        anim = GetComponent<Animator>();
     }
 
     public void StartDecreaseHPEffect()
     {
-        anim.Play(HP_DECREASE_ANIMNAME);
+        anim.SetBool("isDecrease", true);
     }
 }

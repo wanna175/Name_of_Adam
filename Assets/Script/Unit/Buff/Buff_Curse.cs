@@ -7,11 +7,11 @@ public class Buff_Curse : Buff
     {
         _buffEnum = BuffEnum.Benediction;
 
-        _name = "저주";
+        _name = "Curse";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "매 턴 해당 유닛의 신앙이 1 떨어집니다.";
+        _description = "Faith decreases by 1 after every turn of this unit.";
 
         _count = -1;
 

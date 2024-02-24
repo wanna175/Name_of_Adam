@@ -7,7 +7,7 @@ public class PlayerSkill_Bless : PlayerSkill
 {
     public override bool Use(Vector2 coord)
     {
-        //GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Bless");
         //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
 
         BattleUnit unit = BattleManager.Field.GetUnit(coord);
@@ -28,27 +28,5 @@ public class PlayerSkill_Bless : PlayerSkill
     public override void OnSelect()
     {
         BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Enemy);
-    }
-
-    public override string GetDescription()
-    {
-        SetDescription();
-        return base.GetDescription();
-    }
-
-    public void SetDescription()
-    {
-        string description;
-
-        if (GameManager.OutGameData.IsUnlockedItem(64))
-        {
-            description = "지정한 적에게 저주를 부여합니다";
-        }
-        else
-        {
-            description = "지정한 적에게 저주와 공격력 증가를 부여합니다";
-        }
-
-        base.SetDescription(description);
     }
 }

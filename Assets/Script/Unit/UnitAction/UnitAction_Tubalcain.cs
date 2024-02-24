@@ -14,7 +14,7 @@ public class UnitAction_Tubalcain : UnitAction
             return;
         }
 
-        List<Vector2> MinHPUnit = ChargeAttackSearch(attackUnit);
+        List<Vector2> MinHPUnit = MinHPSearch(ChargeAttackSearch(attackUnit));
 
         if (MinHPUnit.Count > 0)
         {
@@ -24,7 +24,7 @@ public class UnitAction_Tubalcain : UnitAction
             BattleManager.Instance.EndUnitAction();
     }
 
-    private List<Vector2> ChargeAttackSearch(BattleUnit caster)
+    private Dictionary<Vector2, int> ChargeAttackSearch(BattleUnit caster)
     {
         Dictionary<Vector2, int> AttackableFour = new();
         List<Vector2> attackRange = caster.GetAttackRange();
@@ -40,19 +40,19 @@ public class UnitAction_Tubalcain : UnitAction
 
                 BattleUnit unit = _field.GetUnit(tempPosition);
 
-                if (unit != null && unit.Team != caster.Team)
+                if (unit != null && attackRange.Contains(direction * i))
                 {
-                    if (attackRange.Contains(direction * i))
+                    if (unit.Team != caster.Team)
                     {
                         AttackableFour.Add(tempPosition, unit.GetHP());
                     }
-
+                    
                     break;
                 }
             }
         }
 
-        return MinHPSearch(AttackableFour);
+        return AttackableFour;
     }
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver)
@@ -75,8 +75,7 @@ public class UnitAction_Tubalcain : UnitAction
         {
             if (_isMove)
             {
-                Buff_Stun stun = new();
-                caster.SetBuff(stun);
+                caster.SetBuff(new Buff_Stun());
 
                 _isMove = false;
             }
@@ -98,6 +97,9 @@ public class UnitAction_Tubalcain : UnitAction
             _isMove = false;
             return true;
         }
+
+        if (!ChargeAttackSearch(attackUnit).ContainsKey(coord))
+            return false;
 
         float currntMin = 100f;
         Vector2 moveVector = attackUnit.Location;

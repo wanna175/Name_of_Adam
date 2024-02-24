@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 16
-  _name: "\uBB34\uC801\u2160"
+  _name: Invinciblity I
   _sprite_28: {fileID: 21300000, guid: a83e7c9336b485348aead5adbd356cfb, type: 3}
   _sprite_88: {fileID: 21300000, guid: 42c022eb71a0c2b4286767a721399d78, type: 3}
   _sprite_164: {fileID: 21300000, guid: b38555a1a24f4174da61210516972ce3, type: 3}
-  _description: "\uC18C\uD658 \uC2DC \uC801\uC758 \uACF5\uACA9\uC744 1\uD68C \uBB34\uD6A8\uD654\uD558\uB294
-    \uBC84\uD504\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+  _description: Earns invincibility 1 times upon summoning.
   _activeTiming: 2
   _tier: 0
   _isLock: 0

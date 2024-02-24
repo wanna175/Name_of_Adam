@@ -5,42 +5,57 @@ using TMPro;
 
 public class UI_RewardScene : MonoBehaviour
 {
-    #region º¯¼ö
-    [SerializeField] private List<GameObject> contents;//ÀÏ´Ü 10°³±îÁö¸¸ °¡´ÉÇÏµµ·Ï ÀÏ´Ü ¸¸µéÀÚ.
+    #region ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] private List<UI_UnitReward> contents;
     [SerializeField] private TMP_Text darkness;
 
     [SerializeField] private GameObject content_prefab;
     [SerializeField] private Transform view_grid;
-    private int count;
-    public bool FadeEnd = false;
+    private bool FadeEnd = false;
+    public bool isEndFade => FadeEnd;
     #endregion
 
-    #region ÇÔ¼ö
+    #region ï¿½Ô¼ï¿½
     public void Init(int changeDarkness)
     {
         this.GetComponent<FadeController>().StartFadeIn();
-   
         darkness.text = changeDarkness.ToString();
     }
-    public void setContent(int idx, RewardUnit rewardUnit,int curFall,UnitState unitState)
+    public void setContent(int idx, RewardUnit rewardUnit, int curFall, UnitState unitState)
     {
-        if (idx >= contents.Count)
+        if (idx > contents.Count-1)
         {
-            GameObject newObject = GameObject.Instantiate(content_prefab, view_grid);
+            UI_UnitReward newObject = GameObject.Instantiate(content_prefab, view_grid).GetComponent<UI_UnitReward>();
             contents.Add(newObject);
         }
-        contents[idx].SetActive(true);
-        UI_UnitReward content = contents[idx].GetComponent<UI_UnitReward>();
-        content.Init(rewardUnit.image, rewardUnit.name,curFall, rewardUnit.DarkEssence, unitState);
-        
-        //FadeEnd = content.FadeIn((float)idx,count);
+        contents[idx].gameObject.SetActive(true);
+        contents[idx].Init(rewardUnit.image, rewardUnit.name,curFall, rewardUnit.DarkEssence, unitState);
     }
+    public void setFadeIn(int idx)
+    {
+        StartCoroutine(ContentFadeIn(idx));
+    }
+    private IEnumerator ContentFadeIn(int cnt)
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.5f);
+        int i=0;
+        while (cnt >i) {
+            contents[i].FadeIn();
+            i++;
+            yield return wait;
+        }
+        FadeEnd = true;
+        yield return null;
+    } 
     public void EndFadeIn()
     {
-        FadeEnd = true;
-        for (int i = 0; i < this.count; i++)
-            contents[i].GetComponent<UI_UnitReward>().EndFadeIn();
-        //StopAllCoroutines();
+        if (!FadeEnd)
+        {
+            for (int i = 0; i < contents.Count; i++)
+                contents[i].EndFadeIn();
+            StopAllCoroutines();
+            FadeEnd = true;
+        }
     }
     #endregion
 }

@@ -23,8 +23,8 @@ MonoBehaviour:
     CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 6292025498003757114, guid: f8df3eb9ce641e94e9315928e8c3e8b9, type: 3}
-  _id: 
-  _name: "\uC2B5\uACA9\uC790"
+  _id: "\uC2B5\uACA9\uC790"
+  _name: Raider
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: 73400dd6283f1ef49b0aa8bc94005589, type: 3}

@@ -26,6 +26,7 @@ public class ProgressShopSceneController : MonoBehaviour
 
     public void UpgradeShopBtn()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_IncarnaShop.SetActive(false);
         UI_UpgradeShop.SetActive(true);
         UI_IncarnaShopBtn.GetComponent<Image>().enabled = false;
@@ -34,6 +35,7 @@ public class ProgressShopSceneController : MonoBehaviour
 
     public void IncarnaBtn()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_IncarnaShop.SetActive(true);
         UI_UpgradeShop.SetActive(false);
         UI_IncarnaShopBtn.GetComponent<Image>().enabled = true;

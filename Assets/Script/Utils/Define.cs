@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -12,7 +13,6 @@ public struct Stat
     public int FallCurrentCount;
     public int FallMaxCount;
     public int ManaCost;
-    public int CurrentUpgradeCount;
 
     public static Stat operator +(Stat lhs, Stat rhs)
     {
@@ -24,7 +24,6 @@ public struct Stat
         result.FallCurrentCount = lhs.FallCurrentCount + rhs.FallCurrentCount;
         result.FallMaxCount = lhs.FallMaxCount + rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost + rhs.ManaCost;
-        result.CurrentUpgradeCount = lhs.CurrentUpgradeCount + rhs.CurrentUpgradeCount;
 
         return result;
     }
@@ -39,7 +38,6 @@ public struct Stat
         result.FallCurrentCount = lhs.FallCurrentCount - rhs.FallCurrentCount;
         result.FallMaxCount = lhs.FallMaxCount - rhs.FallMaxCount;
         result.ManaCost = lhs.ManaCost - rhs.ManaCost;
-        result.CurrentUpgradeCount = lhs.CurrentUpgradeCount - rhs.CurrentUpgradeCount;
 
         return result;
     }
@@ -53,8 +51,38 @@ public struct Stat
         FallCurrentCount = 0;
         FallMaxCount = 0;
         ManaCost = 0;
-        CurrentUpgradeCount = 0;
     }
+}
+
+public struct Upgrade
+{
+    public string UpgradeName;
+    public string UpgradeDescription;
+    public Sprite UpgradeImage88;
+    public Sprite UpgradeImage160;
+    public Stat UpgradeStat;
+    public UpgradeData UpgradeData;
+}
+
+[Serializable]
+public class UpgradeData
+{
+    public string ID;
+    public int Rarity;
+    public string Name;
+    public string Description;
+    public string Image;
+
+    public string HP;
+    public string ATK;
+    public string SPD;
+    public string COST;
+}
+
+[Serializable]
+public class UpgradeLoader
+{
+    public List<UpgradeData> UpgradeData = new();
 }
 
 [Serializable]
@@ -94,7 +122,8 @@ public enum Rarity
 public enum CutSceneMoveType
 {
     stand,
-    tracking
+    tracking,
+    noneMove
 }
 
 public enum Sounds
@@ -169,7 +198,8 @@ public enum FieldColorType
     Attack,
     Select,
     PlayerSkill,
-    UltimatePlayerSkill
+    EnemyPlayerSkill,
+    PlayerPlayerSkill
 }
 
 public enum PlayerSkillTargetType
@@ -254,6 +284,7 @@ public enum BuffEnum
     AfterMotionTransparent,
     AfterAttackDead,
     AfterAttackBounce,
+    MarkOfRaquel,
 
     Assasination,
     Berserker,
@@ -269,9 +300,10 @@ public enum BuffEnum
     WrathOfBabel,
     Charge,
     Rebirth,
+    Trinity,
 
     Leah,
-    Rachel,
+    Raquel,
 }
 
 public enum UnitActionType
@@ -342,9 +374,9 @@ public enum TutorialStep
     Tooltip_UnitAttack_4,
     Tutorial_End_2,
 
-    UI_UnitDead = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
-    UI_Defeat = UI_UnitDead + TutorialManager.STEP_BOUNDARY,
-    UI_Last = UI_Defeat + TutorialManager.STEP_BOUNDARY,
+    UI_Defeat = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
+    UI_Devine = UI_Defeat + TutorialManager.STEP_BOUNDARY,
+    UI_Last = UI_Devine + TutorialManager.STEP_BOUNDARY,
 
     Tutorial_End_3 = UI_Last + Tutorial_End_2 % TutorialManager.STEP_BOUNDARY,
 }
@@ -356,4 +388,18 @@ public struct TooltipData
     public int IndexToTooltip;
     public bool IsCtrl;
     public bool IsEnd;
+}
+
+[Serializable]
+public struct CutSceneData
+{
+    public CutSceneType cutSceneType;
+    public bool IsDoneStart;
+    public bool IsDoneElite;
+    public bool IsDoneBoss;
+}
+
+public enum CutSceneType
+{
+    Start,
 }

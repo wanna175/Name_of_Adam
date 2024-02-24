@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-English (en)
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-String-Tables-English (en)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: cfb88e327cb84a44989e0102d8d19145
+  m_SerializeEntries:
+  - m_GUID: ef3f737df606f2b44b91791b7d2d9647
+    m_Address: OptionTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 7cf6d3f6e266d7c478cd4dff53fadc91
+    m_Address: MainSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: fc0582219402581489851c36d9b9228c
+    m_Address: CutSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 28a2b37d5e9e4f649a1b3cd8b33b448f
+    m_Address: UITable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 28a1bf596c645ba4886b90c8cc695992
+    m_Address: ItemTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: b19cb169c9a23274182ccac6f042bf1e
+    m_Address: IncarnaTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c7851556255f1b8468e6836aa387a9a0
+    m_Address: ProgressSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: b85af8cb787a5ed4a990a28c11aacbd7
+    m_Address: TutorialTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 5b9d2f33ce4ad154396de90473eda7d3
+    m_Address: UnitTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 20f3199f5876a76429084260b1b4b2d7
+    m_Address: StigmaNameTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: d089ec37932e9774e9df8757592686e2
+    m_Address: StigmaInfoTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: ae21fb814b160fa469e86ea3136fdce2
+    m_Address: BuffNameTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 35763199c8e534340a05f281b16fcaac
+    m_Address: BuffInfoTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: d476ad0a7f5dd4c46ad232e4bcb67d95
+    m_Address: PlayerSkillNameTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 3f614f64a5366fd4dbc878ada6c60c0b
+    m_Address: ScriptNameTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 91e4eb1dfc679be4eaf62cb2de7f8974
+    m_Address: ScriptInfoTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 7bd1cc31e3c170a45a8f0a949460ecad
+    m_Address: PlayerSkillInfoTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 0aef8b47daf0b544fb2c32a670d319e1
+    m_Address: EventSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 22e1424cf010e994ba1fda044ddaa1e9
+    m_Address: UpgradeTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 655c03058b3466e4d80284ffd409e58a
+    m_Address: SelectStageSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 96e2c8d84eaa4b04587a8f44b94de2d8, type: 2}
+    - {fileID: 11400000, guid: 5c191d6116db2fb4588563256f36026c, type: 2}

@@ -51,6 +51,7 @@ public class UnitAction_Phanuel : UnitAction
 
         if (targetUnits.Count > 0)
         {
+            _phanuel_Animation.SetBool("isAttack", true);
             BattleManager.Instance.AttackStart(attackUnit, targetUnits);
         }
         else
@@ -73,7 +74,7 @@ public class UnitAction_Phanuel : UnitAction
 
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
                 {
                     count++;
                 }
@@ -99,7 +100,7 @@ public class UnitAction_Phanuel : UnitAction
 
         foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
         {
-            if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+            if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
             {
                 unit.AnimatorSetBool("isBright", _phanuelState == 2);
             }
@@ -126,7 +127,7 @@ public class UnitAction_Phanuel : UnitAction
         {
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
                 {
                     List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
@@ -136,7 +137,7 @@ public class UnitAction_Phanuel : UnitAction
                             continue;
 
                         BattleUnit udrlUnit = BattleManager.Field.GetUnit(unit.Location + udrl);
-                        if (udrlUnit != null && (udrlUnit.Data.ID == "오벨리스크ID" && udrlUnit.Team == caster.Team) || udrlUnit == caster)
+                        if (udrlUnit != null && (udrlUnit.Data.ID == "오벨리스크" && udrlUnit.Team == caster.Team) || udrlUnit == caster)
                         {
                             continue;
                         }
@@ -158,7 +159,7 @@ public class UnitAction_Phanuel : UnitAction
 
             foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
             {
-                if ((unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team))
+                if ((unit.Data.ID == "오벨리스크" && unit.Team == caster.Team))
                 {
                     nonAttackTiles.Add(unit.Location);
                 }
@@ -204,7 +205,8 @@ public class UnitAction_Phanuel : UnitAction
         {
             if (_phanuel_Animation == null)
             {
-                _phanuel_Animation = GameManager.Resource.Instantiate("BattleUnits/Phanuel_Animation").GetComponent<Phanuel_Animation>();
+                GameManager.Sound.Play("PhanuelSummon/Phanuel_Summon");
+                _phanuel_Animation = GameManager.Resource.Instantiate("BattleUnits/Phanuel_Animation", caster.transform).GetComponent<Phanuel_Animation>();
                 _phanuel_Animation.ChangeAnimator(caster.Team);
             }
         }
@@ -233,17 +235,13 @@ public class UnitAction_Phanuel : UnitAction
             for (int i = 0; i < listCount; i++)
             {
                 BattleUnit unit = BattleManager.Data.BattleUnitList[i];
-                if (unit.Data.ID == "오벨리스크ID" && unit.Team == caster.Team)
+                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
                 {
                     unit.UnitDiedEvent();
                     i--;
                     listCount--;
                 }
             }
-        }
-        else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
-        {
-            _phanuel_Animation.SetBool("isAttack", true);
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
         {
@@ -255,6 +253,13 @@ public class UnitAction_Phanuel : UnitAction
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
         {
             _phanuel_Animation.SetBool("isAttack", false);
+        }
+        else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
+        {
+            if (receiver != null)
+            {
+                receiver.ChangeFall(1);
+            }
         }
 
         return false;

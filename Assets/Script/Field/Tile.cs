@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour
 {
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _hover;
     private BattleUnit _unit = null;
     public BattleUnit Unit => _unit;
     public bool UnitExist { get { return Unit != null;} }
@@ -22,6 +23,8 @@ public class Tile : MonoBehaviour
     {
         transform.position = position;
         _highlight.SetActive(false);
+        _hover.SetActive(false);
+
         collider = GetComponent<Collider2D>();
         return this;
     }
@@ -127,11 +130,16 @@ public class Tile : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        BattleManager.Field.MouseEnterTile(this);
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            BattleManager.Field.MouseEnterTile(this);
+            _hover.SetActive(true);
+        }
     }
 
     private void OnMouseExit()
     {
         BattleManager.Field.MouseExitTile(this);
+        _hover.SetActive(false);
     }
 }

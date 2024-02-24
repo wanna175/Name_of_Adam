@@ -18,7 +18,7 @@ public class UnitDataSO : ScriptableObject
     public string ID => _id;
 
     [SerializeField] private string _name;
-    public string Name => _name;
+    public string Name => GameManager.Locale.GetLocalizedUnitName(_name);
 
     [SerializeField] private string _description;
     public string Description => _description;

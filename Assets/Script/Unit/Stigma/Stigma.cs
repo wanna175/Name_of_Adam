@@ -8,7 +8,7 @@ public class Stigma : MonoBehaviour
     public StigmaEnum StigmaEnum => _stigmaEnum;
 
     [SerializeField] private string _name;
-    public string Name => _name;
+    public string Name => GameManager.Locale.GetLocalizedStigmaName(_name);
 
     [SerializeField] private Sprite _sprite_28;
     public Sprite Sprite_28 => _sprite_28;
@@ -20,7 +20,7 @@ public class Stigma : MonoBehaviour
     public Sprite Sprite_164 => _sprite_164;
 
     [SerializeField, TextArea] private string _description;
-    public string Description => _description;
+    public string Description => GameManager.Locale.GetLocalizedStigmaInfo(_description);
 
     [SerializeField] private ActiveTiming _activeTiming;
     public ActiveTiming ActiveTiming => _activeTiming;

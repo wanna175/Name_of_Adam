@@ -27,35 +27,44 @@ public class UI_BattleOver : UI_Scene
             _textImage.gameObject.SetActive(false);
             //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
         }
         else if (result == "elite win")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
         }
         else if (result == "lose")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("WinLose/WinLoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Lose/LoseBGM", Sounds.BGM);
         }
     }
 
     public void OnClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
         if (_result == "win")
         {
-            SceneChanger.SceneChange("StageSelectScene");
+            if (_rewardScene.isEndFade)
+            {
+                SceneChanger.SceneChange("StageSelectScene");
+            }
+            else
+            {
+                _rewardScene.EndFadeIn();
+            }
         }
         else if (_result == "elite win")
         {
-            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 100)
             {
-                GameManager.Data.GameData.Progress.LeftDarkEssence = GameManager.Data.DarkEssense;
                 BattleOverDestroy();
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
+                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Victory";
             }
             else
             {
@@ -70,6 +79,7 @@ public class UI_BattleOver : UI_Scene
             if (GameManager.OutGameData.isTutorialClear())
             {
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
+                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";
             }
             else
             {

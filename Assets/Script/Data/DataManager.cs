@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public interface ILoader<Key, Value>
 {
     Dictionary<Key, Value> MakeDict();
@@ -13,7 +12,7 @@ public interface ILoader<Key, Value>
 public class DataManager : MonoBehaviour
 {
     // public Dictionary<int, Stat> StatDict { get; private set; } = new Dictionary<int, Stat>();
-    public Dictionary<int, List<StageSpawnData>> StageDatas = new Dictionary<int, List<StageSpawnData>>();
+    public Dictionary<int, List<StageSpawnData>> StageDatas = new();
     public MapData Map;
     public int StageAct; // 현재 맵이 몇 막인지 기록하는 변수. 0 : 튜토리얼, 1 : 1막, 2 : 2막 이런식으로
 
@@ -23,29 +22,25 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] public GameData GameDataMainLayout; //디버깅용 데이터
 
-    public Dictionary<string, List<Script>> ScriptData = new Dictionary<string, List<Script>>();
+    public Dictionary<string, List<Script>> ScriptData = new();
     public StigmaController StigmaController;
+    public UpgradeController UpgradeController;
 
-    public void Init()
+
+    public void Init()  
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
         StageDatas = LoadJson<StageLoader, int, List<StageSpawnData>>("StageData").MakeDict();
         ScriptData = LoadJson<ScriptLoader, string, List<Script>>("Script").MakeDict();
+
         StigmaController = new StigmaController();
+        UpgradeController = new UpgradeController();
         Map = new MapData();
 
         if (GameManager.SaveManager.SaveFileCheck())
             GameManager.SaveManager.LoadGame();
 
         _darkEssense = GameData.DarkEssence;
-        if(GameData.Incarna != null)
-        {
-            _playerSkillCount = GameData.Incarna.PlayerSkillCount;
-        }
-        else
-        {
-            _playerSkillCount = 0;
-        }
     }
 
     public void MainDeckSet()
@@ -54,14 +49,14 @@ public class DataManager : MonoBehaviour
         GameData.Money = GameDataMain.Money;
         GameData.DarkEssence = GameDataMain.DarkEssence;
         GameData.PlayerHP = GameDataMain.PlayerHP;
-        GameData.PlayerSkillCount = GameDataMain.PlayerSkillCount;
         GameData.DeckUnits = GameDataMain.DeckUnits;
         GameData.FallenUnits = GameDataMain.FallenUnits;
-        GameData.isVisitUpgrade = GameDataMain.isVisitUpgrade;
-        GameData.isVisitStigma = GameDataMain.isVisitStigma;
+        GameData.IsVisitUpgrade = GameDataMain.IsVisitUpgrade;
+        GameData.IsVisitStigma = GameDataMain.IsVisitStigma;
+        GameData.IsVisitDarkShop = GameDataMain.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
+        NPCQuestSet();
         _darkEssense = GameData.DarkEssence;
-        Debug.Log("GameData.DeckUnit: " + GameData.DeckUnits.Count);
         //OutGame에서 업그레이드 된 스탯 + 낙인 불러와야해서 ClearStat 사용하면 안됨, 파생되는 문제 발생 시 수정 필요 
         /*
         foreach (DeckUnit unit in GameData.DeckUnits)
@@ -79,12 +74,15 @@ public class DataManager : MonoBehaviour
         GameData.Money = GameDataTutorial.Money;
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
         GameData.PlayerHP = GameDataTutorial.PlayerHP;
-        GameData.PlayerSkillCount = GameDataTutorial.PlayerSkillCount;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
         GameData.FallenUnits.Clear();
-        GameData.isVisitUpgrade = GameDataTutorial.isVisitUpgrade;
-        GameData.isVisitStigma = GameDataTutorial.isVisitStigma;
+        GameData.IsVisitUpgrade = GameDataTutorial.IsVisitUpgrade;
+        GameData.IsVisitStigma = GameDataTutorial.IsVisitStigma;
+        GameData.IsVisitDarkShop = GameDataTutorial.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
+        GameData.StageBenediction = new();
+
+        //GameData.npcQuest.ClearQuest();
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
@@ -101,11 +99,11 @@ public class DataManager : MonoBehaviour
         GameDataMain.Money = GameDataMainLayout.Money;
         GameDataMain.DarkEssence = GameDataMainLayout.DarkEssence;
         GameDataMain.PlayerHP = GameDataMainLayout.PlayerHP;
-        GameDataMain.PlayerSkillCount = GameDataMainLayout.PlayerSkillCount;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
-        GameDataMain.isVisitUpgrade = GameDataMainLayout.isVisitUpgrade;
-        GameDataMain.isVisitStigma = GameDataMainLayout.isVisitStigma;
+        GameDataMain.IsVisitUpgrade = GameDataMainLayout.IsVisitUpgrade;
+        GameDataMain.IsVisitStigma = GameDataMainLayout.IsVisitStigma;
+        GameDataMain.IsVisitDarkShop = GameDataMainLayout.IsVisitDarkShop;
         GameDataMain.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameDataMain.DeckUnits)
@@ -145,6 +143,14 @@ public class DataManager : MonoBehaviour
     public void HallDeckSet()
     {
         GameData.DeckUnits = GameManager.OutGameData.SetHallDeck();
+    }
+
+    public void NPCQuestSet()
+    {
+        GameData.IsVisitUpgrade = GameManager.OutGameData.getVisitUpgrade();
+        GameData.IsVisitStigma = GameManager.OutGameData.getVisitStigma();
+        GameData.IsVisitDarkShop = GameManager.OutGameData.getVisitDarkshop();
+        GameData.NpcQuest = GameManager.OutGameData.getNPCQuest();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -204,7 +210,6 @@ public class DataManager : MonoBehaviour
 
     public bool DarkEssenseChage(int cost)
     {
-        Debug.Log("Dark Essense: " + _darkEssense + " Change: " + cost);
         if (_darkEssense + cost < 0)
         {
             return false;
@@ -225,23 +230,6 @@ public class DataManager : MonoBehaviour
         return false;
     }
 
-    private int _playerSkillCount = 0;
-    public int PlayerSkillCount => _playerSkillCount;
-
-    public bool PlayerSkillCountChage(int cost)
-    {
-        Debug.Log("Player Skill Count: " + _playerSkillCount + " Change: " + cost);
-        if (_playerSkillCount + cost < 0)
-        {
-            return false;
-        }
-        else
-        {
-            _playerSkillCount += cost;
-            return true;
-        }
-    }
-
     public List<PlayerSkill> GetPlayerSkillList()
     {
         List<PlayerSkill> skillList = new ();
@@ -259,10 +247,10 @@ public class DataManager : MonoBehaviour
 
     public void SetSkillCost(PlayerSkill playerSkill)
     {
-        ChangeSkillCost(playerSkill, 1, 52, 5, 0);
-        ChangeSkillCost(playerSkill, 3, 53, 0, 1);
+        ChangeSkillCost(playerSkill, 1, 53, 5, 0);
+        ChangeSkillCost(playerSkill, 3, 52, 0, 1);
         ChangeSkillCost(playerSkill, 5, 63, 0, 1);
-        ChangeSkillCost(playerSkill, 7, 72, 10, 0);
+        ChangeSkillCost(playerSkill, 7, 73, 10, 0);
     }
 
     public void ChangeSkillCost(PlayerSkill playerSkill, int ID, int shopID, int mana, int darkessence)

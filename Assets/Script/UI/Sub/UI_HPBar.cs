@@ -23,7 +23,6 @@ public class UI_HPBar : UI_Base
     private int _UnitfallGaugeMax = 0;
     private int _UnitfallGaugeCur = 0;
     private List<UI_Buff> _buffBlockList = new();
-    private int _rotationMax = 0;
     private int _rotationCurrent = 0;
 
     private Team _team;
@@ -91,7 +90,7 @@ public class UI_HPBar : UI_Base
             _fallGauge[idx].EmptyGauge();
         }
         
-        if (_UnitfallGaugeCur > 4)
+        if (_UnitfallGaugeCur > 4&&_UnitfallGaugeCur<=8)
         {
             int doubleCnt = _UnitfallGaugeCur - 4;
             _fallCountIdx = doubleCnt - 1; 
@@ -113,6 +112,7 @@ public class UI_HPBar : UI_Base
         _UnitfallGaugeCur = _UnitfallGaugeMax - current;
         if (diff == 1)
         {
+            Debug.Log("idx qqqqqqqqqqqqq: " + _fallCountIdx);
             _fallGauge[_fallCountIdx--].FillGauge();
             if (_fallCountIdx < 0 && _UnitfallGaugeMax != _UnitfallGaugeCur)
                 _fallCountIdx = 3;
@@ -207,7 +207,7 @@ public class UI_HPBar : UI_Base
 
         _rotationCurrent++;
 
-        if (_rotationCurrent > _rotationMax)
+        if (_rotationCurrent > _buffBlockList.Count / 4)
         {
             _rotationCurrent = 0;
         }
@@ -215,8 +215,6 @@ public class UI_HPBar : UI_Base
 
     public void RefreshBuff()
     {
-        _rotationMax = (_buffBlockList.Count-1) / 4;
-
         foreach (UI_Buff listedBuff in _buffBlockList)
         {
             listedBuff.RefreshBuffDisplayNumber();

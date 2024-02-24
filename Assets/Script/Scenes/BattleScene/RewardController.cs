@@ -60,6 +60,7 @@ public class RewardController
             fallunit = new RewardUnit(u.Value.name, 0, u.Value.image);
             rewardScene.setContent(idx++, fallunit, 0, UnitState.Die);
         }
+        rewardScene.setFadeIn(units.Count+dic_units.Count);
         dic_units.Clear();
     }
    

@@ -8,6 +8,7 @@ public class PlayerSkill_Move : PlayerSkill
 
     public override bool Use(Vector2 coord)
     {
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Move");
         selectedUnit = BattleManager.Field.GetUnit(coord);
         selectedUnit.SetBuff(new Buff_Tailwind());
         BattleManager.Field.SetNextActionTileColor(selectedUnit, FieldColorType.Move);
@@ -19,11 +20,16 @@ public class PlayerSkill_Move : PlayerSkill
         switch (activeTiming)
         {
             case ActiveTiming.TURN_START:
-                BattleManager.Instance.MoveUnit(selectedUnit, coord);
-                BattleManager.Field.ClearAllColor();
-                BattleManager.PlayerSkillController.SetSkillDone();
-                return false;
+                if (BattleManager.Instance.MoveUnit(selectedUnit, coord))
+                {
+                    BattleManager.Field.ClearAllColor();
+                    BattleManager.PlayerSkillController.SetSkillDone();
+                    return false;
+                }
+                break;
         }
+
+        // 사용 취소된 경우
         return true;
     }
 
