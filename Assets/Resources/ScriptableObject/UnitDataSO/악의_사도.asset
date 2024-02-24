@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
-  m_Name: "\uB8E8\uC2DC\uD37C"
+  m_Name: "\uC545\uC758_\uC0AC\uB3C4"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 999
-    CurrentHP: 999
-    ATK: 40
-    SPD: 100
+    MaxHP: 666
+    CurrentHP: 666
+    ATK: 30
+    SPD: 66
     FallCurrentCount: 0
-    FallMaxCount: 4
+    FallMaxCount: 12
     ManaCost: 0
   _uniqueStigma:
   - {fileID: -2313120215319490512, guid: c36058c8458e8e541b5ac2ccbbb73c5e, type: 3}
-  _id: "\uB8E8\uC2DC\uD37C"
+  _id: "\uC545\uC758 \uC0AC\uB3C4"
   _name: Lucifer
   _description: 
   _rarity: 1
