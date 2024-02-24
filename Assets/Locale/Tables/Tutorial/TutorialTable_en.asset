@@ -34,7 +34,7 @@ MonoBehaviour:
   - m_Id: 1678954893312
     m_Localized: <color=#FF9696>The unit turn <color=white>involves each unit taking
       turns based on their speed in combat. <color=#FF9696>Player turn <color=white>and
-      <color=#FF9696>unit turn <color=white>alternates in turn.
+      <color=#FF9696>unit turn <color=white>alternate in turn.
     m_Metadata:
       m_Items: []
   - m_Id: 2123316236288

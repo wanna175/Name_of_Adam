@@ -546,6 +546,19 @@ MonoBehaviour:
       \uB3C4\uC6B8 \uC218 \uC788\uB2E4\uBA74..."
     m_Metadata:
       m_Items: []
+  - m_Id: 6135992028033024
+    m_Localized: "\uAC10\uD788 \uC774\uACF3\uC774 \uC5B4\uB514\uB77C\uACE0 \uCD94\uC545\uD55C
+      \uC545\uC758 \uADF8\uB9BC\uC790\uAC00 \uB4E4\uC5B4\uC624\uB290\uB0D0! \uB300\uC655\uC758
+      \uD798\uC744 \uB9C8\uC8FC\uD558\uACE0, \uADF8\uB9BC\uC790 \uC18D\uC73C\uB85C
+      \uC0AC\uB77C\uC9C0\uAC70\uB77C."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6136047711612928
+    m_Localized: "\uD0DC\uC5B4\uB098\uC11C\uB294 \uC548 \uB420 \uC874\uC7AC\uAC00
+      \uD0DC\uC5B4\uB098\uBC84\uB838\uAD6C\uB098. \uBAA8\uB4E0 \uAC83\uC744 \uBC14\uB85C\uC7A1\uC544\uC57C
+      \uD560 \uC2DC\uAC04\uC774\uB2C8\uB77C."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

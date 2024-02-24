@@ -34,7 +34,7 @@ public class CutSceneController : MonoBehaviour
     {
         switch (cutSceneToDisplay)
         {
-            case CutSceneType.Start: SceneChanger.SceneChange("StageSelectScene"); break;
+            case CutSceneType.Main: SceneChanger.SceneChange("StageSelectScene"); break;
             case CutSceneType.Tutorial: SceneChanger.SceneChange("StageSelectScene"); break;
         }
     }

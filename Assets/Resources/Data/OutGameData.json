@@ -17,7 +17,7 @@
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata 'Destiny' appears from now on.\n\nDestiny - When attacking, there is a 50% chance for damage to be doubled and a 50% chance for it to be halved."
+      "Description": "Stigmata Destiny appears from now on. Destiny - When attacking, there is a 50% chance for damage to be doubled and a 50% chance for it to be halved."
     },
     {
       "ID": 2,
@@ -26,7 +26,7 @@
       "Prequest": 0,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "A new feature, Faith Recovery, is unlocked when baptizing.\n\nYou can now restore the faith of desired units."
+      "Description": "A new feature, Faith Recovery, is unlocked when baptizing. You can now restore the faith of desired units."
     },
     {
       "ID": 3,
@@ -44,7 +44,7 @@
       "Prequest": 5,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata 'Revenge' appears from now on.\n\nRevenge - Counterattacks enemies within attack range."
+      "Description": "Stigmata Revenge appears from now on. Revenge - Counterattacks enemies within attack range."
     },
     {
       "ID": 5,
@@ -53,7 +53,7 @@
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "A new feature, Apostle Creation, is unlocked in the Sacrifice Stage.\n\nYou can now randomly create apostles via dark essence."
+      "Description": "A new feature, Apostle Creation, is unlocked in the Sacrifice Stage. You can now randomly create apostles via dark essence."
     },
     {
       "ID": 6,
@@ -71,7 +71,7 @@
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata 'Killing Spree' appears from now on.\n\nKilling Spree - Gains an extra turn upon defeating an enemy."
+      "Description": "Stigmata Killing Spree appears from now on. Killing Spree - Gains an extra turn upon defeating an enemy."
     },
     {
       "ID": 8,
@@ -98,7 +98,7 @@
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata 'Thirst' appears from now on.\n\nThirst - Upon defeating an enemy, health permanently increases by 5, and attack by 2. (Resets in the Divine Hall)"
+      "Description": "Stigmata Thirst appears from now on. Thirst - Upon defeating an enemy, health permanently increases by 5, and attack by 2. (Resets in the Divine Hall)"
     },
     {
       "ID": 11,
@@ -107,7 +107,7 @@
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "A new feature, Stigmata Transfer, is unlocked in the Stigmata stage.\n\nYou can now sacrifice one unit to bestow one of its stigmata onto another unit."
+      "Description": "A new feature, Stigmata Transfer, is unlocked in the Stigmata stage. You can now sacrifice one unit to bestow one of its stigmata onto another unit."
     },
     {
       "ID": 12,
@@ -125,7 +125,7 @@
       "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata 'Teleport' appears from now on.\n\nTeleport - Earns 1 Sacred Step upon defeating an enemy.\nSacred Step - Becomes able to move to any desired position."
+      "Description": "Stigmata Teleport appears from now on. Teleport - Earns 1 Sacred Step upon defeating an enemy. Sacred Step - Becomes able to move to any desired position."
     },
     {
       "ID": 14,
@@ -152,7 +152,7 @@
       "Prequest": 17,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata 'Forbidden Pact' appears from now on.\n\nForbidden Pact - The unit becomes stunned once, but the mana cost of the next skill is eliminated upon summoning."
+      "Description": "Stigmata Forbidden Pact appears from now on. Forbidden Pact - The unit becomes stunned once, but the mana cost of the next skill is eliminated upon summoning."
     },
     {
       "ID": 17,
@@ -170,7 +170,7 @@
       "Prequest": 17,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata 'Sin' appears in the Sacrifice from now on.\n\nSin - Decreases the enemy's faith by 1 upon attacking."
+      "Description": "Stigmata Sin appears in the Sacrifice from now on. Sin - Decreases the enemys faith by 1 upon attacking."
     },
     {
       "ID": 50,
@@ -183,12 +183,12 @@
     },
     {
       "ID": 51,
-      "Name": "선지자 I",
+      "Name": "Unlock the Dark Prophet I",
       "Cost": 10,
       "Prequest": 50,
       "IsLock": false,
       "IsUnlocked": true,
-      "Description": "화신 (선지자)를 해금합니다."
+      "Description": "The incarnation The Dark Prophet is unlocked."
     },
     {
       "ID": 52,
@@ -197,7 +197,7 @@
       "Prequest": 51,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Skill 'Swiftness' now requires 0 dark essence."
+      "Description": "Skill Swiftness now requires 0 dark essence."
     },
     {
       "ID": 53,
@@ -215,7 +215,7 @@
       "Prequest": 53,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": ""
+      "Description": "The faith of enemies hit by the Dark Cross decreases by 1."
     },
     {
       "ID": 60,
@@ -233,7 +233,7 @@
       "Prequest": 60,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "The incarnation \"Saintess of Sins\" is unlocked."
+      "Description": "The incarnation Saintess of Sins is unlocked."
     },
     {
       "ID": 62,
@@ -242,7 +242,7 @@
       "Prequest": 61,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "The amount of healing of the skill \"Recovery\" is increased by 5."
+      "Description": "The amount of healing of the skill Recovery is increased by 5."
     },
     {
       "ID": 63,
@@ -251,7 +251,7 @@
       "Prequest": 62,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "The Dark Essence cost of \"Returning\" decreases by 1."
+      "Description": "The Dark Essence cost of Returning decreases by 1."
     },
     {
       "ID": 64,
@@ -260,7 +260,7 @@
       "Prequest": 63,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Skill \"Prayer\" no longer grants an attack power increase to enemies."
+      "Description": "Skill Prayer no longer grants an attack power increase to enemies."
     },
     {
       "ID": 70,
@@ -278,7 +278,7 @@
       "Prequest": 70,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "The incarnation \"Heir of Vice\" is unlocked."
+      "Description": "The incarnation Heir of Vice is unlocked."
     },
     {
       "ID": 72,
@@ -287,7 +287,7 @@
       "Prequest": 71,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Skill \"Trade of Souls\" now grants malevolence 2 times additionally."
+      "Description": "Skill Trade of Souls now grants malevolence 2 times additionally."
     },
     {
       "ID": 73,
@@ -296,7 +296,7 @@
       "Prequest": 72,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "The mana cost of 'Divine Punishment' decreases by 10."
+      "Description": "The mana cost of Divine Punishment decreases by 10."
     },
     {
       "ID": 74,

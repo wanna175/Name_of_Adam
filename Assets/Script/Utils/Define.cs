@@ -401,7 +401,7 @@ public struct CutSceneData
 
 public enum CutSceneType
 {
-    Start,
+    Main,
     Tutorial,
     Elite,
     Boss,

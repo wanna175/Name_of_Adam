@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: Phanuel
     m_Metadata:
       m_Items: []
+  - m_Id: 6137469949767680
+    m_Localized: The Savior
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
