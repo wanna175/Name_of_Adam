@@ -34,6 +34,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         _scripts = new();
         _giveStigma = null;
         _isStigmaFull = false;
+        Debug.Log("dddddddd : " + GameManager.Data.GameData.NpcQuest.StigmaQuest);
 
         //옮길 낙인유닛이 없다면 선택지가 안 뜨게
         bool isStigmaEmpty = true;
@@ -57,31 +58,31 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn_disabled.SetActive(true);
         }
 
-        if (GameManager.Data.GameData.IsVisitStigma == false)
+        if (GameManager.OutGameData.getVisitStigma() == false)
         {
-            GameManager.Data.GameData.IsVisitStigma = true;
+            GameManager.OutGameData.setVisitStigma(true);
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
         }
         else
         {
-            if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50)
+            if (GameManager.Data.GameData.NpcQuest.StigmaQuest >=50)
             {
                 _scripts = GameManager.Data.ScriptData["타락_낙인소_입장"];
                 background.SetActive(false);
                 fall_background.SetActive(true);
                 this.isNPCFall = true;
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 * 3 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 * 3 / 4)
             {
                 _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 2)
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 / 2)
             {
                 _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 / 4)
             {
                 _scripts = GameManager.Data.ScriptData["낙인소_입장"];
                 //안개이미지 변경

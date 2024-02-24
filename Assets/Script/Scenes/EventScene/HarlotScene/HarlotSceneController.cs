@@ -36,34 +36,34 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         scripts = new List<Script>();
         _isStigmaFull = false;
         _RestorationUnits = new List<DeckUnit>();
-        if (GameManager.Data.GameData.IsVisitDarkShop == false)
+        if (GameManager.OutGameData.getVisitDarkshop() == false)
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
             GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
             uiConversation = FindObjectOfType<UI_Conversation>();
             uiConversation.ConversationEnded += OnConversationEnded;
-            GameManager.Data.GameData.IsVisitDarkShop = true;
+            GameManager.OutGameData.setVisitDarkshop(true);
         }
         else
         {
-            if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30)
+            if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >=30)
             {//
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_100"];
                 background.SetActive(false);
                 fall_background.SetActive(true);
                 this.isNPCFall = true;
             }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 * 3 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 * 3 / 4)
             {
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_75"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 2)
+            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 / 2)
             {
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_50"];
                 //안개이미지 변경
             }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 4)
+            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 / 4)
             {
                 scripts = GameManager.Data.ScriptData["타락_탕녀_입장_25"];
                 //안개이미지 변경
