@@ -93,7 +93,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Upgrade a unit or restore its faith."
+          "script": "저는 죄인도 믿음과 사랑으로 구원을 받을 수 있다고 믿습니다. 당신의 손에 100명의 피가 묻는다 하더라도 저는 당신을 믿겠습니다."
         }
       ]
     },
@@ -102,7 +102,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Upgrade a unit or restore its faith."
+          "script": "신께서는 이웃을 사랑하라고 말씀하셨습니다. 당신에게 죄가 있어도 죄를 미워하지 죄인을 미워하지 말라는 말씀을 따르기에 당신을 책망하지 않겠습니다."
         }
       ]
     },
@@ -111,7 +111,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I can no longer believe in anything."
+          "script": "애초에 이 세상에 믿음과 사랑 같은 관념적인 것이 존재하기는 했던가? 아득하게 비현실적으로 느껴지는군."
         }
       ]
     },
@@ -120,7 +120,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I am uncertain... Could belief and love save everyone?"
+          "script": "언제 손에 이렇게 많은 피를 묻히셨습니까? 하지만 괜찮습니다. 그럼에도, 당신을... 신뢰하겠습니다."
         }
       ]
     },
@@ -129,7 +129,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I believe in the love that the Divine has taught us.\nMay you also receive grace within that faith."
+          "script": "신의 가르침 중에는 틀린 말 하나 없습니다. 더 많은 이들이 이를 깨우쳤으면 좋겠습니다."
         }
       ]
     },
@@ -138,7 +138,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I believe in the love that the Divine has taught us.\nMay you also receive grace within that faith."
+          "script": "신께서 가르쳐주신 사랑을 저는 믿습니다. 부디 이번에는 당신도 그 믿음 속에서 은총을 받기를."
         }
       ]
     },
@@ -147,7 +147,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "May you show us a new path of salvation."
+          "script": "당신이 우리에게 새로운 구원의 길을 알려줄 수 있기를."
         }
       ]
     },
@@ -156,7 +156,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "May you show us a new path of salvation."
+          "script": "이제 모든 것이 두렵다. 그것은 내가 본 진짜 모습일까?"
         }
       ]
     },
@@ -210,7 +210,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "Select a unit to bestow stigmata."
+          "script": "신께서는 제게 그대들의 간절한 기도에 화답할 수 있는 권능을 낙인이라는 형태로 내려주셨어요. 나그네여, 제가 내릴 수 있는 은총에 대한 모든 형태의 기도를 올릴 수 있기를."
         }
       ]
     },
@@ -219,7 +219,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "Select a unit to bestow stigmata."
+          "script": "당신은.. 남들과 다른 소망을 가졌던 나그네군요. 이번에는 무엇을 위해 기도하시나요?"
         }
       ]
     },
@@ -228,7 +228,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "타락"
+          "script": "당신의 기도만 들을게요. 다른 이들의 어리석은 기도는 더 이상 듣고 싶지 않아요."
         }
       ]
     },
@@ -237,7 +237,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "타락50"
+          "script": "나의 이 모든 고됨과 고통에 끝이 있기를."
         }
       ]
     },
@@ -246,7 +246,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "May the divine prayers grace your journey."
+          "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
         }
       ]
     },
@@ -255,7 +255,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "May the divine prayers grace your journey."
+          "script": "당신은 신기한 사람이에요. 그 눈을 보면 볼수록, 확신이 생겨요."
         }
       ]
     },
@@ -264,7 +264,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "타락퇴장"
+          "script": "당신의 여정에 평화와 안녕이 있기를 기도합니다."
         }
       ]
     },
@@ -273,7 +273,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "타락50퇴장"
+          "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
         }
       ]
     },
@@ -503,29 +503,11 @@
       ]
     },
     {
-      "title": "Messenger of love_입장_최초",
-      "contents": [
-        {
-          "name": "Messenger of love",
-          "script": "Messenger of love 입장 최초 스크립트."
-        }
-      ]
-    },
-    {
-      "title": "Messenger of love_입장",
-      "contents": [
-        {
-          "name": "Messenger of love",
-          "script": "Messenger of love 입장 스크립트."
-        }
-      ]
-    },
-    {
       "title": "탕녀_입장_최초",
       "contents": [
         {
-          "name": "탕녀",
-          "script": "탕녀 입장 최초 스크립트."
+          "name": "Messenger of love",
+          "script": "가진 세월로 우람해진 그들은 늘 저를 무섭게 내려다보아요. 그 중에서도 특별히 더 강해 저를 벌벌 떨게 하는 그들은 그것이 본 모습이 아닐거에요."
         }
       ]
     },
@@ -533,8 +515,8 @@
       "title": "탕녀_입장",
       "contents": [
         {
-          "name": "탕녀",
-          "script": "탕녀 입장 스크립트."
+          "name": "Messenger of love",
+          "script": "죽는 것은 싫어요. 죽음은 슬프거든요. 아픈 것도 싫어요. 남들도 아프지 않았으면 좋겠어요."
         }
       ]
     },
@@ -542,8 +524,8 @@
       "title": "탕녀_퇴장_최초",
       "contents": [
         {
-          "name": "탕녀",
-          "script": "당신도 이 세상을 사랑할 수 있기를."
+          "name": "Messenger of love",
+          "script": "이 세상에 얼마나 많은 이들이 진실된 모습을 보여주고 있을까요?"
         }
       ]
     },
@@ -551,7 +533,7 @@
       "title": "탕녀_퇴장",
       "contents": [
         {
-          "name": "탕녀",
+          "name": "Messenger of love",
           "script": "당신도 이 세상을 사랑할 수 있기를."
         }
       ]
@@ -560,17 +542,8 @@
       "title": "타락_탕녀_입장_100",
       "contents": [
         {
-          "name": "탕녀",
-          "script": "탕녀타락100."
-        }
-      ]
-    },
-    {
-      "title": "타락_탕녀_입장_75",
-      "contents": [
-        {
-          "name": "탕녀",
-          "script": "타락75"
+          "name": "Messenger of love",
+          "script": "이제 보니 당신은 죄인인가요? 저는 죄인마저 믿고 사랑하려고한건가요?"
         }
       ]
     },
@@ -578,35 +551,8 @@
       "title": "타락_탕녀_입장_50",
       "contents": [
         {
-          "name": "탕녀",
-          "script": "타락50"
-        }
-      ]
-    },
-    {
-      "title": "타락_탕녀_입장_25",
-      "contents": [
-        {
-          "name": "탕녀",
-          "script": "타락25"
-        }
-      ]
-    },
-    {
-      "title": "타락_탕녀_퇴장_100",
-      "contents": [
-        {
-          "name": "탕녀",
-          "script": "탕녀타락100."
-        }
-      ]
-    },
-    {
-      "title": "타락_탕녀_퇴장_75",
-      "contents": [
-        {
-          "name": "탕녀",
-          "script": "타락75"
+          "name": "Messenger of love",
+          "script": "증명해주지 말아주세요. 아니, 증명해주세요."
         }
       ]
     },
@@ -614,17 +560,17 @@
       "title": "타락_탕녀_퇴장_50",
       "contents": [
         {
-          "name": "탕녀",
-          "script": "타락50"
+          "name": "Messenger of love",
+          "script": "이제 보니 당신은 죄인인가요? 저는 죄인마저 믿고 사랑하려고한건가요?"
         }
       ]
     },
     {
-      "title": "타락_탕녀_퇴장_25",
+      "title": "타락_탕녀_퇴장_100",
       "contents": [
         {
-          "name": "탕녀",
-          "script": "타락25"
+          "name": "Messenger of love",
+          "script": "더 많은 이들의 당신의 사랑을 깨우치기를."
         }
       ]
     }
