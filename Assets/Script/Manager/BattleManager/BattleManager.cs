@@ -158,8 +158,8 @@ public class BattleManager : MonoBehaviour
             {0, 0},
             {1, 0},
             {2, 30},
-            {3, 40},
-            {4, 50}
+            {3, 60},
+            {4, 100}
         };
 
         if (GameManager.Data.Map.GetCurrentStage().StageLevel % 10 == 0 || GameManager.Data.Map.GetCurrentStage().StageLevel == 1)
