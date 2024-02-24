@@ -116,7 +116,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uAC80\uBCD1_Idle"
+  m_Name: Unit_Idle
   m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
@@ -172,7 +172,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uAC80\uBCD1_Attack"
+  m_Name: Unit_Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -199,7 +199,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\uAC80\uBCD1_Hit"
+  m_Name: Unit_Hit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -213,7 +213,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: aa19a258a4afbaf498c9d7cb0d843b0a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 48181f04fe2fc354a9478dcad34d495c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

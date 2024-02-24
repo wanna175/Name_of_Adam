@@ -204,5 +204,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatorController: {fileID: 9100000, guid: 50ae63ea3578ddf48891f45fa14e5edb, type: 2}
-  CorruptionAnimatorController: {fileID: 9100000, guid: 50ae63ea3578ddf48891f45fa14e5edb, type: 2}
+  CorruptionAnimatorController: {fileID: 9100000, guid: ba52317fa41f97a4fae877a5d65d2c7e, type: 2}
   _animator: {fileID: 7372597385520961864}
