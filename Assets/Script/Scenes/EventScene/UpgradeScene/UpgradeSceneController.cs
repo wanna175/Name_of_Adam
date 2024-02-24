@@ -54,10 +54,10 @@ public class UpgradeSceneController : MonoBehaviour
 
         _scripts = new ();
 
-        if (GameManager.Data.GameData.IsVisitUpgrade == false)
+        if (GameManager.OutGameData.getVisitUpgrade() == false)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
-            GameManager.Data.GameData.IsVisitUpgrade = true;
+            GameManager.OutGameData.setVisitUpgrade(true);
         }
         else
         {

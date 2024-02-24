@@ -36,13 +36,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         scripts = new List<Script>();
         _isStigmaFull = false;
         _RestorationUnits = new List<DeckUnit>();
-        if (GameManager.Data.GameData.IsVisitDarkShop == false)
+        if (GameManager.OutGameData.getVisitDarkshop() == false)
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
             GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
             uiConversation = FindObjectOfType<UI_Conversation>();
             uiConversation.ConversationEnded += OnConversationEnded;
-            GameManager.Data.GameData.IsVisitDarkShop = true;
+            GameManager.OutGameData.setVisitDarkshop(true);
         }
         else
         {
