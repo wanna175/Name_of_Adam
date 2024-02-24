@@ -20,7 +20,6 @@ MonoBehaviour:
     FallCurrentCount: 2
     FallMaxCount: 4
     ManaCost: 30
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 7102870964502367150, guid: 4303cf1cc4478e748b9f7a9177e73e37, type: 3}
   _id: "\uC218\uB140"

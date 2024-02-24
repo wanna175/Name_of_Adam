@@ -657,6 +657,7 @@ public class BattleManager : MonoBehaviour
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         //GameManager.UnitIDController.resetID();
         GameManager.SaveManager.DeleteSaveData();
+        GameManager.OutGameData.set_isGameOverCheck(true);
     }
 
     private void CheckBossCycle(StageData data)
