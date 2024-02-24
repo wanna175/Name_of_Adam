@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: -508501736621560720, guid: 34fc05444e997cd40bf7be4e3a0de2e5, type: 3}
   - {fileID: -1213146846785058329, guid: b0be4fdad88a10244b88f531a3bbcb82, type: 3}
   _id: "\uBC14\uB204\uC5D8"
-  _name: King Herod
+  _name: Phanuel
   _description: 
   _rarity: 3
   _image: {fileID: 21300000, guid: a9eb8b29dd26cab4bbd563e4fd7a3169, type: 3}

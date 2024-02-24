@@ -27,6 +27,264 @@ MonoBehaviour:
     m_Key: Incarna
     m_Metadata:
       m_Items: []
+  - m_Id: 7617713111470080
+    m_Key: Destiny
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618425069408256
+    m_Key: Stigmata Destiny appears from now on. Destiny - When attacking, there
+      is a 50% chance for damage to be doubled and a 50% chance for it to be halved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618690774372352
+    m_Key: Faith Recovery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618817085837312
+    m_Key: A new feature, Faith Recovery, is unlocked when baptizing. You can now
+      restore the faith of desired units.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7618926460702720
+    m_Key: Starting dark essence I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619085017976832
+    m_Key: The starting dark essence increases from 4 to 7.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619187002478592
+    m_Key: Revenge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619282569695232
+    m_Key: Stigmata Revenge appears from now on. Revenge - Counterattacks enemies
+      within attack range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619358809559040
+    m_Key: Apostle Creation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619594244231168
+    m_Key: A new feature, Apostle Creation, is unlocked in the Sacrifice Stage. You
+      can now randomly create apostles via dark essence.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619814411636736
+    m_Key: Starting dark essence II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619855268352000
+    m_Key: The starting dark essence increases from 7 to 10.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619978522169344
+    m_Key: Killing Spree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7619993818796032
+    m_Key: Stigmata Killing Spree appears from now on. Killing Spree - Gains an extra
+      turn upon defeating an enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7620199268388864
+    m_Key: Elite Clear Reward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7620321704316928
+    m_Key: Every unit restores faith by 1 as a reward for clearing an Elite enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7620450159071232
+    m_Key: Maximum upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7620513518227456
+    m_Key: The maximum upgrade increases from 2 to 3.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7620621450252288
+    m_Key: Thirst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7620700810678272
+    m_Key: Stigmata Thirst appears from now on. Thirst - Upon defeating an enemy,
+      health permanently increases by 5, and attack by 2. (Resets in the Divine Hall)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621029539254272
+    m_Key: Stigmata transfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621120572428288
+    m_Key: A new feature, Stigmata Transfer, is unlocked in the Stigmata stage. You
+      can now sacrifice one unit to bestow one of its stigmata onto another unit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621440010620928
+    m_Key: Starting mana I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621538388021248
+    m_Key: The starting mana increases from 50 to 55.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621575226593280
+    m_Key: Teleport
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621801735786496
+    m_Key: Stigmata Teleport appears from now on. Teleport - Earns 1 Sacred Step
+      upon defeating an enemy. Sacred Step - Becomes able to move to any desired
+      position.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622009710350336
+    m_Key: Unlocking the Divine Hall I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622098679926784
+    m_Key: You can now organize units from the Divine Hall in the slots of the Gravekeeper
+      and Prisoner at the start.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622169010016256
+    m_Key: Starting mana II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622297317969920
+    m_Key: The starting mana increases from 55 to 60.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622398404890624
+    m_Key: Forbidden Pact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622415496679424
+    m_Key: Stigmata Forbidden Pact appears from now on. Forbidden Pact - The unit
+      becomes stunned once, but the mana cost of the next skill is eliminated upon
+      summoning.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622878182936576
+    m_Key: Unlocking the Divine Hall II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7622950396268544
+    m_Key: You can now organize apostles or elites into normal unit slots in the
+      start.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7623054620528640
+    m_Key: Sin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7623070651158528
+    m_Key: Stigmata Sin appears in the Sacrifice from now on. Sin - Decreases the
+      enemys faith by 1 upon attacking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7624341659488256
+    m_Key: Unlock the Dark Prophet II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7626469954195456
+    m_Key: Skill Swiftness now requires 0 dark essence.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7626815426433024
+    m_Key: Unlock the Dark Prophet III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7626935324807168
+    m_Key: The mana cost of Whisper decreases by 5.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7627095949873152
+    m_Key: Unlock the Dark Prophet IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7627180515430400
+    m_Key: The faith of enemies hit by the Dark Cross decreases by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7627280998371328
+    m_Key: Unlock the Saintess of Sins I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7627404055056384
+    m_Key: The incarnation Saintess of Sins is unlocked.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7627866640650240
+    m_Key: Unlock the Saintess of Sins II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7627928368222208
+    m_Key: The amount of healing of the skill Recovery is increased by 5.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7628113735487488
+    m_Key: Unlock the Saintess of Sins III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7628211072700416
+    m_Key: The Dark Essence cost of Returning decreases by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7628471379595264
+    m_Key: Unlock the Saintess of Sins IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7628610139754496
+    m_Key: Skill Prayer no longer grants an attack power increase to enemies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7628899307655168
+    m_Key: Unlock the Heir of Vice I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7629143739109376
+    m_Key: The incarnation Heir of Vice is unlocked.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7629619385765888
+    m_Key: Unlock the Heir of Vice II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7629718472003584
+    m_Key: Skill Trade of Souls now grants malevolence 2 times additionally.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7629898453782528
+    m_Key: Unlock the Heir of Vice III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7629925758701568
+    m_Key: The mana cost of Divine Punishment decreases by 10.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7629998412435456
+    m_Key: Unlock the Heir of Vice IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7630105778229248
+    m_Key: The duration of Advent is increased by 1 turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7630885360930816
+    m_Key: Unlock the Dark Prophet I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7631075669086208
+    m_Key: The incarnation The Dark Prophet is unlocked.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7631985963077632
+    m_Key: Purchased
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

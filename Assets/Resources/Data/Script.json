@@ -47,7 +47,7 @@
       "title": "라헬레아전_입장",
       "contents": [
         {
-          "name": "라헬레아",
+          "name": "Rahel&Lea",
           "script": "In His grace, I shall be eternally beautiful. Step aside, you mortal."
         }
       ]
@@ -56,7 +56,7 @@
       "title": "압바임전_입장",
       "contents": [
         {
-          "name": "압바임",
+          "name": "The Triad",
           "script": "Wisdom, power, and might. The power of the trinity can subjugate all"
         }
       ]
@@ -65,7 +65,7 @@
       "title": "바누엘전_입장",
       "contents": [
         {
-          "name": "King Herod",
+          "name": "Phanuel",
           "script": ""
         }
       ]
@@ -93,34 +93,142 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "저는 죄인도 믿음과 사랑으로 구원을 받을 수 있다고 믿습니다. 당신의 손에 100명의 피가 묻는다 하더라도 저는 당신을 믿겠습니다."
+          "script": "Even if your hands were stained with the blood of 200 people, I shall still believe in you."
         }
       ]
     },
     {
-      "title": "강화소_입장",
+      "title": "강화소_입장_0_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "신께서는 이웃을 사랑하라고 말씀하셨습니다. 당신에게 죄가 있어도 죄를 미워하지 죄인을 미워하지 말라는 말씀을 따르기에 당신을 책망하지 않겠습니다."
+          "script": "With strong faith, one can overcome any difficulty. May the sacred faith also dwell within your eyes."
         }
       ]
     },
     {
-      "title": "타락_강화소_입장",
+      "title": "강화소_입장_0_랜덤코드:1",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "애초에 이 세상에 믿음과 사랑 같은 관념적인 것이 존재하기는 했던가? 아득하게 비현실적으로 느껴지는군."
+          "script": "A true believer who knows how to practice genuine faith and love may..."
         }
       ]
     },
     {
-      "title": "타락_강화소_입장_50",
+      "title": "강화소_입장_0_랜덤코드:2",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "언제 손에 이렇게 많은 피를 묻히셨습니까? 하지만 괜찮습니다. 그럼에도, 당신을... 신뢰하겠습니다."
+          "script": "Do you know the story of the Good Samaritan? I wish to become such a presence for someone. To do so, one must fundamentally have unwavering faith in this world."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_25_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "It feels like there's something else hiding within your faith. Is it just my delusion?"
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_25_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "Your sins have become heavier, but it will all be fine. Perhaps what you need is an even deeper faith."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_25_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "The divine instructed to love your neighbors. With love for mankind and hatred of sins, I shall not reproach you as well."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_50_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "Since when did your hands become so stained with blood? Nevertheless, it will be fine. I... will trust you."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_50_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "I am uncertain... Could belief and love save everyone?"
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_50_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "I am now no longer sure if belief and love can truly save you."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_75_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "Perhaps I may have never been saved."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_75_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "What you give them is not belief and love. Yet they still follow you."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_75_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "Your eyes always seem to be looking into the distance, without any doubt."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_100_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Betrayer of faith",
+          "script": "Although I have never reproached you, you have committed sins so immense that are hard for me to even imagine. No. It was I who didn't realize that I was never redeemed in the first place."
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_100_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Betrayer of faith",
+          "script": "Does this world even exist in the first place? Or, is the world a marionette of the unknown?"
+        }
+      ]
+    },
+    {
+      "title": "강화소_입장_100_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Betrayer of faith",
+          "script": "Now, I can't trust anything, not even myself. Even my own thoughts are terrifying. Could salvation ever be seeked?"
         }
       ]
     },
@@ -129,79 +237,97 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "신의 가르침 중에는 틀린 말 하나 없습니다. 더 많은 이들이 이를 깨우쳤으면 좋겠습니다."
+          "script": "I believe in the love that the divine has taught us. May you also receive grace within the belief."
         }
       ]
     },
     {
-      "title": "강화소_퇴장",
+      "title": "강화소_퇴장_0_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "신께서 가르쳐주신 사랑을 저는 믿습니다. 부디 이번에는 당신도 그 믿음 속에서 은총을 받기를."
+          "script": "I believe in the love that the divine has taught us. May you also receive grace within the belief."
         }
       ]
     },
     {
-      "title": "타락_강화소_퇴장",
+      "title": "강화소_퇴장_25_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "당신이 우리에게 새로운 구원의 길을 알려줄 수 있기를."
+          "script": "May the path of your faith lead you to the right way."
         }
       ]
     },
     {
-      "title": "타락_강화소_퇴장_50",
+      "title": "강화소_퇴장_50_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "이제 모든 것이 두렵다. 그것은 내가 본 진짜 모습일까?"
+          "script": "Your path and mine. Which path shall be the answer? I... I'm not sure anymore."
         }
       ]
     },
     {
-      "title": "강화소_강화",
+      "title": "강화소_퇴장_75_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "신께서는 이웃에게 사랑을 실천하라고 하셨습니다. \n이 또한 그 방도 중 하나라고 믿습니다."
+          "script": "If I take one more step, will a new path of faith appear? I await your answer."
         }
       ]
     },
     {
-      "title": "강화소_체력",
+      "title": "강화소_퇴장_100_랜덤코드:0",
       "contents": [
         {
-          "name": "Messenger of faith",
-          "script": "더 오래 버티는 자가 최종승자이리라."
+          "name": "Betrayer of faith",
+          "script": "May you show us a new path of salvation."
         }
       ]
     },
     {
-      "title": "강화소_공격력",
+      "title": "강화소_선택_0",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "강한 자는 칼 끝에도 그 강함이 서리니."
+          "script": "The divine spoke, \"Rise and go, as your faith has saved you.\" As such, I believe salvation lies within faith."
         }
       ]
     },
     {
-      "title": "강화소_속도",
+      "title": "강화소_선택_25",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "집중 속에서 적들보다 한 발 앞서리라."
+          "script": "There is not a single falsehood in the teachings of the divine. I hope more people will awaken to this truth."
         }
       ]
     },
     {
-      "title": "강화소_코스트",
+      "title": "강화소_선택_50",
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "믿음이 증가하니 더 빨리 응답하리."
+          "script": "I dared to doubt the teachings of the divine. As a believer, I am deeply ashamed."
+        }
+      ]
+    },
+    {
+      "title": "강화소_선택_75",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "Your way seems to be closer to the path of salvation than my practice of belief and love."
+        }
+      ]
+    },
+    {
+      "title": "강화소_선택_100",
+      "contents": [
+        {
+          "name": "Betrayer of faith",
+          "script": "You are the blind shepherd, and I am the lost sheep."
         }
       ]
     },
@@ -210,43 +336,133 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "신께서는 제게 그대들의 간절한 기도에 화답할 수 있는 권능을 낙인이라는 형태로 내려주셨어요. 나그네여, 제가 내릴 수 있는 은총에 대한 모든 형태의 기도를 올릴 수 있기를."
+          "script": "The divine has bestowed upon me the ability to respond to your earnest prayers in the form of the stigmata. O wanderer, may I be able to pray for the grace I can bestow."
         }
       ]
     },
     {
-      "title": "낙인소_입장",
+      "title": "낙인소_입장_0_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신은.. 남들과 다른 소망을 가졌던 나그네군요. 이번에는 무엇을 위해 기도하시나요?"
+          "script": "People offer prayers for various reasons, each important in its own way. When praying to the divine, people believe that countless wrongdoings in this world will be forgiven. Do you, I, or anyone else belong within that world?"
         }
       ]
     },
     {
-      "title": "타락_낙인소_입장",
+      "title": "낙인소_입장_0_랜덤코드:1",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신의 기도만 들을게요. 다른 이들의 어리석은 기도는 더 이상 듣고 싶지 않아요."
+          "script": "I have a wish. The thing people call 'hope.' However, true hope is something I couldn't pray for. It's as confusing as facing oneself directly in the eye."
         }
       ]
     },
     {
-      "title": "타락_낙인소_입장_50",
+      "title": "낙인소_입장_0_랜덤코드:2",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "나의 이 모든 고됨과 고통에 끝이 있기를."
+          "script": "Everyone has their own pain. I do too. Perhaps the reason I offer my prayer is to find liberation, to find peace and serenity."
         }
       ]
     },
     {
-      "title": "낙인소_퇴장",
+      "title": "낙인소_입장_25_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
+          "script": "You... must be the wanderer that carried a special aspiration. What do you pray for this time?"
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_25_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "My wish is... my wish is... my wish is...."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_50_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "You have already offered half of your prayers. It won't be long until all the grace within my reach is bestowed upon you."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_50_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "May there be an end to all my struggles and suffering."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_50_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "I have witnessed something. It has all begun after I met you. You must be the savior who has come to rescue us."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_75_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "Now I am certain. You are the deity capable of fulfilling my wish."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_75_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "The aspirations of others now seem foolish. Their prayers all appear meaningless."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_75_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "I will only follow your prayers. I no longer wish to hear the foolish prayers of others."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_100_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Betrayer of hope",
+          "script": "My wish has finally been answered. I have finally put my true wish into my prayer."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_100_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Betrayer of hope",
+          "script": "I have seen something again. This time, the form was not vague but clear. It's all thanks to you."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_입장_100_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Betrayer of hope",
+          "script": "Ah, finally, my prayers have been answered!"
         }
       ]
     },
@@ -255,250 +471,97 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신은 신기한 사람이에요. 그 눈을 보면 볼수록, 확신이 생겨요."
+          "script": "May the prayers of the divine always accompany you on your journey."
         }
       ]
     },
     {
-      "title": "타락_낙인소_퇴장",
+      "title": "낙인소_퇴장_0_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신의 여정에 평화와 안녕이 있기를 기도합니다."
+          "script": "May the prayers of the divine always accompany you on your journey."
         }
       ]
     },
     {
-      "title": "타락_낙인소_퇴장_50",
+      "title": "낙인소_퇴장_25_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신의 여정에 늘 신의 기도가 함께 하기를."
+          "script": "I hope light shines upon your aspirations as well."
         }
       ]
     },
     {
-      "title": "낙인소_낙인",
+      "title": "낙인소_퇴장_50_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "신께서 당신의 기도에 응답하여 축복을 내리십니다."
+          "script": "May your aspirations and mine become one."
         }
       ]
     },
     {
-      "title": "낙인소_해제",
+      "title": "낙인소_퇴장_75_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "그 두 손으로 그들을 깨끗이 사면해주리라."
+          "script": "May your aspirations bring salvation to us all."
         }
       ]
     },
     {
-      "title": "낙인소_대죄",
+      "title": "낙인소_퇴장_100_랜덤코드:0",
       "contents": [
         {
-          "name": "Messenger of hope",
-          "script": "심판자의 권능으로 죄 또한 부여되리라."
+          "name": "Betrayer of hope",
+          "script": "I pray for peace and tranquility on your journey."
         }
       ]
     },
     {
-      "title": "낙인소_흡수",
+      "title": "낙인소_선택_0",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "적의 고통이 곧 그대의 기쁨이니, 어찌 그 기쁨을 감추겠는가."
+          "script": "Although the divine has granted me the mercy to bestow stigmata, I am just a mere sinner. If I could do something with the grace I've received..."
         }
       ]
     },
     {
-      "title": "낙인소_축복",
+      "title": "낙인소_선택_25",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "그들이 흘린 피는 곧 은총으로 돌아올지어니."
+          "script": "You are an intriguing individual. The more I look into those eyes, the more certainty arises."
         }
       ]
     },
     {
-      "title": "낙인소_고양Ⅰ",
+      "title": "낙인소_선택_50",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
+          "script": "With the power you wield, it seems any wish can come true."
         }
       ]
     },
     {
-      "title": "낙인소_고양Ⅱ",
+      "title": "낙인소_선택_75",
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
+          "script": "It feels like I have found my own hope."
         }
       ]
     },
     {
-      "title": "낙인소_순풍",
+      "title": "낙인소_선택_100",
       "contents": [
         {
-          "name": "Messenger of hope",
-          "script": "바람이 마음대로 불매 그 소리를 들은 자들은 망설임 없이 나아가리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_가학Ⅰ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "손속에 자비가 없으니 가히 가학적이다고 할 수 있구나."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_가학Ⅱ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "손속에 자비가 없으니 가히 가학적이다고 할 수 있구나."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_피의 축복Ⅰ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "피는 모두에게 평등하여, 그 신성함으로 그 목을 축이리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_피의 축복Ⅱ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "피는 모두에게 평등하여, 그 신성함으로 그 목을 축이리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_재생력",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "스스로를 돌볼 줄 아는 자는 신께서도 눈여겨 보시리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_자애",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "자애로움은 은총과 같으니 이를 받은 이들은 치유되리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_불사Ⅰ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "신께 받은 마지막 기회가 그대를 한번 더 일으켜 세울지어니."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_불사Ⅱ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "신께 받은 마지막 기회가 그대를 한번 더 일으켜 세울지어니."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_무적Ⅰ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "그 어떤 창과 화살도 그대를 쓰러뜨리지 못하리니."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_무적Ⅱ",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "그 어떤 창과 화살도 그대를 쓰러뜨리지 못하리니."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_확장",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "자유로워진 몸으로 어디든 갈 수 있을지어다."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_주교의 축복",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "그대의 걸음이 곧 그를 따를지어니, 방위에 존재하지 않는 곳으로 움직이리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_도박",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "믿음이 부족하여 운과 희망에 기대는 것이 아니리라. 오히려 믿음으로써 내 모든 것을 맡기는 것이니라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_결사의 일격",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "죽기 전에 마지막 소명을 다할지어니 죽음도 그대를 막을 수 없을지어다."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_악업",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_일식",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
-        }
-      ]
-    },
-    {
-      "title": "낙인소_월식",
-      "contents": [
-        {
-          "name": "Messenger of hope",
-          "script": "함께 있는 이들의 사기가 상승하니 모두가 강해지리라."
+          "name": "Betrayer of hope",
+          "script": "You are my new deity. May my abilities be of assistance to you."
         }
       ]
     },
@@ -507,16 +570,142 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "가진 세월로 우람해진 그들은 늘 저를 무섭게 내려다보아요. 그 중에서도 특별히 더 강해 저를 벌벌 떨게 하는 그들은 그것이 본 모습이 아닐거에요."
+          "script": "Sometimes it feels like they're hiding grotesque and vicious monsters within them. I can sense it with my instinct. But at the same time, I hope I'm wrong. I want to believe and love them for who they show me they are."
         }
       ]
     },
     {
-      "title": "탕녀_입장",
+      "title": "탕녀_입장_0_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "죽는 것은 싫어요. 죽음은 슬프거든요. 아픈 것도 싫어요. 남들도 아프지 않았으면 좋겠어요."
+          "script": "Why is the world so full of hate? Why can't everyone just love each other...?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_0_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "I don't want to die. Death is sad. I also hate pain. I wish others don't have to suffer either."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_0_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "When I hear the birds chirping in the morning, my heart warms up. Every morning, they give me a reason to live and love this world."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_25_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "How many people are showing their true selves in this world?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_25_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "You seem very tired. Are you hurt?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_25_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "Isn't there a way for no one to suffer? If we love each other, wounds can heal without pain, can't they? I want to believe that, but to do so, I first need to strive to be such a warm person."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_50_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "After seeing their true selves, I realized that I was right, but I'm not happy at all. Something's wrong."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_50_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "Please don't prove it to me. No, please prove it."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_50_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "It feels like the more you use your power, the deeper you fall. Maybe I'm afraid I won't be able to escape. Is it because I still don't know something?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_75_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "The sound of birds chirping in the morning no longer reaches my ears."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_75_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "I want to rest."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_75_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "Perhaps I no longer want to know the truth. Was there even a truth? What's true and what's false? What's good and what's evil?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_100_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Betrayer of love",
+          "script": "You're not a sinner. You were a savior. Yes, the warmth and love I believed before were all lies."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_100_랜덤코드:1",
+      "contents": [
+        {
+          "name": "Betrayer of love",
+          "script": "I don't deserve to love others. Including myself."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_입장_100_랜덤코드:2",
+      "contents": [
+        {
+          "name": "Betrayer of love",
+          "script": "I like the new way of love you taught me."
         }
       ]
     },
@@ -525,52 +714,97 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "이 세상에 얼마나 많은 이들이 진실된 모습을 보여주고 있을까요?"
+          "script": "May you also be able to love this world."
         }
       ]
     },
     {
-      "title": "탕녀_퇴장",
+      "title": "탕녀_퇴장_0_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "당신도 이 세상을 사랑할 수 있기를."
+          "script": "May you also be able to love this world."
         }
       ]
     },
     {
-      "title": "타락_탕녀_입장_100",
+      "title": "탕녀_퇴장_25_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "이제 보니 당신은 죄인인가요? 저는 죄인마저 믿고 사랑하려고한건가요?"
+          "script": "May the power of love also reach you."
         }
       ]
     },
     {
-      "title": "타락_탕녀_입장_50",
+      "title": "탕녀_퇴장_50_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "증명해주지 말아주세요. 아니, 증명해주세요."
+          "script": "May your love come to me as well."
         }
       ]
     },
     {
-      "title": "타락_탕녀_퇴장_50",
+      "title": "탕녀_퇴장_75_랜덤코드:0",
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "이제 보니 당신은 죄인인가요? 저는 죄인마저 믿고 사랑하려고한건가요?"
+          "script": "Now I can see your path of love."
         }
       ]
     },
     {
-      "title": "타락_탕녀_퇴장_100",
+      "title": "탕녀_퇴장_100_랜덤코드:0",
+      "contents": [
+        {
+          "name": "Betrayer of love",
+          "script": "May more people awaken to your love."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_0",
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "더 많은 이들의 당신의 사랑을 깨우치기를."
+          "script": "If there's love, anything is possible."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_25",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "I don't see love in your eyes. What's behind them?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_50",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "Now that I think about it, are you a sinner? Was I trying to believe and love a sinner?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_75",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "My heart feels stuffy. If it were you, could you alleviate this feeling?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_100",
+      "contents": [
+        {
+          "name": "Betrayer of love",
+          "script": "I will continue to love this world in my own way. The power you've given me is my true way. Yes, even if it's like this, if I can help the world..."
         }
       ]
     }

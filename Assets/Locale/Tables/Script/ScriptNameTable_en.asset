@@ -46,6 +46,30 @@ MonoBehaviour:
     m_Localized: Messenger of love
     m_Metadata:
       m_Items: []
+  - m_Id: 5978225335504896
+    m_Localized: Betrayer of faith
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5978251717677056
+    m_Localized: Betrayer of hope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5978254909542400
+    m_Localized: Betrayer of love
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010450101833728
+    m_Localized: The Triad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010472176455680
+    m_Localized: Rahel&Lea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010916835594240
+    m_Localized: Phanuel
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -315,6 +315,7 @@ MonoBehaviour:
     CurrentTileID: 0
     ClearTileID: 
   StageAct: 0
+  CutSceneToDisplay: 0
   GameData: {fileID: 11400000, guid: 1c3f1f779abcbdc49b7a0ca29522a837, type: 2}
   GameDataMain: {fileID: 11400000, guid: 1d6f5d8fb3f46fb46ab9f227bc36bf04, type: 2}
   GameDataTutorial: {fileID: 11400000, guid: 79413f12e9c3c2a42ae8afb673f29d07, type: 2}

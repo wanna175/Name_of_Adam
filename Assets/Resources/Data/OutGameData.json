@@ -12,165 +12,165 @@
     },
     {
       "ID": 1,
-      "Name": "운명",
+      "Name": "Destiny",
       "Cost": 50,
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인 운명이 등장할 수 있게 됩니다.\n\n운명 - 공격 시 데미지가 50% 확률로 2배, 50% 확률로 1/2배가 됩니다."
+      "Description": "Stigmata 'Destiny' appears from now on.\n\nDestiny - When attacking, there is a 50% chance for damage to be doubled and a 50% chance for it to be halved."
     },
     {
       "ID": 2,
-      "Name": "신앙 회복",
+      "Name": "Faith Recovery",
       "Cost": 150,
       "Prequest": 0,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강화소의 새로운 기능 신앙 회복이 해금됩니다.\n\n원하는 유닛의 신앙을 회복시킬 수 있게 됩니다."
+      "Description": "A new feature, Faith Recovery, is unlocked when baptizing.\n\nYou can now restore the faith of desired units."
     },
     {
       "ID": 3,
-      "Name": "시작 검은 정수 I",
+      "Name": "Starting dark essence I",
       "Cost": 100,
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "시작 검은 정수가 4에서 7로 상승합니다."
+      "Description": "The starting dark essence increases from 4 to 7."
     },
     {
       "ID": 4,
-      "Name": "보복",
+      "Name": "Revenge",
       "Cost": 50,
       "Prequest": 5,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인 보복이 등장할 수 있게 됩니다.\n\n보복 - 사거리 내의 적에게 피격 시 반격합니다."
+      "Description": "Stigmata 'Revenge' appears from now on.\n\nRevenge - Counterattacks enemies within attack range."
     },
     {
       "ID": 5,
-      "Name": "오리지널 연성",
+      "Name": "Apostle Creation",
       "Cost": 200,
       "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "탕녀의 새로운 기능 오리지널 연성이 해금됩니다.\n\n검은 정수를 지불하여 흑기사같은 오리지널 유닛 하나를 무작위로 소환할 수 있게 됩니다."
+      "Description": "A new feature, Apostle Creation, is unlocked in the Sacrifice Stage.\n\nYou can now randomly create apostles via dark essence."
     },
     {
       "ID": 6,
-      "Name": "시작 검은 정수 II",
+      "Name": "Starting dark essence II",
       "Cost": 125,
       "Prequest": 3,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "시작 검은 정수가 7에서 10으로 상승합니다."
+      "Description": "The starting dark essence increases from 7 to 10."
     },
     {
       "ID": 7,
-      "Name": "척살",
+      "Name": "Killing Spree",
       "Cost": 50,
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인 척살이 등장할 수 있게 됩니다.\n\n척살 - 적 처치 시 한번 더 턴을 가집니다."
+      "Description": "Stigmata 'Killing Spree' appears from now on.\n\nKilling Spree - Gains an extra turn upon defeating an enemy."
     },
     {
       "ID": 8,
-      "Name": "엘리트 클리어 보상",
+      "Name": "Elite Clear Reward",
       "Cost": 250,
       "Prequest": 5,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "엘리트 클리어 시 보상으로 모든 유닛이 신앙을 1 회복합니다."
+      "Description": "Every unit restores faith by 1 as a reward for clearing an Elite enemy."
     },
     {
       "ID": 9,
-      "Name": "최대 강화 횟수",
+      "Name": "Maximum upgrade",
       "Cost": 200,
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "최대 강화 횟수 2회에서 3회로 상승합니다."
+      "Description": "The maximum upgrade increases from 2 to 3."
     },
     {
       "ID": 10,
-      "Name": "갈망",
+      "Name": "Thirst",
       "Cost": 100,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인 갈망이 등장할 수 있게 됩니다.\n\n갈망 - 적 처치 시 체력 5, 공격력 2가 영구적으로 상승합니다. (단, 전당에서는 초기화됩니다.)"
+      "Description": "Stigmata 'Thirst' appears from now on.\n\nThirst - Upon defeating an enemy, health permanently increases by 5, and attack by 2. (Resets in the Divine Hall)"
     },
     {
       "ID": 11,
-      "Name": "낙인 이동",
+      "Name": "Stigmata transfer",
       "Cost": 300,
       "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인소의 새로운 기능 낙인 이동이 해금됩니다.\n\n유닛 하나를 희생해 해당 유닛의 낙인 하나를 다른 유닛에게 부여할 수 있게 됩니다."
+      "Description": "A new feature, Stigmata Transfer, is unlocked in the Stigmata stage.\n\nYou can now sacrifice one unit to bestow one of its stigmata onto another unit."
     },
     {
       "ID": 12,
-      "Name": "시작 마나 I",
+      "Name": "Starting mana I",
       "Cost": 150,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "시작 마나가 50에서 55로 상승합니다."
+      "Description": "The starting mana increases from 50 to 55."
     },
     {
       "ID": 13,
-      "Name": "순간이동",
+      "Name": "Teleport",
       "Cost": 100,
       "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인 순간이동이 등장할 수 있게 됩니다.\n\n순간이동 - 적 처치시 순보를 1회 획득합니다. (순보: 원하는 위치 어디든 이동할 수 있습니다.)"
+      "Description": "Stigmata 'Teleport' appears from now on.\n\nTeleport - Earns 1 Sacred Step upon defeating an enemy.\nSacred Step - Becomes able to move to any desired position."
     },
     {
       "ID": 14,
-      "Name": "전당 잠금 해제 I",
+      "Name": "Unlocking the Divine Hall I",
       "Cost": 400,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "묘지기와 죄수 자리에 전당의 유닛을 편성하여 플레이할 수 있게 됩니다."
+      "Description": "You can now organize units from the Divine Hall in the slots of the Gravekeeper and Prisoner at the start."
     },
     {
       "ID": 15,
-      "Name": "시작 마나 II",
+      "Name": "Starting mana II",
       "Cost": 200,
       "Prequest": 12,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "시작 마나가 55에서 60으로 상승합니다."
+      "Description": "The starting mana increases from 55 to 60."
     },
     {
       "ID": 16,
-      "Name": "금지된 계약",
+      "Name": "Forbidden Pact",
       "Cost": 100,
       "Prequest": 17,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인 금지된 계약이 등장할 수 있게 됩니다.\n\n금지된 계약 - 소환시 해당 유닛이 기절 1회에 걸리는 대신 다음 스킬의 마나 코스트가 사라집니다."
+      "Description": "Stigmata 'Forbidden Pact' appears from now on.\n\nForbidden Pact - The unit becomes stunned once, but the mana cost of the next skill is eliminated upon summoning."
     },
     {
       "ID": 17,
-      "Name": "전당 잠금 해제 II",
+      "Name": "Unlocking the Divine Hall II",
       "Cost": 500,
       "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "일반 유닛들 자리에 오리지널이나 엘리트를 편성하여 플레이할 수 있게 됩니다."
+      "Description": "You can now organize apostles or elites into normal unit slots in the start."
     },
     {
       "ID": 20,
-      "Name": "대죄",
+      "Name": "Sin",
       "Cost": 100,
       "Prequest": 17,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "낙인 대죄가 탕녀에서 등장할 수 있게 됩니다.\n\n대죄 - 공격 시 적의 신앙을 1 떨어뜨립니다."
+      "Description": "Stigmata 'Sin' appears in the Sacrifice from now on.\n\nSin - Decreases the enemy's faith by 1 upon attacking."
     },
     {
       "ID": 50,
@@ -192,30 +192,30 @@
     },
     {
       "ID": 52,
-      "Name": "선지자 II",
+      "Name": "Unlock the Dark Prophet II",
       "Cost": 200,
       "Prequest": 51,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "신속의 검은 정수 코스트가 없어집니다."
+      "Description": "Skill 'Swiftness' now requires 0 dark essence."
     },
     {
       "ID": 53,
-      "Name": "선지자 III",
+      "Name": "Unlock the Dark Prophet III",
       "Cost": 300,
       "Prequest": 52,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "속삭임의 마나 코스트가 5 감소합니다."
+      "Description": "The mana cost of Whisper decreases by 5."
     },
     {
       "ID": 54,
-      "Name": "선지자 IV",
+      "Name": "Unlock the Dark Prophet IV",
       "Cost": 400,
       "Prequest": 53,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "검은 십자가에 피격된 적의 신앙을 1 떨어뜨립니다."
+      "Description": ""
     },
     {
       "ID": 60,
@@ -228,39 +228,39 @@
     },
     {
       "ID": 61,
-      "Name": "흑타수 I",
+      "Name": "Unlock the Saintess of Sins I",
       "Cost": 800,
       "Prequest": 60,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신 (흑타수)를 해금합니다."
+      "Description": "The incarnation \"Saintess of Sins\" is unlocked."
     },
     {
       "ID": 62,
-      "Name": "흑타수 II",
+      "Name": "Unlock the Saintess of Sins II",
       "Cost": 200,
       "Prequest": 61,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "회복의 회복량이 5 증가합니다."
+      "Description": "The amount of healing of the skill \"Recovery\" is increased by 5."
     },
     {
       "ID": 63,
-      "Name": "흑타수 III",
+      "Name": "Unlock the Saintess of Sins III",
       "Cost": 300,
       "Prequest": 62,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "귀환의 검은 정수 코스트가 1 감소합니다."
+      "Description": "The Dark Essence cost of \"Returning\" decreases by 1."
     },
     {
       "ID": 64,
-      "Name": "흑타수 IV",
+      "Name": "Unlock the Saintess of Sins IV",
       "Cost": 400,
       "Prequest": 63,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "기도가 적에게 공격력 증가를 부여하지 않습니다."
+      "Description": "Skill \"Prayer\" no longer grants an attack power increase to enemies."
     },
     {
       "ID": 70,
@@ -273,39 +273,39 @@
     },
     {
       "ID": 71,
-      "Name": "루시퍼 I",
+      "Name": "Unlock the Heir of Vice I",
       "Cost": 400,
       "Prequest": 70,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "화신 (루시퍼)를 해금합니다."
+      "Description": "The incarnation \"Heir of Vice\" is unlocked."
     },
     {
       "ID": 72,
-      "Name": "루시퍼 II",
+      "Name": "Unlock the Heir of Vice II",
       "Cost": 200,
       "Prequest": 71,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "영혼 거래가 추가적으로 악성을 2회 부여합니다."
+      "Description": "Skill \"Trade of Souls\" now grants malevolence 2 times additionally."
     },
     {
       "ID": 73,
-      "Name": "루시퍼 III",
+      "Name": "Unlock the Heir of Vice III",
       "Cost": 300,
       "Prequest": 72,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "천벌의 마나 코스트가 10 감소합니다."
+      "Description": "The mana cost of 'Divine Punishment' decreases by 10."
     },
     {
       "ID": 74,
-      "Name": "루시퍼 IV",
+      "Name": "Unlock the Heir of Vice IV",
       "Cost": 400,
       "Prequest": 73,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "강림의 지속시간이 1턴 증가합니다."
+      "Description": "The duration of Advent is increased by 1 turn."
     }
   ],
   "HallUnit": [
