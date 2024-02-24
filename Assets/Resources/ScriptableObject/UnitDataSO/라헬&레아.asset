@@ -18,9 +18,8 @@ MonoBehaviour:
     ATK: 15
     SPD: 70
     FallCurrentCount: 0
-    FallMaxCount: 1
+    FallMaxCount: 7
     ManaCost: 100
-    CurrentUpgradeCount: 0
   _uniqueStigma: []
   _id: "\uB77C\uD5EC&\uB808\uC544"
   _name: Rahel&Lea
