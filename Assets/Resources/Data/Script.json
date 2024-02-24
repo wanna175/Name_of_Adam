@@ -36,10 +36,6 @@
         {
           "name": "Tubalcain",
           "script": "A true knight does not yield to fear. En garde! Shall you be vanquished in no time."
-        },
-        {
-          "name": "Tubalcain",
-          "script": "This is it. This is the true beauty I sought!"
         }
       ]
     },
@@ -66,7 +62,7 @@
       "contents": [
         {
           "name": "Phanuel",
-          "script": ""
+          "script": "You intruder! How dare you bring the vile shadow of evil to the kingdom! Face the might of the royal, and vanish into the darkness."
         }
       ]
     },
@@ -74,8 +70,8 @@
       "title": "호루스전_입장",
       "contents": [
         {
-          "name": "호루스",
-          "script": "호루스전 스크립트"
+          "name": "The Savior",
+          "script": "A being that should never have been born has come into existence. Now, it is time to set things right."
         }
       ]
     },

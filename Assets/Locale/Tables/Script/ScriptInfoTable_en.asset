@@ -429,6 +429,11 @@ MonoBehaviour:
       given me is my true way. Yes, even if it's like this, if I can help the world...
     m_Metadata:
       m_Items: []
+  - m_Id: 6135992028033024
+    m_Localized: You intruder! How dare you bring the vile shadow of evil to the
+      kingdom! Face the might of the royal, and vanish into the darkness.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
