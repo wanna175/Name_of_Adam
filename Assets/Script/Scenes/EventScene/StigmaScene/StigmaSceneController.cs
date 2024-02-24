@@ -57,14 +57,16 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn.SetActive(false);
             _stigma_transfer_btn_disabled.SetActive(true);
         }
-
+        Debug.Log("init GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.getVisitStigma());
         if (GameManager.OutGameData.getVisitStigma() == false)
         {
-            GameManager.OutGameData.setVisitStigma(true);
+            //GameManager.OutGameData.setVisitStigma(true);
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
+            Debug.Log("낙인소 입장 최초");
         }
         else
         {
+            Debug.Log("낙인소 입장 햇슴");
             if (GameManager.Data.GameData.NpcQuest.StigmaQuest >=50)
             {
                 _scripts = GameManager.Data.ScriptData["타락_낙인소_입장"];
@@ -131,6 +133,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
+
     }
 
     // 낙인 이동 실행시킬 함수
@@ -231,21 +234,22 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     }
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        /*
+        
         if (GameManager.Data.GameData.IsVisitStigma == false)
         {
             GameManager.Data.GameData.IsVisitStigma = true;
         }
-        */
+        
 
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.Data.GameData.IsVisitStigma == false)
+        if (GameManager.OutGameData.getVisitStigma() == false)
         {
-            GameManager.Data.GameData.IsVisitStigma = true;
+            GameManager.OutGameData.setVisitStigma(true);
+            Debug.Log("GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.getVisitStigma());
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
         }
         else

@@ -39,10 +39,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         if (GameManager.OutGameData.getVisitDarkshop() == false)
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
-            GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-            uiConversation = FindObjectOfType<UI_Conversation>();
-            uiConversation.ConversationEnded += OnConversationEnded;
-            GameManager.OutGameData.setVisitDarkshop(true);
+            //GameManager.OutGameData.setVisitDarkshop(true);
         }
         else
         {
@@ -55,7 +52,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             }
             else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 * 3 / 4)
             {
-                scripts = GameManager.Data.ScriptData["타락_탕녀_입장_75"];
+                scripts = GameManager.Data.ScriptData["타락_탕녀_입장_50"];
                 //안개이미지 변경
             }
             else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 / 2)
@@ -65,7 +62,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             }
             else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 / 4)
             {
-                scripts = GameManager.Data.ScriptData["타락_탕녀_입장_25"];
+                scripts = GameManager.Data.ScriptData["탕녀_입장"];
                 //안개이미지 변경
             }
             else
@@ -227,6 +224,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     }
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
+        if (GameManager.Data.GameData.IsVisitDarkShop == false)
+        {
+            GameManager.Data.GameData.IsVisitDarkShop = true;
+        }
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
@@ -234,27 +235,19 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
 
 
-        if (GameManager.Data.GameData.IsVisitDarkShop == false)
+        if (GameManager.OutGameData.getVisitDarkshop()==false)
         {
-            GameManager.Data.GameData.IsVisitDarkShop = true;
+            GameManager.OutGameData.setVisitDarkshop(true);
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else {
-            if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30)
+            if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30)
             {//
                 quitScript.Init(GameManager.Data.ScriptData["타락_탕녀_퇴장_100"], false);
             }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 * 3 / 4)
-            {
-                quitScript.Init(GameManager.Data.ScriptData["타락_탕녀_퇴장_75"], false);
-            }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 2)
+            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest >= 30 / 2)
             {
                 quitScript.Init(GameManager.Data.ScriptData["타락_탕녀_퇴장_50"], false);
-            }
-            else if (GameManager.Data.GameData.NpcQuest.DarkshopQuest > 30 / 4)
-            {
-                quitScript.Init(GameManager.Data.ScriptData["타락_탕녀_퇴장_25"], false);
             }
             else
                 quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장"], false);

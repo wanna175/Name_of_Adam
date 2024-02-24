@@ -282,16 +282,19 @@ public class OutGameDataContainer : MonoBehaviour
     public void setVisitUpgrade(bool _isVisit)
     {
         data.isVisitUpgrade = _isVisit;
+        SaveData();
     }
     public bool getVisitStigma() { return data.isVisitStigma; }
     public void setVisitStigma(bool _isVisit)
     {
         data.isVisitStigma = _isVisit;
+        SaveData();
     }
     public bool getVisitDarkshop() { return data.isVisitDarkShop; }
     public void setVisitDarkshop(bool _isVisit)
     {
         data.isVisitDarkShop = _isVisit;
+        SaveData();
     }
     public bool isGameOverCheck() { return data.isGameOver; }
     public void set_isGameOverCheck(bool _isGameOver) {
