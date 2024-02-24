@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HarlotSceneController : MonoBehaviour,StigmaInterface
 {
@@ -21,6 +22,8 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     [SerializeField] private GameObject _getOriginUnitButton_disabled;
     [SerializeField] private GameObject _ui_SelectMenu;
     [SerializeField] private List<DeckUnit> _originUnits = null;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text descriptionText;
 
     List<Script> scripts = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
@@ -42,6 +45,8 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         if (GameManager.OutGameData.getVisitDarkshop() == false)
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["탕녀_선택_0"][0].name));
             //GameManager.OutGameData.setVisitDarkshop(true);
         }
         else
@@ -49,6 +54,8 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 7.5f);
             if (questLevel > 4) questLevel = 4;
             scripts = GameManager.Data.ScriptData[$"탕녀_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
 
             if (questLevel == 4)
             {   

@@ -360,6 +360,75 @@ MonoBehaviour:
     m_Localized: May more people awaken to your love.
     m_Metadata:
       m_Items: []
+  - m_Id: 6030584996597760
+    m_Localized: The divine spoke, \"Rise and go, as your faith has saved you.\"
+      As such, I believe salvation lies within faith.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6030698637070336
+    m_Localized: There is not a single falsehood in the teachings of the divine.
+      I hope more people will awaken to this truth.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6030810947948544
+    m_Localized: I dared to doubt the teachings of the divine. As a believer, I am
+      deeply ashamed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6030897509994496
+    m_Localized: Your way seems to be closer to the path of salvation than my practice
+      of belief and love.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6030951314526208
+    m_Localized: You are the blind shepherd, and I am the lost sheep.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6036756487114752
+    m_Localized: Although the divine has granted me the mercy to bestow stigmata,
+      I am just a mere sinner. If I could do something with the grace I've received...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6037087182819328
+    m_Localized: You are an intriguing individual. The more I look into those eyes,
+      the more certainty arises.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6037146561581056
+    m_Localized: With the power you wield, it seems any wish can come true.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6037210277253120
+    m_Localized: It feels like I have found my own hope.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6037288291307520
+    m_Localized: You are my new deity. May my abilities be of assistance to you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6041491222990848
+    m_Localized: If there's love, anything is possible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6041591949201408
+    m_Localized: I don't see love in your eyes. What's behind them?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6041652099715072
+    m_Localized: Now that I think about it, are you a sinner? Was I trying to believe
+      and love a sinner?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6041822803693568
+    m_Localized: My heart feels stuffy. If it were you, could you alleviate this
+      feeling?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6041927627739136
+    m_Localized: I will continue to love this world in my own way. The power you've
+      given me is my true way. Yes, even if it's like this, if I can help the world...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

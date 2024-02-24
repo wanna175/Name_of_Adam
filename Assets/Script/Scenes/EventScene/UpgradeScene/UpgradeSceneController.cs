@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeSceneController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class UpgradeSceneController : MonoBehaviour
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _restoreFall_Btn;
     [SerializeField] private GameObject _ui_SelectMenu;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text descriptionText;
 
     private List<Script> _scripts;
     private UI_Conversation _conversationUI;
@@ -41,6 +44,8 @@ public class UpgradeSceneController : MonoBehaviour
         if (GameManager.OutGameData.getVisitUpgrade() == false)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["강화소_선택_0"][0].name));
             //GameManager.OutGameData.setVisitUpgrade(true);
         }
         else
@@ -48,7 +53,9 @@ public class UpgradeSceneController : MonoBehaviour
             int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
             if (questLevel > 4) questLevel = 4;
             _scripts = GameManager.Data.ScriptData[$"강화소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
-            
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
+
             if (questLevel == 4)
             {
                 background.SetActive(false);

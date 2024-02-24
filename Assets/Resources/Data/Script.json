@@ -287,6 +287,51 @@
       ]
     },
     {
+      "title": "강화소_선택_0",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "The divine spoke, \"Rise and go, as your faith has saved you.\" As such, I believe salvation lies within faith."
+        }
+      ]
+    },
+    {
+      "title": "강화소_선택_25",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "There is not a single falsehood in the teachings of the divine. I hope more people will awaken to this truth."
+        }
+      ]
+    },
+    {
+      "title": "강화소_선택_50",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "I dared to doubt the teachings of the divine. As a believer, I am deeply ashamed."
+        }
+      ]
+    },
+    {
+      "title": "강화소_선택_75",
+      "contents": [
+        {
+          "name": "Messenger of faith",
+          "script": "Your way seems to be closer to the path of salvation than my practice of belief and love."
+        }
+      ]
+    },
+    {
+      "title": "강화소_선택_100",
+      "contents": [
+        {
+          "name": "Betrayer of faith",
+          "script": "You are the blind shepherd, and I am the lost sheep."
+        }
+      ]
+    },
+    {
       "title": "낙인소_입장_최초",
       "contents": [
         {
@@ -426,7 +471,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "당신은 신기한 사람이에요. 그 눈을 보면 볼수록, 확신이 생겨요."
+          "script": "May the prayers of the divine always accompany you on your journey."
         }
       ]
     },
@@ -472,6 +517,51 @@
         {
           "name": "Betrayer of hope",
           "script": "I pray for peace and tranquility on your journey."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_선택_0",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "Although the divine has granted me the mercy to bestow stigmata, I am just a mere sinner. If I could do something with the grace I've received..."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_선택_25",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "You are an intriguing individual. The more I look into those eyes, the more certainty arises."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_선택_50",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "With the power you wield, it seems any wish can come true."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_선택_75",
+      "contents": [
+        {
+          "name": "Messenger of hope",
+          "script": "It feels like I have found my own hope."
+        }
+      ]
+    },
+    {
+      "title": "낙인소_선택_100",
+      "contents": [
+        {
+          "name": "Betrayer of hope",
+          "script": "You are my new deity. May my abilities be of assistance to you."
         }
       ]
     },
@@ -670,6 +760,51 @@
         {
           "name": "Betrayer of love",
           "script": "May more people awaken to your love."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_0",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "If there's love, anything is possible."
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_25",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "I don't see love in your eyes. What's behind them?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_50",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "Now that I think about it, are you a sinner? Was I trying to believe and love a sinner?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_75",
+      "contents": [
+        {
+          "name": "Messenger of love",
+          "script": "My heart feels stuffy. If it were you, could you alleviate this feeling?"
+        }
+      ]
+    },
+    {
+      "title": "탕녀_선택_100",
+      "contents": [
+        {
+          "name": "Betrayer of love",
+          "script": "I will continue to love this world in my own way. The power you've given me is my true way. Yes, even if it's like this, if I can help the world..."
         }
       ]
     }

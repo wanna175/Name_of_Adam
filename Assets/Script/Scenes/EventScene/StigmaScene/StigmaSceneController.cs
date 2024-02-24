@@ -22,6 +22,8 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     [SerializeField] private GameObject _stigma_transfer_btn_disabled;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _ui_SelectMenu;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text descriptionText;
 
     private UI_Conversation uiConversation;
     private Stigma _giveStigma = null;
@@ -65,6 +67,9 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         {
             //GameManager.OutGameData.setVisitStigma(true);
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["낙인소_선택_0"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["낙인소_선택_0"][0].name));
+
             Debug.Log("낙인소 입장 최초");
         }
         else
@@ -73,6 +78,8 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
             if (questLevel > 4) questLevel = 4;
             _scripts = GameManager.Data.ScriptData[$"낙인소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"낙인소_선택_{25 * questLevel}"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"낙인소_선택_{25 * questLevel}"][0].name));
 
             if (questLevel == 4)
             {

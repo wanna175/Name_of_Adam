@@ -67,6 +67,26 @@ MonoBehaviour:
     m_Key: Select a unit to receive as a reward.
     m_Metadata:
       m_Items: []
+  - m_Id: 2927087455473664
+    m_Key: Stigmata Bestowal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2927200231919616
+    m_Key: Stigmata Transfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2931107607777280
+    m_Key: Revert Unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2931125311934464
+    m_Key: Corruption Stigmata Bestowal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2931150150602752
+    m_Key: Apostle Creation
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
