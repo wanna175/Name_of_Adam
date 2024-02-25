@@ -11,6 +11,8 @@ public class ProgressShopSceneController : MonoBehaviour
     [SerializeField] GameObject UI_IncarnaShopBtn;
     [SerializeField] GameObject UI_UpgradeShopBtn;
 
+    public GameObject ItemInfo;
+
     void Start()
     {
         Init();
@@ -31,6 +33,7 @@ public class ProgressShopSceneController : MonoBehaviour
         UI_UpgradeShop.SetActive(true);
         UI_IncarnaShopBtn.GetComponent<Image>().enabled = false;
         UI_UpgradeShopBtn.GetComponent<Image>().enabled = true;
+        ItemInfo.SetActive(false);
     }
 
     public void IncarnaBtn()
@@ -40,6 +43,7 @@ public class ProgressShopSceneController : MonoBehaviour
         UI_UpgradeShop.SetActive(false);
         UI_IncarnaShopBtn.GetComponent<Image>().enabled = true;
         UI_UpgradeShopBtn.GetComponent<Image>().enabled = false;
+        ItemInfo.SetActive(false);
     }
 
     public void Quit()
