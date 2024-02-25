@@ -58,7 +58,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3107543148826624
-    m_Localized: I believe in the love that the Divine has taught us.\nMay you also
+    m_Localized: I believe in the love that the Divine has taught us. May you also
       receive grace within that faith.
     m_Metadata:
       m_Items: []
@@ -361,8 +361,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6030584996597760
-    m_Localized: The divine spoke, \"Rise and go, as your faith has saved you.\"
-      As such, I believe salvation lies within faith.
+    m_Localized: The divine spoke, "Rise and go, as your faith has saved you." As
+      such, I believe salvation lies within faith.
     m_Metadata:
       m_Items: []
   - m_Id: 6030698637070336

@@ -326,18 +326,18 @@ public class OutGameDataContainer : MonoBehaviour
         _data.resolution = resolution;
         SetResolution();
     }
-    public List<Resolution> GetAllResolution() => resolutions;
-    public int GetLanguage() => data.language;
-    public int SetLanguage(int language) => data.language = language;
-    public int GetResolutionIndex() => data.resolution;
-    public Resolution GetResolution() => resolutions[data.resolution];
-    public bool IsWindowed() => data.isWindowed;
-    public float GetMasterSoundPower() => data.masterSoundPower;
-    public float GetBGMSoundPower() => data.BGMSoundPower;
-    public float GetSESoundPower() => data.SESoundPower;
-    public float SetMasterSoundPower(float power) => data.masterSoundPower = power;
-    public float SetBGMSoundPower(float power) => data.BGMSoundPower = power;
-    public float SetSESoundPower(float power) => data.SESoundPower = power;
+    public List<Resolution> GetAllResolution() => _resolutions;
+    public int GetLanguage() => _data.language;
+    public int SetLanguage(int language) => _data.language = language;
+    public int GetResolutionIndex() => _data.resolution;
+    public Resolution GetResolution() => _resolutions[_data.resolution];
+    public bool IsWindowed() => _data.IsWindowed;
+    public float GetMasterSoundPower() => _data.MasterSoundPower;
+    public float GetBGMSoundPower() => _data.BGMSoundPower;
+    public float GetSESoundPower() => _data.SESoundPower;
+    public float SetMasterSoundPower(float power) => _data.MasterSoundPower = power;
+    public float SetBGMSoundPower(float power) => _data.BGMSoundPower = power;
+    public float SetSESoundPower(float power) => _data.SESoundPower = power;
     public void ReSetOption()
     {
         _data.resolution = 0;
