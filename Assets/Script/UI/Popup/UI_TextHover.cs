@@ -16,9 +16,10 @@ public class UI_TextHover : UI_Hover
 
         float posX;
         float posY;
+        float width = GameManager.OutGameData.GetResolution().width;
 
-        if (position.x > 1920 - 175)
-            posX = 1920 - 175;
+        if (position.x > width - 175)
+            posX = width - 175;
         else
             posX = position.x;
 
@@ -27,6 +28,6 @@ public class UI_TextHover : UI_Hover
         else
             posY = position.y;
 
-        _block.GetComponent<Transform>().position = new(posX, posY);
+        _block.GetComponent<RectTransform>().anchoredPosition = new(posX, posY);
     }
 }
