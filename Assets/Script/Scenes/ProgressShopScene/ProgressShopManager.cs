@@ -115,6 +115,12 @@ public class ProgressShopManager : MonoBehaviour
         GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
     }
 
+    public void OnMenuBtnClick()
+    {
+        ShopNode foundNode = ShopNodes.FirstOrDefault(node => node.ItemID == selectedID);
+        foundNode.Highlighted.SetActive(false);
+    }
+
     public void SetNodeImage()
     {
         foreach(ShopNode node in ShopNodes)
