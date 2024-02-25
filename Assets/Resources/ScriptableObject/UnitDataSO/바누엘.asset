@@ -19,7 +19,7 @@ MonoBehaviour:
     SPD: 0
     FallCurrentCount: 0
     FallMaxCount: 12
-    ManaCost: 0
+    ManaCost: 100
   _uniqueStigma:
   - {fileID: -1096335051127237467, guid: cd5ed88c6bfe63e4e84e2e734f01dcc3, type: 3}
   - {fileID: -508501736621560720, guid: 34fc05444e997cd40bf7be4e3a0de2e5, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
   _skillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
   _animType: {fileID: 11400000, guid: 9c5500ed16c73bb4cb5cbb732dcaf0cb, type: 2}
-  _darkEssenseDrop: 0
+  _darkEssenseDrop: 10
   _darkEssenseCost: 1
   _unitActionType: 3
   _unitMoveType: 1
