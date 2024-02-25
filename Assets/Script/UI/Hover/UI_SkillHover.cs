@@ -15,7 +15,7 @@ public class UI_SkillHover : UI_Hover
     {
         float posX;
         float posY;
-        float width = GameManager.OutGameData.GetResolution().width;
+        float ratio = 1920f / Screen.width;
         string costStr = $"<color=white><size=120%>Mana {mana} Dark Essence {darkessence}";
 
         switch (GameManager.Locale.CurrentLocaleIndex)
@@ -26,8 +26,8 @@ public class UI_SkillHover : UI_Hover
 
         _description.SetText($"<color=#FF9696><size=150%>{name}\n{costStr}\n<color=white><size=100%>{description}");
 
-        if (position.x > width - 300)
-            posX = width - 300;
+        if (position.x > 1920 - 300)
+            posX = 1920 - 300;
         else
             posX = position.x;
 
@@ -35,6 +35,9 @@ public class UI_SkillHover : UI_Hover
             posY = 150;
         else
             posY = position.y;
+
+        posX *= ratio;
+        posY *= ratio;
 
         _block.GetComponent<RectTransform>().anchoredPosition = new(posX, posY);
     }

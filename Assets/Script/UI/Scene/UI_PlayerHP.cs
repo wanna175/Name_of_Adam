@@ -6,11 +6,9 @@ using UnityEngine.UI;
 
 public class UI_PlayerHP : MonoBehaviour
 {
-    [SerializeField]
-    private Image HPBackImage, HPEffectImage;
-
-    [SerializeField]
-    private GameObject[] HPJemImages;
+    [SerializeField] private Image profile;
+    [SerializeField] private Image HPBackImage, HPEffectImage;
+    [SerializeField] private GameObject[] HPJemImages;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +18,10 @@ public class UI_PlayerHP : MonoBehaviour
 
     public void Init()
     {
+        // 프로필 설정
+        profile.sprite = GameManager.Data.GameData.Incarna.Sprite;
+
+        // HP 설정
         for (int i = 0; i < HPJemImages.Length; i++)
         {
             if (i < GameManager.Data.GameData.PlayerHP)

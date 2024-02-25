@@ -222,6 +222,18 @@ MonoBehaviour:
     m_Localized: "\uC7A5\uC1A1"
     m_Metadata:
       m_Items: []
+  - m_Id: 8008119182225408
+    m_Localized: "\uD0C4\uC0DD"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8008157530746880
+    m_Localized: "\uAC1C\uD654"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8008219941990400
+    m_Localized: "\uD76C\uC0DD"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

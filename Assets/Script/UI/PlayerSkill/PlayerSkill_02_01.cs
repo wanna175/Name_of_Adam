@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerSkill_02_01 : PlayerSkill
 {
-    private Vector2 tilePos;
+    private Vector2 _tilePos;
 
     public override bool Use(Vector2 coord)
     {
-        tilePos = coord;
-        BattleUnit unit = BattleManager.Field.GetUnit(tilePos);
-        unit.ChangeHP(-30);
+        _tilePos = coord;
+        BattleUnit unit = BattleManager.Field.GetUnit(_tilePos);
+        unit.ChangeHP(-25);
 
         GameManager.Sound.Play("UI/PlayerSkillSFX/Punishment");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));

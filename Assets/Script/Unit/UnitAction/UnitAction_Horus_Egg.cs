@@ -30,12 +30,10 @@ public class UnitAction_Horus_Egg : UnitAction
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver)
     {
-        if (activeTiming == ActiveTiming.TURN_END)
+        if (activeTiming == ActiveTiming.TURN_START)
         {
             _turnCount--;
-        }
-        else if (activeTiming == ActiveTiming.TURN_START)
-        {
+
             if (_turnCount <= 0)
             {
                 UnitSpawn(caster);
@@ -64,6 +62,11 @@ public class UnitAction_Horus_Egg : UnitAction
     private void UnitSpawn(BattleUnit caster)
     {
         BattleManager.Field.TileDict[caster.Location].ExitTile();
+
+        if (_parentUnit == null)
+        {
+            _parentUnit = BattleManager.Data.BattleUnitList.Find(x => x.Data.ID == "ȣ�罺" && x.Team == caster.Team);
+        }
 
         SpawnData sd = new();
         if (_spawnUnitSO == null)
@@ -100,6 +103,8 @@ public class UnitAction_Horus_Egg : UnitAction
             _parentUnit.Action.SetUnit("Horus_Egg", caster);
             _parentUnit.Action.SetUnit("Horus_Egg", unit);
         }
+
+        unit.SetBuff(new Buff_Benediction());
 
         BattleManager.Spawner.RestoreUnit(caster.gameObject);
     }
