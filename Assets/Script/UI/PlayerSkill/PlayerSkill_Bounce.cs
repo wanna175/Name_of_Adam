@@ -28,6 +28,6 @@ public class PlayerSkill_Bounce : PlayerSkill
 
     public override void OnSelect()
     {
-        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.Friendly);
+        BattleManager.PlayerSkillController.PlayerSkillReady(FieldColorType.PlayerSkill, PlayerSkillTargetType.NotBattleOnly);
     }
 }
