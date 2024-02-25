@@ -89,8 +89,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5998728813121536
-    m_Key: "The divine instructed to love your neighbors. With love for mankind and
-      hatred of sins, I shall not reproach you as well.\r"
+    m_Key: The divine instructed to love your neighbors. With love for mankind and
+      hatred of sins, I shall not reproach you as well.
     m_Metadata:
       m_Items: []
   - m_Id: 5998823914770432
@@ -347,8 +347,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6030584996597760
-    m_Key: The divine spoke, \"Rise and go, as your faith has saved you.\" As such,
-      I believe salvation lies within faith.
+    m_Key: The divine spoke, Rise and go, as your faith has saved you. As such, I
+      believe salvation lies within faith.
     m_Metadata:
       m_Items: []
   - m_Id: 6030698637070336
@@ -420,7 +420,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6136047711612928
-    m_Key: New Entry 1
+    m_Key: A being that should never have been born has come into existence. Now,
+      it is time to set things right.
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -42,6 +42,8 @@ public class UpgradeSceneController : MonoBehaviour
 
         _scripts = new ();
 
+        Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.UpgradeQuest}");
+
         if (GameManager.OutGameData.getVisitUpgrade() == false)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];

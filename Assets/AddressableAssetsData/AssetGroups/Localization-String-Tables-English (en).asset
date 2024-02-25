@@ -137,6 +137,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+  - m_GUID: cc6317705c0a25a4c905abc867bd2010
+    m_Address: BattleSceneTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:
