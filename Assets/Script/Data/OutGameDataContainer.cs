@@ -347,7 +347,8 @@ public class OutGameDataContainer : MonoBehaviour
     public List<Resolution> GetAllResolution() => resolutions;
     public int GetLanguage() => data.language;
     public int SetLanguage(int language) => data.language = language;
-    public int GetResolution() => data.resolution;
+    public int GetResolutionIndex() => data.resolution;
+    public Resolution GetResolution() => resolutions[data.resolution];
     public bool IsWindowed() => data.isWindowed;
     public float GetMasterSoundPower() => data.masterSoundPower;
     public float GetBGMSoundPower() => data.BGMSoundPower;
