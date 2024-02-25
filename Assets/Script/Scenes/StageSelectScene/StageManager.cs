@@ -172,27 +172,29 @@ public class StageManager : MonoBehaviour
                     i--;
                 }
             }
-            else if (stageData.StageLevel == 90) // 엘리트 배틀
+            else if (stageData.Type == StageType.Battle && stageData.Name == StageName.EliteBattle) // 엘리트 배틀
             {
-                x = stageData.StageLevel;
-
                 if (GameManager.OutGameData.isHorusClear())
                 {
-                    if(GameManager.Data.StageAct == 0)
+                    x = stageData.StageLevel + 1;
+
+                    if (GameManager.Data.StageAct == 0)
                     {
-                        y = UnityEngine.Random.Range(0, 2);
+                        y = UnityEngine.Random.Range(0, 4);
                     }
                     else if(GameManager.Data.StageAct == 1)
                     {
-                        y = UnityEngine.Random.Range(2, 4);
+                        y = UnityEngine.Random.Range(4, 11);
                     }
                 }
                 else if (GameManager.OutGameData.isPhanuelClear())
                 {
+                    x = stageData.StageLevel;
                     y = GameManager.Data.StageAct == 0 ? 1 : 3;
                 }
                 else
                 {
+                    x = stageData.StageLevel;
                     y = GameManager.Data.StageAct == 0 ? 0 : 2;
                 }
 
@@ -206,20 +208,21 @@ public class StageManager : MonoBehaviour
                     i--;
                 }
             }
-            else if (stageData.StageLevel == 100) // 보스 배틀
+            else if (stageData.Type == StageType.Battle && stageData.Name == StageName.BossBattle) // 보스 배틀
             {
-                x = stageData.StageLevel;
-
                 if (GameManager.OutGameData.isHorusClear())
                 {
+                    x = stageData.StageLevel + 1;
                     y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
                 }
                 else if (GameManager.OutGameData.isPhanuelClear())
                 {
+                    x = stageData.StageLevel;
                     y = 1;
                 }
                 else
                 {
+                    x = stageData.StageLevel;
                     y = 0;
                 }
 
