@@ -301,7 +301,7 @@ public class BattleManager : MonoBehaviour
         if (!_field.TileDict[coord].IsColored)
             return;  
 
-        if (!GameManager.OutGameData.isTutorialClear())
+        if (!GameManager.OutGameData.IsTutorialClear())
             TutorialManager.Instance.DisableToolTip();
 
         BattleUnit nowUnit = _battleData.GetNowUnit();
@@ -512,6 +512,7 @@ public class BattleManager : MonoBehaviour
         }
 
         BossDeadCheck(unit);
+        FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, unit);
     }
 
     private void BossDeadCheck(BattleUnit unit)
@@ -546,6 +547,18 @@ public class BattleManager : MonoBehaviour
     {
         List<BattleUnit> checkEndList = new();
 
+        while (true)
+        {
+            BattleUnit unit = _battleData.BattleUnitList.Find(x => !checkEndList.Contains(x));
+
+            if (unit == null)
+                break;
+
+            checkEndList.Add(unit);
+            ActiveTimingCheck(timing, unit, parameterUnit);
+        }
+
+        /*
         int startCount = _battleData.BattleUnitList.Count;
 
         for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
@@ -563,6 +576,7 @@ public class BattleManager : MonoBehaviour
             checkEndList.Add(_battleData.BattleUnitList[i]);
             ActiveTimingCheck(timing, _battleData.BattleUnitList[i], parameterUnit);
         }
+        */
     }
 
     public void BattleOverCheck()
@@ -652,16 +666,16 @@ public class BattleManager : MonoBehaviour
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         //GameManager.UnitIDController.resetID();
         GameManager.SaveManager.DeleteSaveData();
-        GameManager.OutGameData.set_isGameOverCheck(true);
+        GameManager.OutGameData.SetIsGameOverCheck(true);
     }
 
     private void CheckBossCycle(StageData data)
     {
-        if(data.StageID == 0 && !GameManager.OutGameData.isPhanuelClear())
+        if(data.StageID == 0 && !GameManager.OutGameData.IsPhanuelClear())
         {
             GameManager.OutGameData.ClearPhanuel(true);
         }
-        else if(data.StageID == 1 && !GameManager.OutGameData.isHorusClear())
+        else if(data.StageID == 1 && !GameManager.OutGameData.IsHorusClear())
         {
             GameManager.OutGameData.ClearHorus(true);
         }
@@ -785,7 +799,7 @@ public class BattleManager : MonoBehaviour
             if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction) || lastUnit.Data.Rarity != Rarity.Normal)
                 return;
 
-            if (!GameManager.OutGameData.isTutorialClear())
+            if (!GameManager.OutGameData.IsTutorialClear())
             {
                 if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Devine))
                 {
