@@ -210,13 +210,21 @@ public class BattleManager : MonoBehaviour
         }
         */
 
-        if (GameManager.Data.Map.GetCurrentStage().StageLevel == 100 && GameManager.Data.Map.GetCurrentStage().StageID == 0)
+        if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle && GameManager.Data.Map.GetCurrentStage().StageID == 0)
         {
-            Background[0].SetActive(false);
+            Background[2].SetActive(false);
             Background[1].SetActive(true);
+            Background[0].SetActive(false);
+        }
+        else if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle && GameManager.Data.Map.GetCurrentStage().StageID == 1)
+        {
+            Background[2].SetActive(true);
+            Background[1].SetActive(false);
+            Background[0].SetActive(false);
         }
         else
         {
+            Background[2].SetActive(false);
             Background[1].SetActive(false);
             Background[0].SetActive(true);
         }

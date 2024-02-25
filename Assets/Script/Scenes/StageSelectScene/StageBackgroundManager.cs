@@ -10,7 +10,7 @@ public class StageBackgroundManager : MonoBehaviour
 
     void Start()
     {
-        if(GameManager.Data.Map.GetStage(99).StageLevel == 100)
+        if(GameManager.Data.Map.GetStage(99).Name == StageName.BossBattle)
         {
             if(GameManager.Data.Map.GetStage(99).StageID == 0)
             {
