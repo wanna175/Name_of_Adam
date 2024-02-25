@@ -219,6 +219,18 @@ MonoBehaviour:
     m_Key: Funeral
     m_Metadata:
       m_Items: []
+  - m_Id: 8008119182225408
+    m_Key: Birth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8008157530746880
+    m_Key: Blooming
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8008219941990400
+    m_Key: Sacrifice
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
