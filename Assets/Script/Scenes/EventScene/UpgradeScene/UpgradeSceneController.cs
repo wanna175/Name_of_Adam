@@ -13,6 +13,7 @@ public class UpgradeSceneController : MonoBehaviour
 
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject fall_background;
+    [SerializeField] private Image foogyImg;
 
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _restoreFall_Btn;
@@ -62,9 +63,11 @@ public class UpgradeSceneController : MonoBehaviour
                 fall_background.SetActive(true);
                 _isNPCFall = true;
             }
-            else if (questLevel > 0)
+            else if (questLevel >= 0)
             {
-                //안개이미지 변경
+                Color color = this.foogyImg.color;
+                color.a = questLevel * 0.25f;
+                this.foogyImg.color = color;
             }
         }
 
@@ -131,16 +134,12 @@ public class UpgradeSceneController : MonoBehaviour
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
-
-        if (_unit.DeckUnitStat.FallCurrentCount > 0)
-        {
-            _unit.DeckUnitUpgradeStat.FallCurrentCount -= 1;
-        }
-
-        if (_isNPCFall && _unit.DeckUnitStat.FallCurrentCount > 0)
-        {
-            _unit.DeckUnitUpgradeStat.FallCurrentCount -= 1;
-        }
+        
+        int releaseVal = (_isNPCFall) ? 4 : 2;
+        if (_unit.DeckUnitStat.FallCurrentCount - releaseVal > 0)
+            _unit.DeckUnitUpgradeStat.FallCurrentCount -= releaseVal;
+        else
+            _unit.DeckUnitUpgradeStat.FallCurrentCount = -_unit.Data.RawStat.FallCurrentCount;
 
         UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
         unitInfo.SetUnit(_unit);
