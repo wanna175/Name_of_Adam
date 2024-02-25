@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "02.\uB8E8\uC2DC\uD37C"
   m_EditorClassIdentifier: 
   _name: "\uB8E8\uC2DC\uD37C"
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: a01fe99c6c033de40b897c9c4cab49cd, type: 3}
   _playerSkillList:
   - {fileID: 922919656849917402, guid: 4e8bd04c086e4934194b05a5aaf8ecc2, type: 3}
   - {fileID: 3750906278982967589, guid: bc4a3f2c21cc5f245ad91cde30abce1c, type: 3}
