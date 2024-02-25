@@ -11,7 +11,7 @@ public class Buff_Appaim : Buff
 
         _description = "";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Appaim_Sprite");
 
         _count = -1;
 
