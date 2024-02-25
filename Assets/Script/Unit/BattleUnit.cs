@@ -248,8 +248,8 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
-        FallEvent = false;
         BattleManager.Instance.UnitFallEvent(this);
+        FallEvent = false;
 
         if (ChangeTeam() == Team.Enemy)
         {
@@ -277,8 +277,6 @@ public class BattleUnit : MonoBehaviour
         {
             DeleteBuff(BuffEnum.Benediction);
         }
-
-        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);
     }
 
     //애니메이션에서 직접 실행시킴

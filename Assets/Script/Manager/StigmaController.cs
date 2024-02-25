@@ -107,7 +107,7 @@ public class StigmaController
         // 검병 튜토리얼 특수 케이스
         if (unitName.Equals("검병"))
         {
-            if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.isTutorialClear())
+            if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.IsTutorialClear())
             {
                 Debug.Log($"검병 튜토리얼: {stigma.StigmaEnum} 차단");
                 return true;

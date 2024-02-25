@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b51be6bdc7d63fb469aa2bcd15aa7c33
+guid: cc048bb66e914af4c95011bf035abd66
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b05e0da4c1b93847b5869c93fb41ba7
-      internalID: 2040936382
+      spriteID: e9be35f8019a7bb4e8771efeaa0f9889
+      internalID: -1257448454
       vertices: []
       indices: 
       edges: []
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f37f18f8cd588f54bb6bbec9eb0fb1f6
-      internalID: 300303878
+      spriteID: 1c7c79e0dd0b5334c82f02f24b7dc1f1
+      internalID: 1053749144
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0893e49c838521d42a82d13263d9c39e
-      internalID: -210652540
+      spriteID: e04ae966f3c326e4a9ecc11c7f1a7478
+      internalID: -600129452
       vertices: []
       indices: 
       edges: []
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uADF8\uC744\uB9B0_\uC790_Hit_1": 300303878
-      "\uADF8\uC744\uB9B0_\uC790_Hit_2": -210652540
-      "\uADF8\uC744\uB9B0_\uC790_Hit_0": 2040936382
+      "\uADF8\uC744\uB9B0_\uC790_Hit_1": 1053749144
+      "\uADF8\uC744\uB9B0_\uC790_Hit_2": -600129452
+      "\uADF8\uC744\uB9B0_\uC790_Hit_0": -1257448454
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

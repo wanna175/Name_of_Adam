@@ -9,9 +9,12 @@ public class PlayerSkill_Move : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         GameManager.Sound.Play("UI/PlayerSkillSFX/Move");
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Tailwind", BattleManager.Field.GetTilePosition(coord));
+
         selectedUnit = BattleManager.Field.GetUnit(coord);
         selectedUnit.SetBuff(new Buff_Tailwind());
         BattleManager.Field.SetNextActionTileColor(selectedUnit, FieldColorType.Move);
+
         return true;
     }
 

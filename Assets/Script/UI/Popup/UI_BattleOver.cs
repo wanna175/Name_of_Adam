@@ -49,7 +49,7 @@ public class UI_BattleOver : UI_Scene
 
         if (_result == "win")
         {
-            if (!GameManager.OutGameData.isTutorialClear() && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
+            if (!GameManager.OutGameData.IsTutorialClear() && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
             {
                 GameManager.OutGameData.DoneTutorial(true);
                 SceneChanger.SceneChangeToCutScene(CutSceneType.Tutorial);
@@ -84,7 +84,7 @@ public class UI_BattleOver : UI_Scene
         {
             BattleOverDestroy();
 
-            if (GameManager.OutGameData.isTutorialClear())
+            if (GameManager.OutGameData.IsTutorialClear())
             {
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
                 GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";
