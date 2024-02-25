@@ -87,6 +87,8 @@ public class PlayerSkillController : MonoBehaviour
                 Field.SetFriendlyUnitTileColor(colorType);
             else if (TargetType == PlayerSkillTargetType.all)
                 Field.SetAllTileColor(colorType);
+            else if (TargetType == PlayerSkillTargetType.NotBattleOnly)
+                Field.SetNotBattleOnlyUnitTileColor(colorType);
         }
     }
 }

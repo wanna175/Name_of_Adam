@@ -208,7 +208,8 @@ public enum PlayerSkillTargetType
     all,
     Unit,
     Enemy,
-    Friendly
+    Friendly,
+    NotBattleOnly
 }
 
 public enum StigmaEnum

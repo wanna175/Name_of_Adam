@@ -271,6 +271,19 @@ public class Field : MonoBehaviour
         _fieldType = fieldType;
     }
 
+    public void SetNotBattleOnlyUnitTileColor(FieldColorType fieldType)
+    {
+        foreach (Tile tile in TileDict.Values)
+        {
+            if (tile.UnitExist && tile.Unit.Team == Team.Player && !tile.Unit.Data.IsBattleOnly)
+            {
+                tile.SetColor(ColorList(FieldColorType.PlayerPlayerSkill));
+            }
+        }
+
+        _fieldType = fieldType;
+    }
+
     public void ClearAllColor()
     {
         foreach (Tile tile in TileDict.Values)
