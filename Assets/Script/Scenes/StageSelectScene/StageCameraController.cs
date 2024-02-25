@@ -10,7 +10,7 @@ public class StageCameraController : MonoBehaviour
     private Vector3 _topPosition = new(0, 25, -10);
     private Vector3 _bottomPosition = new(0, -5, -10);
 
-    const int _wheelSpeed = 2000;
+    const int _wheelSpeed = 500;
 
     private void Start()
     {
@@ -42,21 +42,6 @@ public class StageCameraController : MonoBehaviour
         }
     }
 
-    /*
-    void MoveCamera(float num)
-    {
-        if (num == 0 || EventSystem.current.IsPointerOverGameObject())
-            return;
-
-        transform.position += new Vector3(0, num * 5 , 0);
-
-        if (transform.position.y < -5)
-            transform.position = new Vector3(0, -5, -10);
-        if (transform.position.y > 25)
-            transform.position = new Vector3(0, 25, -10);
-    }
-    */
-
     private Vector3 _velocity = Vector3.zero; // 초기 속도값
 
     void MoveCamera(float num)
@@ -65,7 +50,7 @@ public class StageCameraController : MonoBehaviour
             return;
 
         Vector3 desiredMove = new(0, transform.position.y + num * _wheelSpeed, -10);
-        Vector3 movePosition = Vector3.SmoothDamp(transform.position, desiredMove, ref _velocity, 0.6f);
+        Vector3 movePosition = Vector3.SmoothDamp(transform.position, desiredMove, ref _velocity, 0.3f);
 
         movePosition.y = Mathf.Clamp(movePosition.y, _bottomPosition.y, _topPosition.y);
         transform.position = movePosition;
