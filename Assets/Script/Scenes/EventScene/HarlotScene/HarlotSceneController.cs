@@ -46,7 +46,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.DarkshopQuest}");
 
-        if (GameManager.OutGameData.getVisitDarkshop() == false)
+        if (GameManager.OutGameData.GetVisitDarkshop() == false)
         {
             scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
             descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
@@ -238,9 +238,9 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.getVisitDarkshop()==false)
+        if (GameManager.OutGameData.GetVisitDarkshop()==false)
         {
-            GameManager.OutGameData.setVisitDarkshop(true);
+            GameManager.OutGameData.SetVisitDarkshop(true);
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else 

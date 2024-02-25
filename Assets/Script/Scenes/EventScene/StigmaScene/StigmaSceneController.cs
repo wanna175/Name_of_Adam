@@ -62,9 +62,10 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn.SetActive(false);
             _stigma_transfer_btn_disabled.SetActive(true);
         }
-        Debug.Log("init GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.getVisitStigma());
+        
+        Debug.Log("init GameManager.OutGameData.GetVisitStigma() : " + GameManager.OutGameData.GetVisitStigma());
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.StigmaQuest}");
-        if (GameManager.OutGameData.getVisitStigma() == false)
+        if (GameManager.OutGameData.GetVisitStigma() == false)
         {
             //GameManager.OutGameData.setVisitStigma(true);
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
@@ -246,10 +247,10 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.getVisitStigma() == false)
+        if (GameManager.OutGameData.GetVisitStigma() == false)
         {
-            GameManager.OutGameData.setVisitStigma(true);
-            Debug.Log("GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.getVisitStigma());
+            GameManager.OutGameData.SetVisitStigma(true);
+            Debug.Log("GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.GetVisitStigma());
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
         }
         else

@@ -16,7 +16,7 @@ public class MovePhase : Phase
         if (_nowUnit.Team == Team.Player)
             BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
         
-        if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.isTutorialClear())
+        if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.IsTutorialClear())
             TutorialManager.Instance.ShowNextTutorial();
 
         //�̵� �� ���� �� üũ
