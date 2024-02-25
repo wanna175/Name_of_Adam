@@ -115,9 +115,13 @@ public class VisualEffectManager : MonoBehaviour
     }
 
     public GameObject StartBenedictionEffect(BattleUnit unit)
+    {   
+        return StartPrefabEffect(unit, "Benediction");
+    }
+
+    public GameObject StartPrefabEffect(BattleUnit unit, string path)
     {
-        
-        GameObject go = GameManager.Resource.Instantiate("Effect/Benediction", unit.transform);
+        GameObject go = GameManager.Resource.Instantiate("Effect/" + path, unit.transform);
         go.transform.localPosition = Vector3.zero;
 
         return go;
