@@ -7,7 +7,7 @@ public class PlayerSkill_Bounce : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         GameManager.Sound.Play("UI/PlayerSkillSFX/Bounce");
-        //이팩트를 여기에 추가
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Bounce", BattleManager.Field.GetTilePosition(coord));
 
         BattleUnit unit = BattleManager.Field.GetUnit(coord);
         unit.DeckUnit.DeckUnitChangedStat = new Stat();
