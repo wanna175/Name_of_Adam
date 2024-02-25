@@ -8,7 +8,6 @@ public class CutSceneController : MonoBehaviour
     [SerializeField] private VideoPlayer video;
 
     private VideoClip videoClip;
-    private RenderTexture renderTexture;
     private CutSceneType cutSceneToDisplay;
 
     private void Start()
@@ -17,19 +16,25 @@ public class CutSceneController : MonoBehaviour
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         //GameManager.Sound.Play("Stage_Transition/CutScene/CutSceneBGM");
 
+        string language = "EN";
+        if (GameManager.Locale.CurrentLocaleIndex == 1)
+            language = "KR";
+
         cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
-        videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{cutSceneToDisplay}_VideoClip");
+        videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{cutSceneToDisplay}_{language}");
      
         video.clip = videoClip;
         video.loopPointReached += EndReached;
         video.Play();
+
+        Debug.Log($"{cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
     }
 
     public void SceneChange()
     {
         switch (cutSceneToDisplay)
         {
-            case CutSceneType.Start: SceneChanger.SceneChange("StageSelectScene"); break;
+            case CutSceneType.Main: SceneChanger.SceneChange("StageSelectScene"); break;
             case CutSceneType.Tutorial: SceneChanger.SceneChange("StageSelectScene"); break;
         }
     }

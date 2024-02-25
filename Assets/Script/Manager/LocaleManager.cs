@@ -11,6 +11,7 @@ public class LocaleManager : MonoBehaviour
     bool isChangingLanguage;
 
     int currentLocaleIndex;
+    /// <summary> 0 = EN, 1 = KR </summary>
     public int CurrentLocaleIndex => currentLocaleIndex;
 
     public void Init()
@@ -50,6 +51,8 @@ public class LocaleManager : MonoBehaviour
         Debug.Log($"PlayerSkill Info Localization is faied.");
         return "";
     }
+
+    public string GetLocalizedProgress(string progressInfo) => GetLocalizedString("ProgressSceneTable", progressInfo);
 
     public string GetLocalizedUpgrade(string upgradeInfo) => GetLocalizedString("UpgradeTable", upgradeInfo);
 

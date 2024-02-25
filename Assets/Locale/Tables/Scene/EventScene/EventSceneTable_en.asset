@@ -70,6 +70,30 @@ MonoBehaviour:
     m_Localized: Select a unit to receive as a reward.
     m_Metadata:
       m_Items: []
+  - m_Id: 2927200231919616
+    m_Localized: Stigmata Transfer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2927087455473664
+    m_Localized: Stigmata Bestowal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2931150150602752
+    m_Localized: Apostle Creation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2931125311934464
+    m_Localized: Corruption Stigmata Bestowal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2931107607777280
+    m_Localized: Revert Unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2968269602590720
+    m_Localized: Complete
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
