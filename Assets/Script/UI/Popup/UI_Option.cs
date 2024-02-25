@@ -42,7 +42,7 @@ public class UI_Option : UI_Popup
         // 저장된 데이터 불러오기
         resolutions = GameManager.OutGameData.GetAllResolution();
         currentLanguage = GameManager.OutGameData.GetLanguage();
-        currentResolution = GameManager.OutGameData.GetResolution();
+        currentResolution = GameManager.OutGameData.GetResolutionIndex();
         isWindowed = GameManager.OutGameData.IsWindowed();
 
         masterPower = GameManager.OutGameData.GetMasterSoundPower();

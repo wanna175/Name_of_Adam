@@ -62,7 +62,7 @@ public abstract class Buff : MonoBehaviour
 
     public virtual string GetDescription()
     {
-        string desc = "<size=110%><b>" + Name + "</b></size>\n<size=30%>\n</size>" + GameManager.Locale.GetLocalizedBuffInfo(_description); ;
+        string desc = "<color=#FF9696><size=110%><b>" + Name + "</b><color=white></size>\n<size=30%>\n</size>" + GameManager.Locale.GetLocalizedBuffInfo(_description); ;
 
         if (_countDownTiming != ActiveTiming.NONE)
         {
