@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
                     break;
 
                 unit.UnitDiedEvent();
+                GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
             }
             BattleManager.Instance.BattleOverCheck();
         }
@@ -120,6 +121,14 @@ public class GameManager : MonoBehaviour
             Data.MainDeckLayoutSet();
             GameManager.OutGameData.DeleteAllData();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Data.GameData.NpcQuest.UpgradeQuest += 26;
+            Data.GameData.NpcQuest.StigmaQuest += 13;
+            Data.GameData.NpcQuest.DarkshopQuest += 8;
+
+            Debug.Log($"타락도 조정: {Data.GameData.NpcQuest.UpgradeQuest}|{Data.GameData.NpcQuest.StigmaQuest}|{Data.GameData.NpcQuest.DarkshopQuest}");
+        }
     }
 }

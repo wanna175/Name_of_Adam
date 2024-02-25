@@ -94,8 +94,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5998728813121536
-    m_Localized: "The divine instructed to love your neighbors. With love for mankind
-      and hatred of sins, I shall not reproach you as well.\r"
+    m_Localized: The divine instructed to love your neighbors. With love for mankind
+      and hatred of sins, I shall not reproach you as well.
     m_Metadata:
       m_Items: []
   - m_Id: 5998823914770432
@@ -432,6 +432,11 @@ MonoBehaviour:
   - m_Id: 6135992028033024
     m_Localized: You intruder! How dare you bring the vile shadow of evil to the
       kingdom! Face the might of the royal, and vanish into the darkness.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6136047711612928
+    m_Localized: A being that should never have been born has come into existence.
+      Now, it is time to set things right.
     m_Metadata:
       m_Items: []
   references:

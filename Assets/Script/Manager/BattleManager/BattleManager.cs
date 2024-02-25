@@ -689,9 +689,6 @@ public class BattleManager : MonoBehaviour
         if (!_field.IsInRange(dest) || current == dest)
             return false;
 
-        if (Phase.CurrentPhaseCheck(Phase.Move))
-            BattleUI.UI_TurnChangeButton.SetEnable(false);
-
         if (moveUnit.ConnectedUnits.Count > 0)
         {
             if (_field.GetUnit(dest) != null)
@@ -749,7 +746,11 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        if (Phase.CurrentPhaseCheck(Phase.Move))
+            BattleUI.UI_TurnChangeButton.SetEnable(false);
+        
         GameManager.Sound.Play("Move/MoveSFX");
+        
         return true;
     }
 
