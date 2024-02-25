@@ -16,7 +16,7 @@ public class HubSceneController : MonoBehaviour
 
     public void GameStart()
     {
-        if (GameManager.OutGameData.isTutorialClear())
+        if (GameManager.OutGameData.IsTutorialClear())
         {
             GameManager.Data.HallDeckSet();
             GameManager.Data.HallSelectedDeckSet();

@@ -148,10 +148,10 @@ public class DataManager : MonoBehaviour
 
     public void NPCQuestSet()
     {
-        GameData.IsVisitUpgrade = GameManager.OutGameData.getVisitUpgrade();
-        GameData.IsVisitStigma = GameManager.OutGameData.getVisitStigma();
-        GameData.IsVisitDarkShop = GameManager.OutGameData.getVisitDarkshop();
-        GameData.NpcQuest = GameManager.OutGameData.getNPCQuest();
+        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
+        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
+        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
+        GameData.NpcQuest = GameManager.OutGameData.GetNPCQuest();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

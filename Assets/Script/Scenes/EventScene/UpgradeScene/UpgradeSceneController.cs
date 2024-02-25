@@ -35,7 +35,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         _scripts = new ();
 
-        if (GameManager.OutGameData.getVisitUpgrade() == false)
+        if (GameManager.OutGameData.GetVisitUpgrade() == false)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
             //GameManager.OutGameData.setVisitUpgrade(true);
@@ -198,9 +198,9 @@ public class UpgradeSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.getVisitUpgrade() == false)
+        if (GameManager.OutGameData.GetVisitUpgrade() == false)
         {
-            GameManager.OutGameData.setVisitUpgrade(true);
+            GameManager.OutGameData.SetVisitUpgrade(true);
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
         }
         else

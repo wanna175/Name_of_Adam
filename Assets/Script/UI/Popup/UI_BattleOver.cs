@@ -84,7 +84,7 @@ public class UI_BattleOver : UI_Scene
         {
             BattleOverDestroy();
 
-            if (GameManager.OutGameData.isTutorialClear())
+            if (GameManager.OutGameData.IsTutorialClear())
             {
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
                 GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";

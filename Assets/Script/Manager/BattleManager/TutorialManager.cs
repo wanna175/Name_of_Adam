@@ -163,7 +163,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     public bool IsEnable()
-        => !GameManager.OutGameData.isTutorialClear() && isEnable;
+        => !GameManager.OutGameData.IsTutorialClear() && isEnable;
 
     public void SetNextStep()
     {
