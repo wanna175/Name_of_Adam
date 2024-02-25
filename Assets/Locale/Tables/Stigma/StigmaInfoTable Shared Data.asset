@@ -64,13 +64,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2000841142272
-    m_Key: "Attack power increases by 2 for each target attacked. \n(Resets at the
-      end of the stage.)"
+    m_Key: Attack power increases by 2 for each target attacked. Resets at the end
+      of the stage.
     m_Metadata:
       m_Items: []
   - m_Id: 2181942800384
-    m_Key: "Attack power increases by 3 for each target attacked. \n(Resets at the
-      end of the stage.)"
+    m_Key: Attack power increases by 3 for each target attacked. Resets at the end
+      of the stage.
     m_Metadata:
       m_Items: []
   - m_Id: 2236426809344

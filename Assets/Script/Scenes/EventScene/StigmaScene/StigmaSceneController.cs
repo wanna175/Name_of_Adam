@@ -39,7 +39,6 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         _scripts = new();
         _giveStigma = null;
         _isStigmaFull = false;
-        Debug.Log("dddddddd : " + GameManager.Data.GameData.NpcQuest.StigmaQuest);
 
         //옮길 낙인유닛이 없다면 선택지가 안 뜨게
         bool isStigmaEmpty = true;
@@ -63,6 +62,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn_disabled.SetActive(true);
         }
         Debug.Log("init GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.getVisitStigma());
+        Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.StigmaQuest}");
         if (GameManager.OutGameData.getVisitStigma() == false)
         {
             //GameManager.OutGameData.setVisitStigma(true);
