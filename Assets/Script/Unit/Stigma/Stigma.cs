@@ -46,7 +46,9 @@ public class Stigma : MonoBehaviour
     private void StigmaEffect(BattleUnit caster)
     {
         Vector3 pos = caster.transform.position + new Vector3(0, caster.transform.lossyScale.y * 0.5f, 0);
-        GameManager.VisualEffect.StartStigmaEffect(Sprite_28, pos);
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/StigmaFlameEffect", pos + new Vector3(0,0,0.01f));
+        GameManager.VisualEffect.StartStigmaEffect(Sprite_164, pos);
+
         return;
     }
 

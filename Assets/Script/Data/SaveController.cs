@@ -86,7 +86,7 @@ public class SaveController : MonoBehaviour
         newData.StageAct = GameManager.Data.StageAct;
         newData.StageBenediction = CurGameData.StageBenediction;
 
-        GameManager.OutGameData.setNPCQuest();
+        GameManager.OutGameData.SetNPCQuest();
         string json = JsonUtility.ToJson(newData, true);
 
         File.WriteAllText(path, json);

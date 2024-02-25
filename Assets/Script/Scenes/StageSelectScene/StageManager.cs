@@ -38,7 +38,7 @@ public class StageManager : MonoBehaviour
         {
             if (GameManager.Data.StageAct == 0)
             {
-                if (!GameManager.OutGameData.isTutorialClear())
+                if (!GameManager.OutGameData.IsTutorialClear())
                 {
                     GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/TutorialMap/TutorialMap");
                 }
@@ -119,15 +119,19 @@ public class StageManager : MonoBehaviour
         StartCoroutine(CurrentStage.Fade());
 
         foreach (Stage st in CurrentStage.NextStage)
-            st.SetNextStage();
+        {
+            if (st != null)
+                st.SetNextStage();
+        }
+
 
         CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
     }
 
     private void SetStageData()
     {
-        List<StageData> stageDatas = new List<StageData>();
-        List<Vector2> existStage = new List<Vector2>();
+        List<StageData> stageDatas = new();
+        List<Vector2> existStage = new();
 
         for (int i = 0; i < StageList.Count; i++)
         {
@@ -142,20 +146,20 @@ public class StageManager : MonoBehaviour
                 {
                     if (stageData.ID < 4)
                     {
-                        x = GameManager.OutGameData.isHorusClear() ? 21 : (GameManager.OutGameData.isPhanuelClear() ? 11 : 1);
+                        x = GameManager.OutGameData.IsHorusClear() ? 21 : (GameManager.OutGameData.IsPhanuelClear() ? 11 : 1);
                     }
                     else
                     {
-                        x = GameManager.OutGameData.isHorusClear() ? 22 : (GameManager.OutGameData.isPhanuelClear() ? 12 : 2);
+                        x = GameManager.OutGameData.IsHorusClear() ? 22 : (GameManager.OutGameData.IsPhanuelClear() ? 12 : 2);
                     }
                 }
                 else if (GameManager.Data.StageAct == 1)
                 {
-                    x = GameManager.OutGameData.isHorusClear() ? 23 : (GameManager.OutGameData.isPhanuelClear() ? 13 : 3);
+                    x = GameManager.OutGameData.IsHorusClear() ? 23 : (GameManager.OutGameData.IsPhanuelClear() ? 13 : 3);
                 }
                 else if (GameManager.Data.StageAct == 2)
                 {
-                    x = GameManager.OutGameData.isHorusClear() ? 24 : (GameManager.OutGameData.isPhanuelClear() ? 14 : 4);
+                    x = GameManager.OutGameData.IsHorusClear() ? 24 : (GameManager.OutGameData.IsPhanuelClear() ? 14 : 4);
                 }
 
                 y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
@@ -176,7 +180,7 @@ public class StageManager : MonoBehaviour
             {
                 x = stageData.StageLevel;
 
-                if (GameManager.OutGameData.isHorusClear())
+                if (GameManager.OutGameData.IsHorusClear())
                 {
                     if(GameManager.Data.StageAct == 0)
                     {
@@ -187,7 +191,7 @@ public class StageManager : MonoBehaviour
                         y = UnityEngine.Random.Range(2, 4);
                     }
                 }
-                else if (GameManager.OutGameData.isPhanuelClear())
+                else if (GameManager.OutGameData.IsPhanuelClear())
                 {
                     y = GameManager.Data.StageAct == 0 ? 1 : 3;
                 }
@@ -210,11 +214,11 @@ public class StageManager : MonoBehaviour
             {
                 x = stageData.StageLevel;
 
-                if (GameManager.OutGameData.isHorusClear())
+                if (GameManager.OutGameData.IsHorusClear())
                 {
                     y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
                 }
-                else if (GameManager.OutGameData.isPhanuelClear())
+                else if (GameManager.OutGameData.IsPhanuelClear())
                 {
                     y = 1;
                 }
@@ -238,7 +242,7 @@ public class StageManager : MonoBehaviour
     {
         foreach (Stage st in CurrentStage.NextStage)
         {
-            if (st.Datas.ID == id)
+            if (st != null && st.Datas.ID == id)
             {
                 GameManager.Sound.Clear();
                 GameManager.Sound.Play("Node/NodeClickSFX");

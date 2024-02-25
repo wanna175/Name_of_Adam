@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: "\uC555\uBC14\uC784"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 55
-    CurrentHP: 55
-    ATK: 15
-    SPD: 55
+    MaxHP: 140
+    CurrentHP: 140
+    ATK: 25
+    SPD: 75
     FallCurrentCount: 0
     FallMaxCount: 9
-    ManaCost: 0
+    ManaCost: 80
   _uniqueStigma:
   - {fileID: 2411140555896991723, guid: cf06ecb5b5e98224fb3071fe052b2400, type: 3}
   _id: "\uC555\uBC14\uC784"
@@ -37,8 +37,8 @@ MonoBehaviour:
   _skillEffectAnim: {fileID: 7400000, guid: a705ac55e4d31a248b90ad8b7e60a71d, type: 2}
   _corruptionSkillEffectAnim: {fileID: 0}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
-  _darkEssenseDrop: 0
-  _darkEssenseCost: 1
+  _darkEssenseDrop: 5
+  _darkEssenseCost: 4
   _unitActionType: 4
   _unitMoveType: 0
   _isBattleOnly: 0
