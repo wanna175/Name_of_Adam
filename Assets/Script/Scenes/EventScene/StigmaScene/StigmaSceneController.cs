@@ -17,6 +17,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject fall_background;
+    [SerializeField] private Image foogyImg;
 
     [SerializeField] private GameObject _stigma_transfer_btn = null;
     [SerializeField] private GameObject _stigma_transfer_btn_disabled;
@@ -69,12 +70,9 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
             descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["낙인소_선택_0"][0].script));
             nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["낙인소_선택_0"][0].name));
-
-            Debug.Log("낙인소 입장 최초");
         }
         else
         {
-            Debug.Log("낙인소 입장 햇슴");
             int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
             if (questLevel > 4) questLevel = 4;
             _scripts = GameManager.Data.ScriptData[$"낙인소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
@@ -87,9 +85,11 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
                 fall_background.SetActive(true);
                 this.isNPCFall = true;
             }
-            else if (questLevel > 0)
+            else if (questLevel >= 0)
             {
-                //안개이미지 변경
+                Color color = this.foogyImg.color;
+                color.a = questLevel * 0.25f;
+                this.foogyImg.color = color;
             }
         }
 
