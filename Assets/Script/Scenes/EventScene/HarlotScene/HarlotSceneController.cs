@@ -15,6 +15,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject fall_background;
+    [SerializeField] private Image foogyImg;
 
     [SerializeField] private GameObject _SelectStigmaButton;
     [SerializeField] private GameObject _SelectStigmaButton_disabled;
@@ -63,9 +64,11 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
                 fall_background.SetActive(true);
                 this.isNPCFall = true;
             }
-            else if (questLevel > 0)
+            else if (questLevel >= 0)
             {
-                // 안개이미지 변경
+                Color color = this.foogyImg.color;
+                color.a = questLevel * 0.25f;
+                this.foogyImg.color = color;
             }
         }
 
@@ -87,7 +90,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             _getOriginUnitButton.SetActive(false);
         }
 
-        if (current_DarkEssense < ((isNPCFall) ? 5 : 7))
+        if (current_DarkEssense < ((isNPCFall) ? 8 : 10))
         {
             _SelectStigmaButton_disabled.SetActive(true);
             _SelectStigmaButton.SetActive(false);
@@ -169,7 +172,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
             IsStigmaFull();
         }
-        GameManager.Data.DarkEssenseChage(((isNPCFall) ? -5 : -7));
+        GameManager.Data.DarkEssenseChage(((isNPCFall) ? -8 : -10));
     }
     private void SetUnitStigma(Stigma stigma)
     {
@@ -187,7 +190,6 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         if (_isStigmaFull)//스티그마 예외처리
         {
-            Debug.Log("스티그마 꽉차있서요");
             _isStigmaFull = false;
             _stigmatizeUnit.DeleteStigma(stigma);
             GameManager.UI.CloseAllPopup();
@@ -196,7 +198,6 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             unitInfo.Init(OnSelectStigmatization, CUR_EVENT.STIGMA_EXCEPTION);
             return;
         }
-        Debug.Log("타락 낙인 부여일때");
         SetUnitStigma(stigma);
     }
     //대화하기 버튼을 클릭했을 경우
@@ -210,7 +211,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         if (_RestorationUnits.Count == GameManager.Data.GetDeck().Count)
         {
-            Debug.Log("유닛은 하나 이상 남겨야 합니다.");
+            Debug.Log("유닛은 하나 이상 남겨야 합니다.");//여기다가 경고창 띄우면 될듯
             return;
         }
         else if (_RestorationUnits.Count != 0)
