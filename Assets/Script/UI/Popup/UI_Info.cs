@@ -130,6 +130,8 @@ public class UI_Info : UI_Scene
             else
                 block.color = Color.grey;
         }
+
+        StartCoroutine(UpdateStigmaGridWithDelay());
     }
 
     public void SetInfo(DeckUnit unit, Team team)
@@ -214,6 +216,17 @@ public class UI_Info : UI_Scene
             else
                 block.color = Color.grey;
         }
+
+        StartCoroutine(UpdateStigmaGridWithDelay());
+    }
+
+    IEnumerator UpdateStigmaGridWithDelay()
+    {
+        yield return null;
+
+        VerticalLayoutGroup group = _stigmaGrid.GetComponent<VerticalLayoutGroup>();
+        group.childForceExpandWidth = false;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(group.GetComponent<RectTransform>());
     }
 
     public void InfoDestroy()
