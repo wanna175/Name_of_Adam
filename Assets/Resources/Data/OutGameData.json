@@ -166,7 +166,7 @@
     {
       "ID": 20,
       "Name": "Sin",
-      "Cost": 100,
+      "Cost": 1000,
       "Prequest": 17,
       "IsLock": true,
       "IsUnlocked": false,
