@@ -78,7 +78,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2356740419584
-    m_Key: Recovers 20 health when an enemy or an ally dies.
+    m_Key: Recovers 15 health when an enemy or an ally dies.
     m_Metadata:
       m_Items: []
   - m_Id: 2420078604288
