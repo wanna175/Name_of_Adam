@@ -300,7 +300,7 @@ public class UI_MyDeck : UI_Popup
         {
             if (_isBossClear)
             {
-                SceneChanger.SceneChange("EndingCreditScene");
+                SceneChanger.SceneChange("MainScene");
             }
             else
             {
