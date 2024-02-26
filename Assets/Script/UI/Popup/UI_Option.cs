@@ -77,13 +77,20 @@ public class UI_Option : UI_Popup
         SESlider.value = SEPower;
     }
 
+    public void LanguageDropdownChanged()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+    }
+
     private void ResolutionDropdownChanged(int idx)
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.OutGameData.SetResolution(idx);
     }
 
     private void WindowToggleChanged(bool isOn)
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         isWindowed = isOn;
         GameManager.OutGameData.SetWindow(isWindowed);
     }
@@ -112,14 +119,14 @@ public class UI_Option : UI_Popup
 
     public void ReSetOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.OutGameData.ReSetOption();
         InitUI();
     }
 
     public void QuitOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ClosePopup(this);
         GameManager.UI.IsCanESC = true;
 
