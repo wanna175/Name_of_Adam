@@ -22,7 +22,7 @@ MonoBehaviour:
     ManaCost: 60
   _uniqueStigma: []
   _id: "\uC804\uB839"
-  _name: 
+  _name: Messenger
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: 02789ec7f6e667448a494d25dc43b29b, type: 3}
