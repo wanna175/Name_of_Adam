@@ -63,7 +63,6 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn_disabled.SetActive(true);
         }
         
-        Debug.Log("init GameManager.OutGameData.GetVisitStigma() : " + GameManager.OutGameData.GetVisitStigma());
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.StigmaQuest}");
         if (GameManager.OutGameData.GetVisitStigma() == false)
         {
