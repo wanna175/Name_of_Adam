@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rawStat:
     MaxHP: 110
-    CurrentHP: 100
+    CurrentHP: 110
     ATK: 15
     SPD: 70
     FallCurrentCount: 0

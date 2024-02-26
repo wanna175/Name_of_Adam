@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LocaleManager _locale;
     public static LocaleManager Locale => Instance._locale;
 
+    private static bool _onGM = true;
+
     void Awake()
     {
         if (s_instance != null)
@@ -86,7 +88,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (!_onGM) // GM 모드가 꺼져있다면 리턴
+            return;
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
