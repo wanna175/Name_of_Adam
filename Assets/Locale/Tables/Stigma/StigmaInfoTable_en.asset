@@ -255,23 +255,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7868905148968960
-    m_Localized: "\uC790\uC2E0\uC758 \uD134\uC5D0 \uD76C\uC0DD\uC758 \uAF43\uC744
-      \uC18C\uD658\uD569\uB2C8\uB2E4. \r\n\uD76C\uC0DD\uC758 \uAF43\uC740 \uB2E4\uC74C
-      \uAD6C\uC6D0\uC790\uC758 \uD134\uC5D0 \uAC1C\uD654\uD558\uBA70 \uC8FC\uBCC0
-      4\uCE78\uC758 \uC801\uC5D0\uAC8C \uAD6C\uC6D0\uC790\uC758 \uACF5\uACA9\uB825\uB9CC\uD07C\uC758
-      \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
+    m_Localized: Summons the Flower of Sacrifice on the Savior's turn. The Flower
+      of Sacrifice blossoms on the next Savior's turn, dealing damage equal to the
+      Savior's attack power to enemies within 4 spaces.
     m_Metadata:
       m_Items: []
   - m_Id: 7868980851961856
-    m_Localized: "\uD76C\uC0DD\uC758 \uAF43\uC774 \uAC1C\uD654\uD558\uBA74 \uAD6C\uC6D0\uC790\uC758
-      \uC2EC\uBCF5\uC774 \uB429\uB2C8\uB2E4."
+    m_Localized: When the Flower of Sacrifice blooms, it becomes the servant of the
+      Savior.
     m_Metadata:
       m_Items: []
   - m_Id: 7869015077482496
-    m_Localized: "\uAD6C\uC6D0\uC790\uB294 \uC790\uC2E0\uC758 \uC2EC\uBCF5 \uB610\uB294
-      \uD76C\uC0DD\uC758 \uAF43\uC774 \uC8FD\uC744\uB54C\uB9C8\uB2E4 \uB370\uBBF8\uC9C0\uB97C
-      \uC785\uC73C\uBA70\r\n\uD0C0\uB77D\uB420\uB54C\uB9C8\uB2E4 \uC2E0\uC559\uC774
-      \uAC10\uC18C\uD569\uB2C8\uB2E4."
+    m_Localized: The Savior takes damage whenever the Savior's servant or the Flower
+      of Sacrifice dies, and the Savior's faith decreases when they get corrupted
+      each time.
     m_Metadata:
       m_Items: []
   references:
