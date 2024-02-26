@@ -276,6 +276,7 @@ public enum BuffEnum
     Immortal,
     Tailwind,
     Edified,
+    Curse,
 
     Vice,
     TraceOfSolar,
