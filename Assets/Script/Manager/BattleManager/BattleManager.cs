@@ -200,16 +200,6 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        /*
-        for (int i = 0; i < 4; i++)
-        {
-            Background[i].SetActive(false);
-
-            if (i == 0)
-                Background[i].SetActive(true);
-        }
-        */
-
         if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle && GameManager.Data.Map.GetCurrentStage().StageID == 0)
         {
             Background[2].SetActive(false);

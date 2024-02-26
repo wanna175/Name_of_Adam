@@ -275,6 +275,7 @@ public enum BuffEnum
     Invincible,
     Immortal,
     Tailwind,
+    Edified,
 
     Vice,
     TraceOfSolar,
