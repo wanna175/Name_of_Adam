@@ -754,7 +754,10 @@ public class BattleManager : MonoBehaviour
 
     private bool Switchable(BattleUnit moveUnit, BattleUnit destUnit) =>
         moveUnit.Team == destUnit.Team &&
-        moveUnit.GetMoveRange().Contains(destUnit.Location - moveUnit.Location);
+        moveUnit.GetMoveRange().Contains(destUnit.Location - moveUnit.Location) &&
+        destUnit.GetMoveRange().Contains(moveUnit.Location - destUnit.Location) &&
+        moveUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None &&
+        destUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None;
 
     public bool UnitSpawnReady(FieldColorType colorType, DeckUnit deckUnit = null)
     {
