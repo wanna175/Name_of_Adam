@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7744208442916351639
+--- !u!1 &6516491720742692485
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2553985026184532751}
-  - component: {fileID: 341118089883469045}
+  - component: {fileID: 2950990188252653416}
+  - component: {fileID: -629394743410810584}
   m_Layer: 0
-  m_Name: Stigma_PrayInAid
+  m_Name: Stigma_Symbiosis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2553985026184532751
+--- !u!4 &2950990188252653416
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7744208442916351639}
+  m_GameObject: {fileID: 6516491720742692485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,24 +32,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &341118089883469045
+--- !u!114 &-629394743410810584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7744208442916351639}
+  m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a31f409a4faf60442bc0bf2b98d85e9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d210ca45ada39741b9c39dd86a3e97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 22
-  _name: Pray In Aid
-  _sprite_28: {fileID: 21300000, guid: 3f21ab2c784e93447b63fd54c7d9e400, type: 3}
-  _sprite_88: {fileID: 21300000, guid: d14ddd8637b816d499ffbab5694494f0, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 5fceef63b4608004891fd2250aa0a8ce, type: 3}
-  _description: When attacking two or more enemies at once, it reduces faith by 1.
+  _stigmaEnum: 0
+  _name: Symbiosis
+  _sprite_28: {fileID: 0}
+  _sprite_88: {fileID: 0}
+  _sprite_164: {fileID: 0}
+  _description: Symbiosis Info
   _activeTiming: 2
-  _tier: 4
+  _tier: 3
   _isLock: 0
