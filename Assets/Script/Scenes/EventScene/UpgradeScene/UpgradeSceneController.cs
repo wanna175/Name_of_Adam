@@ -110,7 +110,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         while (_upgradeList.Count < 3)
         {
-            Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade();
+            Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade(unit);
 
             if (!_upgradeList.Contains(upgrade))
             {

@@ -16,7 +16,6 @@ public class StigmaController
     private List<Stigma> _tier3StigmaList = new();
     private List<Stigma> _uniqueStigmaList = new();
     private List<Stigma> _harlotStigmaList = new();
-    public List<Stigma> get_harlotStigmaList => _harlotStigmaList;
 
     private Dictionary<StigmaEnum, string[]> _lockStigmaDic = new(); // [Key, Value] = [낙인, 해당 낙인은 등장하지 않는 유닛 이름들]
 
@@ -128,12 +127,14 @@ public class StigmaController
         return false;
     }
 
-    public Stigma GetHarlotStigmas()
+    public Stigma GetRandomHarlotStigma()
     {
         int size = _harlotStigmaList.Count;
         int randNum = Random.Range(0, size);
         return _harlotStigmaList[randNum];
     }
+
+    public List<Stigma> GetHarlotStigmaList() => _harlotStigmaList;
 
     public void CheckUnlockedStigma(Stigma stigma)
     {

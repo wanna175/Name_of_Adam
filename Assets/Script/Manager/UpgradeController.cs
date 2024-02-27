@@ -189,4 +189,28 @@ public class UpgradeController
 
         return DataToUpgrade(upgrade);
     }
+
+    public Upgrade GetRandomUpgrade(DeckUnit unit)
+    {
+        Upgrade upgrade = new();
+
+        while (true)
+        {
+            upgrade = GetRandomUpgrade();
+
+            Stat checkStat = unit.DeckUnitTotalStat - upgrade.UpgradeStat;
+
+            if (checkStat.MaxHP < 0 || checkStat.ATK < 0 || checkStat.SPD < 0 || checkStat.ManaCost < 0)
+            {
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return upgrade;
+
+    }
 }
