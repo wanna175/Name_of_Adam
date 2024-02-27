@@ -100,17 +100,18 @@ public class UI_Hands : UI_Scene
 
     public DeckUnit GetSelectedUnit() =>_selectedHand.GetUnit();
 
-    public void InableCheck(int manaValue)
+    public void InableCheck()
     {
         foreach (UI_Hand card in _handList)
         {
-            if (manaValue < card.GetUnit().DeckUnitTotalStat.ManaCost)
+            if (BattleManager.Mana.CanUseMana(card.GetUnit().DeckUnitTotalStat.ManaCost) &&
+                GameManager.Data.CanUseDarkEssense(card.GetUnit().Data.DarkEssenseCost))
             {
-                card.ChangeInable(true);
+                card.ChangeInable(false);
             }
             else
             {
-                card.ChangeInable(false);
+                card.ChangeInable(true);
             }
         }
     }

@@ -49,8 +49,8 @@ public class Mana : MonoBehaviour
 
     public void ManaInableCheck()
     {
-        BattleManager.BattleUI.UI_playerSkill.InableCheck(_currentMana);
-        BattleManager.BattleUI.UI_hands.InableCheck(_currentMana);
+        BattleManager.BattleUI.UI_playerSkill.InableCheck();
+        BattleManager.BattleUI.UI_hands.InableCheck();
     }
 
     public bool CanUseMana(int value)
