@@ -17,7 +17,7 @@ public class CutSceneController : MonoBehaviour
         //GameManager.Sound.Play("Stage_Transition/CutScene/CutSceneBGM");
 
         string language = "EN";
-        if (GameManager.Locale.CurrentLocaleIndex == 1)
+        if (GameManager.OutGameData.GetLanguage() == 1)
             language = "KR";
 
         cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
