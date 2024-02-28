@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LocaleManager _locale;
     public static LocaleManager Locale => Instance._locale;
 
-    private static bool _onGM = false;
+    private static bool _onGM = true;
 
     void Awake()
     {
