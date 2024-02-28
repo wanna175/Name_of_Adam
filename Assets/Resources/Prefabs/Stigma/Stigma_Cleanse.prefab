@@ -52,4 +52,4 @@ MonoBehaviour:
   _description: All buffs and debuffs acquired by this unit are replaced with malevolence.
   _activeTiming: 2
   _tier: 4
-  _isLock: 1
+  _isLock: 0

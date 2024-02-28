@@ -53,4 +53,4 @@ MonoBehaviour:
     by 1.
   _activeTiming: 2
   _tier: 4
-  _isLock: 1
+  _isLock: 0

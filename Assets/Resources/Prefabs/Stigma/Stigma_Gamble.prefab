@@ -53,4 +53,4 @@ MonoBehaviour:
     a 50% chance for it to be halved.
   _activeTiming: 2
   _tier: 2
-  _isLock: 0
+  _isLock: 1

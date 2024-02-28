@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Buff_Berserker : Buff
 {
+    private int attackUp;
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Berserker;
@@ -18,7 +19,7 @@ public class Buff_Berserker : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
+        _buffActiveTiming = ActiveTiming.ATTACK_MOTION_END;
 
         _owner = owner;
 
@@ -26,7 +27,9 @@ public class Buff_Berserker : Buff
 
         _dispellable = false;
 
-        _stigmaBuff = false;
+        _stigmaBuff = true;
+
+        attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
     }
 
     public override bool Active(BattleUnit caster)
@@ -34,15 +37,10 @@ public class Buff_Berserker : Buff
         return false;
     }
 
-    public override void Stack()
-    {
-        _count += 1;
-    }
-
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK = (int)(_owner.DeckUnit.DeckUnitTotalStat.ATK * _count * 0.5);
+        stat.ATK += attackUp;
 
         return stat;
     }

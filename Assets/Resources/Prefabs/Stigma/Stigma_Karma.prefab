@@ -52,4 +52,4 @@ MonoBehaviour:
   _description: "Grant 'sin' to the unit upon defeating or corrupting the enemy.\r"
   _activeTiming: 2
   _tier: 0
-  _isLock: 1
+  _isLock: 0

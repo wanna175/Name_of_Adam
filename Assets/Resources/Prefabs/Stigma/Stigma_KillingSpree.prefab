@@ -52,4 +52,4 @@ MonoBehaviour:
   _description: Gains an extra turn upon defeating an enemy.
   _activeTiming: 8
   _tier: 2
-  _isLock: 0
+  _isLock: 1
