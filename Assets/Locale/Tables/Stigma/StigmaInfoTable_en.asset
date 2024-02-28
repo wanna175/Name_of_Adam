@@ -32,7 +32,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1175741853696
-    m_Localized: Acquires the Death strike upon summoning.
+    m_Localized: 'Acquires the Death strike upon summoning.
+
+      (Death Strike:
+      Damage triples, but dies after attacking)'
     m_Metadata:
       m_Items: []
   - m_Id: 1213641584640
