@@ -428,17 +428,22 @@ public class BattleUnit : MonoBehaviour
             }
 
             if (attackSkip)
-                return;
-
-            unit.GetAttack(-ChangedDamage, this);
-
-            //공격 후 체크
-            BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, this, unit);
-
-            if (unit.GetHP() <= 0)
             {
-                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_KILL, this, unit);
-                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
+                //공격 후 체크
+                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, this, unit);
+            }
+            else
+            {
+                unit.GetAttack(-ChangedDamage, this);
+
+                //공격 후 체크
+                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, this, unit);
+
+                if (unit.GetHP() <= 0)
+                {
+                    BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_KILL, this, unit);
+                    BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
+                }
             }
 
             ChangedDamage = 0;
