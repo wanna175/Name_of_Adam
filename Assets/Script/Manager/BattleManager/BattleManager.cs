@@ -200,16 +200,6 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        /*
-        for (int i = 0; i < 4; i++)
-        {
-            Background[i].SetActive(false);
-
-            if (i == 0)
-                Background[i].SetActive(true);
-        }
-        */
-
         if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle && GameManager.Data.Map.GetCurrentStage().StageID == 0)
         {
             Background[2].SetActive(false);
@@ -764,7 +754,10 @@ public class BattleManager : MonoBehaviour
 
     private bool Switchable(BattleUnit moveUnit, BattleUnit destUnit) =>
         moveUnit.Team == destUnit.Team &&
-        moveUnit.GetMoveRange().Contains(destUnit.Location - moveUnit.Location);
+        moveUnit.GetMoveRange().Contains(destUnit.Location - moveUnit.Location) &&
+        destUnit.GetMoveRange().Contains(moveUnit.Location - destUnit.Location) &&
+        moveUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None &&
+        destUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None;
 
     public bool UnitSpawnReady(FieldColorType colorType, DeckUnit deckUnit = null)
     {

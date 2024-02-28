@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df40af1758d9c3443abde791c8d864a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 11
+  _stigmaEnum: 12
   _name: Expand
   _sprite_28: {fileID: 21300000, guid: c1e3ee4d8903c97468421cdf352527b7, type: 3}
   _sprite_88: {fileID: 21300000, guid: 172c916266aa7b3469695f1d3a85ebae, type: 3}

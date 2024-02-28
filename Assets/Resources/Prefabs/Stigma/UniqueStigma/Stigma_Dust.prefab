@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa3d07844582f3428a589a7d6456aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 0
+  _stigmaEnum: 104
   _name: Dust
   _sprite_28: {fileID: 21300000, guid: c2805ae0d637c414587c95cf16cc5dfd, type: 3}
   _sprite_88: {fileID: 21300000, guid: 2f27098d2445cdd4bb358970810caee9, type: 3}

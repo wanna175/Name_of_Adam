@@ -254,6 +254,7 @@ public class BattleUnit : MonoBehaviour
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
+            SetBuff(new Buff_Edified());
         }
 
         foreach (ConnectedUnit unit in ConnectedUnits)

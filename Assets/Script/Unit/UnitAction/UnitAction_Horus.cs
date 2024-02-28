@@ -46,6 +46,7 @@ public class UnitAction_Horus : UnitAction
         BattleManager.Instance.PlayAfterCoroutine(() =>
         {
             SpawnUnit(coord, attackUnit);
+            SpawnUnitNearEnemy(attackUnit);
             BattleManager.Instance.EndUnitAction();
         }, 1.5f);
 

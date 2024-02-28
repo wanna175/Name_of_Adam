@@ -4,7 +4,7 @@ public class Buff_Stigma_Blooming : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.LegacyOfBabel;
+        _buffEnum = BuffEnum.Blooming;
 
         _name = "°³È­";
 

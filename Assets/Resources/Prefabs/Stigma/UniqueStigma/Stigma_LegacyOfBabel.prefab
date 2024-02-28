@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d57b792ee592c6d4aa733c67354bd2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 0
+  _stigmaEnum: 107
   _name: Legacy of Babel
   _sprite_28: {fileID: 21300000, guid: 5029ebd3a0a7cd945a75a3ebdc4e145b, type: 3}
   _sprite_88: {fileID: 21300000, guid: 0a7fff491aafa7847bf6ef4a42c594c8, type: 3}

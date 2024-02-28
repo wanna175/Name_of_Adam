@@ -58,7 +58,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
             Stigma stigma;
             if (_sc != null && _sc.GetType() == typeof(HarlotSceneController))
             {
-                stigma = GameManager.Data.StigmaController.GetHarlotStigmas();
+                stigma = GameManager.Data.StigmaController.GetRandomHarlotStigma();
             }
             else
             {

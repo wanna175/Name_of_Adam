@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5974f8022204b8b469fc197934ae988b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 0
+  _stigmaEnum: 106
   _name: Karma
   _sprite_28: {fileID: 21300000, guid: d65745160e542514ea2c6dac9557ec19, type: 3}
   _sprite_88: {fileID: 21300000, guid: b727ca60c04c24e4aa82a0a4ad9b0581, type: 3}

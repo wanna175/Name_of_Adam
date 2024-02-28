@@ -10,7 +10,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     private readonly int[] exitDialogNums = { 1, 1, 1, 1, 1 };
 
     private DeckUnit _stigmatizeUnit;
-    private List<Stigma> stigma; //타락낙인 저장하는 곳
+    private List<Stigma> _stigmaList; //타락낙인 저장하는 곳
     private List<DeckUnit> _RestorationUnits;
 
     [SerializeField] private GameObject background;
@@ -26,13 +26,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
 
-    List<Script> scripts = null;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+
+    private List<Script> _scripts = null;
     private bool _isStigmaFull;
+    private bool _isNPCFall = false;
+    private UI_Conversation _conversationUI;
 
-    private UI_Conversation uiConversation;
-
-    private bool isNPCFall = false;
     void Start()
     {
         Init();
@@ -40,7 +40,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
     private void Init()
     {
-        scripts = new List<Script>();
+        _scripts = new List<Script>();
         _isStigmaFull = false;
         _RestorationUnits = new List<DeckUnit>();
 
@@ -48,7 +48,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
         if (GameManager.OutGameData.GetVisitDarkshop() == false)
         {
-            scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
+            _scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
             descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
             nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["탕녀_선택_0"][0].name));
             //GameManager.OutGameData.setVisitDarkshop(true);
@@ -57,7 +57,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f);
             if (questLevel > 4) questLevel = 4;
-            scripts = GameManager.Data.ScriptData[$"탕녀_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
+            _scripts = GameManager.Data.ScriptData[$"탕녀_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
             descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].script));
             nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
 
@@ -65,7 +65,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             {   
                 background.SetActive(false);
                 fall_background.SetActive(true);
-                this.isNPCFall = true;
+                _isNPCFall = true;
             }
             else if (questLevel >= 0)
             {
@@ -75,11 +75,11 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             }
         }
 
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
-        uiConversation = FindObjectOfType<UI_Conversation>();
-        uiConversation.ConversationEnded += OnConversationEnded;
+        GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
+        _conversationUI = FindObjectOfType<UI_Conversation>();
+        _conversationUI.ConversationEnded += OnConversationEnded;
 
-        stigma = GameManager.Data.StigmaController.get_harlotStigmaList;
+        _stigmaList = GameManager.Data.StigmaController.GetHarlotStigmaList();
 
         int current_DarkEssense = GameManager.Data.DarkEssense;
 
@@ -87,13 +87,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             _getOriginUnitButton.SetActive(false);
         }
-        else if (current_DarkEssense < ((isNPCFall) ? 8 : 10)) 
+        else if (current_DarkEssense < ((_isNPCFall) ? 8 : 10)) 
         {
             _getOriginUnitButton_disabled.SetActive(true);
             _getOriginUnitButton.SetActive(false);
         }
 
-        if (current_DarkEssense < ((isNPCFall) ? 8 : 10))
+        if (current_DarkEssense < ((_isNPCFall) ? 8 : 10))
         {
             _SelectStigmaButton_disabled.SetActive(true);
             _SelectStigmaButton.SetActive(false);
@@ -118,23 +118,26 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
         int unitidx = Random.Range(0, 3);
-        UI_UnitInfo _ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        _ui.SetUnit(_originUnits[unitidx]);
-        _ui.Init(OnSelectMakeUnit,CUR_EVENT.COMPLETE_HAELOT,OnQuitClick);
+        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
+
+        ui.SetUnit(_originUnits[unitidx]);
+        ui.Init(OnSelectMakeUnit, CUR_EVENT.COMPLETE_HAELOT, OnQuitClick);
 
     }
     public void OnSelectMakeUnit(DeckUnit unit)
     {
         GameManager.Data.AddDeckUnit(unit);
-        GameManager.Data.DarkEssenseChage(((isNPCFall) ? -8 : -10));
+        GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
+        GameManager.Data.GameData.FallenUnits.Add(unit);
     }
+
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>();
-        _ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
-        _ui.SetEventMenu(_ui_SelectMenu);
+        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>();
+        ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        ui.SetEventMenu(_ui_SelectMenu);
     }
     public void OnSelectRestoration(DeckUnit unit)
     {
@@ -149,9 +152,9 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     public void OnStigmaButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_MyDeck _ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        _ui.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
-        _ui.SetEventMenu(_ui_SelectMenu);
+        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
+        ui.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+        ui.SetEventMenu(_ui_SelectMenu);
     }
     public void IsStigmaFull()
     {
@@ -168,15 +171,16 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             //GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, stigma,2,null,this);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, _stigmaList, 2, null, this);
         }
         else
         {
             Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
             IsStigmaFull();
         }
-        GameManager.Data.DarkEssenseChage(((isNPCFall) ? -8 : -10));
+        GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
     }
+
     private void SetUnitStigma(Stigma stigma)
     {
         _stigmatizeUnit.AddStigma(stigma);
@@ -189,6 +193,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         ui.SetUnit(_stigmatizeUnit);
         ui.Init(null, CUR_EVENT.COMPLETE_STIGMA, OnQuitClick);
     }
+
     public void OnStigmaSelected(Stigma stigma)
     {
         if (_isStigmaFull)//스티그마 예외처리
@@ -206,7 +211,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //대화하기 버튼을 클릭했을 경우
     public void OnConversationButtonClick()
     {
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts);
+        GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
     //나가기 버튼을 클릭했을 경우
     public void OnQuitClick()
@@ -219,7 +224,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         }
         else if (_RestorationUnits.Count != 0)
         {
-            int cost = isNPCFall ? 2 * _RestorationUnits.Count : _RestorationUnits.Count;
+            int cost = _isNPCFall ? 2 * _RestorationUnits.Count : _RestorationUnits.Count;
             GameManager.Data.DarkEssenseChage(cost);
             foreach(DeckUnit delunit in _RestorationUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);

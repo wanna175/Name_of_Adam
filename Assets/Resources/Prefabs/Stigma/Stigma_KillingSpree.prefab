@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4861423da40ff04d898471a022c6af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 18
+  _stigmaEnum: 17
   _name: Killing Spree
   _sprite_28: {fileID: 21300000, guid: 3adc74dfb08c7e646b9296cf30435927, type: 3}
   _sprite_88: {fileID: 21300000, guid: afebee306f9b5754a86935c50c0092af, type: 3}

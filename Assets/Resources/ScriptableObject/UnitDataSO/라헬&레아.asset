@@ -20,7 +20,8 @@ MonoBehaviour:
     FallCurrentCount: 0
     FallMaxCount: 7
     ManaCost: 80
-  _uniqueStigma: []
+  _uniqueStigma:
+  - {fileID: -629394743410810584, guid: cdcefc129db2956478ec5f66624bef8d, type: 3}
   _id: "\uB77C\uD5EC&\uB808\uC544"
   _name: Rahel&Lea
   _description: 

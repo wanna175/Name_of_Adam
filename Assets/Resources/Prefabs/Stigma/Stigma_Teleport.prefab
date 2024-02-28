@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c43934ebed214428b4061c61ba7b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 30
+  _stigmaEnum: 28
   _name: Teleport
   _sprite_28: {fileID: 21300000, guid: 611b6703fd685c843afbae496234011b, type: 3}
   _sprite_88: {fileID: 21300000, guid: c1335e01413ed5e44b4c395f2c9ae317, type: 3}
