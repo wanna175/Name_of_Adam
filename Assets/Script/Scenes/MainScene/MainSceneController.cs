@@ -31,7 +31,7 @@ public class MainSceneController : MonoBehaviour
             GameManager.SaveManager.DeleteSaveData();
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
-            if (GameManager.OutGameData.IsGameOverCheck()==false)
+            /*if (GameManager.OutGameData.IsGameOverCheck()==false)
             {
                 //npc관련 데이터 초기화
                 GameManager.OutGameData.ResetNPCQuest();
@@ -39,7 +39,7 @@ public class MainSceneController : MonoBehaviour
             else
             {
                 GameManager.OutGameData.SetIsGameOverCheck(false);
-            }
+            }*/
 
             if (GameManager.OutGameData.IsTutorialClear())
             {
@@ -90,7 +90,7 @@ public class MainSceneController : MonoBehaviour
 
         GameManager.SaveManager.DeleteSaveData();
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        if (GameManager.OutGameData.IsGameOverCheck() == false)
+        /*if (GameManager.OutGameData.IsGameOverCheck() == false)
         {
             //npc관련 데이터 초기화
             GameManager.OutGameData.ResetNPCQuest();
@@ -98,7 +98,7 @@ public class MainSceneController : MonoBehaviour
         else
         {
             GameManager.OutGameData.SetIsGameOverCheck(false);
-        }
+        }*/
 
         if (GameManager.OutGameData.IsTutorialClear())
         {

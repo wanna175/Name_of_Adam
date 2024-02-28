@@ -212,7 +212,7 @@ public class OutGameDataContainer : MonoBehaviour
 
         if (IsBossClear)
         {
-            SceneChanger.SceneChange("EndingCreditScene");
+            SceneChanger.SceneChange("MainScene");
         }
         else
         {

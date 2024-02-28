@@ -472,7 +472,7 @@ public class BattleManager : MonoBehaviour
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
-            if(GameManager.Data.GameData.IsVisitUpgrade)
+            if (GameManager.OutGameData.GetVisitUpgrade() == true)
                 GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
             
             if(unit.Data.Rarity == Rarity.Normal)
@@ -494,7 +494,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitFallEvent(BattleUnit unit)
     {
-        if (GameManager.Data.GameData.IsVisitDarkShop)
+        if (GameManager.OutGameData.GetVisitDarkshop()==true)
             GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
 
         if (unit.Team == Team.Enemy)
