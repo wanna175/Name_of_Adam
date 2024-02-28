@@ -127,7 +127,6 @@ public class DataManager : MonoBehaviour
                 if(unit.Data.Rarity != Rarity.Normal)
                 {
                     EliteHallHandDeck.Add(unit);
-                    Debug.Log(unit.Data.Name);
                 }
                 else
                 {

@@ -6,6 +6,6 @@ public class Stigma_Absorption : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Absorption());
+        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Absorption>());
     }
 }

@@ -8,6 +8,6 @@ public class Stigma_ForbiddenPact : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_ForbiddenPact());
+        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_ForbiddenPact>());
     }
 }

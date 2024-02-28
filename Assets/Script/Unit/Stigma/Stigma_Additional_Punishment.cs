@@ -8,6 +8,6 @@ public class Stigma_Additional_Punishment : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Additional_Punishment());
+        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Additional_Punishment>());
     }
 }

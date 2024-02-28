@@ -8,6 +8,6 @@ public class Stigma_Mercy : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Mercy());
+        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Mercy>());
     }
 }

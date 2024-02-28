@@ -7,7 +7,7 @@ public class Stigma_Invincible : Stigma
     {
         base.Use(caster);
 
-        Buff_Invincible invincible = new();
+        Buff_Invincible invincible = gameObject.AddComponent<Buff_Invincible>();
         caster.SetBuff(invincible);
 
         if (Tier == StigmaTier.Tier2)

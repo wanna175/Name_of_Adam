@@ -7,7 +7,7 @@ public class Stigma_Rebirth : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Rebirth());
-        caster.SetBuff(new Buff_Vice());
+        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Rebirth>());
+        caster.SetBuff(gameObject.AddComponent<Buff_Vice>());
     }
 }

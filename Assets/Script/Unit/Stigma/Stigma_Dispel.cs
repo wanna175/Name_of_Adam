@@ -7,7 +7,6 @@ public class Stigma_Dispel : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_Dispel dispel = new();
-        caster.SetBuff(dispel);
+        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Dispel>());
     }
 }

@@ -8,6 +8,6 @@ public class Stigma_Blooming : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Blooming());
+        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Blooming>());
     }
 }
