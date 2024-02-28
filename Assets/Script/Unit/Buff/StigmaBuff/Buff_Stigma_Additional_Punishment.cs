@@ -6,6 +6,8 @@ public class Buff_Stigma_Additional_Punishment : Buff
 {
     public override void Init(BattleUnit owner)
     {
+        _buffEnum = BuffEnum.Additional_Punishment;
+
         _name = "가중 처벌";
 
         _description = "공격 후 공격한 대상이 아닌 범위 안의 적 하나를 추가로 공격합니다.";

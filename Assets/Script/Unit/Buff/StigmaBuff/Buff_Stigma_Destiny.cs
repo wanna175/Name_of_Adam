@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Buff_Stigma_Gamble : Buff
+public class Buff_Stigma_Destiny : Buff
 {    public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Gamble;
+        _buffEnum = BuffEnum.Destiny;
 
-        _name = "도박";
+        _name = "운명";
 
         _description = "도박.";
 

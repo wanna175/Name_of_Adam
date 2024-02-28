@@ -6,7 +6,7 @@ public class Buff_Stigma_Mercy : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.ForbiddenPact;
+        _buffEnum = BuffEnum.Mercy;
 
         _name = "ÀÚºñ";
 

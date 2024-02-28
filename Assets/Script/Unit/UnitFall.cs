@@ -21,12 +21,15 @@ public class UnitFall : MonoBehaviour
             _maxCount = 4;
         }
         else
+        {
             _maxCount = maxCount;
+        }
     }
 
     public void ChangeFall(int value)
     {
-        if (_isEdified) return;
+        if (_isEdified) 
+            return;
 
         _currentCount += value;
 
@@ -43,13 +46,7 @@ public class UnitFall : MonoBehaviour
         Debug.Log("FALL : " + value + ", CurFALL ; " + _currentCount);
     }
 
-    public void Editfy()
-    {
-        _isEdified = true;
-    }
+    public void Editfy() => _isEdified = true;
 
-    public int GetCurrentFallCount()
-    {
-        return _currentCount;
-    }
+    public int GetCurrentFallCount() => _currentCount;
 }

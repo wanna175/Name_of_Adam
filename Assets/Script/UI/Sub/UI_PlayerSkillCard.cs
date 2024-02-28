@@ -16,7 +16,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     //[SerializeField] private TextMeshProUGUI _text;
 
     private UI_PlayerSkill _playerSkill;
-    public PlayerSkill _skill;
+    private PlayerSkill _skill;
     public bool IsSelected = false;
 
     private void Start()

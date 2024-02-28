@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class Buff_Stigma_Birth : Buff
+public class Buff_Edified : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Birth;
+        _buffEnum = BuffEnum.Edified;
 
-        _name = "탄생";
+        _name = "Edified";
 
-        _description = "자신의 턴에 희생의 꽃을 소환합니다. \n희생의 꽃은 다음 구원자의 턴에 개화하며 주변 4칸의 적에게 구원자의 공격력만큼의 데미지를 줍니다.";
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
+
+        _description = "Edified";
 
         _count = -1;
 
@@ -22,6 +24,6 @@ public class Buff_Stigma_Birth : Buff
 
         _dispellable = false;
 
-        _stigmaBuff = true;
+        _stigmaBuff = false;
     }
 }

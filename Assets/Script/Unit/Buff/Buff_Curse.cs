@@ -5,7 +5,7 @@ public class Buff_Curse : Buff
     GameObject curseEffect;
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Benediction;
+        _buffEnum = BuffEnum.Curse;
 
         _name = "Curse";
 
