@@ -73,7 +73,7 @@ public class OutGameDataContainer : MonoBehaviour
         _resolutions = new() {
             GetResolution(1920, 1080, 144),
             GetResolution(1280, 720, 144),
-            GetResolution(640, 480, 144)
+            GetResolution(720, 480, 144)
         };
 
         LoadData();

@@ -49,7 +49,8 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: e579b8187f2753746a8d57ca6fcb6a4d, type: 3}
   _sprite_88: {fileID: 21300000, guid: 9677051e3d354f44083b5f36ab5174c0, type: 3}
   _sprite_164: {fileID: 21300000, guid: 1094b711fca3ea54da59c3b8ac08e70a, type: 3}
-  _description: Acquires the Death strike upon summoning.
+  _description: 'Acquires the Death strike upon summoning. (Death Strike: Damage
+    triples, but dies after attacking)'
   _activeTiming: 2
   _tier: 0
   _isLock: 0

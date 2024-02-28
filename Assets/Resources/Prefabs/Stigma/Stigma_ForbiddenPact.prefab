@@ -53,4 +53,4 @@ MonoBehaviour:
     is eliminated upon summoning.
   _activeTiming: 8
   _tier: 2
-  _isLock: 0
+  _isLock: 1

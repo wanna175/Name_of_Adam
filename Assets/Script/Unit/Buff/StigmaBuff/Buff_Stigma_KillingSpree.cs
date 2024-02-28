@@ -16,7 +16,7 @@ public class Buff_Stigma_KillingSpree : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
+        _buffActiveTiming = ActiveTiming.UNIT_KILL;
 
         _owner = owner;
 
@@ -29,8 +29,8 @@ public class Buff_Stigma_KillingSpree : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        BattleManager.Data.BattleOrderInsert(0, _owner);
-        _owner.Buff.DeleteBuff(BuffEnum.KillingSpree);
+        if (caster.Team == Team.Enemy)
+            BattleManager.Data.BattleOrderInsert(0, _owner);
 
         return false;
     }

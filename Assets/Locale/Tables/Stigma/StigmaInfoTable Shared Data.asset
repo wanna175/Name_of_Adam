@@ -29,7 +29,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1175741853696
-    m_Key: Acquires the Death strike upon summoning.
+    m_Key: 'Acquires the Death strike upon summoning. (Death Strike: Damage triples,
+      but dies after attacking)'
     m_Metadata:
       m_Items: []
   - m_Id: 1213641584640
@@ -137,7 +138,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
-    m_Key: Gains 1 Sacred Step upon defeating an enemy, .
+    m_Key: Gains 1 Sacred Step upon defeating an enemy.
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
@@ -163,7 +164,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4568623411200
-    m_Key: Earns malevolence 99 times upon summoning.
+    m_Key: Earns malevolence 66 times upon summoning.
     m_Metadata:
       m_Items: []
   - m_Id: 7908400885760
