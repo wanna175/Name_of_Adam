@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95deac8870017e248adb80652f2f5a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 0
+  _stigmaEnum: 102
   _name: Charge
   _sprite_28: {fileID: 21300000, guid: 2fdca539c08b60c47bda1e17c4aff240, type: 3}
   _sprite_88: {fileID: 21300000, guid: 8d5e82b86f66a194a9e1d9ee7b12c705, type: 3}

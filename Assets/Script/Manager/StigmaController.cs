@@ -139,12 +139,12 @@ public class StigmaController
     public void CheckUnlockedStigma(Stigma stigma)
     {
         UnlockStigma(stigma, 20, StigmaEnum.Sin);
-        UnlockStigma(stigma, 16, StigmaEnum.ForbiddenPact);
+        UnlockStigma(stigma, 16, StigmaEnum.Forbidden_Pact);
         UnlockStigma(stigma, 13, StigmaEnum.Teleport);
         //UnlockStigma(stigma, 10, °¥¸Á);
         UnlockStigma(stigma, 7, StigmaEnum.Killing_Spree);
         //UnlockStigma(stigma, 4, º¸º¹);
-        UnlockStigma(stigma, 1, StigmaEnum.Gamble);
+        UnlockStigma(stigma, 1, StigmaEnum.Destiny);
     }
 
     public void UnlockStigma(Stigma stigma, int ID, StigmaEnum unlockedstigma)

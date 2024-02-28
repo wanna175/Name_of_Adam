@@ -4,7 +4,7 @@ public class Buff_Stigma_Birth : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.LegacyOfBabel;
+        _buffEnum = BuffEnum.Birth;
 
         _name = "Åº»ý";
 

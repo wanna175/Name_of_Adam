@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d381a4f2afae85d4191aa5d6d2cb0999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 19
+  _stigmaEnum: 18
   _name: Martyrdom
   _sprite_28: {fileID: 21300000, guid: 06d6c66844bbb8e48a46136e146d387b, type: 3}
   _sprite_88: {fileID: 21300000, guid: ab5428a687ca1e648948ea41784daaee, type: 3}
