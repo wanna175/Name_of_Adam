@@ -26,13 +26,13 @@ public class UI_SkillHover : UI_Hover
 
         _description.SetText($"<color=#FF9696><size=150%>{name}\n{costStr}\n<color=white><size=100%>{description}");
 
-        if (position.x > 1920 - 300)
-            posX = 1920 - 300;
+        if (position.x > 1920 - 300 / ratio)
+            posX = 1920 - 300 / ratio;
         else
             posX = position.x;
 
-        if (position.y < 150)
-            posY = 150;
+        if (position.y < 150 / ratio)
+            posY = 150 / ratio;
         else
             posY = position.y;
 
