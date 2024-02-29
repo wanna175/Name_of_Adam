@@ -53,7 +53,7 @@ public class HallUnit
     public string UnitName;       // 지금은 유닛 이름으로 받고있지만 ID로 받는 기능이 추가되면 변경해야함
     public Stat UpgradedStat;     //업그레이드된 스텟
     public bool IsMainDeck;       //유닛이 메인덱에 포함되었는지 유무 확인
-    public List<Stigma> Stigmata; // 유닛에게 추가된 낙인
+    public List<StigmaSaveData> Stigmata; // 유닛에게 추가된 낙인
     public List<UpgradeData> Upgrades; //유닛에게 추가된 강화
 }
 
@@ -117,15 +117,8 @@ public class OutGameDataContainer : MonoBehaviour
             deckUnit.DeckUnitUpgradeStat = unit.UpgradedStat;
             deckUnit.IsMainDeck = unit.IsMainDeck;
 
-            foreach (Stigma stigma in unit.Stigmata)
-            {
-                deckUnit.AddStigma(stigma);
-            }
-
-            foreach (UpgradeData upgrade in unit.Upgrades)
-            {
-                deckUnit.DeckUnitUpgrade.Add(GameManager.Data.UpgradeController.DataToUpgrade(upgrade));
-            }
+            deckUnit.SetStigmaSaveData(unit.Stigmata);
+            deckUnit.SetUpgrade(unit.Upgrades);
 
             HallList.Add(deckUnit);
         }

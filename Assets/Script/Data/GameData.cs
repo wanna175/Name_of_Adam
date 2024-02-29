@@ -6,7 +6,6 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public Incarna Incarna;
-    public int Money;
     public int DarkEssence;
     public int PlayerHP;
     public List<DeckUnit> DeckUnits = new();

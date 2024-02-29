@@ -37,27 +37,26 @@ public class DeckUnit
     private List<Stigma> _stigma = new();
 
     public readonly int _maxStigmaCount = 3;
-    public int _stigmaCount => _stigma.Count;
+    private int _stigmaCount => _stigma.Count;
 
     [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
     public bool IsMainDeck = false;
-    public bool CanSpawnInEnemyField => CheckStigma(new Stigma_Assasination());
+    public bool CanSpawnInEnemyField => CheckStigma(StigmaEnum.Assasination);
     
     public DeckUnit()
     {
         this.UnitID = -1;
         //this.UnitID = GameManager.UnitIDController.GetID();
     }
-    /*~DeckUnit() {//배틀이 끝났을때마다 초기화 해주자.
-        //GameManager.UnitIDController.ReturnID(this.UnitID);
-    }*/
-    public bool CheckStigma(Stigma findStigma)
+
+    public bool CheckStigma(StigmaEnum findStigma)
     {
         foreach (Stigma stigma in GetStigma())
         {
-            if (findStigma.GetType() == stigma.GetType())
+            if (findStigma == stigma.StigmaEnum)
                 return true;
         }
+
         return false;
     }
 
@@ -81,9 +80,19 @@ public class DeckUnit
         return stigmata;
     }
     
-    public List<Stigma> GetChangedStigma()
+    public List<StigmaSaveData> GetChangedStigma()
     {
-        return _stigma;
+        List<StigmaSaveData> saveDataList = new();
+        foreach (Stigma stigma in _stigma)
+        {
+            StigmaSaveData data = new();
+            data.StigmaEnum = stigma.StigmaEnum;
+            data.Tier = stigma.Tier;
+
+            saveDataList.Add(data);
+        }
+
+        return saveDataList;
     }
 
     public void AddStigma(Stigma stigma)
@@ -121,10 +130,24 @@ public class DeckUnit
         }
     }
 
+    public void SetStigmaSaveData(List<StigmaSaveData> dataList)
+    {
+
+        foreach (StigmaSaveData data in dataList)
+        {
+            Stigma stigma = GameManager.Data.StigmaController.SaveDataToStigma(data);
+
+            AddStigma(stigma);
+        }
+    }
+
     public void DeleteStigma(Stigma stigma)
     {
         _stigma.Remove(stigma);
     }
+
+    public void ClearStigma() => _stigma.Clear();
+
 
     public int GetUnitSize()
     {
@@ -161,8 +184,6 @@ public class DeckUnit
 
         return RangeList;
     }
-
-    public void ClearStigma() => _stigma.Clear();
 
     public List<UpgradeData> GetUpgradeData()
     {
