@@ -18,13 +18,13 @@ public class UI_TextHover : UI_Hover
         float posY;
         float ratio = 1920f / Screen.width;
 
-        if (position.x > 1920 - 175)
-            posX = 1920 - 175;
+        if (position.x > 1920 - 175 / ratio)
+            posX = 1920 - 175 / ratio;
         else
             posX = position.x;
 
-        if (position.y < 160)
-            posY = 160;
+        if (position.y < 160 / ratio)
+            posY = 160 / ratio;
         else
             posY = position.y;
 
