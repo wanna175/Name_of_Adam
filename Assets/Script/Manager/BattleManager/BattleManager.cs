@@ -308,7 +308,7 @@ public class BattleManager : MonoBehaviour
         List<BattleUnit> unitList = new();
         attackCoords.Add(coord);
         
-        if (nowUnit.DeckUnit.CheckStigma(new Stigma_Additional_Punishment()))
+        if (nowUnit.DeckUnit.CheckStigma(StigmaEnum.Additional_Punishment))
         {
             BattleUnit selectUnit = _field.GetUnit(coord);
             if (selectUnit == null || selectUnit.Team == Team.Player)
@@ -520,7 +520,7 @@ public class BattleManager : MonoBehaviour
             bool isBossClear = true;
             foreach (BattleUnit remainUnit in _battleData.BattleUnitList)
             {
-                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy && remainUnit != unit)
+                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy && !remainUnit.Fall.IsEdified && remainUnit != unit)
                 {
                     isBossClear = false;
                     break;
