@@ -8,6 +8,6 @@ public class Stigma_Birth : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Birth>());
+        caster.SetBuff(new Buff_Stigma_Birth());
     }
 }

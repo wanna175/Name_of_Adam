@@ -229,47 +229,47 @@ public class BattleDataManager : MonoBehaviour
     {
         if (actionType == UnitActionType.UnitAction)
         {
-            return gameObject.AddComponent<UnitAction>();
+            return new UnitAction();
         }
         else if (actionType == UnitActionType.UnitAction_Laser)
         {
-            return gameObject.AddComponent<UnitAction_Laser>();
+            return new UnitAction_Laser();
         }
         else if (actionType == UnitActionType.UnitAction_CenteredSplash)
         {
-            return gameObject.AddComponent<UnitAction_CenteredSplash>();
+            return new UnitAction_CenteredSplash();
         }
         else if (actionType == UnitActionType.UnitAction_Iana)
         {
-            return gameObject.AddComponent<UnitAction_Iana>();
+            return new UnitAction_Iana();
         }
         else if (actionType == UnitActionType.UnitAction_Phanuel)
         {
-            return gameObject.AddComponent<UnitAction_Phanuel>();
+            return new UnitAction_Phanuel();
         }
         else if (actionType == UnitActionType.UnitAction_Appaim)
         {
-            return gameObject.AddComponent<UnitAction_Appaim>();
+            return new UnitAction_Appaim();
         }
         else if (actionType == UnitActionType.UnitAction_Tubalcain)
         {
-            return gameObject.AddComponent<UnitAction_Tubalcain>();
+            return new UnitAction_Tubalcain();
         }
         else if (actionType == UnitActionType.UnitAction_Horus)
         {
-            return gameObject.AddComponent<UnitAction_Horus>();
+            return new UnitAction_Horus();
         }
         else if (actionType == UnitActionType.UnitAction_Horus_Egg)
         {
-            return gameObject.AddComponent<UnitAction_Horus_Egg>();
+            return new UnitAction_Horus_Egg();
         }
         else if (actionType == UnitActionType.UnitAction_RaquelLeah)
         {
-            return gameObject.AddComponent<UnitAction_RaquelLeah>();
+            return new UnitAction_RaquelLeah();
         }
         else
         {
-            return gameObject.AddComponent<UnitAction_None>();
+            return new UnitAction_None();
         }
     }
 }

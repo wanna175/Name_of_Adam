@@ -7,6 +7,6 @@ public class Stigma_Misdeed : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Misdeed>());
+        caster.SetBuff(new Buff_Stigma_Misdeed());
     }
 }

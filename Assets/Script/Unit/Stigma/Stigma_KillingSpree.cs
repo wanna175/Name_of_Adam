@@ -8,6 +8,6 @@ public class Stigma_KillingSpree : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_KillingSpree>());
+        caster.SetBuff(new Buff_Stigma_KillingSpree());
     }
 }

@@ -7,7 +7,7 @@ public class Stigma_Immortal : Stigma
     {
         base.Use(caster);
 
-        Buff_Immortal immortal = gameObject.AddComponent<Buff_Immortal>();
+        Buff_Immortal immortal = new();
         caster.SetBuff(immortal);
 
         if (Tier == StigmaTier.Tier2)

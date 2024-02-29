@@ -6,6 +6,6 @@ public class Stigma_Dust : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Dust>());
+        caster.SetBuff(new Buff_Stigma_Dust());
     }
 }

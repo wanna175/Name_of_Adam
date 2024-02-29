@@ -8,6 +8,6 @@ public class Stigma_Trinity : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Trinity>());
+        caster.SetBuff(new Buff_Stigma_Trinity());
     }
 }

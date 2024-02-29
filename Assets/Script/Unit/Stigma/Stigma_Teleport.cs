@@ -8,6 +8,6 @@ public class Stigma_Teleport : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Teleport>());
+        caster.SetBuff(new Buff_Teleport());
     }
 }

@@ -6,6 +6,6 @@ public class Stigma_Expand : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Expand>());
+        caster.SetBuff(new Buff_Stigma_Expand());
     }
 }

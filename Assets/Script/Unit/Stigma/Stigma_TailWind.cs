@@ -17,7 +17,7 @@ public class Stigma_TailWind : Stigma
         {
             if (unit.Team == caster.Team)
             {
-                unit.SetBuff(gameObject.AddComponent<Buff_Tailwind>());
+                unit.SetBuff(new Buff_Tailwind());
             }
         }
     }

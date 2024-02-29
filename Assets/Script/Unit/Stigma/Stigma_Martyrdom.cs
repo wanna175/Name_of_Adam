@@ -7,6 +7,6 @@ public class Stigma_Martyrdom : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Martyrdom>());
+        caster.SetBuff(new Buff_Stigma_Martyrdom());
     }
 }

@@ -10,7 +10,7 @@ public class Stigma_Sadism : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_Sadism sadism = gameObject.AddComponent<Buff_Stigma_Sadism>();
+        Buff_Stigma_Sadism sadism = new();
         if (Tier == StigmaTier.Tier1)
         {
             sadism.SetValue(2);

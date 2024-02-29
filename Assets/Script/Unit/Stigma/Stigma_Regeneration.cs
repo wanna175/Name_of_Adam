@@ -7,7 +7,7 @@ public class Stigma_Regeneration : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_Regeneration regeneration = gameObject.AddComponent<Buff_Stigma_Regeneration>();
+        Buff_Stigma_Regeneration regeneration = new();
         caster.SetBuff(regeneration);
 
         if (Tier == StigmaTier.Tier1)

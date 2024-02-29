@@ -13,6 +13,6 @@ public class Stigma_Lusifer : Stigma
             count = 2;
 
         for (int i = 0; i < count; i++)
-            caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Lucifer>());
+            caster.SetBuff(new Buff_Stigma_Lucifer());
     }
 }

@@ -7,6 +7,6 @@ public class Stigma_DeathStrike : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_DeathStrike>());
+        caster.SetBuff(new Buff_DeathStrike());
     }
 }

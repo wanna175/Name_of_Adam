@@ -8,6 +8,6 @@ public class Stigma_Cleanse : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(gameObject.AddComponent<Buff_Stigma_Cleanse>());
+        caster.SetBuff(new Buff_Stigma_Cleanse());
     }
 }
