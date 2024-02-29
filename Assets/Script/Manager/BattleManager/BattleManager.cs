@@ -260,7 +260,7 @@ public class BattleManager : MonoBehaviour
             return;
 
         if (TutorialManager.Instance.IsEnable())
-            TutorialManager.Instance.ShowNextTutorial();
+            TutorialManager.Instance.ShowNextTutorial(); 
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
         _battleData.DarkEssenseChage(-unit.Data.DarkEssenseCost);
