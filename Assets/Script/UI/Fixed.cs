@@ -10,13 +10,14 @@ public class Fixed : MonoBehaviour
     /* 해상도 설정하는 함수 */
     public void SetResolution()
     {
-        int setWidth = 1920; // 사용자 설정 너비
-        int setHeight = 1080; // 사용자 설정 높이
+        int setWidth = GameManager.OutGameData.GetResolution().width; // 사용자 설정 너비
+        int setHeight = GameManager.OutGameData.GetResolution().height; // 사용자 설정 높이
 
         int deviceWidth = Screen.width; // 기기 너비 저장
         int deviceHeight = Screen.height; // 기기 높이 저장
+        bool isWindowed = GameManager.OutGameData.IsWindowed();
 
-        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true); // SetResolution 함수 제대로 사용하기
+        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), !isWindowed); // SetResolution 함수 제대로 사용하기
 
         if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // 기기의 해상도 비가 더 큰 경우
         {
