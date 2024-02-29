@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 785920649190bb14c90397c717b82065
+guid: 51d47676932e72b4da20d1e9423fb7ad
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,38 +113,68 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crow_spear2_white_0
+      name: "\uBB18\uC9C0\uAE30_\uD0C0\uB77D_Hit_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a7e05ea556ae6f43957bdd2ea9aabe9
-      internalID: -139891317
+      spriteID: 6ef8518ced4db0947915337045b80546
+      internalID: -922155473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBB18\uC9C0\uAE30_\uD0C0\uB77D_Hit_1"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91628f3369621ef4fb1ea60887c75659
+      internalID: 51578640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uBB18\uC9C0\uAE30_\uD0C0\uB77D_Hit_2"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728636c83dc080e4cb74381ccf662c49
+      internalID: 284891480
       vertices: []
       indices: 
       edges: []
@@ -160,7 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      crow_spear2_white_0: -139891317
+      "\uBB18\uC9C0\uAE30_\uD0C0\uB77D_Hit_2": 284891480
+      "\uBB18\uC9C0\uAE30_\uD0C0\uB77D_Hit_1": 51578640
+      "\uBB18\uC9C0\uAE30_\uD0C0\uB77D_Hit_0": -922155473
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
