@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8491cc708dad12f4fb17570766da8093
+guid: df202f043d2c907489569f7a19333a10
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC8C4\uC218_Idle_0"
+      name: "\uC8C4\uC218_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39f4baa4ff8e5fa49bdc4ad0d535a42f
-      internalID: 1713656896
+      spriteID: f6d0eb42ebf728e48908747bc78ddaa3
+      internalID: 1706112401
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC8C4\uC218_Idle_1"
+      name: "\uC8C4\uC218_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
         x: 256
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47d68afd805a185469cc68e222c5fd12
-      internalID: 1800394304
+      spriteID: 71a769f8c2acc96428113e554fd9c969
+      internalID: -1620091791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC8C4\uC218_Idle_2"
+      name: "\uC8C4\uC218_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
         x: 512
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dda319ca87561d498cd35315f67bb04
-      internalID: 1617644906
+      spriteID: e50afb17613366a42bd725bdd76d4ba3
+      internalID: -2133706809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC8C4\uC218_Idle_3"
+      name: "\uC8C4\uC218_\uD0C0\uB77D_Attack_3"
       rect:
         serializedVersion: 2
         x: 768
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abe7fb163d77cb340973f70857d238df
-      internalID: -1514584340
+      spriteID: 1dd249751b2f1f3498b6d8fb41b553e8
+      internalID: -1882445019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC8C4\uC218_Idle_4"
+      name: "\uC8C4\uC218_\uD0C0\uB77D_Attack_4"
       rect:
         serializedVersion: 2
         x: 1024
@@ -215,29 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eca3abed2f60f247b971ddae2ceb9f0
-      internalID: 1163314814
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uC8C4\uC218_Idle_5"
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 950256143b0dc48418468abebf0bebfe
-      internalID: 1887830216
+      spriteID: 5a62b4edf68496d47bae578cb056e794
+      internalID: 1278203398
       vertices: []
       indices: 
       edges: []
@@ -253,12 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uC8C4\uC218_Idle_2": 1617644906
-      "\uC8C4\uC218_Idle_4": 1163314814
-      "\uC8C4\uC218_Idle_1": 1800394304
-      "\uC8C4\uC218_Idle_3": -1514584340
-      "\uC8C4\uC218_Idle_0": 1713656896
-      "\uC8C4\uC218_Idle_5": 1887830216
+      "\uC8C4\uC218_\uD0C0\uB77D_Attack_2": -2133706809
+      "\uC8C4\uC218_\uD0C0\uB77D_Attack_1": -1620091791
+      "\uC8C4\uC218_\uD0C0\uB77D_Attack_0": 1706112401
+      "\uC8C4\uC218_\uD0C0\uB77D_Attack_3": -1882445019
+      "\uC8C4\uC218_\uD0C0\uB77D_Attack_4": 1278203398
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
