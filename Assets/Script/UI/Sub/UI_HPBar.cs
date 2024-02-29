@@ -32,6 +32,24 @@ public class UI_HPBar : UI_Base
         Rotation();
     }
 
+    public void SetPosition(BattleUnit unit, bool resetPosition = false)
+    {
+        if (unit.DeckUnit.GetUnitSize() > 1 && !resetPosition)
+        {
+            float position = unit.transform.position.x;
+            foreach (ConnectedUnit connectedUnit in unit.ConnectedUnits)
+            {
+                position += connectedUnit.transform.position.x;
+            }
+
+            this.transform.position = new Vector3(position / (unit.ConnectedUnits.Count + 1), this.transform.position.y, this.transform.position.z);
+        }
+        else
+        {
+            this.transform.localPosition = new Vector3(0, this.transform.localPosition.y, this.transform.localPosition.z);
+        }
+    }
+
     public void SetHPBar(Team team)
     {
         if (team == Team.Player)
