@@ -27,6 +27,9 @@ public static class SceneChanger
     {
         Time.timeScale = 1.0f;
         GameManager.Data.CutSceneToDisplay = cutSceneType;
+        GameManager.OutGameData.GetCutSceneData()[(int)cutSceneType] = true;
+        GameManager.OutGameData.SaveData();
+
         SceneChange("CutScene");
     }
 }

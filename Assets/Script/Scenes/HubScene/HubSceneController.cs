@@ -24,7 +24,7 @@ public class HubSceneController : MonoBehaviour
         }
         else
         {
-            SceneChanger.SceneChange("CutScene");
+            SceneChanger.SceneChangeToCutScene(CutSceneType.Main);
         }
     }
 
