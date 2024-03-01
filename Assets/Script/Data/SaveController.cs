@@ -53,7 +53,7 @@ public class SaveController : MonoBehaviour
 
             //saveUnit.unit = unit;
             saveUnit.UnitDataID = unit.Data.ID;
-            saveUnit.Stigmata = unit.GetChangedStigma();
+            saveUnit.Stigmata = unit.GetStigmaSaveData();
             saveUnit.Upgrades = unit.GetUpgradeData();
 
             saveDeckUnitList.Add(saveUnit);
@@ -63,9 +63,8 @@ public class SaveController : MonoBehaviour
         {
             SaveUnit saveUnit = new();
 
-            //saveUnit.unit = unit;
             saveUnit.UnitDataID = unit.Data.ID;
-            saveUnit.Stigmata = unit.GetChangedStigma();
+            saveUnit.Stigmata = unit.GetStigmaSaveData();
             saveUnit.Upgrades = unit.GetUpgradeData();
 
             saveFallenUnitList.Add(saveUnit);
