@@ -272,15 +272,15 @@ public class DataManager : MonoBehaviour
         }
         else if (mapName.StartsWith("Map1_"))
         {
-            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct0" + mapName);
+            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct0/" + mapName);
         }
         else if (mapName.StartsWith("Map2_"))
         {
-            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct1" + mapName);
+            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct1/" + mapName);
         }
         else if (mapName.StartsWith("Map3_"))
         {
-            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct2" + mapName);
+            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct2/" + mapName);
         }
 
         Map.StageList = saveData.StageList;

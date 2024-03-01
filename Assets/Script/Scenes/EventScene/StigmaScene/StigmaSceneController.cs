@@ -29,7 +29,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     private UI_Conversation uiConversation;
     private Stigma _giveStigma = null;
 
-    private bool isNPCFall = false;
+    private bool _isNPCFall = false;
 
     void Start()
     {
@@ -83,7 +83,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             {
                 background.SetActive(false);
                 fall_background.SetActive(true);
-                this.isNPCFall = true;
+                _isNPCFall = true;
             }
             else if (questLevel >= 0)
             {
@@ -224,10 +224,11 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         else//낙인 이동일때
         {
             _giveStigma = stigma;
-            if(!isNPCFall)
+            if(!_isNPCFall)
                 GameManager.Data.RemoveDeckUnit(_givestigmatizeUnit);
             else
                 _givestigmatizeUnit.DeleteStigma(stigma);
+
             GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
             OnSelectStigmaTargetUnit();
         }

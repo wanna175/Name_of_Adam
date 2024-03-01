@@ -51,7 +51,6 @@ public class SaveController : MonoBehaviour
         {
             SaveUnit saveUnit = new();
 
-            //saveUnit.unit = unit;
             saveUnit.UnitDataID = unit.Data.ID;
             saveUnit.Stigmata = unit.GetStigmaSaveData();
             saveUnit.Upgrades = unit.GetUpgradeData();
