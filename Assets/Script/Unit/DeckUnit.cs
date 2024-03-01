@@ -79,21 +79,6 @@ public class DeckUnit
 
         return stigmata;
     }
-    
-    public List<StigmaSaveData> GetChangedStigma()
-    {
-        List<StigmaSaveData> saveDataList = new();
-        foreach (Stigma stigma in _stigma)
-        {
-            StigmaSaveData data = new();
-            data.StigmaEnum = stigma.StigmaEnum;
-            data.Tier = stigma.Tier;
-
-            saveDataList.Add(data);
-        }
-
-        return saveDataList;
-    }
 
     public void AddStigma(Stigma stigma)
     {
@@ -130,9 +115,23 @@ public class DeckUnit
         }
     }
 
+    public List<StigmaSaveData> GetStigmaSaveData()
+    {
+        List<StigmaSaveData> saveDataList = new();
+        foreach (Stigma stigma in _stigma)
+        {
+            StigmaSaveData data = new();
+            data.StigmaEnum = stigma.StigmaEnum;
+            data.Tier = stigma.Tier;
+
+            saveDataList.Add(data);
+        }
+
+        return saveDataList;
+    }
+
     public void SetStigmaSaveData(List<StigmaSaveData> dataList)
     {
-
         foreach (StigmaSaveData data in dataList)
         {
             Stigma stigma = GameManager.Data.StigmaController.SaveDataToStigma(data);
