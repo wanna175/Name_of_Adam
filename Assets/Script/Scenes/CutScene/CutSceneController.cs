@@ -30,14 +30,7 @@ public class CutSceneController : MonoBehaviour
         Debug.Log($"{cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
     }
 
-    public void SceneChange()
-    {
-        switch (cutSceneToDisplay)
-        {
-            case CutSceneType.Main: SceneChanger.SceneChange("StageSelectScene"); break;
-            case CutSceneType.Tutorial: SceneChanger.SceneChange("StageSelectScene"); break;
-        }
-    }
+    public void SceneChange() => SceneChanger.SceneChange("StageSelectScene");
 
     public void SkipButton()
     {

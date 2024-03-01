@@ -32,39 +32,10 @@ public class StageManager : MonoBehaviour
     {
         _stageChanger = new StageChanger();
 
-        ActClearCheck();
+        ActClearCheck(); // 만약 클리어 체크가 될 시 Map이 초기화됨
 
         if (GameManager.Data.Map.MapObject == null)
-        {
-            if (GameManager.Data.StageAct == 0)
-            {
-                if (!GameManager.OutGameData.IsTutorialClear())
-                {
-                    GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/TutorialMap/TutorialMap");
-                }
-                else
-                {
-                    GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct0");
-                    GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-                }
-            }
-            else if (GameManager.Data.StageAct == 1)
-            {
-                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct1");
-                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-            }
-            else if (GameManager.Data.StageAct == 2)
-            {
-                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct2");
-                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-            }
-            else
-            {
-                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps");
-                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-            }
-        }
-
+            CreateMap();
 
         Instantiate(GameManager.Data.Map.MapObject);
     }
@@ -74,6 +45,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Data.Map.StageList == null)
             SetStageData();
         SetCurrentStage();
+
         GameManager.VisualEffect.StartFadeEffect(true);
     }
 
@@ -101,6 +73,37 @@ public class StageManager : MonoBehaviour
             {
                 // 게임 클리어
             }
+        }
+    }
+
+    private void CreateMap()
+    {
+        if (GameManager.Data.StageAct == 0)
+        {
+            if (!GameManager.OutGameData.IsTutorialClear())
+            {
+                GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/TutorialMap/TutorialMap");
+            }
+            else
+            {
+                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct0");
+                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
+            }
+        }
+        else if (GameManager.Data.StageAct == 1)
+        {
+            GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct1");
+            GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
+        }
+        else if (GameManager.Data.StageAct == 2)
+        {
+            GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct2");
+            GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
+        }
+        else
+        {
+            GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps");
+            GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
         }
     }
 

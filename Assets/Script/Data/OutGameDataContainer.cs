@@ -23,7 +23,7 @@ public class OutGameData
     public bool IsVisitDarkShop = false;
     public NPCQuest NpcQuest;                //npc타락퀘스트
     public bool IsGameOver = false;          //바로 전에 게임이 오버되었는지 체크
-    public CutSceneData cutSceneData;        //현재 진행된 컷씬
+    public bool[] cutSceneData = new bool[Enum.GetValues(typeof(CutSceneType)).Length];        //현재 진행된 컷씬
 
     public int language;
     public int resolution;
@@ -344,4 +344,6 @@ public class OutGameDataContainer : MonoBehaviour
         _data.IsWindowed = false;
         _data.MasterSoundPower = _data.BGMSoundPower = _data.SESoundPower = 1f;
     }
+
+    public bool[] GetCutSceneData() => _data.cutSceneData;
 }
