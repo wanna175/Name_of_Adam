@@ -439,19 +439,19 @@ public struct TooltipData
     public bool IsEnd;
 }
 
-[Serializable]
-public struct CutSceneData
-{
-    public bool IsDoneStart;
-    public bool IsDoneTutorial;
-    public bool IsDoneElite;
-    public bool IsDoneBoss;
-}
-
 public enum CutSceneType
 {
     Main,
     Tutorial,
-    Elite,
-    Boss,
+
+    // 엘리트
+    Elieus_Enter,
+    LahelRea_Enter,
+    Appaim_Enter,
+
+    // 보스
+    Phanuel_Enter,
+    Phanuel_Corrupt,
+    TheSavior_Enter,
+    TheSavior_Corrupt,
 }

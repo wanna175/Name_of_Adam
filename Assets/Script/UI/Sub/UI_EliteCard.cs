@@ -61,9 +61,11 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         GameManager.Data.GameData.DeckUnits.Add(_deckUnit);
         GameManager.Data.GameData.FallenUnits.Add(_deckUnit);
         GameManager.OutGameData.SaveData();
-        GameManager.SaveManager.SaveGame();
+        GameManager.SaveManager.SaveGame(); 
 
-        SceneChanger.SceneChange("StageSelectScene");
+        bool isGoToCutScene = CheckAndGoToCutScene();
+        if (!isGoToCutScene)
+            SceneChanger.SceneChange("StageSelectScene");
     }
 
     public void OnInfoButton()
@@ -80,4 +82,48 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerExit(PointerEventData eventData)
         => _highlight.SetActive(false);
+
+    private bool CheckAndGoToCutScene()
+    {
+        bool isGoToCutScene = false;
+        StageData stageData = GameManager.Data.Map.GetCurrentStage();
+        Debug.Log($"현재 스테이지 정보: {stageData.Name}/{stageData.StageLevel}/{stageData.StageID}");
+
+        if (stageData.StageLevel == 90)
+        {
+            switch (stageData.StageID)
+            {
+                case 0: // 투발카인 -> 라헬레아 넘어가기
+                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.LahelRea_Enter])
+                    {
+                        isGoToCutScene = true;
+                        SceneChanger.SceneChangeToCutScene(CutSceneType.LahelRea_Enter);
+                    }
+                    break;
+                case 1: // 엘리우스 -> 삼신기 넘어가기
+                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.Appaim_Enter])
+                    {
+                        isGoToCutScene = true;
+                        SceneChanger.SceneChangeToCutScene(CutSceneType.Appaim_Enter);
+                    }
+                    break;
+                case 2: // 라헬레아 -> 니므롯 넘어가기
+                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.Phanuel_Enter])
+                    {
+                        isGoToCutScene = true;
+                        SceneChanger.SceneChangeToCutScene(CutSceneType.Phanuel_Enter);
+                    }
+                    break;
+                case 3: // 삼신기 -> 호루스 넘어가기
+                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.TheSavior_Enter])
+                    {
+                        isGoToCutScene = true;
+                        SceneChanger.SceneChangeToCutScene(CutSceneType.TheSavior_Enter);
+                    }
+                    break;
+            }
+        }
+
+        return isGoToCutScene;
+    }
 }
