@@ -38,15 +38,6 @@
       "Description": "The starting dark essence increases from 4 to 7."
     },
     {
-      "ID": 4,
-      "Name": "Revenge",
-      "Cost": 50,
-      "Prequest": 5,
-      "IsLock": true,
-      "IsUnlocked": false,
-      "Description": "Stigmata Revenge appears from now on. Revenge - Counterattacks enemies within attack range."
-    },
-    {
       "ID": 5,
       "Name": "Apostle Creation",
       "Cost": 200,
@@ -83,22 +74,13 @@
       "Description": "Every unit restores faith by 1 as a reward for clearing an Elite enemy."
     },
     {
-      "ID": 9,
+      "ID": 12,
       "Name": "Maximum upgrade",
       "Cost": 200,
-      "Prequest": 8,
-      "IsLock": true,
-      "IsUnlocked": false,
-      "Description": "The maximum upgrade increases from 2 to 3."
-    },
-    {
-      "ID": 10,
-      "Name": "Thirst",
-      "Cost": 100,
       "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
-      "Description": "Stigmata Thirst appears from now on. Thirst - Upon defeating an enemy, health permanently increases by 5, and attack by 2. (Resets in the Divine Hall)"
+      "Description": "The maximum upgrade increases from 2 to 3."
     },
     {
       "ID": 11,
@@ -110,10 +92,10 @@
       "Description": "A new feature, Stigmata Transfer, is unlocked in the Stigmata stage. You can now sacrifice one unit to bestow one of its stigmata onto another unit."
     },
     {
-      "ID": 12,
+      "ID": 15,
       "Name": "Starting mana I",
       "Cost": 150,
-      "Prequest": 11,
+      "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "The starting mana increases from 50 to 55."
@@ -137,10 +119,10 @@
       "Description": "You can now organize units from the Divine Hall in the slots of the Gravekeeper and Prisoner at the start."
     },
     {
-      "ID": 15,
+      "ID": 18,
       "Name": "Starting mana II",
       "Cost": 200,
-      "Prequest": 12,
+      "Prequest": 15,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "The starting mana increases from 55 to 60."

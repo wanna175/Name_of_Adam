@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainSceneController : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject ContinueBox;
     [SerializeField] GameObject UI_ResetAlert;
+    [SerializeField] GameObject SystemInfo;
+
+    private TMP_Text systemInfoText;
+    private Image systemInfoFrame;
 
     private void Start()
     {
@@ -14,6 +20,24 @@ public class MainSceneController : MonoBehaviour
             ContinueBox.SetActive(true);
         else
             ContinueBox.SetActive(false);
+
+        systemInfoText = SystemInfo.GetComponentInChildren<TMP_Text>();
+        systemInfoFrame = SystemInfo.GetComponentInChildren<Image>();
+        SystemInfo.SetActive(false);
+
+        if (GameManager.OutGameData.IsPhanuelClear() && GameManager.OutGameData.GetIsOnMainTooltipForPhanuel() == false)
+        {
+            GameManager.OutGameData.SetIsOnMainTooltipForPhanuel(true);
+            GameManager.OutGameData.SaveData();
+            SetSystemInfo("축하합니다, 어둠의 선지자여. 그러나 당신의 여정은 아직 끝나지 않았습니다. \r\n<color=yellow>새로운 빛<color=white>이 지평선 너머에서 당신을 기다리고 있습니다.");
+        }
+
+        if (GameManager.OutGameData.IsHorusClear() && GameManager.OutGameData.GetIsOnMainTooltipForHorus() == false)
+        {
+            GameManager.OutGameData.SetIsOnMainTooltipForHorus(true);
+            GameManager.OutGameData.SaveData();
+            SetSystemInfo("당신은 모든 것을 이겨냈지만, 진정한 시험은 이제부터입니다. \r\n매 판 새로운 전투를 마주하며 당신의 한계를 시험해보세요.");
+        }
     }
 
     public void StartButton()
@@ -122,5 +146,47 @@ public class MainSceneController : MonoBehaviour
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         Application.Quit();
+    }
+
+    public void SetSystemInfo(string info, float fadeTime = 2.0f, float idleTime = 4.0f)
+    {
+        SystemInfo.SetActive(true);
+        systemInfoText.text = info;
+        StartCoroutine(FadeSystemInfo(fadeTime, idleTime));
+    }
+
+    IEnumerator FadeSystemInfo(float fadeTime, float idleTime)
+    {
+        float alpha = 0.0f;
+        SetSystemInfoAlpha(alpha);
+
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime / fadeTime;
+            SetSystemInfoAlpha(alpha);
+            yield return null;
+        }
+
+        alpha = 1.0f;
+        SetSystemInfoAlpha(alpha);
+
+        yield return new WaitForSeconds(idleTime);
+
+        while (alpha > 0f)
+        {
+            alpha -= Time.deltaTime / fadeTime;
+            SetSystemInfoAlpha(alpha);
+            yield return null;
+        }
+
+        alpha = 0.0f;
+        SetSystemInfoAlpha(alpha);
+        SystemInfo.SetActive(false);
+    }
+
+    private void SetSystemInfoAlpha(float alpha)
+    {
+        systemInfoFrame.color = new Color(1f, 1f, 1f, alpha);
+        systemInfoText.color = new Color(1f, 1f, 1f, alpha);
     }
 }
