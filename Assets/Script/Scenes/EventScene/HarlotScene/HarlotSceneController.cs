@@ -237,11 +237,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.UI.ClosePopup();
         OnQuitClick();
     } 
+
     public void OnQuitClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
     }
+
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
         if (GameManager.Data.GameData.IsVisitDarkShop == false)
