@@ -12,7 +12,7 @@ public class UnitAction_Horus : UnitAction
     {
         if (DirectAttackCheck())
         {
-            BattleManager.Instance.DirectAttack(attackUnit);
+            BattleManager.Instance.EndUnitAction();
             return;
         }
 
@@ -87,6 +87,7 @@ public class UnitAction_Horus : UnitAction
         {
             if (!_isSummon)
             {
+                SpawnUnitNearEnemy(caster);
                 SpawnUnitNearEnemy(caster);
             }
 

@@ -58,7 +58,6 @@ public class Mana : MonoBehaviour
         if (_currentMana >= value)
             return true;
 
-        Debug.Log("not enough mana");
         return false;
     }
 }

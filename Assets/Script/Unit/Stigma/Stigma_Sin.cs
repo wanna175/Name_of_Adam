@@ -7,7 +7,6 @@ public class Stigma_Sin : Stigma
     {
         base.Use(caster);
 
-        Buff_Sin sin = new();
-        caster.SetBuff(sin);
+        caster.SetBuff(new Buff_Sin());
     }
 }

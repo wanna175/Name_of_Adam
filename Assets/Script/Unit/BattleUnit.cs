@@ -99,7 +99,8 @@ public class BattleUnit : MonoBehaviour
             }
             
             SetFlipX(_team == Team.Enemy);
-       
+            _hpBar.SetPosition(this);
+
             //소환 시 체크
             BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
             BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
@@ -177,6 +178,11 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshHPBar(HP.FillAmount());
         _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
         _hpBar.RefreshBuff();
+    }
+
+    public void ResetHPBarPosition()
+    {
+        _hpBar.SetPosition(this, true);
     }
 
     public void SetLocation(Vector2 coord)
@@ -427,10 +433,10 @@ public class BattleUnit : MonoBehaviour
                 attackSkip = true;
             }
 
-            if (attackSkip)
-                return;
-
-            unit.GetAttack(-ChangedDamage, this);
+            if (!attackSkip)
+            {
+                unit.GetAttack(-ChangedDamage, this);
+            }
 
             //공격 후 체크
             BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, this, unit);

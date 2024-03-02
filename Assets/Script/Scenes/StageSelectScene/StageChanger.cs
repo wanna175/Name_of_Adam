@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class StageChanger
 {
-    public void SetNextStage(int _id)
+    public void SetNextStage(int id)
     {
-        StageData stage = GameManager.Data.Map.GetStage(_id);
+        StageData stage = GameManager.Data.Map.GetStage(id);
 
-        GameManager.Data.Map.CurrentTileID = _id;
+        GameManager.Data.Map.CurrentTileID = id;
 
         if (stage.Type == StageType.Tutorial)
         {

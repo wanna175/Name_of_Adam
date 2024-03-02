@@ -7,7 +7,7 @@ public class Stigma_TailWind : Stigma
     {
         base.Use(caster);
 
-        List<Vector2> areaCoords = new List<Vector2>();
+        List<Vector2> areaCoords = new();
         for (int i = -2; i < 3; i++)
             areaCoords.Add(new Vector2(0, i));
 
@@ -17,8 +17,7 @@ public class Stigma_TailWind : Stigma
         {
             if (unit.Team == caster.Team)
             {
-                Buff_Tailwind tailwind = new();
-                unit.SetBuff(tailwind);
+                unit.SetBuff(new Buff_Tailwind());
             }
         }
     }

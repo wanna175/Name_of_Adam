@@ -6,7 +6,6 @@ public class Stigma_BishopsPraise : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_BishopsPraise bishopsPraise = new();
-        caster.SetBuff(bishopsPraise);
+        caster.SetBuff(new Buff_Stigma_BishopsPraise());
     }
 }

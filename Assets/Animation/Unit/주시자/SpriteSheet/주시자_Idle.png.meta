@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a44e60bee99d454c89ee3b4272cafe9
+guid: 20731de7cac9fcc4d87b595f26081881
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,101 +113,89 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_ball_breath-Sheet_0
+      name: "\uC8FC\uC2DC\uC790_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aec3f4c94cf9bc146abdaa8ddfdbceca
-      internalID: 2017660501
+      spriteID: a2985ee5c45511043a00ceaf28724647
+      internalID: 2066671795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_ball_breath-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e9132b1e532b074996dfdef12896cb1
-      internalID: -457212737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_ball_breath-Sheet_2
+      name: "\uC8FC\uC2DC\uC790_Idle_1"
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e8e6c37f346bb84eaa4cf50f2f279b5
-      internalID: -137851102
+      spriteID: 0346e69a2661a3b42940c9c894369268
+      internalID: 495334993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_ball_breath-Sheet_3
+      name: "\uC8FC\uC2DC\uC790_Idle_2"
       rect:
         serializedVersion: 2
-        x: 384
+        x: 512
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e79ed34d36bce141b88bfe371d80305
-      internalID: 743416217
+      spriteID: b57ef96bd796c664c9123cd2755a5b92
+      internalID: 158374521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC8FC\uC2DC\uC790_Idle_3"
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c21e5c7326404b34fbf07353583bb493
+      internalID: 103683872
       vertices: []
       indices: 
       edges: []
@@ -223,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_ball_breath-Sheet_3: 743416217
-      bavel_ball_breath-Sheet_2: -137851102
-      bavel_ball_breath-Sheet_1: -457212737
-      bavel_ball_breath-Sheet_0: 2017660501
+      "\uC8FC\uC2DC\uC790_Idle_0": 2066671795
+      "\uC8FC\uC2DC\uC790_Idle_3": 103683872
+      "\uC8FC\uC2DC\uC790_Idle_1": 495334993
+      "\uC8FC\uC2DC\uC790_Idle_2": 158374521
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

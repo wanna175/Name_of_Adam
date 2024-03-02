@@ -6,7 +6,6 @@ public class Stigma_Hook : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_Hook hook = new();  
-        caster.SetBuff(hook);
+        caster.SetBuff(new Buff_Stigma_Expand());
     }
 }
