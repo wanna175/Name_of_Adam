@@ -9,8 +9,9 @@ public class PlayerSkill_02_01 : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         _tilePos = coord;
-        BattleUnit unit = BattleManager.Field.GetUnit(_tilePos);
-        unit.ChangeHP(-25);
+        BattleUnit targetUnit = BattleManager.Field.GetUnit(_tilePos);
+        targetUnit.GetAttack(-25, null);
+        BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
 
         GameManager.Sound.Play("UI/PlayerSkillSFX/Punishment");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
