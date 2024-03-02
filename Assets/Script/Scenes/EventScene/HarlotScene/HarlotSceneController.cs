@@ -92,7 +92,6 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             _getOriginUnitButton_disabled.SetActive(true);
             _getOriginUnitButton.SetActive(false);
         }
-        _getOriginUnitButton.SetActive(true);
 
         if (current_DarkEssense < ((_isNPCFall) ? 8 : 10))
         {
