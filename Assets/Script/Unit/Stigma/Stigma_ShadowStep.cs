@@ -7,7 +7,6 @@ public class Stigma_ShadowStep : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_ShadowStep shadowStep = new();
-        caster.SetBuff(shadowStep);
+        caster.SetBuff(new Buff_Stigma_ShadowStep());
     }
 }

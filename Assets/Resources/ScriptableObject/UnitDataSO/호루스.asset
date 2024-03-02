@@ -28,12 +28,12 @@ MonoBehaviour:
   _name: The Savior
   _description: 
   _rarity: 3
-  _image: {fileID: 21300000, guid: ca3039b7641dadc4ba694525b02be063, type: 3}
-  _corruptImage: {fileID: 0}
-  _portraitImage: {fileID: 0}
-  _corruptPortraitImage: {fileID: 0}
-  _diaPortraitImage: {fileID: 0}
-  _corruptDiaPortraitImage: {fileID: 0}
+  _image: {fileID: 21300000, guid: ce6f50377c3221f408e641f34449704a, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 4795c7855f426204e871e570f7a81ad3, type: 3}
+  _portraitImage: {fileID: 21300000, guid: 4fc037c2a67acd045b52b4517b96eaf1, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: 125743ae23396d841871b5d039ae0251, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 3c069074a1e56b3449e11241d103f4c6, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: e5365ed500868dc4ca6a058cd55c1f1a, type: 3}
   _animatorController: {fileID: 9100000, guid: e0ce6552cd4dd0a4aaf251c1e131a974, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: cce5a544b9ef2984bac36360dc11a8ac, type: 2}
   _skillEffectAnim: {fileID: 0}

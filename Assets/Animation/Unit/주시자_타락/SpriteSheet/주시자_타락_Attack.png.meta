@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce2d16d8211f8634eaaabab3f35456ef
+guid: bc4217ff8873d3147a815eae40babb0b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,122 +113,110 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_ball_cor-Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 512
-        width: 982
-        height: 128
-      alignment: 9
-      pivot: {x: 0.06, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc2a5a3bb60268d41be79f18d8388657
-      internalID: 1645276991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_ball_cor-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 384
-        width: 982
-        height: 128
-      alignment: 9
-      pivot: {x: 0.06, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f96c75e87269d7449c69121a9ff0ab7
-      internalID: -967595309
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_ball_cor-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 982
-        height: 128
-      alignment: 9
-      pivot: {x: 0.06, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b215edd1068b8354eab5532124d1bd3e
-      internalID: 691870219
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_ball_cor-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 982
-        height: 128
-      alignment: 9
-      pivot: {x: 0.06, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c8330c94f03f774eaf9924c7e00d95f
-      internalID: -1335715276
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bavel_ball_cor-Sheet_4
+      name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 982
-        height: 128
+        width: 1750
+        height: 256
       alignment: 9
-      pivot: {x: 0.06, y: 0}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b3b97242bc14534aa0037cd5582c1f1
-      internalID: -354871521
+      spriteID: 042ee641b024c704a85e9680df3688e8
+      internalID: 253085820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_1"
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 0
+        width: 1750
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1501ae5ab4770a048aae0a3cf03c318a
+      internalID: 242475761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_2"
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 0
+        width: 1750
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66bf45a2b6386c643a7394bc55558274
+      internalID: 98442351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_3"
+      rect:
+        serializedVersion: 2
+        x: 5250
+        y: 0
+        width: 1750
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d028e2745866346b8cbf745d0b2f1e
+      internalID: 647246984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_4"
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 0
+        width: 1750
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee844bd12c850d14bb3a843baa765681
+      internalID: 1352361305
       vertices: []
       indices: 
       edges: []
@@ -244,11 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_ball_cor-Sheet_4: -354871521
-      bavel_ball_cor-Sheet_3: -1335715276
-      bavel_ball_cor-Sheet_2: 691870219
-      bavel_ball_cor-Sheet_1: -967595309
-      bavel_ball_cor-Sheet_0: 1645276991
+      "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_4": 1352361305
+      "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_2": 98442351
+      "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_3": 647246984
+      "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_1": 242475761
+      "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_0": 253085820
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

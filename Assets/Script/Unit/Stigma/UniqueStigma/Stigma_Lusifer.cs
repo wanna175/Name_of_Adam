@@ -6,7 +6,7 @@ public class Stigma_Lusifer : Stigma
 {
     public override void Use(BattleUnit caster)
     {
-        //base.Use(caster);
+        base.Use(caster);
 
         int count = 1;
         if (GameManager.OutGameData.IsUnlockedItem(74))

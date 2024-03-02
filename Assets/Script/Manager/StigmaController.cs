@@ -154,4 +154,30 @@ public class StigmaController
             stigma.UnlockStigma();
         }
     }
+
+    public Stigma SaveDataToStigma(StigmaSaveData data)
+    {
+        if (data.Tier == StigmaTier.Tier1)
+        {
+            return _tier1StigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Tier2)
+        {
+            return _tier2StigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Tier3)
+        {
+            return _tier3StigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Unique)
+        {
+            return _uniqueStigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Harlot)
+        {
+            return _harlotStigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+
+        return null;
+    }
 }

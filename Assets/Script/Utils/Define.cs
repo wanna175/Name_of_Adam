@@ -86,6 +86,22 @@ public class UpgradeLoader
 }
 
 [Serializable]
+public class StigmaSaveData
+{
+    public StigmaEnum StigmaEnum;
+    public StigmaTier Tier;
+}
+
+[Serializable]
+public class MapDataSaveData
+{
+    public string MapObject;           // 현재 맵 구조의 프리팹
+    public List<StageData> StageList;// 맵의 노드들의 리스트
+    public int CurrentTileID;            // 현재 위치하고있는 타일의 ID
+    public List<int> ClearTileID;       // 이미 클리어한 타일의 ID
+}
+
+[Serializable]
 public enum Team
 {
     Player,

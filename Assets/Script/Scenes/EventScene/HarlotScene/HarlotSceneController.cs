@@ -134,9 +134,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
     {
+        _RestorationUnits.Clear();
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>();
-        ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, OnQuitClick);
+        ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, RestorationQuitClick);
         ui.SetEventMenu(_ui_SelectMenu);
     }
     public void OnSelectRestoration(DeckUnit unit)
@@ -214,9 +215,8 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
     //나가기 버튼을 클릭했을 경우
-    public void OnQuitClick()
+    public void RestorationQuitClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         if (_RestorationUnits.Count == GameManager.Data.GetDeck().Count)
         {
             Debug.Log("유닛은 하나 이상 남겨야 합니다.");//여기다가 경고창 띄우면 될듯
@@ -226,10 +226,14 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             int cost = _isNPCFall ? 2 * _RestorationUnits.Count : _RestorationUnits.Count;
             GameManager.Data.DarkEssenseChage(cost);
-            foreach(DeckUnit delunit in _RestorationUnits)
+            foreach (DeckUnit delunit in _RestorationUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
-
+        OnQuitClick();
+    } 
+    public void OnQuitClick()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
     }
     private IEnumerator QuitScene(UI_Conversation eventScript = null)

@@ -5856,6 +5856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Stigma
       objectReference: {fileID: 0}
+    - target: {fileID: 1941623453305881854, guid: 0a986496b83385c439b5ed7393a59c81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1941623453305881855, guid: 0a986496b83385c439b5ed7393a59c81, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

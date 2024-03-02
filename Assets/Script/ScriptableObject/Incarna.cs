@@ -7,6 +7,9 @@ using System.Collections.Generic;
 [Serializable]
 public class Incarna : ScriptableObject
 {
+    [SerializeField] private string _id;
+    public string ID => _id;
+
     [SerializeField] private string _name;
     public string Name => _name;
 
@@ -15,7 +18,4 @@ public class Incarna : ScriptableObject
 
     [SerializeField] private List<PlayerSkill> _playerSkillList = new();
     public List<PlayerSkill> PlayerSkillList => _playerSkillList;
-
-    [SerializeField] private int _playerSkillCount;
-    public int PlayerSkillCount => _playerSkillCount;
 }
