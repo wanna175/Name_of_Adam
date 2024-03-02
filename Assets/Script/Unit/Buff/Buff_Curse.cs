@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Buff_Curse : Buff
 {
-    GameObject curseEffect;
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Curse;
@@ -26,8 +25,6 @@ public class Buff_Curse : Buff
         _dispellable = false;
 
         _stigmaBuff = false;
-
-        curseEffect = GameManager.VisualEffect.StartBenedictionEffect(_owner);
     }
 
     public override bool Active(BattleUnit caster)
@@ -35,10 +32,5 @@ public class Buff_Curse : Buff
         _owner.ChangeFall(1);
 
         return false;
-    }
-
-    public override void Destroy()
-    {
-        Destroy(curseEffect);
     }
 }
