@@ -24,6 +24,7 @@ public class SaveData
 public class SaveUnit
 {
     public string UnitDataID;
+    public Stat UnitStat;
     public List<StigmaSaveData> Stigmata; // 유닛에게 추가된 낙인
     public List<UpgradeData> Upgrades; // 유닛에게 추가된 강화
 }
@@ -52,6 +53,7 @@ public class SaveController : MonoBehaviour
             SaveUnit saveUnit = new();
 
             saveUnit.UnitDataID = unit.Data.ID;
+            saveUnit.UnitStat = unit.DeckUnitUpgradeStat;
             saveUnit.Stigmata = unit.GetStigmaSaveData();
             saveUnit.Upgrades = unit.GetUpgradeData();
 
@@ -63,6 +65,7 @@ public class SaveController : MonoBehaviour
             SaveUnit saveUnit = new();
 
             saveUnit.UnitDataID = unit.Data.ID;
+            saveUnit.UnitStat = unit.DeckUnitUpgradeStat;
             saveUnit.Stigmata = unit.GetStigmaSaveData();
             saveUnit.Upgrades = unit.GetUpgradeData();
 
@@ -101,7 +104,7 @@ public class SaveController : MonoBehaviour
         {
             DeckUnit deckunit = new();
             deckunit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{saveUnit.UnitDataID}");
-
+            deckunit.DeckUnitUpgradeStat = saveUnit.UnitStat;
             deckunit.SetStigmaSaveData(saveUnit.Stigmata);
             deckunit.SetUpgrade(saveUnit.Upgrades);
 
@@ -112,6 +115,7 @@ public class SaveController : MonoBehaviour
         {
             DeckUnit deckunit = new();
             deckunit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{saveUnit.UnitDataID}");
+            deckunit.DeckUnitUpgradeStat = saveUnit.UnitStat;
             deckunit.SetStigmaSaveData(saveUnit.Stigmata);
             deckunit.SetUpgrade(saveUnit.Upgrades);
 
