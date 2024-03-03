@@ -88,7 +88,7 @@ public class ProgressShopManager : MonoBehaviour
             return;
         }
 
-        GameManager.Sound.Play("UI/ClickSFX/UIClick3");
+        GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
         ChangeBtnImage(false);
