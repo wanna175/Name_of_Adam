@@ -3214,6 +3214,9 @@ MonoBehaviour:
     IsMainDeck: 0
   nameText: {fileID: 0}
   descriptionText: {fileID: 0}
+  unitRestoration_txt: {fileID: 0}
+  originUnit_txt: {fileID: 0}
+  selectStigma_txt: {fileID: 0}
   _forbiddenButton: {fileID: 2084415030}
 --- !u!1 &1101046264
 GameObject:

@@ -26,6 +26,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
 
+    [SerializeField] private TMP_Text unitRestoration_txt;
+    [SerializeField] private TMP_Text originUnit_txt;
+    [SerializeField] private TMP_Text selectStigma_txt;
+
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
 
     private List<Script> _scripts = null;
@@ -98,7 +102,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             _SelectStigmaButton_disabled.SetActive(true);
             _SelectStigmaButton.SetActive(false);
         }
-
+        SetMenuText(_isNPCFall);
         /*
         if(GameManager.Data.GameData)
         {
@@ -272,7 +276,21 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
-
+    private void SetMenuText(bool _isnpcfall)
+    {
+        if (_isnpcfall)
+        {
+            unitRestoration_txt.text = "2";
+            selectStigma_txt.text = "8";
+            originUnit_txt.text = "8";
+        }
+        else
+        {
+            unitRestoration_txt.text = "1";
+            selectStigma_txt.text = "10";
+            originUnit_txt.text = "10";
+        }
+    }
     private void OnConversationEnded()
     {
         _ui_SelectMenu.SetActive(true);
