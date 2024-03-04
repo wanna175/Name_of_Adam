@@ -98,7 +98,7 @@ public class UnitAction_Horus : UnitAction
             if (_summonedUnit.Contains(receiver))
             {
                 _summonedUnit.Remove(receiver);
-                caster.GetAttack(-10, null);
+                caster.GetAttack(-500, null);
             }
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_FALLED) == ActiveTiming.FIELD_UNIT_FALLED)
