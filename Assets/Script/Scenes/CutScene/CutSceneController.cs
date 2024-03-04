@@ -14,7 +14,6 @@ public class CutSceneController : MonoBehaviour
     {
         GameManager.Sound.Clear();
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
-        //GameManager.Sound.Play("Stage_Transition/CutScene/CutSceneBGM");
 
         string language = "EN";
         if (GameManager.OutGameData.GetLanguage() == 1)
@@ -22,7 +21,8 @@ public class CutSceneController : MonoBehaviour
 
         cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
         videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{cutSceneToDisplay}_{language}");
-     
+
+        GameManager.Sound.Play($"CutScene/{cutSceneToDisplay}", Sounds.BGM);
         video.clip = videoClip;
         video.loopPointReached += EndReached;
         video.Play();
@@ -35,6 +35,8 @@ public class CutSceneController : MonoBehaviour
     public void SkipButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+        GameManager.Sound.Clear();
         SceneChange();
     }
 
@@ -43,6 +45,7 @@ public class CutSceneController : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log($"End CutScene: {cutSceneToDisplay}");
 #endif
+        GameManager.Sound.Clear();
         SceneChange();
     }
 }

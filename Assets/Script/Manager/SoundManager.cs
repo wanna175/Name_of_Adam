@@ -155,10 +155,6 @@ public class SoundManager : MonoBehaviour
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
             Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
         }
-        else if(scenename == "CutScene")
-        {
-            Clear();
-        }
         else if(scenename == "StageSelectScene")
         {
             Clear();
