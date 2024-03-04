@@ -8,6 +8,8 @@ public class Buff_Leah : Buff
 
         _name = "레아";
 
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Leah_Sprite");
+
         _description = "레아.";
 
         _count = 1;

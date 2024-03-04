@@ -44,6 +44,7 @@ public class MainSceneController : MonoBehaviour
     {
         if (GameManager.SaveManager.SaveFileCheck())
         {
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
             UI_ResetAlert.SetActive(true);
         }
         else

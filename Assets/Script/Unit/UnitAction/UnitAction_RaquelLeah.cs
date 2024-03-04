@@ -45,6 +45,11 @@ public class UnitAction_RaquelLeah : UnitAction
         {
             ChangeState(caster);
         }
+        else if ((activeTiming & ActiveTiming.MOVE_TURN_START) == ActiveTiming.MOVE_TURN_START)
+        {
+            if (_isChanged)
+                return true;
+        }
 
         return false;
     }

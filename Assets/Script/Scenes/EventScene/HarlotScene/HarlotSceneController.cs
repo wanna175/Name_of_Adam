@@ -26,6 +26,10 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
 
+    [SerializeField] private TMP_Text unitRestoration_txt;
+    [SerializeField] private TMP_Text originUnit_txt;
+    [SerializeField] private TMP_Text selectStigma_txt;
+
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
 
     private List<Script> _scripts = null;
@@ -98,7 +102,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             _SelectStigmaButton_disabled.SetActive(true);
             _SelectStigmaButton.SetActive(false);
         }
-
+        SetMenuText(_isNPCFall);
         /*
         if(GameManager.Data.GameData)
         {
@@ -140,6 +144,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, RestorationQuitClick);
         ui.SetEventMenu(_ui_SelectMenu);
     }
+
     public void OnSelectRestoration(DeckUnit unit)
     {
         if (!_RestorationUnits.Contains(unit))
@@ -149,6 +154,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
         GameManager.UI.ClosePopup();
     }
+
     // 유닛 선택 후 타락 관련 낙인 부여 버튼
     public void OnStigmaButtonClick()
     {
@@ -209,11 +215,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         }
         SetUnitStigma(stigma);
     }
+
     //대화하기 버튼을 클릭했을 경우
     public void OnConversationButtonClick()
     {
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
+
     //나가기 버튼을 클릭했을 경우
     public void RestorationQuitClick()
     {
@@ -229,13 +237,17 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             foreach (DeckUnit delunit in _RestorationUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
+
+        GameManager.UI.ClosePopup();
         OnQuitClick();
     } 
+
     public void OnQuitClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
     }
+
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
         if (GameManager.Data.GameData.IsVisitDarkShop == false)
@@ -264,7 +276,21 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
-
+    private void SetMenuText(bool _isnpcfall)
+    {
+        if (_isnpcfall)
+        {
+            unitRestoration_txt.text = "2";
+            selectStigma_txt.text = "8";
+            originUnit_txt.text = "8";
+        }
+        else
+        {
+            unitRestoration_txt.text = "1";
+            selectStigma_txt.text = "10";
+            originUnit_txt.text = "10";
+        }
+    }
     private void OnConversationEnded()
     {
         _ui_SelectMenu.SetActive(true);

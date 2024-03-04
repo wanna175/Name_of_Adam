@@ -428,7 +428,6 @@ public class BattleManager : MonoBehaviour
     public void DirectAttack(BattleUnit attackUnit)
     {
         AttackPlayer(attackUnit);
-        Debug.Log("Direct Attack");
     }
 
     public void UnitSummonEvent(BattleUnit unit)
@@ -443,14 +442,14 @@ public class BattleManager : MonoBehaviour
         _field.FieldCloseInfo(_field.TileDict[unit.Location]);
         _field.ExitTile(unit.Location);
 
-        if (unit.Data.Name == "호루스")
+        if (unit.Data.ID == "호루스")
         {
             GameManager.Data.GameData.Progress.HorusKill++;
         }
 
         if (unit.IsConnectedUnit)
         {
-            if (unit.Data.Name == "바누엘")
+            if (unit.Data.ID == "바누엘")
             {
                 GameManager.Data.GameData.Progress.PhanuelKill++;
             }

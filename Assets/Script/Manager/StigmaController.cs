@@ -64,7 +64,7 @@ public class StigmaController
 
         _lockStigmaDic.Add(StigmaEnum.Hook, new string[] { "흑기사", "쌍생아", "그을린 자", "묘지기", "검병",
             "노동자", "중갑병", "처형자", "암살자", "습격자", "괴인", "엘리우스", "투발카인" });
-        _lockStigmaDic.Add(StigmaEnum.Additional_Punishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아" });
+        _lockStigmaDic.Add(StigmaEnum.Additional_Punishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "투발카인"});
     }
 
     // probability는 { 99, 89 } 처럼 2개 인자를 보유

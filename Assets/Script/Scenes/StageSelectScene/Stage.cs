@@ -17,11 +17,11 @@ public enum StageType
 [Serializable]
 public class StageData
 {
-    public int ID;
-    public StageType Type;
-    public StageName Name;
-    public int StageLevel;
-    public int StageID;
+    public int ID; //각 노드가 가지는 고유식별번호
+    public StageType Type; //노드가 가진 스테이지의 종류
+    public StageName Name; //Type에서 더 세분화된 스테이지의 내용
+    public int StageLevel; //전투 스테이지에서 사용하는 현재 전투의 레벨
+    public int StageID; //전투 스테이지에서 사용하는 현재 전투의 ID
 }
 
 public class Stage : MonoBehaviour
@@ -75,8 +75,11 @@ public class Stage : MonoBehaviour
         if (Datas.Name == StageName.EliteBattle || Datas.Name == StageName.BossBattle)
             name += "_" + GameManager.Data.Map.GetStage(Datas.ID).StageID;
 
-        _renderer.sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/Node/{name}");
-        BackLight.SetSprite(name);
+        if (name != "none")
+        {
+            _renderer.sprite = GameManager.Resource.Load<Sprite>($"Arts/StageSelect/Node/{name}");
+            BackLight.SetSprite(name);
+        }
     }
 
     public IEnumerator Fade()
@@ -153,10 +156,10 @@ public class Stage : MonoBehaviour
         }
     }
 
-    public StageData SetBattleStage(int a, int b)
+    public StageData SetBattleStage(int level, int id)
     {
-        Datas.StageLevel = a;
-        Datas.StageID = b;
+        Datas.StageLevel = level;
+        Datas.StageID = id;
 
         return Datas;
     }

@@ -129,7 +129,7 @@ public class UI_UnitInfo : UI_Popup
             UI_HoverImageBlock ui = GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>();
             if (i < stigmas.Count)
             {
-                ui.Set(stigmas[i].Sprite_88, stigmas[i].Description);
+                ui.Set(stigmas[i].Sprite_88, "<size=150%>" + stigmas[i].Name + "</size>" + "\n\n" + stigmas[i].Description);
                 ui.EnableUI(true);
             }
             else
@@ -139,7 +139,7 @@ public class UI_UnitInfo : UI_Popup
         foreach (Upgrade upgrade in _unit.DeckUnitUpgrade)
         {
             UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
-            ui.Set(upgrade.UpgradeImage88, upgrade.UpgradeDescription);
+            ui.Set(upgrade.UpgradeImage88, "<size=150%>" + upgrade.UpgradeDescription + "</size>");
             ui.EnableUI(true);
         }
 
