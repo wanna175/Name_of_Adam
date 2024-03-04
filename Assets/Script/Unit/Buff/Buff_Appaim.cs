@@ -11,7 +11,7 @@ public class Buff_Appaim : Buff
 
         _description = "";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Appaim_Sprite");
+        //_sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Appaim_Sprite");
 
         _count = -1;
 
@@ -29,11 +29,11 @@ public class Buff_Appaim : Buff
     }
 
     private int _buffState = 0;
-    private Dictionary<int, string> _nameDict = new() { {0, "Sword"}, {1, "Staff"}, {2, "Book"} };
-    private Dictionary<int, string> _descriptionDict = new() { 
-        { 0, "Attacks in an area effect." }, 
-        { 1, "Attacking range becomes infinite." }, 
-        { 2, "Attacks in an area effect, and becomes immobile but decreases the enemy's faith by 1." } 
+    private Dictionary<int, string> _nameDict = new() { { 0, "Book" }, {1, "Staff"}, { 2, "Sword" } };
+    private Dictionary<int, string> _descriptionDict = new() {
+        { 0, "Attacks in an area effect, and becomes immobile but decreases the enemy's faith by 1." },
+        { 1, "Attacks in an area effect." },
+        { 2, "Attacking range becomes infinite." }
     };
 
 
@@ -47,5 +47,6 @@ public class Buff_Appaim : Buff
     public override void SetValue(int num)
     {
         _buffState = num;
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Appaim_{_nameDict[_buffState]}_Sprite");
     }
 }
