@@ -29,14 +29,14 @@ public class MainSceneController : MonoBehaviour
         {
             GameManager.OutGameData.SetIsOnMainTooltipForPhanuel(true);
             GameManager.OutGameData.SaveData();
-            SetSystemInfo("축하합니다, 어둠의 선지자여. 그러나 당신의 여정은 아직 끝나지 않았습니다. \r\n<color=yellow>새로운 빛<color=white>이 지평선 너머에서 당신을 기다리고 있습니다.");
+            SetSystemInfo("축하합니다, 어둠의 선지자여. \r\n\r\n그러나 당신의 여정은 아직 끝나지 않았습니다. \r\n<color=yellow>새로운 빛<color=white>이 지평선 너머에서 당신을 기다리고 있습니다.");
         }
 
         if (GameManager.OutGameData.IsHorusClear() && GameManager.OutGameData.GetIsOnMainTooltipForHorus() == false)
         {
             GameManager.OutGameData.SetIsOnMainTooltipForHorus(true);
             GameManager.OutGameData.SaveData();
-            SetSystemInfo("당신은 모든 것을 이겨냈지만, 진정한 시험은 이제부터입니다. \r\n매 판 새로운 전투를 마주하며 당신의 한계를 시험해보세요.");
+            SetSystemInfo("당신은 모든 것을 이겨냈지만, 진정한 시험은 이제부터입니다. \r\n\r\n매 판 새로운 전투를 마주하며 당신의 한계를 시험해보세요.");
         }
     }
 
@@ -152,7 +152,13 @@ public class MainSceneController : MonoBehaviour
     {
         SystemInfo.SetActive(true);
         systemInfoText.text = info;
-        StartCoroutine(FadeSystemInfo(fadeTime, idleTime));
+        //StartCoroutine(FadeSystemInfo(fadeTime, idleTime));
+    }
+
+    public void OnSystemInfoClose()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        SystemInfo.SetActive(false);
     }
 
     IEnumerator FadeSystemInfo(float fadeTime, float idleTime)
