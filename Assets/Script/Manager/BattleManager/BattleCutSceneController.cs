@@ -78,7 +78,7 @@ public class BattleCutSceneController : MonoBehaviour
             }
             else
             {
-                GameManager.Sound.Play("UI/PlayerSkillSFX/Fall");
+                GameManager.Sound.Play("PlayerHit/PlayerHitSFX");
                 BattleManager.BattleUI.UI_playerHP.DecreaseHP(1);
                 BattleManager.BattleUI.UI_playerHP.StartEffect();
                 BattleManager.Instance.BattleOverCheck();
