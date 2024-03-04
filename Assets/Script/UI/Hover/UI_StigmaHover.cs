@@ -22,7 +22,7 @@ public class UI_StigmaHover : UI_Hover, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (_isEnable)
-            GameManager.UI.ShowHover<UI_TextHover>().SetText(_stigma.Description, eventData.position);
+            GameManager.UI.ShowHover<UI_TextHover>().SetText("<size=150%>" + _stigma.Name + "</size>" + "\n\n" + _stigma.Description, eventData.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

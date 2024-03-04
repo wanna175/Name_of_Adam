@@ -144,6 +144,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, RestorationQuitClick);
         ui.SetEventMenu(_ui_SelectMenu);
     }
+
     public void OnSelectRestoration(DeckUnit unit)
     {
         if (!_RestorationUnits.Contains(unit))
@@ -153,6 +154,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
         GameManager.UI.ClosePopup();
     }
+
     // 유닛 선택 후 타락 관련 낙인 부여 버튼
     public void OnStigmaButtonClick()
     {
@@ -213,11 +215,13 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         }
         SetUnitStigma(stigma);
     }
+
     //대화하기 버튼을 클릭했을 경우
     public void OnConversationButtonClick()
     {
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
+
     //나가기 버튼을 클릭했을 경우
     public void RestorationQuitClick()
     {
@@ -233,13 +237,17 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             foreach (DeckUnit delunit in _RestorationUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
+
+        GameManager.UI.ClosePopup();
         OnQuitClick();
     } 
+
     public void OnQuitClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         StartCoroutine(QuitScene());
     }
+
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
         if (GameManager.Data.GameData.IsVisitDarkShop == false)

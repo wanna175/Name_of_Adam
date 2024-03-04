@@ -8,7 +8,7 @@ public class Buff_MarkOfBeast : Buff
 
         _name = "짐승의 낙인";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_MarkOfBeast_Sprite");
 
         _description = "라헬, 레아에게 공격 받으면 신앙이 1 떨어집니다.";
 

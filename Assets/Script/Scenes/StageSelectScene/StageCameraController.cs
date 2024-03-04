@@ -10,7 +10,7 @@ public class StageCameraController : MonoBehaviour
     private Vector3 _topPosition = new(0, 25, -10);
     private Vector3 _bottomPosition = new(0, -5, -10);
 
-    const int _wheelSpeed = 500;
+    const int _wheelSpeed = 200;
 
     private void Start()
     {
@@ -24,21 +24,13 @@ public class StageCameraController : MonoBehaviour
 
         float mousePosition = Input.mousePosition.y;
 
-        if (mousePosition > Screen.height * 0.98f)
+        if (mousePosition > Screen.height * 0.99f)
         {
             MoveCamera(0.03f);
         }
-        else if(mousePosition > Screen.height * 0.93f)
-        {
-            MoveCamera(0.01f);
-        }
-        else if (mousePosition < Screen.height * 0.02f)
+        else if (mousePosition < Screen.height * 0.01f)
         {
             MoveCamera(-0.03f);
-        }
-        else if (mousePosition < Screen.height * 0.07f)
-        {
-            MoveCamera(-0.01f);
         }
     }
 

@@ -198,7 +198,7 @@ public class UpgradeController
         {
             upgrade = GetRandomUpgrade();
 
-            Stat checkStat = unit.DeckUnitTotalStat - upgrade.UpgradeStat;
+            Stat checkStat = unit.DeckUnitTotalStat + upgrade.UpgradeStat;
 
             if (checkStat.MaxHP < 0 || checkStat.ATK < 0 || checkStat.SPD < 0 || checkStat.ManaCost < 0)
             {
