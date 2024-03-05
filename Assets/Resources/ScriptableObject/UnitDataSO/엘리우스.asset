@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "\uC5D8\uB9AC\uC6B0\uC2A4"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 100
-    CurrentHP: 100
+    MaxHP: 120
+    CurrentHP: 120
     ATK: 15
     SPD: 45
     FallCurrentCount: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
   _skillEffectAnim: {fileID: 7400000, guid: 4995aac03d4963b4c95801d6ac8f04f5, type: 2}
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: a85fe40e59ab2fc43a5e627e2cbc975c, type: 2}
   _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
-  _darkEssenseDrop: 3
+  _darkEssenseDrop: 2
   _darkEssenseCost: 2
   _unitActionType: 0
   _unitMoveType: 0
