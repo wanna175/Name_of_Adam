@@ -30,7 +30,7 @@ public class Buff_Leah : Buff
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK -= 10;
+        stat.ATK -= 5;
 
         return stat;
     }

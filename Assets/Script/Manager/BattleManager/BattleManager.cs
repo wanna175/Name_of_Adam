@@ -157,38 +157,38 @@ public class BattleManager : MonoBehaviour
         Dictionary<int, int> threshold = new() {
             {0, 0},
             {1, 0},
-            {2, 30},
-            {3, 60},
+            {2, 50},
+            {3, 70},
             {4, 100}
         };
 
-        if (GameManager.Data.Map.GetCurrentStage().StageLevel % 10 == 0 || GameManager.Data.Map.GetCurrentStage().StageLevel == 1)
+        if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle || GameManager.Data.Map.GetCurrentStage().Name == StageName.EliteBattle)
             return;
-        //0 = tutorial, boss, elite (0, 100, 90), 1 = chater 1 first half
         
-        if (GameManager.Data.GameData.StageBenediction.x == 1 && GameManager.Data.GameData.StageBenediction.y == 1)
+        if (GameManager.Data.GameData.StageBenediction.x == 1 && 
+            GameManager.Data.GameData.StageBenediction.y == 1 &&
+            GameManager.Data.GameData.StageBenediction.z == 1)
         {
-            GameManager.Data.GameData.StageBenediction = new();
+            GameManager.Data.GameData.StageBenediction = new(-1,0,0);
         }
-        else if (GameManager.Data.GameData.StageBenediction.x == -1 && GameManager.Data.GameData.StageBenediction.y == -1)
+        else if (GameManager.Data.GameData.StageBenediction.x == -1 && 
+            GameManager.Data.GameData.StageBenediction.y == -1)
         {
             BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
             buffUnit.SetBuff(new Buff_Benediction());
 
-            GameManager.Data.GameData.StageBenediction = new();
+            GameManager.Data.GameData.StageBenediction = new(1,0,0);
         }
         else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 10])
         {
             BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
             buffUnit.SetBuff(new Buff_Benediction());
 
-            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
-            GameManager.Data.GameData.StageBenediction.x = 1;
+            GameManager.Data.GameData.StageBenediction = new(1, GameManager.Data.GameData.StageBenediction.x, GameManager.Data.GameData.StageBenediction.y);
         }
         else
         {
-            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
-            GameManager.Data.GameData.StageBenediction.x = -1;
+            GameManager.Data.GameData.StageBenediction = new(-1, GameManager.Data.GameData.StageBenediction.x, GameManager.Data.GameData.StageBenediction.y);
         }
     }
 
@@ -414,8 +414,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public bool IsExistedCorruptionPopup()
-        => Data.CorruptionPopups.Count != 0;
+    public bool IsExistedCorruptionPopup() => Data.CorruptionPopups.Count != 0;
 
     public void ShowLastCorruptionPopup()
     {
@@ -439,7 +438,6 @@ public class BattleManager : MonoBehaviour
     public void UnitDeadEvent(BattleUnit unit)
     {
         _battleData.BattleUnitList.Remove(unit);
-        _field.FieldCloseInfo(_field.TileDict[unit.Location]);
         _field.ExitTile(unit.Location);
 
         if (unit.Data.ID == "호루스")
@@ -554,26 +552,6 @@ public class BattleManager : MonoBehaviour
             checkEndList.Add(unit);
             ActiveTimingCheck(timing, unit, parameterUnit);
         }
-
-        /*
-        int startCount = _battleData.BattleUnitList.Count;
-
-        for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
-        {
-            if (startCount != _battleData.BattleUnitList.Count)
-            {
-                i = -1;
-                startCount = _battleData.BattleUnitList.Count;
-                continue;
-            }
-
-            if (checkEndList.Contains(_battleData.BattleUnitList[i]))
-                continue;
-
-            checkEndList.Add(_battleData.BattleUnitList[i]);
-            ActiveTimingCheck(timing, _battleData.BattleUnitList[i], parameterUnit);
-        }
-        */
     }
 
     public void BattleOverCheck()

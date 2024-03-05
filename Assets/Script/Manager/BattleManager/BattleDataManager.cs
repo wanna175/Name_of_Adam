@@ -42,8 +42,6 @@ public class BattleDataManager : MonoBehaviour
 
     public void OnBattleOver()
     {
-        Debug.Log("BattleDataManager Destroy");
-
         foreach (BattleUnit unit in _battleUnitList)
         {
             if (unit.IsConnectedUnit || unit.Data.IsBattleOnly)

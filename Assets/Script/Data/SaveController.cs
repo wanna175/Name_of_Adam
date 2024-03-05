@@ -17,7 +17,7 @@ public class SaveData
     public Progress ProgressData;
     public NPCQuest NpcQuestData;
     public int StageAct;
-    public Vector2 StageBenediction;
+    public Vector3 StageBenediction;
 }
 
 [Serializable]
