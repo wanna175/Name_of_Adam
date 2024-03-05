@@ -152,7 +152,7 @@ public class UI_UnitInfo : UI_Popup
                 block.color = Color.grey;
         }
 
-        if (GameManager.OutGameData.IsUnlockedItem(9))
+        if (GameManager.OutGameData.IsUnlockedItem(12))
         {
             _AddedUpgradeCountSocket.SetActive(true);
         }
