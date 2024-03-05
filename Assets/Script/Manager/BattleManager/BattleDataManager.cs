@@ -66,7 +66,7 @@ public class BattleDataManager : MonoBehaviour
         if (GameManager.OutGameData.IsUnlockedItem(8))
         {
             StageData data = GameManager.Data.Map.GetCurrentStage();
-            if (data.StageLevel == 90)
+            if (data.Name == StageName.EliteBattle)
             {
                 foreach (DeckUnit unit in PlayerDeck)
                 {

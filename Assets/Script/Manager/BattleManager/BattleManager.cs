@@ -622,7 +622,7 @@ public class BattleManager : MonoBehaviour
 
         if (data.StageLevel >= 90)
         {
-            if (data.StageLevel == 100)
+            if (data.Name == StageName.BossBattle)
             {
                 CheckBossCycle(data);
                 GameManager.Data.GameData.Progress.BossWin++;
@@ -641,7 +641,7 @@ public class BattleManager : MonoBehaviour
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
                 GameManager.SaveManager.DeleteSaveData();
             }
-            else if (data.StageLevel == 90)
+            else if (data.Name == StageName.EliteBattle)
             {
                 GameManager.Data.GameData.Progress.EliteWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
