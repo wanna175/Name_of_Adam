@@ -141,9 +141,7 @@ public class StigmaController
         UnlockStigma(stigma, 20, StigmaEnum.Sin);
         UnlockStigma(stigma, 16, StigmaEnum.Forbidden_Pact);
         UnlockStigma(stigma, 13, StigmaEnum.Teleport);
-        //UnlockStigma(stigma, 10, °¥¸Á);
         UnlockStigma(stigma, 7, StigmaEnum.Killing_Spree);
-        //UnlockStigma(stigma, 4, º¸º¹);
         UnlockStigma(stigma, 1, StigmaEnum.Destiny);
     }
 
