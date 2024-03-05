@@ -49,7 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: 408ce5cd8914d3143ad8a913619c8706, type: 3}
   _sprite_88: {fileID: 21300000, guid: 5fbe9840df56bd24290ae62412fccafc, type: 3}
   _sprite_164: {fileID: 21300000, guid: e3021710c3b87234594a35c9eec87dff, type: 3}
-  _description: Able to summon anywhere on the field.
+  _description: Assasination Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

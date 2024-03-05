@@ -30,7 +30,13 @@ public class CutSceneController : MonoBehaviour
         Debug.Log($"{cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
     }
 
-    public void SceneChange() => SceneChanger.SceneChange("StageSelectScene");
+    public void SceneChange()
+    {
+        if (cutSceneToDisplay == CutSceneType.NPC_Upgrade_Corrupt || cutSceneToDisplay == CutSceneType.NPC_Stigma_Corrupt || cutSceneToDisplay == CutSceneType.NPC_Harlot_Corrupt)
+            SceneChanger.SceneChange("EventScene");
+        else
+            SceneChanger.SceneChange("StageSelectScene");
+    }
 
     public void SkipButton()
     {

@@ -18,7 +18,7 @@ public class Buff_Stigma_ForbiddenPact : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.SUMMON;
+        _buffActiveTiming = ActiveTiming.STIGMA;
 
         _owner = owner;
 

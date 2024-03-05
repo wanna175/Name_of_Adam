@@ -94,28 +94,28 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             switch (stageData.StageID)
             {
                 case 0: // 투발카인 -> 라헬레아 넘어가기
-                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.LahelRea_Enter])
+                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.LahelRea_Enter) == false)
                     {
                         isGoToCutScene = true;
                         SceneChanger.SceneChangeToCutScene(CutSceneType.LahelRea_Enter);
                     }
                     break;
                 case 1: // 엘리우스 -> 삼신기 넘어가기
-                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.Appaim_Enter])
+                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Appaim_Enter) == false)
                     {
                         isGoToCutScene = true;
                         SceneChanger.SceneChangeToCutScene(CutSceneType.Appaim_Enter);
                     }
                     break;
                 case 2: // 라헬레아 -> 니므롯 넘어가기
-                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.Phanuel_Enter])
+                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Enter) == false)
                     {
                         isGoToCutScene = true;
                         SceneChanger.SceneChangeToCutScene(CutSceneType.Phanuel_Enter);
                     }
                     break;
                 case 3: // 삼신기 -> 호루스 넘어가기
-                    if (!GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.TheSavior_Enter])
+                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Enter) == false)
                     {
                         isGoToCutScene = true;
                         SceneChanger.SceneChangeToCutScene(CutSceneType.TheSavior_Enter);

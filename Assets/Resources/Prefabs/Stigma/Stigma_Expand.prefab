@@ -49,7 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: c1e3ee4d8903c97468421cdf352527b7, type: 3}
   _sprite_88: {fileID: 21300000, guid: 172c916266aa7b3469695f1d3a85ebae, type: 3}
   _sprite_164: {fileID: 21300000, guid: 904a63929d14936498ff11502bc4908d, type: 3}
-  _description: Becomes capable of moving one additional step in the cross direction.
+  _description: Expand Info
   _activeTiming: 2
-  _tier: 1
+  _tier: 0
   _isLock: 0
