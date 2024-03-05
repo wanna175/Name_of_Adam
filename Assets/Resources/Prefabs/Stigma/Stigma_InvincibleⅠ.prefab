@@ -49,7 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: a83e7c9336b485348aead5adbd356cfb, type: 3}
   _sprite_88: {fileID: 21300000, guid: 42c022eb71a0c2b4286767a721399d78, type: 3}
   _sprite_164: {fileID: 21300000, guid: b38555a1a24f4174da61210516972ce3, type: 3}
-  _description: Earns invincibility 1 times upon summoning.
+  _description: Invinciblity I Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

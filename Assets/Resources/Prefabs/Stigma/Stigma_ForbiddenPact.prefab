@@ -49,8 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: f33be12e519c0b242b4cafd528eafcb0, type: 3}
   _sprite_88: {fileID: 21300000, guid: 80add2a84ad16cd4ba7a1beba65a1fad, type: 3}
   _sprite_164: {fileID: 21300000, guid: 261528b6e9333d54a8816db89902912d, type: 3}
-  _description: The unit becomes stunned once, but the mana cost of the next skill
-    is eliminated upon summoning.
+  _description: Forbidden Pact Info
   _activeTiming: 8
   _tier: 0
   _isLock: 1

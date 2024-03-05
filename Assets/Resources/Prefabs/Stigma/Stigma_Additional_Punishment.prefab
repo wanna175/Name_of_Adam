@@ -49,7 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: 57c0abc3fd5009541942dbba105cd5b0, type: 3}
   _sprite_88: {fileID: 21300000, guid: 9b8fdfcf89040ed49954ead6037e54ce, type: 3}
   _sprite_164: {fileID: 21300000, guid: 4145929e1c07d244b9761244560864fd, type: 3}
-  _description: Upon attacking, targets an additional enemy within the attack range.
+  _description: Additional Punishment Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0
