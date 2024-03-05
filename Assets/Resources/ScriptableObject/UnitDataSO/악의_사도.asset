@@ -34,8 +34,8 @@ MonoBehaviour:
   _corruptDiaPortraitImage: {fileID: 21300000, guid: 6723b84d5a0d70f4b87ee69c539763cc, type: 3}
   _animatorController: {fileID: 9100000, guid: fe8cfd03231a02b458e79afd0208ccda, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: fe8cfd03231a02b458e79afd0208ccda, type: 2}
-  _skillEffectAnim: {fileID: 0}
-  _corruptionSkillEffectAnim: {fileID: 0}
+  _skillEffectAnim: {fileID: 7400000, guid: b64a4b5e61d8af34e923797f7bf815fc, type: 2}
+  _corruptionSkillEffectAnim: {fileID: 7400000, guid: b64a4b5e61d8af34e923797f7bf815fc, type: 2}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
   _darkEssenseDrop: 0
   _darkEssenseCost: 0

@@ -40,7 +40,7 @@ MonoBehaviour:
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: 93ab1af788a741747bd58a568f9cb993, type: 2}
   _animType: {fileID: 11400000, guid: 9c5500ed16c73bb4cb5cbb732dcaf0cb, type: 2}
   _darkEssenseDrop: 10
-  _darkEssenseCost: 1
+  _darkEssenseCost: 5
   _unitActionType: 3
   _unitMoveType: 1
   _isBattleOnly: 0
