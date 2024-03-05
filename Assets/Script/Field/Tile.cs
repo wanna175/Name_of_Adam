@@ -45,6 +45,7 @@ public class Tile : MonoBehaviour
     public void ExitTile()
     {
         _unit = null;
+        BattleManager.Field.FieldCloseInfo(this);
     }
 
     public void SetColor(Color color)
