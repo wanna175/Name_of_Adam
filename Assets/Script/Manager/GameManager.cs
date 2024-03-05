@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -133,6 +134,13 @@ public class GameManager : MonoBehaviour
             Data.GameData.NpcQuest.DarkshopQuest += 8;
 
             Debug.Log($"타락도 조정: {Data.GameData.NpcQuest.UpgradeQuest}|{Data.GameData.NpcQuest.StigmaQuest}|{Data.GameData.NpcQuest.DarkshopQuest}");
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UI_StigmaSelectButtonPopup popup = GameObject.FindObjectOfType<UI_StigmaSelectButtonPopup>();
+            if (popup != null)
+                popup.ResetStigmaSelectButtons();
         }
     }
 }
