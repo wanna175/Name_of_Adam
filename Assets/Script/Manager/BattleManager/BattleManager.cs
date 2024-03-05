@@ -581,6 +581,9 @@ public class BattleManager : MonoBehaviour
         if (Data.isGameDone)
             return;
 
+        if (BattleCutSceneManager.Instance.IsCutScenePlaying == true)
+            return; // 컷씬 도중엔 체크하지 않음
+
         if (SceneChanger.GetSceneName() == "BattleTestScene")
             return;
 

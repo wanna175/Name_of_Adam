@@ -451,7 +451,7 @@ public enum CutSceneType
 
     // 보스
     Phanuel_Enter,
-    Phanuel_Corrupt,
+    Phanuel_Dead,
     TheSavior_Enter,
-    TheSavior_Corrupt,
+    TheSavior_Dead,
 }
