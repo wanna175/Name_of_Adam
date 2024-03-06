@@ -49,8 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: 037a38c5f98af5f41980d6bf6c00aff0, type: 3}
   _sprite_88: {fileID: 21300000, guid: 24387459eeeda1e4f828ce83e7c4a4dc, type: 3}
   _sprite_164: {fileID: 21300000, guid: 04a9f71a92395274da1f76ba18c3b63a, type: 3}
-  _description: Attack power increases by 2 for each target attacked. Resets at the
-    end of the stage.
+  _description: Sadism I Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

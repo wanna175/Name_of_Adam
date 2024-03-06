@@ -52,7 +52,7 @@ public class UI_BattleOver : UI_Scene
             if (!GameManager.OutGameData.IsTutorialClear() && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
             {
                 GameManager.OutGameData.DoneTutorial(true);
-                if (GameManager.OutGameData.GetCutSceneData()[(int)CutSceneType.Tutorial] == false)
+                if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Tutorial) == false)
                     SceneChanger.SceneChangeToCutScene(CutSceneType.Tutorial);
                 else
                     SceneChanger.SceneChange("StageSelectScene");

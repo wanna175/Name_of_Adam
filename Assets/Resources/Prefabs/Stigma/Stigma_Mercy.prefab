@@ -49,8 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: 587c92bdff3fd1840af9189c2bd9af3e, type: 3}
   _sprite_88: {fileID: 21300000, guid: d1c012fa0bc65684eadf0a6a5952d7fb, type: 3}
   _sprite_164: {fileID: 21300000, guid: 2205df3b14ad0e24689e8a0f48ea5c53, type: 3}
-  _description: Instead of reducing the attack to 0, decreases the enemy's faith
-    by 1.
+  _description: Mercy Info
   _activeTiming: 2
   _tier: 4
   _isLock: 0

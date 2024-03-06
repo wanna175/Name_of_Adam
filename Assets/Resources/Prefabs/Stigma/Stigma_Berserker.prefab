@@ -49,8 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: bddb15baeaf512745b63b22f8101e4e0, type: 3}
   _sprite_88: {fileID: 21300000, guid: 8ca8f4481c147c04d8cb8a63fcadcc61, type: 3}
   _sprite_164: {fileID: 21300000, guid: 7359a26df25d2214ca6af7694d40de82, type: 3}
-  _description: Earns increase in attack each turn, but the maximum faith value becomes
-    fixed to 1.
+  _description: Berserker Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

@@ -49,8 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: aa0a555c608353e41a9543232f32c602, type: 3}
   _sprite_88: {fileID: 21300000, guid: 026732154c7e20d45b2c7bee973e259a, type: 3}
   _sprite_164: {fileID: 21300000, guid: f9f325574f366ae4db2f675fd4088ec9, type: 3}
-  _description: "When attacking, there is a 50% chance for damage to be doubled and\r
-    a 50% chance for it to be halved."
+  _description: Destiny Info
   _activeTiming: 2
-  _tier: 2
+  _tier: 0
   _isLock: 1

@@ -454,4 +454,9 @@ public enum CutSceneType
     Phanuel_Dead,
     TheSavior_Enter,
     TheSavior_Dead,
+
+    // NPC
+    NPC_Upgrade_Corrupt,
+    NPC_Stigma_Corrupt,
+    NPC_Harlot_Corrupt,
 }
