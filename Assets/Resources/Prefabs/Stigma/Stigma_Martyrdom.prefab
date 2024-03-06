@@ -49,8 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: 06d6c66844bbb8e48a46136e146d387b, type: 3}
   _sprite_88: {fileID: 21300000, guid: ab5428a687ca1e648948ea41784daaee, type: 3}
   _sprite_164: {fileID: 21300000, guid: 73f700f7389969b488d842f92c2d4074, type: 3}
-  _description: When the faith of this unit is 2 or below, it reduces the enemy's
-    faith by 1 upon attacking.
+  _description: Martyrdom Info
   _activeTiming: 2
   _tier: 4
   _isLock: 0

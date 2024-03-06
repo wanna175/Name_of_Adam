@@ -337,7 +337,8 @@ public class Field : MonoBehaviour
             {
                 unit = unit.GetOriginalUnit();
             }
-            
+
+            FieldCloseInfo(tile);
             _hoverInfo = BattleManager.BattleUI.ShowInfo();
             _hoverInfo.SetInfo(unit);
         }
@@ -345,7 +346,7 @@ public class Field : MonoBehaviour
 
     public void FieldCloseInfo(Tile tile)
     {
-        if (tile.UnitExist && _hoverInfo != null)
+        if (_hoverInfo != null)
         {
             BattleManager.BattleUI.CloseInfo(_hoverInfo);
         }

@@ -15,7 +15,7 @@ public class GameData : ScriptableObject
     public bool IsVisitDarkShop = false;
     public Progress Progress;
     public NPCQuest NpcQuest;
-    public Vector2 StageBenediction;
+    public Vector3 StageBenediction;
 }
 
 [Serializable]

@@ -339,7 +339,8 @@ public class OutGameDataContainer : MonoBehaviour
         _data.IsWindowed = false;
         _data.MasterSoundPower = _data.BGMSoundPower = _data.SESoundPower = 1f;
     }
-    public bool[] GetCutSceneData() => _data.cutSceneData;
+    public bool GetCutSceneData(CutSceneType cutSceneType) => _data.cutSceneData[(int)cutSceneType];
+    public void SetCutSceneData(CutSceneType cutSceneType, bool isDone) => _data.cutSceneData[(int)cutSceneType] = isDone;
     public bool GetIsOnMainTooltipForHorus() => _data.IsOnMainTooltipForHorus;
     public bool GetIsOnMainTooltipForPhanuel() => _data.IsOnMainTooltipForPhanuel;
     public void SetIsOnMainTooltipForHorus(bool isOn) => _data.IsOnMainTooltipForHorus = isOn;

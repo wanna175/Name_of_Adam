@@ -13,12 +13,14 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private Action _afterPopupAction;
     private DeckUnit _targetUnit;
     private StigmaInterface _sc;
+    private int _stigmaCount;
 
     public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
     {
         _afterPopupAction = afterPopupAction;
         _targetUnit = targetUnit;
         _sc = sc;
+        _stigmaCount = stigmaCount;
 
         if (targetUnit == null)
         {
@@ -70,6 +72,17 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         }
 
         return result;
+    }
+
+    public void ResetStigmaSelectButtons()
+    {
+        List<Stigma> stigmaList = CreateStigmaList(_targetUnit, _stigmaCount);
+        
+        var buttons = _grid.GetComponentsInChildren<UI_StigmaSelectButton>();
+        foreach (var button in buttons)
+            Destroy(button.gameObject);
+
+        SetStigmaSelectButtons(stigmaList);
     }
 
     private void SetStigmaSelectButtons(List<Stigma> stigmaList)
