@@ -27,6 +27,12 @@ public class BattleDataManager : MonoBehaviour
     [SerializeField] private BattleUnit incarnaUnit;
     public BattleUnit IncarnaUnit => incarnaUnit;
 
+    private Dictionary<int, RewardUnit> _battlePrevUnitDict;
+    public Dictionary<int, RewardUnit> BattlePrevUnitDict => _battlePrevUnitDict;
+    
+    private int _battlePrevDarkEssence;
+    public int BattlePrevDarkEssence => _battlePrevDarkEssence;
+
     public bool isDiscount = false;
 
     public bool isGameDone = false;
@@ -37,6 +43,14 @@ public class BattleDataManager : MonoBehaviour
         foreach (DeckUnit unit in _playerDeck)//UI에서 정보를 표시하기 전에 미리 할인함
         {
             unit.FirstTurnDiscount();
+        }
+
+        _battlePrevUnitDict = new Dictionary<int, RewardUnit>();
+        _battlePrevDarkEssence = GameManager.Data.DarkEssense;
+
+        foreach (DeckUnit unit in _playerDeck)
+        {
+            _battlePrevUnitDict.Add(unit.UnitID, new(unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, unit.Data.CorruptPortraitImage));
         }
     }
 

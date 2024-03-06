@@ -44,8 +44,6 @@ public class BattleManager : MonoBehaviour
     private UnitIDManager _unitIDManager;
     public static UnitIDManager UnitIDManager => Instance._unitIDManager;
 
-    private RewardController _rc;
-
     private void Awake()
     {
         _battleData = Util.GetOrAddComponent<BattleDataManager>(gameObject);
@@ -55,8 +53,6 @@ public class BattleManager : MonoBehaviour
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
         _unitIDManager = new UnitIDManager();
         _unitIDManager.Init(GameManager.Data.GetDeck());
-        _rc = new RewardController();
-        _rc.Init(GameManager.Data.GetDeck(), GameManager.Data.DarkEssense);
         SetBackground();
     }
 
@@ -587,7 +583,6 @@ public class BattleManager : MonoBehaviour
 
     private void BattleOverWin()
     {
-        Debug.Log("YOU WIN");
         Data.isGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         _battleData.OnBattleOver();
@@ -611,18 +606,18 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("Horus Clear");
                 }
 
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
                 GameManager.SaveManager.DeleteSaveData();
             }
             else if (data.StageLevel == 90)
             {
                 GameManager.Data.GameData.Progress.EliteWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
             }
             else
             {
                 GameManager.Data.GameData.Progress.NormalWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win",_rc);
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
             }
 
             return;
@@ -630,7 +625,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             GameManager.Data.GameData.Progress.NormalWin++;
-            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win",_rc);
+            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
         }
         GameManager.OutGameData.SaveData();
         GameManager.SaveManager.SaveGame();
