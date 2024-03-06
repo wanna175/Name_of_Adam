@@ -71,7 +71,7 @@ public class UI_BattleOver : UI_Scene
         }
         else if (_result == "elite win")
         {
-            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 100)
+            if(GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
             {
                 BattleOverDestroy();
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);

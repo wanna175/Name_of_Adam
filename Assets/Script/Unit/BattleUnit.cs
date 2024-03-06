@@ -214,6 +214,7 @@ public class BattleUnit : MonoBehaviour
                     {
                         GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
                         BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
+                        GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
                     }
                     break;
 
