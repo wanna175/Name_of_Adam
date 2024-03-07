@@ -7,8 +7,8 @@ using Unity.VisualScripting;
 
 public class UpgradeController
 {
-    readonly string UpColorStr = "red";
-    readonly string DownColorStr = "blue";
+    readonly string UpColorStr = "#FF4848"; // ¹àÀº »¡°­
+    readonly string DownColorStr = "#7676FF"; // ¹àÀº ÆÄ¶û
 
     public UpgradeController()
     {
@@ -75,11 +75,11 @@ public class UpgradeController
 
         if (upgrade.UpgradeStat.MaxHP > 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(HP)", "<color=\"" + UpColorStr + "\">(HP)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(HP)", "<color=" + UpColorStr + ">(HP)</color>");
         }
         else if (upgrade.UpgradeStat.MaxHP < 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(HP)", "<color=\"" + DownColorStr + "\">(HP)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(HP)", "<color=" + DownColorStr + ">(HP)</color>");
         }
 
         //ATK
@@ -99,11 +99,11 @@ public class UpgradeController
 
         if (upgrade.UpgradeStat.ATK > 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(ATK)", "<color=\"" + UpColorStr + "\">(ATK)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(ATK)", "<color=" + UpColorStr + ">(ATK)</color>");
         }
         else if (upgrade.UpgradeStat.ATK < 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(ATK)", "<color=\"" + DownColorStr + "\">(ATK)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(ATK)", "<color=" + DownColorStr + ">(ATK)</color>");
         }
 
         //SPD
@@ -123,11 +123,11 @@ public class UpgradeController
 
         if (upgrade.UpgradeStat.SPD > 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(SPD)", "<color=\"" + UpColorStr + "\">(SPD)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(SPD)", "<color=" + UpColorStr + ">(SPD)</color>");
         }
         else if (upgrade.UpgradeStat.SPD < 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(SPD)", "<color=\"" + DownColorStr + "\">(SPD)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(SPD)", "<color=" + DownColorStr + ">(SPD)</color>");
         }
 
         //COST
@@ -147,11 +147,11 @@ public class UpgradeController
 
         if (upgrade.UpgradeStat.ManaCost > 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(COST)", "<color=\"" + DownColorStr + "\">(COST)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(COST)", "<color=" + DownColorStr + ">(COST)</color>");
         }
         else if (upgrade.UpgradeStat.ManaCost < 0)
         {
-            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(COST)", "<color=\"" + UpColorStr + "\">(COST)</color>");
+            upgrade.UpgradeDescription = upgrade.UpgradeDescription.Replace("(COST)", "<color=" + UpColorStr + ">(COST)</color>");
         }
 
         upgrade.UpgradeDescription = upgrade.UpgradeDescription
