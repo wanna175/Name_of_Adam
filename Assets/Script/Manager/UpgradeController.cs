@@ -51,7 +51,9 @@ public class UpgradeController
         upgrade.UpgradeImage88 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_88");
         upgrade.UpgradeImage160 = GameManager.Resource.Load<Sprite>($"Arts/UI/Upgrade/" + data.Image + "_160");
 
-        upgrade.UpgradeDescription = GameManager.Locale.GetLocalizedUpgrade(data.Description);
+        string[] splitDescription = data.Description.Split('\n');
+        foreach (string description in splitDescription)
+            upgrade.UpgradeDescription += $"{GameManager.Locale.GetLocalizedUpgrade(description)}\n";
 
         upgrade.UpgradeStat = new();
 
