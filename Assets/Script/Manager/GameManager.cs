@@ -138,9 +138,13 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UI_StigmaSelectButtonPopup popup = GameObject.FindObjectOfType<UI_StigmaSelectButtonPopup>();
-            if (popup != null)
-                popup.ResetStigmaSelectButtons();
+            UI_StigmaSelectButtonPopup stigmaPopup = GameObject.FindObjectOfType<UI_StigmaSelectButtonPopup>();
+            if (stigmaPopup != null)
+                stigmaPopup.ResetStigmaSelectButtons();
+
+            UI_UpgradeSelectButton upgradePopup = GameObject.FindObjectOfType<UI_UpgradeSelectButton>();
+            if (upgradePopup != null)
+                upgradePopup.ResetUpgradeSelectButtons();
         }
     }
 }
