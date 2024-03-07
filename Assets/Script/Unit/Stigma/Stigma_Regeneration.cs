@@ -10,13 +10,13 @@ public class Stigma_Regeneration : Stigma
         Buff_Stigma_Regeneration regeneration = new();
         caster.SetBuff(regeneration);
 
-        if (name.Contains("II"))
-        {
-            regeneration.SetValue(10);
-        }
-        else
+        if (Tier == StigmaTier.Tier1)
         {
             regeneration.SetValue(5);
+        }
+        else if (Tier == StigmaTier.Tier2)
+        {
+            regeneration.SetValue(10);
         }
     }
 }
