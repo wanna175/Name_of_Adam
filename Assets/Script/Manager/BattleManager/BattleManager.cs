@@ -196,17 +196,23 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle && GameManager.Data.Map.GetCurrentStage().StageID == 0)
+        StageData currentStage = GameManager.Data.Map.GetCurrentStage();
+        int stageID = currentStage.StageID;
+
+        if (GameManager.Data.StageAct == 2)
         {
-            Background[2].SetActive(false);
-            Background[1].SetActive(true);
-            Background[0].SetActive(false);
-        }
-        else if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle && GameManager.Data.Map.GetCurrentStage().StageID == 1)
-        {
-            Background[2].SetActive(true);
-            Background[1].SetActive(false);
-            Background[0].SetActive(false);
+            if (GameManager.Data.Map.GetStage(99).StageID == 0)
+            {
+                Background[2].SetActive(false);
+                Background[1].SetActive(true);
+                Background[0].SetActive(false);
+            }
+            else if (GameManager.Data.Map.GetStage(99).StageID == 1)
+            {
+                Background[2].SetActive(true);
+                Background[1].SetActive(false);
+                Background[0].SetActive(false);
+            }
         }
         else
         {
@@ -214,7 +220,6 @@ public class BattleManager : MonoBehaviour
             Background[1].SetActive(false);
             Background[0].SetActive(true);
         }
-
     }
 
     #region Click 관련
@@ -590,7 +595,7 @@ public class BattleManager : MonoBehaviour
 
         if (data.StageLevel >= 90)
         {
-            if (data.StageLevel == 100)
+            if (data.Name == StageName.BossBattle)
             {
                 CheckBossCycle(data);
                 GameManager.Data.GameData.Progress.BossWin++;
@@ -609,7 +614,7 @@ public class BattleManager : MonoBehaviour
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
                 GameManager.SaveManager.DeleteSaveData();
             }
-            else if (data.StageLevel == 90)
+            else if (data.Name == StageName.EliteBattle)
             {
                 GameManager.Data.GameData.Progress.EliteWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
