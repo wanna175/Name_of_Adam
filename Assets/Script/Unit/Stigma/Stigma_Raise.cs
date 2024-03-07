@@ -10,13 +10,13 @@ public class Stigma_Raise : Stigma
         List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location, caster.Team);
 
         caster.SetBuff(new Buff_Raise());
-        if (Tier == StigmaTier.Tier2)
+        if (name.Contains("II"))
             caster.SetBuff(new Buff_Raise());
 
         foreach (BattleUnit unit in targetUnits)
         {
             unit.SetBuff(new Buff_Raise());
-            if (Tier == StigmaTier.Tier2)
+            if (name.Contains("II"))
                 unit.SetBuff(new Buff_Raise());
         }
     }

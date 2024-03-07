@@ -10,7 +10,7 @@ public class Stigma_Immortal : Stigma
         Buff_Immortal immortal = new();
         caster.SetBuff(immortal);
 
-        if (Tier == StigmaTier.Tier2)
+        if (name.Contains("II"))
         {
             caster.SetBuff(immortal);
         }

@@ -11,13 +11,13 @@ public class Stigma_Sadism : Stigma
         base.Use(caster);
 
         Buff_Stigma_Sadism sadism = new();
-        if (Tier == StigmaTier.Tier1)
+        if (name.Contains("II"))
+        {
+            sadism.SetValue(3);
+        }
+        else
         {
             sadism.SetValue(2);
-        }
-        else if (Tier == StigmaTier.Tier2)
-        {
-            sadism.SetValue(4);
         }
 
         caster.SetBuff(sadism);

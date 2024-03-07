@@ -10,13 +10,13 @@ public class Stigma_BloodBlessing : Stigma
         Buff_Stigma_BloodBlessing bloodBlessing = new();
         caster.SetBuff(bloodBlessing);
 
-        if (Tier == StigmaTier.Tier1)
-        {
-            bloodBlessing.SetValue(10);
-        }
-        else if (Tier == StigmaTier.Tier2)
+        if (name.Contains("II"))
         {
             bloodBlessing.SetValue(15);
+        }
+        else
+        {
+            bloodBlessing.SetValue(10);
         }
     }
 }
