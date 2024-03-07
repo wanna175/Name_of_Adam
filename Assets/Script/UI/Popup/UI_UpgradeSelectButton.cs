@@ -30,6 +30,12 @@ public class UI_UpgradeSelectButton : UI_Popup
         }
     }
 
+    public void ResetUpgradeSelectButtons()
+    {
+        var upgradeList = _uc.ResetUpgrade();
+        Init(_uc, upgradeList);
+    }
+
     public void OnClick(int select)
     {
         _uc.OnUpgradeSelect(select);

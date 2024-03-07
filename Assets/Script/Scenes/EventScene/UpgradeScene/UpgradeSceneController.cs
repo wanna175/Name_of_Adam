@@ -104,6 +104,23 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
 
+    public List<Upgrade> ResetUpgrade()
+    {
+        _upgradeList.Clear();
+
+        while (_upgradeList.Count < 3)
+        {
+            Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade(_unit);
+
+            if (!_upgradeList.Contains(upgrade))
+            {
+                _upgradeList.Add(upgrade);
+            }
+        }
+
+        return _upgradeList;
+    }
+
     public void OnSelectUpgrade(DeckUnit unit)
     {
         _unit = unit;
