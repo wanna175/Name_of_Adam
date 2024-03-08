@@ -31,22 +31,6 @@ MonoBehaviour:
     m_Key: Cost (COST)
     m_Metadata:
       m_Items: []
-  - m_Id: 55016092921856
-    m_Key: 'Speed (SPD) '
-    m_Metadata:
-      m_Items: []
-  - m_Id: 55062167351296
-    m_Key: 'Health (HP) '
-    m_Metadata:
-      m_Items: []
-  - m_Id: 55199056850944
-    m_Key: 'Attack (ATK) '
-    m_Metadata:
-      m_Items: []
-  - m_Id: 55316430254080
-    m_Key: 'Cost (COST) '
-    m_Metadata:
-      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
