@@ -46,6 +46,7 @@ public class UI_ESCOption : UI_Popup
     public void ExitButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.SaveManager.SaveGame();
         Application.Quit();
     }
 }
