@@ -251,6 +251,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _changeButton: {fileID: 5599883418855769735}
   _text: {fileID: 2622512399641529337}
+  _buttonImage: {fileID: 672710827517543454}
+  buttonEnterSprite: {fileID: 1938664424, guid: a31430f2e68dc9d40867840064b22420, type: 3}
+  buttonExitSprite: {fileID: -751166431, guid: ec94893b9514f784fa69a2f7e8412ef4, type: 3}
 --- !u!1 &2317654386567439935
 GameObject:
   m_ObjectHideFlags: 0

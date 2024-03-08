@@ -50,6 +50,6 @@ MonoBehaviour:
   _sprite_88: {fileID: 21300000, guid: c1335e01413ed5e44b4c395f2c9ae317, type: 3}
   _sprite_164: {fileID: 21300000, guid: 08823706bc7f41b4b86b136eec9b9bc8, type: 3}
   _description: Teleport Info
-  _activeTiming: 4194304
+  _activeTiming: 2
   _tier: 0
-  _isLock: 1
+  _isLock: 0

@@ -97,7 +97,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -935,6 +935,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _changeButton: {fileID: 7994102038253706105}
   _text: {fileID: 514254912165107207}
+  _buttonImage: {fileID: 3032043850200193504}
+  buttonEnterSprite: {fileID: 1938664424, guid: a31430f2e68dc9d40867840064b22420, type: 3}
+  buttonExitSprite: {fileID: -751166431, guid: ec94893b9514f784fa69a2f7e8412ef4, type: 3}
 --- !u!1 &3894982629768379451
 GameObject:
   m_ObjectHideFlags: 0

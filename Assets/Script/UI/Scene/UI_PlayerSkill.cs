@@ -28,6 +28,8 @@ public class UI_PlayerSkill : UI_Scene
         {
             _currentCardList[i].Set(this, skillList[i]);
         }
+
+        InableCheck();
     }
 
     public void OnClickHand(UI_PlayerSkillCard card)

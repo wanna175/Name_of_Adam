@@ -23,33 +23,27 @@ public class LocaleManager : MonoBehaviour
 
     public string GetLocalizedPlayerSkillInfo(int skillIdx)
     {
+        int playerID = (skillIdx - 1) / 3 + 1;
+        int skillID = (skillIdx - 1) % 3 + 1;
+        string info = $"Player_{playerID}_{skillID}";
+
         switch (skillIdx)
         {
-            case 1: return GetLocalizedPlayerSkillInfo("Lowers the faith of a designated enemy by 1.");
             case 2:
                 if (GameManager.OutGameData.IsUnlockedItem(54))
-                    return GetLocalizedPlayerSkillInfo("Deals 20 damage in a massive cross range near the designated enemy. It reduces the enemy's faith by 1 upon attacking.");
-                else
-                    return GetLocalizedPlayerSkillInfo("Deals 20 damage in a massive cross range near the designated enemy.");
-            case 3: return GetLocalizedPlayerSkillInfo("Moves an ally one space and grants a speed boost.");
+                    info += "_Up";
+                break;
             case 4:
                 if (GameManager.OutGameData.IsUnlockedItem(62))
-                    return GetLocalizedPlayerSkillInfo("Heals the designated ally or enemy by 20 health.");
-                else
-                    return GetLocalizedPlayerSkillInfo("Heals the designated ally or enemy by 15 health.");
-            case 5: return GetLocalizedPlayerSkillInfo("Brings back a designated ally.");
+                    info += "_Up";
+                break;
             case 6:
                 if (GameManager.OutGameData.IsUnlockedItem(64))
-                    return GetLocalizedPlayerSkillInfo("Bestows a curse on the designated enemy.");
-                else
-                    return GetLocalizedPlayerSkillInfo("Bestows a curse and increases attack on the designated enemy.");
-            case 7: return GetLocalizedPlayerSkillInfo("Deals 30 damage to the designated unit.");
-            case 8: return GetLocalizedPlayerSkillInfo("Bestows malevolence 3 times and reduces faith by 1 to the designated ally.");
-            case 9: return GetLocalizedPlayerSkillInfo("Summons the apostle onto the battlefield.");
+                    info += "_Up";
+                break;
         }
 
-        Debug.Log($"PlayerSkill Info Localization is faied.");
-        return "";
+        return GetLocalizedPlayerSkillInfo(info);
     }
 
     public string GetLocalizedBattleScene(string battleSceneStr) => GetLocalizedString("BattleSceneTable", battleSceneStr);
