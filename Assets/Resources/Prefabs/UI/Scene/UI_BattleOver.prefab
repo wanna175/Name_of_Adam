@@ -122,7 +122,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4372413364378577544}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.998391
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -542,7 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044850059313300564}
   m_Layer: 5
-  m_Name: background
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -717,7 +717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8082770736100851936}
   m_Layer: 5
-  m_Name: blackEssence
+  m_Name: DarkEssence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1105,11 +1105,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ff9093e9ec90d49bf037064d6a1c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contents:
-  - {fileID: 6126035963571247591}
-  darkness: {fileID: 7249521153431397126}
-  content_prefab: {fileID: 2786025205621444786, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
-  view_grid: {fileID: 399255812170729070}
+  _rewardUnitList:
+  - {fileID: 5268946169190889508}
+  _darkEssenceResult: {fileID: 7249521153431397126}
+  _rewardUnitPrefab: {fileID: 2786025205621444786, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
+  _unitScrollViewGrid: {fileID: 399255812170729070}
+  IsFadeEnd: 0
 --- !u!225 &73416447708685128
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1150,7 +1151,7 @@ GameObject:
   - component: {fileID: 4032747012208895658}
   - component: {fileID: 7249521153431397126}
   m_Layer: 5
-  m_Name: result
+  m_Name: Result
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1897,7 +1898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7237604133749302950, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00062161725
+      value: 0.000020232383
       objectReference: {fileID: 0}
     - target: {fileID: 7237604133749302950, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1917,14 +1918,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
---- !u!224 &5781365084059280111 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7237604133749302950, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
-  m_PrefabInstance: {fileID: 3768011458830763081}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6126035963571247591 stripped
+--- !u!114 &5268946169190889508 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7011725516757212590, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9031305955684564077, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
   m_PrefabInstance: {fileID: 3768011458830763081}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1933,3 +1929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6977f39f41052dc42b722b1bc35fc53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5781365084059280111 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7237604133749302950, guid: 5c2c19c173bc267429050303b5a35cb5, type: 3}
+  m_PrefabInstance: {fileID: 3768011458830763081}
+  m_PrefabAsset: {fileID: 0}

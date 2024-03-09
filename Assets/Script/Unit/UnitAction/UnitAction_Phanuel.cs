@@ -231,16 +231,13 @@ public class UnitAction_Phanuel : UnitAction
         }
         else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD || (activeTiming & ActiveTiming.FALLED) == ActiveTiming.FALLED)
         {
-            int listCount = BattleManager.Data.BattleUnitList.Count;
-            for (int i = 0; i < listCount; i++)
+            for (int i = 0; i < BattleManager.Data.BattleUnitList.Count; i++)
             {
-                BattleUnit unit = BattleManager.Data.BattleUnitList[i];
-                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
-                {
-                    unit.UnitDiedEvent();
-                    i--;
-                    listCount--;
-                }
+                BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "오벨리스크" && findUnit.Team == caster.Team);
+                if (remainUnit == null)
+                    break;
+
+                remainUnit.UnitDiedEvent(false);
             }
 
             TileClear(caster.Team);

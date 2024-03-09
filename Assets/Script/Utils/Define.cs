@@ -54,6 +54,20 @@ public struct Stat
     }
 }
 
+public class RewardUnit
+{
+    public string Name { get; }
+    public int Faith { get; set; }//diff
+    public Sprite Image { get; }
+
+    public RewardUnit(string name, int faith, Sprite image)
+    {
+        Name = name;
+        Faith = faith;
+        Image = image;
+    }
+}
+
 public struct Upgrade
 {
     public string UpgradeName;

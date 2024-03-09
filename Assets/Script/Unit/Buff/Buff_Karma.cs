@@ -9,7 +9,7 @@ public class Buff_Karma : Buff
 
         _name = "Karma";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
 
         _description = "When attacked, reduces the faith of the attacking enemy unit by 1.";
 

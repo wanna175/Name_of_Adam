@@ -117,211 +117,232 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_0"
+      name: "\uC555\uBC14\uC784_Attack_Effect_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38dc4e8be772a15499b130ec795836ec
-      internalID: -497990021
+      spriteID: 666e69eec33214e4eb37a91b874fbbc4
+      internalID: -1562894532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_1"
+      name: "\uC555\uBC14\uC784_Attack_Effect_1"
       rect:
         serializedVersion: 2
-        x: 218
+        x: 200
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f85112e89097c71468facc1816023629
-      internalID: -838050155
+      spriteID: 6ef045dbab1cf0143b4cc93032bff2af
+      internalID: 1923443688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_2"
+      name: "\uC555\uBC14\uC784_Attack_Effect_2"
       rect:
         serializedVersion: 2
-        x: 436
+        x: 400
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f948654aa8cb7a488558759bcfae195
-      internalID: 1261312644
+      spriteID: 070dd81bfcfc6b04dbdf23bafd55c5ec
+      internalID: 537729577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_3"
+      name: "\uC555\uBC14\uC784_Attack_Effect_3"
       rect:
         serializedVersion: 2
-        x: 654
+        x: 600
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1152d3d4a27ba141950b7efd92a865c
-      internalID: 1818632395
+      spriteID: 06a8f8d156c637047b81798b4d33afb4
+      internalID: 307234474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_4"
+      name: "\uC555\uBC14\uC784_Attack_Effect_4"
       rect:
         serializedVersion: 2
-        x: 872
+        x: 800
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9728c552693f414eb1c63215ac12eb4
-      internalID: -394367522
+      spriteID: df700deeb3471cc49b295b0c8fbf3dec
+      internalID: 1675168799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_5"
+      name: "\uC555\uBC14\uC784_Attack_Effect_5"
       rect:
         serializedVersion: 2
-        x: 1090
+        x: 1000
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b30e8ccefcb5b5a4a82dde37fda8c182
-      internalID: -973308435
+      spriteID: 1ca33c49d0b6b7541a3fdedffc1fc389
+      internalID: -2095302878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_6"
+      name: "\uC555\uBC14\uC784_Attack_Effect_6"
       rect:
         serializedVersion: 2
-        x: 1308
+        x: 1200
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71fc7b6301b2dd3419ecb514e105f76d
-      internalID: 1792872072
+      spriteID: 0f4f6b9fa3a3fe74a8a623fd680dd55f
+      internalID: 1993065454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_7"
+      name: "\uC555\uBC14\uC784_Attack_Effect_7"
       rect:
         serializedVersion: 2
-        x: 1526
+        x: 1400
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f32ab578f488ca7449740e292d44b752
-      internalID: 1003994794
+      spriteID: 896e6070147fef246a3731693dd07bc1
+      internalID: 910407668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_8"
+      name: "\uC555\uBC14\uC784_Attack_Effect_8"
       rect:
         serializedVersion: 2
-        x: 1744
+        x: 1600
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa0f6059cde98b14d9d0d580823397aa
-      internalID: -845334786
+      spriteID: fa5c7651dc09c8f4f9f2b0823bd1203a
+      internalID: -1009502586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC0BC\uC2E0\uAE30_Attack_Effect_9"
+      name: "\uC555\uBC14\uC784_Attack_Effect_9"
       rect:
         serializedVersion: 2
-        x: 1962
+        x: 1800
         y: 0
-        width: 218.18182
+        width: 200
         height: 216
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5ead75e5eea6a641b439386a8dad452
-      internalID: 476361080
+      spriteID: 221b785d8a263cd4e8c7081d28a3267c
+      internalID: 279104406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC555\uBC14\uC784_Attack_Effect_10"
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 200
+        height: 216
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb584415ddd83948a76c0f6de480820
+      internalID: 1918870457
       vertices: []
       indices: 
       edges: []
@@ -337,16 +358,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_3": 1818632395
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_1": -838050155
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_7": 1003994794
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_5": -973308435
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_2": 1261312644
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_6": 1792872072
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_8": -845334786
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_9": 476361080
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_0": -497990021
-      "\uC0BC\uC2E0\uAE30_Attack_Effect_4": -394367522
+      "\uC555\uBC14\uC784_Attack_Effect_5": -2095302878
+      "\uC555\uBC14\uC784_Attack_Effect_8": -1009502586
+      "\uC555\uBC14\uC784_Attack_Effect_7": 910407668
+      "\uC555\uBC14\uC784_Attack_Effect_2": 537729577
+      "\uC555\uBC14\uC784_Attack_Effect_6": 1993065454
+      "\uC555\uBC14\uC784_Attack_Effect_1": 1923443688
+      "\uC555\uBC14\uC784_Attack_Effect_0": -1562894532
+      "\uC555\uBC14\uC784_Attack_Effect_4": 1675168799
+      "\uC555\uBC14\uC784_Attack_Effect_3": 307234474
+      "\uC555\uBC14\uC784_Attack_Effect_10": 1918870457
+      "\uC555\uBC14\uC784_Attack_Effect_9": 279104406
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

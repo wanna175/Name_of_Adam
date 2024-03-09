@@ -56,11 +56,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 823568535552
-    m_Localized: Deals 30 damage to the designated unit.
+    m_Localized: Deals 25 damage to the designated unit.
     m_Metadata:
       m_Items: []
   - m_Id: 890564153344
-    m_Localized: Bestows malevolence 3 times and reduces faith by 1 to the designated
+    m_Localized: Bestows malevolence 4 times and reduces faith by 1 to the designated
       ally.
     m_Metadata:
       m_Items: []

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8773286460578116197}
   - component: {fileID: 2658996342593903255}
   m_Layer: 5
-  m_Name: newunitImage
+  m_Name: NewUnitFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8416542274292604671}
   - component: {fileID: 8242462305465949796}
   m_Layer: 5
-  m_Name: unitName
+  m_Name: UnitName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,11 +220,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7237604133749302950}
-  - component: {fileID: 7011725516757212590}
+  - component: {fileID: 9031305955684564077}
   - component: {fileID: 5005741591681616759}
   - component: {fileID: 8450611229250429386}
   m_Layer: 5
-  m_Name: Reward_content
+  m_Name: RewardUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,10 +254,10 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0004272461}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 240, y: 220}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &7011725516757212590
+--- !u!114 &9031305955684564077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,13 +269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6977f39f41052dc42b722b1bc35fc53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitImage: {fileID: 7116235884949350482}
-  unitName: {fileID: 8242462305465949796}
-  diff: {fileID: 2041493411561253747}
-  NewImage: {fileID: 2658996342593903255}
-  DieImage: {fileID: 5937993730014028733}
+  _unitImage: {fileID: 7116235884949350482}
+  _unitName: {fileID: 8242462305465949796}
+  _faithDifference: {fileID: 2041493411561253747}
+  _newImage: {fileID: 2658996342593903255}
+  _deadImage: {fileID: 5937993730014028733}
   _unitInfoFallGrid: {fileID: 1492709621038793656}
   _fallGaugePrefab: {fileID: 473178149966286213, guid: f54070cb177cc9145b39c1e3a1cabd67, type: 3}
+  _fadeController: {fileID: 8450611229250429386}
 --- !u!225 &5005741591681616759
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -390,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2730384445842023635}
   m_Layer: 5
-  m_Name: fall
+  m_Name: Fall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -430,7 +431,7 @@ GameObject:
   - component: {fileID: 3656257530143078092}
   - component: {fileID: 2041493411561253747}
   m_Layer: 5
-  m_Name: "\uC2E0\uC559"
+  m_Name: FaithDifference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2E0\uC559 "
+  m_text: FaithDifference
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
@@ -565,7 +566,7 @@ GameObject:
   - component: {fileID: 7250855642852392152}
   - component: {fileID: 5937993730014028733}
   m_Layer: 5
-  m_Name: dieunitImage
+  m_Name: DeadUnitFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +703,7 @@ GameObject:
   - component: {fileID: 6413114112216678023}
   - component: {fileID: 7116235884949350482}
   m_Layer: 5
-  m_Name: unitImage
+  m_Name: UnitImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +779,7 @@ GameObject:
   - component: {fileID: 2084139258736537026}
   - component: {fileID: 5715587751361413521}
   m_Layer: 5
-  m_Name: unitFrame
+  m_Name: UnitFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
