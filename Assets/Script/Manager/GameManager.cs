@@ -155,7 +155,10 @@ public class GameManager : MonoBehaviour
             foreach (var unit in BattleManager.Data.BattleUnitList)
             {
                 if (unit.Team == Team.Player)
+                {
+                    unit.ChangeHP(-999);
                     unit.ChangeFall(-4);
+                }
             }
         }
     }

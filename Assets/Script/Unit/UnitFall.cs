@@ -38,4 +38,6 @@ public class UnitFall : MonoBehaviour
     public void Editfy() => _isEdified = true;
 
     public int GetCurrentFallCount() => _currentCount;
+
+    public int GetMaxFallCount() => _maxCount;
 }
