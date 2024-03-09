@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 113
   _name: Symbiosis
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
+  _sprite_28: {fileID: 21300000, guid: be8cff053b289a44d921538f20f24dce, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 9dce6d366c9c033408c8d78d60638d8a, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 4672aa3be70875d43aacdac58465b275, type: 3}
   _description: Symbiosis Info
   _activeTiming: 2
   _tier: 3
