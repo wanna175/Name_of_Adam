@@ -7,7 +7,6 @@ public class Stigma_Repetance : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_Repetance repetance = new();
-        caster.SetBuff(repetance);
+        caster.SetBuff(new Buff_Stigma_Repetance());
     }
 }

@@ -6,7 +6,7 @@ public class Buff_Stigma_Lucifer : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.LegacyOfBabel;
+        _buffEnum = BuffEnum.Lucifer;
 
         _name = "루시퍼의 등장";
 
@@ -36,7 +36,7 @@ public class Buff_Stigma_Lucifer : Buff
     {
         if (_count == 1)
         {
-            Owner.ChangeHP(-999);
+            _owner.UnitDiedEvent(false);
         }
 
         return false;

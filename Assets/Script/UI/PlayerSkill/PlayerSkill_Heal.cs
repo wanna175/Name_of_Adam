@@ -8,7 +8,7 @@ public class PlayerSkill_Heal : PlayerSkill
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
         GameManager.Sound.Play("UI/PlayerSkillSFX/Heal");
-        //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Heal", BattleManager.Field.GetTilePosition(coord));
 
         if (GameManager.OutGameData.IsUnlockedItem(62))
         {

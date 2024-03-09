@@ -13,7 +13,7 @@ public class UI_BattleOver : UI_Scene
 
     private string _result;
 
-    public void SetImage(string result,RewardController rc = null)
+    public void SetImage(string result)
     {
         fc.GetComponent<FadeController>().StartFadeIn();
 
@@ -22,8 +22,8 @@ public class UI_BattleOver : UI_Scene
 
         if (result == "win") 
         {
-            rc.RewardSetting(GameManager.Data.GetDeck(), _rewardScene);
             _rewardScene.gameObject.SetActive(true);
+            _rewardScene.Init(GameManager.Data.GetDeck());
             _textImage.gameObject.SetActive(false);
             //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
@@ -49,7 +49,18 @@ public class UI_BattleOver : UI_Scene
 
         if (_result == "win")
         {
-            if (_rewardScene.isEndFade)
+            if (!GameManager.OutGameData.IsTutorialClear() && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
+            {
+                GameManager.OutGameData.DoneTutorial(true);
+                if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Tutorial) == false)
+                    SceneChanger.SceneChangeToCutScene(CutSceneType.Tutorial);
+                else
+                    SceneChanger.SceneChange("StageSelectScene");
+                Debug.Log("Tutorial Clear!");
+                return;
+            }
+
+            if (_rewardScene.IsFadeEnd)
             {
                 SceneChanger.SceneChange("StageSelectScene");
             }
@@ -60,7 +71,7 @@ public class UI_BattleOver : UI_Scene
         }
         else if (_result == "elite win")
         {
-            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 100)
+            if(GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
             {
                 BattleOverDestroy();
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
@@ -76,7 +87,7 @@ public class UI_BattleOver : UI_Scene
         {
             BattleOverDestroy();
 
-            if (GameManager.OutGameData.isTutorialClear())
+            if (GameManager.OutGameData.IsTutorialClear())
             {
                 GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
                 GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";

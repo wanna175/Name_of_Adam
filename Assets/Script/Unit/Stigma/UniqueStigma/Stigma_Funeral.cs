@@ -32,6 +32,8 @@ public class Stigma_Funeral : Stigma
 
             spawnUnit = BattleManager.Spawner.SpawnDataSpawn(sd);
             spawnUnit.SetBuff(new Buff_Vice());
+
+            caster.ResetHPBarPosition();
         }
     }
 }

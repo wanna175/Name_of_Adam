@@ -15,12 +15,11 @@ MonoBehaviour:
   _rawStat:
     MaxHP: 40
     CurrentHP: 40
-    ATK: 15
+    ATK: 20
     SPD: 75
     FallCurrentCount: 0
-    FallMaxCount: 4
+    FallMaxCount: 8
     ManaCost: 60
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 171247975755226261, guid: e2453f4d561b4694d8202f89587122af, type: 3}
   _id: "\uC57C\uB098"
@@ -38,8 +37,8 @@ MonoBehaviour:
   _skillEffectAnim: {fileID: 7400000, guid: 0ebdd42c62540a2448be62b258ad33c9, type: 2}
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: 99f8d07c53c075a49b45c2bebe54f9f0, type: 2}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
-  _darkEssenseDrop: 10
-  _darkEssenseCost: 0
+  _darkEssenseDrop: 2
+  _darkEssenseCost: 2
   _unitActionType: 0
   _unitMoveType: 0
   _isBattleOnly: 0

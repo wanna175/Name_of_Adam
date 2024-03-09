@@ -44,13 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d4ae87e2347164f8439e52a8d932e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 29
+  _stigmaEnum: 27
   _name: Tailwind
   _sprite_28: {fileID: 21300000, guid: e63d92aef814b0e4fb939b4c07df8bb9, type: 3}
   _sprite_88: {fileID: 21300000, guid: a4377c5d0e9ed8c4e971f92b98d467fe, type: 3}
   _sprite_164: {fileID: 21300000, guid: 93ada5ecead2bfd42b3bc7dc69aac66f, type: 3}
-  _description: All allies in the same row as the summoner gain a one-time speed
-    increase upon summoning.
+  _description: Tailwind Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

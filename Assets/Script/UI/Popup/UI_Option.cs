@@ -14,6 +14,8 @@ public class UI_Option : UI_Popup
     [SerializeField] private Slider BGMSlider;
     [SerializeField] private Slider SESlider;
 
+    [SerializeField] private GameObject UI_Credit;
+
     private List<Resolution> resolutions;
     private int currentLanguage;
     private int currentResolution;
@@ -42,7 +44,7 @@ public class UI_Option : UI_Popup
         // 저장된 데이터 불러오기
         resolutions = GameManager.OutGameData.GetAllResolution();
         currentLanguage = GameManager.OutGameData.GetLanguage();
-        currentResolution = GameManager.OutGameData.GetResolution();
+        currentResolution = GameManager.OutGameData.GetResolutionIndex();
         isWindowed = GameManager.OutGameData.IsWindowed();
 
         masterPower = GameManager.OutGameData.GetMasterSoundPower();
@@ -77,13 +79,20 @@ public class UI_Option : UI_Popup
         SESlider.value = SEPower;
     }
 
+    public void LanguageDropdownChanged()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+    }
+
     private void ResolutionDropdownChanged(int idx)
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.OutGameData.SetResolution(idx);
     }
 
     private void WindowToggleChanged(bool isOn)
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         isWindowed = isOn;
         GameManager.OutGameData.SetWindow(isWindowed);
     }
@@ -112,14 +121,20 @@ public class UI_Option : UI_Popup
 
     public void ReSetOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.OutGameData.ReSetOption();
         InitUI();
     }
 
+    public void CreditOption()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        UI_Credit.SetActive(true);
+    }
+
     public void QuitOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/ButtonClickSFX");
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ClosePopup(this);
         GameManager.UI.IsCanESC = true;
 

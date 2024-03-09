@@ -45,6 +45,11 @@ public class UnitAction_RaquelLeah : UnitAction
         {
             ChangeState(caster);
         }
+        else if ((activeTiming & ActiveTiming.MOVE_TURN_START) == ActiveTiming.MOVE_TURN_START)
+        {
+            if (_isChanged)
+                return true;
+        }
 
         return false;
     }
@@ -58,19 +63,7 @@ public class UnitAction_RaquelLeah : UnitAction
 
         int ChangedSpeed = _owner.BattleUnitTotalStat.SPD - _speedDifference;
 
-        int InsertIndex = 0;
-
-        /*
-        foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
-        {
-            if (unit.BattleUnitTotalStat.SPD > ChangedSpeed)
-            {
-                InsertIndex++;
-            }
-        }
-        */
-
-        BattleManager.Data.BattleOrderInsert(InsertIndex, _owner, ChangedSpeed);
+        BattleManager.Data.BattleOrderInsert(0, _owner, ChangedSpeed);
 
     }
 

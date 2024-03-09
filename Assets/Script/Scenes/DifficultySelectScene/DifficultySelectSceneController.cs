@@ -65,6 +65,15 @@ public class DifficultySelectSceneController : MonoBehaviour
             GameManager.Data.GameData.FallenUnits.Clear();
             GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
 
+            if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Elieus_Enter) == false)
+            {
+                if (GameManager.OutGameData.IsPhanuelClear())
+                {
+                    SceneChanger.SceneChangeToCutScene(CutSceneType.Elieus_Enter);
+                    return;
+                }
+            }
+
             SceneChanger.SceneChange("StageSelectScene");
         }
     }

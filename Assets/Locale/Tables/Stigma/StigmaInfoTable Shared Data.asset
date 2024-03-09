@@ -16,154 +16,143 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 6b058525e4109d1409a30aaf2c99f35f
   m_Entries:
   - m_Id: 17036013568
-    m_Key: Pulls the enemy one tile closer upon attacking.
+    m_Key: Hook Info
     m_Metadata:
       m_Items: []
   - m_Id: 1062504034304
-    m_Key: Removes all buffs from the enemy upon attacking.
+    m_Key: Dispel Info
     m_Metadata:
       m_Items: []
   - m_Id: 1089838313472
-    m_Key: Moves behind the attacked enemy if there is only one enemy targeted with
-      the attack.
+    m_Key: Shadow Step Info
     m_Metadata:
       m_Items: []
   - m_Id: 1175741853696
-    m_Key: Acquires the Death strike upon summoning.
+    m_Key: Death Strike Info
     m_Metadata:
       m_Items: []
   - m_Id: 1213641584640
-    m_Key: Recovers 30% of the damage dealt.
+    m_Key: Absorption Info
     m_Metadata:
       m_Items: []
   - m_Id: 1262668804096
-    m_Key: Upon attacking, targets an additional enemy within the attack range.
+    m_Key: Additional Punishment Info
     m_Metadata:
       m_Items: []
   - m_Id: 1312883011584
-    m_Key: Able to summon anywhere on the field.
+    m_Key: Assasination Info
     m_Metadata:
       m_Items: []
   - m_Id: 1502159368192
-    m_Key: Recovers 5 mana upon attacking.
+    m_Key: Blessing Info
     m_Metadata:
       m_Items: []
   - m_Id: 1751317803008
-    m_Key: Oneself and nearby allies within 4 tiles gain an attack boost for 1 turns
-      upon summoning.
+    m_Key: Raise I Info
     m_Metadata:
       m_Items: []
   - m_Id: 1873627901952
-    m_Key: Oneself and nearby allies within 4 tiles gain an attack boost for 2 turns
-      upon summoning.
+    m_Key: Raise II Info
     m_Metadata:
       m_Items: []
   - m_Id: 1890304454656
-    m_Key: All allies in the same row as the summoner gain a one-time speed increase
-      upon summoning.
+    m_Key: Tailwind Info
     m_Metadata:
       m_Items: []
   - m_Id: 2000841142272
-    m_Key: "Attack power increases by 2 for each target attacked. \n(Resets at the
-      end of the stage.)"
+    m_Key: Sadism I Info
     m_Metadata:
       m_Items: []
   - m_Id: 2181942800384
-    m_Key: "Attack power increases by 3 for each target attacked. \n(Resets at the
-      end of the stage.)"
+    m_Key: Sadism II Info
     m_Metadata:
       m_Items: []
   - m_Id: 2236426809344
-    m_Key: Recovers 10 health when an enemy or an ally dies.
+    m_Key: Blood Blessing I Info
     m_Metadata:
       m_Items: []
   - m_Id: 2356740419584
-    m_Key: Recovers 20 health when an enemy or an ally dies.
+    m_Key: Blood Blessing II Info
     m_Metadata:
       m_Items: []
   - m_Id: 2420078604288
-    m_Key: Recovers 5 health after the end of its turn.
+    m_Key: Regeneration I Info
     m_Metadata:
       m_Items: []
   - m_Id: 2460759158784
-    m_Key: Recovers 10 health after the end of its turn.
+    m_Key: Regeneration II Info
     m_Metadata:
       m_Items: []
   - m_Id: 2549326082048
-    m_Key: Restores 30 health to allies within 4 adjacent tiles upon summoning.
+    m_Key: Benevolence Info
     m_Metadata:
       m_Items: []
   - m_Id: 2613922557952
-    m_Key: Earns immortality 1 times upon summoning.
+    m_Key: Immortality I Info
     m_Metadata:
       m_Items: []
   - m_Id: 2705945587712
-    m_Key: Earns immortality 2 times upon summoning.
+    m_Key: Immortality II Info
     m_Metadata:
       m_Items: []
   - m_Id: 2745237827584
-    m_Key: Earns invincibility 1 times upon summoning.
+    m_Key: Invinciblity I Info
     m_Metadata:
       m_Items: []
   - m_Id: 2856676290560
-    m_Key: Earns invincibility 2 times upon summoning.
+    m_Key: Invinciblity II Info
     m_Metadata:
       m_Items: []
   - m_Id: 2911923662848
-    m_Key: Becomes capable of moving one additional step in the cross direction.
+    m_Key: Expand Info
     m_Metadata:
       m_Items: []
   - m_Id: 3085446213632
-    m_Key: Becomes capable of moving one step diagonally.
+    m_Key: Bishop Praise Info
     m_Metadata:
       m_Items: []
   - m_Id: 3199489339392
-    m_Key: Earns increase in attack each turn, but the maximum faith value becomes
-      fixed to 1.
+    m_Key: Berserker Info
     m_Metadata:
       m_Items: []
   - m_Id: 3269714571264
-    m_Key: The unit becomes stunned once, but the mana cost of the next skill is
-      eliminated upon summoning.
+    m_Key: Forbidden Pact Info
     m_Metadata:
       m_Items: []
   - m_Id: 3422802472960
-    m_Key: When attacking, there is a 50% chance for damage to be doubled and a 50%
-      chance for it to be halved.
+    m_Key: Destiny Info
     m_Metadata:
       m_Items: []
   - m_Id: 3515362373632
-    m_Key: Gains an extra turn upon defeating an enemy.
+    m_Key: Killing Spree Info
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
-    m_Key: Gains 1 Sacred Step upon defeating an enemy, .
+    m_Key: Teleport Info
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
-    m_Key: Instead of reducing the attack to 0, decreases the enemy's faith by 1.
+    m_Key: Mercy Info
     m_Metadata:
       m_Items: []
   - m_Id: 4027667247104
-    m_Key: All buffs and debuffs acquired by this unit are replaced with malevolence.
+    m_Key: Cleanse Info
     m_Metadata:
       m_Items: []
   - m_Id: 4114728415232
-    m_Key: When the faith of this unit is 2 or below, it reduces the enemy's faith
-      by 1 upon attacking.
+    m_Key: Martyrdom Info
     m_Metadata:
       m_Items: []
   - m_Id: 4198899707904
-    m_Key: When the health of this unit is below half, it reduces the enemy's faith
-      by 1 upon attacking.
+    m_Key: Repetance Info
     m_Metadata:
       m_Items: []
   - m_Id: 4454450262016
-    m_Key: When attacking two or more enemies at once, it reduces faith by 1.
+    m_Key: Pray In Aid Info
     m_Metadata:
       m_Items: []
   - m_Id: 4568623411200
-    m_Key: Earns malevolence 99 times upon summoning.
+    m_Key: Sin Info
     m_Metadata:
       m_Items: []
   - m_Id: 7908400885760
@@ -216,6 +205,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1305281299279872
     m_Key: Funeral Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7868905148968960
+    m_Key: Birth Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7868980851961856
+    m_Key: Blooming Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7869015077482496
+    m_Key: Sacrifice Info
     m_Metadata:
       m_Items: []
   m_Metadata:

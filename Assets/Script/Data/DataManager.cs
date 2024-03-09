@@ -16,6 +16,17 @@ public class DataManager : MonoBehaviour
     public MapData Map;
     public int StageAct; // 현재 맵이 몇 막인지 기록하는 변수. 0 : 튜토리얼, 1 : 1막, 2 : 2막 이런식으로
 
+    private CutSceneType _cutSceneToDisplay; // 출력할 컷씬 기록하는 변수
+    public CutSceneType CutSceneToDisplay
+    {
+        get => _cutSceneToDisplay;
+        set
+        {
+            Debug.Log($"컷씬 {_cutSceneToDisplay} -> {value} 변경");
+            _cutSceneToDisplay = value;
+        }
+    }
+
     [SerializeField] public GameData GameData;
     [SerializeField] public GameData GameDataMain;
     [SerializeField] public GameData GameDataTutorial;
@@ -46,7 +57,6 @@ public class DataManager : MonoBehaviour
     public void MainDeckSet()
     {
         GameData.Incarna = GameDataMain.Incarna;
-        GameData.Money = GameDataMain.Money;
         GameData.DarkEssence = GameDataMain.DarkEssence;
         GameData.PlayerHP = GameDataMain.PlayerHP;
         GameData.DeckUnits = GameDataMain.DeckUnits;
@@ -57,21 +67,11 @@ public class DataManager : MonoBehaviour
         GameData.Progress.ClearProgress();
         NPCQuestSet();
         _darkEssense = GameData.DarkEssence;
-        //OutGame에서 업그레이드 된 스탯 + 낙인 불러와야해서 ClearStat 사용하면 안됨, 파생되는 문제 발생 시 수정 필요 
-        /*
-        foreach (DeckUnit unit in GameData.DeckUnits)
-        {
-            unit.DeckUnitChangedStat.ClearStat();
-            unit.DeckUnitUpgradeStat.ClearStat();
-            unit.ClearStigma();
-        }
-        */
     }
 
     public void DeckClear()
     {
         GameData.Incarna = GameDataTutorial.Incarna;
-        GameData.Money = GameDataTutorial.Money;
         GameData.DarkEssence = GameDataTutorial.DarkEssence;
         GameData.PlayerHP = GameDataTutorial.PlayerHP;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
@@ -96,7 +96,6 @@ public class DataManager : MonoBehaviour
     public void MainDeckLayoutSet()
     {
         GameDataMain.Incarna = GameDataMainLayout.Incarna;
-        GameDataMain.Money = GameDataMainLayout.Money;
         GameDataMain.DarkEssence = GameDataMainLayout.DarkEssence;
         GameDataMain.PlayerHP = GameDataMainLayout.PlayerHP;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
@@ -126,7 +125,6 @@ public class DataManager : MonoBehaviour
                 if(unit.Data.Rarity != Rarity.Normal)
                 {
                     EliteHallHandDeck.Add(unit);
-                    Debug.Log(unit.Data.Name);
                 }
                 else
                 {
@@ -147,10 +145,10 @@ public class DataManager : MonoBehaviour
 
     public void NPCQuestSet()
     {
-        GameData.IsVisitUpgrade = GameManager.OutGameData.getVisitUpgrade();
-        GameData.IsVisitStigma = GameManager.OutGameData.getVisitStigma();
-        GameData.IsVisitDarkShop = GameManager.OutGameData.getVisitDarkshop();
-        GameData.NpcQuest = GameManager.OutGameData.getNPCQuest();
+        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
+        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
+        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
+        GameData.NpcQuest = GameManager.OutGameData.GetNPCQuest();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -189,22 +187,6 @@ public class DataManager : MonoBehaviour
         GameData.DeckUnits = deck;
     }
 
-    private int _money;
-    public int Money => _money;
-
-    public bool MoneyChage(int cost)
-    {
-        if (_money + cost < 0)
-        {
-            return false;
-        }
-        else
-        {
-            _money += cost;
-            return true;
-        }
-    }
-
     private int _darkEssense = 0;
     public int DarkEssense => _darkEssense;
 
@@ -239,8 +221,6 @@ public class DataManager : MonoBehaviour
             SetSkillCost(skill);
             skillList.Add(skill);
         }
-
-        //skillList.Insert(2, GameData.UniversalPlayerSkill); //Universal Skill 보류
 
         return skillList;
     }
@@ -278,5 +258,43 @@ public class DataManager : MonoBehaviour
         probability.Add(89);
 
         return probability;
+    }
+
+    public MapDataSaveData GetMapSaveData()
+    {
+        MapDataSaveData saveData = new();
+
+        saveData.MapObject = GameManager.Data.Map.MapObject.name;
+        saveData.StageList = GameManager.Data.Map.StageList;
+        saveData.CurrentTileID = GameManager.Data.Map.CurrentTileID;
+        saveData.ClearTileID = GameManager.Data.Map.ClearTileID;
+
+        return saveData;
+    }
+
+    public void SetMapSaveData(MapDataSaveData saveData)
+    {
+        string mapName = saveData.MapObject;
+
+        if (mapName == "TutorialMap")
+        {
+            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/TutorialMap/TutorialMap");
+        }
+        else if (mapName.StartsWith("Map1_"))
+        {
+            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct0/" + mapName);
+        }
+        else if (mapName.StartsWith("Map2_"))
+        {
+            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct1/" + mapName);
+        }
+        else if (mapName.StartsWith("Map3_"))
+        {
+            Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/StageAct2/" + mapName);
+        }
+
+        Map.StageList = saveData.StageList;
+        Map.CurrentTileID = saveData.CurrentTileID;
+        Map.ClearTileID = saveData.ClearTileID;
     }
 }

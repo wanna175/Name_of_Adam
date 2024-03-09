@@ -44,13 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632b2ab8d162f7c4b80cc0aabe051cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 23
+  _stigmaEnum: 21
   _name: Raise I
   _sprite_28: {fileID: 21300000, guid: 68ce4d5a66637ee468491f0b9c85b127, type: 3}
   _sprite_88: {fileID: 21300000, guid: a5a12ec710c10ab488ffc67e48123d13, type: 3}
   _sprite_164: {fileID: 21300000, guid: 40c5d0a3e447bff4eae0fd50c0292072, type: 3}
-  _description: Oneself and nearby allies within 4 tiles gain an attack boost for
-    1 turns upon summoning.
+  _description: Raise I Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

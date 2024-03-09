@@ -12,7 +12,7 @@ public class UnitAction_Horus : UnitAction
     {
         if (DirectAttackCheck())
         {
-            BattleManager.Instance.DirectAttack(attackUnit);
+            BattleManager.Instance.EndUnitAction();
             return;
         }
 
@@ -24,6 +24,7 @@ public class UnitAction_Horus : UnitAction
 
         BattleManager.Instance.PlayAfterCoroutine(() =>
         {
+            SpawnUnitNearEnemy(attackUnit);
             SpawnUnitNearEnemy(attackUnit);
             BattleManager.Instance.EndUnitAction();
         }, 1.5f);
@@ -45,6 +46,7 @@ public class UnitAction_Horus : UnitAction
         BattleManager.Instance.PlayAfterCoroutine(() =>
         {
             SpawnUnit(coord, attackUnit);
+            SpawnUnitNearEnemy(attackUnit);
             BattleManager.Instance.EndUnitAction();
         }, 1.5f);
 
@@ -86,6 +88,7 @@ public class UnitAction_Horus : UnitAction
             if (!_isSummon)
             {
                 SpawnUnitNearEnemy(caster);
+                SpawnUnitNearEnemy(caster);
             }
 
             _isSummon = false;
@@ -95,7 +98,16 @@ public class UnitAction_Horus : UnitAction
             if (_summonedUnit.Contains(receiver))
             {
                 _summonedUnit.Remove(receiver);
-                caster.GetAttack(-10, null);
+                BattleManager.Instance.PlayAfterCoroutine(() =>
+                {
+                    caster.AnimatorSetBool("isHit", true);
+                    caster.GetAttack(-500, null);
+                }, 1.5f);
+
+                BattleManager.Instance.PlayAfterCoroutine(() =>
+                {
+                    caster.AnimatorSetBool("isHit", false);
+                }, 1.8f);
             }
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_FALLED) == ActiveTiming.FIELD_UNIT_FALLED)

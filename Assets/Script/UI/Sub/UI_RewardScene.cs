@@ -5,57 +5,88 @@ using TMPro;
 
 public class UI_RewardScene : MonoBehaviour
 {
-    #region ����
-    [SerializeField] private List<UI_UnitReward> contents;
-    [SerializeField] private TMP_Text darkness;
+    [SerializeField] private List<UI_RewardUnit> _rewardUnitList;
+    [SerializeField] private TMP_Text _darkEssenceResult;
+    [SerializeField] private GameObject _rewardUnitPrefab;
+    [SerializeField] private Transform _unitScrollViewGrid;
 
-    [SerializeField] private GameObject content_prefab;
-    [SerializeField] private Transform view_grid;
-    private bool FadeEnd = false;
-    public bool isEndFade => FadeEnd;
-    #endregion
+    public bool IsFadeEnd = false;
 
-    #region �Լ�
-    public void Init(int changeDarkness)
+    public void Init(List<DeckUnit> afterBattleEndUnits)
     {
         this.GetComponent<FadeController>().StartFadeIn();
-        darkness.text = changeDarkness.ToString();
-    }
-    public void setContent(int idx, RewardUnit rewardUnit, int curFall, UnitState unitState)
-    {
-        if (idx > contents.Count-1)
+
+        int difference = GameManager.Data.DarkEssense - BattleManager.Data.BattlePrevDarkEssence;
+        _darkEssenceResult.text = (difference >= 0) ? "+" + difference.ToString() : difference.ToString();
+
+        for (int i = 0; i < afterBattleEndUnits.Count; i++)
         {
-            UI_UnitReward newObject = GameObject.Instantiate(content_prefab, view_grid).GetComponent<UI_UnitReward>();
-            contents.Add(newObject);
+            if (BattleManager.Data.BattlePrevUnitDict.TryGetValue(afterBattleEndUnits[i].UnitID, out RewardUnit prevUnit))
+            {
+                //기존에 있던 유닛
+                SetContent(i, prevUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.Default);
+
+                BattleManager.Data.BattlePrevUnitDict.Remove(afterBattleEndUnits[i].UnitID);
+            }
+            else
+            {
+                //새로 플레이어 덱에 들어온 유닛
+                RewardUnit newUnit = new RewardUnit(afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
+
+                SetContent(i, newUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.New);
+            }
         }
-        contents[idx].gameObject.SetActive(true);
-        contents[idx].Init(rewardUnit.image, rewardUnit.name,curFall, rewardUnit.DarkEssence, unitState);
+
+        int idx = afterBattleEndUnits.Count;
+        foreach (RewardUnit rewardUnit in BattleManager.Data.BattlePrevUnitDict.Values)//죽은 유닛
+        {
+            RewardUnit deadUnit = new(rewardUnit.Name, 0, rewardUnit.Image);
+            SetContent(idx++, deadUnit, 0, 0, UnitState.Dead);
+        }
+
+        SetFadeIn(afterBattleEndUnits.Count + BattleManager.Data.BattlePrevUnitDict.Count);
+        BattleManager.Data.BattlePrevUnitDict.Clear();
     }
-    public void setFadeIn(int idx)
+
+    public void SetContent(int idx, RewardUnit rewardUnit, int maxFaith, int currentFaith, UnitState unitState)
+    {
+        if (idx > _rewardUnitList.Count-1)
+        {
+            UI_RewardUnit newObject = GameObject.Instantiate(_rewardUnitPrefab  , _unitScrollViewGrid).GetComponent<UI_RewardUnit>();
+            _rewardUnitList.Add(newObject);
+        }
+
+        _rewardUnitList[idx].gameObject.SetActive(true);
+        _rewardUnitList[idx].Init(rewardUnit, maxFaith, currentFaith, unitState);
+    }
+
+    public void SetFadeIn(int idx)
     {
         StartCoroutine(ContentFadeIn(idx));
     }
+
     private IEnumerator ContentFadeIn(int cnt)
     {
         WaitForSeconds wait = new WaitForSeconds(0.5f);
-        int i=0;
-        while (cnt >i) {
-            contents[i].FadeIn();
-            i++;
+
+        for (int i = 0; i < cnt; i++)
+        {
+            _rewardUnitList[i].FadeIn();
             yield return wait;
         }
-        FadeEnd = true;
+
+        IsFadeEnd = true;
         yield return null;
     } 
+
     public void EndFadeIn()
     {
-        if (!FadeEnd)
+        if (!IsFadeEnd)
         {
-            for (int i = 0; i < contents.Count; i++)
-                contents[i].EndFadeIn();
+            for (int i = 0; i < _rewardUnitList.Count; i++)
+                _rewardUnitList[i].EndFadeIn();
             StopAllCoroutines();
-            FadeEnd = true;
+            IsFadeEnd = true;
         }
     }
-    #endregion
 }

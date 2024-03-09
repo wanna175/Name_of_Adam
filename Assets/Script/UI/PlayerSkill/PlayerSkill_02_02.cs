@@ -8,11 +8,11 @@ public class PlayerSkill_02_02 : PlayerSkill
     {
         BattleUnit targetUnit = BattleManager.Field.GetUnit(coord);
         GameManager.Sound.Play("UI/PlayerSkillSFX/SoulDeal");
-        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+        GameManager.VisualEffect.StartPrefabEffect(targetUnit, "TradeOfSoul");
 
-        int count = 3;
+        int count = 4;
         if (GameManager.OutGameData.IsUnlockedItem(72))
-            count = 5;
+            count = 6;
 
         for (int i = 0; i < count; i++)
             targetUnit.SetBuff(new Buff_Vice());

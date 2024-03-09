@@ -7,13 +7,7 @@ using UnityEngine;
 
 public class PlayerSkillController : MonoBehaviour
 {
-    BattleUIManager BattleUI;
-    BattleDataManager Data;
-    Field Field;
-    PhaseController Phase;
-    Mana Mana;
-
-    PlayerSkill usedPlayerSkill;
+    private PlayerSkill _usedPlayerSkill;
 
     private bool _isSkillOn;
     public bool IsSkillOn => _isSkillOn;
@@ -21,72 +15,65 @@ public class PlayerSkillController : MonoBehaviour
     private bool _isManaFree;
     public bool IsManaFree => _isManaFree;
 
-    void Awake()
-    {
-        BattleUI = BattleManager.BattleUI;
-        Data = BattleManager.Data;
-        Field = BattleManager.Field;
-        Phase = BattleManager.Phase;
-        Mana = BattleManager.Mana;
-    }
-
     public void PlayerSkillUse(Vector2 coord)
     {
-        Field.ClearAllColor();
-        usedPlayerSkill = BattleUI.GetSelectedPlayerSkill();
-        _isSkillOn = usedPlayerSkill.Use(coord);
+        BattleManager.Field.ClearAllColor();
+        _usedPlayerSkill = BattleManager.BattleUI.GetSelectedPlayerSkill();
+        _isSkillOn = _usedPlayerSkill.Use(coord);
 
         if (_isManaFree)
         {
             _isManaFree = false;
-            BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
+            BattleManager.BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
         }
         else
         {
-            Mana.ChangeMana(-1 * usedPlayerSkill.GetManaCost());
+            BattleManager.Mana.ChangeMana(-1 * _usedPlayerSkill.GetManaCost());
         }
 
-        Data.DarkEssenseChage(-1 * usedPlayerSkill.GetDarkEssenceCost());
+        BattleManager.Data.DarkEssenseChage(-1 * _usedPlayerSkill.GetDarkEssenceCost());
 
         if (!_isSkillOn)
-            usedPlayerSkill = null;
+            _usedPlayerSkill = null;
 
-        BattleUI.UI_playerSkill.CancelSelect();
-        BattleUI.UI_playerSkill.InableSkill(true);
+        BattleManager.BattleUI.UI_playerSkill.CancelSelect();
+        BattleManager.BattleUI.UI_playerSkill.InableSkill(true);
 
         BattleManager.Instance.BattleOverCheck();
     }
 
     public void ActionSkill(ActiveTiming activeTiming, Vector2 coord)
     {
-        _isSkillOn = usedPlayerSkill.Action(activeTiming, coord);
+        _isSkillOn = _usedPlayerSkill.Action(activeTiming, coord);
     }
 
     public void SetSkillDone()
     {
         _isSkillOn = false;
-        usedPlayerSkill = null;
+        _usedPlayerSkill = null;
     }
 
     public void SetManaFree(bool isActive) => _isManaFree = isActive;
 
     public void PlayerSkillReady(FieldColorType colorType, PlayerSkillTargetType TargetType = PlayerSkillTargetType.none)
     {
-        if (!Phase.CurrentPhaseCheck(Phase.Prepare))
+        if (!BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
             return;
 
         if (colorType == FieldColorType.none)
-            Field.ClearAllColor();
+            BattleManager.Field.ClearAllColor();
         else
         {
             if (TargetType == PlayerSkillTargetType.Unit)
-                Field.SetUnitTileColor(colorType);
+                BattleManager.Field.SetUnitTileColor(colorType);
             else if (TargetType == PlayerSkillTargetType.Enemy)
-                Field.SetEnemyUnitTileColor(colorType);
+                BattleManager.Field.SetEnemyUnitTileColor(colorType);
             else if (TargetType == PlayerSkillTargetType.Friendly)
-                Field.SetFriendlyUnitTileColor(colorType);
+                BattleManager.Field.SetFriendlyUnitTileColor(colorType);
             else if (TargetType == PlayerSkillTargetType.all)
-                Field.SetAllTileColor(colorType);
+                BattleManager.Field.SetAllTileColor(colorType);
+            else if (TargetType == PlayerSkillTargetType.NotBattleOnly)
+                BattleManager.Field.SetNotBattleOnlyUnitTileColor(colorType);
         }
     }
 }

@@ -97,7 +97,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -935,6 +935,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _changeButton: {fileID: 7994102038253706105}
   _text: {fileID: 514254912165107207}
+  _buttonImage: {fileID: 3032043850200193504}
+  buttonEnterSprite: {fileID: 1938664424, guid: a31430f2e68dc9d40867840064b22420, type: 3}
+  buttonExitSprite: {fileID: -751166431, guid: ec94893b9514f784fa69a2f7e8412ef4, type: 3}
 --- !u!1 &3894982629768379451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1223,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandPrefabs: {fileID: 9037217407852231977, guid: bf27dc6fa9a3dc44896d9cb58014d4a7, type: 3}
   Grid: {fileID: 796359814688406827}
-  _selectedHand: {fileID: 0}
 --- !u!1 &3894982630358052951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,8 +1618,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSkillCardPrefabs: {fileID: 4244837440217407375, guid: 86b5927ed012bce409c76a59e48c8c45, type: 3}
   Grid: {fileID: 341476808792558661}
-  _selectedCard: {fileID: 0}
-  curCardList: []
   Used: 0
 --- !u!1 &6553683261184144180
 GameObject:
@@ -1646,7 +1646,7 @@ RectTransform:
   m_GameObject: {fileID: 6553683261184144180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6900230097428333599}
@@ -1655,8 +1655,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -452.7}
-  m_SizeDelta: {x: 1560, y: 1395}
+  m_AnchoredPosition: {x: 0, y: -430}
+  m_SizeDelta: {x: 188, y: 216}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9158921002234787572
 CanvasRenderer:
@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 544370909, guid: 79eed60a0429daa4586b62a0eda88609, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ab8058382bc6a54dbe4f5811c1437c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2091,6 +2091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be653aa6ce422b47964b56c302d71ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 1340885238847447491}
   HPBackImage: {fileID: 8061608387013260829}
   HPEffectImage: {fileID: 646896488793831733}
   HPJemImages:

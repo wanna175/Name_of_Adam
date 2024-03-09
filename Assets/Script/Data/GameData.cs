@@ -6,7 +6,6 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     public Incarna Incarna;
-    public int Money;
     public int DarkEssence;
     public int PlayerHP;
     public List<DeckUnit> DeckUnits = new();
@@ -16,7 +15,7 @@ public class GameData : ScriptableObject
     public bool IsVisitDarkShop = false;
     public Progress Progress;
     public NPCQuest NpcQuest;
-    public Vector2 StageBenediction;
+    public Vector3 StageBenediction;
 }
 
 [Serializable]

@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     private UI_Hover _hover;
 
     public bool IsCanESC = true;
-    private bool isOnESCOption = false;
+    public bool IsOnESCOption = false;
     private UI_ESCOption ESCOption;
 
     public GameObject Root
@@ -29,9 +29,9 @@ public class UIManager : MonoBehaviour
         if (!IsCanESC)
             return;
 
-        isOnESCOption = !isOnESCOption;
+        IsOnESCOption = !IsOnESCOption;
 
-        if (isOnESCOption)
+        if (IsOnESCOption)
         {
             Time.timeScale = 0;
             ESCOption = ShowPopup<UI_ESCOption>();

@@ -271,6 +271,19 @@ public class Field : MonoBehaviour
         _fieldType = fieldType;
     }
 
+    public void SetNotBattleOnlyUnitTileColor(FieldColorType fieldType)
+    {
+        foreach (Tile tile in TileDict.Values)
+        {
+            if (tile.UnitExist && tile.Unit.Team == Team.Player && !tile.Unit.Data.IsBattleOnly)
+            {
+                tile.SetColor(ColorList(FieldColorType.PlayerPlayerSkill));
+            }
+        }
+
+        _fieldType = fieldType;
+    }
+
     public void ClearAllColor()
     {
         foreach (Tile tile in TileDict.Values)
@@ -324,7 +337,8 @@ public class Field : MonoBehaviour
             {
                 unit = unit.GetOriginalUnit();
             }
-            
+
+            FieldCloseInfo(tile);
             _hoverInfo = BattleManager.BattleUI.ShowInfo();
             _hoverInfo.SetInfo(unit);
         }
@@ -332,7 +346,7 @@ public class Field : MonoBehaviour
 
     public void FieldCloseInfo(Tile tile)
     {
-        if (tile.UnitExist && _hoverInfo != null)
+        if (_hoverInfo != null)
         {
             BattleManager.BattleUI.CloseInfo(_hoverInfo);
         }

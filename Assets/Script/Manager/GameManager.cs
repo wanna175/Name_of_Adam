@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private LocaleManager _locale;
     public static LocaleManager Locale => Instance._locale;
+
+    private static bool _onGM = true;
 
     void Awake()
     {
@@ -86,7 +89,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (!_onGM) // GM 모드가 꺼져있다면 리턴
+            return;
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -105,6 +110,7 @@ public class GameManager : MonoBehaviour
                     break;
 
                 unit.UnitDiedEvent();
+                GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
             }
             BattleManager.Instance.BattleOverCheck();
         }
@@ -120,6 +126,34 @@ public class GameManager : MonoBehaviour
             Data.MainDeckLayoutSet();
             GameManager.OutGameData.DeleteAllData();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Data.GameData.NpcQuest.UpgradeQuest += 26;
+            Data.GameData.NpcQuest.StigmaQuest += 13;
+            Data.GameData.NpcQuest.DarkshopQuest += 8;
+
+            Debug.Log($"타락도 조정: {Data.GameData.NpcQuest.UpgradeQuest}|{Data.GameData.NpcQuest.StigmaQuest}|{Data.GameData.NpcQuest.DarkshopQuest}");
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UI_StigmaSelectButtonPopup stigmaPopup = GameObject.FindObjectOfType<UI_StigmaSelectButtonPopup>();
+            if (stigmaPopup != null)
+                stigmaPopup.ResetStigmaSelectButtons();
+
+            UI_UpgradeSelectButton upgradePopup = GameObject.FindObjectOfType<UI_UpgradeSelectButton>();
+            if (upgradePopup != null)
+                upgradePopup.ResetUpgradeSelectButtons();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (var unit in BattleManager.Data.BattleUnitList)
+            {
+                if (unit.Team == Team.Player)
+                    unit.ChangeFall(-4);
+            }
+        }
     }
 }

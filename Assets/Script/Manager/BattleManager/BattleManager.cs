@@ -41,9 +41,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] List<GameObject> Background;
 
-    private UnitIDManager unitIDManager;
-    public static UnitIDManager _unitIDManager => Instance.unitIDManager;
-    private RewardController _rc;
+    private UnitIDManager _unitIDManager;
+    public static UnitIDManager UnitIDManager => Instance._unitIDManager;
 
     private void Awake()
     {
@@ -52,10 +51,8 @@ public class BattleManager : MonoBehaviour
         _mana = Util.GetOrAddComponent<Mana>(gameObject);
         _phase = new PhaseController();
         _playerSkillController = Util.GetOrAddComponent<PlayerSkillController>(gameObject);
-        unitIDManager = new UnitIDManager();
-        unitIDManager.Init(GameManager.Data.GetDeck());
-        _rc = new RewardController();
-        _rc.Init(GameManager.Data.GetDeck(), GameManager.Data.DarkEssense);
+        _unitIDManager = new UnitIDManager();
+        _unitIDManager.Init(GameManager.Data.GetDeck());
         SetBackground();
     }
 
@@ -156,38 +153,38 @@ public class BattleManager : MonoBehaviour
         Dictionary<int, int> threshold = new() {
             {0, 0},
             {1, 0},
-            {2, 30},
-            {3, 40},
-            {4, 50}
+            {2, 50},
+            {3, 70},
+            {4, 100}
         };
 
-        if (GameManager.Data.Map.GetCurrentStage().StageLevel % 10 == 0 || GameManager.Data.Map.GetCurrentStage().StageLevel == 1)
+        if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle || GameManager.Data.Map.GetCurrentStage().Name == StageName.EliteBattle)
             return;
-        //0 = tutorial, boss, elite (0, 100, 90), 1 = chater 1 first half
         
-        if (GameManager.Data.GameData.StageBenediction.x == 1 && GameManager.Data.GameData.StageBenediction.y == 1)
+        if (GameManager.Data.GameData.StageBenediction.x == 1 && 
+            GameManager.Data.GameData.StageBenediction.y == 1 &&
+            GameManager.Data.GameData.StageBenediction.z == 1)
         {
-            GameManager.Data.GameData.StageBenediction = new();
+            GameManager.Data.GameData.StageBenediction = new(-1,0,0);
         }
-        else if (GameManager.Data.GameData.StageBenediction.x == -1 && GameManager.Data.GameData.StageBenediction.y == -1)
+        else if (GameManager.Data.GameData.StageBenediction.x == -1 && 
+            GameManager.Data.GameData.StageBenediction.y == -1)
         {
             BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
             buffUnit.SetBuff(new Buff_Benediction());
 
-            GameManager.Data.GameData.StageBenediction = new();
+            GameManager.Data.GameData.StageBenediction = new(1,0,0);
         }
         else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 10])
         {
             BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
             buffUnit.SetBuff(new Buff_Benediction());
 
-            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
-            GameManager.Data.GameData.StageBenediction.x = 1;
+            GameManager.Data.GameData.StageBenediction = new(1, GameManager.Data.GameData.StageBenediction.x, GameManager.Data.GameData.StageBenediction.y);
         }
         else
         {
-            GameManager.Data.GameData.StageBenediction.y = GameManager.Data.GameData.StageBenediction.x;
-            GameManager.Data.GameData.StageBenediction.x = -1;
+            GameManager.Data.GameData.StageBenediction = new(-1, GameManager.Data.GameData.StageBenediction.x, GameManager.Data.GameData.StageBenediction.y);
         }
     }
 
@@ -199,27 +196,30 @@ public class BattleManager : MonoBehaviour
 
     private void SetBackground()
     {
-        /*
-        for (int i = 0; i < 4; i++)
-        {
-            Background[i].SetActive(false);
+        StageData currentStage = GameManager.Data.Map.GetCurrentStage();
+        int stageID = currentStage.StageID;
 
-            if (i == 0)
-                Background[i].SetActive(true);
-        }
-        */
-
-        if (GameManager.Data.Map.GetCurrentStage().StageLevel == 100 && GameManager.Data.Map.GetCurrentStage().StageID == 0)
+        if (GameManager.Data.StageAct == 2)
         {
-            Background[0].SetActive(false);
-            Background[1].SetActive(true);
+            if (GameManager.Data.Map.GetStage(99).StageID == 0)
+            {
+                Background[2].SetActive(false);
+                Background[1].SetActive(true);
+                Background[0].SetActive(false);
+            }
+            else if (GameManager.Data.Map.GetStage(99).StageID == 1)
+            {
+                Background[2].SetActive(true);
+                Background[1].SetActive(false);
+                Background[0].SetActive(false);
+            }
         }
         else
         {
+            Background[2].SetActive(false);
             Background[1].SetActive(false);
             Background[0].SetActive(true);
         }
-
     }
 
     #region Click 관련
@@ -261,7 +261,7 @@ public class BattleManager : MonoBehaviour
             return;
 
         if (TutorialManager.Instance.IsEnable())
-            TutorialManager.Instance.ShowNextTutorial();
+            TutorialManager.Instance.ShowNextTutorial(); 
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
         _battleData.DarkEssenseChage(-unit.Data.DarkEssenseCost);
@@ -300,7 +300,7 @@ public class BattleManager : MonoBehaviour
         if (!_field.TileDict[coord].IsColored)
             return;  
 
-        if (!GameManager.OutGameData.isTutorialClear())
+        if (!GameManager.OutGameData.IsTutorialClear())
             TutorialManager.Instance.DisableToolTip();
 
         BattleUnit nowUnit = _battleData.GetNowUnit();
@@ -309,7 +309,7 @@ public class BattleManager : MonoBehaviour
         List<BattleUnit> unitList = new();
         attackCoords.Add(coord);
         
-        if (nowUnit.DeckUnit.CheckStigma(new Stigma_Additional_Punishment()))
+        if (nowUnit.DeckUnit.CheckStigma(StigmaEnum.Additional_Punishment))
         {
             BattleUnit selectUnit = _field.GetUnit(coord);
             if (selectUnit == null || selectUnit.Team == Team.Player)
@@ -415,8 +415,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public bool IsExistedCorruptionPopup()
-        => Data.CorruptionPopups.Count != 0;
+    public bool IsExistedCorruptionPopup() => Data.CorruptionPopups.Count != 0;
 
     public void ShowLastCorruptionPopup()
     {
@@ -429,7 +428,6 @@ public class BattleManager : MonoBehaviour
     public void DirectAttack(BattleUnit attackUnit)
     {
         AttackPlayer(attackUnit);
-        Debug.Log("Direct Attack");
     }
 
     public void UnitSummonEvent(BattleUnit unit)
@@ -441,17 +439,16 @@ public class BattleManager : MonoBehaviour
     public void UnitDeadEvent(BattleUnit unit)
     {
         _battleData.BattleUnitList.Remove(unit);
-        _field.FieldCloseInfo(_field.TileDict[unit.Location]);
         _field.ExitTile(unit.Location);
 
-        if (unit.Data.Name == "호루스")
+        if (unit.Data.ID == "호루스")
         {
             GameManager.Data.GameData.Progress.HorusKill++;
         }
 
         if (unit.IsConnectedUnit)
         {
-            if (unit.Data.Name == "바누엘")
+            if (unit.Data.ID == "바누엘")
             {
                 GameManager.Data.GameData.Progress.PhanuelKill++;
             }
@@ -463,7 +460,7 @@ public class BattleManager : MonoBehaviour
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
-            if(GameManager.Data.GameData.IsVisitUpgrade)
+            if (GameManager.OutGameData.GetVisitUpgrade() == true)
                 GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
             
             if(unit.Data.Rarity == Rarity.Normal)
@@ -479,25 +476,60 @@ public class BattleManager : MonoBehaviour
         }
 
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_DEAD, unit);
-        
+
+        BossDeadCheck(unit);
+    }
+
+    public void UnitFallEvent(BattleUnit unit)
+    {
+        if (GameManager.OutGameData.GetVisitDarkshop()==true)
+            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
+
+        if (unit.Team == Team.Enemy)
+        {
+            GameManager.Data.GameData.FallenUnits.Add(unit.DeckUnit);
+        }
+
+        if (unit.DeckUnit.Data.Rarity == Rarity.Normal)
+        {
+            GameManager.Data.GameData.Progress.NormalFall++;
+        }
+        else if (unit.DeckUnit.Data.Rarity == Rarity.Elite)
+        {
+            GameManager.Data.GameData.Progress.EliteFall++;
+        }
+        else if (unit.DeckUnit.Data.ID == "바누엘")
+        {
+            GameManager.Data.GameData.Progress.PhanuelFall++;
+        }
+        else if (unit.DeckUnit.Data.ID == "호루스")
+        {
+            GameManager.Data.GameData.Progress.HorusFall++;
+        }
+
+        BossDeadCheck(unit);
+        FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, unit);
+    }
+
+    private void BossDeadCheck(BattleUnit unit)
+    {
         if (unit.Team == Team.Enemy && (unit.Data.Rarity == Rarity.Elite || unit.Data.Rarity == Rarity.Boss))
         {
-            bool isBossRemain = true;
-
+            bool isBossClear = true;
             foreach (BattleUnit remainUnit in _battleData.BattleUnitList)
             {
-                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy)
+                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy && !remainUnit.Fall.IsEdified && remainUnit != unit)
                 {
-                    isBossRemain = false;
+                    isBossClear = false;
                     break;
                 }
             }
 
-            if (isBossRemain)
+            if (isBossClear)
             {
                 for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
                 {
-                    BattleUnit remainUnit = _battleData.BattleUnitList.Find(x => x.Team == Team.Enemy);
+                    BattleUnit remainUnit = _battleData.BattleUnitList.Find(x => x.Team == Team.Enemy && x != unit);
                     if (remainUnit == null)
                         break;
 
@@ -511,22 +543,15 @@ public class BattleManager : MonoBehaviour
     {
         List<BattleUnit> checkEndList = new();
 
-        int startCount = _battleData.BattleUnitList.Count;
-
-        for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
+        while (true)
         {
-            if (startCount != _battleData.BattleUnitList.Count)
-            {
-                i = -1;
-                startCount = _battleData.BattleUnitList.Count;
-                continue;
-            }
+            BattleUnit unit = _battleData.BattleUnitList.Find(x => !checkEndList.Contains(x));
 
-            if (checkEndList.Contains(_battleData.BattleUnitList[i]))
-                continue;
+            if (unit == null)
+                break;
 
-            checkEndList.Add(_battleData.BattleUnitList[i]);
-            ActiveTimingCheck(timing, _battleData.BattleUnitList[i], parameterUnit);
+            checkEndList.Add(unit);
+            ActiveTimingCheck(timing, unit, parameterUnit);
         }
     }
 
@@ -534,6 +559,9 @@ public class BattleManager : MonoBehaviour
     {
         if (Data.isGameDone)
             return;
+
+        if (BattleCutSceneManager.Instance.IsCutScenePlaying == true)
+            return; // 컷씬 도중엔 체크하지 않음
 
         if (SceneChanger.GetSceneName() == "BattleTestScene")
             return;
@@ -549,23 +577,17 @@ public class BattleManager : MonoBehaviour
         if (GameManager.Data.GameData.PlayerHP <= 0)
         {
             BattleOverLose();
-            unitIDManager.resetID();
+            _unitIDManager.resetID();
         }
         else if (EnemyUnit == 0)
         {
             BattleOverWin();
-            unitIDManager.resetID();
-            if (GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
-            {
-                GameManager.OutGameData.DoneTutorial(true);
-                Debug.Log("Tutorial Clear!");
-            }
+            _unitIDManager.resetID();
         }
     }
 
     private void BattleOverWin()
     {
-        Debug.Log("YOU WIN");
         Data.isGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         _battleData.OnBattleOver();
@@ -573,7 +595,7 @@ public class BattleManager : MonoBehaviour
 
         if (data.StageLevel >= 90)
         {
-            if (data.StageLevel == 100)
+            if (data.Name == StageName.BossBattle)
             {
                 CheckBossCycle(data);
                 GameManager.Data.GameData.Progress.BossWin++;
@@ -589,18 +611,18 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("Horus Clear");
                 }
 
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
                 GameManager.SaveManager.DeleteSaveData();
             }
-            else if (data.StageLevel == 90)
+            else if (data.Name == StageName.EliteBattle)
             {
                 GameManager.Data.GameData.Progress.EliteWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win",_rc);
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
             }
             else
             {
                 GameManager.Data.GameData.Progress.NormalWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win",_rc);
+                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
             }
 
             return;
@@ -608,7 +630,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             GameManager.Data.GameData.Progress.NormalWin++;
-            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win",_rc);
+            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
         }
         GameManager.OutGameData.SaveData();
         GameManager.SaveManager.SaveGame();
@@ -622,16 +644,16 @@ public class BattleManager : MonoBehaviour
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         //GameManager.UnitIDController.resetID();
         GameManager.SaveManager.DeleteSaveData();
-        GameManager.OutGameData.set_isGameOverCheck(true);
+        GameManager.OutGameData.SetIsGameOverCheck(true);
     }
 
     private void CheckBossCycle(StageData data)
     {
-        if(data.StageID == 0 && !GameManager.OutGameData.isPhanuelClear())
+        if(data.StageID == 0 && !GameManager.OutGameData.IsPhanuelClear())
         {
             GameManager.OutGameData.ClearPhanuel(true);
         }
-        else if(data.StageID == 1 && !GameManager.OutGameData.isHorusClear())
+        else if(data.StageID == 1 && !GameManager.OutGameData.IsHorusClear())
         {
             GameManager.OutGameData.ClearHorus(true);
         }
@@ -644,9 +666,6 @@ public class BattleManager : MonoBehaviour
 
         if (!_field.IsInRange(dest) || current == dest)
             return false;
-
-        if (Phase.CurrentPhaseCheck(Phase.Move))
-            BattleUI.UI_TurnChangeButton.SetEnable(false);
 
         if (moveUnit.ConnectedUnits.Count > 0)
         {
@@ -705,13 +724,20 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        if (Phase.CurrentPhaseCheck(Phase.Move))
+            BattleUI.UI_TurnChangeButton.SetEnable(false);
+        
         GameManager.Sound.Play("Move/MoveSFX");
+        
         return true;
     }
 
     private bool Switchable(BattleUnit moveUnit, BattleUnit destUnit) =>
         moveUnit.Team == destUnit.Team &&
-        moveUnit.GetMoveRange().Contains(destUnit.Location - moveUnit.Location);
+        moveUnit.GetMoveRange().Contains(destUnit.Location - moveUnit.Location) &&
+        destUnit.GetMoveRange().Contains(moveUnit.Location - destUnit.Location) &&
+        moveUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None &&
+        destUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None;
 
     public bool UnitSpawnReady(FieldColorType colorType, DeckUnit deckUnit = null)
     {
@@ -755,7 +781,7 @@ public class BattleManager : MonoBehaviour
             if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction) || lastUnit.Data.Rarity != Rarity.Normal)
                 return;
 
-            if (!GameManager.OutGameData.isTutorialClear())
+            if (!GameManager.OutGameData.IsTutorialClear())
             {
                 if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Devine))
                 {

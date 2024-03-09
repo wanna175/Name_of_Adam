@@ -6,6 +6,7 @@ public class UnitAction_Appaim : UnitAction
     //0 = sword, 1 = staff, 2 = book
     private int _trinityState  = 0;
     private bool _isStateUpdate = false;
+    private Buff _appaimBuff = null;
 
     bool[] staffRange = new bool[] {
             true, true, true, true, true, true, true, true, true, true, true,
@@ -113,10 +114,15 @@ public class UnitAction_Appaim : UnitAction
         }
     }
 
-
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
     {
-        if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
+        if ((activeTiming & ActiveTiming.SUMMON) == ActiveTiming.SUMMON)
+        {
+            _appaimBuff = new Buff_Appaim();
+            _appaimBuff.SetValue(0);
+            caster.SetBuff(_appaimBuff);
+        }
+        else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
             _isStateUpdate = false;
         }
@@ -129,14 +135,26 @@ public class UnitAction_Appaim : UnitAction
                 case 0:
                     caster.SetAttackRange(staffRange);
                     caster.AnimatorSetInteger("state", 0);
+                    caster.DeleteBuff(_appaimBuff.BuffEnum);
+                    _appaimBuff = new Buff_Appaim();
+                    _appaimBuff.SetValue(0);
+                    caster.SetBuff(_appaimBuff);
                     break;
                 case 1:
                     caster.SetAttackRange(swordRange);
                     caster.AnimatorSetInteger("state", 1);
+                    caster.DeleteBuff(_appaimBuff.BuffEnum);
+                    _appaimBuff = new Buff_Appaim();
+                    _appaimBuff.SetValue(1);
+                    caster.SetBuff(_appaimBuff);
                     break;
                 case 2:
                     caster.SetAttackRange(bowRange);
                     caster.AnimatorSetInteger("state", 2);
+                    caster.DeleteBuff(_appaimBuff.BuffEnum);
+                    _appaimBuff = new Buff_Appaim();
+                    _appaimBuff.SetValue(2);
+                    caster.SetBuff(_appaimBuff);
                     break;
                 default:
                     break;
@@ -153,10 +171,8 @@ public class UnitAction_Appaim : UnitAction
         }
         else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
         {
-            if (_trinityState == 0)
-            {
+            if (receiver != null)
                 receiver.ChangeFall(1);
-            }
         }
 
         return false;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
@@ -57,14 +58,16 @@ public class BattleUnit : MonoBehaviour
         UnitRenderer.color = new Color(1, 1, 1, 1);
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
-        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,team);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
 
         ConnectedUnits = new();
 
         Action = BattleManager.Data.GetUnitAction(Data.UnitActionType);
         Action.Init();
 
+        SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
 
         _scale = transform.localScale.x;
 
@@ -99,7 +102,8 @@ public class BattleUnit : MonoBehaviour
             }
             
             SetFlipX(_team == Team.Enemy);
-       
+            _hpBar.SetPosition(this);
+
             //소환 시 체크
             BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
             BattleManager.Instance.ActiveTimingCheck(ActiveTiming.SUMMON, this);
@@ -175,8 +179,13 @@ public class BattleUnit : MonoBehaviour
     public void RefreshHPBar()
     {
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
         _hpBar.RefreshBuff();
+    }
+
+    public void ResetHPBarPosition()
+    {
+        _hpBar.SetPosition(this, true);
     }
 
     public void SetLocation(Vector2 coord)
@@ -196,6 +205,32 @@ public class BattleUnit : MonoBehaviour
         {
             if (isDeathAvoidable)
                 return;
+        }
+
+        // 컷씬 관련
+        if (DeckUnit.Data.Rarity == Rarity.Boss)
+        {
+             switch (DeckUnit.Data.ID)
+            {
+                case "바누엘": 
+                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
+                    {
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
+                        BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
+                        GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
+                    }
+                    break;
+
+                case "호루스":
+                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
+                    {
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Dead, true);
+                        BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
+                    }
+                    break;
+
+                default: Debug.Log($"{DeckUnit.Data.ID} 보스 컷씬 출력 실패"); break;
+            }
         }
 
         BattleManager.Instance.UnitDeadEvent(this);
@@ -231,42 +266,16 @@ public class BattleUnit : MonoBehaviour
     {
         if (Data.Rarity == Rarity.Original)
         {
-            UnitDiedEvent();
-            //ChangeHP(-HP.GetCurrentHP());
+            UnitDiedEvent(false);
             return;
         }
 
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
-        if(GameManager.Data.GameData.IsVisitDarkShop)
-            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
-
-        if (_team == Team.Enemy)
-        {
-            GameManager.Data.GameData.FallenUnits.Add(DeckUnit);
-        }
-
-        if(DeckUnit.Data.Rarity == Rarity.Normal)
-        {
-            GameManager.Data.GameData.Progress.NormalFall++;
-        }
-        else if(DeckUnit.Data.Rarity == Rarity.Elite)
-        {
-            GameManager.Data.GameData.Progress.EliteFall++;
-        }
-        else if (DeckUnit.Data.Name == "바누엘")
-        {
-            GameManager.Data.GameData.Progress.PhanuelFall++;
-        }
-        else if (DeckUnit.Data.Name == "호루스")
-        {
-            GameManager.Data.GameData.Progress.HorusFall++;
-        }
-
         //타락 이벤트 시작
         FallEvent = true;
-        DeckUnit.UnitID = BattleManager._unitIDManager.GetID();
+        DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -274,11 +283,13 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        BattleManager.Instance.UnitFallEvent(this);
         FallEvent = false;
 
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
+            SetBuff(new Buff_Edified());
         }
 
         foreach (ConnectedUnit unit in ConnectedUnits)
@@ -287,14 +298,17 @@ public class BattleUnit : MonoBehaviour
         }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
-        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 4 - DeckUnit.Data.RawStat.FallMaxCount; ;
-        DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.Data.RawStat.FallMaxCount;
+        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+
+        Debug.Log($"{BattleUnitTotalStat.FallCurrentCount} / {BattleUnitTotalStat.FallMaxCount}");
+
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
-        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,_team);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
         Buff.DispelBuff();
+
+        SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.SetFallBar(DeckUnit);
-        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
 
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
@@ -302,8 +316,6 @@ public class BattleUnit : MonoBehaviour
         {
             DeleteBuff(BuffEnum.Benediction);
         }
-
-        BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_FALLED, this);
     }
 
     //애니메이션에서 직접 실행시킴
@@ -453,10 +465,10 @@ public class BattleUnit : MonoBehaviour
                 attackSkip = true;
             }
 
-            if (attackSkip)
-                return;
-
-            unit.GetAttack(-ChangedDamage, this);
+            if (!attackSkip)
+            {
+                unit.GetAttack(-ChangedDamage, this);
+            }
 
             //공격 후 체크
             BattleManager.Instance.ActiveTimingCheck(ActiveTiming.AFTER_ATTACK, this, unit);
@@ -506,9 +518,18 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeFall(int value)
     {
+        if (Fall.IsEdified)
+        {
+            Debug.Log($"{Data.Name} is Edified.");
+            return;
+        }
+
+        if (value < 0 && Fall.GetCurrentFallCount() + value < 0)
+            value = -Fall.GetCurrentFallCount(); // 음수 방지
+
         Fall.ChangeFall(value);
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
-        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
     }
 
     public virtual BattleUnit GetOriginalUnit() => this;

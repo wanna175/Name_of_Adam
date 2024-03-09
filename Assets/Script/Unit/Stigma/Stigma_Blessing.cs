@@ -7,7 +7,6 @@ public class Stigma_Blessing : Stigma
     {
         base.Use(caster);
 
-        Buff_Stigma_Blessing blessing = new();
-        caster.SetBuff(blessing);
+        caster.SetBuff(new Buff_Stigma_Blessing());
     }
 }

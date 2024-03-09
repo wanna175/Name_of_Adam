@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainSceneController : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject ContinueBox;
     [SerializeField] GameObject UI_ResetAlert;
+    [SerializeField] GameObject SystemInfo;
+
+    [SerializeField] private TMP_Text systemInfoText;
+    [SerializeField] private TMP_Text systemTooltip;
 
     private void Start()
     {
@@ -14,12 +21,32 @@ public class MainSceneController : MonoBehaviour
             ContinueBox.SetActive(true);
         else
             ContinueBox.SetActive(false);
+
+        systemInfoText = SystemInfo.GetComponentInChildren<TMP_Text>();
+        SystemInfo.SetActive(false);
+
+        if (GameManager.OutGameData.IsPhanuelClear() && GameManager.OutGameData.GetIsOnMainTooltipForPhanuel() == false)
+        {
+            GameManager.OutGameData.SetIsOnMainTooltipForPhanuel(true);
+            GameManager.OutGameData.SaveData();
+            SetSystemInfo("축하합니다, 어둠의 선지자여. \r\n\r\n그러나 당신의 여정은 아직 끝나지 않았습니다. \r\n<color=yellow>새로운 빛<color=white>이 지평선 너머에서 당신을 기다리고 있습니다.");
+            SetSystemTooltip("※ '새로하기'를 눌러 도전하세요.");
+        }
+
+        if (GameManager.OutGameData.IsHorusClear() && GameManager.OutGameData.GetIsOnMainTooltipForHorus() == false)
+        {
+            GameManager.OutGameData.SetIsOnMainTooltipForHorus(true);
+            GameManager.OutGameData.SaveData();
+            SetSystemInfo("축하합니다, 당신은 모든 것을 이겨냈습니다.\r\n하지만 진정한 시험은 이제부터입니다. \r\n\r\n매 판 새로운 전투를 마주하며 당신의 한계를 시험해보세요.");
+            SetSystemTooltip("※ '새로하기'를 눌러 도전하세요.");
+        }
     }
 
     public void StartButton()
     {
         if (GameManager.SaveManager.SaveFileCheck())
         {
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
             UI_ResetAlert.SetActive(true);
         }
         else
@@ -31,17 +58,17 @@ public class MainSceneController : MonoBehaviour
             GameManager.SaveManager.DeleteSaveData();
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
-            if (GameManager.OutGameData.isGameOverCheck()==false)
+            /*if (GameManager.OutGameData.IsGameOverCheck()==false)
             {
                 //npc관련 데이터 초기화
-                GameManager.OutGameData.resetNPCQuest();
+                GameManager.OutGameData.ResetNPCQuest();
             }
             else
             {
-                GameManager.OutGameData.set_isGameOverCheck(false);
-            }
+                GameManager.OutGameData.SetIsGameOverCheck(false);
+            }*/
 
-            if (GameManager.OutGameData.isTutorialClear())
+            if (GameManager.OutGameData.IsTutorialClear())
             {
                 GameManager.Data.HallDeckSet();
                 GameManager.Data.HallSelectedDeckSet();
@@ -49,7 +76,7 @@ public class MainSceneController : MonoBehaviour
             }
             else
             {
-                SceneChanger.SceneChange("CutScene");
+                SceneChanger.SceneChangeToCutScene(CutSceneType.Main);
             }
         }
     }
@@ -90,17 +117,17 @@ public class MainSceneController : MonoBehaviour
 
         GameManager.SaveManager.DeleteSaveData();
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        if (GameManager.OutGameData.isGameOverCheck() == false)
+        /*if (GameManager.OutGameData.IsGameOverCheck() == false)
         {
             //npc관련 데이터 초기화
-            GameManager.OutGameData.resetNPCQuest();
+            GameManager.OutGameData.ResetNPCQuest();
         }
         else
         {
-            GameManager.OutGameData.set_isGameOverCheck(false);
-        }
+            GameManager.OutGameData.SetIsGameOverCheck(false);
+        }*/
 
-        if (GameManager.OutGameData.isTutorialClear())
+        if (GameManager.OutGameData.IsTutorialClear())
         {
             GameManager.Data.HallDeckSet();
             GameManager.Data.HallSelectedDeckSet();
@@ -122,5 +149,20 @@ public class MainSceneController : MonoBehaviour
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         Application.Quit();
+    }
+
+    public void SetSystemInfo(string info, float fadeTime = 2.0f, float idleTime = 4.0f)
+    {
+        SystemInfo.SetActive(true);
+        systemInfoText.text = info;
+        //StartCoroutine(FadeSystemInfo(fadeTime, idleTime));
+    }
+
+    public void SetSystemTooltip(string tooltip) => systemTooltip.SetText(tooltip);
+
+    public void OnSystemInfoClose()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        SystemInfo.SetActive(false);
     }
 }

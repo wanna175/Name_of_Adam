@@ -104,7 +104,7 @@ public class UI_Info : UI_Scene
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)battleUnit.BattleUnitTotalStat.CurrentHP / (float)battleUnit.BattleUnitTotalStat.MaxHP);
-        _hpBar.RefreshFallGauge(battleUnit.BattleUnitTotalStat.FallCurrentCount);
+        _hpBar.RefreshFallBar(battleUnit.Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
 
         //_stigmaDescriptionPrefab.SetStigma(battleUnit);
 
@@ -130,6 +130,8 @@ public class UI_Info : UI_Scene
             else
                 block.color = Color.grey;
         }
+
+        StartCoroutine(UpdateStigmaGridWithDelay());
     }
 
     public void SetInfo(DeckUnit unit, Team team)
@@ -195,12 +197,12 @@ public class UI_Info : UI_Scene
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)unit.DeckUnitTotalStat.CurrentHP / (float)unit.DeckUnitTotalStat.MaxHP);
-        _hpBar.RefreshFallGauge(unit.DeckUnitTotalStat.FallCurrentCount);
+        _hpBar.RefreshFallBar(unit.DeckUnitTotalStat.FallCurrentCount, FallAnimType.AnimOff);
 
         //_stigmaDescriptionPrefab.SetStigma(unit);
 
 
-        foreach(Stigma stigma in unit.GetStigma())
+        foreach (Stigma stigma in unit.GetStigma())
         {
             UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
             sd.SetStigma(stigma);
@@ -214,6 +216,17 @@ public class UI_Info : UI_Scene
             else
                 block.color = Color.grey;
         }
+
+        StartCoroutine(UpdateStigmaGridWithDelay());
+    }
+
+    IEnumerator UpdateStigmaGridWithDelay()
+    {
+        yield return null;
+
+        VerticalLayoutGroup group = _stigmaGrid.GetComponent<VerticalLayoutGroup>();
+        group.childForceExpandWidth = false;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(group.GetComponent<RectTransform>());
     }
 
     public void InfoDestroy()

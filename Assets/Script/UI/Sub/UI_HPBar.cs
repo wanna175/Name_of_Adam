@@ -11,17 +11,17 @@ public class UI_HPBar : UI_Base
     [SerializeField] private Image _enemyBar;
 
     [Header("타락 게이지 관련")]
-    [SerializeField] private Transform _grid;
-    [SerializeField] private GameObject _fallGaugeUnit; // 타락 게이지 각 보석
+    [SerializeField] private Transform[] _fallGrids;
+    [SerializeField] private GameObject _fallGaugeUnit; // 타락 게이지 각 보석 
 
     [Header("버프 관련")]
     [SerializeField] private Transform _buffGrid;
     [SerializeField] private GameObject _buff; // 타락 게이지 각 보석
 
     private List<UI_FallUnit> _fallGauge = new();
-    private int _fallCountIdx = -1;
-    private int _UnitfallGaugeMax = 0;
-    private int _UnitfallGaugeCur = 0;
+    private int _fallCount;
+    private int _currentIndex; // 4개의 보석 중 Change가 발생할 될 보석 위치
+
     private List<UI_Buff> _buffBlockList = new();
     private int _rotationCurrent = 0;
 
@@ -30,6 +30,24 @@ public class UI_HPBar : UI_Base
     private void Start()
     {
         Rotation();
+    }
+
+    public void SetPosition(BattleUnit unit, bool resetPosition = false)
+    {
+        if (unit.DeckUnit.GetUnitSize() > 1 && !resetPosition)
+        {
+            float position = unit.transform.position.x;
+            foreach (ConnectedUnit connectedUnit in unit.ConnectedUnits)
+            {
+                position += connectedUnit.transform.position.x;
+            }
+
+            this.transform.position = new Vector3(position / (unit.ConnectedUnits.Count + 1), this.transform.position.y, this.transform.position.z);
+        }
+        else
+        {
+            this.transform.localPosition = new Vector3(0, this.transform.localPosition.y, this.transform.localPosition.z);
+        }
     }
 
     public void SetHPBar(Team team)
@@ -58,81 +76,76 @@ public class UI_HPBar : UI_Base
 
     public void SetFallBar(DeckUnit unit) // unit FallMaxCount에 따라서 일단 fallbar를 셋팅한다.
     {
-        int max = unit.DeckUnitTotalStat.FallMaxCount;
-        int current = unit.DeckUnitTotalStat.FallCurrentCount;
+        int maxFallNum = unit.DeckUnitTotalStat.FallMaxCount;
+        int curFallNum = unit.DeckUnitTotalStat.FallCurrentCount;
 
-        if (max > 4 && _team == Team.Player)
+        if (maxFallNum > 4 && _team == Team.Player)
         {
-            max = 4;
-        }
-       
-        _UnitfallGaugeMax = max;
-        _UnitfallGaugeCur = max-current;//마름모의 갯수
-        if (_fallGauge.Count == 0)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _grid).GetComponent<UI_FallUnit>();
-                newObject.SwitchCountImage(_team);
-                newObject.gameObject.SetActive(false);
-                _fallGauge.Add(newObject);
-            }
+            maxFallNum = 4;
         }
 
-        for (int i = 0; i < _UnitfallGaugeCur; i++)
+        // 모든 신앙 보석 제거
+        foreach (UI_FallUnit listedFall in _fallGauge)
+            Destroy(listedFall.gameObject);
+        _fallGauge.Clear();
+        _fallCount = curFallNum;
+        _currentIndex = maxFallNum - curFallNum - 1;
+
+        // 보석 생성 및 초기화
+        for (int i = 0; i < maxFallNum; i++)
         {
-            int idx = i;
-            if (i > 3) { 
-                idx -= 4;}
-            if (i > 7)
-                idx -= 4;
-            _fallGauge[idx].SwitchCountImage(_team);
-            _fallGauge[idx].EmptyGauge();
+            int fallType = i / 4;
+            UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _fallGrids[fallType]).GetComponent<UI_FallUnit>();
+
+            newObject.InitFall(_team, fallType);
+            if (i >= maxFallNum - curFallNum)
+                newObject.SetVisible(false);
+
+            _fallGauge.Add(newObject);
         }
-        
-        if (_UnitfallGaugeCur > 4&&_UnitfallGaugeCur<=8)
-        {
-            int doubleCnt = _UnitfallGaugeCur - 4;
-            _fallCountIdx = doubleCnt - 1; 
-        }
-        else if (_UnitfallGaugeCur > 8)
-        {
-            _fallCountIdx = _UnitfallGaugeCur - 9;
-        }
-        else
-        {
-            _fallCountIdx = _UnitfallGaugeCur-1;
-        }
-        
     }
 
-    public void RefreshFallGauge(int current)
+    public void RefreshFallBar(int current, FallAnimType fallAnimType)
     {
-        int diff = _UnitfallGaugeCur - (_UnitfallGaugeMax - current);
-        _UnitfallGaugeCur = _UnitfallGaugeMax - current;
-        if (diff == 1)
-        {
-            Debug.Log("idx qqqqqqqqqqqqq: " + _fallCountIdx);
-            _fallGauge[_fallCountIdx--].FillGauge();
-            if (_fallCountIdx < 0 && _UnitfallGaugeMax != _UnitfallGaugeCur)
-                _fallCountIdx = 3;
-        }
-        else if (diff == -1)
-        {
-            _fallCountIdx++;
-            if (_fallCountIdx == 4 && _fallGauge[3].GetDouble() != 2)
-                _fallCountIdx = 0;
-            else if (_fallCountIdx == 4 && _fallGauge[3].GetDouble() != 3)
-                _fallCountIdx = 0;
-            if (_fallCountIdx == 4 && _fallGauge[3].GetDouble() == 3)
-                Debug.Log("최대갯수를 초과 하였습니다.");
-            else
-                _fallGauge[_fallCountIdx].EmptyGauge();
-        }
+        int gap = current - _fallCount; // 신앙 보석 차이
+        int count = Mathf.Abs(gap);
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < count; i++)
         {
-            _fallGauge[i].SwitchCountImage(_team);
+            if (gap > 0)
+            {
+                // 신앙 감소 = 보석 파괴 (역순)
+                switch (fallAnimType)
+                {
+                    case FallAnimType.AnimOn:
+                        _fallGauge[_currentIndex].SetVisible(true);
+                        _fallGauge[_currentIndex].DecreaseGauge(); 
+                        break;
+
+                    case FallAnimType.AnimOff: 
+                        _fallGauge[_currentIndex].SetVisible(false);
+                        break;
+                }
+                _fallCount++;
+                _currentIndex--;
+            }
+            else
+            {
+                // 신앙 증가 = 보석 복구 (순)
+                _fallCount--;
+                _currentIndex++;
+                switch (fallAnimType)
+                {
+                    case FallAnimType.AnimOn:
+                        _fallGauge[_currentIndex].SetVisible(true);
+                        _fallGauge[_currentIndex].IncreaseGauge();
+                        break;
+
+                    case FallAnimType.AnimOff:
+                        _fallGauge[_currentIndex].SetVisible(false);
+                        break;
+                }
+            }
         }
     }
 

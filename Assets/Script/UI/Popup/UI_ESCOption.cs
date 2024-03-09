@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class UI_ESCOption : UI_Popup
 {
-    // 버튼 Hover 전용 이펙트 필요?
+    [SerializeField] private GameObject ConfirmToMain;
+
+    private void Start()
+    {
+        ConfirmToMain.SetActive(false);
+    }
 
     public void QuitButton()
     {
@@ -21,15 +26,26 @@ public class UI_ESCOption : UI_Popup
     public void GoToMainButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        ConfirmToMain.SetActive(true);
+    }
+
+    public void YesGoToMain()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.SaveManager.DeleteSaveData();
         SceneChanger.SceneChange("MainScene");
         Time.timeScale = 1;
     }
 
+    public void NoGoToMain()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        ConfirmToMain.SetActive(false);
+    }
+
     public void ExitButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.SaveManager.SaveGame();
         Application.Quit();
     }
 }

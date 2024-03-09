@@ -44,13 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a23df6a05e4ea4889cb01e39742364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 25
+  _stigmaEnum: 23
   _name: Repetance
   _sprite_28: {fileID: 21300000, guid: 13a18c82e851ecf4592f10fd77028eec, type: 3}
   _sprite_88: {fileID: 21300000, guid: 5ba4e5b5b9fc1024ba9e83dcd50a3b6b, type: 3}
   _sprite_164: {fileID: 21300000, guid: 505b47167f08d7746bd856ed8b342c45, type: 3}
-  _description: When the health of this unit is below half, it reduces the enemy's
-    faith by 1 upon attacking.
+  _description: Repetance Info
   _activeTiming: 2
   _tier: 4
   _isLock: 0

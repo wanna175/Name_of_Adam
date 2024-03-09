@@ -257,6 +257,7 @@ public class UI_MyDeck : UI_Popup
     //���� ȯ�� �� ������ư...
     public void SetButtonClick()
     {
+        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         _endEvent.Invoke();
     }
 
@@ -300,7 +301,7 @@ public class UI_MyDeck : UI_Popup
         {
             if (_isBossClear)
             {
-                SceneChanger.SceneChange("EndingCreditScene");
+                SceneChanger.SceneChange("MainScene");
             }
             else
             {

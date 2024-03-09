@@ -13,9 +13,9 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Guild_Studio
-  productName: Project_Fall
-  defaultCursor: {fileID: 2800000, guid: 16c0d5101ffaa1a42b1068e9c51bbb4b, type: 3}
-  cursorHotspot: {x: 0, y: 0}
+  productName: Revelatio
+  defaultCursor: {fileID: 2800000, guid: 6b945c1a101c59047b5d35e9656ae960, type: 3}
+  cursorHotspot: {x: 0.1, y: 0.9}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
@@ -134,8 +134,9 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: Alpha-Test
-  preloadedAssets: []
+  bundleVersion: 1.0.0
+  preloadedAssets:
+  - {fileID: 11400000, guid: e5205da6931b44d45962ce38fea2b621, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -273,7 +274,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 81d7f779e4c64cd40beda420af20ef44, type: 3}
+      m_Icon: {fileID: 2800000, guid: 00fab2e7b12a2cb41af4ae11f39f776c, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

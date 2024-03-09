@@ -12,12 +12,10 @@ public class UI_PlayerSkill : UI_Scene
 
     public bool Used = false;// once per turn
 
-
     public void SetSkill(List<PlayerSkill> skillList)
     {
         for (int i = 0; i < 3; i++)
         {
-            //GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>().Set(this, skillList[i]);
             UI_PlayerSkillCard playerSkillCard = GameObject.Instantiate(PlayerSkillCardPrefabs, Grid).GetComponent<UI_PlayerSkillCard>();
             playerSkillCard.Set(this, skillList[i]);
             _currentCardList.Add(playerSkillCard);
@@ -30,6 +28,8 @@ public class UI_PlayerSkill : UI_Scene
         {
             _currentCardList[i].Set(this, skillList[i]);
         }
+
+        InableCheck();
     }
 
     public void OnClickHand(UI_PlayerSkillCard card)
@@ -99,19 +99,19 @@ public class UI_PlayerSkill : UI_Scene
         }
     }
 
-    public void InableCheck(int manaValue)
+    public void InableCheck()
     {
         for (int i = 0; i < 3; i++)
         {
-            if (manaValue < _currentCardList[i]._skill.GetManaCost())
-            {
-                _currentCardList[i].ChangeInable(true);
-            }
-            else
+            if (BattleManager.Mana.CanUseMana(_currentCardList[i].GetSkill().GetManaCost()) && 
+                GameManager.Data.CanUseDarkEssense(_currentCardList[i].GetSkill().GetDarkEssenceCost()))
             {
                 _currentCardList[i].ChangeInable(false);
             }
-
+            else
+            {
+                _currentCardList[i].ChangeInable(true);
+            }
         }
     }
 

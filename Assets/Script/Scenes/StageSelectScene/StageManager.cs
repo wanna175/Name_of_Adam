@@ -32,39 +32,10 @@ public class StageManager : MonoBehaviour
     {
         _stageChanger = new StageChanger();
 
-        ActClearCheck();
+        ActClearCheck(); // 만약 클리어 체크가 될 시 Map이 초기화됨
 
         if (GameManager.Data.Map.MapObject == null)
-        {
-            if (GameManager.Data.StageAct == 0)
-            {
-                if (!GameManager.OutGameData.isTutorialClear())
-                {
-                    GameManager.Data.Map.MapObject = Resources.Load<GameObject>("Prefabs/Stage/Maps/TutorialMap/TutorialMap");
-                }
-                else
-                {
-                    GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct0");
-                    GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-                }
-            }
-            else if (GameManager.Data.StageAct == 1)
-            {
-                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct1");
-                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-            }
-            else if (GameManager.Data.StageAct == 2)
-            {
-                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps/StageAct2");
-                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-            }
-            else
-            {
-                GameObject[] maps = Resources.LoadAll<GameObject>("Prefabs/Stage/Maps");
-                GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
-            }
-        }
-
+            CreateMap();
 
         Instantiate(GameManager.Data.Map.MapObject);
     }
@@ -74,6 +45,7 @@ public class StageManager : MonoBehaviour
         if (GameManager.Data.Map.StageList == null)
             SetStageData();
         SetCurrentStage();
+
         GameManager.VisualEffect.StartFadeEffect(true);
     }
 
@@ -104,10 +76,31 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    private void CreateMap()
+    {
+        if (GameManager.Data.Map.MapObject == null)
+        {
+            string mapFolderPath = "Prefabs/Stage/Maps/";
+
+            if (GameManager.Data.StageAct == 0 && !GameManager.OutGameData.IsTutorialClear())
+            {
+                mapFolderPath += "TutorialMap";
+            }
+            else
+            {
+                mapFolderPath += "StageAct" + GameManager.Data.StageAct;
+            }
+
+            GameObject[] maps = Resources.LoadAll<GameObject>(mapFolderPath);
+
+            GameManager.Data.Map.MapObject = maps[UnityEngine.Random.Range(0, maps.Length)];
+        }
+    }
+
     public void InputStageList(Stage stage)
     {
         if (StageList == null)
-            StageList = new List<Stage>();
+            StageList = new();
         if(!StageList.Contains(stage))
             StageList.Add(stage);
     }
@@ -119,126 +112,126 @@ public class StageManager : MonoBehaviour
         StartCoroutine(CurrentStage.Fade());
 
         foreach (Stage st in CurrentStage.NextStage)
-            st.SetNextStage();
+        {
+            if (st != null)
+                st.SetNextStage();
+        }
+
 
         CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
     }
 
     private void SetStageData()
     {
-        List<StageData> stageDatas = new List<StageData>();
-        List<Vector2> existStage = new List<Vector2>();
+        List<StageData> stageDataList = new();
+        List<Vector2> existStage = new();
 
         for (int i = 0; i < StageList.Count; i++)
         {
             StageData stageData = StageList[i].Datas;
 
-            int x = 0;
-            int y = 0;
-
-            if (stageData.Type == StageType.Battle && stageData.Name == StageName.CommonBattle) // 일반 배틀
+            if (stageData.Type == StageType.Battle)
             {
-                if (GameManager.Data.StageAct == 0)
+                int stageLevel = 0;
+                int stageID = 0;
+
+                if (stageData.Name == StageName.CommonBattle) // 일반 배틀
                 {
-                    if (stageData.ID < 4)
+                    if (GameManager.Data.StageAct == 0)
                     {
-                        x = GameManager.OutGameData.isHorusClear() ? 21 : (GameManager.OutGameData.isPhanuelClear() ? 11 : 1);
+                        stageLevel = stageData.ID < 4 ? 1 : 2;
+                    }
+                    else if (GameManager.Data.StageAct == 1)
+                    {
+                        stageLevel = 3;
+                    }
+                    else if (GameManager.Data.StageAct == 2)
+                    {
+                        stageLevel = 4;
+                    }
+
+                    if (GameManager.OutGameData.IsHorusClear())
+                    {
+                        stageLevel += 20;
+                    }
+                    else if (GameManager.OutGameData.IsPhanuelClear())
+                    {
+                        stageLevel += 10;
+                    }
+
+                    stageID = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[stageLevel].Count);
+                }
+                else if (stageData.Name == StageName.EliteBattle) // 엘리트 배틀
+                {
+                    stageLevel = stageData.StageLevel;
+
+                    if (GameManager.OutGameData.IsHorusClear())
+                    {
+                        stageLevel += 1;
+
+                        if (GameManager.Data.StageAct == 0)
+                        {
+                            stageID = UnityEngine.Random.Range(0, 4);
+                        }
+                        else if (GameManager.Data.StageAct == 1)
+                        {
+                            stageID = UnityEngine.Random.Range(4, 11);
+                        }
+                    }
+                    else if (GameManager.OutGameData.IsPhanuelClear())
+                    {
+                        stageID = GameManager.Data.StageAct == 0 ? 1 : 3;
                     }
                     else
                     {
-                        x = GameManager.OutGameData.isHorusClear() ? 22 : (GameManager.OutGameData.isPhanuelClear() ? 12 : 2);
+                        stageID = GameManager.Data.StageAct == 0 ? 0 : 2;
                     }
                 }
-                else if (GameManager.Data.StageAct == 1)
+                else if (stageData.Name == StageName.BossBattle) // 보스 배틀
                 {
-                    x = GameManager.OutGameData.isHorusClear() ? 23 : (GameManager.OutGameData.isPhanuelClear() ? 13 : 3);
-                }
-                else if (GameManager.Data.StageAct == 2)
-                {
-                    x = GameManager.OutGameData.isHorusClear() ? 24 : (GameManager.OutGameData.isPhanuelClear() ? 14 : 4);
+                    stageLevel = stageData.StageLevel;
+
+                    if (GameManager.OutGameData.IsHorusClear())
+                    {
+                        stageLevel += 1;
+                        stageID = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[stageLevel].Count);
+                    }
+                    else if (GameManager.OutGameData.IsPhanuelClear())
+                    {
+                        stageID = 1;
+                    }
+                    else
+                    {
+                        stageID = 0;
+                    }
                 }
 
-                y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
-
-                Vector2 vec = new Vector2(x, y);
+                Vector2 vec = new(stageLevel, stageID);
 
                 if (!existStage.Contains(vec))
                 {
                     existStage.Add(vec);
-                    stageDatas.Add(StageList[i].SetBattleStage(x, y));
+                    stageDataList.Add(StageList[i].SetBattleStage(stageLevel, stageID));
                 }
                 else
                 {
                     i--;
                 }
-            }
-            else if (stageData.StageLevel == 90) // 엘리트 배틀
-            {
-                x = stageData.StageLevel;
-
-                if (GameManager.OutGameData.isHorusClear())
-                {
-                    if(GameManager.Data.StageAct == 0)
-                    {
-                        y = UnityEngine.Random.Range(0, 2);
-                    }
-                    else if(GameManager.Data.StageAct == 1)
-                    {
-                        y = UnityEngine.Random.Range(2, 4);
-                    }
-                }
-                else if (GameManager.OutGameData.isPhanuelClear())
-                {
-                    y = GameManager.Data.StageAct == 0 ? 1 : 3;
-                }
-                else
-                {
-                    y = GameManager.Data.StageAct == 0 ? 0 : 2;
-                }
-
-                if (!existStage.Contains(new Vector2(x, y)))
-                {
-                    existStage.Add(new Vector2(x, y));
-                    stageDatas.Add(StageList[i].SetBattleStage(x, y));
-                }
-                else
-                {
-                    i--;
-                }
-            }
-            else if (stageData.StageLevel == 100) // 보스 배틀
-            {
-                x = stageData.StageLevel;
-
-                if (GameManager.OutGameData.isHorusClear())
-                {
-                    y = UnityEngine.Random.Range(0, GameManager.Data.StageDatas[x].Count);
-                }
-                else if (GameManager.OutGameData.isPhanuelClear())
-                {
-                    y = 1;
-                }
-                else
-                {
-                    y = 0;
-                }
-
-                stageDatas.Add(StageList[i].SetBattleStage(x, y));
             }
             else
             {
-                stageDatas.Add(stageData);
+                stageDataList.Add(stageData);
             }
         }
 
-        GameManager.Data.Map.StageList = stageDatas;
+        GameManager.Data.Map.StageList = stageDataList;
     }
 
     public void StageMove(int id)
     {
         foreach (Stage st in CurrentStage.NextStage)
         {
-            if (st.Datas.ID == id)
+            if (st != null && st.Datas.ID == id)
             {
                 GameManager.Sound.Clear();
                 GameManager.Sound.Play("Node/NodeClickSFX");

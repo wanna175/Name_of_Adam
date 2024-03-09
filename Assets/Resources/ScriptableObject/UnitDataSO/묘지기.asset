@@ -17,10 +17,9 @@ MonoBehaviour:
     CurrentHP: 40
     ATK: 10
     SPD: 75
-    FallCurrentCount: 1
-    FallMaxCount: 4
+    FallCurrentCount: 0
+    FallMaxCount: 3
     ManaCost: 30
-    CurrentUpgradeCount: 0
   _uniqueStigma: []
   _id: "\uBB18\uC9C0\uAE30"
   _name: Gravekeeper

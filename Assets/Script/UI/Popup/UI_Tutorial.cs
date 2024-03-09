@@ -109,7 +109,7 @@ public class UI_Tutorial : MonoBehaviour
     public void SetValidToPassToolTip(bool isValidToPass)
     {
         ValidToPassTooltip = isValidToPass;
-        UIMasks[currentIndexToTooltip].GetComponent<AlphaClicker>().SetEnable(!isValidToPass);
+        UIMasks[currentIndexToTooltip].GetComponentInChildren<AlphaClicker>().SetEnable(!isValidToPass);
     }
 
     public void SetUIPage(int index)
@@ -128,8 +128,8 @@ public class UI_Tutorial : MonoBehaviour
 
         if (index >= 0)
         {
-            UIMasks[index].SetActive(true);
             var effect = UIMasks[index].GetComponentInChildren<TutorialArrow>();
+            UIMasks[index].SetActive(true);
             effect.StartEffect();
         }
     }

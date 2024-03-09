@@ -201,14 +201,14 @@ public class UnitAction_Phanuel : UnitAction
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) 
     {
-        if ((activeTiming & ActiveTiming.SUMMON) == ActiveTiming.SUMMON)
+        if ((activeTiming & ActiveTiming.SUMMON) == ActiveTiming.SUMMON || (activeTiming & ActiveTiming.STIGMA) == ActiveTiming.STIGMA)
         {
             if (_phanuel_Animation == null)
             {
                 GameManager.Sound.Play("PhanuelSummon/Phanuel_Summon");
                 _phanuel_Animation = GameManager.Resource.Instantiate("BattleUnits/Phanuel_Animation", caster.transform).GetComponent<Phanuel_Animation>();
-                _phanuel_Animation.ChangeAnimator(caster.Team);
             }
+            _phanuel_Animation.ChangeAnimator(caster.Team);
         }
         else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
@@ -231,17 +231,16 @@ public class UnitAction_Phanuel : UnitAction
         }
         else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD || (activeTiming & ActiveTiming.FALLED) == ActiveTiming.FALLED)
         {
-            int listCount = BattleManager.Data.BattleUnitList.Count;
-            for (int i = 0; i < listCount; i++)
+            for (int i = 0; i < BattleManager.Data.BattleUnitList.Count; i++)
             {
-                BattleUnit unit = BattleManager.Data.BattleUnitList[i];
-                if (unit.Data.ID == "오벨리스크" && unit.Team == caster.Team)
-                {
-                    unit.UnitDiedEvent();
-                    i--;
-                    listCount--;
-                }
+                BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "오벨리스크" && findUnit.Team == caster.Team);
+                if (remainUnit == null)
+                    break;
+
+                remainUnit.UnitDiedEvent(false);
             }
+
+            TileClear(caster.Team);
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
         {
@@ -305,6 +304,7 @@ public class UnitAction_Phanuel : UnitAction
 
         if (targetUnits.Count > 0)
         {
+            _phanuel_Animation.SetBool("isAttack", true);
             BattleManager.Instance.AttackStart(attackUnit, targetUnits);
         }
         else

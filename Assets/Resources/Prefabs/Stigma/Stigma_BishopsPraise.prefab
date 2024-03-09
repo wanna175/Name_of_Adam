@@ -49,7 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: c21c5df64d2886f44875bd3c134028fa, type: 3}
   _sprite_88: {fileID: 21300000, guid: 6c347475c908bc14ca04147c0c8872d6, type: 3}
   _sprite_164: {fileID: 21300000, guid: 31831dec0c7aca94abc830d084729772, type: 3}
-  _description: Becomes capable of moving one step diagonally.
+  _description: Bishop Praise Info
   _activeTiming: 2
   _tier: 1
   _isLock: 0

@@ -49,7 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: edfcc8d3b4ae22f4eb049d5405d66737, type: 3}
   _sprite_88: {fileID: 21300000, guid: 6bf7095632d38444ba81ade961771177, type: 3}
   _sprite_164: {fileID: 21300000, guid: 10297e1817b765548b42d5a6e445a6f7, type: 3}
-  _description: Pulls the enemy one tile closer upon attacking.
+  _description: Hook Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

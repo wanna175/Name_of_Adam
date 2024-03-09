@@ -127,7 +127,7 @@ public class SoundManager : MonoBehaviour
         {
             Clear();
             Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
-            if(GameManager.Data.Map.GetCurrentStage().StageLevel == 20)
+            if(GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
             {
                 if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
                 {
@@ -154,10 +154,6 @@ public class SoundManager : MonoBehaviour
             Clear();
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
             Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
-        }
-        else if(scenename == "CutScene")
-        {
-            Clear();
         }
         else if(scenename == "StageSelectScene")
         {

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: "\uC555\uBC14\uC784"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 55
-    CurrentHP: 55
-    ATK: 15
-    SPD: 55
+    MaxHP: 120
+    CurrentHP: 120
+    ATK: 20
+    SPD: 75
     FallCurrentCount: 0
-    FallMaxCount: 4
-    ManaCost: 0
-    CurrentUpgradeCount: 0
+    FallMaxCount: 8
+    ManaCost: 80
   _uniqueStigma:
   - {fileID: 2411140555896991723, guid: cf06ecb5b5e98224fb3071fe052b2400, type: 3}
   _id: "\uC555\uBC14\uC784"
@@ -35,11 +34,11 @@ MonoBehaviour:
   _corruptDiaPortraitImage: {fileID: 21300000, guid: 0a8dc9ff89a02e64a9db3847efd51477, type: 3}
   _animatorController: {fileID: 9100000, guid: 23478209c1aa0324689746e74e28c80a, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 5c441303e1748d44b9ad16da76cc408d, type: 2}
-  _skillEffectAnim: {fileID: 7400000, guid: a705ac55e4d31a248b90ad8b7e60a71d, type: 2}
-  _corruptionSkillEffectAnim: {fileID: 0}
+  _skillEffectAnim: {fileID: 7400000, guid: 13adadf9aff1f4246aa3122d888845b3, type: 2}
+  _corruptionSkillEffectAnim: {fileID: 7400000, guid: 13adadf9aff1f4246aa3122d888845b3, type: 2}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
-  _darkEssenseDrop: 0
-  _darkEssenseCost: 1
+  _darkEssenseDrop: 3
+  _darkEssenseCost: 4
   _unitActionType: 4
   _unitMoveType: 0
   _isBattleOnly: 0

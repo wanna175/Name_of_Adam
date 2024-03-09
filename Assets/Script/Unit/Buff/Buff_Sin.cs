@@ -14,7 +14,7 @@ public class Buff_Sin : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
+        _buffActiveTiming = ActiveTiming.SUMMON;
 
         _owner = owner;
 
@@ -27,8 +27,9 @@ public class Buff_Sin : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (caster != null)
-            caster.ChangeFall(1);
+        Buff_Vice buff = new Buff_Vice();
+        for (int i = 0; i < 66; i++)
+            _owner.SetBuff(buff);
 
         return false;
     }

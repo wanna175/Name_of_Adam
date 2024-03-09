@@ -17,20 +17,20 @@ MonoBehaviour:
     CurrentHP: 20
     ATK: 10
     SPD: 40
-    FallCurrentCount: 2
+    FallCurrentCount: 0
     FallMaxCount: 2
     ManaCost: 50
   _uniqueStigma: []
-  _id: 
-  _name: "\uC6D0\uB839"
+  _id: "\uC6D0\uB839"
+  _name: 
   _description: 
   _rarity: 2
   _image: {fileID: 21300000, guid: 5fcadac826673724f8c50054b56fce6a, type: 3}
   _corruptImage: {fileID: 21300000, guid: 5fcadac826673724f8c50054b56fce6a, type: 3}
   _portraitImage: {fileID: 21300000, guid: fe032016e9b98874380fcd7920755a55, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: fe032016e9b98874380fcd7920755a55, type: 3}
-  _diaPortraitImage: {fileID: 0}
-  _corruptDiaPortraitImage: {fileID: 0}
+  _diaPortraitImage: {fileID: 21300000, guid: 2a7b484190809c647b0dae711d8bb497, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 2a7b484190809c647b0dae711d8bb497, type: 3}
   _animatorController: {fileID: 9100000, guid: 7b7be95bcb5ce1e4b82ddbb4bace7b70, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 7b7be95bcb5ce1e4b82ddbb4bace7b70, type: 2}
   _skillEffectAnim: {fileID: 0}

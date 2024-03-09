@@ -118,9 +118,9 @@ public class UI_UnitInfo : UI_Popup
         for (int i = _unit.DeckUnitTotalStat.FallCurrentCount; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
         {
             UI_FallUnit fu = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
-            fu.SwitchCountImage(Team.Player);
-            fu.EmptyGauge();
+            int fallType = i / 4;
 
+            fu.InitFall(Team.Player, fallType);
         }
 
         List<Stigma> stigmas = _unit.GetStigma();
@@ -129,7 +129,7 @@ public class UI_UnitInfo : UI_Popup
             UI_HoverImageBlock ui = GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>();
             if (i < stigmas.Count)
             {
-                ui.Set(stigmas[i].Sprite_88, stigmas[i].Description);
+                ui.Set(stigmas[i].Sprite_88, "<size=150%>" + stigmas[i].Name + "</size>" + "\n\n" + stigmas[i].Description);
                 ui.EnableUI(true);
             }
             else
@@ -139,7 +139,7 @@ public class UI_UnitInfo : UI_Popup
         foreach (Upgrade upgrade in _unit.DeckUnitUpgrade)
         {
             UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
-            ui.Set(upgrade.UpgradeImage88, upgrade.UpgradeDescription);
+            ui.Set(upgrade.UpgradeImage88, "<size=150%>" + upgrade.UpgradeDescription + "</size>");
             ui.EnableUI(true);
         }
 
@@ -152,7 +152,7 @@ public class UI_UnitInfo : UI_Popup
                 block.color = Color.grey;
         }
 
-        if (GameManager.OutGameData.IsUnlockedItem(9))
+        if (GameManager.OutGameData.IsUnlockedItem(12))
         {
             _AddedUpgradeCountSocket.SetActive(true);
         }
@@ -178,7 +178,15 @@ public class UI_UnitInfo : UI_Popup
 
     public void Select()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if (currentSceneName().Equals("EventScene") && _evNum == CUR_EVENT.RELEASE)
+        {
+            GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        }
+        else
+        {
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        }
+
         if (_selectRestorationUnit != null)
         {
             _selectRestorationUnit(_unit);

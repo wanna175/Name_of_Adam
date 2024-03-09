@@ -4,6 +4,8 @@ public class Buff_Stigma_Absorption : Buff
 {
     public override void Init(BattleUnit owner)
     {
+        _buffEnum = BuffEnum.Absorption;
+
         _name = "흡수";
 
         _description = "피해량의 30퍼센트를 회복.";

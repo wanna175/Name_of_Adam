@@ -12,11 +12,11 @@ public class Mana : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.OutGameData.IsUnlockedItem(15))
+        if (GameManager.OutGameData.IsUnlockedItem(18))
         {
             _startMana = 60;
         }
-        else if (GameManager.OutGameData.IsUnlockedItem(12))
+        else if (GameManager.OutGameData.IsUnlockedItem(15))
         {
             _startMana = 55;
         }
@@ -49,8 +49,8 @@ public class Mana : MonoBehaviour
 
     public void ManaInableCheck()
     {
-        BattleManager.BattleUI.UI_playerSkill.InableCheck(_currentMana);
-        BattleManager.BattleUI.UI_hands.InableCheck(_currentMana);
+        BattleManager.BattleUI.UI_playerSkill.InableCheck();
+        BattleManager.BattleUI.UI_hands.InableCheck();
     }
 
     public bool CanUseMana(int value)
@@ -58,7 +58,6 @@ public class Mana : MonoBehaviour
         if (_currentMana >= value)
             return true;
 
-        Debug.Log("not enough mana");
         return false;
     }
 }

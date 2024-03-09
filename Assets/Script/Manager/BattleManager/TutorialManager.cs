@@ -139,7 +139,7 @@ public class TutorialManager : MonoBehaviour
 
         if (UI.ValidToPassTooltip)
         {
-            if (isCanClick && GameManager.InputManager.Click)
+            if (isCanClick && !GameManager.UI.IsOnESCOption && GameManager.InputManager.Click)
             {
                 StartCoroutine(ClickCoolTime());
                 ShowNextTutorial();
@@ -163,7 +163,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     public bool IsEnable()
-        => !GameManager.OutGameData.isTutorialClear() && isEnable;
+        => !GameManager.OutGameData.IsTutorialClear() && isEnable;
 
     public void SetNextStep()
     {

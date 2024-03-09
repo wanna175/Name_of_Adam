@@ -7,8 +7,6 @@ using TMPro;
 
 public class UI_SkillHover : UI_Hover
 {
-    [SerializeField] public TextMeshProUGUI _name;
-    [SerializeField] public TextMeshProUGUI _cost;
     [SerializeField] public TextMeshProUGUI _description;
 
     [SerializeField] public GameObject _block;
@@ -17,26 +15,30 @@ public class UI_SkillHover : UI_Hover
     {
         float posX;
         float posY;
+        float ratio = 1920f / Screen.width;
+        string costStr = $"<color=white><size=120%>Mana {mana} Dark Essence {darkessence}";
 
         switch (GameManager.Locale.CurrentLocaleIndex)
         {
-            case 0: _cost.text = "Mana " + mana + " Dark Essence " + darkessence; break;
-            case 1: _cost.text = "마나 " + mana + " 검은정수 " + darkessence; break;
+            case 0: costStr = $"<color=#9696FF><size=120%>Mana {mana} Dark Essence {darkessence}"; break;
+            case 1: costStr = $"<color=#9696FF><size=120%>마나 {mana} 검은 정수 {darkessence}";  break;
         }
 
-        _name.text = name;
-        _description.text = description;
+        _description.SetText($"<color=#FF9696><size=150%>{name}\n{costStr}\n<color=white><size=100%>{description}");
 
-        if (position.x > 1920 - 300)
-            posX = 1920 - 300;
+        if (position.x > 1920 - 300 / ratio)
+            posX = 1920 - 300 / ratio;
         else
             posX = position.x;
 
-        if (position.y < 150)
-            posY = 150;
+        if (position.y < 150 / ratio)
+            posY = 150 / ratio;
         else
             posY = position.y;
 
-        _block.GetComponent<Transform>().position = new(posX, posY);
+        posX *= ratio;
+        posY *= ratio;
+
+        _block.GetComponent<RectTransform>().anchoredPosition = new(posX, posY);
     }
 }

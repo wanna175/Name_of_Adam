@@ -32,7 +32,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1175741853696
-    m_Localized: Acquires the Death strike upon summoning.
+    m_Localized: 'Acquires the Death strike upon summoning.
+
+      (Death Strike:
+      Damage triples, but dies after attacking)'
     m_Metadata:
       m_Items: []
   - m_Id: 1213641584640
@@ -81,7 +84,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2356740419584
-    m_Localized: Recovers 20 health when an enemy or an ally dies.
+    m_Localized: Recovers 15 health when an enemy or an ally dies.
     m_Metadata:
       m_Items: []
   - m_Id: 2420078604288
@@ -140,7 +143,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
-    m_Localized: Gains 1 Sacred Step upon defeating an enemy, .
+    m_Localized: Gains 1 Sacred Step upon defeating an enemy.
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
@@ -168,7 +171,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4568623411200
-    m_Localized: Earns malevolence 99 times upon summoning.
+    m_Localized: Earns malevolence 66 times upon summoning.
     m_Metadata:
       m_Items: []
   - m_Id: 7908400885760
@@ -252,6 +255,23 @@ MonoBehaviour:
   - m_Id: 1305281299279872
     m_Localized: Upon summoning, summons henchmen 2 tiles ahead and bestows malevolence
       upon himself and the henchmen by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7868905148968960
+    m_Localized: Summons the Flower of Sacrifice on the Savior's turn. The Flower
+      of Sacrifice blossoms on the next Savior's turn, dealing damage equal to the
+      Savior's attack power to enemies within 4 spaces.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7868980851961856
+    m_Localized: When the Flower of Sacrifice blooms, it becomes the servant of the
+      Savior.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7869015077482496
+    m_Localized: The Savior takes damage whenever the Savior's servant or the Flower
+      of Sacrifice dies, and the Savior's faith decreases when they get corrupted
+      each time.
     m_Metadata:
       m_Items: []
   references:

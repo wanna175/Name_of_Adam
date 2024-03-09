@@ -86,10 +86,20 @@ public class UnitAction_Tubalcain : UnitAction
 
     public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {
-        if (hits.Count != 1)
-            return false;
+        BattleUnit receiver;
 
-        BattleUnit receiver = hits[0];
+        if (hits.Count == 0)
+        {
+            return false;
+        }
+        else if (hits.Count == 1)
+        {
+            receiver = hits[0];
+        }
+        else
+        {
+            receiver = BattleManager.Field.GetUnit(coord);
+        }
 
         if (BattleManager.Field.GetArroundUnits(attackUnit.Location).Contains(receiver))
         {
@@ -101,30 +111,9 @@ public class UnitAction_Tubalcain : UnitAction
         if (!ChargeAttackSearch(attackUnit).ContainsKey(coord))
             return false;
 
-        float currntMin = 100f;
-        Vector2 moveVector = attackUnit.Location;
+        Vector2 hookDir = (attackUnit.Location - receiver.Location).normalized;
+        Vector2 moveVector = receiver.Location + hookDir;
 
-        foreach (Vector2 direction in UDLR)
-        {
-            Vector2 vec = receiver.Location + direction;
-            float sqr = (vec - attackUnit.Location).sqrMagnitude;
-
-            if (currntMin > sqr)
-            {
-                currntMin = sqr;
-                if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
-                {
-                    moveVector = vec;
-                }
-            }
-            else if (currntMin == sqr)
-            {
-                if (direction.x != 0 && BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)
-                {
-                    moveVector = vec;
-                }
-            }
-        }
         _isMove = true;
 
         attackUnit.AnimatorSetBool("isAttackStart", true);

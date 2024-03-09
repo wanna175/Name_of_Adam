@@ -16,52 +16,51 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: ed5595dd5f26ae04d9796ad64a4a468e
   m_Entries:
   - m_Id: 48146583552
-    m_Key: Lowers the faith of a designated enemy by 1.
+    m_Key: Player_1_1
     m_Metadata:
       m_Items: []
   - m_Id: 152433758208
-    m_Key: Deals 20 damage in a massive cross range near the designated enemy.
+    m_Key: Player_1_2
     m_Metadata:
       m_Items: []
   - m_Id: 185921081344
-    m_Key: Deals 20 damage in a massive cross range near the designated enemy. it
-      reduces the enemy's faith by 1 upon attacking.
+    m_Key: Player_1_2_Up
     m_Metadata:
       m_Items: []
   - m_Id: 333950652416
-    m_Key: Moves an ally one space and grants a speed boost.
+    m_Key: Player_1_3
     m_Metadata:
       m_Items: []
   - m_Id: 435905794048
-    m_Key: Heals the designated ally or enemy by 20 health.
+    m_Key: Player_2_1_Up
     m_Metadata:
       m_Items: []
   - m_Id: 472060694528
-    m_Key: Heals the designated ally or enemy by 15 health.
+    m_Key: Player_2_1
     m_Metadata:
       m_Items: []
   - m_Id: 521163411456
-    m_Key: Brings back a designated ally.
+    m_Key: Player_2_2
     m_Metadata:
       m_Items: []
   - m_Id: 694547550208
-    m_Key: Bestows a curse on the designated enemy.
+    m_Key: Player_2_3_Up
     m_Metadata:
       m_Items: []
   - m_Id: 717616222208
-    m_Key: Bestows a curse and increases attack on the designated enemy.
+    m_Key: Player_2_3
     m_Metadata:
       m_Items: []
   - m_Id: 823568535552
-    m_Key: Deals 30 damage to the designated unit.
+    m_Key: Player_3_1
     m_Metadata:
       m_Items: []
   - m_Id: 890564153344
-    m_Key: Bestows malevolence 3 times and reduces faith by 1 to the designated ally.
+    m_Key: Player_3_2
     m_Metadata:
       m_Items: []
   - m_Id: 953277386752
-    m_Key: Summons the apostle onto the battlefield.
+    m_Key: Player_3_3
     m_Metadata:
       m_Items: []
   m_Metadata:

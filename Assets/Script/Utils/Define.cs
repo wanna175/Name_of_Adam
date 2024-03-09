@@ -54,6 +54,20 @@ public struct Stat
     }
 }
 
+public struct RewardUnit
+{
+    public string Name;
+    public int PreFall;
+    public Sprite Image;
+
+    public RewardUnit(string name, int preFall, Sprite image)
+    {
+        Name = name;
+        PreFall = preFall;
+        Image = image;
+    }
+}
+
 public struct Upgrade
 {
     public string UpgradeName;
@@ -83,6 +97,22 @@ public class UpgradeData
 public class UpgradeLoader
 {
     public List<UpgradeData> UpgradeData = new();
+}
+
+[Serializable]
+public class StigmaSaveData
+{
+    public StigmaEnum StigmaEnum;
+    public StigmaTier Tier;
+}
+
+[Serializable]
+public class MapDataSaveData
+{
+    public string MapObject;           // 현재 맵 구조의 프리팹
+    public List<StageData> StageList;// 맵의 노드들의 리스트
+    public int CurrentTileID;            // 현재 위치하고있는 타일의 ID
+    public List<int> ClearTileID;       // 이미 클리어한 타일의 ID
 }
 
 [Serializable]
@@ -208,33 +238,33 @@ public enum PlayerSkillTargetType
     all,
     Unit,
     Enemy,
-    Friendly
+    Friendly,
+    NotBattleOnly
 }
 
 public enum StigmaEnum
 {
+    //normal stigmata
     Absorption,
     Additional_Punishment,
     Assasination,
     Benevolence,
     Berserker,
-    BishopsPraise,
+    Bishops_Praise,
     Blessing,
-    BloodBlessing,
+    Blood_Blessing,
     Cleanse,
-    DeathStrike,
+    Death_Strike,
+    Destiny,
     Dispel,
     Expand,
-    ForbiddenPact,
-    Gamble,
+    Forbidden_Pact,
     Hook,
     Immortal,
     Invincible,
-    Karma,
     Killing_Spree,
     Martyrdom,
     Mercy,
-    Misdeed,
     Pray_In_Aid,
     Raise,
     Regeneration,
@@ -244,66 +274,99 @@ public enum StigmaEnum
     Sin,
     Tail_Wind,
     Teleport,
+
+    //Unique stigmata 
+    Birth = 100,
+    Blooming = 101,
+    Charge = 102,
+    Collapse = 103,
+    Dusk = 104,
+    Funeral = 105,
+    Karma = 106,
+    Legacy_Of_Babel = 107,
+    Lucifer = 108,
+    Misdeed = 109,
+    PermanenceOfBabel = 110,
+    Rebirth = 111,
+    Sacrifice = 112,
+    Symbiosis = 113,
+    Trinity = 114,
+    WrathOfBabel = 115,
 }
 
 public enum BuffEnum
 {
-    Hook,
-    Dispel,
-    ShadowStep,
-    Blessing,
-    Sadism,
+    //normal buff (image)
+    Appaim,
     Benediction,
-    Sin,
-    Regeneration,
-    Gamble,
-    BloodBlessing,
-    BloodFest,
-    Repetance,
-    Martyrdom,
-    Misdeed,
-    Expand,
-    BishopsPraise,
-    Thirst,
-    TraceOfDust,
-    Dust,
-
+    Berserker,
+    Curse,
     DeathStrike,
-
-    Raise,
-    Invincible,
+    Edified,
     Immortal,
+    Invincible,
+    Karma,
+    Leah,
+    MarkOfBeast,
+    Raise,
+    Raquel,
+    Sin,
+    Stun,
     Tailwind,
-
+    Teleport,
+    TraceOfDust,
     Vice,
+
+    //systemic buff (no image)
+    AfterAttackBounce,
+    AfterAttackDead,
+    AfterMotionTransparent,
+
+    //stigma buff (no image)
+    Absorption,
+    Additional_Punishment,
+    Assasination,
+    BishopsPraise,
+    Blessing,
+    BloodBlessing,
+    Cleanse,
+    Destiny,
+    Dispel,
+    Expand,
+    ForbiddenPact,
+    Hook,
+    KillingSpree,
+    Martyrdom,
+    Mercy,
+    Misdeed,
+    PrayInAid,
+    Regeneration,
+    Repetance,
+    Sadism,
+    ShadowStep,
+
+    //unique stigma buff (no image)
+    Birth,
+    Blooming,
+    Charge,
+    Collapse,
+    Dust,
+    LegacyOfBabel,
+    Lucifer,
+    PermanenceOfBabel,
+    Rebirth,
+    Sacrifice,
+    Symbiosis,
+    Trinity,
+    WrathOfBabel,
+
+
+
+
+    BloodFest,
+    Thirst,
     TraceOfSolar,
     TraceOfLunar,
-
-    Stun,
-
-    AfterMotionTransparent,
-    AfterAttackDead,
-    AfterAttackBounce,
-    MarkOfRaquel,
-
-    Assasination,
-    Berserker,
-    PrayInAid,
-    Karma,
-    ForbiddenPact,
-    Teleport,
-    KillingSpree,
-
-    Collapse,
-    PermanenceOfBabel,
-    LegacyOfBabel,
-    WrathOfBabel,
-    Charge,
-    Rebirth,
-    Trinity,
-
-    Leah,
-    Raquel,
 }
 
 public enum UnitActionType
@@ -390,16 +453,30 @@ public struct TooltipData
     public bool IsEnd;
 }
 
-[Serializable]
-public struct CutSceneData
-{
-    public CutSceneType cutSceneType;
-    public bool IsDoneStart;
-    public bool IsDoneElite;
-    public bool IsDoneBoss;
-}
-
 public enum CutSceneType
 {
-    Start,
+    Main,
+    Tutorial,
+
+    // 엘리트
+    Elieus_Enter,
+    LahelRea_Enter,
+    Appaim_Enter,
+
+    // 보스
+    Phanuel_Enter,
+    Phanuel_Dead,
+    TheSavior_Enter,
+    TheSavior_Dead,
+
+    // NPC
+    NPC_Upgrade_Corrupt,
+    NPC_Stigma_Corrupt,
+    NPC_Harlot_Corrupt,
+}
+
+public enum FallAnimType
+{
+    AnimOn,
+    AnimOff
 }

@@ -44,13 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d128ca77ed9abd4fbc9a58f4b7ddc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 27
+  _stigmaEnum: 25
   _name: Shadow Step
   _sprite_28: {fileID: 21300000, guid: 3b1f1b977f0ee8c4489e80f9dd9825e4, type: 3}
   _sprite_88: {fileID: 21300000, guid: 15176793dce898d4497b3f1e9420c17e, type: 3}
   _sprite_164: {fileID: 21300000, guid: 81559f6afbb9a3d499d0abcb87c6cb8a, type: 3}
-  _description: Moves behind the attacked enemy if there is only one enemy targeted
-    with the attack.
+  _description: Shadow Step Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0

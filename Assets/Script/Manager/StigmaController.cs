@@ -16,7 +16,6 @@ public class StigmaController
     private List<Stigma> _tier3StigmaList = new();
     private List<Stigma> _uniqueStigmaList = new();
     private List<Stigma> _harlotStigmaList = new();
-    public List<Stigma> get_harlotStigmaList => _harlotStigmaList;
 
     private Dictionary<StigmaEnum, string[]> _lockStigmaDic = new(); // [Key, Value] = [낙인, 해당 낙인은 등장하지 않는 유닛 이름들]
 
@@ -65,7 +64,7 @@ public class StigmaController
 
         _lockStigmaDic.Add(StigmaEnum.Hook, new string[] { "흑기사", "쌍생아", "그을린 자", "묘지기", "검병",
             "노동자", "중갑병", "처형자", "암살자", "습격자", "괴인", "엘리우스", "투발카인" });
-        _lockStigmaDic.Add(StigmaEnum.Additional_Punishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아" });
+        _lockStigmaDic.Add(StigmaEnum.Additional_Punishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "투발카인"});
     }
 
     // probability는 { 99, 89 } 처럼 2개 인자를 보유
@@ -74,11 +73,13 @@ public class StigmaController
         Stigma stigma;
         int randNum = Random.Range(0, 100);
 
-        if (_tier3StigmaList.Count > 0 && randNum >= probability[0])
+        /*
+        if (_tier3StigmaList.Count > 0 && randNum >= probability[0] )
         {
             stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
-        }
-        else if (_tier2StigmaList.Count > 0 && randNum >= probability[1])
+        }현재 3티어 낙인은 없음
+        */
+        if (_tier2StigmaList.Count > 0 && randNum >= probability[1])
         {
             stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
         }
@@ -107,7 +108,7 @@ public class StigmaController
         // 검병 튜토리얼 특수 케이스
         if (unitName.Equals("검병"))
         {
-            if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.isTutorialClear())
+            if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.IsTutorialClear())
             {
                 Debug.Log($"검병 튜토리얼: {stigma.StigmaEnum} 차단");
                 return true;
@@ -128,22 +129,22 @@ public class StigmaController
         return false;
     }
 
-    public Stigma GetHarlotStigmas()
+    public Stigma GetRandomHarlotStigma()
     {
         int size = _harlotStigmaList.Count;
         int randNum = Random.Range(0, size);
         return _harlotStigmaList[randNum];
     }
 
+    public List<Stigma> GetHarlotStigmaList() => _harlotStigmaList;
+
     public void CheckUnlockedStigma(Stigma stigma)
     {
         UnlockStigma(stigma, 20, StigmaEnum.Sin);
-        UnlockStigma(stigma, 16, StigmaEnum.ForbiddenPact);
+        UnlockStigma(stigma, 16, StigmaEnum.Forbidden_Pact);
         UnlockStigma(stigma, 13, StigmaEnum.Teleport);
-        //UnlockStigma(stigma, 10, 갈망);
         UnlockStigma(stigma, 7, StigmaEnum.Killing_Spree);
-        //UnlockStigma(stigma, 4, 보복);
-        UnlockStigma(stigma, 1, StigmaEnum.Gamble);
+        UnlockStigma(stigma, 1, StigmaEnum.Destiny);
     }
 
     public void UnlockStigma(Stigma stigma, int ID, StigmaEnum unlockedstigma)
@@ -152,5 +153,31 @@ public class StigmaController
         {
             stigma.UnlockStigma();
         }
+    }
+
+    public Stigma SaveDataToStigma(StigmaSaveData data)
+    {
+        if (data.Tier == StigmaTier.Tier1)
+        {
+            return _tier1StigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Tier2)
+        {
+            return _tier2StigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Tier3)
+        {
+            return _tier3StigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Unique)
+        {
+            return _uniqueStigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+        else if (data.Tier == StigmaTier.Harlot)
+        {
+            return _harlotStigmaList.Find(stigma => stigma.StigmaEnum == data.StigmaEnum);
+        }
+
+        return null;
     }
 }

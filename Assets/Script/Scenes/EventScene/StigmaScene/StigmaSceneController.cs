@@ -6,6 +6,9 @@ using TMPro;
 
 public class StigmaSceneController : MonoBehaviour,StigmaInterface
 {
+    private readonly int[] enterDialogNums = { 3, 2, 3, 3, 3 };
+    private readonly int[] exitDialogNums = { 1, 1, 1, 1, 1 };
+
     private DeckUnit _givestigmatizeUnit;
     private DeckUnit _stigmatizeUnit;
     private List<Script> _scripts;
@@ -14,16 +17,19 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject fall_background;
+    [SerializeField] private Image foogyImg;
 
     [SerializeField] private GameObject _stigma_transfer_btn = null;
     [SerializeField] private GameObject _stigma_transfer_btn_disabled;
     [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
     [SerializeField] private GameObject _ui_SelectMenu;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text descriptionText;
 
     private UI_Conversation uiConversation;
     private Stigma _giveStigma = null;
 
-    private bool isNPCFall = false;
+    private bool _isNPCFall = false;
 
     void Start()
     {
@@ -34,7 +40,6 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         _scripts = new();
         _giveStigma = null;
         _isStigmaFull = false;
-        Debug.Log("dddddddd : " + GameManager.Data.GameData.NpcQuest.StigmaQuest);
 
         //옮길 낙인유닛이 없다면 선택지가 안 뜨게
         bool isStigmaEmpty = true;
@@ -57,40 +62,35 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
             _stigma_transfer_btn.SetActive(false);
             _stigma_transfer_btn_disabled.SetActive(true);
         }
-        Debug.Log("init GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.getVisitStigma());
-        if (GameManager.OutGameData.getVisitStigma() == false)
+        
+        Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.StigmaQuest}");
+        if (GameManager.OutGameData.GetVisitStigma() == false)
         {
             //GameManager.OutGameData.setVisitStigma(true);
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
-            Debug.Log("낙인소 입장 최초");
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["낙인소_선택_0"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["낙인소_선택_0"][0].name));
         }
         else
         {
-            Debug.Log("낙인소 입장 햇슴");
-            if (GameManager.Data.GameData.NpcQuest.StigmaQuest >=50)
+            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
+            if (questLevel > 4) questLevel = 4;
+            _scripts = GameManager.Data.ScriptData[$"낙인소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
+            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"낙인소_선택_{25 * questLevel}"][0].script));
+            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"낙인소_선택_{25 * questLevel}"][0].name));
+
+            if (questLevel == 4)
             {
-                _scripts = GameManager.Data.ScriptData["타락_낙인소_입장"];
                 background.SetActive(false);
                 fall_background.SetActive(true);
-                this.isNPCFall = true;
+                _isNPCFall = true;
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 * 3 / 4)
+            else if (questLevel >= 0)
             {
-                _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
-                //안개이미지 변경
+                Color color = this.foogyImg.color;
+                color.a = questLevel * 0.25f;
+                this.foogyImg.color = color;
             }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 / 2)
-            {
-                _scripts = GameManager.Data.ScriptData["타락_낙인소_입장_50"];
-                //안개이미지 변경
-            }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest >= 50 / 4)
-            {
-                _scripts = GameManager.Data.ScriptData["낙인소_입장"];
-                //안개이미지 변경
-            }
-            else
-                _scripts = GameManager.Data.ScriptData["낙인소_입장"];
         }
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
@@ -224,10 +224,11 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         else//낙인 이동일때
         {
             _giveStigma = stigma;
-            if(!isNPCFall)
+            if(!_isNPCFall)
                 GameManager.Data.RemoveDeckUnit(_givestigmatizeUnit);
             else
                 _givestigmatizeUnit.DeleteStigma(stigma);
+
             GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
             OnSelectStigmaTargetUnit();
         }
@@ -246,24 +247,17 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.getVisitStigma() == false)
+        if (GameManager.OutGameData.GetVisitStigma() == false)
         {
-            GameManager.OutGameData.setVisitStigma(true);
-            Debug.Log("GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.getVisitStigma());
+            GameManager.OutGameData.SetVisitStigma(true);
+            Debug.Log("GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.GetVisitStigma());
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
         }
         else
         {
-            if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50)
-            {
-                quitScript.Init(GameManager.Data.ScriptData["타락_낙인소_퇴장_100"], false);
-            }
-            else if (GameManager.Data.GameData.NpcQuest.StigmaQuest > 50 / 2)
-            {
-                quitScript.Init(GameManager.Data.ScriptData["타락_낙인소_퇴장_50"], false);
-            }
-            else
-                quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장"], false);
+            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
+            if (questLevel > 4) questLevel = 4;
+            quitScript.Init(GameManager.Data.ScriptData[$"낙인소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
         yield return StartCoroutine(quitScript.PrintScript());
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
