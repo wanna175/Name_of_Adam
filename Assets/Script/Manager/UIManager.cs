@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public const int ESCOrder = 999;
+
     private int _order = 10;
     private Stack<UI_Popup> _popupStack = new();
     private UI_Hover _hover;
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 0;
             ESCOption = ShowPopup<UI_ESCOption>();
+            ESCOption.GetComponent<Canvas>().sortingOrder = ESCOrder;
         }
         else
         {
