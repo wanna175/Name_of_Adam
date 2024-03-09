@@ -13,7 +13,7 @@ public class UI_BattleOver : UI_Scene
 
     private string _result;
 
-    public void SetImage(string result,RewardController rc = null)
+    public void SetImage(string result)
     {
         fc.GetComponent<FadeController>().StartFadeIn();
 
@@ -22,8 +22,8 @@ public class UI_BattleOver : UI_Scene
 
         if (result == "win") 
         {
-            rc.RewardSetting(GameManager.Data.GetDeck(), _rewardScene);
             _rewardScene.gameObject.SetActive(true);
+            _rewardScene.Init(GameManager.Data.GetDeck());
             _textImage.gameObject.SetActive(false);
             //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();
@@ -60,7 +60,7 @@ public class UI_BattleOver : UI_Scene
                 return;
             }
 
-            if (_rewardScene.isEndFade)
+            if (_rewardScene.IsFadeEnd)
             {
                 SceneChanger.SceneChange("StageSelectScene");
             }

@@ -8,9 +8,9 @@ public class Buff_Edified : Buff
 
         _name = "Edified";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Edified_Sprite");
 
-        _description = "Edified";
+        _description = "Edified Info";
 
         _count = -1;
 

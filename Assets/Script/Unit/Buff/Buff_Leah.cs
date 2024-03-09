@@ -12,9 +12,9 @@ public class Buff_Leah : Buff
 
         _description = "·¹¾Æ.";
 
-        _count = 1;
+        _count = -1;
 
-        _countDownTiming = ActiveTiming.ATTACK_TURN_END;
+        _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 

@@ -178,7 +178,15 @@ public class UI_UnitInfo : UI_Popup
 
     public void Select()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if (currentSceneName().Equals("EventScene") && _evNum == CUR_EVENT.RELEASE)
+        {
+            GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        }
+        else
+        {
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        }
+
         if (_selectRestorationUnit != null)
         {
             _selectRestorationUnit(_unit);

@@ -51,5 +51,5 @@ MonoBehaviour:
   _sprite_164: {fileID: 21300000, guid: 1094b711fca3ea54da59c3b8ac08e70a, type: 3}
   _description: Death Strike Info
   _activeTiming: 2
-  _tier: 0
+  _tier: 1
   _isLock: 0
