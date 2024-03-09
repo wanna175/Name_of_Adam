@@ -5,7 +5,7 @@ public class Buff_Stun : Buff
     {
         _buffEnum = BuffEnum.Stun;
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Stun_Sprite");
 
         _name = "Stun";
 
