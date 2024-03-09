@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fill: {fileID: 6869963883429824962}
+  _fallImage: {fileID: 0}
+  _anim: {fileID: 0}
 --- !u!1 &6869963883429824962
 GameObject:
   m_ObjectHideFlags: 0

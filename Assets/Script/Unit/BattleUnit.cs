@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
@@ -57,7 +58,7 @@ public class BattleUnit : MonoBehaviour
         UnitRenderer.color = new Color(1, 1, 1, 1);
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
-        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,team);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
 
         ConnectedUnits = new();
 
@@ -176,7 +177,7 @@ public class BattleUnit : MonoBehaviour
     public void RefreshHPBar()
     {
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount());
         _hpBar.RefreshBuff();
     }
 
@@ -295,14 +296,14 @@ public class BattleUnit : MonoBehaviour
         }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
-        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 4 - DeckUnit.Data.RawStat.FallMaxCount; ;
-        DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.Data.RawStat.FallMaxCount;
+        DeckUnit.DeckUnitChangedStat.FallCurrentCount = 0;
+
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
-        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount,_team);
+        Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
         Buff.DispelBuff();
         _hpBar.RefreshHPBar(HP.FillAmount());
         _hpBar.SetFallBar(DeckUnit);
-        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount());
 
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
@@ -512,9 +513,12 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeFall(int value)
     {
+        if (Fall.IsEdified)
+            return;
+
         Fall.ChangeFall(value);
-        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
-        _hpBar.RefreshFallGauge(Fall.GetCurrentFallCount());
+        DeckUnit.DeckUnitChangedStat.FallCurrentCount += value;
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount());
     }
 
     public virtual BattleUnit GetOriginalUnit() => this;

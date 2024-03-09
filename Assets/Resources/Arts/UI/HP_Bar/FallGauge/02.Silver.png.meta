@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 827f4ed16b0917048a1e29445d3f591d
+guid: d429cbe06af73034cbc074894d8b44a2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,11 +101,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hp_glod_0
+      name: hp_silver_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b620db9189f309841853158dd3c6ae1f
-      internalID: 318002367
+      spriteID: 663d14b4b1037ed408048920809a3bc9
+      internalID: 1463386229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_1
+      name: hp_silver_1
       rect:
         serializedVersion: 2
         x: 200
@@ -140,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b637e53f52989c419eb656ec346ecc4
-      internalID: -1740366850
+      spriteID: 97e119f6d6f454346b80e2c43734d7ec
+      internalID: -1870738827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_2
+      name: hp_silver_2
       rect:
         serializedVersion: 2
         x: 400
@@ -161,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 284fca7cc083acf448fbdcb76a9c416a
-      internalID: 1844117492
+      spriteID: 38a3a1344e89ee74e8278b2a48b878a2
+      internalID: 725764561
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_3
+      name: hp_silver_3
       rect:
         serializedVersion: 2
         x: 600
@@ -182,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 665cc9ecca898f647ae654b32b987834
-      internalID: -881612501
+      spriteID: 128bedb34e877d14aa13f620c89cd5e8
+      internalID: 1195584159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_4
+      name: hp_silver_4
       rect:
         serializedVersion: 2
         x: 800
@@ -203,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31afb8e5b7ef06e4ba1aa1ea5f324cbd
-      internalID: 678299838
+      spriteID: 62fb01782fe21e14cb0c54cac3125c39
+      internalID: -1790194260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_5
+      name: hp_silver_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -224,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9ee5b6c78f88e840ad94dc97801e1f5
-      internalID: 1361797818
+      spriteID: 3778e7fd66009684a953a827be8ba155
+      internalID: 1090442320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_6
+      name: hp_silver_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -245,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 096439bcffc59c44680959e385e3785a
-      internalID: 1058894201
+      spriteID: b7bc5a3770c860042ae31f405c8ea2d7
+      internalID: 1776480119
       vertices: []
       indices: 
       edges: []
@@ -262,13 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hp_glod_3: -881612501
-      hp_glod_1: -1740366850
-      hp_glod_4: 678299838
-      hp_glod_2: 1844117492
-      hp_glod_6: 1058894201
-      hp_glod_5: 1361797818
-      hp_glod_0: 318002367
+      hp_silver_4: -1790194260
+      hp_silver_6: 1776480119
+      hp_silver_5: 1090442320
+      hp_silver_2: 725764561
+      hp_silver_3: 1195584159
+      hp_silver_0: 1463386229
+      hp_silver_1: -1870738827
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

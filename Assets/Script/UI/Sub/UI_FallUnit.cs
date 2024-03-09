@@ -5,87 +5,67 @@ using UnityEngine.UI;
 
 public class UI_FallUnit : MonoBehaviour
 {
+    private static int _fallTypeCount = 4;
+    private static Sprite[] _fallSprite;
+
     [SerializeField] private GameObject _fill;
-    [SerializeField] private Image _redCount;
-    [SerializeField] private Image _whiteCount;
-    [SerializeField] private Image _doubleCount;
-    [SerializeField] private Image _tripleCount;
-    [SerializeField] private Animator anim;
+    [SerializeField] private Image _fallImage;
+    [SerializeField] private Animator _anim;
 
-    private int FallCount = 0;
-    public int GetDouble()
+    private string _animName;
+    private int _fallType = 0; // 0 = 화이트 or 레드, 1 = 남색, 2 = 금색
+
+    private void InitSprite()
     {
-        return FallCount;
-    }
-    public void SetAnimation()
-    {
-        anim.SetBool("isBreak", true);
-    }
-    public void FillGauge()
-    {
-        switch (FallCount)
-        {
-            case 1:
-                FallCount--;
-                break;
-            case 2:
-                FallCount--;
-                break;
-            case 3:
-                FallCount--;
-                break;
-        }
-        anim.SetBool("isBreak", true);
+        // 신상 보석 이미지 불러오기 (빨, 남, 금)
+        _fallSprite = new Sprite[_fallTypeCount];
+
+        var allSprites = GameManager.Resource.LoadAll<Sprite>("Arts/UI/HP_Bar/FallGauge");
+        int splitNum = allSprites.Length / _fallTypeCount;
+
+        for (int i = 0; i < _fallTypeCount; i++)
+            _fallSprite[i] = allSprites[i * splitNum];
     }
 
-    public void EndFillAnim()
+    public void InitFall(Team team, int fallType)
     {
-        if (FallCount == 0)
-            this.gameObject.SetActive(false);
-        else if (FallCount == 1)
-        {
-            this._doubleCount.gameObject.SetActive(false);
-            this._tripleCount.gameObject.SetActive(false);
-        }
-        else if (FallCount == 2)
-        {
-            this._tripleCount.gameObject.SetActive(false);
-            this._doubleCount.gameObject.SetActive(true);
-        }
-        anim.Rebind();
-    }
+        this._fallType = fallType;
+        this._animName = $"Fall_Break_{team}_{fallType}";
+        _anim.SetInteger("Type", fallType);
+        _anim.SetBool("IsPlayer", team.Equals(Team.Player));
 
-    public void EmptyGauge()
-    {
-        anim.SetBool("isBreak", false);
-        switch (FallCount)
-        {
-            case 0:
-                this.gameObject.SetActive(true);
-                FallCount++;
-                break;
-            case 1:
-                this._doubleCount.gameObject.SetActive(true);
-                FallCount++;
-                break;
-            case 2:
-                this._tripleCount.gameObject.SetActive(true);
-                FallCount++;
-                break;
-        }
+        SwitchCountImage(team);
     }
 
     public void SwitchCountImage(Team team)
     {
-        if(team == Team.Player)
+        if (_fallSprite == null)
         {
-            _redCount.gameObject.SetActive(false);
-            _whiteCount.gameObject.SetActive(true);
+            // 이미지 없음 => 불러오기
+            InitSprite();
+        }
+
+        if (team == Team.Player)
+        {
+            _fallImage.sprite = _fallSprite[0];
         }
         else
         {
-            _redCount.gameObject.SetActive(true);
-            _whiteCount.gameObject.SetActive(false);
+            _fallImage.sprite = _fallSprite[_fallType];
         }
+    }
+
+    public void IncreaseGauge()
+    {
+        _anim.SetBool("IsPlay", true);
+        _anim.Play(_animName, -1, 0);
+        _anim.speed = -1;
+    }
+
+    public void DecreaseGauge()
+    {
+        _anim.SetBool("IsPlay", true);
+        _anim.Play(_animName, -1, 0);
+        _anim.speed = 1;
     }
 }

@@ -43,17 +43,20 @@ public class UI_UnitReward : MonoBehaviour
             NewImage.gameObject.SetActive(false);
             DieImage.gameObject.SetActive(true);
         }
+
         unitImage.sprite = _unitImg;
         unitName.text = _unitName;
         diff.text = _diff.ToString();
 
-        for (int i = 0; i < cur_fall-_diff; i++)
-        {
-            UI_FallUnit newObject = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
-            newObject.SwitchCountImage(Team.Player);
-            if (i >= cur_fall)
-                newObject.GetComponent<UI_FallUnit>().SetAnimation();
-        }
+        //for (int i = 0; i < cur_fall-_diff; i++)
+        //{
+        //    UI_FallUnit fall = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
+        //    int fallType = i / 4;
+
+        //    fall.InitFall(Team.Player, fallType);
+        //    if (i >= cur_fall)
+        //        newObject.GetComponent<UI_FallUnit>().SetAnimation();
+        //}
 
         fc = this.GetComponent<FadeController>();
     }
