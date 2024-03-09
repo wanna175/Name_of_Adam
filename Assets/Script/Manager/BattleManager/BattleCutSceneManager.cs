@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
-using static Unity.VisualScripting.Icons;
 
 public class BattleCutSceneManager : MonoBehaviour
 {

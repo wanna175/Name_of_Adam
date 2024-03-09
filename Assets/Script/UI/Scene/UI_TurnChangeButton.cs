@@ -2,15 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 
-public class UI_TurnChangeButton : UI_Scene
+public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Button _changeButton;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private Image _buttonImage;
+    [SerializeField] private Sprite buttonEnterSprite;
+    [SerializeField] private Sprite buttonExitSprite;
 
     private bool isCanCtrl;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _buttonImage.sprite = buttonEnterSprite;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _buttonImage.sprite = buttonExitSprite;
+    }
 
     public void SetEnable(bool enable)
         => isCanCtrl = enable;

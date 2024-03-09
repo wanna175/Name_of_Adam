@@ -14,7 +14,7 @@
       "ID": 1,
       "Name": "Destiny",
       "Cost": 50,
-      "Prequest": 2,
+      "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "Stigmata Destiny appears from now on. Destiny - When attacking, there is a 50% chance for damage to be doubled and a 50% chance for it to be halved."
@@ -59,7 +59,7 @@
       "ID": 7,
       "Name": "Killing Spree",
       "Cost": 50,
-      "Prequest": 8,
+      "Prequest": 2,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "Stigmata Killing Spree appears from now on. Killing Spree - Gains an extra turn upon defeating an enemy."
@@ -68,7 +68,7 @@
       "ID": 8,
       "Name": "Elite Clear Reward",
       "Cost": 250,
-      "Prequest": 5,
+      "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "Every unit restores faith by 1 as a reward for clearing an Elite enemy."
@@ -77,7 +77,7 @@
       "ID": 12,
       "Name": "Maximum upgrade",
       "Cost": 200,
-      "Prequest": 11,
+      "Prequest": 14,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "The maximum upgrade increases from 2 to 3."
@@ -86,7 +86,7 @@
       "ID": 11,
       "Name": "Stigmata transfer",
       "Cost": 300,
-      "Prequest": 8,
+      "Prequest": 5,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "A new feature, Stigmata Transfer, is unlocked in the Stigmata stage. You can now sacrifice one unit to bestow one of its stigmata onto another unit."
@@ -95,7 +95,7 @@
       "ID": 15,
       "Name": "Starting mana I",
       "Cost": 150,
-      "Prequest": 14,
+      "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "The starting mana increases from 50 to 55."
@@ -104,7 +104,7 @@
       "ID": 13,
       "Name": "Teleport",
       "Cost": 100,
-      "Prequest": 14,
+      "Prequest": 11,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "Stigmata Teleport appears from now on. Teleport - Earns 1 Sacred Step upon defeating an enemy. Sacred Step - Becomes able to move to any desired position."
@@ -140,7 +140,7 @@
       "ID": 17,
       "Name": "Unlocking the Divine Hall II",
       "Cost": 500,
-      "Prequest": 14,
+      "Prequest": 8,
       "IsLock": true,
       "IsUnlocked": false,
       "Description": "You can now organize apostles or elites into normal unit slots in the start."

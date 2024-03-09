@@ -8,11 +8,11 @@ public class Buff_Teleport : Buff
     {
         _buffEnum = BuffEnum.Teleport;
 
-        _name = "순간이동";
+        _name = "Sacred Step";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raise_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Teleport_Sprite");
 
-        _description = "Gains 1 Sacred Step upon defeating an enemy. Sacred Step Becomes able to move to any desired position.";
+        _description = "Becomes able to move to any desired position.";
 
         _count = 1;
 
