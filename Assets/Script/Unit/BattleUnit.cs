@@ -299,8 +299,8 @@ public class BattleUnit : MonoBehaviour
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
-
-        Debug.Log($"{BattleUnitTotalStat.FallCurrentCount} / {BattleUnitTotalStat.FallMaxCount}");
+        if (_team.Equals(Team.Player) && DeckUnit.DeckUnitTotalStat.FallMaxCount >= 4)
+            DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.DeckUnitTotalStat.FallMaxCount; // 낙인 4개 이상인 적이 타락됐을 경우 조정
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
