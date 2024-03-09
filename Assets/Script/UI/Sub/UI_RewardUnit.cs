@@ -10,6 +10,7 @@ public enum UnitState
     Dead = 2,
     Default = 3
 };
+
 public class UI_RewardUnit : MonoBehaviour
 {
     [SerializeField] private Image _unitImage;
@@ -32,14 +33,14 @@ public class UI_RewardUnit : MonoBehaviour
         _unitName.text = rewardUnit.Name;
         _faithDifference.text = faithDifference.ToString();
 
-        for (int i = 0; i < currentFaith - faithDifference; i++)
-        {
-            UI_FallUnit faithObject = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
-            faithObject.SwitchCountImage(Team.Player);
+        //for (int i = 0; i < currentFaith - faithDifference; i++)
+        //{
+        //    UI_FallUnit faithObject = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
+        //    faithObject.SwitchCountImage(Team.Player);
 
-            if (i >= currentFaith)
-                faithObject.SetAnimation();
-        }
+        //    if (i >= currentFaith)
+        //        faithObject.SetAnimation();
+        //}
     }
 
     public void FadeIn()

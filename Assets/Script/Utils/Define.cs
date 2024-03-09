@@ -474,3 +474,9 @@ public enum CutSceneType
     NPC_Stigma_Corrupt,
     NPC_Harlot_Corrupt,
 }
+
+public enum FallAnimType
+{
+    AnimOn,
+    AnimOff
+}

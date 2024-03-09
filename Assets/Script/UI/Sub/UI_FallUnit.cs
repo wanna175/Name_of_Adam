@@ -58,7 +58,7 @@ public class UI_FallUnit : MonoBehaviour
     public void IncreaseGauge()
     {
         _anim.SetBool("IsPlay", true);
-        _anim.Play(_animName, -1, 0);
+        _anim.Play(_animName, -1, 1);
         _anim.speed = -1;
     }
 

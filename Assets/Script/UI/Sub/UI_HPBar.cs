@@ -98,10 +98,10 @@ public class UI_HPBar : UI_Base
 
             newObject.InitFall(_team, fallType);
             _fallGauge.Add(newObject);
-        }        
+        }
     }
 
-    public void RefreshFallBar(int current)
+    public void RefreshFallBar(int current, FallAnimType fallAnimType = FallAnimType.AnimOn)
     {
         int gap = current - _fallCount; // 신앙 보석 차이
         int count = Mathf.Abs(gap);
@@ -111,14 +111,34 @@ public class UI_HPBar : UI_Base
             if (gap > 0)
             {
                 // 신앙 감소 = 보석 파괴 (역순)
-                _fallGauge[_currentIndex].DecreaseGauge();
+                switch (fallAnimType)
+                {
+                    case FallAnimType.AnimOn:
+                        this.gameObject.SetActive(true);
+                        _fallGauge[_currentIndex].DecreaseGauge(); 
+                        break;
+
+                    case FallAnimType.AnimOff: 
+                        _fallGauge[_currentIndex].gameObject.SetActive(false); 
+                        break;
+                }
                 _fallCount++;
                 _currentIndex--;
             }
             else
             {
                 // 신앙 증가 = 보석 복구 (역순)
-                _fallGauge[_currentIndex].IncreaseGauge();
+                switch (fallAnimType)
+                {
+                    case FallAnimType.AnimOn:
+                        this.gameObject.SetActive(true);
+                        _fallGauge[_currentIndex].IncreaseGauge();
+                        break;
+
+                    case FallAnimType.AnimOff:
+                        _fallGauge[_currentIndex].gameObject.SetActive(false);
+                        break;
+                }
                 _fallCount--;
                 _currentIndex++;
             }

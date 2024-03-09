@@ -104,7 +104,7 @@ public class UI_Info : UI_Scene
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)battleUnit.BattleUnitTotalStat.CurrentHP / (float)battleUnit.BattleUnitTotalStat.MaxHP);
-        _hpBar.RefreshFallBar(battleUnit.Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(battleUnit.Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
 
         //_stigmaDescriptionPrefab.SetStigma(battleUnit);
 
@@ -197,7 +197,7 @@ public class UI_Info : UI_Scene
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)unit.DeckUnitTotalStat.CurrentHP / (float)unit.DeckUnitTotalStat.MaxHP);
-        _hpBar.RefreshFallBar(unit.DeckUnitTotalStat.FallCurrentCount);
+        _hpBar.RefreshFallBar(unit.DeckUnitTotalStat.FallCurrentCount, FallAnimType.AnimOff);
 
         //_stigmaDescriptionPrefab.SetStigma(unit);
 
