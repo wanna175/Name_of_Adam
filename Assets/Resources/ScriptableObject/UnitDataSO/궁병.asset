@@ -17,10 +17,9 @@ MonoBehaviour:
     CurrentHP: 20
     ATK: 12
     SPD: 70
-    FallCurrentCount: 2
-    FallMaxCount: 4
+    FallCurrentCount: 0
+    FallMaxCount: 2
     ManaCost: 30
-    CurrentUpgradeCount: 0
   _uniqueStigma: []
   _id: "\uAD81\uBCD1"
   _name: Archer

@@ -1,91 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_FallUnit : MonoBehaviour
 {
     [SerializeField] private GameObject _fill;
-    [SerializeField] private Image _redCount;
-    [SerializeField] private Image _whiteCount;
-    [SerializeField] private Image _doubleCount;
-    [SerializeField] private Image _tripleCount;
-    [SerializeField] private Animator anim;
+    [SerializeField] private Image _fallImage;
+    [SerializeField] private Animator _anim;
 
-    private int FallCount = 0;
-    public int GetDouble()
+    private Team _team;
+    private int _fallType = 0; // 0 = 화이트(아군) or 레드(적군), 1 = 남색, 2 = 금색
+
+    public void InitFall(Team team, int fallType)
     {
-        return FallCount;
-    }
-    public void SetAnimation()
-    {
-        anim.SetBool("isBreak", true);
-    }
-    public void FillGauge()
-    {
-        switch (FallCount)
-        {
-            case 1:
-                FallCount--;
-                break;
-            case 2:
-                FallCount--;
-                break;
-            case 3:
-                FallCount--;
-                break;
-        }
-        anim.SetBool("isBreak", true);
+        _team = team;
+        _fallType = fallType;
+
+        _anim.SetInteger("Type", _fallType);
+        _anim.SetBool("IsPlayer", _team.Equals(Team.Player));
     }
 
-    public void EndFillAnim()
+    public void SetVisible(bool isVisible) 
+        => _fallImage.gameObject.SetActive(isVisible);
+
+    public void IncreaseGauge()
     {
-        if (FallCount == 0)
-            this.gameObject.SetActive(false);
-        else if (FallCount == 1)
-        {
-            this._doubleCount.gameObject.SetActive(false);
-            this._tripleCount.gameObject.SetActive(false);
-        }
-        else if (FallCount == 2)
-        {
-            this._tripleCount.gameObject.SetActive(false);
-            this._doubleCount.gameObject.SetActive(true);
-        }
-        anim.Rebind();
+        _anim.SetBool("IsPlay", true);
+        _anim.SetBool("IsBreak", false);
     }
 
-    public void EmptyGauge()
+    public void DecreaseGauge()
     {
-        anim.SetBool("isBreak", false);
-        switch (FallCount)
-        {
-            case 0:
-                this.gameObject.SetActive(true);
-                FallCount++;
-                break;
-            case 1:
-                this._doubleCount.gameObject.SetActive(true);
-                FallCount++;
-                break;
-            case 2:
-                this._tripleCount.gameObject.SetActive(true);
-                FallCount++;
-                break;
-        }
-    }
-
-    public void SwitchCountImage(Team team)
-    {
-        if(team == Team.Player)
-        {
-            _redCount.gameObject.SetActive(false);
-            _whiteCount.gameObject.SetActive(true);
-        }
-        else
-        {
-            _redCount.gameObject.SetActive(true);
-            _whiteCount.gameObject.SetActive(false);
-        }
+        _anim.SetBool("IsPlay", true);
+        _anim.SetBool("IsBreak", true);
     }
 }

@@ -17,10 +17,9 @@ MonoBehaviour:
     CurrentHP: 15
     ATK: 10
     SPD: 20
-    FallCurrentCount: 1
-    FallMaxCount: 4
+    FallCurrentCount: 0
+    FallMaxCount: 3
     ManaCost: 40
-    CurrentUpgradeCount: 0
   _uniqueStigma:
   - {fileID: 3379680801946979821, guid: 87445e5f131ab3c47b2d1a869475a90d, type: 3}
   _id: "\uC8FC\uC2DC\uC790"

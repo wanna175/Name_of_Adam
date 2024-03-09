@@ -146,5 +146,14 @@ public class GameManager : MonoBehaviour
             if (upgradePopup != null)
                 upgradePopup.ResetUpgradeSelectButtons();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (var unit in BattleManager.Data.BattleUnitList)
+            {
+                if (unit.Team == Team.Player)
+                    unit.ChangeFall(-4);
+            }
+        }
     }
 }
