@@ -21,8 +21,8 @@ MonoBehaviour:
     FallMaxCount: 4
     ManaCost: 10
   _uniqueStigma: []
-  _id: Oblation
-  _name: "\uD76C\uC0DD\uC758 \uAF43"
+  _id: "\uD76C\uC0DD\uC758 \uAF43"
+  _name: Oblation
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: ca3039b7641dadc4ba694525b02be063, type: 3}
