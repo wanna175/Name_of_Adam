@@ -119,7 +119,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         //연출하기 애니매이션 끝나면 
         //Debug.Log(GameManager.Data.GameData.DeckUnits);
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
 
         int unitidx = Random.Range(0, 3);
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();

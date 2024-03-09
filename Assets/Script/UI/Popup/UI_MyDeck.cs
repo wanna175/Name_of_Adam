@@ -257,6 +257,7 @@ public class UI_MyDeck : UI_Popup
     //���� ȯ�� �� ������ư...
     public void SetButtonClick()
     {
+        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         _endEvent.Invoke();
     }
 
