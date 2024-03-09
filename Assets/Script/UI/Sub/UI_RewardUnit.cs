@@ -24,23 +24,23 @@ public class UI_RewardUnit : MonoBehaviour
 
     [SerializeField] private FadeController _fadeController;
 
-    public void Init(RewardUnit rewardUnit, int currentFaith, int faithDifference, UnitState unitState)
+    public void Init(RewardUnit rewardUnit, int maxFaith, int curFaith, UnitState unitState)
     {
         _newImage.gameObject.SetActive(unitState == UnitState.New);
         _deadImage.gameObject.SetActive(unitState == UnitState.Dead);
 
         _unitImage.sprite = rewardUnit.Image;
         _unitName.text = rewardUnit.Name;
-        _faithDifference.text = faithDifference.ToString();
+        _faithDifference.text = (rewardUnit.PreFall - curFaith).ToString();
 
-        //for (int i = 0; i < currentFaith - faithDifference; i++)
-        //{
-        //    UI_FallUnit faithObject = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
-        //    faithObject.SwitchCountImage(Team.Player);
+        for (int i = 0; i < maxFaith - rewardUnit.PreFall; i++)
+        {
+            UI_FallUnit faithObject = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
 
-        //    if (i >= currentFaith)
-        //        faithObject.SetAnimation();
-        //}
+            faithObject.InitFall(Team.Player, 0);
+            if (i >= maxFaith - curFaith)
+                faithObject.DecreaseGauge();
+        }
     }
 
     public void FadeIn()

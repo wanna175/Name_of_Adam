@@ -65,7 +65,9 @@ public class BattleUnit : MonoBehaviour
         Action = BattleManager.Data.GetUnitAction(Data.UnitActionType);
         Action.Init();
 
+        SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
 
         _scale = transform.localScale.x;
 
@@ -177,7 +179,7 @@ public class BattleUnit : MonoBehaviour
     public void RefreshHPBar()
     {
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
         _hpBar.RefreshBuff();
     }
 
@@ -296,14 +298,17 @@ public class BattleUnit : MonoBehaviour
         }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
-        DeckUnit.DeckUnitChangedStat.FallCurrentCount = 0;
+        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+
+        Debug.Log($"{BattleUnitTotalStat.FallCurrentCount} / {BattleUnitTotalStat.FallMaxCount}");
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
         Buff.DispelBuff();
+
+        SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.SetFallBar(DeckUnit);
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount());
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
 
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
@@ -514,11 +519,17 @@ public class BattleUnit : MonoBehaviour
     public void ChangeFall(int value)
     {
         if (Fall.IsEdified)
+        {
+            Debug.Log($"{Data.Name} is Edified.");
             return;
+        }
+
+        if (value < 0 && Fall.GetCurrentFallCount() + value < 0)
+            value = -Fall.GetCurrentFallCount(); // 음수 방지
 
         Fall.ChangeFall(value);
-        DeckUnit.DeckUnitChangedStat.FallCurrentCount += value;
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount());
+        DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
     }
 
     public virtual BattleUnit GetOriginalUnit() => this;

@@ -151,7 +151,8 @@ public class GameManager : MonoBehaviour
         {
             foreach (var unit in BattleManager.Data.BattleUnitList)
             {
-                unit.ChangeFall(-1);
+                if (unit.Team == Team.Player)
+                    unit.ChangeFall(-4);
             }
         }
     }

@@ -20,7 +20,7 @@ public class UI_HPBar : UI_Base
 
     private List<UI_FallUnit> _fallGauge = new();
     private int _fallCount;
-    private int _currentIndex;
+    private int _currentIndex; // 4개의 보석 중 Change가 발생할 될 보석 위치
 
     private List<UI_Buff> _buffBlockList = new();
     private int _rotationCurrent = 0;
@@ -77,6 +77,7 @@ public class UI_HPBar : UI_Base
     public void SetFallBar(DeckUnit unit) // unit FallMaxCount에 따라서 일단 fallbar를 셋팅한다.
     {
         int maxFallNum = unit.DeckUnitTotalStat.FallMaxCount;
+        int curFallNum = unit.DeckUnitTotalStat.FallCurrentCount;
 
         if (maxFallNum > 4 && _team == Team.Player)
         {
@@ -87,8 +88,8 @@ public class UI_HPBar : UI_Base
         foreach (UI_FallUnit listedFall in _fallGauge)
             Destroy(listedFall.gameObject);
         _fallGauge.Clear();
-        _fallCount = 0;
-        _currentIndex = maxFallNum - 1;
+        _fallCount = curFallNum;
+        _currentIndex = maxFallNum - curFallNum - 1;
 
         // 보석 생성 및 초기화
         for (int i = 0; i < maxFallNum; i++)
@@ -97,11 +98,14 @@ public class UI_HPBar : UI_Base
             UI_FallUnit newObject = GameObject.Instantiate(_fallGaugeUnit, _fallGrids[fallType]).GetComponent<UI_FallUnit>();
 
             newObject.InitFall(_team, fallType);
+            if (i >= maxFallNum - curFallNum)
+                newObject.SetVisible(false);
+
             _fallGauge.Add(newObject);
         }
     }
 
-    public void RefreshFallBar(int current, FallAnimType fallAnimType = FallAnimType.AnimOn)
+    public void RefreshFallBar(int current, FallAnimType fallAnimType)
     {
         int gap = current - _fallCount; // 신앙 보석 차이
         int count = Mathf.Abs(gap);
@@ -114,12 +118,12 @@ public class UI_HPBar : UI_Base
                 switch (fallAnimType)
                 {
                     case FallAnimType.AnimOn:
-                        this.gameObject.SetActive(true);
+                        _fallGauge[_currentIndex].SetVisible(true);
                         _fallGauge[_currentIndex].DecreaseGauge(); 
                         break;
 
                     case FallAnimType.AnimOff: 
-                        _fallGauge[_currentIndex].gameObject.SetActive(false); 
+                        _fallGauge[_currentIndex].SetVisible(false);
                         break;
                 }
                 _fallCount++;
@@ -127,20 +131,20 @@ public class UI_HPBar : UI_Base
             }
             else
             {
-                // 신앙 증가 = 보석 복구 (역순)
+                // 신앙 증가 = 보석 복구 (순)
+                _fallCount--;
+                _currentIndex++;
                 switch (fallAnimType)
                 {
                     case FallAnimType.AnimOn:
-                        this.gameObject.SetActive(true);
+                        _fallGauge[_currentIndex].SetVisible(true);
                         _fallGauge[_currentIndex].IncreaseGauge();
                         break;
 
                     case FallAnimType.AnimOff:
-                        _fallGauge[_currentIndex].gameObject.SetActive(false);
+                        _fallGauge[_currentIndex].SetVisible(false);
                         break;
                 }
-                _fallCount--;
-                _currentIndex++;
             }
         }
     }
