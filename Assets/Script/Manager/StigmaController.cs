@@ -73,11 +73,13 @@ public class StigmaController
         Stigma stigma;
         int randNum = Random.Range(0, 100);
 
-        if (_tier3StigmaList.Count > 0 && randNum >= probability[0])
+        /*
+        if (_tier3StigmaList.Count > 0 && randNum >= probability[0] )
         {
             stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
-        }
-        else if (_tier2StigmaList.Count > 0 && randNum >= probability[1])
+        }현재 3티어 낙인은 없음
+        */
+        if (_tier2StigmaList.Count > 0 && randNum >= probability[1])
         {
             stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
         }
