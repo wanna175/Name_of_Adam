@@ -54,16 +54,16 @@ public struct Stat
     }
 }
 
-public class RewardUnit
+public struct RewardUnit
 {
-    public string Name { get; }
-    public int Faith { get; set; }//diff
-    public Sprite Image { get; }
+    public string Name;
+    public int PreFall;
+    public Sprite Image;
 
-    public RewardUnit(string name, int faith, Sprite image)
+    public RewardUnit(string name, int preFall, Sprite image)
     {
         Name = name;
-        Faith = faith;
+        PreFall = preFall;
         Image = image;
     }
 }
@@ -473,4 +473,10 @@ public enum CutSceneType
     NPC_Upgrade_Corrupt,
     NPC_Stigma_Corrupt,
     NPC_Harlot_Corrupt,
+}
+
+public enum FallAnimType
+{
+    AnimOn,
+    AnimOff
 }

@@ -192,14 +192,16 @@ public class OutGameDataContainer : MonoBehaviour
             }
         }
 
+        Debug.Log($"{unit.Data.Name} Unit Get");
+
+        unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+
         newUnit.UnitName = unit.Data.ID;
         newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
-        newUnit.UpgradedStat.FallCurrentCount = 4-unit.Data.RawStat.FallMaxCount;
         newUnit.IsMainDeck = false;
         newUnit.Stigmata = unit.GetStigmaSaveData();
         newUnit.Upgrades = unit.GetUpgradeData();
 
-        Debug.Log(newUnit.UnitName);
         _data.HallUnit.Add(newUnit);
         SaveData();
 

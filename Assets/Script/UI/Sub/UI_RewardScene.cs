@@ -24,18 +24,16 @@ public class UI_RewardScene : MonoBehaviour
             if (BattleManager.Data.BattlePrevUnitDict.TryGetValue(afterBattleEndUnits[i].UnitID, out RewardUnit prevUnit))
             {
                 //기존에 있던 유닛
-                int faithDifference = prevUnit.Faith - afterBattleEndUnits[i].DeckUnitStat.FallCurrentCount;
+                SetContent(i, prevUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.Default);
 
-                SetContent(i, prevUnit, 4 - afterBattleEndUnits[i].DeckUnitStat.FallCurrentCount, faithDifference, UnitState.Default);
                 BattleManager.Data.BattlePrevUnitDict.Remove(afterBattleEndUnits[i].UnitID);
             }
             else
             {
                 //새로 플레이어 덱에 들어온 유닛
-                RewardUnit newUnit = new(afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
+                RewardUnit newUnit = new RewardUnit(afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
 
-                int faithDifference = afterBattleEndUnits[i].Data.RawStat.FallMaxCount - afterBattleEndUnits[i].Data.RawStat.FallCurrentCount - afterBattleEndUnits[i].DeckUnitStat.FallCurrentCount;
-                SetContent(i, newUnit, 4 - afterBattleEndUnits[i].DeckUnitStat.FallCurrentCount, faithDifference, UnitState.New);
+                SetContent(i, newUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.New);
             }
         }
 
@@ -50,7 +48,7 @@ public class UI_RewardScene : MonoBehaviour
         BattleManager.Data.BattlePrevUnitDict.Clear();
     }
 
-    public void SetContent(int idx, RewardUnit rewardUnit, int currentFaith, int faithDifference, UnitState unitState)
+    public void SetContent(int idx, RewardUnit rewardUnit, int maxFaith, int currentFaith, UnitState unitState)
     {
         if (idx > _rewardUnitList.Count-1)
         {
@@ -59,7 +57,7 @@ public class UI_RewardScene : MonoBehaviour
         }
 
         _rewardUnitList[idx].gameObject.SetActive(true);
-        _rewardUnitList[idx].Init(rewardUnit, currentFaith, faithDifference, unitState);
+        _rewardUnitList[idx].Init(rewardUnit, maxFaith, currentFaith, unitState);
     }
 
     public void SetFadeIn(int idx)

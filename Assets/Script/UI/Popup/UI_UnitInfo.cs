@@ -115,12 +115,14 @@ public class UI_UnitInfo : UI_Popup
                                     "Attack: " + _unit.DeckUnitTotalStat.ATK.ToString() + attackChange + "\n" +
                                     "Speed: " + _unit.DeckUnitTotalStat.SPD.ToString() + speedChange;
 
-        for (int i = _unit.DeckUnitTotalStat.FallCurrentCount; i < _unit.DeckUnitTotalStat.FallMaxCount; i++)
+        for (int i = 0; i < 4; i++)
         {
             UI_FallUnit fu = GameObject.Instantiate(_fallGaugePrefab, _unitInfoFallGrid).GetComponent<UI_FallUnit>();
-            fu.SwitchCountImage(Team.Player);
-            fu.EmptyGauge();
+            int fallType = i / 4;
 
+            fu.InitFall(Team.Player, fallType);
+            if (i >= _unit.DeckUnitTotalStat.FallMaxCount - _unit.DeckUnitTotalStat.FallCurrentCount)
+                fu.SetVisible(false);
         }
 
         List<Stigma> stigmas = _unit.GetStigma();
