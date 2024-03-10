@@ -6,11 +6,11 @@ public class Buff_Tailwind : Buff
     {
         _buffEnum = BuffEnum.Tailwind;
 
-        _name = "Tailwind";
+        _name = "Speed Increase";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
 
-        _description = "All allies in the same row as the summoner gain a one-time speed increase upon summoning.";
+        _description = "Speed Increase Info";
 
         _count = 1;
 

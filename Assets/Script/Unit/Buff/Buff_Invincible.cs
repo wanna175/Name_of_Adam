@@ -9,7 +9,7 @@ public class Buff_Invincible : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Invincible_Sprite");
 
-        _description = "Invalidates damage.";
+        _description = "Invincibility Info";
 
         _count = 1;
 

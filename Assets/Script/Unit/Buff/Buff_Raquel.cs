@@ -6,11 +6,11 @@ public class Buff_Raquel : Buff
     {
         _buffEnum = BuffEnum.Raquel;
 
-        _name = "∂Û«Ô";
+        _name = "Rahel";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raquel_Sprite");
 
-        _description = "∂Û«Ô.";
+        _description = "Rahel Info";
 
         _count = -1;
 

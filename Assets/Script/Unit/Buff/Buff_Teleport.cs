@@ -12,7 +12,7 @@ public class Buff_Teleport : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Teleport_Sprite");
 
-        _description = "Becomes able to move to any desired position.";
+        _description = "Sacred Step Info";
 
         _count = 1;
 

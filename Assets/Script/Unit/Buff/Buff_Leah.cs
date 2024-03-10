@@ -6,11 +6,11 @@ public class Buff_Leah : Buff
     {
         _buffEnum = BuffEnum.Leah;
 
-        _name = "레아";
+        _name = "Lea";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Leah_Sprite");
 
-        _description = "레아.";
+        _description = "Lea Info";
 
         _count = -1;
 

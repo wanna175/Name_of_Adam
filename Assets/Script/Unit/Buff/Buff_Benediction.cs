@@ -11,7 +11,7 @@ public class Buff_Benediction : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
 
-        _description = "Decreases the enemy's faith upon attacking. (Unable to remove)";
+        _description = "Divine Info";
 
         _count = -1;
 
