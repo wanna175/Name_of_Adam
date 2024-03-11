@@ -6,23 +6,23 @@ using TMPro;
 
 public class UI_Option : UI_Popup
 {
-    [SerializeField] private TMP_Dropdown resolutionDropdown;
-    [SerializeField] private TMP_Dropdown languageDropdown;
-    [SerializeField] private Toggle WindowToggle;
+    [SerializeField] private TMP_Dropdown _resolutionDropdown;
+    [SerializeField] private TMP_Dropdown _languageDropdown;
+    [SerializeField] private Toggle _windowToggle;
 
-    [SerializeField] private Slider masterSlider;
-    [SerializeField] private Slider BGMSlider;
-    [SerializeField] private Slider SESlider;
+    [SerializeField] private ClickableSlider _masterSlider;
+    [SerializeField] private ClickableSlider _bgmSlider;
+    [SerializeField] private ClickableSlider _seSlider;
 
-    [SerializeField] private GameObject UI_Credit;
+    [SerializeField] private GameObject _credit;
 
-    private List<Resolution> resolutions;
-    private int currentLanguage;
-    private int currentResolution;
-    private bool isWindowed = false;
-    private float masterPower;
-    private float BGMPower;
-    private float SEPower;
+    private List<Resolution> _resolutions;
+    private int _currentLanguage;
+    private int _currentResolution;
+    private bool _isWindowed = false;
+    private float _masterPower;
+    private float _bgmPower;
+    private float _sePower;
 
     private void Update()
     {
@@ -42,41 +42,41 @@ public class UI_Option : UI_Popup
     private void InitUI()
     {
         // 저장된 데이터 불러오기
-        resolutions = GameManager.OutGameData.GetAllResolution();
-        currentLanguage = GameManager.OutGameData.GetLanguage();
-        currentResolution = GameManager.OutGameData.GetResolutionIndex();
-        isWindowed = GameManager.OutGameData.IsWindowed();
+        _resolutions = GameManager.OutGameData.GetAllResolution();
+        _currentLanguage = GameManager.OutGameData.GetLanguage();
+        _currentResolution = GameManager.OutGameData.GetResolutionIndex();
+        _isWindowed = GameManager.OutGameData.IsWindowed();
 
-        masterPower = GameManager.OutGameData.GetMasterSoundPower();
-        BGMPower = GameManager.OutGameData.GetBGMSoundPower();
-        SEPower = GameManager.OutGameData.GetSESoundPower();
+        _masterPower = GameManager.OutGameData.GetMasterSoundPower();
+        _bgmPower = GameManager.OutGameData.GetBGMSoundPower();
+        _sePower = GameManager.OutGameData.GetSESoundPower();
 
         // UI 세팅
-        languageDropdown.onValueChanged.AddListener(GameManager.Locale.LanguageChanged);
-        resolutionDropdown.onValueChanged.AddListener(ResolutionDropdownChanged);
-        resolutionDropdown.options.Clear();
+        _languageDropdown.onValueChanged.AddListener(GameManager.Locale.LanguageChanged);
+        _resolutionDropdown.onValueChanged.AddListener(ResolutionDropdownChanged);
+        _resolutionDropdown.options.Clear();
 
-        foreach (var resolution in resolutions)
+        foreach (var resolution in _resolutions)
         {
             TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
             option.text = $"{resolution.width} x {resolution.height}";
-            resolutionDropdown.options.Add(option);
+            _resolutionDropdown.options.Add(option);
         }
 
-        languageDropdown.value = currentLanguage;
-        resolutionDropdown.RefreshShownValue();
-        resolutionDropdown.value = currentResolution;
+        _languageDropdown.value = _currentLanguage;
+        _resolutionDropdown.RefreshShownValue();
+        _resolutionDropdown.value = _currentResolution;
 
-        WindowToggle.onValueChanged.AddListener(WindowToggleChanged);
-        WindowToggle.isOn = isWindowed;
+        _windowToggle.onValueChanged.AddListener(WindowToggleChanged);
+        _windowToggle.isOn = _isWindowed;
 
-        masterSlider.onValueChanged.AddListener(MasterSliderChanged);
-        BGMSlider.onValueChanged.AddListener(BGMSliderChanged);
-        SESlider.onValueChanged.AddListener(SESliderChanged);
+        _masterSlider.Slider.onValueChanged.AddListener(MasterSliderChanged);
+        _bgmSlider.Slider.onValueChanged.AddListener(BGMSliderChanged);
+        _seSlider.Slider.onValueChanged.AddListener(SESliderChanged);
 
-        masterSlider.value = masterPower;
-        BGMSlider.value = BGMPower;
-        SESlider.value = SEPower;
+        _masterSlider.Slider.value = _masterPower;
+        _bgmSlider.Slider.value = _bgmPower;
+        _seSlider.Slider.value = _sePower;
     }
 
     public void LanguageDropdownChanged()
@@ -93,13 +93,13 @@ public class UI_Option : UI_Popup
     private void WindowToggleChanged(bool isOn)
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        isWindowed = isOn;
-        GameManager.OutGameData.SetWindow(isWindowed);
+        _isWindowed = isOn;
+        GameManager.OutGameData.SetWindow(_isWindowed);
     }
 
     private void MasterSliderChanged(float power)
     {
-        masterPower = power;
+        _masterPower = power;
         GameManager.OutGameData.SetMasterSoundPower(power);
         GameManager.Sound.SetSoundVolume(Sounds.BGM);
         GameManager.Sound.SetSoundVolume(Sounds.Effect);
@@ -107,14 +107,14 @@ public class UI_Option : UI_Popup
 
     private void BGMSliderChanged(float power)
     {
-        BGMPower = power;
+        _bgmPower = power;
         GameManager.OutGameData.SetBGMSoundPower(power);
         GameManager.Sound.SetSoundVolume(Sounds.BGM);
     }
 
     private void SESliderChanged(float power)
     {
-        SEPower = power;
+        _sePower = power;
         GameManager.OutGameData.SetSESoundPower(power);
         GameManager.Sound.SetSoundVolume(Sounds.Effect);
     }
@@ -129,7 +129,7 @@ public class UI_Option : UI_Popup
     public void CreditOption()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_Credit.SetActive(true);
+        _credit.SetActive(true);
     }
 
     public void QuitOption()
