@@ -499,7 +499,7 @@ public class BattleManager : MonoBehaviour
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
             GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
 
-        if (unit.Team == Team.Enemy)
+        if (unit.Team == Team.Enemy && !unit.Data.IsBattleOnly)
         {
             GameManager.Data.GameData.FallenUnits.Add(unit.DeckUnit);
         }
