@@ -14,7 +14,7 @@ public class PlayerSkill_02_01 : PlayerSkill
         BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
 
         GameManager.Sound.Play("UI/PlayerSkillSFX/Punishment");
-        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Punishment", BattleManager.Field.GetTilePosition(coord));
                 
         return true;
     }

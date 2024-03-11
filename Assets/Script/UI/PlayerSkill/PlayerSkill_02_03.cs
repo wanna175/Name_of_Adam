@@ -10,7 +10,7 @@ public class PlayerSkill_02_03 : PlayerSkill
     public override bool Use(Vector2 coord)
     {
         GameManager.Sound.Play("UI/PlayerSkillSFX/Advent");
-        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+        //GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Advent", BattleManager.Field.GetTilePosition(coord));
 
         SpawnData spawnData = new();
         spawnData.unitData = createUnit.Data;
