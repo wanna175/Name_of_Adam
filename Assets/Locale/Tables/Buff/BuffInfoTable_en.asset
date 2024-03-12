@@ -116,6 +116,12 @@ MonoBehaviour:
       stacks: When attacked by Elieus or Yana, one''s faith decreases by 1.'
     m_Metadata:
       m_Items: []
+  - m_Id: 10358173048393728
+    m_Localized: 'This Unit is Edified.
+
+      Faith no longer decrease.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
