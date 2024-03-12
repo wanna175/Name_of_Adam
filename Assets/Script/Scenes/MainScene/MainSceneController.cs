@@ -52,7 +52,7 @@ public class MainSceneController : MonoBehaviour
         else
         {
             GameManager.Data.DeckClear();
-            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
             Destroy(GameManager.Instance.gameObject);
 
             GameManager.SaveManager.DeleteSaveData();
