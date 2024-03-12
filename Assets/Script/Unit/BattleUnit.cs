@@ -207,32 +207,6 @@ public class BattleUnit : MonoBehaviour
                 return;
         }
 
-        // 컷씬 관련
-        if (DeckUnit.Data.Rarity == Rarity.Boss)
-        {
-             switch (DeckUnit.Data.ID)
-            {
-                case "바누엘": 
-                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
-                    {
-                        GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
-                        BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
-                        GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
-                    }
-                    break;
-
-                case "호루스":
-                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
-                    {
-                        GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Dead, true);
-                        BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
-                    }
-                    break;
-
-                default: Debug.Log($"{DeckUnit.Data.ID} 보스 컷씬 출력 실패"); break;
-            }
-        }
-
         BattleManager.Instance.UnitDeadEvent(this);
         foreach (ConnectedUnit unit in ConnectedUnits)
         {

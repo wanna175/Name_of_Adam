@@ -58,6 +58,12 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            //우클릭
+            _battleUI.CancelAllSelect();
+        }
+
         _phase.OnUpdate();
     }
 
@@ -440,22 +446,6 @@ public class BattleManager : MonoBehaviour
     {
         _battleData.BattleUnitList.Remove(unit);
         _field.ExitTile(unit.Location);
-
-        if (unit.Data.ID == "호루스")
-        {
-            GameManager.Data.GameData.Progress.HorusKill++;
-        }
-
-        if (unit.IsConnectedUnit)
-        {
-            if (unit.Data.ID == "바누엘")
-            {
-                GameManager.Data.GameData.Progress.PhanuelKill++;
-            }
-
-            return;
-        }
-
         _battleData.BattleOrderRemove(unit);
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
@@ -471,6 +461,30 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.Data.GameData.Progress.EliteKill++;
             }
+            else if (unit.DeckUnit.Data.Rarity == Rarity.Boss)
+            {
+                switch (unit.DeckUnit.Data.ID)
+                {
+                    case "바누엘":
+                        if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
+                        {
+                            GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
+                            BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
+                            GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
+                            GameManager.Data.GameData.Progress.PhanuelKill++;
+                        }
+                        break;
+                    case "호루스":
+                        if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
+                        {
+                            GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Dead, true);
+                            BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
+                        }
+                        GameManager.Data.GameData.Progress.HorusKill++;
+                        break;
+                    default: Debug.Log($"{unit.DeckUnit.Data.ID} 보스 컷씬 출력 실패"); break;
+                }
+            }
 
             GameManager.Data.DarkEssenseChage(unit.Data.DarkEssenseDrop);
         }
@@ -485,7 +499,7 @@ public class BattleManager : MonoBehaviour
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
             GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
 
-        if (unit.Team == Team.Enemy)
+        if (unit.Team == Team.Enemy && !unit.Data.IsBattleOnly)
         {
             GameManager.Data.GameData.FallenUnits.Add(unit.DeckUnit);
         }
@@ -527,9 +541,9 @@ public class BattleManager : MonoBehaviour
 
             if (isBossClear)
             {
-                for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
+                while (true)
                 {
-                    BattleUnit remainUnit = _battleData.BattleUnitList.Find(x => x.Team == Team.Enemy && x != unit);
+                    BattleUnit remainUnit = _battleData.BattleUnitList.Find(findUnit => findUnit.Team == Team.Enemy && findUnit != unit && !findUnit.FallEvent);
                     if (remainUnit == null)
                         break;
 

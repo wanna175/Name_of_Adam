@@ -14,6 +14,7 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private TMP_Text _pageText;
     [SerializeField] private GameObject _prePageButton;
     [SerializeField] private GameObject _postPageButton;
+    [SerializeField] private GameObject _myDeckButton;
 
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
@@ -26,17 +27,16 @@ public class UI_MyDeck : UI_Popup
     private int _currentPageIndex;
     private int _maxPageIndex;
 
-    public void Init(bool battle = false, Action<DeckUnit> onSelect = null, CUR_EVENT eventNum = CUR_EVENT.NONE, Action endEvent=null)
+    public void Init(bool isDeckButtonClick = false, Action<DeckUnit> onSelect = null, CUR_EVENT eventNum = CUR_EVENT.NONE, Action endEvent=null)
     {
         _setButton.SetActive(false);
 
         if (eventNum == CUR_EVENT.RECEIVE_STIGMA)
             _quitButton.SetActive(false);
 
-        if (battle)
-            _playerDeck = BattleManager.Data.PlayerDeck;
-        else
-            _playerDeck = GameManager.Data.GetDeck();
+        _myDeckButton.SetActive(isDeckButtonClick);
+
+        _playerDeck = GameManager.Data.GetDeck();
 
         _currentPageIndex = 0;
         _maxPageIndex = (_playerDeck.Count - 1) / 10;
