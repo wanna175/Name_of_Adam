@@ -11,7 +11,7 @@ public class Buff_Karma : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
 
-        _description = "When attacked, reduces the faith of the attacking enemy unit by 1.";
+        _description = "Karma Info";
 
         _count = 2;
 

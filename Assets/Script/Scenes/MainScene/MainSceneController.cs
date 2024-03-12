@@ -52,7 +52,7 @@ public class MainSceneController : MonoBehaviour
         else
         {
             GameManager.Data.DeckClear();
-            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
             Destroy(GameManager.Instance.gameObject);
 
             GameManager.SaveManager.DeleteSaveData();
@@ -112,7 +112,7 @@ public class MainSceneController : MonoBehaviour
     {
         // 게임오브젝트를 생성해서 보내주기 & 생성한 오브젝트가 맵 선택 씬에 도달했을 때 활성화되서 튜토 이미지 띄우고 자신 삭제하기
         GameManager.Data.DeckClear();
-        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
         Destroy(GameManager.Instance.gameObject);
 
         GameManager.SaveManager.DeleteSaveData();

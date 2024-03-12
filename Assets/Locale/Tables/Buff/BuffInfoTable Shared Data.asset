@@ -16,19 +16,19 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 854d29d828bd5fa44b2570785eca7734
   m_Entries:
   - m_Id: 4755091456
-    m_Key: Decreases the enemy's faith upon attacking. (Unable to remove)
+    m_Key: Divine Info
     m_Metadata:
       m_Items: []
   - m_Id: 54424039424
-    m_Key: Attacks with a 50% increase in damage.
+    m_Key: Attack Increase Info
     m_Metadata:
       m_Items: []
   - m_Id: 87252856832
-    m_Key: Attacks first regardless of speed.
+    m_Key: Speed Increase Info
     m_Metadata:
       m_Items: []
   - m_Id: 115275001856
-    m_Key: Damage triples, but dies after attacking.
+    m_Key: Death Strike Info
     m_Metadata:
       m_Items: []
   - m_Id: 143120986112
@@ -36,27 +36,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 252978196480
-    m_Key: Withstands once with the health of 1, when reaching death.
+    m_Key: Immortality Info
     m_Metadata:
       m_Items: []
   - m_Id: 286473908224
-    m_Key: Invalidates damage.
+    m_Key: Invincibility Info
     m_Metadata:
       m_Items: []
   - m_Id: 315448160256
-    m_Key: Becomes able to move to any desired position.
+    m_Key: Sacred Step Info
     m_Metadata:
       m_Items: []
   - m_Id: 347706552320
-    m_Key: Unable to move.
+    m_Key: Stun Info
     m_Metadata:
       m_Items: []
   - m_Id: 374298439680
-    m_Key: Decreases the enemy's faith by 1 upon attacking.
+    m_Key: Malevolence Info
     m_Metadata:
       m_Items: []
   - m_Id: 403427880960
-    m_Key: Faith decreases by 1 upon being attacked by Rahel and Lea.
+    m_Key: Curse Info
     m_Metadata:
       m_Items: []
   - m_Id: 429461925888
@@ -70,7 +70,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 483732025344
-    m_Key: When attacked, reduces the faith of the attacking enemy unit by 1.
+    m_Key: Karma Info
     m_Metadata:
       m_Items: []
   - m_Id: 527289872384
@@ -106,8 +106,12 @@ MonoBehaviour:
     m_Key: Dust Info
     m_Metadata:
       m_Items: []
-  - m_Id: 10358173048393728
-    m_Key: Edified Info
+  - m_Id: 11610392982515712
+    m_Key: Rahel Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11610555104948224
+    m_Key: Lea Info
     m_Metadata:
       m_Items: []
   m_Metadata:

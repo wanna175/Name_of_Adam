@@ -10,7 +10,7 @@ public class Buff_Curse : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Curse_Sprite");
 
-        _description = "Faith decreases by 1 after every turn of this unit.";
+        _description = "Curse Info";
 
         _count = -1;
 

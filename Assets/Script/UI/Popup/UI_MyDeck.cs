@@ -71,14 +71,6 @@ public class UI_MyDeck : UI_Popup
         List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
 
-        _currentPageIndex = 0;
-        _maxPageIndex = (_hallDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
-
-        ClearCard();
-        SetPageAllUI();
-
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
@@ -103,23 +95,21 @@ public class UI_MyDeck : UI_Popup
         if (onSelect != null)
             _onSelect = onSelect;
 
+        _currentPageIndex = 0;
+        _maxPageIndex = (_playerDeck.Count - 1) / 10;
+        if (_maxPageIndex < 0)
+            _maxPageIndex = 0;
+
+        ClearCard();
         SetCard();
+        SetPageAllUI();
     }
 
     public void HallDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
     {
         List<DeckUnit> eliteDeck = new();
         List<DeckUnit> normalDeck = new();
-
         _hallDeck = GameManager.Data.GetDeck();
-
-        _currentPageIndex = 0;
-        _maxPageIndex = (_hallDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
-
-        ClearCard();
-        SetPageAllUI();
 
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
@@ -140,12 +130,21 @@ public class UI_MyDeck : UI_Popup
             _playerDeck = eliteDeck;
         }
         else
+        {
             _playerDeck = normalDeck;
+        }
 
         if (onSelect != null)
             _onSelect = onSelect;
 
+        _currentPageIndex = 0;
+        _maxPageIndex = (_playerDeck.Count - 1) / 10;
+        if (_maxPageIndex < 0)
+            _maxPageIndex = 0;
+
+        ClearCard();
         SetCard();
+        SetPageAllUI();
     }
 
     public void HallEliteDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
@@ -155,14 +154,6 @@ public class UI_MyDeck : UI_Popup
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         _hallDeck = GameManager.Data.GetDeck();
-
-        _currentPageIndex = 0;
-        _maxPageIndex = (_playerDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
-
-        ClearCard();
-        SetPageAllUI();
 
         foreach (DeckUnit unit in _hallDeck)
         {
@@ -184,7 +175,14 @@ public class UI_MyDeck : UI_Popup
         if (onSelect != null)
             _onSelect = onSelect;
 
+        _currentPageIndex = 0;
+        _maxPageIndex = (_playerDeck.Count - 1) / 10;
+        if (_maxPageIndex < 0)
+            _maxPageIndex = 0;
+
+        ClearCard();
         SetCard();
+        SetPageAllUI();
     }
 
     public void SetCard() 
