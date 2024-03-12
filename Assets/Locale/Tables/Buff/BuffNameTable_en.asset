@@ -90,6 +90,14 @@ MonoBehaviour:
     m_Localized: Curse
     m_Metadata:
       m_Items: []
+  - m_Id: 11612092443193344
+    m_Localized: Rahel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11612109350432768
+    m_Localized: Lea
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

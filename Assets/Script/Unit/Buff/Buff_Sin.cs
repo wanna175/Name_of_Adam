@@ -8,7 +8,7 @@ public class Buff_Sin : Buff
 
         _name = "Malevolence";
 
-        _description = "Decreases the enemy's faith by 1 upon attacking.";
+        _description = "Malevolence Info";
 
         _count = -1;
 

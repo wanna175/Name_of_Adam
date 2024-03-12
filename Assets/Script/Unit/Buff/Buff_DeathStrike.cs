@@ -10,7 +10,7 @@ public class Buff_DeathStrike : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
 
-        _description = "Damage triples, but dies after attacking.";
+        _description = "Death Strike Info";
 
         _count = -1;
 

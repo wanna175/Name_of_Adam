@@ -9,7 +9,7 @@ public class Buff_Stun : Buff
 
         _name = "Stun";
 
-        _description = "Unable to move.";
+        _description = "Stun Info";
 
         _count = 1;
 

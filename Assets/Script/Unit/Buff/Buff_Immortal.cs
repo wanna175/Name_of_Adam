@@ -9,7 +9,7 @@ public class Buff_Immortal : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Immortal_Sprite");
 
-        _description = "Withstands once with the health of 1, when reaching death.";
+        _description = "Immortality Info";
 
         _count = 1;
 

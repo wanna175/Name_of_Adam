@@ -11,7 +11,7 @@ public class Buff_Raise : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raise_Sprite");
 
-        _description = "Attacks with a 50% increase in damage.";
+        _description = "Attack Increase Info";
 
         _count = 1;
 
