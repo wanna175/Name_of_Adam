@@ -541,7 +541,7 @@ public class BattleManager : MonoBehaviour
 
             if (isBossClear)
             {
-                for (int i = 0; i < _battleData.BattleUnitList.Count; i++)
+                while (true)
                 {
                     BattleUnit remainUnit = _battleData.BattleUnitList.Find(findUnit => findUnit.Team == Team.Enemy && findUnit != unit && !findUnit.FallEvent);
                     if (remainUnit == null)

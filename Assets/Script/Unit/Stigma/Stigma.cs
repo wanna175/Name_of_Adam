@@ -51,5 +51,4 @@ public class Stigma : MonoBehaviour
 
         return;
     }
-
 }
