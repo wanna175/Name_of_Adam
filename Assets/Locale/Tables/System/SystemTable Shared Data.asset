@@ -10,55 +10,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: MainSceneTable Shared Data
+  m_Name: SystemTable Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: MainSceneTable
-  m_TableCollectionNameGuidString: 80d80ac9151ba6345aad2675d9ed0565
+  m_TableCollectionName: SystemTable
+  m_TableCollectionNameGuidString: e3a7006d7d035524c8c730bd01538f89
   m_Entries:
-  - m_Id: 12645994496
-    m_Key: New Game
+  - m_Id: 5593952256
+    m_Key: PhanuelClear
     m_Metadata:
       m_Items: []
-  - m_Id: 57210474496
-    m_Key: Continue
+  - m_Id: 3364736528384
+    m_Key: HorusClear
     m_Metadata:
       m_Items: []
-  - m_Id: 87363325952
-    m_Key: Sanctum
+  - m_Id: 3408147574784
+    m_Key: PhanuelTooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 197354754048
-    m_Key: Divine Hall
+  - m_Id: 3412371238912
+    m_Key: HorusTooltip
     m_Metadata:
       m_Items: []
-  - m_Id: 580672196608
-    m_Key: Setting
-    m_Metadata:
-      m_Items: []
-  - m_Id: 651136503808
-    m_Key: Quit
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7238332881629184
+  - m_Id: 7268882771968
     m_Key: Restart
     m_Metadata:
       m_Items: []
-  - m_Id: 7238564579176448
-    m_Key: No
+  - m_Id: 17209785905152
+    m_Key: StigmaMax
     m_Metadata:
       m_Items: []
-  - m_Id: 7238590810353664
-    m_Key: Yes
+  - m_Id: 17261312929792
+    m_Key: UpgradeMax
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 3866797750321414217
+    rid: 4174612857794068482
   references:
     version: 2
     RefIds:
-    - rid: 3866797750321414217
+    - rid: 4174612857794068482
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1706947691863
+        m_CustomEpoch: 1710326755325

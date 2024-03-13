@@ -196,7 +196,26 @@ public class UI_UnitInfo : UI_Popup
 
         if (_onSelect != null)
         {
-            _onSelect(_unit);
+            switch (_evNum)
+            {
+                case CUR_EVENT.STIGMA:
+                    if (_unit.GetStigmaCount() == 3)
+                    {
+                        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("StigmaMax", () => _onSelect(_unit));
+                        return;
+                    }
+                    break;
+
+                case CUR_EVENT.UPGRADE:
+                    if (_unit.DeckUnitUpgrade.Count == 3 || (_unit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
+                    {
+                        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("UpgradeMax", () => _onSelect(_unit));
+                        return;
+                    }
+                    break;
+            }
+
+            _onSelect(_unit); 
         }
 
         if (currentSceneName().Equals("EventScene") && _evNum != CUR_EVENT.HARLOT_RESTORATION)

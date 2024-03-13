@@ -9,18 +9,23 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 {
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private Transform _grid;
+    [SerializeField] private TextMeshProUGUI _titleText;
 
     private Action _afterPopupAction;
     private DeckUnit _targetUnit;
     private StigmaInterface _sc;
     private int _stigmaCount;
+    private bool _isCanReset;
 
-    public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
+    public void Init(DeckUnit targetUnit, string titleText, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
     {
         _afterPopupAction = afterPopupAction;
         _targetUnit = targetUnit;
         _sc = sc;
         _stigmaCount = stigmaCount;
+        _isCanReset = (titleText.Equals("Select Stigma")) ? true : false;
+
+        _titleText.SetText(GameManager.Locale.GetLocalizedEventScene(titleText));
 
         if (targetUnit == null)
         {
@@ -29,23 +34,6 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         else
         {
             List<Stigma> stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
-            /*if (stigmata != null)
-            {
-                List<Stigma> existStigma = targetUnit.GetStigma();
-
-                foreach (Stigma stigma in stigmata)
-                {
-                    if (!existStigma.Contains(stigma) && stigma != null)
-                    {
-                        stigmaList.Add(stigma);
-                    }
-                }
-            }
-            else
-            {
-                stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
-            }*/
-
             SetStigmaSelectButtons(stigmaList);
         }
     }
@@ -76,6 +64,9 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void ResetStigmaSelectButtons()
     {
+        if (!_isCanReset)
+            return;
+
         List<Stigma> stigmaList = CreateStigmaList(_targetUnit, _stigmaCount);
         
         var buttons = _grid.GetComponentsInChildren<UI_StigmaSelectButton>();
