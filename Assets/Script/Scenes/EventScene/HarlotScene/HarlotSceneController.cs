@@ -167,7 +167,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         Debug.Log("스티그마 꽉 찼을 때 예외처리");
         _isStigmaFull = true;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(true), 0, null, this);
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Full Stigma", _stigmatizeUnit.GetStigma(true), 0, null, this);
     }
 
     public void OnSelectStigmatization(DeckUnit unit)
@@ -178,7 +178,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
             //GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, _stigmaList, 2, null, this);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, "Select Stigma", _stigmaList, 2, null, this);
         }
         else
         {

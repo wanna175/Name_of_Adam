@@ -99,6 +99,25 @@ MonoBehaviour:
     m_Localized: "\uC720\uB2DB\uB2F9"
     m_Metadata:
       m_Items: []
+  - m_Id: 9200786528333824
+    m_Localized: "\uC6D0\uD558\uB294 \uC131\uD754\uC744 \uC120\uD0DD\uD558\uC138\uC694."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200807118172160
+    m_Localized: "\uD574\uB2F9 \uC720\uB2DB\uC740 \uB354 \uC774\uC0C1 \uC131\uD754\uC744
+      \uBD80\uC5EC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4. \uD30C\uAD34\uD560 \uC131\uD754\uC744
+      \uC120\uD0DD\uD558\uC138\uC694."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200825912848384
+    m_Localized: "\uC774\uB3D9\uC2DC\uD0AC \uC131\uD754\uC744 \uC120\uD0DD\uD558\uC138\uC694."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200866241081344
+    m_Localized: "\uC131\uD754\uC744 \uC5B4\uB5A4 \uC720\uB2DB\uC5D0\uAC8C \uC774\uB3D9\uC2DC\uD0AC\uC9C0
+      \uC120\uD0DD\uD558\uC138\uC694."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
