@@ -35,6 +35,14 @@ MonoBehaviour:
     m_Key: Restart
     m_Metadata:
       m_Items: []
+  - m_Id: 17209785905152
+    m_Key: StigmaMax
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17261312929792
+    m_Key: UpgradeMax
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
