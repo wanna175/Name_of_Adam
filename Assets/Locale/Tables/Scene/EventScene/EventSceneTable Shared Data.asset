@@ -111,6 +111,14 @@ MonoBehaviour:
     m_Key: Transfer Stigma Get
     m_Metadata:
       m_Items: []
+  - m_Id: 9460599405473792
+    m_Key: Select Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9460638387335168
+    m_Key: Full Upgrade
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

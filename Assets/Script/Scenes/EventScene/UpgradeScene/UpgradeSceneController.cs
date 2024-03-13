@@ -137,12 +137,12 @@ public class UpgradeSceneController : MonoBehaviour
 
         if (_unit.DeckUnitUpgrade.Count == 3 || (_unit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
         {
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _unit.DeckUnitUpgrade);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _unit.DeckUnitUpgrade, "Full Upgrade");
             _isUpgradeFull = true;
         }
         else
         {
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList, "Select Upgrade");
             _isUpgradeFull = false;
         }
     }
@@ -178,7 +178,7 @@ public class UpgradeSceneController : MonoBehaviour
             unitInfo.Init(null, CUR_EVENT.UPGRADE_EXCEPTION);
 
             _unit.DeckUnitUpgrade.Remove(_unit.DeckUnitUpgrade[select]);
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList, "Select Upgrade");
         }
         else
         {
