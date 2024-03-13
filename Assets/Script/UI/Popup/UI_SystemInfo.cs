@@ -15,8 +15,8 @@ public class UI_SystemInfo : UI_Popup
     {
         _infoText.SetText(GameManager.Locale.GetLocalizedSystem(info));
         _tooltipText.SetText(GameManager.Locale.GetLocalizedSystem(tooltip));
-        _confirmButton.onClick.AddListener(() => GameManager.UI.ClosePopup(this));
-        _confirmButton.onClick.AddListener(ButtonSound);
+        _confirmButton.onClick.AddListener(() => OnDefaultEvent());
+        _confirmButton.onClick.AddListener(() => OnDefaultEvent());
     }
 
     public void Init(string info, string tooltip, Action OnConfirm)
@@ -26,5 +26,9 @@ public class UI_SystemInfo : UI_Popup
         _confirmButton.onClick.AddListener(() => OnConfirm());
     }
 
-    private void ButtonSound() => GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+    private void OnDefaultEvent()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.UI.ClosePopup(this);
+    }
 }

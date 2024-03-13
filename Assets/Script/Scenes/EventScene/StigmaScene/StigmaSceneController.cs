@@ -145,7 +145,8 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     public void IsStigmaFull()
     {
         Debug.Log("스티그마 꽉 찼을 때 예외처리");
-        
+        _isStigmaFull = true;
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Full Stigma", _stigmatizeUnit.GetStigma(true), 0, null, this);
     }
  
     public void OnSelectStigmatization(DeckUnit unit)
