@@ -15,7 +15,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private DeckUnit _targetUnit;
     private StigmaInterface _sc;
     private int _stigmaCount;
-    private bool isCanReset;
+    private bool _isCanReset;
 
     public void Init(DeckUnit targetUnit, string titleText, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
     {
@@ -23,7 +23,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         _targetUnit = targetUnit;
         _sc = sc;
         _stigmaCount = stigmaCount;
-        isCanReset = (titleText.Equals("Select Stigma")) ? true : false;
+        _isCanReset = (titleText.Equals("Select Stigma")) ? true : false;
 
         _titleText.SetText(GameManager.Locale.GetLocalizedEventScene(titleText));
 
@@ -64,7 +64,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void ResetStigmaSelectButtons()
     {
-        if (!isCanReset)
+        if (!_isCanReset)
             return;
 
         List<Stigma> stigmaList = CreateStigmaList(_targetUnit, _stigmaCount);
