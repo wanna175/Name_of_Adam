@@ -95,6 +95,38 @@ MonoBehaviour:
     m_Key: Per Unit
     m_Metadata:
       m_Items: []
+  - m_Id: 9200786528333824
+    m_Key: Select Stigma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200807118172160
+    m_Key: Full Stigma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200825912848384
+    m_Key: Transfer Stigma Give
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200866241081344
+    m_Key: Transfer Stigma Get
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9460599405473792
+    m_Key: Select Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9460638387335168
+    m_Key: Full Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9463979435683840
+    m_Key: Stigma Alert Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9464051367997440
+    m_Key: Upgrade Alert Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

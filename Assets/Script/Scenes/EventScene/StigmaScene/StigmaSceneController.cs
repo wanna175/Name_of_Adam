@@ -139,14 +139,14 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     // 낙인 이동 실행시킬 함수
     public void StigmaTransfer()
     {
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _givestigmatizeUnit.GetStigma());
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Transfer Stigma Get", _givestigmatizeUnit.GetStigma());
     }
 
     public void IsStigmaFull()
     {
         Debug.Log("스티그마 꽉 찼을 때 예외처리");
         _isStigmaFull = true;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(true), 0, null, this);
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Full Stigma", _stigmatizeUnit.GetStigma(true), 0, null, this);
     }
  
     public void OnSelectStigmatization(DeckUnit unit)
@@ -156,7 +156,7 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         if (_stigmatizeUnit.GetStigmaCount()< _stigmatizeUnit._maxStigmaCount)
         {
             Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, "Select Stigma", null, 3, null, this);
         }
         else
         {
@@ -197,8 +197,9 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     public void OnSelectStigmatransfergiver(DeckUnit unit)
     {
         _givestigmatizeUnit = unit;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _givestigmatizeUnit.GetStigma(true),0,null,this);
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Transfer Stigma Give", _givestigmatizeUnit.GetStigma(true),0,null,this);
     }
+
     public void OnStigmaSelected(Stigma stigma)
     {
         if (_isStigmaFull)//스티그마 예외처리

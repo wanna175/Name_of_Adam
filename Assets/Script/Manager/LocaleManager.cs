@@ -72,6 +72,8 @@ public class LocaleManager : MonoBehaviour
 
     public string GetLocalizedUnitName(string unitName) => GetLocalizedString("UnitTable", unitName);
 
+    public string GetLocalizedSystem(string system) => GetLocalizedString("SystemTable", system);
+
     private string GetLocalizedString(string tableName, string key)
     {
         string str = LocalizationSettings.StringDatabase.GetLocalizedString(tableName, key, currentLocale);
