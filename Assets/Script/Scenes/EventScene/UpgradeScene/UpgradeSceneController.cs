@@ -44,7 +44,11 @@ public class UpgradeSceneController : MonoBehaviour
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.UpgradeQuest}");
 
-        if (GameManager.OutGameData.GetVisitUpgrade() == false)
+        int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
+        if (questLevel > 4) 
+            questLevel = 4;
+
+        if (GameManager.OutGameData.GetVisitUpgrade() == false && questLevel != 4)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
             descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
@@ -53,8 +57,6 @@ public class UpgradeSceneController : MonoBehaviour
         }
         else
         {
-            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
-            if (questLevel > 4) questLevel = 4;
             _scripts = GameManager.Data.ScriptData[$"강화소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
             descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
             nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
