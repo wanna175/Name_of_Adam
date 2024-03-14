@@ -12,7 +12,8 @@ public class UI_ESCOption : UI_Popup
     public void OptionButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_Option>().GetComponent<Canvas>().sortingOrder = UIManager.ESCOrder + 1;
+        GameManager.UI.Option = GameManager.UI.ShowPopup<UI_Option>();
+        GameManager.UI.Option.GetComponent<Canvas>().sortingOrder = UIManager.ESCOrder + 1;
         GameManager.UI.IsCanESC = false;
     }
 

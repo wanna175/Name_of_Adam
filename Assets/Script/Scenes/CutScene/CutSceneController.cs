@@ -32,6 +32,10 @@ public class CutSceneController : MonoBehaviour
 
     public void SceneChange()
     {
+        // ESC를 켠 상태라면 ESC를 끄고 씬을 변경합니다.
+        if (GameManager.UI.IsOnESCOption)
+            GameManager.UI.CloseAllOption();
+
         if (cutSceneToDisplay == CutSceneType.NPC_Upgrade_Corrupt || cutSceneToDisplay == CutSceneType.NPC_Stigma_Corrupt || cutSceneToDisplay == CutSceneType.NPC_Harlot_Corrupt)
             SceneChanger.SceneChange("EventScene");
         else

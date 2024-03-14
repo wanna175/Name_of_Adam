@@ -13,7 +13,8 @@ public class UIManager : MonoBehaviour
 
     public bool IsCanESC = true;
     public bool IsOnESCOption = false;
-    private UI_ESCOption ESCOption;
+    public UI_ESCOption ESCOption;
+    public UI_Option Option;
 
     public GameObject Root
     {
@@ -44,6 +45,22 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
             ClosePopup(ESCOption);
         }
+    }
+
+    public void CloseAllOption()
+    {
+        if (ESCOption != null)
+        {
+            ClosePopup(ESCOption);
+            IsOnESCOption = false;
+        }
+
+        if (Option != null)
+        {
+            ClosePopup(Option);
+        }
+
+        Time.timeScale = 1;
     }
 
     public void SetCanvas(GameObject go, bool sort = true)
