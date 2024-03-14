@@ -126,6 +126,12 @@ MonoBehaviour:
       attack.
     m_Metadata:
       m_Items: []
+  - m_Id: 12313325871452160
+    m_Localized: 'This Unit is Edified.
+
+      Faith no longer decrease.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -98,6 +98,10 @@ MonoBehaviour:
     m_Localized: Lea
     m_Metadata:
       m_Items: []
+  - m_Id: 12314845094498304
+    m_Localized: Edified
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
