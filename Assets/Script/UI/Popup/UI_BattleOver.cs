@@ -60,7 +60,7 @@ public class UI_BattleOver : UI_Scene
                 return;
             }
 
-            if (_rewardScene.IsFadeEnd)
+            if (_rewardScene.IsEndCreate)
             {
                 SceneChanger.SceneChange("StageSelectScene");
             }
