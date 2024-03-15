@@ -11,10 +11,8 @@ public class UIManager : MonoBehaviour
     private Stack<UI_Popup> _popupStack = new();
     private UI_Hover _hover;
 
-    public bool IsCanESC = true;
-    public bool IsOnESCOption = false;
-    public UI_ESCOption ESCOption;
-    public UI_Option Option;
+    public Stack<UI_Popup> ESCOPopups = new();
+    public bool IsOnESCOption => ESCOPopups.Count != 0;
 
     public GameObject Root
     {
@@ -29,37 +27,25 @@ public class UIManager : MonoBehaviour
 
     public void OnOffESCOption()
     {
-        if (!IsCanESC)
-            return;
-
-        IsOnESCOption = !IsOnESCOption;
-
         if (IsOnESCOption)
         {
-            Time.timeScale = 0;
-            ESCOption = ShowPopup<UI_ESCOption>();
-            ESCOption.GetComponent<Canvas>().sortingOrder = ESCOrder;
+            ClosePopup(ESCOPopups.Pop());
+            if (!IsOnESCOption)
+                Time.timeScale = 1;
         }
         else
         {
-            Time.timeScale = 1;
-            ClosePopup(ESCOption);
+            var ESCOption = ShowPopup<UI_ESCOption>();
+            ESCOption.GetComponent<Canvas>().sortingOrder = ESCOrder;
+            ESCOPopups.Push(ESCOption);
+            Time.timeScale = 0;
         }
     }
 
     public void CloseAllOption()
     {
-        if (ESCOption != null)
-        {
-            ClosePopup(ESCOption);
-            IsOnESCOption = false;
-        }
-
-        if (Option != null)
-        {
-            ClosePopup(Option);
-        }
-
+        while (ESCOPopups.Count > 0)
+            ClosePopup(ESCOPopups.Pop());
         Time.timeScale = 1;
     }
 

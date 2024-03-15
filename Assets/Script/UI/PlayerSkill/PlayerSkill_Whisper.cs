@@ -10,7 +10,7 @@ public class PlayerSkill_Whisper : PlayerSkill
         GameManager.Sound.Play("UI/PlayerSkillSFX/Whisper");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
         BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
-        targetUnit.ChangeFall(12);
+        targetUnit.ChangeFall(1);
         return false;
     }
 
