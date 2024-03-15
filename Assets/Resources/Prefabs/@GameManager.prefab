@@ -447,6 +447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsCanESC: 1
   IsOnESCOption: 0
+  ESCOption: {fileID: 0}
+  Option: {fileID: 0}
 --- !u!1 &8519637854657494663
 GameObject:
   m_ObjectHideFlags: 0

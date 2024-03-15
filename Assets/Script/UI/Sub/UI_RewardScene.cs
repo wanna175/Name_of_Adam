@@ -5,12 +5,15 @@ using TMPro;
 
 public class UI_RewardScene : MonoBehaviour
 {
+    [SerializeField] private List<DeckUnit> _afterBattleUnits;
     [SerializeField] private List<UI_RewardUnit> _rewardUnitList;
     [SerializeField] private TMP_Text _darkEssenceResult;
     [SerializeField] private GameObject _rewardUnitPrefab;
     [SerializeField] private Transform _unitScrollViewGrid;
 
-    public bool IsFadeEnd = false;
+    private const float _createUnitSlotDelay = 0.5f;
+
+    public bool IsEndCreate = false;
 
     public void Init(List<DeckUnit> afterBattleEndUnits)
     {
@@ -18,7 +21,61 @@ public class UI_RewardScene : MonoBehaviour
 
         int difference = GameManager.Data.DarkEssense - BattleManager.Data.BattlePrevDarkEssence;
         _darkEssenceResult.text = (difference >= 0) ? "+" + difference.ToString() : difference.ToString();
+        _afterBattleUnits = afterBattleEndUnits;
 
+        StartCoroutine(CreateUnitSlotsWithDelay(_afterBattleUnits));
+
+        BattleManager.Data.BattlePrevUnitDict.Clear();
+    }
+
+    IEnumerator CreateUnitSlotsWithDelay(List<DeckUnit> afterBattleEndUnits)
+    {
+        // 패널 초기화
+        foreach (var rewardUnit in _unitScrollViewGrid.GetComponentsInChildren<UI_RewardUnit>())
+            Destroy(rewardUnit.gameObject);
+        _rewardUnitList.Clear();
+
+        // 생성 시작
+        for (int i = 0; i < afterBattleEndUnits.Count; i++)
+        {
+            if (BattleManager.Data.BattlePrevUnitDict.TryGetValue(afterBattleEndUnits[i].UnitID, out RewardUnit prevUnit))
+            {
+                //기존에 있던 유닛
+                SetContent(i, prevUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.Default);
+
+                BattleManager.Data.BattlePrevUnitDict.Remove(afterBattleEndUnits[i].UnitID);
+            }
+            else
+            {
+                //새로 플레이어 덱에 들어온 유닛
+                RewardUnit newUnit = new RewardUnit(afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
+
+                SetContent(i, newUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.New);
+            }
+
+            yield return new WaitForSeconds(_createUnitSlotDelay);
+        }
+
+        int idx = afterBattleEndUnits.Count;
+        foreach (RewardUnit rewardUnit in BattleManager.Data.BattlePrevUnitDict.Values)//죽은 유닛
+        {
+            RewardUnit deadUnit = new(rewardUnit.Name, 0, rewardUnit.Image);
+            SetContent(idx++, deadUnit, 0, 0, UnitState.Dead);
+
+            yield return new WaitForSeconds(_createUnitSlotDelay);
+        }
+
+        IsEndCreate = true;
+    }
+
+    private void CreateUnitSlots(List<DeckUnit> afterBattleEndUnits)
+    {
+        // 패널 초기화
+        foreach (var rewardUnit in _unitScrollViewGrid.GetComponentsInChildren<UI_RewardUnit>())
+            Destroy(rewardUnit.gameObject);
+        _rewardUnitList.Clear();
+
+        // 생성 시작
         for (int i = 0; i < afterBattleEndUnits.Count; i++)
         {
             if (BattleManager.Data.BattlePrevUnitDict.TryGetValue(afterBattleEndUnits[i].UnitID, out RewardUnit prevUnit))
@@ -43,50 +100,39 @@ public class UI_RewardScene : MonoBehaviour
             RewardUnit deadUnit = new(rewardUnit.Name, 0, rewardUnit.Image);
             SetContent(idx++, deadUnit, 0, 0, UnitState.Dead);
         }
-
-        SetFadeIn(afterBattleEndUnits.Count + BattleManager.Data.BattlePrevUnitDict.Count);
-        BattleManager.Data.BattlePrevUnitDict.Clear();
     }
 
     public void SetContent(int idx, RewardUnit rewardUnit, int maxFaith, int currentFaith, UnitState unitState)
     {
-        if (idx > _rewardUnitList.Count-1)
+        if (idx > _rewardUnitList.Count - 1)
         {
-            UI_RewardUnit newObject = GameObject.Instantiate(_rewardUnitPrefab  , _unitScrollViewGrid).GetComponent<UI_RewardUnit>();
+            UI_RewardUnit newObject = GameObject.Instantiate(_rewardUnitPrefab, _unitScrollViewGrid).GetComponent<UI_RewardUnit>();
             _rewardUnitList.Add(newObject);
         }
 
         _rewardUnitList[idx].gameObject.SetActive(true);
         _rewardUnitList[idx].Init(rewardUnit, maxFaith, currentFaith, unitState);
+        _rewardUnitList[idx].FadeIn();
+
+        if (idx >= 10)
+            Invoke("ResetViewRect", 0.05f);
     }
 
-    public void SetFadeIn(int idx)
+    private void ResetViewRect()
     {
-        StartCoroutine(ContentFadeIn(idx));
+        var rectTr = _unitScrollViewGrid.GetComponent<RectTransform>();
+        rectTr.anchoredPosition = new Vector2(0, rectTr.sizeDelta.y);
     }
-
-    private IEnumerator ContentFadeIn(int cnt)
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.5f);
-
-        for (int i = 0; i < cnt; i++)
-        {
-            _rewardUnitList[i].FadeIn();
-            yield return wait;
-        }
-
-        IsFadeEnd = true;
-        yield return null;
-    } 
 
     public void EndFadeIn()
     {
-        if (!IsFadeEnd)
+        if (!IsEndCreate)
         {
-            for (int i = 0; i < _rewardUnitList.Count; i++)
-                _rewardUnitList[i].EndFadeIn();
             StopAllCoroutines();
-            IsFadeEnd = true;
+            CreateUnitSlots(_afterBattleUnits);
+            for (int i = 0; i < _afterBattleUnits.Count; i++)
+                _rewardUnitList[i].EndFadeIn();
+            IsEndCreate = true;
         }
     }
 }
