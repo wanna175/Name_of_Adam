@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
             {
                 if (unit.Team == Team.Player)
                 {
-                    unit.ChangeHP(-999);
+                    unit.ChangeHP(1000);
                     unit.ChangeFall(-4);
                 }
             }
