@@ -78,7 +78,7 @@ public class FadeController : MonoBehaviour
     }
     public void EndFade()
     {
-        //StopAllCoroutines();
+        StopCoroutine(fadeCor);
         cg.alpha = 1f;
     }
 }
