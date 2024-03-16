@@ -278,7 +278,7 @@
       "contents": [
         {
           "name": "Betrayer of faith",
-          "script": "Messenger of faith Exit 100 0"
+          "script": "Betrayer of faith Exit 100 0"
         }
       ]
     },
