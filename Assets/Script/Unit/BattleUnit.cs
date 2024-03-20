@@ -285,7 +285,6 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
 
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
-        BattleManager.Data.BattleUnitOrderReplace();
 
         if (Buff.CheckBuff(BuffEnum.Benediction))
         {
