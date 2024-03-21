@@ -202,6 +202,8 @@ public class BattleDataManager : MonoBehaviour
             .Select(unit => unit.Item1)
             .ToList();
 
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        /*
         if (prevOrderList.Count != _battleUnitOrderList.Count)
         {
             BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
@@ -216,6 +218,7 @@ public class BattleDataManager : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     public void BattleOrderRemove(BattleUnit removedUnit)
