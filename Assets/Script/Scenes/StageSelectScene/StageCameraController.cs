@@ -7,7 +7,7 @@ public class StageCameraController : MonoBehaviour
 {
     [SerializeField] Transform MapTransform;
     private float _cameraSpeed = 4.0f; // 증가할 때 카메라 이동 속도 느려짐
-    private Vector3 _topPosition = new(0, 25, -10);
+    private Vector3 _topPosition = new(0, 26, -10);
     private Vector3 _bottomPosition = new(0, -5, -10);
 
     const int _wheelSpeed = 200;
@@ -35,7 +35,7 @@ public class StageCameraController : MonoBehaviour
     }
 
     private Vector3 _velocity = Vector3.zero; // 초기 속도값
-
+    
     void MoveCamera(float num)
     {
         if ((_velocity.y == 0 && num == 0) || EventSystem.current.IsPointerOverGameObject())
@@ -56,12 +56,26 @@ public class StageCameraController : MonoBehaviour
 
     IEnumerator MapScanMove()
     {
-        if (GameManager.Data.Map.CurrentTileID != 0)
+        if(GameManager.Data.Map.GetCurrentStage().Type == StageType.Tutorial && GameManager.Data.Map.CurrentTileID == 3)
+        {
+            _bottomPosition = new Vector3(0, 8, -10);
+        }
+        else if (GameManager.Data.Map.CurrentTileID != 0 || !GameManager.OutGameData.IsTutorialClear())
         {
             yield break;
         }
 
+        if(GameManager.Data.StageAct == 2)
+        {
+            _topPosition = new Vector3(0, 16, -10);
+        }
+
+        transform.position = _topPosition;
+
+        yield return new WaitForSeconds(0.8f);
+
         float elapsedTime = 0;
+
         while (elapsedTime < _cameraSpeed)
         {
             float t = elapsedTime / _cameraSpeed;
