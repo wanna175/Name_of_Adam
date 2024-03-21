@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -95,6 +95,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1133,7 +1145,7 @@ TextureImporter:
       main mana_ani-Sheet_11: -455400009
       main mana_ani-Sheet_26: -1640184852
       main mana_ani-Sheet_18: -1539825123
-      main mana_ani-Sheet_27: 181656275
+      main mana_ani-Sheet_25: -2099093221
       main mana_ani-Sheet_44: -1041934014
       main mana_ani-Sheet_37: -1881320431
       main mana_ani-Sheet_2: -155110085
@@ -1141,7 +1153,7 @@ TextureImporter:
       main mana_ani-Sheet_36: -2021922604
       main mana_ani-Sheet_1: -2071101271
       main mana_ani-Sheet_14: -1426630282
-      main mana_ani-Sheet_25: -2099093221
+      main mana_ani-Sheet_27: 181656275
       main mana_ani-Sheet_34: 1082563112
       main mana_ani-Sheet_6: -382222905
       main mana_ani-Sheet_7: 904574298
