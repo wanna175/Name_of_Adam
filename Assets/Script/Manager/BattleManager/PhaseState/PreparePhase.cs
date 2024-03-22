@@ -16,6 +16,7 @@ public class PreparePhase : Phase
         BattleManager.Mana.ManaInableCheck();
         BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
+        BattleManager.BattleUI.UI_controlBar.ControlBarActive();
 
         if (!GameManager.OutGameData.IsTutorialClear())
         {
@@ -79,5 +80,8 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         BattleManager.PlayerSkillController.SetSkillDone();
+        BattleManager.BattleUI.UI_playerSkill.InableSkill(true);
+        BattleManager.BattleUI.UI_hands.InableCard(true);
+        BattleManager.BattleUI.UI_controlBar.ControlBarInactive();
     }
 }
