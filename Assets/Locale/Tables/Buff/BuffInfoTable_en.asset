@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4755091456
-    m_Localized: Decreases the enemy's faith upon attacking. (Unable to remove)
+    m_Localized: Upon attacking, reduces the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 54424039424
-    m_Localized: Attacks with a 50% increase in damage.
+    m_Localized: Attack power increase by 50%.
     m_Metadata:
       m_Items: []
   - m_Id: 87252856832
-    m_Localized: Attacks first regardless of speed.
+    m_Localized: Speed incresase by 100.
     m_Metadata:
       m_Items: []
   - m_Id: 115275001856
@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 252978196480
-    m_Localized: Withstands once with the health of 1, when reaching death.
+    m_Localized: Withstands once with 1 health, when reaching death.
     m_Metadata:
       m_Items: []
   - m_Id: 286473908224
@@ -47,29 +47,29 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 315448160256
-    m_Localized: Becomes able to move to any desired position.
+    m_Localized: Can move any tile regradless move range.
     m_Metadata:
       m_Items: []
   - m_Id: 347706552320
-    m_Localized: Unable to move.
+    m_Localized: This unit can't move or attack.
     m_Metadata:
       m_Items: []
   - m_Id: 374298439680
-    m_Localized: Decreases the enemy's faith by 1 upon attacking.
+    m_Localized: Upon attacking, reduces the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 403427880960
-    m_Localized: Faith decreases by 1 upon being attacked by Rahel and Lea.
+    m_Localized: When attacked by Rahel or Lea, faith decreases by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 429461925888
-    m_Localized: 'Provides additional effects with each stack
+    m_Localized: 'Gains additional effects with each stack.
 
       1 stack: When
-      attacked by Elieus or Yana, adjacent allies are also attacked.
+      attacked by Elieus or Yana, ally units in adjacent 4 tiles are also attacked.
 
-      2 stacks:
-      When attacked by Elieus or Yana, one''s faith decreases by 1.'
+      2
+      stack: When attacked by Elieus or Yana, faith decreases by 1.'
     m_Metadata:
       m_Items: []
   - m_Id: 483732025344
@@ -78,16 +78,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 527289872384
-    m_Localized: Attacks in an area effect
+    m_Localized: 'Attack all enemy unit except within adjacent 8 tiles of Appaim
+      but can''t move.
+
+      Reduces the enemy''s faith by 1.'
     m_Metadata:
       m_Items: []
   - m_Id: 587926925312
-    m_Localized: Attacking range becomes infinite.
+    m_Localized: 'Attack enemy unit within adjacent 8 tiles of Appaim.
+
+      Reduces
+      the enemy''s faith by 1.'
     m_Metadata:
       m_Items: []
   - m_Id: 606004375552
-    m_Localized: Attacks in an area effect, and becomes immobile but decreases the
-      enemy's faith by 1.
+    m_Localized: 'Attack all enemy unit except within adjacent 8 tiles of Appaim
+      but can''t move.
+
+      Reduces the enemy''s faith by 1'
     m_Metadata:
       m_Items: []
   - m_Id: 645355335680
@@ -103,27 +111,26 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 754625343488
-    m_Localized: Faith decreases by 1 after every turn of this unit.
+    m_Localized: Upon end of this unit's turn, faith decrease by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 743255583133696
-    m_Localized: 'Dusk: Provides additional effects with each stack
+    m_Localized: 'Gains additional effects with each stack.
 
-      1 stack:
-      When attacked by Elieus or Yana, adjacent allies are also attacked.
+      1 stack: When
+      attacked by Elieus or Yana, ally units in adjacent 4 tiles are also attacked.
 
       2
-      stacks: When attacked by Elieus or Yana, one''s faith decreases by 1.'
+      stack: When attacked by Elieus or Yana, faith decreases by 1.'
     m_Metadata:
       m_Items: []
   - m_Id: 11610392982515712
-    m_Localized: Rahel bestows the mark of the beast upon the enemy and moves behind
-      them when attacking.
+    m_Localized: Upon attacking, Rahel Inflicts Mark Of The Beast and moves behind
+      the attacked enemy if there is only one enemy attacked.
     m_Metadata:
       m_Items: []
   - m_Id: 11610555104948224
-    m_Localized: Lea is immobile, and attacks enemies within her range with an area-of-effect
-      attack.
+    m_Localized: Lea can't move, and attacks enemies within adjacent 4 tiles.
     m_Metadata:
       m_Items: []
   - m_Id: 12313325871452160
