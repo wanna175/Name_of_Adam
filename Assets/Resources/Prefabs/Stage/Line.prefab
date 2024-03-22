@@ -98,5 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteList:
-  - {fileID: 21300000, guid: a541bb522af9b5847b488e5a32ce9b5d, type: 3}
-  - {fileID: 21300000, guid: f861ad7f0081fdf4dbf1f71c41ce0eb3, type: 3}
+  - {fileID: 21300000, guid: f82543043b9865444a262d03866d608f, type: 3}
+  - {fileID: 21300000, guid: f82543043b9865444a262d03866d608f, type: 3}
