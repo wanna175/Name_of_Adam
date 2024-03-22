@@ -22,7 +22,7 @@ MonoBehaviour:
     ManaCost: 50
   _uniqueStigma: []
   _id: "\uC6D0\uB839"
-  _name: 
+  _name: Specter
   _description: 
   _rarity: 2
   _image: {fileID: 21300000, guid: 5fcadac826673724f8c50054b56fce6a, type: 3}

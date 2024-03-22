@@ -115,4 +115,12 @@ public class UI_Hands : UI_Scene
             }
         }
     }
+
+    public void InableCard(bool isInable)
+    {
+        foreach (UI_Hand card in _handList)
+        {
+            card.ChangeInable(isInable);
+        }
+    }
 }

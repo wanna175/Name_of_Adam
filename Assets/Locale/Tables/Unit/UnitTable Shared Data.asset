@@ -139,6 +139,14 @@ MonoBehaviour:
     m_Key: Oblation
     m_Metadata:
       m_Items: []
+  - m_Id: 16953456901378048
+    m_Key: Specter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16953496776626176
+    m_Key: Revenant
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

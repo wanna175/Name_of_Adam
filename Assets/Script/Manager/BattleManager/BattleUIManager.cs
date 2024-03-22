@@ -6,6 +6,8 @@ using TMPro;
 
 public class BattleUIManager : MonoBehaviour
 {
+    public UI_ControlBar UI_controlBar;
+
     public UI_Hands UI_hands;
     public UI_PlayerSkill UI_playerSkill;
     public UI_PlayerHP UI_playerHP;
@@ -33,16 +35,16 @@ public class BattleUIManager : MonoBehaviour
         UI_TurnChangeButton = GameManager.UI.ShowScene<UI_TurnChangeButton>();
 
         //컨트롤바
-        UI_ControlBar control = GameManager.UI.ShowScene<UI_ControlBar>();
+        UI_controlBar = GameManager.UI.ShowScene<UI_ControlBar>();
 
-        UI_playerHP = control.UI_PlayerHP;
-        UI_playerSkill = control.UI_PlayerSkill;
+        UI_playerHP = UI_controlBar.UI_PlayerHP;
+        UI_playerSkill = UI_controlBar.UI_PlayerSkill;
         UI_playerSkill.SetSkill(GameManager.Data.GetPlayerSkillList());
-        UI_hands = control.UI_Hands;
-        UI_darkEssence = control.UI_DarkEssence;
-        UI_manaGauge = control.UI_ManaGauge;
+        UI_hands = UI_controlBar.UI_Hands;
+        UI_darkEssence = UI_controlBar.UI_DarkEssence;
+        UI_manaGauge = UI_controlBar.UI_ManaGauge;
 
-        UI_animator = control.UI_Aniamtor;
+        UI_animator = UI_controlBar.UI_Aniamtor;
 
         FillHand();
     }
