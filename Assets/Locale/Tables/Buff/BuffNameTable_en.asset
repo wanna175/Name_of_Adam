@@ -23,11 +23,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51949400064
-    m_Localized: Attack Increase
+    m_Localized: Attack Boost
     m_Metadata:
       m_Items: []
   - m_Id: 83377319936
-    m_Localized: Speed Increase
+    m_Localized: Speed Boost
     m_Metadata:
       m_Items: []
   - m_Id: 112586452992

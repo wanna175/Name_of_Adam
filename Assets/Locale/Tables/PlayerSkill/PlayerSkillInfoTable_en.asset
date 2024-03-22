@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 48146583552
-    m_Localized: Lowers the faith of a designated enemy by 1.
+    m_Localized: Reduces the enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 152433758208
@@ -28,44 +28,59 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 185921081344
     m_Localized: Deals 20 damage in a massive cross range near the designated enemy.
-      it reduces the enemy's faith by 1 upon attacking.
+      It also reduces the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 333950652416
-    m_Localized: Moves an ally one space and grants a speed boost.
+    m_Localized: 'Moves an ally unit 1 tile and gives <b>Speed Boost</b>.
+
+      (<b>Speed
+      Boost</b>: Speed incresase by 100.)'
     m_Metadata:
       m_Items: []
   - m_Id: 435905794048
-    m_Localized: Heals the designated ally by 20 health.
+    m_Localized: Heals the ally unit's health by 20.
     m_Metadata:
       m_Items: []
   - m_Id: 472060694528
-    m_Localized: Heals the designated ally by 15 health.
+    m_Localized: Heals the ally unit's health by 15.
     m_Metadata:
       m_Items: []
   - m_Id: 521163411456
-    m_Localized: Brings back a designated ally.
+    m_Localized: Brings back an ally unit.
     m_Metadata:
       m_Items: []
   - m_Id: 694547550208
-    m_Localized: Bestows a curse on the designated enemy.
+    m_Localized: 'Inflicts <b>Curse</b> to an enemy unit.
+
+      (<b>Curse</b>:
+      When this unit''s turn end, decrease faith by 1.)'
     m_Metadata:
       m_Items: []
   - m_Id: 717616222208
-    m_Localized: Bestows a curse and increases attack on the designated enemy.
+    m_Localized: 'Inflicts an enemy unit <b>Curse and <b>Attack Boost</b> for 3 times
+
+      (<b>Curse</b>:
+      When this unit''s turn end, decrease faith by 1.
+
+      <b>Attack Boost</b>:
+      Attack power increase by 50%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 823568535552
-    m_Localized: Deals 25 damage to the designated unit.
+    m_Localized: Deals 20 damage to an enemy unit.
     m_Metadata:
       m_Items: []
   - m_Id: 890564153344
-    m_Localized: Bestows malevolence 4 times and reduces faith by 1 to the designated
-      ally.
+    m_Localized: 'Gives <b>Malevolence</b> for 4 times and reduces faith by 1 to
+      an ally unit.
+
+      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
+      faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 953277386752
-    m_Localized: Summons the apostle onto the battlefield.
+    m_Localized: Summons the Apostle onto the field.
     m_Metadata:
       m_Items: []
   references:
