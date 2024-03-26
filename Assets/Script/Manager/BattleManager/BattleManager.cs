@@ -447,6 +447,7 @@ public class BattleManager : MonoBehaviour
         _battleData.BattleUnitList.Remove(unit);
         _field.ExitTile(unit.Location);
         _battleData.BattleOrderRemove(unit);
+        _battleData.BattleUnitOrderReplace();
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
@@ -496,6 +497,8 @@ public class BattleManager : MonoBehaviour
 
     public void UnitFallEvent(BattleUnit unit)
     {
+        _battleData.BattleUnitOrderReplace();
+
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
             GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
 
