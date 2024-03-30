@@ -3148,7 +3148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 0}
   fall_background: {fileID: 0}
-  foogyImg: {fileID: 0}
+  _fogImageList: []
   _SelectStigmaButton: {fileID: 1668397566}
   _SelectStigmaButton_disabled: {fileID: 2016052798}
   _getOriginUnitButton: {fileID: 1311538162}
@@ -4899,6 +4899,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1224675629}
     m_Modifications:
+    - target: {fileID: 3580172553643249083, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3580172553705515328, guid: a3be360fe9cd8fb46b7a4ac133167c07, type: 3}
       propertyPath: m_Name
       value: UI_Harlot
@@ -7929,7 +7933,7 @@ SpriteRenderer:
   m_Size: {x: 5.87, y: 9.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1282508234448683312
@@ -9817,7 +9821,7 @@ SpriteRenderer:
   m_Size: {x: 9.27, y: 12.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7741015469977545642

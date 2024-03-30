@@ -13,9 +13,9 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     private List<Stigma> _stigmaList; //타락낙인 저장하는 곳
     private List<DeckUnit> _RestorationUnits;
 
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject fall_background;
-    [SerializeField] private Image foogyImg;
+    [SerializeField] private GameObject _normalBackground;
+    [SerializeField] private GameObject _corruptBackground;
+    [SerializeField] private List<GameObject> _fogImageList;
 
     [SerializeField] private GameObject _SelectStigmaButton;
     [SerializeField] private GameObject _SelectStigmaButton_disabled;
@@ -68,17 +68,16 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
             nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
 
             if (questLevel == 4)
-            {   
-                background.SetActive(false);
-                fall_background.SetActive(true);
+            {
+                _normalBackground.SetActive(false);
+                _corruptBackground.SetActive(true);
                 _isNPCFall = true;
             }
-            else if (questLevel >= 0)
-            {
-                Color color = this.foogyImg.color;
-                color.a = questLevel * 0.25f;
-                this.foogyImg.color = color;
-            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            _fogImageList[i].gameObject.SetActive(questLevel > i);
         }
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
