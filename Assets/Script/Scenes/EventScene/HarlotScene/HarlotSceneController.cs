@@ -11,26 +11,29 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
     private DeckUnit _stigmatizeUnit;
     private List<Stigma> _stigmaList; //타락낙인 저장하는 곳
-    private List<DeckUnit> _RestorationUnits;
+    private List<DeckUnit> _revertUnits;
 
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject fall_background;
-    [SerializeField] private Image foogyImg;
+    [SerializeField] private GameObject _normalBackground;
+    [SerializeField] private GameObject _corruptBackground;
+    [SerializeField] private List<GameObject> _fogImageList;
 
-    [SerializeField] private GameObject _SelectStigmaButton;
-    [SerializeField] private GameObject _SelectStigmaButton_disabled;
-    [SerializeField] private GameObject _getOriginUnitButton;
-    [SerializeField] private GameObject _getOriginUnitButton_disabled;
-    [SerializeField] private GameObject _ui_SelectMenu;
+    [SerializeField] private GameObject _stigmataBestowalButton;
+    [SerializeField] private GameObject _disabledStigmataBestowalButton;
+    [SerializeField] private GameObject _apostleCreationButton;
+    [SerializeField] private GameObject _disabledApostleCreationButton;
+    [SerializeField] private GameObject _selectMenuUI;
+
     [SerializeField] private List<DeckUnit> _originUnits = null;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text descriptionText;
 
-    [SerializeField] private TMP_Text unitRestoration_txt;
-    [SerializeField] private TMP_Text originUnit_txt;
-    [SerializeField] private TMP_Text selectStigma_txt;
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
 
-    [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+    [SerializeField] private TextMeshProUGUI _revertUnitDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _apostleCreationDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _disabledApostleCreationDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _stigmataBestowalDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _disabledStigmataBestowalDarkEssenceText;
+
 
     private List<Script> _scripts = null;
     private bool _isStigmaFull;
@@ -46,7 +49,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     {
         _scripts = new List<Script>();
         _isStigmaFull = false;
-        _RestorationUnits = new List<DeckUnit>();
+        _revertUnits = new List<DeckUnit>();
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.DarkshopQuest}");
 
@@ -57,28 +60,26 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         if (GameManager.OutGameData.GetVisitDarkshop() == false && questLevel != 4)
         {
             _scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["탕녀_선택_0"][0].name));
-            //GameManager.OutGameData.setVisitDarkshop(true);
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["탕녀_선택_0"][0].name));
         }
         else
         {
             _scripts = GameManager.Data.ScriptData[$"탕녀_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
 
             if (questLevel == 4)
-            {   
-                background.SetActive(false);
-                fall_background.SetActive(true);
+            {
+                _normalBackground.SetActive(false);
+                _corruptBackground.SetActive(true);
                 _isNPCFall = true;
             }
-            else if (questLevel >= 0)
-            {
-                Color color = this.foogyImg.color;
-                color.a = questLevel * 0.25f;
-                this.foogyImg.color = color;
-            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            _fogImageList[i].gameObject.SetActive(questLevel > i);
         }
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
@@ -91,30 +92,20 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
         if (!GameManager.OutGameData.IsUnlockedItem(5))
         {
-            _getOriginUnitButton.SetActive(false);
+            _apostleCreationButton.SetActive(false);
         }
         else if (current_DarkEssense < ((_isNPCFall) ? 8 : 10)) 
         {
-            _getOriginUnitButton_disabled.SetActive(true);
-            _getOriginUnitButton.SetActive(false);
+            _disabledApostleCreationButton.SetActive(true);
+            _apostleCreationButton.SetActive(false);
         }
 
         if (current_DarkEssense < ((_isNPCFall) ? 8 : 10))
         {
-            _SelectStigmaButton_disabled.SetActive(true);
-            _SelectStigmaButton.SetActive(false);
+            _disabledStigmataBestowalButton.SetActive(true);
+            _stigmataBestowalButton.SetActive(false);
         }
         SetMenuText(_isNPCFall);
-        /*
-        if(GameManager.Data.GameData)
-        {
-            _forbiddenButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            _forbiddenButton.gameObject.SetActive(false);
-        }
-        */
     }
     //오리지날 유닛 연성하기
     public void OnMakeOriginUnitClick()
@@ -140,19 +131,19 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnUnitRestorationClick()
     {
-        _RestorationUnits.Clear();
+        _revertUnits.Clear();
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>();
         ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, RestorationQuitClick);
-        ui.SetEventMenu(_ui_SelectMenu);
+        ui.SetEventMenu(_selectMenuUI);
     }
 
     public void OnSelectRestoration(DeckUnit unit)
     {
-        if (!_RestorationUnits.Contains(unit))
-            _RestorationUnits.Add(unit);
+        if (!_revertUnits.Contains(unit))
+            _revertUnits.Add(unit);
         else
-            _RestorationUnits.Remove(unit);
+            _revertUnits.Remove(unit);
 
         GameManager.UI.ClosePopup();
     }
@@ -163,7 +154,7 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ui.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
-        ui.SetEventMenu(_ui_SelectMenu);
+        ui.SetEventMenu(_selectMenuUI);
     }
     public void IsStigmaFull()
     {
@@ -227,16 +218,16 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
     //나가기 버튼을 클릭했을 경우
     public void RestorationQuitClick()
     {
-        if (_RestorationUnits.Count == GameManager.Data.GetDeck().Count)
+        if (_revertUnits.Count == GameManager.Data.GetDeck().Count)
         {
             Debug.Log("유닛은 하나 이상 남겨야 합니다.");//여기다가 경고창 띄우면 될듯
             return;
         }
-        else if (_RestorationUnits.Count != 0)
+        else if (_revertUnits.Count != 0)
         {
-            int cost = _isNPCFall ? 2 * _RestorationUnits.Count : _RestorationUnits.Count;
+            int cost = _isNPCFall ? 2 * _revertUnits.Count : _revertUnits.Count;
             GameManager.Data.DarkEssenseChage(cost);
-            foreach (DeckUnit delunit in _RestorationUnits)
+            foreach (DeckUnit delunit in _revertUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
 
@@ -278,23 +269,31 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
     }
-    private void SetMenuText(bool _isnpcfall)
+
+    private void SetMenuText(bool isNpcfall)
     {
-        if (_isnpcfall)
+        if (isNpcfall)
         {
-            unitRestoration_txt.text = "2";
-            selectStigma_txt.text = "8";
-            originUnit_txt.text = "8";
+            _revertUnitDarkEssenceText.text = "2";
+            _stigmataBestowalDarkEssenceText.text = "8";
+            _apostleCreationDarkEssenceText.text = "8";
+
+            _disabledApostleCreationDarkEssenceText.text = "8";
+            _disabledStigmataBestowalDarkEssenceText.text = "8";
+
         }
         else
         {
-            unitRestoration_txt.text = "1";
-            selectStigma_txt.text = "10";
-            originUnit_txt.text = "10";
+            _revertUnitDarkEssenceText.text = "1";
+            _stigmataBestowalDarkEssenceText.text = "10";
+            _apostleCreationDarkEssenceText.text = "10";
+
+            _disabledApostleCreationDarkEssenceText.text = "10";
+            _disabledStigmataBestowalDarkEssenceText.text = "10";
         }
     }
     private void OnConversationEnded()
     {
-        _ui_SelectMenu.SetActive(true);
+        _selectMenuUI.SetActive(true);
     }
 }

@@ -11,15 +11,14 @@ public class UpgradeSceneController : MonoBehaviour
 
     private DeckUnit _unit;
 
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject fall_background;
-    [SerializeField] private Image foogyImg;
+    [SerializeField] private GameObject _normalBackground;
+    [SerializeField] private GameObject _corruptBackground;
+    [SerializeField] private List<GameObject> _fogImageList;
 
-    [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
-    [SerializeField] private GameObject _restoreFall_Btn;
-    [SerializeField] private GameObject _ui_SelectMenu;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private GameObject _healFaithButton;
+    [SerializeField] private GameObject _selectMenuUI;
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
 
     private List<Script> _scripts;
     private UI_Conversation _conversationUI;
@@ -37,7 +36,7 @@ public class UpgradeSceneController : MonoBehaviour
     {
         if (!GameManager.OutGameData.IsUnlockedItem(2))
         {
-            _restoreFall_Btn.SetActive(false);
+            _healFaithButton.SetActive(false);
         }
 
         _scripts = new ();
@@ -51,28 +50,26 @@ public class UpgradeSceneController : MonoBehaviour
         if (GameManager.OutGameData.GetVisitUpgrade() == false && questLevel != 4)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["강화소_선택_0"][0].name));
-            //GameManager.OutGameData.setVisitUpgrade(true);
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["강화소_선택_0"][0].name));
         }
         else
         {
             _scripts = GameManager.Data.ScriptData[$"강화소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
 
             if (questLevel == 4)
             {
-                background.SetActive(false);
-                fall_background.SetActive(true);
+                _normalBackground.SetActive(false);
+                _corruptBackground.SetActive(true);
                 _isNPCFall = true;
             }
-            else if (questLevel >= 0)
-            {
-                Color color = this.foogyImg.color;
-                color.a = questLevel * 0.25f;
-                this.foogyImg.color = color;
-            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            _fogImageList[i].gameObject.SetActive(questLevel > i);
         }
 
         _conversationUI = GameManager.UI.ShowPopup<UI_Conversation>();
@@ -84,20 +81,20 @@ public class UpgradeSceneController : MonoBehaviour
     public void OnUpgradeUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        _ui_SelectMenu.SetActive(false);
+        _selectMenuUI.SetActive(false);
         UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ui.Init(false, OnSelectUpgrade, CUR_EVENT.UPGRADE, null);
-        ui.SetEventMenu(_ui_SelectMenu);
+        ui.SetEventMenu(_selectMenuUI);
     }
 
     // 교화를 풀 유닛을 고릅니다.
     public void OnReleaseUnitButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        _ui_SelectMenu.SetActive(false);
+        _selectMenuUI.SetActive(false);
         UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
         ui.Init(false, OnSelectRelease, CUR_EVENT.RELEASE);
-        ui.SetEventMenu(_ui_SelectMenu);
+        ui.SetEventMenu(_selectMenuUI);
     }
 
     //대화하기 버튼
@@ -216,7 +213,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.GetVisitUpgrade() == false)
+        if (!GameManager.OutGameData.GetVisitUpgrade())
         {
             GameManager.OutGameData.SetVisitUpgrade(true);
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
@@ -227,7 +224,9 @@ public class UpgradeSceneController : MonoBehaviour
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"강화소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
+
         yield return StartCoroutine(quitScript.PrintScript());
+        
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
@@ -235,6 +234,6 @@ public class UpgradeSceneController : MonoBehaviour
 
     private void OnConversationEnded()
     {
-        _ui_SelectMenu.SetActive(true);
+        _selectMenuUI.SetActive(true);
     }
 }

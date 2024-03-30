@@ -6,11 +6,11 @@ public class Buff_MarkOfBeast : Buff
     {
         _buffEnum = BuffEnum.MarkOfBeast;
 
-        _name = "짐승의 낙인";
+        _name = "MarkOfTheBeast";
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_MarkOfBeast_Sprite");
 
-        _description = "라헬, 레아에게 공격 받으면 신앙이 1 떨어집니다.";
+        _description = "MarkOfTheBeast Info";
 
         _count = -1;
 

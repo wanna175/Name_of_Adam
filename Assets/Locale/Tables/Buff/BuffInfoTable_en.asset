@@ -139,6 +139,10 @@ MonoBehaviour:
       Faith no longer decrease.'
     m_Metadata:
       m_Items: []
+  - m_Id: 16322966016118784
+    m_Localized: When attacked by Rahel or Lea, faith decreases by 1.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

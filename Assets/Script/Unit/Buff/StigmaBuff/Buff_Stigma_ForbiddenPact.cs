@@ -31,9 +31,12 @@ public class Buff_Stigma_ForbiddenPact : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        BattleManager.PlayerSkillController.SetManaFree(true);
-        BattleManager.BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
-        _owner.SetBuff(new Buff_Stun());
+        if (caster.Team == Team.Player)
+        {
+            BattleManager.PlayerSkillController.SetManaFree(true);
+            BattleManager.BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
+            _owner.SetBuff(new Buff_Stun());
+        }
 
         return false;
     }
