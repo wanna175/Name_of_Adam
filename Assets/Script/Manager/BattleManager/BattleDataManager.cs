@@ -192,8 +192,6 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleUnitOrderSorting()
     {
-        List<BattleUnit> prevOrderList = new(_battleUnitOrderList);
-
         _battleUnitOrderList = _battleUnitOrderUnits
             .OrderByDescending(unit => unit.Item2 ?? unit.Item1.BattleUnitTotalStat.SPD)
             .ThenBy(unit => unit.Item1.Team)
@@ -203,22 +201,6 @@ public class BattleDataManager : MonoBehaviour
             .ToList();
 
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
-        /*
-        if (prevOrderList.Count != _battleUnitOrderList.Count)
-        {
-            BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
-        }
-        else
-        {
-            for (int i = 0; i < prevOrderList.Count; i++)
-            {
-                if (prevOrderList[i] != _battleUnitOrderList[i])
-                {
-                    BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
-                }
-            }
-        }
-        */
     }
 
     public void BattleOrderRemove(BattleUnit removedUnit)
