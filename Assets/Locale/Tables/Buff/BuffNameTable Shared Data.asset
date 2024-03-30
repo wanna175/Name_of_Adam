@@ -99,6 +99,10 @@ MonoBehaviour:
     m_Key: Edified
     m_Metadata:
       m_Items: []
+  - m_Id: 16324934008721408
+    m_Key: MarkOfTheBeast
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
