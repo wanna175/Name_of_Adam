@@ -31,12 +31,15 @@ public class SaveUnit
 
 public class SaveController : MonoBehaviour
 {
+    private const string encryptionKey = "EncryptSaveData!@#$%^&*()_+";
+    private const string SaveDataFileName = "867755930112.dat";
+
     string path;
 
     public void Init()
     {
         // 사용자/Appdata//LocalLow에 자신의 파일이 있는지 확인하는 함수(System.IO 필요)
-        path = Path.Combine(Application.persistentDataPath, "SaveData.json");
+        path = Path.Combine(Application.persistentDataPath, SaveDataFileName);
     }
 
     // 게임 진행 정보 저장
@@ -86,7 +89,7 @@ public class SaveController : MonoBehaviour
         GameManager.OutGameData.SetNPCQuest();
         string json = JsonUtility.ToJson(newData, true);
 
-        File.WriteAllText(path, json);
+        File.WriteAllText(path, EncryptAndDecrypt(json));
     }
 
     // 게임 진행 정보 저장
@@ -94,7 +97,7 @@ public class SaveController : MonoBehaviour
     public void LoadGame()
     {
         string json = File.ReadAllText(path);
-        SaveData loadData = JsonUtility.FromJson<SaveData>(json);
+        SaveData loadData = JsonUtility.FromJson<SaveData>(EncryptAndDecrypt(json));
 
         GameManager.Data.SetMapSaveData(loadData.MapData);
         List<DeckUnit> savedDeckUnitList = new();
@@ -134,8 +137,20 @@ public class SaveController : MonoBehaviour
     }
 
     // 저장된 데이터가 있는지 확인
-    public bool SaveFileCheck() => File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.json"));
+    public bool SaveFileCheck() => File.Exists(Path.Combine(Application.persistentDataPath, SaveDataFileName));
 
     // 저장된 데이터 삭제
     public void DeleteSaveData() => File.Delete(path);
+
+    private string EncryptAndDecrypt(string data)
+    {
+        string result = string.Empty;
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            result += (char)(data[i] ^ encryptionKey[i % encryptionKey.Length]);
+        }
+
+        return result;
+    }
 }

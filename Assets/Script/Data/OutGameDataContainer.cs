@@ -10,6 +10,7 @@ using UnityEngine.Localization.Settings;
 [Serializable]
 public class OutGameData
 {
+    public string Version;                   // 데이터 버전
     public int ProgressCoin;                 // 진척도 코인
     public List<ProgressItem> ProgressItems; // 진척도 상점의 상품들
     public List<HallUnit> HallUnit;          // 전당 유닛
@@ -62,6 +63,9 @@ public class HallUnit
 
 public class OutGameDataContainer : MonoBehaviour
 {
+    private const string encryptionKey = "EncryptOutGameData!@#$%^&*()_+";
+    private const string OutGameDataFileName = "126634399755.dat";
+
     // 현재 진행중인 게임에서 관리하는 아웃게임데이터
     private OutGameData _data;
     private string _path;
@@ -70,7 +74,7 @@ public class OutGameDataContainer : MonoBehaviour
     public void Init()
     {
         // 사용자\AppData\localLow에 있는 SaveData.json의 경로
-        _path = Path.Combine(Application.persistentDataPath, "OutGameSaveData.json");
+        _path = Path.Combine(Application.persistentDataPath, OutGameDataFileName);
 
         _resolutions = new() {
             GetResolution(1920, 1080, 144),
@@ -82,10 +86,36 @@ public class OutGameDataContainer : MonoBehaviour
         SetResolution();
     }
 
+    private void MigrationData()
+    {
+        switch (_data.Version)
+        {
+            case "1.0.0-demo": // 데모인 경우 파일 제거
+                GameManager.UI.ShowPopup<UI_SystemInfo>().Init("데모 세이브 파일 삭제 완료\n세이브 파일 유효성 검사 완료", "※팝업이 떴다면 버전 검사가 진행된 것을 의미");
+                GameManager.SaveManager.DeleteSaveData();
+                DeleteAllData();
+                CreateData();
+                break;
+
+        }
+    }
+
+    private string EncryptAndDecrypt(string data)
+    {
+        string result = string.Empty;
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            result += (char)(data[i] ^ encryptionKey[i % encryptionKey.Length]);
+        }
+
+        return result;
+    }
+
     public void SaveData()
     {
         string json = JsonUtility.ToJson(_data, true);
-        File.WriteAllText(_path, json);
+        File.WriteAllText(_path, EncryptAndDecrypt(json));
     }
 
     public void LoadData()
@@ -94,7 +124,19 @@ public class OutGameDataContainer : MonoBehaviour
         {
             // AppData에 파일이 있으면 OutGameData파일이 있으면 불러오기
             string json = File.ReadAllText(_path);
-            _data = JsonUtility.FromJson<OutGameData>(json);
+            _data = JsonUtility.FromJson<OutGameData>(EncryptAndDecrypt(json));
+
+            if (_data.Version.Equals(Application.version))
+            {
+                Debug.Log("Data Load Complete");
+            }
+            else
+            {
+                Debug.Log($"Data Version is not matched! Save Version : {_data.Version} / Build Version {Application.version}");
+                MigrationData();
+            }
+
+            _data.Version = Application.version;
         }
         catch(FileNotFoundException e)
         {
