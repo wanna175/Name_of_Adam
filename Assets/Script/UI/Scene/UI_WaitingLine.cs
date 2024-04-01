@@ -5,45 +5,41 @@ using UnityEngine.UI;
 
 public class UI_WaitingLine : UI_Scene
 {
-    [SerializeField] private Transform _grid;
-    [SerializeField] private GameObject _buttonDown;
-    [SerializeField] private GameObject _buttonUp;
+    [SerializeField] private Transform _waitingUnitGrid;
+    [SerializeField] private GameObject _upButton;
+    [SerializeField] private GameObject _downButton;
+
+    [SerializeField] private GameObject _waitingUnitPrefab;
 
     private List<UI_WaitingUnit> _waitingUnitList = new();
-    private bool _turned = false;
+    private int _waitingLinePage = 0;
 
     public void Start()
     {
-        _buttonDown.SetActive(false);
-        _buttonUp.SetActive(false);
+        _downButton.SetActive(false);
+        _upButton.SetActive(false);
     }
 
     private void ButtonActive()
     {
         if (_waitingUnitList.Count > 5)
         {
-            if (_turned && _waitingUnitList.Count > 5)
-            {
-                _buttonUp.SetActive(true);
-                _buttonDown.SetActive(false);
-            }
-            else if (!_turned && _waitingUnitList.Count > 5)
-            {
-                _buttonDown.SetActive(true);
-                _buttonUp.SetActive(false);
-            }
+            _upButton.SetActive(_waitingLinePage != 0);
+            _downButton.SetActive(_waitingUnitList.Count / 5 != _waitingLinePage);
         }
         else
         {
-            _buttonDown.SetActive(false);
-            _buttonUp.SetActive(false);
+            _downButton.SetActive(false);
+            _upButton.SetActive(false);
         }
+
+        CheckWaitingLineActive();
     }
 
     private void AddUnit(BattleUnit addUnit)
     {
-        UI_WaitingUnit newUnit = GameManager.Resource.Instantiate("UI/Sub/WaitingUnit", _grid).GetComponent<UI_WaitingUnit>();
-        newUnit.SetUnit(addUnit, _turned);
+        UI_WaitingUnit newUnit = GameObject.Instantiate(_waitingUnitPrefab, _waitingUnitGrid).GetComponent<UI_WaitingUnit>();
+        newUnit.SetUnit(addUnit);
         _waitingUnitList.Add(newUnit);
     }
 
@@ -66,14 +62,23 @@ public class UI_WaitingLine : UI_Scene
         _waitingUnitList.Clear();
     }
 
-    public void OnClickSeeNextUnits()
+    private void CheckWaitingLineActive()
     {
-        ButtonActive();
+        for (int i = 0; i < _waitingUnitList.Count; i++)
+        {
+            _waitingUnitList[i].gameObject.SetActive(i >= _waitingLinePage * 5);
+        }
+    }
 
-        _grid.eulerAngles += new Vector3(0f, 180f, 0f);
-        if (_turned == false)
-            _turned = true;
-        else
-            _turned = false;
+    public void OnClickUpButton()
+    {
+        _waitingLinePage--;
+        ButtonActive();
+    }
+
+    public void OnClickDownButton()
+    {
+        _waitingLinePage++;
+        ButtonActive();
     }
 }
