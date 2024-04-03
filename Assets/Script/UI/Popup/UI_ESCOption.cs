@@ -34,6 +34,9 @@ public class UI_ESCOption : UI_Popup
     {
         SceneChanger.SceneChange("MainScene");
 
+        if (GameManager.SaveManager.SaveFileCheck())
+            GameManager.SaveManager.LoadGame();
+
         Time.timeScale = 1;
         GameManager.UI.CloseAllOption();
     }
