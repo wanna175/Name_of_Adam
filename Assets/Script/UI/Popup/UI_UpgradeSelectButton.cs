@@ -8,6 +8,7 @@ public class UI_UpgradeSelectButton : UI_Popup
 {
     [SerializeField] private List<TextMeshProUGUI> _buttonTextList;
     [SerializeField] private List<Image> _buttonGemImageList;
+    [SerializeField] private List<Image> _buttonGoldFrameImageList;
     [SerializeField] private List<GameObject> _button;
     [SerializeField] private TextMeshProUGUI _titleText;
 
@@ -26,6 +27,7 @@ public class UI_UpgradeSelectButton : UI_Popup
             {
                 _buttonTextList[i].text = upgrades[i].UpgradeDescription;
                 _buttonGemImageList[i].sprite = upgrades[i].UpgradeImage160;
+                _buttonGoldFrameImageList[i].gameObject.SetActive(upgrades[i].UpgradeData.Rarity > 1);
             }
             else
             {
