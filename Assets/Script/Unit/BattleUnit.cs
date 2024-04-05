@@ -24,7 +24,8 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitBuff Buff;
     [SerializeField] public UnitAction Action;
     [SerializeField] private UI_HPBar _hpBar;
-    [SerializeField] private UI_FloatingDamage _floatingDamage;
+    
+    [SerializeField] private GameObject _floatingDamagePrefab;
 
     [SerializeField] public List<Stigma> StigmaList => DeckUnit.GetStigma();
 
@@ -125,7 +126,6 @@ public class BattleUnit : MonoBehaviour
             return;
 
         UnitRenderer.flipX = flip;
-        _floatingDamage.DirectionChange(flip);
 
         if (ConnectedUnits.Count > 0)
         {
@@ -463,8 +463,8 @@ public class BattleUnit : MonoBehaviour
         {
             return;
         }
-        _floatingDamage.Init(value);
 
+        DisplayFloatingDamage(value);
         ChangeHP(value);
 
         //피격 후 체크
@@ -473,8 +473,13 @@ public class BattleUnit : MonoBehaviour
 
     public virtual void GetHeal(int value, BattleUnit caster)
     {
-        _floatingDamage.Init(value);
+        DisplayFloatingDamage(value);
         ChangeHP(value);
+    }
+
+    public void DisplayFloatingDamage(int value)
+    {
+        GameObject.Instantiate(_floatingDamagePrefab, this.transform).GetComponent<UI_FloatingDamage>().Init(value, UnitRenderer.flipX);
     }
 
     public void ChangeHP(int value)
