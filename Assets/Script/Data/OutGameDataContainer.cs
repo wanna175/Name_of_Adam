@@ -64,7 +64,12 @@ public class HallUnit
 public class OutGameDataContainer : MonoBehaviour
 {
     private const string encryptionKey = "EncryptOutGameData!@#$%^&*()_+";
-    private const string OutGameDataFileName = "126634399755.dat";
+
+    //데모용
+    //private const string OutGameDataFileName = "126634399755.dat";
+    
+    //정식용
+    private const string OutGameDataFileName = "126634399756.dat";
 
     // 현재 진행중인 게임에서 관리하는 아웃게임데이터
     private OutGameData _data;
@@ -90,13 +95,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         switch (_data.Version)
         {
-            case "1.0.0-demo": // 데모인 경우 파일 제거
-                GameManager.UI.ShowPopup<UI_SystemInfo>().Init("데모 세이브 파일 삭제 완료\n세이브 파일 유효성 검사 완료", "※팝업이 떴다면 버전 검사가 진행된 것을 의미");
-                GameManager.SaveManager.DeleteSaveData();
-                DeleteAllData();
-                CreateData();
-                break;
-
+            // 이후 업데이트에서 구현 필요 시 추가
         }
     }
 
