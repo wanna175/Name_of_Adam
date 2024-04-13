@@ -126,7 +126,7 @@ public class UI_UnitInfo : UI_Popup
         }
 
         List<Stigma> stigmas = _unit.GetStigma();
-        for (int i = 0; i < _unit._maxStigmaCount; i++)
+        for (int i = 0; i < _unit.MaxStigmaCount; i++)
         {
             UI_HoverImageBlock ui = GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>();
             if (i < stigmas.Count)

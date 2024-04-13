@@ -4,17 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StigmaSceneController : MonoBehaviour,StigmaInterface
+public class StigmaSceneController : MonoBehaviour, StigmaInterface
 {
-    private readonly int[] enterDialogNums = { 3, 2, 3, 3, 3 };
-    private readonly int[] exitDialogNums = { 1, 1, 1, 1, 1 };
-
-    private DeckUnit _givestigmatizeUnit;
-    private DeckUnit _stigmatizeUnit;
-    private List<Script> _scripts;
-
-    private bool _isStigmaFull = false;
-
     [SerializeField] private GameObject _normalBackground;
     [SerializeField] private GameObject _corruptBackground;
     [SerializeField] private List<GameObject> _fogImageList;
@@ -25,9 +16,18 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
+    private UI_Conversation _uiConversation;
 
-    private UI_Conversation uiConversation;
-    private Stigma _giveStigma = null;
+    private readonly int[] enterDialogNums = { 3, 2, 3, 3, 3 };
+    private readonly int[] exitDialogNums = { 1, 1, 1, 1, 1 };
+    private List<Script> _scripts;
+
+    private DeckUnit _stigmataTransferGiveUnit;
+    private DeckUnit _stigmataBestowalUnit;
+
+    private bool _isStigmataFull = false;
+
+    private Stigma _transferStigmata = null;
 
     private bool _isNPCFall = false;
 
@@ -35,21 +35,32 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
     {
         Init();
     }
+
     private void Init()
     {
         _scripts = new();
-        _giveStigma = null;
-        _isStigmaFull = false;
+        _transferStigmata = null;
+        _isStigmataFull = false;
 
-        //옮길 낙인유닛이 없다면 선택지가 안 뜨게
-        bool isStigmaEmpty = true;
-        List<DeckUnit> du = GameManager.Data.GetDeck();
-        foreach (DeckUnit unit in du)
+        //선택지 안 뜨게
+        bool canStigmataTransfer = false;
+
+        List<DeckUnit> deckUnit = GameManager.Data.GetDeck();
+        foreach (DeckUnit unit in deckUnit)
         {
+            if (canStigmataTransfer)
+                break;
+            
             if (unit.GetStigma(true).Count != 0)
             {
-                isStigmaEmpty = false;
-                break;
+                foreach (DeckUnit otherUnit in deckUnit)
+                {
+                    if (otherUnit != unit && otherUnit.Data.Rarity != Rarity.Boss)
+                    {
+                        canStigmataTransfer = true;
+                        break;
+                    }
+                }
             }
         }
 
@@ -57,12 +68,12 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         {
             _stigmataTransferButton.SetActive(false);
         }
-        else if (isStigmaEmpty)
+        else
         {
-            _stigmataTransferButton.SetActive(false);
-            _disabledStigmataTransferButton.SetActive(true);
+            _stigmataTransferButton.SetActive(canStigmataTransfer);
+            _disabledStigmataTransferButton.SetActive(!canStigmataTransfer);
         }
-        
+
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.StigmaQuest}");
 
         int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
@@ -71,7 +82,6 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
 
         if (GameManager.OutGameData.GetVisitStigma() == false && questLevel != 4)
         {
-            //GameManager.OutGameData.setVisitStigma(true);
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["낙인소_선택_0"][0].script));
             _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["낙인소_선택_0"][0].name));
@@ -96,79 +106,111 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         }
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
-        uiConversation = FindObjectOfType<UI_Conversation>();
-        uiConversation.ConversationEnded += OnConversationEnded;
+        _uiConversation = FindObjectOfType<UI_Conversation>();
+        _uiConversation.ConversationEnded += OnConversationEnded;
     }
 
-    // 낙인 부여를 선택했을 시
-    public void OnStigmaUnitButtonClick()
+    //성흔 부여 버튼 클릭
+    public void OnStigmataBestowalButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         _selectMenuUI.SetActive(false);
-        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        ud.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
+
+        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>();
+        ud.Init(false, OnSelectStigmataBestowalUnit, CUR_EVENT.STIGMA);
         ud.SetEventMenu(_selectMenuUI);
     }
 
-    //낙인을 받는 유닛을 고르는 함수
-    public void OnSelectStigmaTargetUnit()
-    {
-        GameManager.UI.CloseAllPopup();
-        _selectMenuUI.SetActive(false);
-        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        ud.Init(false, OnSelectStigmatransfertarget, CUR_EVENT.RECEIVE_STIGMA);
-        ud.SetEventMenu(_selectMenuUI);
-    }
-
-    // 낙인을 주는 유닛을 고르는 함수,낙인 이동을 눌렀을 경우에
-    public void OnStigmaGiveUnitButtonClick()
+    //성흔 이동 버튼 클릭
+    public void OnStigmataTransferButtonClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         _selectMenuUI.SetActive(false);
-        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        ud.Init(false, OnSelectStigmatransfergiver, CUR_EVENT.GIVE_STIGMA);
+
+        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>();
+        ud.Init(false, OnStigmataTransferGiver, CUR_EVENT.GIVE_STIGMA);
         ud.SetEventMenu(_selectMenuUI);
     }
 
-    // 낙인소 나가기 
-    public void OnQuitClick()
+    public void OnSelectStigmataBestowalUnit(DeckUnit unit)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
-        StartCoroutine(QuitScene());
+        _stigmataBestowalUnit = unit;
 
-    }
-
-    // 낙인 이동 실행시킬 함수
-    public void StigmaTransfer()
-    {
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Transfer Stigma Get", _givestigmatizeUnit.GetStigma());
-    }
-
-    public void IsStigmaFull()
-    {
-        Debug.Log("스티그마 꽉 찼을 때 예외처리");
-        _isStigmaFull = true;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Full Stigma", _stigmatizeUnit.GetStigma(true), 0, null, this);
-    }
- 
-    public void OnSelectStigmatization(DeckUnit unit)
-    {
-        _stigmatizeUnit = unit;
-
-        if (_stigmatizeUnit.GetStigmaCount()< _stigmatizeUnit._maxStigmaCount)
+        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount)
         {
-            Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, "Select Stigma", null, 3, null, this);
+            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmataBestowalUnit, "Select Stigma", null, 3, null, this);
         }
         else
         {
-            Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
-            IsStigmaFull();
+            Debug.Log("유닛이 성흔을 더 받을 수 없어 하나를 선택하여 지워야 합니다.");
+            UnitStigmataFull();
         }
     }
-    private void SetUnitStigma(Stigma stigma)
+
+    public void OnStigmataTransferGiver(DeckUnit unit)
     {
-        _stigmatizeUnit.AddStigma(stigma);
+        _stigmataTransferGiveUnit = unit;
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Transfer Stigma Give", _stigmataTransferGiveUnit.GetStigma(true), 0, null, this);
+    }
+
+    public void UnitStigmataFull()
+    {
+        Debug.Log("성흔 가득 찼을 때 예외처리");
+        _isStigmataFull = true;
+        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Full Stigma", _stigmataBestowalUnit.GetStigma(true), 0, null, this);
+    }
+
+    public void OnStigmataSelected(Stigma stigma)
+    {
+        //UI에서 선택된 성흔
+        if (_isStigmataFull)
+        {
+            //성흔 예외 처리 시 실행
+            _isStigmataFull = false;
+            _stigmataBestowalUnit.DeleteStigma(stigma);
+
+            GameManager.UI.CloseAllPopup();
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(_stigmataBestowalUnit);
+
+            if (_stigmataTransferGiveUnit == null)
+            {
+                //성흔 부여에서 예외 처리 시
+                unitInfo.Init(OnSelectStigmataBestowalUnit, CUR_EVENT.STIGMA_EXCEPTION);
+            }
+            else
+            {
+                //성흔 이동에서 예외 처리 시
+                unitInfo.Init(OnSelectStigmataTransferReceiver, CUR_EVENT.STIGMA_EXCEPTION);
+            }
+        }
+        else if (_stigmataTransferGiveUnit == null)
+        {
+            //성흔 부여일때
+            SetUnitStigmata(stigma);
+            GameManager.Data.GameData.NpcQuest.StigmaQuest++;
+        }
+        else
+        {
+            //성흔 이동일때
+            _transferStigmata = stigma;
+            if (!_isNPCFall)
+            {
+                GameManager.Data.RemoveDeckUnit(_stigmataTransferGiveUnit);
+            }
+            else
+            {
+                _stigmataTransferGiveUnit.DeleteStigma(stigma);
+            }
+
+            GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+            OnSelectStigmaTargetUnit();
+        }
+    }
+
+    private void SetUnitStigmata(Stigma stigma)
+    {
+        _stigmataBestowalUnit.AddStigma(stigma);
 
         GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
         GameManager.UI.ClosePopup();
@@ -176,66 +218,48 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         GameManager.UI.ClosePopup();
 
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        ui.SetUnit(_stigmatizeUnit);
-        ui.Init(null, CUR_EVENT.COMPLETE_STIGMA,OnQuitClick);
+        ui.SetUnit(_stigmataBestowalUnit);
+        ui.Init(null, CUR_EVENT.COMPLETE_STIGMA, OnQuitClick);
     }
 
-    public void OnSelectStigmatransfertarget(DeckUnit unit)
+    //성흔을 받는 유닛을 고르는 함수
+    public void OnSelectStigmaTargetUnit()
     {
-        _stigmatizeUnit = unit;
-        if (_stigmatizeUnit.GetStigmaCount() <_stigmatizeUnit._maxStigmaCount)
-        {
-            Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
-            SetUnitStigma(_giveStigma);
+        GameManager.UI.CloseAllPopup();
+        _selectMenuUI.SetActive(false);
 
+        UI_MyDeck ud = GameManager.UI.ShowPopup<UI_MyDeck>();
+        ud.Init(false, OnSelectStigmataTransferReceiver, CUR_EVENT.RECEIVE_STIGMA);
+        ud.SetEventMenu(_selectMenuUI);
+    }
+
+    public void OnSelectStigmataTransferReceiver(DeckUnit unit)
+    {
+        _stigmataBestowalUnit = unit;
+
+        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount)
+        {
+            SetUnitStigmata(_transferStigmata);
         }
         else
         {
-            Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
-            IsStigmaFull();
+            Debug.Log("유닛이 성흔을 더 받을 수 없어 하나를 선택하여 지워야 합니다.");
+            UnitStigmataFull();
         }
     }
 
-    public void OnSelectStigmatransfergiver(DeckUnit unit)
+    //나가기 
+    public void OnQuitClick()
     {
-        _givestigmatizeUnit = unit;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, "Transfer Stigma Give", _givestigmatizeUnit.GetStigma(true),0,null,this);
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        StartCoroutine(QuitScene());
     }
 
-    public void OnStigmaSelected(Stigma stigma)
+    private void OnConversationEnded()
     {
-        if (_isStigmaFull)//스티그마 예외처리
-        {
-            Debug.Log("스티그마 꽉차있서요");
-            _isStigmaFull = false;
-            _stigmatizeUnit.DeleteStigma(stigma);
-            GameManager.UI.CloseAllPopup();
-            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-            unitInfo.SetUnit(_stigmatizeUnit);
-
-            if (_givestigmatizeUnit == null)
-                unitInfo.Init(OnSelectStigmatization, CUR_EVENT.STIGMA_EXCEPTION);
-            else
-                unitInfo.Init(OnSelectStigmatransfertarget, CUR_EVENT.STIGMA_EXCEPTION);
-            return;
-        }
-        if (_givestigmatizeUnit == null) 
-        {//낙인 부여일때
-            SetUnitStigma(stigma);
-            GameManager.Data.GameData.NpcQuest.StigmaQuest++;
-        }
-        else//낙인 이동일때
-        {
-            _giveStigma = stigma;
-            if(!_isNPCFall)
-                GameManager.Data.RemoveDeckUnit(_givestigmatizeUnit);
-            else
-                _givestigmatizeUnit.DeleteStigma(stigma);
-
-            GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-            OnSelectStigmaTargetUnit();
-        }
+        _selectMenuUI.SetActive(true);
     }
+
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
         
@@ -266,10 +290,5 @@ public class StigmaSceneController : MonoBehaviour,StigmaInterface
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.SaveManager.SaveGame();
         SceneChanger.SceneChange("StageSelectScene");
-    }
-
-    private void OnConversationEnded()
-    {
-        _selectMenuUI.SetActive(true);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface StigmaInterface 
 {
-    void OnStigmaSelected(Stigma stigma);
-    void OnSelectStigmatization(DeckUnit unit);
-    void IsStigmaFull();
+    void OnStigmataSelected(Stigma stigma);
+    void OnSelectStigmataBestowalUnit(DeckUnit unit);
+    void UnitStigmataFull();
 }

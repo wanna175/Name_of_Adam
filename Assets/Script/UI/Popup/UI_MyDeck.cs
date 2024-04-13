@@ -56,7 +56,7 @@ public class UI_MyDeck : UI_Popup
 
         EventSceneCheck(_eventNum);
 
-        if (_eventNum == CUR_EVENT.GIVE_STIGMA || _eventNum == CUR_EVENT.STIGMA)
+        if (_eventNum == CUR_EVENT.GIVE_STIGMA || _eventNum == CUR_EVENT.STIGMA || _eventNum == CUR_EVENT.RECEIVE_STIGMA)
             SetCard(_eventNum);
         else
             SetCard();
@@ -210,6 +210,11 @@ public class UI_MyDeck : UI_Popup
             if (eventNum == CUR_EVENT.GIVE_STIGMA)
             {
                 if (_playerDeck[i].GetStigma(true).Count != 0)
+                    AddCard(_playerDeck[i]);
+            }
+            else if (eventNum == CUR_EVENT.RECEIVE_STIGMA)
+            {
+                if (_playerDeck[i].Data.Rarity != Rarity.Boss)
                     AddCard(_playerDeck[i]);
             }
             else if (eventNum == CUR_EVENT.STIGMA)
