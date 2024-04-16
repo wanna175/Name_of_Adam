@@ -36,7 +36,7 @@ public class DeckUnit
 
     private List<Stigma> _stigma = new();
 
-    public readonly int _maxStigmaCount = 3;
+    public readonly int MaxStigmaCount = 3;
     private int _stigmaCount => _stigma.Count;
 
     [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
@@ -60,24 +60,24 @@ public class DeckUnit
         return false;
     }
 
-    public List<Stigma> GetStigma(bool isEventScene = false)
+    public List<Stigma> GetStigma(bool notGetUniqueStigmata = false)
     {
-        List<Stigma> stigmata = new();
+        List<Stigma> stigmataList = new();
 
-        if (!isEventScene)
+        if (!notGetUniqueStigmata)
         {
             foreach (Stigma stigma in Data.UniqueStigma)
             {
-                stigmata.Add(stigma);
+                stigmataList.Add(stigma);
             }
         }
 
         foreach (Stigma stigma in _stigma)
         {
-            stigmata.Add(stigma);
+            stigmataList.Add(stigma);
         }
 
-        return stigmata;
+        return stigmataList;
     }
 
     public void AddStigma(Stigma stigma)
@@ -98,7 +98,7 @@ public class DeckUnit
         if (Data.UniqueStigma != null)
             uniqueStigmaCount = Data.UniqueStigma.Count;
 
-        if(_stigma.Count + uniqueStigmaCount >= _maxStigmaCount)
+        if(_stigma.Count + uniqueStigmaCount >= MaxStigmaCount)
         {
             Debug.Log("최대 낙인 개수");
             return;

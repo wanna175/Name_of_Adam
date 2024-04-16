@@ -35,12 +35,11 @@ public class UI_StigmaSelectButton : UI_Base
 
     public void OnClick()
     {
-        //if()
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
         if (_sc != null)
         {
-            _sc.OnStigmaSelected(_stigma);
+            _sc.OnStigmataSelected(_stigma);
         }
         else if(_popup != null)
         {
@@ -48,8 +47,5 @@ public class UI_StigmaSelectButton : UI_Base
                 TutorialManager.Instance.ShowNextTutorial();
             _popup.OnClick(_stigma);
         }
-
-
-        //sc.OnStigmaSelected(_stigma);
     }
 }

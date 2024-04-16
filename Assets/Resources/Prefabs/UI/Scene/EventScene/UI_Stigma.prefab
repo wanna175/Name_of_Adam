@@ -389,7 +389,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1941623453305881852}
         m_TargetAssemblyTypeName: StigmaSceneController, Assembly-CSharp
-        m_MethodName: OnStigmaGiveUnitButtonClick
+        m_MethodName: OnStigmataTransferButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -764,7 +764,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1941623453305881852}
         m_TargetAssemblyTypeName: StigmaSceneController, Assembly-CSharp
-        m_MethodName: OnStigmaUnitButtonClick
+        m_MethodName: OnStigmataBestowalButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
