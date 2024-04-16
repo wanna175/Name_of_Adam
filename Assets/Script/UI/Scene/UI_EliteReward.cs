@@ -17,11 +17,12 @@ public class UI_EliteReward : UI_Popup
     private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists, List<int> selectedUnitNumbers)
     {
         DeckUnit deckUnit = new DeckUnit();
-        
+
         int unitNumber = Random.Range(0, unitLists.Count);
 
         while (selectedUnitNumbers.Contains(unitNumber))
         {
+            Debug.Log($"'{unitNumber}번 유닛'은(는) 중복된 유닛입니다.");
             unitNumber = Random.Range(0, unitLists.Count);
         }
 
