@@ -123,14 +123,21 @@ public class Tile : MonoBehaviour
         highlightSprite.color = endColor;
     }
 
+    private bool IsPointerOverUIObject() => EventSystem.current.IsPointerOverGameObject();
+
     private void OnMouseDown()
     {
-        //OnClickAction(this);
+        if (IsPointerOverUIObject() == true)
+            return;
+
         BattleManager.Instance.OnClickTile(this);
     }
 
     private void OnMouseEnter()
     {
+        if (IsPointerOverUIObject() == true)
+            return;
+
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             BattleManager.Field.MouseEnterTile(this);
@@ -140,6 +147,9 @@ public class Tile : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (IsPointerOverUIObject() == true)
+            return;
+
         BattleManager.Field.MouseExitTile(this);
         _hover.SetActive(false);
     }
