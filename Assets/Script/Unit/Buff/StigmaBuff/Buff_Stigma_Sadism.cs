@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Buff_Stigma_Sadism : Buff
 {
-    private int attackUp;
+    private int attackUp = 0;
     private int totalUp = 0;
     public override void Init(BattleUnit owner)
     {
@@ -44,6 +44,6 @@ public class Buff_Stigma_Sadism : Buff
 
     public override void SetValue(int num)
     {
-        attackUp = num;
+        attackUp += num;
     }
 }

@@ -127,6 +127,18 @@ public class UnitBuff : MonoBehaviour
         return buffNum;
     }
 
+    public Buff GetBuff(BuffEnum buffEnum)
+    {
+        foreach (Buff buff in _buffList)
+        {
+            if (buff.BuffEnum == buffEnum)
+            {
+                return buff;
+            }
+        }
+        return null;
+    }
+
     public int GetBuffStack(BuffEnum buffEnum)
     {
         for (int i = 0; i < _buffList.Count; i++)
