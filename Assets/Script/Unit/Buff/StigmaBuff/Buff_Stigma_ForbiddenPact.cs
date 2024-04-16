@@ -31,7 +31,7 @@ public class Buff_Stigma_ForbiddenPact : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (caster.Team == Team.Player)
+        if (_owner.Team == Team.Player)
         {
             BattleManager.PlayerSkillController.SetManaFree(true);
             BattleManager.BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
