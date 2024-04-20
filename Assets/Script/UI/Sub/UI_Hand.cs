@@ -83,6 +83,9 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         if (!_phase.CurrentPhaseCheck(_phase.Prepare))
             return;
 
+        if (BattleManager.PlayerSkillController.IsSkillOn)
+            return;
+
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (TutorialManager.Instance.IsEnable())
