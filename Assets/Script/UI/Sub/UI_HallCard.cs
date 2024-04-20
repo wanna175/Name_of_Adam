@@ -74,6 +74,15 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
         }
 
+        if (_mainDeck[HallUnitID].Data.Rarity == Rarity.Normal)
+        {
+            _frameImage.sprite = NormalImage;
+        }
+        else
+        {
+            _frameImage.sprite = EliteImage;
+        }
+
         if (!GameManager.OutGameData.IsUnlockedItem(14))
         {
             if (HallUnitID == 1 || HallUnitID == 2)

@@ -130,6 +130,19 @@ public class SaveController : MonoBehaviour
             savedFallenUnitList.Add(deckunit);
         }
 
+        // FallenUnits와 DeckUnits에 겹치는 유닛이 있기 때문에 동일한 유닛을 참조하도록 함
+        foreach (DeckUnit deckUnit in savedDeckUnitList)
+        {
+            for (int i = 0; i < savedFallenUnitList.Count; i++)
+            {
+                DeckUnit fallenUnit = savedFallenUnitList[i];
+                if (DeckUnit.IsEqual(deckUnit, fallenUnit))
+                {
+                    savedFallenUnitList[i] = deckUnit;
+                }
+            }
+        }
+
         GameManager.Data.GameData.DeckUnits = savedDeckUnitList;
         GameManager.Data.GameData.FallenUnits = savedFallenUnitList;
         GameManager.Data.GameData.Incarna = GameManager.Resource.Load<Incarna>($"ScriptableObject/Incarna/{loadData.IncarnaID}"); ;

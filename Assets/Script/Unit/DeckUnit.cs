@@ -60,6 +60,17 @@ public class DeckUnit
         return false;
     }
 
+    public bool CheckUpgrade(Upgrade findUpgrade)
+    {
+        foreach (Upgrade upgrade in DeckUnitUpgrade)
+        {
+            if (upgrade.UpgradeStat.Compare(findUpgrade.UpgradeStat) == true)
+                return true;
+        }
+
+        return false;
+    }
+
     public List<Stigma> GetStigma(bool notGetUniqueStigmata = false)
     {
         List<Stigma> stigmataList = new();
@@ -229,5 +240,22 @@ public class DeckUnit
     public int GetStigmaCount()
     {
         return _stigmaCount + Data.UniqueStigma.Count;
+    }
+
+    public static bool IsEqual(DeckUnit a, DeckUnit b)
+    {
+        if (a.Data.ID != b.Data.ID)
+            return false;
+
+        foreach (Stigma stigma in a.GetStigma())
+            if (b.CheckStigma(stigma.StigmaEnum) == false)
+                return false;
+
+        foreach (Upgrade upgrade in a.DeckUnitUpgrade)
+            if (b.CheckUpgrade(upgrade) == false)
+                return false;
+
+        //Debug.Log($"동일한 유닛 : {a.Data.Name} / {b.Data.Name}");
+        return true;
     }
 }

@@ -42,6 +42,25 @@ public struct Stat
         return result;
     }
 
+    public bool Compare(Stat other)
+    {
+        if (MaxHP != other.MaxHP)
+            return false;
+        if (CurrentHP != other.CurrentHP)
+            return false;
+        if (ATK != other.ATK)
+            return false;
+        if (SPD != other.SPD)
+            return false;
+        if (FallCurrentCount != other.FallCurrentCount)
+            return false;
+        if (FallMaxCount != other.FallMaxCount)
+            return false;
+        if (ManaCost != other.ManaCost)
+            return false;
+        return true;
+    }
+
     public void ClearStat()
     {
         MaxHP = 0;

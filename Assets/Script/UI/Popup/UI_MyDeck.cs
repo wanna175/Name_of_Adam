@@ -353,6 +353,8 @@ public class UI_MyDeck : UI_Popup
 
     public void OnPrePageButton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
         _currentPageIndex--;
         SetCard();
         SetPageAllUI();
@@ -360,6 +362,8 @@ public class UI_MyDeck : UI_Popup
 
     public void OnPostPageButton()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
         _currentPageIndex++;
         SetCard();
         SetPageAllUI();

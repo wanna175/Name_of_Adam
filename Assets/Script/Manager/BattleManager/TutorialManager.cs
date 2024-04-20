@@ -130,6 +130,24 @@ public class TutorialManager : MonoBehaviour
         }
 
         isCanClick = true;
+
+        //디버그용
+        //var deckUnits = GameManager.Data.GameData.DeckUnits;
+        //var fallenUnits = GameManager.Data.GameData.FallenUnits;
+
+        //Debug.Log("=====================================");
+        //foreach (var unit in deckUnits)
+        //{
+        //    //unit의 메모리 주소
+        //    Debug.Log($"DeckUnit / {unit.UnitID} / {unit.Data.Name} / {unit.GetStigmaCount()} / {unit.GetUpgradeData().Count}");
+        //}
+        //Debug.Log("=====================================");
+        //foreach (var unit in fallenUnits)
+        //{
+        //    //unit의 메모리 주소
+        //    Debug.Log($"FallenUnit / {unit.UnitID} / {unit.Data.Name}/ {unit.GetStigmaCount()} / {unit.GetUpgradeData().Count}");
+        //}
+        //Debug.Log("=====================================");
     }
 
     private void Update()
