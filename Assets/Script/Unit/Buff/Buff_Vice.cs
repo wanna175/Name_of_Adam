@@ -33,6 +33,11 @@ public class Buff_Vice : Buff
         _count += 1;
     }
 
+    public override void SetValue(int num)
+    {
+        _count = num;
+    }
+
     public override bool Active(BattleUnit caster)
     {
         if (caster != null)

@@ -9,7 +9,7 @@ public class Stigma_Sin : Stigma
 
         Buff_Vice buff = new();
 
-        for (int i = 0; i < 66; i++)
-            caster.SetBuff(buff);
+        caster.SetBuff(buff);
+        caster.Buff.GetBuff(BuffEnum.Vice).SetValue(66);
     }
 }
