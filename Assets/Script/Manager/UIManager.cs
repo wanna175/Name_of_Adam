@@ -199,7 +199,8 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().name == "MainScene")
+            if (SceneManager.GetActiveScene().name == "MainScene" ||
+                SceneManager.GetActiveScene().name == "LogoScene")
                 return;
 
             GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
