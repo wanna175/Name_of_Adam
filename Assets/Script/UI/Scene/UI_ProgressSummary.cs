@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Device;
 
 [Serializable]
 public class ProgressText
@@ -74,12 +75,32 @@ public class UI_ProgressSummary : UI_Scene
     {
         if(_progress.BossWin > 0)
         {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, true); });
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, HallSaveCallback);
         }
         else
         {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(false, (deckUnit) => { GameManager.OutGameData.AddHallUnit(deckUnit, false); });
+            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(false, HallSaveCallback);
         }
+
         GameObject.Find("UI_ProgressSummary").gameObject.SetActive(false);
+    }
+
+    private void HallSaveCallback(DeckUnit deckUnit)
+    {
+        bool isExist = false;
+
+        foreach (var hallUnit in GameManager.OutGameData.FindHallUnitList())
+        {
+            if (hallUnit.PrivateKey == deckUnit.PrivateKey)
+            {
+                UI_SystemSelect popup = GameManager.UI.ShowPopup<UI_SystemSelect>();
+                popup.Init("이미 등록된 전당 유닛입니다.\n갈아치우시겠습니까?", () => { GameManager.OutGameData.CoverHallUnit(deckUnit); });
+                isExist = true;
+                break;
+            }
+        }
+
+        if (isExist == false)
+            GameManager.OutGameData.AddHallUnit(deckUnit);
     }
 }

@@ -207,7 +207,7 @@ public class OutGameDataContainer : MonoBehaviour
 
     public List<HallUnit> FindHallUnitList() => _data.HallUnit;
 
-    public void AddHallUnit(DeckUnit unit, bool IsBossClear)
+    public void AddHallUnit(DeckUnit unit)
     {
         HallUnit newUnit = new();
 
@@ -235,15 +235,50 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
 
         GameManager.Data.GameData.FallenUnits.Clear();
+        SceneChanger.SceneChange("MainScene");
+    }
 
-        if (IsBossClear)
+    public void CoverHallUnit(DeckUnit unit)
+    {
+        HallUnit coverUnit = null;
+
+        foreach (HallUnit hallUnit in _data.HallUnit)
         {
-            SceneChanger.SceneChange("MainScene");
+            if (hallUnit.PrivateKey == unit.PrivateKey)
+            {
+                coverUnit = hallUnit;
+                break;
+            }
         }
-        else
+
+        if (coverUnit == null)
         {
-            SceneChanger.SceneChange("MainScene");
+            Debug.LogError("전당에 등록되지 않은 유닛입니다.");
+            return;
         }
+
+        for (int i = 0; i < Mathf.Infinity; i++)
+        {
+            if (_data.HallUnit.Find(x => x.ID == i) == null)
+            {
+                coverUnit.ID = i;
+                break;
+            }
+        }
+
+        Debug.Log($"{unit.Data.Name} Unit Get");
+
+        unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+
+        coverUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
+        coverUnit.IsMainDeck = true;
+        coverUnit.Stigmata = unit.GetStigmaSaveData();
+        coverUnit.Upgrades = unit.GetUpgradeData();
+
+        SaveData();
+
+        GameManager.Data.GameData.FallenUnits.Clear();
+        SceneChanger.SceneChange("MainScene");
     }
 
     public void DoneTutorial(bool isclear)
