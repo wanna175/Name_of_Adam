@@ -75,12 +75,14 @@ public struct Stat
 
 public struct RewardUnit
 {
+    public string PrivateKey;
     public string Name;
     public int PreFall;
     public Sprite Image;
 
-    public RewardUnit(string name, int preFall, Sprite image)
+    public RewardUnit(string privateKey, string name, int preFall, Sprite image)
     {
+        PrivateKey = privateKey;
         Name = name;
         PreFall = preFall;
         Image = image;

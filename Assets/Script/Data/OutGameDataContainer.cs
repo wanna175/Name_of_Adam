@@ -52,6 +52,7 @@ public class ProgressItem
 [Serializable]
 public class HallUnit
 {
+    public string PrivateKey;     // 고유 Key
     public int ID;                // 전당 내에서 식별을 위한 ID
     public string UnitName;       // 지금은 유닛 이름으로 받고있지만 ID로 받는 기능이 추가되면 변경해야함
     public Stat UpgradedStat;     //업그레이드된 스텟
@@ -67,9 +68,11 @@ public class OutGameDataContainer : MonoBehaviour
 
     //데모용
     //private const string OutGameDataFileName = "126634399755.dat";
-    
+
     //정식용
     private const string OutGameDataFileName = "126634399756.dat";
+
+    private SaveVersionController _versionController;
 
     // 현재 진행중인 게임에서 관리하는 아웃게임데이터
     private OutGameData _data;
@@ -78,6 +81,8 @@ public class OutGameDataContainer : MonoBehaviour
 
     public void Init()
     {
+        _versionController = new SaveVersionController();
+
         // 사용자\AppData\localLow에 있는 SaveData.json의 경로
         _path = Path.Combine(Application.persistentDataPath, OutGameDataFileName);
 
@@ -91,23 +96,11 @@ public class OutGameDataContainer : MonoBehaviour
         SetResolution();
     }
 
-    private void MigrationData()
-    {
-        switch (_data.Version)
-        {
-            // 이후 업데이트에서 구현 필요 시 추가
-        }
-    }
-
     private string EncryptAndDecrypt(string data)
     {
         string result = string.Empty;
-
         for (int i = 0; i < data.Length; i++)
-        {
             result += (char)(data[i] ^ encryptionKey[i % encryptionKey.Length]);
-        }
-
         return result;
     }
 
@@ -125,17 +118,11 @@ public class OutGameDataContainer : MonoBehaviour
             string json = File.ReadAllText(_path);
             _data = JsonUtility.FromJson<OutGameData>(EncryptAndDecrypt(json));
 
-            if (_data.Version.Equals(Application.version))
+            if (_versionController.CheckNeedMigration() == true)
             {
-                Debug.Log("Data Load Complete");
+                // 데이터 무결성 검사
+                _versionController.MigrateData();
             }
-            else
-            {
-                Debug.Log($"Data Version is not matched! Save Version : {_data.Version} / Build Version {Application.version}");
-                MigrationData();
-            }
-
-            _data.Version = Application.version;
         }
         catch(FileNotFoundException e)
         {
@@ -151,12 +138,11 @@ public class OutGameDataContainer : MonoBehaviour
 
         foreach (HallUnit unit in _data.HallUnit)
         {
-            DeckUnit deckUnit = new();
+            DeckUnit deckUnit = new DeckUnit();
 
-            UnitDataSO unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{unit.UnitName}");
-
+            deckUnit.PrivateKey = unit.PrivateKey;
             deckUnit.HallUnitID = unit.ID;
-            deckUnit.Data = unitData;
+            deckUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{unit.UnitName}");
             deckUnit.DeckUnitUpgradeStat = unit.UpgradedStat;
             deckUnit.IsMainDeck = unit.IsMainDeck;
 
@@ -173,7 +159,8 @@ public class OutGameDataContainer : MonoBehaviour
         // Resources폴더 안에 있는 데이터를 복사하여 저장
         TextAsset text = GameManager.Resource.Load<TextAsset>("Data/OutGameData");
         _data = JsonUtility.FromJson<OutGameData>(text.text);
-
+        _data.Version = Application.version;
+       
         ReSetOption();
         SaveData();
     }
@@ -220,7 +207,7 @@ public class OutGameDataContainer : MonoBehaviour
 
     public List<HallUnit> FindHallUnitList() => _data.HallUnit;
 
-    public void AddHallUnit(DeckUnit unit, bool IsBossClear)
+    public void AddHallUnit(DeckUnit unit)
     {
         HallUnit newUnit = new();
 
@@ -237,6 +224,7 @@ public class OutGameDataContainer : MonoBehaviour
 
         unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
 
+        newUnit.PrivateKey = unit.PrivateKey;
         newUnit.UnitName = unit.Data.ID;
         newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
         newUnit.IsMainDeck = false;
@@ -247,15 +235,50 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
 
         GameManager.Data.GameData.FallenUnits.Clear();
+        SceneChanger.SceneChange("MainScene");
+    }
 
-        if (IsBossClear)
+    public void CoverHallUnit(DeckUnit unit)
+    {
+        HallUnit coverUnit = null;
+
+        foreach (HallUnit hallUnit in _data.HallUnit)
         {
-            SceneChanger.SceneChange("MainScene");
+            if (hallUnit.PrivateKey == unit.PrivateKey)
+            {
+                coverUnit = hallUnit;
+                break;
+            }
         }
-        else
+
+        if (coverUnit == null)
         {
-            SceneChanger.SceneChange("MainScene");
+            Debug.LogError("전당에 등록되지 않은 유닛입니다.");
+            return;
         }
+
+        for (int i = 0; i < Mathf.Infinity; i++)
+        {
+            if (_data.HallUnit.Find(x => x.ID == i) == null)
+            {
+                coverUnit.ID = i;
+                break;
+            }
+        }
+
+        Debug.Log($"{unit.Data.Name} Unit Get");
+
+        unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
+
+        coverUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
+        coverUnit.IsMainDeck = true;
+        coverUnit.Stigmata = unit.GetStigmaSaveData();
+        coverUnit.Upgrades = unit.GetUpgradeData();
+
+        SaveData();
+
+        GameManager.Data.GameData.FallenUnits.Clear();
+        SceneChanger.SceneChange("MainScene");
     }
 
     public void DoneTutorial(bool isclear)
@@ -388,4 +411,6 @@ public class OutGameDataContainer : MonoBehaviour
     public bool GetIsOnMainTooltipForPhanuel() => _data.IsOnMainTooltipForPhanuel;
     public void SetIsOnMainTooltipForHorus(bool isOn) => _data.IsOnMainTooltipForHorus = isOn;
     public void SetIsOnMainTooltipForPhanuel(bool isOn) => _data.IsOnMainTooltipForPhanuel = isOn;
+    public string GetVersion() => _data.Version;
+    public void SetVersion(string version) => _data.Version = version;
 }

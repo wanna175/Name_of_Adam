@@ -16,12 +16,7 @@ public class PlayerSkill_02_01 : PlayerSkill
         GameManager.Sound.Play("UI/PlayerSkillSFX/Punishment");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Punishment", BattleManager.Field.GetTilePosition(coord));
                 
-        return true;
-    }
-
-    public override bool Action(ActiveTiming activeTiming, Vector2 coord)
-    {
-        return base.Action(activeTiming, coord);
+        return false;
     }
 
     public override void CancelSelect()

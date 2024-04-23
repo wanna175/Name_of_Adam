@@ -42,6 +42,7 @@ public class MainSceneController : MonoBehaviour
         else
         {
             GameManager.Data.DeckClear();
+            GameManager.Data.HallDeckSet();
             GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
             Destroy(GameManager.Instance.gameObject);
 
@@ -60,7 +61,6 @@ public class MainSceneController : MonoBehaviour
 
             if (GameManager.OutGameData.IsTutorialClear())
             {
-                GameManager.Data.HallDeckSet();
                 GameManager.Data.HallSelectedDeckSet();
                 SceneChanger.SceneChange("DifficultySelectScene");
             }

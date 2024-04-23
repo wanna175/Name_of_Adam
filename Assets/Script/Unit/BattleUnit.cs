@@ -496,7 +496,7 @@ public class BattleUnit : MonoBehaviour
 
     public void ChangeFall(int value)
     {
-        if (Fall.IsEdified)
+        if (FallEvent || Fall.IsEdified)
         {
             Debug.Log($"{Data.Name} is Edified.");
             return;

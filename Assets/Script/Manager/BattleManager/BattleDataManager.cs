@@ -52,7 +52,7 @@ public class BattleDataManager : MonoBehaviour
 
         foreach (DeckUnit unit in _playerDeck)
         {
-            _battlePrevUnitDict.Add(unit.UnitID, new RewardUnit(unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, unit.Data.CorruptPortraitImage));
+            _battlePrevUnitDict.Add(unit.UnitID, new RewardUnit(unit.PrivateKey, unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, unit.Data.CorruptPortraitImage));
         }
     }
 
