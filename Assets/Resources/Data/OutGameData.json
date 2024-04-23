@@ -292,6 +292,7 @@
   ],
   "HallUnit": [
     {
+      "PrivateKey": "흑기사_Origin",
       "ID": 0,
       "UnitName": "흑기사",
       "UpgradedStat": {
@@ -307,8 +308,9 @@
       "Stigmata": []
     },
     {
-      "ID": 1,
-      "UnitName": "묘지기",
+      "PrivateKey": "죄수_Origin",
+      "ID": 2,
+      "UnitName": "죄수",
       "UpgradedStat": {
         "MaxHP": 0,
         "CurrentHP": 0,
@@ -322,8 +324,9 @@
       "Stigmata": []
     },
     {
-      "ID": 2,
-      "UnitName": "죄수",
+      "PrivateKey": "묘지기_Origin",
+      "ID": 1,
+      "UnitName": "묘지기",
       "UpgradedStat": {
         "MaxHP": 0,
         "CurrentHP": 0,

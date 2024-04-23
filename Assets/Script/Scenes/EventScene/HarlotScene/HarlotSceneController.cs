@@ -117,7 +117,10 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         int unitidx = Random.Range(0, 3);
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
 
-        ui.SetUnit(_originUnits[unitidx]);
+        DeckUnit originalUnit = new DeckUnit();
+        originalUnit.Data = _originUnits[unitidx].Data;
+
+        ui.SetUnit(originalUnit);
         ui.Init(OnSelectMakeUnit, CUR_EVENT.COMPLETE_HAELOT, OnQuitClick);
 
     }

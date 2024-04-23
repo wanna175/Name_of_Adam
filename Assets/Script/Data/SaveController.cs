@@ -23,6 +23,7 @@ public class SaveData
 [Serializable]
 public class SaveUnit
 {
+    public string PrivateKey;
     public string UnitDataID;
     public Stat UnitStat;
     public List<StigmaSaveData> Stigmata; // 유닛에게 추가된 낙인
@@ -60,6 +61,7 @@ public class SaveController : MonoBehaviour
         {
             SaveUnit saveUnit = new();
 
+            saveUnit.PrivateKey = unit.PrivateKey;
             saveUnit.UnitDataID = unit.Data.ID;
             saveUnit.UnitStat = unit.DeckUnitUpgradeStat;
             saveUnit.Stigmata = unit.GetStigmaSaveData();
@@ -72,6 +74,7 @@ public class SaveController : MonoBehaviour
         {
             SaveUnit saveUnit = new();
 
+            saveUnit.PrivateKey = unit.PrivateKey;
             saveUnit.UnitDataID = unit.Data.ID;
             saveUnit.UnitStat = unit.DeckUnitUpgradeStat;
             saveUnit.Stigmata = unit.GetStigmaSaveData();
@@ -110,7 +113,9 @@ public class SaveController : MonoBehaviour
 
         foreach (SaveUnit saveUnit in loadData.DeckUnitData)
         {
-            DeckUnit deckunit = new();
+            DeckUnit deckunit = new DeckUnit();
+
+            deckunit.PrivateKey = saveUnit.PrivateKey;
             deckunit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{saveUnit.UnitDataID}");
             deckunit.DeckUnitUpgradeStat = saveUnit.UnitStat;
             deckunit.SetStigmaSaveData(saveUnit.Stigmata);
@@ -121,7 +126,9 @@ public class SaveController : MonoBehaviour
 
         foreach (SaveUnit saveUnit in loadData.FallenUnitsData)
         {
-            DeckUnit deckunit = new();
+            DeckUnit deckunit = new DeckUnit();
+
+            deckunit.PrivateKey = saveUnit.PrivateKey;
             deckunit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{saveUnit.UnitDataID}");
             deckunit.DeckUnitUpgradeStat = saveUnit.UnitStat;
             deckunit.SetStigmaSaveData(saveUnit.Stigmata);
@@ -139,6 +146,7 @@ public class SaveController : MonoBehaviour
                 if (DeckUnit.IsEqual(deckUnit, fallenUnit))
                 {
                     savedFallenUnitList[i] = deckUnit;
+                    //break;
                 }
             }
         }
@@ -163,12 +171,8 @@ public class SaveController : MonoBehaviour
     private string EncryptAndDecrypt(string data)
     {
         string result = string.Empty;
-
         for (int i = 0; i < data.Length; i++)
-        {
             result += (char)(data[i] ^ encryptionKey[i % encryptionKey.Length]);
-        }
-
         return result;
     }
 }

@@ -16,9 +16,10 @@ public class UI_EliteReward : UI_Popup
 
     private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists, List<int> selectedUnitNumbers)
     {
-        DeckUnit deckUnit = new DeckUnit();
-
         int unitNumber = Random.Range(0, unitLists.Count);
+
+        DeckUnit deckUnit = new DeckUnit();
+        deckUnit.Data = unitLists[unitNumber];
 
         while (selectedUnitNumbers.Contains(unitNumber))
         {
@@ -26,7 +27,6 @@ public class UI_EliteReward : UI_Popup
             unitNumber = Random.Range(0, unitLists.Count);
         }
 
-        deckUnit.Data = unitLists[unitNumber];
         selectedUnitNumbers.Add(unitNumber);
 
         SetRandomStigmas(deckUnit);

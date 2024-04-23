@@ -48,7 +48,7 @@ public class UI_RewardScene : MonoBehaviour
             else
             {
                 //새로 플레이어 덱에 들어온 유닛
-                RewardUnit newUnit = new RewardUnit(afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
+                RewardUnit newUnit = new RewardUnit(afterBattleEndUnits[i].PrivateKey, afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
 
                 SetContent(i, newUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.New);
             }
@@ -59,7 +59,7 @@ public class UI_RewardScene : MonoBehaviour
         int idx = afterBattleEndUnits.Count;
         foreach (RewardUnit rewardUnit in prevUnitDict.Values)//죽은 유닛
         {
-            RewardUnit deadUnit = new(rewardUnit.Name, 0, rewardUnit.Image);
+            RewardUnit deadUnit = new(rewardUnit.PrivateKey, rewardUnit.Name, 0, rewardUnit.Image);
             SetContent(idx++, deadUnit, 0, 0, UnitState.Dead);
 
             yield return new WaitForSeconds(_createUnitSlotDelay);
@@ -91,7 +91,7 @@ public class UI_RewardScene : MonoBehaviour
             else
             {
                 //새로 플레이어 덱에 들어온 유닛
-                RewardUnit newUnit = new RewardUnit(afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
+                RewardUnit newUnit = new RewardUnit(afterBattleEndUnits[i].PrivateKey, afterBattleEndUnits[i].Data.Name, 0, afterBattleEndUnits[i].Data.CorruptPortraitImage);
 
                 SetContent(i, newUnit, afterBattleEndUnits[i].DeckUnitTotalStat.FallMaxCount, afterBattleEndUnits[i].DeckUnitTotalStat.FallCurrentCount, UnitState.New);
             }
@@ -100,7 +100,7 @@ public class UI_RewardScene : MonoBehaviour
         int idx = afterBattleEndUnits.Count;
         foreach (RewardUnit rewardUnit in prevUnitDict.Values)//죽은 유닛
         {
-            RewardUnit deadUnit = new(rewardUnit.Name, 0, rewardUnit.Image);
+            RewardUnit deadUnit = new(rewardUnit.PrivateKey, rewardUnit.Name, 0, rewardUnit.Image);
             SetContent(idx++, deadUnit, 0, 0, UnitState.Dead);
         }
     }

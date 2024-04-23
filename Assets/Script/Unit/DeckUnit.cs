@@ -7,6 +7,21 @@ using UnityEngine;
 [Serializable]
 public class DeckUnit
 {
+    private string _privateKey;
+    public string PrivateKey
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(_privateKey))
+                _privateKey = CreatePrivateKey();
+            return _privateKey;
+        }
+        set
+        {
+            _privateKey = value;
+        }
+    }
+
     public int UnitID { get; set; }
     public UnitDataSO Data; // 유닛 기초 정보
 
@@ -244,18 +259,13 @@ public class DeckUnit
 
     public static bool IsEqual(DeckUnit a, DeckUnit b)
     {
-        if (a.Data.ID != b.Data.ID)
+        if (a.PrivateKey != b.PrivateKey)
             return false;
-
-        foreach (Stigma stigma in a.GetStigma())
-            if (b.CheckStigma(stigma.StigmaEnum) == false)
-                return false;
-
-        foreach (Upgrade upgrade in a.DeckUnitUpgrade)
-            if (b.CheckUpgrade(upgrade) == false)
-                return false;
-
-        //Debug.Log($"동일한 유닛 : {a.Data.Name} / {b.Data.Name}");
+        
+        Debug.Log($"동일한 유닛\n a: {a.Data.Name}(Key:{a.PrivateKey})\n b: {b.Data.Name}(Key:{b.PrivateKey})");
         return true;
     }
+
+    public static string CreatePrivateKey()
+        => Guid.NewGuid().ToString();
 }
