@@ -48,6 +48,7 @@ public class BattleCutSceneManager : MonoBehaviour
         cutSceneGO.SetActive(true);
         IsCutScenePlaying = true;
 
+        GameManager.Sound.Play($"CutScene/{cutSceneToDisplay}", Sounds.BGM);
         video.clip = videoClip;
         video.loopPointReached += EndReached;
         video.Play();
