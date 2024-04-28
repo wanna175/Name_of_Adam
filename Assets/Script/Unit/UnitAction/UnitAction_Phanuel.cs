@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 public class UnitAction_Phanuel : UnitAction
 {
-    //0 index is vary last face, 1 index is second last face
     private int[] _recentState = {-1, -1};
-    //0 = smile, 1 = weep, 2 = mad
+
     private int _phanuelState = 0;
     private List<Vector2> _attackTile = new();
     private Phanuel_Animation _phanuel_Animation = null;
@@ -247,6 +246,7 @@ public class UnitAction_Phanuel : UnitAction
             foreach (Vector2 tile in _attackTile)
             {
                 BattleManager.Field.TileDict[tile].IsColored = true;
+                BattleManager.Field.TileDict[tile].SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
             }
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
