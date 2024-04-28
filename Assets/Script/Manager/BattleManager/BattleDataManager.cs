@@ -205,6 +205,20 @@ public class BattleDataManager : MonoBehaviour
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
     }
 
+    public void BattleUnitOrderSortingOnBattle()
+    {
+        _battleUnitOrderList = _battleUnitOrderUnits
+            .Where(unit => _battleUnitOrderList.Contains(unit.Item1))
+            .OrderByDescending(unit => unit.Item2 ?? unit.Item1.BattleUnitTotalStat.SPD)
+            .ThenBy(unit => unit.Item1.Team)
+            .ThenByDescending(unit => unit.Item1.Location.y)
+            .ThenBy(unit => unit.Item1.Location.x)
+            .Select(unit => unit.Item1)
+            .ToList();
+
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+    }
+
     public void BattleOrderRemove(BattleUnit removedUnit)
     {
         _battleUnitOrderList.Remove(removedUnit);
