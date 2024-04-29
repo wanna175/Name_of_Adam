@@ -13,11 +13,12 @@ public class PlayerSkill_Bounce : PlayerSkill
         unit.DeckUnit.DeckUnitChangedStat = new Stat();
 
         BattleManager.Data.BattleUnitList.Remove(unit);
-        BattleManager.Data.BattleUnitOrderReplace();
+        BattleManager.Data.BattleUnitRemoveFromOrder(unit);
         BattleManager.Data.AddDeckUnit(unit.DeckUnit);
         BattleManager.BattleUI.FillHand();
         BattleManager.Field.FieldCloseInfo(BattleManager.Field.TileDict[coord]);
         Destroy(unit.gameObject);
+
         return false;
     }
 

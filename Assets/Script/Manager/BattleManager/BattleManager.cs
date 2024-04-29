@@ -412,7 +412,7 @@ public class BattleManager : MonoBehaviour
     public void EndUnitAction()
     {
         _field.ClearAllColor();
-        _battleData.BattleOrderRemove(Data.GetNowUnit());
+        _battleData.BattleOrderRemove(Data.GetNowUnitOrder());
         _battleUI.UI_darkEssence.Refresh();
         _phase.ChangePhase(_phase.Engage);
         BattleOverCheck();
@@ -460,7 +460,7 @@ public class BattleManager : MonoBehaviour
 
     public void UnitSummonEvent(BattleUnit unit)
     {
-        _battleData.BattleUnitOrderReplace();
+        _battleData.BattleUnitOrderReset();
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, unit);
     }
 
@@ -468,8 +468,7 @@ public class BattleManager : MonoBehaviour
     {
         _battleData.BattleUnitList.Remove(unit);
         _field.ExitTile(unit.Location);
-        _battleData.BattleOrderRemove(unit);
-        _battleData.BattleUnitOrderReplace();
+        _battleData.BattleUnitRemoveFromOrder(unit);
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
@@ -519,7 +518,8 @@ public class BattleManager : MonoBehaviour
 
     public void UnitFallEvent(BattleUnit unit)
     {
-        _battleData.BattleUnitOrderReplace();
+        if (_phase.CurrentPhaseCheck(_phase.Prepare))
+            _battleData.BattleUnitOrderSorting();
 
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
             GameManager.Data.GameData.NpcQuest.DarkshopQuest++;

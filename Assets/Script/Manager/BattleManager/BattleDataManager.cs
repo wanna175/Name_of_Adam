@@ -165,17 +165,12 @@ public class BattleDataManager : MonoBehaviour
     }
 
     #region OrderedList
-    private List<(BattleUnit, int?)> _battleUnitOrderUnits = new();
-    private List<BattleUnit> _battleUnitOrderList = new();
-    public int OrderUnitCount => _battleUnitOrderList.Count;
+    private List<(BattleUnit, int?)> _battleUnitOrders = new();
+    public int OrderUnitCount => _battleUnitOrders.Count;
 
-    public void BattleUnitOrderReplace()
+    public void BattleUnitOrderReset()
     {
-        if (!BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
-            return;
-
-        _battleUnitOrderUnits.Clear();
-        _battleUnitOrderList.Clear();
+        _battleUnitOrders.Clear();
 
         foreach (BattleUnit unit in _battleUnitList)
         {
@@ -185,8 +180,7 @@ public class BattleDataManager : MonoBehaviour
             )
                 continue;
 
-            _battleUnitOrderUnits.Add(new(unit, null));
-            _battleUnitOrderList.Add(unit);
+            _battleUnitOrders.Add(new(unit, null));
         }
 
         BattleUnitOrderSorting();
@@ -194,50 +188,59 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleUnitOrderSorting()
     {
-        _battleUnitOrderList = _battleUnitOrderUnits
+        _battleUnitOrders = _battleUnitOrders
             .OrderByDescending(unit => unit.Item2 ?? unit.Item1.BattleUnitTotalStat.SPD)
             .ThenBy(unit => unit.Item1.Team)
             .ThenByDescending(unit => unit.Item1.Location.y)
             .ThenBy(unit => unit.Item1.Location.x)
-            .Select(unit => unit.Item1)
             .ToList();
 
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
 
-    public void BattleUnitOrderSortingOnBattle()
+    public void BattleUnitRemoveFromOrder(BattleUnit removeUnit)
     {
-        _battleUnitOrderList = _battleUnitOrderUnits
-            .Where(unit => _battleUnitOrderList.Contains(unit.Item1))
-            .OrderByDescending(unit => unit.Item2 ?? unit.Item1.BattleUnitTotalStat.SPD)
-            .ThenBy(unit => unit.Item1.Team)
-            .ThenByDescending(unit => unit.Item1.Location.y)
-            .ThenBy(unit => unit.Item1.Location.x)
-            .Select(unit => unit.Item1)
-            .ToList();
+        while (true)
+        {
+            (BattleUnit, int?) removeUnitOrder = _battleUnitOrders.Find(unit => unit.Item1 == removeUnit);
+            if (removeUnitOrder == (null, null))
+                break;
 
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+            _battleUnitOrders.Remove(removeUnitOrder);
+        }
+
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
 
-    public void BattleOrderRemove(BattleUnit removedUnit)
+    public void BattleOrderRemove((BattleUnit, int?) removeUnitOrder)
     {
-        _battleUnitOrderList.Remove(removedUnit);
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        Debug.Log(removeUnitOrder.Item1.Data.Name);
+
+
+        _battleUnitOrders.Remove(removeUnitOrder);
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
 
     public void BattleOrderInsert(int index, BattleUnit addUnit, int? speed = null)
     {
-        _battleUnitOrderList.Insert(index, addUnit);
-        _battleUnitOrderUnits.Add(new(addUnit, speed));
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        _battleUnitOrders.Insert(index, (addUnit, speed));
+        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
 
     public BattleUnit GetNowUnit()
     {
-        if (_battleUnitOrderList.Count > 0)
-            return _battleUnitOrderList[0];
+        if (_battleUnitOrders.Count > 0)
+            return _battleUnitOrders[0].Item1;
         return null;
     }
+
+    public (BattleUnit, int?) GetNowUnitOrder()
+    {
+        if (_battleUnitOrders.Count > 0)
+            return _battleUnitOrders[0];
+        return (null, null);
+    }
+
     #endregion
 
     public UnitAction GetUnitAction(UnitActionType actionType)
