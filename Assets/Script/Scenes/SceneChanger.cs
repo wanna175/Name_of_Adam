@@ -14,7 +14,6 @@ public static class SceneChanger
         }
 
         SceneManager.LoadScene(scenename);
-        GameManager.VisualEffect.ClearAllEffect();
         GameManager.Sound.SceneBGMPlay(scenename);
     }
 
