@@ -41,6 +41,7 @@ public class VisualEffectManager : MonoBehaviour
 
         return StartVisualEffect(clip, position);
     }
+
     // VisualEffect를 시작(애니메이션과 위치를 입력)
     public GameObject StartVisualEffect(AnimationClip clip, Vector3 position)
     {
@@ -137,5 +138,13 @@ public class VisualEffectManager : MonoBehaviour
     {
         EffectQueue[effect].Enqueue(go);
         go.SetActive(false);
+    }
+
+    public void ClearAllEffect()
+    {
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            this.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 }
