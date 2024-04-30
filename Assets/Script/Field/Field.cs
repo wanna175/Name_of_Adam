@@ -23,7 +23,7 @@ public class Field : MonoBehaviour
 
     readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
-    private Color ColorList(FieldColorType color)
+    public Color ColorList(FieldColorType color)
     {
         return color switch
         {

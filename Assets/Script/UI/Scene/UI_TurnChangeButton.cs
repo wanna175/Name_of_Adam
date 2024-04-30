@@ -44,7 +44,7 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
                 _phase.ChangePhase(_phase.Action);
             else if (_phase.CurrentPhaseCheck(_phase.Action))
             {
-                BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnit());
+                BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnitOrder());
                 _phase.ChangePhase(_phase.Engage);
             }
         }

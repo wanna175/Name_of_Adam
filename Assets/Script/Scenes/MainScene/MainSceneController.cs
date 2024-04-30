@@ -75,7 +75,10 @@ public class MainSceneController : MonoBehaviour
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (GameManager.SaveManager.SaveFileCheck())
+        {
             SceneChanger.SceneChange("StageSelectScene");
+            GameManager.SaveManager.LoadGame();
+        }
     }
     public void ProgressButton()
     {

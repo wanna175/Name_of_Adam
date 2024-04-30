@@ -15,7 +15,6 @@ public static class SceneChanger
 
         SceneManager.LoadScene(scenename);
         GameManager.Sound.SceneBGMPlay(scenename);
-        
     }
 
     public static string GetSceneName()

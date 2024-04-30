@@ -23,10 +23,12 @@ public class StageManager : MonoBehaviour
     public static StageManager Instance { get { Init(); return s_instance; } }
 
     [SerializeField] StageCameraController CameraController;
-    StageChanger _stageChanger;
+    private StageChanger _stageChanger;
 
     private List<Stage> StageList;
     public Stage CurrentStage;
+
+    private bool _isClicked = false;
 
     private void Awake()
     {
@@ -116,7 +118,7 @@ public class StageManager : MonoBehaviour
             if (st != null)
                 st.SetNextStage();
         }
-
+         _isClicked = false;
 
         CameraController.SetLocate(CurrentStage.transform.localPosition.y + 2);
     }
@@ -229,10 +231,15 @@ public class StageManager : MonoBehaviour
 
     public void StageMove(int id)
     {
+        if (_isClicked)
+            return;
+
         foreach (Stage st in CurrentStage.NextStage)
         {
             if (st != null && st.Datas.ID == id)
             {
+                _isClicked = true;
+
                 GameManager.Sound.Clear();
                 GameManager.Sound.Play("Node/NodeClickSFX");
                 GameManager.VisualEffect.StartFadeEffect(false);

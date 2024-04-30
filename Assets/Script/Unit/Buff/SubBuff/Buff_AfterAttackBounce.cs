@@ -28,7 +28,7 @@ public class Buff_AfterAttackBounce : Buff
     public override bool Active(BattleUnit caster)
     {
         BattleManager.Data.BattleUnitList.Remove(_owner);
-        BattleManager.Data.BattleOrderRemove(_owner);
+        BattleManager.Data.BattleUnitRemoveFromOrder(_owner);
         BattleManager.Data.AddDeckUnit(_owner.DeckUnit);
         BattleManager.BattleUI.FillHand();
         BattleManager.Field.FieldCloseInfo(BattleManager.Field.TileDict[_owner.Location]);
