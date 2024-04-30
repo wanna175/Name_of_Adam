@@ -166,4 +166,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public static string CreatePrivateKey()
+    => Guid.NewGuid().ToString();
 }
