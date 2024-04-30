@@ -490,7 +490,6 @@ public class BattleManager : MonoBehaviour
                     case "바누엘":
                         if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
                         {
-                            GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
                             GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
                             GameManager.Data.GameData.Progress.PhanuelKill++;
@@ -499,7 +498,6 @@ public class BattleManager : MonoBehaviour
                     case "호루스":
                         if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
                         {
-                            GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Dead, true);
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
                         }
                         GameManager.Data.GameData.Progress.HorusKill++;

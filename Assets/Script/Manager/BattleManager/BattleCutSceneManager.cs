@@ -56,7 +56,11 @@ public class BattleCutSceneManager : MonoBehaviour
         Debug.Log($"{cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
     }
 
-    public void SkipButton() => EndReached(video);
+    public void SkipButton()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        EndReached(video);
+    }
 
     private void EndReached(VideoPlayer vp)
     {
@@ -66,6 +70,7 @@ public class BattleCutSceneManager : MonoBehaviour
         cutSceneGO.SetActive(false);
         IsCutScenePlaying = false;
 
+        GameManager.OutGameData.SetCutSceneData(cutSceneToDisplay, true);
         BattleManager.Instance.BattleOverCheck();
     }
 }
