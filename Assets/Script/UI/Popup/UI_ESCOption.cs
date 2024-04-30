@@ -38,6 +38,7 @@ public class UI_ESCOption : UI_Popup
             GameManager.SaveManager.LoadGame();
 
         Time.timeScale = 1;
+        GameManager.VisualEffect.ClearAllEffect();
         GameManager.UI.CloseAllOption();
     }
 
