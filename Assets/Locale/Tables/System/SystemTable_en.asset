@@ -22,7 +22,6 @@ MonoBehaviour:
     m_Localized: 'Abandon saved journey?
 
 
-
       You have an existing journey. Are
       you sure you want to abandon it and start a new journey?'
     m_Metadata:
@@ -30,18 +29,16 @@ MonoBehaviour:
   - m_Id: 5593952256
     m_Localized: 'Congratulations, prophet of darkness.
 
-      
 
-      However,
-      your journey is not yet over. <color=yellow>A new light <color=white>awaits
-      you beyond the horizon.'
+      However, your journey
+      is not yet over. <color=yellow>A new light <color=white>awaits you beyond the
+      horizon.'
     m_Metadata:
       m_Items: []
   - m_Id: 3364736528384
     m_Localized: 'Congratulations, you have overcome everything. But the real test
       begins now.
 
-      
 
       Face a new battle every round and test your limits.'
     m_Metadata:
@@ -55,27 +52,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17209785905152
-    m_Localized: '
+    m_Localized: 'The number of stigmata on the currently selected unit is at maximum.
 
-      The number of stigmata on the currently selected unit
-      is at maximum.
 
-      
-
-      Would you like to destroy one stigmata and
-      select another?'
+      Would
+      you like to destroy one stigmata and select another?'
     m_Metadata:
       m_Items: []
   - m_Id: 17261312929792
-    m_Localized: '
+    m_Localized: 'The number of enhancements on the currently selected unit is at
+      maximum.
 
-      The number of enhancements on the currently selected unit
-      is at maximum.
 
-      
-
-      Would you like to destroy one enhancement and
-      select another?'
+      Would you like to destroy one enhancement and select another?'
     m_Metadata:
       m_Items: []
   - m_Id: 17279610286936064
