@@ -94,7 +94,7 @@ public class UI_ProgressSummary : UI_Scene
             if (hallUnit.PrivateKey == deckUnit.PrivateKey)
             {
                 UI_SystemSelect popup = GameManager.UI.ShowPopup<UI_SystemSelect>();
-                popup.Init("이미 등록된 전당 유닛입니다.\n갈아치우시겠습니까?", () => { GameManager.OutGameData.CoverHallUnit(deckUnit); });
+                popup.Init("HallSaveConfirm", () => { GameManager.OutGameData.CoverHallUnit(deckUnit); });
                 isExist = true;
                 break;
             }

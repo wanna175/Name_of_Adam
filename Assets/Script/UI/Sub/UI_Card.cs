@@ -23,7 +23,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] public Sprite EliteFrame;
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
-    private CUR_EVENT evNum = CUR_EVENT.NONE;
+    private CUR_EVENT _eventNum = CUR_EVENT.NONE;
 
     private void Start()
     {
@@ -31,10 +31,11 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _selectHighlight.SetActive(false);
     }
 
-    public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit)
+    public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit, CUR_EVENT eventNum)
     {
         _myDeck = myDeck;
         _cardUnit = unit;
+        _eventNum = eventNum;
 
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
@@ -121,6 +122,17 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             return;
         }
 
-        _myDeck.OnClickCard(_cardUnit);
+        if (_eventNum == CUR_EVENT.GIVE_STIGMA)
+        {
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
+            {
+                _myDeck.OnClickCard(_cardUnit);
+                GameManager.Data.RemoveDeckUnit(_cardUnit);
+            });
+        }
+        else
+        {
+            _myDeck.OnClickCard(_cardUnit);
+        }
     }
 }
