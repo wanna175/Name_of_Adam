@@ -31,11 +31,10 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _selectHighlight.SetActive(false);
     }
 
-    public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit, CUR_EVENT eventNum)
+    public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit)
     {
         _myDeck = myDeck;
         _cardUnit = unit;
-        _eventNum = eventNum;
 
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
@@ -116,17 +115,6 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             return;
         }
 
-        if (_eventNum == CUR_EVENT.GIVE_STIGMA)
-        {
-            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
-            {
-                _myDeck.OnClickCard(_cardUnit);
-                GameManager.Data.RemoveDeckUnit(_cardUnit);
-            });
-        }
-        else
-        {
-            _myDeck.OnClickCard(_cardUnit);
-        }
+        _myDeck.OnClickCard(_cardUnit);
     }
 }

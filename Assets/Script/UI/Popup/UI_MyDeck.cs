@@ -82,7 +82,7 @@ public class UI_MyDeck : UI_Popup
         }
 
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleText);
-        
+
         SetCard(_currentEvent);
     }
 
@@ -193,7 +193,6 @@ public class UI_MyDeck : UI_Popup
         {
             _playerDeck = eliteDeck;
         }
-        
         _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
@@ -216,35 +215,21 @@ public class UI_MyDeck : UI_Popup
                 break;
 
             if (currentEvent == CurrentEvent.Stigmata_Give)
-            AddCard(_playerDeck[i], _eventNum);
-        }
-    }
-
-    private void SetCard(CUR_EVENT eventNum)
-    {
-        ClearCard();
-
-        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
-        {
-            if (i >= _playerDeck.Count)
-                break;
-
-            if (eventNum == CUR_EVENT.GIVE_STIGMA)
             {
                 if (_playerDeck[i].GetStigma(true).Count != 0)
-                    AddCard(_playerDeck[i], _eventNum);
+                    AddCard(_playerDeck[i]);
             }
             else if (currentEvent == CurrentEvent.Stigmata_Receive)
             {
                 if (_playerDeck[i].Data.Rarity != Rarity.Boss)
-                    AddCard(_playerDeck[i], _eventNum);
+                    AddCard(_playerDeck[i]);
             }
             else if (currentEvent == CurrentEvent.Stigmata_Select)
             {
-                AddCard(_playerDeck[i], _eventNum);
+                AddCard(_playerDeck[i]);
                 _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
             }
-            else 
+            else
             {
                 AddCard(_playerDeck[i]);
             }
@@ -258,10 +243,10 @@ public class UI_MyDeck : UI_Popup
             GameManager.Resource.Destroy(card.gameObject);
     }
 
-    public void AddCard(DeckUnit unit, CUR_EVENT eventNum)
+    public void AddCard(DeckUnit unit)
     {
         UI_Card newCard = GameObject.Instantiate(_cardPrefabs, _grid).GetComponent<UI_Card>();
-        newCard.SetCardInfo(this, unit, eventNum);
+        newCard.SetCardInfo(this, unit);
 
         _card_dic[unit] = newCard;
     }
