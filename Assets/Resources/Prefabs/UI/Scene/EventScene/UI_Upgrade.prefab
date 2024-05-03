@@ -1174,7 +1174,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5581034977863573194}
         m_TargetAssemblyTypeName: UpgradeSceneController, Assembly-CSharp
-        m_MethodName: OnReleaseUnitButtonClick
+        m_MethodName: OnHealFaithButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
