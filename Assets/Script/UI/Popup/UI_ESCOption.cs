@@ -34,8 +34,11 @@ public class UI_ESCOption : UI_Popup
     public void YesGoToMain()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName != "CutScene") // 처음 컷씬에서 세이브 오류 발생하니 제외
+
+        if (sceneName != "BattleScene" && sceneName != "EventScene" && sceneName != "CutScene")
+        {
             GameManager.SaveManager.SaveGame();
+        }
 
         Time.timeScale = 1;
         GameManager.VisualEffect.ClearAllEffect();
