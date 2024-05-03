@@ -87,7 +87,7 @@ public class SaveController : MonoBehaviour
         newData.DeckUnitData = saveDeckUnitList;
         newData.FallenUnitsData = saveFallenUnitList;
         newData.IncarnaID = CurGameData.Incarna.ID;
-        newData.DarkEssence = GameManager.Data.DarkEssense;
+        newData.DarkEssence = CurGameData.DarkEssence;
         newData.PlayerHP = CurGameData.PlayerHP;
         newData.ProgressData = CurGameData.Progress;
         newData.NpcQuestData = CurGameData.NpcQuest;

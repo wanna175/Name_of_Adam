@@ -15,6 +15,6 @@ public class UI_DarkEssence : UI_Scene
 
     public void Refresh() 
     {
-        _darkEssence.text = GameManager.Data.DarkEssense.ToString();
+        _darkEssence.text = GameManager.Data.GameData.DarkEssence.ToString();
     }
 }

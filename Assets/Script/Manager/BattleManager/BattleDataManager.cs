@@ -48,7 +48,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         _battlePrevUnitDict = new Dictionary<int, RewardUnit>();
-        _battlePrevDarkEssence = GameManager.Data.DarkEssense;
+        _battlePrevDarkEssence = GameManager.Data.GameData.DarkEssence;
 
         foreach (DeckUnit unit in _playerDeck)
         {
@@ -214,9 +214,6 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleOrderRemove((BattleUnit, int?) removeUnitOrder)
     {
-        Debug.Log(removeUnitOrder.Item1.Data.Name);
-
-
         _battleUnitOrders.Remove(removeUnitOrder);
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
