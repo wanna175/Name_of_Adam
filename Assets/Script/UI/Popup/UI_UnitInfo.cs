@@ -34,7 +34,7 @@ public class UI_UnitInfo : UI_Popup
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
     private Action<DeckUnit> _selectRestorationUnit;
-    private CUR_EVENT _evNum = 0;
+    private CurrentEvent _currentEvent = CurrentEvent.None;
 
     readonly string UpColorStr = "red";
     readonly string DownColorStr = "blue";
@@ -44,7 +44,7 @@ public class UI_UnitInfo : UI_Popup
         _unit = unit;
     }
 
-    public void Init(Action<DeckUnit> onSelect = null, CUR_EVENT eventNum = CUR_EVENT.NONE, Action endEvent=null)
+    public void Init(Action<DeckUnit> onSelect = null, CurrentEvent currentEvent = CurrentEvent.None, Action endEvent=null)
     {
         _unitImage.sprite = _unit.Data.CorruptImage;
 
@@ -53,15 +53,15 @@ public class UI_UnitInfo : UI_Popup
 
         _selectButton.SetActive(onSelect != null);
 
-        _evNum = eventNum;
+        _currentEvent = currentEvent;
 
-        if (_evNum == CUR_EVENT.COMPLETE_UPGRADE || _evNum == CUR_EVENT.COMPLETE_RELEASE
-            || _evNum == CUR_EVENT.COMPLETE_STIGMA || _evNum == CUR_EVENT.COMPLETE_HAELOT)
+        if (_currentEvent == CurrentEvent.Complete_Upgrade || _currentEvent == CurrentEvent.Complete_Heal_Faith
+            || _currentEvent == CurrentEvent.Complate_Stigmata || _currentEvent == CurrentEvent.COMPLETE_HAELOT)
         {
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
         }
-        else if (_evNum == CUR_EVENT.STIGMA_EXCEPTION || _evNum == CUR_EVENT.UPGRADE_EXCEPTION)
+        else if (_currentEvent == CurrentEvent.Stigmata_Full_Exception || _currentEvent == CurrentEvent.Upgrade_Full_Exception)
         {
             Select();
         }
@@ -71,6 +71,7 @@ public class UI_UnitInfo : UI_Popup
         string darkEssenseCost = (_unit.Data.DarkEssenseCost > 0) ? " / " + _unit.Data.DarkEssenseCost.ToString() : "";
 
         string hpChange = "";
+
         if (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP > 0)
         {
             hpChange = " <color=\"" + UpColorStr + "\">(+" + (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP).ToString() + ")</color>";
@@ -160,7 +161,7 @@ public class UI_UnitInfo : UI_Popup
         }
     }
 
-    public void Restoration(Action<DeckUnit> OnSelect=null, CUR_EVENT Eventnum = CUR_EVENT.NONE,Action<DeckUnit> selectRestorationUnit=null)
+    public void Restoration(Action<DeckUnit> OnSelect=null, CurrentEvent Eventnum = CurrentEvent.None, Action<DeckUnit> selectRestorationUnit=null)
     {
         this.Init(OnSelect,Eventnum);
         _selectRestorationUnit = selectRestorationUnit;
@@ -180,7 +181,7 @@ public class UI_UnitInfo : UI_Popup
 
     public void Select()
     {
-        if (currentSceneName().Equals("EventScene") && _evNum == CUR_EVENT.RELEASE)
+        if (currentSceneName().Equals("EventScene") && _currentEvent == CurrentEvent.Heal_Faith_Select)
         {
             GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         }
@@ -196,9 +197,9 @@ public class UI_UnitInfo : UI_Popup
 
         if (_onSelect != null)
         {
-            switch (_evNum)
+            switch (_currentEvent)
             {
-                case CUR_EVENT.STIGMA:
+                case CurrentEvent.Stigmata_Select:
                     if (_unit.GetStigmaCount() == 3)
                     {
                         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("StigmaMax", () => _onSelect(_unit));
@@ -206,7 +207,7 @@ public class UI_UnitInfo : UI_Popup
                     }
                     break;
 
-                case CUR_EVENT.UPGRADE:
+                case CurrentEvent.Upgrade_Select:
                     if (_unit.DeckUnitUpgrade.Count == 3 || (_unit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
                     {
                         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("UpgradeMax", () => _onSelect(_unit));
@@ -218,7 +219,7 @@ public class UI_UnitInfo : UI_Popup
             _onSelect(_unit); 
         }
 
-        if (currentSceneName().Equals("EventScene") && _evNum != CUR_EVENT.HARLOT_RESTORATION)
+        if (currentSceneName().Equals("EventScene") && _currentEvent != CurrentEvent.Unit_Restoration_Select)
         {
             _quitButton.SetActive(false);
             _selectButton.SetActive(false);
@@ -230,18 +231,18 @@ public class UI_UnitInfo : UI_Popup
 
     public void EventButtonClick()
     {
-        switch (_evNum)
+        switch (_currentEvent)
         {
-            case CUR_EVENT.STIGMA_EXCEPTION:
-            case CUR_EVENT.UPGRADE:
-            case CUR_EVENT.UPGRADE_EXCEPTION:
-            case CUR_EVENT.STIGMA://강화하기, 스티그마 부여하기
-            case CUR_EVENT.GIVE_STIGMA:
+            case CurrentEvent.Stigmata_Full_Exception:
+            case CurrentEvent.Upgrade_Select:
+            case CurrentEvent.Upgrade_Full_Exception:
+            case CurrentEvent.Stigmata_Select://강화하기, 스티그마 부여하기
+            case CurrentEvent.Stigmata_Give:
                 Transform e = this.transform.parent.GetChild(0);
                 e.SetAsLastSibling();
                 e.gameObject.SetActive(true);
                 break;
-            case CUR_EVENT.RECEIVE_STIGMA:
+            case CurrentEvent.Stigmata_Receive:
                 break;
             default:
                 break;
@@ -250,7 +251,7 @@ public class UI_UnitInfo : UI_Popup
 
     public void CompeleteButtonClick()
     {
-        if (_evNum == CUR_EVENT.COMPLETE_HAELOT && _onSelect != null)
+        if (_currentEvent == CurrentEvent.COMPLETE_HAELOT && _onSelect != null)
             _onSelect(_unit);
         gameObject.SetActive(false);
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");

@@ -17,6 +17,9 @@ public class InputManager : MonoBehaviour
     private long _lastClickTime = 0;
     public bool OneClick()
     {
+        if (GameManager.UI.IsOnESCOption)
+            return false;
+
         if (Input.GetMouseButtonDown(0) && DateTime.Now.Ticks - _lastClickTime > 2000000)
         {
             _lastClickTime = DateTime.Now.Ticks;

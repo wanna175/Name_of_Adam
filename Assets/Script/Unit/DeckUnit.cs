@@ -262,7 +262,7 @@ public class DeckUnit
         if (a.PrivateKey != b.PrivateKey)
             return false;
         
-        Debug.Log($"동일한 유닛\n a: {a.Data.Name}(Key:{a.PrivateKey})\n b: {b.Data.Name}(Key:{b.PrivateKey})");
+        //Debug.Log($"동일한 유닛\n a: {a.Data.Name}(Key:{a.PrivateKey})\n b: {b.Data.Name}(Key:{b.PrivateKey})");
         return true;
     }
 

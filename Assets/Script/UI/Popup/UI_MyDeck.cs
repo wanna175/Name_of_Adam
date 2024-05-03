@@ -19,50 +19,74 @@ public class UI_MyDeck : UI_Popup
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
     private Dictionary<DeckUnit, UI_Card> _card_dic = new();//선택된 유닛
-    private Action<DeckUnit> _onSelect;
-    private Action _endEvent;
-    private CUR_EVENT _eventNum = CUR_EVENT.NONE;
-    private bool _isBossClear;
+
+    private Action<DeckUnit> _onSelectAction;
+    private CurrentEvent _currentEvent = CurrentEvent.None;
     private GameObject _eventMenu = null;
+    private Action _endEvent;
+
+    private bool _isBossClear;
     private int _currentPageIndex;
     private int _maxPageIndex;
 
-    public void Init(bool isDeckButtonClick = false, Action<DeckUnit> onSelect = null, CUR_EVENT eventNum = CUR_EVENT.NONE, Action endEvent=null)
+    public void Init(bool isDeckButtonClick = false)
     {
         _setButton.SetActive(false);
+        _myDeckButton.SetActive(isDeckButtonClick);//내 덱 보기 버튼으로 진입했을 경우
 
-        if (eventNum == CUR_EVENT.RECEIVE_STIGMA)
-            _quitButton.SetActive(false);
+        _currentPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
-        _myDeckButton.SetActive(isDeckButtonClick);
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
 
         _playerDeck = GameManager.Data.GetDeck();
 
-        _currentPageIndex = 0;
-        _maxPageIndex = (_playerDeck.Count - 1) / 10;
-        
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
-
-        ClearCard();
         SetPageAllUI();
-
-        if (onSelect != null)
-            _onSelect = onSelect;
-        if (endEvent != null)
-            _endEvent = endEvent;
-
-        _eventNum = eventNum;
-
-        EventSceneCheck(_eventNum);
-
-        if (_eventNum == CUR_EVENT.GIVE_STIGMA || _eventNum == CUR_EVENT.STIGMA || _eventNum == CUR_EVENT.RECEIVE_STIGMA)
-            SetCard(_eventNum);
-        else
-            SetCard();
+        SetCard();
     }
 
-    public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
+    public void EventInit(Action<DeckUnit> onSelectAction = null, CurrentEvent currentEvent = CurrentEvent.None, GameObject eventMenu = null, Action endEvent = null)
+    {
+        _currentEvent = currentEvent;
+        _onSelectAction = onSelectAction;
+        _eventMenu = eventMenu;
+        _endEvent = endEvent;
+
+        string titleText = "";
+
+        if (_currentEvent == CurrentEvent.Upgrade_Select)
+        {
+            titleText = "Select a unit to upgrade.";
+        }
+        else if (_currentEvent == CurrentEvent.Heal_Faith_Select)
+        {
+            titleText = "Select a unit to restore faith.";
+        }
+        else if (_currentEvent == CurrentEvent.Stigmata_Select)
+        {
+            titleText = "Select a unit to bestow stigmata.";
+        }
+        else if (_currentEvent == CurrentEvent.Stigmata_Receive)
+        {
+            titleText = "Select a unit to bestow stigmata.";
+            _quitButton.SetActive(false);
+        }
+        else if (_currentEvent == CurrentEvent.Stigmata_Give)
+        {
+            titleText = "Select a unit to sacrifice.";
+        }
+        else if (_currentEvent == CurrentEvent.Unit_Restoration_Select)
+        {
+            titleText = "Select units to revert.";
+            _setButton.SetActive(true);
+        }
+
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleText);
+        
+        SetCard(_currentEvent);
+    }
+
+    public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelectAction = null)
     {
         _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
         _isBossClear = isBossClear;
@@ -92,8 +116,7 @@ public class UI_MyDeck : UI_Popup
             _playerDeck = normalDeck;
         }
 
-        if (onSelect != null)
-            _onSelect = onSelect;
+        _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
         _maxPageIndex = (_playerDeck.Count - 1) / 10;
@@ -105,7 +128,7 @@ public class UI_MyDeck : UI_Popup
         SetPageAllUI();
     }
 
-    public void HallDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
+    public void HallDeckInit(bool isBoss = false, Action<DeckUnit> onSelectAction = null)
     {
         List<DeckUnit> eliteDeck = new();
         List<DeckUnit> normalDeck = new();
@@ -134,8 +157,7 @@ public class UI_MyDeck : UI_Popup
             _playerDeck = normalDeck;
         }
 
-        if (onSelect != null)
-            _onSelect = onSelect;
+        _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
         _maxPageIndex = (_playerDeck.Count - 1) / 10;
@@ -147,7 +169,7 @@ public class UI_MyDeck : UI_Popup
         SetPageAllUI();
     }
 
-    public void HallEliteDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
+    public void HallEliteDeckInit(bool isBoss = false, Action<DeckUnit> onSelectAction = null)
     {
         List<DeckUnit> eliteDeck = new();
 
@@ -171,9 +193,8 @@ public class UI_MyDeck : UI_Popup
         {
             _playerDeck = eliteDeck;
         }
-
-        if (onSelect != null)
-            _onSelect = onSelect;
+        
+        _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
         _maxPageIndex = (_playerDeck.Count - 1) / 10;
@@ -185,7 +206,7 @@ public class UI_MyDeck : UI_Popup
         SetPageAllUI();
     }
 
-    public void SetCard() 
+    private void SetCard(CurrentEvent currentEvent = CurrentEvent.None)
     {
         ClearCard();
 
@@ -194,35 +215,25 @@ public class UI_MyDeck : UI_Popup
             if (i >= _playerDeck.Count)
                 break;
 
-            AddCard(_playerDeck[i]);
-        }
-    }
-
-    private void SetCard(CUR_EVENT eventNum)
-    {
-        ClearCard();
-
-        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
-        {
-            if (i >= _playerDeck.Count)
-                break;
-
-            if (eventNum == CUR_EVENT.GIVE_STIGMA)
+            if (currentEvent == CurrentEvent.Stigmata_Give)
             {
                 if (_playerDeck[i].GetStigma(true).Count != 0)
                     AddCard(_playerDeck[i]);
             }
-            else if (eventNum == CUR_EVENT.RECEIVE_STIGMA)
+            else if (currentEvent == CurrentEvent.Stigmata_Receive)
             {
                 if (_playerDeck[i].Data.Rarity != Rarity.Boss)
                     AddCard(_playerDeck[i]);
             }
-            else if (eventNum == CUR_EVENT.STIGMA)
+            else if (currentEvent == CurrentEvent.Stigmata_Select)
             {
                 AddCard(_playerDeck[i]);
                 _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
             }
-
+            else 
+            {
+                AddCard(_playerDeck[i]);
+            }
         }
     }
 
@@ -243,13 +254,29 @@ public class UI_MyDeck : UI_Popup
 
     public void OnClickCard(DeckUnit unit)
     {
-        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
-        ui.SetUnit(unit);
-
-        if (_eventNum == CUR_EVENT.HARLOT_RESTORATION)
-            ui.Restoration(_onSelect, _eventNum, OnSelectRestorationUnit);
+        if (_currentEvent == CurrentEvent.Stigmata_Give)
+        {
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
+            {
+                OnUnitSelect(unit);
+                GameManager.Data.RemoveDeckUnit(unit);
+            });
+        }
         else
-            ui.Init(_onSelect, _eventNum);
+        {
+            OnUnitSelect(unit);
+        }
+    }
+
+    public void OnUnitSelect(DeckUnit unit)
+    {
+        UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+        unitInfo.SetUnit(unit);
+
+        if (_currentEvent == CurrentEvent.Unit_Restoration_Select)
+            unitInfo.Restoration(_onSelectAction, _currentEvent, OnSelectRestorationUnit);
+        else
+            unitInfo.Init(_onSelectAction, _currentEvent);
     }
 
     public void OnSelectRestorationUnit(DeckUnit unit)
@@ -257,43 +284,10 @@ public class UI_MyDeck : UI_Popup
         _card_dic[unit].SelectCard();
     }
 
-    //���� ȯ�� �� ������ư...
     public void SetButtonClick()
     {
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         _endEvent.Invoke();
-    }
-
-    public void SetEventMenu(GameObject obj)
-    {
-        _eventMenu = obj;
-    }
-
-    private void EventSceneCheck(CUR_EVENT EventScene)
-    {
-        string sceneName = currentSceneName();
-        if (sceneName.Equals("EventScene"))
-        {
-            //Quit_btn.SetActive(false);
-
-            if (EventScene == CUR_EVENT.UPGRADE)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to upgrade.");
-            else if (EventScene == CUR_EVENT.RELEASE)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to restore faith.");
-            else if (EventScene == CUR_EVENT.STIGMA || EventScene == CUR_EVENT.RECEIVE_STIGMA)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bestow stigmata.");
-            else if (EventScene == CUR_EVENT.GIVE_STIGMA)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to sacrifice.");
-            else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
-            {
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select units to revert.");
-                _setButton.SetActive(true);
-            }
-        }
-        else
-        {
-            _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
-        }
     }
 
     public void Quit()
@@ -322,33 +316,13 @@ public class UI_MyDeck : UI_Popup
 
     private void SetPageAllUI()
     {
-        SetPageText();
-        SetPreButtonUI();
-        SetPostButtonUI();
-    }
-
-    private void SetPageText()
-    {
         if (_maxPageIndex == 0)
             _pageText.SetText("");
         else
             _pageText.SetText($"( {_currentPageIndex + 1} / {_maxPageIndex + 1} )");
-    }
 
-    private void SetPreButtonUI()
-    {
-        if (_currentPageIndex == 0)
-            _prePageButton.SetActive(false);
-        else
-            _prePageButton.SetActive(true);
-    }
-
-    private void SetPostButtonUI()
-    {
-        if (_currentPageIndex == _maxPageIndex)
-            _postPageButton.SetActive(false);
-        else
-            _postPageButton.SetActive(true);
+        _prePageButton.SetActive(_currentPageIndex != 0);
+        _postPageButton.SetActive(_currentPageIndex != _maxPageIndex);
     }
 
     public void OnPrePageButton()

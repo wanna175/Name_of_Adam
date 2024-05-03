@@ -436,7 +436,8 @@ public class BattleManager : MonoBehaviour
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
             UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
 
-            popup.Init(targetUnit.DeckUnit, "Select Stigma", null, 2, cor.LoopExit);
+            popup.Init(targetUnit.DeckUnit, false, GameManager.Data.StigmaController.GetRandomStigmaList(targetUnit.DeckUnit, 2), cor.LoopExit);
+
             popup.gameObject.SetActive(false);
             Data.CorruptionPopups.Add(popup);
         }
