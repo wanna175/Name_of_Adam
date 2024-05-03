@@ -215,7 +215,7 @@ public class UI_UnitInfo : UI_Popup
                     break;
             }
 
-            _onSelect(_unit); 
+            _onSelect(_unit);
         }
 
         if (currentSceneName().Equals("EventScene") && _evNum != CUR_EVENT.HARLOT_RESTORATION)

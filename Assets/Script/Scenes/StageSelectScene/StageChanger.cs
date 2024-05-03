@@ -44,7 +44,6 @@ public class StageChanger
                 && GameManager.OutGameData.GetNPCQuest().UpgradeQuest >= 100)
             {
                 isCutScene = true;
-                GameManager.OutGameData.SetCutSceneData(CutSceneType.NPC_Upgrade_Corrupt, true);
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Upgrade_Corrupt);
             }
         }
@@ -54,7 +53,6 @@ public class StageChanger
                 && GameManager.OutGameData.GetNPCQuest().StigmaQuest >= 50)
             {
                 isCutScene = true;
-                GameManager.OutGameData.SetCutSceneData(CutSceneType.NPC_Stigma_Corrupt, true);
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Stigma_Corrupt);
             }
         }
@@ -64,7 +62,6 @@ public class StageChanger
                 && GameManager.OutGameData.GetNPCQuest().DarkshopQuest >= 30)
             {
                 isCutScene = true;
-                GameManager.OutGameData.SetCutSceneData(CutSceneType.NPC_Harlot_Corrupt, true);
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Harlot_Corrupt);
             }
         }

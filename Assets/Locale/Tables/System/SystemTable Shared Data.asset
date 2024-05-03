@@ -43,6 +43,22 @@ MonoBehaviour:
     m_Key: UpgradeMax
     m_Metadata:
       m_Items: []
+  - m_Id: 17279610286936064
+    m_Key: CorfirmGiveStigmata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17295328403427328
+    m_Key: AlreadyExistStigmataInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17295573321420800
+    m_Key: AlreadyExistStigmataTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17307259352813568
+    m_Key: HallSaveConfirm
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

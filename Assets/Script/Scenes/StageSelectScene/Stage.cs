@@ -108,6 +108,7 @@ public class Stage : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
+            GameManager.SaveManager.SaveGame();
             StageManager.Instance.StageMove(Datas.ID);
         }
     }

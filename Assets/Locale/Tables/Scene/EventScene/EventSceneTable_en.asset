@@ -98,6 +98,30 @@ MonoBehaviour:
     m_Localized: Per Unit
     m_Metadata:
       m_Items: []
+  - m_Id: 9200786528333824
+    m_Localized: Select a desired stigmata.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200807118172160
+    m_Localized: Select a stigmata to destroy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200825912848384
+    m_Localized: "Select a stigmata to move.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200866241081344
+    m_Localized: Please select which unit to move the stigmata to.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9460599405473792
+    m_Localized: Select a desired Upgrade.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9460638387335168
+    m_Localized: Select a upgrade to destroy.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

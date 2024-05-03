@@ -131,11 +131,11 @@ public class SoundManager : MonoBehaviour
             {
                 if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
                 {
-                    Play(scenename + "/BossBattle/Horus_BGM", Sounds.BGM);
+                    Play(scenename + "/BossBattle/Phanuel_BGM", Sounds.BGM);
                 }
                 else if(GameManager.Data.Map.GetCurrentStage().StageID == 1)
                 {
-                    //호루스 브금
+                    Play(scenename + "/BossBattle/TheSavior_BGM", Sounds.BGM);
                 }
 
             }
