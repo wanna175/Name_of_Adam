@@ -90,13 +90,13 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         {
             _apostleCreationButton.SetActive(false);
         }
-        else if (current_DarkEssense < ((_isNPCFall) ? 8 : 10)) 
+        else if (_preDarkEssence < ((_isNPCFall) ? 8 : 10)) 
         {
             _disabledApostleCreationButton.SetActive(true);
             _apostleCreationButton.SetActive(false);
         }
 
-        if (current_DarkEssense < ((_isNPCFall) ? 8 : 10))
+        if (_preDarkEssence < ((_isNPCFall) ? 8 : 10))
         {
             _disabledStigmataBestowalButton.SetActive(true);
             _stigmataBestowalButton.SetActive(false);

@@ -249,6 +249,7 @@ public class BattleUnit : MonoBehaviour
         //타락 이벤트 시작
         FallEvent = true;
         DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -256,6 +257,7 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
         BattleManager.Instance.UnitFallEvent(this);
         FallEvent = false;
 

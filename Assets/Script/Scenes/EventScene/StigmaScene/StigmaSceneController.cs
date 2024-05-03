@@ -291,6 +291,15 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         }
 
         _preSelectedStigmata = _stigmataList[Random.Range(0, _stigmataList.Count)];
+    public void OnSelectStigmataTransferReceiver(DeckUnit unit)
+    {
+        if (unit.CheckStigma(_transferStigmata.StigmaEnum) == true)
+        {
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("AlreadyExistStigmataInfo", "AlreadyExistStigmataTooltip", () => { GameManager.UI.ClosePopup(); });
+            return;
+        }
+
+        _stigmataBestowalUnit = unit;
 
         if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount)
         {

@@ -13,7 +13,7 @@ public class DeckUnit
         get
         {
             if (string.IsNullOrEmpty(_privateKey))
-                _privateKey = CreatePrivateKey();
+                _privateKey = GameManager.CreatePrivateKey();
             return _privateKey;
         }
         set
@@ -268,4 +268,7 @@ public class DeckUnit
 
     public static string CreatePrivateKey()
         => Guid.NewGuid().ToString();
+
+    public bool IsEqual(DeckUnit another)
+        => this.PrivateKey == another.PrivateKey;
 }

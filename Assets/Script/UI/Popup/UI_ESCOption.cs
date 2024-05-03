@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_ESCOption : UI_Popup
 {
@@ -32,14 +33,35 @@ public class UI_ESCOption : UI_Popup
 
     public void YesGoToMain()
     {
-        SceneChanger.SceneChange("MainScene");
+        string sceneName = SceneManager.GetActiveScene().name;
 
-        if (GameManager.SaveManager.SaveFileCheck())
-            GameManager.SaveManager.LoadGame();
+        if (sceneName == "BattleScene")
+        {
+            // 배틀에서 얻거나 사용한 검은 정수 초기화
+            int darkEssenseGap = BattleManager.Data.BattlePrevDarkEssence - GameManager.Data.DarkEssense;
+            GameManager.Data.DarkEssenseChage(darkEssenseGap);
+        }
+        else if (sceneName == "EventScene")
+        {
+            // 유닛 환원을 통해 얻은 검은 정수 초기화
+            HarlotSceneController sc = FindObjectOfType<HarlotSceneController>();
+            if (sc != null)
+            {
+                int darkEssenseGap = sc.PreDarkEssence - GameManager.Data.DarkEssense;
+                GameManager.Data.DarkEssenseChage(darkEssenseGap);
+            }
+        }
+        else
+        {
+            if (sceneName != "CutScene") // 처음 컷씬에서 세이브 오류 발생하니 제외
+                GameManager.SaveManager.SaveGame();
+        }
 
         Time.timeScale = 1;
         GameManager.VisualEffect.ClearAllEffect();
         GameManager.UI.CloseAllOption();
+
+        SceneChanger.SceneChange("MainScene");
     }
 
     public void ExitButton()

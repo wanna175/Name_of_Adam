@@ -54,7 +54,7 @@ public class SaveVersionController
                     foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
                     {
                         if (string.IsNullOrEmpty(unit.PrivateKey))
-                            unit.PrivateKey = DeckUnit.CreatePrivateKey();
+                            unit.PrivateKey = GameManager.CreatePrivateKey();
                     }
                     break;
             }

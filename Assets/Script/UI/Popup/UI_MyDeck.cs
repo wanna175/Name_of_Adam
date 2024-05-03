@@ -216,18 +216,32 @@ public class UI_MyDeck : UI_Popup
                 break;
 
             if (currentEvent == CurrentEvent.Stigmata_Give)
+            AddCard(_playerDeck[i], _eventNum);
+        }
+    }
+
+    private void SetCard(CUR_EVENT eventNum)
+    {
+        ClearCard();
+
+        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
+        {
+            if (i >= _playerDeck.Count)
+                break;
+
+            if (eventNum == CUR_EVENT.GIVE_STIGMA)
             {
                 if (_playerDeck[i].GetStigma(true).Count != 0)
-                    AddCard(_playerDeck[i]);
+                    AddCard(_playerDeck[i], _eventNum);
             }
             else if (currentEvent == CurrentEvent.Stigmata_Receive)
             {
                 if (_playerDeck[i].Data.Rarity != Rarity.Boss)
-                    AddCard(_playerDeck[i]);
+                    AddCard(_playerDeck[i], _eventNum);
             }
             else if (currentEvent == CurrentEvent.Stigmata_Select)
             {
-                AddCard(_playerDeck[i]);
+                AddCard(_playerDeck[i], _eventNum);
                 _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
             }
             else 
@@ -244,10 +258,10 @@ public class UI_MyDeck : UI_Popup
             GameManager.Resource.Destroy(card.gameObject);
     }
 
-    public void AddCard(DeckUnit unit)
+    public void AddCard(DeckUnit unit, CUR_EVENT eventNum)
     {
         UI_Card newCard = GameObject.Instantiate(_cardPrefabs, _grid).GetComponent<UI_Card>();
-        newCard.SetCardInfo(this, unit);
+        newCard.SetCardInfo(this, unit, eventNum);
 
         _card_dic[unit] = newCard;
     }

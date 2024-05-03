@@ -45,9 +45,7 @@ public class CutSceneController : MonoBehaviour
     public void SkipButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-
-        GameManager.Sound.Clear();
-        SceneChange();
+        EndReached(video);
     }
 
     private void EndReached(VideoPlayer vp)
@@ -55,6 +53,7 @@ public class CutSceneController : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log($"End CutScene: {cutSceneToDisplay}");
 #endif
+        GameManager.OutGameData.SetCutSceneData(cutSceneToDisplay, true);
         GameManager.Sound.Clear();
         SceneChange();
     }

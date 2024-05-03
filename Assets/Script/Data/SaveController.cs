@@ -143,7 +143,7 @@ public class SaveController : MonoBehaviour
             for (int i = 0; i < savedFallenUnitList.Count; i++)
             {
                 DeckUnit fallenUnit = savedFallenUnitList[i];
-                if (DeckUnit.IsEqual(deckUnit, fallenUnit))
+                if (deckUnit.Equals(fallenUnit))
                 {
                     savedFallenUnitList[i] = deckUnit;
                     //break;
