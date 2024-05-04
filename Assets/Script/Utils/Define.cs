@@ -501,3 +501,21 @@ public enum FallAnimType
     AnimOn,
     AnimOff
 }
+
+public enum CurrentEvent
+{
+    None,
+    Upgrade_Select,
+    Upgrade_Full_Exception,
+    Heal_Faith_Select,
+    Stigmata_Select,
+    Stigmata_Give,
+    Stigmata_Receive,
+    Stigmata_Full_Exception,
+    Unit_Restoration_Select,
+
+    Complete_Upgrade,
+    Complete_Heal_Faith,
+    Complate_Stigmata,
+    COMPLETE_HAELOT
+};

@@ -37,7 +37,6 @@ public class DataManager : MonoBehaviour
     public StigmaController StigmaController;
     public UpgradeController UpgradeController;
 
-
     public void Init()  
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
@@ -50,8 +49,6 @@ public class DataManager : MonoBehaviour
 
         if (GameManager.SaveManager.SaveFileCheck())
             GameManager.SaveManager.LoadGame();
-
-        _darkEssense = GameData.DarkEssence;
     }
 
     public void MainDeckSet()
@@ -66,7 +63,6 @@ public class DataManager : MonoBehaviour
         GameData.IsVisitDarkShop = GameDataMain.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
         NPCQuestSet();
-        _darkEssense = GameData.DarkEssence;
     }
 
     public void DeckClear()
@@ -187,25 +183,22 @@ public class DataManager : MonoBehaviour
         GameData.DeckUnits = deck;
     }
 
-    private int _darkEssense = 0;
-    public int DarkEssense => _darkEssense;
-
     public bool DarkEssenseChage(int cost)
     {
-        if (_darkEssense + cost < 0)
+        if (GameData.DarkEssence + cost < 0)
         {
             return false;
         }
         else
         {
-            _darkEssense += cost;
+            GameData.DarkEssence += cost;
             return true;
         }
     }
 
     public bool CanUseDarkEssense(int value)
     {
-        if (_darkEssense >= value)
+        if (GameData.DarkEssence >= value)
             return true;
 
         Debug.Log("not enough Dark Essense");

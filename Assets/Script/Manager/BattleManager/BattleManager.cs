@@ -436,7 +436,8 @@ public class BattleManager : MonoBehaviour
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
             UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
 
-            popup.Init(targetUnit.DeckUnit, "Select Stigma", null, 2, cor.LoopExit);
+            popup.Init(targetUnit.DeckUnit, false, GameManager.Data.StigmaController.GetRandomStigmaList(targetUnit.DeckUnit, 2), cor.LoopExit);
+
             popup.gameObject.SetActive(false);
             Data.CorruptionPopups.Add(popup);
         }
@@ -460,7 +461,8 @@ public class BattleManager : MonoBehaviour
 
     public void UnitSummonEvent(BattleUnit unit)
     {
-        _battleData.BattleUnitOrderReset();
+        _battleData.BattleOrderInsert(0, unit);
+        _battleData.BattleUnitOrderSorting();
         FieldActiveEventCheck(ActiveTiming.FIELD_UNIT_SUMMON, unit);
     }
 
@@ -555,7 +557,8 @@ public class BattleManager : MonoBehaviour
             bool isBossClear = true;
             foreach (BattleUnit remainUnit in _battleData.BattleUnitList)
             {
-                if (remainUnit.Data.Rarity != Rarity.Normal && remainUnit.Team == Team.Enemy && !remainUnit.Fall.IsEdified && remainUnit != unit)
+                if ((unit.Data.Rarity == Rarity.Elite && remainUnit.Data.Rarity != Rarity.Normal) || (unit.Data.Rarity == Rarity.Boss && remainUnit.Data.Rarity == Rarity.Boss)
+                    && remainUnit.Team == Team.Enemy && !remainUnit.Fall.IsEdified && remainUnit != unit)
                 {
                     isBossClear = false;
                     break;
@@ -572,6 +575,8 @@ public class BattleManager : MonoBehaviour
 
                     remainUnit.UnitDiedEvent(false);
                 }
+
+                BattleOverCheck();
             }
         }
     }

@@ -52,7 +52,7 @@ public class UnitAction_Phanuel : UnitAction
         if (targetUnits.Count > 0)
         {
             _phanuel_Animation.SetBool("isAttack", true);
-            BattleManager.Instance.AttackStart(attackUnit, targetUnits);
+            BattleManager.Instance.AttackStart(attackUnit, targetUnits.Distinct().ToList());
         }
         else
         {
@@ -231,16 +231,19 @@ public class UnitAction_Phanuel : UnitAction
         }
         else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD || (activeTiming & ActiveTiming.FALLED) == ActiveTiming.FALLED)
         {
-            while (true)
+            if (BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "바누엘" && findUnit != caster) != null)
             {
-                BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "오벨리스크" && findUnit.Team == caster.Team);
-                if (remainUnit == null)
-                    break;
+                while (true)
+                {
+                    BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "오벨리스크" && findUnit.Team == caster.Team);
+                    if (remainUnit == null)
+                        break;
 
-                remainUnit.UnitDiedEvent(false);
+                    remainUnit.UnitDiedEvent(false);
+                }
+
+                TileClear(caster.Team);
             }
-
-            TileClear(caster.Team);
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
         {

@@ -36,7 +36,7 @@ public class HubSceneController : MonoBehaviour
     public void Hall()
     {
         GameManager.Data.HallDeckSet();
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false);
+        GameManager.UI.ShowPopup<UI_MyDeck>().Init();
     }
 
     public void Dictionary()

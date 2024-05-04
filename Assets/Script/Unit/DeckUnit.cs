@@ -257,6 +257,18 @@ public class DeckUnit
         return _stigmaCount + Data.UniqueStigma.Count;
     }
 
+    public static bool IsEqual(DeckUnit a, DeckUnit b)
+    {
+        if (a.PrivateKey != b.PrivateKey)
+            return false;
+        
+        //Debug.Log($"동일한 유닛\n a: {a.Data.Name}(Key:{a.PrivateKey})\n b: {b.Data.Name}(Key:{b.PrivateKey})");
+        return true;
+    }
+
+    public static string CreatePrivateKey()
+        => Guid.NewGuid().ToString();
+
     public bool IsEqual(DeckUnit another)
         => this.PrivateKey == another.PrivateKey;
 }

@@ -14,14 +14,12 @@ public class UI_StigmaSelectButton : UI_Base
     [SerializeReference] private GameObject _goldFrame;
     [SerializeReference] private GameObject _redFrame;
 
-    private StigmaInterface _sc;
     private UI_StigmaSelectButtonPopup _popup;
     private Stigma _stigma;
 
-    public void Init(Stigma stigma, StigmaInterface sc = null, UI_StigmaSelectButtonPopup popup = null)
+    public void Init(Stigma stigma, UI_StigmaSelectButtonPopup popup = null)
     {
         _popup = popup;
-        _sc = sc;
         _stigma = stigma;
 
         _stigmaName.text = stigma.Name;
@@ -36,16 +34,6 @@ public class UI_StigmaSelectButton : UI_Base
     public void OnClick()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-
-        if (_sc != null)
-        {
-            _sc.OnStigmataSelected(_stigma);
-        }
-        else if(_popup != null)
-        {
-            if (TutorialManager.Instance.IsEnable())
-                TutorialManager.Instance.ShowNextTutorial();
-            _popup.OnClick(_stigma);
-        }
+        _popup.OnClickStigmataButton(_stigma);
     }
 }

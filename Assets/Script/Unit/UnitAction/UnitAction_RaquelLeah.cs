@@ -33,11 +33,9 @@ public class UnitAction_RaquelLeah : UnitAction
         {
             _owner = caster;
             _owner.SetBuff(new Buff_Raquel());
+            InsertUnitInOrlder();
         }
-        else if (
-                (activeTiming & ActiveTiming.FIELD_UNIT_SUMMON) == ActiveTiming.FIELD_UNIT_SUMMON ||
-                (activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START
-            )
+        else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
             InsertUnitInOrlder();
         }
@@ -64,7 +62,6 @@ public class UnitAction_RaquelLeah : UnitAction
         int ChangedSpeed = _owner.BattleUnitTotalStat.SPD - _speedDifference;
 
         BattleManager.Data.BattleOrderInsert(0, _owner, ChangedSpeed);
-
     }
 
     private void ChangeState(BattleUnit caster)
