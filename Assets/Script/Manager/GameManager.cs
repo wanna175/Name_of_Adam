@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LocaleManager _locale;
     public static LocaleManager Locale => Instance._locale;
 
+    [SerializeField] private SteamClientManager _steam;
+    public static SteamClientManager Steam => Instance._steam;
+
     private static bool _onGM = true;
 
     void Awake()
@@ -51,6 +54,7 @@ public class GameManager : MonoBehaviour
             Sound.Init();
             VisualEffect.Init();
             Locale.Init();
+            Steam.Init();
         }
 
         /*
@@ -165,8 +169,13 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Steam.IncreaseAchievement(AchievementType.Test);
+        }
     }
 
     public static string CreatePrivateKey()
-    => Guid.NewGuid().ToString();
+        => Guid.NewGuid().ToString();
 }
