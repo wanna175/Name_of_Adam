@@ -284,6 +284,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6106013448291803824, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6224618055129200275, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -180
@@ -408,7 +412,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: HPBar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6106013448291803824, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6bc81f622db04e647b101895185f15b1, type: 3}
 --- !u!224 &3908956929639724222 stripped
 RectTransform:
