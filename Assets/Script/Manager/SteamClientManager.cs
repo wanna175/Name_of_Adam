@@ -26,7 +26,7 @@ public class SteamClientManager : MonoBehaviour
     {
         if (!SteamManager.Initialized)
         {
-            Debug.Log("Steam is not connected.");
+            GameManager.Instance.SetSystemInfoText($"Steam is not connected.");
             return;
         }
 
@@ -41,7 +41,10 @@ public class SteamClientManager : MonoBehaviour
         SteamUserStats.GetAchievement(achievementKey, out bool achievementCompleted);
 
         if (achievementCompleted)
+        {
+            GameManager.Instance.SetSystemInfoText($"스팀 업적 완료됨 : {achievementKey}");
             return; // 이미 완료된 업적
+        }
 
         SteamUserStats.GetStat(achievementKey, out int curCount);
         SteamUserStats.SetStat(achievementKey, curCount + 1);
@@ -49,7 +52,7 @@ public class SteamClientManager : MonoBehaviour
 
         SteamUserStats.GetAchievement(achievementKey, out achievementCompleted);
 
-        Debug.Log($"스팀 업적 현황: {achievementKey}/{curCount}/{achievementCompleted}");
+        GameManager.Instance.SetSystemInfoText($"스팀 업적 현황 : {achievementKey}/{curCount}/{achievementCompleted}");
 
         if (achievementCompleted) 
         {

@@ -40,7 +40,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SteamClientManager _steam;
     public static SteamClientManager Steam => Instance._steam;
 
-    private static bool _onGM = true;
+    [SerializeField] private TMPro.TMP_Text _systemInfoText;
+
+    private bool _onGM = true;
+
+    private bool _onDebug = true;
 
     void Awake()
     {
@@ -88,7 +92,17 @@ public class GameManager : MonoBehaviour
             Data.Init();
             Sound.Init();
             VisualEffect.Init();
+
+            s_instance._systemInfoText.SetText(string.Empty);
         }
+    }
+
+    public void SetSystemInfoText(string info)
+    {
+        if (!_onDebug)
+            return;
+
+        _systemInfoText.SetText($"[Debug Message] {info}");
     }
 
     private void Update()
