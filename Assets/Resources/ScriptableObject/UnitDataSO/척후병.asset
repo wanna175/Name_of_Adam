@@ -19,7 +19,7 @@ MonoBehaviour:
     SPD: 25
     FallCurrentCount: 0
     FallMaxCount: 2
-    ManaCost: 30
+    ManaCost: 40
   _uniqueStigma:
   - {fileID: 3379680801946979821, guid: 87445e5f131ab3c47b2d1a869475a90d, type: 3}
   _id: "\uCC99\uD6C4\uBCD1"
