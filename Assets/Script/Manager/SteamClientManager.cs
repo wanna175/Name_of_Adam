@@ -3,26 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using Steamworks;
 
-public enum AchievementType
+public enum SteamAchievementType
 {
     None = 0,
     Test,
 }
 
+public struct SteamAchievementData
+{
+    public string achievementAPIKey;
+    public string statAPIKey;
+    public int curCount;
+    public int maxCount;
+
+    public SteamAchievementData(string achievementAPIKey, string statAPIKey, int curCount, int maxCount)
+    {
+        this.achievementAPIKey = achievementAPIKey;
+        this.statAPIKey = statAPIKey;
+        this.curCount = curCount;
+        this.maxCount = maxCount;
+    }
+}
+
 public class SteamClientManager : MonoBehaviour
 {
-    Dictionary<AchievementType, string> achievementKeys;
+    Dictionary<SteamAchievementType, SteamAchievementData> achievementDatas;
 
     public void Init()
     {
-        achievementKeys = new Dictionary<AchievementType, string>()
+        achievementDatas = new Dictionary<SteamAchievementType, SteamAchievementData>()
         {
-            { AchievementType.None, string.Empty },
-            { AchievementType.Test, "TEST_ACHIEVEMENT_1_0" },
+            { SteamAchievementType.None, new SteamAchievementData() },
+            { SteamAchievementType.Test, new SteamAchievementData("TEST_ACHIEVEMENT", "TEST_STAT", 0, 1) },
         };
     }
 
-    public void IncreaseAchievement(AchievementType type)
+    public void IncreaseAchievement(SteamAchievementType type)
     {
         if (!SteamManager.Initialized)
         {
@@ -30,33 +46,38 @@ public class SteamClientManager : MonoBehaviour
             return;
         }
 
-        achievementKeys.TryGetValue(type, out string achievementKey);
+        achievementDatas.TryGetValue(type, out SteamAchievementData data);
 
-        if (string.IsNullOrEmpty(achievementKey))
+        if (string.IsNullOrEmpty(data.achievementAPIKey))
         {
-            Debug.Log("No steam achievement is found.");
+            GameManager.Instance.SetSystemInfoText("No steam achievement is found.");
             return;
         }
 
-        SteamUserStats.GetAchievement(achievementKey, out bool achievementCompleted);
+        bool isSuccess = SteamUserStats.GetAchievement(data.achievementAPIKey, out bool achievementCompleted);
+        if (isSuccess == false)
+        {
+            GameManager.Instance.SetSystemInfoText($"Failed to get steam achievement : {data.achievementAPIKey}");
+            return;
+        }
 
         if (achievementCompleted)
         {
-            GameManager.Instance.SetSystemInfoText($"스팀 업적 완료됨 : {achievementKey}");
+            GameManager.Instance.SetSystemInfoText($"The steam acheivement is done : {data.achievementAPIKey}");
             return; // 이미 완료된 업적
         }
 
-        SteamUserStats.GetStat(achievementKey, out int curCount);
-        SteamUserStats.SetStat(achievementKey, curCount + 1);
+        SteamUserStats.GetStat(data.statAPIKey, out data.curCount);
+        data.curCount++;
+        SteamUserStats.SetStat(data.statAPIKey, data.curCount);
         SteamUserStats.StoreStats();
 
-        SteamUserStats.GetAchievement(achievementKey, out achievementCompleted);
+        GameManager.Instance.SetSystemInfoText($"스팀 업적 증가 : {data.achievementAPIKey}/{data.curCount}/{data.maxCount}");
 
-        GameManager.Instance.SetSystemInfoText($"스팀 업적 현황 : {achievementKey}/{curCount}/{achievementCompleted}");
-
-        if (achievementCompleted) 
+        if (data.curCount >= data.maxCount) 
         {
-            SteamUserStats.SetAchievement(achievementKey);
+            GameManager.Instance.SetSystemInfoText($"스팀 업적 달성! : {data.achievementAPIKey}/{data.curCount}/{data.maxCount}/{achievementCompleted}");
+            SteamUserStats.SetAchievement(data.achievementAPIKey);
             SteamUserStats.StoreStats();
         }
     }
