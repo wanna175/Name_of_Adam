@@ -168,8 +168,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     public void OnSelectStigmataBestowalUnit(DeckUnit unit)
     {
         _stigmataBestowalUnit = unit;
-        GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
-        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount)
+        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount || _isStigmataPreSet)
         {
             ResetStigmataList(unit);
 
@@ -208,12 +207,13 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         unitInfo.Init(null, CurrentEvent.Complate_Stigmata, OnQuitClick);
     }
 
-    public void OnStigmataSelected(Stigma stigma)
+    public void OnStigmataSelected(Stigma stigmata)
     {
-        if (_isStigmataFull)//스티그마 예외처리
+        if (_isStigmataFull)
         {
             _isStigmataFull = false;
-            _stigmataBestowalUnit.DeleteStigma(stigma);
+            _stigmataBestowalUnit.DeleteStigma(stigmata);
+
             GameManager.UI.CloseAllPopup();
             UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
             unitInfo.SetUnit(_stigmataBestowalUnit);
@@ -223,7 +223,8 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else
         {
-            BestowalStigmata(stigma);
+            BestowalStigmata(stigmata);
+            GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
         }
     }
 

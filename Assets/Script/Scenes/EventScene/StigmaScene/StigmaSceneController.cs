@@ -134,7 +134,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
     {
         _stigmataBestowalUnit = unit;
 
-        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount)
+        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount || _isStigmataPreSet)
         {
             ResetStigmataList(unit);
 
