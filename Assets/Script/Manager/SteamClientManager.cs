@@ -21,6 +21,10 @@ public enum SteamAchievementType
     CORRUPT_YANA,
     CORRUPT_APPAIM,
     CORRUPT_THESAVIOR,
+
+    CORRUPT_NPC_UPGRADE,
+    CORRUPT_NPC_STIGMATA,
+    CORRUPT_NPC_HARLOT,
 }
 
 public struct SteamAchievementData
@@ -63,6 +67,10 @@ public class SteamClientManager : MonoBehaviour
             { SteamAchievementType.CORRUPT_ELIEUS, new SteamAchievementData("CORRUPT_YANA", "STAT_CORRUPT_YANA", 0, 1) },
             { SteamAchievementType.CORRUPT_APPAIM, new SteamAchievementData("CORRUPT_APPAIM", "STAT_CORRUPT_APPAIM", 0, 1) },
             { SteamAchievementType.CORRUPT_THESAVIOR, new SteamAchievementData("CORRUPT_THESAVIOR", "STAT_CORRUPT_THESAVIOR", 0, 1) },
+
+            { SteamAchievementType.CORRUPT_NPC_UPGRADE, new SteamAchievementData("CORRUPT_NPC_UPGRADE", "CORRUPT_NPC_UPGRADE", 0, 1) },
+            { SteamAchievementType.CORRUPT_NPC_STIGMATA, new SteamAchievementData("CORRUPT_NPC_STIGMATA", "CORRUPT_NPC_STIGMATA", 0, 1) },
+            { SteamAchievementType.CORRUPT_NPC_HARLOT, new SteamAchievementData("CORRUPT_NPC_HARLOT", "CORRUPT_NPC_HARLOT", 0, 1) },
         };
     }
 
