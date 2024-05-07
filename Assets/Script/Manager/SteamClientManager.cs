@@ -13,6 +13,14 @@ public enum SteamAchievementType
     KILL_YANA,
     KILL_APPAIM,
     KILL_THESAVIOR,
+
+    CORRUPT_TUBALCAIN,
+    CORRUPT_RAHELLEA,
+    CORRUPT_PHANUEL,
+    CORRUPT_ELIEUS,
+    CORRUPT_YANA,
+    CORRUPT_APPAIM,
+    CORRUPT_THESAVIOR,
 }
 
 public struct SteamAchievementData
@@ -47,6 +55,14 @@ public class SteamClientManager : MonoBehaviour
             { SteamAchievementType.KILL_ELIEUS, new SteamAchievementData("KILL_YANA", "STAT_KILL_YANA", 0, 1) },
             { SteamAchievementType.KILL_APPAIM, new SteamAchievementData("KILL_APPAIM", "STAT_KILL_APPAIM", 0, 1) },
             { SteamAchievementType.KILL_THESAVIOR, new SteamAchievementData("KILL_THESAVIOR", "STAT_KILL_THESAVIOR", 0, 1) },
+
+            { SteamAchievementType.CORRUPT_TUBALCAIN, new SteamAchievementData("CORRUPT_TUBALCAIN", "STAT_CORRUPT_TUBALCAIN", 0, 1) },
+            { SteamAchievementType.CORRUPT_RAHELLEA, new SteamAchievementData("CORRUPT_RAHELLEA", "STAT_CORRUPT_RAHELLEA", 0, 1) },
+            { SteamAchievementType.CORRUPT_PHANUEL, new SteamAchievementData("CORRUPT_PHANUEL", "STAT_CORRUPT_PHANUEL", 0, 1) },
+            { SteamAchievementType.CORRUPT_ELIEUS, new SteamAchievementData("CORRUPT_ELIEUS", "STAT_CORRUPT_ELIEUS", 0, 1) },
+            { SteamAchievementType.CORRUPT_ELIEUS, new SteamAchievementData("CORRUPT_YANA", "STAT_CORRUPT_YANA", 0, 1) },
+            { SteamAchievementType.CORRUPT_APPAIM, new SteamAchievementData("CORRUPT_APPAIM", "STAT_CORRUPT_APPAIM", 0, 1) },
+            { SteamAchievementType.CORRUPT_THESAVIOR, new SteamAchievementData("CORRUPT_THESAVIOR", "STAT_CORRUPT_THESAVIOR", 0, 1) },
         };
     }
 
