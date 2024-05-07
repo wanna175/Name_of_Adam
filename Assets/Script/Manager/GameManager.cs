@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Steam.IncreaseAchievement(SteamAchievementType.Test);
+            //Steam.IncreaseAchievement(SteamAchievementType.Test);
         }
     }
 

@@ -6,7 +6,13 @@ using Steamworks;
 public enum SteamAchievementType
 {
     None = 0,
-    Test,
+    KILL_TUBALCAIN,
+    KILL_RAHELLEA,
+    KILL_PHANUEL,
+    KILL_ELIEUS,
+    KILL_YANA,
+    KILL_APPAIM,
+    KILL_THESAVIOR,
 }
 
 public struct SteamAchievementData
@@ -34,7 +40,13 @@ public class SteamClientManager : MonoBehaviour
         achievementDatas = new Dictionary<SteamAchievementType, SteamAchievementData>()
         {
             { SteamAchievementType.None, new SteamAchievementData() },
-            { SteamAchievementType.Test, new SteamAchievementData("TEST_ACHIEVEMENT", "TEST_STAT", 0, 1) },
+            { SteamAchievementType.KILL_TUBALCAIN, new SteamAchievementData("KILL_TUBALCAIN", "STAT_KILL_TUBALCAIN", 0, 1) },
+            { SteamAchievementType.KILL_RAHELLEA, new SteamAchievementData("KILL_RAHELLEA", "STAT_KILL_RAHELLEA", 0, 1) },
+            { SteamAchievementType.KILL_PHANUEL, new SteamAchievementData("KILL_PHANUEL", "STAT_KILL_PHANUEL", 0, 1) },
+            { SteamAchievementType.KILL_ELIEUS, new SteamAchievementData("KILL_ELIEUS", "STAT_KILL_ELIEUS", 0, 1) },
+            { SteamAchievementType.KILL_ELIEUS, new SteamAchievementData("KILL_YANA", "STAT_KILL_YANA", 0, 1) },
+            { SteamAchievementType.KILL_APPAIM, new SteamAchievementData("KILL_APPAIM", "STAT_KILL_APPAIM", 0, 1) },
+            { SteamAchievementType.KILL_THESAVIOR, new SteamAchievementData("KILL_THESAVIOR", "STAT_KILL_THESAVIOR", 0, 1) },
         };
     }
 
