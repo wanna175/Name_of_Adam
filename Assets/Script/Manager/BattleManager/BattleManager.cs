@@ -557,7 +557,7 @@ public class BattleManager : MonoBehaviour
             bool isBossClear = true;
             foreach (BattleUnit remainUnit in _battleData.BattleUnitList)
             {
-                if ((unit.Data.Rarity == Rarity.Elite && remainUnit.Data.Rarity != Rarity.Normal) || (unit.Data.Rarity == Rarity.Boss && remainUnit.Data.Rarity == Rarity.Boss)
+                if (((unit.Data.Rarity == Rarity.Elite && remainUnit.Data.Rarity != Rarity.Normal) || (unit.Data.Rarity == Rarity.Boss && remainUnit.Data.Rarity == Rarity.Boss))
                     && remainUnit.Team == Team.Enemy && !remainUnit.Fall.IsEdified && remainUnit != unit)
                 {
                     isBossClear = false;
