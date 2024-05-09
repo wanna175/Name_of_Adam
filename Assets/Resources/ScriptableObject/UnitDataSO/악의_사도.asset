@@ -25,7 +25,7 @@ MonoBehaviour:
   _id: "\uC545\uC758 \uC0AC\uB3C4"
   _name: Lucifer
   _description: 
-  _rarity: 1
+  _rarity: 2
   _image: {fileID: 21300000, guid: c9ebcff95d5491d4c8fdb4859d605651, type: 3}
   _corruptImage: {fileID: 21300000, guid: c9ebcff95d5491d4c8fdb4859d605651, type: 3}
   _portraitImage: {fileID: 21300000, guid: 03baabca7f2ecb045b808df9d3ea8268, type: 3}
