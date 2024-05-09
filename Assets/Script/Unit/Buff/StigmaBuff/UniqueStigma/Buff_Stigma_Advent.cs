@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_Stigma_Lucifer : Buff
+public class Buff_Stigma_Advent : Buff
 {
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Lucifer;
 
-        _name = "루시퍼의 등장";
+        _name = "Advent";
 
-        _description = "루시퍼가 강림하였습니다.";
+        _description = "Advent.";
 
         _count = 1;
 

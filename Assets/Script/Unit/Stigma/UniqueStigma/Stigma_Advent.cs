@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stigma_Lusifer : Stigma
+public class Stigma_Advent : Stigma
 {
     public override void Use(BattleUnit caster)
     {
@@ -13,6 +13,6 @@ public class Stigma_Lusifer : Stigma
             count = 2;
 
         for (int i = 0; i < count; i++)
-            caster.SetBuff(new Buff_Stigma_Lucifer());
+            caster.SetBuff(new Buff_Stigma_Advent());
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2950990188252653416}
   - component: {fileID: -2313120215319490512}
   m_Layer: 0
-  m_Name: Stigma_Lucifer
+  m_Name: Stigma_Advent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
