@@ -202,7 +202,7 @@ public class UpgradeController
 
             Stat checkStat = unit.DeckUnitTotalStat + upgrade.UpgradeStat;
 
-            if (checkStat.MaxHP < 0 || checkStat.ATK < 0 || checkStat.SPD < 0 || checkStat.ManaCost < 0)
+            if (checkStat.MaxHP <= 0 || checkStat.ATK < 0 || checkStat.SPD < 0 || checkStat.ManaCost < 0)
             {
                 continue;
             }
