@@ -18,7 +18,7 @@
       "Description": "Attack (ATK)",
       "Image": "Red_Normal",
       "HP": "0",
-      "ATK": "4~5~6",
+      "ATK": "3~4",
       "SPD": "0",
       "COST": "0"
     },
@@ -28,7 +28,7 @@
       "Name": "체력 보석",
       "Description": "Health (HP)",
       "Image": "Green_Normal",
-      "HP": "7~8~9~10~11~12~13",
+      "HP": "7~8~9~10~11",
       "ATK": "0",
       "SPD": "0",
       "COST": "0"
@@ -41,19 +41,8 @@
       "Image": "Blue_Normal",
       "HP": "0",
       "ATK": "0",
-      "SPD": "20~30~40",
+      "SPD": "30~40~50",
       "COST": "0"
-    },
-    {
-      "ID": "UP104",
-      "Rarity": "1",
-      "Name": "마나 보석",
-      "Description": "Cost (COST)",
-      "Image": "White_Normal",
-      "HP": "0",
-      "ATK": "0",
-      "SPD": "0",
-      "COST": "-10"
     },
     {
       "ID": "UP201",
@@ -62,7 +51,7 @@
       "Description": "Attack (ATK)",
       "Image": "Red_Normal",
       "HP": "0",
-      "ATK": "7~8",
+      "ATK": "5~6",
       "SPD": "0",
       "COST": "0"
     },
@@ -73,8 +62,8 @@
       "Description": "Attack (ATK)\nSpeed (SPD)",
       "Image": "Red_Normal",
       "HP": "0",
-      "ATK": "8",
-      "SPD": "-20",
+      "ATK": "7",
+      "SPD": "-50",
       "COST": "0"
     },
     {
@@ -83,8 +72,8 @@
       "Name": "보석",
       "Description": "Attack (ATK)\nHealth (HP)",
       "Image": "Red_Normal",
-      "HP": "5",
-      "ATK": "5",
+      "HP": "-10",
+      "ATK": "7",
       "SPD": "0",
       "COST": "0"
     },
@@ -92,10 +81,10 @@
       "ID": "UP204",
       "Rarity": "2",
       "Name": "보석",
-      "Description": "Attack (ATK)\nHealth (HP)",
-      "Image": "Red_Normal",
-      "HP": "-10",
-      "ATK": "10",
+      "Description": "Health (HP)\nAttack (ATK)",
+      "Image": "Green_Normal",
+      "HP": "7~8",
+      "ATK": "3",
       "SPD": "0",
       "COST": "0"
     },
@@ -103,51 +92,95 @@
       "ID": "UP205",
       "Rarity": "2",
       "Name": "보석",
-      "Description": "Attack (ATK)\nCost (COST)",
-      "Image": "Red_Normal",
-      "HP": "0",
-      "ATK": "5",
+      "Description": "Health (HP)\nAttack (ATK)\nCost (COST)",
+      "Image": "Green_Normal",
+      "HP": "8",
+      "ATK": "6",
       "SPD": "0",
-      "COST": "-10"
+      "COST": "10"
     },
     {
       "ID": "UP206",
       "Rarity": "2",
       "Name": "보석",
-      "Description": "Health (HP)\nSpeed (SPD)",
+      "Description": "Health (HP)",
       "Image": "Green_Normal",
-      "HP": "15",
+      "HP": "12~13",
       "ATK": "0",
-      "SPD": "-30",
+      "SPD": "0",
       "COST": "0"
     },
     {
       "ID": "UP207",
       "Rarity": "2",
       "Name": "보석",
-      "Description": "Health (HP)\nCost (COST)",
+      "Description": "Health (HP)\nSpeed (SPD)",
       "Image": "Green_Normal",
-      "HP": "10",
+      "HP": "14~15",
       "ATK": "0",
-      "SPD": "0",
-      "COST": "-10"
+      "SPD": "-50",
+      "COST": "0"
     },
     {
       "ID": "UP208",
       "Rarity": "2",
       "Name": "보석",
-      "Description": "Health (HP)",
-      "Image": "Green_Normal",
-      "HP": "14~15~16",
+      "Description": "Speed (SPD)\nHealth (HP)",
+      "Image": "Blue_Normal",
+      "HP": "10",
       "ATK": "0",
-      "SPD": "0",
+      "SPD": "30",
       "COST": "0"
     },
     {
       "ID": "UP209",
       "Rarity": "2",
       "Name": "보석",
-      "Description": "Cost (COST)\nAttack (ATK)",
+      "Description": "Speed (SPD)\nAttack (ATK)",
+      "Image": "Blue_Normal",
+      "HP": "0",
+      "ATK": "4",
+      "SPD": "30",
+      "COST": "0"
+    },
+    {
+      "ID": "UP210",
+      "Rarity": "2",
+      "Name": "보석",
+      "Description": "Speed (SPD)",
+      "Image": "Blue_Normal",
+      "HP": "0",
+      "ATK": "0",
+      "SPD": "50",
+      "COST": "0"
+    },
+    {
+      "ID": "UP211",
+      "Rarity": "2",
+      "Name": "보석",
+      "Description": "Cost (COST)",
+      "Image": "White_Normal",
+      "HP": "0",
+      "ATK": "0",
+      "SPD": "0",
+      "COST": "-10"
+    },
+    {
+      "ID": "UP212",
+      "Rarity": "2",
+      "Name": "보석",
+      "Description": "Cost (COST)\nHealth (HP)",
+      "Image": "White_Normal",
+      "HP": "-15",
+      "ATK": "0",
+      "SPD": "0",
+      "COST": "-20"
+    },
+    {
+      "ID": "UP213",
+      "Rarity": "2",
+      "Name": "보석",
+      "Description": "Cost (COST)\nAttack (ATK)\n",
       "Image": "White_Normal",
       "HP": "0",
       "ATK": "-10",
@@ -155,69 +188,14 @@
       "COST": "-20"
     },
     {
-      "ID": "UP210",
-      "Rarity": "2",
-      "Name": "보석",
-      "Description": "Cost (COST)\nHealth (HP)",
-      "Image": "White_Normal",
-      "HP": "-10",
-      "ATK": "0",
-      "SPD": "0",
-      "COST": "-20"
-    },
-    {
-      "ID": "UP211",
-      "Rarity": "2",
-      "Name": "보석",
-      "Description": "Cost (COST)\nSpeed (SPD)",
-      "Image": "White_Normal",
-      "HP": "0",
-      "ATK": "0",
-      "SPD": "20",
-      "COST": "-10"
-    },
-    {
-      "ID": "UP212",
-      "Rarity": "2",
-      "Name": "보석",
-      "Description": "Speed (SPD)\nHealth (HP)",
-      "Image": "Blue_Normal",
-      "HP": "10",
-      "ATK": "0",
-      "SPD": "20",
-      "COST": "0"
-    },
-    {
-      "ID": "UP213",
-      "Rarity": "2",
-      "Name": "보석",
-      "Description": "Speed (SPD)",
-      "Image": "Blue_Normal",
-      "HP": "0",
-      "ATK": "0",
-      "SPD": "50~60",
-      "COST": "0"
-    },
-    {
-      "ID": "UP214",
-      "Rarity": "2",
-      "Name": "보석",
-      "Description": "Speed (SPD)\nAttack (ATK)",
-      "Image": "Blue_Normal",
-      "HP": "0",
-      "ATK": "5",
-      "SPD": "30",
-      "COST": "0"
-    },
-    {
       "ID": "UP301",
       "Rarity": "3",
       "Name": "보석",
-      "Description": "Attack (ATK)\nSpeed (SPD)",
+      "Description": "Attack (ATK)\nHealth (HP)",
       "Image": "Red_Rare",
-      "HP": "0",
-      "ATK": "15",
-      "SPD": "-60",
+      "HP": "7",
+      "ATK": "7",
+      "SPD": "0",
       "COST": "0"
     },
     {
@@ -235,9 +213,9 @@
       "ID": "UP303",
       "Rarity": "3",
       "Name": "보석",
-      "Description": "Attack (ATK)\nCost (COST)",
+      "Description": "Attack (ATK)\nHealth (HP)",
       "Image": "Red_Rare",
-      "HP": "0",
+      "HP": "-12",
       "ATK": "15",
       "SPD": "0",
       "COST": "10"
@@ -246,15 +224,26 @@
       "ID": "UP304",
       "Rarity": "3",
       "Name": "보석",
-      "Description": "Attack (ATK)\nHealth (HP)",
+      "Description": "Attack (ATK)\nHealth (HP)\nCost (COST)",
       "Image": "Red_Rare",
-      "HP": "-5",
+      "HP": "12",
       "ATK": "12",
+      "SPD": "0",
+      "COST": "20"
+    },
+    {
+      "ID": "UP305",
+      "Rarity": "3",
+      "Name": "보석",
+      "Description": "Health (HP)\nAttack (ATK)",
+      "Image": "Green_Rare",
+      "HP": "20",
+      "ATK": "0",
       "SPD": "0",
       "COST": "0"
     },
     {
-      "ID": "UP305",
+      "ID": "UP306",
       "Rarity": "3",
       "Name": "보석",
       "Description": "Health (HP)\nAttack (ATK)",
@@ -265,84 +254,18 @@
       "COST": "0"
     },
     {
-      "ID": "UP306",
-      "Rarity": "3",
-      "Name": "보석",
-      "Description": "Health (HP)\nAttack (ATK)\nSpeed (SPD)",
-      "Image": "Green_Rare",
-      "HP": "30",
-      "ATK": "-10",
-      "SPD": "-20",
-      "COST": "0"
-    },
-    {
       "ID": "UP307",
       "Rarity": "3",
       "Name": "보석",
-      "Description": "Health (HP)\nCost (COST)",
-      "Image": "Green_Rare",
-      "HP": "30",
-      "ATK": "0",
-      "SPD": "0",
-      "COST": "20"
-    },
-    {
-      "ID": "UP308",
-      "Rarity": "3",
-      "Name": "보석",
-      "Description": "Health (HP)",
-      "Image": "Green_Rare",
-      "HP": "20",
-      "ATK": "0",
-      "SPD": "0",
-      "COST": "0"
-    },
-    {
-      "ID": "UP309",
-      "Rarity": "3",
-      "Name": "보석",
-      "Description": "Cost (COST)\nAttack (ATK)\n",
-      "Image": "White_Rare",
-      "HP": "0",
-      "ATK": "-30",
-      "SPD": "0",
-      "COST": "-30"
-    },
-    {
-      "ID": "UP310",
-      "Rarity": "3",
-      "Name": "보석",
-      "Description": "Cost (COST)\nHealth (HP)",
-      "Image": "White_Rare",
-      "HP": "10",
-      "ATK": "0",
-      "SPD": "0",
-      "COST": "-10"
-    },
-    {
-      "ID": "UP311",
-      "Rarity": "3",
-      "Name": "보석",
-      "Description": "Cost (COST)\nHealth (HP)",
-      "Image": "White_Rare",
-      "HP": "-10",
-      "ATK": "0",
-      "SPD": "0",
-      "COST": "-30"
-    },
-    {
-      "ID": "UP312",
-      "Rarity": "3",
-      "Name": "보석",
-      "Description": "Speed (SPD)\nAttack (ATK)\nHealth (HP)",
+      "Description": "Speed (SPD)\nHealth (HP)\nAttack (ATK)",
       "Image": "Blue_Rare",
       "HP": "6",
       "ATK": "6",
-      "SPD": "66",
-      "COST": "0"
+      "SPD": "0",
+      "COST": "66"
     },
     {
-      "ID": "UP313",
+      "ID": "UP308",
       "Rarity": "3",
       "Name": "보석",
       "Description": "Speed (SPD)",
@@ -353,26 +276,15 @@
       "COST": "0"
     },
     {
-      "ID": "UP314",
+      "ID": "UP309",
       "Rarity": "3",
       "Name": "보석",
-      "Description": "Speed (SPD)\nAttack (ATK)\nCost (COST)",
-      "Image": "Blue_Rare",
-      "HP": "0",
-      "ATK": "5",
-      "SPD": "20",
-      "COST": "-10"
-    },
-    {
-      "ID": "UP315",
-      "Rarity": "3",
-      "Name": "보석",
-      "Description": "Speed (SPD)\nHealth (HP)",
-      "Image": "Blue_Rare",
-      "HP": "10",
-      "ATK": "0",
-      "SPD": "30",
-      "COST": "0"
+      "Description": "Cost (COST)\nHealth (HP)\nAttack (ATK)",
+      "Image": "White_Rare",
+      "HP": "-10",
+      "ATK": "-10",
+      "SPD": "0",
+      "COST": "-30"
     }
   ]
 } 
