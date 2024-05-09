@@ -88,6 +88,14 @@ public class ProgressShopManager : MonoBehaviour
             return;
         }
 
+        // 스팀 해금 체크
+        if (GameManager.Steam.IsDoneIncarnaUnlock01())
+            GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_1);
+        if (GameManager.Steam.IsDoneIncarnaUnlock02())
+            GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_2);
+        if (GameManager.Steam.IsDoneIncarnaUnlock03())
+            GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_3);
+
         GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();

@@ -25,6 +25,10 @@ public enum SteamAchievementType
     CORRUPT_NPC_UPGRADE,
     CORRUPT_NPC_STIGMATA,
     CORRUPT_NPC_HARLOT,
+
+    UNLOCK_INCARNA_1,
+    UNLOCK_INCARNA_2,
+    UNLOCK_INCARNA_3,
 }
 
 public struct SteamAchievementData
@@ -56,7 +60,7 @@ public class SteamClientManager : MonoBehaviour
             { SteamAchievementType.KILL_RAHELLEA, new SteamAchievementData("KILL_RAHELLEA", "STAT_KILL_RAHELLEA", 0, 1) },
             { SteamAchievementType.KILL_PHANUEL, new SteamAchievementData("KILL_PHANUEL", "STAT_KILL_PHANUEL", 0, 1) },
             { SteamAchievementType.KILL_ELIEUS, new SteamAchievementData("KILL_ELIEUS", "STAT_KILL_ELIEUS", 0, 1) },
-            { SteamAchievementType.KILL_ELIEUS, new SteamAchievementData("KILL_YANA", "STAT_KILL_YANA", 0, 1) },
+            { SteamAchievementType.KILL_YANA, new SteamAchievementData("KILL_YANA", "STAT_KILL_YANA", 0, 1) },
             { SteamAchievementType.KILL_APPAIM, new SteamAchievementData("KILL_APPAIM", "STAT_KILL_APPAIM", 0, 1) },
             { SteamAchievementType.KILL_THESAVIOR, new SteamAchievementData("KILL_THESAVIOR", "STAT_KILL_THESAVIOR", 0, 1) },
 
@@ -64,13 +68,17 @@ public class SteamClientManager : MonoBehaviour
             { SteamAchievementType.CORRUPT_RAHELLEA, new SteamAchievementData("CORRUPT_RAHELLEA", "STAT_CORRUPT_RAHELLEA", 0, 1) },
             { SteamAchievementType.CORRUPT_PHANUEL, new SteamAchievementData("CORRUPT_PHANUEL", "STAT_CORRUPT_PHANUEL", 0, 1) },
             { SteamAchievementType.CORRUPT_ELIEUS, new SteamAchievementData("CORRUPT_ELIEUS", "STAT_CORRUPT_ELIEUS", 0, 1) },
-            { SteamAchievementType.CORRUPT_ELIEUS, new SteamAchievementData("CORRUPT_YANA", "STAT_CORRUPT_YANA", 0, 1) },
+            { SteamAchievementType.CORRUPT_YANA, new SteamAchievementData("CORRUPT_YANA", "STAT_CORRUPT_YANA", 0, 1) },
             { SteamAchievementType.CORRUPT_APPAIM, new SteamAchievementData("CORRUPT_APPAIM", "STAT_CORRUPT_APPAIM", 0, 1) },
             { SteamAchievementType.CORRUPT_THESAVIOR, new SteamAchievementData("CORRUPT_THESAVIOR", "STAT_CORRUPT_THESAVIOR", 0, 1) },
 
-            { SteamAchievementType.CORRUPT_NPC_UPGRADE, new SteamAchievementData("CORRUPT_NPC_UPGRADE", "CORRUPT_NPC_UPGRADE", 0, 1) },
-            { SteamAchievementType.CORRUPT_NPC_STIGMATA, new SteamAchievementData("CORRUPT_NPC_STIGMATA", "CORRUPT_NPC_STIGMATA", 0, 1) },
-            { SteamAchievementType.CORRUPT_NPC_HARLOT, new SteamAchievementData("CORRUPT_NPC_HARLOT", "CORRUPT_NPC_HARLOT", 0, 1) },
+            { SteamAchievementType.CORRUPT_NPC_UPGRADE, new SteamAchievementData("CORRUPT_NPC_UPGRADE", "STAT_CORRUPT_NPC_UPGRADE", 0, 1) },
+            { SteamAchievementType.CORRUPT_NPC_STIGMATA, new SteamAchievementData("CORRUPT_NPC_STIGMATA", "STAT_CORRUPT_NPC_STIGMATA", 0, 1) },
+            { SteamAchievementType.CORRUPT_NPC_HARLOT, new SteamAchievementData("CORRUPT_NPC_HARLOT", "STAT_CORRUPT_NPC_HARLOT", 0, 1) },
+
+            { SteamAchievementType.UNLOCK_INCARNA_1, new SteamAchievementData("UNLOCK_INCARNA_1", "STAT_UNLOCK_INCARNA_1", 0, 1) },
+            { SteamAchievementType.UNLOCK_INCARNA_2, new SteamAchievementData("UNLOCK_INCARNA_2", "STAT_UNLOCK_INCARNA_2", 0, 1) },
+            { SteamAchievementType.UNLOCK_INCARNA_3, new SteamAchievementData("UNLOCK_INCARNA_3", "STAT_UNLOCK_INCARNA_3", 0, 1) },
         };
     }
 
@@ -116,5 +124,29 @@ public class SteamClientManager : MonoBehaviour
             SteamUserStats.SetAchievement(data.achievementAPIKey);
             SteamUserStats.StoreStats();
         }
+    }
+
+    public bool IsDoneIncarnaUnlock01()
+    {
+        if (GameManager.OutGameData.IsUnlockedItem(52) && GameManager.OutGameData.IsUnlockedItem(53) &&
+            GameManager.OutGameData.IsUnlockedItem(54))
+            return true;
+        return false;
+    }
+
+    public bool IsDoneIncarnaUnlock02()
+    {
+        if (GameManager.OutGameData.IsUnlockedItem(61) && GameManager.OutGameData.IsUnlockedItem(62) &&
+            GameManager.OutGameData.IsUnlockedItem(63) && GameManager.OutGameData.IsUnlockedItem(64))
+            return true;
+        return false;
+    }
+
+    public bool IsDoneIncarnaUnlock03()
+    {
+        if (GameManager.OutGameData.IsUnlockedItem(71) && GameManager.OutGameData.IsUnlockedItem(72) &&
+            GameManager.OutGameData.IsUnlockedItem(73) && GameManager.OutGameData.IsUnlockedItem(74))
+            return true;
+        return false;
     }
 }
