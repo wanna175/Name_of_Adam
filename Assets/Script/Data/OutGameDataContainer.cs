@@ -403,7 +403,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         _data.resolution = 0;
         _data.IsWindowed = false;
-        _data.MasterSoundPower = _data.BGMSoundPower = _data.SESoundPower = 1f;
+        _data.MasterSoundPower = _data.BGMSoundPower = _data.SESoundPower = 0.5f;
     }
     public bool GetCutSceneData(CutSceneType cutSceneType) => _data.cutSceneData[(int)cutSceneType];
     public void SetCutSceneData(CutSceneType cutSceneType, bool isDone) => _data.cutSceneData[(int)cutSceneType] = isDone;
