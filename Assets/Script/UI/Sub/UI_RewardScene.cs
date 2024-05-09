@@ -19,7 +19,7 @@ public class UI_RewardScene : MonoBehaviour
     {
         this.GetComponent<FadeController>().StartFadeIn();
 
-        int difference = GameManager.Data.DarkEssense - BattleManager.Data.BattlePrevDarkEssence;
+        int difference = GameManager.Data.GameData.DarkEssence - BattleManager.Data.BattlePrevDarkEssence;
         _darkEssenceResult.text = (difference >= 0) ? "+" + difference.ToString() : difference.ToString();
         _afterBattleUnits = afterBattleEndUnits;
 

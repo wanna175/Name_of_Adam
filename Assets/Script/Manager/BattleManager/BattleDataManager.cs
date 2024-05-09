@@ -48,7 +48,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         _battlePrevUnitDict = new Dictionary<int, RewardUnit>();
-        _battlePrevDarkEssence = GameManager.Data.DarkEssense;
+        _battlePrevDarkEssence = GameManager.Data.GameData.DarkEssence;
 
         foreach (DeckUnit unit in _playerDeck)
         {
@@ -174,10 +174,7 @@ public class BattleDataManager : MonoBehaviour
 
         foreach (BattleUnit unit in _battleUnitList)
         {
-            if (unit.IsConnectedUnit ||
-                unit.Data.UnitActionType == UnitActionType.UnitAction_None ||
-                unit.Data.UnitActionType == UnitActionType.UnitAction_Horus_Egg
-            )
+            if (unit.IsConnectedUnit || unit.Data.UnitActionType == UnitActionType.UnitAction_None || unit.Data.UnitActionType == UnitActionType.UnitAction_Horus_Egg)
                 continue;
 
             _battleUnitOrders.Add(new(unit, null));
@@ -214,15 +211,15 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleOrderRemove((BattleUnit, int?) removeUnitOrder)
     {
-        Debug.Log(removeUnitOrder.Item1.Data.Name);
-
-
         _battleUnitOrders.Remove(removeUnitOrder);
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
 
     public void BattleOrderInsert(int index, BattleUnit addUnit, int? speed = null)
     {
+        if (addUnit.IsConnectedUnit || addUnit.Data.UnitActionType == UnitActionType.UnitAction_None || addUnit.Data.UnitActionType == UnitActionType.UnitAction_Horus_Egg)
+            return;
+
         _battleUnitOrders.Insert(index, (addUnit, speed));
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }

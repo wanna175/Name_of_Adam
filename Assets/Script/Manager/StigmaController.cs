@@ -103,6 +103,21 @@ public class StigmaController
         return stigma;
     }
 
+    public List<Stigma> GetRandomStigmaList(DeckUnit targetUnit, int stigmaCount)
+    {
+        List<Stigma> result = new();
+        List<Stigma> existStigma = targetUnit.GetStigma();
+
+        while (result.Count < stigmaCount)
+        {
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
+            if (!existStigma.Contains(stigma) && !result.Contains(stigma))
+                result.Add(stigma);
+        }
+
+        return result;
+    }
+
     private bool IsLockStigmaAsUnit(Stigma stigma, string unitName)
     {
         // 검병 튜토리얼 특수 케이스
@@ -137,6 +152,21 @@ public class StigmaController
     }
 
     public List<Stigma> GetHarlotStigmaList() => _harlotStigmaList;
+
+    public List<Stigma> GetRandomHarlotStigmaList(DeckUnit targetUnit, int stigmaCount)
+    {
+        List<Stigma> result = new();
+        List<Stigma> existStigma = targetUnit.GetStigma();
+
+        while (result.Count < stigmaCount)
+        {
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomHarlotStigma();
+            if (!existStigma.Contains(stigma) && !result.Contains(stigma))
+                result.Add(stigma);
+        }
+
+        return result;
+    }
 
     public void CheckUnlockedStigma(Stigma stigma)
     {

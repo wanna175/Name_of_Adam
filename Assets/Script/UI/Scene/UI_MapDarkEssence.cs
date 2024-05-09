@@ -9,6 +9,6 @@ public class UI_MapDarkEssence : MonoBehaviour
 
     private void Update()
     {
-        text.text = GameManager.Data.DarkEssense.ToString();
+        text.text = GameManager.Data.GameData.DarkEssence.ToString();
     }
 }

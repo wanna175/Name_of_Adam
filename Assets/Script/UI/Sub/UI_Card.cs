@@ -15,15 +15,15 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private Image _frameImage;
     [SerializeField] private TextMeshProUGUI _name;
 
-    [SerializeField] private List<GameObject> _stigmaFrames;
+    [SerializeField] private List<GameObject> _stigmataFrames;
 
-    private List<Image> _stigmaImages;
+    [SerializeField] private Sprite _normalFrame;
+    [SerializeField] private Sprite _eliteFrame;
 
-    [SerializeField] public Sprite NormalFrame;
-    [SerializeField] public Sprite EliteFrame;
+    [SerializeField] private List<Image> _stigmataImages;
+
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
-    private CUR_EVENT _eventNum = CUR_EVENT.NONE;
 
     private void Start()
     {
@@ -31,58 +31,51 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _selectHighlight.SetActive(false);
     }
 
-    public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit, CUR_EVENT eventNum)
+    public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit)
     {
         _myDeck = myDeck;
         _cardUnit = unit;
-        _eventNum = eventNum;
 
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
 
         if(unit.Data.Rarity == Rarity.Normal)
         {
-            _frameImage.sprite = NormalFrame;
+            _frameImage.sprite = _normalFrame;
         }
         else
         {
-            _frameImage.sprite = EliteFrame;
+            _frameImage.sprite = _eliteFrame;
         }
 
-        if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
+        if (SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
             SetDisable(unit.IsMainDeck);
         }
 
-        _stigmaImages = new List<Image>();
-        foreach (var frame in _stigmaFrames)
-            _stigmaImages.Add(frame.GetComponentsInChildren<Image>()[1]);
-
-        foreach (var frame in _stigmaFrames)
+        foreach (var frame in _stigmataFrames)
             frame.SetActive(true);
 
-        List<Stigma> stigmas = unit.GetStigma();
-        for (int i = 0; i < _stigmaImages.Count; i++)
+        List<Stigma> unitStigmaList = unit.GetStigma();
+        for (int i = 0; i < _stigmataImages.Count; i++)
         {
-            if (i < stigmas.Count)
+            if (i < unitStigmaList.Count)
             {
-                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetStigma(stigmas[i]);
-                _stigmaImages[i].sprite = stigmas[i].Sprite_28;
-                _stigmaImages[i].color = Color.white;
+                _stigmataFrames[i].GetComponent<UI_StigmaHover>().SetStigma(unitStigmaList[i]);
+                _stigmataImages[i].sprite = unitStigmaList[i].Sprite_28;
+                _stigmataImages[i].color = Color.white;
             }
             else
             {
-                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
-                _stigmaImages[i].color = new Color(1f, 1f, 1f, 0f);
+                _stigmataFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
+                _stigmataImages[i].color = new Color(1f, 1f, 1f, 0f);
             }
         }
     }
+
     public void SelectCard()
     {
-        if (!_selectHighlight.activeInHierarchy)
-            this._selectHighlight.SetActive(true);
-        else
-            this._selectHighlight.SetActive(false);
+        _selectHighlight.SetActive(!_selectHighlight.activeInHierarchy);
     }
 
     public void SetDisable(bool disable)
@@ -122,17 +115,6 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
             return;
         }
 
-        if (_eventNum == CUR_EVENT.GIVE_STIGMA)
-        {
-            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
-            {
-                _myDeck.OnClickCard(_cardUnit);
-                GameManager.Data.RemoveDeckUnit(_cardUnit);
-            });
-        }
-        else
-        {
-            _myDeck.OnClickCard(_cardUnit);
-        }
+        _myDeck.OnClickCard(_cardUnit);
     }
 }

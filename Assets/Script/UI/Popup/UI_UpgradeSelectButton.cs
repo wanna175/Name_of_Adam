@@ -13,13 +13,24 @@ public class UI_UpgradeSelectButton : UI_Popup
     [SerializeField] private TextMeshProUGUI _titleText;
 
     private UpgradeSceneController _uc;
+    private bool _isUpgradeFull;
     private bool _isCanReset;
 
-    public void Init(UpgradeSceneController uc, List<Upgrade> upgrades, string titleText)
+    public void Init(UpgradeSceneController uc, List<Upgrade> upgrades, bool isUpgradeFull)
     {
         _uc = uc;
-        _isCanReset = (titleText.Equals("Select Upgrade")) ? true : false;
-        _titleText.SetText(GameManager.Locale.GetLocalizedEventScene(titleText));
+        _isUpgradeFull = isUpgradeFull;
+        _isCanReset = !isUpgradeFull;
+
+        if (_isUpgradeFull)
+        {
+            _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Full Upgrade"));
+        }
+        else
+        {
+            _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Select Upgrade"));
+        }
+
 
         for (int i = 0; i < 3; i++)
         {
@@ -42,12 +53,19 @@ public class UI_UpgradeSelectButton : UI_Popup
             return;
 
         var upgradeList = _uc.ResetUpgrade();
-        Init(_uc, upgradeList, "Select Upgrade");
+        Init(_uc, upgradeList, _isUpgradeFull);
     }
 
     public void OnClick(int select)
     {
-        _uc.OnUpgradeSelect(select);
+        if (_isUpgradeFull)
+        {
+            _uc.OnDestroyUpgradeSelect(select);
+        }
+        else
+        {
+            _uc.OnUpgradeSelect(select);
+        }
     }
 
     public void QuitBtn()

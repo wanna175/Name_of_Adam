@@ -2,23 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CUR_EVENT
-{
-    NONE,
-    UPGRADE,
-    UPGRADE_EXCEPTION,
-    RELEASE,
-    COMPLETE_UPGRADE,
-    COMPLETE_RELEASE,
-    STIGMA,
-    GIVE_STIGMA,
-    RECEIVE_STIGMA,
-    COMPLETE_STIGMA,
-    STIGMA_EXCEPTION,
-    HARLOT_RESTORATION,
-    COMPLETE_HAELOT,
-    HOLL
-};
 public class EventSceneController : MonoBehaviour
 {
     [SerializeField] GameObject _upgrade;

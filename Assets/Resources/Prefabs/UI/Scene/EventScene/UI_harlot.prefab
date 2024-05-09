@@ -2641,7 +2641,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3580172553705515330}
         m_TargetAssemblyTypeName: HarlotSceneController, Assembly-CSharp
-        m_MethodName: OnUnitRestorationClick
+        m_MethodName: OnRevertUnitButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2789,7 +2789,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3580172553705515330}
         m_TargetAssemblyTypeName: HarlotSceneController, Assembly-CSharp
-        m_MethodName: OnStigmaButtonClick
+        m_MethodName: OnStigmataBestowalButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3383,7 +3383,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 3580172553705515330}
         m_TargetAssemblyTypeName: HarlotSceneController, Assembly-CSharp
-        m_MethodName: OnMakeOriginUnitClick
+        m_MethodName: OnApostleCreationButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

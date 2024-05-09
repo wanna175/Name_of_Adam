@@ -6,5 +6,5 @@ public interface StigmaInterface
 {
     void OnStigmataSelected(Stigma stigma);
     void OnSelectStigmataBestowalUnit(DeckUnit unit);
-    void UnitStigmataFull();
+    List<Stigma> ResetStigmataList(DeckUnit stigmataTargetUnit);
 }
