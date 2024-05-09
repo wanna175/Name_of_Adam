@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -120,11 +120,11 @@ TextureImporter:
       name: Raquel_AttackEffect_0
       rect:
         serializedVersion: 2
-        x: 110
+        x: 0
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -141,11 +141,11 @@ TextureImporter:
       name: Raquel_AttackEffect_1
       rect:
         serializedVersion: 2
-        x: 220
+        x: 110
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -162,11 +162,11 @@ TextureImporter:
       name: Raquel_AttackEffect_2
       rect:
         serializedVersion: 2
-        x: 330
+        x: 220
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -183,11 +183,11 @@ TextureImporter:
       name: Raquel_AttackEffect_3
       rect:
         serializedVersion: 2
-        x: 440
+        x: 330
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -204,11 +204,11 @@ TextureImporter:
       name: Raquel_AttackEffect_4
       rect:
         serializedVersion: 2
-        x: 550
+        x: 440
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -225,11 +225,11 @@ TextureImporter:
       name: Raquel_AttackEffect_5
       rect:
         serializedVersion: 2
-        x: 660
+        x: 550
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -246,11 +246,11 @@ TextureImporter:
       name: Raquel_AttackEffect_6
       rect:
         serializedVersion: 2
-        x: 770
+        x: 660
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -267,11 +267,11 @@ TextureImporter:
       name: Raquel_AttackEffect_7
       rect:
         serializedVersion: 2
-        x: 880
+        x: 770
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -288,11 +288,11 @@ TextureImporter:
       name: Raquel_AttackEffect_8
       rect:
         serializedVersion: 2
-        x: 990
+        x: 880
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -309,11 +309,11 @@ TextureImporter:
       name: Raquel_AttackEffect_9
       rect:
         serializedVersion: 2
-        x: 1100
+        x: 990
         y: 0
         width: 110
-        height: 93
-      alignment: 7
+        height: 92
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -322,27 +322,6 @@ TextureImporter:
       bones: []
       spriteID: 673ee0b2e5fa61f4ea24d67517f918bb
       internalID: -776707257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Raquel_AttackEffect_10
-      rect:
-        serializedVersion: 2
-        x: 1210
-        y: 0
-        width: 110
-        height: 93
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ffb4af0959631d4bb0b40c2c9fd000e
-      internalID: -1406899903
       vertices: []
       indices: 
       edges: []
@@ -358,7 +337,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Raquel_AttackEffect_10: -1406899903
       Raquel_AttackEffect_7: -1940481035
       Raquel_AttackEffect_0: 1587960165
       Raquel_AttackEffect_1: -1090609609

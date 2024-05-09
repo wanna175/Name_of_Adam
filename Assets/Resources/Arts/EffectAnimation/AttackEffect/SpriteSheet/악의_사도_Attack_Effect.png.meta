@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Advent_0
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 129f9ca55f37f7a4cba18c1689e43bed
-      internalID: -299963668
+      spriteID: 3d07594f6aff586449ae11904639a662
+      internalID: 662386769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_1
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_1"
       rect:
         serializedVersion: 2
         x: 300
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ce72ee1eb094cd4f85901e5e20dc2a2
-      internalID: -194797022
+      spriteID: d824c732a7111094bb300e8728ac3d44
+      internalID: -1920089442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_2
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_2"
       rect:
         serializedVersion: 2
         x: 600
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 053ca5ca36ebb7442a29391f4957c8e3
-      internalID: -1851435675
+      spriteID: 63a5fb7565035b8448f362b545512afe
+      internalID: -859847288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_3
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_3"
       rect:
         serializedVersion: 2
         x: 900
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc9d9f7951157d4f9bf3709652f0d0d
-      internalID: -1803964383
+      spriteID: d89e98a579a9c0d47b841d64cab41dd4
+      internalID: 1229368945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_4
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_4"
       rect:
         serializedVersion: 2
         x: 1200
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a603c7446d483449b51fe9a6c442780
-      internalID: -77678620
+      spriteID: 7841268d88abef64a82879cf07337676
+      internalID: 2034032233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_5
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_5"
       rect:
         serializedVersion: 2
         x: 1500
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8bcefe7a6bac5f4aae9e79920329f43
-      internalID: -340276666
+      spriteID: 8daa73c4d2f9b5e4cb1ceb4aeb8cdc4f
+      internalID: -1745427657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_6
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_6"
       rect:
         serializedVersion: 2
         x: 1800
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c6d76bde1e22334da3170e573d7f5a5
-      internalID: -1932737298
+      spriteID: 6b75416c5ba805a48ab3b3ff3640299d
+      internalID: -1151013608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_7
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_7"
       rect:
         serializedVersion: 2
         x: 2100
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9005b51fa58245f4aa7b295a61e7cb1a
-      internalID: -1916257117
+      spriteID: 75649f1ac1a8fd447a9c03199b7c7bae
+      internalID: -1070718715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_8
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_8"
       rect:
         serializedVersion: 2
         x: 2400
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,20 +299,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e6fb107861d6b458fded9e1c5198af
-      internalID: 1205659135
+      spriteID: ac6e19682d169954ab8f840e54b6ac33
+      internalID: 768233639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Advent_9
+      name: "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_9"
       rect:
         serializedVersion: 2
         x: 2700
         y: 0
         width: 300
-        height: 445
+        height: 420
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,29 +320,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dda78cc6e2b92246990f3e84d3e6ef6
-      internalID: 303284071
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Advent_10
-      rect:
-        serializedVersion: 2
-        x: 3000
-        y: 0
-        width: 300
-        height: 445
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ff05dd7100b8454b89857296cc1c684
-      internalID: 1805055033
+      spriteID: 4d072b8f63cbdc149af12f12c13a1180
+      internalID: 1543595803
       vertices: []
       indices: 
       edges: []
@@ -358,17 +337,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Advent_9: 303284071
-      Advent_5: -340276666
-      Advent_6: -1932737298
-      Advent_10: 1805055033
-      Advent_1: -194797022
-      Advent_3: -1803964383
-      Advent_7: -1916257117
-      Advent_2: -1851435675
-      Advent_4: -77678620
-      Advent_8: 1205659135
-      Advent_0: -299963668
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_7": -1070718715
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_1": -1920089442
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_2": -859847288
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_6": -1151013608
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_0": 662386769
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_8": 768233639
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_3": 1229368945
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_9": 1543595803
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_5": -1745427657
+      "\uC545\uC758_\uC0AC\uB3C4_Attack_Effect_4": 2034032233
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
