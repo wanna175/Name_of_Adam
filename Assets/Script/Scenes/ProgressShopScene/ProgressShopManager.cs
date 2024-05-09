@@ -88,20 +88,25 @@ public class ProgressShopManager : MonoBehaviour
             return;
         }
 
-        // 스팀 해금 체크
-        if (GameManager.Steam.IsDoneIncarnaUnlock01())
-            GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_1);
-        if (GameManager.Steam.IsDoneIncarnaUnlock02())
-            GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_2);
-        if (GameManager.Steam.IsDoneIncarnaUnlock03())
-            GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_3);
-
         GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
         ChangeBtnImage(false);
         disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
         SetNodeImage();
+
+        // 스팀 해금 체크
+        if (selectedID == 52 || selectedID == 53 || selectedID == 54)
+            if (GameManager.Steam.IsDoneIncarnaUnlock01())
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_1);
+
+        if (selectedID == 71 || selectedID == 72 || selectedID == 73 || selectedID == 74)
+            if (GameManager.Steam.IsDoneIncarnaUnlock02())
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_2);
+
+        if (selectedID == 61 || selectedID == 62 || selectedID == 63 || selectedID == 64)
+            if (GameManager.Steam.IsDoneIncarnaUnlock03())
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_3);
     }
 
     public void ChangeBtnImage(bool isActive)

@@ -136,16 +136,16 @@ public class SteamClientManager : MonoBehaviour
 
     public bool IsDoneIncarnaUnlock02()
     {
-        if (GameManager.OutGameData.IsUnlockedItem(61) && GameManager.OutGameData.IsUnlockedItem(62) &&
-            GameManager.OutGameData.IsUnlockedItem(63) && GameManager.OutGameData.IsUnlockedItem(64))
+        if (GameManager.OutGameData.IsUnlockedItem(71) && GameManager.OutGameData.IsUnlockedItem(72) &&
+            GameManager.OutGameData.IsUnlockedItem(73) && GameManager.OutGameData.IsUnlockedItem(74))
             return true;
         return false;
     }
 
     public bool IsDoneIncarnaUnlock03()
     {
-        if (GameManager.OutGameData.IsUnlockedItem(71) && GameManager.OutGameData.IsUnlockedItem(72) &&
-            GameManager.OutGameData.IsUnlockedItem(73) && GameManager.OutGameData.IsUnlockedItem(74))
+        if (GameManager.OutGameData.IsUnlockedItem(61) && GameManager.OutGameData.IsUnlockedItem(62) &&
+            GameManager.OutGameData.IsUnlockedItem(63) && GameManager.OutGameData.IsUnlockedItem(64))
             return true;
         return false;
     }

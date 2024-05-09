@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     private bool _onGM = true;
 
-    private bool _onDebug = true;
+    private bool _onDebug = false;
 
     void Awake()
     {
