@@ -31,24 +31,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 209199468544
-    m_Localized: The Dark Prophet is the start of all darkness, wielding the power
-      of shadows. His dark abilities are specialized in corruption.
+    m_Localized: The Dark Prophet is the very origin of all darkness. He wields the
+      power of the shadows and his dark abilities are specialized in corrupting enemies
     m_Metadata:
       m_Items: []
   - m_Id: 262567792640
     m_Localized: The Saintess of Sins possesses the power to purify the world with
-      the force of darkness. Her dark touch holds the ability to strengthen and heal
-      allies.
+      her dark virtue. Her dark touch holds the ability to strengthen and heal allies.
     m_Metadata:
       m_Items: []
   - m_Id: 295367249920
     m_Localized: The Heir of Vice is the embodiment of malevolence, inheriting the
-      power of darkness. His formidable evil power is capable of subduing enemies
+      force of darkness. His formidable evil power is capable of subduing enemies
       with overwhelming strength.
     m_Metadata:
       m_Items: []
   - m_Id: 496836448256
-    m_Localized: Select Incarna
+    m_Localized: Select your incarnation
     m_Metadata:
       m_Items: []
   references:

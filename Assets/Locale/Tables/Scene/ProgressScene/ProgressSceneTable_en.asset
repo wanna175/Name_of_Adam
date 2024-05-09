@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 69751443456
-    m_Localized: Incarna
+    m_Localized: Incarnation
     m_Metadata:
       m_Items: []
   - m_Id: 7617713111470080
@@ -35,9 +35,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7618425069408256
-    m_Localized: Stigmata 'Destiny' appears from now on.\n\nDestiny - When attacking,
-      there is a 50% chance for damage to be doubled and a 50% chance for it to be
-      halved.
+    m_Localized: 'Stigmata ''Destiny'' appears from now on.
+
+
+      Destiny - When
+      attacking, there is a 50% chance for damage to be doubled and a 50% chance
+      for it to be halved.'
     m_Metadata:
       m_Items: []
   - m_Id: 7618690774372352
@@ -45,25 +48,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7618817085837312
-    m_Localized: A new feature, Faith Recovery, is unlocked when baptizing.\n\nYou
-      can now restore the faith of desired units.
+    m_Localized: 'A new feature, Faith Recovery, is unlocked in the Baptism stage.
+
+
+      You
+      can now restore the faith of desired units.'
     m_Metadata:
       m_Items: []
   - m_Id: 7618926460702720
-    m_Localized: Starting dark essence I
+    m_Localized: Initial Dark Essence I
     m_Metadata:
       m_Items: []
   - m_Id: 7619085017976832
-    m_Localized: The starting dark essence increases from 4 to 7.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7619187002478592
-    m_Localized: Revenge
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7619282569695232
-    m_Localized: Stigmata 'Revenge' appears from now on.\n\nRevenge - Counterattacks
-      enemies within attack range.
+    m_Localized: The Initial dark Essence amount increases from 4 to 7
     m_Metadata:
       m_Items: []
   - m_Id: 7619358809559040
@@ -71,16 +68,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7619594244231168
-    m_Localized: A new feature, Apostle Creation, is unlocked in the Sacrifice Stage.\n\nYou
-      can now randomly create apostles via dark essence.
+    m_Localized: 'A new feature, Apostle Creation, is unlocked in the Sacrifice Stage.
+
+
+      You
+      can now randomly create apostles via dark essence.'
     m_Metadata:
       m_Items: []
   - m_Id: 7619814411636736
-    m_Localized: Starting dark essence II
+    m_Localized: Initial dark essence II
     m_Metadata:
       m_Items: []
   - m_Id: 7619855268352000
-    m_Localized: The starting dark essence increases from 7 to 10.
+    m_Localized: The Initial dark essence amount increases from 7 to 10.
     m_Metadata:
       m_Items: []
   - m_Id: 7619978522169344
@@ -88,8 +88,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7619993818796032
-    m_Localized: Stigmata 'Killing Spree' appears from now on.\n\nKilling Spree -
-      Gains an extra turn upon defeating an enemy.
+    m_Localized: "Stigmata 'Killing Spree' appears from now on. \n\nKilling Spree
+      - Gains an extra turn upon defeating an enemy.my."
     m_Metadata:
       m_Items: []
   - m_Id: 7620199268388864
@@ -109,31 +109,20 @@ MonoBehaviour:
     m_Localized: The maximum upgrade increases from 2 to 3.
     m_Metadata:
       m_Items: []
-  - m_Id: 7620621450252288
-    m_Localized: Thirst
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7620700810678272
-    m_Localized: Stigmata 'Thirst' appears from now on.\n\nThirst - Upon defeating
-      an enemy, health permanently increases by 5, and attack by 2. (Resets in the
-      Divine Hall)
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7621029539254272
-    m_Localized: Stigmata transfer
-    m_Metadata:
-      m_Items: []
   - m_Id: 7621120572428288
-    m_Localized: A new feature, Stigmata Transfer, is unlocked in the Stigmata stage.\n\nYou
-      can now sacrifice one unit to bestow one of its stigmata onto another unit.
+    m_Localized: 'A new feature, Stigmata Transfer, is unlocked in the Stigmata stage.
+
+
+      You
+      can now sacrifice one unit to bestow one of its stigmata onto another unit.'
     m_Metadata:
       m_Items: []
   - m_Id: 7621440010620928
-    m_Localized: Starting mana I
+    m_Localized: Initial Mana I
     m_Metadata:
       m_Items: []
   - m_Id: 7621538388021248
-    m_Localized: The starting mana increases from 50 to 55.
+    m_Localized: The Initial mana increases from 50 to 55.
     m_Metadata:
       m_Items: []
   - m_Id: 7621575226593280
@@ -141,9 +130,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7621801735786496
-    m_Localized: Stigmata 'Teleport' appears from now on.\n\nTeleport - Earns 1 Sacred
-      Step upon defeating an enemy.\nSacred Step - Becomes able to move to any desired
-      position.
+    m_Localized: 'Stigmata ''Teleport'' appears from now on.
+
+
+      Teleport - Gains
+      1 Sacred Step upon defeating an enemy. (Sacred Step: Can move any tile regradless
+      move range.)'
     m_Metadata:
       m_Items: []
   - m_Id: 7622009710350336
@@ -156,11 +148,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7622169010016256
-    m_Localized: Starting mana II
+    m_Localized: Initial Mana II
     m_Metadata:
       m_Items: []
   - m_Id: 7622297317969920
-    m_Localized: The starting mana increases from 55 to 60.
+    m_Localized: The initial mana increases from 55 to 60.
     m_Metadata:
       m_Items: []
   - m_Id: 7622398404890624
@@ -168,9 +160,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7622415496679424
-    m_Localized: "Stigmata 'Forbidden Pact' appears from now on.\r\\n\\nForbidden
+    m_Localized: 'Stigmata ''Forbidden Pact'' appears from now on.
+
+
+      Forbidden
       Pact - The unit becomes stunned once, but the mana cost of the next skill is
-      eliminated upon summoning."
+      eliminated upon summoning.'
     m_Metadata:
       m_Items: []
   - m_Id: 7622878182936576
@@ -187,8 +182,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7623070651158528
-    m_Localized: "Stigmata 'Sin' appears in the Sacrifice from now on.\r\\n\\nSin
-      - Decreases the enemy's faith by 1 upon attacking."
+    m_Localized: 'Stigmata ''Sin'' appears in the Sacrifice from now on.
+
+
+      Sin
+      - Earns malevolence 66 times upon summoning. (Malevolence: Upon attacking,
+      reduces the enemy''s faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 7624341659488256
@@ -204,7 +203,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7626935324807168
-    m_Localized: The mana cost of Whisper decreases by 5.
+    m_Localized: The mana cost of 'Whisper' decreases by 5
     m_Metadata:
       m_Items: []
   - m_Id: 7627095949873152
@@ -212,7 +211,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7627180515430400
-    m_Localized: The faith of enemies hit by the Dark Cross decreases by 1.
+    m_Localized: The 'Dark Cross' decreases targeted enemies' faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 7627404055056384
@@ -276,7 +275,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7630105778229248
-    m_Localized: The duration of Advent is increased by 1 turn.
+    m_Localized: The duration of 'Advent' is increased by 1 turn.
     m_Metadata:
       m_Items: []
   - m_Id: 7630885360930816

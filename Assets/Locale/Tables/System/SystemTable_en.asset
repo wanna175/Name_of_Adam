@@ -23,11 +23,15 @@ MonoBehaviour:
 
 
       You have an existing journey. Are
-      you sure you want to abandon it and start a new journey?'
+      you sure you want to abandon your previous journey and start once again?'
     m_Metadata:
       m_Items: []
   - m_Id: 5593952256
-    m_Localized: 'Congratulations, prophet of darkness.
+    m_Localized: 'Congratulations, the very incarnation of darkness.
+
+
+      You
+      have finally defeated the king of all mortals.
 
 
       However, your journey
@@ -36,39 +40,42 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3364736528384
-    m_Localized: 'Congratulations, you have overcome everything. But the real test
-      begins now.
+    m_Localized: 'Congratulations, you have overcome everything above you. But the
+      real challenge begins now.
 
 
-      Face a new battle every round and test your limits.'
+      Test your limits whilst challenging ever-changing
+      battles awaiting you.'
     m_Metadata:
       m_Items: []
   - m_Id: 3408147574784
-    m_Localized: "\u203B Press 'Restart' to challenge."
+    m_Localized: "\u203B Press 'New Game' to face your next challenge."
     m_Metadata:
       m_Items: []
   - m_Id: 3412371238912
-    m_Localized: "\r\u203B Stages will be set randomly from now on."
+    m_Localized: "\u203B Stages will be set randomly from now on."
     m_Metadata:
       m_Items: []
   - m_Id: 17209785905152
-    m_Localized: 'The number of stigmata on the currently selected unit is at maximum.
+    m_Localized: 'The number of stigmata of the selected unit is at its maximum.
 
 
       Would
-      you like to destroy one stigmata and select another?'
+      you like to destroy an existing stigmata and select a new one?'
     m_Metadata:
       m_Items: []
   - m_Id: 17261312929792
     m_Localized: 'The number of enhancements on the currently selected unit is at
-      maximum.
+      its maximum.
 
 
-      Would you like to destroy one enhancement and select another?'
+      Would you like to destroy an enhancement and select a
+      new one?'
     m_Metadata:
       m_Items: []
   - m_Id: 17279610286936064
-    m_Localized: "\rWould you like to destroy this unit to move the stigmata?"
+    m_Localized: Would you like to destroy this unit and move its stigmata to another
+      unit?
     m_Metadata:
       m_Items: []
   - m_Id: 17295328403427328
@@ -80,11 +87,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17307259352813568
-    m_Localized: 'This unit already exists in the hall.
+    m_Localized: 'This unit already exists in the Divine Hall.
 
 
-      Would you like to
-      overwrite this unit?'
+      Would you
+      like to overwrite this unit?'
     m_Metadata:
       m_Items: []
   references:
