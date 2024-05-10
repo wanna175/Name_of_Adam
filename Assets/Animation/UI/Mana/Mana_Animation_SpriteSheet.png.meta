@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -120,8 +120,8 @@ TextureImporter:
       name: main mana_ani-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1900
+        x: 760
+        y: 0
         width: 190
         height: 190
       alignment: 0
@@ -1137,7 +1137,8 @@ TextureImporter:
       main mana_ani-Sheet_29: -1299672305
       main mana_ani-Sheet_33: -510250117
       main mana_ani-Sheet_42: 1094871142
-      main mana_ani-Sheet_41: -1016664878
+      main mana_ani-Sheet_25: -2099093221
+      main mana_ani-Sheet_27: 181656275
       main mana_ani-Sheet_13: -1305011950
       main mana_ani-Sheet_12: 1756646848
       main mana_ani-Sheet_28: 413073761
@@ -1145,7 +1146,7 @@ TextureImporter:
       main mana_ani-Sheet_11: -455400009
       main mana_ani-Sheet_26: -1640184852
       main mana_ani-Sheet_18: -1539825123
-      main mana_ani-Sheet_25: -2099093221
+      main mana_ani-Sheet_41: -1016664878
       main mana_ani-Sheet_44: -1041934014
       main mana_ani-Sheet_37: -1881320431
       main mana_ani-Sheet_2: -155110085
@@ -1153,7 +1154,6 @@ TextureImporter:
       main mana_ani-Sheet_36: -2021922604
       main mana_ani-Sheet_1: -2071101271
       main mana_ani-Sheet_14: -1426630282
-      main mana_ani-Sheet_27: 181656275
       main mana_ani-Sheet_34: 1082563112
       main mana_ani-Sheet_6: -382222905
       main mana_ani-Sheet_7: 904574298
