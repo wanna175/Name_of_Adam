@@ -1,11 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Buff_Vice : Buff
+public class Buff_Malevolence : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Vice;
+        _buffEnum = BuffEnum.Malevolence;
 
         _name = "Malevolence";
 

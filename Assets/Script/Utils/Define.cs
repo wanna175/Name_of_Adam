@@ -336,7 +336,7 @@ public enum BuffEnum
     Tailwind,
     Teleport,
     TraceOfDust,
-    Vice,
+    Malevolence,
 
     //systemic buff (no image)
     AfterAttackBounce,
