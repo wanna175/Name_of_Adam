@@ -68,7 +68,7 @@ public class UnitAction_Horus : UnitAction
                 caster.transform.position = new(9, 3, 0);
             }
 
-            GameManager.Resource.Instantiate("BattleUnits/Horus_UI", caster.transform).GetComponent<Horus_UI>().Init(caster);
+            GameManager.Resource.Instantiate("BattleUnits/Savior_UI", caster.transform).GetComponent<Savior_UI>().Init(caster);
         }
         else if ((activeTiming & ActiveTiming.STIGMA) == ActiveTiming.STIGMA)
         {
@@ -163,7 +163,7 @@ public class UnitAction_Horus : UnitAction
 
     public override void SetUnit(string sender, BattleUnit unit)
     {
-        if (sender == "Horus_Egg")
+        if (sender == "FlowerOfSacrifice")
         {
             if (unit.Data.ID == "Èñ»ýÀÇ_²É")
             {
@@ -187,8 +187,8 @@ public class UnitAction_Horus : UnitAction
 
         BattleUnit spawnUnit = BattleManager.Spawner.SpawnDataSpawn(sd);
         _summonedUnit.Add(spawnUnit);
-        spawnUnit.Action.SetUnit("Horus", unit);
-        spawnUnit.Action.SetValue("Horus", _summonOrder);
+        spawnUnit.Action.SetUnit("Savior", unit);
+        spawnUnit.Action.SetValue("Savior", _summonOrder);
 
         _summonOrder = ((_summonOrder % 3) + 1);
     }

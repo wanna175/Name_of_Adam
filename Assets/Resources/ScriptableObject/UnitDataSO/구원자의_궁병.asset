@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
-  m_Name: "\uD638\uB8E8\uC2A4\uC758_\uAD81\uBCD1"
+  m_Name: "\uAD6C\uC6D0\uC790\uC758_\uAD81\uBCD1"
   m_EditorClassIdentifier: 
   _rawStat:
     MaxHP: 10
@@ -21,8 +21,8 @@ MonoBehaviour:
     FallMaxCount: 2
     ManaCost: 30
   _uniqueStigma: []
-  _id: "\uD638\uB8E8\uC2A4\uC758_\uAD81\uBCD1"
-  _name: Archer
+  _id: "\uAD6C\uC6D0\uC790\uC758_\uAD81\uBCD1"
+  _name: Savior's Archer
   _description: 
   _rarity: 0
   _image: {fileID: 21300000, guid: ec0352e0c7798954394a7913640057e4, type: 3}

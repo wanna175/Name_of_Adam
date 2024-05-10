@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3414036767680253122}
   - component: {fileID: 7427270851962059270}
   m_Layer: 0
-  m_Name: Horus_UI
+  m_Name: Savior_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

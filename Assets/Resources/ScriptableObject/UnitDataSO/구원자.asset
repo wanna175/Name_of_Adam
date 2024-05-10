@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
-  m_Name: "\uD638\uB8E8\uC2A4"
+  m_Name: "\uAD6C\uC6D0\uC790"
   m_EditorClassIdentifier: 
   _rawStat:
     MaxHP: 5000
@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: -5896623541476058823, guid: 60a463a9567dc154ba35198988e8eee2, type: 3}
   - {fileID: -7708356846838002624, guid: 1104cf3140531a34cbae71f64613a2e3, type: 3}
   - {fileID: 6201786277953421197, guid: d2301340bf409fa439b56d6cdb0da651, type: 3}
-  _id: "\uD638\uB8E8\uC2A4"
+  _id: "\uAD6C\uC6D0\uC790"
   _name: The Savior
   _description: 
   _rarity: 3

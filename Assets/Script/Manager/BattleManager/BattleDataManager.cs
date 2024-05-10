@@ -174,7 +174,7 @@ public class BattleDataManager : MonoBehaviour
 
         foreach (BattleUnit unit in _battleUnitList)
         {
-            if (unit.IsConnectedUnit || unit.Data.UnitActionType == UnitActionType.UnitAction_None || unit.Data.UnitActionType == UnitActionType.UnitAction_Horus_Egg)
+            if (unit.IsConnectedUnit || unit.Data.UnitActionType == UnitActionType.UnitAction_None || unit.Data.UnitActionType == UnitActionType.UnitAction_FlowerOfSacrifice)
                 continue;
 
             _battleUnitOrders.Add(new(unit, null));
@@ -217,7 +217,7 @@ public class BattleDataManager : MonoBehaviour
 
     public void BattleOrderInsert(int index, BattleUnit addUnit, int? speed = null)
     {
-        if (addUnit.IsConnectedUnit || addUnit.Data.UnitActionType == UnitActionType.UnitAction_None || addUnit.Data.UnitActionType == UnitActionType.UnitAction_Horus_Egg)
+        if (addUnit.IsConnectedUnit || addUnit.Data.UnitActionType == UnitActionType.UnitAction_None || addUnit.Data.UnitActionType == UnitActionType.UnitAction_FlowerOfSacrifice)
             return;
 
         _battleUnitOrders.Insert(index, (addUnit, speed));
@@ -270,13 +270,13 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Tubalcain();
         }
-        else if (actionType == UnitActionType.UnitAction_Horus)
+        else if (actionType == UnitActionType.UnitAction_Savior)
         {
             return new UnitAction_Horus();
         }
-        else if (actionType == UnitActionType.UnitAction_Horus_Egg)
+        else if (actionType == UnitActionType.UnitAction_FlowerOfSacrifice)
         {
-            return new UnitAction_Horus_Egg();
+            return new UnitAction_FlowerOfSacrifice();
         }
         else if (actionType == UnitActionType.UnitAction_RaquelLeah)
         {

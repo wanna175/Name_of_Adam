@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitAction_Horus_Egg : UnitAction
+public class UnitAction_FlowerOfSacrifice : UnitAction
 {
     private int _turnCount = 2;
     private BattleUnit _parentUnit = null;
     private UnitDataSO _spawnUnitSO = null;
     private Dictionary<int, string> _intToUnitName = new()
         {
-            {1, "호루스의_검병"},
-            {2, "호루스의_궁병" },
-            {3, "호루스의_수녀" }
+            {1, "구원자의_검병"},
+            {2, "구원자의_궁병" },
+            {3, "구원자의_수녀" }
         };
 
     public override void AISkillUse(BattleUnit attackUnit)
@@ -45,7 +45,7 @@ public class UnitAction_Horus_Egg : UnitAction
 
     public override void SetValue(string sender, int value) 
     {
-        if (sender == "Horus")
+        if (sender == "Savior")
         {
             _spawnUnitSO = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/" + _intToUnitName[value]);
         }
@@ -53,7 +53,7 @@ public class UnitAction_Horus_Egg : UnitAction
 
     public override void SetUnit(string sender, BattleUnit unit)
     {
-        if (sender == "Horus")
+        if (sender == "Savior")
         {
             _parentUnit = unit;
         }
@@ -65,7 +65,7 @@ public class UnitAction_Horus_Egg : UnitAction
 
         if (_parentUnit == null)
         {
-            _parentUnit = BattleManager.Data.BattleUnitList.Find(x => x.Data.ID == "호루스" && x.Team == caster.Team);
+            _parentUnit = BattleManager.Data.BattleUnitList.Find(x => x.Data.ID == "구원자" && x.Team == caster.Team);
         }
 
         SpawnData sd = new();
@@ -100,8 +100,8 @@ public class UnitAction_Horus_Egg : UnitAction
 
         if (_parentUnit != null)
         {
-            _parentUnit.Action.SetUnit("Horus_Egg", caster);
-            _parentUnit.Action.SetUnit("Horus_Egg", unit);
+            _parentUnit.Action.SetUnit("FlowerOfSacrifice", caster);
+            _parentUnit.Action.SetUnit("FlowerOfSacrifice", unit);
         }
 
         unit.SetBuff(new Buff_Benediction());

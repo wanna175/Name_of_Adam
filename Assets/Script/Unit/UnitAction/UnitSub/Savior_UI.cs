@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Horus_UI : MonoBehaviour
+public class Savior_UI : MonoBehaviour
 {
     [SerializeField] private GameObject _hover;
     

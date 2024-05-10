@@ -150,6 +150,18 @@ MonoBehaviour:
     m_Localized: Revenant
     m_Metadata:
       m_Items: []
+  - m_Id: 35022263515500544
+    m_Localized: Savior's Swordsman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35022278405279744
+    m_Localized: Savior's Archer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35022287599194112
+    m_Localized: Savior's Nun
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
