@@ -181,23 +181,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
-    m_Localized: Upon attacking, Damage becomes 0, but reduces the enemy's faith
-      by 1
+    m_Localized: Upon attacking when the faith of enemy unit is below half, reduces
+      the enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4027667247104
-    m_Localized: When this unit have two or more buff, upon attacking, reduces the
+    m_Localized: Upon attacking when this unit has two or more buff, reduces the
       enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4114728415232
-    m_Localized: When the faith of this unit is below half, upon attacking, reduces
+    m_Localized: Upon attacking when the faith of this unit is below half, reduces
       the enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4198899707904
-    m_Localized: When the health of this unit is below half, it reduces the enemy's
-      faith by 1 upon attacking.
+    m_Localized: Upon attacking when the health of this unit is below half, reduces
+      the enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4454450262016
