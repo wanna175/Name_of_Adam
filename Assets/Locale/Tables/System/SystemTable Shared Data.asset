@@ -59,6 +59,14 @@ MonoBehaviour:
     m_Key: HallSaveConfirm
     m_Metadata:
       m_Items: []
+  - m_Id: 21708852642877440
+    m_Key: ApostleCreation_Corrupt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21709489623437312
+    m_Key: ApostleCreation_Normal
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
