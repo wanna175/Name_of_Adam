@@ -25,7 +25,6 @@ public class UI_MyDeck : UI_Popup
     private GameObject _eventMenu = null;
     private Action _endEvent;
 
-    private bool _isBossClear;
     private int _currentPageIndex;
     private int _maxPageIndex;
 
@@ -86,10 +85,9 @@ public class UI_MyDeck : UI_Popup
         SetCard(_currentEvent);
     }
 
-    public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelectAction = null)
+    public void HallSaveInit(Action<DeckUnit> onSelectAction = null)
     {
         _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
-        _isBossClear = isBossClear;
 
         List<DeckUnit> normalDeck = new();
         List<DeckUnit> totalDeck = new();
@@ -107,15 +105,7 @@ public class UI_MyDeck : UI_Popup
             }
         }
 
-        if (isBossClear)
-        {
-            _playerDeck = totalDeck;
-        }
-        else
-        {
-            _playerDeck = normalDeck;
-        }
-
+        _playerDeck = totalDeck;
         _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
@@ -295,14 +285,7 @@ public class UI_MyDeck : UI_Popup
 
         if (_quit_txt.text == "Skip" || _quit_txt.text == "선택 안함")
         {
-            if (_isBossClear)
-            {
-                SceneChanger.SceneChange("MainScene");
-            }
-            else
-            {
-                SceneChanger.SceneChange("MainScene");
-            }
+            SceneChanger.SceneChange("MainScene");
         }
         else
         {

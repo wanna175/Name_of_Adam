@@ -139,11 +139,17 @@ public class UI_UnitInfo : UI_Popup
                 ui.EnableUI(false);
         }
 
-        foreach (Upgrade upgrade in _unit.DeckUnitUpgrade)
+        List<Upgrade> upgrades = _unit.DeckUnitUpgrade;
+        for (int i = 0; i < _unit.MaxUpgradeCount; i++)
         {
             UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
-            ui.Set(upgrade.UpgradeImage88, "<size=150%>" + upgrade.UpgradeDescription + "</size>");
-            ui.EnableUI(true);
+            if (i < upgrades.Count)
+            {
+                ui.Set(upgrades[i].UpgradeImage88, "<size=150%>" + upgrades[i].UpgradeDescription + "</size>");
+                ui.EnableUI(true);
+            }
+            else
+                ui.EnableUI(false);
         }
 
         foreach (bool range in _unit.Data.AttackRange)

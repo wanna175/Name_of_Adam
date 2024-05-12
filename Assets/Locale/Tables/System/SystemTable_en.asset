@@ -80,11 +80,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17307259352813568
-    m_Localized: 'This unit already exists in the hall.
-
-
-      Would you like to
-      overwrite this unit?'
+    m_Localized: This unit already exists in the hall. Would you like to overwrite?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21708852642877440
+    m_Localized: Would you like to create a apostle using 8 dark essences?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21709489623437312
+    m_Localized: Would you like to create a apostle using 10 dark essences?
     m_Metadata:
       m_Items: []
   references:

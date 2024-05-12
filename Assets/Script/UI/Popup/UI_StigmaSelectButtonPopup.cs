@@ -8,7 +8,7 @@ using TMPro;
 public class UI_StigmaSelectButtonPopup : UI_Popup
 {
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
-    [SerializeField] private Transform _grid;
+    [SerializeField] private GridLayoutGroup _grid;
     [SerializeField] private TextMeshProUGUI _titleText;
 
     private DeckUnit _targetUnit;
@@ -65,9 +65,14 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     private void SetStigmaSelectButtons(List<Stigma> stigmataList)
     {
+        if (stigmataList.Count == 4)
+            _grid.spacing = new Vector2(150, 10);
+        else
+            _grid.spacing = new Vector2(200, 10);
+
         foreach (Stigma stigmata in stigmataList)
         {
-            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().Init(stigmata, this);
+            GameObject.Instantiate(_buttonPrefab, _grid.transform).GetComponent<UI_StigmaSelectButton>().Init(stigmata, this);
         }
     }
 

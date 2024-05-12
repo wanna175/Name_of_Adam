@@ -484,12 +484,21 @@ public class BattleManager : MonoBehaviour
             else if(unit.Data.Rarity == Rarity.Elite)
             {
                 GameManager.Data.GameData.Progress.EliteKill++;
+                switch (unit.DeckUnit.Data.ID)
+                {
+                    case "투발카인": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_TUBALCAIN); break;
+                    case "라헬&레아": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_RAHELLEA); break;
+                    case "엘리우스": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_ELIEUS); break;
+                    case "야나": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_YANA); break;
+                    case "압바임": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_APPAIM); break;
+                }
             }
             else if (unit.DeckUnit.Data.Rarity == Rarity.Boss)
             {
                 switch (unit.DeckUnit.Data.ID)
                 {
                     case "바누엘":
+                        GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_PHANUEL);
                         if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
                         {
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
@@ -498,6 +507,7 @@ public class BattleManager : MonoBehaviour
                         }
                         break;
                     case "호루스":
+                        GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_THESAVIOR);
                         if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
                         {
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);

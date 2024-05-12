@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class HarlotSceneController : MonoBehaviour, StigmaInterface
 {
@@ -107,7 +108,15 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     //사도 연성 버튼 클릭
     public void OnApostleCreationButtonClick()
     {
+        string corruption = (_isNPCFall) ? "Corrupt" : "Normal";
+
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.UI.ShowPopup<UI_SystemSelect>().Init($"ApostleCreation_{corruption}", YesApostleCreationButtonClick);
+    }
+
+    private void YesApostleCreationButtonClick()
+    {
+        _selectMenuUI.SetActive(false);
 
         DeckUnit originalUnit = new();
         originalUnit.Data = _originUnits[Random.Range(0, 3)].Data;
