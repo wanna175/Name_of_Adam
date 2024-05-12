@@ -281,8 +281,10 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
     public List<Stigma> ResetStigmataList(DeckUnit stigmataTargetUnit)
     {
         _stigmataList.Clear();
-        _stigmataList = GameManager.Data.StigmaController.GetRandomStigmaList(stigmataTargetUnit, 3);
-
+        if (_isNPCFall)
+            _stigmataList = GameManager.Data.StigmaController.GetRandomStigmaList(stigmataTargetUnit, 4);
+        else
+            _stigmataList = GameManager.Data.StigmaController.GetRandomStigmaList(stigmataTargetUnit, 3);
 
         //선 적용된 성흔 리셋
         if (_isStigmataPreSet)
