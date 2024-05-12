@@ -9,7 +9,7 @@ public class Buff_Malevolence : Buff
 
         _name = "Malevolence";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Malevolence_Sprite");
 
         _description = "Malevolence Info";
 
