@@ -8,15 +8,14 @@ using TMPro;
 
 public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private List<GameObject> _stigmaFrames;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private GameObject infoButton;
     [SerializeField] private Image _frameImage;
 
-
     public Image UnitImage;
-    public GameObject IsDisabled;
 
     private List<Image> _stigmaImages;
     private List<DeckUnit> _mainDeck;
@@ -83,12 +82,13 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             _frameImage.sprite = EliteImage;
         }
 
-        if (!GameManager.OutGameData.IsUnlockedItem(14))
+        _canvasGroup.alpha = 1f;
+        if (GameManager.OutGameData.IsUnlockedItem(14) == false)
         {
             if (HallUnitID == 1 || HallUnitID == 2)
             {
                 _isEnable = false;
-                IsDisabled.SetActive(true);
+                _canvasGroup.alpha = 0.7f;
             }
         }
 
