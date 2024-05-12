@@ -263,6 +263,10 @@ MonoBehaviour:
     m_Key: Purchased
     m_Metadata:
       m_Items: []
+  - m_Id: 35413203946196992
+    m_Key: Stigmata transfer
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

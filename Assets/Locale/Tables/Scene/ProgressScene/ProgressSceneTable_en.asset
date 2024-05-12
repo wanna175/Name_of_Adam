@@ -290,6 +290,10 @@ MonoBehaviour:
     m_Localized: Purchased
     m_Metadata:
       m_Items: []
+  - m_Id: 35413203946196992
+    m_Localized: Stigmata transfer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
