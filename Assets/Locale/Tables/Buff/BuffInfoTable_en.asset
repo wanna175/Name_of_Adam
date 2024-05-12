@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 403427880960
-    m_Localized: When attacked by Rahel or Lea, faith decreases by 1.
+    m_Localized: Upon end of this unit's turn, faith decrease by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 429461925888
