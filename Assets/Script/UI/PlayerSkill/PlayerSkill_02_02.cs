@@ -16,7 +16,7 @@ public class PlayerSkill_02_02 : PlayerSkill
 
         for (int i = 0; i < count; i++)
             targetUnit.SetBuff(new Buff_Malevolence());
-        targetUnit.ChangeFall(1);
+        targetUnit.ChangeHP(-10);
         return false;
     }
 

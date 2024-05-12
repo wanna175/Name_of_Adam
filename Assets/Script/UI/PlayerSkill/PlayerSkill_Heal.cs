@@ -19,6 +19,8 @@ public class PlayerSkill_Heal : PlayerSkill
             targetUnit.GetHeal(15, null);
         }
 
+        targetUnit.SetBuff(new Buff_Malevolence());
+
         return false;
     }
     public override void CancelSelect()

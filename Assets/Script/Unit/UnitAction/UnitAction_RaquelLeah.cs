@@ -7,7 +7,6 @@ public class UnitAction_RaquelLeah : UnitAction
     private BattleUnit _owner = null;
     private bool _isChanged = false;
     const int _speedDifference = 65;
-    const int _attackDifference = 10;
 
     public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {

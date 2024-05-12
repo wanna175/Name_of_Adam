@@ -234,6 +234,10 @@ MonoBehaviour:
     m_Localized: Sacrifice
     m_Metadata:
       m_Items: []
+  - m_Id: 35790860311482368
+    m_Localized: Advent
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

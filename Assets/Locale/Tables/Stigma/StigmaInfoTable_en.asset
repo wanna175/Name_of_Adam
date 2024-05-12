@@ -339,6 +339,11 @@ MonoBehaviour:
       they get corrupted.'
     m_Metadata:
       m_Items: []
+  - m_Id: 35651046761189376
+    m_Localized: Apostle Of Vice disappears from the field after one turn. Upon attacking,
+      also dealing damage to enemies within adjacent 8 tiles.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

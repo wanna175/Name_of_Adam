@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 108
-  _name: Lucifer
+  _name: Advent
   _sprite_28: {fileID: 21300000, guid: 41f5e804b26d64d4ca583b1d08430296, type: 3}
   _sprite_88: {fileID: 21300000, guid: e4d015e14d8c263458b7f6af7341605b, type: 3}
   _sprite_164: {fileID: 21300000, guid: 907aedfe40052c14aac99c128f84d504, type: 3}
-  _description: Lucifer Info
+  _description: Advent Info
   _activeTiming: 2
   _tier: 3
   _isLock: 0

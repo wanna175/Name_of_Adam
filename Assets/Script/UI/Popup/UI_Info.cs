@@ -17,7 +17,6 @@ public class UI_Info : UI_Scene
     [SerializeField] private GameObject _squarePrefab;
 
     [SerializeField] private Transform _unitInfoFallGrid;
-    [SerializeField] private GameObject _fallGaugePrefab;
 
     [SerializeField] private Transform _stigmaDescriptionGrid;
     [SerializeField] private GameObject _stigmaDescriptionPrefab;
