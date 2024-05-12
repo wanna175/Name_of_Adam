@@ -93,8 +93,8 @@ public class UI_ProgressSummary : UI_Scene
         {
             if (hallUnit.PrivateKey == deckUnit.PrivateKey)
             {
-                UI_SystemSelect popup = GameManager.UI.ShowPopup<UI_SystemSelect>();
-                popup.Init("HallSaveConfirm", () => { GameManager.OutGameData.CoverHallUnit(deckUnit); });
+                UI_HallUnitSave popup = GameManager.UI.ShowPopup<UI_HallUnitSave>();
+                popup.Init(hallUnit.ConvertToDeckUnit(), deckUnit);
                 isExist = true;
                 break;
             }

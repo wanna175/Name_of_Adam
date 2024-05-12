@@ -80,11 +80,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17307259352813568
-    m_Localized: 'This unit already exists in the hall.
-
-
-      Would you like to
-      overwrite this unit?'
+    m_Localized: This unit already exists in the hall. Would you like to overwrite?
     m_Metadata:
       m_Items: []
   references:
