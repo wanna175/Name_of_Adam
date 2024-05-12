@@ -73,15 +73,7 @@ public class UI_ProgressSummary : UI_Scene
     
     public void OnClick()
     {
-        if(_progress.BossWin > 0)
-        {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(true, HallSaveCallback);
-        }
-        else
-        {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(false, HallSaveCallback);
-        }
-
+        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(HallSaveCallback);
         GameObject.Find("UI_ProgressSummary").gameObject.SetActive(false);
     }
 

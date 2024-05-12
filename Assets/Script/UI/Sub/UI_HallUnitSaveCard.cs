@@ -30,7 +30,7 @@ public class UI_HallUnitSaveCard : MonoBehaviour
     {
         this._deckUnit = deckUnit;
 
-        _eliteFrame.SetActive(deckUnit.Data.Rarity == Rarity.Elite);
+        _eliteFrame.SetActive(deckUnit.Data.Rarity != Rarity.Normal);
         _normalFrame.SetActive(deckUnit.Data.Rarity == Rarity.Normal);
 
         unitImage.sprite = deckUnit.Data.CorruptDiaPortraitImage;
