@@ -246,6 +246,21 @@ public class BattleUnit : MonoBehaviour
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
+        // 스팀 업적: 타락
+        if (Team == Team.Enemy)
+        {
+            switch (Data.ID)
+            {
+                case "투발카인": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_TUBALCAIN); break;
+                case "라헬&레아": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_RAHELLEA); break;
+                case "엘리우스": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_ELIEUS); break;
+                case "야나": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_YANA); break;
+                case "압바임": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_APPAIM); break;
+                case "바누엘": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_PHANUEL); break;
+                case "호루스": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_THESAVIOR); break;
+            }
+        }
+
         //타락 이벤트 시작
         FallEvent = true;
         DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();

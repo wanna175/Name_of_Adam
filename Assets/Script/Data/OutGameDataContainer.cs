@@ -59,6 +59,17 @@ public class HallUnit
     public bool IsMainDeck;       //유닛이 메인덱에 포함되었는지 유무 확인
     public List<StigmaSaveData> Stigmata; // 유닛에게 추가된 낙인
     public List<UpgradeData> Upgrades; //유닛에게 추가된 강화
+
+    public DeckUnit ConvertToDeckUnit()
+    {
+        DeckUnit deckUnit = new DeckUnit();
+        deckUnit.PrivateKey = PrivateKey;
+        deckUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{UnitName}");
+        deckUnit.DeckUnitUpgradeStat = UpgradedStat;
+        deckUnit.SetStigmaSaveData(Stigmata);
+        deckUnit.SetUpgrade(Upgrades);
+        return deckUnit;
+    }
 }
 
 
@@ -403,7 +414,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         _data.resolution = 0;
         _data.IsWindowed = false;
-        _data.MasterSoundPower = _data.BGMSoundPower = _data.SESoundPower = 1f;
+        _data.MasterSoundPower = _data.BGMSoundPower = _data.SESoundPower = 0.5f;
     }
     public bool GetCutSceneData(CutSceneType cutSceneType) => _data.cutSceneData[(int)cutSceneType];
     public void SetCutSceneData(CutSceneType cutSceneType, bool isDone) => _data.cutSceneData[(int)cutSceneType] = isDone;

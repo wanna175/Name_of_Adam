@@ -45,6 +45,7 @@ public class StageChanger
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Upgrade_Corrupt);
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_NPC_UPGRADE);
             }
         }
         else if (name == "StigmaStore")
@@ -54,6 +55,7 @@ public class StageChanger
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Stigma_Corrupt);
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_NPC_STIGMATA);
             }
         }
         else if (name == "Harlot")
@@ -63,6 +65,7 @@ public class StageChanger
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Harlot_Corrupt);
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_NPC_HARLOT);
             }
         }
 
