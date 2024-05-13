@@ -72,8 +72,22 @@ public class Stage : MonoBehaviour
 
         string name = Datas.Name.ToString();
 
-        if (Datas.Name == StageName.EliteBattle || Datas.Name == StageName.BossBattle)
+        if(Datas.Name == StageName.EliteBattle)
+        {
+            if (GameManager.OutGameData.IsHorusClear())
+            {
+                name += "_" + GameManager.Data.Map.GetStage(Datas.ID).StageID / 2;
+            }
+            else
+            {
+                name += "_" + GameManager.Data.Map.GetStage(Datas.ID).StageID;
+            }
+        }
+
+        if (Datas.Name == StageName.BossBattle)
+        {
             name += "_" + GameManager.Data.Map.GetStage(Datas.ID).StageID;
+        }
 
         if (name != "none")
         {
