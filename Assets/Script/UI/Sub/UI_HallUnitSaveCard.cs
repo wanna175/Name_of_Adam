@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class UI_HallUnitSaveCard : MonoBehaviour
 {

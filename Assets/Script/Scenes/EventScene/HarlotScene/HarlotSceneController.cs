@@ -44,6 +44,9 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     private bool _isStigmataFull = false;
     private bool _isNPCFall = false;
 
+    private int _apostleCreationDarkEssence;
+    private int _stigmataBestowalDarkEssence;
+
     void Start()
     {
         Init();
@@ -86,18 +89,20 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         _conversationUI.ConversationEnded += OnConversationEnded;
 
         int current_DarkEssense = GameManager.Data.GameData.DarkEssence;
+        _apostleCreationDarkEssence = (_isNPCFall) ? 10 : 13;
+        _stigmataBestowalDarkEssence = (_isNPCFall) ? 8 : 10;
 
         if (!GameManager.OutGameData.IsUnlockedItem(5))
         {
             _apostleCreationButton.SetActive(false);
         }
-        else if (current_DarkEssense < ((_isNPCFall) ? 8 : 10)) 
+        else if (current_DarkEssense < _apostleCreationDarkEssence) 
         {
             _disabledApostleCreationButton.SetActive(true);
             _apostleCreationButton.SetActive(false);
         }
 
-        if (current_DarkEssense < ((_isNPCFall) ? 8 : 10))
+        if (current_DarkEssense < _stigmataBestowalDarkEssence)
         {
             _disabledStigmataBestowalButton.SetActive(true);
             _stigmataBestowalButton.SetActive(false);
@@ -129,7 +134,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     public void OnApostleSelect(DeckUnit unit)
     {
         GameManager.Data.AddDeckUnit(unit);
-        GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
+        GameManager.Data.DarkEssenseChage(_apostleCreationDarkEssence);
         GameManager.Data.GameData.FallenUnits.Add(unit);
     }
 
@@ -233,7 +238,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         else
         {
             BestowalStigmata(stigmata);
-            GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
+            GameManager.Data.DarkEssenseChage(_stigmataBestowalDarkEssence);
         }
     }
 

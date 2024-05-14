@@ -175,7 +175,7 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
 
-        int releaseVal = (_isNPCFall) ? 4 : 2;
+        int releaseVal = 2;
         if (_selectedUnit.DeckUnitStat.FallCurrentCount - releaseVal > 0)
             _selectedUnit.DeckUnitUpgradeStat.FallCurrentCount -= releaseVal;
         else

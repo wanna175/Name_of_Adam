@@ -246,15 +246,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         {
             //성흔 이동일때
             _transferStigmata = stigmata;
-            if (!_isNPCFall)
-            {
-                GameManager.Data.RemoveDeckUnit(_stigmataTransferGiveUnit);
-            }
-            else
-            {
-                _stigmataTransferGiveUnit.DeleteStigma(stigmata);
-            }
-
+            GameManager.Data.RemoveDeckUnit(_stigmataTransferGiveUnit);
             SelectStigmataTransferReceiver();
         }
     }
