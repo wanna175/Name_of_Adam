@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
             if (stigmaPopup != null)
                 stigmaPopup.ResetStigmataSelectButtons();
 
-            UI_UpgradeSelectButton upgradePopup = GameObject.FindObjectOfType<UI_UpgradeSelectButton>();
+            UI_UpgradeSelectButtonPopup upgradePopup = GameObject.FindObjectOfType<UI_UpgradeSelectButtonPopup>();
             if (upgradePopup != null)
                 upgradePopup.ResetUpgradeSelectButtons();
 
