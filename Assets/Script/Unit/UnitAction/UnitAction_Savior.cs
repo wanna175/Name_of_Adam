@@ -62,6 +62,8 @@ public class UnitAction_Horus : UnitAction
             if (caster.Team == Team.Player)
             {
                 caster.transform.position = new(-9, 3, 0);
+                SpawnUnit(caster.Location, caster);
+                _isSummon = false;
             }
             else
             {

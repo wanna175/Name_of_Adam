@@ -225,27 +225,6 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_5"
       rect:
         serializedVersion: 2
-        x: 700
-        y: 0
-        width: 140
-        height: 928
-      alignment: 9
-      pivot: {x: 0.5, y: 0.05}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a4902392babae44088592ddcd9fcfd3
-      internalID: 1083605101
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_6"
-      rect:
-        serializedVersion: 2
         x: 770
         y: 0
         width: 154
@@ -264,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_7"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_6"
       rect:
         serializedVersion: 2
         x: 924
@@ -285,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_8"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_7"
       rect:
         serializedVersion: 2
         x: 1078
@@ -306,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_9"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_8"
       rect:
         serializedVersion: 2
         x: 1232
@@ -327,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_11"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_9"
       rect:
         serializedVersion: 2
         x: 1386
@@ -360,13 +339,12 @@ TextureImporter:
     nameFileIdTable:
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_4": 2113067679
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_3": 40633638
-      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_7": -2101297511
-      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_11": -252588774
-      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_5": 1083605101
-      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_6": 1501145845
-      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_8": 238514153
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_7": 238514153
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_5": 1501145845
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_6": -2101297511
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_8": -100884409
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_1": 909056130
-      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_9": -100884409
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_9": -252588774
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_2": -1402496078
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_0": 1005290780
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_10": 450555237
