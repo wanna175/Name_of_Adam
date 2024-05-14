@@ -80,7 +80,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -62.5}
+  m_AnchoredPosition: {x: -9.5, y: 2.5}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &478166178416242292
@@ -152,8 +152,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -750, y: 372.5}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: -750, y: 400}
+  m_SizeDelta: {x: 500, y: 425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &478166178536171777
 CanvasRenderer:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6117647}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -442,7 +442,6 @@ MonoBehaviour:
   _rangeGrid: {fileID: 2507197638731994257}
   _squarePrefab: {fileID: 7388686836549182621, guid: 64250af6c8cba8c44a44e35a50beb391, type: 3}
   _unitInfoFallGrid: {fileID: 1673216230573987565}
-  _fallGaugePrefab: {fileID: 71125851770971500, guid: 6affe1e06d3e6074ab912f69295f1ccb, type: 3}
   _stigmaDescriptionGrid: {fileID: 478166178416242298}
   _stigmaDescriptionPrefab: {fileID: 2510120304687868861, guid: a0391fafb54d4504388984956a28e07a, type: 3}
   _hpText: {fileID: 8918106584989508407}
@@ -552,7 +551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55, y: 100}
+  m_AnchoredPosition: {x: 70, y: 120}
   m_SizeDelta: {x: 194, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3240065358225708771
@@ -827,7 +826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -115, y: 100}
+  m_AnchoredPosition: {x: -115, y: 120}
   m_SizeDelta: {x: 150, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8940027173848845887
