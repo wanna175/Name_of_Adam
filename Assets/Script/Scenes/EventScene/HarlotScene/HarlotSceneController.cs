@@ -89,8 +89,8 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         _conversationUI.ConversationEnded += OnConversationEnded;
 
         int current_DarkEssense = GameManager.Data.GameData.DarkEssence;
-        _apostleCreationDarkEssence = (_isNPCFall) ? 10 : 13;
-        _stigmataBestowalDarkEssence = (_isNPCFall) ? 8 : 10;
+        _apostleCreationDarkEssence = (_isNPCFall) ? -10 : -13;
+        _stigmataBestowalDarkEssence = (_isNPCFall) ? -8 : -10;
 
         if (!GameManager.OutGameData.IsUnlockedItem(5))
         {

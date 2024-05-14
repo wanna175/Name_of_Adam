@@ -74,8 +74,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17279610286936064
-    m_Localized: Would you like to destroy this unit and move its stigmata to another
-      unit?
+    m_Localized: "Would you like to destroy this unit and \n\nmove its stigmata to
+      another unit?"
     m_Metadata:
       m_Items: []
   - m_Id: 17295328403427328
