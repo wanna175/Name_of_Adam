@@ -116,10 +116,10 @@ MonoBehaviour:
   IsVisitStigma: 1
   IsVisitDarkShop: 0
   Progress:
-    NormalWin: 1
+    NormalWin: 0
     EliteWin: 0
     BossWin: 0
-    NormalKill: 2
+    NormalKill: 0
     EliteKill: 0
     PhanuelKill: 0
     HorusKill: 0
