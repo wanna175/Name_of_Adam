@@ -4,73 +4,32 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class UI_UpgradeSelectButton : UI_Popup
+public class UI_UpgradeSelectButton : UI_Base
 {
-    [SerializeField] private List<TextMeshProUGUI> _buttonTextList;
-    [SerializeField] private List<Image> _buttonGemImageList;
-    [SerializeField] private List<Image> _buttonGoldFrameImageList;
-    [SerializeField] private List<GameObject> _button;
-    [SerializeField] private TextMeshProUGUI _titleText;
+    [SerializeReference] private Image _upgradeImage;
+    [SerializeReference] private TextMeshProUGUI _upgradeDescription;
+    [SerializeReference] private GameObject _goldFrame;
+    [SerializeReference] private Button _button;
 
-    private UpgradeSceneController _uc;
-    private bool _isUpgradeFull;
-    private bool _isCanReset;
+    private UI_UpgradeSelectButtonPopup _popup;
+    private Upgrade _upgrade;
+    private int _selectIndex;
 
-    public void Init(UpgradeSceneController uc, List<Upgrade> upgrades, bool isUpgradeFull)
+    public void Init(Upgrade upgrade, int selectIndex, UI_UpgradeSelectButtonPopup popup)
     {
-        _uc = uc;
-        _isUpgradeFull = isUpgradeFull;
-        _isCanReset = !isUpgradeFull;
+        _popup = popup;
+        _selectIndex = selectIndex;
+        _upgrade = upgrade;
+        _button.onClick.AddListener(OnClick);
 
-        if (_isUpgradeFull)
-        {
-            _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Full Upgrade"));
-        }
-        else
-        {
-            _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Select Upgrade"));
-        }
-
-
-        for (int i = 0; i < 3; i++)
-        {
-            if (i < upgrades.Count)
-            {
-                _buttonTextList[i].text = upgrades[i].UpgradeDescription;
-                _buttonGemImageList[i].sprite = upgrades[i].UpgradeImage160;
-                _buttonGoldFrameImageList[i].gameObject.SetActive(upgrades[i].UpgradeData.Rarity > 1);
-            }
-            else
-            {
-                _button[i].SetActive(false);
-            }
-        }
+        _upgradeImage.sprite = upgrade.UpgradeImage160;
+        _upgradeDescription.SetText(upgrade.UpgradeDescription);
+        _goldFrame.SetActive(upgrade.UpgradeData.Rarity > 1);
     }
 
-    public void ResetUpgradeSelectButtons()
+    public void OnClick()
     {
-        if (!_isCanReset)
-            return;
-
-        var upgradeList = _uc.ResetUpgrade();
-        Init(_uc, upgradeList, _isUpgradeFull);
-    }
-
-    public void OnClick(int select)
-    {
-        if (_isUpgradeFull)
-        {
-            _uc.OnDestroyUpgradeSelect(select);
-        }
-        else
-        {
-            _uc.OnUpgradeSelect(select);
-        }
-    }
-
-    public void QuitBtn()
-    {
-        this.transform.SetAsFirstSibling();
-        this.gameObject.SetActive(false);
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        _popup.OnClickUpgradeButton(_selectIndex);
     }
 }

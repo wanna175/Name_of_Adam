@@ -114,7 +114,9 @@ public class UpgradeSceneController : MonoBehaviour
     {
         _upgradeList.Clear();
 
-        while (_upgradeList.Count < 3)
+        int createUpgradeCount = (_isNPCFall) ? 4 : 3;
+
+        while (_upgradeList.Count < createUpgradeCount)
         {
             Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade(_selectedUnit);
 
@@ -150,12 +152,12 @@ public class UpgradeSceneController : MonoBehaviour
 
         if (_selectedUnit.DeckUnitUpgrade.Count == 3 || (_selectedUnit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
         {
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _selectedUnit.DeckUnitUpgrade, true);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButtonPopup>().Init(this, _selectedUnit.DeckUnitUpgrade, true);
         }
         else
         {
             ResetUpgrade();
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList, false);
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButtonPopup>().Init(this, _upgradeList, false);
         }
 
         //선 저장
@@ -173,7 +175,7 @@ public class UpgradeSceneController : MonoBehaviour
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
 
-        int releaseVal = (_isNPCFall) ? 4 : 2;
+        int releaseVal = 2;
         if (_selectedUnit.DeckUnitStat.FallCurrentCount - releaseVal > 0)
             _selectedUnit.DeckUnitUpgradeStat.FallCurrentCount -= releaseVal;
         else
@@ -207,7 +209,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         _selectedUnit.DeckUnitUpgrade.Remove(_selectedUnit.DeckUnitUpgrade[select]);
         ResetUpgrade();
-        GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList, false);
+        GameManager.UI.ShowPopup<UI_UpgradeSelectButtonPopup>().Init(this, _upgradeList, false);
     }
 
     public void OnQuitClick()
