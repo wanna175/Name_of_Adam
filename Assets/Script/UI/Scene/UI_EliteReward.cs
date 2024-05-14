@@ -63,6 +63,12 @@ public class UI_EliteReward : UI_Popup
         var units = GameManager.Resource.LoadAll<UnitDataSO>($"ScriptableObject/UnitDataSO");
         foreach (var unit in units)
         {
+            if (unit.ID == "전령")
+            {
+                // 얼리엑세스에서 개방
+                continue;
+            }
+
             if (unit.Rarity == Rarity.Normal && !unit.IsBattleOnly)
             {
                 normalUnits.Add(unit);
