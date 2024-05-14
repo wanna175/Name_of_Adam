@@ -53,15 +53,6 @@ MonoBehaviour:
     m_Key: The starting dark essence increases from 4 to 7.
     m_Metadata:
       m_Items: []
-  - m_Id: 7619187002478592
-    m_Key: Revenge
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7619282569695232
-    m_Key: Stigmata Revenge appears from now on. Revenge - Counterattacks enemies
-      within attack range.
-    m_Metadata:
-      m_Items: []
   - m_Id: 7619358809559040
     m_Key: Apostle Creation
     m_Metadata:
@@ -102,19 +93,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7620513518227456
     m_Key: The maximum upgrade increases from 2 to 3.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7620621450252288
-    m_Key: Thirst
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7620700810678272
-    m_Key: Stigmata Thirst appears from now on. Thirst - Upon defeating an enemy,
-      health permanently increases by 5, and attack by 2. (Resets in the Divine Hall)
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7621029539254272
-    m_Key: Stigmata transfer
     m_Metadata:
       m_Items: []
   - m_Id: 7621120572428288
@@ -283,6 +261,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7631985963077632
     m_Key: Purchased
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35413203946196992
+    m_Key: Stigmata transfer
     m_Metadata:
       m_Items: []
   m_Metadata:

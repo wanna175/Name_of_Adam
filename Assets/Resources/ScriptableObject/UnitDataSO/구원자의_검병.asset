@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uAD6C\uC6D0\uC790\uC758_\uAC80\uBCD1"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    MaxHP: 20
+    CurrentHP: 20
+    ATK: 10
+    SPD: 40
+    FallCurrentCount: 0
+    FallMaxCount: 3
+    ManaCost: 20
+  _uniqueStigma: []
+  _id: "\uAD6C\uC6D0\uC790\uC758_\uAC80\uBCD1"
+  _name: Savior's Swordsman
+  _description: 
+  _rarity: 0
+  _image: {fileID: 21300000, guid: f38b798dda83e7e4c971c18b9a980f10, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 62220213bf37d874785af9f3e2afd7eb, type: 3}
+  _portraitImage: {fileID: 21300000, guid: 626569ac9c9ad8442babb1c8dc334785, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: ab8da13e4ffac9241b3e3e6a53372b52, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: abbd8644452be214ab1ce0997b67c2e9, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 33b1aa70e264b324ca7ccc43a9b239c8, type: 3}
+  _animatorController: {fileID: 9100000, guid: bb7ba7f3d0ea75447b98790f60bc524d, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: b467d896df5a93c409da33274fd8cbfa, type: 2}
+  _skillEffectAnim: {fileID: 0}
+  _corruptionSkillEffectAnim: {fileID: 0}
+  _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
+  _darkEssenseDrop: 0
+  _darkEssenseCost: 0
+  _unitActionType: 0
+  _unitMoveType: 0
+  _isBattleOnly: 1
+  _attackRange: 00000000000000000000000000000000010000000000000000000101010000000000000000000100000000000000000000000000000000
+  _moveRange: 00000000000000010000000101010000000100000000000000
+  _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+  _unitSize: 00000000000000000000000001000000000000000000000000

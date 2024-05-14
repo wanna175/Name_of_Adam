@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uAD6C\uC6D0\uC790\uC758_\uAD81\uBCD1"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    MaxHP: 10
+    CurrentHP: 10
+    ATK: 15
+    SPD: 70
+    FallCurrentCount: 0
+    FallMaxCount: 2
+    ManaCost: 30
+  _uniqueStigma: []
+  _id: "\uAD6C\uC6D0\uC790\uC758_\uAD81\uBCD1"
+  _name: Savior's Archer
+  _description: 
+  _rarity: 0
+  _image: {fileID: 21300000, guid: ec0352e0c7798954394a7913640057e4, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 33249047a0b8d1a4abc97ccee5869062, type: 3}
+  _portraitImage: {fileID: 21300000, guid: efe1142862d9e764da5b23948a30e95e, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: 5c4c4fb41b9ae4344aa7971fa3a33f0e, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 59c0d30758b5ab5449cf0ddd59ad9810, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 7d6b824d3bf9298489705b56c1f58479, type: 3}
+  _animatorController: {fileID: 9100000, guid: cf7832f4ea4763c499598409d9f606b8, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: 6bb398bf7a26c744fbac7308cf1805db, type: 2}
+  _skillEffectAnim: {fileID: 0}
+  _corruptionSkillEffectAnim: {fileID: 0}
+  _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
+  _darkEssenseDrop: 0
+  _darkEssenseCost: 0
+  _unitActionType: 0
+  _unitMoveType: 0
+  _isBattleOnly: 1
+  _attackRange: 00000000000100000000000000000000010000000000000001010101010101000000000000000100000000000000000000010000000000
+  _moveRange: 00000000000000010000000101010000000100000000000000
+  _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+  _unitSize: 00000000000000000000000001000000000000000000000000

@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,7 +122,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 427
+        width: 416
         height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
@@ -141,9 +141,9 @@ TextureImporter:
       name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
-        x: 427
+        x: 416
         y: 0
-        width: 427
+        width: 416
         height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
@@ -162,9 +162,9 @@ TextureImporter:
       name: "\uD22C\uBC1C\uCE74\uC778_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
-        x: 854
+        x: 832
         y: 0
-        width: 427
+        width: 416
         height: 256
       alignment: 9
       pivot: {x: 0.5, y: 0.1}

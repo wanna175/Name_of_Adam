@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,8 +122,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 152
+        height: 140
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: "\uC30D\uC0DD\uC544_Attack_Effect_1"
       rect:
         serializedVersion: 2
-        x: 256
+        x: 152
         y: 0
-        width: 256
-        height: 256
+        width: 152
+        height: 140
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: "\uC30D\uC0DD\uC544_Attack_Effect_2"
       rect:
         serializedVersion: 2
-        x: 512
+        x: 304
         y: 0
-        width: 256
-        height: 256
+        width: 152
+        height: 140
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: "\uC30D\uC0DD\uC544_Attack_Effect_3"
       rect:
         serializedVersion: 2
-        x: 768
+        x: 456
         y: 0
-        width: 256
-        height: 256
+        width: 152
+        height: 140
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: "\uC30D\uC0DD\uC544_Attack_Effect_4"
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 608
         y: 0
-        width: 256
-        height: 256
+        width: 152
+        height: 140
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,10 +225,10 @@ TextureImporter:
       name: "\uC30D\uC0DD\uC544_Attack_Effect_5"
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 760
         y: 0
-        width: 256
-        height: 256
+        width: 152
+        height: 140
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,10 +246,10 @@ TextureImporter:
       name: "\uC30D\uC0DD\uC544_Attack_Effect_6"
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 912
         y: 0
-        width: 256
-        height: 256
+        width: 152
+        height: 140
       alignment: 9
       pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,6 +259,27 @@ TextureImporter:
       bones: []
       spriteID: 46adc1a7149c1c74186c96fcd51323b0
       internalID: 1821059149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC30D\uC0DD\uC544_Attack_Effect_7"
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 0
+        width: 152
+        height: 140
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a2135eb49bcb824da65d68cd908f6ea
+      internalID: 873512400
       vertices: []
       indices: 
       edges: []
@@ -276,6 +297,7 @@ TextureImporter:
     nameFileIdTable:
       "\uC30D\uC0DD\uC544_Attack_Effect_1": 1928944184
       "\uC30D\uC0DD\uC544_Attack_Effect_6": 1821059149
+      "\uC30D\uC0DD\uC544_Attack_Effect_7": 873512400
       "\uC30D\uC0DD\uC544_Attack_Effect_3": -2122072144
       "\uC30D\uC0DD\uC544_Attack_Effect_2": 774654426
       "\uC30D\uC0DD\uC544_Attack_Effect_5": 2126037039

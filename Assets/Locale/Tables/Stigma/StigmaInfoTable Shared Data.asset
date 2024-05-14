@@ -215,6 +215,10 @@ MonoBehaviour:
     m_Key: Sacrifice Info
     m_Metadata:
       m_Items: []
+  - m_Id: 35651046761189376
+    m_Key: Advent Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

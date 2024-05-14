@@ -67,10 +67,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,10 +122,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1750
+        width: 1000
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.125, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_1"
       rect:
         serializedVersion: 2
-        x: 1750
+        x: 1000
         y: 0
-        width: 1750
+        width: 1000
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.125, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_2"
       rect:
         serializedVersion: 2
-        x: 3500
+        x: 2000
         y: 0
-        width: 1750
+        width: 1000
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.125, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_3"
       rect:
         serializedVersion: 2
-        x: 5250
+        x: 3000
         y: 0
-        width: 1750
+        width: 1000
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.125, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,12 +204,12 @@ TextureImporter:
       name: "\uC8FC\uC2DC\uC790_\uD0C0\uB77D_Attack_4"
       rect:
         serializedVersion: 2
-        x: 7000
+        x: 4000
         y: 0
-        width: 1750
+        width: 1000
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.125, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

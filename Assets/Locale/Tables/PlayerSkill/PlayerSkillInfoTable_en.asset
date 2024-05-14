@@ -39,11 +39,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 435905794048
-    m_Localized: Heals the ally unit's health by 20.
+    m_Localized: 'Heals the ally unit''s health by 20 and gives <b>Malevolence</b>
+      for 1 times.
+
+      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
+      faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 472060694528
-    m_Localized: Heals the ally unit's health by 15.
+    m_Localized: 'Heals the ally unit''s health by 15 and gives <b>Malevolence</b>
+      for 1 times.
+
+      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
+      faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 521163411456
@@ -53,8 +61,8 @@ MonoBehaviour:
   - m_Id: 694547550208
     m_Localized: 'Inflicts <b>Curse</b> to an enemy unit.
 
-      (<b>Curse</b>:
-      When this unit''s turn end, decrease faith by 1.)'
+      (<b>Curse</b>: When
+      this unit''s turn end, decrease faith by 1.)'
     m_Metadata:
       m_Items: []
   - m_Id: 717616222208
@@ -72,7 +80,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 890564153344
-    m_Localized: 'Gives <b>Malevolence</b> for 4 times and reduces faith by 1 to
+    m_Localized: 'Gives <b>Malevolence</b> for 4 times and reduces health by 10 to
       an ally unit.
 
       (<b>Malevolence</b>: Upon attacking, reduces the enemy''s

@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,9 +123,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,9 +144,9 @@ TextureImporter:
         x: 154
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,9 +165,9 @@ TextureImporter:
         x: 308
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,9 +186,9 @@ TextureImporter:
         x: 462
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,9 +207,9 @@ TextureImporter:
         x: 616
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_5"
       rect:
         serializedVersion: 2
-        x: 770
+        x: 700
         y: 0
-        width: 154
-        height: 1000
+        width: 140
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,12 +246,12 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_6"
       rect:
         serializedVersion: 2
-        x: 924
+        x: 770
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,12 +267,12 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_7"
       rect:
         serializedVersion: 2
-        x: 1078
+        x: 924
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,12 +288,12 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_8"
       rect:
         serializedVersion: 2
-        x: 1232
+        x: 1078
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -309,12 +309,12 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_9"
       rect:
         serializedVersion: 2
-        x: 1386
+        x: 1232
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,22 +327,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_10"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_11"
       rect:
         serializedVersion: 2
-        x: 1540
+        x: 1386
         y: 0
         width: 154
-        height: 1000
+        height: 928
       alignment: 9
-      pivot: {x: 0.5, y: 0.04}
+      pivot: {x: 0.5, y: 0.05}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b501576b98cfe84449f7be937ec113bb
-      internalID: 450555237
+      spriteID: b9a91973c48c2884d8e078a48adad859
+      internalID: -252588774
       vertices: []
       indices: 
       edges: []
@@ -361,6 +361,7 @@ TextureImporter:
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_4": 2113067679
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_3": 40633638
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_7": -2101297511
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_11": -252588774
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_5": 1083605101
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_6": 1501145845
       "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Attack_Effect_8": 238514153

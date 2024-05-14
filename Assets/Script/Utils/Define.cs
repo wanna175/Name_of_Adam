@@ -336,7 +336,7 @@ public enum BuffEnum
     Tailwind,
     Teleport,
     TraceOfDust,
-    Vice,
+    Malevolence,
 
     //systemic buff (no image)
     AfterAttackBounce,
@@ -399,8 +399,8 @@ public enum UnitActionType
     UnitAction_Phanuel,
     UnitAction_Appaim,
     UnitAction_Tubalcain,
-    UnitAction_Horus,
-    UnitAction_Horus_Egg,
+    UnitAction_Savior,
+    UnitAction_FlowerOfSacrifice,
     UnitAction_Laser,
     UnitAction_RaquelLeah,
     UnitAction_CenteredSplash

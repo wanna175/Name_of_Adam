@@ -16,7 +16,7 @@ public class Stigma_Funeral : Stigma
             }
 
             caster.ConnectedUnits.Clear();
-            caster.SetBuff(new Buff_Vice());
+            caster.SetBuff(new Buff_Malevolence());
 
             SpawnData sd = new();
             sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/¿ø·É");
@@ -24,14 +24,14 @@ public class Stigma_Funeral : Stigma
             sd.team = caster.Team;
 
             BattleUnit spawnUnit = BattleManager.Spawner.SpawnDataSpawn(sd);
-            spawnUnit.SetBuff(new Buff_Vice());
+            spawnUnit.SetBuff(new Buff_Malevolence());
 
             sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/¸Á·É");
             sd.location = caster.Location + Vector2.right + Vector2.right;
             sd.team = caster.Team;
 
             spawnUnit = BattleManager.Spawner.SpawnDataSpawn(sd);
-            spawnUnit.SetBuff(new Buff_Vice());
+            spawnUnit.SetBuff(new Buff_Malevolence());
 
             caster.ResetHPBarPosition();
         }

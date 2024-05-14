@@ -48,6 +48,6 @@ MonoBehaviour:
   originaldarkEssence: 1
   playerSkillName: Dark Cross
   playerSkillID: 2
-  manaCost: 50
+  manaCost: 60
   darkEssence: 3
   skillImage: {fileID: 21300000, guid: 9a8532f5c087e1940ae86b36d060e7d9, type: 3}

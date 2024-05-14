@@ -8,7 +8,7 @@ public class Buff_Stigma_Repetance : Buff
 
         _name = "참회";
 
-        _description = "해당 유닛의 체력이 절반 이하일때 피격 대상의 신앙을 1 떨어뜨립니다";
+        _description = "";
 
         _count = -1;
 
@@ -27,7 +27,7 @@ public class Buff_Stigma_Repetance : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (caster != null && _owner.BattleUnitTotalStat.MaxHP / 2 >= _owner.HP.GetCurrentHP())
+        if (caster != null && caster.BattleUnitTotalStat.MaxHP == caster.HP.GetCurrentHP())
             caster.ChangeFall(1);
 
         return false;
