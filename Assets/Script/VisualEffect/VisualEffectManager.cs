@@ -116,8 +116,15 @@ public class VisualEffectManager : MonoBehaviour
     }
 
     public GameObject StartBenedictionEffect(BattleUnit unit)
-    {   
-        return StartPrefabEffect(unit, "Benediction");
+    {
+        if (unit.Team == Team.Enemy)
+        {
+            return StartPrefabEffect(unit, "Benediction");
+        }
+        else
+        {
+            return StartPrefabEffect(unit, "Benediction_Corrupt");
+        }
     }
 
     public GameObject StartPrefabEffect(BattleUnit unit, string path)
