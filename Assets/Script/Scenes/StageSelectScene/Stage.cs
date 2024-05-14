@@ -76,7 +76,7 @@ public class Stage : MonoBehaviour
         {
             if (GameManager.OutGameData.IsHorusClear())
             {
-                name += "_" + GameManager.Data.Map.GetStage(Datas.ID).StageID / 2;
+                name += "_" + (GameManager.Data.Map.GetStage(Datas.ID).StageID / 2);
             }
             else
             {
