@@ -177,7 +177,7 @@ public class StageManager : MonoBehaviour
                         }
                         else if (GameManager.Data.StageAct == 1)
                         {
-                            stageID = UnityEngine.Random.Range(4, 11);
+                            stageID = UnityEngine.Random.Range(4, 8);
                         }
                     }
                     else if (GameManager.OutGameData.IsPhanuelClear())
