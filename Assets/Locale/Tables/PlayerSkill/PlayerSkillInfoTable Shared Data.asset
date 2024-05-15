@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Key: Player_3_3
     m_Metadata:
       m_Items: []
+  - m_Id: 34640079277412352
+    m_Key: Player_3_2_Up
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

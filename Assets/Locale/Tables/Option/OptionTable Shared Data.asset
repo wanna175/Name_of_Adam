@@ -67,6 +67,10 @@ MonoBehaviour:
     m_Key: Credit
     m_Metadata:
       m_Items: []
+  - m_Id: 36911645931491328
+    m_Key: Game Reset
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
