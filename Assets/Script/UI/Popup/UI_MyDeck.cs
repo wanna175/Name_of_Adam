@@ -33,12 +33,12 @@ public class UI_MyDeck : UI_Popup
         _setButton.SetActive(false);
         _myDeckButton.SetActive(isDeckButtonClick);//내 덱 보기 버튼으로 진입했을 경우
 
+        _playerDeck = GameManager.Data.GetDeck();
+
         _currentPageIndex = 0;
         _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
-
-        _playerDeck = GameManager.Data.GetDeck();
 
         SetPageAllUI();
         SetCard();
@@ -109,9 +109,7 @@ public class UI_MyDeck : UI_Popup
         _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
-        _maxPageIndex = (_playerDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
         ClearCard();
         SetCard();
@@ -150,9 +148,7 @@ public class UI_MyDeck : UI_Popup
         _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
-        _maxPageIndex = (_playerDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
         ClearCard();
         SetCard();
@@ -186,9 +182,7 @@ public class UI_MyDeck : UI_Popup
         _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
-        _maxPageIndex = (_playerDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
         ClearCard();
         SetCard();

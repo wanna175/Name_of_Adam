@@ -100,6 +100,19 @@ public class SaveController : MonoBehaviour
         File.WriteAllText(path, EncryptAndDecrypt(json));
     }
 
+    public SaveData GetSaveData()
+    {
+        string json = File.ReadAllText(path);
+        SaveData loadData = JsonUtility.FromJson<SaveData>(EncryptAndDecrypt(json));
+        return loadData;
+    }
+
+    public void SaveData(SaveData saveData)
+    {
+        string json = JsonUtility.ToJson(saveData, true);
+        File.WriteAllText(path, EncryptAndDecrypt(json));
+    }
+
     // 게임 진행 정보 저장
     // 저장하는 데이터가 늘어나면 이곳에서 관리해주어야 함
     public void LoadGame()

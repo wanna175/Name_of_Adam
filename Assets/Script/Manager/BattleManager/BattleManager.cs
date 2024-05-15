@@ -506,7 +506,7 @@ public class BattleManager : MonoBehaviour
                             GameManager.Data.GameData.Progress.PhanuelKill++;
                         }
                         break;
-                    case "호루스":
+                    case "구원자":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_THESAVIOR);
                         if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
                         {
@@ -551,7 +551,7 @@ public class BattleManager : MonoBehaviour
         {
             GameManager.Data.GameData.Progress.PhanuelFall++;
         }
-        else if (unit.DeckUnit.Data.ID == "호루스")
+        else if (unit.DeckUnit.Data.ID == "구원자")
         {
             GameManager.Data.GameData.Progress.HorusFall++;
         }
