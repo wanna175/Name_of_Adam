@@ -147,9 +147,9 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Data.GameData.NpcQuest.UpgradeQuest += 26;
-            Data.GameData.NpcQuest.StigmaQuest += 13;
-            Data.GameData.NpcQuest.DarkshopQuest += 8;
+            Data.GameData.NpcQuest.UpgradeQuest += 50;
+            Data.GameData.NpcQuest.StigmaQuest += 8;
+            Data.GameData.NpcQuest.DarkshopQuest += 13;
 
             Debug.Log($"타락도 조정: {Data.GameData.NpcQuest.UpgradeQuest}|{Data.GameData.NpcQuest.StigmaQuest}|{Data.GameData.NpcQuest.DarkshopQuest}");
         }

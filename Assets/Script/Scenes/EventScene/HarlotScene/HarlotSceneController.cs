@@ -57,7 +57,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.DarkshopQuest}");
 
-        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 12.5f), 4);
 
         if (GameManager.OutGameData.GetVisitDarkshop() == false && questLevel != 4)
         {
@@ -315,7 +315,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else 
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f);
+            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 12.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"탕녀_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }

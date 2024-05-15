@@ -41,7 +41,7 @@ public class StageChanger
         if (name == "UpgradeStore")
         {
             if (GameManager.OutGameData.GetCutSceneData(CutSceneType.NPC_Upgrade_Corrupt) == false
-                && GameManager.OutGameData.GetNPCQuest().UpgradeQuest >= 100)
+                && GameManager.OutGameData.GetNPCQuest().UpgradeQuest >= 200)
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Upgrade_Corrupt);
@@ -51,7 +51,7 @@ public class StageChanger
         else if (name == "StigmaStore")
         {
             if (GameManager.OutGameData.GetCutSceneData(CutSceneType.NPC_Stigma_Corrupt) == false
-                && GameManager.OutGameData.GetNPCQuest().StigmaQuest >= 50)
+                && GameManager.OutGameData.GetNPCQuest().StigmaQuest >= 30)
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Stigma_Corrupt);
@@ -61,7 +61,7 @@ public class StageChanger
         else if (name == "Harlot")
         {
             if (GameManager.OutGameData.GetCutSceneData(CutSceneType.NPC_Harlot_Corrupt) == false
-                && GameManager.OutGameData.GetNPCQuest().DarkshopQuest >= 30)
+                && GameManager.OutGameData.GetNPCQuest().DarkshopQuest >= 50)
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Harlot_Corrupt);

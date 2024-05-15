@@ -44,7 +44,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.UpgradeQuest}");
 
-        int questLevel = Mathf.Min(GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25, 4);
+        int questLevel = Mathf.Min(GameManager.Data.GameData.NpcQuest.UpgradeQuest / 50, 4);
 
         if (GameManager.OutGameData.GetVisitUpgrade() == false && questLevel != 4)
         {
@@ -232,7 +232,7 @@ public class UpgradeSceneController : MonoBehaviour
         }
         else
         {
-            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
+            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 50;
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"강화소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
