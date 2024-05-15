@@ -67,6 +67,10 @@ MonoBehaviour:
     m_Key: ApostleCreation_Normal
     m_Metadata:
       m_Items: []
+  - m_Id: 22708740248719360
+    m_Key: GameResetInfo
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

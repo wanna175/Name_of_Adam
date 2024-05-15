@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UI_Option : UI_Popup
 {
@@ -15,6 +16,8 @@ public class UI_Option : UI_Popup
     [SerializeField] private ClickableSlider _seSlider;
 
     [SerializeField] private GameObject _credit;
+
+    [SerializeField] private GameObject _gameResetButton;
 
     private List<Resolution> _resolutions;
     private int _currentLanguage;
@@ -77,6 +80,11 @@ public class UI_Option : UI_Popup
         _masterSlider.Slider.value = _masterPower;
         _bgmSlider.Slider.value = _bgmPower;
         _seSlider.Slider.value = _sePower;
+
+        if (SceneManager.GetActiveScene().name != "MainScene")
+        {
+            _gameResetButton.SetActive(false);
+        }
     }
 
     public void LanguageDropdownChanged()
@@ -139,5 +147,18 @@ public class UI_Option : UI_Popup
         if (GameManager.UI.ESCOPopups.Count != 0)
             GameManager.UI.ESCOPopups.Pop();
         GameManager.OutGameData.SaveData();
+    }
+
+    public void GameReset()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("GameResetInfo", () => {
+            GameManager.VisualEffect.ClearAllEffect();
+            GameManager.UI.CloseAllOption();
+            SceneChanger.SceneChange("MainScene");
+            GameManager.Data.MainDeckLayoutSet();
+            GameManager.SaveManager.DeleteSaveData();
+            GameManager.OutGameData.DeleteAllData();
+        });
     }
 }
