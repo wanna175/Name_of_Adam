@@ -13,6 +13,7 @@ public class SaveVersionController
     {
         "1.0.0-release",
         "1.0.1-release",
+        "1.0.2-release"
     };
 
     public bool IsValildVersion()
@@ -57,9 +58,37 @@ public class SaveVersionController
                             unit.PrivateKey = GameManager.CreatePrivateKey();
                     }
                     break;
+
+                case "1.0.1-release":
+
+                    // 호루스 이름 변경
+                    foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
+                        if (unit.UnitName == "호루스")
+                            unit.UnitName = "구원자";
+
+                    SaveData saveData = GameManager.SaveManager.GetSaveData();
+                    foreach (SaveUnit unit in saveData.DeckUnitData)
+                        if (unit.UnitDataID == "호루스")
+                            unit.UnitDataID = "구원자";
+
+                    foreach (SaveUnit unit in saveData.FallenUnitsData)
+                        if (unit.UnitDataID == "호루스")
+                            unit.UnitDataID = "구원자";
+
+                    GameManager.SaveManager.SaveData(saveData);
+
+                    break;
             }
 
             userVersionIndex++;
+
+            if (userVersionIndex >= versionHistory.Count)
+            {
+                Debug.LogError($"버전 히스토리를 등록하세요! 새로운 버전을 SaveVersionController.cs 상단에 기록하세요.");
+                Debug.LogError($"현재 버전: {versionHistory[versionHistory.Count - 1]}");
+                return;
+            }
+
             GameManager.OutGameData.SetVersion(versionHistory[userVersionIndex]);
             userVersion = GameManager.OutGameData.GetVersion();
         }

@@ -515,11 +515,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5
-    \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294
-    \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5
-    \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294
-    \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85\uD655\uC7A5 \uC5C6\uB294 \uC124\uBA85"
+  m_text: "\uAD6C\uC6D0\uC790\uB294 \uC790\uC2E0\uC758 \uC2EC\uBCF5\uC774\uB098 \uD76C\uC0DD\uC758
+    \uAF43\uC774 \uC8FD\uC744 \uB54C\uB9C8\uB2E4 \uD53C\uD574\uB97C \uC785\uC73C\uBA70
+    \uD0C0\uB77D\uB420 \uB54C\uB9C8\uB2E4 \uC2E0\uC559\uC774 1 \uB5A8\uC5B4\uC9D1\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
   m_sharedMaterial: {fileID: 6682361853462636820, guid: bd6674d8499b81d4cbfccd3daa9ecfe5, type: 2}
@@ -582,7 +580,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.9612732, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
