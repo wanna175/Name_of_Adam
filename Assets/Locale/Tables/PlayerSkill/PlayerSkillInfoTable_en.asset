@@ -91,6 +91,14 @@ MonoBehaviour:
     m_Localized: Summons the Apostle onto the field.
     m_Metadata:
       m_Items: []
+  - m_Id: 34640079277412352
+    m_Localized: 'Gives <b>Malevolence</b> for 6 times and reduces health by 10 to
+      an ally unit.
+
+      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
+      faith by 1)'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
