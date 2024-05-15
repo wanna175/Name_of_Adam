@@ -84,6 +84,9 @@ public class SteamClientManager : MonoBehaviour
 
     public void IncreaseAchievement(SteamAchievementType type)
     {
+        // QA 빌드에선 제외
+        return;
+
         if (!SteamManager.Initialized)
         {
             GameManager.Instance.SetSystemInfoText($"Steam is not connected.");
