@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text _systemInfoText;
 
-    private bool _onGM = true;
+    private bool _onGM = false;
 
     private bool _onDebug = false;
 
@@ -60,19 +60,9 @@ public class GameManager : MonoBehaviour
             Locale.Init();
             Steam.Init();
         }
-
-        /*
-        if (s_instance != null)
-            return;
-
-        SaveManager.Init();
-        Data.Init();
-        Sound.Init();
-        VisualEffect.Init();
-        */
     }
 
-    private static void Init()
+    public static void Init()
     {
         if (s_instance == null)
         {
