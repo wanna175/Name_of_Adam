@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: "\uC30D\uC0DD\uC544"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 70
-    CurrentHP: 70
+    MaxHP: 50
+    CurrentHP: 50
     ATK: 10
     SPD: 25
     FallCurrentCount: 0
     FallMaxCount: 4
-    ManaCost: 70
+    ManaCost: 50
   _uniqueStigma:
   - {fileID: -8096215998959275874, guid: 779a956cb397b6646955c2d17cb88908, type: 3}
   _id: "\uC30D\uC0DD\uC544"
