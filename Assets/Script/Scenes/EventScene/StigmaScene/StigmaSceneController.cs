@@ -16,6 +16,9 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
 
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
+
+    [SerializeField] private TextMeshProUGUI _stigmaBestowalButtonText;
+
     private UI_Conversation _uiConversation;
 
     private readonly int[] enterDialogNums = { 3, 2, 3, 3, 3 };
@@ -75,7 +78,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.StigmaQuest}");
 
-        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 7.5f), 4);
 
         if (GameManager.OutGameData.GetVisitStigma() == false && questLevel != 4)
         {
@@ -96,6 +99,11 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
                 _isNPCFall = true;
             }
         }
+
+        if (_isNPCFall)
+            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal_Corrupt"));
+        else
+            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal"));
 
         for (int i = 0; i < 3; i++)
         {
@@ -331,7 +339,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         }
         else
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 12.5f);
+            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 7.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"낙인소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }

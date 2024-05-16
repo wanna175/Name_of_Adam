@@ -18,6 +18,8 @@ public class UpgradeSceneController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
 
+    [SerializeField] private TextMeshProUGUI _upgradeButtonText;
+
     private List<Script> _scripts = new();
     private UI_Conversation _conversationUI;
 
@@ -44,7 +46,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.UpgradeQuest}");
 
-        int questLevel = Mathf.Min(GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25, 4);
+        int questLevel = Mathf.Min(GameManager.Data.GameData.NpcQuest.UpgradeQuest / 50, 4);
 
         if (GameManager.OutGameData.GetVisitUpgrade() == false && questLevel != 4)
         {
@@ -65,6 +67,11 @@ public class UpgradeSceneController : MonoBehaviour
                 _isNPCFall = true;
             }
         }
+
+        if (_isNPCFall)
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade_Corrupt"));
+        else
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade"));
 
         for (int i = 0; i < 3; i++)
         {
@@ -232,7 +239,7 @@ public class UpgradeSceneController : MonoBehaviour
         }
         else
         {
-            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
+            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 50;
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"강화소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }

@@ -14,6 +14,10 @@ public class Fade : MonoBehaviour
         SplashObj = this.gameObject;                         //스크립트 참조된 오브젝트
 
         sr = SplashObj.GetComponent<SpriteRenderer>();    //판넬오브젝트에 이미지 참조
+
+        Color color = sr.color;
+        color.a = 1.0f;
+        sr.color = color;
     }
 
     void Update()
