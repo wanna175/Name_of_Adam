@@ -218,7 +218,7 @@
       "HP": "-12",
       "ATK": "15",
       "SPD": "0",
-      "COST": "10"
+      "COST": "0"
     },
     {
       "ID": "UP304",
@@ -235,7 +235,7 @@
       "ID": "UP305",
       "Rarity": "3",
       "Name": "보석",
-      "Description": "Health (HP)\nAttack (ATK)",
+      "Description": "Health (HP)",
       "Image": "Green_Rare",
       "HP": "20",
       "ATK": "0",
@@ -261,8 +261,8 @@
       "Image": "Blue_Rare",
       "HP": "6",
       "ATK": "6",
-      "SPD": "0",
-      "COST": "66"
+      "SPD": "66",
+      "COST": "0"
     },
     {
       "ID": "UP308",
