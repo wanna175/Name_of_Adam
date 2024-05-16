@@ -48,6 +48,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
     private bool _isStigmataFull = false;
     private bool _isNPCFall = false;
+    private bool _isDarkEssenceUsed = false;
 
     private int _revertUnitDarkEssence;
     private int _stigmataBestowalDarkEssence;
@@ -209,6 +210,12 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         {
             ResetStigmataList(unit);
 
+            if (_isDarkEssenceUsed == false)
+            {
+                _isDarkEssenceUsed = true;
+                GameManager.Data.DarkEssenseChage(_stigmataBestowalDarkEssence);
+            }
+
             UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
             popup.Init(_stigmataBestowalUnit, false, _stigmataList);
             popup.EventInit(this, CurrentEvent.Stigmata_Select);
@@ -261,7 +268,6 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         else
         {
             BestowalStigmata(stigmata);
-            GameManager.Data.DarkEssenseChage(-_stigmataBestowalDarkEssence);
         }
     }
 
