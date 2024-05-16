@@ -48,8 +48,9 @@ public class UI_HallUnitSaveCard : MonoBehaviour
                 ui.EnableUI(false);
         }
 
+        int createUpgradeCount = (GameManager.OutGameData.IsUnlockedItem(12)) ? 3 : 2;
         List<Upgrade> upgrades = deckUnit.DeckUnitUpgrade;
-        for (int i = 0; i < deckUnit.MaxUpgradeCount; i++)
+        for (int i = 0; i < createUpgradeCount; i++)
         {
             UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
             if (i < upgrades.Count)

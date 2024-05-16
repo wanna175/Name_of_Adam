@@ -46,9 +46,6 @@ public class DeckUnit
 
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
-    public readonly int UpgradedMaxUpgradeCount = 3;
-    public readonly int MaxUpgradeCount = 2;
-
     private List<Stigma> _stigma = new();
 
     public readonly int MaxStigmaCount = 3;
