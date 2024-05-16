@@ -3,7 +3,6 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 
 //NPC타락퀘스트 & 진척도 & 전당 유닛 등의 인자를 저장 & 불러오는 기능
 
@@ -12,7 +11,7 @@ public class OutGameData
 {
     public string Version;                   // 데이터 버전
     public int ProgressCoin;                 // 진척도 코인
-    public List<ProgressItem> ProgressItems; // 진척도 상점의 상품들
+    public List<ProgressSave> ProgressSaves; // 진척도 상점의 상품들
     public List<HallUnit> HallUnit;          // 전당 유닛
     
     public bool TutorialClear = false;
@@ -37,19 +36,6 @@ public class OutGameData
 }
 
 [Serializable]
-public class ProgressItem
-{
-    public int ID;             // 진척도 ID
-    public string Name;        // 이름
-    public int Cost;           // 가격
-    public int Prequest;       // 선행 조건 ID
-    public bool IsLock;        // 구매 가능한지 여부
-    public bool IsUnlocked;    // 구매 완료 여부
-    public string Description; // 설명
-}
-
-
-[Serializable]
 public class HallUnit
 {
     public string PrivateKey;     // 고유 Key
@@ -72,6 +58,28 @@ public class HallUnit
     }
 }
 
+[Serializable]
+public class ProgressItem
+{
+    public int ID;             // 진척도 ID
+    public string Name;        // 이름
+    public int Cost;           // 가격
+    public int Prequest;       // 선행 조건 ID
+    public string Description; // 설명
+}
+
+[Serializable]
+public class ProgressSave
+{
+    public int ID;
+    public bool isUnLock;
+
+    public ProgressSave(int id, bool isUnLock)
+    {
+        this.ID = id;
+        this.isUnLock = isUnLock;
+    }
+}
 
 public class OutGameDataContainer : MonoBehaviour
 {
@@ -86,12 +94,15 @@ public class OutGameDataContainer : MonoBehaviour
     private SaveVersionController _versionController;
 
     // 현재 진행중인 게임에서 관리하는 아웃게임데이터
+    private Dictionary<int, ProgressItem> ProgressItems = new();
     private OutGameData _data;
     private string _path;
     private List<Resolution> _resolutions;
 
     public void Init()
     {
+        ProgressItems = LoadJson<ProgressLoader, int, ProgressItem>("ProgressData").MakeDict();
+
         _versionController = new SaveVersionController();
 
         // 사용자\AppData\localLow에 있는 SaveData.json의 경로
@@ -105,6 +116,12 @@ public class OutGameDataContainer : MonoBehaviour
 
         LoadData();
         SetResolution();
+    }
+
+    Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
+    {
+        TextAsset textAsset = GameManager.Resource.Load<TextAsset>($"Data/{path}");
+        return JsonUtility.FromJson<Loader>(textAsset.text);
     }
 
     private string EncryptAndDecrypt(string data)
@@ -171,7 +188,8 @@ public class OutGameDataContainer : MonoBehaviour
         TextAsset text = GameManager.Resource.Load<TextAsset>("Data/OutGameData");
         _data = JsonUtility.FromJson<OutGameData>(text.text);
         _data.Version = Application.version;
-       
+
+        SetProgressInit();
         ReSetOption();
         SaveData();
     }
@@ -184,14 +202,18 @@ public class OutGameDataContainer : MonoBehaviour
 
     public int GetProgressCoin() => _data.ProgressCoin;
 
-    public ProgressItem GetProgressItem(int ID) => _data.ProgressItems.Find(x => x.ID == ID);
+    public ProgressItem GetProgressItem(int ID) => ProgressItems[ID];
+
+    public ProgressSave GetProgressSave(int ID) => _data.ProgressSaves.Find(x => x.ID == ID);
+
+    public bool IsUnlockedItem(int ID) => GetProgressSave(ID).isUnLock;
 
     // 현재 확인하는 아이템이 구매 가능한 아이템인지 확인
     public bool GetBuyable(int ID)
     {
         ProgressItem item = GetProgressItem(ID);
 
-        if (GetProgressItem(item.Prequest).IsLock || !GetProgressItem(ID).IsLock)
+        if (!IsUnlockedItem(item.Prequest) || IsUnlockedItem(ID))
         {
             return false;
         }
@@ -199,18 +221,10 @@ public class OutGameDataContainer : MonoBehaviour
         return true;
     }
 
-    public bool IsUnlockedItem(int ID)
-    {
-        ProgressItem item = GetProgressItem(ID);
-
-        return item.IsUnlocked;
-    }
-
     public void BuyProgressItem(int ID)
     {
         ProgressItem item = GetProgressItem(ID);
-        item.IsLock = false;
-        item.IsUnlocked = true;
+        GetProgressSave(ID).isUnLock = true;
         SetProgressCoin(-item.Cost);
     }
 
@@ -387,6 +401,18 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
     }
 
+    private void SetProgressInit()
+    {
+        _data.ProgressSaves = new List<ProgressSave>();
+        foreach (var item in ProgressItems)
+            _data.ProgressSaves.Add(new ProgressSave(item.Key, false));
+        GetProgressSave(0).isUnLock = true;
+        GetProgressSave(50).isUnLock = true;
+        GetProgressSave(51).isUnLock = true;
+        GetProgressSave(60).isUnLock = true;
+        GetProgressSave(70).isUnLock = true;
+    }
+
     public void SetWindow(bool isWindowed)
     {
         _data.IsWindowed = isWindowed;
@@ -398,6 +424,7 @@ public class OutGameDataContainer : MonoBehaviour
         _data.resolution = resolution;
         SetResolution();
     }
+
     public List<Resolution> GetAllResolution() => _resolutions;
     public int GetLanguage() => _data.language;
     public int SetLanguage(int language) => _data.language = language;
