@@ -144,7 +144,6 @@ public class DataManager : MonoBehaviour
         GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
         GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
         GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
-        GameData.NpcQuest = GameManager.OutGameData.GetNPCQuest();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

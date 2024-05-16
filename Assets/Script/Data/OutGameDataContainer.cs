@@ -330,14 +330,6 @@ public class OutGameDataContainer : MonoBehaviour
 
     public bool IsTutorialClear() => _data.TutorialClear;
 
-    public void SetNPCQuest()
-    {
-        _data.NpcQuest = GameManager.Data.GameData.NpcQuest;
-        _data.IsVisitUpgrade = GameManager.Data.GameData.IsVisitUpgrade;
-        _data.IsVisitStigma = GameManager.Data.GameData.IsVisitStigma;
-        _data.IsVisitDarkShop = GameManager.Data.GameData.IsVisitDarkShop;
-        SaveData();
-    }
     public NPCQuest GetNPCQuest() => _data.NpcQuest;
 
     public bool GetVisitUpgrade() => _data.IsVisitUpgrade;

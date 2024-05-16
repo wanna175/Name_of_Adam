@@ -475,7 +475,7 @@ public class BattleManager : MonoBehaviour
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
             if (GameManager.OutGameData.GetVisitUpgrade() == true)
-                GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
+                GameManager.OutGameData.GetNPCQuest().UpgradeQuest++;
             
             if(unit.Data.Rarity == Rarity.Normal)
             {
@@ -532,7 +532,7 @@ public class BattleManager : MonoBehaviour
             _battleData.BattleUnitOrderSorting();
 
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
-            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
+            GameManager.OutGameData.GetNPCQuest().DarkshopQuest++;
 
         if (unit.Team == Team.Enemy && !unit.Data.IsBattleOnly)
         {
