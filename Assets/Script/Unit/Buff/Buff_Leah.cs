@@ -20,11 +20,19 @@ public class Buff_Leah : Buff
 
         _owner = owner;
 
-        _statBuff = false;
+        _statBuff = true;
 
         _dispellable = false;
 
         _stigmaBuff = false;
+    }
+
+    public override Stat GetBuffedStat()
+    {
+        Stat stat = new();
+        stat.ATK -= 5;
+
+        return stat;
     }
 
     public override bool Active(BattleUnit caster)
