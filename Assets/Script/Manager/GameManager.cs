@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             NPCQuest quest = GameManager.OutGameData.GetNPCQuest();
-            quest.UpgradeQuest += 50;
+            quest.UpgradeQuest += 75;
             quest.StigmaQuest += 8;
             quest.DarkshopQuest += 13;
 

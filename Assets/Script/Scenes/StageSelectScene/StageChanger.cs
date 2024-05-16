@@ -41,7 +41,7 @@ public class StageChanger
         if (name == "UpgradeStore")
         {
             if (GameManager.OutGameData.GetCutSceneData(CutSceneType.NPC_Upgrade_Corrupt) == false
-                && GameManager.OutGameData.GetNPCQuest().UpgradeQuest >= 200)
+                && GameManager.OutGameData.GetNPCQuest().UpgradeQuest >= 300)
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Upgrade_Corrupt);
