@@ -30,6 +30,11 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     [SerializeField] private TextMeshProUGUI _disabledApostleCreationDarkEssenceText;
     [SerializeField] private TextMeshProUGUI _stigmataBestowalDarkEssenceText;
     [SerializeField] private TextMeshProUGUI _disabledStigmataBestowalDarkEssenceText;
+
+    [SerializeField] private TextMeshProUGUI _revertUnitButtonText;
+    [SerializeField] private TextMeshProUGUI _stigmataBestowalButtonText_enable;
+    [SerializeField] private TextMeshProUGUI _stigmataBestowalButtonText_disable;
+
     private UI_Conversation _conversationUI;
 
     private List<Script> _scripts = new();
@@ -43,9 +48,11 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
     private bool _isStigmataFull = false;
     private bool _isNPCFall = false;
+    private bool _isDarkEssenceUsed = false;
 
-    private int _apostleCreationDarkEssence;
+    private int _revertUnitDarkEssence;
     private int _stigmataBestowalDarkEssence;
+    private int _apostleCreationDarkEssence;
 
     void Start()
     {
@@ -57,7 +64,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.DarkshopQuest}");
 
-        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 12.5f), 4);
 
         if (GameManager.OutGameData.GetVisitDarkshop() == false && questLevel != 4)
         {
@@ -89,8 +96,24 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         _conversationUI.ConversationEnded += OnConversationEnded;
 
         int current_DarkEssense = GameManager.Data.GameData.DarkEssence;
-        _apostleCreationDarkEssence = (_isNPCFall) ? -10 : -13;
-        _stigmataBestowalDarkEssence = (_isNPCFall) ? -8 : -10;
+
+        _revertUnitDarkEssence = (_isNPCFall) ? 2 : 1;
+        //_apostleCreationDarkEssence = (_isNPCFall) ? 10 : 15;
+        _apostleCreationDarkEssence = 15;
+        _stigmataBestowalDarkEssence = (_isNPCFall) ? 8 : 12;
+
+        if (_isNPCFall)
+        {
+            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit_Corrupt"));
+            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
+            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
+        }
+        else
+        {
+            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit"));
+            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
+            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
+        }
 
         if (!GameManager.OutGameData.IsUnlockedItem(5))
         {
@@ -107,7 +130,8 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
             _disabledStigmataBestowalButton.SetActive(true);
             _stigmataBestowalButton.SetActive(false);
         }
-        SetMenuText(_isNPCFall);
+
+        SetMenuText();
     }
 
     //사도 연성 버튼 클릭
@@ -134,7 +158,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     public void OnApostleSelect(DeckUnit unit)
     {
         GameManager.Data.AddDeckUnit(unit);
-        GameManager.Data.DarkEssenseChage(_apostleCreationDarkEssence);
+        GameManager.Data.DarkEssenseChage(-_apostleCreationDarkEssence);
         GameManager.Data.GameData.FallenUnits.Add(unit);
     }
 
@@ -185,6 +209,12 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount || _isStigmataPreSet)
         {
             ResetStigmataList(unit);
+
+            if (_isDarkEssenceUsed == false)
+            {
+                _isDarkEssenceUsed = true;
+                GameManager.Data.DarkEssenseChage(_stigmataBestowalDarkEssence);
+            }
 
             UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
             popup.Init(_stigmataBestowalUnit, false, _stigmataList);
@@ -238,7 +268,6 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         else
         {
             BestowalStigmata(stigmata);
-            GameManager.Data.DarkEssenseChage(_stigmataBestowalDarkEssence);
         }
     }
 
@@ -281,8 +310,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else if (_revertUnits.Count != 0)
         {
-            int cost = _isNPCFall ? 2 * _revertUnits.Count : _revertUnits.Count;
-            GameManager.Data.DarkEssenseChage(cost);
+            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence);
             foreach (DeckUnit delunit in _revertUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
@@ -315,7 +343,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else 
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f);
+            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 12.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"탕녀_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
@@ -326,27 +354,14 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         SceneChanger.SceneChange("StageSelectScene");
     }
 
-    private void SetMenuText(bool isNpcfall)
+    private void SetMenuText()
     {
-        if (isNpcfall)
-        {
-            _revertUnitDarkEssenceText.text = "2";
-            _stigmataBestowalDarkEssenceText.text = "8";
-            _apostleCreationDarkEssenceText.text = "8";
+        _revertUnitDarkEssenceText.text = _revertUnitDarkEssence.ToString();
+        _stigmataBestowalDarkEssenceText.text = _stigmataBestowalDarkEssence.ToString();
+        _disabledStigmataBestowalDarkEssenceText.text = _stigmataBestowalDarkEssence.ToString();
 
-            _disabledApostleCreationDarkEssenceText.text = "8";
-            _disabledStigmataBestowalDarkEssenceText.text = "8";
-
-        }
-        else
-        {
-            _revertUnitDarkEssenceText.text = "1";
-            _stigmataBestowalDarkEssenceText.text = "10";
-            _apostleCreationDarkEssenceText.text = "10";
-
-            _disabledApostleCreationDarkEssenceText.text = "10";
-            _disabledStigmataBestowalDarkEssenceText.text = "10";
-        }
+        _apostleCreationDarkEssenceText.text = _apostleCreationDarkEssence.ToString();
+        _disabledApostleCreationDarkEssenceText.text = _apostleCreationDarkEssence.ToString();
     }
 
     private void OnConversationEnded()

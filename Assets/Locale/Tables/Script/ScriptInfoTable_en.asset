@@ -63,8 +63,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5998479260422144
-    m_Localized: Even if your hands were stained with the blood of 200 people, I
-      shall still believe in you.
+    m_Localized: Even if your hands were stained with the blood of numerous people,
+      I shall still believe in you.
     m_Metadata:
       m_Items: []
   - m_Id: 5998562815152128
@@ -126,9 +126,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5999112872955904
-    m_Localized: Although I have never reproached you, you have committed sins so
-      immense that are hard for me to even imagine. No. It was I who didn't realize
-      that I was never redeemed in the first place.
+    m_Localized: No. It was I who didn't realize that I was never redeemed in the
+      first place.
     m_Metadata:
       m_Items: []
   - m_Id: 5999161807900672
@@ -216,8 +215,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6003966269886464
-    m_Localized: The aspirations of others now seem foolish. Their prayers all appear
-      meaningless.
+    m_Localized: I feel tired... I just want to rest.
     m_Metadata:
       m_Items: []
   - m_Id: 6003968379621376
@@ -426,8 +424,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6135992028033024
-    m_Localized: You intruder! How dare you bring the vile shadow of evil to the
-      kingdom! Face the might of the royal, and vanish into the darkness.
+    m_Localized: I sense an vile intruder who dares to challenge my throne... Nonetheless,
+      with the might of my power transcending mortality, you shall soon vanish into
+      the darkness.
     m_Metadata:
       m_Items: []
   - m_Id: 6136047711612928

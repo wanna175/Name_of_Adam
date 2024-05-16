@@ -53,7 +53,7 @@ public class UI_Conversation : UI_Popup
             co_typing = StartCoroutine(TypingEffect(dialog));
             if (_battleConversation)
             {
-                _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + name);
+                _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + script.name);
             }
 
             _nameText.text = name;

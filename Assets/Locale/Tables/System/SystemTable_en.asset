@@ -57,20 +57,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17209785905152
-    m_Localized: 'The number of stigmata of the selected unit is at its maximum.
+    m_Localized: 'The number of stigmata on the currently selected unit is at its
+      maximum.
 
 
-      Would
-      you like to destroy an existing stigmata and select a new one?'
+      Would you like to destroy an existing stigmata and select
+      a new one?'
     m_Metadata:
       m_Items: []
   - m_Id: 17261312929792
-    m_Localized: 'The number of enhancements on the currently selected unit is at
-      its maximum.
+    m_Localized: 'The number of upgrades on the currently selected unit is at its
+      maximum.
 
 
-      Would you like to destroy an enhancement and select a
-      new one?'
+      Would you like to destroy an upgrade and select a new one?'
     m_Metadata:
       m_Items: []
   - m_Id: 17279610286936064
@@ -87,15 +87,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17307259352813568
-    m_Localized: This unit already exists in the Divine Hall. Would you like to overwrite?
+    m_Localized: This unit already exists in the Divine Hall. Would you like to overwrite
+      it?
     m_Metadata:
       m_Items: []
   - m_Id: 21708852642877440
-    m_Localized: Would you like to synthesize an apostle using 8 dark essences?
+    m_Localized: Would you like to create an apostle using 8 dark essences?
     m_Metadata:
       m_Items: []
   - m_Id: 21709489623437312
-    m_Localized: Would you like to synthesize an apostle using 10 dark essences?
+    m_Localized: Would you like to create an apostle using 10 dark essences?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22708740248719360
+    m_Localized: '<b>Every progress will be deleted if you reset the game.</b>
+
+
+      Would
+      you like to reset?'
     m_Metadata:
       m_Items: []
   references:
