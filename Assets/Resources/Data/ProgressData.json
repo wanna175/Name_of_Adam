@@ -1,0 +1,228 @@
+{
+  "ProgressItems": [
+    {
+      "ID": 0,
+      "Name": "시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "Description": "시작"
+    },
+    {
+      "ID": 1,
+      "Name": "Destiny",
+      "Cost": 50,
+      "Prequest": 8,
+      "Description": "Stigmata Destiny appears from now on. Destiny - When attacking, there is a 50% chance for damage to be doubled and a 50% chance for it to be halved."
+    },
+    {
+      "ID": 2,
+      "Name": "Faith Recovery",
+      "Cost": 150,
+      "Prequest": 0,
+      "Description": "A new feature, Faith Recovery, is unlocked when baptizing. You can now restore the faith of desired units."
+    },
+    {
+      "ID": 3,
+      "Name": "Starting dark essence I",
+      "Cost": 100,
+      "Prequest": 2,
+      "Description": "The starting dark essence increases from 4 to 7."
+    },
+    {
+      "ID": 5,
+      "Name": "Apostle Creation",
+      "Cost": 200,
+      "Prequest": 2,
+      "Description": "A new feature, Apostle Creation, is unlocked in the Sacrifice Stage. You can now randomly create apostles via dark essence."
+    },
+    {
+      "ID": 6,
+      "Name": "Starting dark essence II",
+      "Cost": 125,
+      "Prequest": 3,
+      "Description": "The starting dark essence increases from 7 to 10."
+    },
+    {
+      "ID": 7,
+      "Name": "Killing Spree",
+      "Cost": 50,
+      "Prequest": 2,
+      "Description": "Stigmata Killing Spree appears from now on. Killing Spree - Gains an extra turn upon defeating an enemy."
+    },
+    {
+      "ID": 8,
+      "Name": "Elite Clear Reward",
+      "Cost": 250,
+      "Prequest": 14,
+      "Description": "Every unit restores faith by 1 as a reward for clearing an Elite enemy."
+    },
+    {
+      "ID": 12,
+      "Name": "Maximum upgrade",
+      "Cost": 200,
+      "Prequest": 14,
+      "Description": "The maximum upgrade increases from 2 to 3."
+    },
+    {
+      "ID": 11,
+      "Name": "Stigmata transfer",
+      "Cost": 300,
+      "Prequest": 5,
+      "Description": "A new feature, Stigmata Transfer, is unlocked in the Stigmata stage. You can now sacrifice one unit to bestow one of its stigmata onto another unit."
+    },
+    {
+      "ID": 15,
+      "Name": "Starting mana I",
+      "Cost": 150,
+      "Prequest": 8,
+      "Description": "The starting mana increases from 50 to 55."
+    },
+    {
+      "ID": 13,
+      "Name": "Teleport",
+      "Cost": 100,
+      "Prequest": 11,
+      "Description": "Stigmata Teleport appears from now on. Teleport - Earns 1 Sacred Step upon defeating an enemy. Sacred Step - Becomes able to move to any desired position."
+    },
+    {
+      "ID": 14,
+      "Name": "Unlocking the Divine Hall I",
+      "Cost": 400,
+      "Prequest": 11,
+      "Description": "You can now organize units from the Divine Hall in the slots of the Gravekeeper and Prisoner at the start."
+    },
+    {
+      "ID": 18,
+      "Name": "Starting mana II",
+      "Cost": 200,
+      "Prequest": 15,
+      "Description": "The starting mana increases from 55 to 60."
+    },
+    {
+      "ID": 16,
+      "Name": "Forbidden Pact",
+      "Cost": 100,
+      "Prequest": 17,
+      "Description": "Stigmata Forbidden Pact appears from now on. Forbidden Pact - The unit becomes stunned once, but the mana cost of the next skill is eliminated upon summoning."
+    },
+    {
+      "ID": 17,
+      "Name": "Unlocking the Divine Hall II",
+      "Cost": 500,
+      "Prequest": 8,
+      "Description": "You can now organize apostles or elites into normal unit slots in the start."
+    },
+    {
+      "ID": 20,
+      "Name": "Sin",
+      "Cost": 1000,
+      "Prequest": 17,
+      "Description": "Stigmata Sin appears in the Sacrifice from now on. Sin - Decreases the enemys faith by 1 upon attacking."
+    },
+    {
+      "ID": 50,
+      "Name": "화신1 시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "Description": "화신 설명"
+    },
+    {
+      "ID": 51,
+      "Name": "Unlock the Dark Prophet I",
+      "Cost": 10,
+      "Prequest": 50,
+      "Description": "The incarnation The Dark Prophet is unlocked."
+    },
+    {
+      "ID": 52,
+      "Name": "Unlock the Dark Prophet II",
+      "Cost": 200,
+      "Prequest": 51,
+      "Description": "Skill Swiftness now requires 0 dark essence."
+    },
+    {
+      "ID": 53,
+      "Name": "Unlock the Dark Prophet III",
+      "Cost": 300,
+      "Prequest": 52,
+      "Description": "The mana cost of Whisper decreases by 5."
+    },
+    {
+      "ID": 54,
+      "Name": "Unlock the Dark Prophet IV",
+      "Cost": 400,
+      "Prequest": 53,
+      "Description": "The faith of enemies hit by the Dark Cross decreases by 1."
+    },
+    {
+      "ID": 60,
+      "Name": "화신2 시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "Description": "강화 설명"
+    },
+    {
+      "ID": 61,
+      "Name": "Unlock the Saintess of Sins I",
+      "Cost": 800,
+      "Prequest": 60,
+      "Description": "The incarnation Saintess of Sins is unlocked."
+    },
+    {
+      "ID": 62,
+      "Name": "Unlock the Saintess of Sins II",
+      "Cost": 200,
+      "Prequest": 61,
+      "Description": "The amount of healing of the skill Recovery is increased by 5."
+    },
+    {
+      "ID": 63,
+      "Name": "Unlock the Saintess of Sins III",
+      "Cost": 300,
+      "Prequest": 62,
+      "Description": "The Dark Essence cost of Returning decreases by 1."
+    },
+    {
+      "ID": 64,
+      "Name": "Unlock the Saintess of Sins IV",
+      "Cost": 400,
+      "Prequest": 63,
+      "Description": "Skill Prayer no longer grants an attack power increase to enemies."
+    },
+    {
+      "ID": 70,
+      "Name": "화신3 시작",
+      "Cost": 0,
+      "Prequest": 0,
+      "Description": "강화 설명"
+    },
+    {
+      "ID": 71,
+      "Name": "Unlock the Heir of Vice I",
+      "Cost": 400,
+      "Prequest": 70,
+      "Description": "The incarnation Heir of Vice is unlocked."
+    },
+    {
+      "ID": 72,
+      "Name": "Unlock the Heir of Vice II",
+      "Cost": 200,
+      "Prequest": 71,
+      "Description": "Skill Trade of Souls now grants malevolence 2 times additionally."
+    },
+    {
+      "ID": 73,
+      "Name": "Unlock the Heir of Vice III",
+      "Cost": 300,
+      "Prequest": 72,
+      "Description": "The mana cost of Divine Punishment decreases by 10."
+    },
+    {
+      "ID": 74,
+      "Name": "Unlock the Heir of Vice IV",
+      "Cost": 400,
+      "Prequest": 73,
+      "Description": "The duration of Advent is increased by 1 turn."
+    }
+  ]
+}

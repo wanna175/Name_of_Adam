@@ -92,11 +92,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 21708852642877440
-    m_Localized: Would you like to create an apostle using 8 dark essences?
+    m_Localized: Would you like to create an apostle using 15 dark essences?
     m_Metadata:
       m_Items: []
   - m_Id: 21709489623437312
-    m_Localized: Would you like to create an apostle using 10 dark essences?
+    m_Localized: Would you like to create an apostle using 15 dark essences?
     m_Metadata:
       m_Items: []
   - m_Id: 22708740248719360

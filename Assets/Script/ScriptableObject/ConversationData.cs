@@ -76,3 +76,18 @@ public class StageLoader : ILoader<int, List<StageSpawnData>>
         return dic;
     }
 }
+
+public class ProgressLoader : ILoader<int, ProgressItem>
+{
+    public List<ProgressItem> ProgressItems = new List<ProgressItem>();
+
+    public Dictionary<int, ProgressItem> MakeDict()
+    {
+        Dictionary<int, ProgressItem> dic = new Dictionary<int, ProgressItem>();
+        foreach (ProgressItem progressItem in ProgressItems)
+        {
+            dic.Add(progressItem.ID, progressItem);
+        }
+        return dic;
+    }
+}

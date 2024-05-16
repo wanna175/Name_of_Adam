@@ -32,16 +32,16 @@ public class UI_ProgressSummary : UI_Scene
 
     public void SetProgressText()
     {
-        SetProgressText(_progress.NormalWin, 10, $"{GameManager.Locale.GetLocalizedBattleScene("Normal battles won")} {_progress.NormalWin}{GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[0]); //연결된 값 들
-        SetProgressText(_progress.EliteWin, 50, $"{GameManager.Locale.GetLocalizedBattleScene("Elite battles won")} {_progress.EliteWin}{GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[1]); //
-        SetProgressText(_progress.BossWin, 100, $"{GameManager.Locale.GetLocalizedBattleScene("Boss battles won")} {_progress.BossWin}{GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[2]); //
-        SetProgressText(_progress.NormalKill, 2, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units defeated")} {_progress.NormalKill}{GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[3]); //
-        SetProgressText(_progress.EliteKill, 25, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units defeated")} {_progress.EliteKill}{GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[4]); //
+        SetProgressText(_progress.NormalWin, 10, $"{GameManager.Locale.GetLocalizedBattleScene("Normal battles won")} {_progress.NormalWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[0]); //연결된 값 들
+        SetProgressText(_progress.EliteWin, 50, $"{GameManager.Locale.GetLocalizedBattleScene("Elite battles won")} {_progress.EliteWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[1]); //
+        SetProgressText(_progress.BossWin, 100, $"{GameManager.Locale.GetLocalizedBattleScene("Boss battles won")} {_progress.BossWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[2]); //
+        SetProgressText(_progress.NormalKill, 2, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units defeated")} {_progress.NormalKill} {GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[3]); //
+        SetProgressText(_progress.EliteKill, 25, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units defeated")} {_progress.EliteKill} {GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[4]); //
         SetProgressText(_progress.PhanuelKill, 200, $"{GameManager.Locale.GetLocalizedBattleScene("Banuel defeated")}", ProgressList[5]); //
         SetProgressText(_progress.HorusKill, 200, $"{GameManager.Locale.GetLocalizedBattleScene("Horus defeated")}", ProgressList[6]); //
         SetProgressText(_progress.FishKill, 200, "물고기 처치", ProgressList[7]); 
-        SetProgressText(_progress.NormalFall, 5, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units corrupted")} {_progress.NormalFall}{GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[8]); //
-        SetProgressText(_progress.EliteFall, 100, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units corrupted")} {_progress.EliteFall}{GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[9]); //
+        SetProgressText(_progress.NormalFall, 5, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units corrupted")} {_progress.NormalFall} {GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[8]); //
+        SetProgressText(_progress.EliteFall, 100, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units corrupted")} {_progress.EliteFall} {GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[9]); //
         SetProgressText(_progress.PhanuelFall, 500, $"{GameManager.Locale.GetLocalizedBattleScene("Banuel corrupted")}", ProgressList[10]); //
         SetProgressText(_progress.HorusFall, 500, $"{GameManager.Locale.GetLocalizedBattleScene("Horus corrupted")}", ProgressList[11]); //
         SetProgressText(_progress.FishFall, 500, "물고기 타락", ProgressList[12]); 

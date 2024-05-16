@@ -13,7 +13,8 @@ public class SaveVersionController
     {
         "1.0.0-release",
         "1.0.1-release",
-        "1.0.2-release"
+        "1.0.2-release",
+        "1.0.0v",
     };
 
     public bool IsValildVersion()
@@ -77,6 +78,12 @@ public class SaveVersionController
 
                     GameManager.SaveManager.SaveData(saveData);
 
+                    break;
+
+                case "1.0.2-release":
+                    GameManager.SaveManager.DeleteSaveData();
+                    GameManager.OutGameData.DeleteAllData();
+                    GameManager.OutGameData.CreateData();
                     break;
             }
 

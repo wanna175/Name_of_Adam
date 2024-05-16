@@ -60,19 +60,9 @@ public class GameManager : MonoBehaviour
             Locale.Init();
             Steam.Init();
         }
-
-        /*
-        if (s_instance != null)
-            return;
-
-        SaveManager.Init();
-        Data.Init();
-        Sound.Init();
-        VisualEffect.Init();
-        */
     }
 
-    private static void Init()
+    public static void Init()
     {
         if (s_instance == null)
         {
@@ -128,7 +118,7 @@ public class GameManager : MonoBehaviour
                     break;
 
                 unit.UnitDiedEvent();
-                GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
+                GameManager.OutGameData.GetNPCQuest().UpgradeQuest++;
             }
             BattleManager.Instance.BattleOverCheck();
         }
@@ -147,11 +137,12 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Data.GameData.NpcQuest.UpgradeQuest += 50;
-            Data.GameData.NpcQuest.StigmaQuest += 8;
-            Data.GameData.NpcQuest.DarkshopQuest += 13;
+            NPCQuest quest = GameManager.OutGameData.GetNPCQuest();
+            quest.UpgradeQuest += 50;
+            quest.StigmaQuest += 8;
+            quest.DarkshopQuest += 13;
 
-            Debug.Log($"타락도 조정: {Data.GameData.NpcQuest.UpgradeQuest}|{Data.GameData.NpcQuest.StigmaQuest}|{Data.GameData.NpcQuest.DarkshopQuest}");
+            Debug.Log($"타락도 조정: {quest.UpgradeQuest}|{quest.StigmaQuest}|{quest.DarkshopQuest}");
         }
 
         if (Input.GetKeyDown(KeyCode.R))

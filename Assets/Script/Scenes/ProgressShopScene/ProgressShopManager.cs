@@ -56,12 +56,12 @@ public class ProgressShopManager : MonoBehaviour
             info_name.text = GameManager.Locale.GetLocalizedProgress(GameManager.OutGameData.GetProgressItem(id).Name);
             info_description.text = GameManager.Locale.GetLocalizedProgress(GameManager.OutGameData.GetProgressItem(id).Description).Replace("\\n", "\n");
 
-            if (!GameManager.OutGameData.GetBuyable(id) && !GameManager.OutGameData.GetProgressItem(id).IsLock)
+            if (!GameManager.OutGameData.GetBuyable(id) && GameManager.OutGameData.IsUnlockedItem(id))
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
             }
-            else if (!GameManager.OutGameData.GetBuyable(id) && GameManager.OutGameData.GetProgressItem(id).IsLock)
+            else if (!GameManager.OutGameData.GetBuyable(id) && !GameManager.OutGameData.IsUnlockedItem(id))
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();

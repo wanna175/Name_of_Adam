@@ -475,7 +475,7 @@ public class BattleManager : MonoBehaviour
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
             if (GameManager.OutGameData.GetVisitUpgrade() == true)
-                GameManager.Data.GameData.NpcQuest.UpgradeQuest++;
+                GameManager.OutGameData.GetNPCQuest().UpgradeQuest++;
             
             if(unit.Data.Rarity == Rarity.Normal)
             {
@@ -532,28 +532,28 @@ public class BattleManager : MonoBehaviour
             _battleData.BattleUnitOrderSorting();
 
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
-            GameManager.Data.GameData.NpcQuest.DarkshopQuest++;
+            GameManager.OutGameData.GetNPCQuest().DarkshopQuest++;
 
         if (unit.Team == Team.Enemy && !unit.Data.IsBattleOnly)
         {
             GameManager.Data.GameData.FallenUnits.Add(unit.DeckUnit);
-        }
 
-        if (unit.DeckUnit.Data.Rarity == Rarity.Normal)
-        {
-            GameManager.Data.GameData.Progress.NormalFall++;
-        }
-        else if (unit.DeckUnit.Data.Rarity == Rarity.Elite)
-        {
-            GameManager.Data.GameData.Progress.EliteFall++;
-        }
-        else if (unit.DeckUnit.Data.ID == "바누엘")
-        {
-            GameManager.Data.GameData.Progress.PhanuelFall++;
-        }
-        else if (unit.DeckUnit.Data.ID == "구원자")
-        {
-            GameManager.Data.GameData.Progress.HorusFall++;
+            if (unit.DeckUnit.Data.Rarity == Rarity.Normal)
+            {
+                GameManager.Data.GameData.Progress.NormalFall++;
+            }
+            else if (unit.DeckUnit.Data.Rarity == Rarity.Elite)
+            {
+                GameManager.Data.GameData.Progress.EliteFall++;
+            }
+            else if (unit.DeckUnit.Data.ID == "바누엘")
+            {
+                GameManager.Data.GameData.Progress.PhanuelFall++;
+            }
+            else if (unit.DeckUnit.Data.ID == "구원자")
+            {
+                GameManager.Data.GameData.Progress.HorusFall++;
+            }
         }
 
         BossDeadCheck(unit);

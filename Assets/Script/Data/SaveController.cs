@@ -15,7 +15,6 @@ public class SaveData
     public int DarkEssence;
     public int PlayerHP;
     public Progress ProgressData;
-    public NPCQuest NpcQuestData;
     public int StageAct;
     public Vector3 StageBenediction;
 }
@@ -90,11 +89,9 @@ public class SaveController : MonoBehaviour
         newData.DarkEssence = CurGameData.DarkEssence;
         newData.PlayerHP = CurGameData.PlayerHP;
         newData.ProgressData = CurGameData.Progress;
-        newData.NpcQuestData = CurGameData.NpcQuest;
         newData.StageAct = GameManager.Data.StageAct;
         newData.StageBenediction = CurGameData.StageBenediction;
 
-        GameManager.OutGameData.SetNPCQuest();
         string json = JsonUtility.ToJson(newData, true);
 
         File.WriteAllText(path, EncryptAndDecrypt(json));
@@ -156,7 +153,7 @@ public class SaveController : MonoBehaviour
             for (int i = 0; i < savedFallenUnitList.Count; i++)
             {
                 DeckUnit fallenUnit = savedFallenUnitList[i];
-                if (deckUnit.Equals(fallenUnit))
+                if (deckUnit.IsEqual(fallenUnit))
                 {
                     savedFallenUnitList[i] = deckUnit;
                     //break;
@@ -170,7 +167,6 @@ public class SaveController : MonoBehaviour
         GameManager.Data.GameData.DarkEssence = loadData.DarkEssence;
         GameManager.Data.GameData.PlayerHP = loadData.PlayerHP;
         GameManager.Data.GameData.Progress = loadData.ProgressData;
-        GameManager.Data.GameData.NpcQuest = loadData.NpcQuestData;
         GameManager.Data.StageAct = loadData.StageAct;
         GameManager.Data.GameData.StageBenediction = loadData.StageBenediction;
     }

@@ -76,9 +76,9 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
             _disabledStigmataTransferButton.SetActive(!canStigmataTransfer);
         }
 
-        Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.StigmaQuest}");
+        Debug.Log($"횟수: {GameManager.OutGameData.GetNPCQuest().StigmaQuest}");
 
-        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 7.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.OutGameData.GetNPCQuest().StigmaQuest / 7.5f), 4);
 
         if (GameManager.OutGameData.GetVisitStigma() == false && questLevel != 4)
         {
@@ -248,7 +248,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         {
             //성흔 부여일때
             BestowalStigmata(stigmata);
-            GameManager.Data.GameData.NpcQuest.StigmaQuest++;
+            GameManager.OutGameData.GetNPCQuest().StigmaQuest++;
         }
         else
         {
@@ -339,7 +339,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         }
         else
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.StigmaQuest / 7.5f);
+            int questLevel = (int)(GameManager.OutGameData.GetNPCQuest().StigmaQuest / 7.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"낙인소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }

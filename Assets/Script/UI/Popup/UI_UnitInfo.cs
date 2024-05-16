@@ -139,8 +139,9 @@ public class UI_UnitInfo : UI_Popup
                 ui.EnableUI(false);
         }
 
+        int createUpgradeCount = (GameManager.OutGameData.IsUnlockedItem(12)) ? 3 : 2;
         List<Upgrade> upgrades = _unit.DeckUnitUpgrade;
-        for (int i = 0; i < _unit.MaxUpgradeCount; i++)
+        for (int i = 0; i < createUpgradeCount; i++)
         {
             UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
             if (i < upgrades.Count)

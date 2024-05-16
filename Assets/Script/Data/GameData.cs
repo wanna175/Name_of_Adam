@@ -14,7 +14,6 @@ public class GameData : ScriptableObject
     public bool IsVisitStigma = false;
     public bool IsVisitDarkShop = false;
     public Progress Progress;
-    public NPCQuest NpcQuest;
     public Vector3 StageBenediction;
 }
 

@@ -62,9 +62,9 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     private void Init()
     {
 
-        Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.DarkshopQuest}");
+        Debug.Log($"횟수: {GameManager.OutGameData.GetNPCQuest().DarkshopQuest}");
 
-        int questLevel = Mathf.Min((int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 12.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.OutGameData.GetNPCQuest().DarkshopQuest / 12.5f), 4);
 
         if (GameManager.OutGameData.GetVisitDarkshop() == false && questLevel != 4)
         {
@@ -310,7 +310,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else if (_revertUnits.Count != 0)
         {
-            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence);
+            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence * _revertUnits.Count);
             foreach (DeckUnit delunit in _revertUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
@@ -343,7 +343,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else 
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 12.5f);
+            int questLevel = (int)(GameManager.OutGameData.GetNPCQuest().DarkshopQuest / 12.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"탕녀_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
