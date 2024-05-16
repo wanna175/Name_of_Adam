@@ -90,7 +90,7 @@ public class MainSceneController : MonoBehaviour
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.Data.HallDeckSet();
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false);
+        GameManager.UI.ShowPopup<UI_MyDeck>().Init();
     }
 
     public void OptionButton()
@@ -130,6 +130,16 @@ public class MainSceneController : MonoBehaviour
         {
             SceneChanger.SceneChange("CutScene");
         }
+    }
+
+    public void DiscordButton()
+    {
+        Application.OpenURL("https://discord.com/invite/DhN6RRYxy5");
+    }
+
+    public void XButton()
+    {
+        Application.OpenURL("https://x.com/Revelatio_");
     }
 
     public void ExitButton()

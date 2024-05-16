@@ -41,6 +41,10 @@ public class LocaleManager : MonoBehaviour
                 if (GameManager.OutGameData.IsUnlockedItem(64))
                     info += "_Up";
                 break;
+            case 8:
+                if (GameManager.OutGameData.IsUnlockedItem(72))
+                    info += "_Up";
+                break;
         }
 
         return GetLocalizedPlayerSkillInfo(info);
