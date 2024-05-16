@@ -19,10 +19,6 @@ MonoBehaviour:
     m_Key: Select.
     m_Metadata:
       m_Items: []
-  - m_Id: 189452685312
-    m_Key: Upgrade
-    m_Metadata:
-      m_Items: []
   - m_Id: 227742486528
     m_Key: Heal faith
     m_Metadata:
@@ -67,24 +63,12 @@ MonoBehaviour:
     m_Key: Select a unit to receive as a reward.
     m_Metadata:
       m_Items: []
-  - m_Id: 2927087455473664
-    m_Key: Stigmata Bestowal
-    m_Metadata:
-      m_Items: []
   - m_Id: 2927200231919616
     m_Key: Stigmata Transfer
     m_Metadata:
       m_Items: []
-  - m_Id: 2931107607777280
-    m_Key: Revert Unit
-    m_Metadata:
-      m_Items: []
   - m_Id: 2931125311934464
     m_Key: Corruption Stigmata Bestowal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2931150150602752
-    m_Key: Apostle Creation
     m_Metadata:
       m_Items: []
   - m_Id: 2968269602590720
@@ -117,6 +101,42 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 9460638387335168
     m_Key: Full Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32301871560192000
+    m_Key: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32301906284834816
+    m_Key: Upgrade_Corrupt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32302655819542528
+    m_Key: Stigmata Bestowal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32302748144562176
+    m_Key: Stigmata Bestowal_Corrupt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32305284532465664
+    m_Key: Revert Unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32305303109038080
+    m_Key: Revert Unit_Corrupt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32341507846238208
+    m_Key: Apostle Creation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32341523792982016
+    m_Key: Corruption Stigmata Bestowald
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32349076962734080
+    m_Key: Corruption Stigmata Bestowal_Corrupt
     m_Metadata:
       m_Items: []
   m_Metadata:
