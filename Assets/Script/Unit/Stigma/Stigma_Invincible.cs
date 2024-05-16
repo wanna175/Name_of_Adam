@@ -9,10 +9,5 @@ public class Stigma_Invincible : Stigma
 
         Buff_Invincible invincible = new();
         caster.SetBuff(invincible);
-
-        if (Tier == StigmaTier.Tier2)
-        {
-            caster.SetBuff(invincible);
-        }
     }
 }

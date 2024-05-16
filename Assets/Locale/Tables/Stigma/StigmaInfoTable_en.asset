@@ -120,22 +120,8 @@ MonoBehaviour:
       Withstands once with 1 health, when reaching death.)'
     m_Metadata:
       m_Items: []
-  - m_Id: 2705945587712
-    m_Localized: 'Upon summoning, Gains <b>Immortality<b> for 2 times.
-
-      (<b>Immortality<b>:
-      Withstands once with 1 health, when reaching death.)'
-    m_Metadata:
-      m_Items: []
   - m_Id: 2745237827584
     m_Localized: 'Upon summoning, Gains <b>Invincibility</b> for 1 times.
-
-      (<b>Invincibility</b>:
-      Invalidates damage.)'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2856676290560
-    m_Localized: 'Upon summoning, Gains <b>Invincibility</b> for 2 times.
 
       (<b>Invincibility</b>:
       Invalidates damage.)'
