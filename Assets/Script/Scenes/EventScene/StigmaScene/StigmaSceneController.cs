@@ -16,6 +16,9 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
 
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
+
+    [SerializeField] private TextMeshProUGUI _stigmaBestowalButtonText;
+
     private UI_Conversation _uiConversation;
 
     private readonly int[] enterDialogNums = { 3, 2, 3, 3, 3 };
@@ -96,6 +99,11 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
                 _isNPCFall = true;
             }
         }
+
+        if (_isNPCFall)
+            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal_Corrupt"));
+        else
+            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal"));
 
         for (int i = 0; i < 3; i++)
         {

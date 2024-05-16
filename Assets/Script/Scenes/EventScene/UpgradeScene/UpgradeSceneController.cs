@@ -18,6 +18,8 @@ public class UpgradeSceneController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
 
+    [SerializeField] private TextMeshProUGUI _upgradeButtonText;
+
     private List<Script> _scripts = new();
     private UI_Conversation _conversationUI;
 
@@ -65,6 +67,11 @@ public class UpgradeSceneController : MonoBehaviour
                 _isNPCFall = true;
             }
         }
+
+        if (_isNPCFall)
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade_Corrupt"));
+        else
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade"));
 
         for (int i = 0; i < 3; i++)
         {
