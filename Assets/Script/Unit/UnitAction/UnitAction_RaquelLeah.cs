@@ -17,10 +17,12 @@ public class UnitAction_RaquelLeah : UnitAction
         {
             List<BattleUnit> units = BattleManager.Field.GetArroundUnits(attackUnit.Location, attackUnit.Team == Team.Player ? Team.Enemy : Team.Player);
             BattleManager.Instance.AttackStart(attackUnit, units.Distinct().ToList());
+            BattleManager.Instance.PlayAfterCoroutine(() => GameManager.Sound.Play("Character/" + _owner.Data.ID + "/Leah_Attack"), 0.65f);
         }
         else 
         {
             BattleManager.Instance.AttackStart(attackUnit, hits);
+            BattleManager.Instance.PlayAfterCoroutine(() => GameManager.Sound.Play("Character/" + _owner.Data.ID + "/Requel_Attack"), 1.0f);
         }
 
         return true;
