@@ -236,6 +236,9 @@ MonoBehaviour:
   - m_Id: 1304919460868096
     m_Localized: 'Upon summoning, gains <b>Karma</b> for 3 times.
 
+      This unit
+      does not edified if all faith is lost, instead it dies.
+
       (<b>Karma</b>:
       When attacked, reduces the faith of the attacking enemy unit by 1.)'
     m_Metadata:
@@ -267,6 +270,9 @@ MonoBehaviour:
   - m_Id: 1305124482641920
     m_Localized: 'Upon summoning, Gains <b>Malevolence</b> for 2 times.
 
+      This
+      unit does not edified if all faith is lost, instead it dies.
+
       (<b>Malevolence</b>:
       Upon attacking, reduces the enemy''s faith by 1)'
     m_Metadata:
@@ -288,6 +294,9 @@ MonoBehaviour:
   - m_Id: 1305214752452608
     m_Localized: 'Upon summoning, Gains <b>Malevolence</b> for 1 times and returns
       to the deck after attacking.
+
+      This unit does not edified if all faith
+      is lost, instead it dies.
 
       (<b>Malevolence</b>: Upon attacking, reduces
       the enemy''s faith by 1)'
@@ -311,6 +320,9 @@ MonoBehaviour:
   - m_Id: 1305281299279872
     m_Localized: 'Upon summoning, summon servant 2 tile ahead, after that this unit
       and servant gain <b>Malevolence</b> for 1 times.
+
+      This unit does not
+      edified if all faith is lost, instead it dies.
 
       (<b>Malevolence</b>:
       Upon attacking, reduces the enemy''s faith by 1)'
