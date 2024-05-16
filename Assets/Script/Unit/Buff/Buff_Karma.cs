@@ -9,11 +9,11 @@ public class Buff_Karma : Buff
 
         _name = "Karma";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Malevolence_Sprite");
 
         _description = "Karma Info";
 
-        _count = 2;
+        _count = 3;
 
         _countDownTiming = ActiveTiming.AFTER_ATTACKED;
 

@@ -15,11 +15,11 @@ MonoBehaviour:
   _rawStat:
     MaxHP: 20
     CurrentHP: 20
-    ATK: 10
+    ATK: 5
     SPD: 20
     FallCurrentCount: 0
     FallMaxCount: 3
-    ManaCost: 60
+    ManaCost: 40
   _uniqueStigma:
   - {fileID: -7328026603544270719, guid: 2e3ccb2560a3b684dbae583d1d5a8815, type: 3}
   _id: "\uC7A5\uC758\uC0AC"
