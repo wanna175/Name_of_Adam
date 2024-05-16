@@ -21,7 +21,7 @@ MonoBehaviour:
     FallMaxCount: 2
     ManaCost: 30
   _uniqueStigma:
-  - {fileID: 7102870964502367150, guid: 4303cf1cc4478e748b9f7a9177e73e37, type: 3}
+  - {fileID: 4460646292437946552, guid: 768f813894fbc864fae7b9f724537773, type: 3}
   _id: "\uAD6C\uC6D0\uC790\uC758_\uC218\uB140"
   _name: Savior's Nun
   _description: 
