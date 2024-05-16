@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2031359805672320450}
   - component: {fileID: 6822439255809191265}
   m_Layer: 0
-  m_Name: "Stigma_Immortal\u2160"
+  m_Name: Stigma_Immortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stigmaEnum: 15
-  _name: Immortality I
+  _name: Immortality
   _sprite_28: {fileID: 21300000, guid: e6c25ec2655b40b42a62a92a1d1d1fb8, type: 3}
   _sprite_88: {fileID: 21300000, guid: 92a454b61b0fede4587eff2e90bbbf9f, type: 3}
   _sprite_164: {fileID: 21300000, guid: 0caf7616d3cdad24089eef3a0b5ae8dd, type: 3}
-  _description: Immortality I Info
+  _description: Immortality Info
   _activeTiming: 2
-  _tier: 0
+  _tier: 1
   _isLock: 0

@@ -91,19 +91,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137394207387648
-    m_Localized: "\uBD88\uC0AC I"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137444568395776
-    m_Localized: "\uBD88\uC0AC II"
+    m_Localized: "\uBD88\uC0AC"
     m_Metadata:
       m_Items: []
   - m_Id: 137491657846784
-    m_Localized: "\uBB34\uC801 I"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137710671818752
-    m_Localized: "\uBB34\uC801 II"
+    m_Localized: "\uBB34\uC801"
     m_Metadata:
       m_Items: []
   - m_Id: 137737045602304

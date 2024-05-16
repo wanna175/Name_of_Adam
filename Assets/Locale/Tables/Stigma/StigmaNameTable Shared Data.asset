@@ -88,19 +88,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137394207387648
-    m_Key: Immortality I
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137444568395776
-    m_Key: Immortality II
+    m_Key: Immortality
     m_Metadata:
       m_Items: []
   - m_Id: 137491657846784
-    m_Key: Invinciblity I
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137710671818752
-    m_Key: Invinciblity II
+    m_Key: Invinciblity
     m_Metadata:
       m_Items: []
   - m_Id: 137737045602304
