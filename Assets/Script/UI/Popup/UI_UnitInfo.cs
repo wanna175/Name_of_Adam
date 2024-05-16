@@ -209,7 +209,13 @@ public class UI_UnitInfo : UI_Popup
                 case CurrentEvent.Stigmata_Select:
                     if (_unit.GetStigmaCount() == 3)
                     {
-                        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("StigmaMax", () => _onSelect(_unit));
+                        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("StigmaMax", () =>
+                        {
+                            _onSelect(_unit);
+                            _quitButton.SetActive(false);
+                            _selectButton.SetActive(false);
+                            _eventButton.SetActive(true);
+                        });
                         return;
                     }
                     break;
@@ -217,7 +223,13 @@ public class UI_UnitInfo : UI_Popup
                 case CurrentEvent.Upgrade_Select:
                     if (_unit.DeckUnitUpgrade.Count == 3 || (_unit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
                     {
-                        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("UpgradeMax", () => _onSelect(_unit));
+                        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("UpgradeMax", () =>
+                        {
+                            _onSelect(_unit);
+                            _quitButton.SetActive(false);
+                            _selectButton.SetActive(false);
+                            _eventButton.SetActive(true);
+                        });
                         return;
                     }
                     break;
@@ -231,8 +243,6 @@ public class UI_UnitInfo : UI_Popup
             _quitButton.SetActive(false);
             _selectButton.SetActive(false);
             _eventButton.SetActive(true);
-            
-            //선택하기 버튼 없애고, 껏다켯다 버튼 만든다.
         }
     }
 
