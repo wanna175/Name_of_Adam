@@ -310,7 +310,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else if (_revertUnits.Count != 0)
         {
-            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence);
+            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence * _revertUnits.Count);
             foreach (DeckUnit delunit in _revertUnits)
                 GameManager.Data.RemoveDeckUnit(delunit);
         }
