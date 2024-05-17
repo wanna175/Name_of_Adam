@@ -182,8 +182,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4198899707904
-    m_Localized: Upon attacking when the health of this unit is below half, reduces
-      the enemy's faith by 1
+    m_Localized: Upon attacking when the health of enemy unit is full, reduces the
+      enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4454450262016
