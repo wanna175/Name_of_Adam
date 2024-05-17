@@ -512,12 +512,10 @@ public enum CurrentEvent
     Stigmata_Give,
     Stigmata_Receive,
     Stigmata_Full_Exception,
-    
-    Corrupt_Stigmata_Select,
     Unit_Restoration_Select,
 
     Complete_Upgrade,
     Complete_Heal_Faith,
     Complate_Stigmata,
-    Complate_Apostle,
+    COMPLETE_HAELOT
 };
