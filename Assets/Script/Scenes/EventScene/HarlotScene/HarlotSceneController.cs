@@ -213,7 +213,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
             if (_isDarkEssenceUsed == false)
             {
                 _isDarkEssenceUsed = true;
-                GameManager.Data.DarkEssenseChage(_stigmataBestowalDarkEssence);
+                GameManager.Data.DarkEssenseChage(-_stigmataBestowalDarkEssence);
             }
 
             UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
