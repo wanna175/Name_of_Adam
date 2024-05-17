@@ -187,7 +187,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
 
     public void OnSelectStigmataTransferReceiver(DeckUnit unit)
     {
-        if (unit.CheckStigma(_transferStigmata.StigmaEnum) == true)
+        if (unit.CheckStigma(_transferStigmata.StigmaEnum, _transferStigmata.Tier))
         {
             GameManager.UI.ShowPopup<UI_SystemInfo>().Init("AlreadyExistStigmataInfo", "AlreadyExistStigmataTooltip", () => { GameManager.UI.ClosePopup(); });
             return;
