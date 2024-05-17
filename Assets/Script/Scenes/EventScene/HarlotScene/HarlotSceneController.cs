@@ -152,7 +152,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
         unitInfo.SetUnit(originalUnit);
-        unitInfo.Init(OnApostleSelect, CurrentEvent.COMPLETE_HAELOT, OnQuitClick);
+        unitInfo.Init(OnApostleSelect, CurrentEvent.Complate_Apostle, OnQuitClick);
     }
 
     public void OnApostleSelect(DeckUnit unit)
@@ -191,7 +191,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
         myDeck.Init();
-        myDeck.EventInit(OnSelectStigmataBestowalUnit, CurrentEvent.Stigmata_Select, _selectMenuUI);
+        myDeck.EventInit(OnSelectStigmataBestowalUnit, CurrentEvent.Corrupt_Stigmata_Select, _selectMenuUI);
     }
 
     public void UnitStigmataFull()

@@ -104,7 +104,8 @@ public class UI_PlayerSkill : UI_Scene
         for (int i = 0; i < 3; i++)
         {
             if (BattleManager.Mana.CanUseMana(_currentCardList[i].GetSkill().GetManaCost()) && 
-                GameManager.Data.CanUseDarkEssense(_currentCardList[i].GetSkill().GetDarkEssenceCost()))
+                GameManager.Data.CanUseDarkEssense(_currentCardList[i].GetSkill().GetDarkEssenceCost()) &&
+                !Used)
             {
                 _currentCardList[i].ChangeInable(false);
             }
