@@ -42,32 +42,22 @@ public class MainSceneController : MonoBehaviour
         else
         {
             GameManager.Data.DeckClear();
-            GameManager.Data.HallDeckSet();
-            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
-            Destroy(GameManager.Instance.gameObject);
-
-            GameManager.SaveManager.DeleteSaveData();
+            GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-
-            /*if (GameManager.OutGameData.IsGameOverCheck()==false)
-            {
-                //npc관련 데이터 초기화
-                GameManager.OutGameData.ResetNPCQuest();
-            }
-            else
-            {
-                GameManager.OutGameData.SetIsGameOverCheck(false);
-            }*/
 
             if (GameManager.OutGameData.IsTutorialClear())
             {
-                GameManager.Data.HallSelectedDeckSet();
+                GameManager.Data.HallDeckSet();
                 SceneChanger.SceneChange("DifficultySelectScene");
             }
             else
             {
+                GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
                 SceneChanger.SceneChangeToCutScene(CutSceneType.Main);
             }
+
+            GameManager.SaveManager.DeleteSaveData();
+            Destroy(GameManager.Instance.gameObject);
         }
     }
 
@@ -89,7 +79,7 @@ public class MainSceneController : MonoBehaviour
     public void HallButton()
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.Data.HallDeckSet();
+        GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
         GameManager.UI.ShowPopup<UI_MyDeck>().Init();
     }
 
@@ -104,32 +94,24 @@ public class MainSceneController : MonoBehaviour
     public void ResetAlertYesButton()
     {
         // 게임오브젝트를 생성해서 보내주기 & 생성한 오브젝트가 맵 선택 씬에 도달했을 때 활성화되서 튜토 이미지 띄우고 자신 삭제하기
-        GameManager.Data.DeckClear();
-        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
-        Destroy(GameManager.Instance.gameObject);
 
-        GameManager.SaveManager.DeleteSaveData();
+        GameManager.Data.DeckClear();
+        GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        /*if (GameManager.OutGameData.IsGameOverCheck() == false)
-        {
-            //npc관련 데이터 초기화
-            GameManager.OutGameData.ResetNPCQuest();
-        }
-        else
-        {
-            GameManager.OutGameData.SetIsGameOverCheck(false);
-        }*/
 
         if (GameManager.OutGameData.IsTutorialClear())
         {
             GameManager.Data.HallDeckSet();
-            GameManager.Data.HallSelectedDeckSet();
             SceneChanger.SceneChange("DifficultySelectScene");
         }
         else
         {
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
             SceneChanger.SceneChange("CutScene");
         }
+
+        GameManager.SaveManager.DeleteSaveData();
+        Destroy(GameManager.Instance.gameObject);
     }
 
     public void DiscordButton()

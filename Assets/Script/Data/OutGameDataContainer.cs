@@ -49,11 +49,15 @@ public class HallUnit
     public DeckUnit ConvertToDeckUnit()
     {
         DeckUnit deckUnit = new DeckUnit();
+
         deckUnit.PrivateKey = PrivateKey;
+        deckUnit.HallUnitID = ID;
+        deckUnit.IsMainDeck = IsMainDeck;
         deckUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{UnitName}");
         deckUnit.DeckUnitUpgradeStat = UpgradedStat;
         deckUnit.SetStigmaSaveData(Stigmata);
         deckUnit.SetUpgrade(Upgrades);
+
         return deckUnit;
     }
 }
@@ -164,21 +168,12 @@ public class OutGameDataContainer : MonoBehaviour
     {
         List<DeckUnit> HallList = new();
 
-        foreach (HallUnit unit in _data.HallUnit)
+        foreach (HallUnit hallUnit in _data.HallUnit)
         {
-            DeckUnit deckUnit = new DeckUnit();
-
-            deckUnit.PrivateKey = unit.PrivateKey;
-            deckUnit.HallUnitID = unit.ID;
-            deckUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{unit.UnitName}");
-            deckUnit.DeckUnitUpgradeStat = unit.UpgradedStat;
-            deckUnit.IsMainDeck = unit.IsMainDeck;
-
-            deckUnit.SetStigmaSaveData(unit.Stigmata);
-            deckUnit.SetUpgrade(unit.Upgrades);
-
+            DeckUnit deckUnit = hallUnit.ConvertToDeckUnit();
             HallList.Add(deckUnit);
         }
+
         return HallList;
     }
 
@@ -282,21 +277,13 @@ public class OutGameDataContainer : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < Mathf.Infinity; i++)
-        {
-            if (_data.HallUnit.Find(x => x.ID == i) == null)
-            {
-                coverUnit.ID = i;
-                break;
-            }
-        }
-
         Debug.Log($"{unit.Data.Name} Unit Get");
 
         unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
 
         coverUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
         coverUnit.IsMainDeck = true;
+        coverUnit.ID = unit.HallUnitID;
         coverUnit.Stigmata = unit.GetStigmaSaveData();
         coverUnit.Upgrades = unit.GetUpgradeData();
 

@@ -27,21 +27,19 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public Sprite NormalImage;
     public Sprite EliteImage;
 
-    void Start()
-    {
-        Init();
-    }
-
     public void Init()
     {
         _hallUnitList = GameManager.OutGameData.FindHallUnitList();
         _mainDeck = GameManager.Data.GameDataMain.DeckUnits;
 
+        // _mainDeck을 HallUnitID 순서대로 정렬
+        _mainDeck.Sort((x, y) => x.HallUnitID.CompareTo(y.HallUnitID));
+
         _stigmaImages = new List<Image>();
         foreach (var frame in _stigmaFrames)
             _stigmaImages.Add(frame.GetComponentsInChildren<Image>()[1]);
 
-        if (_mainDeck.Count <= HallUnitID)
+        if (_mainDeck.Count <= HallUnitID || _mainDeck[HallUnitID].IsMainDeck == false)
         {
             _isEnable = false;
             DisableUI();
@@ -135,18 +133,31 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             GameManager.Data.GameDataMain.DeckUnits.Add(unit);
         }
 
+        DeckUnit beforeDeckUnit = GameManager.Data.GetDeck().Find(x => x.HallUnitID == HallUnitID);
+        HallUnit beforeHallUnit = _hallUnitList.Find(x => x.ID == beforeDeckUnit.HallUnitID);
+
+        DeckUnit afterDeckUnit = unit;
+        HallUnit afterHallUnit = _hallUnitList.Find(x => x.ID == afterDeckUnit.HallUnitID);
+
+        // GameData Deck 수정
+        beforeDeckUnit.IsMainDeck = false;
+        beforeHallUnit.IsMainDeck = false;
+        beforeDeckUnit.HallUnitID = afterDeckUnit.HallUnitID;
+        beforeHallUnit.ID = afterHallUnit.ID;
+
+        afterDeckUnit.IsMainDeck = true;
+        afterHallUnit.IsMainDeck = true;
+        afterDeckUnit.HallUnitID = HallUnitID;
+        afterHallUnit.ID = HallUnitID;
+
+        // GameDataMain Deck 수정
         _mainDeck[HallUnitID].IsMainDeck = false;
-        _hallUnitList[_mainDeck[HallUnitID].HallUnitID].IsMainDeck = false;
+        _mainDeck[HallUnitID].HallUnitID = afterDeckUnit.HallUnitID;
         _mainDeck[HallUnitID] = unit;
         _mainDeck[HallUnitID].IsMainDeck = true;
-        _hallUnitList[_mainDeck[HallUnitID].HallUnitID].IsMainDeck = true;
+        _mainDeck[HallUnitID].HallUnitID = HallUnitID;
 
-        foreach (Stigma stigma in unit.GetStigma())
-        {
-            _mainDeck[HallUnitID].AddStigma(stigma);
-        }
-
-        if(unit.Data.Rarity == Rarity.Normal)
+        if (unit.Data.Rarity == Rarity.Normal)
         {
             _frameImage.sprite = NormalImage;
         }

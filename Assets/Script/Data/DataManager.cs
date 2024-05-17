@@ -62,7 +62,10 @@ public class DataManager : MonoBehaviour
         GameData.IsVisitStigma = GameDataMain.IsVisitStigma;
         GameData.IsVisitDarkShop = GameDataMain.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
-        NPCQuestSet();
+
+        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
+        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
+        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
     }
 
     public void DeckClear()
@@ -109,41 +112,16 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void HallSelectedDeckSet()
-    {
-        List<DeckUnit> EliteHallHandDeck = new();
-        List<DeckUnit> NormalHallHandDeck = new();
-
-        foreach (DeckUnit unit in GameData.DeckUnits)
-        {
-            if (unit.IsMainDeck)
-            {
-                if(unit.Data.Rarity != Rarity.Normal)
-                {
-                    EliteHallHandDeck.Add(unit);
-                }
-                else
-                {
-                    NormalHallHandDeck.Add(unit);
-                }
-            }
-        }
-
-        EliteHallHandDeck.AddRange(NormalHallHandDeck);
-
-        GameDataMain.DeckUnits = EliteHallHandDeck;
-    }
-
     public void HallDeckSet()
     {
-        GameData.DeckUnits = GameManager.OutGameData.SetHallDeck();
-    }
-
-    public void NPCQuestSet()
-    {
-        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
-        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
-        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
+        GameDataMain.DeckUnits.Clear();
+        foreach (var hallUnit in GameManager.OutGameData.FindHallUnitList())
+        {
+            if (hallUnit.IsMainDeck)
+            {
+                GameDataMain.DeckUnits.Add(hallUnit.ConvertToDeckUnit());
+            }
+        }
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
