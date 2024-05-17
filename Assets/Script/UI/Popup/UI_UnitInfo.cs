@@ -56,7 +56,7 @@ public class UI_UnitInfo : UI_Popup
         _currentEvent = currentEvent;
 
         if (_currentEvent == CurrentEvent.Complete_Upgrade || _currentEvent == CurrentEvent.Complete_Heal_Faith
-            || _currentEvent == CurrentEvent.Complate_Stigmata || _currentEvent == CurrentEvent.COMPLETE_HAELOT)
+            || _currentEvent == CurrentEvent.Complate_Stigmata || _currentEvent == CurrentEvent.Complate_Apostle)
         {
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
@@ -268,7 +268,7 @@ public class UI_UnitInfo : UI_Popup
 
     public void CompeleteButtonClick()
     {
-        if (_currentEvent == CurrentEvent.COMPLETE_HAELOT && _onSelect != null)
+        if (_currentEvent == CurrentEvent.Complate_Apostle && _onSelect != null)
             _onSelect(_unit);
         gameObject.SetActive(false);
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");

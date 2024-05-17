@@ -61,7 +61,7 @@ public class UI_MyDeck : UI_Popup
         {
             titleText = "Select a unit to restore faith.";
         }
-        else if (_currentEvent == CurrentEvent.Stigmata_Select)
+        else if (_currentEvent == CurrentEvent.Stigmata_Select || _currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
         {
             titleText = "Select a unit to bestow stigmata.";
         }
@@ -212,6 +212,11 @@ public class UI_MyDeck : UI_Popup
             {
                 AddCard(_playerDeck[i]);
                 _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
+            }
+            else if (currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
+            {
+                AddCard(_playerDeck[i]);
+                _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].CheckHaveAnyCorruptStigmata());
             }
             else
             {

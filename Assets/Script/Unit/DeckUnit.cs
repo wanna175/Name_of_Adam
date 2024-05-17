@@ -72,6 +72,17 @@ public class DeckUnit
         return false;
     }
 
+    public bool CheckHaveAnyCorruptStigmata()
+    {
+        foreach (Stigma stigmata in GetStigma())
+        {
+            if (stigmata.Tier == StigmaTier.Harlot)
+                return true;
+        }
+
+        return false;
+    }
+
     public bool CheckUpgrade(Upgrade findUpgrade)
     {
         foreach (Upgrade upgrade in DeckUnitUpgrade)
@@ -169,7 +180,6 @@ public class DeckUnit
     }
 
     public void ClearStigma() => _stigma.Clear();
-
 
     public int GetUnitSize()
     {
