@@ -216,7 +216,7 @@
       "Description": "Attack (ATK)\nHealth (HP)",
       "Image": "Red_Rare",
       "HP": "-12",
-      "ATK": "15",
+      "ATK": "12",
       "SPD": "0",
       "COST": "0"
     },
@@ -226,8 +226,8 @@
       "Name": "보석",
       "Description": "Attack (ATK)\nHealth (HP)\nCost (COST)",
       "Image": "Red_Rare",
-      "HP": "12",
-      "ATK": "12",
+      "HP": "10",
+      "ATK": "10",
       "SPD": "0",
       "COST": "20"
     },

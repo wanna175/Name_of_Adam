@@ -51,7 +51,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void ResetStigmataSelectButtons()
     {
-        if (!_isCanReset)
+        if (!_isCanReset || _stigmataController == null)
             return;
 
         List<Stigma> stigmaList = _stigmataController.ResetStigmataList(_targetUnit);
