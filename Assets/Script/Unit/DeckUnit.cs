@@ -61,11 +61,22 @@ public class DeckUnit
         //this.UnitID = GameManager.UnitIDController.GetID();
     }
 
-    public bool CheckStigma(StigmaEnum findStigma)
+    public bool CheckStigma(StigmaEnum findStigmata, StigmaTier? stigmataTier = null)
     {
-        foreach (Stigma stigma in GetStigma())
+        foreach (Stigma stigmata in GetStigma())
         {
-            if (findStigma == stigma.StigmaEnum)
+            if (findStigmata == stigmata.StigmaEnum && (stigmataTier == null || stigmataTier == stigmata.Tier))
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool CheckHaveAnyCorruptStigmata()
+    {
+        foreach (Stigma stigmata in GetStigma())
+        {
+            if (stigmata.Tier == StigmaTier.Harlot)
                 return true;
         }
 
