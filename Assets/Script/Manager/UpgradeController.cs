@@ -15,6 +15,8 @@ public class UpgradeController
         LoadUpgradeList();
     }
 
+    public readonly float[] UpgradeProbability = new float[] { 0.92f, 0.07f, 0.01f };
+
     private List<UpgradeData> _tier1UpgradeList = new();
     private List<UpgradeData> _tier2UpgradeList = new();
     private List<UpgradeData> _tier3UpgradeList = new();
@@ -168,25 +170,24 @@ public class UpgradeController
     public Upgrade GetRandomUpgrade()
     {
         UpgradeData upgrade = new();
-        List<int> probability = new() { 97, 84 };
-        int randNum;
+        int randIndex = RandomManager.GetElement(UpgradeProbability);
 
-        randNum = Random.Range(0, 100);
+        switch (randIndex)
+        {
+            case 0:
+                if (_tier1UpgradeList.Count > 0)
+                    upgrade = _tier1UpgradeList[Random.Range(0, _tier1UpgradeList.Count)];
+                break;
 
-        if (randNum >= probability[0])
-        {
-            if (_tier3UpgradeList.Count > 0)
-                upgrade = _tier3UpgradeList[Random.Range(0, _tier3UpgradeList.Count)];
-        }
-        else if (randNum >= probability[1])
-        {
-            if (_tier2UpgradeList.Count > 0)
-                upgrade = _tier2UpgradeList[Random.Range(0, _tier2UpgradeList.Count)];
-        }
-        else
-        {
-            if (_tier1UpgradeList.Count > 0)
-                upgrade = _tier1UpgradeList[Random.Range(0, _tier1UpgradeList.Count)];
+            case 1:
+                if (_tier2UpgradeList.Count > 0)
+                    upgrade = _tier2UpgradeList[Random.Range(0, _tier2UpgradeList.Count)];
+                break;
+
+            case 2:
+                if (_tier3UpgradeList.Count > 0)
+                    upgrade = _tier3UpgradeList[Random.Range(0, _tier3UpgradeList.Count)];
+                break;
         }
 
         return DataToUpgrade(upgrade);

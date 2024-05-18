@@ -11,6 +11,8 @@ public class StigmaController
         LoadStigmaList();
     }
 
+    public readonly float[] StigmaProbability = new float[] { 0.9f, 0.1f, 0f };
+
     private List<Stigma> _tier1StigmaList = new();
     private List<Stigma> _tier2StigmaList = new();
     private List<Stigma> _tier3StigmaList = new();
@@ -68,30 +70,24 @@ public class StigmaController
     }
 
     // probability는 { 99, 89 } 처럼 2개 인자를 보유
-    public Stigma GetRandomStigma(int[] probability)
+    public Stigma GetRandomStigma(float[] probability)
     {
-        Stigma stigma;
-        int randNum = Random.Range(0, 100);
+        Stigma stigma = null;
+        int randIndex = RandomManager.GetElement(probability);
 
-        /*
-        if (_tier3StigmaList.Count > 0 && randNum >= probability[0] )
+        switch (randIndex)
         {
-            stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
-        }현재 3티어 낙인은 없음
-        */
-        if (_tier2StigmaList.Count > 0 && randNum >= probability[1])
-        {
-            stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
-        }
-        else
-        {
-            stigma = _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
+            case 0: stigma = _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)]; break;
+            case 1: stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)]; break;
+            case 2: stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)]; break;
         }
 
+        if (stigma == null)
+            Debug.LogError("StigmaController.GetRandomStigma() : Stigma is null");
         return stigma;
     }
 
-    public Stigma GetRandomStigmaAsUnit(int[] probability, string unitName)
+    public Stigma GetRandomStigmaAsUnit(float[] probability, string unitName)
     {
         Stigma stigma;
 
@@ -110,7 +106,7 @@ public class StigmaController
 
         while (result.Count < stigmaCount)
         {
-            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(StigmaProbability, targetUnit.Data.name);
             if (!existStigma.Contains(stigma) && !result.Contains(stigma))
                 result.Add(stigma);
         }

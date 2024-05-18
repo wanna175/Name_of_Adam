@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
 
 
 [Serializable]
@@ -24,9 +25,26 @@ public class SaveUnit
 {
     public string PrivateKey;
     public string UnitDataID;
+    public int HallID;
+    public bool IsMainDeck;
     public Stat UnitStat;
     public List<StigmaSaveData> Stigmata; // 유닛에게 추가된 낙인
     public List<UpgradeData> Upgrades; // 유닛에게 추가된 강화
+
+    public DeckUnit ConventToDeckUnit()
+    {
+        DeckUnit deckUnit = new();
+
+        deckUnit.PrivateKey = PrivateKey;
+        deckUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{UnitDataID}");
+        deckUnit.DeckUnitUpgradeStat = UnitStat;
+        deckUnit.SetStigmaSaveData(Stigmata);
+        deckUnit.SetUpgrade(Upgrades);
+        deckUnit.HallUnitID = HallID;
+        deckUnit.IsMainDeck = IsMainDeck;
+
+        return deckUnit;
+    }
 }
 
 public class SaveController : MonoBehaviour
@@ -58,27 +76,13 @@ public class SaveController : MonoBehaviour
 
         foreach (DeckUnit unit in CurGameData.DeckUnits)
         {
-            SaveUnit saveUnit = new();
-
-            saveUnit.PrivateKey = unit.PrivateKey;
-            saveUnit.UnitDataID = unit.Data.ID;
-            saveUnit.UnitStat = unit.DeckUnitUpgradeStat;
-            saveUnit.Stigmata = unit.GetStigmaSaveData();
-            saveUnit.Upgrades = unit.GetUpgradeData();
-
+            SaveUnit saveUnit = unit.ConventToSaveUnit();
             saveDeckUnitList.Add(saveUnit);
         }
 
         foreach (DeckUnit unit in CurGameData.FallenUnits)
         {
-            SaveUnit saveUnit = new();
-
-            saveUnit.PrivateKey = unit.PrivateKey;
-            saveUnit.UnitDataID = unit.Data.ID;
-            saveUnit.UnitStat = unit.DeckUnitUpgradeStat;
-            saveUnit.Stigmata = unit.GetStigmaSaveData();
-            saveUnit.Upgrades = unit.GetUpgradeData();
-
+            SaveUnit saveUnit = unit.ConventToSaveUnit();
             saveFallenUnitList.Add(saveUnit);
         }
 
@@ -123,27 +127,13 @@ public class SaveController : MonoBehaviour
 
         foreach (SaveUnit saveUnit in loadData.DeckUnitData)
         {
-            DeckUnit deckunit = new DeckUnit();
-
-            deckunit.PrivateKey = saveUnit.PrivateKey;
-            deckunit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{saveUnit.UnitDataID}");
-            deckunit.DeckUnitUpgradeStat = saveUnit.UnitStat;
-            deckunit.SetStigmaSaveData(saveUnit.Stigmata);
-            deckunit.SetUpgrade(saveUnit.Upgrades);
-
+            DeckUnit deckunit = saveUnit.ConventToDeckUnit();
             savedDeckUnitList.Add(deckunit);
         }
 
         foreach (SaveUnit saveUnit in loadData.FallenUnitsData)
         {
-            DeckUnit deckunit = new DeckUnit();
-
-            deckunit.PrivateKey = saveUnit.PrivateKey;
-            deckunit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/{saveUnit.UnitDataID}");
-            deckunit.DeckUnitUpgradeStat = saveUnit.UnitStat;
-            deckunit.SetStigmaSaveData(saveUnit.Stigmata);
-            deckunit.SetUpgrade(saveUnit.Upgrades);
-
+            DeckUnit deckunit = saveUnit.ConventToDeckUnit();
             savedFallenUnitList.Add(deckunit);
         }
 

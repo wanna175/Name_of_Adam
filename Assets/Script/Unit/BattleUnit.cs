@@ -257,7 +257,7 @@ public class BattleUnit : MonoBehaviour
                 case "야나": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_YANA); break;
                 case "압바임": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_APPAIM); break;
                 case "바누엘": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_PHANUEL); break;
-                case "호루스": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_THESAVIOR); break;
+                case "구원자": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_THESAVIOR); break;
             }
         }
 

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UI_EliteReward : UI_Popup
 {
-    private readonly int[] probabilityAsStage = new int[] { 99, 89 };
-
     [SerializeField]
     private GameObject backPanel;
 
@@ -20,6 +18,7 @@ public class UI_EliteReward : UI_Popup
 
         DeckUnit deckUnit = new DeckUnit();
         deckUnit.Data = unitLists[unitNumber];
+        deckUnit.HallUnitID = -1;
 
         while (selectedUnitNumbers.Contains(unitNumber))
         {
@@ -46,7 +45,7 @@ public class UI_EliteReward : UI_Popup
 
         for (int i = 0; i < addStigmaNum; i++)
         {
-            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(probabilityAsStage, deckUnit.Data.name);
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(GameManager.Data.StigmaController.StigmaProbability, deckUnit.Data.name);
             deckUnit.AddStigma(stigma);
         }
     }

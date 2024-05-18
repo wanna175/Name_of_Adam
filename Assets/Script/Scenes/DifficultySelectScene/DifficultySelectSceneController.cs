@@ -15,13 +15,14 @@ public class DifficultySelectSceneController : MonoBehaviour
     public List<GameObject> Incarna_Card;
     public List<GameObject> Incarna_Info;
 
+    [SerializeField] UI_HallCard[] hallCards;
+
     private Incarna incarnaData;
-    private bool DifficultySelected;
-    private Color cardColor;
 
     void Start()
     {
         Init();
+
         GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         GameManager.Sound.SceneBGMPlay("DifficultySelectScene");
     }
@@ -32,10 +33,14 @@ public class DifficultySelectSceneController : MonoBehaviour
         UI_IncarnaSelect.SetActive(true);
         UI_HallSelect.SetActive(false);
         UI_ConfirmBtn.SetActive(false);
-        DifficultySelected = false;
 
         LockIncarna(61, 1);
         LockIncarna(71, 2);
+
+        foreach (UI_HallCard card in hallCards)
+        {
+            card.Init();
+        }
     }
 
     public void Confirm()
