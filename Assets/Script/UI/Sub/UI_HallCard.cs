@@ -128,23 +128,27 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     //������ ���� GameDataMain �� ����ǰ� �ϱ�
     public void OnSelect(DeckUnit unit)
     {
-        if (_mainDeck.Count <= HallUnitID)
-        {
-            GameManager.Data.GameDataMain.DeckUnits.Add(unit);
-        }
-
-        DeckUnit beforeDeckUnit = GameManager.Data.GetDeck().Find(x => x.HallUnitID == HallUnitID);
-        HallUnit beforeHallUnit = _hallUnitList.Find(x => x.ID == beforeDeckUnit.HallUnitID);
-
         DeckUnit afterDeckUnit = unit;
         HallUnit afterHallUnit = _hallUnitList.Find(x => x.ID == afterDeckUnit.HallUnitID);
 
-        // GameData Deck 수정
-        beforeDeckUnit.IsMainDeck = false;
-        beforeHallUnit.IsMainDeck = false;
-        beforeDeckUnit.HallUnitID = afterDeckUnit.HallUnitID;
-        beforeHallUnit.ID = afterHallUnit.ID;
+        if (_mainDeck.Count <= HallUnitID)
+        {
+            // 신규 유닛이면 추가
+            GameManager.Data.GameDataMain.DeckUnits.Add(unit);
+        }
+        else
+        {
+            // 이전 유닛이 있다면 스왑
+            DeckUnit beforeDeckUnit = GameManager.Data.GetDeck().Find(x => x.HallUnitID == HallUnitID);
+            HallUnit beforeHallUnit = _hallUnitList.Find(x => x.ID == beforeDeckUnit.HallUnitID);
 
+            beforeDeckUnit.IsMainDeck = false;
+            beforeHallUnit.IsMainDeck = false;
+            beforeDeckUnit.HallUnitID = afterDeckUnit.HallUnitID;
+            beforeHallUnit.ID = afterHallUnit.ID;
+        }
+
+        // GameData Deck 수정
         afterDeckUnit.IsMainDeck = true;
         afterHallUnit.IsMainDeck = true;
         afterDeckUnit.HallUnitID = HallUnitID;

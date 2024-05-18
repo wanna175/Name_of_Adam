@@ -59,7 +59,6 @@ public class DeckUnit
     {
         this.UnitID = -1;
         this.HallUnitID = -1;
-        //this.UnitID = GameManager.UnitIDController.GetID();
     }
 
     public bool CheckStigma(StigmaEnum findStigmata, StigmaTier? stigmataTier = null)
@@ -271,4 +270,19 @@ public class DeckUnit
 
     public bool IsEqual(DeckUnit another)
         => this.PrivateKey == another.PrivateKey;
+
+    public SaveUnit ConventToSaveUnit()
+    {
+        SaveUnit saveUnit = new();
+
+        saveUnit.PrivateKey = PrivateKey;
+        saveUnit.UnitDataID = Data.ID;
+        saveUnit.UnitStat = DeckUnitUpgradeStat;
+        saveUnit.Stigmata = GetStigmaSaveData();
+        saveUnit.Upgrades = GetUpgradeData();
+        saveUnit.HallID = HallUnitID;
+        saveUnit.IsMainDeck = IsMainDeck;
+
+        return saveUnit;
+    }
 }

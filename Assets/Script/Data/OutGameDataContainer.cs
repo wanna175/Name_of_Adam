@@ -227,23 +227,30 @@ public class OutGameDataContainer : MonoBehaviour
 
     public List<HallUnit> FindHallUnitList() => _data.HallUnit;
 
-    public void AddHallUnit(DeckUnit unit)
+    public int GetHallUnitID()
     {
-        HallUnit newUnit = new();
+        int hallUnitID = -1;
 
-        for (int i = 0; i < Mathf.Infinity; i++)
+        for (int i = 4; i < Mathf.Infinity; i++)
         {
             if (_data.HallUnit.Find(x => x.ID == i) == null)
             {
-                newUnit.ID = i;
+                hallUnitID = i;
                 break;
             }
         }
 
-        Debug.Log($"{unit.Data.Name} Unit Get");
+        return hallUnitID;
+    }
 
+    public void AddHallUnit(DeckUnit unit)
+    {
+        Debug.Log($"{unit.Data.Name} Unit Get");
         unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
 
+        HallUnit newUnit = new();
+
+        newUnit.ID = GetHallUnitID();
         newUnit.PrivateKey = unit.PrivateKey;
         newUnit.UnitName = unit.Data.ID;
         newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;

@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void Init()
+    private static void Init()
     {
         if (s_instance == null)
         {
@@ -178,6 +178,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             GameManager.OutGameData.SetProgressCoin(9999);
+
+            foreach (var unit in GameManager.OutGameData.FindHallUnitList())
+            {
+                Debug.Log($"Name: {unit.UnitName} / {unit.ID} - {unit.IsMainDeck}");
+            }
+
             //Steam.IncreaseAchievement(SteamAchievementType.Test);
         }
     }

@@ -18,6 +18,7 @@ public class UI_EliteReward : UI_Popup
 
         DeckUnit deckUnit = new DeckUnit();
         deckUnit.Data = unitLists[unitNumber];
+        deckUnit.HallUnitID = GameManager.OutGameData.GetHallUnitID();
 
         while (selectedUnitNumbers.Contains(unitNumber))
         {
