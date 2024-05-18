@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text _systemInfoText;
 
-    private bool _onGM = true;
+    private readonly bool _onGM = false;
 
-    private bool _onDebug = false;
+    private readonly bool _onDebug = false;
 
     void Awake()
     {
@@ -178,12 +178,6 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             GameManager.OutGameData.SetProgressCoin(9999);
-
-            foreach (var unit in GameManager.OutGameData.FindHallUnitList())
-            {
-                Debug.Log($"Name: {unit.UnitName} / {unit.ID} - {unit.IsMainDeck}");
-            }
-
             //Steam.IncreaseAchievement(SteamAchievementType.Test);
         }
     }

@@ -84,8 +84,6 @@ public class SteamClientManager : MonoBehaviour
 
     public void IncreaseAchievement(SteamAchievementType type)
     {
-        return;
-
         if (!SteamManager.Initialized)
         {
             GameManager.Instance.SetSystemInfoText($"Steam is not connected.");
