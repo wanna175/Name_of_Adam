@@ -146,20 +146,21 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             beforeHallUnit.IsMainDeck = false;
             beforeDeckUnit.HallUnitID = afterDeckUnit.HallUnitID;
             beforeHallUnit.ID = afterHallUnit.ID;
+
+            _mainDeck[HallUnitID].IsMainDeck = false;
+            _mainDeck[HallUnitID].HallUnitID = afterDeckUnit.HallUnitID;
         }
+
+        // GameDataMain Deck 수정
+        _mainDeck[HallUnitID] = unit;
+        _mainDeck[HallUnitID].IsMainDeck = true;
+        _mainDeck[HallUnitID].HallUnitID = HallUnitID;
 
         // GameData Deck 수정
         afterDeckUnit.IsMainDeck = true;
         afterHallUnit.IsMainDeck = true;
         afterDeckUnit.HallUnitID = HallUnitID;
         afterHallUnit.ID = HallUnitID;
-
-        // GameDataMain Deck 수정
-        _mainDeck[HallUnitID].IsMainDeck = false;
-        _mainDeck[HallUnitID].HallUnitID = afterDeckUnit.HallUnitID;
-        _mainDeck[HallUnitID] = unit;
-        _mainDeck[HallUnitID].IsMainDeck = true;
-        _mainDeck[HallUnitID].HallUnitID = HallUnitID;
 
         if (unit.Data.Rarity == Rarity.Normal)
         {

@@ -227,22 +227,6 @@ public class OutGameDataContainer : MonoBehaviour
 
     public List<HallUnit> FindHallUnitList() => _data.HallUnit;
 
-    public int GetHallUnitID()
-    {
-        int hallUnitID = -1;
-
-        for (int i = 4; i < Mathf.Infinity; i++)
-        {
-            if (_data.HallUnit.Find(x => x.ID == i) == null)
-            {
-                hallUnitID = i;
-                break;
-            }
-        }
-
-        return hallUnitID;
-    }
-
     public void AddHallUnit(DeckUnit unit)
     {
         Debug.Log($"{unit.Data.Name} Unit Get");
@@ -250,7 +234,7 @@ public class OutGameDataContainer : MonoBehaviour
 
         HallUnit newUnit = new();
 
-        newUnit.ID = GetHallUnitID();
+        newUnit.ID = GameManager.Data.GetHallUnitID();
         newUnit.PrivateKey = unit.PrivateKey;
         newUnit.UnitName = unit.Data.ID;
         newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
@@ -288,11 +272,12 @@ public class OutGameDataContainer : MonoBehaviour
 
         unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
 
-        coverUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
+        coverUnit.UnitName = unit.Data.ID;
         coverUnit.IsMainDeck = true;
         coverUnit.ID = unit.HallUnitID;
         coverUnit.Stigmata = unit.GetStigmaSaveData();
         coverUnit.Upgrades = unit.GetUpgradeData();
+        coverUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
 
         SaveData();
 

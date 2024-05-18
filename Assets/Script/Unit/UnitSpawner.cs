@@ -45,7 +45,7 @@ public class UnitSpawner : MonoBehaviour
             GameObject go = GetUnit();
             BattleUnit unit = go.GetComponent<BattleUnit>();
             unit.DeckUnit.Data = spawndata.unitData;
-            unit.DeckUnit.HallUnitID = GameManager.OutGameData.GetHallUnitID();
+            unit.DeckUnit.HallUnitID = -1;
 
             unit.Init(spawndata.team);
             unit.UnitSetting(spawndata.location);

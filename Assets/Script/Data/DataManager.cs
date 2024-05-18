@@ -112,6 +112,23 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public int GetHallUnitID()
+    {
+        int hallUnitID = -1;
+        List<HallUnit> hallUnits = GameManager.OutGameData.FindHallUnitList();
+
+        for (int i = 4; i < Mathf.Infinity; i++)
+        {
+            if (hallUnits.Find(x => x.ID == i) == null)
+            {
+                hallUnitID = i;
+                break;
+            }
+        }
+
+        return hallUnitID;
+    }
+
     public void HallDeckSet()
     {
         GameDataMain.DeckUnits.Clear();

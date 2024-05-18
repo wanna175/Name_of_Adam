@@ -51,7 +51,19 @@ public class DeckUnit
     public readonly int MaxStigmaCount = 3;
     private int _stigmaCount => _stigma.Count;
 
-    public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
+    [SerializeField] private int hallUnitID;
+    public int HallUnitID
+    {
+        get
+        {
+            return hallUnitID;
+        }
+        set
+        {
+            hallUnitID = value;
+        }
+    }
+
     public bool IsMainDeck = false;
     public bool CanSpawnInEnemyField => CheckStigma(StigmaEnum.Assasination);
     
