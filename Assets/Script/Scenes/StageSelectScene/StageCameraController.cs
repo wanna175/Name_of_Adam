@@ -56,18 +56,18 @@ public class StageCameraController : MonoBehaviour
 
     IEnumerator MapScanMove()
     {
-        if(GameManager.Data.Map.GetCurrentStage().Type == StageType.Tutorial && GameManager.Data.Map.CurrentTileID == 3)
+        if (GameManager.Data.StageAct == 2)
+        {
+            _topPosition = new Vector3(0, 16, -10);
+        }
+
+        if (GameManager.Data.Map.GetCurrentStage().Type == StageType.Tutorial && GameManager.Data.Map.CurrentTileID == 3)
         {
             _bottomPosition = new Vector3(0, 8, -10);
         }
         else if (GameManager.Data.Map.CurrentTileID != 0 || !GameManager.OutGameData.IsTutorialClear())
         {
             yield break;
-        }
-
-        if(GameManager.Data.StageAct == 2)
-        {
-            _topPosition = new Vector3(0, 16, -10);
         }
 
         transform.position = _topPosition;
