@@ -139,6 +139,10 @@ MonoBehaviour:
     m_Key: Corruption Stigmata Bestowal_Corrupt
     m_Metadata:
       m_Items: []
+  - m_Id: 34346192196505600
+    m_Key: HallSelect
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
