@@ -146,6 +146,10 @@ MonoBehaviour:
     m_Localized: Select the units to bring on this mission.
     m_Metadata:
       m_Items: []
+  - m_Id: 34363969619791872
+    m_Localized: Select the units to delete.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

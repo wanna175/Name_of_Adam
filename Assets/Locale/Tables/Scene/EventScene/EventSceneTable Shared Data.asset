@@ -143,6 +143,10 @@ MonoBehaviour:
     m_Key: HallSelect
     m_Metadata:
       m_Items: []
+  - m_Id: 34363969619791872
+    m_Key: HallEdit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

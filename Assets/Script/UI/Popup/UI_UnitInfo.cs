@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization;
 
 public class UI_UnitInfo : UI_Popup
 {
@@ -60,6 +62,10 @@ public class UI_UnitInfo : UI_Popup
         {
             _quitButton.SetActive(false);
             _completeButton.SetActive(true);
+        }
+        else if (currentEvent == CurrentEvent.Hall_Delete)
+        {
+            _selectButton.GetComponentInChildren<LocalizeStringEvent>().StringReference = new LocalizedString(tableReference: "UITable", "Exile");
         }
         else if (_currentEvent == CurrentEvent.Stigmata_Full_Exception || _currentEvent == CurrentEvent.Upgrade_Full_Exception)
         {
@@ -211,6 +217,8 @@ public class UI_UnitInfo : UI_Popup
                     {
                         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("StigmaMax", () =>
                         {
+                            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
                             _onSelect(_unit);
                             _quitButton.SetActive(false);
                             _selectButton.SetActive(false);
@@ -225,6 +233,8 @@ public class UI_UnitInfo : UI_Popup
                     {
                         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("UpgradeMax", () =>
                         {
+                            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
                             _onSelect(_unit);
                             _quitButton.SetActive(false);
                             _selectButton.SetActive(false);

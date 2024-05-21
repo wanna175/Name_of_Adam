@@ -145,6 +145,8 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
     private void YesApostleCreationButtonClick()
     {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
         _selectMenuUI.SetActive(false);
 
         DeckUnit originalUnit = new();

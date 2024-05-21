@@ -518,5 +518,7 @@ public enum CurrentEvent
     Complete_Upgrade,
     Complete_Heal_Faith,
     Complate_Stigmata,
-    Complate_Apostle
+    Complate_Apostle,
+
+    Hall_Delete,
 };

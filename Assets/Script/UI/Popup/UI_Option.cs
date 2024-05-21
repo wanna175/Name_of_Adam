@@ -153,6 +153,7 @@ public class UI_Option : UI_Popup
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("GameResetInfo", () => {
+            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
             GameManager.VisualEffect.ClearAllEffect();
             GameManager.UI.CloseAllOption();
             SceneChanger.SceneChange("MainScene");

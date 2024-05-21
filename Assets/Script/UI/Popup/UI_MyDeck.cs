@@ -79,6 +79,10 @@ public class UI_MyDeck : UI_Popup
             titleText = "Select units to revert.";
             _setButton.SetActive(true);
         }
+        else if (_currentEvent == CurrentEvent.Hall_Delete)
+        {
+            titleText = "Possessed units";
+        }
 
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleText);
 
@@ -89,21 +93,13 @@ public class UI_MyDeck : UI_Popup
     {
         _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
 
-        List<DeckUnit> normalDeck = new();
         List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
 
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
-        {
             totalDeck.Add(unit);
-
-            if (unit.Data.Rarity == Rarity.Normal)
-            {
-                normalDeck.Add(unit);
-            }
-        }
 
         _playerDeck = totalDeck;
         _onSelectAction = onSelectAction;
@@ -246,6 +242,8 @@ public class UI_MyDeck : UI_Popup
         {
             GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
             {
+                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
                 OnUnitSelect(unit);
                 GameManager.Data.RemoveDeckUnit(unit);
             });
