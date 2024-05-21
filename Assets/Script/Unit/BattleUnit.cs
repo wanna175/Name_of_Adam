@@ -47,6 +47,8 @@ public class BattleUnit : MonoBehaviour
 
     public bool NextMoveSkip = false;
     public bool NextAttackSkip = false;
+    public bool IsDoneMove = false;     // (한턴 기준) 이동을 수행한 유닛인가?
+    public bool IsDoneAttack = false;   // (한턴 기준) 공격을 수행한 유닛인가?
     public int AttackUnitNum;
 
     public void Init(Team team)

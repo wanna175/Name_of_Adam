@@ -234,6 +234,10 @@ MonoBehaviour:
     m_Localized: Defeasance
     m_Metadata:
       m_Items: []
+  - m_Id: 39036450616020992
+    m_Localized: Ready Stance
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -164,6 +164,15 @@ public class BattleDataManager : MonoBehaviour
         return unit;
     }
 
+    public void BattleUnitActionReset()
+    {
+        foreach (BattleUnit unit in _battleUnitList)
+        {
+            unit.IsDoneMove = false;
+            unit.IsDoneAttack = false;
+        }
+    }
+
     #region OrderedList
     private List<(BattleUnit, int?)> _battleUnitOrders = new();
     public int OrderUnitCount => _battleUnitOrders.Count;

@@ -329,6 +329,12 @@ MonoBehaviour:
       \uBB34\uD6A8\uD654\uD569\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
+  - m_Id: 38895353000529920
+    m_Localized: "\uACF5\uACA9\uC744 \uD558\uC9C0 \uC54A\uC73C\uBA74 \uB2E4\uC74C
+      \uD134\uC5D0 <b>\uACF5\uACA9\uB825 \uC99D\uAC00 1\uD68C</b>\uB97C \uBC1B\uC2B5\uB2C8\uB2E4.\n(<b>\uACF5\uACA9\uB825
+      \uC99D\uAC00</b>: \uACF5\uACA9\uB825\uC774 50% \uC99D\uAC00\uD569\uB2C8\uB2E4.)"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

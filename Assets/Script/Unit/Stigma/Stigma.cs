@@ -30,7 +30,6 @@ public class Stigma : MonoBehaviour
 
     [SerializeField] private bool _isLock = false;
     public bool IsLock => _isLock;
-    
 
     public virtual void Use(BattleUnit caster = null)
     {

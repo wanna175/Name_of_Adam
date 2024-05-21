@@ -346,6 +346,13 @@ MonoBehaviour:
     m_Localized: When hit, there is a 20% chance to nullify enemy damage.
     m_Metadata:
       m_Items: []
+  - m_Id: 38895353000529920
+    m_Localized: 'If no attack is made, receive a one-time <b>Attack Boost</b> the
+      next turn.
+
+      (<b>Attack Boost</b>: Increases attack power by 50%.)'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

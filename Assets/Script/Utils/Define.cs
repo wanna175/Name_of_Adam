@@ -296,6 +296,7 @@ public enum StigmaEnum
     Tail_Wind,
     Teleport,
     Defeasance,
+    RaiseWithDelay,
 
     //Unique stigmata 
     Birth = 100,
@@ -366,6 +367,7 @@ public enum BuffEnum
     Repetance,
     Sadism,
     ShadowStep,
+    RaiseWithDelay,
 
     //unique stigma buff (no image)
     Birth,
