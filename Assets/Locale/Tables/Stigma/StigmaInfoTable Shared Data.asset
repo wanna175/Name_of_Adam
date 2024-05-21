@@ -211,6 +211,10 @@ MonoBehaviour:
     m_Key: Advent Info
     m_Metadata:
       m_Items: []
+  - m_Id: 38887124866600960
+    m_Key: Defeasance Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

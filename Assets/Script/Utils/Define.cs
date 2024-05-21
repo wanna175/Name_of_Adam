@@ -295,6 +295,7 @@ public enum StigmaEnum
     Sin,
     Tail_Wind,
     Teleport,
+    Defeasance,
 
     //Unique stigmata 
     Birth = 100,

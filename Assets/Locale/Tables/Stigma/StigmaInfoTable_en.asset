@@ -342,6 +342,10 @@ MonoBehaviour:
       also dealing damage to enemies within adjacent 8 tiles.
     m_Metadata:
       m_Items: []
+  - m_Id: 38887124866600960
+    m_Localized: When hit, there is a 20% chance to nullify enemy damage.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
