@@ -149,6 +149,8 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         DeckUnit originalUnit = new();
         originalUnit.Data = _originUnits[Random.Range(0, 3)].Data;
+        originalUnit.IsMainDeck = false;
+        originalUnit.HallUnitID = -1;
 
         UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
         unitInfo.SetUnit(originalUnit);
@@ -213,7 +215,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
             if (_isDarkEssenceUsed == false)
             {
                 _isDarkEssenceUsed = true;
-                GameManager.Data.DarkEssenseChage(_stigmataBestowalDarkEssence);
+                GameManager.Data.DarkEssenseChage(-_stigmataBestowalDarkEssence);
             }
 
             UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();

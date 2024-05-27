@@ -62,7 +62,10 @@ public class DataManager : MonoBehaviour
         GameData.IsVisitStigma = GameDataMain.IsVisitStigma;
         GameData.IsVisitDarkShop = GameDataMain.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
-        NPCQuestSet();
+
+        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
+        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
+        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
     }
 
     public void DeckClear()
@@ -109,41 +112,33 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void HallSelectedDeckSet()
+    public int GetHallUnitID()
     {
-        List<DeckUnit> EliteHallHandDeck = new();
-        List<DeckUnit> NormalHallHandDeck = new();
+        int hallUnitID = -1;
+        List<HallUnit> hallUnits = GameManager.OutGameData.FindHallUnitList();
 
-        foreach (DeckUnit unit in GameData.DeckUnits)
+        for (int i = 4; i < Mathf.Infinity; i++)
         {
-            if (unit.IsMainDeck)
+            if (hallUnits.Find(x => x.ID == i) == null)
             {
-                if(unit.Data.Rarity != Rarity.Normal)
-                {
-                    EliteHallHandDeck.Add(unit);
-                }
-                else
-                {
-                    NormalHallHandDeck.Add(unit);
-                }
+                hallUnitID = i;
+                break;
             }
         }
 
-        EliteHallHandDeck.AddRange(NormalHallHandDeck);
-
-        GameDataMain.DeckUnits = EliteHallHandDeck;
+        return hallUnitID;
     }
 
     public void HallDeckSet()
     {
-        GameData.DeckUnits = GameManager.OutGameData.SetHallDeck();
-    }
-
-    public void NPCQuestSet()
-    {
-        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
-        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
-        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
+        GameDataMain.DeckUnits.Clear();
+        foreach (var hallUnit in GameManager.OutGameData.FindHallUnitList())
+        {
+            if (hallUnit.IsMainDeck)
+            {
+                GameDataMain.DeckUnits.Add(hallUnit.ConvertToDeckUnit());
+            }
+        }
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

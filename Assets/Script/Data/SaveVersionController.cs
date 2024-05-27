@@ -15,6 +15,7 @@ public class SaveVersionController
         "1.0.1-release",
         "1.0.2-release",
         "1.0.0v",
+        "1.0.1v",
     };
 
     public bool IsValildVersion()
@@ -84,6 +85,31 @@ public class SaveVersionController
                     GameManager.SaveManager.DeleteSaveData();
                     GameManager.OutGameData.DeleteAllData();
                     GameManager.OutGameData.CreateData();
+                    break;
+
+                case "1.0.0v":
+                    GameManager.SaveManager.DeleteSaveData();
+
+                    List<HallUnit> hallUnits = GameManager.OutGameData.FindHallUnitList();
+                    for (int i = 0; i < hallUnits.Count; i++)
+                    {
+                        HallUnit unit = hallUnits[i];
+                        unit.IsMainDeck = false;
+                        unit.ID = 4 + i;
+                    }
+
+                    HallUnit darkKnight = hallUnits.Find(x => x.PrivateKey == "Èæ±â»ç_Origin");
+                    darkKnight.IsMainDeck = true;
+                    darkKnight.ID = 0;
+
+                    HallUnit prisoner = hallUnits.Find(x => x.PrivateKey == "ÁË¼ö_Origin");
+                    prisoner.IsMainDeck = true;
+                    prisoner.ID = 1;
+
+                    HallUnit gravekeeper = hallUnits.Find(x => x.PrivateKey == "¹¦Áö±â_Origin");
+                    gravekeeper.IsMainDeck = true;
+                    gravekeeper.ID = 2;
+
                     break;
             }
 

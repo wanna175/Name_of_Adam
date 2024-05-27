@@ -19,7 +19,6 @@ public class HubSceneController : MonoBehaviour
         if (GameManager.OutGameData.IsTutorialClear())
         {
             GameManager.Data.HallDeckSet();
-            GameManager.Data.HallSelectedDeckSet();
             SceneChanger.SceneChange("DifficultySelectScene");
         }
         else

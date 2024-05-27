@@ -51,14 +51,26 @@ public class DeckUnit
     public readonly int MaxStigmaCount = 3;
     private int _stigmaCount => _stigma.Count;
 
-    [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
+    [SerializeField] private int hallUnitID;
+    public int HallUnitID
+    {
+        get
+        {
+            return hallUnitID;
+        }
+        set
+        {
+            hallUnitID = value;
+        }
+    }
+
     public bool IsMainDeck = false;
     public bool CanSpawnInEnemyField => CheckStigma(StigmaEnum.Assasination);
     
     public DeckUnit()
     {
         this.UnitID = -1;
-        //this.UnitID = GameManager.UnitIDController.GetID();
+        this.HallUnitID = -1;
     }
 
     public bool CheckStigma(StigmaEnum findStigmata, StigmaTier? stigmataTier = null)
@@ -270,4 +282,19 @@ public class DeckUnit
 
     public bool IsEqual(DeckUnit another)
         => this.PrivateKey == another.PrivateKey;
+
+    public SaveUnit ConventToSaveUnit()
+    {
+        SaveUnit saveUnit = new();
+
+        saveUnit.PrivateKey = PrivateKey;
+        saveUnit.UnitDataID = Data.ID;
+        saveUnit.UnitStat = DeckUnitUpgradeStat;
+        saveUnit.Stigmata = GetStigmaSaveData();
+        saveUnit.Upgrades = GetUpgradeData();
+        saveUnit.HallID = HallUnitID;
+        saveUnit.IsMainDeck = IsMainDeck;
+
+        return saveUnit;
+    }
 }

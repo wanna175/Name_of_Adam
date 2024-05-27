@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text _systemInfoText;
 
-    private bool _onGM = false;
+    private readonly bool _onGM = false;
 
-    private bool _onDebug = false;
+    private readonly bool _onDebug = false;
 
     void Awake()
     {
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void Init()
+    private static void Init()
     {
         if (s_instance == null)
         {
@@ -177,6 +177,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
+            GameManager.OutGameData.SetProgressCoin(9999);
             //Steam.IncreaseAchievement(SteamAchievementType.Test);
         }
     }
