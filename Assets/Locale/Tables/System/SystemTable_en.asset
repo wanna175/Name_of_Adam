@@ -107,6 +107,14 @@ MonoBehaviour:
       you like to reset?'
     m_Metadata:
       m_Items: []
+  - m_Id: 24926722298384384
+    m_Localized: Would you like to delete the selected unit?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24928961360465920
+    m_Localized: You cannot delete the initial unit.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

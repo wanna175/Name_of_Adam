@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: Save
     m_Metadata:
       m_Items: []
+  - m_Id: 39057564390035456
+    m_Key: Exile
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

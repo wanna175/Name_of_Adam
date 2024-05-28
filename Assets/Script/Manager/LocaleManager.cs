@@ -29,22 +29,10 @@ public class LocaleManager : MonoBehaviour
 
         switch (skillIdx)
         {
-            case 2:
-                if (GameManager.OutGameData.IsUnlockedItem(54))
-                    info += "_Up";
-                break;
-            case 4:
-                if (GameManager.OutGameData.IsUnlockedItem(62))
-                    info += "_Up";
-                break;
-            case 6:
-                if (GameManager.OutGameData.IsUnlockedItem(64))
-                    info += "_Up";
-                break;
-            case 8:
-                if (GameManager.OutGameData.IsUnlockedItem(72))
-                    info += "_Up";
-                break;
+            case 2: if (GameManager.OutGameData.IsUnlockedItem(54)) info += "_Up"; break;
+            case 4: if (GameManager.OutGameData.IsUnlockedItem(62)) info += "_Up"; break;
+            case 6: if (GameManager.OutGameData.IsUnlockedItem(64)) info += "_Up"; break;
+            case 8: if (GameManager.OutGameData.IsUnlockedItem(72)) info += "_Up"; break;
         }
 
         return GetLocalizedPlayerSkillInfo(info);
@@ -75,6 +63,8 @@ public class LocaleManager : MonoBehaviour
     public string GetLocalizedStigmaInfo(string stigmaInfo) => GetLocalizedString("StigmaInfoTable", stigmaInfo);
 
     public string GetLocalizedUnitName(string unitName) => GetLocalizedString("UnitTable", unitName);
+
+    public string GetLocalizedUI(string uiStr) => GetLocalizedString("UITable", uiStr);
 
     public string GetLocalizedSystem(string system) => GetLocalizedString("SystemTable", system);
 

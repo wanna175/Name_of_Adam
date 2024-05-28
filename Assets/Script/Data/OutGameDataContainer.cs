@@ -354,6 +354,11 @@ public class OutGameDataContainer : MonoBehaviour
         _data.HallUnit.Remove(FindHallUnitID(ID));
     }
 
+    public void RemoveHallUnit(string privateKey)
+    {
+        _data.HallUnit.Remove(_data.HallUnit.Find(x => x.PrivateKey == privateKey));
+    }
+
     public void DeleteAllData() => File.Delete(_path);
 
     private Resolution GetResolution(int width, int height, int refreshRate)

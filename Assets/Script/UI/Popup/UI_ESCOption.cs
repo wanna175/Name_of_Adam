@@ -6,7 +6,7 @@ public class UI_ESCOption : UI_Popup
 {
     public void QuitButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         GameManager.UI.OnOffESCOption();
     }
 
@@ -49,7 +49,7 @@ public class UI_ESCOption : UI_Popup
 
     public void ExitButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
         Application.Quit();
     }
 }

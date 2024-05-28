@@ -144,6 +144,14 @@ MonoBehaviour:
     m_Localized: "\uD0C0\uB77D \uB099\uC778 \uBD80\uC5EC <style=Corruption>"
     m_Metadata:
       m_Items: []
+  - m_Id: 34346192196505600
+    m_Localized: "\uD68C\uCC28\uC5D0 \uB370\uB824\uAC08 \uC720\uB2DB\uC744 \uC120\uD0DD\uD558\uC2DC\uC624."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34363969619791872
+    m_Localized: "\uC0AD\uC81C\uD560 \uC720\uB2DB\uC744 \uC120\uD0DD\uD558\uC2DC\uC624."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -295,6 +295,8 @@ public enum StigmaEnum
     Sin,
     Tail_Wind,
     Teleport,
+    Defeasance,
+    RaiseWithDelay,
 
     //Unique stigmata 
     Birth = 100,
@@ -365,6 +367,7 @@ public enum BuffEnum
     Repetance,
     Sadism,
     ShadowStep,
+    RaiseWithDelay,
 
     //unique stigma buff (no image)
     Birth,
@@ -518,5 +521,7 @@ public enum CurrentEvent
     Complete_Upgrade,
     Complete_Heal_Faith,
     Complate_Stigmata,
-    Complate_Apostle
+    Complate_Apostle,
+
+    Hall_Delete,
 };

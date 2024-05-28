@@ -71,6 +71,14 @@ MonoBehaviour:
     m_Key: GameResetInfo
     m_Metadata:
       m_Items: []
+  - m_Id: 24926722298384384
+    m_Key: HallDeleteInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24928961360465920
+    m_Key: HallDeleteCannotInfo
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

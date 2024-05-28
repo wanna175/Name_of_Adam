@@ -311,6 +311,7 @@ public class BattleManager : MonoBehaviour
 
         if (MoveUnit(unit, coord))
         {
+            unit.IsDoneMove = true;
             PlayAfterCoroutine(() => _phase.ChangePhase(_phase.Action), 1f);
             SetTlieClickCoolDown(1f);
         }
@@ -393,6 +394,7 @@ public class BattleManager : MonoBehaviour
         BattleCutSceneData CSData = new(caster, hits);
         _battlecutScene.InitBattleCutScene(CSData);
         caster.AttackUnitNum = hits.Count;
+        caster.IsDoneAttack = true;
 
         StartCoroutine(_battlecutScene.AttackCutScene(CSData));
     }
