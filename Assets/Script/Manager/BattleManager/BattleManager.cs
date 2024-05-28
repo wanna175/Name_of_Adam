@@ -372,11 +372,11 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (Phase.CurrentPhaseCheck(Phase.Action) && nowUnit != null && unitList.Count > 0)
-            BattleUI.UI_TurnChangeButton.SetEnable(false);
-
         if (!nowUnit.Action.ActionStart(nowUnit, unitList, coord))
             return;
+
+        if (Phase.CurrentPhaseCheck(Phase.Action) && nowUnit != null && unitList.Count > 0)
+            BattleUI.UI_TurnChangeButton.SetEnable(false);
     }
 
     #endregion
