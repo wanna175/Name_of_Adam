@@ -100,16 +100,19 @@ public class UnitAction_Horus : UnitAction
             if (_summonedUnit.Contains(receiver))
             {
                 _summonedUnit.Remove(receiver);
-                BattleManager.Instance.PlayAfterCoroutine(() =>
+                if (receiver.Team != caster.Team)
                 {
-                    caster.AnimatorSetBool("isHit", true);
-                    caster.GetAttack(-500, null);
-                }, 1.5f);
+                    BattleManager.Instance.PlayAfterCoroutine(() =>
+                    {
+                        caster.AnimatorSetBool("isHit", true);
+                        caster.GetAttack(-500, null);
+                    }, 1.5f);
 
-                BattleManager.Instance.PlayAfterCoroutine(() =>
-                {
-                    caster.AnimatorSetBool("isHit", false);
-                }, 1.8f);
+                    BattleManager.Instance.PlayAfterCoroutine(() =>
+                    {
+                        caster.AnimatorSetBool("isHit", false);
+                    }, 1.8f);
+                }
             }
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_FALLED) == ActiveTiming.FIELD_UNIT_FALLED)

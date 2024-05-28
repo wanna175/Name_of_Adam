@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text _systemInfoText;
 
-    private readonly bool _onGM = false;
+    private readonly bool _onGM = true;
 
     private readonly bool _onDebug = false;
 
@@ -122,17 +122,23 @@ public class GameManager : MonoBehaviour
             }
             BattleManager.Instance.BattleOverCheck();
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            GameManager.VisualEffect.StartBenedictionEffect(BattleManager.Data.GetNowUnit());
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-            GameManager.SaveManager.DeleteSaveData();
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Data.MainDeckLayoutSet();
-            GameManager.OutGameData.DeleteAllData();
+            foreach (Stage stage in StageManager.Instance.CurrentStage.NextStage)
+            {
+                if (stage == null)
+                {
+                    GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID + 1);
+                    GameManager.Data.Map.CurrentTileID = GameManager.Data.Map.CurrentTileID + 1;
+                    return;
+                }
+                else
+                {
+                    GameManager.Data.Map.ClearTileID.Add(stage.Datas.ID);
+                    GameManager.Data.Map.CurrentTileID = stage.Datas.ID;
+                }
+            }
+            SceneChanger.SceneChange("StageSelectScene");
         }
 
         if (Input.GetKeyDown(KeyCode.L))
