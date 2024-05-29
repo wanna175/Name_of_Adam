@@ -461,9 +461,9 @@ public enum TutorialStep
     Tooltip_UnitAttack_4,
     Tutorial_End_2,
 
-    UI_Defeat = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
-    UI_Devine = UI_Defeat + TutorialManager.STEP_BOUNDARY,
-    UI_Last = UI_Devine + TutorialManager.STEP_BOUNDARY,
+    UI_Divine = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
+    UI_Defeat = UI_Divine + TutorialManager.STEP_BOUNDARY,
+    UI_Last = UI_Defeat + TutorialManager.STEP_BOUNDARY,
 
     Tutorial_End_3 = UI_Last + Tutorial_End_2 % TutorialManager.STEP_BOUNDARY,
 }

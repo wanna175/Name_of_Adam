@@ -834,17 +834,6 @@ public class BattleManager : MonoBehaviour
         {
             if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction) || lastUnit.Data.Rarity != Rarity.Normal)
                 return;
-
-            if (!GameManager.OutGameData.IsTutorialClear())
-            {
-                if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Devine))
-                {
-                    TutorialManager.Instance.SetNextStep();
-                    TutorialManager.Instance.ShowTutorial();
-                }
-                else
-                    return;
-            }
             
             lastUnit.SetBuff(new Buff_Benediction());
         }

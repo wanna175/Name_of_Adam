@@ -102,16 +102,14 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private UI_Tutorial UI;
 
-    [SerializeField]
-    private TutorialStep _step;
-
+    [SerializeField] private TutorialStep _step;
     public TutorialStep Step => _step;
 
-    private TooltipData currentTooltip;
+    private TooltipData _currentTooltip;
 
     public bool IsTutorialactive;
-    private bool isEnable;
-    private bool isCanClick;
+    private bool _isEnable;
+    private bool _isCanClick;
 
     private void Awake()
     {
@@ -126,38 +124,20 @@ public class TutorialManager : MonoBehaviour
         {
             case 1: _step = TutorialStep.UI_PlayerTurn; break;
             case 2: _step = TutorialStep.UI_FallSystem; break;
-            case 3: _step = TutorialStep.UI_Defeat; break;
+            case 3: _step = TutorialStep.UI_Divine; break;
         }
 
-        isCanClick = true;
-
-        //디버그용
-        //var deckUnits = GameManager.Data.GameData.DeckUnits;
-        //var fallenUnits = GameManager.Data.GameData.FallenUnits;
-
-        //Debug.Log("=====================================");
-        //foreach (var unit in deckUnits)
-        //{
-        //    //unit의 메모리 주소
-        //    Debug.Log($"DeckUnit / {unit.UnitID} / {unit.Data.Name} / {unit.GetStigmaCount()} / {unit.GetUpgradeData().Count}");
-        //}
-        //Debug.Log("=====================================");
-        //foreach (var unit in fallenUnits)
-        //{
-        //    //unit의 메모리 주소
-        //    Debug.Log($"FallenUnit / {unit.UnitID} / {unit.Data.Name}/ {unit.GetStigmaCount()} / {unit.GetUpgradeData().Count}");
-        //}
-        //Debug.Log("=====================================");
+        _isCanClick = true;
     }
 
     private void Update()
     {
-        if (!isEnable)
+        if (!_isEnable)
             return;
 
         if (UI.ValidToPassTooltip)
         {
-            if (isCanClick && !GameManager.UI.IsOnESCOption && GameManager.InputManager.Click)
+            if (_isCanClick && !GameManager.UI.IsOnESCOption && GameManager.InputManager.Click)
             {
                 StartCoroutine(ClickCoolTime());
                 ShowNextTutorial();
@@ -167,7 +147,7 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowNextTutorial()
     {
-        if (CheckStep(TutorialStep.UI_Devine) || CheckStep(TutorialStep.UI_Last))
+        if (CheckStep(TutorialStep.UI_Last))
             return; // 마지막 UI 튜토리얼 관련 Step은 조건부 동작이기 때문에 예외 처리
 
         SetNextStep();
@@ -181,7 +161,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     public bool IsEnable()
-        => !GameManager.OutGameData.IsTutorialClear() && isEnable;
+        => !GameManager.OutGameData.IsTutorialClear() && _isEnable;
 
     public void SetNextStep()
     {
@@ -202,7 +182,7 @@ public class TutorialManager : MonoBehaviour
 
     private TooltipData AnalyzeTooltip(TutorialStep step)
     {
-        TooltipData tooltip = new TooltipData();
+        TooltipData tooltip = new();
         int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
 
         tooltip.Step = step;
@@ -230,17 +210,17 @@ public class TutorialManager : MonoBehaviour
         if (IsToolTip(_step))
         {
             // Tooltip 모드
-            currentTooltip = AnalyzeTooltip(_step);
-            if (currentTooltip.IsEnd)
+            _currentTooltip = AnalyzeTooltip(_step);
+            if (_currentTooltip.IsEnd)
                 DisableToolTip();
             else
-                EnableToolTip(currentTooltip);
+                EnableToolTip(_currentTooltip);
         }
         else
         {
             // UI 모드
             int indexToUI = AnalyzeUI(_step);
-            isEnable = true;
+            _isEnable = true;
             UI.TutorialActive(indexToUI);
         }
     }
@@ -251,7 +231,7 @@ public class TutorialManager : MonoBehaviour
         UI.SetUIMask(-1);
         UI.SetValidToPassToolTip(false);
         SetActiveAllTiles(true);
-        isEnable = false;
+        _isEnable = false;
     }
 
     public void EnableToolTip(TooltipData data)
@@ -260,7 +240,7 @@ public class TutorialManager : MonoBehaviour
         UI.SetUIMask(data.IndexToTooltip);
         UI.SetValidToPassToolTip(!data.IsCtrl);
         SetTutorialField(data.Step);
-        isEnable = true;
+        _isEnable = true;
     }
 
     private void SetTutorialField(TutorialStep step)
@@ -310,8 +290,8 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator ClickCoolTime()
     {
-        isCanClick = false;
+        _isCanClick = false;
         yield return new WaitForSeconds(RECLICK_TIME);
-        isCanClick = true;
+        _isCanClick = true;
     }
 }
