@@ -156,10 +156,9 @@ public class BattleDataManager : MonoBehaviour
         {
             return null;
         }
-        int randNum = Random.Range(0, PlayerDeck.Count);
 
-        DeckUnit unit = PlayerDeck[randNum];
-        _playerDeck.RemoveAt(randNum);
+        DeckUnit unit = PlayerDeck[0];
+        _playerDeck.RemoveAt(0);
 
         return unit;
     }
