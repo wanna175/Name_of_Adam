@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d429cbe06af73034cbc074894d8b44a2
+guid: e61cb945b0cdf334084a60db30de00ae
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hp_silver_0
+      name: Player_Faith_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,20 +125,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 663d14b4b1037ed408048920809a3bc9
-      internalID: 1463386229
+      spriteID: 46fe03ba0c5181648be68ec375f77439
+      internalID: 2098690587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_silver_1
+      name: Player_Faith_1
       rect:
         serializedVersion: 2
         x: 200
@@ -146,20 +146,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97e119f6d6f454346b80e2c43734d7ec
-      internalID: -1870738827
+      spriteID: 28ff737cabf98234cb485b1fae293d78
+      internalID: -1979587194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_silver_2
+      name: Player_Faith_2
       rect:
         serializedVersion: 2
         x: 400
@@ -167,20 +167,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38a3a1344e89ee74e8278b2a48b878a2
-      internalID: 725764561
+      spriteID: eb078c3ff0f7d884ba025c04ba0522ca
+      internalID: -817761011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_silver_3
+      name: Player_Faith_3
       rect:
         serializedVersion: 2
         x: 600
@@ -188,20 +188,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 128bedb34e877d14aa13f620c89cd5e8
-      internalID: 1195584159
+      spriteID: 200fc86feedd96948881056a43bf92fe
+      internalID: 742829768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_silver_4
+      name: Player_Faith_4
       rect:
         serializedVersion: 2
         x: 800
@@ -209,20 +209,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62fb01782fe21e14cb0c54cac3125c39
-      internalID: -1790194260
+      spriteID: a6289cfbc1080a64aac312b32f37e494
+      internalID: -982876498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_silver_5
+      name: Player_Faith_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -230,20 +230,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3778e7fd66009684a953a827be8ba155
-      internalID: 1090442320
+      spriteID: 60f799b523e5d26428b370fa4e46c448
+      internalID: -1155995502
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_silver_6
+      name: Player_Faith_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -251,14 +251,14 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7bc5a3770c860042ae31f405c8ea2d7
-      internalID: 1776480119
+      spriteID: 51f4f7b24394c004da6672d20e21f3b3
+      internalID: -1854160324
       vertices: []
       indices: 
       edges: []
@@ -274,13 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hp_silver_4: -1790194260
-      hp_silver_6: 1776480119
-      hp_silver_5: 1090442320
-      hp_silver_2: 725764561
-      hp_silver_3: 1195584159
-      hp_silver_0: 1463386229
-      hp_silver_1: -1870738827
+      Player_Faith_1: -1979587194
+      Player_Faith_2: -817761011
+      Player_Faith_5: -1155995502
+      Player_Faith_0: 2098690587
+      Player_Faith_4: -982876498
+      Player_Faith_6: -1854160324
+      Player_Faith_3: 742829768
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

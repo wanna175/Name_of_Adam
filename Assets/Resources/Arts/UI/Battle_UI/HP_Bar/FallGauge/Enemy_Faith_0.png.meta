@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e61cb945b0cdf334084a60db30de00ae
+guid: d0c2982557aa13344b945648a9176881
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hp_white_0
+      name: Enemy_Faith_0_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,20 +125,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46fe03ba0c5181648be68ec375f77439
-      internalID: 2098690587
+      spriteID: 1c199f72eaa020c4494033b5a7501811
+      internalID: 1371753613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_white_1
+      name: Enemy_Faith_0_1
       rect:
         serializedVersion: 2
         x: 200
@@ -146,20 +146,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28ff737cabf98234cb485b1fae293d78
-      internalID: -1979587194
+      spriteID: 2c3eeed2c3e9de146bd15b1b768a0a2f
+      internalID: 131317087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_white_2
+      name: Enemy_Faith_0_2
       rect:
         serializedVersion: 2
         x: 400
@@ -167,20 +167,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb078c3ff0f7d884ba025c04ba0522ca
-      internalID: -817761011
+      spriteID: 003812b741e4f104283b9f624c8b5d65
+      internalID: -1063824886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_white_3
+      name: Enemy_Faith_0_3
       rect:
         serializedVersion: 2
         x: 600
@@ -188,20 +188,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 200fc86feedd96948881056a43bf92fe
-      internalID: 742829768
+      spriteID: 014293d9a4464a64cad7b88cc645e6ca
+      internalID: 1489479178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_white_4
+      name: Enemy_Faith_0_4
       rect:
         serializedVersion: 2
         x: 800
@@ -209,20 +209,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6289cfbc1080a64aac312b32f37e494
-      internalID: -982876498
+      spriteID: bf75bb32237563646bec26e1057b83ed
+      internalID: 490501315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_white_5
+      name: Enemy_Faith_0_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -230,20 +230,20 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60f799b523e5d26428b370fa4e46c448
-      internalID: -1155995502
+      spriteID: 74dcd55f801838c4b9cc4dcb0ad18166
+      internalID: 1309517148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_white_6
+      name: Enemy_Faith_0_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -251,14 +251,14 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51f4f7b24394c004da6672d20e21f3b3
-      internalID: -1854160324
+      spriteID: 5db1447116c092748bb109864e962154
+      internalID: 157241292
       vertices: []
       indices: 
       edges: []
@@ -274,13 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hp_white_4: -982876498
-      hp_white_5: -1155995502
-      hp_white_1: -1979587194
-      hp_white_0: 2098690587
-      hp_white_6: -1854160324
-      hp_white_3: 742829768
-      hp_white_2: -817761011
+      Enemy_Faith_0_0: 1371753613
+      Enemy_Faith_0_5: 1309517148
+      Enemy_Faith_0_1: 131317087
+      Enemy_Faith_0_6: 157241292
+      Enemy_Faith_0_3: 1489479178
+      Enemy_Faith_0_2: -1063824886
+      Enemy_Faith_0_4: 490501315
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
