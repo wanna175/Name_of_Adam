@@ -1105,6 +1105,7 @@ GameObject:
   - component: {fileID: 9084845046240503609}
   - component: {fileID: 2422822047371060696}
   - component: {fileID: 3700696016570501702}
+  - component: {fileID: 1390338010837288101}
   m_Layer: 0
   m_Name: UI_ControlBar
   m_TagString: Untagged
@@ -1228,7 +1229,8 @@ MonoBehaviour:
   UI_DarkEssence: {fileID: 3894982630828074465}
   UI_ManaGauge: {fileID: 4194850454175128105}
   UI_Aniamtor: {fileID: 3700696016570501702}
-  _active: {fileID: 749347512082188793}
+  _active: {fileID: 2377799226595907149}
+  canvasGroup: {fileID: 1390338010837288101}
 --- !u!95 &3700696016570501702
 Animator:
   serializedVersion: 4
@@ -1249,6 +1251,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &1390338010837288101
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894982629857119059}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3894982630326795414
 GameObject:
   m_ObjectHideFlags: 0
