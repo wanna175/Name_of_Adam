@@ -57,7 +57,7 @@ public class MainSceneController : MonoBehaviour
             }
 
             GameManager.SaveManager.DeleteSaveData();
-            Destroy(GameManager.Instance.gameObject);
+            GameManager.Data.Init();
         }
     }
 
@@ -135,7 +135,7 @@ public class MainSceneController : MonoBehaviour
         }
 
         GameManager.SaveManager.DeleteSaveData();
-        Destroy(GameManager.Instance.gameObject);
+        GameManager.Data.Init();
     }
 
     public void DiscordButton()
