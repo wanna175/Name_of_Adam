@@ -204,15 +204,11 @@ public class UI_MyDeck : UI_Popup
                 if (_playerDeck[i].Data.Rarity != Rarity.Boss)
                     AddCard(_playerDeck[i]);
             }
-            else if (currentEvent == CurrentEvent.Stigmata_Select)
+            else if (currentEvent == CurrentEvent.Stigmata_Select ||
+                currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
             {
                 AddCard(_playerDeck[i]);
                 _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
-            }
-            else if (currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
-            {
-                AddCard(_playerDeck[i]);
-                _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].CheckHaveAnyCorruptStigmata() || _playerDeck[i].Data.Rarity == Rarity.Boss);
             }
             else
             {
