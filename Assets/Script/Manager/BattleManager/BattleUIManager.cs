@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using TMPro;
 
 public class BattleUIManager : MonoBehaviour
 {
@@ -107,6 +106,9 @@ public class BattleUIManager : MonoBehaviour
         BattleManager.Field.ClearAllColor();
         UI_hands.CancelSelect();
         UI_playerSkill.CancelSelect();
+
+        if (BattleManager.PlayerSkillController.IsSkillOn)
+            BattleManager.PlayerSkillController.SetSkillDone();
     }
 
     private List<UI_Info> infoList = new();

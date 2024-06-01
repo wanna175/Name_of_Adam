@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class PlayerSkill_Move : PlayerSkill
@@ -23,7 +24,7 @@ public class PlayerSkill_Move : PlayerSkill
         switch (activeTiming)
         {
             case ActiveTiming.TURN_START:
-                if (BattleManager.Instance.MoveUnit(selectedUnit, coord))
+                if (BattleManager.Instance.MoveUnit(selectedUnit, coord) || selectedUnit.Location == coord)
                 {
                     BattleManager.Field.ClearAllColor();
                     BattleManager.PlayerSkillController.SetSkillDone();
