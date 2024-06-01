@@ -115,6 +115,14 @@ MonoBehaviour:
     m_Localized: You cannot delete the initial unit.
     m_Metadata:
       m_Items: []
+  - m_Id: 28538600321863680
+    m_Localized: 'The selected unit already possesses corruption stigmata.
+
+
+      Would
+      you like to destroy an existing corruption stigmata and select a new one?'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

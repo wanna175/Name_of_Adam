@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hp_glod_0
+      name: Enemy_Faith_2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +125,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_1
+      name: Enemy_Faith_2_1
       rect:
         serializedVersion: 2
         x: 200
@@ -146,7 +146,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_2
+      name: Enemy_Faith_2_2
       rect:
         serializedVersion: 2
         x: 400
@@ -167,7 +167,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_3
+      name: Enemy_Faith_2_3
       rect:
         serializedVersion: 2
         x: 600
@@ -188,7 +188,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_4
+      name: Enemy_Faith_2_4
       rect:
         serializedVersion: 2
         x: 800
@@ -209,7 +209,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_5
+      name: Enemy_Faith_2_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -230,7 +230,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_glod_6
+      name: Enemy_Faith_2_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -251,7 +251,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -274,13 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hp_glod_3: -881612501
-      hp_glod_1: -1740366850
-      hp_glod_4: 678299838
-      hp_glod_2: 1844117492
-      hp_glod_6: 1058894201
-      hp_glod_5: 1361797818
-      hp_glod_0: 318002367
+      Enemy_Faith_2_2: 1844117492
+      Enemy_Faith_2_4: 678299838
+      Enemy_Faith_2_5: 1361797818
+      Enemy_Faith_2_3: -881612501
+      Enemy_Faith_2_6: 1058894201
+      Enemy_Faith_2_1: -1740366850
+      Enemy_Faith_2_0: 318002367
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

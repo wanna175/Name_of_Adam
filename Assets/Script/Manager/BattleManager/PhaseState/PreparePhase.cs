@@ -41,7 +41,7 @@ public class PreparePhase : Phase
                 BattleManager.Data.BattleUnitList[0].ChangeFall(1);
                 TutorialManager.Instance.ShowTutorial();
             }
-            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Defeat))
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Divine))
                 // 세번째 튜토리얼 설정
                 TutorialManager.Instance.ShowTutorial();
             else

@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: HallDeleteCannotInfo
     m_Metadata:
       m_Items: []
+  - m_Id: 28538600321863680
+    m_Key: CorfirmAlreadyHaveCorruptStigmata
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -7,7 +7,7 @@ public class Buff_Appaim : Buff
     {
         _buffEnum = BuffEnum.Raquel;
 
-        _name = "æ–πŸ¿”";
+        _name = "Appaim";
 
         _description = "";
 
@@ -31,9 +31,9 @@ public class Buff_Appaim : Buff
     private int _buffState = 0;
     private Dictionary<int, string> _nameDict = new() { { 0, "Book" }, {1, "Staff"}, { 2, "Sword" } };
     private Dictionary<int, string> _descriptionDict = new() {
-        { 0, "Attacks in an area effect, and becomes immobile but decreases the enemy's faith by 1." },
-        { 1, "Attacks in an area effect." },
-        { 2, "Attacking range becomes infinite." }
+        { 0, "Book Info" },
+        { 1, "Staff Info" },
+        { 2, "Sword Info" }
     };
 
 

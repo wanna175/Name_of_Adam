@@ -164,7 +164,10 @@ public class UI_HPBar : UI_Base
 
         UI_Buff newBuff = GameObject.Instantiate(_buff, _buffGrid).GetComponent<UI_Buff>();
         newBuff.Set(this, buff);
-        newBuff.gameObject.SetActive(false);
+        if (_buffBlockList.Count > 3)
+        {
+            newBuff.gameObject.SetActive(false);
+        }
 
         _buffBlockList.Add(newBuff);
     }
@@ -178,27 +181,31 @@ public class UI_HPBar : UI_Base
                 UI_Buff buff = _buffBlockList[i];
                 _buffBlockList.RemoveAt(i);
                 Destroy(buff.gameObject);
+                if (_isBuffHoverIn)
+                {
+                    GameManager.UI.CloseHover();
+                }
                 break;
             }
         }
     }
 
-    private bool rotateStop = false;
+    private bool _isBuffHoverIn = false;
 
     public void BuffHoverIn()
     {
-        rotateStop = true;
+        _isBuffHoverIn = true;
     }
 
     public void BuffHoverOut()
     {
-        rotateStop = false;
+        _isBuffHoverIn = false;
     }
 
     public void Rotation()
     {
         Invoke(nameof(Rotation), 2f);
-        if (rotateStop)
+        if (_isBuffHoverIn)
             return;
 
         foreach (UI_Buff listedBuff in _buffBlockList)

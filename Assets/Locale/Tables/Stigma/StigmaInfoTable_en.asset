@@ -50,10 +50,6 @@ MonoBehaviour:
     m_Localized: Able to summon anywhere on the field.
     m_Metadata:
       m_Items: []
-  - m_Id: 1502159368192
-    m_Localized: Upon attacking, Recovers 5 mana.
-    m_Metadata:
-      m_Items: []
   - m_Id: 1751317803008
     m_Localized: 'Upon summoning, This unit and ally units within adjacent 4 tiles
       gain <b>Attack Boost</b> for 1 times
@@ -215,8 +211,8 @@ MonoBehaviour:
     m_Localized: "When attacking an enemy two or more tiles away, Tubalcain charges
       and attacks.\r\nTubalcain cannot attack if there is another unit between the
       target unit and Tubalcain.\r\nWhen charge, Tubalcain's attack doubles in damage,
-      reduces faith by 1, but Tubalcain gains <b>Stun\r</b>.\n(<b>Stun</b>: This
-      unit can't move or attack.)"
+      reduces faith by 1, but Tubalcain gains <b>Stun\r</b> 1 time.\n(<b>Stun</b>:
+      This unit can't move or attack.)"
     m_Metadata:
       m_Items: []
   - m_Id: 1304919460868096
@@ -343,14 +339,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 38887124866600960
-    m_Localized: When hit, there is a 20% chance to nullify enemy damage.
+    m_Localized: When attacked, there is a 20% chance to invalidates damage.
     m_Metadata:
       m_Items: []
   - m_Id: 38895353000529920
-    m_Localized: 'If no attack is made, receive a one-time <b>Attack Boost</b> the
-      next turn.
+    m_Localized: 'When this unit''s turn ends without attacking, gain <b>Attack Boost</b>
+      for 1 times.
 
       (<b>Attack Boost</b>: Increases attack power by 50%.)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853855059398656
+    m_Localized: Upon attacking, Recovers 15 mana.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853852555399168
+    m_Localized: Upon attacking, Recovers 10 mana.
     m_Metadata:
       m_Items: []
   references:

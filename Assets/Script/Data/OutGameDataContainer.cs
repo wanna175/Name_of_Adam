@@ -26,6 +26,7 @@ public class OutGameData
     public bool[] cutSceneData = new bool[Enum.GetValues(typeof(CutSceneType)).Length];        //현재 진행된 컷씬
     public bool IsOnMainTooltipForHorus = false;
     public bool IsOnMainTooltipForPhanuel = false;
+    public float BattleSpeed = 1f;
 
     public int language;
     public int resolution;
@@ -400,6 +401,9 @@ public class OutGameDataContainer : MonoBehaviour
         _data.resolution = resolution;
         SetResolution();
     }
+
+    public void SetBattleSpeed(float speed) => _data.BattleSpeed = speed;
+    public float GetBattleSpeed() => _data.BattleSpeed;
 
     public List<Resolution> GetAllResolution() => _resolutions;
     public int GetLanguage() => _data.language;

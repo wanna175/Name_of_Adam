@@ -9,6 +9,7 @@ public class MainSceneController : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject ContinueBox;
+    [SerializeField] private TextMeshProUGUI _chapterText;
 
     private void Start()
     {
@@ -16,6 +17,19 @@ public class MainSceneController : MonoBehaviour
             ContinueBox.SetActive(true);
         else
             ContinueBox.SetActive(false);
+
+        if (GameManager.OutGameData.IsHorusClear())
+        {
+            _chapterText.text = "Endless";
+        }
+        else if (GameManager.OutGameData.IsPhanuelClear())
+        {
+            _chapterText.text = "Chapter 2";
+        }
+        else
+        {
+            _chapterText.text = "Chapter 1";
+        }
 
         if (GameManager.OutGameData.IsPhanuelClear() && GameManager.OutGameData.GetIsOnMainTooltipForPhanuel() == false)
         {

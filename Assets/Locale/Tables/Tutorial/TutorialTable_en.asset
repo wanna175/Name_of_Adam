@@ -81,8 +81,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1487393277145088
-    m_Localized: "If there are no ally units on the field, enemies will directly
-      attack the player.\r"
+    m_Localized: 'If there are no ally units on the field, enemies will directly
+      attack the player.
+
+      If a player reaches 0 lives, player lose.'
     m_Metadata:
       m_Items: []
   - m_Id: 4670637067112448

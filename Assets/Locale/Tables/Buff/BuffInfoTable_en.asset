@@ -62,16 +62,6 @@ MonoBehaviour:
     m_Localized: Upon end of this unit's turn, faith decrease by 1.
     m_Metadata:
       m_Items: []
-  - m_Id: 429461925888
-    m_Localized: 'Gains additional effects with each stack.
-
-      1 stack: When
-      attacked by Elieus or Yana, ally units in adjacent 4 tiles are also attacked.
-
-      2
-      stack: When attacked by Elieus or Yana, faith decreases by 1.'
-    m_Metadata:
-      m_Items: []
   - m_Id: 483732025344
     m_Localized: When attacked, reduces the faith of the attacking enemy unit by
       1.

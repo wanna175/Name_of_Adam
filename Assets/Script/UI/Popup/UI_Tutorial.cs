@@ -7,33 +7,15 @@ using Mono.Cecil;
 
 public class UI_Tutorial : MonoBehaviour
 {
-    [SerializeField]
-    private Transform UIPageParent; 
-
-    private List<GameObject> UIPages;
-
-    [SerializeField]
-    private Transform UIMaskParent;
-
-    private List<GameObject> UIMasks;
-
-    [SerializeField]
-    private GameObject tooltip;
+    [SerializeField] private List<GameObject> _uiPages;
+    [SerializeField] private List<GameObject> _uiMasks;
+    [SerializeField] private GameObject _tooltip;
 
     public bool ValidToPassTooltip;
-
-    private int currentIndexToTooltip;
+    private int _currentIndexToTooltip;
 
     private void Start()
     {
-        UIPages = new List<GameObject>();
-        for (int i = 0; i < UIPageParent.childCount; i++)
-            UIPages.Add(UIPageParent.GetChild(i).gameObject);
-
-        UIMasks = new List<GameObject>();
-        for (int i = 0; i < UIMaskParent.childCount; i++)
-            UIMasks.Add(UIMaskParent.GetChild(i).gameObject);
-
         SetUIPage(-1);
         SetUIMask(-1);
         CloseToolTip();
@@ -87,8 +69,8 @@ public class UI_Tutorial : MonoBehaviour
 
     public void ShowTooltip(string text, int indexToTooltip)
     {
-        tooltip.SetActive(true);
-        tooltip.GetComponentInChildren<TMP_Text>().SetText(text);
+        _tooltip.SetActive(true);
+        _tooltip.GetComponentInChildren<TMP_Text>().SetText(text);
         SetCurrentIndexToTooltip(indexToTooltip);
     }
 
@@ -98,38 +80,38 @@ public class UI_Tutorial : MonoBehaviour
         ShowTooltip(text, indexToTooltip);
     }
 
-    public void SetCurrentIndexToTooltip(int index) => currentIndexToTooltip = index;
+    public void SetCurrentIndexToTooltip(int index) => _currentIndexToTooltip = index;
 
     public void CloseToolTip()
     {
-        tooltip.SetActive(false);
+        _tooltip.SetActive(false);
         SetValidToPassToolTip(false);
     }
 
     public void SetValidToPassToolTip(bool isValidToPass)
     {
         ValidToPassTooltip = isValidToPass;
-        UIMasks[currentIndexToTooltip].GetComponentInChildren<AlphaClicker>().SetEnable(!isValidToPass);
+        _uiMasks[_currentIndexToTooltip].GetComponentInChildren<AlphaClicker>().SetEnable(!isValidToPass);
     }
 
     public void SetUIPage(int index)
     {
-        foreach (GameObject go in UIPages)
+        foreach (GameObject go in _uiPages)
             go.SetActive(false);
 
         if (index >= 0)
-            UIPages[index].SetActive(true);
+            _uiPages[index].SetActive(true);
     }
 
     public void SetUIMask(int index)
     {
-        foreach (GameObject go in UIMasks)
+        foreach (GameObject go in _uiMasks)
             go.SetActive(false);
 
         if (index >= 0)
         {
-            var effect = UIMasks[index].GetComponentInChildren<TutorialArrow>();
-            UIMasks[index].SetActive(true);
+            var effect = _uiMasks[index].GetComponentInChildren<TutorialArrow>();
+            _uiMasks[index].SetActive(true);
             effect.StartEffect();
         }
     }

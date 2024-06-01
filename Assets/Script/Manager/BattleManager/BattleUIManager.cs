@@ -27,6 +27,7 @@ public class BattleUIManager : MonoBehaviour
     {
         //버튼 생성
         GameManager.UI.ShowScene<UI_DeckButton>();
+        GameManager.UI.ShowScene<UI_BattleSpeedButton>().SetBattleSpeed(GameManager.OutGameData.GetBattleSpeed());
 
         //정보들
         UI_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
