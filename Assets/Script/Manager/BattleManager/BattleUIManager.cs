@@ -36,6 +36,7 @@ public class BattleUIManager : MonoBehaviour
 
         //컨트롤바
         UI_controlBar = GameManager.UI.ShowScene<UI_ControlBar>();
+        UI_controlBar.Init();
 
         UI_playerHP = UI_controlBar.UI_PlayerHP;
         UI_playerSkill = UI_controlBar.UI_PlayerSkill;

@@ -567,6 +567,7 @@ GameObject:
   - component: {fileID: 5442837606480714072}
   - component: {fileID: 326051864931759470}
   - component: {fileID: 723261722470402980}
+  - component: {fileID: 3675405708617173893}
   m_Layer: 0
   m_Name: ControlBarBackground
   m_TagString: Untagged
@@ -632,6 +633,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3675405708617173893
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204177260178710464}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2668295482969439259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1118,6 @@ GameObject:
   - component: {fileID: 9084845046240503609}
   - component: {fileID: 2422822047371060696}
   - component: {fileID: 3700696016570501702}
-  - component: {fileID: 1390338010837288101}
   m_Layer: 0
   m_Name: UI_ControlBar
   m_TagString: Untagged
@@ -1230,7 +1242,7 @@ MonoBehaviour:
   UI_ManaGauge: {fileID: 4194850454175128105}
   UI_Aniamtor: {fileID: 3700696016570501702}
   _active: {fileID: 2377799226595907149}
-  canvasGroup: {fileID: 1390338010837288101}
+  canvasGroup: {fileID: 0}
 --- !u!95 &3700696016570501702
 Animator:
   serializedVersion: 4
@@ -1251,18 +1263,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!225 &1390338010837288101
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3894982629857119059}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &3894982630326795414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3894982630326795413}
   - component: {fileID: 3894982630326795412}
+  - component: {fileID: 877438725134095556}
   m_Layer: 0
   m_Name: UI_Hands
   m_TagString: Untagged
@@ -1315,6 +1316,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandPrefabs: {fileID: 9037217407852231977, guid: bf27dc6fa9a3dc44896d9cb58014d4a7, type: 3}
   Grid: {fileID: 796359814688406827}
+--- !u!225 &877438725134095556
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894982630326795414}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3894982630358052951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2667646731316647226}
   - component: {fileID: 1303752855636817182}
+  - component: {fileID: 7894706087772605742}
   m_Layer: 0
   m_Name: UI_PlayerSkill
   m_TagString: Untagged
@@ -1711,6 +1725,18 @@ MonoBehaviour:
   PlayerSkillCardPrefabs: {fileID: 4244837440217407375, guid: 86b5927ed012bce409c76a59e48c8c45, type: 3}
   Grid: {fileID: 341476808792558661}
   Used: 0
+--- !u!225 &7894706087772605742
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5919233216821919282}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6553683261184144180
 GameObject:
   m_ObjectHideFlags: 0

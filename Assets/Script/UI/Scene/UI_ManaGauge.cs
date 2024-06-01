@@ -28,8 +28,6 @@ public class UI_ManaGauge : UI_Scene
         _currentMana.text = current.ToString();
     }
 
-    public void SetColorManaText(Color color) => _currentMana.color = color;
-
     public void SetGauge(int mana)
     {
         if(mana == 0)
