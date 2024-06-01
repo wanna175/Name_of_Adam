@@ -209,9 +209,36 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
     public void OnSelectStigmataBestowalUnit(DeckUnit unit)
     {
-        _stigmataBestowalUnit = unit;
-        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount || _isStigmataPreSet)
+        if (unit.CheckHaveAnyCorruptStigmata() && !_isStigmataPreSet)
         {
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmAlreadyHaveCorruptStigmata", () =>
+            {
+                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+
+                List<Stigma> stigmataList = new();
+                _stigmataBestowalUnit = unit;
+
+                foreach (Stigma stigmata in unit.GetStigma())
+                {
+                    if (stigmata.Tier == StigmaTier.Harlot)
+                        stigmataList.Add(stigmata);
+                }
+
+                UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
+                popup.Init(null, true, stigmataList);
+                popup.EventInit(this, CurrentEvent.Stigmata_Full_Exception);
+
+                _isStigmataFull = true;
+            }, () => {
+                GameManager.UI.CloseAllPopup();
+                OnStigmataBestowalButtonClick();
+                return;
+            });
+        }
+        else if (unit.GetStigmaCount() < unit.MaxStigmaCount || _isStigmataPreSet)
+        {
+            _stigmataBestowalUnit = unit;
+
             ResetStigmataList(unit);
 
             if (_isDarkEssenceUsed == false)
@@ -226,6 +253,8 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         else
         {
+            _stigmataBestowalUnit = unit;
+
             UnitStigmataFull();
         }
 

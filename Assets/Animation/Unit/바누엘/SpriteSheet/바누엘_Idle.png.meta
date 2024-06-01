@@ -121,9 +121,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 258
-        height: 128
+        y: 0
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Idle_1"
       rect:
         serializedVersion: 2
-        x: 258
-        y: 128
-        width: 258
-        height: 128
+        x: 256
+        y: 0
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Idle_2"
       rect:
         serializedVersion: 2
-        x: 516
-        y: 128
-        width: 258
-        height: 128
+        x: 512
+        y: 0
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Idle_3"
       rect:
         serializedVersion: 2
-        x: 0
+        x: 768
         y: 0
-        width: 258
-        height: 128
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Idle_4"
       rect:
         serializedVersion: 2
-        x: 258
+        x: 1024
         y: 0
-        width: 258
-        height: 128
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,10 +225,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Idle_5"
       rect:
         serializedVersion: 2
-        x: 516
+        x: 1280
         y: 0
-        width: 258
-        height: 128
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

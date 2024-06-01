@@ -44,11 +44,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1756527128576
-    m_Key: Banuel defeated
+    m_Key: Phanuel defeated
     m_Metadata:
       m_Items: []
   - m_Id: 1835245826048
-    m_Key: Horus defeated
+    m_Key: Savior defeated
     m_Metadata:
       m_Items: []
   - m_Id: 1892590350336
@@ -60,11 +60,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1983220871168
-    m_Key: Banuel corrupted
+    m_Key: Phanuel corrupted
     m_Metadata:
       m_Items: []
   - m_Id: 2020399181824
-    m_Key: Horus corrupted
+    m_Key: Savior corrupted
     m_Metadata:
       m_Items: []
   - m_Id: 2050497507328

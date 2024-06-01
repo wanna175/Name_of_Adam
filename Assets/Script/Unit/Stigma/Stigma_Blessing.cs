@@ -7,6 +7,16 @@ public class Stigma_Blessing : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Blessing());
+        Buff_Stigma_Blessing blessing = new();
+        caster.SetBuff(blessing);
+
+        if (Tier == StigmaTier.Tier1)
+        {
+            blessing.SetValue(10);
+        }
+        else if (Tier == StigmaTier.Tier2)
+        {
+            blessing.SetValue(15);
+        }
     }
 }

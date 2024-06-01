@@ -12,11 +12,13 @@ public class Stigma_TailWind : Stigma
             areaCoords.Add(new Vector2(0, i));
 
         List<BattleUnit> targetUnits = BattleManager.Field.GetUnitsInRange(caster.Location, areaCoords);
-
+        
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Move");
         foreach (BattleUnit unit in targetUnits)
         {
             if (unit.Team == caster.Team)
             {
+                GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Tailwind", BattleManager.Field.GetTilePosition(unit.Location));
                 unit.SetBuff(new Buff_Tailwind());
             }
         }

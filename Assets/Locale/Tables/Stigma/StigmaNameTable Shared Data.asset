@@ -43,10 +43,6 @@ MonoBehaviour:
     m_Key: Assasination
     m_Metadata:
       m_Items: []
-  - m_Id: 2525573738496
-    m_Key: Blessing
-    m_Metadata:
-      m_Items: []
   - m_Id: 2552828325888
     m_Key: Raise I
     m_Metadata:
@@ -171,10 +167,6 @@ MonoBehaviour:
     m_Key: Charge
     m_Metadata:
       m_Items: []
-  - m_Id: 1444059020062720
-    m_Key: New Entry
-    m_Metadata:
-      m_Items: []
   - m_Id: 1444226800611328
     m_Key: Permanence of Babel
     m_Metadata:
@@ -233,6 +225,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 39036450616020992
     m_Key: RaiseWithDelay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42993097530036224
+    m_Key: "Blessing \u2160"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42993527597191168
+    m_Key: "Blessing \u2161"
     m_Metadata:
       m_Items: []
   m_Metadata:

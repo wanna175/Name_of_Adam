@@ -1475,7 +1475,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
+    hallUnitID: -1
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: b28b4906d12f2bd4e8246b36b3b64ca5, type: 2}
     DeckUnitUpgradeStat:
@@ -1494,7 +1494,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
+    hallUnitID: -1
     IsMainDeck: 0
   - Data: {fileID: 11400000, guid: d37f2fd75daeb014a84d86ceaaf86e20, type: 2}
     DeckUnitUpgradeStat:
@@ -1513,7 +1513,7 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
+    hallUnitID: -1
     IsMainDeck: 0
   _nameText: {fileID: 3580172553970500426}
   _descriptionText: {fileID: 3580172555531868449}
@@ -1522,6 +1522,9 @@ MonoBehaviour:
   _disabledApostleCreationDarkEssenceText: {fileID: 3786050873100774963}
   _stigmataBestowalDarkEssenceText: {fileID: 9211384024735052644}
   _disabledStigmataBestowalDarkEssenceText: {fileID: 5847483398415539839}
+  _revertUnitButtonText: {fileID: 0}
+  _stigmataBestowalButtonText_enable: {fileID: 0}
+  _stigmataBestowalButtonText_disable: {fileID: 0}
 --- !u!1 &3580172553800959538
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,7 +3548,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:b41b9dbfd45119a49885118d51c92112
     m_TableEntryReference:
-      m_KeyId: 2931125311934464
+      m_KeyId: 32341523792982016
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

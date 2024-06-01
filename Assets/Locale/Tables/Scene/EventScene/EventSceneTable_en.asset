@@ -78,10 +78,6 @@ MonoBehaviour:
     m_Localized: Apostle Creation
     m_Metadata:
       m_Items: []
-  - m_Id: 2931125311934464
-    m_Localized: Corruption Stigmata Bestowal
-    m_Metadata:
-      m_Items: []
   - m_Id: 32305284532465664
     m_Localized: Revert Unit
     m_Metadata:
