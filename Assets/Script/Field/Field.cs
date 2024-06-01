@@ -27,7 +27,7 @@ public class Field : MonoBehaviour
     {
         return color switch
         {
-            FieldColorType.UnitSpawn => new Color32(178, 142, 26, 40),
+            FieldColorType.UnitSpawn => new Color32(23, 114, 102, 40),
             FieldColorType.Move => new Color32(23, 114, 102, 40),
             FieldColorType.Attack => new Color32(220, 20, 60, 40),
             FieldColorType.PlayerSkill => new Color32(220, 20, 60, 40),
