@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class Buff_Stigma_Blessing : Buff
 {
+    int _mana;
+
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Blessing;
 
-        _name = "축복";
+        _name = "Blessing";
 
-        _description = "축복.";
+        _description = "Blessing Info";
 
         _count = -1;
 
@@ -27,8 +29,13 @@ public class Buff_Stigma_Blessing : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        BattleManager.Mana.ChangeMana(5);
+        BattleManager.Mana.ChangeMana(_mana);
 
         return false;
+    }
+
+    public override void SetValue(int num)
+    {
+        _mana = num;
     }
 }

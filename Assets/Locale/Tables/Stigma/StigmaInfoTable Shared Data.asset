@@ -43,10 +43,6 @@ MonoBehaviour:
     m_Key: Assasination Info
     m_Metadata:
       m_Items: []
-  - m_Id: 1502159368192
-    m_Key: Blessing Info
-    m_Metadata:
-      m_Items: []
   - m_Id: 1751317803008
     m_Key: Raise I Info
     m_Metadata:
@@ -217,6 +213,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 38895353000529920
     m_Key: RaiseWithDelay Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853852555399168
+    m_Key: "Blessing \u2160 Info"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853855059398656
+    m_Key: "Blessing \u2161 Info"
     m_Metadata:
       m_Items: []
   m_Metadata:

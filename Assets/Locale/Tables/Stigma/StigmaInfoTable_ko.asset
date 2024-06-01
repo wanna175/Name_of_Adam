@@ -53,10 +53,6 @@ MonoBehaviour:
       \uC788\uC2B5\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
-  - m_Id: 1502159368192
-    m_Localized: "\uACF5\uACA9 \uC2DC \uB9C8\uB098\uB97C 5 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
-    m_Metadata:
-      m_Items: []
   - m_Id: 1751317803008
     m_Localized: "\uC18C\uD658 \uC2DC \uC720\uB2DB \uBCF8\uC778\uACFC \uC8FC\uBCC0
       4\uCE78\uC758 \uC544\uAD70\uC5D0\uAC8C <b>\uACF5\uACA9\uB825 \uC99D\uAC00</b>\uB97C
@@ -333,6 +329,14 @@ MonoBehaviour:
       \uD134\uC774 \uC885\uB8CC \uC2DC <b>\uACF5\uACA9\uB825 \uC99D\uAC00</b>\uB97C
       1\uD68C \uC5BB\uC2B5\uB2C8\uB2E4.\n(<b>\uACF5\uACA9\uB825 \uC99D\uAC00</b>:
       \uACF5\uACA9\uB825\uC774 50% \uC99D\uAC00\uD569\uB2C8\uB2E4.)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853855059398656
+    m_Localized: "\uACF5\uACA9 \uC2DC \uB9C8\uB098\uB97C 15 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853852555399168
+    m_Localized: "\uACF5\uACA9 \uC2DC \uB9C8\uB098\uB97C 10 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
   references:
