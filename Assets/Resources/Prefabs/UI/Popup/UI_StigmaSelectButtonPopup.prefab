@@ -208,6 +208,7 @@ MonoBehaviour:
   _buttonPrefab: {fileID: 7681517632251611995, guid: 9db918e230d46a44e8c5263ba2b71ec3, type: 3}
   _grid: {fileID: 9126203967909601502}
   _titleText: {fileID: 6943362513706585086}
+  _titleGO: {fileID: 222761517503792394}
 --- !u!1 &348019552399158916
 GameObject:
   m_ObjectHideFlags: 0

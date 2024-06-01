@@ -34,12 +34,17 @@ public class Corruption : MonoBehaviour
         _animator.SetBool("LoopStart", true);
         if (_unit.Team == Team.Enemy)
         {
-            if (TutorialManager.Instance.IsEnable())
-                TutorialManager.Instance.ShowNextTutorial();
-
             StigmaSelectEvent(this);
             if (BattleManager.Instance.IsExistedCorruptionPopup())
-                BattleManager.Instance.ShowLastCorruptionPopup();
+            {
+                var popup = BattleManager.Instance.ShowLastCorruptionPopup();
+
+                if (TutorialManager.Instance.IsEnable())
+                {
+                    TutorialManager.Instance.ShowNextTutorial();
+                    popup._titleGO.SetActive(false);
+                }
+            }
         }
         else
             LoopExit();

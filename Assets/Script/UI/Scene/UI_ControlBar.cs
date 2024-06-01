@@ -14,7 +14,7 @@ public class UI_ControlBar : UI_Scene
     [SerializeField] private Image _active;
     private List<CanvasGroup> canvasGroups;
 
-    private const float activeMaxAlpha = 0.75f;
+    private const float activeMaxAlpha = 1.0f;
     private const float fadeSpeed = 1.0f;
     private const float fadeMinAlpha = 0.5f;
 
@@ -42,7 +42,7 @@ public class UI_ControlBar : UI_Scene
 
         while (c.a < activeMaxAlpha)
         {
-            c.a += 0.01f;
+            c.a += Time.deltaTime * fadeSpeed * 0.75f;
             _active.color = c;
             yield return null;
         }
@@ -60,7 +60,7 @@ public class UI_ControlBar : UI_Scene
 
         while (c.a > 0)
         {
-            c.a -= 0.01f;
+            c.a -= Time.deltaTime * fadeSpeed * 3.0f;
             _active.color = c;
             yield return null;
         }
