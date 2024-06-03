@@ -61,13 +61,13 @@ public class UnitAction_Horus : UnitAction
             BattleManager.Field.TileDict[caster.Location].ExitTile();
             if (caster.Team == Team.Player)
             {
-                caster.transform.position = new(-9, 3, 0);
+                caster.transform.position = new(-9f, 3f, 0f);
                 SpawnUnit(caster.Location, caster);
                 _isSummon = false;
             }
             else
             {
-                caster.transform.position = new(9, 3, 0);
+                caster.transform.position = new(9f, 3f, 0f);
             }
 
             GameManager.Resource.Instantiate("BattleUnits/Savior_UI", caster.transform).GetComponent<Savior_UI>().Init(caster);
@@ -76,12 +76,12 @@ public class UnitAction_Horus : UnitAction
         {
             if (caster.Team == Team.Player)
             {
-                caster.transform.position = new(-9, 3, 0);
+                caster.transform.position = new(-9f, 3f, 0f);
                 caster.SetFlipX(false);
             }
             else
             {
-                caster.transform.position = new(9, 3, 0);
+                caster.transform.position = new(9f, 3f, 0f);
                 caster.SetFlipX(true);
             }
         }
@@ -100,7 +100,7 @@ public class UnitAction_Horus : UnitAction
             if (_summonedUnit.Contains(receiver))
             {
                 _summonedUnit.Remove(receiver);
-                if (receiver.Team != caster.Team)
+                if (receiver.Team == caster.Team)
                 {
                     BattleManager.Instance.PlayAfterCoroutine(() =>
                     {
