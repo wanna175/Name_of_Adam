@@ -63,8 +63,8 @@ public class TutorialManager : MonoBehaviour
 
         // 튜토리얼 2 시작
         "특정 유닛을 사용하거나 스킬을 사용할 때 필요한 <color=#FF9696>검은 정수<color=white>입니다.\n적을 처치할 때마다 하나씩 얻을 수 있습니다.",
-        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 성흔을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
-        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 성흔을 지닌 강한 유닛이며 마나뿐만 아니라 <color=#FF9696>검은 정수<color=white>까지 소모합니다.\n흑기사를 선택하세요.[CTRL]",
+        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 성흔을 지닌 강한 유닛이며 마나뿐만 아니라 \n<color=#FF9696>검은 정수<color=white>까지 소모합니다. 흑기사를 선택하세요.[CTRL]",
+        "흑기사는 적을 <color=#FF9696>타락<color=white>하는데 유용한 성흔을 지닌 강한 유닛이며 마나뿐만 아니라 \n<color=#FF9696>검은 정수<color=white>까지 소모합니다. 흑기사를 선택하세요.[CTRL]",
         "공격 시 적의 <color=#FF9696>신앙<color=white>을 떨어뜨리는 <color=#FF9696>악성 버프<color=white>입니다.\n흑기사는 이 악성 버프를 <color=#FF9696>2회<color=white> 얻는 성흔을 가지고 있습니다.\n잘 활용하여 적을 타락시켜보세요.",
         "<color=#FF9696>턴 종료 버튼<color=white>을 눌러 유닛 턴으로 넘어가세요.[CTRL]",
         "이동이 필요가 없는 경우 <color=#FF9696>턴 종료 버튼<color=white>을 눌러 턴을 넘길 수 있어요.[CTRL]",

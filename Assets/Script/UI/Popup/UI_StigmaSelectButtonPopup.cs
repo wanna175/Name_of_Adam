@@ -10,6 +10,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private GridLayoutGroup _grid;
     [SerializeField] private TextMeshProUGUI _titleText;
+    public GameObject _titleGO;
 
     private DeckUnit _targetUnit;
     private int _stigmataCount;

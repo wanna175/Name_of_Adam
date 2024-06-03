@@ -16,6 +16,7 @@ public class SaveVersionController
         "1.0.2-release",
         "1.0.0v",
         "1.0.1v",
+        "1.0.2v",
     };
 
     public bool IsValildVersion()
@@ -88,6 +89,7 @@ public class SaveVersionController
                     break;
 
                 case "1.0.0v":
+                case "1.0.1v":
                     GameManager.SaveManager.DeleteSaveData();
 
                     List<HallUnit> hallUnits = GameManager.OutGameData.FindHallUnitList();

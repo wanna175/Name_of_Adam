@@ -1,40 +1,48 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_TurnNotify : UI_Scene
 {
-    const float fadeTime = 0.5f;
-    const float displayTime = 0.5f;
+    const float fadeTime = 0.75f;
+    const float displayTime = 1.0f;
 
     private Sprite _playerTurn;
     private Sprite _unitTurn;
 
     private bool _displayFlag;
+    private bool _isFirstTurn;
 
-    private CanvasGroup _canvasGroup;
+    [SerializeField] private Image _image;
+    [SerializeField] private GameObject _firstPlayerTurnInfo;
+    [SerializeField] private FadeController _fadeController;
+    [SerializeField] private CanvasGroup _canvasGroup;
 
     private void Awake()
     {
         _playerTurn = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
         _unitTurn = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
 
-        _canvasGroup = GetComponent<CanvasGroup>();
-
         Hide();
     }
 
-    public void SetPlayerTurn()
+    public void SetPlayerTurn(bool isFirst)
     {
+        _isFirstTurn = isFirst;
+        _firstPlayerTurnInfo.SetActive(_isFirstTurn);
+
         _displayFlag = true;
 
         FadeIn();
         Invoke(nameof(FadeOut), fadeTime + displayTime);
 
-        GetComponent<Image>().sprite = _playerTurn;
+        _image.sprite = _playerTurn;
     }
 
     public void SetUnitTurn()
     {
+        _firstPlayerTurnInfo.SetActive(false);
+
         if (_displayFlag) 
         {
             Invoke(nameof(SetUnitTurn), fadeTime + displayTime + fadeTime);
@@ -45,7 +53,7 @@ public class UI_TurnNotify : UI_Scene
         FadeIn();
         Invoke(nameof(FadeOut), fadeTime + displayTime);
 
-        GetComponent<Image>().sprite = _unitTurn;
+        _image.sprite = _unitTurn;
     }
 
     public void FadeIn()
@@ -53,7 +61,7 @@ public class UI_TurnNotify : UI_Scene
         if (!gameObject.activeSelf)
             return;
 
-        GetComponent<FadeController>().StartFadeIn();
+        _fadeController.StartFadeIn();
     }
 
     public void FadeOut()
@@ -61,7 +69,7 @@ public class UI_TurnNotify : UI_Scene
         if (!gameObject.activeSelf)
             return;
 
-        GetComponent<FadeController>().StartFadeOut();
+        _fadeController.StartFadeOut();
         Invoke(nameof(Hide), fadeTime);
     }
 
@@ -69,6 +77,7 @@ public class UI_TurnNotify : UI_Scene
     {
         _canvasGroup.alpha = 0;
         _displayFlag = false;
+        _isFirstTurn = false;
     }
 
     public void Off()

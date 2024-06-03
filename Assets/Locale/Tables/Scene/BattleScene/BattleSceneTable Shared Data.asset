@@ -71,6 +71,10 @@ MonoBehaviour:
     m_Key: times_corrupted
     m_Metadata:
       m_Items: []
+  - m_Id: 35074391050194944
+    m_Key: FirstManaInfo
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

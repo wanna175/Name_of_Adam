@@ -23,6 +23,11 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    public void Init(float fadeTime)
+    {
+        this.fadeTime = fadeTime;
+    }
+
     public void StartFadeIn() // 호출 함수 Fade In을 시작
     {
         if (fadeCor != null)

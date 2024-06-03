@@ -74,6 +74,10 @@ MonoBehaviour:
     m_Localized: times
     m_Metadata:
       m_Items: []
+  - m_Id: 35074391050194944
+    m_Localized: "\u203B During the first player's turn, unit mana costs are halved."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

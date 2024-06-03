@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using TMPro;
 
 public class BattleUIManager : MonoBehaviour
 {
@@ -27,7 +26,7 @@ public class BattleUIManager : MonoBehaviour
     {
         //버튼 생성
         GameManager.UI.ShowScene<UI_DeckButton>();
-        GameManager.UI.ShowScene<UI_BattleSpeedButton>().SetBattleSpeed(GameManager.OutGameData.GetBattleSpeed());
+        //GameManager.UI.ShowScene<UI_BattleSpeedButton>().SetBattleSpeed(GameManager.OutGameData.GetBattleSpeed());
 
         //정보들
         UI_waitingLine = GameManager.UI.ShowScene<UI_WaitingLine>();
@@ -37,6 +36,7 @@ public class BattleUIManager : MonoBehaviour
 
         //컨트롤바
         UI_controlBar = GameManager.UI.ShowScene<UI_ControlBar>();
+        UI_controlBar.Init();
 
         UI_playerHP = UI_controlBar.UI_PlayerHP;
         UI_playerSkill = UI_controlBar.UI_PlayerSkill;
@@ -106,6 +106,9 @@ public class BattleUIManager : MonoBehaviour
         BattleManager.Field.ClearAllColor();
         UI_hands.CancelSelect();
         UI_playerSkill.CancelSelect();
+
+        if (BattleManager.PlayerSkillController.IsSkillOn)
+            BattleManager.PlayerSkillController.SetSkillDone();
     }
 
     private List<UI_Info> infoList = new();

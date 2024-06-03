@@ -264,6 +264,8 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        SetTlieClickCoolDown(0.2f);
+
         if (_field.FieldType == FieldColorType.UnitSpawn)
         {
             SpawnUnitOnField(coord);
@@ -447,13 +449,14 @@ public class BattleManager : MonoBehaviour
 
     public bool IsExistedCorruptionPopup() => Data.CorruptionPopups.Count != 0;
 
-    public void ShowLastCorruptionPopup()
+    public UI_StigmaSelectButtonPopup ShowLastCorruptionPopup()
     {
         foreach (var item in Data.CorruptionPopups)
             item.gameObject.SetActive(false);
         var popup = Data.CorruptionPopups[Data.CorruptionPopups.Count - 1];
         popup.gameObject.SetActive(true);
         Data.IsCorruptionPopupOn = true;
+        return popup;
     }
 
     public void DirectAttack(BattleUnit attackUnit)

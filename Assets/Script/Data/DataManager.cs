@@ -46,6 +46,7 @@ public class DataManager : MonoBehaviour
         StigmaController = new StigmaController();
         UpgradeController = new UpgradeController();
         Map = new MapData();
+        StageAct = 0;
 
         if (GameManager.SaveManager.SaveFileCheck())
             GameManager.SaveManager.LoadGame();

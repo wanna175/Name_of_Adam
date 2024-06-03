@@ -11,49 +11,92 @@ public class UI_ControlBar : UI_Scene
     [SerializeField] public UI_DarkEssence UI_DarkEssence;
     [SerializeField] public UI_ManaGauge UI_ManaGauge;
     [SerializeField] public Animator UI_Aniamtor;
-    [SerializeField] private GameObject _active;
+    [SerializeField] private Image _active;
+    private List<CanvasGroup> canvasGroups;
+
+    private const float activeMaxAlpha = 1.0f;
+    private const float fadeSpeed = 1.0f;
+    private const float fadeMinAlpha = 0.5f;
+
+    public void Init()
+    {
+        _active.color = new Color(1f, 1f, 1f, activeMaxAlpha);
+
+        canvasGroups = new List<CanvasGroup>();
+        canvasGroups.AddRange(GetComponentsInChildren<CanvasGroup>());
+    }
 
     public void EndPlayerHit()
         => UI_Aniamtor.SetBool("isPlayerHit", false);
 
     public void ControlBarActive()
     {
-        _active.SetActive(true);
-        StartCoroutine(FadeIn());
+        _active.gameObject.SetActive(true);
+        StartCoroutine(FadeInActive());
+        StartCoroutine(FadeInCanvas());
     }
 
-    private IEnumerator FadeIn()
+    private IEnumerator FadeInActive()
     {
-        Color c = _active.GetComponent<Image>().color;
+        Color c = _active.color;
 
-        while (c.a < 1)
+        while (c.a < activeMaxAlpha)
         {
-            c.a += 0.01f;
-
-            _active.GetComponent<Image>().color = c;
-
+            c.a += Time.deltaTime * fadeSpeed * 0.75f;
+            _active.color = c;
             yield return null;
         }
     }
 
     public void ControlBarInactive()
     {
-        StartCoroutine(FadeOut());
+        StartCoroutine(FadeOutActive());
+        StartCoroutine(FadeOutCanvas());
     }
 
-    private IEnumerator FadeOut()
+    private IEnumerator FadeOutActive()
     {
-        Color c = _active.GetComponent<Image>().color;
+        Color c = _active.color;
 
         while (c.a > 0)
         {
-            c.a -= 0.01f;
-
-            _active.GetComponent<Image>().color = c;
-
+            c.a -= Time.deltaTime * fadeSpeed * 3.0f;
+            _active.color = c;
             yield return null;
         }
 
-        _active.SetActive(false);
+        _active.gameObject.SetActive(false);
+    }
+
+    private void SetCanvasGroupAlpha(float alpha)
+    {
+        foreach (var canvasGroup in canvasGroups)
+        {
+            canvasGroup.alpha = alpha;
+        }
+    }
+
+    private IEnumerator FadeInCanvas()
+    {
+        float alpha = canvasGroups[0].alpha;
+        while (alpha < 1.0f)
+        {
+            alpha += Time.deltaTime * fadeSpeed;
+            SetCanvasGroupAlpha(alpha);
+            yield return null;
+        }
+        SetCanvasGroupAlpha(1.0f);
+    }
+
+    private IEnumerator FadeOutCanvas()
+    {
+        float alpha = canvasGroups[0].alpha;
+        while (alpha > fadeMinAlpha)
+        {
+            alpha -= Time.deltaTime * fadeSpeed;
+            SetCanvasGroupAlpha(alpha);
+            yield return null;
+        }
+        SetCanvasGroupAlpha(fadeMinAlpha);
     }
 }

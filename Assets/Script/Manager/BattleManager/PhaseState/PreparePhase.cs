@@ -14,7 +14,7 @@ public class PreparePhase : Phase
         BattleManager.Data.TurnPlus();
         BattleManager.BattleUI.UI_playerSkill.InableSkill(false);
         BattleManager.Mana.ManaInableCheck();
-        BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
+        BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn(_isFirst);
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
         BattleManager.BattleUI.UI_controlBar.ControlBarActive();
 

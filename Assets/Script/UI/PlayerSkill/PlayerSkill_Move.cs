@@ -23,7 +23,7 @@ public class PlayerSkill_Move : PlayerSkill
         switch (activeTiming)
         {
             case ActiveTiming.TURN_START:
-                if (BattleManager.Instance.MoveUnit(selectedUnit, coord))
+                if (BattleManager.Instance.MoveUnit(selectedUnit, coord) || selectedUnit.Location == coord)
                 {
                     BattleManager.Field.ClearAllColor();
                     BattleManager.PlayerSkillController.SetSkillDone();
