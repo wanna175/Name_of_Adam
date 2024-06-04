@@ -24,6 +24,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
+    private bool _isLockedClickButton;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         _myDeck = myDeck;
         _cardUnit = unit;
+        _isLockedClickButton = false;
 
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
@@ -81,7 +83,10 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void SetDisable(bool disable)
     {
         _disable.SetActive(disable);
+        LockClickButton(disable);
     }
+
+    public void LockClickButton(bool isLockedClickButton) => _isLockedClickButton = isLockedClickButton;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -110,7 +115,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerClick(PointerEventData eventData)
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        if (_disable.activeSelf)
+        if (_isLockedClickButton)
         {
             return;
         }

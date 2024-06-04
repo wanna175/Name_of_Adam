@@ -197,7 +197,14 @@ public class UI_MyDeck : UI_Popup
             if (currentEvent == CurrentEvent.Stigmata_Give)
             {
                 if (_playerDeck[i].GetStigma(true).Count != 0)
+                {
                     AddCard(_playerDeck[i]);
+                    if (_playerDeck[i].IsMainDeck)
+                    {
+                        _card_dic[_playerDeck[i]].SetDisable(true);
+                        _card_dic[_playerDeck[i]].LockClickButton(false);
+                    }
+                }
             }
             else if (currentEvent == CurrentEvent.Stigmata_Receive)
             {
@@ -236,13 +243,20 @@ public class UI_MyDeck : UI_Popup
     {
         if (_currentEvent == CurrentEvent.Stigmata_Give)
         {
-            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
+            if (unit.IsMainDeck)
             {
-                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata", string.Empty);
+            }
+            else
+            {
+                GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
+                {
+                    GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
-                OnUnitSelect(unit);
-                GameManager.Data.RemoveDeckUnit(unit);
-            });
+                    OnUnitSelect(unit);
+                    GameManager.Data.RemoveDeckUnit(unit);
+                });
+            }
         }
         else
         {

@@ -114,6 +114,11 @@ MonoBehaviour:
       \uC120\uD0DD\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
     m_Metadata:
       m_Items: []
+  - m_Id: 30018410514280448
+    m_Localized: "\uC804\uB2F9\uC5D0\uC11C \uB370\uB824\uC628 \uC720\uB2DB\uC740
+      \n\n\uC131\uD754 \uC774\uB3D9\uC758 \uB300\uC0C1\uC774 \uB420 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

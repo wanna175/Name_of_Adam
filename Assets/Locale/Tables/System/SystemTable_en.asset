@@ -123,6 +123,14 @@ MonoBehaviour:
       you like to destroy an existing corruption stigmata and select a new one?'
     m_Metadata:
       m_Items: []
+  - m_Id: 30018410514280448
+    m_Localized: 'The unit brought from the Divine Hall
+
+
+      ncannot be the target
+      of Stigma Transfer.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

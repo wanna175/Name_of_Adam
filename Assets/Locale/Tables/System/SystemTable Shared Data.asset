@@ -83,6 +83,10 @@ MonoBehaviour:
     m_Key: CorfirmAlreadyHaveCorruptStigmata
     m_Metadata:
       m_Items: []
+  - m_Id: 30018410514280448
+    m_Key: CantGiveStigmata
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
