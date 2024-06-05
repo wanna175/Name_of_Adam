@@ -117,14 +117,14 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_0"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 251
-        height: 128
-      alignment: 9
+        y: 0
+        width: 256
+        height: 160
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -138,14 +138,14 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_1"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_1"
       rect:
         serializedVersion: 2
-        x: 251
-        y: 128
-        width: 251
-        height: 128
-      alignment: 9
+        x: 256
+        y: 0
+        width: 256
+        height: 160
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -159,14 +159,14 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_2"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_2"
       rect:
         serializedVersion: 2
-        x: 0
+        x: 512
         y: 0
-        width: 251
-        height: 128
-      alignment: 9
+        width: 256
+        height: 160
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -180,14 +180,14 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_3"
+      name: "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_3"
       rect:
         serializedVersion: 2
-        x: 251
+        x: 768
         y: 0
-        width: 251
-        height: 128
-      alignment: 9
+        width: 256
+        height: 160
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -211,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_3": 2003812178
-      "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_2": 458258908
-      "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_1": 336568869
-      "\uB2C8\uBBC0\uB86F_\uD0C0\uB77D_Idle_0": 1677085809
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_3": 2003812178
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_2": 458258908
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_1": 336568869
+      "\uBC14\uB204\uC5D8_\uD0C0\uB77D_Idle_0": 1677085809
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

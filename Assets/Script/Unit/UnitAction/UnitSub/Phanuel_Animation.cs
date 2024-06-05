@@ -14,9 +14,9 @@ public class Phanuel_Animation : MonoBehaviour
         _animator.SetBool(varName, boolean);
     }
 
-    public void ChangeAnimator(Team team)
+    public void SetAnimator(Team team)
     {
-        transform.position = new(0f, 2.2f, 0f);
+        transform.position = new(0f, 1.8f, 0f);
         transform.localScale = new(2f, 2f, 1f); // 변경할 크기
 
         if (team == Team.Player)
@@ -27,5 +27,11 @@ public class Phanuel_Animation : MonoBehaviour
         {
             _animator.runtimeAnimatorController = AnimatorController;
         }
+    }
+
+    public void ChangeAnimator(Team team)
+    {
+        SetAnimator(team);
+        _animator.Play("Unit_Idle");
     }
 }
