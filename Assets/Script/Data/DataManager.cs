@@ -173,6 +173,26 @@ public class DataManager : MonoBehaviour
         return GameData.DeckUnits;
     }
 
+    public List<DeckUnit> GetSortedDeck(SortMode sortMode)
+    {
+        List<DeckUnit> returnUnits = new List<DeckUnit>();
+
+        // 정렬 방식은 SortMode Enum 참고
+        if (sortMode == SortMode.Default)
+        {
+            List<DeckUnit> mainDecks = GameData.DeckUnits.FindAll(x => x.IsMainDeck);
+            List<DeckUnit> notMainDecks = GameData.DeckUnits.FindAll(x => !x.IsMainDeck);
+
+            mainDecks.Sort((a, b) => a.HallUnitID.CompareTo(b.HallUnitID));
+            notMainDecks.Sort((a, b) => a.GetStigmaCount().CompareTo(b.GetStigmaCount()));
+
+            returnUnits.AddRange(mainDecks);
+            returnUnits.AddRange(notMainDecks);
+        }
+
+        return returnUnits;
+    }
+
     public void SetDeck(List<DeckUnit> deck)
     {
         GameData.DeckUnits = deck;
@@ -237,15 +257,6 @@ public class DataManager : MonoBehaviour
                 playerSkill.ChangeCost(playerSkill.GetOriginalManaCost(), playerSkill.GetOriginalDarkEssenceCost());
             }
         }
-    }
-
-    public List<int> GetProbability()
-    {
-        List<int> probability = new();
-        probability.Add(99);
-        probability.Add(89);
-
-        return probability;
     }
 
     public MapDataSaveData GetMapSaveData()

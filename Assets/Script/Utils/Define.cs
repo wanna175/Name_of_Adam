@@ -608,3 +608,8 @@ public class ProgressLoader : ILoader<int, ProgressItem>
         return dic;
     }
 }
+
+public enum SortMode
+{
+    Default,    // 전당덱 + 나머지(성흔수)
+}
