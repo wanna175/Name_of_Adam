@@ -69,13 +69,14 @@ public class BattleDataManager : MonoBehaviour
 
         _battleUnitList.Clear();
 
-        foreach (DeckUnit unit in PlayerHands)
+        foreach (DeckUnit unit in _playerHands)
         {
             unit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit);
         }
 
-        PlayerHands.Clear();
+        _playerHands.Clear();
+        _playerHands = ShuffleList(_playerHands);
 
         if (GameManager.OutGameData.IsUnlockedItem(8))
         {
@@ -94,6 +95,24 @@ public class BattleDataManager : MonoBehaviour
         GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
         GameManager.OutGameData.SaveData();
         GameManager.SaveManager.SaveGame();
+    }
+
+    private List<T> ShuffleList<T>(List<T> list)
+    {
+        int random1, random2;
+        T temp;
+
+        for (int i = 0; i < list.Count; ++i)
+        {
+            random1 = Random.Range(0, list.Count);
+            random2 = Random.Range(0, list.Count);
+
+            temp = list[random1];
+            list[random1] = list[random2];
+            list[random2] = temp;
+        }
+
+        return list;
     }
 
     private int _turnCount = 0;
