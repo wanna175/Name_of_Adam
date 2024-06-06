@@ -18,6 +18,8 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
         BattleManager.BattleUI.UI_controlBar.ControlBarActive();
 
+        BattleManager.Field.SetTileHighlightFrame(null, false);
+
         if (!GameManager.OutGameData.IsTutorialClear())
         {
             if (TutorialManager.Instance.CheckStep(TutorialStep.UI_PlayerTurn))

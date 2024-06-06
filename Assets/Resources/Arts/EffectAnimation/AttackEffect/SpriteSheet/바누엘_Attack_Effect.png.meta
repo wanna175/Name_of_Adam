@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_0"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_1"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_1"
       rect:
         serializedVersion: 2
         x: 154
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_2"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_2"
       rect:
         serializedVersion: 2
         x: 308
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_3"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_3"
       rect:
         serializedVersion: 2
         x: 462
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_4"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_4"
       rect:
         serializedVersion: 2
         x: 616
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_5"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_5"
       rect:
         serializedVersion: 2
         x: 770
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_6"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_6"
       rect:
         serializedVersion: 2
         x: 924
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_7"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_7"
       rect:
         serializedVersion: 2
         x: 1078
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_8"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_8"
       rect:
         serializedVersion: 2
         x: 1232
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uB2C8\uBBC0\uB86F_Attack_Effect_9"
+      name: "\uBC14\uB204\uC5D8_Attack_Effect_9"
       rect:
         serializedVersion: 2
         x: 1386
@@ -358,17 +358,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_7": -751200616
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_6": -1786583947
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_8": 290305047
+      "\uBC14\uB204\uC5D8_Attack_Effect_4": 1553106689
+      "\uBC14\uB204\uC5D8_Attack_Effect_6": -1786583947
+      "\uBC14\uB204\uC5D8_Attack_Effect_9": -100787641
+      "\uBC14\uB204\uC5D8_Attack_Effect_1": 1995013757
       "\uB2C8\uBBC0\uB86F_Attack_Effect_10": -1198611135
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_3": 796323057
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_2": 1453945123
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_9": -100787641
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_0": 777571662
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_1": 1995013757
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_4": 1553106689
-      "\uB2C8\uBBC0\uB86F_Attack_Effect_5": 1449110208
+      "\uBC14\uB204\uC5D8_Attack_Effect_0": 777571662
+      "\uBC14\uB204\uC5D8_Attack_Effect_8": 290305047
+      "\uBC14\uB204\uC5D8_Attack_Effect_2": 1453945123
+      "\uBC14\uB204\uC5D8_Attack_Effect_7": -751200616
+      "\uBC14\uB204\uC5D8_Attack_Effect_5": 1449110208
+      "\uBC14\uB204\uC5D8_Attack_Effect_3": 796323057
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

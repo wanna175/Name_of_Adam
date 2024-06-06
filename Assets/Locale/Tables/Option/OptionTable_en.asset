@@ -74,6 +74,14 @@ MonoBehaviour:
     m_Localized: Game Reset
     m_Metadata:
       m_Items: []
+  - m_Id: 44342578477420544
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44342601382514688
+    m_Localized: Game Speed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -8,6 +8,8 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _hover;
+    [SerializeField] private GameObject _hightlightFrame;
+
     private BattleUnit _unit = null;
     public BattleUnit Unit => _unit;
     public bool UnitExist { get { return Unit != null;} }
@@ -17,15 +19,16 @@ public class Tile : MonoBehaviour
 
     public Action<Tile> OnClickAction = null;
 
-    private new Collider2D collider;
+    private new Collider2D _collider;
 
     public Tile Init(Vector3 position)
     {
         transform.position = position;
         _highlight.SetActive(false);
         _hover.SetActive(false);
+        _hightlightFrame.SetActive(false);
 
-        collider = GetComponent<Collider2D>();
+        _collider = GetComponent<Collider2D>();
         return this;
     }
 
@@ -40,7 +43,7 @@ public class Tile : MonoBehaviour
         _unit = unit;
     }
 
-    public void SetActiveCollider(bool isActive) => collider.enabled = isActive;
+    public void SetActiveCollider(bool isActive) => _collider.enabled = isActive;
 
     public void ExitTile()
     {
@@ -124,6 +127,8 @@ public class Tile : MonoBehaviour
     }
 
     private bool IsPointerOverUIObject() => EventSystem.current.IsPointerOverGameObject();
+
+    public void SetHightlightFrame(bool active) => _hightlightFrame.SetActive(active);
 
     private void OnMouseDown()
     {

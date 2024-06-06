@@ -15,6 +15,8 @@ public class UI_Option : UI_Popup
     [SerializeField] private ClickableSlider _bgmSlider;
     [SerializeField] private ClickableSlider _seSlider;
 
+    [SerializeField] private ClickableSlider _gameSpeedSlider;
+
     [SerializeField] private GameObject _credit;
 
     [SerializeField] private GameObject _gameResetButton;
@@ -26,6 +28,7 @@ public class UI_Option : UI_Popup
     private float _masterPower;
     private float _bgmPower;
     private float _sePower;
+    private float _gameSpeed;
 
     private void Update()
     {
@@ -54,6 +57,8 @@ public class UI_Option : UI_Popup
         _bgmPower = GameManager.OutGameData.GetBGMSoundPower();
         _sePower = GameManager.OutGameData.GetSESoundPower();
 
+        _gameSpeed = GameManager.OutGameData.GetBattleSpeed();
+
         // UI ¼¼ÆÃ
         _languageDropdown.onValueChanged.AddListener(GameManager.Locale.LanguageChanged);
         _resolutionDropdown.onValueChanged.AddListener(ResolutionDropdownChanged);
@@ -61,7 +66,7 @@ public class UI_Option : UI_Popup
 
         foreach (var resolution in _resolutions)
         {
-            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
+            TMP_Dropdown.OptionData option = new();
             option.text = $"{resolution.width} x {resolution.height}";
             _resolutionDropdown.options.Add(option);
         }
@@ -77,9 +82,13 @@ public class UI_Option : UI_Popup
         _bgmSlider.Slider.onValueChanged.AddListener(BGMSliderChanged);
         _seSlider.Slider.onValueChanged.AddListener(SESliderChanged);
 
+        _gameSpeedSlider.Slider.onValueChanged.AddListener(GameSpeedSliderChanged);
+
         _masterSlider.Slider.value = _masterPower;
         _bgmSlider.Slider.value = _bgmPower;
         _seSlider.Slider.value = _sePower;
+
+        _gameSpeedSlider.Slider.value = _gameSpeed;
 
         if (SceneManager.GetActiveScene().name != "MainScene")
         {
@@ -125,6 +134,12 @@ public class UI_Option : UI_Popup
         _sePower = power;
         GameManager.OutGameData.SetSESoundPower(power);
         GameManager.Sound.SetSoundVolume(Sounds.Effect);
+    }
+
+    private void GameSpeedSliderChanged(float speed)
+    {
+        _gameSpeed = speed;
+        GameManager.OutGameData.SetBattleSpeed(speed);
     }
 
     public void ReSetOption()

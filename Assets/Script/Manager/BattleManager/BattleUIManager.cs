@@ -85,7 +85,8 @@ public class BattleUIManager : MonoBehaviour
             }
             else
             {
-                unit = BattleManager.Data.GetRandomUnitFromDeck();
+                unit = BattleManager.Data.GetUnitFromDeck();
+                //unit = BattleManager.Data.GetRandomUnitFromDeck();
             }
 
             if (unit == null)

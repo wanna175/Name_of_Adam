@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 
 public class UI_WaitingLine : UI_Scene
 {
@@ -12,6 +12,7 @@ public class UI_WaitingLine : UI_Scene
     [SerializeField] private GameObject _waitingUnitPrefab;
 
     private List<UI_WaitingUnit> _waitingUnitList = new();
+    private List<BattleUnit> _waitingBattleUnitList = new();
     private int _waitingLinePage = 0;
 
     public void Start()
@@ -45,6 +46,11 @@ public class UI_WaitingLine : UI_Scene
 
     public void SetWaitingLine(List<BattleUnit> orderList)
     {
+        if (_waitingBattleUnitList.SequenceEqual(orderList))
+        {
+            return;
+        }
+        _waitingBattleUnitList = orderList;
         ClearWaitingLine();
 
         foreach (BattleUnit unit in orderList)

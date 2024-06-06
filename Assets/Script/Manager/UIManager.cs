@@ -31,7 +31,17 @@ public class UIManager : MonoBehaviour
         {
             ClosePopup(ESCOPopups.Pop());
             if (!IsOnESCOption)
-                Time.timeScale = 1;
+            {
+                if (SceneManager.GetActiveScene().name == "BattleScene")
+                {
+                    Time.timeScale = GameManager.OutGameData.GetBattleSpeed();
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                }
+            }
+                
         }
         else
         {
@@ -46,7 +56,14 @@ public class UIManager : MonoBehaviour
     {
         while (ESCOPopups.Count > 0)
             ClosePopup(ESCOPopups.Pop());
-        Time.timeScale = 1;
+        if (SceneManager.GetActiveScene().name == "BattleScene")
+        {
+            Time.timeScale = GameManager.OutGameData.GetBattleSpeed();
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void SetCanvas(GameObject go, bool sort = true)

@@ -71,6 +71,14 @@ MonoBehaviour:
     m_Key: Game Reset
     m_Metadata:
       m_Items: []
+  - m_Id: 44342578477420544
+    m_Key: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44342601382514688
+    m_Key: Game Speed
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

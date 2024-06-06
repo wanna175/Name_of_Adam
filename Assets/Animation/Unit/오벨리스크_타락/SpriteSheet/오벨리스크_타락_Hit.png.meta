@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8a366a3f694c7d14bbd5a4eeabe431c5
+guid: 21e640850ffaec64891271e5b7fc3462
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 70
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,148 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hp_bar_faith_brake out_motion -Red_0
+      name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C_\uD0C0\uB77D_Hit_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44195f560ba192747abf29f2cce9dcfe
-      internalID: -1995194757
+      spriteID: 761c01ba390b009488bc83b2b3a323df
+      internalID: 471255483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hp_bar_faith_brake out_motion -Red_1
+      name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C_\uD0C0\uB77D_Hit_1"
       rect:
         serializedVersion: 2
-        x: 200
+        x: 256
         y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efcfe78eb9c4ddf448e71ac90d5b7df0
-      internalID: 365141481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hp_bar_faith_brake out_motion -Red_2
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 504e1262cf97e714f89b464e0f82e5a5
-      internalID: -114907154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hp_bar_faith_brake out_motion -Red_3
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a18848f4169112947aa0a8106e1a943f
-      internalID: -340678890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hp_bar_faith_brake out_motion -Red_4
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 85469d91a5456b14c9758434445f48b0
-      internalID: 393854122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hp_bar_faith_brake out_motion -Red_5
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c66f2afc37f85d34ebc021e44f2a9231
-      internalID: 253598637
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hp_bar_faith_brake out_motion -Red_6
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d26d4820ec23c94d8fa9e90bf703391
-      internalID: 1690820577
+      spriteID: 2084241725ffbda499aea18b9cf450d5
+      internalID: 831332148
       vertices: []
       indices: 
       edges: []
@@ -274,13 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hp_bar_faith_brake out_motion -Red_0: -1995194757
-      hp_bar_faith_brake out_motion -Red_5: 253598637
-      hp_bar_faith_brake out_motion -Red_1: 365141481
-      hp_bar_faith_brake out_motion -Red_3: -340678890
-      hp_bar_faith_brake out_motion -Red_2: -114907154
-      hp_bar_faith_brake out_motion -Red_6: 1690820577
-      hp_bar_faith_brake out_motion -Red_4: 393854122
+      "\uC624\uBCA8\uB9AC\uC2A4\uD06C_\uD0C0\uB77D_Hit_1": 831332148
+      "\uC624\uBCA8\uB9AC\uC2A4\uD06C_\uD0C0\uB77D_Hit_0": 471255483
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

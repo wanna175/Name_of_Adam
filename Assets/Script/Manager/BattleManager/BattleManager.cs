@@ -54,6 +54,7 @@ public class BattleManager : MonoBehaviour
         _unitIDManager = new UnitIDManager();
         _unitIDManager.Init(GameManager.Data.GetDeck());
         SetBackground();
+        Time.timeScale = GameManager.OutGameData.GetBattleSpeed();
     }
 
     private void Update()
@@ -230,6 +231,7 @@ public class BattleManager : MonoBehaviour
 
     #region Click 관련
     private bool _tileClickCooldown = false;
+    private int _cooldownCounter = 0;
 
     public void OnClickTile(Tile tile)
     {
@@ -240,12 +242,17 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void SetTlieClickCoolDown(float time)
+    public void SetTlieClickCoolDown(float time)
     {
         _tileClickCooldown = true;
+        _cooldownCounter++;
 
         PlayAfterCoroutine(() => {
-            _tileClickCooldown = false;
+            _cooldownCounter--;
+            if (_cooldownCounter == 0)
+            {
+                _tileClickCooldown = false;
+            }
         }, time);
     }
 
@@ -314,7 +321,7 @@ public class BattleManager : MonoBehaviour
         if (MoveUnit(unit, coord))
         {
             unit.IsDoneMove = true;
-            PlayAfterCoroutine(() => _phase.ChangePhase(_phase.Action), 1f);
+            _phase.ChangePhase(_phase.Action);
             SetTlieClickCoolDown(1f);
         }
         else if (coord == unit.Location)
@@ -649,6 +656,7 @@ public class BattleManager : MonoBehaviour
         _phase.ChangePhase(new BattleOverPhase());
         _battleData.OnBattleOver();
         StageData data = GameManager.Data.Map.GetCurrentStage();
+        Time.timeScale = 1f;
 
         if (data.StageLevel >= 90)
         {
