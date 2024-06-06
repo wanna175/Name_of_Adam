@@ -23,6 +23,8 @@ public class Field : MonoBehaviour
 
     readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
+    public Vector2? NowHighlightFrameOnLocation;
+
     public Color ColorList(FieldColorType color)
     {
         return color switch
@@ -290,6 +292,21 @@ public class Field : MonoBehaviour
         foreach (Tile tile in TileDict.Values)
         {
             tile.SetColor(Color.white);
+        }
+    }
+
+    public void SetTileHighlightFrame(Vector2? location, bool highlightOn)
+    {
+        if (NowHighlightFrameOnLocation != null)
+        {
+            TileDict[(Vector2)NowHighlightFrameOnLocation].SetHightlightFrame(false);
+        }
+
+        NowHighlightFrameOnLocation = location;
+
+        if (location != null)
+        {
+            TileDict[(Vector2)location].SetHightlightFrame(highlightOn);
         }
     }
 
