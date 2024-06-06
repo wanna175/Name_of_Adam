@@ -9,6 +9,7 @@ public class ActionPhase : Phase
     public override void OnStateEnter()
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
+        BattleManager.Field.SetTileHighlightFrame(_nowUnit.Location, true);
 
         if (_nowUnit.Team == Team.Player)
             BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
