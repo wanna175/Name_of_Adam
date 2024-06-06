@@ -8,6 +8,7 @@ public class Phanuel_Animation : MonoBehaviour
     [SerializeField] public RuntimeAnimatorController CorruptionAnimatorController;
 
     [SerializeField] private Animator _animator;
+    private Team _currentTeam;
 
     public void SetBool(string varName, bool boolean)
     {
@@ -18,6 +19,8 @@ public class Phanuel_Animation : MonoBehaviour
     {
         transform.position = new(0f, 1.8f, 0f);
         transform.localScale = new(2f, 2f, 1f); // 변경할 크기
+
+        _currentTeam = team;
 
         if (team == Team.Player)
         {
@@ -31,7 +34,10 @@ public class Phanuel_Animation : MonoBehaviour
 
     public void ChangeAnimator(Team team)
     {
-        SetAnimator(team);
-        _animator.Play("Unit_Idle");
+        if (_currentTeam != team)
+        {
+            SetAnimator(team);
+            _animator.Play("Unit_Idle");
+        }
     }
 }
