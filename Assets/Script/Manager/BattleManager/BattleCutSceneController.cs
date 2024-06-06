@@ -24,6 +24,7 @@ public class BattleCutSceneController : MonoBehaviour
             return;
 
         BattleManager.Field.ClearAllColor();
+        BattleManager.Field.SetTileHighlightFrame(null, false);
         _cameraHandler.SetCutSceneCamera();
 
         SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
