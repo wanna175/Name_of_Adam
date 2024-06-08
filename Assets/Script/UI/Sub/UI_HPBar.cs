@@ -105,7 +105,7 @@ public class UI_HPBar : UI_Base
         }
     }
 
-    public void RefreshFallBar(int current, FallAnimType fallAnimType)
+    public void RefreshFallBar(int current, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.0f)
     {
         int gap = current - _fallCount; // 신앙 보석 차이
         int count = Mathf.Abs(gap);
@@ -115,14 +115,14 @@ public class UI_HPBar : UI_Base
             if (gap > 0)
             {
                 // 신앙 감소 = 보석 파괴 (역순)
-                switch (fallAnimType)
+                switch (fallAnimMode)
                 {
-                    case FallAnimType.AnimOn:
+                    case FallAnimMode.On:
                         _fallGauge[_currentIndex].SetVisible(true);
-                        _fallGauge[_currentIndex].DecreaseGauge(); 
+                        _fallGauge[_currentIndex].DecreaseGauge(fallAnimDelay); 
                         break;
 
-                    case FallAnimType.AnimOff: 
+                    case FallAnimMode.Off: 
                         _fallGauge[_currentIndex].SetVisible(false);
                         break;
                 }
@@ -134,14 +134,14 @@ public class UI_HPBar : UI_Base
                 // 신앙 증가 = 보석 복구 (순)
                 _fallCount--;
                 _currentIndex++;
-                switch (fallAnimType)
+                switch (fallAnimMode)
                 {
-                    case FallAnimType.AnimOn:
+                    case FallAnimMode.On:
                         _fallGauge[_currentIndex].SetVisible(true);
-                        _fallGauge[_currentIndex].IncreaseGauge();
+                        _fallGauge[_currentIndex].IncreaseGauge(fallAnimDelay);
                         break;
 
-                    case FallAnimType.AnimOff:
+                    case FallAnimMode.Off:
                         _fallGauge[_currentIndex].SetVisible(false);
                         break;
                 }

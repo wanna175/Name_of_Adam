@@ -499,10 +499,10 @@ public enum CutSceneType
     NPC_Harlot_Corrupt,
 }
 
-public enum FallAnimType
+public enum FallAnimMode
 {
-    AnimOn,
-    AnimOff
+    On,
+    Off
 }
 
 public enum CurrentEvent

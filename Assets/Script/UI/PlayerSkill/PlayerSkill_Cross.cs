@@ -40,7 +40,7 @@ public class PlayerSkill_Cross : PlayerSkill
 
                 if (GameManager.OutGameData.IsUnlockedItem(54))
                 {
-                    targetUnit.ChangeFall(1);
+                    targetUnit.ChangeFall(1, FallAnimMode.On, 0.4f);
                 }
 
                 if (!targetUnit.FallEvent)

@@ -41,7 +41,7 @@ public class Buff_Malevolence : Buff
     public override bool Active(BattleUnit caster)
     {
         if (caster != null)
-            caster.ChangeFall(1);
+            caster.ChangeFall(1, FallAnimMode.On, 0.75f);
 
         return false;
     }

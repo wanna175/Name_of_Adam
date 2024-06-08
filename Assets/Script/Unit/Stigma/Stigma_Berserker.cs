@@ -10,7 +10,7 @@ public class Stigma_Berserker : Stigma
         base.Use(caster);
 
         int fallDownCount = caster.BattleUnitTotalStat.FallMaxCount - caster.BattleUnitTotalStat.FallCurrentCount - 1;
-        caster.ChangeFall(fallDownCount);
+        caster.ChangeFall(fallDownCount, FallAnimMode.Off);
         caster.SetBuff(new Buff_Berserker());
     }
 }

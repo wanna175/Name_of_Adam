@@ -69,7 +69,7 @@ public class BattleUnit : MonoBehaviour
 
         SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.Off);
 
         _scale = transform.localScale.x;
 
@@ -180,7 +180,7 @@ public class BattleUnit : MonoBehaviour
     public void RefreshHPBar()
     {
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
         _hpBar.RefreshBuff();
     }
 
@@ -300,7 +300,7 @@ public class BattleUnit : MonoBehaviour
 
         SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
 
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
@@ -513,7 +513,7 @@ public class BattleUnit : MonoBehaviour
 
     public virtual int GetHP() => HP.GetCurrentHP();
 
-    public void ChangeFall(int value)
+    public void ChangeFall(int value, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.0f)
     {
         if (FallEvent || Fall.IsEdified)
         {
@@ -527,9 +527,10 @@ public class BattleUnit : MonoBehaviour
         if (value > 0 && Fall.GetCurrentFallCount() + value >= Fall.GetMaxFallCount())
             value = Fall.GetMaxFallCount() - Fall.GetCurrentFallCount(); // 최대치 방지
 
+        Debug.Log(fallAnimDelay);
         Fall.ChangeFall(value);
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), fallAnimMode, fallAnimDelay);
     }
 
     public virtual BattleUnit GetOriginalUnit() => this;

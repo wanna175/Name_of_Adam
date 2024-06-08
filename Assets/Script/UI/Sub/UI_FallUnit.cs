@@ -25,14 +25,21 @@ public class UI_FallUnit : MonoBehaviour
     public void SetVisible(bool isVisible) 
         => _fallImage.gameObject.SetActive(isVisible);
 
-    public void IncreaseGauge()
+    public void IncreaseGauge(float delay) => StartCoroutine(StartIncreaseGauge(delay));
+
+    public void DecreaseGauge(float delay) => StartCoroutine(StartDecreaseGauge(delay));
+
+    IEnumerator StartIncreaseGauge(float delay)
     {
+        yield return new WaitForSeconds(delay);
         _anim.SetBool("IsPlay", true);
         _anim.SetBool("IsBreak", false);
     }
 
-    public void DecreaseGauge()
+    IEnumerator StartDecreaseGauge(float delay)
     {
+        yield return new WaitForSeconds(delay);
+        Debug.Log(delay);
         _anim.SetBool("IsPlay", true);
         _anim.SetBool("IsBreak", true);
     }

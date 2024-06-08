@@ -46,7 +46,7 @@ public class Buff_Stigma_Dust : Buff
         }
         if (count >= 2)
         {
-            caster.ChangeFall(1);
+            caster.ChangeFall(1, FallAnimMode.On, 0.75f);
         }
 
         Buff_TraceOfDust dust = new();
