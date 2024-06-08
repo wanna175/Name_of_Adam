@@ -320,6 +320,8 @@ public enum StigmaEnum
 public enum BuffEnum
 {
     //normal buff (image)
+    None,
+
     Appaim,
     Benediction,
     Berserker,

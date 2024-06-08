@@ -23,7 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitBuff Buff;
     [SerializeField] public UnitAction Action;
-    [SerializeField] private UI_HPBar _hpBar;
+    [SerializeField] public UI_HPBar _hpBar;
     
     [SerializeField] private GameObject _floatingDamagePrefab;
 

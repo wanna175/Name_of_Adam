@@ -23,6 +23,7 @@ public class UI_HPBar : UI_Base
     private int _currentIndex; // 4개의 보석 중 Change가 발생할 될 보석 위치
 
     private List<UI_Buff> _buffBlockList = new();
+    public List<UI_Buff> BuffBlockList => _buffBlockList;
     private int _rotationCurrent = 0;
 
     private Team _team;
