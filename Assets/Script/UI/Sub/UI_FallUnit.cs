@@ -39,7 +39,6 @@ public class UI_FallUnit : MonoBehaviour
     IEnumerator StartDecreaseGauge(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log(delay);
         _anim.SetBool("IsPlay", true);
         _anim.SetBool("IsBreak", true);
     }

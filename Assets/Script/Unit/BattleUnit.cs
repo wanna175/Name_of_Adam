@@ -527,7 +527,6 @@ public class BattleUnit : MonoBehaviour
         if (value > 0 && Fall.GetCurrentFallCount() + value >= Fall.GetMaxFallCount())
             value = Fall.GetMaxFallCount() - Fall.GetCurrentFallCount(); // 최대치 방지
 
-        Debug.Log(fallAnimDelay);
         Fall.ChangeFall(value);
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
         _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), fallAnimMode, fallAnimDelay);
