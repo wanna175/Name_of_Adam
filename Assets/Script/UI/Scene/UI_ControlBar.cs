@@ -54,6 +54,12 @@ public class UI_ControlBar : UI_Scene
         StartCoroutine(FadeOutCanvas());
     }
 
+    public void CreateSystemInfo(string info)
+    {
+        UI_SystemFadeInfo systemInfo = GameManager.Resource.Instantiate("UI/SystemFadeInfo", this.transform).GetComponent<UI_SystemFadeInfo>();
+        systemInfo.Init(new Vector2(0f, -265f), info);
+    }
+
     private IEnumerator FadeOutActive()
     {
         Color c = _active.color;

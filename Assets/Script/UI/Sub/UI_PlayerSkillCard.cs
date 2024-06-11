@@ -72,7 +72,10 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
                 TutorialManager.Instance.ShowNextTutorial();
 
             if (BattleManager.BattleUI.UI_playerSkill.Used)
-                _cannotEffect.Create();
+            {
+                //_cannotEffect.Create();
+                BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("PlayerSkillisUsed"));
+            }
             _playerSkill.OnClickHand(this);
         }
     }

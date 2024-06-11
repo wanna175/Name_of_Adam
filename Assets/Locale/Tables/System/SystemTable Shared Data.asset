@@ -95,6 +95,10 @@ MonoBehaviour:
     m_Key: TeamBuild_MainDeck
     m_Metadata:
       m_Items: []
+  - m_Id: 32564546820542464
+    m_Key: PlayerSkillisUsed
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
