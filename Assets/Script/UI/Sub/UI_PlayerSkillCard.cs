@@ -13,7 +13,9 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private TextMeshProUGUI _ManaCost;
     [SerializeField] private TextMeshProUGUI _essenceCost;
     [SerializeField] private GameObject _essence;
-    //[SerializeField] private TextMeshProUGUI _text;
+
+    [SerializeField] private UI_CannotEffect _cannotEffect;
+    public UI_CannotEffect CannotEffect => _cannotEffect;
 
     private UI_PlayerSkill _playerSkill;
     private PlayerSkill _skill;
@@ -33,8 +35,9 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         GetComponent<Image>().sprite = skill.GetSkillImage();
         _ManaCost.text = skill.GetManaCost().ToString();
         _essenceCost.text = skill.GetDarkEssenceCost().ToString();
+        _cannotEffect.Init(Vector3.one, Vector3.one * 1.2f, 1.5f);
 
-        if(skill.GetDarkEssenceCost() < 1)
+        if (skill.GetDarkEssenceCost() < 1)
         {
             _essenceCost.gameObject.SetActive(false);
             _essence.SetActive(false);
@@ -68,6 +71,8 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
             if (TutorialManager.Instance.IsEnable())
                 TutorialManager.Instance.ShowNextTutorial();
 
+            if (BattleManager.BattleUI.UI_playerSkill.Used)
+                _cannotEffect.Create();
             _playerSkill.OnClickHand(this);
         }
     }

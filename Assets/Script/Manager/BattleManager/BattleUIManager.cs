@@ -40,7 +40,7 @@ public class BattleUIManager : MonoBehaviour
 
         UI_playerHP = UI_controlBar.UI_PlayerHP;
         UI_playerSkill = UI_controlBar.UI_PlayerSkill;
-        UI_playerSkill.SetSkill(GameManager.Data.GetPlayerSkillList());
+        UI_playerSkill.Init(GameManager.Data.GetPlayerSkillList());
         
         UI_hands = UI_controlBar.UI_Hands;
         

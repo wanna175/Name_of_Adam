@@ -13,6 +13,11 @@ public class UI_PlayerSkill : UI_Scene
 
     public bool Used = false;// once per turn
 
+    public void Init(List<PlayerSkill> skillList)
+    {
+        SetSkill(skillList);
+    }
+
     public void SetSkill(List<PlayerSkill> skillList)
     {
         for (int i = 0; i < 3; i++)
@@ -41,9 +46,9 @@ public class UI_PlayerSkill : UI_Scene
         if (!Used)
         {
             if (!isCanUseMana)
-                BattleManager.BattleUI.UI_manaGauge.CreateCannotEffect();
+                BattleManager.BattleUI.UI_manaGauge.CannotEffect.Create();
             if (!isCanUseDarkEssense)
-                BattleManager.BattleUI.UI_darkEssence.CreateCannotEffect();
+                BattleManager.BattleUI.UI_darkEssence.CannotEffect.Create();
 
             if (isCanUseMana && isCanUseDarkEssense)
             {
@@ -73,6 +78,8 @@ public class UI_PlayerSkill : UI_Scene
                     card.GetSkill().OnSelect();
                 }
             }
+            else
+                GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
         }
         else
         {
