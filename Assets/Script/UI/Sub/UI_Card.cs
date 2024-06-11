@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -24,7 +25,8 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
-    private bool _isLockedClickButton;
+
+    private Action _disableClickAction;
 
     private void Start()
     {
@@ -36,7 +38,6 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         _myDeck = myDeck;
         _cardUnit = unit;
-        _isLockedClickButton = false;
 
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
@@ -52,7 +53,8 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if (SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
-            SetDisable(unit.IsMainDeck);
+            if (unit.IsMainDeck)
+                SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("TeamBuild_MainDeck", string.Empty));
         }
 
         foreach (var frame in _stigmataFrames)
@@ -80,13 +82,11 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _selectHighlight.SetActive(!_selectHighlight.activeInHierarchy);
     }
 
-    public void SetDisable(bool disable)
+    public void SetDisable(Action disableClickAction)
     {
-        _disable.SetActive(disable);
-        LockClickButton(disable);
+        _disable.SetActive(true);
+        _disableClickAction = disableClickAction;
     }
-
-    public void LockClickButton(bool isLockedClickButton) => _isLockedClickButton = isLockedClickButton;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -115,11 +115,9 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     public void OnPointerClick(PointerEventData eventData)
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        if (_isLockedClickButton)
-        {
-            return;
-        }
-
-        _myDeck.OnClickCard(_cardUnit);
+        if (_disable.activeSelf)
+            _disableClickAction();
+        else
+            _myDeck.OnClickCard(_cardUnit);
     }
 }

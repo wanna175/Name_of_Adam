@@ -201,8 +201,7 @@ public class UI_MyDeck : UI_Popup
                     AddCard(_playerDeck[i]);
                     if (_playerDeck[i].IsMainDeck)
                     {
-                        _card_dic[_playerDeck[i]].SetDisable(true);
-                        _card_dic[_playerDeck[i]].LockClickButton(false);
+                        _card_dic[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_MainDeck", string.Empty));
                     }
                 }
             }
@@ -215,7 +214,10 @@ public class UI_MyDeck : UI_Popup
                 currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
             {
                 AddCard(_playerDeck[i]);
-                _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
+                if (_playerDeck[i].Data.Rarity == Rarity.Boss)
+                {
+                    _card_dic[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_Boss", string.Empty));
+                }
             }
             else
             {
@@ -243,20 +245,13 @@ public class UI_MyDeck : UI_Popup
     {
         if (_currentEvent == CurrentEvent.Stigmata_Give)
         {
-            if (unit.IsMainDeck)
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
             {
-                GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata", string.Empty);
-            }
-            else
-            {
-                GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
-                {
-                    GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
-                    OnUnitSelect(unit);
-                    GameManager.Data.RemoveDeckUnit(unit);
-                });
-            }
+                OnUnitSelect(unit);
+                GameManager.Data.RemoveDeckUnit(unit);
+            });
         }
         else
         {
