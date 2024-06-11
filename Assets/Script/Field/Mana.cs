@@ -37,7 +37,6 @@ public class Mana : MonoBehaviour
         else if (_currentMana + value < 0)
         {
             Debug.Log("Not enough mana");
-            BattleManager.BattleUI.UI_manaGauge.CreateCannotEffect();
         }
         else
         {

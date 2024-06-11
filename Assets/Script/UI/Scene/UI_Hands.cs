@@ -58,6 +58,8 @@ public class UI_Hands : UI_Scene
 
         if (!isCanUseMana)
             BattleManager.BattleUI.UI_manaGauge.CreateCannotEffect();
+        if (!isCanUseDarkEssense)
+            BattleManager.BattleUI.UI_darkEssence.CreateCannotEffect();
 
         if (isCanUseMana && isCanUseDarkEssense)
         {

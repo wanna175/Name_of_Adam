@@ -38,41 +38,46 @@ public class UI_PlayerSkill : UI_Scene
         bool isCanUseMana = BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost());
         bool isCanUseDarkEssense = GameManager.Data.CanUseDarkEssense(card.GetSkill().GetDarkEssenceCost());
 
-        if (!isCanUseMana)
-            BattleManager.BattleUI.UI_manaGauge.CreateCannotEffect();
-
-        if (!Used && isCanUseMana && isCanUseDarkEssense)
+        if (!Used)
         {
-            if (!BattleManager.BattleUI.UI_hands.IsSelectedHandNull)
-            {
-                BattleManager.BattleUI.UI_hands.CancelSelect();
-            }
+            if (!isCanUseMana)
+                BattleManager.BattleUI.UI_manaGauge.CreateCannotEffect();
+            if (!isCanUseDarkEssense)
+                BattleManager.BattleUI.UI_darkEssence.CreateCannotEffect();
 
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-            if (card != null && card == _selectedCard)
+            if (isCanUseMana && isCanUseDarkEssense)
             {
-                //선택 취소
-                CancelSelect();
-                card.GetSkill().CancelSelect();
-            }
-            else if (_selectedCard != null && card != _selectedCard)
-            {
-                //기존 선택 취소 및 재선택
-                _selectedCard.GetSkill().CancelSelect();
-                OnSelect(card);
-                card.GetSkill().OnSelect();
-            }
-            else
-            {
-                //선택
-                OnSelect(card);
-                card.GetSkill().OnSelect();
+                if (!BattleManager.BattleUI.UI_hands.IsSelectedHandNull)
+                {
+                    BattleManager.BattleUI.UI_hands.CancelSelect();
+                }
+
+                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                if (card != null && card == _selectedCard)
+                {
+                    //선택 취소
+                    CancelSelect();
+                    card.GetSkill().CancelSelect();
+                }
+                else if (_selectedCard != null && card != _selectedCard)
+                {
+                    //기존 선택 취소 및 재선택
+                    _selectedCard.GetSkill().CancelSelect();
+                    OnSelect(card);
+                    card.GetSkill().OnSelect();
+                }
+                else
+                {
+                    //선택
+                    OnSelect(card);
+                    card.GetSkill().OnSelect();
+                }
             }
         }
         else
         {
             GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
-            Debug.Log("Can't");
+            Debug.Log("PlayerSkill is already used.");
         }
     }
 
