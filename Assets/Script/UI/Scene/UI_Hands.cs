@@ -53,7 +53,13 @@ public class UI_Hands : UI_Scene
 
     public void OnClickHand(UI_Hand hand)
     {
-        if (BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost) && GameManager.Data.CanUseDarkEssense(hand.GetUnit().Data.DarkEssenseCost))
+        bool isCanUseMana = BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost);
+        bool isCanUseDarkEssense = GameManager.Data.CanUseDarkEssense(hand.GetUnit().Data.DarkEssenseCost);
+
+        if (!isCanUseMana)
+            BattleManager.BattleUI.UI_manaGauge.CreateCannotEffect();
+
+        if (isCanUseMana && isCanUseDarkEssense)
         {
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 

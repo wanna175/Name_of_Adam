@@ -26,8 +26,7 @@ public class Buff_Stigma_Teleport : Buff
     }
 
     public override bool Active(BattleUnit caster)
-    {
-        Debug.Log("Teleport");
+    {   
         _owner.SetBuff(new Buff_Teleport());
 
         return false;

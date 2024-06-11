@@ -44,6 +44,7 @@ public class BattleUIManager : MonoBehaviour
         UI_hands = UI_controlBar.UI_Hands;
         UI_darkEssence = UI_controlBar.UI_DarkEssence;
         UI_manaGauge = UI_controlBar.UI_ManaGauge;
+        UI_manaGauge.Init();
 
         UI_animator = UI_controlBar.UI_Aniamtor;
 

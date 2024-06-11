@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class UI_PlayerSkill : UI_Scene
 {
@@ -34,8 +35,13 @@ public class UI_PlayerSkill : UI_Scene
 
     public void OnClickHand(UI_PlayerSkillCard card)
     {
-        //PreparePhase prepare = (PreparePhase)BattleManager.Phase.Prepare;
-        if (!Used && BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost()) && GameManager.Data.CanUseDarkEssense(card.GetSkill().GetDarkEssenceCost()))
+        bool isCanUseMana = BattleManager.Mana.CanUseMana(card.GetSkill().GetManaCost());
+        bool isCanUseDarkEssense = GameManager.Data.CanUseDarkEssense(card.GetSkill().GetDarkEssenceCost());
+
+        if (!isCanUseMana)
+            BattleManager.BattleUI.UI_manaGauge.CreateCannotEffect();
+
+        if (!Used && isCanUseMana && isCanUseDarkEssense)
         {
             if (!BattleManager.BattleUI.UI_hands.IsSelectedHandNull)
             {
