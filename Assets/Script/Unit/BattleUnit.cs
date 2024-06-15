@@ -180,7 +180,7 @@ public class BattleUnit : MonoBehaviour
     public void RefreshHPBar()
     {
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On, 0.75f);
         _hpBar.RefreshBuff();
     }
 
@@ -263,10 +263,16 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        //타락 이벤트 시작
         FallEvent = true;
         DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
+
+        //타락 이벤트 연출 시작 (딜레이 추가)
+        Invoke(nameof(CorruptEffectWithDelay), 0.5f);
+    }
+    
+    void CorruptEffectWithDelay()
+    {
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
