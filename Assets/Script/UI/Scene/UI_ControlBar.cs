@@ -32,6 +32,7 @@ public class UI_ControlBar : UI_Scene
     public void ControlBarActive()
     {
         _active.gameObject.SetActive(true);
+        StopAllCoroutines();
         StartCoroutine(FadeInActive());
         StartCoroutine(FadeInCanvas());
     }
@@ -50,6 +51,7 @@ public class UI_ControlBar : UI_Scene
 
     public void ControlBarInactive()
     {
+        StopAllCoroutines();
         StartCoroutine(FadeOutActive());
         StartCoroutine(FadeOutCanvas());
     }
