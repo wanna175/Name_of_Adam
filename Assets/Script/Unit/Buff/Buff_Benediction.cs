@@ -33,7 +33,7 @@ public class Buff_Benediction : Buff
     public override bool Active(BattleUnit caster)
     {
         if (caster != null)
-            caster.ChangeFall(1, FallAnimMode.On, 0.75f);
+            caster.ChangeFall(1, FallAnimMode.On);
 
         return false;
     }

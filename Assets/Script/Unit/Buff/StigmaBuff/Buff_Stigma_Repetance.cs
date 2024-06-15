@@ -28,7 +28,7 @@ public class Buff_Stigma_Repetance : Buff
     public override bool Active(BattleUnit caster)
     {
         if (caster != null && caster.BattleUnitTotalStat.MaxHP == caster.HP.GetCurrentHP())
-            caster.ChangeFall(1, FallAnimMode.On, 0.75f);
+            caster.ChangeFall(1, FallAnimMode.On);
 
         return false;
     }

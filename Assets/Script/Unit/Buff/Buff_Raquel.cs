@@ -48,7 +48,7 @@ public class Buff_Raquel : Buff
         if (caster.Buff.CheckBuff(BuffEnum.MarkOfBeast))
         {
             caster.DeleteBuff(BuffEnum.MarkOfBeast);
-            caster.ChangeFall(1, FallAnimMode.On, 0.75f);
+            caster.ChangeFall(1, FallAnimMode.On);
         }
 
         caster.SetBuff(new Buff_MarkOfBeast());

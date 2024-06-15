@@ -106,7 +106,7 @@ public class UI_HPBar : UI_Base
         }
     }
 
-    public void RefreshFallBar(int current, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.0f)
+    public void RefreshFallBar(int current, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.75f)
     {
         int gap = current - _fallCount; // 신앙 보석 차이
         int count = Mathf.Abs(gap);

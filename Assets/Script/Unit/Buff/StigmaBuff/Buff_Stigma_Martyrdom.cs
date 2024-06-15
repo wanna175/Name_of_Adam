@@ -28,7 +28,7 @@ public class Buff_Stigma_Martyrdom : Buff
     public override bool Active(BattleUnit caster)
     {
         if (caster != null && _owner.BattleUnitTotalStat.FallMaxCount - _owner.Fall.GetCurrentFallCount() <= 2)
-            caster.ChangeFall(1, FallAnimMode.On, 0.75f);
+            caster.ChangeFall(1, FallAnimMode.On);
 
         return false;
     }

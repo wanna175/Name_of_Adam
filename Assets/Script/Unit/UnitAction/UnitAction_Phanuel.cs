@@ -304,7 +304,7 @@ public class UnitAction_Phanuel : UnitAction
         {
             if (receiver != null)
             {
-                receiver.ChangeFall(1, FallAnimMode.On, 0.75f);
+                receiver.ChangeFall(1, FallAnimMode.On);
             }
         }
 
