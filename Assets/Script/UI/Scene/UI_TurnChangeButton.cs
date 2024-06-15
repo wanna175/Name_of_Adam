@@ -36,19 +36,21 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
     public void SetEnable(bool enable)
     {
         _isCanCtrl = enable;
-        _lightImage.color = new Color(1, 1, 1, _lightMinAlpha);
-        _lightImage.transform.localScale = _initSize;
 
-        if (_isCanCtrl)
-        {
-            StartCoroutine(nameof(FadeLight));
-            StartCoroutine(nameof(SizeUp));
-        }
-        else
-        {
-            StopCoroutine(nameof(FadeLight));
-            StopCoroutine(nameof(SizeUp));
-        }
+        // 턴엔드 빛 일시 잠금
+        //_lightImage.color = new Color(1, 1, 1, _lightMinAlpha);
+        //_lightImage.transform.localScale = _initSize;
+
+        //if (_isCanCtrl)
+        //{
+        //    StartCoroutine(nameof(FadeLight));
+        //    StartCoroutine(nameof(SizeUp));
+        //}
+        //else
+        //{
+        //    StopCoroutine(nameof(FadeLight));
+        //    StopCoroutine(nameof(SizeUp));
+        //}
     }
 
 
