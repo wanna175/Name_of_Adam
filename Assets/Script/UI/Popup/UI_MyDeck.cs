@@ -15,6 +15,7 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private GameObject _prePageButton;
     [SerializeField] private GameObject _postPageButton;
     [SerializeField] private GameObject _myDeckButton;
+    [SerializeField] private UI_SortDropdown _sortButton;
 
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
@@ -31,14 +32,15 @@ public class UI_MyDeck : UI_Popup
     public void Init(bool isDeckButtonClick = false)
     {
         _setButton.SetActive(false);
+        _sortButton.gameObject.SetActive(false);
         _myDeckButton.SetActive(isDeckButtonClick);//내 덱 보기 버튼으로 진입했을 경우
 
-        _playerDeck = GameManager.Data.GetDeck();
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
+
+        _playerDeck = GameManager.Data.GetSortedDeck(SortMode.Default);
 
         _currentPageIndex = 0;
         _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
-
-        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
 
         SetPageAllUI();
         SetCard();
@@ -82,11 +84,23 @@ public class UI_MyDeck : UI_Popup
         else if (_currentEvent == CurrentEvent.Hall_Delete)
         {
             titleText = "Possessed units";
+            _sortButton.gameObject.SetActive(true);
+            _sortButton.Init(this);
         }
 
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleText);
 
         SetCard(_currentEvent);
+    }
+
+    public void RefreshDecks(SortMode sortMode)
+    {
+        _playerDeck = GameManager.Data.GetSortedDeck(sortMode);
+        _currentPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
+
+        SetCard();
+        SetPageAllUI();
     }
 
     public void HallSaveInit(Action<DeckUnit> onSelectAction = null)
@@ -96,6 +110,7 @@ public class UI_MyDeck : UI_Popup
         List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
 
+        _sortButton.gameObject.SetActive(false);
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
@@ -116,8 +131,9 @@ public class UI_MyDeck : UI_Popup
     {
         List<DeckUnit> eliteDeck = new();
         List<DeckUnit> normalDeck = new();
-        _hallDeck = GameManager.Data.GetDeck();
+        _hallDeck = GameManager.Data.GetSortedDeck(SortMode.Default);
 
+        _sortButton.gameObject.SetActive(false);
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
@@ -155,9 +171,10 @@ public class UI_MyDeck : UI_Popup
     {
         List<DeckUnit> eliteDeck = new();
 
+        _sortButton.gameObject.SetActive(false);
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
-        _hallDeck = GameManager.Data.GetDeck();
+        _hallDeck = GameManager.Data.GetSortedDeck(SortMode.Default);
 
         foreach (DeckUnit unit in _hallDeck)
         {

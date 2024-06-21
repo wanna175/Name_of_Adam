@@ -82,6 +82,30 @@ MonoBehaviour:
     m_Localized: Game Speed
     m_Metadata:
       m_Items: []
+  - m_Id: 50380412143071232
+    m_Localized: Sort Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387093921001472
+    m_Localized: By Rank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387213802598400
+    m_Localized: By Cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387203237146624
+    m_Localized: By Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387181808447488
+    m_Localized: By HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387140863651840
+    m_Localized: By Attack
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -79,6 +79,30 @@ MonoBehaviour:
     m_Key: Game Speed
     m_Metadata:
       m_Items: []
+  - m_Id: 50380412143071232
+    m_Key: Sort Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387093921001472
+    m_Key: By Rank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387140863651840
+    m_Key: By Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387181808447488
+    m_Key: By HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387203237146624
+    m_Key: By Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387213802598400
+    m_Key: By Cost
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

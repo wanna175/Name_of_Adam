@@ -613,5 +613,10 @@ public class ProgressLoader : ILoader<int, ProgressItem>
 
 public enum SortMode
 {
-    Default,    // 전당덱 + 나머지(성흔수)
+    Default,    // 계급 (성흔 보유 수에 따라 내부 정렬)
+    Attack,
+    HP,
+    Speed,
+    Cost,
+    Hall,       // 전당 유닛 + 나머지 유닛 (성흔 보유 수에 따라 정렬)
 }
