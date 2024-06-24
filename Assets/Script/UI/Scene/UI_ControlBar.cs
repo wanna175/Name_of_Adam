@@ -32,6 +32,7 @@ public class UI_ControlBar : UI_Scene
     public void ControlBarActive()
     {
         _active.gameObject.SetActive(true);
+        StopAllCoroutines();
         StartCoroutine(FadeInActive());
         StartCoroutine(FadeInCanvas());
     }
@@ -50,8 +51,15 @@ public class UI_ControlBar : UI_Scene
 
     public void ControlBarInactive()
     {
+        StopAllCoroutines();
         StartCoroutine(FadeOutActive());
         StartCoroutine(FadeOutCanvas());
+    }
+
+    public void CreateSystemInfo(string info)
+    {
+        UI_SystemFadeInfo systemInfo = GameManager.Resource.Instantiate("UI/SystemFadeInfo", this.transform).GetComponent<UI_SystemFadeInfo>();
+        systemInfo.Init(new Vector2(0f, -265f), info);
     }
 
     private IEnumerator FadeOutActive()

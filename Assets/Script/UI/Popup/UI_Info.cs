@@ -10,13 +10,15 @@ public class UI_Info : UI_Scene
     [SerializeField] private TextMeshProUGUI _stat;
 
     [SerializeField] private UI_HPBar _hpBar;
-    [SerializeField] private UI_HoverImageBlock _stigma;
     [SerializeField] private Transform _stigmaGrid;
 
     [SerializeField] private Transform _rangeGrid;
     [SerializeField] private GameObject _squarePrefab;
 
     [SerializeField] private Transform _unitInfoFallGrid;
+
+    [SerializeField] private Transform _buffDescriptionGrid;
+    [SerializeField] private GameObject _buffDescriptionPrefab;
 
     [SerializeField] private Transform _stigmaDescriptionGrid;
     [SerializeField] private GameObject _stigmaDescriptionPrefab;
@@ -103,11 +105,15 @@ public class UI_Info : UI_Scene
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)battleUnit.BattleUnitTotalStat.CurrentHP / (float)battleUnit.BattleUnitTotalStat.MaxHP);
-        _hpBar.RefreshFallBar(battleUnit.Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(battleUnit.Fall.GetCurrentFallCount(), FallAnimMode.Off);
 
-        //_stigmaDescriptionPrefab.SetStigma(battleUnit);
+        foreach (UI_Buff ui_buff in battleUnit._hpBar.BuffBlockList)
+        {
+            UI_BuffDescription bd = GameObject.Instantiate(_buffDescriptionPrefab, _buffDescriptionGrid).GetComponent<UI_BuffDescription>();
+            bd.SetBuff(ui_buff.BuffInBlock);
+        }
 
-        foreach(Stigma stigma in battleUnit.StigmaList)
+        foreach (Stigma stigma in battleUnit.StigmaList)
         {
             UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
             sd.SetStigma(stigma);
@@ -130,7 +136,7 @@ public class UI_Info : UI_Scene
                 block.color = Color.grey;
         }
 
-        StartCoroutine(UpdateStigmaGridWithDelay());
+        StartCoroutine(nameof(UpdateUIWithDelay));
     }
 
     public void SetInfo(DeckUnit unit, Team team)
@@ -196,7 +202,7 @@ public class UI_Info : UI_Scene
         _hpBar.SetFallBar(unit);
 
         _hpBar.RefreshHPBar((float)unit.DeckUnitTotalStat.CurrentHP / (float)unit.DeckUnitTotalStat.MaxHP);
-        _hpBar.RefreshFallBar(unit.DeckUnitTotalStat.FallCurrentCount, FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(unit.DeckUnitTotalStat.FallCurrentCount, FallAnimMode.Off);
 
         //_stigmaDescriptionPrefab.SetStigma(unit);
 
@@ -216,16 +222,20 @@ public class UI_Info : UI_Scene
                 block.color = Color.grey;
         }
 
-        StartCoroutine(UpdateStigmaGridWithDelay());
+        StartCoroutine(nameof(UpdateUIWithDelay));
     }
 
-    IEnumerator UpdateStigmaGridWithDelay()
+    IEnumerator UpdateUIWithDelay()
     {
         yield return null;
 
-        VerticalLayoutGroup group = _stigmaGrid.GetComponent<VerticalLayoutGroup>();
-        group.childForceExpandWidth = false;
-        LayoutRebuilder.ForceRebuildLayoutImmediate(group.GetComponent<RectTransform>());
+        VerticalLayoutGroup strigmaGroup = _stigmaGrid.GetComponent<VerticalLayoutGroup>();
+        strigmaGroup.childForceExpandWidth = false;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(strigmaGroup.GetComponent<RectTransform>());
+
+        VerticalLayoutGroup buffGroup = _buffDescriptionGrid.GetComponent<VerticalLayoutGroup>();
+        buffGroup.childForceExpandWidth = false;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(buffGroup.GetComponent<RectTransform>());
     }
 
     public void InfoDestroy()

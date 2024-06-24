@@ -191,7 +191,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 800, y: 240}
+  m_SizeDelta: {x: 740, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6816070780682563692
 CanvasRenderer:
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 15
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -428,7 +428,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6690453241562002229, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_text
-      value: Yes
+      value: "\uB124"
       objectReference: {fileID: 0}
     - target: {fileID: 6690453242010598840, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_Pivot.x
@@ -617,7 +617,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6690453241562002229, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_text
-      value: No
+      value: "\uC544\uB2C8\uC694"
       objectReference: {fileID: 0}
     - target: {fileID: 6690453242010598840, guid: 86ac12bfe6048ad4694caea38d44639c, type: 3}
       propertyPath: m_Pivot.x

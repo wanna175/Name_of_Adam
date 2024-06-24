@@ -97,18 +97,16 @@ public class OutGameDataContainer : MonoBehaviour
     private const string OutGameDataFileName = "126634399756.dat";
 
     private SaveVersionController _versionController;
+    public Dictionary<int, ProgressItem> ProgressItems = new();
 
-    // 현재 진행중인 게임에서 관리하는 아웃게임데이터
-    private Dictionary<int, ProgressItem> ProgressItems = new();
     private OutGameData _data;
     private string _path;
     private List<Resolution> _resolutions;
 
     public void Init()
     {
-        ProgressItems = LoadJson<ProgressLoader, int, ProgressItem>("ProgressData").MakeDict();
-
         _versionController = new SaveVersionController();
+        ProgressItems = LoadJson<ProgressLoader, int, ProgressItem>("ProgressData").MakeDict();
 
         // 사용자\AppData\localLow에 있는 SaveData.json의 경로
         _path = Path.Combine(Application.persistentDataPath, OutGameDataFileName);
@@ -160,7 +158,6 @@ public class OutGameDataContainer : MonoBehaviour
         catch(FileNotFoundException e)
         {
             // 파일이 없을 경우(처음 플레이 시 or 데이터 삭제 시) 새로운 데이터 생성
-            Debug.Log(e);
             CreateData();
         }
     }
@@ -383,6 +380,8 @@ public class OutGameDataContainer : MonoBehaviour
         _data.ProgressSaves = new List<ProgressSave>();
         foreach (var item in ProgressItems)
             _data.ProgressSaves.Add(new ProgressSave(item.Key, false));
+
+        Debug.Log(_data.ProgressSaves.Count);
         GetProgressSave(0).isUnLock = true;
         GetProgressSave(50).isUnLock = true;
         GetProgressSave(51).isUnLock = true;

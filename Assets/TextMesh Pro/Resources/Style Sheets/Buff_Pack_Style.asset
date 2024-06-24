@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2114bdc8544297b417dfefe9f1e410, type: 3}
+  m_Name: Buff_Pack_Style
+  m_EditorClassIdentifier: 
+  m_StyleList:
+  - m_Name: Buff_Appaim_Book_Sprite
+    m_HashCode: -490509588
+    m_OpeningDefinition: <sprite=0>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000300000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000300000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_DeathStrike_Sprite
+    m_HashCode: -1905710864
+    m_OpeningDefinition: <sprite=1>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000310000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000310000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Appaim_Sprite
+    m_HashCode: 1503660186
+    m_OpeningDefinition: <sprite=2>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000320000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000320000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Immortal_Sprite
+    m_HashCode: 642209875
+    m_OpeningDefinition: <sprite=3>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000330000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000330000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Edified_Sprite
+    m_HashCode: 939584440
+    m_OpeningDefinition: <sprite=4>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000340000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000340000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Appaim_Staff_Sprite
+    m_HashCode: 1648849283
+    m_OpeningDefinition: <sprite=5>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000350000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000350000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Appaim_Sword_Sprite
+    m_HashCode: 815731800
+    m_OpeningDefinition: <sprite=6>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000360000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000360000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Curse_Sprite
+    m_HashCode: 1872763404
+    m_OpeningDefinition: <sprite=7>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000370000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000370000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Benediction_Sprite
+    m_HashCode: 366124096
+    m_OpeningDefinition: <sprite=8>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000380000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000380000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Leah_Sprite
+    m_HashCode: -2003808194
+    m_OpeningDefinition: <sprite=9>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000390000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000390000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Malevolence_Sprite
+    m_HashCode: 315819011
+    m_OpeningDefinition: <sprite=10>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000300000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000300000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Invincible_Sprite
+    m_HashCode: 1180152553
+    m_OpeningDefinition: <sprite=11>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000310000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000310000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_MarkOfBeast_Sprite
+    m_HashCode: 1779713955
+    m_OpeningDefinition: <sprite=12>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000320000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000320000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Raise_Sprite
+    m_HashCode: 294536018
+    m_OpeningDefinition: <sprite=13>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000330000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000330000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Raquel_Sprite
+    m_HashCode: -1208985280
+    m_OpeningDefinition: <sprite=14>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000340000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000340000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Stun_Sprite
+    m_HashCode: -1635066366
+    m_OpeningDefinition: <sprite=15>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000350000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000350000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Tailwind_Sprite
+    m_HashCode: 602446426
+    m_OpeningDefinition: <sprite=16>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000360000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000360000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_Teleport_Sprite
+    m_HashCode: 1723579647
+    m_OpeningDefinition: <sprite=17>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000370000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000370000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_TraceOfLunar_Sprite
+    m_HashCode: 113845842
+    m_OpeningDefinition: <sprite=18>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000380000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000380000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_TraceOfSolar_Sprite
+    m_HashCode: 892382453
+    m_OpeningDefinition: <sprite=19>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000390000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000390000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Normal
+    m_HashCode: -1183493901
+    m_OpeningDefinition: 
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 
+    m_ClosingTagUnicodeArray: 

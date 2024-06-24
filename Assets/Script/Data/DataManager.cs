@@ -173,6 +173,80 @@ public class DataManager : MonoBehaviour
         return GameData.DeckUnits;
     }
 
+    public List<DeckUnit> GetSortedDeck(SortMode sortMode)
+    {
+        List<DeckUnit> returnUnits = new List<DeckUnit>();
+
+        // 정렬 방식은 SortMode Enum 참고
+
+        switch (sortMode)
+        {
+            case SortMode.Hall:
+                List<DeckUnit> mainDecks = GameData.DeckUnits.FindAll(x => x.IsMainDeck);
+                List<DeckUnit> notMainDecks = GameData.DeckUnits.FindAll(x => !x.IsMainDeck);
+
+                mainDecks.Sort((a, b) => a.HallUnitID.CompareTo(b.HallUnitID));
+                notMainDecks.Sort((a, b) => b.GetStigmaCount().CompareTo(a.GetStigmaCount()));
+
+                returnUnits.AddRange(mainDecks);
+                returnUnits.AddRange(notMainDecks);
+                break;
+
+            case SortMode.HP:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => b.DeckUnitTotalStat.MaxHP.CompareTo(a.DeckUnitTotalStat.MaxHP));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.MaxHP}");
+                }
+                break;
+
+            case SortMode.Attack:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => b.DeckUnitTotalStat.ATK.CompareTo(a.DeckUnitTotalStat.ATK));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.ATK}");
+                }
+                break;
+
+            case SortMode.Speed:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => b.DeckUnitTotalStat.SPD.CompareTo(a.DeckUnitTotalStat.SPD));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.SPD}");
+                }
+                break;
+
+            case SortMode.Cost:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => a.DeckUnitTotalStat.ManaCost.CompareTo(b.DeckUnitTotalStat.ManaCost));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.ManaCost}");
+                }
+                break;
+
+            default:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) =>
+                {
+                    if (a.Data.Rarity == b.Data.Rarity)
+                        return b.GetStigmaCount().CompareTo(a.GetStigmaCount());
+                    else 
+                        return b.Data.Rarity.CompareTo(a.Data.Rarity);
+                });
+                break;
+        }
+
+        return returnUnits;
+    }
+
     public void SetDeck(List<DeckUnit> deck)
     {
         GameData.DeckUnits = deck;
@@ -237,15 +311,6 @@ public class DataManager : MonoBehaviour
                 playerSkill.ChangeCost(playerSkill.GetOriginalManaCost(), playerSkill.GetOriginalDarkEssenceCost());
             }
         }
-    }
-
-    public List<int> GetProbability()
-    {
-        List<int> probability = new();
-        probability.Add(99);
-        probability.Add(89);
-
-        return probability;
     }
 
     public MapDataSaveData GetMapSaveData()

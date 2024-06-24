@@ -60,7 +60,7 @@ public class UnitAction_Tubalcain : UnitAction
         if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
         {
             if (_isMove)
-                receiver.ChangeFall(1);
+                receiver.ChangeFall(1, FallAnimMode.On);
         }
         else if ((activeTiming & ActiveTiming.DAMAGE_CONFIRM) == ActiveTiming.DAMAGE_CONFIRM)
         {

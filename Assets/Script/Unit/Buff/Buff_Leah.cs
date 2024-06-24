@@ -43,7 +43,7 @@ public class Buff_Leah : Buff
         if (caster.Buff.CheckBuff(BuffEnum.MarkOfBeast))
         {
             caster.DeleteBuff(BuffEnum.MarkOfBeast);
-            caster.ChangeFall(1);
+            caster.ChangeFall(1, FallAnimMode.On);
         }
 
         return false;

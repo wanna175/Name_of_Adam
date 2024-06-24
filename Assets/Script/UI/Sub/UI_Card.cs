@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -24,6 +25,8 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
+
+    private Action _disableClickAction;
 
     private void Start()
     {
@@ -50,7 +53,8 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if (SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
-            SetDisable(unit.IsMainDeck);
+            if (unit.IsMainDeck)
+                SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("TeamBuild_MainDeck", string.Empty));
         }
 
         foreach (var frame in _stigmataFrames)
@@ -78,9 +82,10 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _selectHighlight.SetActive(!_selectHighlight.activeInHierarchy);
     }
 
-    public void SetDisable(bool disable)
+    public void SetDisable(Action disableClickAction)
     {
-        _disable.SetActive(disable);
+        _disable.SetActive(true);
+        _disableClickAction = disableClickAction;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -111,10 +116,8 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (_disable.activeSelf)
-        {
-            return;
-        }
-
-        _myDeck.OnClickCard(_cardUnit);
+            _disableClickAction();
+        else
+            _myDeck.OnClickCard(_cardUnit);
     }
 }

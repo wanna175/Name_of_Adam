@@ -47,7 +47,9 @@ public class Corruption : MonoBehaviour
             }
         }
         else
-            LoopExit();
+        {
+            Invoke(nameof(LoopExit), 0.5f);
+        }
     }
 
     public void LoopExit()

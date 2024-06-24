@@ -60,9 +60,12 @@ public abstract class Buff : MonoBehaviour
 
     public void CountChange(int num) => _count += num;
 
-    public virtual string GetDescription()
+    public virtual string GetDescription(int spacing = 1)
     {
-        string desc = "<color=#FF9696><size=110%><b>" + Name + "</b><color=white></size>\n<size=30%>\n</size>" + GameManager.Locale.GetLocalizedBuffInfo(_description); ;
+        string desc = "<color=#FF9696><size=110%><b>" + Name + "</b><color=white></size>";
+        for (int i = 0; i < spacing; i++)
+            desc += "\n";
+        desc += GameManager.Locale.GetLocalizedBuffInfo(_description);
 
         if (_countDownTiming != ActiveTiming.NONE)
         {
