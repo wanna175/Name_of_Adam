@@ -37,9 +37,12 @@ public class Buff_Appaim : Buff
     };
 
 
-    public override string GetDescription()
+    public override string GetDescription(int spacing = 1)
     {
-        string desc = "<size=110%><b>" + GameManager.Locale.GetLocalizedBuffName(_nameDict[_buffState]) + "</b></size>\n<size=30%>\n</size>" + GameManager.Locale.GetLocalizedBuffInfo(_descriptionDict[_buffState]); ;
+        string desc = "<size=110%><b>" + GameManager.Locale.GetLocalizedBuffName(_nameDict[_buffState]) + "</b></size>";
+        for (int i = 0; i < spacing; i++)
+            desc += "\n";
+        desc += GameManager.Locale.GetLocalizedBuffInfo(_descriptionDict[_buffState]);
 
         return desc;
     }

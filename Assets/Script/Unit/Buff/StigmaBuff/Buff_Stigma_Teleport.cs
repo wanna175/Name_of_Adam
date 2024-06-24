@@ -4,7 +4,7 @@ public class Buff_Stigma_Teleport : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Absorption;
+        _buffEnum = BuffEnum.None;
 
         _name = "";
 
@@ -26,7 +26,7 @@ public class Buff_Stigma_Teleport : Buff
     }
 
     public override bool Active(BattleUnit caster)
-    {
+    {   
         _owner.SetBuff(new Buff_Teleport());
 
         return false;

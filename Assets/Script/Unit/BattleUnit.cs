@@ -23,7 +23,7 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitBuff Buff;
     [SerializeField] public UnitAction Action;
-    [SerializeField] private UI_HPBar _hpBar;
+    [SerializeField] public UI_HPBar _hpBar;
     
     [SerializeField] private GameObject _floatingDamagePrefab;
 
@@ -69,7 +69,7 @@ public class BattleUnit : MonoBehaviour
 
         SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.Off);
 
         _scale = transform.localScale.x;
 
@@ -180,7 +180,7 @@ public class BattleUnit : MonoBehaviour
     public void RefreshHPBar()
     {
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
         _hpBar.RefreshBuff();
     }
 
@@ -263,10 +263,14 @@ public class BattleUnit : MonoBehaviour
             }
         }
 
-        //타락 이벤트 시작
         FallEvent = true;
         DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
+        Invoke(nameof(CreateCorruptEffect), 0.5f);
+    }
+
+    void CreateCorruptEffect()
+    {
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -300,7 +304,7 @@ public class BattleUnit : MonoBehaviour
 
         SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
 
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
@@ -513,7 +517,7 @@ public class BattleUnit : MonoBehaviour
 
     public virtual int GetHP() => HP.GetCurrentHP();
 
-    public void ChangeFall(int value)
+    public void ChangeFall(int value, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.75f)
     {
         if (FallEvent || Fall.IsEdified)
         {
@@ -529,7 +533,7 @@ public class BattleUnit : MonoBehaviour
 
         Fall.ChangeFall(value);
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), fallAnimMode, fallAnimDelay);
     }
 
     public virtual BattleUnit GetOriginalUnit() => this;

@@ -120,7 +120,7 @@ public class UnitAction_Horus : UnitAction
             if (_summonedUnit.Contains(receiver))
             {
                 _summonedUnit.Remove(receiver);
-                caster.ChangeFall(1);
+                caster.ChangeFall(1, FallAnimMode.On);
             }
         }
 

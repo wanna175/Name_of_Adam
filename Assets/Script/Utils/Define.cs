@@ -320,6 +320,8 @@ public enum StigmaEnum
 public enum BuffEnum
 {
     //normal buff (image)
+    None,
+
     Appaim,
     Benediction,
     Berserker,
@@ -499,10 +501,10 @@ public enum CutSceneType
     NPC_Harlot_Corrupt,
 }
 
-public enum FallAnimType
+public enum FallAnimMode
 {
-    AnimOn,
-    AnimOff
+    On,
+    Off
 }
 
 public enum CurrentEvent
@@ -607,4 +609,14 @@ public class ProgressLoader : ILoader<int, ProgressItem>
         }
         return dic;
     }
+}
+
+public enum SortMode
+{
+    Default,    // 계급 (성흔 보유 수에 따라 내부 정렬)
+    Attack,
+    HP,
+    Speed,
+    Cost,
+    Hall,       // 전당 유닛 + 나머지 유닛 (성흔 보유 수에 따라 정렬)
 }

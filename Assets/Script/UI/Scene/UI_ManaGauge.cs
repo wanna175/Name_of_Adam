@@ -8,19 +8,14 @@ public class UI_ManaGauge : UI_Scene
 {
     [SerializeField] Animator ManaAnimator;
     [SerializeField] TextMeshProUGUI _currentMana;
+    [SerializeField] UI_CannotEffect cannotEffect;
+    public UI_CannotEffect CannotEffect => cannotEffect;
 
+    public void Init()
+    {
+        cannotEffect.Init(Vector3.one, Vector3.one * 1.2f, 1.5f);
+    }
 
-    //enum Objects
-    //{
-    //    Fill,
-    //    ManaCostText,
-    //}
-
-    //private void Awake()
-    //{
-    //    Bind<GameObject>(typeof(Objects));
-    //}
-    
     public void DrawGauge(int max, int current)
     {
         //_bluemanaIMG.fillAmount = (float)current / max;

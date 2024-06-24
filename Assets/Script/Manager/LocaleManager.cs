@@ -38,6 +38,8 @@ public class LocaleManager : MonoBehaviour
         return GetLocalizedPlayerSkillInfo(info);
     }
 
+    public string GetLocalizedOption(string option) => GetLocalizedString("OptionTable", option);
+
     public string GetLocalizedBattleScene(string battleSceneStr) => GetLocalizedString("BattleSceneTable", battleSceneStr);
 
     public string GetLocalizedProgress(string progressInfo) => GetLocalizedString("ProgressSceneTable", progressInfo);

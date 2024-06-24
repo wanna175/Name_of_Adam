@@ -83,6 +83,22 @@ MonoBehaviour:
     m_Key: CorfirmAlreadyHaveCorruptStigmata
     m_Metadata:
       m_Items: []
+  - m_Id: 30018410514280448
+    m_Key: CantGiveStigmata_MainDeck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32499517643460608
+    m_Key: CantGiveStigmata_Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32501236473434112
+    m_Key: TeamBuild_MainDeck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32564546820542464
+    m_Key: PlayerSkillisUsed
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

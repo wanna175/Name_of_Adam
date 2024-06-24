@@ -23,7 +23,7 @@ public class UI_BattleOver : UI_Scene
         if (result == "win") 
         {
             _rewardScene.gameObject.SetActive(true);
-            _rewardScene.Init(GameManager.Data.GetDeck());
+            _rewardScene.Init(GameManager.Data.GetSortedDeck(SortMode.Hall));
             _textImage.gameObject.SetActive(false);
             //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
             GameManager.Sound.Clear();

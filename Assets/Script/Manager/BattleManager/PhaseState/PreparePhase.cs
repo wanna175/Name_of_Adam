@@ -40,7 +40,7 @@ public class PreparePhase : Phase
                 stat.SPD = -50;
                 BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
-                BattleManager.Data.BattleUnitList[0].ChangeFall(1);
+                BattleManager.Data.BattleUnitList[0].ChangeFall(1, FallAnimMode.Off);
                 TutorialManager.Instance.ShowTutorial();
             }
             else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Divine))

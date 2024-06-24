@@ -123,6 +123,26 @@ MonoBehaviour:
       you like to destroy an existing corruption stigmata and select a new one?'
     m_Metadata:
       m_Items: []
+  - m_Id: 30018410514280448
+    m_Localized: 'The unit brought from the Divine Hall
+
+
+      ncannot be the target
+      of Stigma Transfer.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32499517643460608
+    m_Localized: You cannot grant stigmata to boss units.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32501236473434112
+    m_Localized: This unit has already been placed in the hall.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32564546820542464
+    m_Localized: Player skills can only be used once per turn.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

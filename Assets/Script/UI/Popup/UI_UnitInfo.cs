@@ -265,12 +265,11 @@ public class UI_UnitInfo : UI_Popup
             case CurrentEvent.Upgrade_Full_Exception:
             case CurrentEvent.Stigmata_Select://강화하기, 스티그마 부여하기
             case CurrentEvent.Stigmata_Give:
+            case CurrentEvent.Stigmata_Receive:
             case CurrentEvent.Corrupt_Stigmata_Select:
                 Transform e = this.transform.parent.GetChild(0);
                 e.SetAsLastSibling();
                 e.gameObject.SetActive(true);
-                break;
-            case CurrentEvent.Stigmata_Receive:
                 break;
             default:
                 break;
