@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2950990188252653416}
-  - component: {fileID: 4784008426702004410}
+  - component: {fileID: -3557267284200410328}
   m_Layer: 0
-  m_Name: Stigma_Defeasance
+  m_Name: Stigma_Grudge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4784008426702004410
+--- !u!114 &-3557267284200410328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d4e4187bb6fff44b5ac786c7f16406, type: 3}
+  m_Script: {fileID: 11500000, guid: 52cbc97f5fcf12d47a3caf4249de664e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 29
-  _name: Defeasance
+  _stigmaEnum: 32
+  _name: Grudge
   _sprite_28: {fileID: 0}
   _sprite_88: {fileID: 0}
   _sprite_164: {fileID: 0}
-  _description: Defeasance Info
+  _description: Grudge Info
   _activeTiming: 2
   _tier: 0
-  _isLock: 1
+  _isLock: 0

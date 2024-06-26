@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_Stigma_Defeasance : Buff
+public class Buff_Stigma_ShadowCloak: Buff
 {
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Additional_Punishment;
 
-        _name = "무효화";
+        _name = "ShadowCloak";
 
-        _description = "피격 시 20% 확률로 적 데미지를 무효화합니다.";
+        _description = "ShadowCloak Info";
 
         _count = -1;
 
-        _countDownTiming = ActiveTiming.BEFORE_ATTACKED;
+        _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACKED;
 
@@ -29,7 +29,7 @@ public class Buff_Stigma_Defeasance : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (RandomManager.GetFlag(0.2f))
+        if (RandomManager.GetFlag(0.3f))
             return true;
         else
             return false;

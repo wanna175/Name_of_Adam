@@ -208,11 +208,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 38887124866600960
-    m_Key: Defeasance Info
+    m_Key: ShadowCloak Info
     m_Metadata:
       m_Items: []
   - m_Id: 38895353000529920
-    m_Key: RaiseWithDelay Info
+    m_Key: Rearmament Info
     m_Metadata:
       m_Items: []
   - m_Id: 42853852555399168
@@ -221,6 +221,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 42853855059398656
     m_Key: "Blessing \u2161 Info"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142579702616064
+    m_Key: Solitude Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142824608026624
+    m_Key: Grudge Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142828772970496
+    m_Key: HandOfGrace Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142830366806016
+    m_Key: TEMP_2
     m_Metadata:
       m_Items: []
   m_Metadata:
