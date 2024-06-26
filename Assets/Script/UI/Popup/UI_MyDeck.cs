@@ -320,7 +320,7 @@ public class UI_MyDeck : UI_Popup
         if (_maxPageIndex == 0)
             _pageText.SetText("");
         else
-            _pageText.SetText($"( {_currentPageIndex + 1} / {_maxPageIndex + 1} )");
+            _pageText.SetText($"{_currentPageIndex + 1} / {_maxPageIndex + 1}");
 
         _prePageButton.SetActive(_currentPageIndex != 0);
         _postPageButton.SetActive(_currentPageIndex != _maxPageIndex);
