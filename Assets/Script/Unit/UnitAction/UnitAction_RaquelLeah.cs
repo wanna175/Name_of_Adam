@@ -84,4 +84,24 @@ public class UnitAction_RaquelLeah : UnitAction
             _owner.SkillEffectAnim = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/AttackEffect/Raquel_AttackEffect");
         }
     }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    {
+        List<Vector2> splashList = new();
+
+        if (_isChanged)
+        {
+            foreach (Vector2 vec in unit.GetAttackRange())
+            {
+                if (BattleManager.Field.IsInRange(vec + caster))
+                    splashList.Add(vec + caster);
+            }
+        }
+        else
+        {
+            splashList.Add(target);
+        }
+
+        return splashList;
+    }
 }

@@ -58,8 +58,9 @@ public class UnitAction : MonoBehaviour
         if (unitInattackRange.Count > 0)
         {
             List<Vector2> MinHPUnit = MinHPSearch(unitInattackRange);
+            Vector2 MinHpVec = MinHPUnit[Random.Range(0, MinHPUnit.Count)];
 
-            Attack(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
+            Attack(attackUnit, MinHpVec);
         }
         else
             BattleManager.Instance.EndUnitAction();
@@ -305,4 +306,16 @@ public class UnitAction : MonoBehaviour
     public virtual bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver) => false;
     public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
     protected void MoveUnit(BattleUnit moveUnit, Vector2 moveVector) => BattleManager.Instance.MoveUnit(moveUnit, moveVector);
+
+    public virtual List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    {
+        List<Vector2> splashRangeList = new();
+        foreach (Vector2 vec in unit.GetSplashRange(target, caster))
+        {
+            if (BattleManager.Field.IsInRange(vec + target))
+                splashRangeList.Add(vec + target);
+        }
+
+        return splashRangeList;
+    }
 }

@@ -296,8 +296,11 @@ public enum StigmaEnum
     Sin,
     Tail_Wind,
     Teleport,
-    Defeasance,
-    RaiseWithDelay,
+    ShadowCloak,
+    Rearmament,
+    Solitude,
+    Grudge,
+    HandOfGrace,
 
     //Unique stigmata 
     Birth = 100,
@@ -342,6 +345,7 @@ public enum BuffEnum
     Teleport,
     TraceOfDust,
     Malevolence,
+    Grudge_Buff,
 
     //systemic buff (no image)
     AfterAttackBounce,
@@ -370,7 +374,9 @@ public enum BuffEnum
     Repetance,
     Sadism,
     ShadowStep,
-    RaiseWithDelay,
+    Rearmament,
+    Solitude,
+    Grudge,
 
     //unique stigma buff (no image)
     Birth,

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 public class UnitAction_Appaim : UnitAction
 {
     //0 = sword, 1 = staff, 2 = book
-    private int _trinityState  = 0;
+    private int _appaimState = 0;
     private bool _isStateUpdate = false;
     private Buff _appaimBuff = null;
 
-    bool[] staffRange = new bool[] {
+    bool[] _bookRange = new bool[] {
             true, true, true, true, true, true, true, true, true, true, true,
             true, true, true, true, false, false, false, true, true, true, true,
             true, true, true, true, false, false, false, true, true, true, true,
@@ -16,7 +16,7 @@ public class UnitAction_Appaim : UnitAction
             true, true, true, true, true, true, true, true, true, true, true
     };
 
-    bool[] swordRange = new bool[] {
+    bool[] _staffRange = new bool[] {
             false, false, false, false, false, false, false, false, false, false, false,
             false, false, false, false, true, true, true, false, false, false, false,
             false, false, false, false, true, true, true, false, false, false, false,
@@ -24,7 +24,7 @@ public class UnitAction_Appaim : UnitAction
             false, false, false, false, false, false, false, false, false, false, false
     };
 
-    bool[] bowRange = new bool[] {
+    bool[] _swordRange = new bool[] {
             true, true, true, true, true, true, true, true, true, true, true,
             true, true, true, true, true, true, true, true, true, true, true,
             true, true, true, true, true, true, true, true, true, true, true,
@@ -40,7 +40,7 @@ public class UnitAction_Appaim : UnitAction
             return;
         }
 
-        if (_trinityState != 2)
+        if (_appaimState != 2)
         {
             List<BattleUnit> hitUnits = new();
 
@@ -83,7 +83,7 @@ public class UnitAction_Appaim : UnitAction
 
     public override bool ActionStart(BattleUnit attackUnit, List<BattleUnit> hits, Vector2 coord)
     {
-        if (_trinityState != 2)
+        if (_appaimState != 2)
         {
             List<BattleUnit> inRangeUnits = new();
 
@@ -130,10 +130,10 @@ public class UnitAction_Appaim : UnitAction
         {
             _isStateUpdate = true;
 
-            switch (UpdateTrinityState())
+            switch (StateUpdate())
             {
                 case 0:
-                    caster.SetAttackRange(staffRange);
+                    caster.SetAttackRange(_bookRange);
                     caster.AnimatorSetInteger("state", 0);
                     caster.DeleteBuff(_appaimBuff.BuffEnum);
                     _appaimBuff = new Buff_Appaim();
@@ -141,7 +141,7 @@ public class UnitAction_Appaim : UnitAction
                     caster.SetBuff(_appaimBuff);
                     break;
                 case 1:
-                    caster.SetAttackRange(swordRange);
+                    caster.SetAttackRange(_staffRange);
                     caster.AnimatorSetInteger("state", 1);
                     caster.DeleteBuff(_appaimBuff.BuffEnum);
                     _appaimBuff = new Buff_Appaim();
@@ -149,7 +149,7 @@ public class UnitAction_Appaim : UnitAction
                     caster.SetBuff(_appaimBuff);
                     break;
                 case 2:
-                    caster.SetAttackRange(bowRange);
+                    caster.SetAttackRange(_swordRange);
                     caster.AnimatorSetInteger("state", 2);
                     caster.DeleteBuff(_appaimBuff.BuffEnum);
                     _appaimBuff = new Buff_Appaim();
@@ -163,7 +163,7 @@ public class UnitAction_Appaim : UnitAction
         else if ((activeTiming & ActiveTiming.MOVE_TURN_START) == ActiveTiming.MOVE_TURN_START)
         {
             bool moveSkip = false;
-            if (_trinityState == 0)
+            if (_appaimState == 0)
                 moveSkip = true;
 
             return moveSkip;
@@ -178,9 +178,33 @@ public class UnitAction_Appaim : UnitAction
         return false;
     }
 
-    private int UpdateTrinityState()
+    private int StateUpdate()
     {
-        _trinityState = (_trinityState + 1) % 3;
-        return _trinityState;
+        _appaimState = (_appaimState + 1) % 3;
+        return _appaimState;
+    }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    {
+        List<Vector2> splashList = new();
+
+        switch (_appaimState)
+        {
+            case 0:
+            case 1:
+                foreach (Vector2 vec in unit.GetAttackRange())
+                {
+                    if (BattleManager.Field.IsInRange(vec + caster))
+                        splashList.Add(vec + caster);
+                }
+                break;
+            case 2:
+                splashList.Add(target);
+                break;
+            default:
+                break;
+        }
+
+        return splashList;
     }
 }

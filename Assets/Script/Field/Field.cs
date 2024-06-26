@@ -293,6 +293,8 @@ public class Field : MonoBehaviour
         {
             tile.SetColor(Color.white);
         }
+
+        FieldCloseSplashRange();
     }
 
     public void SetTileHighlightFrame(Vector2? location, bool highlightOn)
@@ -338,11 +340,14 @@ public class Field : MonoBehaviour
     public void MouseEnterTile(Tile tile)
     {
         FieldShowInfo(tile);
+        if (BattleManager.Data.GetNowUnit() != null && BattleManager.Data.GetNowUnit().Team == Team.Player)
+            FieldShowSplashRange(tile);
     }
 
     public void MouseExitTile(Tile tile)
     {
         FieldCloseInfo(tile);
+        FieldCloseSplashRange();
     }
 
     public void FieldShowInfo(Tile tile)
@@ -367,6 +372,35 @@ public class Field : MonoBehaviour
         if (_hoverInfo != null)
         {
             BattleManager.BattleUI.CloseInfo(_hoverInfo);
+        }
+    }
+
+    public void FieldShowSplashRange(Tile tile)
+    {
+        if (tile.UnitExist && BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Action))
+        {
+            BattleUnit currentUnit = BattleManager.Data.GetNowUnit();
+            BattleUnit tileUnit = tile.Unit;
+
+            if (currentUnit != tileUnit && currentUnit.GetAttackRange().Contains(tileUnit.Location - currentUnit.Location))
+            {
+                foreach (Vector2 range in currentUnit.Action.GetSplashRangeForField(currentUnit, tileUnit.Location, currentUnit.Location))
+                {
+                    BattleManager.Field.TileDict[range].SetRangeHightlight(true);
+                }
+
+                return;
+            }
+        }
+
+        FieldCloseSplashRange();
+    }
+
+    public void FieldCloseSplashRange()
+    {
+        foreach (Tile tile in TileDict.Values)
+        {
+            tile.SetRangeHightlight(false);
         }
     }
 }
