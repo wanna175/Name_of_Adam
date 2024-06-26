@@ -17,6 +17,7 @@ public class SaveVersionController
         "1.0.0v",
         "1.0.1v",
         "1.0.2v",
+        "1.0.3v",
     };
 
     public bool IsValildVersion()
@@ -111,6 +112,32 @@ public class SaveVersionController
                     HallUnit gravekeeper = hallUnits.Find(x => x.PrivateKey == "묘지기_Origin");
                     gravekeeper.IsMainDeck = true;
                     gravekeeper.ID = 2;
+
+                    break;
+
+                case "1.0.2v":
+                    // 새로운 진척도 기능 추가
+                    List<ProgressSave> progressSaves = GameManager.OutGameData.GetProgressSaves();
+                    foreach (var progressItem in GameManager.OutGameData.ProgressItems)
+                    {
+                        if (progressSaves.Find(x => x.ID == progressItem.Value.ID) == null)
+                            progressSaves.Add(new ProgressSave(progressItem.Value.ID, false));
+                    }
+
+                    // 진척도 상점 기능 초기화 및 환원
+                    int sum = 0;
+                    foreach (var progressSave in progressSaves)
+                    {
+                        if (progressSave.isUnLock)
+                        {
+                            progressSave.isUnLock = false;
+                            var progressItem = GameManager.OutGameData.GetProgressItem(progressSave.ID);
+                            sum += progressItem.Cost;
+                        }
+                    }
+                    Debug.Log($"진척도 초기화 및 코인 '{sum}' 획득");
+                    GameManager.OutGameData.SetProgressCoin(sum);
+                    GameManager.OutGameData.SetProgressInit();
 
                     break;
             }
