@@ -25,7 +25,7 @@ public class UI_SystemFadeInfo : MonoBehaviour
         this.goalPos = createPos + new Vector2(0.0f, 15.0f);
 
         _canvasRect.anchoredPosition = createPos;
-        _infoText.SetText(GameManager.Locale.GetLocalizedSystem(info));
+        _infoText.SetText(info);
 
         StartCoroutine(nameof(MoveUp));
         StartCoroutine(nameof(Fade));

@@ -64,9 +64,13 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     {
         PhaseController phase = BattleManager.Phase;
         if (!phase.CurrentPhaseCheck(phase.Prepare))
+        {
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+            BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("CannotInUnitTurn"));
             return;
+        }
 
-        if(eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (TutorialManager.Instance.IsEnable())
                 TutorialManager.Instance.ShowNextTutorial();
