@@ -340,7 +340,10 @@ public class Field : MonoBehaviour
     public void MouseEnterTile(Tile tile)
     {
         FieldShowInfo(tile);
-        if (BattleManager.Data.GetNowUnit() != null && BattleManager.Data.GetNowUnit().Team == Team.Player)
+
+        BattleUnit currentUnit = BattleManager.Data.GetNowUnit();
+        if (currentUnit != null && currentUnit.Team == Team.Player &&
+            tile.Unit != null && tile.Unit.Team == Team.Enemy)
             FieldShowSplashRange(tile);
     }
 
