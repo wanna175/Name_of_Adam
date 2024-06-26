@@ -18,6 +18,8 @@ public class UI_ControlBar : UI_Scene
     private const float fadeSpeed = 1.0f;
     private const float fadeMinAlpha = 0.5f;
 
+    private UI_SystemFadeInfo currentSystemInfo;
+
     public void Init()
     {
         _active.color = new Color(1f, 1f, 1f, activeMaxAlpha);
@@ -58,8 +60,11 @@ public class UI_ControlBar : UI_Scene
 
     public void CreateSystemInfo(string info)
     {
-        UI_SystemFadeInfo systemInfo = GameManager.Resource.Instantiate("UI/SystemFadeInfo", this.transform).GetComponent<UI_SystemFadeInfo>();
-        systemInfo.Init(new Vector2(0f, -265f), info);
+        if (currentSystemInfo != null)
+            Destroy(currentSystemInfo.gameObject);
+
+        currentSystemInfo = GameManager.Resource.Instantiate("UI/SystemFadeInfo", this.transform).GetComponent<UI_SystemFadeInfo>();
+        currentSystemInfo.Init(new Vector2(0f, -265f), info);
     }
 
     private IEnumerator FadeOutActive()
