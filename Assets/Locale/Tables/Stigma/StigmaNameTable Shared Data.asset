@@ -247,6 +247,10 @@ MonoBehaviour:
     m_Key: HandOfGrace
     m_Metadata:
       m_Items: []
+  - m_Id: 52527534567477248
+    m_Key: Aid
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

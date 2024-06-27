@@ -301,6 +301,7 @@ public enum StigmaEnum
     Solitude,
     Grudge,
     HandOfGrace,
+    Aid,
 
     //Unique stigmata 
     Birth = 100,
@@ -377,6 +378,7 @@ public enum BuffEnum
     Rearmament,
     Solitude,
     Grudge,
+    Aid,
 
     //unique stigma buff (no image)
     Birth,

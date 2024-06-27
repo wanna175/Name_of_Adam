@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2950990188252653416}
-  - component: {fileID: 4784008426702004410}
+  - component: {fileID: 8727338131681478004}
   m_Layer: 0
-  m_Name: Stigma_ShadowCloak
+  m_Name: Stigma_Aid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4784008426702004410
+--- !u!114 &8727338131681478004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d4e4187bb6fff44b5ac786c7f16406, type: 3}
+  m_Script: {fileID: 11500000, guid: dc75cf531a61d0b4eb2b0b17a3a50a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 29
-  _name: ShadowCloak
-  _sprite_28: {fileID: 21300000, guid: a9591d0d6d3129c409e672077aa468a0, type: 3}
-  _sprite_88: {fileID: 21300000, guid: 6488261accf534a428e60c31e8e0678f, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 0cd75a7da5a45f749993b5dfb193b6a3, type: 3}
-  _description: ShadowCloak Info
+  _stigmaEnum: 34
+  _name: Aid
+  _sprite_28: {fileID: 21300000, guid: 4ff69c7a1e49b894c8d84d8eb6357024, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 6afc2e38f92ceb640969bb7ba5bbe03c, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 90523647d7ad504419f83cbb2e1fb15a, type: 3}
+  _description: Aid Info
   _activeTiming: 2
-  _tier: 1
-  _isLock: 1
+  _tier: 0
+  _isLock: 0
