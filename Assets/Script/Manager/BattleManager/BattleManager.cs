@@ -285,9 +285,10 @@ public class BattleManager : MonoBehaviour
 
     private void SpawnUnitOnField(Vector2 coord)
     {
-        DeckUnit unit = _battleUI.UI_hands.GetSelectedUnit();
         if (!_field.TileDict[coord].IsColored)
             return;
+
+        DeckUnit unit = _battleUI.UI_hands.GetSelectedUnit();
 
         if (TutorialManager.Instance.IsEnable())
             TutorialManager.Instance.ShowNextTutorial(); 
@@ -307,9 +308,7 @@ public class BattleManager : MonoBehaviour
     public void MovePhaseClick(Vector2 coord)
     {
         if (!_field.TileDict[coord].IsColored)
-        {
             return;
-        }
 
         BattleUnit unit = _battleData.GetNowUnit();
         foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
@@ -324,6 +323,8 @@ public class BattleManager : MonoBehaviour
             _phase.ChangePhase(_phase.Action);
             SetTlieClickCoolDown(1f);
         }
+        else
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
         //else if (coord == unit.Location)
         //{
         //    _phase.ChangePhase(_phase.Action);
@@ -350,7 +351,10 @@ public class BattleManager : MonoBehaviour
         {
             BattleUnit selectUnit = _field.GetUnit(coord);
             if (selectUnit == null || selectUnit.Team == Team.Player)
+            {
+                GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
                 return;
+            }
 
             List<BattleUnit> additionalEnemies = _field.GetUnitsInRange(nowUnit.Location, nowUnit.GetAttackRange(), Team.Enemy);
             additionalEnemies.Remove(selectUnit);
@@ -382,7 +386,10 @@ public class BattleManager : MonoBehaviour
         }
 
         if (!nowUnit.Action.ActionStart(nowUnit, unitList, coord))
+        {
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
             return;
+        }
 
         if (Phase.CurrentPhaseCheck(Phase.Action) && nowUnit != null && unitList.Count > 0)
             BattleUI.UI_TurnChangeButton.SetEnable(false);
