@@ -152,7 +152,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 37980338062684160
-    m_Localized: During a unit's turn, you cannot summon a unit or use skills.
+    m_Localized: Units can only be summoned or skills can only be used during the
+      player's turn.
     m_Metadata:
       m_Items: []
   references:
