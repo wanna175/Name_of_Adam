@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _hover;
     [SerializeField] private GameObject _hightlightFrame;
+    [SerializeField] private GameObject _rangeHightlight;
 
     private BattleUnit _unit = null;
     public BattleUnit Unit => _unit;
@@ -27,6 +28,7 @@ public class Tile : MonoBehaviour
         _highlight.SetActive(false);
         _hover.SetActive(false);
         _hightlightFrame.SetActive(false);
+        _rangeHightlight.SetActive(false);
 
         _collider = GetComponent<Collider2D>();
         return this;
@@ -129,6 +131,7 @@ public class Tile : MonoBehaviour
     private bool IsPointerOverUIObject() => EventSystem.current.IsPointerOverGameObject();
 
     public void SetHightlightFrame(bool active) => _hightlightFrame.SetActive(active);
+    public void SetRangeHightlight(bool active) => _rangeHightlight.SetActive(active);
 
     private void OnMouseDown()
     {

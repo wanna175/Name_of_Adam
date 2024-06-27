@@ -775,6 +775,7 @@ public class BattleManager : MonoBehaviour
 
                     destUnit.UnitMove(current, moveSpeed);
                     _field.EnterTile(destUnit, current);
+                    ActiveTimingCheck(ActiveTiming.AFTER_SWITCH, moveUnit, destUnit);
                 }
                 else
                 {

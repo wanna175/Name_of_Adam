@@ -227,15 +227,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 39027246400442368
-    m_Localized: "\uBB34\uD6A8\uD654"
+    m_Localized: "\uADF8\uB9BC\uC790 \uB9DD\uD1A0"
     m_Metadata:
       m_Items: []
   - m_Id: 39036450616020992
-    m_Localized: "\uC900\uBE44 \uD0DC\uC138"
+    m_Localized: "\uC7AC\uBB34\uC7A5"
     m_Metadata:
       m_Items: []
   - m_Id: 42993527597191168
     m_Localized: "\uCD95\uBCF5 \u2161"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51315765480148992
+    m_Localized: "\uC559\uC2EC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51315763550769152
+    m_Localized: "\uACE0\uB3C5"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51332653350277120
+    m_Localized: "\uC740\uD61C\uC758 \uC190\uAE38"
     m_Metadata:
       m_Items: []
   references:

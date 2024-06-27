@@ -228,8 +228,9 @@ public enum ActiveTiming
     UNIT_TERMINATE = 1 << 25, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
 
     ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
+    AFTER_SWITCH = 1 << 27, //공격 모션이 끝난 뒤
 
-    NONE = 1 << 27 //없음
+    NONE = 1 << 28 //없음
 };
 
 public enum StigmaTier
@@ -295,8 +296,11 @@ public enum StigmaEnum
     Sin,
     Tail_Wind,
     Teleport,
-    Defeasance,
-    RaiseWithDelay,
+    ShadowCloak,
+    Rearmament,
+    Solitude,
+    Grudge,
+    HandOfGrace,
 
     //Unique stigmata 
     Birth = 100,
@@ -341,6 +345,7 @@ public enum BuffEnum
     Teleport,
     TraceOfDust,
     Malevolence,
+    Grudge_Buff,
 
     //systemic buff (no image)
     AfterAttackBounce,
@@ -369,7 +374,9 @@ public enum BuffEnum
     Repetance,
     Sadism,
     ShadowStep,
-    RaiseWithDelay,
+    Rearmament,
+    Solitude,
+    Grudge,
 
     //unique stigma buff (no image)
     Birth,
@@ -408,7 +415,8 @@ public enum UnitActionType
     UnitAction_FlowerOfSacrifice,
     UnitAction_Laser,
     UnitAction_RaquelLeah,
-    UnitAction_CenteredSplash
+    UnitAction_CenteredSplash,
+    UnitAction_Yohrn,
 }
 
 public enum UnitMoveType

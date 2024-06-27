@@ -227,15 +227,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 39027246400442368
-    m_Localized: Defeasance
+    m_Localized: Shadow Cloak
     m_Metadata:
       m_Items: []
   - m_Id: 39036450616020992
-    m_Localized: Ready Stance
+    m_Localized: Rearmament
     m_Metadata:
       m_Items: []
   - m_Id: 42993527597191168
     m_Localized: "Blessing \u2161"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51315765480148992
+    m_Localized: Grudge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51315763550769152
+    m_Localized: Solitude
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51332653350277120
+    m_Localized: Hand Of Grace
     m_Metadata:
       m_Items: []
   references:
