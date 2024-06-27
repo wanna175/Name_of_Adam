@@ -163,27 +163,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
-    m_Localized: Upon attacking when the faith of enemy unit is below half, reduces
+    m_Localized: Upon attacking when the faith of enemy unit is below half, Reduces
       the enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4027667247104
-    m_Localized: Upon attacking when this unit has two or more buff, reduces the
+    m_Localized: Upon attacking when this unit has two or more buff, Reduces the
       enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4114728415232
-    m_Localized: Upon attacking when the faith of this unit is below half, reduces
+    m_Localized: Upon attacking when the faith of this unit is below half, Reduces
       the enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4198899707904
-    m_Localized: Upon attacking when the health of enemy unit is full, reduces the
+    m_Localized: Upon attacking when the health of enemy unit is full, Reduces the
       enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 4454450262016
-    m_Localized: Upon attacking two or more enemies at once, it reduces the enemy's
+    m_Localized: Upon attacking two or more enemies at once, Reduces the enemy's
       faith by 1 upon attacking.
     m_Metadata:
       m_Items: []
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Localized: 'Upon summoning, Gains <b>Malevolence</b> 66 times.
 
       (<b>Malevolence</b>:
-      Upon attacking, reduces the enemy''s faith by 1)'
+      Upon attacking, Reduces the enemy''s faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 1304750413639680
@@ -339,14 +339,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 38887124866600960
-    m_Localized: When attacked, there is a 20% chance to invalidates damage.
+    m_Localized: When attacked, there is a 30% chance to invalidates damage.
     m_Metadata:
       m_Items: []
   - m_Id: 38895353000529920
-    m_Localized: 'When this unit''s turn ends without attacking, gain <b>Attack Boost</b>
-      for 1 times.
+    m_Localized: 'When skip turn without attacking, Gains <b>Attack Boost</b> and
+      <b>Speed Boost</b> for 1 times.
 
-      (<b>Attack Boost</b>: Increases attack power by 50%.)'
+      (<b>Attack Boost</b>: Increases attack
+      power by 50%.
+
+      (<b>Speed Boost</b>: Speed incresase by 100.)'
     m_Metadata:
       m_Items: []
   - m_Id: 42853855059398656
@@ -355,6 +358,23 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 42853852555399168
     m_Localized: Upon attacking, Recovers 10 mana.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142579702616064
+    m_Localized: 'Upon end of this unit''s turn when there are no ally unit within
+      adjacent 8 tiles, Gains <b>Attack Boost</b> for 1 times.
+
+      (<b>Attack
+      Boost</b>: Increases attack power by 50%.)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142824608026624
+    m_Localized: If ally unit corrupted/edified, Increases attack power by 20
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142828772970496
+    m_Localized: Upon switching locations with ally unit, Recovers 15 health that
+      ally unit.
     m_Metadata:
       m_Items: []
   references:

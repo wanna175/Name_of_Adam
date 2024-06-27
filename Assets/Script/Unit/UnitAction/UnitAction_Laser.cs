@@ -10,12 +10,7 @@ public class UnitAction_Laser : UnitAction
         if (hits.Count != 1)
             return false;
 
-        int direction = 1;
-
-        if (attackUnit.Location.x - hits[0].Location.x > 0)
-        {
-            direction = -1;
-        }
+        int direction = attackUnit.Location.x - hits[0].Location.x > 0 ? -1 : 1;
 
         for (int i = 1; i < 6; i++)
         {
@@ -30,5 +25,20 @@ public class UnitAction_Laser : UnitAction
 
         BattleManager.Instance.AttackStart(attackUnit, hits.Distinct().ToList());
         return true;
+    }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    {
+        List<Vector2> splashRangeList = new();
+        int direction = caster.x - target.x > 0 ? -1 : 1;
+
+        for (int i = 1; i < 6; i++)
+        {
+            Vector2 vec = new(caster.x + (i * direction), caster.y);
+            if (BattleManager.Field.IsInRange(vec))
+                splashRangeList.Add(vec);
+        }
+
+        return splashRangeList;
     }
 }

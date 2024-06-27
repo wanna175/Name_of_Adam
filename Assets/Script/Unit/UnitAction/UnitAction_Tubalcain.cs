@@ -122,4 +122,13 @@ public class UnitAction_Tubalcain : UnitAction
 
         return true;
     }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    {
+        List<Vector2> splashRangeList = new();
+        if (ChargeAttackSearch(unit).ContainsKey(target))
+            splashRangeList.Add(target);
+
+        return splashRangeList;
+    }
 }

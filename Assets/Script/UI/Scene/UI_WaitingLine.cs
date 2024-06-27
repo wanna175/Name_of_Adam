@@ -46,10 +46,11 @@ public class UI_WaitingLine : UI_Scene
 
     public void SetWaitingLine(List<BattleUnit> orderList)
     {
-        if (_waitingBattleUnitList.SequenceEqual(orderList))
+        if (_waitingBattleUnitList.SequenceEqual(orderList) && _waitingBattleUnitList.Select(unit => unit.Team).SequenceEqual(orderList.Select(unit => unit.Team)))
         {
             return;
         }
+
         _waitingBattleUnitList = orderList;
         ClearWaitingLine();
 
