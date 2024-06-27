@@ -12,14 +12,16 @@ public class UnitAction_Laser : UnitAction
 
         int direction = attackUnit.Location.x - hits[0].Location.x > 0 ? -1 : 1;
 
-        for (int i = 1; i < 6; i++)
+        foreach (Vector2 vec in attackUnit.GetAttackRange())
         {
-            Vector2 vec = new(attackUnit.Location.x + (i * direction), attackUnit.Location.y);
-            BattleUnit unit = BattleManager.Field.GetUnit(vec);
-
-            if (unit != null && unit.Team != attackUnit.Team)
+            if (vec.x * direction > 0)
             {
-                hits.Add(unit);
+                BattleUnit unit = BattleManager.Field.GetUnit(vec + attackUnit.Location);
+
+                if (unit != null && unit.Team != attackUnit.Team)
+                {
+                    hits.Add(unit);
+                }
             }
         }
 
@@ -32,11 +34,12 @@ public class UnitAction_Laser : UnitAction
         List<Vector2> splashRangeList = new();
         int direction = caster.x - target.x > 0 ? -1 : 1;
 
-        for (int i = 1; i < 6; i++)
+        foreach (Vector2 vec in unit.GetAttackRange())
         {
-            Vector2 vec = new(caster.x + (i * direction), caster.y);
-            if (BattleManager.Field.IsInRange(vec))
-                splashRangeList.Add(vec);
+            if (vec.x * direction > 0 && BattleManager.Field.IsInRange(vec + caster))
+            {
+                splashRangeList.Add(vec + caster);
+            }
         }
 
         return splashRangeList;
