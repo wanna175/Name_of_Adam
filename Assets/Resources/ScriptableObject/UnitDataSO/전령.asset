@@ -21,7 +21,7 @@ MonoBehaviour:
     FallMaxCount: 4
     ManaCost: 60
   _uniqueStigma:
-  - {fileID: 8727338131681478004, guid: 12aef60a5de6a4249a1b69a4945945c9, type: 3}
+  - {fileID: 1435144401005168298, guid: 47696acaee0417241a8b459ff7e0e018, type: 3}
   _id: "\uC804\uB839"
   _name: Messenger
   _description: 
