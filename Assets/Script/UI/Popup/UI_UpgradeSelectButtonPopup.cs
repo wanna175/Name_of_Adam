@@ -10,7 +10,7 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
     [SerializeField] private UI_UpgradeSelectButton _buttonPrefab;
     [SerializeField] private GridLayoutGroup _grid;
     [SerializeField] private TextMeshProUGUI _titleText;
-    [SerializeField] private GameObject _rerollButton;
+    [SerializeField] private UI_RerollButton _rerollButton;
 
     private UpgradeSceneController _uc;
     private bool _isUpgradeFull;
@@ -29,16 +29,23 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
             _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Select Upgrade"));
         }
 
-        _rerollButton.SetActive(false);
+        _rerollButton.Init(Reroll);
         if (!isUpgradeFull)
             _rerollButton.SetActive(GameManager.OutGameData.GetProgressSave(22).isUnLock);
+        else
+            _rerollButton.gameObject.SetActive(false);
 
         int createButtonCount = upgrades.Count;
 
         if (createButtonCount == 4)
-            _grid.spacing = new Vector2(150, 10);
+            _grid.spacing = new Vector2(80, 10);
         else
             _grid.spacing = new Vector2(200, 10);
+
+        if (createButtonCount == 3)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(775, -275);
+        else if (createButtonCount == 4)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(850, -275);
 
         for (int i = 0; i < createButtonCount; i++)
         {

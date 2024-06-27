@@ -11,7 +11,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
     [SerializeField] private GridLayoutGroup _grid;
     [SerializeField] private TextMeshProUGUI _titleText;
-    [SerializeField] private GameObject _rerollButton;
+    [SerializeField] private UI_RerollButton _rerollButton;
     public GameObject _titleGO;
 
     private DeckUnit _targetUnit;
@@ -31,7 +31,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
         _afterPopupAction = afterPopupAction;
 
-        _rerollButton.SetActive(false);
+        _rerollButton.Init(Reroll);
         if (!isStigmataFull)
         {
             if (SceneManager.GetActiveScene().name.Equals("BattleScene"))
@@ -39,6 +39,8 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
             else
                 _rerollButton.SetActive(GameManager.OutGameData.GetProgressSave(22).isUnLock);
         }
+        else
+            _rerollButton.gameObject.SetActive(false);
 
         _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Select Stigma"));
         SetStigmaSelectButtons(stigmataSelectList);
@@ -77,9 +79,16 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
     private void SetStigmaSelectButtons(List<Stigma> stigmataList)
     {
         if (stigmataList.Count == 4)
-            _grid.spacing = new Vector2(150, 10);
+            _grid.spacing = new Vector2(80, 10);
         else
             _grid.spacing = new Vector2(200, 10);
+
+        if (stigmataList.Count == 2)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(525, -350);
+        else if (stigmataList.Count == 3)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(775, -350);
+        else if(stigmataList.Count == 4)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(850, -350);
 
         foreach (Stigma stigmata in stigmataList)
         {
