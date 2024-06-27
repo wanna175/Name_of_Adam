@@ -375,13 +375,12 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
     }
 
-    private void SetProgressInit()
+    public void SetProgressInit()
     {
         _data.ProgressSaves = new List<ProgressSave>();
         foreach (var item in ProgressItems)
             _data.ProgressSaves.Add(new ProgressSave(item.Key, false));
 
-        Debug.Log(_data.ProgressSaves.Count);
         GetProgressSave(0).isUnLock = true;
         GetProgressSave(50).isUnLock = true;
         GetProgressSave(51).isUnLock = true;
@@ -431,4 +430,5 @@ public class OutGameDataContainer : MonoBehaviour
     public void SetIsOnMainTooltipForPhanuel(bool isOn) => _data.IsOnMainTooltipForPhanuel = isOn;
     public string GetVersion() => _data.Version;
     public void SetVersion(string version) => _data.Version = version;
+    public List<ProgressSave> GetProgressSaves() => _data.ProgressSaves;
 }

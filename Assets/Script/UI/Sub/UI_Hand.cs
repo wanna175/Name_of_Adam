@@ -81,7 +81,11 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     {
         PhaseController _phase = BattleManager.Phase;
         if (!_phase.CurrentPhaseCheck(_phase.Prepare))
+        {
+            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+            BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("CannotInUnitTurn"));
             return;
+        }
 
         if (BattleManager.PlayerSkillController.IsSkillOn)
             return;

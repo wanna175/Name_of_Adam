@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_UpgradeSelectButtonPopup : UI_Popup
@@ -9,16 +10,15 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
     [SerializeField] private UI_UpgradeSelectButton _buttonPrefab;
     [SerializeField] private GridLayoutGroup _grid;
     [SerializeField] private TextMeshProUGUI _titleText;
+    [SerializeField] private UI_RerollButton _rerollButton;
 
     private UpgradeSceneController _uc;
     private bool _isUpgradeFull;
-    private bool _isCanReset;
 
     public void Init(UpgradeSceneController uc, List<Upgrade> upgrades, bool isUpgradeFull)
     {
         _uc = uc;
         _isUpgradeFull = isUpgradeFull;
-        _isCanReset = !isUpgradeFull;
 
         if (_isUpgradeFull)
         {
@@ -29,12 +29,23 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
             _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Select Upgrade"));
         }
 
+        _rerollButton.Init(Reroll);
+        if (!isUpgradeFull)
+            _rerollButton.SetActive(GameManager.OutGameData.GetProgressSave(22).isUnLock);
+        else
+            _rerollButton.gameObject.SetActive(false);
+
         int createButtonCount = upgrades.Count;
 
         if (createButtonCount == 4)
-            _grid.spacing = new Vector2(150, 10);
+            _grid.spacing = new Vector2(80, 10);
         else
             _grid.spacing = new Vector2(200, 10);
+
+        if (createButtonCount == 3)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(775, -275);
+        else if (createButtonCount == 4)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(850, -275);
 
         for (int i = 0; i < createButtonCount; i++)
         {
@@ -44,9 +55,6 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
 
     public void ResetUpgradeSelectButtons()
     {
-        if (!_isCanReset)
-            return;
-
         var buttons = _grid.GetComponentsInChildren<UI_UpgradeSelectButton>();
         foreach (var button in buttons)
             Destroy(button.gameObject);
@@ -71,5 +79,12 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
     {
         this.transform.SetAsFirstSibling();
         this.gameObject.SetActive(false);
+    }
+
+    public void Reroll()
+    {
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        ResetUpgradeSelectButtons();
+        _rerollButton.SetActive(false);
     }
 }

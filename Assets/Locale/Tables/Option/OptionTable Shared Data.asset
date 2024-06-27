@@ -84,23 +84,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 50387093921001472
-    m_Key: By Rank
+    m_Key: Class
     m_Metadata:
       m_Items: []
   - m_Id: 50387140863651840
-    m_Key: By Attack
+    m_Key: Attack
     m_Metadata:
       m_Items: []
   - m_Id: 50387181808447488
-    m_Key: By HP
+    m_Key: HP
     m_Metadata:
       m_Items: []
   - m_Id: 50387203237146624
-    m_Key: By Speed
+    m_Key: Speed
     m_Metadata:
       m_Items: []
   - m_Id: 50387213802598400
-    m_Key: By Cost
+    m_Key: Cost
     m_Metadata:
       m_Items: []
   m_Metadata:

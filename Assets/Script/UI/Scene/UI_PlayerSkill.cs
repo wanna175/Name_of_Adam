@@ -46,9 +46,16 @@ public class UI_PlayerSkill : UI_Scene
         if (!Used)
         {
             if (!isCanUseMana)
+            {
                 BattleManager.BattleUI.UI_manaGauge.CannotEffect.Create();
+                BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("ManaIsLow"));
+            }
+
             if (!isCanUseDarkEssense)
+            {
                 BattleManager.BattleUI.UI_darkEssence.CannotEffect.Create();
+                BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("DarkEssenceIsLow"));
+            }
 
             if (isCanUseMana && isCanUseDarkEssense)
             {

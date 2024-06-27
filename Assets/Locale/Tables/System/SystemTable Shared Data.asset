@@ -99,6 +99,18 @@ MonoBehaviour:
     m_Key: PlayerSkillisUsed
     m_Metadata:
       m_Items: []
+  - m_Id: 37980186224685056
+    m_Key: ManaIsLow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37980301891006464
+    m_Key: DarkEssenceIsLow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37980338062684160
+    m_Key: CannotInUnitTurn
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

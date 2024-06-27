@@ -11,7 +11,7 @@
       "ID": 1,
       "Name": "Destiny",
       "Cost": 50,
-      "Prequest": 8,
+      "Prequest": 5,
       "Description": "Stigmata Destiny appears from now on. Destiny - When attacking, there is a 50% chance for damage to be doubled and a 50% chance for it to be halved."
     },
     {
@@ -46,7 +46,7 @@
       "ID": 7,
       "Name": "Killing Spree",
       "Cost": 50,
-      "Prequest": 2,
+      "Prequest": 8,
       "Description": "Stigmata Killing Spree appears from now on. Killing Spree - Gains an extra turn upon defeating an enemy."
     },
     {
@@ -81,7 +81,7 @@
       "ID": 13,
       "Name": "Teleport",
       "Cost": 100,
-      "Prequest": 11,
+      "Prequest": 2,
       "Description": "Stigmata Teleport appears from now on. Teleport - Earns 1 Sacred Step upon defeating an enemy. Sacred Step - Becomes able to move to any desired position."
     },
     {
@@ -102,7 +102,7 @@
       "ID": 16,
       "Name": "Forbidden Pact",
       "Cost": 100,
-      "Prequest": 17,
+      "Prequest": 11,
       "Description": "Stigmata Forbidden Pact appears from now on. Forbidden Pact - The unit becomes stunned once, but the mana cost of the next skill is eliminated upon summoning."
     },
     {
@@ -118,6 +118,20 @@
       "Cost": 1000,
       "Prequest": 17,
       "Description": "Stigmata Sin appears in the Sacrifice from now on. Sin - Decreases the enemys faith by 1 upon attacking."
+    },
+    {
+      "ID": 21,
+      "Name": "Unlock Reselection I",
+      "Cost": 200,
+      "Prequest": 14,
+      "Description": "Gain an opportunity to reset the selection of stigmas upon corrupting an enemy unit once."
+    },
+    {
+      "ID": 22,
+      "Name": "Unlock Reselection II",
+      "Cost": 300,
+      "Prequest": 17,
+      "Description": "Gain an opportunity to reset the selection of Baptism, Stigmata, and Sacrifice once."
     },
     {
       "ID": 50,

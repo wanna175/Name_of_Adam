@@ -294,6 +294,24 @@ MonoBehaviour:
     m_Localized: Stigmata transfer
     m_Metadata:
       m_Items: []
+  - m_Id: 51344983634120704
+    m_Localized: Unlock Reselection I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51345502498885632
+    m_Localized: Gain an opportunity to reset the selection of stigmas upon corrupting
+      an enemy unit once.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51345573797859328
+    m_Localized: Unlock Reselection II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51345616235827200
+    m_Localized: Gain an opportunity to reset the selection of Baptism, Stigmata,
+      and Sacrifice once.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

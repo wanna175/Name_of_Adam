@@ -267,6 +267,24 @@ MonoBehaviour:
     m_Key: Stigmata transfer
     m_Metadata:
       m_Items: []
+  - m_Id: 51344983634120704
+    m_Key: Unlock Reselection I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51345502498885632
+    m_Key: Gain an opportunity to reset the selection of stigmas upon corrupting
+      an enemy unit once.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51345573797859328
+    m_Key: Unlock Reselection II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51345616235827200
+    m_Key: Gain an opportunity to reset the selection of Baptism, Stigmata, and Sacrifice
+      once.
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

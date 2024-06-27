@@ -143,6 +143,19 @@ MonoBehaviour:
     m_Localized: Player skills can only be used once per turn.
     m_Metadata:
       m_Items: []
+  - m_Id: 37980186224685056
+    m_Localized: It's low on Mana.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37980301891006464
+    m_Localized: It's low on Dark Essence.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37980338062684160
+    m_Localized: Units can only be summoned or skills can only be used during the
+      player's turn.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

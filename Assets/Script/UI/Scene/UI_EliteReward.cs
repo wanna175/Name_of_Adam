@@ -16,19 +16,18 @@ public class UI_EliteReward : UI_Popup
     {
         int unitNumber = Random.Range(0, unitLists.Count);
 
-        DeckUnit deckUnit = new DeckUnit();
-        deckUnit.Data = unitLists[unitNumber];
-        deckUnit.HallUnitID = -1;
-
         while (selectedUnitNumbers.Contains(unitNumber))
         {
             Debug.Log($"'{unitNumber}번 유닛'은(는) 중복된 유닛입니다.");
             unitNumber = Random.Range(0, unitLists.Count);
         }
 
-        selectedUnitNumbers.Add(unitNumber);
+        DeckUnit deckUnit = new DeckUnit();
+        deckUnit.Data = unitLists[unitNumber];
+        deckUnit.HallUnitID = -1;
 
         SetRandomStigmas(deckUnit);
+        selectedUnitNumbers.Add(unitNumber);
 
         return deckUnit;
     }
@@ -62,12 +61,6 @@ public class UI_EliteReward : UI_Popup
         var units = GameManager.Resource.LoadAll<UnitDataSO>($"ScriptableObject/UnitDataSO");
         foreach (var unit in units)
         {
-            if (unit.ID == "전령")
-            {
-                // 얼리엑세스에서 개방
-                continue;
-            }
-
             if (unit.Rarity == Rarity.Normal && !unit.IsBattleOnly)
             {
                 normalUnits.Add(unit);

@@ -57,9 +57,16 @@ public class UI_Hands : UI_Scene
         bool isCanUseDarkEssense = GameManager.Data.CanUseDarkEssense(hand.GetUnit().Data.DarkEssenseCost);
 
         if (!isCanUseMana)
+        {
             BattleManager.BattleUI.UI_manaGauge.CannotEffect.Create();
+            BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("ManaIsLow"));
+        }
+
         if (!isCanUseDarkEssense)
+        {
             BattleManager.BattleUI.UI_darkEssence.CannotEffect.Create();
+            BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("DarkEssenceIsLow"));
+        }
 
         if (isCanUseMana && isCanUseDarkEssense)
         {
