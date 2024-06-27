@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 31
   _name: Solitude
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
+  _sprite_28: {fileID: 21300000, guid: 5830b01c2676c7c498ee95ced8bd65ac, type: 3}
+  _sprite_88: {fileID: 21300000, guid: cc715b709937e6047b876c1f0e8beeb4, type: 3}
+  _sprite_164: {fileID: 21300000, guid: cb10f6cf0bfecc745b9be834bb6608c6, type: 3}
   _description: Solitude Info
   _activeTiming: 2
   _tier: 0
