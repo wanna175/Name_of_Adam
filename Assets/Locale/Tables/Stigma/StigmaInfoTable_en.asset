@@ -373,6 +373,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51142828772970496
+    m_Localized: Upon attacking, Recovers 30 health to ally units within attack range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142830366806016
     m_Localized: Upon switching locations with ally unit, Recovers 15 health that
       ally unit.
     m_Metadata:
