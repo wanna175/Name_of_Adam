@@ -38,7 +38,7 @@ public class UI_Tutorial : MonoBehaviour
     private void TutorialTimeStart()
     {
         TutorialManager.Instance.IsTutorialactive = false;
-        Time.timeScale = 1;
+        Time.timeScale = GameManager.OutGameData.GetBattleSpeed();
     }
 
     public void OnLastCloseButton()
