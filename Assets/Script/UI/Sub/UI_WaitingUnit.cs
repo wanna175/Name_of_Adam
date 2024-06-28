@@ -36,10 +36,12 @@ public class UI_WaitingUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         _prevHighlightLocation = BattleManager.Field.NowHighlightFrameOnLocation;
         BattleManager.Field.SetTileHighlightFrame(_unit.Location, true);
+        BattleManager.Field.FieldShowInfo(BattleManager.Field.TileDict[_unit.Location]);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         BattleManager.Field.SetTileHighlightFrame(_prevHighlightLocation, true);
+        BattleManager.Field.FieldCloseInfo(BattleManager.Field.TileDict[_unit.Location]);
     }
 }
