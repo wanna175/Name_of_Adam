@@ -32,12 +32,17 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         _afterPopupAction = afterPopupAction;
 
         _rerollButton.Init(Reroll);
+        bool isRerollUnlocked;
         if (!isStigmataFull)
         {
             if (SceneManager.GetActiveScene().name.Equals("BattleScene"))
-                _rerollButton.SetActive(GameManager.OutGameData.GetProgressSave(21).isUnLock);
+                isRerollUnlocked = GameManager.OutGameData.GetProgressSave(21).isUnLock;
             else
-                _rerollButton.SetActive(GameManager.OutGameData.GetProgressSave(22).isUnLock);
+                isRerollUnlocked = GameManager.OutGameData.GetProgressSave(22).isUnLock;
+
+            _rerollButton.gameObject.SetActive(isRerollUnlocked);
+            if (isRerollUnlocked)
+                _rerollButton.SetActive(true);
         }
         else
             _rerollButton.gameObject.SetActive(false);
