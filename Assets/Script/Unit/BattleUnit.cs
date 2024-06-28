@@ -208,6 +208,11 @@ public class BattleUnit : MonoBehaviour
                 return;
         }
 
+        if (FallEvent)
+        {
+            return;
+        }
+
         BattleManager.Instance.UnitDeadEvent(this);
         foreach (ConnectedUnit unit in ConnectedUnits)
         {
