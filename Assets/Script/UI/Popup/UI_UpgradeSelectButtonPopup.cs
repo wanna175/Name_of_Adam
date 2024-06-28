@@ -30,8 +30,14 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
         }
 
         _rerollButton.Init(Reroll);
+        bool isRerollUnlocked;
         if (!isUpgradeFull)
-            _rerollButton.SetActive(GameManager.OutGameData.GetProgressSave(22).isUnLock);
+        {
+            isRerollUnlocked = GameManager.OutGameData.GetProgressSave(22).isUnLock;
+            _rerollButton.gameObject.SetActive(isRerollUnlocked);
+            if (isRerollUnlocked)
+                _rerollButton.SetActive(true);
+        }
         else
             _rerollButton.gameObject.SetActive(false);
 
