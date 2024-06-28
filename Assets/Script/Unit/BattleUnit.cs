@@ -269,6 +269,9 @@ public class BattleUnit : MonoBehaviour
         }
 
         FallEvent = true;
+
+        Buff.ClearSystemBuff();
+
         DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         Invoke(nameof(CreateCorruptEffect), 0.5f);

@@ -149,4 +149,11 @@ public class UnitBuff : MonoBehaviour
         }
         return 0;
     }
+
+    public void ClearSystemBuff()
+    {
+        DeleteBuff(BuffEnum.AfterAttackDead);
+        DeleteBuff(BuffEnum.AfterAttackBounce);
+        DeleteBuff(BuffEnum.AfterMotionTransparent);
+    }
 }

@@ -27,10 +27,9 @@ public class Buff_AfterAttackDead : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        _owner.UnitDiedEvent();
-
         if (_owner != null)
         {
+            _owner.UnitDiedEvent();
             _owner.UnitRenderer.color = new(1, 1, 1, 1);
         }
 
