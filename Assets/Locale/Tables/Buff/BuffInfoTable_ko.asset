@@ -138,6 +138,10 @@ MonoBehaviour:
       \uBC1B\uC744 \uC2DC, \uC2E0\uC559\uC774 1 \uB5A8\uC5B4\uC9D1\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
+  - m_Id: 51286104792518656
+    m_Localized: "\uACF5\uACA9\uB825\uC774 20 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

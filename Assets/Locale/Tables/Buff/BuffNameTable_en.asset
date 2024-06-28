@@ -106,6 +106,10 @@ MonoBehaviour:
     m_Localized: Mark Of The Beast
     m_Metadata:
       m_Items: []
+  - m_Id: 51287601982885888
+    m_Localized: Grudge
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

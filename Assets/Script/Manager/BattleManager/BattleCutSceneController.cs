@@ -50,6 +50,7 @@ public class BattleCutSceneController : MonoBehaviour
         ExitBattleCutScene(CSData);
 
         yield return new WaitUntil(() => FallCheck(CSData.HitUnits));
+        yield return new WaitUntil(() => FallCheck(new() { CSData.AttackUnit }));
 
         //yield return new WaitForSeconds(1);
 
