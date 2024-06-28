@@ -111,6 +111,10 @@ MonoBehaviour:
     m_Key: MarkOfTheBeast Info
     m_Metadata:
       m_Items: []
+  - m_Id: 51286104792518656
+    m_Key: Grudge Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

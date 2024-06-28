@@ -133,6 +133,10 @@ MonoBehaviour:
     m_Localized: When attacked by Rahel or Lea, faith decreases by 1.
     m_Metadata:
       m_Items: []
+  - m_Id: 51286104792518656
+    m_Localized: Attack power increase by 20.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
