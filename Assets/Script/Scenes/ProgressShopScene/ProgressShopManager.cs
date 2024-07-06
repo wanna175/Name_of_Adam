@@ -88,6 +88,14 @@ public class ProgressShopManager : MonoBehaviour
             return;
         }
 
+        #region Demo Àü¿ë
+        if (selectedID == 11 || selectedID == 53 || selectedID == 61 || selectedID == 71)
+        {
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("DemoClear", "DemoClearToolTip");
+            return;
+        }
+        #endregion
+
         GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
