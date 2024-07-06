@@ -186,7 +186,7 @@ public class StageManager : MonoBehaviour
                     }
                     else
                     {
-                        stageID = GameManager.Data.StageAct == 0 ? 0 : 2;
+                        stageID = GameManager.Data.StageAct == 0 ? 0 : 1;
                     }
                 }
                 else if (stageData.Name == StageName.BossBattle) // 보스 배틀
