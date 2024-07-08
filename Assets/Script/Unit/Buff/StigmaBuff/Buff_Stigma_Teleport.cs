@@ -4,11 +4,11 @@ public class Buff_Stigma_Teleport : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.None;
+        _buffEnum = BuffEnum.Teleport;
 
-        _name = "";
+        _name = "Teleport";
 
-        _description = "";
+        _description = "Teleport Info";
 
         _count = -1;
 
