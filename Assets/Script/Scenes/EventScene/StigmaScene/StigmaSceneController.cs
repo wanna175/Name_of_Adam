@@ -248,7 +248,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         {
             //성흔 부여일때
             BestowalStigmata(stigmata);
-            //GameManager.OutGameData.GetNPCQuest().StigmaQuest++;
+            GameManager.OutGameData.GetNPCQuest().StigmaQuest++;
         }
         else
         {

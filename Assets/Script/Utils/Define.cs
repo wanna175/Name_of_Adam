@@ -381,7 +381,7 @@ public enum BuffEnum
     Aid,
     ShadowCloak,
     HandOfGrace,
-    
+
     //unique stigma buff (no image)
     Birth,
     Blooming,

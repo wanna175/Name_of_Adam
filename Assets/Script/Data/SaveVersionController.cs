@@ -11,7 +11,6 @@ public class SaveVersionController
 
     private List<string> versionHistory = new List<string>
     {
-        "1.0.0-demo",
         "1.0.0-release",
         "1.0.1-release",
         "1.0.2-release",
@@ -19,7 +18,6 @@ public class SaveVersionController
         "1.0.1v",
         "1.0.2v",
         "1.0.3v",
-        "1.0.1-demo"
     };
 
     public bool IsValildVersion()
@@ -54,11 +52,6 @@ public class SaveVersionController
             switch (userVersion)
             {
                 // 이후 업데이트에서 구현 필요 시 추가
-                case "1.0.0-demo":
-                    GameManager.SaveManager.DeleteSaveData();
-                    GameManager.OutGameData.DeleteAllData();
-                    GameManager.OutGameData.CreateData();
-                    break;
                 case "1.0.0-release":
                     GameManager.SaveManager.DeleteSaveData();
 

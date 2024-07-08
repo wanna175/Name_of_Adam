@@ -91,10 +91,10 @@ public class OutGameDataContainer : MonoBehaviour
     private const string encryptionKey = "EncryptOutGameData!@#$%^&*()_+";
 
     //데모용
-    private const string OutGameDataFileName = "126634399755.dat";
+    //private const string OutGameDataFileName = "126634399755.dat";
 
     //정식용
-    //private const string OutGameDataFileName = "126634399756.dat";
+    private const string OutGameDataFileName = "126634399756.dat";
 
     private SaveVersionController _versionController;
     public Dictionary<int, ProgressItem> ProgressItems = new();
