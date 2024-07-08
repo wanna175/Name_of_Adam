@@ -379,6 +379,8 @@ public enum BuffEnum
     Solitude,
     Grudge,
     Aid,
+    HandOfGrace,
+    ShadowCloak,
 
     //unique stigma buff (no image)
     Birth,

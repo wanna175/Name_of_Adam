@@ -4,7 +4,7 @@ public class Buff_Stigma_Grudge : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Absorption;
+        _buffEnum = BuffEnum.Grudge;
 
         _name = "Grudge";
 

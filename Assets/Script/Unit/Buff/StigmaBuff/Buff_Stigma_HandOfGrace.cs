@@ -4,7 +4,7 @@ public class Buff_Stigma_HandOfGrace : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Absorption;
+        _buffEnum = BuffEnum.HandOfGrace;
 
         _name = "HandOfGrace";
 

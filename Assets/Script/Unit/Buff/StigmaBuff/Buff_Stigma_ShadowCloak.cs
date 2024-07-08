@@ -6,7 +6,7 @@ public class Buff_Stigma_ShadowCloak: Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Additional_Punishment;
+        _buffEnum = BuffEnum.ShadowCloak;
 
         _name = "ShadowCloak";
 
