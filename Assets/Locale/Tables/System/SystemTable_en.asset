@@ -157,7 +157,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 41389482793127936
-    m_Localized: 'You are currently playing the <color=#FF9696>demo version<color=white>.
+    m_Localized: 'You are currently playing the <color=#FF9696>demo version</color>.
 
       If
       you want more content and features, please check out the full version.'
