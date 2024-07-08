@@ -5,7 +5,7 @@ public class Buff_Grudge : Buff
     private int _attackUp = 0;
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Grudge;
+        _buffEnum = BuffEnum.Grudge_Buff;
 
         _name = "Grudge";
 
