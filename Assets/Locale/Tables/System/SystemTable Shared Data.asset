@@ -111,6 +111,14 @@ MonoBehaviour:
     m_Key: CannotInUnitTurn
     m_Metadata:
       m_Items: []
+  - m_Id: 41389482793127936
+    m_Key: DemoClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41389694601285632
+    m_Key: DemoClearToolTip
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

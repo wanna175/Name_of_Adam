@@ -94,10 +94,10 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             switch (stageData.StageID)
             {
                 case 0: // 투발카인 -> 라헬레아 넘어가기
-                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.LahelRea_Enter) == false)
+                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Elieus_Enter) == false)
                     {
                         isGoToCutScene = true;
-                        SceneChanger.SceneChangeToCutScene(CutSceneType.LahelRea_Enter);
+                        SceneChanger.SceneChangeToCutScene(CutSceneType.Elieus_Enter);
                     }
                     break;
                 case 1: // 엘리우스 -> 삼신기 넘어가기

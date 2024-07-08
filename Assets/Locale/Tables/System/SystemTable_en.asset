@@ -156,6 +156,17 @@ MonoBehaviour:
       player's turn.
     m_Metadata:
       m_Items: []
+  - m_Id: 41389482793127936
+    m_Localized: 'You are currently playing the <color=#FF9696>demo version</color>.
+
+      If
+      you want more content and features, please check out the full version.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41389694601285632
+    m_Localized: "\u203B Thank you for playing our game!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
