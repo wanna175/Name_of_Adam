@@ -117,8 +117,8 @@ MonoBehaviour:
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000320000003e000000
     m_ClosingTagUnicodeArray: 
-  - m_Name: Buff_Raise_Sprite
-    m_HashCode: 294536018
+  - m_Name: Buff_AttackBoost_Sprite
+    m_HashCode: 2128959603
     m_OpeningDefinition: <sprite=13>
     m_ClosingDefinition: 
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000330000003e000000

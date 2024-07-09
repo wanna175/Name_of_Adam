@@ -338,7 +338,6 @@ public enum BuffEnum
     Karma,
     Leah,
     MarkOfBeast,
-    Raise,
     Raquel,
     Sin,
     Stun,
@@ -348,6 +347,7 @@ public enum BuffEnum
     Grudge_Buff,
     SacredStep,
     AttackDecrease,
+    AttackBoost,
 
     //systemic buff (no image)
     AfterAttackBounce,

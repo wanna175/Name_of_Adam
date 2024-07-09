@@ -15,9 +15,9 @@ public class PlayerSkill_Bless : PlayerSkill
 
         if (!GameManager.OutGameData.IsUnlockedItem(64))
         {
-            unit.SetBuff(new Buff_Raise());
-            unit.SetBuff(new Buff_Raise());
-            unit.SetBuff(new Buff_Raise());
+            unit.SetBuff(new Buff_AttackBoost());
+            unit.SetBuff(new Buff_AttackBoost());
+            unit.SetBuff(new Buff_AttackBoost());
         }
 
         return false;

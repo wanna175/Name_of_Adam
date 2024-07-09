@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class Buff_Raise : Buff
+public class Buff_AttackBoost : Buff
 {
-    private int attackUp;
+    private int _attackUp;
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Raise;
+        _buffEnum = BuffEnum.AttackBoost;
 
-        _name = "Attack Increase";
+        _name = "Attack Boost";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raise_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_AttackBoost_Sprite");
 
-        _description = "Attack Increase Info";
+        _description = "Attack Boost Info";
 
         _count = 1;
 
@@ -27,7 +27,7 @@ public class Buff_Raise : Buff
 
         _stigmaBuff = false;
 
-        attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
+        _attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
     }
 
     public override void Stack()
@@ -38,7 +38,7 @@ public class Buff_Raise : Buff
     public override Stat GetBuffedStat()
     {
         Stat stat = new();  
-        stat.ATK += attackUp;
+        stat.ATK += _attackUp;
 
         return stat;
     }

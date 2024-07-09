@@ -34,7 +34,7 @@ public class Buff_Stigma_Solitude : Buff
 
         if (BattleManager.Field.GetUnitsInRange(_owner.Location, around8List, _owner.Team).Count == 0)
         {
-            _owner.SetBuff(new Buff_Raise());
+            _owner.SetBuff(new Buff_AttackBoost());
         }
 
         return false;
