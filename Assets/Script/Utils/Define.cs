@@ -343,10 +343,11 @@ public enum BuffEnum
     Sin,
     Stun,
     Tailwind,
-    Teleport,
     TraceOfDust,
     Malevolence,
     Grudge_Buff,
+    SacredStep,
+    AttackDecrease,
 
     //systemic buff (no image)
     AfterAttackBounce,
@@ -381,6 +382,7 @@ public enum BuffEnum
     Aid,
     ShadowCloak,
     HandOfGrace,
+    Teleport,
 
     //unique stigma buff (no image)
     Birth,

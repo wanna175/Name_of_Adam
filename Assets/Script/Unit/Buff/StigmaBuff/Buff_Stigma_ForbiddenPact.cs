@@ -8,11 +8,9 @@ public class Buff_Stigma_ForbiddenPact : Buff
     {
         _buffEnum = BuffEnum.ForbiddenPact;
 
-        _name = "금지된 계약";
+        _name = "Forbidden Pact";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
-
-        _description = "소환 시 플레이어 스킬 마나 비용을 지불하지 않습니다. 대신 해당 유닛은 스턴이 1턴 부여됩니다.";
+        _description = "Forbidden Pact Info";
 
         _count = -1;
 
@@ -35,7 +33,7 @@ public class Buff_Stigma_ForbiddenPact : Buff
         {
             BattleManager.PlayerSkillController.SetManaFree(true);
             BattleManager.BattleUI.UI_playerSkill.RefreshSkill(GameManager.Data.GetPlayerSkillList());
-            _owner.SetBuff(new Buff_Stun());
+            _owner.SetBuff(new Buff_AttackDecrease());
         }
 
         return false;

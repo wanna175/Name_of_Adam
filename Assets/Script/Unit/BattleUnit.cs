@@ -38,7 +38,7 @@ public class BattleUnit : MonoBehaviour
 
     private bool[] _moveRangeList;
     private bool[] _attackRangeList;
-    private bool _isTeleportOn => Buff.CheckBuff(BuffEnum.Teleport);
+    private bool _isTeleportOn => Buff.CheckBuff(BuffEnum.SacredStep);
 
     private IEnumerator moveCoro;
 
@@ -402,46 +402,49 @@ public class BattleUnit : MonoBehaviour
         if (moveCoro != null)
             StopCoroutine(moveCoro);
 
-        moveCoro = MoveFieldPosition(coord, backMove, moveSpeed);
+        moveCoro = MoveFieldPosition(BattleManager.Field.GetTilePosition(coord), coord, backMove, moveSpeed);
         StartCoroutine(moveCoro);
+    }
 
+    public IEnumerator MoveFieldPosition(Vector3 moveDestination, Vector2 coord, bool backMove, float moveSpeed)
+    {
+        _location = coord;
+        yield return MoveFieldPositionCoroutine(moveDestination, backMove, moveSpeed);
+        SetLocation(coord);
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE, this);
     }
 
-    public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove, float moveSpeed)
+    public IEnumerator MoveFieldPositionCoroutine(Vector3 moveDestination, bool backMove, float moveSpeed)
     {
-        Vector3 dest = BattleManager.Field.GetTilePosition(coord);
-
         float moveTime = 0.2f / moveSpeed;
         float backMoveTime = 0.2f / moveSpeed;
-        Vector3 overDistance = (dest - transform.position) * 0.03f;
+
+        Vector3 overDistance = (moveDestination - transform.position) * 0.03f;
         Vector3 pVel = Vector3.zero;
         Vector3 sVel = Vector3.zero;
-        
-        _location = coord;
+
         //GetModifiedScale check location.y
         float addScale = GetModifiedScale();
 
         if (backMove)
             SetFlipX(!GetFlipX());
 
-        while (Vector3.Distance(dest + overDistance, transform.position) >= 0.03f)
+        while (Vector3.Distance(moveDestination + overDistance, transform.position) >= 0.03f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, dest + overDistance, ref pVel, moveTime);
+            transform.position = Vector3.SmoothDamp(transform.position, moveDestination + overDistance, ref pVel, moveTime);
             transform.localScale = Vector3.SmoothDamp(transform.localScale, new(addScale, addScale, 1), ref sVel, moveTime);
+
             yield return null;
         }
 
         pVel = Vector3.zero;
 
-        while (Vector3.Distance(dest, transform.position) >= 0.01f)
+        while (Vector3.Distance(moveDestination, transform.position) >= 0.01f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, dest, ref pVel, backMoveTime);
+            transform.position = Vector3.SmoothDamp(transform.position, moveDestination, ref pVel, backMoveTime);
 
             yield return null;
         }
-
-        SetLocation(coord);
     }
 
     //엑티브 타이밍에 대미지 바꿀 때용

@@ -107,6 +107,10 @@ MonoBehaviour:
     m_Key: Grudge
     m_Metadata:
       m_Items: []
+  - m_Id: 55422904335224832
+    m_Key: Attack Decrease
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

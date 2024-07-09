@@ -117,7 +117,112 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Buff_Pack_0
+      name: Pack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf979d0fb2467084fba795b5ef100dbb
+      internalID: 1117110858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53369da6cf85d9348b81d834a923191f
+      internalID: -339110649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 610329f98b4d05249b902cf793db32ad
+      internalID: 52143698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bfe3b405f46c1f4d9e624fea31d7b30
+      internalID: -1981869237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1251e9e7a62fbc547a4ed0790d719a53
+      internalID: 141450332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_5
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd54fa29c6d89d24490bed3bcf522f69
-      internalID: -116984549
+      spriteID: e3b71dfc3bb550e4baa51b1da201c870
+      internalID: 306494808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_1
+      name: Pack_6
       rect:
         serializedVersion: 2
         x: 64
@@ -152,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6272847e71a3e25429866798c1d3928d
-      internalID: 320395735
+      spriteID: 79086892271c60b4bb984083c8b2db69
+      internalID: 1002618154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_2
+      name: Pack_7
       rect:
         serializedVersion: 2
         x: 128
@@ -173,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 017867160977a534e8dcd233d381c9e4
-      internalID: 2044905803
+      spriteID: 0fba6186bde79924db9f4b7860391137
+      internalID: 164815532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_3
+      name: Pack_8
       rect:
         serializedVersion: 2
         x: 192
@@ -194,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4552dca01bd32724db912a98337fa1c6
-      internalID: 772053743
+      spriteID: 5a861711f18f9db4b94be464f12e4ba0
+      internalID: -708391994
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_4
+      name: Pack_9
       rect:
         serializedVersion: 2
         x: 256
@@ -215,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f3c10d052320a747af48b5a59029983
-      internalID: -1262244474
+      spriteID: 1a627063270552f42aaf2ef2a7970c1f
+      internalID: -1141470137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_5
+      name: Pack_10
       rect:
         serializedVersion: 2
         x: 0
@@ -236,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83a5c9115fbd85040abe843694ab351e
-      internalID: -2145527908
+      spriteID: 467972cbf132fd144ac8d1cb4ad8910a
+      internalID: 1213604491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_6
+      name: Pack_11
       rect:
         serializedVersion: 2
         x: 64
@@ -257,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c74096c43ecc504d8c3094f8ffdd5ed
-      internalID: 1015949589
+      spriteID: a8d77eb70007f5f4eb9ba95e8835ecb0
+      internalID: 107770588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_7
+      name: Pack_12
       rect:
         serializedVersion: 2
         x: 128
@@ -278,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 978adee43b1734f40868a1baf8668f85
-      internalID: 75919753
+      spriteID: 672a336befac43245ac43712654cca27
+      internalID: -43556425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_8
+      name: Pack_13
       rect:
         serializedVersion: 2
         x: 192
@@ -299,14 +404,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a45ed0c11354b7c48b328860a6279e57
-      internalID: 330264393
+      spriteID: b86508494100579408fb04396504da04
+      internalID: -25878651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_9
+      name: Pack_14
       rect:
         serializedVersion: 2
         x: 256
@@ -320,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a96924b392f6749b13c9149d121028
-      internalID: -1742089696
+      spriteID: ed0be6b7ff3cb8048aa41d946734cadc
+      internalID: -579800801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_10
+      name: Pack_15
       rect:
         serializedVersion: 2
         x: 0
@@ -341,14 +446,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e476bdd29390341afe4cf3ce9ec0a0
-      internalID: 208397630
+      spriteID: c73da1bc82e7ed047bb8a70d17f415ab
+      internalID: 1319244982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_11
+      name: Pack_16
       rect:
         serializedVersion: 2
         x: 64
@@ -362,14 +467,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c79675c4f073c5488551f644614a874
-      internalID: -1370916816
+      spriteID: 585f805eabc3b494aa2d81f5b9b144f6
+      internalID: -1253353846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_12
+      name: Pack_17
       rect:
         serializedVersion: 2
         x: 128
@@ -383,14 +488,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d22f886f52472f48b0b944a4560ee42
-      internalID: 1841709921
+      spriteID: 519db6e0b9f97b34dbb447354f36ab78
+      internalID: 1368080455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_13
+      name: Pack_18
       rect:
         serializedVersion: 2
         x: 192
@@ -404,14 +509,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adc43053b91f4374d9623f8857b44298
-      internalID: 1621639101
+      spriteID: 9fda03c28189d234eb637befa57ef1a3
+      internalID: 1262183457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_14
+      name: Pack_19
       rect:
         serializedVersion: 2
         x: 256
@@ -425,14 +530,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83f0033cdecb82b4181bc5f89e122ad8
-      internalID: -1838806247
+      spriteID: 8893acd5d7771fb48a7621a090b4d3fd
+      internalID: 789911020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buff_Pack_15
+      name: Pack_20
       rect:
         serializedVersion: 2
         x: 0
@@ -446,92 +551,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9201d0b20c50c6b409cda1c6de73aa28
-      internalID: 708238880
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Buff_Pack_16
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f026315a918bfda42b4e0e111a654b7f
-      internalID: 802419457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Buff_Pack_17
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 523ab785d67e37d4a849041565216752
-      internalID: -2070694584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Buff_Pack_18
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b004dee7ed283724d86ef95851cd3bdb
-      internalID: -656702395
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Buff_Pack_19
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1518f29d74e65b4290da0683f8d7219
-      internalID: 1377670350
+      spriteID: ad79caccbe3d4c9468d35ce2055b7e8a
+      internalID: 1874012311
       vertices: []
       indices: 
       edges: []
@@ -547,26 +568,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Buff_Pack_1: 320395735
-      Buff_Pack_16: 802419457
-      Buff_Pack_0: -116984549
-      Buff_Pack_4: -1262244474
-      Buff_Pack_17: -2070694584
-      Buff_Pack_9: -1742089696
-      Buff_Pack_14: -1838806247
-      Buff_Pack_18: -656702395
-      Buff_Pack_2: 2044905803
-      Buff_Pack_19: 1377670350
-      Buff_Pack_8: 330264393
-      Buff_Pack_7: 75919753
-      Buff_Pack_13: 1621639101
-      Buff_Pack_3: 772053743
-      Buff_Pack_5: -2145527908
-      Buff_Pack_10: 208397630
-      Buff_Pack_15: 708238880
-      Buff_Pack_12: 1841709921
-      Buff_Pack_11: -1370916816
-      Buff_Pack_6: 1015949589
+      Pack_8: -708391994
+      Pack_9: -1141470137
+      Pack_10: 1213604491
+      Pack_6: 1002618154
+      Pack_18: 1262183457
+      Pack_13: -25878651
+      Pack_0: 1117110858
+      Pack_19: 789911020
+      Pack_16: -1253353846
+      Pack_3: -1981869237
+      Pack_24: -1410000731
+      Pack_12: -43556425
+      Pack_21: -2054636419
+      Pack_11: 107770588
+      Pack_7: 164815532
+      Pack_15: 1319244982
+      Pack_2: 52143698
+      Pack_1: -339110649
+      Pack_17: 1368080455
+      Pack_4: 141450332
+      Pack_20: 1874012311
+      Pack_23: 1062101431
+      Pack_22: -1071020594
+      Pack_5: 306494808
+      Pack_14: -579800801
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
