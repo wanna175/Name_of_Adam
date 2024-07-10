@@ -89,7 +89,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7619993818796032
     m_Localized: "Stigmata 'Killing Spree' appears from now on. \n\nKilling Spree
-      - Gains an extra turn upon defeating an enemy.my."
+      - Upon defeating an enemy, Gains an extra turn.\n(Once per turn)"
     m_Metadata:
       m_Items: []
   - m_Id: 7620199268388864
@@ -133,9 +133,11 @@ MonoBehaviour:
     m_Localized: 'Stigmata ''Teleport'' appears from now on.
 
 
-      Teleport - Gains
-      1 Sacred Step upon defeating an enemy. (Sacred Step: Can move any tile regradless
-      move range.)'
+      Teleport - Upon
+      summoning and defeating an enemy, Gains Sacred Step for 1 times.
+
+      (Sacred
+      Step: Can move any tile regradless move range.)'
     m_Metadata:
       m_Items: []
   - m_Id: 7622009710350336
@@ -164,8 +166,8 @@ MonoBehaviour:
 
 
       Forbidden
-      Pact - The unit becomes stunned once, but the mana cost of the next skill is
-      eliminated upon summoning.'
+      Pact - Upon summoning, Gains Attack Decrease for 1 times, but the mana cost
+      of the next skill becomes 0. (Attack Decrease: Attack power decrease by 50%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 7622878182936576
