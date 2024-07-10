@@ -139,11 +139,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3269714571264
-    m_Localized: 'Upon summoning, Gains <b>Stun</b> for 1 times, but the mana cost
-      of the next skill becomes 0.
+    m_Localized: 'Upon summoning, Gains <b>Attack Decrease</b> for 1 times, but the
+      mana cost of the next skill becomes 0.
 
-      (<b>Stun</b>: This unit can''t move or
-      attack.)'
+      (<b>Attack Decrease</b>: Attack
+      power decrease by 50%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 3422802472960
@@ -152,14 +152,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3515362373632
-    m_Localized: Upon defeating an enemy, Gains an extra turn.
+    m_Localized: 'Upon defeating an enemy, Gains an extra turn.
+
+      (Once per
+      turn)'
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
-    m_Localized: 'Upon defeating an enemy, Gains <b>Sacred Step</b> for 1 times.
+    m_Localized: 'Upon summoning and defeating an enemy, Gains <b>Sacred Step</b>
+      for 1 times.
 
-      (<b>Sacred
-      Step</b>: Can move any tile regradless move range.)'
+      (<b>Sacred Step</b>: Can move any tile regradless move
+      range.)'
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424

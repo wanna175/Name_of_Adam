@@ -25,8 +25,9 @@ public class Buff_Stigma_KillingSpree : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (caster.Team != _owner.Team)
+        if (caster.Team != _owner.Team && !_owner.Buff.CheckBuff(BuffEnum.KillingSpree_Buff))
         {
+            _owner.SetBuff(new Buff_KillingSpree());
             BattleManager.Data.BattleOrderInsert(0, _owner, _owner.BattleUnitTotalStat.SPD);
         }
 

@@ -29,7 +29,7 @@ public class Buff_Stigma_Rearmament : Buff
     {
         if (_owner.IsDoneAttack == false)
         {
-            _owner.SetBuff(new Buff_Raise());
+            _owner.SetBuff(new Buff_AttackBoost());
             _owner.SetBuff(new Buff_Tailwind());
         }
 

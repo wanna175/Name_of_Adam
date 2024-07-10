@@ -14,7 +14,7 @@ public class Buff_Stigma_Teleport : Buff
 
         _countDownTiming = ActiveTiming.NONE;
 
-        _buffActiveTiming = ActiveTiming.UNIT_KILL;
+        _buffActiveTiming = ActiveTiming.UNIT_KILL | ActiveTiming.STIGMA;
 
         _owner = owner;
 
@@ -26,8 +26,8 @@ public class Buff_Stigma_Teleport : Buff
     }
 
     public override bool Active(BattleUnit caster)
-    {   
-        _owner.SetBuff(new Buff_Teleport());
+    {
+        _owner.SetBuff(new Buff_SacredStep());
 
         return false;
     }

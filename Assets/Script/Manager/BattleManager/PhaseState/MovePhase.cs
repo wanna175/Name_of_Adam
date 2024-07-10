@@ -20,9 +20,7 @@ public class MovePhase : Phase
         if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.IsTutorialClear())
             TutorialManager.Instance.ShowNextTutorial();
 
-        //�̵� �� ���� �� üũ
         _nowUnit.NextMoveSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE_TURN_START, _nowUnit);
-        _nowUnit.NextMoveSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Move);
 

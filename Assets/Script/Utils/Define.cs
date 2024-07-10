@@ -195,42 +195,39 @@ public enum ActiveTiming
     TURN_START = 1 << 4, //턴 시작 시
     TURN_END = 1 << 5, //턴 종료 시
 
-    ACTION_TURN_START = 1 << 6, //이동턴 전, 공격턴 전 통합
+    MOVE_TURN_START = 1 << 6, //이동턴 전
 
-    MOVE_TURN_START = 1 << 7, //이동턴 전
+    MOVE = 1 << 7, //이동 후
 
-    MOVE = 1 << 8, //이동 후
+    MOVE_TURN_END = 1 << 8, //이동턴 후
 
-    MOVE_TURN_END = 1 << 9, //이동턴 후
+    ATTACK_TURN_START = 1 << 9, //공격턴 전
 
-    ATTACK_TURN_START = 1 << 10, //공격턴 전
+    BEFORE_ATTACK = 1 << 10, //공격 전
+    AFTER_ATTACK = 1 << 11, //공격 후
 
-    BEFORE_ATTACK = 1 << 11, //공격 전
-    AFTER_ATTACK = 1 << 12, //공격 후
+    DAMAGE_CONFIRM = 1 << 12, //대미지 확정
 
-    DAMAGE_CONFIRM = 1 << 13, //대미지 확정
+    BEFORE_ATTACKED = 1 << 13, //피격 전
+    AFTER_ATTACKED = 1 << 14, //피격 후
 
-    BEFORE_ATTACKED = 1 << 14, //피격 전
-    AFTER_ATTACKED = 1 << 15, //피격 후
+    ATTACK_TURN_END = 1 << 15, //공격턴 후
+    FIELD_ATTACK_TURN_END = 1 << 16, //필드 유닛의 공격턴 후
 
-    ATTACK_TURN_END = 1 << 16, //공격턴 후
-    FIELD_ATTACK_TURN_END = 1 << 17, //필드 유닛의 공격턴 후
+    FALL = 1 << 17, //타락시켰을 때, 그 후
+    FALLED = 1 << 18, //타락되었을 때 그 전
+    FIELD_UNIT_FALLED = 1 << 19, //필드 유닛이 타락 시
 
-    FALL = 1 << 18, //타락시켰을 때, 그 후
-    FALLED = 1 << 19, //타락되었을 때 그 전
-    FIELD_UNIT_FALLED = 1 << 20, //필드 유닛이 타락 시
+    BEFORE_UNIT_DEAD = 1 << 20, //자신이 사망 전
+    AFTER_UNIT_DEAD = 1 << 21, //자신이 사망 후
+    FIELD_UNIT_DEAD = 1 << 22, //필드 유닛이 사망 시
 
-    BEFORE_UNIT_DEAD = 1 << 21, //자신이 사망 전
-    AFTER_UNIT_DEAD = 1 << 22, //자신이 사망 후
-    FIELD_UNIT_DEAD = 1 << 23, //필드 유닛이 사망 시
+    UNIT_KILL = 1 << 23, //다른 유닛을 죽일 시
 
-    UNIT_KILL = 1 << 24, //다른 유닛을 죽일 시
-    UNIT_TERMINATE = 1 << 25, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
+    ATTACK_MOTION_END = 1 << 24, //공격 모션이 끝난 뒤
+    AFTER_SWITCH = 1 << 25, //공격 모션이 끝난 뒤
 
-    ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
-    AFTER_SWITCH = 1 << 27, //공격 모션이 끝난 뒤
-
-    NONE = 1 << 28 //없음
+    NONE = 1 << 26 //없음
 };
 
 public enum StigmaTier
@@ -338,15 +335,17 @@ public enum BuffEnum
     Karma,
     Leah,
     MarkOfBeast,
-    Raise,
     Raquel,
     Sin,
     Stun,
     Tailwind,
-    Teleport,
     TraceOfDust,
     Malevolence,
     Grudge_Buff,
+    SacredStep,
+    AttackDecrease,
+    AttackBoost,
+    KillingSpree_Buff,
 
     //systemic buff (no image)
     AfterAttackBounce,
@@ -381,6 +380,7 @@ public enum BuffEnum
     Aid,
     ShadowCloak,
     HandOfGrace,
+    Teleport,
 
     //unique stigma buff (no image)
     Birth,
@@ -396,9 +396,6 @@ public enum BuffEnum
     Symbiosis,
     Trinity,
     WrathOfBabel,
-
-
-
 
     BloodFest,
     Thirst,

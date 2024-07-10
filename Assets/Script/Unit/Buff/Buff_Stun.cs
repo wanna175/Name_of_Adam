@@ -15,7 +15,7 @@ public class Buff_Stun : Buff
 
         _countDownTiming = ActiveTiming.ATTACK_TURN_END;
 
-        _buffActiveTiming = ActiveTiming.ACTION_TURN_START;
+        _buffActiveTiming = ActiveTiming.MOVE_TURN_START | ActiveTiming.ATTACK_TURN_START;
 
         _owner = owner;
 

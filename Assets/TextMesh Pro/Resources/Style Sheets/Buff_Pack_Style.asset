@@ -117,8 +117,8 @@ MonoBehaviour:
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000320000003e000000
     m_ClosingTagUnicodeArray: 
-  - m_Name: Buff_Raise_Sprite
-    m_HashCode: 294536018
+  - m_Name: Buff_AttackBoost_Sprite
+    m_HashCode: 2128959603
     m_OpeningDefinition: <sprite=13>
     m_ClosingDefinition: 
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000330000003e000000
@@ -149,8 +149,8 @@ MonoBehaviour:
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000360000003e000000
     m_ClosingTagUnicodeArray: 
-  - m_Name: Buff_Teleport_Sprite
-    m_HashCode: 1723579647
+  - m_Name: Buff_SacredStep_Sprite
+    m_HashCode: -840308370
     m_OpeningDefinition: <sprite=17>
     m_ClosingDefinition: 
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000370000003e000000
@@ -172,6 +172,22 @@ MonoBehaviour:
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000390000003e000000
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000390000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_AttackDecrease_Sprite
+    m_HashCode: -811985804
+    m_OpeningDefinition: <sprite=20>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000032000000300000003e000000
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000032000000300000003e000000
+    m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_KillingSpree_Sprite
+    m_HashCode: 2023566253
+    m_OpeningDefinition: 
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 
     m_ClosingTagUnicodeArray: 
   - m_Name: Normal
     m_HashCode: -1183493901

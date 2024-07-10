@@ -110,6 +110,14 @@ MonoBehaviour:
     m_Localized: Grudge
     m_Metadata:
       m_Items: []
+  - m_Id: 55422904335224832
+    m_Localized: Attack Decrease
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55755748567830528
+    m_Localized: Killing Spree
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
