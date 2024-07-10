@@ -152,7 +152,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3515362373632
-    m_Localized: Upon defeating an enemy, Gains an extra turn.
+    m_Localized: 'Upon defeating an enemy, Gains an extra turn.
+
+      (Once per
+      turn)'
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024

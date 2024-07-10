@@ -119,6 +119,10 @@ MonoBehaviour:
     m_Key: Attack Decrease Info
     m_Metadata:
       m_Items: []
+  - m_Id: 55754218309570560
+    m_Key: Killing Spree Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

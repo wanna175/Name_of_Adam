@@ -181,6 +181,14 @@ MonoBehaviour:
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000032000000300000003e000000
     m_ClosingTagUnicodeArray: 
+  - m_Name: Buff_KillingSpree_Sprite
+    m_HashCode: 2023566253
+    m_OpeningDefinition: 
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 
+    m_ClosingTagArray: 
+    m_OpeningTagUnicodeArray: 
+    m_ClosingTagUnicodeArray: 
   - m_Name: Normal
     m_HashCode: -1183493901
     m_OpeningDefinition: 

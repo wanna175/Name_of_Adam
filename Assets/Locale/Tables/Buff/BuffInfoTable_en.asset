@@ -141,6 +141,10 @@ MonoBehaviour:
     m_Localized: Attack power decrease by 50%.
     m_Metadata:
       m_Items: []
+  - m_Id: 55754218309570560
+    m_Localized: Gains an extra turn.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

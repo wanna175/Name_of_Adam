@@ -467,7 +467,6 @@ public class BattleUnit : MonoBehaviour
             {
                 //타락시켰을 시 체크
                 BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALL, this, unit);
-                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
 
                 attackSkip = true;
             }
@@ -483,7 +482,6 @@ public class BattleUnit : MonoBehaviour
             if (unit.GetHP() <= 0)
             {
                 BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_KILL, this, unit);
-                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
             }
 
             ChangedDamage = 0;

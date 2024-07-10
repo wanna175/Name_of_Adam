@@ -150,7 +150,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3515362373632
-    m_Localized: "\uC801 \uCC98\uCE58 \uC2DC \uD55C \uBC88 \uB354 \uD134\uC744 \uAC00\uC9D1\uB2C8\uB2E4."
+    m_Localized: "\uC801 \uCC98\uCE58 \uC2DC \uD55C \uBC88 \uB354 \uD134\uC744 \uAC00\uC9D1\uB2C8\uB2E4.\n(\uD134
+      \uB2F9 1\uD68C)"
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
