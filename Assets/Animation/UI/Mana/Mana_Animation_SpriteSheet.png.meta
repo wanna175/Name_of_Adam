@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,34 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main mana_ani-Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 0
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d71cd69d77a9d143af57f642ce65101
-      internalID: -1063245349
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_2
+      name: Mana_Animation_SpriteSheet_90_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1710
-        width: 190
-        height: 190
+        y: 1800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc5af4ff879e03145875558ddc732c90
-      internalID: -155110085
+      spriteID: 5a9620ce02a8e244d9c10c320b6d779f
+      internalID: -875422432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_3
+      name: Mana_Animation_SpriteSheet_90_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 1710
-        width: 190
-        height: 190
+        x: 200
+        y: 1800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d3d56fe5d74fa249b5a031099a3725d
-      internalID: 1939285289
+      spriteID: 6f6e8ae3b2c0eb5439bbfd9a8d359574
+      internalID: -1539623806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_4
+      name: Mana_Animation_SpriteSheet_90_2
       rect:
         serializedVersion: 2
-        x: 380
-        y: 1710
-        width: 190
-        height: 190
+        x: 400
+        y: 1800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5517e3e223dfc046a39b559d4fbb44b
-      internalID: 1724294376
+      spriteID: 6ed9e30b435b541469fdad8c1a4eed85
+      internalID: 563239637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_5
+      name: Mana_Animation_SpriteSheet_90_3
       rect:
         serializedVersion: 2
-        x: 570
-        y: 1710
-        width: 190
-        height: 190
+        x: 600
+        y: 1800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2899bf816b3eafd41b4372b71eabb77b
-      internalID: -123714232
+      spriteID: 2ebc255208bbb9243a48c23ed1a321fa
+      internalID: -349126336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_6
+      name: Mana_Animation_SpriteSheet_90_4
       rect:
         serializedVersion: 2
-        x: 760
-        y: 1710
-        width: 190
-        height: 190
+        x: 800
+        y: 1800
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,125 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69d2183403217e24082f6b5299ec1577
-      internalID: -382222905
+      spriteID: b730bd961163dcb4c950f838b6c5a2f4
+      internalID: 698016681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1520
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ab3cb792c689bc46a994d25800c8610
-      internalID: 904574298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 190
-        y: 1520
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0eb305e6f005b842b6342dbead53c57
-      internalID: 1658844293
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 1520
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d32a383e952f18946950d3fe16f67f42
-      internalID: 982438975
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_10
-      rect:
-        serializedVersion: 2
-        x: 570
-        y: 1520
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dd6de90734f3a845a87382b3bb1963b
-      internalID: -801054347
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 1520
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ae80fe05b389c0419be27146ecd459c
-      internalID: -455400009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_12
+      name: Mana_Animation_SpriteSheet_80_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1330
-        width: 190
-        height: 190
+        y: 1600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b091667971f83ea48b0dcf470453d2a3
-      internalID: 1756646848
+      spriteID: 5196dc68b65afca4487bdd27afdcd96b
+      internalID: 870967876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_13
+      name: Mana_Animation_SpriteSheet_80_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 1330
-        width: 190
-        height: 190
+        x: 200
+        y: 1600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bbeba6d194bcfa469734b22aed57bcc
-      internalID: -1305011950
+      spriteID: 090c0cf7f2c199a488a69b3860377071
+      internalID: -48187207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_14
+      name: Mana_Animation_SpriteSheet_80_2
       rect:
         serializedVersion: 2
-        x: 380
-        y: 1330
-        width: 190
-        height: 190
+        x: 400
+        y: 1600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e31a52f4d2cd4a647b174736e292c0c1
-      internalID: -1426630282
+      spriteID: 9e589a98335a9d3409b270c841ccbf2a
+      internalID: 771663026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_15
+      name: Mana_Animation_SpriteSheet_80_3
       rect:
         serializedVersion: 2
-        x: 570
-        y: 1330
-        width: 190
-        height: 190
+        x: 600
+        y: 1600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -425,20 +299,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8b288e2a71184d4095b0eb654f180e7
-      internalID: 354263193
+      spriteID: b19a64990f80bba48a038a8ac922d4aa
+      internalID: -2119561005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_16
+      name: Mana_Animation_SpriteSheet_80_4
       rect:
         serializedVersion: 2
-        x: 760
-        y: 1330
-        width: 190
-        height: 190
+        x: 800
+        y: 1600
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,125 +320,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5dfe8b798c90144bb8f3aabf222db15
-      internalID: -2078131360
+      spriteID: c0d63d6e5e366c24097556a1b3f86bb8
+      internalID: 553683210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_17
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1140
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0beb2d006886721429d0996a0bab8844
-      internalID: -1435377972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_18
-      rect:
-        serializedVersion: 2
-        x: 190
-        y: 1140
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e846a1d14c40ea478ca40e1263c1903
-      internalID: -1539825123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_19
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 1140
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8973fe52e3f645b4392c6f83b51c9c60
-      internalID: 55209826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_20
-      rect:
-        serializedVersion: 2
-        x: 570
-        y: 1140
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f295a00eda7105b4bbd7ff1112513fff
-      internalID: -1213786296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_21
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 1140
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7560a679679ccce4698c14bb396d9ca7
-      internalID: -1463316432
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_22
+      name: Mana_Animation_SpriteSheet_70_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 950
-        width: 190
-        height: 190
+        y: 1402
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -572,20 +341,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 023e43c64379a3d4ab15e78b3c823352
-      internalID: -84144667
+      spriteID: 84e7a81c103bb9d4c876f2efa241ce09
+      internalID: -1045450641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_23
+      name: Mana_Animation_SpriteSheet_70_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 950
-        width: 190
-        height: 190
+        x: 200
+        y: 1400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -593,20 +362,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b935fb0417a14141aa6582a69f1307d
-      internalID: 871972310
+      spriteID: 936df298de360254bac9b5b6aebc5a51
+      internalID: 971755789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_24
+      name: Mana_Animation_SpriteSheet_70_2
       rect:
         serializedVersion: 2
-        x: 380
-        y: 950
-        width: 190
-        height: 190
+        x: 400
+        y: 1400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -614,20 +383,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60f92cd653b81304c8fde00b9cf208f3
-      internalID: -1616010530
+      spriteID: ff966cdddf257974d81bf8b256d27ba7
+      internalID: 1666818458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_25
+      name: Mana_Animation_SpriteSheet_70_3
       rect:
         serializedVersion: 2
-        x: 570
-        y: 950
-        width: 190
-        height: 190
+        x: 600
+        y: 1400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -635,20 +404,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c2dc9975900f0442a6c1cd0c4f9f038
-      internalID: -2099093221
+      spriteID: 358428d6bb26f7148b15496923bd4de6
+      internalID: 1083024358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_26
+      name: Mana_Animation_SpriteSheet_70_4
       rect:
         serializedVersion: 2
-        x: 760
-        y: 950
-        width: 190
-        height: 190
+        x: 800
+        y: 1400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -656,125 +425,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfe7ebe1988658d4aa6f1c56e14ca26c
-      internalID: -1640184852
+      spriteID: fa6f2753c58ce394d895db3bd3960498
+      internalID: -1570785765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_27
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 760
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0cd1237bd1b9d224386f03af12898188
-      internalID: 181656275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_28
-      rect:
-        serializedVersion: 2
-        x: 190
-        y: 760
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f00550d8b0bbd44f9596369fcd2541c
-      internalID: 413073761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_29
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 760
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b25b93e662f599e428931f624070512f
-      internalID: -1299672305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_30
-      rect:
-        serializedVersion: 2
-        x: 570
-        y: 760
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf45b7331122f0d41a3ad78c189f4ecf
-      internalID: -347149942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_31
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 760
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f12b86351cf7a27498c2e48d1fd7365b
-      internalID: -333716042
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_32
+      name: Mana_Animation_SpriteSheet_60_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 570
-        width: 190
-        height: 190
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -782,20 +446,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a1f616fb6c05fc40b3d82805c73c621
-      internalID: -942679538
+      spriteID: 62d16ba3972602c4691ab61cc22fe8f5
+      internalID: 757391669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_33
+      name: Mana_Animation_SpriteSheet_60_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 570
-        width: 190
-        height: 190
+        x: 200
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -803,20 +467,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20375f39a12742c408280270bfbfd27a
-      internalID: -510250117
+      spriteID: 10b38b2d8d09840468518a5c003b0535
+      internalID: -2033342485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_34
+      name: Mana_Animation_SpriteSheet_60_2
       rect:
         serializedVersion: 2
-        x: 380
-        y: 570
-        width: 190
-        height: 190
+        x: 400
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -824,20 +488,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0879d2afe211add43879f69d9ffaccfe
-      internalID: 1082563112
+      spriteID: 5b7fa13fd7783a746b14d3edd84a3e56
+      internalID: -164551825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_35
+      name: Mana_Animation_SpriteSheet_60_3
       rect:
         serializedVersion: 2
-        x: 570
-        y: 570
-        width: 190
-        height: 190
+        x: 600
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -845,20 +509,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ff3f5c72eb8fbe4f85a641566f13ab5
-      internalID: -583302914
+      spriteID: 9d2e94df93a81454db7bb31d15e304f5
+      internalID: 624898476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_36
+      name: Mana_Animation_SpriteSheet_60_4
       rect:
         serializedVersion: 2
-        x: 760
-        y: 570
-        width: 190
-        height: 190
+        x: 800
+        y: 1200
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -866,125 +530,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 444a11f0e0e735f44bb7e842a1ac22a9
-      internalID: -2021922604
+      spriteID: d4a37248a8e64eb4a9c079e0e5f8e511
+      internalID: -419253977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_37
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 380
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50a36bd907cce044e872af966c8db4a1
-      internalID: -1881320431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_38
-      rect:
-        serializedVersion: 2
-        x: 190
-        y: 380
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef88308818525ff46a41cc0477f2ad7a
-      internalID: -1262937970
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_39
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 380
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 885170d98a657134a8ebd0a1b2a13708
-      internalID: 2062369129
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_40
-      rect:
-        serializedVersion: 2
-        x: 570
-        y: 380
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6cc988d17e4ed0478fbea2913e25b04
-      internalID: 735300071
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_41
-      rect:
-        serializedVersion: 2
-        x: 760
-        y: 380
-        width: 190
-        height: 190
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89982d66b7647394eb7cd6e97530fa0b
-      internalID: -1016664878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: main mana_ani-Sheet_42
+      name: Mana_Animation_SpriteSheet_50_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 190
-        width: 190
-        height: 190
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -992,20 +551,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b7a74da0d5358246a3472fbcb201648
-      internalID: 1094871142
+      spriteID: 3fb107cf4b296014b932e9f4e5d6bf71
+      internalID: -2110587598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_43
+      name: Mana_Animation_SpriteSheet_50_1
       rect:
         serializedVersion: 2
-        x: 190
-        y: 190
-        width: 190
-        height: 190
+        x: 200
+        y: 1002
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1013,20 +572,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1dbdd955d3035e438ed42b2bf359b2b
-      internalID: -616160929
+      spriteID: 8273f2c7fc72bce4b8eb6c1c416c84d0
+      internalID: -1157629244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_44
+      name: Mana_Animation_SpriteSheet_50_2
       rect:
         serializedVersion: 2
-        x: 380
-        y: 190
-        width: 190
-        height: 190
+        x: 400
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1034,20 +593,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd8fc14998a294244a00919803a1e3f9
-      internalID: -1041934014
+      spriteID: 3ac6531d78dceb440964cec6d1b5d199
+      internalID: 121976717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_45
+      name: Mana_Animation_SpriteSheet_50_3
       rect:
         serializedVersion: 2
-        x: 570
-        y: 190
-        width: 190
-        height: 190
+        x: 600
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1055,20 +614,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bfa61a1c925cce42ac30a1bd7d09663
-      internalID: 546269381
+      spriteID: 36778a10f6163d344bd1b1f7697ad3e0
+      internalID: -1331521830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_46
+      name: Mana_Animation_SpriteSheet_50_4
       rect:
         serializedVersion: 2
-        x: 760
-        y: 190
-        width: 190
-        height: 190
+        x: 800
+        y: 1000
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1076,20 +635,440 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 858c315b50e5b0b49b741260657f75f0
-      internalID: 1972507574
+      spriteID: 6e00ab438cd821f4a8b198fa5e23a10f
+      internalID: -106826575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main mana_ani-Sheet_47
+      name: Mana_Animation_SpriteSheet_40_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 774e579ea6fab6147b21eaad93d9fc7a
+      internalID: -1315613269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_40_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 394af5487c5074745953788f410a9245
+      internalID: -1102385099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_40_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f9da021bcf4b34094f0998d4a4718c
+      internalID: -374515138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_40_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 936df2da1186e614fbe7e4947ffcbaa2
+      internalID: -2101106712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_40_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 800
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131bb81696eb09943a3b136ec7d4d9d1
+      internalID: -1725955833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_30_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4cd2aedb9fbb44cbd9d024834c7aab
+      internalID: -279510887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_30_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81cac884f758c1840bf00e0f2d9952f1
+      internalID: 985738237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_30_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9707ca00f1354604782b89bc668d22c1
+      internalID: -1582832233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_30_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665a854cc7bf74c4187b7a63e2e1a3c8
+      internalID: -1636654335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_30_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600ce071781b57441a834096e0f162bc
+      internalID: -509889270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_20_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d936f1cce80b854ca4f8797c674706a
+      internalID: 1858669927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_20_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 599f828d3e4a60e4899b6e195e98d663
+      internalID: -75998641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_20_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24091f0721b9a3f45930aed7fd039224
+      internalID: -2096566970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_20_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb996b092b53352488b9c78bd2da7c93
+      internalID: -1029991887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_20_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea70d95c26534444812c614439e5546
+      internalID: -152936526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_10_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e1ce650fc8cba24ebb154b02ce35976
+      internalID: -169654538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_10_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7e33660c6c90484d8126d0120119338
+      internalID: 734367435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_10_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80d0b713589df041ae676106e3919d0
+      internalID: -1395063322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_10_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c440c90d4fa2194db41e81d83c3b8a0
+      internalID: 1848930726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_10_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70913e7ff0069344ab01098cb31f316f
+      internalID: 1791308637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_0_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 190
-        height: 190
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1097,8 +1076,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 280b8f8b7bea6a3429821abe74ee3f7a
-      internalID: -400987304
+      spriteID: e64e731644f928745bc97497a46d24e7
+      internalID: -583135143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mana_Animation_SpriteSheet_100_0
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6ae6f0224affb4183488a26720eb46
+      internalID: 631490141
       vertices: []
       indices: 
       edges: []
@@ -1114,55 +1114,53 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      main mana_ani-Sheet_16: -2078131360
-      main mana_ani-Sheet_20: -1213786296
-      main mana_ani-Sheet_3: 1939285289
-      main mana_ani-Sheet_19: 55209826
-      main mana_ani-Sheet_32: -942679538
-      main mana_ani-Sheet_31: -333716042
-      main mana_ani-Sheet_5: -123714232
-      main mana_ani-Sheet_45: 546269381
-      main mana_ani-Sheet_38: -1262937970
-      main mana_ani-Sheet_9: 982438975
-      main mana_ani-Sheet_35: -583302914
-      main mana_ani-Sheet_47: -400987304
-      main mana_ani-Sheet_17: -1435377972
-      main mana_ani-Sheet_22: -84144667
-      main mana_ani-Sheet_40: 735300071
-      main mana_ani-Sheet_48: 1203293455
-      main mana_ani-Sheet_21: -1463316432
-      main mana_ani-Sheet_23: 871972310
-      main mana_ani-Sheet_46: 1972507574
-      main mana_ani-Sheet_10: -801054347
-      main mana_ani-Sheet_29: -1299672305
-      main mana_ani-Sheet_33: -510250117
-      main mana_ani-Sheet_42: 1094871142
-      main mana_ani-Sheet_25: -2099093221
-      main mana_ani-Sheet_27: 181656275
-      main mana_ani-Sheet_13: -1305011950
-      main mana_ani-Sheet_12: 1756646848
-      main mana_ani-Sheet_28: 413073761
-      main mana_ani-Sheet_0: -1063245349
-      main mana_ani-Sheet_11: -455400009
-      main mana_ani-Sheet_26: -1640184852
-      main mana_ani-Sheet_18: -1539825123
-      main mana_ani-Sheet_41: -1016664878
-      main mana_ani-Sheet_44: -1041934014
-      main mana_ani-Sheet_37: -1881320431
-      main mana_ani-Sheet_2: -155110085
-      main mana_ani-Sheet_4: 1724294376
-      main mana_ani-Sheet_36: -2021922604
-      main mana_ani-Sheet_1: -2071101271
-      main mana_ani-Sheet_14: -1426630282
-      main mana_ani-Sheet_34: 1082563112
-      main mana_ani-Sheet_6: -382222905
-      main mana_ani-Sheet_7: 904574298
-      main mana_ani-Sheet_39: 2062369129
-      main mana_ani-Sheet_24: -1616010530
-      main mana_ani-Sheet_30: -347149942
-      main mana_ani-Sheet_43: -616160929
-      main mana_ani-Sheet_8: 1658844293
-      main mana_ani-Sheet_15: 354263193
+      Mana_Animation_SpriteSheet_70_2: 1666818458
+      Mana_Animation_SpriteSheet_70_1: 971755789
+      Mana_Animation_SpriteSheet_30_1: 985738237
+      Mana_Animation_SpriteSheet_60_4: -419253977
+      Mana_Animation_SpriteSheet_10_3: 1848930726
+      Mana_Animation_SpriteSheet_20_4: -152936526
+      Mana_Animation_SpriteSheet_50_2: 121976717
+      Mana_Animation_SpriteSheet_10_4: 1791308637
+      Mana_Animation_SpriteSheet_70_0: -1045450641
+      Mana_Animation_SpriteSheet_20_2: -2096566970
+      Mana_Animation_SpriteSheet_80_2: 771663026
+      Mana_Animation_SpriteSheet_40_2: -374515138
+      Mana_Animation_SpriteSheet_40_4: -1725955833
+      Mana_Animation_SpriteSheet_100_0: 631490141
+      Mana_Animation_SpriteSheet_80_1: -48187207
+      Mana_Animation_SpriteSheet_30_4: -509889270
+      Mana_Animation_SpriteSheet_10_0: -169654538
+      Mana_Animation_SpriteSheet_90_0: -875422432
+      Mana_Animation_SpriteSheet_90_3: -349126336
+      Mana_Animation_SpriteSheet_30_2: -1582832233
+      Mana_Animation_SpriteSheet_50_1: -1157629244
+      Mana_Animation_SpriteSheet_70_3: 1083024358
+      Mana_Animation_SpriteSheet_70_4: -1570785765
+      Mana_Animation_SpriteSheet_40_1: -1102385099
+      Mana_Animation_SpriteSheet_40_3: -2101106712
+      Mana_Animation_SpriteSheet_40_0: -1315613269
+      Mana_Animation_SpriteSheet_20_1: -75998641
+      Mana_Animation_SpriteSheet_0_0: -583135143
+      Mana_Animation_SpriteSheet_60_2: -164551825
+      Mana_Animation_SpriteSheet_30_3: -1636654335
+      Mana_Animation_SpriteSheet_20_3: -1029991887
+      Mana_Animation_SpriteSheet_50_4: -106826575
+      Mana_Animation_SpriteSheet_20_0: 1858669927
+      Mana_Animation_SpriteSheet_30_0: -279510887
+      Mana_Animation_SpriteSheet_50_3: -1331521830
+      Mana_Animation_SpriteSheet_10_2: -1395063322
+      Mana_Animation_SpriteSheet_90_4: 698016681
+      Mana_Animation_SpriteSheet_60_3: 624898476
+      Mana_Animation_SpriteSheet_90_2: 563239637
+      Mana_Animation_SpriteSheet_80_4: 553683210
+      Mana_Animation_SpriteSheet_60_1: -2033342485
+      Mana_Animation_SpriteSheet_50_0: -2110587598
+      Mana_Animation_SpriteSheet_80_3: -2119561005
+      Mana_Animation_SpriteSheet_80_0: 870967876
+      Mana_Animation_SpriteSheet_60_0: 757391669
+      Mana_Animation_SpriteSheet_90_1: -1539623806
+      Mana_Animation_SpriteSheet_10_1: 734367435
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
