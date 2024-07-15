@@ -206,7 +206,7 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 21
-    m_Scale: 1
+    m_Scale: 3
     m_Name: Pack_21
     m_HashCode: -1014888283
   m_SpriteGlyphTable:
