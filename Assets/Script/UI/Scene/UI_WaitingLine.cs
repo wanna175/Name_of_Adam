@@ -32,6 +32,7 @@ public class UI_WaitingLine : UI_Scene
         {
             _downButton.SetActive(false);
             _upButton.SetActive(false);
+            _waitingLinePage = 0;
         }
 
         CheckWaitingLineActive();
