@@ -526,7 +526,7 @@ public enum CurrentEvent
     Stigmata_Give,
     Stigmata_Receive,
     Stigmata_Full_Exception,
-    Unit_Restoration_Select,
+    Revert_Unit_Select,
     Corrupt_Stigmata_Select,
 
     Complete_Upgrade,

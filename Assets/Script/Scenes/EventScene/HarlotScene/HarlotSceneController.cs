@@ -175,17 +175,39 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
         myDeck.Init();
-        myDeck.EventInit(OnSelectRevertUnit, CurrentEvent.Unit_Restoration_Select, _selectMenuUI, RestorationQuitClick);
+        myDeck.EventInit(OnSelectRevertUnit, CurrentEvent.Revert_Unit_Select, _selectMenuUI, RevertUnitQuitClick);
     }
 
     public void OnSelectRevertUnit(DeckUnit unit)
     {
         if (!_revertUnits.Contains(unit))
+        {
             _revertUnits.Add(unit);
+        }
         else
+        {
             _revertUnits.Remove(unit);
+        }
 
         GameManager.UI.ClosePopup();
+    }
+
+    public void RevertUnitQuitClick()
+    {
+        if (_revertUnits.Count == GameManager.Data.GetDeck().Count)
+        {
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("RevertAll", "");
+            return;
+        }
+        else if (_revertUnits.Count != 0)
+        {
+            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence * _revertUnits.Count);
+            foreach (DeckUnit delunit in _revertUnits)
+                GameManager.Data.RemoveDeckUnit(delunit);
+        }
+
+        GameManager.UI.ClosePopup();
+        OnQuitClick();
     }
 
     //타락 성흔 부여 버튼 클릭
@@ -333,24 +355,6 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         return _stigmataList;
     }
-
-    public void RestorationQuitClick()
-    {
-        if (_revertUnits.Count == GameManager.Data.GetDeck().Count)
-        {
-            Debug.Log("유닛은 하나 이상 남겨야 합니다.");//여기다가 경고창 띄우면 될듯
-            return;
-        }
-        else if (_revertUnits.Count != 0)
-        {
-            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence * _revertUnits.Count);
-            foreach (DeckUnit delunit in _revertUnits)
-                GameManager.Data.RemoveDeckUnit(delunit);
-        }
-
-        GameManager.UI.ClosePopup();
-        OnQuitClick();
-    } 
 
     public void OnQuitClick()
     {

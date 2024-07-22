@@ -156,6 +156,10 @@ MonoBehaviour:
       player's turn.
     m_Metadata:
       m_Items: []
+  - m_Id: 47438182506188800
+    m_Localized: You cannot revert every units.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

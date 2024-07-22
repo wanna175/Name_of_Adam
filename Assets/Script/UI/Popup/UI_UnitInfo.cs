@@ -35,7 +35,6 @@ public class UI_UnitInfo : UI_Popup
     UnitDataSO Data => _unit.Data;
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
-    private Action<DeckUnit> _selectRestorationUnit;
     private CurrentEvent _currentEvent = CurrentEvent.None;
 
     readonly string UpColorStr = "red";
@@ -132,13 +131,13 @@ public class UI_UnitInfo : UI_Popup
                 fu.SetVisible(false);
         }
 
-        List<Stigma> stigmas = _unit.GetStigma();
+        List<Stigma> stigmataList = _unit.GetStigma();
         for (int i = 0; i < _unit.MaxStigmaCount; i++)
         {
             UI_HoverImageBlock ui = GameObject.Instantiate(_stigmaPrefab, _unitInfoStigmaGrid).GetComponent<UI_HoverImageBlock>();
-            if (i < stigmas.Count)
+            if (i < stigmataList.Count)
             {
-                ui.Set(stigmas[i].Sprite_88, "<size=150%>" + stigmas[i].Name + "</size>" + "\n\n" + stigmas[i].Description);
+                ui.Set(stigmataList[i].Sprite_88, "<size=150%>" + stigmataList[i].Name + "</size>" + "\n\n" + stigmataList[i].Description);
                 ui.EnableUI(true);
             }
             else
@@ -174,12 +173,6 @@ public class UI_UnitInfo : UI_Popup
         }
     }
 
-    public void Restoration(Action<DeckUnit> OnSelect=null, CurrentEvent Eventnum = CurrentEvent.None, Action<DeckUnit> selectRestorationUnit=null)
-    {
-        this.Init(OnSelect,Eventnum);
-        _selectRestorationUnit = selectRestorationUnit;
-    } 
-
     public void SetAnimation()
     {
         AnimationClip clip = Resources.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/UnitSpawnBackEffect");
@@ -201,11 +194,6 @@ public class UI_UnitInfo : UI_Popup
         else
         {
             GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        }
-
-        if (_selectRestorationUnit != null)
-        {
-            _selectRestorationUnit(_unit);
         }
 
         if (_onSelect != null)
@@ -243,12 +231,17 @@ public class UI_UnitInfo : UI_Popup
                         return;
                     }
                     break;
+                case CurrentEvent.Revert_Unit_Select:
+                    UI_MyDeck myDeck = FindObjectOfType<UI_MyDeck>();
+                    myDeck.SelectCard(_unit);
+
+                    break;
             }
 
             _onSelect(_unit);
         }
 
-        if (currentSceneName().Equals("EventScene") && _currentEvent != CurrentEvent.Unit_Restoration_Select)
+        if (currentSceneName().Equals("EventScene") && _currentEvent != CurrentEvent.Revert_Unit_Select)
         {
             _quitButton.SetActive(false);
             _selectButton.SetActive(false);
@@ -263,7 +256,7 @@ public class UI_UnitInfo : UI_Popup
             case CurrentEvent.Stigmata_Full_Exception:
             case CurrentEvent.Upgrade_Select:
             case CurrentEvent.Upgrade_Full_Exception:
-            case CurrentEvent.Stigmata_Select://강화하기, 스티그마 부여하기
+            case CurrentEvent.Stigmata_Select:
             case CurrentEvent.Stigmata_Give:
             case CurrentEvent.Stigmata_Receive:
             case CurrentEvent.Corrupt_Stigmata_Select:
@@ -276,13 +269,15 @@ public class UI_UnitInfo : UI_Popup
         }
     }
 
-    public void CompeleteButtonClick()
+    public void CompleteButtonClick()
     {
         if (_currentEvent == CurrentEvent.Complate_Apostle && _onSelect != null)
             _onSelect(_unit);
+
         gameObject.SetActive(false);
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
         if (_endEvent != null)
             _endEvent.Invoke();
+
+        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
     }
 }

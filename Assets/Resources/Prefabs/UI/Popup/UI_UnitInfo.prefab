@@ -432,7 +432,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2011348171451695890}
         m_TargetAssemblyTypeName: UI_UnitInfo, Assembly-CSharp
-        m_MethodName: CompeleteButtonClick
+        m_MethodName: CompleteButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
