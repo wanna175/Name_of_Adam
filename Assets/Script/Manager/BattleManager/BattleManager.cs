@@ -555,8 +555,8 @@ public class BattleManager : MonoBehaviour
 
     public void UnitFallEvent(BattleUnit unit)
     {
-        if (_phase.CurrentPhaseCheck(_phase.Prepare))
-            _battleData.BattleUnitOrderSorting();
+        //if (_phase.CurrentPhaseCheck(_phase.Prepare))
+        //    _battleData.BattleUnitOrderSorting();
 
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
             GameManager.OutGameData.GetNPCQuest().DarkshopQuest++;
