@@ -323,12 +323,14 @@ public class BattleManager : MonoBehaviour
             _phase.ChangePhase(_phase.Action);
             SetTlieClickCoolDown(0.4f);
         }
+        else if (coord == unit.Location)
+        {
+            _phase.ChangePhase(_phase.Action);
+            SetTlieClickCoolDown(0.2f);
+        }
         else
             GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
-        //else if (coord == unit.Location)
-        //{
-        //    _phase.ChangePhase(_phase.Action);
-        //}
+
     }
 
     public void ActionPhaseClick(Vector2 coord)
