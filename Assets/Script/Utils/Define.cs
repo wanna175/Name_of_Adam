@@ -325,7 +325,7 @@ public enum BuffEnum
     None,
 
     Appaim,
-    Benediction,
+    Divine,
     Berserker,
     Curse,
     DeathStrike,

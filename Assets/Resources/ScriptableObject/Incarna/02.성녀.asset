@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7ba0f17e0a1ac42bfb7baaf8e8e99b, type: 3}
   m_Name: "02.\uC131\uB140"
   m_EditorClassIdentifier: 
-  _id: "01.\uC131\uB140"
+  _id: "02.\uC131\uB140"
   _name: "\uD751\uD0C0\uC218"
   _sprite: {fileID: 21300000, guid: fd284ad3e5407db4e894ce1133906ae7, type: 3}
   _playerSkillList:

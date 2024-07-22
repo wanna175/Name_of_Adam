@@ -8,11 +8,9 @@ public class Buff_Stigma_Cleanse : Buff
     {
         _buffEnum = BuffEnum.Cleanse;
 
-        _name = "결신";
+        _name = "Cleanse";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
-
-        _description = "해당 유닛이 버프가 두개 이상일때 공격시 피격 대상의 신앙을 1 떨어뜨립니다";
+        _description = "Cleanse Info";
 
         _count = -1;
 
