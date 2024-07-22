@@ -31,8 +31,8 @@ public class DifficultySelectSceneController : MonoBehaviour
         _hallSelectUI.SetActive(false);
         _confirmButtonUI.SetActive(false);
 
-        _incarnaBlocker[0].SetActive(!GameManager.OutGameData.IsUnlockedItem(61));
-        _incarnaBlocker[1].SetActive(!GameManager.OutGameData.IsUnlockedItem(71));
+        _incarnaBlocker[0].SetActive(!GameManager.OutGameData.IsUnlockedItem(71));
+        _incarnaBlocker[1].SetActive(!GameManager.OutGameData.IsUnlockedItem(61));
 
         foreach (UI_HallCard card in _hallCards)
         {
