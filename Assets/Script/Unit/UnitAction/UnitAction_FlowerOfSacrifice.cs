@@ -104,7 +104,7 @@ public class UnitAction_FlowerOfSacrifice : UnitAction
             _parentUnit.Action.SetUnit("FlowerOfSacrifice", unit);
         }
 
-        unit.SetBuff(new Buff_Benediction());
+        unit.SetBuff(new Buff_Divine());
 
         BattleManager.Spawner.RestoreUnit(caster.gameObject);
     }

@@ -80,7 +80,7 @@ public class DataManager : MonoBehaviour
         GameData.IsVisitStigma = GameDataTutorial.IsVisitStigma;
         GameData.IsVisitDarkShop = GameDataTutorial.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
-        GameData.StageBenediction = new();
+        GameData.StageDivine = new();
 
         //GameData.npcQuest.ClearQuest();
 

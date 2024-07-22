@@ -102,7 +102,7 @@ public class BattleManager : MonoBehaviour
 
         PlayAfterCoroutine(() => {
             _spawner.SpawnInitialUnit();
-            SpawnBeneditionCheck();
+            SpawnDivineCheck();
         }, 0.5f);
 
         PlayAfterCoroutine(() => {
@@ -155,7 +155,7 @@ public class BattleManager : MonoBehaviour
         }, 1f);
     }
 
-    public void SpawnBeneditionCheck()
+    public void SpawnDivineCheck()
     {
         Dictionary<int, int> threshold = new() {
             {0, 0},
@@ -168,30 +168,30 @@ public class BattleManager : MonoBehaviour
         if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle || GameManager.Data.Map.GetCurrentStage().Name == StageName.EliteBattle)
             return;
         
-        if (GameManager.Data.GameData.StageBenediction.x == 1 && 
-            GameManager.Data.GameData.StageBenediction.y == 1 &&
-            GameManager.Data.GameData.StageBenediction.z == 1)
+        if (GameManager.Data.GameData.StageDivine.x == 1 && 
+            GameManager.Data.GameData.StageDivine.y == 1 &&
+            GameManager.Data.GameData.StageDivine.z == 1)
         {
-            GameManager.Data.GameData.StageBenediction = new(-1,0,0);
+            GameManager.Data.GameData.StageDivine = new(-1,0,0);
         }
-        else if (GameManager.Data.GameData.StageBenediction.x == -1 && 
-            GameManager.Data.GameData.StageBenediction.y == -1)
+        else if (GameManager.Data.GameData.StageDivine.x == -1 && 
+            GameManager.Data.GameData.StageDivine.y == -1)
         {
             BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
-            buffUnit.SetBuff(new Buff_Benediction());
+            buffUnit.SetBuff(new Buff_Divine());
 
-            GameManager.Data.GameData.StageBenediction = new(1,0,0);
+            GameManager.Data.GameData.StageDivine = new(1,0,0);
         }
         else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 10])
         {
             BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
-            buffUnit.SetBuff(new Buff_Benediction());
+            buffUnit.SetBuff(new Buff_Divine());
 
-            GameManager.Data.GameData.StageBenediction = new(1, GameManager.Data.GameData.StageBenediction.x, GameManager.Data.GameData.StageBenediction.y);
+            GameManager.Data.GameData.StageDivine = new(1, GameManager.Data.GameData.StageDivine.x, GameManager.Data.GameData.StageDivine.y);
         }
         else
         {
-            GameManager.Data.GameData.StageBenediction = new(-1, GameManager.Data.GameData.StageBenediction.x, GameManager.Data.GameData.StageBenediction.y);
+            GameManager.Data.GameData.StageDivine = new(-1, GameManager.Data.GameData.StageDivine.x, GameManager.Data.GameData.StageDivine.y);
         }
     }
 
@@ -476,7 +476,10 @@ public class BattleManager : MonoBehaviour
     public void DirectAttack(BattleUnit attackUnit)
     {
         if (attackUnit.Buff.CheckBuff(BuffEnum.Stun))
+        {
+            BattleManager.Instance.EndUnitAction();
             return;
+        }
 
         AttackPlayer(attackUnit);
     }
@@ -833,7 +836,7 @@ public class BattleManager : MonoBehaviour
         return true;
     }
 
-    public void BenedictionCheck()
+    public void DivineCheck()
     {
         BattleUnit lastUnit = null;
 
@@ -855,10 +858,10 @@ public class BattleManager : MonoBehaviour
 
         if (lastUnit != null)
         {
-            if (lastUnit.Buff.CheckBuff(BuffEnum.Benediction) || lastUnit.Data.Rarity != Rarity.Normal)
+            if (lastUnit.Buff.CheckBuff(BuffEnum.Divine) || lastUnit.Data.Rarity != Rarity.Normal)
                 return;
             
-            lastUnit.SetBuff(new Buff_Benediction());
+            lastUnit.SetBuff(new Buff_Divine());
         }
     }
 

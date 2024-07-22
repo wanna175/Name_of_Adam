@@ -14,7 +14,7 @@ public class GameData : ScriptableObject
     public bool IsVisitStigma = false;
     public bool IsVisitDarkShop = false;
     public Progress Progress;
-    public Vector3 StageBenediction;
+    public Vector3 StageDivine;
 }
 
 [Serializable]

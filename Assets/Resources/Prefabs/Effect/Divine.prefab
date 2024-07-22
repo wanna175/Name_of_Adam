@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4338632524200175011}
   m_Layer: 0
-  m_Name: Benediction
+  m_Name: Divine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4338632524873736578}
   - component: {fileID: 4338632524873736581}
   m_Layer: 0
-  m_Name: Benediction_Front
+  m_Name: Divine_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4338632525179261727}
   - component: {fileID: 4338632525179261726}
   m_Layer: 0
-  m_Name: Benediction_Floor
+  m_Name: Divine_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 4338632525236444765}
   - component: {fileID: 4338632525236444764}
   m_Layer: 0
-  m_Name: Benediction_Back
+  m_Name: Divine_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

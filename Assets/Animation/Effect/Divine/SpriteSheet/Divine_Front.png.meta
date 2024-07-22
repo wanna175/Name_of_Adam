@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef49857a4d44afe428f7fc9178f42571
+guid: 47d1713df2416e346b2188e4ce5c8fbd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Benediction_Back_0
+      name: Divine_Front_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba25c1ffea1cb784ca8185ccdf7bc75e
-      internalID: -1556886448
+      spriteID: 60a2e84f301faff409c26bed27f7273d
+      internalID: -350741417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_1
+      name: Divine_Front_1
       rect:
         serializedVersion: 2
         x: 240
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3816e59ebbc359e4691ba8dabe688ac9
-      internalID: 846186457
+      spriteID: 54fed594344f6554b8edcb88e71d3201
+      internalID: -1156218013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_2
+      name: Divine_Front_2
       rect:
         serializedVersion: 2
         x: 480
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64171141fe4d7af428700be4c5e8f496
-      internalID: 958412031
+      spriteID: 646ff0573e4dde14ab9fe2cd46995f94
+      internalID: 1557809907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_3
+      name: Divine_Front_3
       rect:
         serializedVersion: 2
         x: 720
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5892ed86c764b44ebd8790b3ac22231
-      internalID: 1690986570
+      spriteID: e21d112d7d0226c4385ed97211d31edc
+      internalID: -422814681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_4
+      name: Divine_Front_4
       rect:
         serializedVersion: 2
         x: 960
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cb39dcd4b122ff4c8d754e22d271f3f
-      internalID: -459215777
+      spriteID: f7bae1e4e85d28947ae47035368644fe
+      internalID: -291448827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_5
+      name: Divine_Front_5
       rect:
         serializedVersion: 2
         x: 0
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 967c043e527c256498aead7664782895
-      internalID: 1791884707
+      spriteID: 6363a4f779e2cc04bbe7b485c6eedc2b
+      internalID: 1031572794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_6
+      name: Divine_Front_6
       rect:
         serializedVersion: 2
         x: 240
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea5cc9ac7fbdafc46be0545d393dcbaa
-      internalID: -1862950452
+      spriteID: 3adef57a2a59e79498b5bb794fe44174
+      internalID: 1876871164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_7
+      name: Divine_Front_7
       rect:
         serializedVersion: 2
         x: 480
@@ -278,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef804a8568dbb2444820b5b179e896c7
-      internalID: 877783939
+      spriteID: 669416195b53f2d459a9faff8b3a6e2c
+      internalID: 374787834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_8
+      name: Divine_Front_8
       rect:
         serializedVersion: 2
         x: 720
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9748cc4850843f4689b67e759549d1d
-      internalID: -981249247
+      spriteID: 832b83ac07ebc6e4891e057981d3bb9b
+      internalID: 264600264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_9
+      name: Divine_Front_9
       rect:
         serializedVersion: 2
         x: 960
@@ -320,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fc8d5b5439b32d4eb0cbcc68278a5c6
-      internalID: -208199193
+      spriteID: 0709776f7cb5566469d5a4e733a2544a
+      internalID: 1665450442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_10
+      name: Divine_Front_10
       rect:
         serializedVersion: 2
         x: 0
@@ -341,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ca86b18b3ae48840a43c7d02a2e9796
-      internalID: 504618879
+      spriteID: ebf908c5b25652b4d90332729e61d390
+      internalID: -114943923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_11
+      name: Divine_Front_11
       rect:
         serializedVersion: 2
         x: 240
@@ -362,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bfc73f88ff3b9a408c6e2828fdf8a1d
-      internalID: -1527127740
+      spriteID: 8c3995e562faed64a9a8d79ac256613a
+      internalID: -2078294000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_12
+      name: Divine_Front_12
       rect:
         serializedVersion: 2
         x: 480
@@ -383,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 295ffff5b66c7684a87115340224457a
-      internalID: 75958779
+      spriteID: c12615493e36d7e449bf941229791e11
+      internalID: -1989525127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_13
+      name: Divine_Front_13
       rect:
         serializedVersion: 2
         x: 720
@@ -404,14 +404,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: daf189d46a8d7454299d4987583afadf
-      internalID: 212774008
+      spriteID: ac20e7334d9dd984f9527630c115ea0b
+      internalID: 60904849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_14
+      name: Divine_Front_14
       rect:
         serializedVersion: 2
         x: 960
@@ -425,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a47090e6e1c608a4485ff2f61395c4d9
-      internalID: 357881529
+      spriteID: d8b8baa65e943a542aecafd097bcb767
+      internalID: -1311004385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_15
+      name: Divine_Front_15
       rect:
         serializedVersion: 2
         x: 0
@@ -446,14 +446,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34f15b03ee45bc443b79466e64378493
-      internalID: -303324216
+      spriteID: 7ada7ecb11426484182f03cb08c330a1
+      internalID: -1937788921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_16
+      name: Divine_Front_16
       rect:
         serializedVersion: 2
         x: 240
@@ -467,14 +467,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac07efb3b16a5fe419449d0e78716b1a
-      internalID: 1222184195
+      spriteID: 26bc9bbf6b9dd984e93c96b0eebfb8cb
+      internalID: -333074764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_17
+      name: Divine_Front_17
       rect:
         serializedVersion: 2
         x: 480
@@ -488,14 +488,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 503e34eb3e64dd34688bf8f197408019
-      internalID: -1793493643
+      spriteID: 651fe09e8fd210147abe195ca2c2cec4
+      internalID: -443476321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_18
+      name: Divine_Front_18
       rect:
         serializedVersion: 2
         x: 720
@@ -509,14 +509,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14e5fc858f4c3d34a886e9e8bbe7ee4b
-      internalID: -947888316
+      spriteID: 5266b759554e01c4d8ae8502c9e36a1e
+      internalID: -37124599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Benediction_Back_19
+      name: Divine_Front_19
       rect:
         serializedVersion: 2
         x: 960
@@ -530,8 +530,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b06f4f069197204448cfb9aa9fb00462
-      internalID: 1357025579
+      spriteID: b38d261ed638ec9428411906df8a1205
+      internalID: -1796899659
       vertices: []
       indices: 
       edges: []
@@ -547,26 +547,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Benediction_Back_14: 357881529
-      Benediction_Back_16: 1222184195
-      Benediction_Back_18: -947888316
-      Benediction_Back_13: 212774008
-      Benediction_Back_4: -459215777
-      Benediction_Back_2: 958412031
-      Benediction_Back_19: 1357025579
-      Benediction_Back_12: 75958779
-      Benediction_Back_8: -981249247
-      Benediction_Back_7: 877783939
-      Benediction_Back_1: 846186457
-      Benediction_Back_9: -208199193
-      Benediction_Back_6: -1862950452
-      Benediction_Back_3: 1690986570
-      Benediction_Back_15: -303324216
-      Benediction_Back_0: -1556886448
-      Benediction_Back_5: 1791884707
-      Benediction_Back_17: -1793493643
-      Benediction_Back_11: -1527127740
-      Benediction_Back_10: 504618879
+      Divine_Front_4: -291448827
+      Divine_Front_8: 264600264
+      Divine_Front_12: -1989525127
+      Divine_Front_19: -1796899659
+      Divine_Front_2: 1557809907
+      Divine_Front_15: -1937788921
+      Divine_Front_16: -333074764
+      Divine_Front_7: 374787834
+      Divine_Front_1: -1156218013
+      Divine_Front_18: -37124599
+      Divine_Front_6: 1876871164
+      Divine_Front_14: -1311004385
+      Divine_Front_17: -443476321
+      Divine_Front_5: 1031572794
+      Divine_Front_0: -350741417
+      Divine_Front_13: 60904849
+      Divine_Front_10: -114943923
+      Divine_Front_11: -2078294000
+      Divine_Front_9: 1665450442
+      Divine_Front_3: -422814681
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

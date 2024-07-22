@@ -17,7 +17,7 @@ public class SaveData
     public int PlayerHP;
     public Progress ProgressData;
     public int StageAct;
-    public Vector3 StageBenediction;
+    public Vector3 StageDivine;
 }
 
 [Serializable]
@@ -94,7 +94,7 @@ public class SaveController : MonoBehaviour
         newData.PlayerHP = CurGameData.PlayerHP;
         newData.ProgressData = CurGameData.Progress;
         newData.StageAct = GameManager.Data.StageAct;
-        newData.StageBenediction = CurGameData.StageBenediction;
+        newData.StageDivine = CurGameData.StageDivine;
 
         string json = JsonUtility.ToJson(newData, true);
 
@@ -158,7 +158,7 @@ public class SaveController : MonoBehaviour
         GameManager.Data.GameData.PlayerHP = loadData.PlayerHP;
         GameManager.Data.GameData.Progress = loadData.ProgressData;
         GameManager.Data.StageAct = loadData.StageAct;
-        GameManager.Data.GameData.StageBenediction = loadData.StageBenediction;
+        GameManager.Data.GameData.StageDivine = loadData.StageDivine;
     }
 
     // 저장된 데이터가 있는지 확인

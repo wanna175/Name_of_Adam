@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class Buff_Benediction : Buff
+public class Buff_Divine : Buff
 {
-    GameObject benedictionEffect;
+    private GameObject _divineEffect;
+
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Benediction;
+        _buffEnum = BuffEnum.Divine;
 
         _name = "Divine";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Benediction_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Divine_Sprite");
 
         _description = "Divine Info";
 
@@ -27,7 +28,7 @@ public class Buff_Benediction : Buff
 
         _stigmaBuff = false;
 
-        benedictionEffect = GameManager.VisualEffect.StartBenedictionEffect(_owner);
+        _divineEffect = GameManager.VisualEffect.StartDivineEffect(_owner);
     }
 
     public override bool Active(BattleUnit caster)
@@ -40,6 +41,6 @@ public class Buff_Benediction : Buff
 
     public override void Destroy()
     {
-        Destroy(benedictionEffect);
+        Destroy(_divineEffect);
     }
 }
