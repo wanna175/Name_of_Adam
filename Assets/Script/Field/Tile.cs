@@ -20,7 +20,7 @@ public class Tile : MonoBehaviour
 
     public Action<Tile> OnClickAction = null;
 
-    private new Collider2D _collider;
+    private Collider2D _collider;
 
     public Tile Init(Vector3 position)
     {

@@ -187,7 +187,7 @@ public class UI_UnitInfo : UI_Popup
 
     public void Select()
     {
-        if (currentSceneName().Equals("EventScene") && _currentEvent == CurrentEvent.Heal_Faith_Select)
+        if (CurrentSceneName().Equals("EventScene") && _currentEvent == CurrentEvent.Heal_Faith_Select)
         {
             GameManager.Sound.Play("UI/ClickSFX/UIClick2");
         }
@@ -241,7 +241,7 @@ public class UI_UnitInfo : UI_Popup
             _onSelect(_unit);
         }
 
-        if (currentSceneName().Equals("EventScene") && _currentEvent != CurrentEvent.Revert_Unit_Select)
+        if (CurrentSceneName().Equals("EventScene") && _currentEvent != CurrentEvent.Revert_Unit_Select)
         {
             _quitButton.SetActive(false);
             _selectButton.SetActive(false);
