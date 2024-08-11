@@ -13,7 +13,7 @@ public class PlayerSkill_02_01 : PlayerSkill
         targetUnit.GetAttack(-25, null);
         BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
 
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Punishment");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/DivinePunishment");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Punishment", BattleManager.Field.GetTilePosition(coord));
                 
         return false;
