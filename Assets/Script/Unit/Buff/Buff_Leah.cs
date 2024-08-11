@@ -12,19 +12,11 @@ public class Buff_Leah : Buff
 
         _description = "Lea Info";
 
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
         _statBuff = true;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
     }
 
     public override Stat GetBuffedStat()

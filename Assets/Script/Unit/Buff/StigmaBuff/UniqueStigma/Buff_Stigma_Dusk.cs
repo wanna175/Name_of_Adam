@@ -1,29 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_Stigma_Dust : Buff
+public class Buff_Stigma_Dusk : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Dust;
+        _buffEnum = BuffEnum.Stigmata_Dusk;
 
-        _name = "황혼";
-
-        _description = "황혼.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "Dusk";
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)
@@ -31,7 +21,7 @@ public class Buff_Stigma_Dust : Buff
         if (caster == null)
             return false;
 
-        int count = caster.Buff.GetBuffStack(BuffEnum.TraceOfDust);
+        int count = caster.Buff.GetBuffStack(BuffEnum.Dusk);
         
         if (count >= 1)
         {
@@ -49,8 +39,8 @@ public class Buff_Stigma_Dust : Buff
             caster.ChangeFall(1, FallAnimMode.On);
         }
 
-        Buff_TraceOfDust dust = new();
-        caster.SetBuff(dust);
+        Buff_Dusk dusk = new();
+        caster.SetBuff(dusk);
 
         return false;
     }

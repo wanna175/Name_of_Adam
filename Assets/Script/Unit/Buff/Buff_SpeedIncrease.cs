@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class Buff_Tailwind : Buff
+public class Buff_SpeedIncrease : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Tailwind;
+        _buffEnum = BuffEnum.SpeedIncrease;
 
         _name = "Speed Increase";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Tailwind_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_SpeedIncrease_Sprite");
 
         _description = "Speed Increase Info";
 
@@ -16,15 +16,9 @@ public class Buff_Tailwind : Buff
 
         _countDownTiming = ActiveTiming.MOVE_TURN_END;
 
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
 
         _statBuff = true;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
     }
 
     public override void Stack()

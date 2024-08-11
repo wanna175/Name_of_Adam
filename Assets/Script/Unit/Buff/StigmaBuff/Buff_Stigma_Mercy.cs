@@ -6,25 +6,15 @@ public class Buff_Stigma_Mercy : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Mercy;
+        _buffEnum = BuffEnum.Stigmata_Mercy;
 
-        _name = "ÀÚºñ";
-
-        _description = "Mercy Info";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "Mercy";
 
         _buffActiveTiming = ActiveTiming.DAMAGE_CONFIRM;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

@@ -6,25 +6,15 @@ public class Buff_Stigma_ForbiddenPact : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.ForbiddenPact;
+        _buffEnum = BuffEnum.Stigmata_ForbiddenPact;
 
-        _name = "Forbidden Pact";
-
-        _description = "Forbidden Pact Info";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "ForbiddenPact";
 
         _buffActiveTiming = ActiveTiming.STIGMA;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

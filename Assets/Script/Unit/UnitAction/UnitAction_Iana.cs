@@ -12,7 +12,7 @@ public class UnitAction_Iana : UnitAction
 
         foreach (BattleUnit unit in _data.BattleUnitList)
         {
-            if (unit.Buff.CheckBuff(BuffEnum.TraceOfSolar) && unit.Team != attackUnit.Team)
+            if (unit.Buff.CheckBuff(BuffEnum.Stigmata_TraceOfSolar) && unit.Team != attackUnit.Team)
             {
                 hits.Add(unit);
             }

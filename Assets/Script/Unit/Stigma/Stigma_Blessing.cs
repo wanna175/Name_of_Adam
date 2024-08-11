@@ -8,8 +8,8 @@ public class Stigma_Blessing : Stigma
         base.Use(caster);
 
         Buff_Stigma_Blessing blessing = new();
-        if (caster.Buff.CheckBuff(BuffEnum.Blessing))
-            blessing = caster.Buff.GetBuff(BuffEnum.Blessing) as Buff_Stigma_Blessing;
+        if (caster.Buff.CheckBuff(BuffEnum.Stigmata_Blessing))
+            blessing = caster.Buff.GetBuff(BuffEnum.Stigmata_Blessing) as Buff_Stigma_Blessing;
 
         if (Tier == StigmaTier.Tier1)
         {

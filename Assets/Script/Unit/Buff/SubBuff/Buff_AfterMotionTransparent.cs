@@ -6,9 +6,9 @@ public class Buff_AfterMotionTransparent : Buff
     {
         _buffEnum = BuffEnum.AfterMotionTransparent;
 
-        _name = "모션 후 투명화";
+        _name = "AfterMotionTransparent";
 
-        _description = "모션 후 투명화";
+        _description = "AfterMotionTransparent Info";
 
         _count = 1;
 
@@ -17,12 +17,6 @@ public class Buff_AfterMotionTransparent : Buff
         _buffActiveTiming = ActiveTiming.ATTACK_MOTION_END;
 
         _owner = owner;
-
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)

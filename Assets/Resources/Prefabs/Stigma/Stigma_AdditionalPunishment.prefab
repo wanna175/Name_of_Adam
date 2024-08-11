@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7842955237878480322
+--- !u!1 &7744208442916351639
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2031359805672320450}
-  - component: {fileID: 6822439255809191265}
+  - component: {fileID: 2553985026184532751}
+  - component: {fileID: 6407092365805810213}
   m_Layer: 0
-  m_Name: Stigma_Immortal
+  m_Name: Stigma_AdditionalPunishment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2031359805672320450
+--- !u!4 &2553985026184532751
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842955237878480322}
+  m_GameObject: {fileID: 7744208442916351639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,24 +32,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6822439255809191265
+--- !u!114 &6407092365805810213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842955237878480322}
+  m_GameObject: {fileID: 7744208442916351639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40170696f036d5446bd8e8caaf0959e3, type: 3}
+  m_Script: {fileID: 11500000, guid: bf160a989f4014642b03d45e801fea81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 15
-  _name: Immortality
-  _sprite_28: {fileID: 21300000, guid: e6c25ec2655b40b42a62a92a1d1d1fb8, type: 3}
-  _sprite_88: {fileID: 21300000, guid: 92a454b61b0fede4587eff2e90bbbf9f, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 0caf7616d3cdad24089eef3a0b5ae8dd, type: 3}
-  _description: Immortality Info
+  _stigmaEnum: 1
+  _name: Additional Punishment
+  _sprite_28: {fileID: 21300000, guid: 57c0abc3fd5009541942dbba105cd5b0, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 9b8fdfcf89040ed49954ead6037e54ce, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 4145929e1c07d244b9761244560864fd, type: 3}
+  _description: Additional Punishment Info
   _activeTiming: 2
   _tier: 1
   _isLock: 0

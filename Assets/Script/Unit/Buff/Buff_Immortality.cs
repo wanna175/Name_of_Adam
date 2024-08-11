@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Buff_Immortal : Buff
+public class Buff_Immortality : Buff
 {    public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Immortal;
+        _buffEnum = BuffEnum.Immortality;
 
         _name = "Immortality";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Immortal_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Immortality_Sprite");
 
         _description = "Immortality Info";
 
@@ -19,11 +19,7 @@ public class Buff_Immortal : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)

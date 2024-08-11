@@ -14,19 +14,9 @@ public class Buff_Divine : Buff
 
         _description = "Divine Info";
 
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
         _buffActiveTiming = ActiveTiming.DAMAGE_CONFIRM;
 
         _owner = owner;
-
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
 
         _divineEffect = GameManager.VisualEffect.StartDivineEffect(_owner);
     }

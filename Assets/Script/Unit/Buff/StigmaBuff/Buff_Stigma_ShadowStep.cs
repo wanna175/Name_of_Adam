@@ -7,25 +7,15 @@ public class Buff_Stigma_ShadowStep: Buff
 
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.ShadowStep;
+        _buffEnum = BuffEnum.Stigmata_ShadowStep;
 
-        _name = "그림자 밟기";
-
-        _description = "피격 대상이 한명일 경우, 공격 후 피격 대상의 배후로 넘어갑니다.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "ShadowStep";
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Buff_Invincible : Buff
+public class Buff_Invincibility : Buff
 {    public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Invincible;
+        _buffEnum = BuffEnum.Invincibility;
 
         _name = "Invincibility";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Invincible_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Invincibility_Sprite");
 
         _description = "Invincibility Info";
 
@@ -19,11 +19,7 @@ public class Buff_Invincible : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)

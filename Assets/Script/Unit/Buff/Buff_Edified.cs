@@ -12,18 +12,6 @@ public class Buff_Edified : Buff
 
         _description = "Edified Info";
 
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
-
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
     }
 }

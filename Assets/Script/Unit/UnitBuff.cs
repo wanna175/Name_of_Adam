@@ -117,7 +117,7 @@ public class UnitBuff : MonoBehaviour
 
         for (int i = 0; i < _buffList.Count; i++)
         {
-            if (!_buffList[i].StigmaBuff)
+            if (!_buffList[i].StigmataBuff)
             {
                 buffNum++;
             }

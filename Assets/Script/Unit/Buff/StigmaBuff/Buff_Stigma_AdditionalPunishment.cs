@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Buff_Stigma_Repetance : Buff
+public class Buff_Stigma_AdditionalPunishment : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_Repetance;
+        _buffEnum = BuffEnum.Stigmata_AdditionalPunishment;
 
-        _name = "참회";
+        _name = "AdditionalPunishment";
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
@@ -17,9 +17,7 @@ public class Buff_Stigma_Repetance : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (caster != null && caster.BattleUnitTotalStat.MaxHP == caster.HP.GetCurrentHP())
-            caster.ChangeFall(1, FallAnimMode.On);
-
+        // BattleManager-ActionPhaseClick에서 구현됨
         return false;
     }
 }

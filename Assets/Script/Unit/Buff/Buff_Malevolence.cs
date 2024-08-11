@@ -21,11 +21,7 @@ public class Buff_Malevolence : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override void Stack()

@@ -12,19 +12,13 @@ public class Buff_Curse : Buff
 
         _description = "Curse Info";
 
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
         _buffActiveTiming = ActiveTiming.TURN_START;
 
         _owner = owner;
 
         _statBuff = true;
 
-        _dispellable = false;
-
-        _stigmaBuff = false;
+        _isDebuff = true;
     }
 
     public override bool Active(BattleUnit caster)

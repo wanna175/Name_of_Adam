@@ -5,27 +5,13 @@ public class Buff_Appaim : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Raquel;
+        _buffEnum = BuffEnum.Appaim;
 
         _name = "Appaim";
 
-        _description = "";
-
-        //_sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Appaim_Sprite");
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
-        _buffActiveTiming = ActiveTiming.NONE;
+        _description = "Appaim Info";
 
         _owner = owner;
-
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
     }
 
     private int _buffState = 0;

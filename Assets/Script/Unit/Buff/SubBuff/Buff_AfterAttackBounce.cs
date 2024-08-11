@@ -6,9 +6,9 @@ public class Buff_AfterAttackBounce : Buff
     {
         _buffEnum = BuffEnum.AfterAttackBounce;
 
-        _name = "°ø°Ý ÈÄ º¹±Í";
+        _name = "AfterAttackBounce";
 
-        _description = "°ø°Ý ÈÄ º¹±Í";
+        _description = "AfterAttackBounce Info";
 
         _count = 1;
 
@@ -17,12 +17,6 @@ public class Buff_AfterAttackBounce : Buff
         _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
 
         _owner = owner;
-
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)

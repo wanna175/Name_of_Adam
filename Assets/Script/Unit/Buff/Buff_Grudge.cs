@@ -5,7 +5,7 @@ public class Buff_Grudge : Buff
     private int _attackUp = 0;
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Grudge_Buff;
+        _buffEnum = BuffEnum.Grudge;
 
         _name = "Grudge";
 
@@ -13,19 +13,11 @@ public class Buff_Grudge : Buff
 
         _description = "Grudge Info";
 
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
 
         _statBuff = true;
 
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override Stat GetBuffedStat()

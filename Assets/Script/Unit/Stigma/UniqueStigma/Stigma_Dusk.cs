@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class Stigma_Dust : Stigma
+public class Stigma_Dusk : Stigma
 {
     public override void Use(BattleUnit caster)
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Dust());
+        caster.SetBuff(new Buff_Stigma_Dusk());
     }
 }

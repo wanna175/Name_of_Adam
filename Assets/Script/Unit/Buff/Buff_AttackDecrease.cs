@@ -17,15 +17,11 @@ public class Buff_AttackDecrease : Buff
 
         _countDownTiming = ActiveTiming.ATTACK_MOTION_END;
 
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
 
         _statBuff = true;
 
-        _dispellable = false;
-
-        _stigmaBuff = false;
+        _isDebuff = true;
 
         _attackDown = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
     }

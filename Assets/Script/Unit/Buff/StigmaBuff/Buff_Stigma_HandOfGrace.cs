@@ -4,25 +4,15 @@ public class Buff_Stigma_HandOfGrace : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.HandOfGrace;
+        _buffEnum = BuffEnum.Stigmata_HandOfGrace;
 
         _name = "HandOfGrace";
-
-        _description = "HandOfGrace Info";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

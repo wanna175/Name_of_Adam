@@ -9,7 +9,7 @@ public class Stigma_Benevolence : Stigma
 
         List<BattleUnit> targetUnits = BattleManager.Field.GetArroundUnits(caster.Location);
 
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Heal");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Recovery");
         foreach (BattleUnit unit in targetUnits)
         {
             if (unit.Team == caster.Team)

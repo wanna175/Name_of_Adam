@@ -66,7 +66,7 @@ public class StigmaController
 
         _lockStigmaDic.Add(StigmaEnum.Hook, new string[] { "흑기사", "쌍생아", "그을린 자", "묘지기", "검병",
             "노동자", "중갑병", "처형자", "암살자", "습격자", "괴인", "엘리우스", "투발카인" });
-        _lockStigmaDic.Add(StigmaEnum.Additional_Punishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "투발카인"});
+        _lockStigmaDic.Add(StigmaEnum.AdditionalPunishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "투발카인"});
     }
 
     // probability는 { 99, 89 } 처럼 2개 인자를 보유
@@ -119,7 +119,7 @@ public class StigmaController
         // 검병 튜토리얼 특수 케이스
         if (unitName.Equals("검병"))
         {
-            if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.IsTutorialClear())
+            if (stigma.StigmaEnum == StigmaEnum.Tailwind && !GameManager.OutGameData.IsTutorialClear())
             {
                 Debug.Log($"검병 튜토리얼: {stigma.StigmaEnum} 차단");
                 return true;
@@ -167,7 +167,7 @@ public class StigmaController
     public void CheckUnlockedStigma(Stigma stigma)
     {
         UnlockStigma(stigma, 20, StigmaEnum.Sin);
-        UnlockStigma(stigma, 16, StigmaEnum.Forbidden_Pact);
+        UnlockStigma(stigma, 16, StigmaEnum.ForbiddenPact);
         UnlockStigma(stigma, 13, StigmaEnum.Teleport);
         UnlockStigma(stigma, 7, StigmaEnum.Killing_Spree);
         UnlockStigma(stigma, 1, StigmaEnum.Destiny);

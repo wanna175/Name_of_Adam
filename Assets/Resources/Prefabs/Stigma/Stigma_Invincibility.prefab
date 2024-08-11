@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8551357487030986276}
   - component: {fileID: 4460646292437946552}
   m_Layer: 0
-  m_Name: Stigma_Invincible
+  m_Name: Stigma_Invincibility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

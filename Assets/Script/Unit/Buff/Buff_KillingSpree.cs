@@ -4,7 +4,7 @@ public class Buff_KillingSpree : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.KillingSpree_Buff;
+        _buffEnum = BuffEnum.KillingSpree;
 
         _name = "Killing Spree";
 
@@ -16,14 +16,6 @@ public class Buff_KillingSpree : Buff
 
         _countDownTiming = ActiveTiming.ATTACK_TURN_END;
 
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
-
-        _statBuff = true;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
     }
 }
