@@ -5,11 +5,10 @@ using UnityEngine;
 public class UnitBuff : MonoBehaviour
 {
     [SerializeField] private List<Buff> _buffList;
+    public List<Buff> BuffList => _buffList;
 
-    public void SetBuff(Buff buff, BattleUnit owner)
+    public void SetBuff(Buff buff)
     {
-        buff.Init(owner);
-
         foreach (Buff listedBuff in _buffList)
         {
             if (buff.BuffEnum == listedBuff.BuffEnum)
@@ -104,7 +103,7 @@ public class UnitBuff : MonoBehaviour
     {
         for (int i = 0; i < _buffList.Count; i++)
         {
-            if (_buffList[i].Dispellable)
+            if (_buffList[i].Dispellable && !_buffList[i].IsDebuff)
             {
                 _buffList[i].Owner.DeleteBuff(_buffList[i].BuffEnum);
             }
@@ -150,10 +149,21 @@ public class UnitBuff : MonoBehaviour
         return 0;
     }
 
-    public void ClearSystemBuff()
+    public void ClearBuffByCorruption()
     {
-        DeleteBuff(BuffEnum.AfterAttackDead);
-        DeleteBuff(BuffEnum.AfterAttackBounce);
-        DeleteBuff(BuffEnum.AfterMotionTransparent);
+        while (_buffList.Count > 0)
+        {
+            Buff buff = _buffList.Find(x => !x.StigmataBuff);
+
+            if (buff is null)
+                break;
+
+            buff.Owner.DeleteBuff(buff.BuffEnum);
+        }
+
+        foreach (Buff buff in _buffList)
+        {
+            buff.IsActive = false;
+        }
     }
 }

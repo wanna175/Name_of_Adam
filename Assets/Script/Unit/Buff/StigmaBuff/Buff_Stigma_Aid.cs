@@ -18,6 +18,7 @@ public class Buff_Stigma_Aid : Buff
     public override bool Active(BattleUnit caster)
     {
         caster.GetHeal(15, _owner);
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Heal", BattleManager.Field.GetTilePosition(caster.Location));
 
         return false;
     }

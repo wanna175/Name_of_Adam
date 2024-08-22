@@ -12,6 +12,8 @@ public class Buff_Appaim : Buff
         _description = "Appaim Info";
 
         _owner = owner;
+
+        _isSystemBuff = true;
     }
 
     private int _buffState = 0;

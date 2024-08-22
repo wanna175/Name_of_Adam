@@ -14,8 +14,6 @@ public class Buff_MarkOfBeast : Buff
 
         _owner = owner;
 
-        _dispellable = true;
-
         _isDebuff = true;
     }
 }

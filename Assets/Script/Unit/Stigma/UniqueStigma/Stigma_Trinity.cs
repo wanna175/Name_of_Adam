@@ -7,5 +7,21 @@ public class Stigma_Trinity : Stigma
         base.Use(caster);
 
         caster.SetBuff(new Buff_Stigma_Trinity());
+
+        if (caster.Team == Team.Enemy)
+        {
+            Buff_EliteStatBuff statBuff = new();
+
+            statBuff.SetValue(2);
+
+            Stat buffedStat = new();
+
+            buffedStat.MaxHP = 50;
+            buffedStat.CurrentHP = 50;
+
+            statBuff.SetStat(buffedStat);
+
+            caster.SetBuff(statBuff);
+        }
     }
 }

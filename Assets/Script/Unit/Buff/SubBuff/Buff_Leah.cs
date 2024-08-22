@@ -17,6 +17,8 @@ public class Buff_Leah : Buff
         _owner = owner;
 
         _statBuff = true;
+
+        _isSystemBuff = true;
     }
 
     public override Stat GetBuffedStat()

@@ -20,8 +20,6 @@ public class Buff_SacredStep : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
     }
 

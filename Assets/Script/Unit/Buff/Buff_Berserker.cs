@@ -20,6 +20,8 @@ public class Buff_Berserker : Buff
 
         _statBuff = true;
 
+        _dispellable = true;
+
         _attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
     }
 

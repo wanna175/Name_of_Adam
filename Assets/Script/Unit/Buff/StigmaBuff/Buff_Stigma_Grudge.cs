@@ -20,7 +20,7 @@ public class Buff_Stigma_Grudge : Buff
         if (caster.Team == _owner.Team && caster != _owner)
         {
             Buff_Grudge grudge = new();
-            grudge.SetValue(20);
+            grudge.SetValue(15);
             _owner.SetBuff(grudge);
         }
 

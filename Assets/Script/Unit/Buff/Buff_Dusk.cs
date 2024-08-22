@@ -16,8 +16,6 @@ public class Buff_Dusk  : Buff
 
         _owner = owner;
 
-        _dispellable = true;
-
         _isDebuff = true;
     }
 

@@ -17,6 +17,8 @@ public class Buff_Raquel : Buff
         _owner = owner;
 
         _statBuff = true;
+
+        _isSystemBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

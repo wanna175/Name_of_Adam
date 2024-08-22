@@ -16,8 +16,6 @@ public class Buff_Curse : Buff
 
         _owner = owner;
 
-        _statBuff = true;
-
         _isDebuff = true;
     }
 

@@ -37,16 +37,21 @@ public abstract class Buff : MonoBehaviour
     protected bool _isDebuff = false;
     public bool IsDebuff => _isDebuff;
 
-    protected bool _isActive = false;
-    public bool IsActive => _isActive;
+    protected bool _isSystemBuff = false;
+    public bool IsSystemBuff => _isSystemBuff;
+
+    public bool IsActive = false;
 
     public abstract void Init(BattleUnit owner);
 
     public virtual bool Active(BattleUnit caster = null) => false;
+    public virtual bool Active(Buff buff = null) => false;
 
     public virtual Stat GetBuffedStat() => new Stat();
 
     public virtual void SetValue(int num) { }
+
+    public virtual void SetStat(Stat stat) { }
 
     public virtual void Stack() { }
 

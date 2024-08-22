@@ -17,6 +17,8 @@ public class Buff_AfterMotionTransparent : Buff
         _buffActiveTiming = ActiveTiming.ATTACK_MOTION_END;
 
         _owner = owner;
+
+        _isSystemBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

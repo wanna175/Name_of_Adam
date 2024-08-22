@@ -13,5 +13,7 @@ public class Buff_Edified : Buff
         _description = "Edified Info";
 
         _owner = owner;
+
+        _isSystemBuff = true;
     }
 }

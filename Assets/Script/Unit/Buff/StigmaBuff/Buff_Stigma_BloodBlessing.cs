@@ -20,6 +20,7 @@ public class Buff_Stigma_BloodBlessing : Buff
     public override bool Active(BattleUnit caster)
     {
         _owner.GetHeal(_heal, caster);
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Heal", BattleManager.Field.GetTilePosition(_owner.Location));
 
         return false;
     }

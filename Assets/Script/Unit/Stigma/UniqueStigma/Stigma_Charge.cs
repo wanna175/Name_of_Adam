@@ -7,5 +7,21 @@ public class Stigma_Charge : Stigma
         base.Use(caster);
 
         caster.SetBuff(new Buff_Stigma_Charge());
+
+        if (caster.Team == Team.Enemy)
+        {
+            Buff_EliteStatBuff statBuff = new();
+
+            statBuff.SetValue(1);
+
+            Stat buffedStat = new();
+
+            buffedStat.MaxHP = 5;
+            buffedStat.CurrentHP = 5;
+
+            statBuff.SetStat(buffedStat);
+
+            caster.SetBuff(statBuff);
+        }
     }
 }

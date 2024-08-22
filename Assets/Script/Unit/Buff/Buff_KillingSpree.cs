@@ -12,10 +12,17 @@ public class Buff_KillingSpree : Buff
 
         _description = "Killing Spree Info";
 
-        _count = 2;
+        _count = 1;
 
         _countDownTiming = ActiveTiming.ATTACK_TURN_END;
 
         _owner = owner;
+
+        BattleManager.Data.BattleOrderInsert(0, _owner, _owner.BattleUnitTotalStat.SPD);
+    }
+
+    public override void Stack()
+    {
+        _count += 1;
     }
 }

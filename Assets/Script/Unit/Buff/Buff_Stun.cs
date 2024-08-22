@@ -19,8 +19,6 @@ public class Buff_Stun : Buff
 
         _owner = owner;
 
-        _dispellable = true;
-
         _isDebuff = true;
     }
 

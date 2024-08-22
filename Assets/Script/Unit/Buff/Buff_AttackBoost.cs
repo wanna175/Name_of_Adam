@@ -22,7 +22,9 @@ public class Buff_AttackBoost : Buff
 
         _statBuff = true;
 
-        _attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
+        _dispellable = true;
+
+        _attackUp = (owner.DeckUnit.DeckUnitTotalStat.ATK + 2) / 3;
     }
 
     public override void Stack()

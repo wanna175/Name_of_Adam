@@ -195,39 +195,42 @@ public enum ActiveTiming
     TURN_START = 1 << 4, //턴 시작 시
     TURN_END = 1 << 5, //턴 종료 시
 
-    MOVE_TURN_START = 1 << 6, //이동턴 전
+    UNIT_TURN_START = 1 << 6, //유닛턴 전
 
-    MOVE = 1 << 7, //이동 후
+    MOVE_TURN_START = 1 << 7, //이동턴 전
 
-    MOVE_TURN_END = 1 << 8, //이동턴 후
+    MOVE = 1 << 8, //이동 후
 
-    ATTACK_TURN_START = 1 << 9, //공격턴 전
+    MOVE_TURN_END = 1 << 9, //이동턴 후
 
-    BEFORE_ATTACK = 1 << 10, //공격 전
-    AFTER_ATTACK = 1 << 11, //공격 후
+    ATTACK_TURN_START = 1 << 10, //공격턴 전
 
-    DAMAGE_CONFIRM = 1 << 12, //대미지 확정
+    BEFORE_ATTACK = 1 << 11, //공격 전
+    AFTER_ATTACK = 1 << 12, //공격 후
 
-    BEFORE_ATTACKED = 1 << 13, //피격 전
-    AFTER_ATTACKED = 1 << 14, //피격 후
+    DAMAGE_CONFIRM = 1 << 13, //대미지 확정
 
-    ATTACK_TURN_END = 1 << 15, //공격턴 후
-    FIELD_ATTACK_TURN_END = 1 << 16, //필드 유닛의 공격턴 후
+    BEFORE_ATTACKED = 1 << 14, //피격 전
+    AFTER_ATTACKED = 1 << 15, //피격 후
 
-    FALL = 1 << 17, //타락시켰을 때, 그 후
-    FALLED = 1 << 18, //타락되었을 때 그 전
-    FIELD_UNIT_FALLED = 1 << 19, //필드 유닛이 타락 시
+    ATTACK_TURN_END = 1 << 16, //공격턴 후
+    FIELD_ATTACK_TURN_END = 1 << 17, //필드 유닛의 공격턴 후
 
-    BEFORE_UNIT_DEAD = 1 << 20, //자신이 사망 전
-    AFTER_UNIT_DEAD = 1 << 21, //자신이 사망 후
-    FIELD_UNIT_DEAD = 1 << 22, //필드 유닛이 사망 시
+    FALL = 1 << 18, //타락시켰을 때, 그 후
+    FALLED = 1 << 19, //타락되었을 때 그 전
+    FIELD_UNIT_FALLED = 1 << 20, //필드 유닛이 타락 시
 
-    UNIT_KILL = 1 << 23, //다른 유닛을 죽일 시
+    BEFORE_UNIT_DEAD = 1 << 21, //자신이 사망 전
+    AFTER_UNIT_DEAD = 1 << 22, //자신이 사망 후
+    FIELD_UNIT_DEAD = 1 << 23, //필드 유닛이 사망 시
 
-    ATTACK_MOTION_END = 1 << 24, //공격 모션이 끝난 뒤
-    AFTER_SWITCH = 1 << 25, //공격 모션이 끝난 뒤
+    UNIT_KILL = 1 << 24, //다른 유닛을 죽일 시
 
-    NONE = 1 << 26 //없음
+    ATTACK_MOTION_END = 1 << 25, //공격 모션이 끝난 뒤
+    AFTER_SWITCH = 1 << 26, //유닛 간 스위치 후
+    BEFORE_BUFFED = 1 << 27, //버프를 얻기 전
+
+    NONE = 1 << 28 //없음
 };
 
 public enum StigmaTier
@@ -299,6 +302,13 @@ public enum StigmaEnum
     Grudge,
     HandOfGrace,
     Aid,
+    DeathsThreshold,
+    Fortification,
+    ArmorOfAeons,
+    BrokenSword,
+    BloodOath,
+    Gluttony,
+    BlindFaith,
 
     //Unique stigmata 
     Birth = 100,
@@ -347,11 +357,13 @@ public enum BuffEnum
     AttackBoost,
     KillingSpree,
     Libiel,
+    EliteStatBuff,
 
     //systemic buff (no image)
     AfterAttackBounce,
     AfterAttackDead,
     AfterMotionTransparent,
+    StatBuff,
 
     //stigmata buff (no image)
     Stigmata_Absorption,
@@ -382,6 +394,13 @@ public enum BuffEnum
     Stigmata_ShadowCloak,
     Stigmata_HandOfGrace,
     Stigmata_Teleport,
+    Stigmata_DeathsThreshold,
+    Stigmata_Fortification,
+    Stigmata_ArmorOfAeons,
+    Stigmata_BrokenSword,
+    Stigmata_BloodOath,
+    Stigmata_Gluttony,
+    Stigmata_BlindFaith,
 
     //unique stigma buff (no image)
     Stigmata_Birth,
@@ -419,6 +438,7 @@ public enum UnitActionType
     UnitAction_RaquelLeah,
     UnitAction_CenteredSplash,
     UnitAction_Libiel,
+    UnitAction_Arabella,
     UnitAction_Yohrn,
     UnitAction_Yohrn_Body,
 }

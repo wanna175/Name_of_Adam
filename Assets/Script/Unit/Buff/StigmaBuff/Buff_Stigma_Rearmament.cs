@@ -17,7 +17,7 @@ public class Buff_Stigma_Rearmament : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (_owner.IsDoneAttack == false)
+        if (!_owner.IsDoneAttack)
         {
             _owner.SetBuff(new Buff_AttackBoost());
             _owner.SetBuff(new Buff_SpeedIncrease());
