@@ -1,25 +1,25 @@
 using UnityEngine;
 
-public class Stigma_Trinity : Stigma
+public class Stigma_ThornsOfOblivion : Stigma
 {
     public override void Use(BattleUnit caster)
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Trinity());
+        caster.SetBuff(new Buff_Stigma_ThornsOfOblivion());
 
         if (caster.Team == Team.Enemy)
         {
             Buff_EliteStatBuff statBuff = new();
 
-            statBuff.SetValue(2);
+            statBuff.SetValue(3);
 
             Stat buffedStat = new();
 
-            buffedStat.MaxHP = 50;
-            buffedStat.CurrentHP = 50;
+            buffedStat.MaxHP = 60;
+            buffedStat.CurrentHP = 60;
 
-            buffedStat.ATK = 3;
+            buffedStat.ATK = 5;
 
             statBuff.SetStat(buffedStat);
 

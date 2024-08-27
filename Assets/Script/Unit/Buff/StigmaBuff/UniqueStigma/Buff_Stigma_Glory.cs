@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Buff_Stigma_LegacyOfBabel : Buff
+public class Buff_Stigma_Glory : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_LegacyOfBabel;
+        _buffEnum = BuffEnum.Stigmata_Glory;
 
-        _name = "LegacyOfBabel";
+        _name = "Glory";
 
         _owner = owner;
 

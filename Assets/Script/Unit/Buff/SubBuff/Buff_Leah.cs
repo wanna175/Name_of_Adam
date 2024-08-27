@@ -24,7 +24,7 @@ public class Buff_Leah : Buff
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK -= 5;
+        //stat.ATK -= 5;
 
         return stat;
     }
