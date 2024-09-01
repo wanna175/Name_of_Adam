@@ -210,6 +210,8 @@ public class TutorialManager : MonoBehaviour
         if (IsToolTip(_step))
         {
             // Tooltip ¸ðµå
+            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
+
             _currentTooltip = AnalyzeTooltip(_step);
             if (_currentTooltip.IsEnd)
                 DisableToolTip();

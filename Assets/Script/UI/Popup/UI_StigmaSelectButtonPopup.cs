@@ -134,7 +134,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void QuitBtn()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         if (SceneChanger.GetSceneName() == "BattleScene")
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
@@ -145,7 +145,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void Reroll()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         ResetStigmataSelectButtons();
         _rerollButton.SetActive(false);
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2950990188252653416}
   - component: {fileID: 5904062041423394259}
   m_Layer: 0
-  m_Name: Stigma_TailWind
+  m_Name: Stigma_Tailwind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

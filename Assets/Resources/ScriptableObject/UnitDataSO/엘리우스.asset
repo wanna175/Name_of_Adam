@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "\uC5D8\uB9AC\uC6B0\uC2A4"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 120
-    CurrentHP: 120
+    MaxHP: 100
+    CurrentHP: 100
     ATK: 15
     SPD: 45
     FallCurrentCount: 0

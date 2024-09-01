@@ -115,15 +115,15 @@ public class VisualEffectManager : MonoBehaviour
         go.GetComponent<SpriteRenderer>().sprite = GameManager.Resource.Load<Sprite>("Arts/EffectAnimation/VisualEffect/Sprite/Fade");
     }
 
-    public GameObject StartBenedictionEffect(BattleUnit unit)
+    public GameObject StartDivineEffect(BattleUnit unit)
     {
         if (unit.Team == Team.Enemy)
         {
-            return StartPrefabEffect(unit, "Benediction");
+            return StartPrefabEffect(unit, "Divine");
         }
         else
         {
-            return StartPrefabEffect(unit, "Benediction_Corrupt");
+            return StartPrefabEffect(unit, "Divine_Corrupt");
         }
     }
 

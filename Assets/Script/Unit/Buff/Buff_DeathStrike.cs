@@ -12,19 +12,11 @@ public class Buff_DeathStrike : Buff
 
         _description = "Death Strike Info";
 
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
         _buffActiveTiming = ActiveTiming.DAMAGE_CONFIRM;
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)

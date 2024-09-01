@@ -15,7 +15,7 @@ MonoBehaviour:
   _rawStat:
     MaxHP: 30
     CurrentHP: 30
-    ATK: 0
+    ATK: 25
     SPD: 0
     FallCurrentCount: 0
     FallMaxCount: 4

@@ -13,7 +13,7 @@ public class Buff_Karma : Buff
 
         _description = "Karma Info";
 
-        _count = 3;
+        _count = 1;
 
         _countDownTiming = ActiveTiming.AFTER_ATTACKED;
 
@@ -21,11 +21,7 @@ public class Buff_Karma : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)
@@ -34,5 +30,10 @@ public class Buff_Karma : Buff
             caster.ChangeFall(1, FallAnimMode.On);
 
         return false;
+    }
+
+    public override void Stack()
+    {
+        _count += 1;
     }
 }

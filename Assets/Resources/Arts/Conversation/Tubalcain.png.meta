@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_Idle_0"
+      name: Tubalcain
       rect:
         serializedVersion: 2
         x: 71
@@ -151,9 +151,9 @@ TextureImporter:
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_Idle_2": 1557023259
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_Idle_4": -1380106641
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_Idle_1": -1758717860
-      "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_Idle_0": -1021615806
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_Idle_5": -452410518
       "\uCF04\uD0C0\uC6B0\uB85C\uC2A4_Idle_3": -95932162
+      Tubalcain: -1021615806
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

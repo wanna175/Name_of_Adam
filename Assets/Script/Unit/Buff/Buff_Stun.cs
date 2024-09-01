@@ -19,11 +19,7 @@ public class Buff_Stun : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = true;
-
-        _stigmaBuff = false;
+        _isDebuff = true;
     }
 
     public override bool Active(BattleUnit caster)

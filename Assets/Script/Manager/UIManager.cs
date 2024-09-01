@@ -220,7 +220,7 @@ public class UIManager : MonoBehaviour
                 SceneManager.GetActiveScene().name == "LogoScene")
                 return;
 
-            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
             OnOffESCOption();
         }
     }

@@ -245,10 +245,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee21b4bc241461a409a98941d4c362bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 0}
+  _highlight: {fileID: 0}
+  _stigmaFrames: []
+  _nameText: {fileID: 0}
+  infoButton: {fileID: 0}
+  _frameImage: {fileID: 0}
   UnitImage: {fileID: 7048398013949632214}
-  IsDisabled: {fileID: 2506610667556161060}
   _isElite: 0
   HallUnitID: 0
+  NormalImage: {fileID: 0}
+  EliteImage: {fileID: 0}
 --- !u!114 &5173602396695285626
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,7 +31,6 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     private void Start()
     {
         _highlight.SetActive(false);
-        _selectHighlight.SetActive(false);
     }
 
     public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit)
@@ -77,10 +76,8 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         }
     }
 
-    public void SelectCard()
-    {
-        _selectHighlight.SetActive(!_selectHighlight.activeInHierarchy);
-    }
+    public void SetSelectHighlight(bool active) => _selectHighlight.SetActive(active);
+
 
     public void SetDisable(Action disableClickAction)
     {
@@ -114,7 +111,7 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UISelectSFX");
         if (_disable.activeSelf)
             _disableClickAction();
         else

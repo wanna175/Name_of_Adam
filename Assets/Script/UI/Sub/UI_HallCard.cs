@@ -104,16 +104,13 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnClick()
     {
-        if (HallUnitID == 1 || HallUnitID == 2)
+        if ((HallUnitID == 1 || HallUnitID == 2) && !GameManager.OutGameData.IsUnlockedItem(14))
         {
-            if (!GameManager.OutGameData.IsUnlockedItem(14))
-            {
-                GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
-                return;
-            }
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
+            return;
         }
 
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UISelectSFX");
 
         if (GameManager.OutGameData.IsUnlockedItem(17))
         {
@@ -167,7 +164,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnInfoButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
 
         ui.SetUnit(_mainDeck[HallUnitID]);

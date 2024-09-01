@@ -6,7 +6,7 @@ public class PlayerSkill_Bounce : PlayerSkill
 {
     public override bool Use(Vector2 coord)
     {
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Bounce");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Returning");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Bounce", BattleManager.Field.GetTilePosition(coord));
 
         BattleUnit unit = BattleManager.Field.GetUnit(coord);

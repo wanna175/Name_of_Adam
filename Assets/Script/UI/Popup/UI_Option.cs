@@ -30,11 +30,13 @@ public class UI_Option : UI_Popup
     private float _sePower;
     private float _gameSpeed;
 
+    private bool _isInitialized = false;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UICloseSFX");
             QuitOption();
         }
     }
@@ -94,22 +96,28 @@ public class UI_Option : UI_Popup
         {
             _gameResetButton.SetActive(false);
         }
+
+
+        _isInitialized = true;
     }
 
     public void LanguageDropdownChanged()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if (_isInitialized)
+            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
     }
 
     private void ResolutionDropdownChanged(int idx)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if (_isInitialized)
+            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
         GameManager.OutGameData.SetResolution(idx);
     }
 
     private void WindowToggleChanged(bool isOn)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        if (_isInitialized)
+            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _isWindowed = isOn;
         GameManager.OutGameData.SetWindow(_isWindowed);
     }
@@ -144,20 +152,20 @@ public class UI_Option : UI_Popup
 
     public void ReSetOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.OutGameData.ReSetOption();
         InitUI();
     }
 
     public void CreditOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _credit.SetActive(true);
     }
 
     public void QuitOption()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
         GameManager.UI.ClosePopup(this);
         if (GameManager.UI.ESCOPopups.Count != 0)
             GameManager.UI.ESCOPopups.Pop();
@@ -166,9 +174,9 @@ public class UI_Option : UI_Popup
 
     public void GameReset()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("GameResetInfo", () => {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
             GameManager.VisualEffect.ClearAllEffect();
             GameManager.UI.CloseAllOption();
             SceneChanger.SceneChange("MainScene");

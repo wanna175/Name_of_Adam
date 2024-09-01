@@ -16,17 +16,11 @@ public class Buff_SacredStep : Buff
 
         _count = 1;
 
-        _countDownTiming = ActiveTiming.MOVE;
-
-        _buffActiveTiming = ActiveTiming.MOVE_TURN_START;
+        _countDownTiming = ActiveTiming.MOVE_TURN_END;
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override void Stack()

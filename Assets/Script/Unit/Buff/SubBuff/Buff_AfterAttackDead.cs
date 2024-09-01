@@ -6,9 +6,9 @@ public class Buff_AfterAttackDead : Buff
     {
         _buffEnum = BuffEnum.AfterAttackDead;
 
-        _name = "°ø°Ý ÈÄ »ç¸Á";
+        _name = "AfterAttackDead";
 
-        _description = "°ø°Ý ÈÄ »ç¸Á";
+        _description = "AfterAttackDead Info";
 
         _count = 1;
 
@@ -18,11 +18,7 @@ public class Buff_AfterAttackDead : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
+        _isSystemBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

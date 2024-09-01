@@ -6,11 +6,9 @@ public class Buff_Stigma_Advent : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Lucifer;
+        _buffEnum = BuffEnum.Stigmata_Advent;
 
         _name = "Advent";
-
-        _description = "Advent.";
 
         _count = 1;
 
@@ -20,11 +18,7 @@ public class Buff_Stigma_Advent : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override void Stack()

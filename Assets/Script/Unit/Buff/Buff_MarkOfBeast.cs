@@ -12,18 +12,8 @@ public class Buff_MarkOfBeast : Buff
 
         _description = "MarkOfTheBeast Info";
 
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = true;
-
-        _stigmaBuff = false;
+        _isDebuff = true;
     }
 }

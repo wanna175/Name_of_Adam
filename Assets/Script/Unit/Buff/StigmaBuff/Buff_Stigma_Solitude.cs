@@ -5,25 +5,15 @@ public class Buff_Stigma_Solitude : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Solitude;
+        _buffEnum = BuffEnum.Stigmata_Solitude;
 
-        _name = "";
-
-        _description = "";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "Solitude";
 
         _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

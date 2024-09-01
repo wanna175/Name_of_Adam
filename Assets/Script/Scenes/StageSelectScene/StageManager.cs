@@ -241,9 +241,9 @@ public class StageManager : MonoBehaviour
                 _isClicked = true;
 
                 GameManager.Sound.Clear();
-                GameManager.Sound.Play("Node/NodeClickSFX");
+                GameManager.Sound.Play("UI/UISFX/UISelectSFX");
                 GameManager.VisualEffect.StartFadeEffect(false);
-                PlayAfterCoroutine(() => _stageChanger.SetNextStage(id), 0.8f);
+                PlayAfterCoroutine(() => _stageChanger.SetNextStage(id), 0.4f);
             }
         }
     }

@@ -304,7 +304,7 @@ public class BattleUnit : MonoBehaviour
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
         if (_team.Equals(Team.Player) && DeckUnit.DeckUnitTotalStat.FallMaxCount >= 4)
-            DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.DeckUnitTotalStat.FallMaxCount; // 낙인 4개 이상인 적이 타락됐을 경우 조정
+            DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.DeckUnitTotalStat.FallMaxCount; // 타락 4개 이상인 적이 타락됐을 경우 조정
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
@@ -314,12 +314,14 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshHPBar(HP.FillAmount());
         _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
 
+        BattleManager.Data.BattleUnitOrderSorting();
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
 
-        if (Buff.CheckBuff(BuffEnum.Benediction))
-        {
-            DeleteBuff(BuffEnum.Benediction);
-        }
+        if (Buff.CheckBuff(BuffEnum.Divine))
+            DeleteBuff(BuffEnum.Divine);
+
+        if (Buff.CheckBuff(BuffEnum.Curse))
+            DeleteBuff(BuffEnum.Curse);
     }
 
     //애니메이션에서 직접 실행시킴

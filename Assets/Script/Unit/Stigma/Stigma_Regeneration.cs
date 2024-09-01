@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Stigma_Regeneration : Stigma
@@ -8,7 +7,8 @@ public class Stigma_Regeneration : Stigma
         base.Use(caster);
 
         Buff_Stigma_Regeneration regeneration = new();
-        caster.SetBuff(regeneration);
+        if (caster.Buff.CheckBuff(BuffEnum.Stigmata_Regeneration))
+            regeneration = caster.Buff.GetBuff(BuffEnum.Stigmata_Regeneration) as Buff_Stigma_Regeneration;
 
         if (Tier == StigmaTier.Tier1)
         {
@@ -18,5 +18,7 @@ public class Stigma_Regeneration : Stigma
         {
             regeneration.SetValue(10);
         }
+
+        caster.SetBuff(regeneration);
     }
 }

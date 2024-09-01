@@ -10,6 +10,8 @@ public class UI_SortDropdown : MonoBehaviour
     private SortMode _currentSortMode;
     private UI_MyDeck _myDeck;
 
+    bool _isInitialized = false;
+
     public void Init(UI_MyDeck myDeck)
     {
         this._myDeck = myDeck;
@@ -18,6 +20,8 @@ public class UI_SortDropdown : MonoBehaviour
         _currentSortMode = SortMode.Default;
         SetSortMode(_currentSortMode);
         SetOptionLocalization();
+
+        _isInitialized = true;
     }
 
     private void OnDropdownValueChanged()
@@ -28,6 +32,9 @@ public class UI_SortDropdown : MonoBehaviour
 
     public void SetSortMode(SortMode sortMode)
     {
+        if (_isInitialized)
+            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
+
         _currentSortMode = sortMode;
         _dropdown.value = (int)sortMode;
 

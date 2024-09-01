@@ -162,6 +162,18 @@ MonoBehaviour:
     m_Localized: Savior's Nun
     m_Metadata:
       m_Items: []
+  - m_Id: 62182582629060608
+    m_Localized: Libiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73568076625498112
+    m_Localized: Arabella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75775101023440896
+    m_Localized: Yohrn
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -7,7 +7,10 @@ using TMPro;
 public class UI_Info : UI_Scene
 {
     [SerializeField] private TextMeshProUGUI _name;
-    [SerializeField] private TextMeshProUGUI _stat;
+
+    [SerializeField] private TextMeshProUGUI _statAttack;
+    [SerializeField] private TextMeshProUGUI _statSpeed;
+    [SerializeField] private TextMeshProUGUI _statCost;
 
     [SerializeField] private UI_HPBar _hpBar;
     [SerializeField] private Transform _stigmaGrid;
@@ -22,21 +25,18 @@ public class UI_Info : UI_Scene
 
     [SerializeField] private Transform _stigmaDescriptionGrid;
     [SerializeField] private GameObject _stigmaDescriptionPrefab;
+    [SerializeField] private GameObject _stigmaDescriptionFirstImage;
+    [SerializeField] private GameObject _stigmaDescriptionLastImage;
 
     [SerializeField] private TextMeshProUGUI _hpText;
     [SerializeField] private Image _unitImage;
-
-
 
     //색상은 UI에서 정해주는대로
     readonly Color goodColor = Color.yellow;
     readonly Color badColor = Color.red;
     readonly Color textColor = new Color(195f, 195f, 195f);
-    readonly string goodColorStr = "yellow";
-    readonly string badColorStr = "red";
-    readonly string normalColorStr = "white";
-    
-    
+
+    readonly Color _attackRangeColor = new(0.6f, 0.05f, 0.05f);
 
     public void SetInfo(BattleUnit battleUnit)
     {
@@ -55,48 +55,32 @@ public class UI_Info : UI_Scene
             _unitImage.sprite = unit.Data.DiaPortraitImage;
         }
 
-        string statText;
-
-        if (unit.Data.DarkEssenseCost > 0)
-        {
-                statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                        GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                        GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
-        }
-        else
-        {
-                statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + battleUnit.BattleUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                        GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + battleUnit.BattleUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                        GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + battleUnit.BattleUnitTotalStat.ManaCost.ToString() + "</color>";
-        }
-
-                                
         string hpText = battleUnit.BattleUnitTotalStat.CurrentHP.ToString() + "/" + battleUnit.BattleUnitTotalStat.MaxHP.ToString();
 
+        _statAttack.text = battleUnit.BattleUnitTotalStat.ATK.ToString();
+        _statSpeed.text = battleUnit.BattleUnitTotalStat.SPD.ToString();
+        _statCost.text = battleUnit.BattleUnitTotalStat.ManaCost.ToString();
+
         if (unit.DeckUnitChangedStat.ATK > 0 || battleUnit.BattleUnitChangedStat.ATK > 0)
-            statText = statText.Replace("AttackColor", goodColorStr);
+            _statAttack.color = goodColor;
         else if (unit.DeckUnitChangedStat.ATK < 0 || battleUnit.BattleUnitChangedStat.ATK < 0)
-            statText = statText.Replace("AttackColor", badColorStr);
+            _statAttack.color = badColor;
         else
-            statText = statText.Replace("AttackColor", normalColorStr);
+            _statAttack.color = textColor;
 
         if (unit.DeckUnitChangedStat.SPD > 0 || battleUnit.BattleUnitChangedStat.SPD > 0)
-            statText = statText.Replace("SpeedColor", goodColorStr);
+            _statSpeed.color = goodColor;
         else if (unit.DeckUnitChangedStat.SPD < 0 || battleUnit.BattleUnitChangedStat.SPD < 0)
-            statText = statText.Replace("SpeedColor", badColorStr);
+            _statSpeed.color = badColor;
         else
-            statText = statText.Replace("SpeedColor", normalColorStr);
+            _statSpeed.color = textColor;
 
         if (unit.DeckUnitChangedStat.ManaCost > 0 || battleUnit.BattleUnitChangedStat.ManaCost > 0)
-            statText = statText.Replace("CostColor", goodColorStr);
+            _statCost.color = badColor;
         else if (unit.DeckUnitChangedStat.ManaCost < 0 || battleUnit.BattleUnitChangedStat.ManaCost < 0)
-            statText = statText.Replace("CostColor", badColorStr);
+            _statCost.color = goodColor;
         else
-            statText = statText.Replace("CostColor", normalColorStr);
-
-
-
-        _stat.text = statText;
+            _statCost.color = textColor;
 
         //_fallText.text = fallText;
         _hpText.text = hpText;
@@ -113,10 +97,17 @@ public class UI_Info : UI_Scene
             bd.SetBuff(ui_buff.BuffInBlock);
         }
 
-        foreach (Stigma stigma in battleUnit.StigmaList)
+        if (battleUnit.StigmaList.Count > 0)
         {
-            UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
-            sd.SetStigma(stigma);
+            foreach (Stigma stigma in battleUnit.StigmaList)
+            {
+                UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
+                sd.SetStigma(stigma);
+            }
+
+            _stigmaDescriptionFirstImage.SetActive(true);
+            _stigmaDescriptionLastImage.SetActive(true);
+            _stigmaDescriptionLastImage.transform.SetSiblingIndex(_stigmaDescriptionGrid.childCount - 1);
         }
 
         List<int> rangeIntegerList = new();
@@ -131,7 +122,7 @@ public class UI_Info : UI_Scene
         {
             Image block = GameObject.Instantiate(_squarePrefab, _rangeGrid).GetComponent<Image>();
             if (rangeIntegerList.Contains(i))
-                block.color = Color.red;
+                block.color = _attackRangeColor;
             else
                 block.color = Color.grey;
         }
@@ -155,47 +146,35 @@ public class UI_Info : UI_Scene
             _unitImage.sprite = unit.Data.DiaPortraitImage;
         }
 
-        string statText;
-
-        if (unit.Data.DarkEssenseCost > 0)
-        {
-            statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                    GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                    GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "/" + unit.Data.DarkEssenseCost.ToString() + "</color>";
-        }
-        else
-        {
-            statText = GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + "<color=\"AttackColor\">" + unit.DeckUnitTotalStat.ATK.ToString() + "</color>" + "\n" +
-                    GameManager.Locale.GetLocalizedUpgrade("Speed") + ":  " + "<color=\"SpeedColor\">" + unit.DeckUnitTotalStat.SPD.ToString() + "</color>" + "\n" +
-                    GameManager.Locale.GetLocalizedUpgrade("Cost") + ":  " + "<color=\"CostColor\">" + unit.DeckUnitTotalStat.ManaCost.ToString() + "</color>";
-        }
-
         string hpText = unit.DeckUnitTotalStat.CurrentHP.ToString() + "/" + unit.DeckUnitTotalStat.MaxHP.ToString();
 
+        _statAttack.text = unit.DeckUnitTotalStat.ATK.ToString();
+        _statSpeed.text = unit.DeckUnitTotalStat.SPD.ToString();
+        _statCost.text = unit.DeckUnitTotalStat.ManaCost.ToString();
+
         if (unit.DeckUnitChangedStat.ATK > 0)
-            statText = statText.Replace("AttackColor", goodColorStr);
+            _statAttack.color = goodColor;
         else if (unit.DeckUnitChangedStat.ATK < 0)
-            statText = statText.Replace("AttackColor", badColorStr);
+            _statAttack.color = badColor;
         else
-            statText = statText.Replace("AttackColor", normalColorStr);
+            _statAttack.color = textColor;
 
         if (unit.DeckUnitChangedStat.SPD > 0)
-            statText = statText.Replace("SpeedColor", goodColorStr);
+            _statSpeed.color = goodColor;
         else if (unit.DeckUnitChangedStat.SPD < 0)
-            statText = statText.Replace("SpeedColor", badColorStr);
+            _statSpeed.color = badColor;
         else
-            statText = statText.Replace("SpeedColor", normalColorStr);
+            _statSpeed.color = textColor;
 
         if (unit.DeckUnitChangedStat.ManaCost > 0)
-            statText = statText.Replace("CostColor", goodColorStr);
+            _statCost.color = badColor;
         else if (unit.DeckUnitChangedStat.ManaCost < 0)
-            statText = statText.Replace("CostColor", badColorStr);
+            _statCost.color = goodColor;
         else
-            statText = statText.Replace("CostColor", normalColorStr);
+            _statCost.color = textColor;
 
         //fallText = fallText.Replace("textColor" , )
 
-        _stat.text = statText;
         _hpText.text = hpText;
 
         _hpBar.SetHPBar(team);
@@ -204,20 +183,24 @@ public class UI_Info : UI_Scene
         _hpBar.RefreshHPBar((float)unit.DeckUnitTotalStat.CurrentHP / (float)unit.DeckUnitTotalStat.MaxHP);
         _hpBar.RefreshFallBar(unit.DeckUnitTotalStat.FallCurrentCount, FallAnimMode.Off);
 
-        //_stigmaDescriptionPrefab.SetStigma(unit);
-
-
-        foreach (Stigma stigma in unit.GetStigma())
+        if (unit.GetStigma().Count > 0)
         {
-            UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
-            sd.SetStigma(stigma);
+            foreach (Stigma stigma in unit.GetStigma())
+            {
+                UI_StigmaDescription sd = GameObject.Instantiate(_stigmaDescriptionPrefab, _stigmaDescriptionGrid).GetComponent<UI_StigmaDescription>();
+                sd.SetStigma(stigma);
+            }
+
+            _stigmaDescriptionFirstImage.SetActive(true);
+            _stigmaDescriptionLastImage.SetActive(true);
+            _stigmaDescriptionLastImage.transform.SetSiblingIndex(_stigmaDescriptionGrid.childCount - 1);
         }
 
         foreach (bool range in unit.Data.AttackRange)
         {
             Image block = GameObject.Instantiate(_squarePrefab, _rangeGrid).GetComponent<Image>();
             if (range)
-                block.color = Color.red;
+                block.color = _attackRangeColor;
             else
                 block.color = Color.grey;
         }

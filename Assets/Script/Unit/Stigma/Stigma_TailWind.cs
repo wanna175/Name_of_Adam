@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stigma_TailWind : Stigma
+public class Stigma_Tailwind : Stigma
 {
     public override void Use(BattleUnit caster)
     {
@@ -13,13 +13,13 @@ public class Stigma_TailWind : Stigma
 
         List<BattleUnit> targetUnits = BattleManager.Field.GetUnitsInRange(caster.Location, areaCoords);
         
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Move");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Swiftness");
         foreach (BattleUnit unit in targetUnits)
         {
             if (unit.Team == caster.Team)
             {
                 GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Tailwind", BattleManager.Field.GetTilePosition(unit.Location));
-                unit.SetBuff(new Buff_Tailwind());
+                unit.SetBuff(new Buff_SpeedIncrease());
             }
         }
     }

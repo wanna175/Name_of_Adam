@@ -5,25 +5,15 @@ public class Buff_Stigma_Rebirth : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Rebirth;
+        _buffEnum = BuffEnum.Stigmata_Rebirth;
 
-        _name = "환생";
-
-        _description = "환생.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "Rebirth";
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

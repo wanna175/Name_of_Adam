@@ -4,25 +4,15 @@ public class Buff_Stigma_Repetance : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Repetance;
+        _buffEnum = BuffEnum.Stigmata_Repetance;
 
         _name = "ÂüÈ¸";
-
-        _description = "";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

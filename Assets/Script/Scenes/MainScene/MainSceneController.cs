@@ -46,18 +46,18 @@ public class MainSceneController : MonoBehaviour
         }
     }
 
-    public void StartButton()
+    public void NewGameButton()
     {
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
+
         if (GameManager.SaveManager.SaveFileCheck())
         {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
             GameManager.UI.ShowPopup<UI_SystemSelect>().Init("Restart", ResetAlertYesButton);
         }
         else
         {
             GameManager.Data.DeckClear();
             GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
             if (GameManager.OutGameData.IsTutorialClear())
             {
@@ -77,22 +77,19 @@ public class MainSceneController : MonoBehaviour
 
     public void ContinueBotton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
+
         if (GameManager.SaveManager.SaveFileCheck())
         {
             SceneChanger.SceneChange("StageSelectScene");
             GameManager.SaveManager.LoadGame();
         }
     }
-    public void ProgressButton()
-    {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        SceneChanger.SceneChange("ProgressShopScene");
-    }
 
-    public void HallButton()
+    public void DivineHallButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
         GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
         UI_MyDeck UI_MyDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
         UI_MyDeck.Init();
@@ -115,27 +112,33 @@ public class MainSceneController : MonoBehaviour
                     GameManager.Data.GetDeck().Remove(DeckUnit);
                     UI_MyDeck.Init();
 
-                    GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
+                    GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
                 });
             }
         }, CurrentEvent.Hall_Delete);
     }
 
+    public void SanctumButton()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        SceneChanger.SceneChange("ProgressShopScene");
+    }
+
     public void OptionButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_Option go = GameManager.UI.ShowPopup<UI_Option>();
-        //GameObject go = Resources.Load<GameObject>("Prefabs/UI/Popup/UI_Option");
-        //GameObject.Instantiate(go, Canvas.transform);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        GameManager.UI.ShowPopup<UI_Option>();
     }
 
     public void ResetAlertYesButton()
     {
         // 게임오브젝트를 생성해서 보내주기 & 생성한 오브젝트가 맵 선택 씬에 도달했을 때 활성화되서 튜토 이미지 띄우고 자신 삭제하기
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
 
         GameManager.Data.DeckClear();
         GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
 
         if (GameManager.OutGameData.IsTutorialClear())
         {
@@ -164,7 +167,12 @@ public class MainSceneController : MonoBehaviour
 
     public void ExitButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         Application.Quit();
+    }
+
+    public void ButtonHover()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIHoverSFX");
     }
 }

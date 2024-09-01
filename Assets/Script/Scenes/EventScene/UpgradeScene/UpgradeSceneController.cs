@@ -92,7 +92,7 @@ public class UpgradeSceneController : MonoBehaviour
     //강화 버튼 클릭, 업그레이드 할 유닛을 고릅니다.
     public void OnUpgradeUnitButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _selectMenuUI.SetActive(false);
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
@@ -103,7 +103,7 @@ public class UpgradeSceneController : MonoBehaviour
     // 신앙 회복 버튼 클릭, 신앙을 회복할 유닛을 고릅니다.
     public void OnHealFaithButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _selectMenuUI.SetActive(false);
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
@@ -221,7 +221,7 @@ public class UpgradeSceneController : MonoBehaviour
 
     public void OnQuitClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         StartCoroutine(QuitScene());
     }
 

@@ -18,7 +18,7 @@ public class UI_SelectUnit : MonoBehaviour
 
     public void OnClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
     }
 }

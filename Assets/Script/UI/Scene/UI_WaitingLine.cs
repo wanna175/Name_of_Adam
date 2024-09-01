@@ -6,6 +6,7 @@ using System.Linq;
 public class UI_WaitingLine : UI_Scene
 {
     [SerializeField] private Transform _waitingUnitGrid;
+
     [SerializeField] private GameObject _upButton;
     [SerializeField] private GameObject _downButton;
 
@@ -15,6 +16,8 @@ public class UI_WaitingLine : UI_Scene
     private List<BattleUnit> _waitingBattleUnitList = new();
     private int _waitingLinePage = 0;
 
+    const int _waitingUnitMaxCount = 6;
+
     public void Start()
     {
         _downButton.SetActive(false);
@@ -23,15 +26,16 @@ public class UI_WaitingLine : UI_Scene
 
     private void ButtonActive()
     {
-        if (_waitingUnitList.Count > 5)
+        if (_waitingUnitList.Count > _waitingUnitMaxCount)
         {
             _upButton.SetActive(_waitingLinePage != 0);
-            _downButton.SetActive(_waitingUnitList.Count / 5 != _waitingLinePage);
+            _downButton.SetActive(_waitingUnitList.Count / _waitingUnitMaxCount != _waitingLinePage);
         }
         else
         {
             _downButton.SetActive(false);
             _upButton.SetActive(false);
+            _waitingLinePage = 0;
         }
 
         CheckWaitingLineActive();
@@ -46,18 +50,20 @@ public class UI_WaitingLine : UI_Scene
 
     public void SetWaitingLine(List<BattleUnit> orderList)
     {
-        if (_waitingBattleUnitList.SequenceEqual(orderList) && _waitingBattleUnitList.Select(unit => unit.Team).SequenceEqual(orderList.Select(unit => unit.Team)))
+        if (_waitingBattleUnitList.SequenceEqual(orderList) && 
+            _waitingBattleUnitList.Select(unit => unit.Team).SequenceEqual(orderList.Select(unit => unit.Team)))
         {
             return;
         }
 
-        _waitingBattleUnitList = orderList;
         ClearWaitingLine();
 
         foreach (BattleUnit unit in orderList)
             AddUnit(unit);
 
         ButtonActive();
+
+        _waitingBattleUnitList = orderList;
     }
 
     private void ClearWaitingLine()
@@ -73,7 +79,7 @@ public class UI_WaitingLine : UI_Scene
     {
         for (int i = 0; i < _waitingUnitList.Count; i++)
         {
-            _waitingUnitList[i].gameObject.SetActive(i >= _waitingLinePage * 5);
+            _waitingUnitList[i].gameObject.SetActive(i >= _waitingLinePage * _waitingUnitMaxCount);
         }
     }
 
@@ -87,5 +93,30 @@ public class UI_WaitingLine : UI_Scene
     {
         _waitingLinePage++;
         ButtonActive();
+    }
+
+    void SlideMove()
+    {
+        StartCoroutine(MoveCoroutine());
+    }
+
+    IEnumerator MoveCoroutine()
+    {
+        float moveDuration = 2f;
+        float distanceToMove = 80f;
+
+        Vector3 targetPosition = _waitingUnitGrid.transform.position - new Vector3(distanceToMove, 0, 0);
+        Vector3 initialPosition = _waitingUnitGrid.transform.position;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < moveDuration)
+        {
+            _waitingUnitGrid.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _waitingUnitGrid.transform.position = initialPosition;
     }
 }

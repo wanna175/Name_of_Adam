@@ -19,7 +19,9 @@ public class UI_MyDeck : UI_Popup
 
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
-    private Dictionary<DeckUnit, UI_Card> _card_dic = new();//선택된 유닛
+    private Dictionary<DeckUnit, UI_Card> _unitCardDictionary = new();//선택된 유닛
+
+    private List<DeckUnit> _selectedUnitList = new();
 
     private Action<DeckUnit> _onSelectAction;
     private CurrentEvent _currentEvent = CurrentEvent.None;
@@ -53,42 +55,42 @@ public class UI_MyDeck : UI_Popup
         _eventMenu = eventMenu;
         _endEvent = endEvent;
 
-        string titleText = "";
+        string titleTextKey = "";
 
         if (_currentEvent == CurrentEvent.Upgrade_Select)
         {
-            titleText = "Select a unit to upgrade.";
+            titleTextKey = "Select a unit to upgrade.";
         }
         else if (_currentEvent == CurrentEvent.Heal_Faith_Select)
         {
-            titleText = "Select a unit to restore faith.";
+            titleTextKey = "Select a unit to restore faith.";
         }
         else if (_currentEvent == CurrentEvent.Stigmata_Select || _currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
         {
-            titleText = "Select a unit to bestow stigmata.";
+            titleTextKey = "Select a unit to bestow stigmata.";
         }
         else if (_currentEvent == CurrentEvent.Stigmata_Receive)
         {
-            titleText = "Select a unit to bestow stigmata.";
+            titleTextKey = "Select a unit to bestow stigmata.";
             _quitButton.SetActive(false);
         }
         else if (_currentEvent == CurrentEvent.Stigmata_Give)
         {
-            titleText = "Select a unit to sacrifice.";
+            titleTextKey = "Select a unit to sacrifice.";
         }
-        else if (_currentEvent == CurrentEvent.Unit_Restoration_Select)
+        else if (_currentEvent == CurrentEvent.Revert_Unit_Select)
         {
-            titleText = "Select units to revert.";
+            titleTextKey = "Select units to revert.";
             _setButton.SetActive(true);
         }
         else if (_currentEvent == CurrentEvent.Hall_Delete)
         {
-            titleText = "Possessed units";
+            titleTextKey = "Possessed units";
             _sortButton.gameObject.SetActive(true);
             _sortButton.Init(this);
         }
 
-        _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleText);
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleTextKey);
 
         SetCard(_currentEvent);
     }
@@ -202,6 +204,20 @@ public class UI_MyDeck : UI_Popup
         SetPageAllUI();
     }
 
+    public void SelectCard(DeckUnit unit)
+    {
+        if (_selectedUnitList.Contains(unit))
+        {
+            _selectedUnitList.Remove(unit);
+            _unitCardDictionary[unit].SetSelectHighlight(false);
+        }
+        else
+        {
+            _selectedUnitList.Add(unit);
+            _unitCardDictionary[unit].SetSelectHighlight(true);
+        }
+    }
+
     private void SetCard(CurrentEvent currentEvent = CurrentEvent.None)
     {
         ClearCard();
@@ -218,7 +234,7 @@ public class UI_MyDeck : UI_Popup
                     AddCard(_playerDeck[i]);
                     if (_playerDeck[i].IsMainDeck)
                     {
-                        _card_dic[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_MainDeck", string.Empty));
+                        _unitCardDictionary[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_MainDeck", string.Empty));
                     }
                 }
             }
@@ -233,7 +249,7 @@ public class UI_MyDeck : UI_Popup
                 AddCard(_playerDeck[i]);
                 if (_playerDeck[i].Data.Rarity == Rarity.Boss)
                 {
-                    _card_dic[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_Boss", string.Empty));
+                    _unitCardDictionary[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_Boss", string.Empty));
                 }
             }
             else
@@ -254,8 +270,9 @@ public class UI_MyDeck : UI_Popup
     {
         UI_Card newCard = GameObject.Instantiate(_cardPrefabs, _grid).GetComponent<UI_Card>();
         newCard.SetCardInfo(this, unit);
+        newCard.SetSelectHighlight(_selectedUnitList.Contains(unit));
 
-        _card_dic[unit] = newCard;
+        _unitCardDictionary[unit] = newCard;
     }
 
     public void OnClickCard(DeckUnit unit)
@@ -264,32 +281,20 @@ public class UI_MyDeck : UI_Popup
         {
             GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
             {
-                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
-                OnUnitSelect(unit);
+                UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+                unitInfo.SetUnit(unit);
+                unitInfo.Init(_onSelectAction, _currentEvent);
                 GameManager.Data.RemoveDeckUnit(unit);
             });
         }
         else
         {
-            OnUnitSelect(unit);
-        }
-    }
-
-    public void OnUnitSelect(DeckUnit unit)
-    {
-        UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        unitInfo.SetUnit(unit);
-
-        if (_currentEvent == CurrentEvent.Unit_Restoration_Select)
-            unitInfo.Restoration(_onSelectAction, _currentEvent, OnSelectRestorationUnit);
-        else
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(unit);
             unitInfo.Init(_onSelectAction, _currentEvent);
-    }
-
-    public void OnSelectRestorationUnit(DeckUnit unit)
-    {
-        _card_dic[unit].SelectCard();
+        }
     }
 
     public void SetButtonClick()
@@ -300,7 +305,7 @@ public class UI_MyDeck : UI_Popup
 
     public void Quit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         if (_quit_txt.text == "Skip" || _quit_txt.text == "선택 안함")
         {
@@ -328,7 +333,7 @@ public class UI_MyDeck : UI_Popup
 
     public void OnPrePageButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         _currentPageIndex--;
         SetCard();
@@ -337,7 +342,7 @@ public class UI_MyDeck : UI_Popup
 
     public void OnPostPageButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         _currentPageIndex++;
         SetCard();

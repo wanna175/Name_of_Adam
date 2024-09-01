@@ -115,6 +115,18 @@ MonoBehaviour:
     m_Key: Killing Spree
     m_Metadata:
       m_Items: []
+  - m_Id: 71273951603609600
+    m_Key: Blessing Of Phanuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71273984533090304
+    m_Key: Blessing Of Savior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71273990568693760
+    m_Key: Blessing Of Yorhn
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

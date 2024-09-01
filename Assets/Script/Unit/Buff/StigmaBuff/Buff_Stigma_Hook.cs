@@ -7,25 +7,15 @@ public class Buff_Stigma_Hook : Buff
 
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Hook;
+        _buffEnum = BuffEnum.Stigmata_Hook;
 
-        _name = "갈고리";
-
-        _description = "피격된 유닛을 한 칸 끌어옵니다.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "Hook";
 
         _buffActiveTiming = ActiveTiming.AFTER_ATTACK;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

@@ -139,13 +139,13 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     {
         string corruption = (_isNPCFall) ? "Corrupt" : "Normal";
 
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ShowPopup<UI_SystemSelect>().Init($"ApostleCreation_{corruption}", YesApostleCreationButtonClick);
     }
 
     private void YesApostleCreationButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         _selectMenuUI.SetActive(false);
 
@@ -169,29 +169,51 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnRevertUnitButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         _revertUnits.Clear();
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
         myDeck.Init();
-        myDeck.EventInit(OnSelectRevertUnit, CurrentEvent.Unit_Restoration_Select, _selectMenuUI, RestorationQuitClick);
+        myDeck.EventInit(OnSelectRevertUnit, CurrentEvent.Revert_Unit_Select, _selectMenuUI, RevertUnitQuitClick);
     }
 
     public void OnSelectRevertUnit(DeckUnit unit)
     {
         if (!_revertUnits.Contains(unit))
+        {
             _revertUnits.Add(unit);
+        }
         else
+        {
             _revertUnits.Remove(unit);
+        }
 
         GameManager.UI.ClosePopup();
+    }
+
+    public void RevertUnitQuitClick()
+    {
+        if (_revertUnits.Count == GameManager.Data.GetDeck().Count)
+        {
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("RevertAll", "");
+            return;
+        }
+        else if (_revertUnits.Count != 0)
+        {
+            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence * _revertUnits.Count);
+            foreach (DeckUnit delunit in _revertUnits)
+                GameManager.Data.RemoveDeckUnit(delunit);
+        }
+
+        GameManager.UI.ClosePopup();
+        OnQuitClick();
     }
 
     //타락 성흔 부여 버튼 클릭
     public void OnStigmataBestowalButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
         myDeck.Init();
@@ -213,7 +235,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         {
             GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmAlreadyHaveCorruptStigmata", () =>
             {
-                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
                 List<Stigma> stigmataList = new();
                 _stigmataBestowalUnit = unit;
@@ -334,27 +356,9 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         return _stigmataList;
     }
 
-    public void RestorationQuitClick()
-    {
-        if (_revertUnits.Count == GameManager.Data.GetDeck().Count)
-        {
-            Debug.Log("유닛은 하나 이상 남겨야 합니다.");//여기다가 경고창 띄우면 될듯
-            return;
-        }
-        else if (_revertUnits.Count != 0)
-        {
-            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence * _revertUnits.Count);
-            foreach (DeckUnit delunit in _revertUnits)
-                GameManager.Data.RemoveDeckUnit(delunit);
-        }
-
-        GameManager.UI.ClosePopup();
-        OnQuitClick();
-    } 
-
     public void OnQuitClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         StartCoroutine(QuitScene());
     }
 

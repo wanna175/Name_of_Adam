@@ -7,7 +7,7 @@ public class UI_DeckButton : UI_Scene
 {
     public void OnDeckButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(true);
     }
 }

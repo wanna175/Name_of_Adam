@@ -28,7 +28,7 @@ public class UI_SystemInfo : UI_Popup
 
     private void OnDefaultEvent()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ClosePopup(this);
     }
 }

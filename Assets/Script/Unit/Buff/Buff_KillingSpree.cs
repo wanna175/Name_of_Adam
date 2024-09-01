@@ -4,7 +4,7 @@ public class Buff_KillingSpree : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.KillingSpree_Buff;
+        _buffEnum = BuffEnum.KillingSpree;
 
         _name = "Killing Spree";
 
@@ -12,18 +12,17 @@ public class Buff_KillingSpree : Buff
 
         _description = "Killing Spree Info";
 
-        _count = 2;
+        _count = 1;
 
         _countDownTiming = ActiveTiming.ATTACK_TURN_END;
 
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
 
-        _statBuff = true;
+        BattleManager.Data.BattleOrderInsert(0, _owner, _owner.BattleUnitTotalStat.SPD);
+    }
 
-        _dispellable = false;
-
-        _stigmaBuff = false;
+    public override void Stack()
+    {
+        _count += 1;
     }
 }

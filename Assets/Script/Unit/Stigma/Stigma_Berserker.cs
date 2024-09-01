@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
 
 public class Stigma_Berserker : Stigma
@@ -11,6 +8,8 @@ public class Stigma_Berserker : Stigma
 
         int fallDownCount = caster.BattleUnitTotalStat.FallMaxCount - caster.BattleUnitTotalStat.FallCurrentCount - 1;
         caster.ChangeFall(fallDownCount, FallAnimMode.Off);
-        caster.SetBuff(new Buff_Berserker());
+        for (int i = 0; i < 5; i++)
+            caster.SetBuff(new Buff_AttackBoost());
+        //caster.SetBuff(new Buff_Berserker());
     }
 }

@@ -187,7 +187,7 @@ public enum Sounds
 [Flags]
 public enum ActiveTiming
 {
-    STIGMA = 1 << 1, //낙인 발동(소환 시, 낙인 부여 시)
+    STIGMA = 1 << 1, //성흔 발동(소환 시, 성흔 부여 시)
 
     FIELD_UNIT_SUMMON = 1 << 2,//필드에 유닛이 소환 시
     SUMMON = 1 << 3, //소환 후
@@ -195,39 +195,44 @@ public enum ActiveTiming
     TURN_START = 1 << 4, //턴 시작 시
     TURN_END = 1 << 5, //턴 종료 시
 
-    MOVE_TURN_START = 1 << 6, //이동턴 전
+    UNIT_TURN_START = 1 << 6, //유닛턴 전
 
-    MOVE = 1 << 7, //이동 후
+    MOVE_TURN_START = 1 << 7, //이동턴 전
 
-    MOVE_TURN_END = 1 << 8, //이동턴 후
+    MOVE = 1 << 8, //이동 후
 
-    ATTACK_TURN_START = 1 << 9, //공격턴 전
+    MOVE_TURN_END = 1 << 9, //이동턴 후
 
-    BEFORE_ATTACK = 1 << 10, //공격 전
-    AFTER_ATTACK = 1 << 11, //공격 후
+    ATTACK_TURN_START = 1 << 10, //공격턴 전
 
-    DAMAGE_CONFIRM = 1 << 12, //대미지 확정
+    BEFORE_ATTACK = 1 << 11, //공격 전
+    AFTER_ATTACK = 1 << 12, //공격 후
 
-    BEFORE_ATTACKED = 1 << 13, //피격 전
-    AFTER_ATTACKED = 1 << 14, //피격 후
+    DAMAGE_CONFIRM = 1 << 13, //대미지 확정
 
-    ATTACK_TURN_END = 1 << 15, //공격턴 후
-    FIELD_ATTACK_TURN_END = 1 << 16, //필드 유닛의 공격턴 후
+    BEFORE_ATTACKED = 1 << 14, //피격 전
+    AFTER_ATTACKED = 1 << 15, //피격 후
 
-    FALL = 1 << 17, //타락시켰을 때, 그 후
-    FALLED = 1 << 18, //타락되었을 때 그 전
-    FIELD_UNIT_FALLED = 1 << 19, //필드 유닛이 타락 시
+    ATTACK_TURN_END = 1 << 16, //공격턴 후
+    FIELD_ATTACK_TURN_END = 1 << 17, //필드 유닛의 공격턴 후
 
-    BEFORE_UNIT_DEAD = 1 << 20, //자신이 사망 전
-    AFTER_UNIT_DEAD = 1 << 21, //자신이 사망 후
-    FIELD_UNIT_DEAD = 1 << 22, //필드 유닛이 사망 시
+    BEFORE_CHANGE_FALL = 1 << 18, //타락시켰을 때, 그 후
 
-    UNIT_KILL = 1 << 23, //다른 유닛을 죽일 시
+    FALL = 1 << 19, //타락시켰을 때, 그 후
+    FALLED = 1 << 20, //타락되었을 때 그 전
+    FIELD_UNIT_FALLED = 1 << 21, //필드 유닛이 타락 시
 
-    ATTACK_MOTION_END = 1 << 24, //공격 모션이 끝난 뒤
-    AFTER_SWITCH = 1 << 25, //공격 모션이 끝난 뒤
+    BEFORE_UNIT_DEAD = 1 << 22, //자신이 사망 전
+    AFTER_UNIT_DEAD = 1 << 23, //자신이 사망 후
+    FIELD_UNIT_DEAD = 1 << 24, //필드 유닛이 사망 시
 
-    NONE = 1 << 26 //없음
+    UNIT_KILL = 1 << 25, //다른 유닛을 죽일 시
+
+    ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
+    AFTER_SWITCH = 1 << 27, //유닛 간 스위치 후
+    BEFORE_BUFFED = 1 << 28, //버프를 얻기 전
+
+    NONE = 1 << 29 //없음
 };
 
 public enum StigmaTier
@@ -265,33 +270,33 @@ public enum StigmaEnum
 {
     //normal stigmata
     Absorption,
-    Additional_Punishment,
+    AdditionalPunishment,
     Assasination,
     Benevolence,
     Berserker,
     Bishops_Praise,
     Blessing,
-    Blood_Blessing,
+    BloodBlessing,
     Cleanse,
-    Death_Strike,
+    DeathStrike,
     Destiny,
     Dispel,
     Expand,
-    Forbidden_Pact,
+    ForbiddenPact,
     Hook,
-    Immortal,
-    Invincible,
+    Immortality,
+    Invincibility,
     Killing_Spree,
     Martyrdom,
     Mercy,
-    Pray_In_Aid,
+    PrayInAid,
     Raise,
     Regeneration,
     Repetance,
     Sadism,
-    Shadow_Step,
+    ShadowStep,
     Sin,
-    Tail_Wind,
+    Tailwind,
     Teleport,
     ShadowCloak,
     Rearmament,
@@ -299,6 +304,13 @@ public enum StigmaEnum
     Grudge,
     HandOfGrace,
     Aid,
+    DeathsThreshold,
+    Fortification,
+    ArmorOfAeons,
+    BrokenSword,
+    BloodOath,
+    Gluttony,
+    BlindFaith,
 
     //Unique stigmata 
     Birth = 100,
@@ -308,8 +320,8 @@ public enum StigmaEnum
     Dusk = 104,
     Funeral = 105,
     Karma = 106,
-    Legacy_Of_Babel = 107,
-    Lucifer = 108,
+    LegacyOfBabel = 107,
+    Advent = 108,
     Misdeed = 109,
     PermanenceOfBabel = 110,
     Rebirth = 111,
@@ -317,6 +329,13 @@ public enum StigmaEnum
     Symbiosis = 113,
     Trinity = 114,
     WrathOfBabel = 115,
+    Glory = 116,
+    ThornsOfOblivion = 117,
+    GardenOfOblivion = 118,
+    StormSurge = 119,
+    StormSurge2 = 120,
+    StormSurge3 = 121,
+    DeepSea = 122,
 }
 
 public enum BuffEnum
@@ -325,82 +344,99 @@ public enum BuffEnum
     None,
 
     Appaim,
-    Benediction,
+    Divine,
     Berserker,
     Curse,
     DeathStrike,
     Edified,
-    Immortal,
-    Invincible,
+    Immortality,
+    Invincibility,
     Karma,
     Leah,
     MarkOfBeast,
     Raquel,
     Sin,
     Stun,
-    Tailwind,
-    TraceOfDust,
+    SpeedIncrease,
+    Dusk,
     Malevolence,
-    Grudge_Buff,
+    Grudge,
     SacredStep,
     AttackDecrease,
     AttackBoost,
-    KillingSpree_Buff,
+    KillingSpree,
+    Libiel,
+    EliteStatBuff,
 
     //systemic buff (no image)
     AfterAttackBounce,
     AfterAttackDead,
     AfterMotionTransparent,
+    StatBuff,
 
-    //stigma buff (no image)
-    Absorption,
-    Additional_Punishment,
-    Assasination,
-    BishopsPraise,
-    Blessing,
-    BloodBlessing,
-    Cleanse,
-    Destiny,
-    Dispel,
-    Expand,
-    ForbiddenPact,
-    Hook,
-    KillingSpree,
-    Martyrdom,
-    Mercy,
-    Misdeed,
-    PrayInAid,
-    Regeneration,
-    Repetance,
-    Sadism,
-    ShadowStep,
-    Rearmament,
-    Solitude,
-    Grudge,
-    Aid,
-    ShadowCloak,
-    HandOfGrace,
-    Teleport,
+    //stigmata buff (no image)
+    Stigmata_Absorption,
+    Stigmata_AdditionalPunishment,
+    Stigmata_Assasination,
+    Stigmata_BishopsPraise,
+    Stigmata_Blessing,
+    Stigmata_BloodBlessing,
+    Stigmata_Cleanse,
+    Stigmata_Destiny,
+    Stigmata_Dispel,
+    Stigmata_Expand,
+    Stigmata_ForbiddenPact,
+    Stigmata_Hook,
+    Stigmata_KillingSpree,
+    Stigmata_Martyrdom,
+    Stigmata_Mercy,
+    Stigmata_Misdeed,
+    Stigmata_PrayInAid,
+    Stigmata_Regeneration,
+    Stigmata_Repetance,
+    Stigmata_Sadism,
+    Stigmata_ShadowStep,
+    Stigmata_Rearmament,
+    Stigmata_Solitude,
+    Stigmata_Grudge,
+    Stigmata_Aid,
+    Stigmata_ShadowCloak,
+    Stigmata_HandOfGrace,
+    Stigmata_Teleport,
+    Stigmata_DeathsThreshold,
+    Stigmata_Fortification,
+    Stigmata_ArmorOfAeons,
+    Stigmata_BrokenSword,
+    Stigmata_BloodOath,
+    Stigmata_Gluttony,
+    Stigmata_BlindFaith,
 
     //unique stigma buff (no image)
-    Birth,
-    Blooming,
-    Charge,
-    Collapse,
-    Dust,
-    LegacyOfBabel,
-    Lucifer,
-    PermanenceOfBabel,
-    Rebirth,
-    Sacrifice,
-    Symbiosis,
-    Trinity,
-    WrathOfBabel,
+    Stigmata_Birth,
+    Stigmata_Blooming,
+    Stigmata_Charge,
+    Stigmata_Collapse,
+    Stigmata_Dusk,
+    Stigmata_LegacyOfBabel,
+    Stigmata_Advent,
+    Stigmata_PermanenceOfBabel,
+    Stigmata_Rebirth,
+    Stigmata_Sacrifice,
+    Stigmata_Symbiosis,
+    Stigmata_Trinity,
+    Stigmata_WrathOfBabel,
+    Stigmata_Glory,
+    Stigmata_ThornsOfOblivion,
+    Stigmata_GardenOfOblivion,
+    Stigmata_StormSurge,
+    Stigmata_StormSurge2,
+    Stigmata_StormSurge3,
+    Stigmata_DeepSea,
 
-    BloodFest,
-    Thirst,
-    TraceOfSolar,
-    TraceOfLunar,
+    Stigmata_BloodFest,
+    Stigmata_Thirst,
+    Stigmata_TraceOfSolar,
+    Stigmata_TraceOfLunar,
 }
 
 public enum UnitActionType
@@ -417,7 +453,10 @@ public enum UnitActionType
     UnitAction_Laser,
     UnitAction_RaquelLeah,
     UnitAction_CenteredSplash,
+    UnitAction_Libiel,
+    UnitAction_Arabella,
     UnitAction_Yohrn,
+    UnitAction_Yohrn_Body,
 }
 
 public enum UnitMoveType
@@ -526,7 +565,7 @@ public enum CurrentEvent
     Stigmata_Give,
     Stigmata_Receive,
     Stigmata_Full_Exception,
-    Unit_Restoration_Select,
+    Revert_Unit_Select,
     Corrupt_Stigmata_Select,
 
     Complete_Upgrade,

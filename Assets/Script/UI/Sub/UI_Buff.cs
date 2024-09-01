@@ -25,7 +25,7 @@ public class UI_Buff : UI_Base, IPointerEnterHandler, IPointerExitHandler
 
     public void RefreshBuffDisplayNumber()
     {
-        if (BuffInBlock.GetBuffDisplayNumber() == 0)
+        if (BuffInBlock.GetBuffDisplayNumber() == -1)
         {
             _buffText.text = "";
         }

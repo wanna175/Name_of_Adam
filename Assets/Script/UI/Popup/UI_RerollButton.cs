@@ -22,7 +22,7 @@ public class UI_RerollButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
             if (_isActive)
                 buttonAction();
             else
-                GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+                GameManager.Sound.Play("UI/UISFX/UIFailSFX");
         });
         SetActive(false);
     }

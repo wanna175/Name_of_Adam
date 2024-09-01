@@ -3,6 +3,7 @@ using UnityEngine;
 public class Buff_AttackBoost : Buff
 {
     private int _attackUp;
+
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.AttackBoost;
@@ -17,17 +18,13 @@ public class Buff_AttackBoost : Buff
 
         _countDownTiming = ActiveTiming.ATTACK_MOTION_END;
 
-        _buffActiveTiming = ActiveTiming.NONE;
-
         _owner = owner;
 
         _statBuff = true;
 
-        _dispellable = false;
+        _dispellable = true;
 
-        _stigmaBuff = false;
-
-        _attackUp = owner.DeckUnit.DeckUnitTotalStat.ATK / 2;
+        _attackUp = (owner.DeckUnit.DeckUnitTotalStat.ATK + 2) / 3;
     }
 
     public override void Stack()

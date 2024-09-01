@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class Stigma_Sadism : Stigma
@@ -13,8 +8,8 @@ public class Stigma_Sadism : Stigma
 
         Buff_Stigma_Sadism sadism = new();
 
-        if (caster.Buff.CheckBuff(BuffEnum.Sadism))
-            sadism = caster.Buff.GetBuff(BuffEnum.Sadism) as Buff_Stigma_Sadism;
+        if (caster.Buff.CheckBuff(BuffEnum.Stigmata_Sadism))
+            sadism = caster.Buff.GetBuff(BuffEnum.Stigmata_Sadism) as Buff_Stigma_Sadism;
 
         if (Tier == StigmaTier.Tier1)
         {

@@ -111,6 +111,10 @@ MonoBehaviour:
     m_Key: CannotInUnitTurn
     m_Metadata:
       m_Items: []
+  - m_Id: 47438182506188800
+    m_Key: RevertAll
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

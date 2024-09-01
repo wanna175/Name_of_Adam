@@ -152,7 +152,7 @@ public class UI_HPBar : UI_Base
 
     public void AddBuff(Buff buff)
     {
-        if (buff.StigmaBuff || buff.Sprite == null)
+        if (buff.StigmataBuff || buff.Sprite == null)
             return;
 
         foreach (UI_Buff listedBuff in _buffBlockList)

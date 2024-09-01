@@ -44,7 +44,7 @@ public class CutSceneController : MonoBehaviour
 
     public void SkipButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
         EndReached(video);
     }
 

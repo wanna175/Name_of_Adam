@@ -70,7 +70,7 @@ public class UI_Hands : UI_Scene
 
         if (isCanUseMana && isCanUseDarkEssense)
         {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIInGameSelectSFX");
 
             if (BattleManager.BattleUI.UI_playerSkill.GetSelectedCard() != null)
             {
@@ -84,8 +84,7 @@ public class UI_Hands : UI_Scene
         }
         else
         {
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX"); 
-            Debug.Log("Can't");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
         }
     }
 
