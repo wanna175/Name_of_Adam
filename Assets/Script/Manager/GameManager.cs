@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
             }
             BattleManager.Instance.BattleOverCheck();
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             foreach (Stage stage in StageManager.Instance.CurrentStage.NextStage)
@@ -166,19 +167,44 @@ public class GameManager : MonoBehaviour
                 uI_EliteReward.SetRewardPanel();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (BattleManager.Data == null)
-                return;
+            DeckUnit newUnit = new();
+            newUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/아라벨라");
+            newUnit.IsMainDeck = false;
+            newUnit.HallUnitID = -1;
 
-            foreach (var unit in BattleManager.Data.BattleUnitList)
-            {
-                if (unit.Team == Team.Player)
-                {
-                    unit.ChangeHP(1000);
-                    unit.ChangeFall(-4);
-                }
-            }
+            GameManager.Data.AddDeckUnit(newUnit);
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/욘");
+            spawnData.location = new(5, 2);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/리비엘");
+            spawnData.location = new(4, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/아라벨라");
+            spawnData.location = new(4, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
