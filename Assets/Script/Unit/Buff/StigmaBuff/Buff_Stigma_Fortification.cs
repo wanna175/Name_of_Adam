@@ -39,7 +39,12 @@ public class Buff_Stigma_Fortification : Buff
             sd.location = nonUnitLocation[Random.Range(0, nonUnitLocation.Count)];
             sd.team = _owner.Team;
 
-            BattleManager.Spawner.SpawnDataSpawn(sd);
+            BattleUnit spawnUnit = BattleManager.Spawner.SpawnDataSpawn(sd);
+
+            Stat stat = new();
+            stat.MaxHP = stat.CurrentHP = -15;
+            spawnUnit.DeckUnit.DeckUnitChangedStat += stat;
+            spawnUnit.HP.Init(10, 10);
         }
 
         return false;

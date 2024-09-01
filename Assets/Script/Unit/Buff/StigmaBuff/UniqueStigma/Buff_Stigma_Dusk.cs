@@ -36,7 +36,7 @@ public class Buff_Stigma_Dusk : Buff
         }
         if (count >= 2)
         {
-            caster.ChangeFall(1, FallAnimMode.On);
+            caster.ChangeFall(1, null, FallAnimMode.On);
         }
 
         Buff_Dusk dusk = new();

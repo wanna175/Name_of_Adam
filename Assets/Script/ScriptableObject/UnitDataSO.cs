@@ -74,6 +74,9 @@ public class UnitDataSO : ScriptableObject
     [SerializeField] bool _isBattleOnly;
     public bool IsBattleOnly => _isBattleOnly;
 
+    [SerializeField] bool _isFlipFixed;
+    public bool IsFlipFixed => _isFlipFixed;
+
     const int Arow = 5;
     const int Acolumn = 11;
 
