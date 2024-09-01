@@ -29,9 +29,10 @@ public class UnitAction_Laser : UnitAction
         return true;
     }
 
-    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
     {
         List<Vector2> splashRangeList = new();
+        Vector2 target = BattleManager.Field.GetCoordByTile(targetTile);
         int direction = caster.x - target.x > 0 ? -1 : 1;
 
         foreach (Vector2 vec in unit.GetAttackRange())

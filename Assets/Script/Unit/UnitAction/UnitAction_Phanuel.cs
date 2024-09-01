@@ -304,7 +304,7 @@ public class UnitAction_Phanuel : UnitAction
         {
             if (receiver != null)
             {
-                receiver.ChangeFall(1, FallAnimMode.On);
+                receiver.ChangeFall(1, caster, FallAnimMode.On);
             }
         }
 
@@ -336,7 +336,6 @@ public class UnitAction_Phanuel : UnitAction
         SpawnData sd = new();
         sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/오벨리스크");
         sd.team = attackUnit.Team;
-
 
         if (hits.Count == 0)
         {

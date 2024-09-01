@@ -307,13 +307,18 @@ public class UnitAction : MonoBehaviour
     public virtual void Action(BattleUnit attackUnit, BattleUnit receiver) => attackUnit.Attack(receiver, attackUnit.BattleUnitTotalStat.ATK);
     protected void MoveUnit(BattleUnit moveUnit, Vector2 moveVector) => BattleManager.Instance.MoveUnit(moveUnit, moveVector);
 
-    public virtual List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    public virtual List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
     {
         List<Vector2> splashRangeList = new();
-        foreach (Vector2 vec in unit.GetSplashRange(target, caster))
+
+        if (targetTile.UnitExist)
         {
-            if (BattleManager.Field.IsInRange(vec + target))
-                splashRangeList.Add(vec + target);
+            Vector2 target = BattleManager.Field.GetCoordByTile(targetTile);
+            foreach (Vector2 vec in unit.GetSplashRange(target, caster))
+            {
+                if (BattleManager.Field.IsInRange(vec + target))
+                    splashRangeList.Add(vec + target);
+            }
         }
 
         return splashRangeList;

@@ -10,30 +10,33 @@ public class BattleDataManager : MonoBehaviour
         Init();
     }
 
-    [SerializeField] private List<DeckUnit> _playerDeck = new();
     public List<DeckUnit> PlayerDeck => _playerDeck;
+    [SerializeField] private List<DeckUnit> _playerDeck = new();
 
-    [SerializeField] private List<DeckUnit> _playerHands = new();
     public List<DeckUnit> PlayerHands => _playerHands;
+    [SerializeField] private List<DeckUnit> _playerHands = new();
 
     // 전투를 진행중인 캐릭터가 들어있는 리스트
-    private List<BattleUnit> _battleUnitList = new();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
+    private List<BattleUnit> _battleUnitList = new();
 
     // 중복 타락을 처리하기 위한 팝업 리스트
-    private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
     public List<UI_StigmaSelectButtonPopup> CorruptionPopups => _corruptionPopups;
+    private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
 
     public bool IsCorruptionPopupOn { get; set; }
 
-    [SerializeField] private BattleUnit incarnaUnit;
     public BattleUnit IncarnaUnit => incarnaUnit;
+    [SerializeField] private BattleUnit incarnaUnit;
 
-    private Dictionary<int, RewardUnit> _battlePrevUnitDict;
     public Dictionary<int, RewardUnit> BattlePrevUnitDict => _battlePrevUnitDict;
-    
-    private int _battlePrevDarkEssence;
+    private Dictionary<int, RewardUnit> _battlePrevUnitDict;
+
     public int BattlePrevDarkEssence => _battlePrevDarkEssence;
+    private int _battlePrevDarkEssence;
+
+    public (BattleUnit, int?) CurrentTurnUnitOrder => _currentTurnUnitOrder;
+    private (BattleUnit, int?) _currentTurnUnitOrder = new();
 
     public bool isDiscount = false;
 
@@ -251,6 +254,20 @@ public class BattleDataManager : MonoBehaviour
         BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
 
+    public void SetCurrentTurnOrder()
+    {
+        _currentTurnUnitOrder = GetNowUnitOrder();
+    }
+
+    public void RemoveCurrentTurnOrder()
+    {
+        if (_currentTurnUnitOrder.Item1 != null)
+        {
+            BattleOrderRemove(_currentTurnUnitOrder);
+            _currentTurnUnitOrder = new();
+        }
+    }
+
     public BattleUnit GetNowUnit()
     {
         if (_battleUnitOrders.Count > 0)
@@ -281,10 +298,6 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_CenteredSplash();
         }
-        else if (actionType == UnitActionType.UnitAction_Iana)
-        {
-            return new UnitAction_Iana();
-        }
         else if (actionType == UnitActionType.UnitAction_Phanuel)
         {
             return new UnitAction_Phanuel();
@@ -308,6 +321,18 @@ public class BattleDataManager : MonoBehaviour
         else if (actionType == UnitActionType.UnitAction_RaquelLeah)
         {
             return new UnitAction_RaquelLeah();
+        }
+        else if (actionType == UnitActionType.UnitAction_Libiel)
+        {
+            return new UnitAction_Libiel();
+        }
+        else if (actionType == UnitActionType.UnitAction_Arabella)
+        {
+            return new UnitAction_Arabella();
+        }
+        else if (actionType == UnitActionType.UnitAction_Yohrn)
+        {
+            return new UnitAction_Yohrn();
         }
         else
         {

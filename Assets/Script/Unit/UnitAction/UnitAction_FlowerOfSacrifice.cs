@@ -83,7 +83,7 @@ public class UnitAction_FlowerOfSacrifice : UnitAction
         List<BattleUnit> arroundUnits = BattleManager.Field.GetArroundUnits(caster.Location, caster.Team == Team.Player ? Team.Enemy : Team.Player);
         foreach (BattleUnit arroundUnit in arroundUnits)
         {
-            arroundUnit.ChangeFall(1, FallAnimMode.On);
+            arroundUnit.ChangeFall(1, _parentUnit, FallAnimMode.On);
         }
 
         foreach (BattleUnit arroundUnit in arroundUnits)

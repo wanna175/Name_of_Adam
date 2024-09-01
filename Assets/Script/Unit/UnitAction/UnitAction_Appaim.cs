@@ -4,7 +4,7 @@ using System.Linq;
 
 public class UnitAction_Appaim : UnitAction
 {
-    //0 = sword, 1 = staff, 2 = book
+    //0 = book, 1 = staff, 2 = sword
     private int _appaimState = 0;
     private bool _isStateUpdate = false;
     private Buff _appaimBuff = null;
@@ -100,7 +100,16 @@ public class UnitAction_Appaim : UnitAction
 
             if (inRangeUnits.Count > 0)
             {
-                BattleManager.Instance.AttackStart(attackUnit, inRangeUnits);
+                if (_appaimState == 0)
+                {
+                    GameManager.Sound.Play("Character/압바임/압바임_Book_Attack");
+                }
+                else if (_appaimState == 1)
+                {
+                    GameManager.Sound.Play("Character/압바임/압바임_Staff_Attack");
+                }
+
+                BattleManager.Instance.AttackStart(attackUnit, inRangeUnits.Distinct().ToList());
                 return true;
             }
             else
@@ -109,9 +118,10 @@ public class UnitAction_Appaim : UnitAction
             }
         }
         else
-        { 
-            BattleManager.Instance.AttackStart(attackUnit, hits);
-            return false;
+        {
+            GameManager.Sound.Play("Character/압바임/압바임_Sword_Attack");
+            BattleManager.Instance.AttackStart(attackUnit, hits.Distinct().ToList());
+            return true;
         }
     }
 
@@ -173,7 +183,7 @@ public class UnitAction_Appaim : UnitAction
         else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
         {
             if (receiver != null)
-                receiver.ChangeFall(1, FallAnimMode.On);
+                receiver.ChangeFall(1, caster, FallAnimMode.On);
         }
 
         return false;
@@ -185,9 +195,10 @@ public class UnitAction_Appaim : UnitAction
         return _appaimState;
     }
 
-    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
     {
         List<Vector2> splashList = new();
+        Vector2 target = BattleManager.Field.GetCoordByTile(targetTile);
 
         switch (_appaimState)
         {
