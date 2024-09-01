@@ -8,7 +8,7 @@ public class Buff_Stigma_KillingSpree : Buff
 
         _name = "KillingSpree";
 
-        _buffActiveTiming = ActiveTiming.UNIT_KILL;
+        _buffActiveTiming = ActiveTiming.UNIT_KILL | ActiveTiming.TURN_END;
 
         _owner = owner;
 
@@ -17,10 +17,14 @@ public class Buff_Stigma_KillingSpree : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (caster.Team != _owner.Team)
+        if (caster != null && caster.Team != _owner.Team && !IsActive)
         {
             _owner.SetBuff(new Buff_KillingSpree());
-            _owner.SetBuff(new Buff_KillingSpree());
+            IsActive = true;
+        }
+        else if (caster == null)
+        {
+            IsActive = false;
         }
 
         return false;

@@ -6,7 +6,7 @@ public class Buff_Stigma_Repetance : Buff
     {
         _buffEnum = BuffEnum.Stigmata_Repetance;
 
-        _name = "ÂüÈ¸";
+        _name = "Repetance";
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 
@@ -18,7 +18,7 @@ public class Buff_Stigma_Repetance : Buff
     public override bool Active(BattleUnit caster)
     {
         if (caster != null && caster.BattleUnitTotalStat.MaxHP == caster.HP.GetCurrentHP())
-            caster.ChangeFall(1, FallAnimMode.On);
+            caster.ChangeFall(1, _owner, FallAnimMode.On);
 
         return false;
     }

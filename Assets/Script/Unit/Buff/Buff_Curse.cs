@@ -21,7 +21,7 @@ public class Buff_Curse : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        _owner.ChangeFall(1);
+        _owner.ChangeFall(1, null);
 
         return false;
     }

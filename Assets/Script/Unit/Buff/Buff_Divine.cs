@@ -24,7 +24,7 @@ public class Buff_Divine : Buff
     public override bool Active(BattleUnit caster)
     {
         if (caster != null)
-            caster.ChangeFall(1, FallAnimMode.On);
+            caster.ChangeFall(1, _owner, FallAnimMode.On);
 
         return false;
     }
