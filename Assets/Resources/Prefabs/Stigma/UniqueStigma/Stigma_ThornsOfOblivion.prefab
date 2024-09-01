@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2950990188252653416}
-  - component: {fileID: 8727338131681478004}
+  - component: {fileID: -2344994583469106562}
   m_Layer: 0
-  m_Name: Stigma_Aid
+  m_Name: Stigma_ThornsOfOblivion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8727338131681478004
+--- !u!114 &-2344994583469106562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc75cf531a61d0b4eb2b0b17a3a50a49, type: 3}
+  m_Script: {fileID: 11500000, guid: c80723dafb3235c468a7a44442fd7c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 34
-  _name: Aid
-  _sprite_28: {fileID: 21300000, guid: 4ff69c7a1e49b894c8d84d8eb6357024, type: 3}
-  _sprite_88: {fileID: 21300000, guid: 6afc2e38f92ceb640969bb7ba5bbe03c, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 90523647d7ad504419f83cbb2e1fb15a, type: 3}
-  _description: Aid Info
+  _stigmaEnum: 117
+  _name: Thorns Of Oblivion
+  _sprite_28: {fileID: 21300000, guid: 3801c0320038b3443b42b0361f4f6d1e, type: 3}
+  _sprite_88: {fileID: 21300000, guid: c3c8cd7bd3fa83146a50668343abc7d8, type: 3}
+  _sprite_164: {fileID: 21300000, guid: e73343ea46ba91c499bda64d673297ba, type: 3}
+  _description: Thorns Of Oblivion Info
   _activeTiming: 2
-  _tier: 0
+  _tier: 3
   _isLock: 0
