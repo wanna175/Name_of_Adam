@@ -9,6 +9,7 @@ public class ActionPhase : Phase
     public override void OnStateEnter()
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
+        BattleManager.Data.SetCurrentTurnOrder();
         BattleManager.Field.SetTileHighlightFrame(_nowUnit.Location, true);
 
         if (_nowUnit.Team == Team.Player)
@@ -23,14 +24,9 @@ public class ActionPhase : Phase
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
 
         if (_nowUnit.Team == Team.Enemy)
-            BattleManager.Instance.StartCoroutine(NowUnitAction());
-    }
-
-    private IEnumerator NowUnitAction()
-    {
-        yield return new WaitForSeconds(1.5f);
-
-        _nowUnit.Action.AISkillUse(_nowUnit);
+            BattleManager.Instance.PlayAfterCoroutine(() => {
+                _nowUnit.Action.AISkillUse(_nowUnit);
+            }, 1f);
     }
 
     public override void OnStateUpdate()

@@ -26,6 +26,8 @@ public class BattleCutSceneData
     public bool AttackUnitFlipX;
     // 플레이어 직접 공격 여부
     public bool IsPlayerAttack;
+    //방향 전환 고정 여부
+    public bool IsFlipFixed;
 
     public BattleCutSceneData(BattleUnit attackUnit, List<BattleUnit> hitUnits)
     {

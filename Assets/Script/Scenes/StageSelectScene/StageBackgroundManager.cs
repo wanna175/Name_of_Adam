@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class StageBackgroundManager : MonoBehaviour
 {
-    public GameObject PhanuelBackground;
-    public GameObject HorusBackground;
-    public GameObject DefaultBackground;
+    [SerializeField] private GameObject _yohrnBackground;
+    [SerializeField] private GameObject _saviorBackground;
+    [SerializeField] private GameObject _phanuelBackground;
+    [SerializeField] private GameObject _defaultBackground;
 
     void Start()
     {
-        if(GameManager.Data.Map.GetStage(99).Name == StageName.BossBattle)
+        if (GameManager.Data.Map.GetStage(99).Name == StageName.BossBattle)
         {
-            if(GameManager.Data.Map.GetStage(99).StageID == 0)
+            if (GameManager.Data.Map.GetStage(99).StageID == 0)
             {
-                PhanuelBackground.SetActive(true);
+                _phanuelBackground.SetActive(true);
             }
-            else
+            else if (GameManager.Data.Map.GetStage(99).StageID == 1)
             {
-                HorusBackground.SetActive(true);
+                _saviorBackground.SetActive(true);
+            }
+            else if (GameManager.Data.Map.GetStage(99).StageID == 2)
+            {
+                _yohrnBackground.SetActive(true);
             }
         }
         else
         {
-            DefaultBackground.SetActive(true);
+            _defaultBackground.SetActive(true);
         }
     }
 }

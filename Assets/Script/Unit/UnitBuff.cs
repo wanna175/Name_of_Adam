@@ -153,7 +153,7 @@ public class UnitBuff : MonoBehaviour
     {
         while (_buffList.Count > 0)
         {
-            Buff buff = _buffList.Find(x => !x.StigmataBuff);
+            Buff buff = _buffList.Find(x => !x.StigmataBuff && !x.IsSystemBuff);
 
             if (buff is null)
                 break;

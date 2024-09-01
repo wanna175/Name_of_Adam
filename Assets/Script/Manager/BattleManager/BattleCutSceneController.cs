@@ -10,7 +10,7 @@ public class BattleCutSceneController : MonoBehaviour
     [SerializeField] private GameObject _blur;
     [Space(20f)]
 
-    readonly float ZoomTime = 0.5f;
+    readonly float ZoomTime = 0.38f;
 
     [Space(10f)]
     [Header("공격 이펙트(X, Y : 이동할 위치, Z : 머무를 시간")]
@@ -104,6 +104,9 @@ public class BattleCutSceneController : MonoBehaviour
 
     private void UnitFlip(BattleCutSceneData CSData)
     {
+        if (CSData.IsFlipFixed)
+            return;
+
         bool flip = CSData.AttackUnitFlipX;
 
         CSData.AttackUnit.SetFlipX(!flip);
@@ -151,7 +154,7 @@ public class BattleCutSceneController : MonoBehaviour
 
         StartCoroutine(_cameraHandler.CameraMove(CSData.ZoomLocation, ZoomTime));
         StartCoroutine(_cameraHandler.CameraZoom(CSData.ZoomSize, ZoomTime));
-        StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.MovePosition, ZoomTime));
+        StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.MovePosition, ZoomTime + 0.1f));
 
         yield return new WaitForSeconds(ZoomTime);
     }

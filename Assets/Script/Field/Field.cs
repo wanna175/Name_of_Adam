@@ -166,12 +166,19 @@ public class Field : MonoBehaviour
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTilePosition(Vector2 coord)
     {
-        Vector3 position = TileDict[coord].transform.position;
-        
-        float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
-        position.y -= sizeY;
+        if (IsInRange(coord))
+        {
+            Vector3 position = TileDict[coord].transform.position;
 
-        return position;
+            float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
+            position.y -= sizeY;
+
+            return position;
+        }
+        else
+        {
+            return new(0, 0, 0);
+        }
     }
 
     public void SetNextActionTileColor(BattleUnit unit, FieldColorType fieldType)
@@ -215,7 +222,7 @@ public class Field : MonoBehaviour
         {
             if (CheckSpawnTile(deckUnit, spawnTile))
                 continue;
-            if (TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
+            if (TileDict[spawnTile].UnitExist)
                 continue;
 
             List<Vector2> tempList = new();
@@ -299,6 +306,9 @@ public class Field : MonoBehaviour
 
     public void SetTileHighlightFrame(Vector2? location, bool highlightOn)
     {
+        if (location.Equals(new Vector2(-1, -1)))
+            return;
+
         if (NowHighlightFrameOnLocation != null)
         {
             TileDict[(Vector2)NowHighlightFrameOnLocation].SetHightlightFrame(false);
@@ -341,9 +351,7 @@ public class Field : MonoBehaviour
     {
         FieldShowInfo(tile);
 
-        BattleUnit currentUnit = BattleManager.Data.GetNowUnit();
-        if (currentUnit != null && currentUnit.Team == Team.Player &&
-            tile.Unit != null && tile.Unit.Team == Team.Enemy)
+        if (tile.IsColored)
             FieldShowSplashRange(tile);
     }
 
@@ -380,23 +388,22 @@ public class Field : MonoBehaviour
 
     public void FieldShowSplashRange(Tile tile)
     {
-        if (tile.UnitExist && BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Action))
+        if (!BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Action))
         {
-            BattleUnit currentUnit = BattleManager.Data.GetNowUnit();
-            BattleUnit tileUnit = tile.Unit;
-
-            if (currentUnit != tileUnit && currentUnit.GetAttackRange().Contains(tileUnit.Location - currentUnit.Location))
-            {
-                foreach (Vector2 range in currentUnit.Action.GetSplashRangeForField(currentUnit, tileUnit.Location, currentUnit.Location))
-                {
-                    BattleManager.Field.TileDict[range].SetRangeHightlight(true);
-                }
-
-                return;
-            }
+            FieldCloseSplashRange();
+            return;
         }
 
-        FieldCloseSplashRange();
+        BattleUnit currentUnit = BattleManager.Data.GetNowUnit();
+        if (currentUnit == null || currentUnit.Team != Team.Player)
+        {
+            return;
+        }
+
+        foreach (Vector2 range in currentUnit.Action.GetSplashRangeForField(currentUnit, tile, currentUnit.Location))
+        {
+            BattleManager.Field.TileDict[range].SetRangeHightlight(true);
+        }
     }
 
     public void FieldCloseSplashRange()
