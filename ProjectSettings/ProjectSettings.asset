@@ -771,6 +771,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+    Android: STEAMWORKS_NET
     Standalone: STEAMWORKS_NET
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -859,7 +860,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: fec28a57-0045-4a75-9b48-57356ad1485b
   framebufferDepthMemorylessMode: 0
