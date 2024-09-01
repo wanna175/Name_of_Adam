@@ -85,23 +85,24 @@ public class UnitAction_RaquelLeah : UnitAction
         }
     }
 
-    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Vector2 target, Vector2 caster)
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
     {
-        List<Vector2> splashList = new();
+        List<Vector2> splashRangeList = new();
+        Vector2 target = BattleManager.Field.GetCoordByTile(targetTile);
 
         if (_isChanged)
         {
             foreach (Vector2 vec in unit.GetAttackRange())
             {
                 if (BattleManager.Field.IsInRange(vec + caster))
-                    splashList.Add(vec + caster);
+                    splashRangeList.Add(vec + caster);
             }
         }
         else
         {
-            splashList.Add(target);
+            splashRangeList.Add(target);
         }
 
-        return splashList;
+        return splashRangeList;
     }
 }
