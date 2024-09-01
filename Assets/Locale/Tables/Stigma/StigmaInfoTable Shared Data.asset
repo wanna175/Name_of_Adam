@@ -239,6 +239,34 @@ MonoBehaviour:
     m_Key: Aid Info
     m_Metadata:
       m_Items: []
+  - m_Id: 72209235002413056
+    m_Key: Death's Threshold Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209239154774016
+    m_Key: Fortification Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209241214177280
+    m_Key: Armor Of Aeons Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209243240026112
+    m_Key: Broken Sword Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209245211348992
+    m_Key: Blood Oath Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209247161700352
+    m_Key: Gluttony Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209248940085248
+    m_Key: Blind Faith Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

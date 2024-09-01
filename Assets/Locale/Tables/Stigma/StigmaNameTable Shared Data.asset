@@ -251,6 +251,50 @@ MonoBehaviour:
     m_Key: Aid
     m_Metadata:
       m_Items: []
+  - m_Id: 72348813554241536
+    m_Key: Death's Threshold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348817182314496
+    m_Key: Fortification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348819241717760
+    m_Key: Armor Of Aeons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348821196263424
+    m_Key: Broken Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348822861402112
+    m_Key: Blood Oath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348824576872448
+    m_Key: Gluttony
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348828750204928
+    m_Key: Blind Faith
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769720071147520
+    m_Key: Glory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769787096125440
+    m_Key: Thorns Of Oblivion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769789029699584
+    m_Key: Garden Of Oblivion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769790749364224
+    m_Key: Deep Sea
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

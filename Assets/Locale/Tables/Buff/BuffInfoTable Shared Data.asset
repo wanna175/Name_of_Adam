@@ -123,6 +123,22 @@ MonoBehaviour:
     m_Key: Killing Spree Info
     m_Metadata:
       m_Items: []
+  - m_Id: 71267511090434048
+    m_Key: EliteStatBuff Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267973940269056
+    m_Key: ATK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267995981336576
+    m_Key: SPD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71268008954318848
+    m_Key: HP
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

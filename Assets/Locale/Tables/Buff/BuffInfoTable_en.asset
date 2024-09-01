@@ -145,6 +145,22 @@ MonoBehaviour:
     m_Localized: Gains an extra turn.
     m_Metadata:
       m_Items: []
+  - m_Id: 71267511090434048
+    m_Localized: On this stage will the unit's stat increase.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267973940269056
+    m_Localized: '<b>Attack:</b> '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267995981336576
+    m_Localized: '<b>Speed:</b> '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71268008954318848
+    m_Localized: '<b>HP:</b> '
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -118,6 +118,18 @@ MonoBehaviour:
     m_Localized: Killing Spree
     m_Metadata:
       m_Items: []
+  - m_Id: 71273951603609600
+    m_Localized: Blessing Of Phanuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71273984533090304
+    m_Localized: Blessing Of Savior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71273990568693760
+    m_Localized: Blessing Of Yorhn
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
