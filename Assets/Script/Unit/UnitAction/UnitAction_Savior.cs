@@ -7,6 +7,7 @@ public class UnitAction_Horus : UnitAction
     private int _summonOrder = 1;
     private List<BattleUnit> _summonedUnit = new();
     private bool _isSummon = false;
+    private bool _isFall = false;
 
     public override void AISkillUse(BattleUnit attackUnit)
     {
@@ -61,29 +62,18 @@ public class UnitAction_Horus : UnitAction
             BattleManager.Field.TileDict[caster.Location].ExitTile();
             if (caster.Team == Team.Player)
             {
-                caster.transform.position = new(-9f, 3f, 0f);
                 SpawnUnit(caster.Location, caster);
+                caster.SetLocation(new(-1, -1));
+                caster.transform.position = new(-9f, 3f, 0f);
                 _isSummon = false;
             }
             else
             {
+                caster.SetLocation(new(-1, -1));
                 caster.transform.position = new(9f, 3f, 0f);
             }
 
             GameManager.Resource.Instantiate("BattleUnits/Savior_UI", caster.transform).GetComponent<Savior_UI>().Init(caster);
-        }
-        else if ((activeTiming & ActiveTiming.STIGMA) == ActiveTiming.STIGMA)
-        {
-            if (caster.Team == Team.Player)
-            {
-                caster.transform.position = new(-9f, 3f, 0f);
-                caster.SetFlipX(false);
-            }
-            else
-            {
-                caster.transform.position = new(9f, 3f, 0f);
-                caster.SetFlipX(true);
-            }
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
         {
@@ -120,7 +110,43 @@ public class UnitAction_Horus : UnitAction
             if (_summonedUnit.Contains(receiver))
             {
                 _summonedUnit.Remove(receiver);
-                caster.ChangeFall(1, FallAnimMode.On);
+                caster.ChangeFall(1, caster, FallAnimMode.On);
+            }
+        }
+        else if ((activeTiming & ActiveTiming.FALLED) == ActiveTiming.FALLED)
+        {
+            if (!_isFall && caster.Team == Team.Enemy)
+            {
+                BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
+                BattleManager.Instance.SetTlieClickCoolDown(4f);
+
+                caster.AnimatorSetBool("isCorrupt", true);
+                BattleManager.Instance.PlayAfterCoroutine(() =>
+                {
+                    caster.UnitFallEvent();
+                }, 1.5f);
+
+                _isFall = true;
+
+                return true;
+            }
+            else
+            {
+                if (BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "±¸¿øÀÚ" && findUnit != caster) != null)
+                {
+                    while (true)
+                    {
+                        BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(unit => _summonedUnit.Contains(unit));
+                        if (remainUnit == null)
+                            break;
+
+                        remainUnit.UnitDiedEvent(false);
+                    }
+                }
+
+                _isFall = false;
+
+                return false;
             }
         }
 
