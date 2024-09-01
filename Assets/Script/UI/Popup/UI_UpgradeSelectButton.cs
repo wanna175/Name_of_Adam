@@ -29,7 +29,7 @@ public class UI_UpgradeSelectButton : UI_Base
 
     public void OnClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _popup.OnClickUpgradeButton(_selectIndex);
     }
 }

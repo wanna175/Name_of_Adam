@@ -20,21 +20,22 @@ public class UI_Credit : MonoBehaviour
 
     public void ClickBtnR()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
         UI_Credit1.SetActive(false);
         UI_Credit2.SetActive(true);
     }
 
     public void ClickBtnL()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
+
         UI_Credit1.SetActive(true);
         UI_Credit2.SetActive(false);
     }
 
     public void ClickQuit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UICloseSFX");
 
         UI_Credit1.SetActive(true);
         UI_Credit2.SetActive(false);

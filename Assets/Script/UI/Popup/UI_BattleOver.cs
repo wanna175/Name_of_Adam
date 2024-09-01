@@ -25,27 +25,27 @@ public class UI_BattleOver : UI_Scene
             _rewardScene.gameObject.SetActive(true);
             _rewardScene.Init(GameManager.Data.GetSortedDeck(SortMode.Hall));
             _textImage.gameObject.SetActive(false);
-            //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
+
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
+            GameManager.Sound.Play("Result/WinBGM", Sounds.BGM);
         }
         else if (result == "elite win")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
+            GameManager.Sound.Play("Result/WinBGM", Sounds.BGM);
         }
         else if (result == "lose")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("Lose/LoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Result/LoseBGM", Sounds.BGM);
         }
     }
 
     public void OnClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         if (_result == "win")
         {

@@ -44,7 +44,7 @@ public class DifficultySelectSceneController : MonoBehaviour
     {
         if (_incarnaSelectUI.activeSelf == true)
         {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
 
             if (GameManager.OutGameData.IsUnlockedItem(6))
             {
@@ -85,11 +85,12 @@ public class DifficultySelectSceneController : MonoBehaviour
         if ((incarnaIndex == 1 && !GameManager.OutGameData.IsUnlockedItem(71)) || 
             (incarnaIndex == 2 && !GameManager.OutGameData.IsUnlockedItem(61)))
         {
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
             return;
         }
 
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.Sound.Play("UI/UISFX/UISelectSFX");
+
         _incarnaListUI.SetActive(false);
         _confirmButtonUI.SetActive(true);
         _incarnaInfo[incarnaIndex].SetActive(true);
@@ -111,7 +112,7 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Quit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         if (_incarnaSelectUI.activeSelf == true)
         {

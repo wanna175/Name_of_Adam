@@ -6,7 +6,8 @@ public class PreparePhase : Phase
 
     public override void OnStateEnter()
     {
-        //GameManager.Sound.Play("Stage_Transition/Prepare/Prepare_Enter_2nd");
+        GameManager.Sound.Play("UI/UISFX/UIPlayerTurnSFX");
+
         if (!_isFirst)
         { 
             BattleManager.Mana.ChangeMana(30);
@@ -22,6 +23,8 @@ public class PreparePhase : Phase
 
         if (!GameManager.OutGameData.IsTutorialClear())
         {
+            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
             if (TutorialManager.Instance.CheckStep(TutorialStep.UI_PlayerTurn))
             {
                 // 첫번째 튜토리얼 설정
@@ -40,7 +43,7 @@ public class PreparePhase : Phase
                 stat.SPD = -50;
                 BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
-                BattleManager.Data.BattleUnitList[0].ChangeFall(1, FallAnimMode.Off);
+                BattleManager.Data.BattleUnitList[0].ChangeFall(1, null, FallAnimMode.Off);
                 TutorialManager.Instance.ShowTutorial();
             }
             else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Divine))
@@ -78,6 +81,8 @@ public class PreparePhase : Phase
             BattleManager.BattleUI.RefreshHand();
             _isFirst = false;
         }
+
+        GameManager.Sound.Play("UI/UISFX/UIUnitTurnSFX");
 
         BattleManager.BattleUI.CancelAllSelect();
         BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();

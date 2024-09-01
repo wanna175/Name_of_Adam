@@ -64,7 +64,7 @@ public class UI_PlayerSkill : UI_Scene
                     BattleManager.BattleUI.UI_hands.CancelSelect();
                 }
 
-                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                GameManager.Sound.Play("UI/UISFX/UIInGameSelectSFX");
                 if (card != null && card == _selectedCard)
                 {
                     //선택 취소
@@ -86,12 +86,11 @@ public class UI_PlayerSkill : UI_Scene
                 }
             }
             else
-                GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+                GameManager.Sound.Play("UI/UISFX/UIFailSFX");
         }
         else
         {
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
-            Debug.Log("PlayerSkill is already used.");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
         }
     }
 

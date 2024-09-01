@@ -33,7 +33,7 @@ public class UI_StigmaSelectButton : UI_Base
 
     public void OnClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UISelectSFX");
         _popup.OnClickStigmataButton(_stigma);
     }
 }

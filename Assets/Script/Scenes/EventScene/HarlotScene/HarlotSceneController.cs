@@ -139,13 +139,13 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     {
         string corruption = (_isNPCFall) ? "Corrupt" : "Normal";
 
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ShowPopup<UI_SystemSelect>().Init($"ApostleCreation_{corruption}", YesApostleCreationButtonClick);
     }
 
     private void YesApostleCreationButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         _selectMenuUI.SetActive(false);
 
@@ -169,7 +169,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     //유닛을 검은 정수로 환원하는 버튼
     public void OnRevertUnitButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         _revertUnits.Clear();
 
@@ -213,7 +213,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     //타락 성흔 부여 버튼 클릭
     public void OnStigmataBestowalButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
         myDeck.Init();
@@ -235,7 +235,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         {
             GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmAlreadyHaveCorruptStigmata", () =>
             {
-                GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
                 List<Stigma> stigmataList = new();
                 _stigmataBestowalUnit = unit;
@@ -358,7 +358,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
     public void OnQuitClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         StartCoroutine(QuitScene());
     }
 

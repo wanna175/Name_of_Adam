@@ -30,7 +30,8 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnClickShopNode(int id)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UISelectSFX");
+
         ShopNode foundNode = ShopNodes.FirstOrDefault(node => node.ItemID == selectedID);
         ShopNode newfoundNode = ShopNodes.FirstOrDefault(node => node.ItemID == id);
 
@@ -88,7 +89,9 @@ public class ProgressShopManager : MonoBehaviour
             return;
         }
 
-        GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
+        //GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
+        GameManager.Sound.Play("UI/SanctumSFX/SanctumSuccessSFX");
+
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
         ChangeBtnImage(false);
@@ -125,7 +128,7 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnDisabledBtnClick()
     {
-        GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+        GameManager.Sound.Play("UI/UISFX/UIFailSFX");
     }
 
     public void OnMenuBtnClick()

@@ -181,7 +181,7 @@ public class UI_UnitInfo : UI_Popup
 
     public void Quit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ClosePopup();
     }
 
@@ -193,7 +193,7 @@ public class UI_UnitInfo : UI_Popup
         }
         else
         {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         }
 
         if (_onSelect != null)
@@ -205,7 +205,7 @@ public class UI_UnitInfo : UI_Popup
                     {
                         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("StigmaMax", () =>
                         {
-                            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
                             _onSelect(_unit);
                             _quitButton.SetActive(false);
@@ -221,7 +221,7 @@ public class UI_UnitInfo : UI_Popup
                     {
                         GameManager.UI.ShowPopup<UI_SystemSelect>().Init("UpgradeMax", () =>
                         {
-                            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+                            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
                             _onSelect(_unit);
                             _quitButton.SetActive(false);
@@ -260,6 +260,7 @@ public class UI_UnitInfo : UI_Popup
             case CurrentEvent.Stigmata_Give:
             case CurrentEvent.Stigmata_Receive:
             case CurrentEvent.Corrupt_Stigmata_Select:
+                GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
                 Transform e = this.transform.parent.GetChild(0);
                 e.SetAsLastSibling();
                 e.gameObject.SetActive(true);
@@ -278,6 +279,6 @@ public class UI_UnitInfo : UI_Popup
         if (_endEvent != null)
             _endEvent.Invoke();
 
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
     }
 }

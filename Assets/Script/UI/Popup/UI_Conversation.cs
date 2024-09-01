@@ -69,7 +69,7 @@ public class UI_Conversation : UI_Popup
 
             yield return new WaitUntil(() => GameManager.InputManager.Click);
 
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
         }
 
         if (_battleConversation)

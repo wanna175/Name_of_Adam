@@ -34,7 +34,7 @@ public class UI_SystemSelect : UI_Popup
 
     private void OnDefaultNoEvent()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ClosePopup(this);
     }
 }

@@ -24,7 +24,6 @@ public class UI_Tutorial : MonoBehaviour
 
     public void TutorialActive(int i)
     {
-        GameManager.Sound.Play("UI/TutorialSFX/TutorialPopupSFX");
         SetUIPage(i);
         TutorialTimeStop();
     }
@@ -43,27 +42,27 @@ public class UI_Tutorial : MonoBehaviour
 
     public void OnLastCloseButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UICloseSFX");
         TutorialManager.Instance.SetNextStep();
         TutorialTimeStart();
     }
 
     public void OnCloseButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UICloseSFX");
         TutorialManager.Instance.ShowNextTutorial();
         TutorialTimeStart();
     }
 
     public void NextButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
         TutorialManager.Instance.ShowNextTutorial();
     }
 
     public void PreviousButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
         TutorialManager.Instance.ShowPreviousTutorial();
     }
 

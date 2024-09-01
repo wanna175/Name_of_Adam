@@ -89,7 +89,7 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
 
     public void Reroll()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         ResetUpgradeSelectButtons();
         _rerollButton.SetActive(false);
     }

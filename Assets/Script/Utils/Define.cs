@@ -187,7 +187,7 @@ public enum Sounds
 [Flags]
 public enum ActiveTiming
 {
-    STIGMA = 1 << 1, //낙인 발동(소환 시, 낙인 부여 시)
+    STIGMA = 1 << 1, //성흔 발동(소환 시, 성흔 부여 시)
 
     FIELD_UNIT_SUMMON = 1 << 2,//필드에 유닛이 소환 시
     SUMMON = 1 << 3, //소환 후
@@ -216,21 +216,23 @@ public enum ActiveTiming
     ATTACK_TURN_END = 1 << 16, //공격턴 후
     FIELD_ATTACK_TURN_END = 1 << 17, //필드 유닛의 공격턴 후
 
-    FALL = 1 << 18, //타락시켰을 때, 그 후
-    FALLED = 1 << 19, //타락되었을 때 그 전
-    FIELD_UNIT_FALLED = 1 << 20, //필드 유닛이 타락 시
+    BEFORE_CHANGE_FALL = 1 << 18, //타락시켰을 때, 그 후
 
-    BEFORE_UNIT_DEAD = 1 << 21, //자신이 사망 전
-    AFTER_UNIT_DEAD = 1 << 22, //자신이 사망 후
-    FIELD_UNIT_DEAD = 1 << 23, //필드 유닛이 사망 시
+    FALL = 1 << 19, //타락시켰을 때, 그 후
+    FALLED = 1 << 20, //타락되었을 때 그 전
+    FIELD_UNIT_FALLED = 1 << 21, //필드 유닛이 타락 시
 
-    UNIT_KILL = 1 << 24, //다른 유닛을 죽일 시
+    BEFORE_UNIT_DEAD = 1 << 22, //자신이 사망 전
+    AFTER_UNIT_DEAD = 1 << 23, //자신이 사망 후
+    FIELD_UNIT_DEAD = 1 << 24, //필드 유닛이 사망 시
 
-    ATTACK_MOTION_END = 1 << 25, //공격 모션이 끝난 뒤
-    AFTER_SWITCH = 1 << 26, //유닛 간 스위치 후
-    BEFORE_BUFFED = 1 << 27, //버프를 얻기 전
+    UNIT_KILL = 1 << 25, //다른 유닛을 죽일 시
 
-    NONE = 1 << 28 //없음
+    ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
+    AFTER_SWITCH = 1 << 27, //유닛 간 스위치 후
+    BEFORE_BUFFED = 1 << 28, //버프를 얻기 전
+
+    NONE = 1 << 29 //없음
 };
 
 public enum StigmaTier
@@ -327,6 +329,13 @@ public enum StigmaEnum
     Symbiosis = 113,
     Trinity = 114,
     WrathOfBabel = 115,
+    Glory = 116,
+    ThornsOfOblivion = 117,
+    GardenOfOblivion = 118,
+    StormSurge = 119,
+    StormSurge2 = 120,
+    StormSurge3 = 121,
+    DeepSea = 122,
 }
 
 public enum BuffEnum
@@ -416,6 +425,13 @@ public enum BuffEnum
     Stigmata_Symbiosis,
     Stigmata_Trinity,
     Stigmata_WrathOfBabel,
+    Stigmata_Glory,
+    Stigmata_ThornsOfOblivion,
+    Stigmata_GardenOfOblivion,
+    Stigmata_StormSurge,
+    Stigmata_StormSurge2,
+    Stigmata_StormSurge3,
+    Stigmata_DeepSea,
 
     Stigmata_BloodFest,
     Stigmata_Thirst,

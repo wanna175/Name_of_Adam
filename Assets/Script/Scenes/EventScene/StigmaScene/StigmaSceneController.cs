@@ -118,7 +118,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
     //성흔 부여 버튼 클릭
     public void OnStigmataBestowalButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _selectMenuUI.SetActive(false);
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
@@ -129,7 +129,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
     //성흔 이동 버튼 클릭
     public void OnStigmataTransferButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _selectMenuUI.SetActive(false);
 
         UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
@@ -308,7 +308,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
     //나가기 
     public void OnQuitClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         StartCoroutine(QuitScene());
     }
 

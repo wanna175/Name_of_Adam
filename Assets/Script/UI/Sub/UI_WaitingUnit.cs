@@ -10,8 +10,8 @@ public class UI_WaitingUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private Vector2? _prevHighlightLocation;
 
-    private Color32 _enemy = new(130, 123, 56, 60);
-    private Color32 _player = new(48, 12, 69, 60);
+    private Color32 _enemy = new(166, 148, 93, 255);
+    private Color32 _player = new(65, 57, 69, 255);
 
     public void SetUnit(BattleUnit unit)
     {
@@ -35,13 +35,19 @@ public class UI_WaitingUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         _prevHighlightLocation = BattleManager.Field.NowHighlightFrameOnLocation;
-        BattleManager.Field.SetTileHighlightFrame(_unit.Location, true);
-        BattleManager.Field.FieldShowInfo(BattleManager.Field.TileDict[_unit.Location]);
+        if (!_unit.Location.Equals(new Vector2(-1, -1)))
+        {
+            BattleManager.Field.SetTileHighlightFrame(_unit.Location, true);
+            BattleManager.Field.FieldShowInfo(BattleManager.Field.TileDict[_unit.Location]);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        BattleManager.Field.SetTileHighlightFrame(_prevHighlightLocation, true);
-        BattleManager.Field.FieldCloseInfo(BattleManager.Field.TileDict[_unit.Location]);
+        if (!_unit.Location.Equals(new Vector2(-1, -1)))
+        {
+            BattleManager.Field.SetTileHighlightFrame(_prevHighlightLocation, true);
+            BattleManager.Field.FieldCloseInfo(BattleManager.Field.TileDict[_unit.Location]);
+        }
     }
 }
