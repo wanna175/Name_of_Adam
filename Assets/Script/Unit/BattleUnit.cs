@@ -40,7 +40,7 @@ public class BattleUnit : MonoBehaviour
     private bool[] _attackRangeList;
     private bool _isTeleportOn => Buff.CheckBuff(BuffEnum.SacredStep);
 
-    private IEnumerator moveCoro;
+    private IEnumerator _moveCoro;
 
     public bool IsConnectedUnit;
     public List<ConnectedUnit> ConnectedUnits;
@@ -61,8 +61,6 @@ public class BattleUnit : MonoBehaviour
 
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
-
-        ConnectedUnits = new();
 
         Action = BattleManager.Data.GetUnitAction(Data.UnitActionType);
         Action.Init();
@@ -91,6 +89,7 @@ public class BattleUnit : MonoBehaviour
         SetLocation(coord);
 
         IsConnectedUnit = isConnectedUnit;
+        ConnectedUnits = new();
 
         if (!isConnectedUnit)
         {
@@ -124,7 +123,7 @@ public class BattleUnit : MonoBehaviour
     public void SetFlipX(bool flip)
     {
         //true -> look left, false -> look right
-        if (UnitRenderer.flipX == flip || Data.UnitMoveType == UnitMoveType.UnitMove_None)
+        if (UnitRenderer.flipX == flip)
             return;
 
         UnitRenderer.flipX = flip;
@@ -144,12 +143,14 @@ public class BattleUnit : MonoBehaviour
 
             int size = maxX - minX + 1;
 
+            Dictionary<BattleUnit, Vector2> flipLocationDict = new();
+
             for (int i = 0; i < size; i++)
             {
                 if ((int)_location.x == minX + i)
                 {
                     BattleManager.Field.ExitTile(_location);
-                    SetLocation(new(maxX - i, _location.y));
+                    flipLocationDict.Add(this, new(maxX - i, _location.y));
                 }
 
                 foreach (ConnectedUnit unit in ConnectedUnits)
@@ -157,14 +158,19 @@ public class BattleUnit : MonoBehaviour
                     if ((int)unit.Location.x == minX + i)
                     {
                         BattleManager.Field.ExitTile(unit.Location);
-                        unit.SetLocation(new(maxX - i, unit.Location.y));
+                        flipLocationDict.Add(unit, new(maxX - i, unit.Location.y));
                     }
                 }
             }
 
             foreach (ConnectedUnit unit in ConnectedUnits)
-                BattleManager.Field.EnterTile(unit, unit.Location);
-            BattleManager.Field.EnterTile(this, this.Location);
+            {
+                unit.SetLocation(flipLocationDict[unit]);
+                BattleManager.Field.EnterTile(unit, flipLocationDict[unit]);
+            }
+
+            SetLocation(flipLocationDict[this]);
+            BattleManager.Field.EnterTile(this, flipLocationDict[this]);
         }
     }
 
@@ -194,6 +200,9 @@ public class BattleUnit : MonoBehaviour
         _location = coord;
 
         float scale = GetModifiedScale();
+        
+        if (_moveCoro != null)
+            StopCoroutine(_moveCoro);
 
         transform.position = BattleManager.Field.GetTilePosition(coord);
         transform.localScale = new(scale, scale, 1);
@@ -214,6 +223,13 @@ public class BattleUnit : MonoBehaviour
         }
 
         BattleManager.Instance.UnitDeadEvent(this);
+        if (IsConnectedUnit)
+        {
+            BattleUnit originalUnit = this.GetOriginalUnit();
+            if (originalUnit != null)
+                originalUnit.UnitDiedEvent(isDeathAvoidable);
+        }
+
         foreach (ConnectedUnit unit in ConnectedUnits)
         {
             BattleManager.Instance.UnitDeadEvent(unit);
@@ -270,7 +286,7 @@ public class BattleUnit : MonoBehaviour
 
         FallEvent = true;
 
-        Buff.ClearSystemBuff();
+        Buff.ClearBuffByCorruption();
 
         DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
@@ -308,7 +324,6 @@ public class BattleUnit : MonoBehaviour
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
-        Buff.DispelBuff();
 
         SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
@@ -316,12 +331,6 @@ public class BattleUnit : MonoBehaviour
 
         BattleManager.Data.BattleUnitOrderSorting();
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
-
-        if (Buff.CheckBuff(BuffEnum.Divine))
-            DeleteBuff(BuffEnum.Divine);
-
-        if (Buff.CheckBuff(BuffEnum.Curse))
-            DeleteBuff(BuffEnum.Curse);
     }
 
     //애니메이션에서 직접 실행시킴
@@ -378,10 +387,10 @@ public class BattleUnit : MonoBehaviour
         }
     }
     
-    public IEnumerator CutSceneMove(Vector3 moveVec, float moveTime)
+    public IEnumerator CutSceneMove(Vector3 moveDestination, float moveTime)
     {
-        if (moveCoro != null)
-            StopCoroutine(moveCoro);
+        if (_moveCoro != null)
+            StopCoroutine(_moveCoro);
 
         Vector3 originVec = transform.position;
         float time = 0;
@@ -391,45 +400,45 @@ public class BattleUnit : MonoBehaviour
             time += Time.deltaTime;
             float t = time / moveTime;
 
-            transform.position = Vector3.Lerp(originVec, moveVec, t);
+            transform.position = Vector3.Lerp(originVec, moveDestination, t);
             yield return null;
         }
     }
 
-    public void UnitMove(Vector2 coord, float moveSpeed)
+    public void UnitMove(Vector2 coord, float moveSpeed, bool isFilpFix)
     {
-        bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0);
+        bool flip = (((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0)) && !(isFilpFix || Data.IsFlipFixed);
         //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
         //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
-        if (moveCoro != null)
-            StopCoroutine(moveCoro);
+        if (_moveCoro != null)
+            StopCoroutine(_moveCoro);
 
-        moveCoro = MoveFieldPosition(BattleManager.Field.GetTilePosition(coord), coord, backMove, moveSpeed);
-        StartCoroutine(moveCoro);
+        _moveCoro = MoveFieldPosition(BattleManager.Field.GetTilePosition(coord), coord, flip, moveSpeed);
+        StartCoroutine(_moveCoro);
     }
 
-    public IEnumerator MoveFieldPosition(Vector3 moveDestination, Vector2 coord, bool backMove, float moveSpeed)
+    public IEnumerator MoveFieldPosition(Vector3 moveDestination, Vector2 coord, bool flip, float moveSpeed)
     {
         _location = coord;
-        yield return MoveFieldPositionCoroutine(moveDestination, backMove, moveSpeed);
-        SetLocation(coord);
+        yield return MoveFieldPositionCoroutine(moveDestination, flip, moveSpeed);
+        SetLocation(_location);
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE, this);
     }
 
-    public IEnumerator MoveFieldPositionCoroutine(Vector3 moveDestination, bool backMove, float moveSpeed)
+    public IEnumerator MoveFieldPositionCoroutine(Vector3 moveDestination, bool flip, float moveSpeed)
     {
-        float moveTime = 0.2f / moveSpeed;
-        float backMoveTime = 0.2f / moveSpeed;
-
-        Vector3 overDistance = (moveDestination - transform.position) * 0.03f;
-        Vector3 pVel = Vector3.zero;
-        Vector3 sVel = Vector3.zero;
-
         //GetModifiedScale check location.y
         float addScale = GetModifiedScale();
 
-        if (backMove)
+        if (flip)
             SetFlipX(!GetFlipX());
+
+        Vector3 pVel = Vector3.zero;
+        Vector3 sVel = Vector3.zero;
+        Vector3 overDistance = (moveDestination - transform.position) * 0.03f;
+
+        float moveTime = 0.18f / moveSpeed;
+        float backMoveTime = 0.2f / moveSpeed;
 
         while (Vector3.Distance(moveDestination + overDistance, transform.position) >= 0.03f)
         {
@@ -441,7 +450,7 @@ public class BattleUnit : MonoBehaviour
 
         pVel = Vector3.zero;
 
-        while (Vector3.Distance(moveDestination, transform.position) >= 0.01f)
+        while (Vector3.Distance(moveDestination, transform.position) >= 0.05f)
         {
             transform.position = Vector3.SmoothDamp(transform.position, moveDestination, ref pVel, backMoveTime);
 
@@ -493,12 +502,13 @@ public class BattleUnit : MonoBehaviour
     public virtual void GetAttack(int value, BattleUnit caster)
     {
         //피격 전 체크
+        ChangedDamage = value;
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, this, caster))
         {
             return;
         }
 
-        DisplayFloatingDamage(value);
+        DisplayFloatingDamage(ChangedDamage);
         ChangeHP(value);
 
         //피격 후 체크
@@ -528,11 +538,16 @@ public class BattleUnit : MonoBehaviour
 
     public virtual int GetHP() => HP.GetCurrentHP();
 
-    public void ChangeFall(int value, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.75f)
+    public void ChangeFall(int value, BattleUnit caster, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.75f)
     {
         if (FallEvent || Fall.IsEdified)
         {
             Debug.Log($"{Data.Name} is Edified.");
+            return;
+        }
+
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_CHANGE_FALL, this, caster))
+        {
             return;
         }
 
@@ -551,7 +566,18 @@ public class BattleUnit : MonoBehaviour
 
     public virtual void SetBuff(Buff buff)
     {
-        Buff.SetBuff(buff, this);
+        buff.Init(this);
+
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_BUFFED, this, null))
+        {
+            foreach (Buff activeBuff in Buff.CheckActiveTiming(ActiveTiming.BEFORE_BUFFED))
+            {
+                if (activeBuff.Active(buff))
+                    return;
+            }
+        }
+
+        Buff.SetBuff(buff);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.AddBuff(buff);
         _hpBar.RefreshBuff();
@@ -631,7 +657,7 @@ public class BattleUnit : MonoBehaviour
             UnitRangeList.Add(new Vector2(0, 0));
             return UnitRangeList;
         }
-        if (_isTeleportOn)
+        else if (_isTeleportOn)
         {
             UnitRangeList = BattleManager.Field.GetUnitAllCoord();
             return UnitRangeList;
@@ -662,7 +688,8 @@ public class BattleUnit : MonoBehaviour
         {
             foreach (Vector2 vec in RangeList)
             {
-                UnitRangeList.Add(unit.Location - _location  + vec);
+                if (!UnitRangeList.Contains(unit.Location - _location + vec))
+                    UnitRangeList.Add(unit.Location - _location  + vec);
             }
         }
 

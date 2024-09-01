@@ -62,7 +62,8 @@ public class BattleManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && _phase.CurrentPhaseCheck(Phase.Prepare))
         {
             //우클릭
-            _battleUI.CancelAllSelect();
+            if (GameManager.OutGameData.IsTutorialClear())
+                _battleUI.CancelAllSelect();
         }
 
         _phase.OnUpdate();
@@ -160,38 +161,35 @@ public class BattleManager : MonoBehaviour
         Dictionary<int, int> threshold = new() {
             {0, 0},
             {1, 0},
-            {2, 50},
-            {3, 70},
-            {4, 100}
+            {2, 30},
+            {3, 50},
+            {4, 70}
         };
 
         if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle || GameManager.Data.Map.GetCurrentStage().Name == StageName.EliteBattle)
             return;
-        
-        if (GameManager.Data.GameData.StageDivine.x == 1 && 
-            GameManager.Data.GameData.StageDivine.y == 1 &&
-            GameManager.Data.GameData.StageDivine.z == 1)
+
+        BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
+        Vector3 stageDivine = GameManager.Data.GameData.StageDivine;
+
+        if (stageDivine.x == 1 && stageDivine.y == 1 && stageDivine.z == 1)
         {
             GameManager.Data.GameData.StageDivine = new(-1,0,0);
         }
-        else if (GameManager.Data.GameData.StageDivine.x == -1 && 
-            GameManager.Data.GameData.StageDivine.y == -1)
+        else if (stageDivine.x == -1 && stageDivine.y == -1)
         {
-            BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
             buffUnit.SetBuff(new Buff_Divine());
 
             GameManager.Data.GameData.StageDivine = new(1,0,0);
         }
         else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 10])
         {
-            BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
             buffUnit.SetBuff(new Buff_Divine());
-
-            GameManager.Data.GameData.StageDivine = new(1, GameManager.Data.GameData.StageDivine.x, GameManager.Data.GameData.StageDivine.y);
+            GameManager.Data.GameData.StageDivine = new(1, stageDivine.x, stageDivine.y);
         }
         else
         {
-            GameManager.Data.GameData.StageDivine = new(-1, GameManager.Data.GameData.StageDivine.x, GameManager.Data.GameData.StageDivine.y);
+            GameManager.Data.GameData.StageDivine = new(-1, stageDivine.x, stageDivine.y);
         }
     }
 
@@ -210,22 +208,32 @@ public class BattleManager : MonoBehaviour
         {
             if (GameManager.Data.Map.GetStage(99).StageID == 0)
             {
+                Background[3].SetActive(false);
                 Background[2].SetActive(false);
                 Background[1].SetActive(true);
                 Background[0].SetActive(false);
             }
             else if (GameManager.Data.Map.GetStage(99).StageID == 1)
             {
+                Background[3].SetActive(false);
                 Background[2].SetActive(true);
+                Background[1].SetActive(false);
+                Background[0].SetActive(false);
+            }
+            else if (GameManager.Data.Map.GetStage(99).StageID == 2)
+            {
+                Background[3].SetActive(true);
+                Background[2].SetActive(false);
                 Background[1].SetActive(false);
                 Background[0].SetActive(false);
             }
         }
         else
         {
+            Background[3].SetActive(true);
             Background[2].SetActive(false);
             Background[1].SetActive(false);
-            Background[0].SetActive(true);
+            Background[0].SetActive(false);
         }
     }
 
@@ -311,11 +319,6 @@ public class BattleManager : MonoBehaviour
             return;
 
         BattleUnit unit = _battleData.GetNowUnit();
-        foreach (ConnectedUnit connectUnit in unit.ConnectedUnits)
-        {
-            if (connectUnit.Location == coord)
-                return;
-        }
 
         if (MoveUnit(unit, coord))
         {
@@ -329,7 +332,7 @@ public class BattleManager : MonoBehaviour
             SetTlieClickCoolDown(0.2f);
         }
         else
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
 
     }
 
@@ -349,12 +352,12 @@ public class BattleManager : MonoBehaviour
         List<BattleUnit> unitList = new();
         attackCoords.Add(coord);
         
-        if (nowUnit.DeckUnit.CheckStigma(StigmaEnum.Additional_Punishment))
+        if (nowUnit.DeckUnit.CheckStigma(StigmaEnum.AdditionalPunishment))
         {
             BattleUnit selectUnit = _field.GetUnit(coord);
             if (selectUnit == null || selectUnit.Team == Team.Player)
             {
-                GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+                GameManager.Sound.Play("UI/UISFX/UIFailSFX");
                 return;
             }
 
@@ -389,7 +392,7 @@ public class BattleManager : MonoBehaviour
 
         if (!nowUnit.Action.ActionStart(nowUnit, unitList, coord))
         {
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
             return;
         }
 
@@ -407,9 +410,10 @@ public class BattleManager : MonoBehaviour
         AttackStart(caster, hits);
     }
 
-    public void AttackStart(BattleUnit caster, List<BattleUnit> hits)
+    public void AttackStart(BattleUnit caster, List<BattleUnit> hits, bool isFlipFixed = false)
     {
         BattleCutSceneData CSData = new(caster, hits);
+        CSData.IsFlipFixed = isFlipFixed;
         _battlecutScene.InitBattleCutScene(CSData);
         caster.AttackUnitNum = hits.Count;
         caster.IsDoneAttack = true;
@@ -432,7 +436,7 @@ public class BattleManager : MonoBehaviour
     public void EndUnitAction()
     {
         _field.ClearAllColor();
-        _battleData.BattleOrderRemove(Data.GetNowUnitOrder());
+        _battleData.RemoveCurrentTurnOrder();
         _battleUI.UI_darkEssence.Refresh();
         _phase.ChangePhase(_phase.Engage);
         BattleOverCheck();
@@ -496,7 +500,8 @@ public class BattleManager : MonoBehaviour
     public void UnitDeadEvent(BattleUnit unit)
     {
         _battleData.BattleUnitList.Remove(unit);
-        _field.ExitTile(unit.Location);
+        if (unit.Location != new Vector2(-1,-1))
+            _field.ExitTile(unit.Location);
         _battleData.BattleUnitRemoveFromOrder(unit);
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
@@ -555,9 +560,6 @@ public class BattleManager : MonoBehaviour
 
     public void UnitFallEvent(BattleUnit unit)
     {
-        //if (_phase.CurrentPhaseCheck(_phase.Prepare))
-        //    _battleData.BattleUnitOrderSorting();
-
         if (GameManager.OutGameData.GetVisitDarkshop()==true)
             GameManager.OutGameData.GetNPCQuest().DarkshopQuest++;
 
@@ -740,7 +742,7 @@ public class BattleManager : MonoBehaviour
     }
 
     // 이동 경로를 받아와 이동시킨다
-    public bool MoveUnit(BattleUnit moveUnit, Vector2 dest, float moveSpeed = 1)
+    public bool MoveUnit(BattleUnit moveUnit, Vector2 dest, float moveSpeed = 1, bool isFlipFix = false)
     {
         Vector2 current = moveUnit.Location;
 
@@ -750,29 +752,46 @@ public class BattleManager : MonoBehaviour
         if (moveUnit.ConnectedUnits.Count > 0)
         {
             if (_field.GetUnit(dest) != null)
-            {
                 return false;
-            }
+
+            Vector2 originalUnitMovePosition = dest;
+            float minDistance = (dest - current).magnitude;
 
             foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
             {
-                Vector2 unitDest = unit.Location + dest - current;
+                Vector2 unitMovePosition = dest - (unit.Location - current);
+                float distance = (unitMovePosition - current).magnitude;
 
-                if (!_field.IsInRange(unitDest))
-                    return false;
+                if (distance < minDistance && _field.IsInRange(unitMovePosition))
+                {
+                    minDistance = distance;
+                    originalUnitMovePosition = unitMovePosition;
+                }
+            }
 
-                if (_field.GetUnit(unitDest) != null && _field.GetUnit(unitDest).DeckUnit != moveUnit.DeckUnit)
+            if (!_field.IsInRange(originalUnitMovePosition) ||
+                  (_field.GetUnit(originalUnitMovePosition) != null && _field.GetUnit(originalUnitMovePosition).DeckUnit != moveUnit.DeckUnit))
+                return false;
+
+            foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
+            {
+                Vector2 unitDest = unit.Location + originalUnitMovePosition - current;
+                if ((!_field.IsInRange(unitDest)) || 
+                    (_field.GetUnit(unitDest) != null && _field.GetUnit(unitDest).DeckUnit != moveUnit.DeckUnit))
                     return false;
             }
 
             _field.ExitTile(current);
-            _field.EnterTile(moveUnit, dest);
-            moveUnit.UnitMove(dest, moveSpeed);
 
             foreach (ConnectedUnit unit in moveUnit.ConnectedUnits)
             {
-                MoveUnit(unit, unit.Location + dest - current);
+                _field.ExitTile(unit.Location);
+                _field.EnterTile(unit, unit.Location + originalUnitMovePosition - current);
+                unit.SetLocation(unit.Location + originalUnitMovePosition - current);
             }
+
+            _field.EnterTile(moveUnit, originalUnitMovePosition);
+            moveUnit.UnitMove(originalUnitMovePosition, moveSpeed, isFlipFix);
         }
         else
         {
@@ -785,10 +804,10 @@ public class BattleManager : MonoBehaviour
                     _field.ExitTile(current);
                     _field.ExitTile(dest);
 
-                    moveUnit.UnitMove(dest, moveSpeed);
+                    moveUnit.UnitMove(dest, moveSpeed, isFlipFix);
                     _field.EnterTile(moveUnit, dest);
 
-                    destUnit.UnitMove(current, moveSpeed);
+                    destUnit.UnitMove(current, moveSpeed, false);
                     _field.EnterTile(destUnit, current);
                     ActiveTimingCheck(ActiveTiming.AFTER_SWITCH, moveUnit, destUnit);
                 }
@@ -802,7 +821,7 @@ public class BattleManager : MonoBehaviour
                 if (_field.IsInRange(current))
                     _field.ExitTile(current);
                 _field.EnterTile(moveUnit, dest);
-                moveUnit.UnitMove(dest, moveSpeed);
+                moveUnit.UnitMove(dest, moveSpeed, isFlipFix);
             }
         }
 
@@ -819,7 +838,9 @@ public class BattleManager : MonoBehaviour
         moveUnit.GetMoveRange().Contains(destUnit.Location - moveUnit.Location) &&
         destUnit.GetMoveRange().Contains(moveUnit.Location - destUnit.Location) &&
         moveUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None &&
-        destUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None;
+        destUnit.Data.UnitMoveType != UnitMoveType.UnitMove_None &&
+        moveUnit.ConnectedUnits.Count == 0 &&
+        destUnit.ConnectedUnits.Count == 0;
 
     public bool UnitSpawnReady(FieldColorType colorType, DeckUnit deckUnit = null)
     {
