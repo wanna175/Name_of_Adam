@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148347562678008456}
+  - component: {fileID: 2010317973373565436}
   m_Layer: 0
   m_Name: Map2_34
   m_TagString: Untagged
@@ -45,6 +46,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010317973373565436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148347562678008455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e1c32b3a513d342bf9cac82842701f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapStageList:
+  - {fileID: 1710247390843888199}
+  - {fileID: 1710247391596868131}
+  - {fileID: 1710247391270798864}
+  - {fileID: 4088674581043179913}
+  - {fileID: 1710247390106569398}
+  - {fileID: 1710247390815866851}
+  - {fileID: 1710247390643597333}
+  - {fileID: 7342589325323040028}
+  - {fileID: 1710247391020965029}
+  - {fileID: 1710247390330569544}
+  - {fileID: 1710247390118761226}
+  - {fileID: 1710247391388793348}
+  - {fileID: 1710247390726885618}
 --- !u!1001 &148347562718613009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,6 +181,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
+--- !u!114 &1710247390843888199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1563608486446279766, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}
+  m_PrefabInstance: {fileID: 148347562718613009}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfe4d35f93e57647b3759628b29959b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1900514067918045886 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1752166522479971503, guid: d3f15a7e0edce6a4db3c43a7e82216a1, type: 3}

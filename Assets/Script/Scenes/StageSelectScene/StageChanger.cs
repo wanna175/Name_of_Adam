@@ -27,10 +27,6 @@ public class StageChanger
             if (isCutSceneOn == false)
                 SceneChanger.SceneChange("EventScene");
         }
-        else if (stage.Type == StageType.BattleTest)
-        {
-            SceneChanger.SceneChange("BattleTestScene");
-        }
     }
 
     private bool CutSceneChange()

@@ -17,6 +17,7 @@ public class OutGameData
     public bool TutorialClear = false;
     public bool PhanuelClear = false;
     public bool HorusClear = false; //SaviorClear로 수정 필요
+    public bool YohrnClear = false;
 
     public bool IsVisitUpgrade = false;
     public bool IsVisitStigma = false;
@@ -301,9 +302,17 @@ public class OutGameDataContainer : MonoBehaviour
         SaveData();
     }
 
+    public void ClearYohrn(bool isclear)
+    {
+        _data.YohrnClear = isclear;
+        SaveData();
+    }
+
     public bool IsPhanuelClear() => _data.PhanuelClear;
 
     public bool IsHorusClear() => _data.HorusClear;
+
+    public bool IsYohrnClear() => _data.YohrnClear;
 
     public bool IsTutorialClear() => _data.TutorialClear;
 

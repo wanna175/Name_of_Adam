@@ -18,9 +18,13 @@ public class MainSceneController : MonoBehaviour
         else
             ContinueBox.SetActive(false);
 
-        if (GameManager.OutGameData.IsHorusClear())
+        if (GameManager.OutGameData.IsYohrnClear())
         {
             _chapterText.text = "Endless";
+        }
+        else if (GameManager.OutGameData.IsHorusClear())
+        {
+            _chapterText.text = "Chapter 3";
         }
         else if (GameManager.OutGameData.IsPhanuelClear())
         {

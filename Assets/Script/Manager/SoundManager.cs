@@ -127,17 +127,23 @@ public class SoundManager : MonoBehaviour
         {
             Clear();
             Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
-            if(GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
+            if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
             {
-                if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
+                StageData data = GameManager.Data.Map.GetStage(99);
+                string unitName = GameManager.Data.StageDatas[data.StageLevel][data.StageID].Units[0].Name;
+
+                if (unitName == "¹Ù´©¿¤")
                 {
                     Play(scenename + "/BossBattle/Phanuel_BGM", Sounds.BGM);
                 }
-                else if(GameManager.Data.Map.GetCurrentStage().StageID == 1)
+                else if (unitName == "±¸¿øÀÚ")
                 {
                     Play(scenename + "/BossBattle/TheSavior_BGM", Sounds.BGM);
                 }
-
+                else if (unitName == "¿æ")
+                {
+                    Play(scenename + "/BossBattle/Yohrn_BGM", Sounds.BGM);
+                }
             }
             else
             {
@@ -149,13 +155,13 @@ public class SoundManager : MonoBehaviour
             Clear();
             Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
         }
-        else if(scenename == "EventScene")
+        else if (scenename == "EventScene")
         {
             Clear();
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
             Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
         }
-        else if(scenename == "StageSelectScene")
+        else if (scenename == "StageSelectScene")
         {
             Clear();
             Play(scenename + "/" + scenename + "BGM", Sounds.BGM);

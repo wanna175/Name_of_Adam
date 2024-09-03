@@ -206,34 +206,17 @@ public class BattleManager : MonoBehaviour
 
         if (GameManager.Data.StageAct == 2)
         {
-            if (GameManager.Data.Map.GetStage(99).StageID == 0)
-            {
-                Background[3].SetActive(false);
-                Background[2].SetActive(false);
-                Background[1].SetActive(true);
-                Background[0].SetActive(false);
-            }
-            else if (GameManager.Data.Map.GetStage(99).StageID == 1)
-            {
-                Background[3].SetActive(false);
-                Background[2].SetActive(true);
-                Background[1].SetActive(false);
-                Background[0].SetActive(false);
-            }
-            else if (GameManager.Data.Map.GetStage(99).StageID == 2)
-            {
-                Background[3].SetActive(true);
-                Background[2].SetActive(false);
-                Background[1].SetActive(false);
-                Background[0].SetActive(false);
-            }
+            StageData data = GameManager.Data.Map.GetStage(99);
+            string unitName = GameManager.Data.StageDatas[data.StageLevel][data.StageID].Units[0].Name;
+
+            Background[3].SetActive(unitName == "욘");
+            Background[2].SetActive(unitName == "구원자");
+            Background[1].SetActive(unitName == "바누엘");
+            Background[0].SetActive(false);
         }
         else
         {
-            Background[3].SetActive(true);
-            Background[2].SetActive(false);
-            Background[1].SetActive(false);
-            Background[0].SetActive(false);
+            Background[0].SetActive(true);
         }
     }
 
@@ -675,47 +658,28 @@ public class BattleManager : MonoBehaviour
         StageData data = GameManager.Data.Map.GetCurrentStage();
         Time.timeScale = 1f;
 
-        if (data.StageLevel >= 90)
+        if (data.Name == StageName.BossBattle)
         {
-            if (data.Name == StageName.BossBattle)
-            {
-                CheckBossCycle(data);
-                GameManager.Data.GameData.Progress.BossWin++;
+            CheckBossCycle(data);
 
-                if(data.StageID == 0)
-                {
-                    GameManager.OutGameData.ClearPhanuel(true);
-                    Debug.Log("Phanuel Clear");
-                }
-                else if(data.StageID == 1)
-                {
-                    GameManager.OutGameData.ClearHorus(true);
-                    Debug.Log("Horus Clear");
-                }
-
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
-                GameManager.SaveManager.DeleteSaveData();
-            }
-            else if (data.Name == StageName.EliteBattle)
-            {
-                GameManager.Data.GameData.Progress.EliteWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
-            }
-            else
-            {
-                GameManager.Data.GameData.Progress.NormalWin++;
-                GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
-            }
-
-            return;
+            GameManager.Data.GameData.Progress.BossWin++;
+            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+            GameManager.SaveManager.DeleteSaveData();
+        }
+        else if (data.Name == StageName.EliteBattle)
+        {
+            GameManager.Data.GameData.Progress.EliteWin++;
+            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+            GameManager.SaveManager.SaveGame();
         }
         else
         {
             GameManager.Data.GameData.Progress.NormalWin++;
             GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+            GameManager.SaveManager.SaveGame();
         }
+
         GameManager.OutGameData.SaveData();
-        GameManager.SaveManager.SaveGame();
     }
 
     private void BattleOverLose()
@@ -731,13 +695,17 @@ public class BattleManager : MonoBehaviour
 
     private void CheckBossCycle(StageData data)
     {
-        if(data.StageID == 0 && !GameManager.OutGameData.IsPhanuelClear())
+        if (data.StageLevel == 214 && !GameManager.OutGameData.IsPhanuelClear())
         {
             GameManager.OutGameData.ClearPhanuel(true);
         }
-        else if(data.StageID == 1 && !GameManager.OutGameData.IsHorusClear())
+        else if (data.StageLevel == 224 && !GameManager.OutGameData.IsHorusClear())
         {
             GameManager.OutGameData.ClearHorus(true);
+        }
+        else if (data.StageLevel == 234 && !GameManager.OutGameData.IsYohrnClear())
+        {
+            GameManager.OutGameData.ClearYohrn(true);
         }
     }
 
@@ -867,15 +835,13 @@ public class BattleManager : MonoBehaviour
         {
             if (unit.Team == Team.Enemy)
             {
-                if (lastUnit == null)
-                {
-                    lastUnit = unit;
-                }
-                else
+                if (lastUnit != null)
                 {
                     lastUnit = null;
                     break;
                 }
+
+                lastUnit = unit;
             }
         }
 
@@ -886,15 +852,6 @@ public class BattleManager : MonoBehaviour
             
             lastUnit.SetBuff(new Buff_Divine());
         }
-    }
-
-    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
-
-    private IEnumerator PlayCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        action();
     }
 
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
@@ -926,5 +883,14 @@ public class BattleManager : MonoBehaviour
         skipNextAction |= caster.Action.ActionTimingCheck(activeTiming, caster, receiver);
 
         return skipNextAction;
+    }
+
+    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
+
+    private IEnumerator PlayCoroutine(Action action, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        action();
     }
 }

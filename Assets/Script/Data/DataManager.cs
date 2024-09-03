@@ -67,6 +67,8 @@ public class DataManager : MonoBehaviour
         GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
         GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
         GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
+
+        SetCurrentChapter();
     }
 
     public void DeckClear()
@@ -83,6 +85,7 @@ public class DataManager : MonoBehaviour
         GameData.StageDivine = new();
 
         //GameData.npcQuest.ClearQuest();
+        GameData.CurrentChapter = 1;
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
@@ -110,6 +113,26 @@ public class DataManager : MonoBehaviour
             unit.DeckUnitChangedStat.ClearStat();
             unit.DeckUnitUpgradeStat.ClearStat();
             unit.ClearStigma();
+        }
+    }
+
+    private void SetCurrentChapter()
+    {
+        if (GameManager.OutGameData.IsYohrnClear())
+        {
+            GameData.CurrentChapter = 99;
+        }
+        else if (GameManager.OutGameData.IsHorusClear())
+        {
+            GameData.CurrentChapter = 3;
+        }
+        else if (GameManager.OutGameData.IsPhanuelClear())
+        {
+            GameData.CurrentChapter = 2;
+        }
+        else
+        {
+            GameData.CurrentChapter = 1;
         }
     }
 
