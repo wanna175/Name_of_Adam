@@ -147,10 +147,10 @@ public enum StageName
 {
     none,
 
-    StigmaStore = 1,
-    UpgradeStore = 2,
+    Stigmata = 1,
+    Baptism = 2,
     MoneyStore,
-    Harlot,
+    Sacrifice,
     RandomEvent,
     CommonBattle,
     EliteBattle,
@@ -352,9 +352,9 @@ public enum BuffEnum
     Immortality,
     Invincibility,
     Karma,
-    Leah,
+    Lea,
     MarkOfBeast,
-    Raquel,
+    Rahel,
     Sin,
     Stun,
     SpeedIncrease,
@@ -451,7 +451,7 @@ public enum UnitActionType
     UnitAction_Savior,
     UnitAction_FlowerOfSacrifice,
     UnitAction_Laser,
-    UnitAction_RaquelLeah,
+    UnitAction_RahelLea,
     UnitAction_CenteredSplash,
     UnitAction_Libiel,
     UnitAction_Arabella,
@@ -534,19 +534,23 @@ public enum CutSceneType
 
     // 엘리트
     Elieus_Enter,
-    LahelRea_Enter,
+    RahelLea_Enter,
     Appaim_Enter,
+    Libiel_Enter,
+    Arabella_Enter,
 
     // 보스
     Phanuel_Enter,
     Phanuel_Dead,
     TheSavior_Enter,
     TheSavior_Dead,
+    Yohrn_Enter,
+    Yohrn_Dead,
 
     // NPC
-    NPC_Upgrade_Corrupt,
-    NPC_Stigma_Corrupt,
-    NPC_Harlot_Corrupt,
+    NPC_Baptism_Corrupt,
+    NPC_Stigmata_Corrupt,
+    NPC_Sacrifice_Corrupt,
 }
 
 public enum FallAnimMode

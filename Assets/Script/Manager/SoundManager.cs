@@ -91,9 +91,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private float GetBGMVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetBGMSoundPower();
+    private float GetBGMVolume() => GameManager.OutGameData.Data.MasterSoundPower * GameManager.OutGameData.Data.BGMSoundPower;
 
-    private float GetSEVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetSESoundPower();
+    private float GetSEVolume() => GameManager.OutGameData.Data.MasterSoundPower * GameManager.OutGameData.Data.SESoundPower;
 
     AudioClip GetOrAddAudioClip(string path, Sounds type = Sounds.Effect)
     {
@@ -153,13 +153,13 @@ public class SoundManager : MonoBehaviour
         else if (scenename == "DifficultySelectScene")
         {
             Clear();
-            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+            Play("DifficultySelectScene/" + scenename + "BGM", Sounds.BGM);
         }
         else if (scenename == "EventScene")
         {
             Clear();
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
-            Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
+            Play("EventScene/" + storeName + "BGM", Sounds.BGM);
         }
         else if (scenename == "StageSelectScene")
         {
