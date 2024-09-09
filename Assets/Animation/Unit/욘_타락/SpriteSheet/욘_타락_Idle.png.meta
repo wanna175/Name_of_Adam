@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c32b6d55674473c458017aaad681b712
+guid: 1f642c70cc1a5ea4ea95bbd330bcc320
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,211 +117,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Raquel_AttackEffect_0
+      name: "\uC698_\uD0C0\uB77D_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 110
-        height: 92
-      alignment: 9
+        width: 256
+        height: 256
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8afb0f6d0373a2342bda8325783045b7
-      internalID: 1587960165
+      spriteID: e10602b5d93e6c247bdabb943546c38b
+      internalID: 1488310299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Raquel_AttackEffect_1
+      name: "\uC698_\uD0C0\uB77D_Idle_1"
       rect:
         serializedVersion: 2
-        x: 110
+        x: 256
         y: 0
-        width: 110
-        height: 92
-      alignment: 9
+        width: 256
+        height: 256
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85e3f92a390f96f4086b9358498b484f
-      internalID: -1090609609
+      spriteID: fb0079b2775ca0448ac6ab26515eefce
+      internalID: 2127543865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Raquel_AttackEffect_2
+      name: "\uC698_\uD0C0\uB77D_Idle_2"
       rect:
         serializedVersion: 2
-        x: 220
+        x: 512
         y: 0
-        width: 110
-        height: 92
-      alignment: 9
+        width: 256
+        height: 256
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b22f5ff33fd5df4a8f6f91c36bea54c
-      internalID: 1121541159
+      spriteID: a7ce41bff95ae9144b8102ef38436fb4
+      internalID: -989307686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Raquel_AttackEffect_3
+      name: "\uC698_\uD0C0\uB77D_Idle_3"
       rect:
         serializedVersion: 2
-        x: 330
+        x: 768
         y: 0
-        width: 110
-        height: 92
-      alignment: 9
+        width: 256
+        height: 256
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e8627a3d078ee94998319fdc880de46
-      internalID: -201712480
+      spriteID: 5bd2f4eb809ef7040bd19a61eba7b775
+      internalID: 202479727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Raquel_AttackEffect_4
+      name: "\uC698_\uD0C0\uB77D_Idle_4"
       rect:
         serializedVersion: 2
-        x: 440
+        x: 1024
         y: 0
-        width: 110
-        height: 92
-      alignment: 9
+        width: 256
+        height: 256
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39c35e0ce63fe3c42a4ff73f91a438e8
-      internalID: 17294626
+      spriteID: 9ed46cb2d0d33e749a428fa610d14491
+      internalID: -430925284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Raquel_AttackEffect_5
+      name: "\uC698_\uD0C0\uB77D_Idle_5"
       rect:
         serializedVersion: 2
-        x: 550
+        x: 1280
         y: 0
-        width: 110
-        height: 92
-      alignment: 9
+        width: 256
+        height: 256
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c174d46c00b3f149a55df397dbb2257
-      internalID: -808924457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Raquel_AttackEffect_6
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 0
-        width: 110
-        height: 92
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa7cd05b79c256d49895005796bd153a
-      internalID: 561649632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Raquel_AttackEffect_7
-      rect:
-        serializedVersion: 2
-        x: 770
-        y: 0
-        width: 110
-        height: 92
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5734608e3bef4ba45bfaaaca6dabcc11
-      internalID: -1940481035
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Raquel_AttackEffect_8
-      rect:
-        serializedVersion: 2
-        x: 880
-        y: 0
-        width: 110
-        height: 92
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8d7ce7552325f85489f251f55f2c1b29
-      internalID: 1646215143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Raquel_AttackEffect_9
-      rect:
-        serializedVersion: 2
-        x: 990
-        y: 0
-        width: 110
-        height: 92
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 673ee0b2e5fa61f4ea24d67517f918bb
-      internalID: -776707257
+      spriteID: 9e65c39d10cf9d7418f5701db632b8b6
+      internalID: -725232406
       vertices: []
       indices: 
       edges: []
@@ -337,16 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Raquel_AttackEffect_7: -1940481035
-      Raquel_AttackEffect_0: 1587960165
-      Raquel_AttackEffect_1: -1090609609
-      Raquel_AttackEffect_5: -808924457
-      Raquel_AttackEffect_4: 17294626
-      Raquel_AttackEffect_6: 561649632
-      Raquel_AttackEffect_8: 1646215143
-      Raquel_AttackEffect_3: -201712480
-      Raquel_AttackEffect_2: 1121541159
-      Raquel_AttackEffect_9: -776707257
+      "\uC698_\uD0C0\uB77D_Idle_2": -989307686
+      "\uC698_\uD0C0\uB77D_Idle_4": -430925284
+      "\uC698_\uD0C0\uB77D_Idle_1": 2127543865
+      "\uC698_\uD0C0\uB77D_Idle_5": -725232406
+      "\uC698_\uD0C0\uB77D_Idle_3": 202479727
+      "\uC698_\uD0C0\uB77D_Idle_0": 1488310299
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

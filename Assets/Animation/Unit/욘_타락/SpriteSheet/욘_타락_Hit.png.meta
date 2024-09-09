@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e918632e04806e448c4be984e42048c
+guid: 8f8a5674d597d454eabdf702714e6804
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC698_Hit_0"
+      name: "\uC698_\uD0C0\uB77D_Hit_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Hit_1"
+      name: "\uC698_\uD0C0\uB77D_Hit_1"
       rect:
         serializedVersion: 2
         x: 256
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Hit_2"
+      name: "\uC698_\uD0C0\uB77D_Hit_2"
       rect:
         serializedVersion: 2
         x: 512
@@ -179,27 +179,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: "\uC698_Hit_3"
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0af69e080e8de624684e1480c06d914a
-      internalID: -410024318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -212,9 +191,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       "\uC698_Hit_3": -410024318
-      "\uC698_Hit_1": -988181622
-      "\uC698_Hit_0": -1749111841
-      "\uC698_Hit_2": 673730341
+      "\uC698_\uD0C0\uB77D_Hit_0": -1749111841
+      "\uC698_\uD0C0\uB77D_Hit_2": 673730341
+      "\uC698_\uD0C0\uB77D_Hit_1": -988181622
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

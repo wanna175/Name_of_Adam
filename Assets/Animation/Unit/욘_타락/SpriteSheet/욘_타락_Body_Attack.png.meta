@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7240e518bd70d69479ab0e5558c3764d
+guid: 7a636a828773d8d478c83e9054e3a503
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Leah_AttackEffect_0
+      name: "\uC698_\uD0C0\uB77D_Body_Attack_0"
       rect:
         serializedVersion: 2
-        x: 110
+        x: 0
         y: 0
-        width: 110
-        height: 93
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 431a0354cf5bad24492e5c29e2e811cf
-      internalID: 137402834
+      spriteID: 485535580d9df0f4197a34266b27af60
+      internalID: 915678455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leah_AttackEffect_1
+      name: "\uC698_\uD0C0\uB77D_Body_Attack_1"
       rect:
         serializedVersion: 2
-        x: 220
+        x: 256
         y: 0
-        width: 110
-        height: 93
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b0bcaf0b128a654c98a93905e94a506
-      internalID: -1806013319
+      spriteID: 6b8dd9084abefa343ae20e2a1a095f42
+      internalID: 17422492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leah_AttackEffect_2
+      name: "\uC698_\uD0C0\uB77D_Body_Attack_2"
       rect:
         serializedVersion: 2
-        x: 330
+        x: 512
         y: 0
-        width: 110
-        height: 93
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c65667c342bae324e86ba0598cf2fe4b
-      internalID: 1732758966
+      spriteID: 00ce4a15b297c864c9ed76bd315195e5
+      internalID: 1207540996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leah_AttackEffect_3
+      name: "\uC698_\uD0C0\uB77D_Body_Attack_3"
       rect:
         serializedVersion: 2
-        x: 440
+        x: 768
         y: 0
-        width: 110
-        height: 93
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a92e0a695a6a234ea38e286cf180d12
-      internalID: -1349450765
+      spriteID: 48086673177eedf47abb0b7c9df0f519
+      internalID: -1676159433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leah_AttackEffect_4
+      name: "\uC698_\uD0C0\uB77D_Body_Attack_4"
       rect:
         serializedVersion: 2
-        x: 550
+        x: 1024
         y: 0
-        width: 110
-        height: 93
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +215,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28022dd4b89d0734cba83e58733f36f9
-      internalID: 981348314
+      spriteID: 83800941f17dba249a9a8527c4c274bc
+      internalID: -1924906554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leah_AttackEffect_5
+      name: "\uC698_\uD0C0\uB77D_Body_Attack_5"
       rect:
         serializedVersion: 2
-        x: 660
+        x: 1280
         y: 0
-        width: 110
-        height: 93
+        width: 256
+        height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,50 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61194475b4191fc48a04a4c172b805c7
-      internalID: -993506430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Leah_AttackEffect_6
-      rect:
-        serializedVersion: 2
-        x: 770
-        y: 0
-        width: 110
-        height: 93
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0186877faed6db54d835a32143adc0f9
-      internalID: -1459471417
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Leah_AttackEffect_7
-      rect:
-        serializedVersion: 2
-        x: 880
-        y: 0
-        width: 110
-        height: 93
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01d26966e2f5b3f4a860ca1b85775125
-      internalID: 1061767972
+      spriteID: 5204d62f463632d40b1675864920ced3
+      internalID: 315590057
       vertices: []
       indices: 
       edges: []
@@ -295,14 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Leah_AttackEffect_6: -1459471417
-      Leah_AttackEffect_4: 981348314
-      Leah_AttackEffect_2: 1732758966
-      Leah_AttackEffect_3: -1349450765
-      Leah_AttackEffect_5: -993506430
-      Leah_AttackEffect_7: 1061767972
-      Leah_AttackEffect_1: -1806013319
-      Leah_AttackEffect_0: 137402834
+      "\uC698_\uD0C0\uB77D_Body_Attack_1": 17422492
+      "\uC698_\uD0C0\uB77D_Body_Attack_2": 1207540996
+      "\uC698_\uD0C0\uB77D_Body_Attack_0": 915678455
+      "\uC698_\uD0C0\uB77D_Body_Attack_3": -1676159433
+      "\uC698_\uD0C0\uB77D_Body_Attack_4": -1924906554
+      "\uC698_\uD0C0\uB77D_Body_Attack_5": 315590057
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

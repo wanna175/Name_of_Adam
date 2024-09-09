@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e918632e04806e448c4be984e42048c
+guid: 70d4353aa5ac3cf40ac80559ed11c64b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC698_Hit_0"
+      name: "\uC698_\uD0C0\uB77D_Body_Hit_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3065932f4634c2240958d7054de62bd5
-      internalID: -1749111841
+      spriteID: 54adafd77525373489eeb816c4d936f3
+      internalID: 457677890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Hit_1"
+      name: "\uC698_\uD0C0\uB77D_Body_Hit_1"
       rect:
         serializedVersion: 2
         x: 256
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98e2e735be2aa674ca807250823d2bd7
-      internalID: -988181622
+      spriteID: 8c67585e388acd146bca96b112509794
+      internalID: 537261924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Hit_2"
+      name: "\uC698_\uD0C0\uB77D_Body_Hit_2"
       rect:
         serializedVersion: 2
         x: 512
@@ -173,29 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98d64f844d7882246b8a880eaff3ff20
-      internalID: 673730341
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uC698_Hit_3"
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0af69e080e8de624684e1480c06d914a
-      internalID: -410024318
+      spriteID: 9cc33f5fc46e9fa43ad4f59a039919db
+      internalID: 1525923070
       vertices: []
       indices: 
       edges: []
@@ -211,10 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uC698_Hit_3": -410024318
-      "\uC698_Hit_1": -988181622
-      "\uC698_Hit_0": -1749111841
-      "\uC698_Hit_2": 673730341
+      "\uC698_\uD0C0\uB77D_Body_Hit_1": 537261924
+      "\uC698_\uD0C0\uB77D_Body_Hit_0": 457677890
+      "\uC698_\uD0C0\uB77D_Body_Hit_2": 1525923070
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e918632e04806e448c4be984e42048c
+guid: 7240e518bd70d69479ab0e5558c3764d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 80
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC698_Hit_0"
+      name: Lea_AttackEffect_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 110
+        height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3065932f4634c2240958d7054de62bd5
-      internalID: -1749111841
+      spriteID: 14daba51172a59140aa70405dd735576
+      internalID: -162232351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Hit_1"
+      name: Lea_AttackEffect_1
       rect:
         serializedVersion: 2
-        x: 256
+        x: 110
         y: 0
-        width: 256
-        height: 256
+        width: 110
+        height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98e2e735be2aa674ca807250823d2bd7
-      internalID: -988181622
+      spriteID: b9298924409218d41852e0696867d12d
+      internalID: 884159616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Hit_2"
+      name: Lea_AttackEffect_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 220
         y: 0
-        width: 256
-        height: 256
+        width: 110
+        height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98d64f844d7882246b8a880eaff3ff20
-      internalID: 673730341
+      spriteID: 9d1b33deef445b646a2fff8fdab7e17f
+      internalID: 1112017000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Hit_3"
+      name: Lea_AttackEffect_3
       rect:
         serializedVersion: 2
-        x: 768
+        x: 330
         y: 0
-        width: 256
-        height: 256
+        width: 110
+        height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +194,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0af69e080e8de624684e1480c06d914a
-      internalID: -410024318
+      spriteID: 3845db6ad8591ea46af4006741c090ff
+      internalID: -887511008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lea_AttackEffect_4
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 110
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8d9c293ee3a224c85af397c954b0ca
+      internalID: -2010516627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lea_AttackEffect_5
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 0
+        width: 110
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b7f6f2de072584897183b6b96d4df2
+      internalID: 1367763502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lea_AttackEffect_6
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 110
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef23145b60293b4587874e5a324ead0
+      internalID: 389449515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lea_AttackEffect_7
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 0
+        width: 110
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5319b44f34a743a48a3b44fe2e58cc2c
+      internalID: -1277778920
       vertices: []
       indices: 
       edges: []
@@ -211,10 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uC698_Hit_3": -410024318
-      "\uC698_Hit_1": -988181622
-      "\uC698_Hit_0": -1749111841
-      "\uC698_Hit_2": 673730341
+      Lea_AttackEffect_7: -1277778920
+      Lea_AttackEffect_0: -162232351
+      Lea_AttackEffect_2: 1112017000
+      Lea_AttackEffect_4: -2010516627
+      Lea_AttackEffect_3: -887511008
+      Lea_AttackEffect_1: 884159616
+      Lea_AttackEffect_5: 1367763502
+      Lea_AttackEffect_6: 389449515
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

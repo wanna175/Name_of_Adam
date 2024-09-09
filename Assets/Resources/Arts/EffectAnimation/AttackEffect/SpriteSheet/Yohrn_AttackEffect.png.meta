@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 006e719eb1367f6469676a17d29524d3
+guid: af2a2372f3df0134bb3fdab51cfcac45
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 80
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC698_Attack_0"
+      name: Yohrn_AttackEffect_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83940ef1fa4ff754f8bec95639abb68d
-      internalID: -615121753
+      spriteID: 1fa2046502c68a7468ab94dfb7569c60
+      internalID: -536340984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Attack_1"
+      name: Yohrn_AttackEffect_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c2d970e42ffcd444ab532822b1931e2
+      internalID: 241229141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yohrn_AttackEffect_2
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +173,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 021ca30898b46f745befd3cc9becf57c
-      internalID: -856184551
+      spriteID: 5ed5cfad4c71dde47b7b0ec7c05f48c3
+      internalID: 793189522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Attack_2"
+      name: Yohrn_AttackEffect_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f269bf71ef834746a3af62e2e740048
+      internalID: 1883832389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yohrn_AttackEffect_4
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +215,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a37b792be296d5449aac5329fb399ea
-      internalID: -440524885
+      spriteID: 05c22720b6f0dd84e9ce2e8cb47005d6
+      internalID: 1665782630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Attack_3"
+      name: Yohrn_AttackEffect_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979e685e2a501fa42b4f524557622bf2
+      internalID: 1013900192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yohrn_AttackEffect_6
       rect:
         serializedVersion: 2
         x: 768
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +257,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24a5bba0fe4502e49966313b68bb2dd0
-      internalID: 560526222
+      spriteID: 039a70b0295330b45a835535c4eec16c
+      internalID: 291446687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Attack_4"
+      name: Yohrn_AttackEffect_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e517da421e0e04abfe9ade823eae64
+      internalID: 678940841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yohrn_AttackEffect_8
       rect:
         serializedVersion: 2
         x: 1024
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +299,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9658ada3e3a81954a9c43a095a2e67e4
-      internalID: 1813595732
+      spriteID: 9273515f48d4b664f8d8a71f08c89bb7
+      internalID: 904565034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Attack_5"
+      name: Yohrn_AttackEffect_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b0fcffcae8b52244a564cbb425a16d7
+      internalID: 780161617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yohrn_AttackEffect_10
       rect:
         serializedVersion: 2
         x: 1280
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +341,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbf8cb1759e31e64ea6582dc717be09b
-      internalID: -2044777653
+      spriteID: 04c08e27523c0fe429f0228151b1f2e8
+      internalID: 1125339394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uC698_Attack_6"
+      name: Yohrn_AttackEffect_11
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 1408
         y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,8 +362,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 062bcbb0042c9de4199b9a6c4ecb00f8
-      internalID: 631748505
+      spriteID: 22a0867c641f9f549805a76685e6ca5a
+      internalID: 293946969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yohrn_AttackEffect_12
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f0c755d24f1b1b4a90d5c055435832c
+      internalID: -2052271909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yohrn_AttackEffect_13
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b01944bc7ec699e41a8b3f35e382e0a1
+      internalID: 1530179563
       vertices: []
       indices: 
       edges: []
@@ -274,13 +421,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uC698_Attack_3": 560526222
-      "\uC698_Attack_1": -856184551
-      "\uC698_Attack_2": -440524885
-      "\uC698_Attack_4": 1813595732
-      "\uC698_Attack_5": -2044777653
-      "\uC698_Attack_0": -615121753
-      "\uC698_Attack_6": 631748505
+      Yohrn_AttackEffect_2: 793189522
+      Yohrn_AttackEffect_4: 1665782630
+      Yohrn_AttackEffect_5: 1013900192
+      Yohrn_AttackEffect_10: 1125339394
+      Yohrn_AttackEffect_1: 241229141
+      Yohrn_AttackEffect_13: 1530179563
+      Yohrn_AttackEffect_3: 1883832389
+      Yohrn_AttackEffect_11: 293946969
+      Yohrn_AttackEffect_8: 904565034
+      Yohrn_AttackEffect_12: -2052271909
+      Yohrn_AttackEffect_6: 291446687
+      Yohrn_AttackEffect_9: 780161617
+      Yohrn_AttackEffect_7: 678940841
+      Yohrn_AttackEffect_0: -536340984
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
