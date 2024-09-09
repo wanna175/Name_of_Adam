@@ -13,43 +13,43 @@ public class ProgressText
     public TMP_Text Progress_Point;
 }
 
-public class UI_ProgressSummary : UI_Scene
+public class UI_ProgressSummary : UI_Popup
 {
-    [SerializeField]
-    public List<ProgressText> ProgressList;
-    public int TotalScore;
-    public TMP_Text Title;
+    [SerializeField] public List<ProgressText> ProgressList;
+    [SerializeField] private TextMeshProUGUI _totalScoreText;
+    [SerializeField] private TMP_Text _title;
 
+    private int _totalScore;
     private Progress _progress;
-    
 
-    public void Start()
+    public void Init(string title)
     {
         _progress = GameManager.Data.GameData.Progress;
-
+        _title.text = title;
         SetProgressText();
     }
 
     public void SetProgressText()
     {
-        SetProgressText(_progress.NormalWin, 10, $"{GameManager.Locale.GetLocalizedBattleScene("Normal battles won")} {_progress.NormalWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[0]); //연결된 값 들
-        SetProgressText(_progress.EliteWin, 70, $"{GameManager.Locale.GetLocalizedBattleScene("Elite battles won")} {_progress.EliteWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[1]); //
-        SetProgressText(_progress.BossWin, 100, $"{GameManager.Locale.GetLocalizedBattleScene("Boss battles won")} {_progress.BossWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[2]); //
-        SetProgressText(_progress.NormalKill, 3, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units defeated")} {_progress.NormalKill} {GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[3]); //
-        SetProgressText(_progress.EliteKill, 25, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units defeated")} {_progress.EliteKill} {GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[4]); //
-        SetProgressText(_progress.PhanuelKill, 200, $"{GameManager.Locale.GetLocalizedBattleScene("Phanuel defeated")}", ProgressList[5]); //
-        SetProgressText(_progress.HorusKill, 200, $"{GameManager.Locale.GetLocalizedBattleScene("Savior defeated")}", ProgressList[6]); //
-        SetProgressText(_progress.FishKill, 200, "물고기 처치", ProgressList[7]); 
-        SetProgressText(_progress.NormalFall, 5, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units corrupted")} {_progress.NormalFall} {GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[8]); //
-        SetProgressText(_progress.EliteFall, 50, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units corrupted")} {_progress.EliteFall} {GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[9]); //
-        SetProgressText(_progress.PhanuelFall, 300, $"{GameManager.Locale.GetLocalizedBattleScene("Phanuel corrupted")}", ProgressList[10]); //
-        SetProgressText(_progress.HorusFall, 300, $"{GameManager.Locale.GetLocalizedBattleScene("Savior corrupted")}", ProgressList[11]); //
-        SetProgressText(_progress.FishFall, 300, "물고기 타락", ProgressList[12]); 
-        SetProgressText(_progress.SecChapterClear, 100, "2장까지 클리어", ProgressList[13]); 
+        SetProgressText(_progress.NormalWin, 10, $"{GameManager.Locale.GetLocalizedBattleScene("Normal battles won")} {_progress.NormalWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[0]);
+        SetProgressText(_progress.EliteWin, 70, $"{GameManager.Locale.GetLocalizedBattleScene("Elite battles won")} {_progress.EliteWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[1]);
+        SetProgressText(_progress.BossWin, 100, $"{GameManager.Locale.GetLocalizedBattleScene("Boss battles won")} {_progress.BossWin} {GameManager.Locale.GetLocalizedBattleScene("times_won")}", ProgressList[2]);
+        SetProgressText(_progress.NormalKill, 3, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units defeated")} {_progress.NormalKill} {GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[3]);
+        SetProgressText(_progress.EliteKill, 25, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units defeated")} {_progress.EliteKill} {GameManager.Locale.GetLocalizedBattleScene("times_defeated")}", ProgressList[4]);
+        SetProgressText(_progress.PhanuelKill, 200, $"{GameManager.Locale.GetLocalizedBattleScene("Phanuel defeated")}", ProgressList[5]);
+        SetProgressText(_progress.SaviorKill, 200, $"{GameManager.Locale.GetLocalizedBattleScene("Savior defeated")}", ProgressList[6]);
+        SetProgressText(_progress.YohrnKill, 200, $"{GameManager.Locale.GetLocalizedBattleScene("Yohrn defeated")}", ProgressList[7]);
+        SetProgressText(_progress.NormalFall, 5, $"{GameManager.Locale.GetLocalizedBattleScene("Normal units corrupted")} {_progress.NormalFall} {GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[8]);
+        SetProgressText(_progress.EliteFall, 50, $"{GameManager.Locale.GetLocalizedBattleScene("Elite units corrupted")} {_progress.EliteFall} {GameManager.Locale.GetLocalizedBattleScene("times_corrupted")}", ProgressList[9]);
+        SetProgressText(_progress.PhanuelFall, 300, $"{GameManager.Locale.GetLocalizedBattleScene("Phanuel corrupted")}", ProgressList[10]);
+        SetProgressText(_progress.SaviorFall, 300, $"{GameManager.Locale.GetLocalizedBattleScene("Savior corrupted")}", ProgressList[11]);
+        SetProgressText(_progress.YohrnFall, 300, $"{GameManager.Locale.GetLocalizedBattleScene("Yohrn corrupted")}", ProgressList[12]);
+        SetProgressText(_progress.AllChapterClear, 1000, $"{GameManager.Locale.GetLocalizedBattleScene("All chapter clear")}", ProgressList[13]);
 
         TMP_Text totalscore = GameObject.Find("TotalSum").GetComponent<TMP_Text>();
-        totalscore.text = TotalScore.ToString();
-        GameManager.OutGameData.SetProgressCoin(TotalScore);
+        totalscore.text = _totalScore.ToString();
+        GameManager.OutGameData.Data.ProgressCoin += _totalScore;
+        GameManager.OutGameData.SaveData();
     }
 
     public void SetProgressText(int count, int point, string text, ProgressText progressText)
@@ -63,7 +63,7 @@ public class UI_ProgressSummary : UI_Scene
             progressText.Progress_Count.text = text;
             progressText.Progress_Point.text = tempPoint.ToString();
 
-            TotalScore += tempPoint;
+            _totalScore += tempPoint;
         }
         else
         {
@@ -74,7 +74,7 @@ public class UI_ProgressSummary : UI_Scene
     public void OnClick()
     {
         GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallSaveInit(HallSaveCallback);
-        GameObject.Find("UI_ProgressSummary").gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     private void HallSaveCallback(DeckUnit deckUnit)
