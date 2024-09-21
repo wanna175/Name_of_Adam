@@ -8,7 +8,7 @@ public class Stigma_Symbiosis : Stigma
 
         caster.SetBuff(new Buff_Stigma_Symbiosis());
 
-        if (caster.Team == Team.Enemy)
+        if (caster.Team == Team.Enemy && !caster.Buff.CheckBuff(BuffEnum.Edified))
         {
             Buff_EliteStatBuff statBuff = new();
 

@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainSceneController : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject ContinueBox;
-    [SerializeField] private TextMeshProUGUI _chapterText;
 
     private void Start()
     {
@@ -18,36 +13,24 @@ public class MainSceneController : MonoBehaviour
         else
             ContinueBox.SetActive(false);
 
-        if (GameManager.OutGameData.IsYohrnClear())
+        if (GameManager.OutGameData.Data.YohrnClear && !GameManager.OutGameData.Data.IsOnMainTooltipForYohrn)
         {
-            _chapterText.text = "Endless";
+            GameManager.OutGameData.Data.IsOnMainTooltipForYohrn = true;
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("YohrnClear", "YohrnTooltip");
         }
-        else if (GameManager.OutGameData.IsHorusClear())
+        else if (GameManager.OutGameData.Data.SaviorClear && !GameManager.OutGameData.Data.IsOnMainTooltipForSavior)
         {
-            _chapterText.text = "Chapter 3";
+            GameManager.OutGameData.Data.IsOnMainTooltipForSavior = true;
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("SaviorClear", "SaviorTooltip");
         }
-        else if (GameManager.OutGameData.IsPhanuelClear())
+        else if (GameManager.OutGameData.Data.PhanuelClear && !GameManager.OutGameData.Data.IsOnMainTooltipForPhanuel)
         {
-            _chapterText.text = "Chapter 2";
-        }
-        else
-        {
-            _chapterText.text = "Chapter 1";
-        }
 
-        if (GameManager.OutGameData.IsPhanuelClear() && GameManager.OutGameData.GetIsOnMainTooltipForPhanuel() == false)
-        {
-            GameManager.OutGameData.SetIsOnMainTooltipForPhanuel(true);
-            GameManager.OutGameData.SaveData();
+            GameManager.OutGameData.Data.IsOnMainTooltipForPhanuel = true;
             GameManager.UI.ShowPopup<UI_SystemInfo>().Init("PhanuelClear", "PhanuelTooltip");
         }
 
-        if (GameManager.OutGameData.IsHorusClear() && GameManager.OutGameData.GetIsOnMainTooltipForHorus() == false)
-        {
-            GameManager.OutGameData.SetIsOnMainTooltipForHorus(true);
-            GameManager.OutGameData.SaveData();
-            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("HorusClear", "HorusTooltip");
-        }
+        GameManager.OutGameData.SaveData();
     }
 
     public void NewGameButton()
@@ -63,10 +46,10 @@ public class MainSceneController : MonoBehaviour
             GameManager.Data.DeckClear();
             GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
 
-            if (GameManager.OutGameData.IsTutorialClear())
+            if (GameManager.OutGameData.Data.TutorialClear)
             {
                 GameManager.Data.HallDeckSet();
-                SceneChanger.SceneChange("DifficultySelectScene");
+                SceneChanger.SceneChange("ActSelectScene");
             }
             else
             {
@@ -144,10 +127,10 @@ public class MainSceneController : MonoBehaviour
         GameManager.Data.DeckClear();
         GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
 
-        if (GameManager.OutGameData.IsTutorialClear())
+        if (GameManager.OutGameData.Data.TutorialClear)
         {
             GameManager.Data.HallDeckSet();
-            SceneChanger.SceneChange("DifficultySelectScene");
+            SceneChanger.SceneChange("ActSelectScene");
         }
         else
         {

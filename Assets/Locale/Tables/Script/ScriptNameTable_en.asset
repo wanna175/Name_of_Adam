@@ -30,32 +30,28 @@ MonoBehaviour:
     m_Localized: Tubalcain
     m_Metadata:
       m_Items: []
-  - m_Id: 248150552576
-    m_Localized: King Herod
-    m_Metadata:
-      m_Items: []
   - m_Id: 362822823936
-    m_Localized: Messenger of faith
+    m_Localized: Messenger of Faith
     m_Metadata:
       m_Items: []
   - m_Id: 879510745088
-    m_Localized: Messenger of hope
+    m_Localized: Messenger of Hope
     m_Metadata:
       m_Items: []
   - m_Id: 1063993012224
-    m_Localized: Messenger of love
+    m_Localized: Messenger of Love
     m_Metadata:
       m_Items: []
   - m_Id: 5978225335504896
-    m_Localized: Betrayer of faith
+    m_Localized: Betrayer of Faith
     m_Metadata:
       m_Items: []
   - m_Id: 5978251717677056
-    m_Localized: Betrayer of hope
+    m_Localized: Betrayer of Hope
     m_Metadata:
       m_Items: []
   - m_Id: 5978254909542400
-    m_Localized: Betrayer of love
+    m_Localized: Betrayer of Love
     m_Metadata:
       m_Items: []
   - m_Id: 6010450101833728
@@ -72,6 +68,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6137469949767680
     m_Localized: The Savior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76643026945069056
+    m_Localized: Arabella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76643024986329088
+    m_Localized: Libiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76643028249497600
+    m_Localized: Yohrn
     m_Metadata:
       m_Items: []
   references:

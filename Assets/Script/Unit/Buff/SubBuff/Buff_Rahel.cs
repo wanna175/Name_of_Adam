@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class Buff_Raquel : Buff
+public class Buff_Rahel : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Raquel;
+        _buffEnum = BuffEnum.Rahel;
 
         _name = "Rahel";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raquel_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Rahel_Sprite");
 
         _description = "Rahel Info";
 

@@ -108,6 +108,7 @@ public class UI_MyDeck : UI_Popup
     public void HallSaveInit(Action<DeckUnit> onSelectAction = null)
     {
         _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
+        _currentEvent = CurrentEvent.Hall_Select;
 
         List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
@@ -299,7 +300,7 @@ public class UI_MyDeck : UI_Popup
 
     public void SetButtonClick()
     {
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
         _endEvent.Invoke();
     }
 
@@ -347,5 +348,29 @@ public class UI_MyDeck : UI_Popup
         _currentPageIndex++;
         SetCard();
         SetPageAllUI();
+    }
+
+    public override bool ESCAction()
+    {
+        if (_currentEvent == CurrentEvent.None)
+        {
+            GameManager.UI.ClosePopup();
+            GameManager.Sound.Play("UI/UISFX/UICloseSFX");
+
+            return true;
+        }
+        else if (_currentEvent == CurrentEvent.Heal_Faith_Select ||
+            _currentEvent == CurrentEvent.Upgrade_Select ||
+            _currentEvent == CurrentEvent.Stigmata_Select ||
+            _currentEvent == CurrentEvent.Corrupt_Stigmata_Select ||
+            _currentEvent == CurrentEvent.Revert_Unit_Select ||
+            _currentEvent == CurrentEvent.Stigmata_Give ||
+            _currentEvent == CurrentEvent.Hall_Delete)
+        {
+            Quit();
+            return true;
+        }
+
+        return false;
     }
 }

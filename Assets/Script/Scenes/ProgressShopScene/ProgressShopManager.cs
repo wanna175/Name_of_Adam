@@ -24,7 +24,7 @@ public class ProgressShopManager : MonoBehaviour
     public void Start()
     {
         selectedID = 0;
-        ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
+        ProgressCoin.text = GameManager.OutGameData.Data.ProgressCoin.ToString();
         SetNodeImage();
     }
 
@@ -68,7 +68,7 @@ public class ProgressShopManager : MonoBehaviour
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
 
             }
-            else if (GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(id).Cost)
+            else if (GameManager.OutGameData.Data.ProgressCoin < GameManager.OutGameData.GetProgressItem(id).Cost)
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
@@ -84,16 +84,15 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnBuyBtnClick()
     {
-        if (!GameManager.OutGameData.GetBuyable(selectedID) || GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(selectedID).Cost)
+        if (!GameManager.OutGameData.GetBuyable(selectedID) || GameManager.OutGameData.Data.ProgressCoin < GameManager.OutGameData.GetProgressItem(selectedID).Cost)
         {
             return;
         }
 
-        //GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
-        GameManager.Sound.Play("UI/SanctumSFX/SanctumSuccessSFX");
+        GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
 
         GameManager.OutGameData.BuyProgressItem(selectedID);
-        ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
+        ProgressCoin.text = GameManager.OutGameData.Data.ProgressCoin.ToString();
         ChangeBtnImage(false);
         disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
         SetNodeImage();

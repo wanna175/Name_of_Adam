@@ -17,8 +17,8 @@ public class Phanuel_Animation : MonoBehaviour
 
     public void SetAnimator(Team team)
     {
-        transform.position = new(0f, 1.8f, 0f);
-        transform.localScale = new(2f, 2f, 1f); // 변경할 크기
+        transform.position = new(0f, 1.3f, 0f);
+        transform.localScale = new(2.5f, 2.5f, 1f); // 변경할 크기
 
         _currentTeam = team;
 

@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class UI_DarkEssence : UI_Scene
+public class UI_DarkEssence : UI_Scene, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI _darkEssence;
     [SerializeField] private Image cannotLight;
@@ -21,5 +20,32 @@ public class UI_DarkEssence : UI_Scene
     public void Refresh() 
     {
         _darkEssence.text = GameManager.Data.GameData.DarkEssence.ToString();
+    }
+
+    private bool _isHover = false;
+    private bool _isHoverMessegeOn = false;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _isHover = true;
+        BattleManager.Instance.PlayAfterCoroutine(() => {
+            if (_isHover)
+            {
+                _isHoverMessegeOn = true;
+                GameManager.UI.ShowHover<UI_TextHover>().SetText(
+                    $"{GameManager.Locale.GetLocalizedBattleScene("DarkEssence UI Info")}", Input.mousePosition);
+            }
+        }, 0.5f);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _isHover = false;
+
+        if (_isHoverMessegeOn)
+        {
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
+        }
     }
 }

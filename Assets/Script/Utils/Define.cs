@@ -336,6 +336,9 @@ public enum StigmaEnum
     StormSurge2 = 120,
     StormSurge3 = 121,
     DeepSea = 122,
+    Distrust = 123,
+    Despair = 124,
+    Hatred = 125,
 }
 
 public enum BuffEnum
@@ -366,6 +369,7 @@ public enum BuffEnum
     AttackBoost,
     KillingSpree,
     Libiel,
+    Scale,
     EliteStatBuff,
 
     //systemic buff (no image)
@@ -432,6 +436,10 @@ public enum BuffEnum
     Stigmata_StormSurge2,
     Stigmata_StormSurge3,
     Stigmata_DeepSea,
+
+    Stigmata_Distrust,
+    Stigmata_Despair,
+    Stigmata_Hatred,
 
     Stigmata_BloodFest,
     Stigmata_Thirst,
@@ -578,6 +586,7 @@ public enum CurrentEvent
     Complate_Apostle,
 
     Hall_Delete,
+    Hall_Select,
 };
 
 [Serializable]

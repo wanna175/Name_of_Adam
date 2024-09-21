@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class Buff_Leah : Buff
+public class Buff_Lea : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Leah;
+        _buffEnum = BuffEnum.Lea;
 
         _name = "Lea";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Leah_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Lea_Sprite");
 
         _description = "Lea Info";
 

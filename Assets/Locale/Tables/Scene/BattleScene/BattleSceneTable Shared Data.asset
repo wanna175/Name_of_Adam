@@ -75,6 +75,18 @@ MonoBehaviour:
     m_Key: FirstManaInfo
     m_Metadata:
       m_Items: []
+  - m_Id: 71322972762296320
+    m_Key: All chapter clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323306352070656
+    m_Key: Yohrn defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323406742736896
+    m_Key: Yohrn corrupted
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

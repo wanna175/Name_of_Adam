@@ -22,7 +22,22 @@ public class UI_UnitInfo : UI_Popup
 
     [SerializeField] private TextMeshProUGUI _unitInfoName;
     [SerializeField] private Transform _unitInfoFallGrid;
+
     [SerializeField] private TextMeshProUGUI _unitInfoStat;
+
+    [SerializeField] private TextMeshProUGUI _statHealth;
+    [SerializeField] private TextMeshProUGUI _statAttack;
+    [SerializeField] private TextMeshProUGUI _statSpeed;
+    [SerializeField] private TextMeshProUGUI _statCost;
+
+    [SerializeField] private GameObject _statDarkEssence;
+    [SerializeField] private TextMeshProUGUI _statDarkEssenceCost;
+
+    [SerializeField] private TextMeshProUGUI _statHealthChange;
+    [SerializeField] private TextMeshProUGUI _statAttackChange;
+    [SerializeField] private TextMeshProUGUI _statSpeedChange;
+    [SerializeField] private TextMeshProUGUI _statCostChange;
+
     [SerializeField] private Transform _unitInfoStigmaGrid;
     [SerializeField] private Transform _unitInfoUpgradeCountGrid;
     [SerializeField] private GameObject _AddedUpgradeCountSocket;
@@ -37,8 +52,10 @@ public class UI_UnitInfo : UI_Popup
     private Action _endEvent;
     private CurrentEvent _currentEvent = CurrentEvent.None;
 
-    readonly string UpColorStr = "red";
-    readonly string DownColorStr = "blue";
+    readonly Color _attackRangeColor = new(0.6f, 0.05f, 0.05f);
+
+    readonly Color _upColor = new(1f, 0.22f, 0.22f);
+    readonly Color _downColor = new(0.35f, 0.35f, 1f);
 
     public void SetUnit(DeckUnit unit)
     {
@@ -73,53 +90,42 @@ public class UI_UnitInfo : UI_Popup
 
         _unitInfoName.text = _unit.Data.Name;
 
-        string darkEssenseCost = (_unit.Data.DarkEssenseCost > 0) ? " / " + _unit.Data.DarkEssenseCost.ToString() : "";
 
-        string hpChange = "";
+        _statHealth.text = _unit.DeckUnitStat.MaxHP.ToString();
+        _statAttack.text = _unit.DeckUnitStat.ATK.ToString();
+        _statSpeed.text = _unit.DeckUnitStat.SPD.ToString();
+        _statCost.text = _unit.DeckUnitStat.ManaCost.ToString();
 
-        if (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP > 0)
-        {
-            hpChange = " <color=\"" + UpColorStr + "\">(+" + (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP).ToString() + ")</color>";
-        }
-        else if (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP < 0)
-        {
-            hpChange = " <color=\"" + DownColorStr + "\">(" + (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP).ToString() + ")</color>";
-        }
+        _statDarkEssence.SetActive(_unit.Data.DarkEssenseCost > 0);
+        _statDarkEssenceCost.text = _unit.Data.DarkEssenseCost.ToString();
 
-        string costChange = "";
-        if (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost > 0)
+        _statHealthChange.text = (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP > 0) ? "+" : "";
+        if (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP != 0)
         {
-            costChange = " <color=\"" + DownColorStr + "\">(+" + (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost).ToString() + ")</color>";
-        }
-        else if (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost < 0)
-        {
-            costChange = " <color=\"" + UpColorStr + "\">(" + (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost).ToString() + ")</color>";
+            _statHealthChange.text += (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP).ToString();
+            _statHealthChange.color = (_unit.DeckUnitStat.MaxHP - _unit.Data.RawStat.MaxHP > 0) ? _upColor : _downColor;
         }
 
-        string attackChange = "";
-        if (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK > 0)
+        _statAttackChange.text = (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK > 0) ? "+" : "";
+        if (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK != 0)
         {
-            attackChange = " <color=\"" + UpColorStr + "\">(+" + (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK).ToString() + ")</color>";
-        }
-        else if (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK < 0)
-        {
-            attackChange = " <color=\"" + DownColorStr + "\">(" + (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK).ToString() + ")</color>";
+            _statAttackChange.text += (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK).ToString();
+            _statAttackChange.color = (_unit.DeckUnitStat.ATK - _unit.Data.RawStat.ATK > 0) ? _upColor : _downColor;
         }
 
-        string speedChange = "";
-        if (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD > 0)
+        _statSpeedChange.text = (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD > 0) ? "+" : "";
+        if (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD != 0)
         {
-            speedChange = " <color=\"" + UpColorStr + "\">(+" + (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD).ToString() + ")</color>";
-        }
-        else if (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD < 0)
-        {
-            speedChange = " <color=\"" + DownColorStr + "\">(" + (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD).ToString() + ")</color>";
+            _statSpeedChange.text += (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD).ToString();
+            _statSpeedChange.color = (_unit.DeckUnitStat.SPD - _unit.Data.RawStat.SPD > 0) ? _upColor : _downColor;
         }
 
-        _unitInfoStat.text = GameManager.Locale.GetLocalizedUpgrade("HP") + ": " + _unit.DeckUnitTotalStat.MaxHP.ToString() + hpChange + "\n" +
-                                    GameManager.Locale.GetLocalizedUpgrade("Cost") + ": " + _unit.DeckUnitTotalStat.ManaCost.ToString() + costChange + darkEssenseCost + "\n" +
-                                    GameManager.Locale.GetLocalizedUpgrade("Attack") + ": " + _unit.DeckUnitTotalStat.ATK.ToString() + attackChange + "\n" +
-                                    GameManager.Locale.GetLocalizedUpgrade("Speed") + ": " + _unit.DeckUnitTotalStat.SPD.ToString() + speedChange;
+        _statCostChange.text = (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost > 0) ? "+" : "";
+        if (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost != 0)
+        {
+            _statCostChange.text += (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost).ToString();
+            _statCostChange.color = (_unit.DeckUnitStat.ManaCost - _unit.Data.RawStat.ManaCost > 0) ? _downColor : _upColor;
+        }
 
         for (int i = 0; i < 4; i++)
         {
@@ -162,7 +168,7 @@ public class UI_UnitInfo : UI_Popup
         {
             Image block = GameObject.Instantiate(_squarePrefab, _unitInfoSkillRangeGrid).GetComponent<Image>();
             if (range)
-                block.color = Color.red;
+                block.color = _attackRangeColor;
             else
                 block.color = Color.grey;
         }
@@ -189,7 +195,7 @@ public class UI_UnitInfo : UI_Popup
     {
         if (CurrentSceneName().Equals("EventScene") && _currentEvent == CurrentEvent.Heal_Faith_Select)
         {
-            GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+            GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
         }
         else
         {
@@ -280,5 +286,16 @@ public class UI_UnitInfo : UI_Popup
             _endEvent.Invoke();
 
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+    }
+
+    public override bool ESCAction()
+    {
+        if (_currentEvent == CurrentEvent.Complate_Apostle)
+            return false;
+
+        GameManager.UI.ClosePopup();
+        GameManager.Sound.Play("UI/UISFX/UICloseSFX");
+
+        return true;
     }
 }

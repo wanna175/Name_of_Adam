@@ -26,7 +26,7 @@ public class UI_MapEnterEffect : MonoBehaviour
             MapEnterEffect.SetActive(false);
         }
 
-        if (!GameManager.OutGameData.IsTutorialClear())
+        if (!GameManager.OutGameData.Data.TutorialClear)
         {
             TutorialFog.SetActive(true);
         }

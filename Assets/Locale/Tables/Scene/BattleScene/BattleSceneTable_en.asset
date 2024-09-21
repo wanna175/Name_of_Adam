@@ -78,6 +78,18 @@ MonoBehaviour:
     m_Localized: "\u203B During the first player's turn, unit mana costs are halved."
     m_Metadata:
       m_Items: []
+  - m_Id: 71322972762296320
+    m_Localized: All Chapter Clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323306352070656
+    m_Localized: Yohrn defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323406742736896
+    m_Localized: Yohrn corrupted
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

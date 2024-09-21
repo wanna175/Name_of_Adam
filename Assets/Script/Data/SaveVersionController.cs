@@ -22,7 +22,7 @@ public class SaveVersionController
     };
 
     public bool IsValildVersion()
-        => GameManager.OutGameData.GetVersion().Equals(Application.version);
+        => GameManager.OutGameData.Data.Version.Equals(Application.version);
 
     public bool CheckNeedMigration()
     {
@@ -32,13 +32,13 @@ public class SaveVersionController
             return false;
         }
 
-        Debug.Log($"Data Version is not matched! Save Version : {GameManager.OutGameData.GetVersion()} / Build Version {Application.version}");
+        Debug.Log($"Data Version is not matched! Save Version : {GameManager.OutGameData.Data.Version} / Build Version {Application.version}");
         return true;
     }
 
     public void MigrateData()
     {
-        string userVersion = GameManager.OutGameData.GetVersion();
+        string userVersion = GameManager.OutGameData.Data.Version;
         int userVersionIndex = versionHistory.IndexOf(userVersion);
 
         if (userVersionIndex == -1)
@@ -118,7 +118,7 @@ public class SaveVersionController
 
                 case "1.0.2v":
                     // 새로운 진척도 기능 추가
-                    List<ProgressSave> progressSaves = GameManager.OutGameData.GetProgressSaves();
+                    List<ProgressSave> progressSaves = GameManager.OutGameData.Data.ProgressSaves;
                     foreach (var progressItem in GameManager.OutGameData.ProgressItems)
                     {
                         if (progressSaves.Find(x => x.ID == progressItem.Value.ID) == null)
@@ -137,8 +137,25 @@ public class SaveVersionController
                         }
                     }
                     Debug.Log($"진척도 초기화 및 코인 '{sum}' 획득");
-                    GameManager.OutGameData.SetProgressCoin(sum);
+                    GameManager.OutGameData.Data.ProgressCoin += sum;
                     GameManager.OutGameData.SetProgressInit();
+
+                    break;
+                case "1.0.4v":
+                    // 기존 데이터 명칭 변경
+                    GameManager.SaveManager.DeleteSaveData();
+                    GameManager.OutGameData.ResetOption();
+                    if (GameManager.OutGameData.Data.HorusClear)
+                        GameManager.OutGameData.Data.SaviorClear = true;
+
+                    NPCQuest npcQuest = GameManager.OutGameData.Data.NpcQuest;
+                    GameManager.OutGameData.Data.BaptismCorruptValue = npcQuest.UpgradeQuest;
+                    GameManager.OutGameData.Data.StigmataCorruptValue = npcQuest.StigmaQuest;
+                    GameManager.OutGameData.Data.SacrificeCorruptValue = npcQuest.DarkshopQuest;
+
+                    GameManager.OutGameData.Data.IsVisitBaptism = npcQuest.UpgradeQuest > 0;
+                    GameManager.OutGameData.Data.IsVisitStigmata = npcQuest.StigmaQuest > 0;
+                    GameManager.OutGameData.Data.IsVisitSacrifice = npcQuest.DarkshopQuest > 0;
 
                     break;
             }
@@ -152,8 +169,8 @@ public class SaveVersionController
                 return;
             }
 
-            GameManager.OutGameData.SetVersion(versionHistory[userVersionIndex]);
-            userVersion = GameManager.OutGameData.GetVersion();
+            GameManager.OutGameData.Data.Version = versionHistory[userVersionIndex];
+            userVersion = GameManager.OutGameData.Data.Version;
         }
 
         GameManager.OutGameData.SaveData();

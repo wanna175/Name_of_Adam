@@ -76,11 +76,11 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
             _disabledStigmataTransferButton.SetActive(!canStigmataTransfer);
         }
 
-        Debug.Log($"횟수: {GameManager.OutGameData.GetNPCQuest().StigmaQuest}");
+        Debug.Log($"횟수: {GameManager.OutGameData.Data.StigmataCorruptValue}");
 
-        int questLevel = Mathf.Min((int)(GameManager.OutGameData.GetNPCQuest().StigmaQuest / 7.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.StigmataCorruptValue / 7.5f), 4);
 
-        if (GameManager.OutGameData.GetVisitStigma() == false && questLevel != 4)
+        if (!GameManager.Data.GameData.IsVisitStigmata && questLevel != 4)
         {
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["낙인소_선택_0"][0].script));
@@ -156,10 +156,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         }
 
         //선 저장
-        if (!GameManager.Data.Map.ClearTileID.Contains(GameManager.Data.Map.CurrentTileID))
-        {
-            GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
-        }
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
     }
 
@@ -198,10 +195,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount)
         {
             BestowalStigmata(_transferStigmata);
-            if (!GameManager.Data.Map.ClearTileID.Contains(GameManager.Data.Map.CurrentTileID))
-            {
-                GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
-            }
+            GameManager.Data.Map.SetCurrentTileClear();
             GameManager.SaveManager.SaveGame();
         }
         else
@@ -248,7 +242,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         {
             //성흔 부여일때
             BestowalStigmata(stigmata);
-            GameManager.OutGameData.GetNPCQuest().StigmaQuest++;
+            GameManager.OutGameData.Data.StigmataCorruptValue++;
         }
         else
         {
@@ -268,7 +262,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         }
         _stigmataBestowalUnit.AddStigma(stigmata);
 
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
@@ -319,33 +313,27 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        
-        if (GameManager.Data.GameData.IsVisitStigma == false)
-        {
-            GameManager.Data.GameData.IsVisitStigma = true;
-        }
-        
-
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.GetVisitStigma() == false)
+        if (!GameManager.Data.GameData.IsVisitStigmata)
         {
-            GameManager.OutGameData.SetVisitStigma(true);
-            Debug.Log("GameManager.OutGameData.getVisitStigma() : " + GameManager.OutGameData.GetVisitStigma());
+            GameManager.OutGameData.Data.IsVisitStigmata = true;
+            GameManager.Data.GameData.IsVisitStigmata = true;
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
         }
         else
         {
-            int questLevel = (int)(GameManager.OutGameData.GetNPCQuest().StigmaQuest / 7.5f);
+            int questLevel = (int)(GameManager.OutGameData.Data.StigmataCorruptValue / 7.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"낙인소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
         yield return StartCoroutine(quitScript.PrintScript());
-        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
+        GameManager.OutGameData.SaveData();
         SceneChanger.SceneChange("StageSelectScene");
     }
 }

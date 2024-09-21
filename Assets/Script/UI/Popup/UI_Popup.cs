@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class UI_Popup : UI_Base
 {
-    #region 함수
     //현재 씬 네임을 불러온다.
     protected string CurrentSceneName()
     {
         return SceneManager.GetActiveScene().name;
     }
-    #endregion
+
+    public virtual bool ESCAction() => false;
 }

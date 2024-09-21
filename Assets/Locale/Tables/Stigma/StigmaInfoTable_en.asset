@@ -192,7 +192,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4568623411200
-    m_Localized: 'Upon summoning, Gains <b>Malevolence</b> 66 times.
+    m_Localized: 'Upon summoning, Gains <b>Malevolence</b> for 66 times.
 
       (<b>Malevolence</b>:
       Upon attacking, Reduces the enemy''s faith by 1)'
@@ -427,6 +427,57 @@ MonoBehaviour:
       health.
 
 '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864474912739328
+    m_Localized: "Upon Libiel is attacked, the Glory count increases by 1, granting
+      different effects based on the count:\n1. Taken Damage becomes halved.\r\n2.
+      Attack Power becomes doubled.\r\n3. Attack range becomes greatly increased.
+      Attack Power is doubled, and decreases enemies\u2019 faith by 1."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864595775803392
+    m_Localized: Arabella cannot move during moving turns but can move to nearby
+      4 tiles of an enemy during attack turns. When moving, she leaves a Vines of
+      Oblivion at her original position, which attacks together with Arabella.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864714545909760
+    m_Localized: 'Upon summoning, Gains <b>Karma</b> for 1 times. Attacks alongside
+      Arabella when she attacks.
+
+      (<b>Karma</b>: When attacked, reduces the
+      faith of the attacking enemy unit by 1.)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865099960504320
+    m_Localized: 'Instead of moving each turn, advances 2 tiles forward. Units hit
+      by Yorhn are instantly defeated. When reaching the edge of the field, changes
+      rows to continue moving. If the field is completely filled, the player loses.
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865195338977280
+    m_Localized: When attacking, targets all units in the top and bottom rows of
+      the attacking Scales. On the first turn, even-numbered scales attack, and on
+      the next turn, odd-numbered scales attack, alternating each turn. Units hit
+      by the attack lose Faith by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865196878286848
+    m_Localized: "Every time Yohrn moves, he summons Scales. When a scale is destroyed,
+      Yohrn takes damage equal to the Scale's health and moves backward. Yohrn\u2019s
+      Faith does not decrease, but if the Scales become corrupted, his Faith decreases
+      by 1.\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865540756688896
+    m_Localized: "Upon summoning, Gains <b>Immortality<b> for 1 times. When destroyed,
+      deals damage to Yohrn equal to the scale\u2019s health. If the scale\u2019s
+      faith is fully lost, it is destroyed, and Yohrn's faith is reduced by 1 instead
+      of taking damage.\r\n(<b>Immortality<b>: Withstands once with 1 health, when
+      reaching death.)"
     m_Metadata:
       m_Items: []
   references:

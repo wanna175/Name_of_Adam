@@ -371,6 +371,18 @@ MonoBehaviour:
     m_Key: The Savior Script
     m_Metadata:
       m_Items: []
+  - m_Id: 76641766804180992
+    m_Key: Libiel Script
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641769324957696
+    m_Key: Arabella Script
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641770771992576
+    m_Key: Yohrn Script
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

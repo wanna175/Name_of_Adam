@@ -51,15 +51,15 @@ public class UI_Option : UI_Popup
     {
         // 저장된 데이터 불러오기
         _resolutions = GameManager.OutGameData.GetAllResolution();
-        _currentLanguage = GameManager.OutGameData.GetLanguage();
-        _currentResolution = GameManager.OutGameData.GetResolutionIndex();
-        _isWindowed = GameManager.OutGameData.IsWindowed();
+        _currentLanguage = GameManager.OutGameData.Data.Language;
+        _currentResolution = GameManager.OutGameData.Data.Resolution;
+        _isWindowed = GameManager.OutGameData.Data.IsWindowed;
 
-        _masterPower = GameManager.OutGameData.GetMasterSoundPower();
-        _bgmPower = GameManager.OutGameData.GetBGMSoundPower();
-        _sePower = GameManager.OutGameData.GetSESoundPower();
+        _masterPower = GameManager.OutGameData.Data.MasterSoundPower;
+        _bgmPower = GameManager.OutGameData.Data.BGMSoundPower;
+        _sePower = GameManager.OutGameData.Data.SESoundPower;
 
-        _gameSpeed = GameManager.OutGameData.GetBattleSpeed();
+        _gameSpeed = GameManager.OutGameData.Data.BattleSpeed;
 
         // UI 세팅
         _languageDropdown.onValueChanged.AddListener(GameManager.Locale.LanguageChanged);
@@ -111,7 +111,8 @@ public class UI_Option : UI_Popup
     {
         if (_isInitialized)
             GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
-        GameManager.OutGameData.SetResolution(idx);
+        GameManager.OutGameData.Data.Resolution = idx;
+        GameManager.OutGameData.SetResolution();
     }
 
     private void WindowToggleChanged(bool isOn)
@@ -119,13 +120,14 @@ public class UI_Option : UI_Popup
         if (_isInitialized)
             GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         _isWindowed = isOn;
-        GameManager.OutGameData.SetWindow(_isWindowed);
+        GameManager.OutGameData.Data.IsWindowed = _isWindowed;
+        GameManager.OutGameData.SetResolution();
     }
 
     private void MasterSliderChanged(float power)
     {
         _masterPower = power;
-        GameManager.OutGameData.SetMasterSoundPower(power);
+        GameManager.OutGameData.Data.MasterSoundPower = power;
         GameManager.Sound.SetSoundVolume(Sounds.BGM);
         GameManager.Sound.SetSoundVolume(Sounds.Effect);
     }
@@ -133,27 +135,27 @@ public class UI_Option : UI_Popup
     private void BGMSliderChanged(float power)
     {
         _bgmPower = power;
-        GameManager.OutGameData.SetBGMSoundPower(power);
+        GameManager.OutGameData.Data.BGMSoundPower = power;
         GameManager.Sound.SetSoundVolume(Sounds.BGM);
     }
 
     private void SESliderChanged(float power)
     {
         _sePower = power;
-        GameManager.OutGameData.SetSESoundPower(power);
+        GameManager.OutGameData.Data.SESoundPower = power;
         GameManager.Sound.SetSoundVolume(Sounds.Effect);
     }
 
     private void GameSpeedSliderChanged(float speed)
     {
         _gameSpeed = speed;
-        GameManager.OutGameData.SetBattleSpeed(speed);
+        GameManager.OutGameData.Data.BattleSpeed = speed;
     }
 
     public void ReSetOption()
     {
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
-        GameManager.OutGameData.ReSetOption();
+        GameManager.OutGameData.ResetOption();
         InitUI();
     }
 

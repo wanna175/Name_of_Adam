@@ -93,6 +93,9 @@ public class UI_ProgressSummary : UI_Popup
         }
 
         if (isExist == false)
+        {
             GameManager.OutGameData.AddHallUnit(deckUnit);
+            SceneChanger.SceneChange("MainScene");
+        }
     }
 }

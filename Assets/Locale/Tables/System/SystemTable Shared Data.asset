@@ -20,7 +20,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3364736528384
-    m_Key: HorusClear
+    m_Key: YohrnClear
     m_Metadata:
       m_Items: []
   - m_Id: 3408147574784
@@ -28,7 +28,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3412371238912
-    m_Key: HorusTooltip
+    m_Key: YohrnTooltip
     m_Metadata:
       m_Items: []
   - m_Id: 7268882771968
@@ -113,6 +113,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 47438182506188800
     m_Key: RevertAll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63829019011993600
+    m_Key: SaviorClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63829099735568384
+    m_Key: SaviorTooltip
     m_Metadata:
       m_Items: []
   m_Metadata:

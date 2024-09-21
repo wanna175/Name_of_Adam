@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -62,6 +63,8 @@ public class StageManager : MonoBehaviour
 
         GameManager.Data.Map.MapDataContainer = Instantiate(GameManager.Data.Map.MapObject).GetComponent<MapDataContainer>();
 
+        GameManager.Data.Map.MapDataContainer.transform.localScale = new(0.8f, 0.8f, 0.8f);
+
         foreach (Stage stage in GameManager.Data.Map.MapDataContainer.MapStageList)
         {
             if (_stageList.Contains(stage))
@@ -116,7 +119,7 @@ public class StageManager : MonoBehaviour
     {
         string mapFolderPath = "Prefabs/Stage/Maps/";
 
-        if (GameManager.Data.StageAct == 0 && !GameManager.OutGameData.IsTutorialClear())
+        if (GameManager.Data.StageAct == 0 && !GameManager.OutGameData.Data.TutorialClear)
         {
             mapFolderPath += "TutorialMap";
         }
@@ -202,13 +205,13 @@ public class StageManager : MonoBehaviour
                 }
 
                 //현재 Chapter를 통해 stageLevel을 결정, (10의 자리)
-                if (GameManager.Data.GameData.CurrentChapter == 99)
+                if (GameManager.Data.GameData.CurrentAct == 99)
                 {
                     stageLevel += 90;
                 }
                 else
                 {
-                    stageLevel += 10 * GameManager.Data.GameData.CurrentChapter;
+                    stageLevel += 10 * GameManager.Data.GameData.CurrentAct;
                 }
 
                 //현재 전투 스테이지를 통해 stageLevel와 stageID을 결정, (100의 자리)
@@ -270,15 +273,36 @@ public class StageManager : MonoBehaviour
     {
         GameManager.SaveManager.SaveGame();
         StageManager.Instance.StageMove(stage.Datas.ID);
+
+        _isHover = false;
+
+        if (_isHoverMessegeOn)
+        {
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
+        }
     }
+
+    private bool _isHover = false;
+    private bool _isHoverMessegeOn = false;
 
     public void StageMouseEnter(Stage stage)
     {
+        _isHover = true;
+        PlayAfterCoroutine(() => {
+            if (_isHover)
+            {
+                _isHoverMessegeOn = true;
+                GameManager.UI.ShowHover<UI_TextHover>().SetText(
+                    $"{GameManager.Locale.GetLocalizedSelectStageScene(stage.Datas.Name.ToString())}", Input.mousePosition);
+            }
+        }, 0.5f);
+        
         if (CurrentStage.NextStage.Contains(stage))
         {
-            foreach (Stage st in StageManager.Instance.CurrentStage.NextStage)
+            foreach (Stage st in CurrentStage.NextStage)
             {
-                if (st != this && st != null)
+                if (st != stage && st != null)
                 {
                     st.BackLight.FadeOut();
                 }
@@ -298,6 +322,14 @@ public class StageManager : MonoBehaviour
 
     public void StageMouseExit(Stage stage)
     {
+        _isHover = false;
+
+        if (_isHoverMessegeOn)
+        {
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
+        }
+
         if (CurrentStage.NextStage.Contains(stage))
         {
             foreach (Stage st in StageManager.Instance.CurrentStage.NextStage)

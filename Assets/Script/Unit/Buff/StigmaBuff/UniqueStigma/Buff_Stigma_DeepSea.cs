@@ -8,7 +8,7 @@ public class Buff_Stigma_DeepSea : Buff
 
         _name = "DeepSea";
 
-        _buffActiveTiming = ActiveTiming.FALLED;
+        //_buffActiveTiming = ActiveTiming.FALLED;
 
         _owner = owner;
 

@@ -362,4 +362,9 @@ public class UnitAction_Phanuel : UnitAction
 
         return true;
     }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
+    {
+        return _attackTile;
+    }
 }

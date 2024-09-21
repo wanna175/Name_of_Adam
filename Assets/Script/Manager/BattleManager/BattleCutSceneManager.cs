@@ -39,7 +39,7 @@ public class BattleCutSceneManager : MonoBehaviour
     public void StartCutScene(CutSceneType cutSceneType)
     {
         string language = "EN";
-        if (GameManager.OutGameData.GetLanguage() == 1)
+        if (GameManager.OutGameData.Data.Language == 1)
             language = "KR";
 
         cutSceneToDisplay = cutSceneType;

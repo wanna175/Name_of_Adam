@@ -7,5 +7,6 @@ public class Stigma_DeepSea : Stigma
         base.Use(caster);
 
         caster.SetBuff(new Buff_Stigma_DeepSea());
+        caster.SetBuff(new Buff_Immortality());
     }
 }

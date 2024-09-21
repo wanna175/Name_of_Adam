@@ -66,7 +66,12 @@ public class UI_BattleOver : UI_Scene
 
             if (_rewardScene.IsEndCreate)
             {
-                SceneChanger.SceneChange("StageSelectScene");
+                GameObject.Find("RatterBoxCanvas").transform.Find("FadeOut").gameObject.SetActive(true);
+
+                BattleManager.Instance.PlayAfterCoroutine(() => {
+                    SceneChanger.SceneChange("StageSelectScene");
+                }, 1f);
+
             }
             else
             {

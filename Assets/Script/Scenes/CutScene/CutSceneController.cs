@@ -7,27 +7,26 @@ public class CutSceneController : MonoBehaviour
 {
     [SerializeField] private VideoPlayer video;
 
-    private VideoClip videoClip;
-    private CutSceneType cutSceneToDisplay;
+    private VideoClip _videoClip;
+    private CutSceneType _cutSceneToDisplay;
 
     private void Start()
     {
         GameManager.Sound.Clear();
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
 
         string language = "EN";
-        if (GameManager.OutGameData.GetLanguage() == 1)
+        if (GameManager.OutGameData.Data.Language == 1)
             language = "KR";
 
-        cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
-        videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{cutSceneToDisplay}_{language}");
+        _cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
+        _videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{_cutSceneToDisplay}_{language}");
 
-        GameManager.Sound.Play($"CutScene/{cutSceneToDisplay}", Sounds.BGM);
-        video.clip = videoClip;
+        GameManager.Sound.Play($"CutScene/{_cutSceneToDisplay}", Sounds.BGM);
+        video.clip = _videoClip;
         video.loopPointReached += EndReached;
         video.Play();
 
-        Debug.Log($"{cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
+        Debug.Log($"{_cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
     }
 
     public void SceneChange()
@@ -36,7 +35,9 @@ public class CutSceneController : MonoBehaviour
         if (GameManager.UI.IsOnESCOption)
             GameManager.UI.CloseAllOption();
 
-        if (cutSceneToDisplay == CutSceneType.NPC_Upgrade_Corrupt || cutSceneToDisplay == CutSceneType.NPC_Stigma_Corrupt || cutSceneToDisplay == CutSceneType.NPC_Harlot_Corrupt)
+        if (_cutSceneToDisplay == CutSceneType.NPC_Baptism_Corrupt 
+            || _cutSceneToDisplay == CutSceneType.NPC_Stigmata_Corrupt
+            || _cutSceneToDisplay == CutSceneType.NPC_Sacrifice_Corrupt)
             SceneChanger.SceneChange("EventScene");
         else
             SceneChanger.SceneChange("StageSelectScene");
@@ -51,9 +52,9 @@ public class CutSceneController : MonoBehaviour
     private void EndReached(VideoPlayer vp)
     {
 #if UNITY_EDITOR
-        Debug.Log($"End CutScene: {cutSceneToDisplay}");
+        Debug.Log($"End CutScene: {_cutSceneToDisplay}");
 #endif
-        GameManager.OutGameData.SetCutSceneData(cutSceneToDisplay, true);
+        GameManager.OutGameData.SetCutSceneData(_cutSceneToDisplay, true);
         GameManager.Sound.Clear();
         SceneChange();
     }

@@ -13,6 +13,9 @@ public enum SteamAchievementType
     KILL_YANA,
     KILL_APPAIM,
     KILL_THESAVIOR,
+    KILL_LIBIEL,
+    KILL_ARABELLA,
+    KILL_YOHRN,
 
     CORRUPT_TUBALCAIN,
     CORRUPT_RAHELLEA,
@@ -21,6 +24,9 @@ public enum SteamAchievementType
     CORRUPT_YANA,
     CORRUPT_APPAIM,
     CORRUPT_THESAVIOR,
+    CORRUPT_LIBIEL,
+    CORRUPT_ARABELLA,
+    CORRUPT_YOHRN,
 
     CORRUPT_NPC_UPGRADE,
     CORRUPT_NPC_STIGMATA,
@@ -84,7 +90,7 @@ public class SteamClientManager : MonoBehaviour
 
     public void IncreaseAchievement(SteamAchievementType type)
     {
-        //return;
+        return;
 
         if (!SteamManager.Initialized)
         {
@@ -150,5 +156,16 @@ public class SteamClientManager : MonoBehaviour
             GameManager.OutGameData.IsUnlockedItem(63) && GameManager.OutGameData.IsUnlockedItem(64))
             return true;
         return false;
+    }
+
+    public int GetCurrentGameLanguage()
+    {
+        return 0;
+
+        string language = SteamApps.GetCurrentGameLanguage();
+        if (language == "koreana" || language == "ko")
+            return 1;
+        else
+            return 0;
     }
 }

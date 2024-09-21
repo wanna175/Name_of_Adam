@@ -161,7 +161,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     public bool IsEnable()
-        => !GameManager.OutGameData.IsTutorialClear() && _isEnable;
+        => !GameManager.OutGameData.Data.TutorialClear && _isEnable;
 
     public void SetNextStep()
     {
@@ -186,9 +186,9 @@ public class TutorialManager : MonoBehaviour
         int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
 
         tooltip.Step = step;
-        tooltip.Info = TooltipTexts[GameManager.OutGameData.GetLanguage()][indexToTooltip].Replace("[CTRL]", "");
+        tooltip.Info = TooltipTexts[GameManager.OutGameData.Data.Language][indexToTooltip].Replace("[CTRL]", "");
         tooltip.IndexToTooltip = indexToTooltip;
-        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.GetLanguage()][indexToTooltip].Contains("[CTRL]");
+        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.Data.Language][indexToTooltip].Contains("[CTRL]");
         tooltip.IsEnd = false;
 
         if (CheckStep(TutorialStep.Tutorial_End_1) || 

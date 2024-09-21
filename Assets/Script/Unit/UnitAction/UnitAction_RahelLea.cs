@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UnitAction_RaquelLeah : UnitAction
+public class UnitAction_RahelLea : UnitAction
 {
     private BattleUnit _owner = null;
     private bool _isChanged = false;
@@ -17,12 +17,12 @@ public class UnitAction_RaquelLeah : UnitAction
         {
             List<BattleUnit> units = BattleManager.Field.GetArroundUnits(attackUnit.Location, attackUnit.Team == Team.Player ? Team.Enemy : Team.Player);
             BattleManager.Instance.AttackStart(attackUnit, units.Distinct().ToList());
-            BattleManager.Instance.PlayAfterCoroutine(() => GameManager.Sound.Play("Character/" + _owner.Data.ID + "/Leah_Attack"), 0.65f);
+            BattleManager.Instance.PlayAfterCoroutine(() => GameManager.Sound.Play("Character/" + _owner.Data.ID + "/Lea_Attack"), 0.65f);
         }
         else 
         {
             BattleManager.Instance.AttackStart(attackUnit, hits);
-            BattleManager.Instance.PlayAfterCoroutine(() => GameManager.Sound.Play("Character/" + _owner.Data.ID + "/Requel_Attack"), 1.0f);
+            BattleManager.Instance.PlayAfterCoroutine(() => GameManager.Sound.Play("Character/" + _owner.Data.ID + "/Rehel_Attack"), 1.0f);
         }
 
         return true;
@@ -33,7 +33,7 @@ public class UnitAction_RaquelLeah : UnitAction
         if ((activeTiming & ActiveTiming.SUMMON) == ActiveTiming.SUMMON)
         {
             _owner = caster;
-            _owner.SetBuff(new Buff_Raquel());
+            _owner.SetBuff(new Buff_Rahel());
             InsertUnitInOrlder();
         }
         else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
@@ -73,15 +73,15 @@ public class UnitAction_RaquelLeah : UnitAction
 
         if (_isChanged)
         {
-            _owner.DeleteBuff(BuffEnum.Raquel);
-            _owner.SetBuff(new Buff_Leah());
-            _owner.SkillEffectAnim = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/AttackEffect/Leah_AttackEffect");
+            _owner.DeleteBuff(BuffEnum.Rahel);
+            _owner.SetBuff(new Buff_Lea());
+            _owner.SkillEffectAnim = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/AttackEffect/Lea_AttackEffect");
         }
         else
         {
-            _owner.DeleteBuff(BuffEnum.Leah);
-            _owner.SetBuff(new Buff_Raquel());
-            _owner.SkillEffectAnim = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/AttackEffect/Raquel_AttackEffect");
+            _owner.DeleteBuff(BuffEnum.Lea);
+            _owner.SetBuff(new Buff_Rahel());
+            _owner.SkillEffectAnim = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/AttackEffect/Rahel_AttackEffect");
         }
     }
 

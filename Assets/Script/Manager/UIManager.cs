@@ -27,6 +27,12 @@ public class UIManager : MonoBehaviour
 
     public void OnOffESCOption()
     {
+        if (SceneManager.GetActiveScene().name == "MainScene" ||
+            SceneManager.GetActiveScene().name == "LogoScene")
+            return;
+
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
         if (IsOnESCOption)
         {
             ClosePopup(ESCOPopups.Pop());
@@ -34,7 +40,7 @@ public class UIManager : MonoBehaviour
             {
                 if (SceneManager.GetActiveScene().name == "BattleScene")
                 {
-                    Time.timeScale = GameManager.OutGameData.GetBattleSpeed();
+                    Time.timeScale = GameManager.OutGameData.Data.BattleSpeed;
                 }
                 else
                 {
@@ -58,7 +64,7 @@ public class UIManager : MonoBehaviour
             ClosePopup(ESCOPopups.Pop());
         if (SceneManager.GetActiveScene().name == "BattleScene")
         {
-            Time.timeScale = GameManager.OutGameData.GetBattleSpeed();
+            Time.timeScale = GameManager.OutGameData.Data.BattleSpeed;
         }
         else
         {
@@ -216,12 +222,15 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().name == "MainScene" ||
-                SceneManager.GetActiveScene().name == "LogoScene")
-                return;
-
-            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
-            OnOffESCOption();
+            if (_popupStack.Count > 0)
+            {
+                if (ESCOPopups.Contains(_popupStack.Peek()) || !_popupStack.Peek().ESCAction())
+                    OnOffESCOption();
+            }
+            else
+            {
+                OnOffESCOption();
+            }
         }
     }
 }

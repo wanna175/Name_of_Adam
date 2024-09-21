@@ -32,7 +32,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 497464176640
-    m_Localized: In His grace, I shall be eternally beautiful. Step aside, you mortal.
+    m_Localized: Beauty is just a midsummer night's dream, and in the end only shame
+      remains. I shall embrace even your darkest shame as well. Come, my dear.
     m_Metadata:
       m_Items: []
   - m_Id: 457081417728
@@ -313,7 +314,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6019585551798272
-    m_Localized: I want to rest.
+    m_Localized: I feel tired... I just want to rest.
     m_Metadata:
       m_Items: []
   - m_Id: 6019587254685696
@@ -424,7 +425,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6135992028033024
-    m_Localized: I sense an vile intruder who dares to challenge my throne... Nonetheless,
+    m_Localized: I feel the vile shadow of evil within the kingdom... Nonetheless,
       with the might of my power transcending mortality, you shall soon vanish into
       the darkness.
     m_Metadata:
@@ -432,6 +433,21 @@ MonoBehaviour:
   - m_Id: 6136047711612928
     m_Localized: A being that should never have been born has come into existence.
       Now, it is time to set things right.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641770771992576
+    m_Localized: ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641769324957696
+    m_Localized: O wretched soul, let your scarred memories slumber amongst the roses.
+      I shall guide you to the solace of oblivion,...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641766804180992
+    m_Localized: I am the executor of divine judgment, the herald of celestial light.
+      You who tread upon this sinful ground. Will you repent and kneel upon the divine,
+      or walk into the path of eternal suffering?
     m_Metadata:
       m_Items: []
   references:

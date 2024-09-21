@@ -10,12 +10,12 @@ public class GameData : ScriptableObject
     public int PlayerHP;
     public List<DeckUnit> DeckUnits = new();
     public List<DeckUnit> FallenUnits = new();
-    public bool IsVisitUpgrade = false;
-    public bool IsVisitStigma = false;
-    public bool IsVisitDarkShop = false;
+    public bool IsVisitBaptism = false;
+    public bool IsVisitStigmata = false;
+    public bool IsVisitSacrifice = false;
     public Progress Progress;
     public Vector3 StageDivine;
-    public int CurrentChapter;
+    public int CurrentAct;
 }
 
 [Serializable]
@@ -27,14 +27,14 @@ public class Progress
     public int NormalKill;
     public int EliteKill;
     public int PhanuelKill;
-    public int HorusKill;
-    public int FishKill;
+    public int SaviorKill;
+    public int YohrnKill;
     public int NormalFall;
     public int EliteFall;
     public int PhanuelFall;
-    public int HorusFall;
-    public int FishFall;
-    public int SecChapterClear;
+    public int SaviorFall;
+    public int YohrnFall;
+    public int AllChapterClear;
     public int LeftDarkEssence;
     public int SurvivedNormal;
     public int SurvivedElite;
@@ -48,14 +48,14 @@ public class Progress
         NormalKill = 0;
         EliteKill = 0;
         PhanuelKill = 0;
-        HorusKill = 0;
-        FishKill = 0;
+        SaviorKill = 0;
+        YohrnKill = 0;
         NormalFall = 0;
         EliteFall = 0;
         PhanuelFall = 0;
-        HorusFall = 0;
-        FishFall = 0;
-        SecChapterClear = 0;
+        SaviorFall = 0;
+        YohrnFall = 0;
+        AllChapterClear = 0;
     }
 }
 

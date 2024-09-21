@@ -101,12 +101,12 @@ public class VisualEffectManager : MonoBehaviour
         go.GetComponent<SpriteRenderer>().flipX = flip;
     }
 
-    public void StartFadeEffect(bool FadeIn)
+    public void StartFadeEffect(bool fadeIn)
     {
         GameObject go;
         AnimationClip clip;
 
-        if (FadeIn)
+        if (fadeIn)
             clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/FadeInEffect");
         else
             clip = GameManager.Resource.Load<AnimationClip>("Arts/EffectAnimation/VisualEffect/FadeOutEffect");

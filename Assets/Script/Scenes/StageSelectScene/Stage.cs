@@ -62,6 +62,8 @@ public class Stage : MonoBehaviour
 
         if (Datas.Name == StageName.EliteBattle || Datas.Name == StageName.BossBattle)
         {
+            this.transform.localScale = (Datas.Name == StageName.EliteBattle) ? new(2f, 2f, 2f) : new(2.5f, 2.5f, 2.5f);
+            GetComponent<BoxCollider2D>().size = (Datas.Name == StageName.EliteBattle) ? new(3, 3) : new(5, 5);
             name += "_" + GameManager.Data.StageDatas[Datas.StageLevel][Datas.StageID].Units[0].Name;
         }
 
