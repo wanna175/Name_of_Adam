@@ -33,6 +33,11 @@ public class OutGameData
 
     public Dictionary<string, bool> CutSceneViewData = new();
 
+    public bool IsOnTooltipForDivineHallInBattle = false;
+    public bool IsOnTooltipForDivineHall = false;
+    public bool IsOnTooltipForSanctumInBattle = false;
+    public bool IsOnTooltipForSanctum = false;
+
     public bool IsOnMainTooltipForYohrn = false;
     public bool IsOnMainTooltipForSavior = false;
     public bool IsOnMainTooltipForPhanuel = false;
@@ -51,7 +56,6 @@ public class OutGameData
     public bool HorusClear = false; //SaviorClear로 수정됨
     public NPCQuest NpcQuest; //BaptismCorruptValue, StigmataCorruptValue, SacrificeCorruptValue로 수정됨
     public bool[] cutSceneData = new bool[Enum.GetValues(typeof(CutSceneType)).Length]; //Dict 형태로 수정됨
-
 }
 
 [Serializable]

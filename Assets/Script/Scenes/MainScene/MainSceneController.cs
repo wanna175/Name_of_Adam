@@ -78,26 +78,26 @@ public class MainSceneController : MonoBehaviour
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
-        UI_MyDeck UI_MyDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
-        UI_MyDeck.Init();
-        UI_MyDeck.EventInit((DeckUnit) =>
+        UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
+        myDeck.Init();
+        myDeck.EventInit((DeckUnit) =>
         {
             if (DeckUnit.PrivateKey.Contains("Origin"))
             {
-                UI_SystemInfo UI_SystemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
-                UI_SystemInfo.Init("HallDeleteCannotInfo", "");
+                UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+                systemInfo.Init("HallDeleteCannotInfo", "");
             }
             else
             {
-                UI_SystemSelect UI_SystemSelect = GameManager.UI.ShowPopup<UI_SystemSelect>();
-                UI_SystemSelect.Init("HallDeleteInfo", () =>
+                UI_SystemSelect systemSelect = GameManager.UI.ShowPopup<UI_SystemSelect>();
+                systemSelect.Init("HallDeleteInfo", () =>
                 {
                     GameManager.OutGameData.RemoveHallUnit(DeckUnit.PrivateKey);
                     GameManager.OutGameData.SaveData();
                     GameManager.UI.ClosePopup();
 
                     GameManager.Data.GetDeck().Remove(DeckUnit);
-                    UI_MyDeck.Init();
+                    myDeck.Init();
 
                     GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
                 });
