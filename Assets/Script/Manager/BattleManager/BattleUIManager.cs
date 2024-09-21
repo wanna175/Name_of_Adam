@@ -55,9 +55,34 @@ public class BattleUIManager : MonoBehaviour
         FillHand();
     }
 
-    public void RefreshWaitingLine(List<BattleUnit> orderList)
+    public void WaitingLineReset(List<(BattleUnit, int?)> orderList)
     {
-        UI_waitingLine.SetWaitingLine(orderList);
+        UI_waitingLine.ResetWaitingLine(orderList);
+    }
+
+    public void WaitingLineAddOrder((BattleUnit, int?) order)
+    {
+        UI_waitingLine.AddUnitOrder(order);
+    }
+
+    public void WaitingLineRemoveOrder((BattleUnit, int?) order)
+    {
+        UI_waitingLine.RemoveUnitOrder(order);
+    }
+
+    public void WaitingLineChangeCheck(List<(BattleUnit, int?)> orderList)
+    {
+        UI_waitingLine.UnitOrderChangeCheck(orderList);
+    }
+
+    public void WaitingLineRefresh()
+    {
+        UI_waitingLine.RefreshWaitingUnit();
+    }
+
+    public void SetWaitingPlayer(bool on)
+    {
+        UI_waitingLine.SetWaitingPlayer(on);
     }
 
     public void AddHandUnit(DeckUnit unit)

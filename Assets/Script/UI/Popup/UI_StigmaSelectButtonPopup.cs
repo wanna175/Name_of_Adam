@@ -122,7 +122,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
             if (_targetUnit != null)
                 _targetUnit.AddStigma(stigmata);
 
-            GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+            GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
             if (_afterPopupAction != null)
             {
                 _afterPopupAction.Invoke();

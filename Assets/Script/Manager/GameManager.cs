@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager s_instance;
-    public static GameManager Instance { get { Init(); return s_instance; } }
+    public static GameManager Instance { get { if (s_instance == null) { Init(); } return s_instance; } }
 
     [SerializeField] private UIManager _ui;
     public static UIManager UI => Instance._ui;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMPro.TMP_Text _systemInfoText;
 
-    private readonly bool _onGM = false;
+    private readonly bool _onGM = true;
 
     private readonly bool _onDebug = false;
 
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); // 이미 GameManager가 있으면 이 오브젝트를 제거
         else
         {
+            Init();
+            /*
             SaveManager.Init();
             OutGameData.Init();
             Data.Init();
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
             VisualEffect.Init();
             Locale.Init();
             Steam.Init();
+            */
         }
     }
 
@@ -82,6 +85,8 @@ public class GameManager : MonoBehaviour
             Data.Init();
             Sound.Init();
             VisualEffect.Init();
+            Locale.Init();
+            Steam.Init();
 
             s_instance._systemInfoText.SetText(string.Empty);
         }
@@ -118,10 +123,10 @@ public class GameManager : MonoBehaviour
                     break;
 
                 unit.UnitDiedEvent();
-                GameManager.OutGameData.GetNPCQuest().UpgradeQuest++;
             }
             BattleManager.Instance.BattleOverCheck();
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             foreach (Stage stage in StageManager.Instance.CurrentStage.NextStage)
@@ -143,12 +148,13 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            NPCQuest quest = GameManager.OutGameData.GetNPCQuest();
-            quest.UpgradeQuest += 75;
-            quest.StigmaQuest += 8;
-            quest.DarkshopQuest += 13;
+            GameManager.OutGameData.Data.BaptismCorruptValue += 75;
+            GameManager.OutGameData.Data.StigmataCorruptValue += 8;
+            GameManager.OutGameData.Data.SacrificeCorruptValue += 13;
 
-            Debug.Log($"타락도 조정: {quest.UpgradeQuest}|{quest.StigmaQuest}|{quest.DarkshopQuest}");
+            Debug.Log($"타락도 조정: {GameManager.OutGameData.Data.BaptismCorruptValue}|" +
+                $"{GameManager.OutGameData.Data.StigmataCorruptValue}|" +
+                $"{GameManager.OutGameData.Data.SacrificeCorruptValue}");
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -166,27 +172,91 @@ public class GameManager : MonoBehaviour
                 uI_EliteReward.SetRewardPanel();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
-            if (BattleManager.Data == null)
-                return;
+            DeckUnit newUnit = new();
+            newUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자");
+            newUnit.IsMainDeck = false;
+            newUnit.HallUnitID = -1;
 
-            foreach (var unit in BattleManager.Data.BattleUnitList)
+            GameManager.Data.AddDeckUnit(newUnit);
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            DeckUnit newUnit = new();
+            newUnit.Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/욘");
+            newUnit.IsMainDeck = false;
+            newUnit.HallUnitID = -1;
+
+            GameManager.Data.AddDeckUnit(newUnit);
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/욘");
+            spawnData.location = new(5, 2);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/집정관");
+            spawnData.location = new(2, 2);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/흑기사");
+            spawnData.location = new(1, 2);
+            spawnData.team = Team.Player;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+
+            while (true)
             {
-                if (unit.Team == Team.Player)
-                {
-                    unit.ChangeHP(1000);
-                    unit.ChangeFall(-4);
-                }
+                BattleUnit unit = BattleManager.Data.BattleUnitList.Find(x => x.Team == Team.Enemy && x.Data.ID != "욘" && x.Data.ID != "주시자" && x.Data.ID != "집정관");
+                if (unit == null)
+                    break;
+
+                unit.UnitDiedEvent();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SpawnData spawnData = new();
+            spawnData.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/리비엘");
+            spawnData.location = new(4, 1);
+            spawnData.team = Team.Enemy;
+
+            BattleManager.Spawner.SpawnDataSpawn(spawnData);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameObject.Find("@GameManager").transform.Find("IngameDebugConsole").gameObject.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            GameManager.OutGameData.SetProgressCoin(9999);
-            //Steam.IncreaseAchievement(SteamAchievementType.Test);
+            GameManager.OutGameData.Data.ProgressCoin += 10000;
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            GameManager.Data.Map = new MapData();
+            string mapFolderPath = "Prefabs/Stage/Maps/";
+            mapFolderPath += "StageAct" + GameManager.Data.StageAct;
+
+            GameObject[] maps = Resources.LoadAll<GameObject>(mapFolderPath);
+            GameManager.Data.Map.MapObject = maps[mapnum];
+            mapnum++;
+            SceneChanger.SceneChange("StageSelectScene");
         }
     }
+
+    int mapnum = 0;
 
     public static string CreatePrivateKey()
         => Guid.NewGuid().ToString();

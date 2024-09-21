@@ -267,6 +267,34 @@ MonoBehaviour:
     m_Key: Blind Faith Info
     m_Metadata:
       m_Items: []
+  - m_Id: 78864474912739328
+    m_Key: Glory Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864595775803392
+    m_Key: Thorns Of Oblivion Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864714545909760
+    m_Key: Garden Of Oblivion Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865099960504320
+    m_Key: Abyssal Steps Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865195338977280
+    m_Key: Sharp Surge Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865196878286848
+    m_Key: Fragments of Birth Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865540756688896
+    m_Key: DeepSea Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

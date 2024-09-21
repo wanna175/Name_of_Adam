@@ -45,7 +45,7 @@ public class DataManager : MonoBehaviour
 
         StigmaController = new StigmaController();
         UpgradeController = new UpgradeController();
-        Map = new MapData();
+        Map = new MapData();    
         StageAct = 0;
 
         if (GameManager.SaveManager.SaveFileCheck())
@@ -59,14 +59,16 @@ public class DataManager : MonoBehaviour
         GameData.PlayerHP = GameDataMain.PlayerHP;
         GameData.DeckUnits = GameDataMain.DeckUnits;
         GameData.FallenUnits = GameDataMain.FallenUnits;
-        GameData.IsVisitUpgrade = GameDataMain.IsVisitUpgrade;
-        GameData.IsVisitStigma = GameDataMain.IsVisitStigma;
-        GameData.IsVisitDarkShop = GameDataMain.IsVisitDarkShop;
+        GameData.IsVisitBaptism = GameDataMain.IsVisitBaptism;
+        GameData.IsVisitStigmata = GameDataMain.IsVisitStigmata;
+        GameData.IsVisitSacrifice = GameDataMain.IsVisitSacrifice;
         GameData.Progress.ClearProgress();
 
-        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
-        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
-        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
+        GameData.IsVisitBaptism = GameManager.OutGameData.Data.IsVisitBaptism;
+        GameData.IsVisitStigmata = GameManager.OutGameData.Data.IsVisitStigmata;
+        GameData.IsVisitSacrifice = GameManager.OutGameData.Data.IsVisitSacrifice;
+
+        GameData.CurrentAct = GameManager.OutGameData.Data.Act;
     }
 
     public void DeckClear()
@@ -76,13 +78,14 @@ public class DataManager : MonoBehaviour
         GameData.PlayerHP = GameDataTutorial.PlayerHP;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
         GameData.FallenUnits.Clear();
-        GameData.IsVisitUpgrade = GameDataTutorial.IsVisitUpgrade;
-        GameData.IsVisitStigma = GameDataTutorial.IsVisitStigma;
-        GameData.IsVisitDarkShop = GameDataTutorial.IsVisitDarkShop;
+        GameData.IsVisitBaptism = GameDataTutorial.IsVisitBaptism;
+        GameData.IsVisitStigmata = GameDataTutorial.IsVisitStigmata;
+        GameData.IsVisitSacrifice = GameDataTutorial.IsVisitSacrifice;
         GameData.Progress.ClearProgress();
         GameData.StageDivine = new();
 
         //GameData.npcQuest.ClearQuest();
+        GameData.CurrentAct = 1;
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
@@ -100,9 +103,9 @@ public class DataManager : MonoBehaviour
         GameDataMain.PlayerHP = GameDataMainLayout.PlayerHP;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
-        GameDataMain.IsVisitUpgrade = GameDataMainLayout.IsVisitUpgrade;
-        GameDataMain.IsVisitStigma = GameDataMainLayout.IsVisitStigma;
-        GameDataMain.IsVisitDarkShop = GameDataMainLayout.IsVisitDarkShop;
+        GameDataMain.IsVisitBaptism = GameDataMainLayout.IsVisitBaptism;
+        GameDataMain.IsVisitStigmata = GameDataMainLayout.IsVisitStigmata;
+        GameDataMain.IsVisitSacrifice = GameDataMainLayout.IsVisitSacrifice;
         GameDataMain.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameDataMain.DeckUnits)

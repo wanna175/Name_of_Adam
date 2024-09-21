@@ -25,7 +25,8 @@ public class UI_ESCOption : UI_Popup
 
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if (sceneName != "BattleScene" && sceneName != "EventScene" && sceneName != "CutScene")
+        if (sceneName != "BattleScene" && sceneName != "EventScene" && sceneName != "CutScene" 
+            && sceneName != "ActSelectScene" && sceneName != "DifficultySelectScene")
         {
             GameManager.SaveManager.SaveGame();
         }

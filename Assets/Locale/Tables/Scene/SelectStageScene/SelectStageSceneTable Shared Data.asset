@@ -15,14 +15,6 @@ MonoBehaviour:
   m_TableCollectionName: SelectStageSceneTable
   m_TableCollectionNameGuidString: a99ebe9e7c7dcac48a3deb80d372c8d0
   m_Entries:
-  - m_Id: 1380868485120
-    m_Key: LEGEND
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1419825180672
-    m_Key: Enemy
-    m_Metadata:
-      m_Items: []
   - m_Id: 1464662290432
     m_Key: Baptism
     m_Metadata:
@@ -33,6 +25,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1522430439424
     m_Key: Sacrifice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736400215265280
+    m_Key: CommonBattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736407521742848
+    m_Key: EliteBattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736418489847808
+    m_Key: BossBattle
     m_Metadata:
       m_Items: []
   m_Metadata:

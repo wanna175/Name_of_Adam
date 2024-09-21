@@ -160,6 +160,22 @@ MonoBehaviour:
     m_Localized: You cannot revert every units.
     m_Metadata:
       m_Items: []
+  - m_Id: 63829019011993600
+    m_Localized: 'Congratulations.
+
+
+      You have finally defeated the Divine.
+
+
+      However,
+      a new light is rising from the abyss. Destroy the newly born light with your
+      own hands.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63829099735568384
+    m_Localized: "\u203B Press 'New Game' to face your next challenge."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

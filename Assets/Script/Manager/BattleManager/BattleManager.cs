@@ -54,7 +54,7 @@ public class BattleManager : MonoBehaviour
         _unitIDManager = new UnitIDManager();
         _unitIDManager.Init(GameManager.Data.GetDeck());
         SetBackground();
-        Time.timeScale = GameManager.OutGameData.GetBattleSpeed();
+        Time.timeScale = GameManager.OutGameData.Data.BattleSpeed;
     }
 
     private void Update()
@@ -62,7 +62,7 @@ public class BattleManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && _phase.CurrentPhaseCheck(Phase.Prepare))
         {
             //우클릭
-            if (GameManager.OutGameData.IsTutorialClear())
+            if (GameManager.OutGameData.Data.TutorialClear)
                 _battleUI.CancelAllSelect();
         }
 
@@ -98,56 +98,21 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
-        if (SceneChanger.GetSceneName() == "BattleTestScene")
-            return;
-
         PlayAfterCoroutine(() => {
             _spawner.SpawnInitialUnit();
             SpawnDivineCheck();
         }, 0.5f);
 
         PlayAfterCoroutine(() => {
-            if (GameManager.Data.Map.GetCurrentStage().StageLevel == 90)
+            StageData currentStageData = GameManager.Data.Map.GetCurrentStage();
+
+            if ((currentStageData.Name == StageName.EliteBattle ||
+            currentStageData.Name == StageName.BossBattle) &&
+            currentStageData.StageLevel % 100 < 90)
             {
-                if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
-                {
-                    string scriptKey = "투발카인전_입장";
-
-                    EventConversation(scriptKey);
-                }
-                else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
-                {
-                    string scriptKey = "엘리우스_야나전_입장";
-
-                    EventConversation(scriptKey);
-                }
-                else if (GameManager.Data.Map.GetCurrentStage().StageID == 2)
-                {
-                    string scriptKey = "라헬레아전_입장";
-
-                    EventConversation(scriptKey);
-                }
-                else if (GameManager.Data.Map.GetCurrentStage().StageID == 3)
-                {
-                    string scriptKey = "압바임전_입장";
-
-                    EventConversation(scriptKey);
-                }
-            }
-            else if (GameManager.Data.Map.GetCurrentStage().StageLevel == 100)
-            {
-                if (GameManager.Data.Map.GetCurrentStage().StageID == 0)
-                {
-                    string scriptKey = "바누엘전_입장";
-
-                    EventConversation(scriptKey);
-                }
-                else if (GameManager.Data.Map.GetCurrentStage().StageID == 1)
-                {
-                    string scriptKey = "호루스전_입장";
-
-                    EventConversation(scriptKey);
-                }
+                string unitName = GameManager.Data.StageDatas[currentStageData.StageLevel][currentStageData.StageID].Units[0].Name;
+                List<Script> scripts = GameManager.Data.ScriptData[unitName];
+                GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts, true, true);
             }
             else
             {
@@ -193,12 +158,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void EventConversation(string scriptKey)
-    {
-        List<Script> scripts = GameManager.Data.ScriptData[scriptKey];
-        GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts, true, true);
-    }
-
     private void SetBackground()
     {
         StageData currentStage = GameManager.Data.Map.GetCurrentStage();
@@ -206,34 +165,17 @@ public class BattleManager : MonoBehaviour
 
         if (GameManager.Data.StageAct == 2)
         {
-            if (GameManager.Data.Map.GetStage(99).StageID == 0)
-            {
-                Background[3].SetActive(false);
-                Background[2].SetActive(false);
-                Background[1].SetActive(true);
-                Background[0].SetActive(false);
-            }
-            else if (GameManager.Data.Map.GetStage(99).StageID == 1)
-            {
-                Background[3].SetActive(false);
-                Background[2].SetActive(true);
-                Background[1].SetActive(false);
-                Background[0].SetActive(false);
-            }
-            else if (GameManager.Data.Map.GetStage(99).StageID == 2)
-            {
-                Background[3].SetActive(true);
-                Background[2].SetActive(false);
-                Background[1].SetActive(false);
-                Background[0].SetActive(false);
-            }
+            StageData data = GameManager.Data.Map.GetStage(99);
+            string unitName = GameManager.Data.StageDatas[data.StageLevel][data.StageID].Units[0].Name;
+
+            Background[3].SetActive(unitName == "욘");
+            Background[2].SetActive(unitName == "구원자");
+            Background[1].SetActive(unitName == "바누엘");
+            Background[0].SetActive(false);
         }
         else
         {
-            Background[3].SetActive(true);
-            Background[2].SetActive(false);
-            Background[1].SetActive(false);
-            Background[0].SetActive(false);
+            Background[0].SetActive(true);
         }
     }
 
@@ -341,7 +283,7 @@ public class BattleManager : MonoBehaviour
         if (!_field.TileDict[coord].IsColored)
             return;  
 
-        if (!GameManager.OutGameData.IsTutorialClear())
+        if (!GameManager.OutGameData.Data.TutorialClear)
             TutorialManager.Instance.DisableToolTip();
 
         SetTlieClickCoolDown(0.2f);
@@ -451,7 +393,7 @@ public class BattleManager : MonoBehaviour
             cor.LoopExit();
             targetUnit.DeckUnit.ClearStigma();
         }
-        else if (targetUnit.Data.Rarity == Rarity.Boss)
+        else if (targetUnit.Data.Rarity == Rarity.Boss || targetUnit.Data.IsBattleOnly)
         {
             cor.LoopExit();
         }
@@ -506,8 +448,8 @@ public class BattleManager : MonoBehaviour
 
         if (unit.Team == Team.Enemy && !unit.IsConnectedUnit)
         {
-            if (GameManager.OutGameData.GetVisitUpgrade() == true)
-                GameManager.OutGameData.GetNPCQuest().UpgradeQuest++;
+            if (GameManager.OutGameData.Data.IsVisitBaptism)
+                GameManager.OutGameData.Data.BaptismCorruptValue++;
             
             if(unit.Data.Rarity == Rarity.Normal)
             {
@@ -531,20 +473,28 @@ public class BattleManager : MonoBehaviour
                 {
                     case "바누엘":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_PHANUEL);
-                        if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
-                        {
+                        //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
+                        //{
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
                             GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
                             GameManager.Data.GameData.Progress.PhanuelKill++;
-                        }
+                        //}
                         break;
                     case "구원자":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_THESAVIOR);
-                        if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
-                        {
+                        //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
+                        //{
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
-                        }
-                        GameManager.Data.GameData.Progress.HorusKill++;
+                        //}
+                        GameManager.Data.GameData.Progress.SaviorKill++;
+                        break;
+                    case "욘":
+                        GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_YOHRN);
+                        //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Yohrn_Dead) == false)
+                        //{
+                            BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
+                        //}
+                        GameManager.Data.GameData.Progress.YohrnKill++;
                         break;
                     default: Debug.Log($"{unit.DeckUnit.Data.ID} 보스 컷씬 출력 실패"); break;
                 }
@@ -560,8 +510,8 @@ public class BattleManager : MonoBehaviour
 
     public void UnitFallEvent(BattleUnit unit)
     {
-        if (GameManager.OutGameData.GetVisitDarkshop()==true)
-            GameManager.OutGameData.GetNPCQuest().DarkshopQuest++;
+        if (GameManager.OutGameData.Data.IsVisitSacrifice)
+            GameManager.OutGameData.Data.SacrificeCorruptValue++;
 
         if (unit.Team == Team.Enemy && !unit.Data.IsBattleOnly)
         {
@@ -581,7 +531,11 @@ public class BattleManager : MonoBehaviour
             }
             else if (unit.DeckUnit.Data.ID == "구원자")
             {
-                GameManager.Data.GameData.Progress.HorusFall++;
+                GameManager.Data.GameData.Progress.SaviorFall++;
+            }
+            else if (unit.DeckUnit.Data.ID == "욘")
+            {
+                GameManager.Data.GameData.Progress.YohrnFall++;
             }
         }
 
@@ -638,14 +592,8 @@ public class BattleManager : MonoBehaviour
 
     public void BattleOverCheck()
     {
-        if (Data.isGameDone)
-            return;
-
-        if (BattleCutSceneManager.Instance.IsCutScenePlaying == true)
+        if (Data.IsGameDone || BattleCutSceneManager.Instance.IsCutScenePlaying)
             return; // 컷씬 도중엔 체크하지 않음
-
-        if (SceneChanger.GetSceneName() == "BattleTestScene")
-            return;
 
         int EnemyUnit = 0;
 
@@ -669,30 +617,20 @@ public class BattleManager : MonoBehaviour
 
     private void BattleOverWin()
     {
-        Data.isGameDone = true;
+        Data.IsGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         _battleData.OnBattleOver();
-        StageData data = GameManager.Data.Map.GetCurrentStage();
         Time.timeScale = 1f;
 
-        if (data.StageLevel >= 90)
+        PlayAfterCoroutine(() =>
         {
+            StageData data = GameManager.Data.Map.GetCurrentStage();
+
             if (data.Name == StageName.BossBattle)
             {
                 CheckBossCycle(data);
+
                 GameManager.Data.GameData.Progress.BossWin++;
-
-                if(data.StageID == 0)
-                {
-                    GameManager.OutGameData.ClearPhanuel(true);
-                    Debug.Log("Phanuel Clear");
-                }
-                else if(data.StageID == 1)
-                {
-                    GameManager.OutGameData.ClearHorus(true);
-                    Debug.Log("Horus Clear");
-                }
-
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
                 GameManager.SaveManager.DeleteSaveData();
             }
@@ -700,45 +638,45 @@ public class BattleManager : MonoBehaviour
             {
                 GameManager.Data.GameData.Progress.EliteWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("elite win");
+                GameManager.SaveManager.SaveGame();
             }
             else
             {
                 GameManager.Data.GameData.Progress.NormalWin++;
                 GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
+                GameManager.SaveManager.SaveGame();
             }
 
-            return;
-        }
-        else
-        {
-            GameManager.Data.GameData.Progress.NormalWin++;
-            GameManager.UI.ShowScene<UI_BattleOver>().SetImage("win");
-        }
-        GameManager.OutGameData.SaveData();
-        GameManager.SaveManager.SaveGame();
+            GameManager.OutGameData.SaveData();
+        }, 1f);
     }
 
     private void BattleOverLose()
     {
         Debug.Log("YOU LOSE");
-        Data.isGameDone = true;
+        Data.IsGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
-        //GameManager.UnitIDController.resetID();
         GameManager.SaveManager.DeleteSaveData();
-        GameManager.OutGameData.SetIsGameOverCheck(true);
     }
 
     private void CheckBossCycle(StageData data)
     {
-        if(data.StageID == 0 && !GameManager.OutGameData.IsPhanuelClear())
+        if (data.StageLevel == 214 && !GameManager.OutGameData.Data.PhanuelClear)
         {
-            GameManager.OutGameData.ClearPhanuel(true);
+            GameManager.OutGameData.Data.PhanuelClear = true;
         }
-        else if(data.StageID == 1 && !GameManager.OutGameData.IsHorusClear())
+        else if (data.StageLevel == 224 && !GameManager.OutGameData.Data.SaviorClear)
         {
-            GameManager.OutGameData.ClearHorus(true);
+            GameManager.OutGameData.Data.SaviorClear = true;
         }
+        else if (data.StageLevel == 234 && !GameManager.OutGameData.Data.YohrnClear)
+        {
+            GameManager.OutGameData.Data.YohrnClear = true;
+            GameManager.Data.GameData.Progress.AllChapterClear = 1;
+            }
+
+        GameManager.OutGameData.SaveData();
     }
 
     // 이동 경로를 받아와 이동시킨다
@@ -867,15 +805,13 @@ public class BattleManager : MonoBehaviour
         {
             if (unit.Team == Team.Enemy)
             {
-                if (lastUnit == null)
-                {
-                    lastUnit = unit;
-                }
-                else
+                if (lastUnit != null)
                 {
                     lastUnit = null;
                     break;
                 }
+
+                lastUnit = unit;
             }
         }
 
@@ -886,15 +822,6 @@ public class BattleManager : MonoBehaviour
             
             lastUnit.SetBuff(new Buff_Divine());
         }
-    }
-
-    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
-
-    private IEnumerator PlayCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        action();
     }
 
     public bool ActiveTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver = null)
@@ -926,5 +853,14 @@ public class BattleManager : MonoBehaviour
         skipNextAction |= caster.Action.ActionTimingCheck(activeTiming, caster, receiver);
 
         return skipNextAction;
+    }
+
+    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
+
+    private IEnumerator PlayCoroutine(Action action, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        action();
     }
 }

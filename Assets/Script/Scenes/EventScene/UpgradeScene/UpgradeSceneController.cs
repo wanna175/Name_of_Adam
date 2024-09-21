@@ -29,9 +29,6 @@ public class UpgradeSceneController : MonoBehaviour
     private Upgrade _preSelectedUpgrade;
     private bool _isUpgradePreSet = false;
 
-    private bool _isNPCFall = false;
-    private bool _isVisitUpgrade = false;
-
     void Start()
     {
         Init();
@@ -44,11 +41,40 @@ public class UpgradeSceneController : MonoBehaviour
             _healFaithButton.SetActive(false);
         }
 
-        Debug.Log($"횟수: {GameManager.OutGameData.GetNPCQuest().UpgradeQuest}");
+        Debug.Log($"횟수: {GameManager.OutGameData.Data.BaptismCorruptValue}");
 
-        int questLevel = Mathf.Min(GameManager.OutGameData.GetNPCQuest().UpgradeQuest / 75, 4);
+        int questLevel = Mathf.Min(GameManager.OutGameData.Data.BaptismCorruptValue / 75, 4);
+        if (questLevel == 4 && !GameManager.OutGameData.Data.IsBaptismCorrupt)
+        {
+            GameManager.OutGameData.Data.IsBaptismCorrupt = true;
+            DeckUnit unit = new()
+            {
+                Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자"),
+                IsMainDeck = false,
+                PrivateKey = "Origin_Betrayer_Of_Faith",
+                HallUnitID = -1
+            };
 
-        if (GameManager.OutGameData.GetVisitUpgrade() == false && questLevel != 4)
+            GameManager.OutGameData.AddHallUnit(unit);
+            GameManager.Data.AddDeckUnit(unit);
+            GameManager.Data.GameData.FallenUnits.Add(unit);
+        }
+
+        if (GameManager.OutGameData.Data.IsBaptismCorrupt)
+        {
+            _normalBackground.SetActive(false);
+            _corruptBackground.SetActive(true);
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade_Corrupt"));
+
+        }
+        else
+        {
+            _normalBackground.SetActive(true);
+            _corruptBackground.SetActive(false);
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade"));
+        }
+
+        if (!GameManager.Data.GameData.IsVisitBaptism)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
@@ -59,29 +85,11 @@ public class UpgradeSceneController : MonoBehaviour
             _scripts = GameManager.Data.ScriptData[$"강화소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
             _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
-
-            if (questLevel == 4)
-            {
-                _normalBackground.SetActive(false);
-                _corruptBackground.SetActive(true);
-                _isNPCFall = true;
-            }
         }
-
-        if (_isNPCFall)
-            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade_Corrupt"));
-        else
-            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade"));
 
         for (int i = 0; i < 3; i++)
         {
             _fogImageList[i].gameObject.SetActive(questLevel > i);
-        }
-
-        _isVisitUpgrade = GameManager.Data.GameData.IsVisitUpgrade;
-        if (_isVisitUpgrade == false)
-        {
-            GameManager.Data.GameData.IsVisitUpgrade = true;
         }
 
         _conversationUI = GameManager.UI.ShowPopup<UI_Conversation>();
@@ -121,7 +129,7 @@ public class UpgradeSceneController : MonoBehaviour
     {
         _upgradeList.Clear();
 
-        int createUpgradeCount = (_isNPCFall) ? 4 : 3;
+        int createUpgradeCount = (GameManager.OutGameData.Data.IsBaptismCorrupt) ? 4 : 3;
 
         while (_upgradeList.Count < createUpgradeCount)
         {
@@ -168,10 +176,7 @@ public class UpgradeSceneController : MonoBehaviour
         }
 
         //선 저장
-        if (!GameManager.Data.Map.ClearTileID.Contains(GameManager.Data.Map.CurrentTileID))
-        {
-            GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
-        }
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
     }
 
@@ -199,7 +204,7 @@ public class UpgradeSceneController : MonoBehaviour
 
         _selectedUnit.DeckUnitUpgrade.Remove(_preSelectedUpgrade);
         _selectedUnit.DeckUnitUpgrade.Add(_upgradeList[select]);
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
 
         UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
         unitInfo.SetUnit(_selectedUnit);
@@ -232,25 +237,24 @@ public class UpgradeSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (_isVisitUpgrade == false)
+        if (!GameManager.Data.GameData.IsVisitBaptism)
         {
-            GameManager.OutGameData.SetVisitUpgrade(true);
+            GameManager.OutGameData.Data.IsVisitBaptism = true;
+            GameManager.Data.GameData.IsVisitBaptism = true;
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
         }
         else
         {
-            int questLevel = GameManager.OutGameData.GetNPCQuest().UpgradeQuest / 75;
+            int questLevel = GameManager.OutGameData.Data.BaptismCorruptValue / 75;
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"강화소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
 
         yield return StartCoroutine(quitScript.PrintScript());
 
-        if (!GameManager.Data.Map.ClearTileID.Contains(GameManager.Data.Map.CurrentTileID))
-        {
-            GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
-        }
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
+        GameManager.OutGameData.SaveData();
         SceneChanger.SceneChange("StageSelectScene");
     }
 

@@ -27,10 +27,6 @@ MonoBehaviour:
     m_Key: Tubalcain
     m_Metadata:
       m_Items: []
-  - m_Id: 248150552576
-    m_Key: King Herod
-    m_Metadata:
-      m_Items: []
   - m_Id: 362822823936
     m_Key: Messenger of faith
     m_Metadata:
@@ -69,6 +65,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6137469949767680
     m_Key: The Savior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76643024986329088
+    m_Key: Libiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76643026945069056
+    m_Key: Arabella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76643028249497600
+    m_Key: Yohrn
     m_Metadata:
       m_Items: []
   m_Metadata:

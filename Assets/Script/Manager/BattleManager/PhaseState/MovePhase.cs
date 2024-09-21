@@ -8,7 +8,7 @@ public class MovePhase : Phase
 
     public override void OnStateEnter()
     {
-        if (BattleManager.Data.isGameDone)
+        if (BattleManager.Data.IsGameDone)
             return;
 
         _nowUnit = BattleManager.Data.GetNowUnit();
@@ -17,7 +17,7 @@ public class MovePhase : Phase
         if (_nowUnit.Team == Team.Player)
             BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
         
-        if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.IsTutorialClear())
+        if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.Data.TutorialClear)
             TutorialManager.Instance.ShowNextTutorial();
         
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TURN_START, _nowUnit);

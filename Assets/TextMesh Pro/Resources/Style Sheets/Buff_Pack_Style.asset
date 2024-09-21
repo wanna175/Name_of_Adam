@@ -85,8 +85,8 @@ MonoBehaviour:
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d000000380000003e000000
     m_ClosingTagUnicodeArray: 
-  - m_Name: Buff_Leah_Sprite
-    m_HashCode: -2003808194
+  - m_Name: Buff_Lea_Sprite
+    m_HashCode: -734441226
     m_OpeningDefinition: <sprite=9>
     m_ClosingDefinition: 
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000390000003e000000
@@ -125,8 +125,8 @@ MonoBehaviour:
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000330000003e000000
     m_ClosingTagUnicodeArray: 
-  - m_Name: Buff_Raquel_Sprite
-    m_HashCode: -1208985280
+  - m_Name: Buff_Rahel_Sprite
+    m_HashCode: 2115784268
     m_OpeningDefinition: <sprite=14>
     m_ClosingDefinition: 
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000340000003e000000
@@ -159,17 +159,17 @@ MonoBehaviour:
     m_ClosingTagUnicodeArray: 
   - m_Name: Buff_Dusk_Sprite
     m_HashCode: -1736396393
-    m_OpeningDefinition: <sprite=18>
+    m_OpeningDefinition: <sprite=19>
     m_ClosingDefinition: 
-    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000380000003e000000
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000390000003e000000
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000380000003e000000
     m_ClosingTagUnicodeArray: 
   - m_Name: Buff_TraceOfSolar_Sprite
     m_HashCode: 892382453
-    m_OpeningDefinition: <sprite=19>
+    m_OpeningDefinition: <sprite=18>
     m_ClosingDefinition: 
-    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000390000003e000000
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000380000003e000000
     m_ClosingTagArray: 
     m_OpeningTagUnicodeArray: 3c0000007300000070000000720000006900000074000000650000003d00000031000000390000003e000000
     m_ClosingTagUnicodeArray: 

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_PlayerHP : MonoBehaviour
+public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image profile;
     [SerializeField] private Image HPBackImage, HPEffectImage;
@@ -46,6 +44,32 @@ public class UI_PlayerHP : MonoBehaviour
         }
     }
 
-    public void StartEffect()
-        => BattleManager.BattleUI.UI_animator.SetBool("isPlayerHit", true);
+    public void StartEffect() => BattleManager.BattleUI.UI_animator.SetBool("isPlayerHit", true);
+
+    private bool _isHover = false;
+    private bool _isHoverMessegeOn = false;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _isHover = true;
+        BattleManager.Instance.PlayAfterCoroutine(() => {
+            if (_isHover)
+            {
+                _isHoverMessegeOn = true;
+                GameManager.UI.ShowHover<UI_TextHover>().SetText(
+                    $"{GameManager.Locale.GetLocalizedBattleScene("PlayerHP UI Info")}", Input.mousePosition);
+            }
+        }, 0.5f);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _isHover = false;
+
+        if (_isHoverMessegeOn)
+        {
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
+        }
+    }
 }

@@ -193,8 +193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _changeButton: {fileID: 5599883418855769735}
   _buttonImage: {fileID: 672710827517543454}
-  buttonEnterSprite: {fileID: 1938664424, guid: a31430f2e68dc9d40867840064b22420, type: 3}
-  buttonExitSprite: {fileID: -751166431, guid: ec94893b9514f784fa69a2f7e8412ef4, type: 3}
   _lightImage: {fileID: 5540901088846520089}
 --- !u!1 &2317654386567439935
 GameObject:
@@ -263,7 +261,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -751166431, guid: ec94893b9514f784fa69a2f7e8412ef4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec94893b9514f784fa69a2f7e8412ef4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -302,8 +300,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1938664424, guid: a31430f2e68dc9d40867840064b22420, type: 3}
-    m_PressedSprite: {fileID: 1938664424, guid: a31430f2e68dc9d40867840064b22420, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 110f7415ba7b3c84087e835ce165e4ee, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: a31430f2e68dc9d40867840064b22420, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:

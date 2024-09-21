@@ -12,6 +12,13 @@ public class UI_Info : UI_Scene
     [SerializeField] private TextMeshProUGUI _statSpeed;
     [SerializeField] private TextMeshProUGUI _statCost;
 
+    [SerializeField] private GameObject _statDarkEssence;
+    [SerializeField] private TextMeshProUGUI _statDarkEssenceCost;
+
+    [SerializeField] private TextMeshProUGUI _statAttackChange;
+    [SerializeField] private TextMeshProUGUI _statSpeedChange;
+    [SerializeField] private TextMeshProUGUI _statCostChange;
+
     [SerializeField] private UI_HPBar _hpBar;
     [SerializeField] private Transform _stigmaGrid;
 
@@ -32,9 +39,8 @@ public class UI_Info : UI_Scene
     [SerializeField] private Image _unitImage;
 
     //색상은 UI에서 정해주는대로
-    readonly Color goodColor = Color.yellow;
-    readonly Color badColor = Color.red;
-    readonly Color textColor = new Color(195f, 195f, 195f);
+    readonly Color _upColor = new(1f, 0.22f, 0.22f);
+    readonly Color _downColor = new(0.35f, 0.35f, 1f);
 
     readonly Color _attackRangeColor = new(0.6f, 0.05f, 0.05f);
 
@@ -57,32 +63,34 @@ public class UI_Info : UI_Scene
 
         string hpText = battleUnit.BattleUnitTotalStat.CurrentHP.ToString() + "/" + battleUnit.BattleUnitTotalStat.MaxHP.ToString();
 
+        _statDarkEssence.SetActive(battleUnit.Data.DarkEssenseCost > 0);
+        _statDarkEssenceCost.text = battleUnit.Data.DarkEssenseCost.ToString();
+
         _statAttack.text = battleUnit.BattleUnitTotalStat.ATK.ToString();
         _statSpeed.text = battleUnit.BattleUnitTotalStat.SPD.ToString();
         _statCost.text = battleUnit.BattleUnitTotalStat.ManaCost.ToString();
 
-        if (unit.DeckUnitChangedStat.ATK > 0 || battleUnit.BattleUnitChangedStat.ATK > 0)
-            _statAttack.color = goodColor;
-        else if (unit.DeckUnitChangedStat.ATK < 0 || battleUnit.BattleUnitChangedStat.ATK < 0)
-            _statAttack.color = badColor;
-        else
-            _statAttack.color = textColor;
+        _statAttackChange.text = (unit.DeckUnitChangedStat.ATK + battleUnit.BattleUnitChangedStat.ATK > 0) ? "+" : "";
+        if (unit.DeckUnitChangedStat.ATK + battleUnit.BattleUnitChangedStat.ATK != 0)
+        {
+            _statAttackChange.text += (unit.DeckUnitChangedStat.ATK + battleUnit.BattleUnitChangedStat.ATK).ToString();
+            _statAttackChange.color = (unit.DeckUnitChangedStat.ATK + battleUnit.BattleUnitChangedStat.ATK > 0) ? _upColor : _downColor;
+        }
 
-        if (unit.DeckUnitChangedStat.SPD > 0 || battleUnit.BattleUnitChangedStat.SPD > 0)
-            _statSpeed.color = goodColor;
-        else if (unit.DeckUnitChangedStat.SPD < 0 || battleUnit.BattleUnitChangedStat.SPD < 0)
-            _statSpeed.color = badColor;
-        else
-            _statSpeed.color = textColor;
+        _statSpeedChange.text = (unit.DeckUnitChangedStat.SPD + battleUnit.BattleUnitChangedStat.SPD > 0) ? "+" : "";
+        if (unit.DeckUnitChangedStat.SPD + battleUnit.BattleUnitChangedStat.SPD != 0)
+        {
+            _statSpeedChange.text += (unit.DeckUnitChangedStat.SPD + battleUnit.BattleUnitChangedStat.SPD).ToString();
+            _statSpeedChange.color = (unit.DeckUnitChangedStat.SPD + battleUnit.BattleUnitChangedStat.SPD > 0) ? _upColor : _downColor;
+        }
 
-        if (unit.DeckUnitChangedStat.ManaCost > 0 || battleUnit.BattleUnitChangedStat.ManaCost > 0)
-            _statCost.color = badColor;
-        else if (unit.DeckUnitChangedStat.ManaCost < 0 || battleUnit.BattleUnitChangedStat.ManaCost < 0)
-            _statCost.color = goodColor;
-        else
-            _statCost.color = textColor;
+        _statCostChange.text = (unit.DeckUnitChangedStat.ManaCost + battleUnit.BattleUnitChangedStat.ManaCost > 0) ? "+" : "";
+        if (unit.DeckUnitChangedStat.ManaCost + battleUnit.BattleUnitChangedStat.ManaCost != 0)
+        {
+            _statCostChange.text += (unit.DeckUnitChangedStat.ManaCost + battleUnit.BattleUnitChangedStat.ManaCost).ToString();
+            _statCostChange.color = (unit.DeckUnitChangedStat.ManaCost + battleUnit.BattleUnitChangedStat.ManaCost > 0) ? _downColor : _upColor;
+        }
 
-        //_fallText.text = fallText;
         _hpText.text = hpText;
 
         _hpBar.SetHPBar(team);
@@ -148,32 +156,33 @@ public class UI_Info : UI_Scene
 
         string hpText = unit.DeckUnitTotalStat.CurrentHP.ToString() + "/" + unit.DeckUnitTotalStat.MaxHP.ToString();
 
+        _statDarkEssence.SetActive(unit.Data.DarkEssenseCost > 0);
+        _statDarkEssenceCost.text = unit.Data.DarkEssenseCost.ToString();
+
         _statAttack.text = unit.DeckUnitTotalStat.ATK.ToString();
         _statSpeed.text = unit.DeckUnitTotalStat.SPD.ToString();
         _statCost.text = unit.DeckUnitTotalStat.ManaCost.ToString();
 
-        if (unit.DeckUnitChangedStat.ATK > 0)
-            _statAttack.color = goodColor;
-        else if (unit.DeckUnitChangedStat.ATK < 0)
-            _statAttack.color = badColor;
-        else
-            _statAttack.color = textColor;
+        _statAttackChange.text = (unit.DeckUnitChangedStat.ATK > 0) ? "+" : "";
+        if (unit.DeckUnitChangedStat.ATK != 0)
+        {
+            _statAttackChange.text += (unit.DeckUnitChangedStat.ATK).ToString();
+            _statAttackChange.color = (unit.DeckUnitChangedStat.ATK > 0) ? _upColor : _downColor;
+        }
 
-        if (unit.DeckUnitChangedStat.SPD > 0)
-            _statSpeed.color = goodColor;
-        else if (unit.DeckUnitChangedStat.SPD < 0)
-            _statSpeed.color = badColor;
-        else
-            _statSpeed.color = textColor;
+        _statSpeedChange.text = (unit.DeckUnitChangedStat.SPD > 0) ? "+" : "";
+        if (unit.DeckUnitChangedStat.SPD != 0)
+        {
+            _statSpeedChange.text += (unit.DeckUnitChangedStat.SPD).ToString();
+            _statSpeedChange.color = (unit.DeckUnitChangedStat.SPD > 0) ? _upColor : _downColor;
+        }
 
-        if (unit.DeckUnitChangedStat.ManaCost > 0)
-            _statCost.color = badColor;
-        else if (unit.DeckUnitChangedStat.ManaCost < 0)
-            _statCost.color = goodColor;
-        else
-            _statCost.color = textColor;
-
-        //fallText = fallText.Replace("textColor" , )
+        _statCostChange.text = (unit.DeckUnitChangedStat.ManaCost > 0) ? "+" : "";
+        if (unit.DeckUnitChangedStat.ManaCost != 0)
+        {
+            _statCostChange.text += (unit.DeckUnitChangedStat.ManaCost).ToString();
+            _statCostChange.color = (unit.DeckUnitChangedStat.ManaCost > 0) ? _downColor : _upColor;
+        }
 
         _hpText.text = hpText;
 

@@ -16,24 +16,42 @@ public class OutGameData
     
     public bool TutorialClear = false;
     public bool PhanuelClear = false;
-    public bool HorusClear = false; //SaviorClear로 수정 필요
+    public bool SaviorClear = false;
+    public bool YohrnClear = false;
 
-    public bool IsVisitUpgrade = false;
-    public bool IsVisitStigma = false;
-    public bool IsVisitDarkShop = false;
-    public NPCQuest NpcQuest;                //npc타락퀘스트
-    public bool IsGameOver = false;          //바로 전에 게임이 오버되었는지 체크
-    public bool[] cutSceneData = new bool[Enum.GetValues(typeof(CutSceneType)).Length];        //현재 진행된 컷씬
-    public bool IsOnMainTooltipForHorus = false;
+    public bool IsVisitBaptism = false;
+    public bool IsVisitStigmata = false;
+    public bool IsVisitSacrifice = false;
+
+    public int BaptismCorruptValue = 0;
+    public int StigmataCorruptValue = 0;
+    public int SacrificeCorruptValue = 0;
+
+    public bool IsBaptismCorrupt = false;
+    public bool IsStigmataCorrupt = false;
+    public bool IsSacrificeCorrupt = false;
+
+    public Dictionary<string, bool> CutSceneViewData = new();
+
+    public bool IsOnMainTooltipForYohrn = false;
+    public bool IsOnMainTooltipForSavior = false;
     public bool IsOnMainTooltipForPhanuel = false;
-    public float BattleSpeed = 1f;
 
-    public int language;
-    public int resolution;
+    public float BattleSpeed = 1f;
+    public int Language;
+    public int Resolution;
     public bool IsWindowed;
     public float MasterSoundPower; // 0 ~ 1
     public float BGMSoundPower; // 0 ~ 1
     public float SESoundPower; // 0 ~ 1
+
+    public int Act = 1;
+
+    //예전 데이터(세이브 파일 관리 용도로만 이용됨)
+    public bool HorusClear = false; //SaviorClear로 수정됨
+    public NPCQuest NpcQuest; //BaptismCorruptValue, StigmataCorruptValue, SacrificeCorruptValue로 수정됨
+    public bool[] cutSceneData = new bool[Enum.GetValues(typeof(CutSceneType)).Length]; //Dict 형태로 수정됨
+
 }
 
 [Serializable]
@@ -44,7 +62,7 @@ public class HallUnit
     public string UnitName;       // 지금은 유닛 이름으로 받고있지만 ID로 받는 기능이 추가되면 변경해야함
     public Stat UpgradedStat;     //업그레이드된 스텟
     public bool IsMainDeck;       //유닛이 메인덱에 포함되었는지 유무 확인
-    public List<StigmaSaveData> Stigmata; // 유닛에게 추가된 낙인
+    public List<StigmaSaveData> Stigmata; // 유닛에게 추가된 성흔
     public List<UpgradeData> Upgrades; //유닛에게 추가된 강화
 
     public DeckUnit ConvertToDeckUnit()
@@ -99,9 +117,10 @@ public class OutGameDataContainer : MonoBehaviour
     private SaveVersionController _versionController;
     public Dictionary<int, ProgressItem> ProgressItems = new();
 
-    private OutGameData _data;
     private string _path;
     private List<Resolution> _resolutions;
+
+    public OutGameData Data;
 
     public void Init()
     {
@@ -137,7 +156,7 @@ public class OutGameDataContainer : MonoBehaviour
 
     public void SaveData()
     {
-        string json = JsonUtility.ToJson(_data, true);
+        string json = JsonUtility.ToJson(Data, true);
         File.WriteAllText(_path, EncryptAndDecrypt(json));
     }
 
@@ -147,7 +166,7 @@ public class OutGameDataContainer : MonoBehaviour
         {
             // AppData에 파일이 있으면 OutGameData파일이 있으면 불러오기
             string json = File.ReadAllText(_path);
-            _data = JsonUtility.FromJson<OutGameData>(EncryptAndDecrypt(json));
+            Data = JsonUtility.FromJson<OutGameData>(EncryptAndDecrypt(json));
 
             if (_versionController.CheckNeedMigration() == true)
             {
@@ -166,7 +185,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         List<DeckUnit> HallList = new();
 
-        foreach (HallUnit hallUnit in _data.HallUnit)
+        foreach (HallUnit hallUnit in Data.HallUnit)
         {
             DeckUnit deckUnit = hallUnit.ConvertToDeckUnit();
             HallList.Add(deckUnit);
@@ -179,25 +198,17 @@ public class OutGameDataContainer : MonoBehaviour
     {
         // Resources폴더 안에 있는 데이터를 복사하여 저장
         TextAsset text = GameManager.Resource.Load<TextAsset>("Data/OutGameData");
-        _data = JsonUtility.FromJson<OutGameData>(text.text);
-        _data.Version = Application.version;
+        Data = JsonUtility.FromJson<OutGameData>(text.text);
+        Data.Version = Application.version;
 
         SetProgressInit();
-        ReSetOption();
+        ResetOption();
         SaveData();
     }
-
-    public void SetProgressCoin(int num)
-    {
-        _data.ProgressCoin += num;
-        SaveData();
-    }
-
-    public int GetProgressCoin() => _data.ProgressCoin;
 
     public ProgressItem GetProgressItem(int ID) => ProgressItems[ID];
 
-    public ProgressSave GetProgressSave(int ID) => _data.ProgressSaves.Find(x => x.ID == ID);
+    public ProgressSave GetProgressSave(int ID) => Data.ProgressSaves.Find(x => x.ID == ID);
 
     public bool IsUnlockedItem(int ID) => GetProgressSave(ID).isUnLock;
 
@@ -218,12 +229,13 @@ public class OutGameDataContainer : MonoBehaviour
     {
         ProgressItem item = GetProgressItem(ID);
         GetProgressSave(ID).isUnLock = true;
-        SetProgressCoin(-item.Cost);
+        Data.ProgressCoin -= item.Cost;
+        SaveData();
     }
 
-    public HallUnit FindHallUnitID(int ID) => _data.HallUnit.Find(x => x.ID == ID);
+    public HallUnit FindHallUnitID(int ID) => Data.HallUnit.Find(x => x.ID == ID);
 
-    public List<HallUnit> FindHallUnitList() => _data.HallUnit;
+    public List<HallUnit> FindHallUnitList() => Data.HallUnit;
 
     public void AddHallUnit(DeckUnit unit)
     {
@@ -240,18 +252,17 @@ public class OutGameDataContainer : MonoBehaviour
         newUnit.Stigmata = unit.GetStigmaSaveData();
         newUnit.Upgrades = unit.GetUpgradeData();
 
-        _data.HallUnit.Add(newUnit);
+        Data.HallUnit.Add(newUnit);
         SaveData();
 
         GameManager.Data.GameData.FallenUnits.Clear();
-        SceneChanger.SceneChange("MainScene");
     }
 
     public void CoverHallUnit(DeckUnit unit)
     {
         HallUnit coverUnit = null;
 
-        foreach (HallUnit hallUnit in _data.HallUnit)
+        foreach (HallUnit hallUnit in Data.HallUnit)
         {
             if (hallUnit.PrivateKey == unit.PrivateKey)
             {
@@ -283,103 +294,51 @@ public class OutGameDataContainer : MonoBehaviour
         SceneChanger.SceneChange("MainScene");
     }
 
-    public void DoneTutorial(bool isclear)
-    {
-        _data.TutorialClear = isclear;
-        SaveData();
-    }
-
-    public void ClearPhanuel(bool isclear)
-    {
-        _data.PhanuelClear = isclear;
-        SaveData();
-    }
-
-    public void ClearHorus(bool isclear)
-    {
-        _data.HorusClear = isclear;
-        SaveData();
-    }
-
-    public bool IsPhanuelClear() => _data.PhanuelClear;
-
-    public bool IsHorusClear() => _data.HorusClear;
-
-    public bool IsTutorialClear() => _data.TutorialClear;
-
-    public NPCQuest GetNPCQuest() => _data.NpcQuest;
-
-    public bool GetVisitUpgrade() => _data.IsVisitUpgrade;
-
-    public void SetVisitUpgrade(bool isVisit)
-    {
-        _data.IsVisitUpgrade = isVisit;
-        SaveData();
-    }
-    public bool GetVisitStigma() => _data.IsVisitStigma;
-
-    public void SetVisitStigma(bool isVisit)
-    {
-        _data.IsVisitStigma = isVisit;
-        SaveData();
-    }
-    public bool GetVisitDarkshop() => _data.IsVisitDarkShop;
-
-    public void SetVisitDarkshop(bool isVisit)
-    {
-        _data.IsVisitDarkShop = isVisit;
-        SaveData();
-    }
-
-    public bool IsGameOverCheck() => _data.IsGameOver;
-
-    public void SetIsGameOverCheck(bool isGameOver) {
-        _data.IsGameOver = isGameOver;
-        SaveData();
-    }
-
     public void ResetNPCQuest()
     {
-        Debug.Log("npc데이터 리셋되었다.");
-        _data.IsVisitUpgrade = false;
-        _data.IsVisitDarkShop = false;
-        _data.IsVisitStigma = false;
-        _data.NpcQuest.ClearQuest();
+        Data.IsVisitBaptism = false;
+        Data.IsVisitStigmata = false;
+        Data.IsVisitSacrifice = false;
+
+        Data.BaptismCorruptValue = 0;
+        Data.StigmataCorruptValue = 0;
+        Data.SacrificeCorruptValue = 0;
         SaveData();
     }
+
     public void RemoveHallUnit(int ID)
     {
-        _data.HallUnit.Remove(FindHallUnitID(ID));
+        Data.HallUnit.Remove(FindHallUnitID(ID));
     }
 
     public void RemoveHallUnit(string privateKey)
     {
-        _data.HallUnit.Remove(_data.HallUnit.Find(x => x.PrivateKey == privateKey));
+        Data.HallUnit.Remove(Data.HallUnit.Find(x => x.PrivateKey == privateKey));
     }
 
     public void DeleteAllData() => File.Delete(_path);
 
     private Resolution GetResolution(int width, int height, int refreshRate)
     {
-        Resolution resolution = new Resolution();
+        Resolution resolution = new();
         resolution.width = width;
         resolution.height = height;
         resolution.refreshRate = refreshRate;
         return resolution;
     }
 
-    private void SetResolution()
+    public void SetResolution()
     {
-        Resolution resolution = _resolutions[_data.resolution];
-        Screen.SetResolution(resolution.width, resolution.height, !_data.IsWindowed);
+        Resolution resolution = _resolutions[Data.Resolution];
+        Screen.SetResolution(resolution.width, resolution.height, !Data.IsWindowed);
         SaveData();
     }
 
     public void SetProgressInit()
     {
-        _data.ProgressSaves = new List<ProgressSave>();
+        Data.ProgressSaves = new List<ProgressSave>();
         foreach (var item in ProgressItems)
-            _data.ProgressSaves.Add(new ProgressSave(item.Key, false));
+            Data.ProgressSaves.Add(new ProgressSave(item.Key, false));
 
         GetProgressSave(0).isUnLock = true;
         GetProgressSave(50).isUnLock = true;
@@ -388,47 +347,20 @@ public class OutGameDataContainer : MonoBehaviour
         GetProgressSave(70).isUnLock = true;
     }
 
-    public void SetWindow(bool isWindowed)
+    public void ResetOption()
     {
-        _data.IsWindowed = isWindowed;
-        SetResolution();
+        Data.Resolution = 0;
+        Data.IsWindowed = false;
+        Data.MasterSoundPower = Data.BGMSoundPower = Data.SESoundPower = 0.5f;
+        Data.BattleSpeed = 1f;
+        Data.Language = GameManager.Steam.GetCurrentGameLanguage();
     }
-
-    public void SetResolution(int resolution)
-    {
-        _data.resolution = resolution;
-        SetResolution();
-    }
-
-    public void SetBattleSpeed(float speed) => _data.BattleSpeed = speed;
-    public float GetBattleSpeed() => _data.BattleSpeed;
 
     public List<Resolution> GetAllResolution() => _resolutions;
-    public int GetLanguage() => _data.language;
-    public int SetLanguage(int language) => _data.language = language;
-    public int GetResolutionIndex() => _data.resolution;
-    public Resolution GetResolution() => _resolutions[_data.resolution];
-    public bool IsWindowed() => _data.IsWindowed;
-    public float GetMasterSoundPower() => _data.MasterSoundPower;
-    public float GetBGMSoundPower() => _data.BGMSoundPower;
-    public float GetSESoundPower() => _data.SESoundPower;
-    public float SetMasterSoundPower(float power) => _data.MasterSoundPower = power;
-    public float SetBGMSoundPower(float power) => _data.BGMSoundPower = power;
-    public float SetSESoundPower(float power) => _data.SESoundPower = power;
-    public void ReSetOption()
-    {
-        _data.resolution = 0;
-        _data.IsWindowed = false;
-        _data.MasterSoundPower = _data.BGMSoundPower = _data.SESoundPower = 0.5f;
-        _data.BattleSpeed = 1f;
-    }
-    public bool GetCutSceneData(CutSceneType cutSceneType) => _data.cutSceneData[(int)cutSceneType];
-    public void SetCutSceneData(CutSceneType cutSceneType, bool isDone) => _data.cutSceneData[(int)cutSceneType] = isDone;
-    public bool GetIsOnMainTooltipForHorus() => _data.IsOnMainTooltipForHorus;
-    public bool GetIsOnMainTooltipForPhanuel() => _data.IsOnMainTooltipForPhanuel;
-    public void SetIsOnMainTooltipForHorus(bool isOn) => _data.IsOnMainTooltipForHorus = isOn;
-    public void SetIsOnMainTooltipForPhanuel(bool isOn) => _data.IsOnMainTooltipForPhanuel = isOn;
-    public string GetVersion() => _data.Version;
-    public void SetVersion(string version) => _data.Version = version;
-    public List<ProgressSave> GetProgressSaves() => _data.ProgressSaves;
+
+    public Resolution GetResolution() => _resolutions[Data.Resolution];
+
+    public bool GetCutSceneData(CutSceneType cutSceneType) => Data.CutSceneViewData[cutSceneType.ToString()];
+
+    public void SetCutSceneData(CutSceneType cutSceneType, bool isDone) => Data.CutSceneViewData[cutSceneType.ToString()] = isDone;
 }

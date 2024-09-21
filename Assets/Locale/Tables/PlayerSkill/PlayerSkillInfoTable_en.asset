@@ -76,7 +76,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 823568535552
-    m_Localized: Deals 20 damage to an enemy unit.
+    m_Localized: Deals 25 damage to an enemy unit.
     m_Metadata:
       m_Items: []
   - m_Id: 890564153344

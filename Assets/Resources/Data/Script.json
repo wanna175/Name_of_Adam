@@ -14,7 +14,34 @@
       ]
     },
     {
-      "title": "엘리우스_야나전_입장",
+      "title": "투발카인",
+      "contents": [
+        {
+          "name": "Tubalcain",
+          "script": "Tubalcain Script"
+        }
+      ]
+    },
+    {
+      "title": "라헬&레아",
+      "contents": [
+        {
+          "name": "Rahel&Lea",
+          "script": "Rahel&Lea Script"
+        }
+      ]
+    },
+    {
+      "title": "바누엘",
+      "contents": [
+        {
+          "name": "Phanuel",
+          "script": "Phanuel Script"
+        }
+      ]
+    },
+    {
+      "title": "엘리우스",
       "contents": [
         {
           "name": "Elieus",
@@ -31,25 +58,7 @@
       ]
     },
     {
-      "title": "투발카인전_입장",
-      "contents": [
-        {
-          "name": "Tubalcain",
-          "script": "Tubalcain Script"
-        }
-      ]
-    },
-    {
-      "title": "라헬레아전_입장",
-      "contents": [
-        {
-          "name": "Rahel&Lea",
-          "script": "Rahel&Lea Script"
-        }
-      ]
-    },
-    {
-      "title": "압바임전_입장",
+      "title": "압바임",
       "contents": [
         {
           "name": "Appaim",
@@ -58,20 +67,38 @@
       ]
     },
     {
-      "title": "바누엘전_입장",
-      "contents": [
-        {
-          "name": "Phanuel",
-          "script": "Phanuel Script"
-        }
-      ]
-    },
-    {
-      "title": "호루스전_입장",
+      "title": "구원자",
       "contents": [
         {
           "name": "The Savior",
           "script": "The Savior Script"
+        }
+      ]
+    },
+    {
+      "title": "리비엘",
+      "contents": [
+        {
+          "name": "Libiel",
+          "script": "Libiel Script"
+        }
+      ]
+    },
+    {
+      "title": "아라벨라",
+      "contents": [
+        {
+          "name": "Arabella",
+          "script": "Arabella Script"
+        }
+      ]
+    },
+    {
+      "title": "욘",
+      "contents": [
+        {
+          "name": "Yohrn",
+          "script": "Yohrn Script"
         }
       ]
     },

@@ -33,7 +33,7 @@ public class UnitAction_Libiel : UnitAction
         }
         else if ((activeTiming & ActiveTiming.AFTER_ATTACKED) == ActiveTiming.AFTER_ATTACKED)
         {
-            _libielCount = (_libielCount + 1) % 3 + 1;
+            _libielCount = _libielCount % 3 + 1;
             _libielBuff.SetValue(_libielCount);
             caster.SetAttackRange(_libielCount == 3 ? _rageRange : _normalRange);
         }

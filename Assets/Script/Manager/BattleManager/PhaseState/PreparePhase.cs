@@ -21,14 +21,14 @@ public class PreparePhase : Phase
 
         BattleManager.Field.SetTileHighlightFrame(null, false);
 
-        if (!GameManager.OutGameData.IsTutorialClear())
+        if (!GameManager.OutGameData.Data.TutorialClear)
         {
             GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
             if (TutorialManager.Instance.CheckStep(TutorialStep.UI_PlayerTurn))
             {
                 // 첫번째 튜토리얼 설정
-                Stat stat = new Stat();
+                Stat stat = new();
                 stat.MaxHP = stat.CurrentHP = -20;
                 BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[0].HP.Init(10, 10);
@@ -38,7 +38,7 @@ public class PreparePhase : Phase
             else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_FallSystem))
             {
                 // 두번째 튜토리얼 설정
-                Stat stat = new Stat();
+                Stat stat = new();
                 stat.MaxHP = stat.CurrentHP = -15;
                 stat.SPD = -50;
                 BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
@@ -55,6 +55,7 @@ public class PreparePhase : Phase
 
         BattleManager.Data.BattleUnitActionReset();
         BattleManager.Data.BattleUnitOrderReset();
+        BattleManager.BattleUI.SetWaitingPlayer(true);
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.TURN_START);
     }
 
@@ -91,5 +92,6 @@ public class PreparePhase : Phase
         BattleManager.BattleUI.UI_playerSkill.InableSkill(true);
         BattleManager.BattleUI.UI_hands.InableCard(true);
         BattleManager.BattleUI.UI_controlBar.ControlBarInactive();
+        BattleManager.BattleUI.SetWaitingPlayer(false);
     }
 }

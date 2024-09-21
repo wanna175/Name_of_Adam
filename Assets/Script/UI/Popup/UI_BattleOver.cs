@@ -49,20 +49,29 @@ public class UI_BattleOver : UI_Scene
 
         if (_result == "win")
         {
-            if (!GameManager.OutGameData.IsTutorialClear() && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
+            if (!GameManager.OutGameData.Data.TutorialClear && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
             {
-                GameManager.OutGameData.DoneTutorial(true);
+                Debug.Log("Tutorial Clear!");
+
+                GameManager.OutGameData.Data.TutorialClear = true;
                 if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Tutorial) == false)
                     SceneChanger.SceneChangeToCutScene(CutSceneType.Tutorial);
                 else
                     SceneChanger.SceneChange("StageSelectScene");
-                Debug.Log("Tutorial Clear!");
+
+                GameManager.OutGameData.SaveData();
+
                 return;
             }
 
             if (_rewardScene.IsEndCreate)
             {
-                SceneChanger.SceneChange("StageSelectScene");
+                GameObject.Find("RatterBoxCanvas").transform.Find("FadeOut").gameObject.SetActive(true);
+
+                BattleManager.Instance.PlayAfterCoroutine(() => {
+                    SceneChanger.SceneChange("StageSelectScene");
+                }, 1f);
+
             }
             else
             {
@@ -74,8 +83,7 @@ public class UI_BattleOver : UI_Scene
             if(GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
             {
                 BattleOverDestroy();
-                GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
-                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Victory";
+                GameManager.UI.ShowPopup<UI_ProgressSummary>().Init("VICTORY");
             }
             else
             {
@@ -87,10 +95,9 @@ public class UI_BattleOver : UI_Scene
         {
             BattleOverDestroy();
 
-            if (GameManager.OutGameData.IsTutorialClear())
+            if (GameManager.OutGameData.Data.TutorialClear)
             {
-                GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
-                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";
+                GameManager.UI.ShowPopup<UI_ProgressSummary>().Init("DEFEAT");
             }
             else
             {

@@ -62,11 +62,11 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     private void Init()
     {
 
-        Debug.Log($"횟수: {GameManager.OutGameData.GetNPCQuest().DarkshopQuest}");
+        Debug.Log($"횟수: {GameManager.OutGameData.Data.SacrificeCorruptValue}");
 
-        int questLevel = Mathf.Min((int)(GameManager.OutGameData.GetNPCQuest().DarkshopQuest / 12.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 12.5f), 4);
 
-        if (GameManager.OutGameData.GetVisitDarkshop() == false && questLevel != 4)
+        if (!GameManager.Data.GameData.IsVisitStigmata && questLevel != 4)
         {
             _scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
@@ -281,10 +281,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
 
         //선 저장
-        if (!GameManager.Data.Map.ClearTileID.Contains(GameManager.Data.Map.CurrentTileID))
-        {
-            GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
-        }
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
     }
 
@@ -297,7 +294,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
         }
         _stigmataBestowalUnit.AddStigma(stigma);
 
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+        GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
@@ -364,30 +361,28 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        if (GameManager.Data.GameData.IsVisitDarkShop == false)
-        {
-            GameManager.Data.GameData.IsVisitDarkShop = true;
-        }
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.GetVisitDarkshop()==false)
+        if (!GameManager.Data.GameData.IsVisitStigmata)
         {
-            GameManager.OutGameData.SetVisitDarkshop(true);
+            GameManager.OutGameData.Data.IsVisitSacrifice = true;
+            GameManager.Data.GameData.IsVisitSacrifice = true;
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else 
         {
-            int questLevel = (int)(GameManager.OutGameData.GetNPCQuest().DarkshopQuest / 12.5f);
+            int questLevel = (int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 12.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"탕녀_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
         
         yield return StartCoroutine(quitScript.PrintScript());
-        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
+        GameManager.OutGameData.SaveData();
         SceneChanger.SceneChange("StageSelectScene");
     }
 

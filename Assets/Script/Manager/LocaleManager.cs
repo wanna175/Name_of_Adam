@@ -18,7 +18,7 @@ public class LocaleManager : MonoBehaviour
     {
         isChangingLanguage = false;
 
-        LanguageChanged(GameManager.OutGameData.GetLanguage());
+        LanguageChanged(GameManager.OutGameData.Data.Language);
     }
 
     public string GetLocalizedPlayerSkillInfo(int skillIdx)
@@ -30,9 +30,11 @@ public class LocaleManager : MonoBehaviour
         switch (skillIdx)
         {
             case 2: if (GameManager.OutGameData.IsUnlockedItem(54)) info += "_Up"; break;
-            case 4: if (GameManager.OutGameData.IsUnlockedItem(62)) info += "_Up"; break;
-            case 6: if (GameManager.OutGameData.IsUnlockedItem(64)) info += "_Up"; break;
-            case 8: if (GameManager.OutGameData.IsUnlockedItem(72)) info += "_Up"; break;
+
+            case 7: if (GameManager.OutGameData.IsUnlockedItem(62)) info += "_Up"; break;
+            case 9: if (GameManager.OutGameData.IsUnlockedItem(64)) info += "_Up"; break;
+
+            case 5: if (GameManager.OutGameData.IsUnlockedItem(72)) info += "_Up"; break;
         }
 
         return GetLocalizedPlayerSkillInfo(info);
@@ -70,6 +72,8 @@ public class LocaleManager : MonoBehaviour
 
     public string GetLocalizedSystem(string system) => GetLocalizedString("SystemTable", system);
 
+    public string GetLocalizedSelectStageScene(string system) => GetLocalizedString("SelectStageSceneTable", system);
+
     private string GetLocalizedString(string tableName, string key)
     {
         string str = LocalizationSettings.StringDatabase.GetLocalizedString(tableName, key, currentLocale);
@@ -98,7 +102,7 @@ public class LocaleManager : MonoBehaviour
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeIndex];
         currentLocale = LocalizationSettings.SelectedLocale;
         currentLocaleIndex = localeIndex;
-        GameManager.OutGameData.SetLanguage(localeIndex);
+        GameManager.OutGameData.Data.Language = localeIndex;
 
         Debug.Log(LocalizationSettings.SelectedLocale.LocaleName);
 

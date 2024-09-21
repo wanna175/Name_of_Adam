@@ -27,44 +27,37 @@ public class StageChanger
             if (isCutSceneOn == false)
                 SceneChanger.SceneChange("EventScene");
         }
-        else if (stage.Type == StageType.BattleTest)
-        {
-            SceneChanger.SceneChange("BattleTestScene");
-        }
     }
 
     private bool CutSceneChange()
     {
         bool isCutScene = false;
-        string name = GameManager.Data.Map.GetCurrentStage().Name.ToString();
+        StageName stageName = GameManager.Data.Map.GetCurrentStage().Name;
 
-        if (name == "UpgradeStore")
+        if (stageName == StageName.Baptism)
         {
-            if (GameManager.OutGameData.GetCutSceneData(CutSceneType.NPC_Upgrade_Corrupt) == false
-                && GameManager.OutGameData.GetNPCQuest().UpgradeQuest >= 300)
+            if (!GameManager.OutGameData.Data.IsBaptismCorrupt && GameManager.OutGameData.Data.BaptismCorruptValue >= 300)
             {
                 isCutScene = true;
-                SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Upgrade_Corrupt);
+                SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Baptism_Corrupt);
                 GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_NPC_UPGRADE);
             }
         }
-        else if (name == "StigmaStore")
+        else if (stageName == StageName.Stigmata)
         {
-            if (GameManager.OutGameData.GetCutSceneData(CutSceneType.NPC_Stigma_Corrupt) == false
-                && GameManager.OutGameData.GetNPCQuest().StigmaQuest >= 30)
+            if (!GameManager.OutGameData.Data.IsStigmataCorrupt && GameManager.OutGameData.Data.StigmataCorruptValue >= 30)
             {
                 isCutScene = true;
-                SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Stigma_Corrupt);
+                SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Stigmata_Corrupt);
                 GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_NPC_STIGMATA);
             }
         }
-        else if (name == "Harlot")
+        else if (stageName == StageName.Sacrifice)
         {
-            if (GameManager.OutGameData.GetCutSceneData(CutSceneType.NPC_Harlot_Corrupt) == false
-                && GameManager.OutGameData.GetNPCQuest().DarkshopQuest >= 50)
+            if (!GameManager.OutGameData.Data.IsSacrificeCorrupt && GameManager.OutGameData.Data.SacrificeCorruptValue >= 50)
             {
                 isCutScene = true;
-                SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Harlot_Corrupt);
+                SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Sacrifice_Corrupt);
                 GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_NPC_HARLOT);
             }
         }

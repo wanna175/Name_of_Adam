@@ -147,10 +147,10 @@ public enum StageName
 {
     none,
 
-    StigmaStore = 1,
-    UpgradeStore = 2,
+    Stigmata = 1,
+    Baptism = 2,
     MoneyStore,
-    Harlot,
+    Sacrifice,
     RandomEvent,
     CommonBattle,
     EliteBattle,
@@ -336,6 +336,9 @@ public enum StigmaEnum
     StormSurge2 = 120,
     StormSurge3 = 121,
     DeepSea = 122,
+    Distrust = 123,
+    Despair = 124,
+    Hatred = 125,
 }
 
 public enum BuffEnum
@@ -352,9 +355,9 @@ public enum BuffEnum
     Immortality,
     Invincibility,
     Karma,
-    Leah,
+    Lea,
     MarkOfBeast,
-    Raquel,
+    Rahel,
     Sin,
     Stun,
     SpeedIncrease,
@@ -366,6 +369,7 @@ public enum BuffEnum
     AttackBoost,
     KillingSpree,
     Libiel,
+    Scale,
     EliteStatBuff,
 
     //systemic buff (no image)
@@ -433,6 +437,10 @@ public enum BuffEnum
     Stigmata_StormSurge3,
     Stigmata_DeepSea,
 
+    Stigmata_Distrust,
+    Stigmata_Despair,
+    Stigmata_Hatred,
+
     Stigmata_BloodFest,
     Stigmata_Thirst,
     Stigmata_TraceOfSolar,
@@ -451,7 +459,7 @@ public enum UnitActionType
     UnitAction_Savior,
     UnitAction_FlowerOfSacrifice,
     UnitAction_Laser,
-    UnitAction_RaquelLeah,
+    UnitAction_RahelLea,
     UnitAction_CenteredSplash,
     UnitAction_Libiel,
     UnitAction_Arabella,
@@ -534,19 +542,23 @@ public enum CutSceneType
 
     // 엘리트
     Elieus_Enter,
-    LahelRea_Enter,
+    RahelLea_Enter,
     Appaim_Enter,
+    Libiel_Enter,
+    Arabella_Enter,
 
     // 보스
     Phanuel_Enter,
     Phanuel_Dead,
     TheSavior_Enter,
     TheSavior_Dead,
+    Yohrn_Enter,
+    Yohrn_Dead,
 
     // NPC
-    NPC_Upgrade_Corrupt,
-    NPC_Stigma_Corrupt,
-    NPC_Harlot_Corrupt,
+    NPC_Baptism_Corrupt,
+    NPC_Stigmata_Corrupt,
+    NPC_Sacrifice_Corrupt,
 }
 
 public enum FallAnimMode
@@ -574,6 +586,7 @@ public enum CurrentEvent
     Complate_Apostle,
 
     Hall_Delete,
+    Hall_Select,
 };
 
 [Serializable]

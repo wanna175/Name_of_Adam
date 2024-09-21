@@ -123,7 +123,7 @@ public class BattleUnit : MonoBehaviour
     public void SetFlipX(bool flip)
     {
         //true -> look left, false -> look right
-        if (UnitRenderer.flipX == flip)
+        if (UnitRenderer.flipX == flip || Data.IsFlipFixed)
             return;
 
         UnitRenderer.flipX = flip;
@@ -302,19 +302,20 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
-        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
-        BattleManager.Instance.UnitFallEvent(this);
         FallEvent = false;
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            unit.ChangeTeam();
+        }
+
+        BattleManager.Instance.UnitFallEvent(this);
 
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
             SetBuff(new Buff_Edified());
-        }
-
-        foreach (ConnectedUnit unit in ConnectedUnits)
-        {
-            unit.ChangeTeam();
         }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
@@ -330,6 +331,7 @@ public class BattleUnit : MonoBehaviour
         _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
 
         BattleManager.Data.BattleUnitOrderSorting();
+        BattleManager.BattleUI.WaitingLineRefresh();
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
     }
 
@@ -581,6 +583,8 @@ public class BattleUnit : MonoBehaviour
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.AddBuff(buff);
         _hpBar.RefreshBuff();
+
+        HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
     }
 
     public void DeleteBuff(BuffEnum buffEnum)

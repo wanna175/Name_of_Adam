@@ -18,24 +18,28 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 1380868485120
-    m_Localized: LEGEND
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1419825180672
-    m_Localized: Enemy
-    m_Metadata:
-      m_Items: []
   - m_Id: 1464662290432
-    m_Localized: Baptism
+    m_Localized: <b>Baptism</b>
     m_Metadata:
       m_Items: []
   - m_Id: 1494324408320
-    m_Localized: Stigmata
+    m_Localized: <b>Stigmata</b>
     m_Metadata:
       m_Items: []
   - m_Id: 1522430439424
-    m_Localized: Sacrifice
+    m_Localized: <b>Sacrifice</b>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736400215265280
+    m_Localized: <b>Battle</b>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736407521742848
+    m_Localized: <b>Elite Battle</b>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736418489847808
+    m_Localized: <b>Boss Battle</b>
     m_Metadata:
       m_Items: []
   references:

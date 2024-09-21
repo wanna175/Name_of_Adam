@@ -62,6 +62,21 @@ public class CameraHandler : MonoBehaviour
     {
         Vector3 originPos = CutSceneCamera.transform.position;
 
+        float shakeTime = 0f;
+        int direction = 1;
+
+        while (shakeInfo[0].z * 2.5f > shakeTime)
+        {
+            CutSceneCamera.transform.position = originPos + 
+                new Vector3( ((Random.Range(0.5f, 0.9f) - shakeTime * 4) * direction) * 0.25f, 0, 0);
+
+            direction *= -1;
+
+            shakeTime += Time.deltaTime * 20;
+
+            yield return new WaitForSeconds(Time.deltaTime * 20);
+        }
+        /*
         foreach(Vector3 vec in shakeInfo)
         {
             Vector3 editVec = new Vector3(vec.x, vec.y, 0);
@@ -69,6 +84,7 @@ public class CameraHandler : MonoBehaviour
             CutSceneCamera.transform.position = originPos + editVec;
             yield return new WaitForSeconds(vec.z);
         }
+        */
 
         CutSceneCamera.transform.position = originPos;
     }

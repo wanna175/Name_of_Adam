@@ -4,34 +4,18 @@ using UnityEngine;
 
 public class EventSceneController : MonoBehaviour
 {
-    [SerializeField] GameObject _upgrade;
-    [SerializeField] GameObject _stigma;
-    [SerializeField] GameObject _harlot;
+    [SerializeField] private GameObject _baptism;
+    [SerializeField] private GameObject _stigmata;
+    [SerializeField] private GameObject _sacrifice;
 
-    private string _sceneName;
+    private StageName _stageName;
 
     private void Awake()
     {
-        _upgrade.SetActive(false);
-        _stigma.SetActive(false);
-        _harlot.SetActive(false);
+        _stageName = GameManager.Data.Map.GetCurrentStage().Name;
 
-        _sceneName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
-    }
-
-    public void Start()
-    {
-        if(_sceneName == "UpgradeStore")
-        {
-            _upgrade.SetActive(true);
-        }
-        else if(_sceneName == "StigmaStore")
-        {
-            _stigma.SetActive(true);
-        }
-        else if(_sceneName== "Harlot")
-        {
-            _harlot.SetActive(true);
-        }
+        _baptism.SetActive(_stageName == StageName.Baptism);
+        _stigmata.SetActive(_stageName == StageName.Stigmata);
+        _sacrifice.SetActive(_stageName == StageName.Sacrifice);
     }
 }

@@ -152,6 +152,19 @@ MonoBehaviour:
       \uC5C6\uC2B5\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
+  - m_Id: 63829019011993600
+    m_Localized: "\uCD95\uD558\uD569\uB2C8\uB2E4, \uC5B4\uB460\uC758 \uD654\uC2E0\uC774\uC5EC.\n\n\uB2F9\uC2E0\uC740
+      \uB9C8\uCE68\uB0B4 \uC2E0\uC744 \uC774\uACA8\uB0B4\uC5C8\uC2B5\uB2C8\uB2E4.\r\n\n\uADF8\uB7EC\uB098
+      \uC0C8\uB85C\uC6B4 \uBE5B\uC774 \uC5B4\uB460 \uC18D\uC5D0\uC11C \uD53C\uC5B4\uB098\uACE0
+      \uC788\uC2B5\uB2C8\uB2E4. \uC0C8\uB85C\uC774 \uC789\uD0DC\uB41C \uBE5B\uC744
+      \uB2F9\uC2E0\uC758 \uC190\uC73C\uB85C \uD30C\uAD34\uD558\uC138\uC694."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63829099735568384
+    m_Localized: "\u203B '\uC0C8\uB85C\uD558\uAE30'\uB97C \uB20C\uB7EC \uC0C8\uB85C\uC6B4
+      \uC5EC\uC815\uC5D0 \uB3C4\uC804\uD558\uC138\uC694."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

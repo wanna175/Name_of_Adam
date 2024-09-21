@@ -8,7 +8,7 @@ public class Stigma_ThornsOfOblivion : Stigma
 
         caster.SetBuff(new Buff_Stigma_ThornsOfOblivion());
 
-        if (caster.Team == Team.Enemy)
+        if (caster.Team == Team.Enemy && !caster.Buff.CheckBuff(BuffEnum.Edified))
         {
             Buff_EliteStatBuff statBuff = new();
 
