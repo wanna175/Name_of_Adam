@@ -38,9 +38,9 @@ public class BattleDataManager : MonoBehaviour
     public (BattleUnit, int?) CurrentTurnUnitOrder => _currentTurnUnitOrder;
     private (BattleUnit, int?) _currentTurnUnitOrder = new();
 
-    public bool isDiscount = false;
+    public bool IsDiscount = false;
 
-    public bool isGameDone = false;
+    public bool IsGameDone = false;
 
     private void Init()
     {
@@ -95,7 +95,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         GameManager.Data.SetDeck(_playerDeck);
-        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.OutGameData.SaveData();
         GameManager.SaveManager.SaveGame();
     }
@@ -211,6 +211,7 @@ public class BattleDataManager : MonoBehaviour
         }
 
         BattleUnitOrderSorting();
+        BattleManager.BattleUI.WaitingLineReset(_battleUnitOrders);
     }
 
     public void BattleUnitOrderSorting()
@@ -222,7 +223,7 @@ public class BattleDataManager : MonoBehaviour
             .ThenBy(unit => unit.Item1.Location.x)
             .ToList();
 
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
+        BattleManager.BattleUI.WaitingLineChangeCheck(_battleUnitOrders);
     }
 
     public void BattleUnitRemoveFromOrder(BattleUnit removeUnit)
@@ -234,15 +235,14 @@ public class BattleDataManager : MonoBehaviour
                 break;
 
             _battleUnitOrders.Remove(removeUnitOrder);
+            BattleManager.BattleUI.WaitingLineRemoveOrder(removeUnitOrder);
         }
-
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
     }
 
     public void BattleOrderRemove((BattleUnit, int?) removeUnitOrder)
     {
         _battleUnitOrders.Remove(removeUnitOrder);
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
+        BattleManager.BattleUI.WaitingLineRemoveOrder(removeUnitOrder);
     }
 
     public void BattleOrderInsert(int index, BattleUnit addUnit, int? speed = null)
@@ -251,7 +251,11 @@ public class BattleDataManager : MonoBehaviour
             return;
 
         _battleUnitOrders.Insert(index, (addUnit, speed));
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrders.Select(unit => unit.Item1).ToList());
+        
+        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Spawn))
+            return;
+
+        BattleManager.BattleUI.WaitingLineAddOrder((addUnit, speed));
     }
 
     public void SetCurrentTurnOrder()
@@ -318,9 +322,9 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_FlowerOfSacrifice();
         }
-        else if (actionType == UnitActionType.UnitAction_RaquelLeah)
+        else if (actionType == UnitActionType.UnitAction_RahelLea)
         {
-            return new UnitAction_RaquelLeah();
+            return new UnitAction_RahelLea();
         }
         else if (actionType == UnitActionType.UnitAction_Libiel)
         {
@@ -333,6 +337,10 @@ public class BattleDataManager : MonoBehaviour
         else if (actionType == UnitActionType.UnitAction_Yohrn)
         {
             return new UnitAction_Yohrn();
+        }
+        else if (actionType == UnitActionType.UnitAction_Yohrn_Body)
+        {
+            return new UnitAction_Yohrn_Scale();
         }
         else
         {
