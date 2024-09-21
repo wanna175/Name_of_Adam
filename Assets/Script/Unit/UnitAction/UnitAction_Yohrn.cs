@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class UnitAction_Yohrn : UnitAction
 {
@@ -96,6 +97,7 @@ public class UnitAction_Yohrn : UnitAction
                 _field.ExitTile(frontUnit.Location);
                 frontUnit.UnitDiedEvent(false);
                 attackUnit.AnimatorSetBool("isMoveAttack", true);
+                GameManager.Sound.Play("Character/¿æ/¿æ_MoveAttack");
                 BattleManager.Instance.PlayAfterCoroutine(() => {
                     attackUnit.AnimatorSetBool("isMoveAttack", false);
                 }, 1f);
