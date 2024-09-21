@@ -92,7 +92,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (TutorialManager.Instance.IsEnable())
+            if (TutorialManager.Instance.IsEnableUpdate())
                 TutorialManager.Instance.ShowNextTutorial();
 
             _hands.OnClickHand(this);

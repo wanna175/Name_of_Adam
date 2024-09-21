@@ -1,22 +1,19 @@
-using Newtonsoft.Json.Bson;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
     /// <summary>
-    /// ÅøÆÁ¿¡ Ãâ·ÂµÉ ¹®ÀÚ¿­
-    /// [CTRL]·Î ³¡³ª´Â ¹®ÀÚ¿­Àº À¯Àú°¡ Á÷Á¢ ¾×¼ÇÀ» ÇÏ´Â ´Ü°è¸¦ ÀÇ¹Ì
-    /// Áï, À¯ÀúÀÇ Æ¯Á¤ Çàµ¿À¸·Î ´ÙÀ½ Æ©Åä¸®¾ó ÁøÇà °¡´É
+    /// íˆ´íŒì— ì¶œë ¥ë  ë¬¸ìì—´
+    /// [CTRL]ë¡œ ëë‚˜ëŠ” ë¬¸ìì—´ì€ ìœ ì €ê°€ ì§ì ‘ ì•¡ì…˜ì„ í•˜ëŠ” ë‹¨ê³„ë¥¼ ì˜ë¯¸
+    /// ì¦‰, ìœ ì €ì˜ íŠ¹ì • í–‰ë™ìœ¼ë¡œ ë‹¤ìŒ íŠœí† ë¦¬ì–¼ ì§„í–‰ ê°€ëŠ¥
     /// </summary>
     private readonly string[][] TooltipTexts =
     {
-        // ¿µ¹®
+        // ì˜ë¬¸
         new string[] {
-        // Æ©Åä¸®¾ó 1 ½ÃÀÛ
+        // íŠœí† ë¦¬ì–¼ 1 ì‹œì‘
         "During the <color=#FF9696>player turn<color=white>, you can summon units or use skills.",
         "<color=#FF9696>Mana<color=white> is required for summoning units or using skills.\nMana recovers by <color=#FF9696>30<color=white> each player turn",
         "These are the currently summonable units.\n<color=#FF9696>On the first player turn<color=white>, you can summon units using only <color=#FF9696>half of<color=white> the required mana.",
@@ -28,7 +25,7 @@ public class TutorialManager : MonoBehaviour
         "Each unit can move one step and then attack the enemies.\nMove the Gravekeeper one step forward.[CTRL]",
         "Attack the Swordsman.[CTRL]",
 
-        // Æ©Åä¸®¾ó 2 ½ÃÀÛ
+        // íŠœí† ë¦¬ì–¼ 2 ì‹œì‘
         "This is the <color=#FF9696>dark essence<color=white> needed for using specific units or skills.\nDark essence is obtained by defeating enemies",
         "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
         "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
@@ -47,68 +44,59 @@ public class TutorialManager : MonoBehaviour
         "",
         },
 
-        // ÇÑ±¹
+        // í•œêµ­
         new string[] {
-        // Æ©Åä¸®¾ó 1 ½ÃÀÛ
-        "<color=#FF9696>ÇÃ·¹ÀÌ¾î ÅÏ<color=white>¿¡´Â À¯´ÖÀ» ¼ÒÈ¯ÇÏ°Å³ª ½ºÅ³À» ¾µ ¼ö ÀÖ½À´Ï´Ù.",
-        "À¯´ÖÀ» ¼ÒÈ¯ÇÏ°Å³ª ½ºÅ³À» »ç¿ëÇÒ¶§ ÇÊ¿äÇÑ <color=#FF9696>¸¶³ª<color=white>ÀÔ´Ï´Ù.\nÇÃ·¹ÀÌ¾î ÅÏÀÌ µÉ ¶§¸¶´Ù <color=#FF9696>30<color=white>¾¿ È¸º¹ÇÕ´Ï´Ù.",
-        "ÇöÀç ¼ÒÈ¯ÇÒ ¼ö ÀÖ´Â À¯´ÖµéÀÔ´Ï´Ù.\n<color=#FF9696>Ã¹¹øÂ° ÇÃ·¹ÀÌ¾î ÅÏ<color=white>¿¡´Â <color=#FF9696>Àı¹İÀÇ ¸¶³ª<color=white>¸¦ »ç¿ëÇÏ¿© À¯´ÖÀ» ¼ÒÈ¯ÇÒ ¼ö ÀÖ½À´Ï´Ù.",
-        "ÀüÅõ¸¦ º¸Á¶ÇÏ´Â ½ºÅ³µéÀÔ´Ï´Ù.",
-        "¹¦Áö±â¸¦ ¼ÒÈ¯ÇØº¸¼¼¿ä.[CTRL]",
-        "¹¦Áö±â¸¦ ¼ÒÈ¯ÇØº¸¼¼¿ä.[CTRL]",
-        "ÅÏÀ» Á¾·áÇÏ¸é <color=#FF9696>À¯´Ö ÅÏ<color=white>À¸·Î ³Ñ¾î°©´Ï´Ù.[CTRL]",
-        "<color=#FF9696>À¯´Ö ÅÏ<color=white>¿¡´Â ÇÊµå¿¡ ÀÖ´Â °¢ À¯´ÖµéÀÌ ¼Óµµ¿¡ µû¶ó ¿òÁ÷ÀÔ´Ï´Ù.\n¿ìÃøÀÇ <color=#FF9696>¼ÓµµÇ¥<color=white>¿¡¼­ »ó´Ü¿¡ ÀÖ´Â À¯´ÖÀÏ¼ö·Ï ¸ÕÀú Çàµ¿ÇÕ´Ï´Ù.",
-        "°¢ À¯´ÖÀº ÇÑÄ­ ÀÌµ¿ ÈÄ ÀûÀ» °ø°İÇÒ ¼ö ÀÖ½À´Ï´Ù.\n¹¦Áö±â¸¦ ¾ÕÀ¸·Î ÇÑÄ­ ÀÌµ¿½ÃÄÑº¸¼¼¿ä.[CTRL]",
-        "°Ëº´À» °ø°İÇØº¸¼¼¿ä.[CTRL]",
+        // íŠœí† ë¦¬ì–¼ 1 ì‹œì‘
+        "<color=#FF9696>í”Œë ˆì´ì–´ í„´<color=white>ì—ëŠ” ìœ ë‹›ì„ ì†Œí™˜í•˜ê±°ë‚˜ ìŠ¤í‚¬ì„ ì“¸ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+        "ìœ ë‹›ì„ ì†Œí™˜í•˜ê±°ë‚˜ ìŠ¤í‚¬ì„ ì‚¬ìš©í• ë•Œ í•„ìš”í•œ <color=#FF9696>ë§ˆë‚˜<color=white>ì…ë‹ˆë‹¤.\ní”Œë ˆì´ì–´ í„´ì´ ë  ë•Œë§ˆë‹¤ <color=#FF9696>30<color=white>ì”© íšŒë³µí•©ë‹ˆë‹¤.",
+        "í˜„ì¬ ì†Œí™˜í•  ìˆ˜ ìˆëŠ” ìœ ë‹›ë“¤ì…ë‹ˆë‹¤.\n<color=#FF9696>ì²«ë²ˆì§¸ í”Œë ˆì´ì–´ í„´<color=white>ì—ëŠ” <color=#FF9696>ì ˆë°˜ì˜ ë§ˆë‚˜<color=white>ë¥¼ ì‚¬ìš©í•˜ì—¬ ìœ ë‹›ì„ ì†Œí™˜í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+        "ì „íˆ¬ë¥¼ ë³´ì¡°í•˜ëŠ” ìŠ¤í‚¬ë“¤ì…ë‹ˆë‹¤.",
+        "ë¬˜ì§€ê¸°ë¥¼ ì†Œí™˜í•´ë³´ì„¸ìš”.[CTRL]",
+        "ë¬˜ì§€ê¸°ë¥¼ ì†Œí™˜í•´ë³´ì„¸ìš”.[CTRL]",
+        "í„´ì„ ì¢…ë£Œí•˜ë©´ <color=#FF9696>ìœ ë‹› í„´<color=white>ìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤.[CTRL]",
+        "<color=#FF9696>ìœ ë‹› í„´<color=white>ì—ëŠ” í•„ë“œì— ìˆëŠ” ê° ìœ ë‹›ë“¤ì´ ì†ë„ì— ë”°ë¼ ì›€ì§ì…ë‹ˆë‹¤.\nìš°ì¸¡ì˜ <color=#FF9696>ì†ë„í‘œ<color=white>ì—ì„œ ìƒë‹¨ì— ìˆëŠ” ìœ ë‹›ì¼ìˆ˜ë¡ ë¨¼ì € í–‰ë™í•©ë‹ˆë‹¤.",
+        "ê° ìœ ë‹›ì€ í•œì¹¸ ì´ë™ í›„ ì ì„ ê³µê²©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.\në¬˜ì§€ê¸°ë¥¼ ì•ìœ¼ë¡œ í•œì¹¸ ì´ë™ì‹œì¼œë³´ì„¸ìš”.[CTRL]",
+        "ê²€ë³‘ì„ ê³µê²©í•´ë³´ì„¸ìš”.[CTRL]",
 
-        // Æ©Åä¸®¾ó 2 ½ÃÀÛ
-        "Æ¯Á¤ À¯´ÖÀ» »ç¿ëÇÏ°Å³ª ½ºÅ³À» »ç¿ëÇÒ ¶§ ÇÊ¿äÇÑ <color=#FF9696>°ËÀº Á¤¼ö<color=white>ÀÔ´Ï´Ù.\nÀûÀ» Ã³Ä¡ÇÒ ¶§¸¶´Ù ÇÏ³ª¾¿ ¾òÀ» ¼ö ÀÖ½À´Ï´Ù.",
-        "Èæ±â»ç´Â ÀûÀ» <color=#FF9696>Å¸¶ô<color=white>ÇÏ´Âµ¥ À¯¿ëÇÑ ¼ºÈçÀ» Áö´Ñ °­ÇÑ À¯´ÖÀÌ¸ç ¸¶³ª»Ó¸¸ ¾Æ´Ï¶ó \n<color=#FF9696>°ËÀº Á¤¼ö<color=white>±îÁö ¼Ò¸ğÇÕ´Ï´Ù. Èæ±â»ç¸¦ ¼±ÅÃÇÏ¼¼¿ä.[CTRL]",
-        "Èæ±â»ç´Â ÀûÀ» <color=#FF9696>Å¸¶ô<color=white>ÇÏ´Âµ¥ À¯¿ëÇÑ ¼ºÈçÀ» Áö´Ñ °­ÇÑ À¯´ÖÀÌ¸ç ¸¶³ª»Ó¸¸ ¾Æ´Ï¶ó \n<color=#FF9696>°ËÀº Á¤¼ö<color=white>±îÁö ¼Ò¸ğÇÕ´Ï´Ù. Èæ±â»ç¸¦ ¼±ÅÃÇÏ¼¼¿ä.[CTRL]",
-        "°ø°İ ½Ã ÀûÀÇ <color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®´Â <color=#FF9696>¾Ç¼º ¹öÇÁ<color=white>ÀÔ´Ï´Ù.\nÈæ±â»ç´Â ÀÌ ¾Ç¼º ¹öÇÁ¸¦ <color=#FF9696>2È¸<color=white> ¾ò´Â ¼ºÈçÀ» °¡Áö°í ÀÖ½À´Ï´Ù.\nÀß È°¿ëÇÏ¿© ÀûÀ» Å¸¶ô½ÃÄÑº¸¼¼¿ä.",
-        "<color=#FF9696>ÅÏ Á¾·á ¹öÆ°<color=white>À» ´­·¯ À¯´Ö ÅÏÀ¸·Î ³Ñ¾î°¡¼¼¿ä.[CTRL]",
-        "ÀÌµ¿ÀÌ ÇÊ¿ä°¡ ¾ø´Â °æ¿ì <color=#FF9696>ÅÏ Á¾·á ¹öÆ°<color=white>À» ´­·¯ ÅÏÀ» ³Ñ±æ ¼ö ÀÖ¾î¿ä.[CTRL]",
-        "°Ëº´À» °ø°İÇÏ¿© <color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®¼¼¿ä.[CTRL]",
-        "<color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®´Â ½ºÅ³ <color=#FF9696>¼Ó»èÀÓ<color=white>À» »ç¿ëÇÏ¿© ÀûÀ» Å¸¶ô½ÃÄÑ º¸¼¼¿ä.[CTRL]",
-        "<color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®´Â ½ºÅ³ <color=#FF9696>¼Ó»èÀÓ<color=white>À» »ç¿ëÇÏ¿© ÀûÀ» Å¸¶ô½ÃÄÑ º¸¼¼¿ä.[CTRL]",
-        "ÀûÀ» Å¸¶ô½ÃÅ³ °æ¿ì ÇØ´ç ÀûÀ» ¾Æ±ºÀ¸·Î ¸¸µé¸ç <color=#FF9696>¼ºÈç<color=white>À» ºÎ¿©ÇÒ ¼ö ÀÖ½À´Ï´Ù.\n°Ëº´¿¡°Ô ºÎ¿©ÇÒ ¼ºÈçÀ» ¼±ÅÃÇÏ¼¼¿ä.[CTRL]",
-        "ÀÌÁ¦ °Ëº´Àº ´ç½ÅÀÇ À¯´ÖÀÌ µÇ¾ú½À´Ï´Ù.\nÀÌÁ¦ ÅÏ Á¾·á¸¦ ´©¸£¼¼¿ä.[CTRL]",
-        "¾Æ±ºÀÌ ÀÌ¹Ì ÀÖ´Â À§Ä¡·Î ÀÌµ¿ÇÒ ½Ã µÎ À¯´ÖÀº ¼­·Î À§Ä¡¸¦ ¹Ù²ß´Ï´Ù.\nÈæ±â»ç¸¦ ÀÌµ¿½ÃÅ°¼¼¿ä.[CTRL]",
-        "¼ö³à¸¦ °ø°İÇÏ¿© ¹«Àû ¹öÇÁ¸¦ ¾ø¾Öº¸¼¼¿ä.[CTRL]",
-        "°Ëº´À» ÀÌµ¿½ÃÅ°¼¼¿ä.[CTRL]",
-        "ºÎÀû ¹öÇÁ°¡ »ç¶óÁø ¼ö³à¸¦ ¸¶¹«¸®ÇÏ¼¼¿ä.[CTRL]",
+        // íŠœí† ë¦¬ì–¼ 2 ì‹œì‘
+        "íŠ¹ì • ìœ ë‹›ì„ ì‚¬ìš©í•˜ê±°ë‚˜ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ë•Œ í•„ìš”í•œ <color=#FF9696>ê²€ì€ ì •ìˆ˜<color=white>ì…ë‹ˆë‹¤.\nì ì„ ì²˜ì¹˜í•  ë•Œë§ˆë‹¤ í•˜ë‚˜ì”© ì–»ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+        "í‘ê¸°ì‚¬ëŠ” ì ì„ <color=#FF9696>íƒ€ë½<color=white>í•˜ëŠ”ë° ìœ ìš©í•œ ì„±í”ì„ ì§€ë‹Œ ê°•í•œ ìœ ë‹›ì´ë©° ë§ˆë‚˜ë¿ë§Œ ì•„ë‹ˆë¼ \n<color=#FF9696>ê²€ì€ ì •ìˆ˜<color=white>ê¹Œì§€ ì†Œëª¨í•©ë‹ˆë‹¤. í‘ê¸°ì‚¬ë¥¼ ì„ íƒí•˜ì„¸ìš”.[CTRL]",
+        "í‘ê¸°ì‚¬ëŠ” ì ì„ <color=#FF9696>íƒ€ë½<color=white>í•˜ëŠ”ë° ìœ ìš©í•œ ì„±í”ì„ ì§€ë‹Œ ê°•í•œ ìœ ë‹›ì´ë©° ë§ˆë‚˜ë¿ë§Œ ì•„ë‹ˆë¼ \n<color=#FF9696>ê²€ì€ ì •ìˆ˜<color=white>ê¹Œì§€ ì†Œëª¨í•©ë‹ˆë‹¤. í‘ê¸°ì‚¬ë¥¼ ì„ íƒí•˜ì„¸ìš”.[CTRL]",
+        "ê³µê²© ì‹œ ì ì˜ <color=#FF9696>ì‹ ì•™<color=white>ì„ ë–¨ì–´ëœ¨ë¦¬ëŠ” <color=#FF9696>ì•…ì„± ë²„í”„<color=white>ì…ë‹ˆë‹¤.\ní‘ê¸°ì‚¬ëŠ” ì´ ì•…ì„± ë²„í”„ë¥¼ <color=#FF9696>2íšŒ<color=white> ì–»ëŠ” ì„±í”ì„ ê°€ì§€ê³  ìˆìŠµë‹ˆë‹¤.\nì˜ í™œìš©í•˜ì—¬ ì ì„ íƒ€ë½ì‹œì¼œë³´ì„¸ìš”.",
+        "<color=#FF9696>í„´ ì¢…ë£Œ ë²„íŠ¼<color=white>ì„ ëˆŒëŸ¬ ìœ ë‹› í„´ìœ¼ë¡œ ë„˜ì–´ê°€ì„¸ìš”.[CTRL]",
+        "ì´ë™ì´ í•„ìš”ê°€ ì—†ëŠ” ê²½ìš° <color=#FF9696>í„´ ì¢…ë£Œ ë²„íŠ¼<color=white>ì„ ëˆŒëŸ¬ í„´ì„ ë„˜ê¸¸ ìˆ˜ ìˆì–´ìš”.[CTRL]",
+        "ê²€ë³‘ì„ ê³µê²©í•˜ì—¬ <color=#FF9696>ì‹ ì•™<color=white>ì„ ë–¨ì–´ëœ¨ë¦¬ì„¸ìš”.[CTRL]",
+        "<color=#FF9696>ì‹ ì•™<color=white>ì„ ë–¨ì–´ëœ¨ë¦¬ëŠ” ìŠ¤í‚¬ <color=#FF9696>ì†ì‚­ì„<color=white>ì„ ì‚¬ìš©í•˜ì—¬ ì ì„ íƒ€ë½ì‹œì¼œ ë³´ì„¸ìš”.[CTRL]",
+        "<color=#FF9696>ì‹ ì•™<color=white>ì„ ë–¨ì–´ëœ¨ë¦¬ëŠ” ìŠ¤í‚¬ <color=#FF9696>ì†ì‚­ì„<color=white>ì„ ì‚¬ìš©í•˜ì—¬ ì ì„ íƒ€ë½ì‹œì¼œ ë³´ì„¸ìš”.[CTRL]",
+        "ì ì„ íƒ€ë½ì‹œí‚¬ ê²½ìš° í•´ë‹¹ ì ì„ ì•„êµ°ìœ¼ë¡œ ë§Œë“¤ë©° <color=#FF9696>ì„±í”<color=white>ì„ ë¶€ì—¬í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.\nê²€ë³‘ì—ê²Œ ë¶€ì—¬í•  ì„±í”ì„ ì„ íƒí•˜ì„¸ìš”.[CTRL]",
+        "ì´ì œ ê²€ë³‘ì€ ë‹¹ì‹ ì˜ ìœ ë‹›ì´ ë˜ì—ˆìŠµë‹ˆë‹¤.\nì´ì œ í„´ ì¢…ë£Œë¥¼ ëˆ„ë¥´ì„¸ìš”.[CTRL]",
+        "ì•„êµ°ì´ ì´ë¯¸ ìˆëŠ” ìœ„ì¹˜ë¡œ ì´ë™í•  ì‹œ ë‘ ìœ ë‹›ì€ ì„œë¡œ ìœ„ì¹˜ë¥¼ ë°”ê¿‰ë‹ˆë‹¤.\ní‘ê¸°ì‚¬ë¥¼ ì´ë™ì‹œí‚¤ì„¸ìš”.[CTRL]",
+        "ìˆ˜ë…€ë¥¼ ê³µê²©í•˜ì—¬ ë¬´ì  ë²„í”„ë¥¼ ì—†ì• ë³´ì„¸ìš”.[CTRL]",
+        "ê²€ë³‘ì„ ì´ë™ì‹œí‚¤ì„¸ìš”.[CTRL]",
+        "ë¶€ì  ë²„í”„ê°€ ì‚¬ë¼ì§„ ìˆ˜ë…€ë¥¼ ë§ˆë¬´ë¦¬í•˜ì„¸ìš”.[CTRL]",
         "",
         },
     };
 
-    public const int STEP_BOUNDARY = 100;
-
     private const float RECLICK_TIME = 0.5f;
 
-    private static TutorialManager _instance;
+    private static TutorialManager m_instance;
     public static TutorialManager Instance
     {
-        set
+        private set
         {
-            if (_instance == null)
-                _instance = value;
+            if (m_instance == null)
+                m_instance = value;
         }
-        get
-        {
-            return _instance;
-        }
+        get => m_instance;
     }
 
-    [SerializeField]
-    private UI_Tutorial UI;
-
-    [SerializeField] private TutorialStep _step;
-    public TutorialStep Step => _step;
-
+    [SerializeField] private UI_Tutorial UI;
+    
     private TooltipData _currentTooltip;
-
-    public bool IsTutorialactive;
-    private bool _isEnable;
+    private TutorialStep _step;
+    
+    private bool _isEnableUpdate;
     private bool _isCanClick;
 
     private void Awake()
@@ -118,21 +106,20 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        _isCanClick = true;
+        
         int curID = GameManager.Data.Map.CurrentTileID;
-
         switch (curID)
         {
-            case 1: _step = TutorialStep.UI_PlayerTurn; break;
-            case 2: _step = TutorialStep.UI_FallSystem; break;
-            case 3: _step = TutorialStep.UI_Divine; break;
+            case 1: _step = TutorialStep.Start_FirstStage; break;
+            case 2: _step = TutorialStep.Start_SecondStage; break;
+            case 3: _step = TutorialStep.Start_ThirdStage; break;
         }
-
-        _isCanClick = true;
     }
 
     private void Update()
     {
-        if (!_isEnable)
+        if (!_isEnableUpdate)
             return;
 
         if (UI.ValidToPassTooltip)
@@ -144,87 +131,61 @@ public class TutorialManager : MonoBehaviour
             }
         }
     }
+    
+    public bool CheckStep(TutorialStep step) => _step == step;
+    public bool IsTutorialOn() => !GameManager.OutGameData.Data.TutorialClear;
+    public bool IsEnableUpdate() => IsTutorialOn() && _isEnableUpdate;
+    public void SetNextStep() => _step++;
 
     public void ShowNextTutorial()
     {
-        if (CheckStep(TutorialStep.UI_Last))
-            return; // ¸¶Áö¸· UI Æ©Åä¸®¾ó °ü·Ã StepÀº Á¶°ÇºÎ µ¿ÀÛÀÌ±â ¶§¹®¿¡ ¿¹¿Ü Ã³¸®
+        if (CheckStep(TutorialStep.Pupup_Last))
+            return; // ë§ˆì§€ë§‰ UI íŠœí† ë¦¬ì–¼ ê´€ë ¨ Stepì€ ì¡°ê±´ë¶€ ë™ì‘ì´ê¸° ë•Œë¬¸ì— ì˜ˆì™¸ ì²˜ë¦¬
 
-        SetNextStep();
+        _step++;
         ShowTutorial();
     }
 
     public void ShowPreviousTutorial()
     {
-        SetPreviousStep();
+        _step--;
         ShowTutorial();
     }
-
-    public bool IsEnable()
-        => !GameManager.OutGameData.Data.TutorialClear && _isEnable;
-
-    public void SetNextStep()
-    {
-        TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
-        int next = Array.IndexOf(steps, _step) + 1;
-        _step = (steps.Length == next) ? steps[0] : steps[next];
-    }
-
-    private void SetPreviousStep()
-    {
-        TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
-        int next = Array.IndexOf(steps, _step) - 1;
-        _step = (steps.Length == -1) ? steps[steps.Length - 1] : steps[next];
-    }
-
-    private bool IsToolTip(TutorialStep step)
-        => (int)step % STEP_BOUNDARY != 0;
-
-    private TooltipData AnalyzeTooltip(TutorialStep step)
-    {
-        TooltipData tooltip = new();
-        int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
-
-        tooltip.Step = step;
-        tooltip.Info = TooltipTexts[GameManager.OutGameData.Data.Language][indexToTooltip].Replace("[CTRL]", "");
-        tooltip.IndexToTooltip = indexToTooltip;
-        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.Data.Language][indexToTooltip].Contains("[CTRL]");
-        tooltip.IsEnd = false;
-
-        if (CheckStep(TutorialStep.Tutorial_End_1) || 
-            CheckStep(TutorialStep.Tutorial_End_2) || 
-            CheckStep(TutorialStep.Tutorial_End_3))
-            tooltip.IsEnd = true;
-
-        return tooltip;
-    }
-
-    private int AnalyzeUI(TutorialStep step) => (int)step / STEP_BOUNDARY - 1;
-
-    public bool CheckStep(TutorialStep step) => this.Step == step;
-
+    
     public void ShowTutorial()
     {
-        Debug.Log(_step);
+        Debug.Log($"<color=white>Current Stage : {_step}</color>");
 
-        if (IsToolTip(_step))
-        {
-            // Tooltip ¸ğµå
-            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
+        TutorialType type = GetTutorialType(_step);
 
-            _currentTooltip = AnalyzeTooltip(_step);
-            if (_currentTooltip.IsEnd)
-                DisableToolTip();
-            else
-                EnableToolTip(_currentTooltip);
-        }
-        else
+        switch (type)
         {
-            // UI ¸ğµå
-            int indexToUI = AnalyzeUI(_step);
-            _isEnable = true;
-            UI.TutorialActive(indexToUI);
+            case TutorialType.Tooltip:  // Tooltip ëª¨ë“œ
+                
+                GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
+                
+                _currentTooltip = GetTooltipData(_step);
+                if (_currentTooltip.IsEnd)
+                    DisableToolTip();
+                else
+                    EnableToolTip(_currentTooltip);
+                
+                Debug.Log($"<color=blue>Current Tooltip : {_currentTooltip.IndexToTooltip}</color>");
+                
+                break;
+            
+            case TutorialType.Popup:    // Popup ëª¨ë“œ
+                
+                int indexToUI = GetPopupIndex(_step);
+                UI.TutorialActive(indexToUI);
+                _isEnableUpdate = true;
+                
+                Debug.Log($"<color=red>Current Popup : {indexToUI}</color>");
+                
+                break;
         }
+        
+        SetTutorialField(_step);
     }
 
     public void DisableToolTip()
@@ -232,8 +193,7 @@ public class TutorialManager : MonoBehaviour
         UI.CloseToolTip();
         UI.SetUIMask(-1);
         UI.SetValidToPassToolTip(false);
-        SetActiveAllTiles(true);
-        _isEnable = false;
+        _isEnableUpdate = false;
     }
 
     public void EnableToolTip(TooltipData data)
@@ -241,8 +201,71 @@ public class TutorialManager : MonoBehaviour
         UI.ShowTooltip(data.Info, data.IndexToTooltip);
         UI.SetUIMask(data.IndexToTooltip);
         UI.SetValidToPassToolTip(!data.IsCtrl);
-        SetTutorialField(data.Step);
-        _isEnable = true;
+        _isEnableUpdate = true;
+    }
+
+    private TooltipData GetTooltipData(TutorialStep step)
+    {
+        TooltipData tooltip = new();
+
+        int tooltipIndex = GetTooltipIndex(step);
+
+        tooltip.IndexToTooltip = tooltipIndex;
+        tooltip.Info = TooltipTexts[GameManager.OutGameData.Data.Language][tooltipIndex].Replace("[CTRL]", "");
+        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.Data.Language][tooltipIndex].Contains("[CTRL]");
+        tooltip.IsEnd = step.ToString().Contains("End_");
+        
+        return tooltip;
+    }
+    
+    private int GetTooltipIndex(TutorialStep step)
+    {
+        int index = 0;
+        foreach (var enumElement in Enum.GetValues(typeof(TutorialStep)))
+        {
+            string enumStr = enumElement.ToString();
+            
+            if (enumStr.Equals(step.ToString()))
+                return index;
+            if (enumStr.Contains("Tooltip_"))
+                index++;
+        }
+
+        // íˆ´ì… íƒìƒ‰ ì‹¤íŒ¨
+        return -1;
+    }
+    
+    private int GetPopupIndex(TutorialStep step)
+    {
+        int index = 0;
+        foreach (var enumElement in Enum.GetValues(typeof(TutorialStep)))
+        {
+            string enumStr = enumElement.ToString();
+            
+            if (enumStr.Equals(step.ToString()))
+                return index;
+            if (enumStr.Contains("Popup_"))
+                index++;
+        }
+
+        // íŒì—… íƒìƒ‰ ì‹¤íŒ¨
+        return -1;
+    }
+    
+    private TutorialType GetTutorialType(TutorialStep step)
+    {
+        string stepStr = step.ToString();
+        
+        if (stepStr.Contains("Start_"))
+            return TutorialType.Start;
+        if (stepStr.Contains("Popup_"))
+            return TutorialType.Popup;
+        if (stepStr.Contains("Tooltip_"))
+            return TutorialType.Tooltip;
+        if (stepStr.Contains("End_"))
+            return TutorialType.End;
+        
+        return TutorialType.None;
     }
 
     private void SetTutorialField(TutorialStep step)
@@ -263,7 +286,7 @@ public class TutorialManager : MonoBehaviour
             case TutorialStep.Tooltip_BlackKnightSpawn:
                 BattleManager.Field.TileDict[new Vector2(2, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitAttack_2:
+            case TutorialStep.Tooltip_UnitAttack2:
                 BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
                 break;
             case TutorialStep.Tooltip_PlayerSkillUse:
@@ -272,14 +295,17 @@ public class TutorialManager : MonoBehaviour
             case TutorialStep.Tooltip_UnitSwap:
                 BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitAttack_3:
+            case TutorialStep.Tooltip_UnitAttack3:
                 BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitSwap_2:
+            case TutorialStep.Tooltip_UnitSwap2:
                 BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitAttack_4:
+            case TutorialStep.Tooltip_UnitAttack4:
                 BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
+                break;
+            case TutorialStep.Popup_Defeat:
+                SetActiveAllTiles(true);
                 break;
         }
     }

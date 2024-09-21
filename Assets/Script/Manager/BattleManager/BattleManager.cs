@@ -240,7 +240,7 @@ public class BattleManager : MonoBehaviour
 
         DeckUnit unit = _battleUI.UI_hands.GetSelectedUnit();
 
-        if (TutorialManager.Instance.IsEnable())
+        if (TutorialManager.Instance.IsEnableUpdate())
             TutorialManager.Instance.ShowNextTutorial(); 
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크

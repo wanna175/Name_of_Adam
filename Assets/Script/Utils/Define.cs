@@ -480,11 +480,21 @@ public enum EffectTileType
     Phanuel_Attack_Friendly
 }
 
+public enum TutorialType
+{
+    None,
+    Start,
+    Popup,
+    Tooltip,
+    End
+}
+
 public enum TutorialStep
 {
-    UI_PlayerTurn = TutorialManager.STEP_BOUNDARY,
-    UI_UnitTurn = UI_PlayerTurn + TutorialManager.STEP_BOUNDARY,
-
+    // 첫번째 스테이지 시작
+    Start_FirstStage,
+    Popup_PlayerTurn,
+    Popup_UnitTurn,
     Tooltip_PlayerTurn,
     Tooltip_ManaInfo,
     Tooltip_UnitInfo,
@@ -495,40 +505,42 @@ public enum TutorialStep
     Tooltip_SpeedTable,
     Tooltip_UnitMove,
     Tooltip_UnitAttack,
-    Tutorial_End_1,
+    End_FirstStage,
 
-    UI_FallSystem = UI_UnitTurn + TutorialManager.STEP_BOUNDARY,
-    UI_DarkEssenceInfo = UI_FallSystem + TutorialManager.STEP_BOUNDARY,
-    UI_Stigma_1 = UI_DarkEssenceInfo + TutorialManager.STEP_BOUNDARY,
-    UI_Stigma_2 = UI_Stigma_1 + TutorialManager.STEP_BOUNDARY,
-
-    Tooltip_DarkEssenceInfo = UI_Stigma_2 + Tutorial_End_1 % TutorialManager.STEP_BOUNDARY,
+    // 두번째 스테이지 시작
+    Start_SecondStage,
+    Popup_FallSystem,
+    Popup_DarkEssenceInfo,
+    Popup_Stigma1,
+    Popup_Stigma2,
+    Tooltip_DarkEssenceInfo,
     Tooltip_BlackKnightDeck,
     Tooltip_BlackKnightSpawn,
     Tooltip_BuffInfo,
-    Tooltip_TurnEnd_2,
-    Tooltip_TurnEnd_3,
-    Tooltip_UnitAttack_2,
+    Tooltip_TurnEnd2,
+    Tooltip_TurnEnd3,
+    Tooltip_UnitAttack2,
     Tooltip_PlayerSkillDeck,
     Tooltip_PlayerSkillUse,
     Tooltip_FallSelect,
-    Tooltip_TurnEnd_4,
+    Tooltip_TurnEnd4,
     Tooltip_UnitSwap,
-    Tooltip_UnitAttack_3,
-    Tooltip_UnitSwap_2,
-    Tooltip_UnitAttack_4,
-    Tutorial_End_2,
+    Tooltip_UnitAttack3,
+    Tooltip_UnitSwap2,
+    Tooltip_UnitAttack4,
+    End_SecondStage,
 
-    UI_Divine = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
-    UI_Defeat = UI_Divine + TutorialManager.STEP_BOUNDARY,
-    UI_Last = UI_Defeat + TutorialManager.STEP_BOUNDARY,
-
-    Tutorial_End_3 = UI_Last + Tutorial_End_2 % TutorialManager.STEP_BOUNDARY,
+    Start_ThirdStage,
+    Popup_Divine,
+    Popup_Defeat,
+    Pupup_Last,
+    End_ThirdStage,
 }
 
 public struct TooltipData
 {
-    public TutorialStep Step;
+    public static TooltipData Empty = new TooltipData();
+
     public string Info;
     public int IndexToTooltip;
     public bool IsCtrl;
