@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stigma_Tailwind : Stigma
+public class Stigma_TailWind : Stigma
 {
     public override void Use(BattleUnit caster)
     {

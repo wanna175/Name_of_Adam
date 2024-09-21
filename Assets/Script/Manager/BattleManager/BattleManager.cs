@@ -465,6 +465,8 @@ public class BattleManager : MonoBehaviour
                     case "엘리우스": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_ELIEUS); break;
                     case "야나": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_YANA); break;
                     case "압바임": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_APPAIM); break;
+                    case "리비엘": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_LIBIEL); break;
+                    case "아라벨라": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_ARABELLA); break;
                 }
             }
             else if (unit.DeckUnit.Data.Rarity == Rarity.Boss)
