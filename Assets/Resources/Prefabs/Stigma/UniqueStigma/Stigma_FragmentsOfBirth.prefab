@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2950990188252653416}
-  - component: {fileID: 4034847758687318432}
+  - component: {fileID: -7988383393209478176}
   m_Layer: 0
-  m_Name: Stigma_Cleanse
+  m_Name: Stigma_FragmentsOfBirth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4034847758687318432
+--- !u!114 &-7988383393209478176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fb61e5d04d8f3e4a9f536da2a000a5c, type: 3}
+  m_Script: {fileID: 11500000, guid: ff7d87625c5fe2d408a2f4cb036592cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 40
-  _name: Cleanse
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
-  _description: Cleanse Info
+  _stigmaEnum: 121
+  _name: Fragments Of Birth
+  _sprite_28: {fileID: 21300000, guid: 2a5c4fff44c677d45883e6e6a428a3f1, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 517d4a35da2729846a43c2da0df784f8, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 42e9bbdeddea09949844441443176ad3, type: 3}
+  _description: FragmentsOfBirth Info
   _activeTiming: 2
-  _tier: 1
+  _tier: 3
   _isLock: 0

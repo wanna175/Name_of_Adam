@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2950990188252653416}
-  - component: {fileID: 8101432566186555375}
+  - component: {fileID: 8229892315445071273}
   m_Layer: 0
-  m_Name: Stigma_DeepSea
+  m_Name: Stigma_Purification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8101432566186555375
+--- !u!114 &8229892315445071273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4820f5608a5553742bfb8bc04b618160, type: 3}
+  m_Script: {fileID: 11500000, guid: 128bcb7d074fd40428505f3177831b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 122
-  _name: Deep Sea
-  _sprite_28: {fileID: 21300000, guid: 53f34751a0cd76a40b2276adf24df055, type: 3}
-  _sprite_88: {fileID: 21300000, guid: f998bae4c925c6a488f76e6c04abf007, type: 3}
-  _sprite_164: {fileID: 21300000, guid: 619794fdfb7d6c443919d728619e1244, type: 3}
-  _description: DeepSea Info
+  _stigmaEnum: 8
+  _name: Purification
+  _sprite_28: {fileID: 21300000, guid: 8e76799609e6e9b4eb111025301c466f, type: 3}
+  _sprite_88: {fileID: 21300000, guid: e5b03df0763754b42835f57f2fe81882, type: 3}
+  _sprite_164: {fileID: 21300000, guid: a230276c174523242ae6e8f92df62f6a, type: 3}
+  _description: Purification Info
   _activeTiming: 2
-  _tier: 3
+  _tier: 4
   _isLock: 0

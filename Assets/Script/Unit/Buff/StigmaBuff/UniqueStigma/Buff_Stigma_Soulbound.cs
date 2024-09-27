@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Buff_Stigma_DeepSea : Buff
+public class Buff_Stigma_Soulbound : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_DeepSea;
+        _buffEnum = BuffEnum.Stigmata_Soulbound;
 
-        _name = "DeepSea";
+        _name = "Soulbound";
 
         //_buffActiveTiming = ActiveTiming.FALLED;
 
