@@ -153,7 +153,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 37980338062684160
     m_Localized: Units can only be summoned or skills can only be used during the
-      player's turn.
+      preparation phase.
     m_Metadata:
       m_Items: []
   - m_Id: 47438182506188800
