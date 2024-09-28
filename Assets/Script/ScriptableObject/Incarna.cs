@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 
 [CreateAssetMenu(fileName = "Incarna", menuName = "Scriptable Object/Incarna")]
 
@@ -15,6 +16,9 @@ public class Incarna : ScriptableObject
 
     [SerializeField] private Sprite _sprite;
     public Sprite Sprite => _sprite;
+
+    [SerializeField] private AnimatorController _animatorController;
+    public AnimatorController AnimatorController => _animatorController;
 
     [SerializeField] private List<PlayerSkill> _playerSkillList = new();
     public List<PlayerSkill> PlayerSkillList => _playerSkillList;

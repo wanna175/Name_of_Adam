@@ -663,9 +663,13 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         Data.IsGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
         BattleManager.BattleUI.UI_controlBar.UI_PlayerHP.StartDestoryEffect();
         GameManager.SaveManager.DeleteSaveData();
+
+        GameManager.Instance.PlayAfterCoroutine(() =>
+        {
+            GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
+        }, 1.5f);
     }
 
     private void CheckBossCycle(StageData data)
