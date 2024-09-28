@@ -30,7 +30,7 @@ public class TutorialManager : MonoBehaviour
         "The Dark Knight is a powerful unit that requires not only mana but also Dark Essence,\n and it has the <color=#FF9696>‘Malevolence’</color> Stigmata which is useful when corrupting enemies\nSelect the Dark Knight[CTRL]",
         "The Dark Knight is a powerful unit that requires not only mana but also Dark Essence,\n and it has the <color=#FF9696>‘Malevolence’</color> Stigmata which is useful when corrupting enemies\nSelect the Dark Knight[CTRL]",
         "The <color=#FF9696>malevolence buff<color=white> reduces an enemy's <color=#FF9696>faith<color=white> when attacking\nThe Dark Knight has the stigmata that provides the malevolence <color=#FF9696>buff twice<color=white>\nEffectively utilize these instructions to corrupt enemies",
-        "Click the <color=#FF9696>'Turn End' <color=white>button to move to the unit turn[CTRL]",
+        "Click the <color=#FF9696>Phase End button</color> to move to the Battle Phase[CTRL]",
         "You can press the <color=#FF9696>Skip Move button <color=white>to skip the movement turn.[CTRL]",
         "Attack the swordsman to reduce <color=#FF9696>faith<color=white>[CTRL]",
         "Now, it is the Preparation Phase\nUse the skill <color=#FF9696>'Whisper'</color> to reduce the enemy's faith and corrupt them[CTRL]",
