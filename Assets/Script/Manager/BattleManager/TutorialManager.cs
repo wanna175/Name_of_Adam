@@ -232,7 +232,7 @@ public class TutorialManager : MonoBehaviour
         UI.CloseToolTip();
         UI.SetUIMask(-1);
         UI.SetValidToPassToolTip(false);
-        SetActiveAllTiles(true);
+        BattleManager.Field.SetActiveAllTiles(true);
         _isEnable = false;
     }
 
@@ -247,7 +247,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SetTutorialField(TutorialStep step)
     {
-        SetActiveAllTiles(false);
+        BattleManager.Field.SetActiveAllTiles(false);
 
         switch (step)
         {
@@ -282,12 +282,6 @@ public class TutorialManager : MonoBehaviour
                 BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
                 break;
         }
-    }
-
-    private void SetActiveAllTiles(bool isActive)
-    {
-        foreach (Tile tile in BattleManager.Field.TileDict.Values)
-            tile.SetActiveCollider(isActive);
     }
 
     private IEnumerator ClickCoolTime()
