@@ -107,6 +107,15 @@ MonoBehaviour:
     m_Address: Assets/Locale/Tables/System/SystemTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 6266471e11f4cbd4c9baa09ac7ed7ff8
+    m_Address: Assets/Locale/Tables/Tutorial/TutorialImage Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: b35f7512cb17f5e448f719dcc603da5d
+    m_Address: Tutorial_1_1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:

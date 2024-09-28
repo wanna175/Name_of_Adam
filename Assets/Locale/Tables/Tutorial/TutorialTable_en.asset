@@ -19,22 +19,21 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 131797782528
-    m_Localized: Player Turn
+    m_Localized: Preparation Phase
     m_Metadata:
       m_Items: []
   - m_Id: 219358072832
-    m_Localized: <color=#FF9696>The player turn <color=white>is the phase where actions
+    m_Localized: <color=#FF9696>The Preparation Phase <color=white>is where actions
       such as summoning units or using skills are taken to prepare for battle.
     m_Metadata:
       m_Items: []
   - m_Id: 475340640256
-    m_Localized: Unit Turn
+    m_Localized: Battle Phase
     m_Metadata:
       m_Items: []
   - m_Id: 1678954893312
-    m_Localized: <color=#FF9696>The unit turn <color=white>involves each unit taking
-      turns based on their speed in combat. <color=#FF9696>Player turn <color=white>and
-      <color=#FF9696>unit turn <color=white>alternate in turn.
+    m_Localized: During the <color=#FF9696>Battle Phase</color>, each unit takes
+      turns to fight. After the Battle Phase, the Preparation Phase returns.
     m_Metadata:
       m_Items: []
   - m_Id: 2123316236288
@@ -42,9 +41,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7081742733312
-    m_Localized: "The gem next to an enemy unit's health represents <color=#FF9696>faith<color=white>.\r
-      \nIf you deplete an enemy's Faith entirely, they convert to an ally. Conversely,
-      if your unit loses all Faith, it becomes an enemy."
+    m_Localized: "The gem on the left side of the unit's health represents <color=#FF9696>
+      Faith</color>. If you deplete all of the enemy's faith, it will be <color=#FF9696>corrupted</color>
+      and become your ally. Conversely, if an allied unit loses all of its faith,
+      it will be <color=#FF9696>converted</color> and become an enemy.\r"
     m_Metadata:
       m_Items: []
   - m_Id: 7594894856192
@@ -52,8 +52,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7735722807296
-    m_Localized: <color=#FF9696>Dark Essence <color=white>is the currency needed
-      for using skills or summoning specific units.
+    m_Localized: <color=#FF9696>Dark Essence</color> can be obtained by defeating
+      enemies. Dark Essence is used to activate skills or summon powerful units.
     m_Metadata:
       m_Items: []
   - m_Id: 7923766038528
@@ -61,9 +61,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7972952641536
-    m_Localized: <color=#FF9696>Stigmata <color=white>is the passive skill of a unit.
-      <color=#FF9696>Stigmata<color=white> can be applied to an enemy when <color=#FF9696>corrupted.<color=white>Corrupting
-      an enemy allows you to give the unit up to three <color=#FF9696>Stigmata.<color=white>
+    m_Localized: <color=#FF9696>Stigmata</color> is the passive skill of a unit.
+      Stigmata can be bestowed upon an enemy when corrupted.
     m_Metadata:
       m_Items: []
   - m_Id: 1485006017720320
@@ -92,8 +91,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4670673779855360
-    m_Localized: The nun possesses an <color=#FF9696>invincibility <color=white>stigmata
-      that nullifies an attack once. Devise a strategy to defeat the nun.
+    m_Localized: The nun possesses an <color=#FF9696>Invincibility</color> Stigmata
+      that nullifies one attack.
     m_Metadata:
       m_Items: []
   references:
