@@ -260,4 +260,12 @@ public class GameManager : MonoBehaviour
 
     public static string CreatePrivateKey()
         => Guid.NewGuid().ToString();
+
+    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
+    private IEnumerator PlayCoroutine(Action action, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        action();
+    }
 }

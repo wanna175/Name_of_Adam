@@ -88,7 +88,32 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 71323406742736896
-    m_Localized: "\uC698 \uD0C0"
+    m_Localized: "\uC698 \uD0C0\uB77D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76794071113420800
+    m_Localized: "\uCCAB \uC900\uBE44 \uB2E8\uACC4 \uC2DC \uC18C\uD658 \uB9C8\uB098
+      50% \uAC10\uC18C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76809918225731584
+    m_Localized: "<\uB2E8\uC77C \uACF5\uACA9>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810095137280000
+    m_Localized: "<\uBC94\uC704 \uACF5\uACA9>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810120638648320
+    m_Localized: "<\uC804\uBC29 \uACF5\uACA9>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810163152113664
+    m_Localized: "<\uD2B9\uC218 \uACF5\uACA9>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810187797843968
+    m_Localized: "<\uACF5\uACA9 \uBD88\uAC00>"
     m_Metadata:
       m_Items: []
   references:

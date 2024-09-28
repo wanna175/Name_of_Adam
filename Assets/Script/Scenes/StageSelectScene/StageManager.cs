@@ -285,12 +285,14 @@ public class StageManager : MonoBehaviour
 
     private bool _isHover = false;
     private bool _isHoverMessegeOn = false;
+    private Stage _hoverStage;
 
     public void StageMouseEnter(Stage stage)
     {
         _isHover = true;
+        _hoverStage = stage;
         PlayAfterCoroutine(() => {
-            if (_isHover)
+            if (_isHover && !_isHoverMessegeOn && _hoverStage == stage)
             {
                 _isHoverMessegeOn = true;
                 GameManager.UI.ShowHover<UI_TextHover>().SetText(

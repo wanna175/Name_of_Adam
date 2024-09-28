@@ -88,6 +88,15 @@ public class UI_MyDeck : UI_Popup
             titleTextKey = "Possessed units";
             _sortButton.gameObject.SetActive(true);
             _sortButton.Init(this);
+
+            if (!GameManager.OutGameData.Data.IsOnTooltipForDivineHall)
+            {
+                GameManager.OutGameData.Data.IsOnTooltipForDivineHall = true;
+                UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+                systemInfo.Init("TooltipForDivineHall", "");
+
+                GameManager.OutGameData.SaveData();
+            }
         }
 
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleTextKey);
@@ -107,6 +116,15 @@ public class UI_MyDeck : UI_Popup
 
     public void HallSaveInit(Action<DeckUnit> onSelectAction = null)
     {
+        if (!GameManager.OutGameData.Data.IsOnTooltipForDivineHallInBattle)
+        {
+            GameManager.OutGameData.Data.IsOnTooltipForDivineHallInBattle = true;
+            UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+            systemInfo.Init("TooltipForDivineHallInBattle", "");
+
+            GameManager.OutGameData.SaveData();
+        }
+
         _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
         _currentEvent = CurrentEvent.Hall_Select;
 

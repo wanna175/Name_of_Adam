@@ -54,10 +54,17 @@ public class UI_BattleOver : UI_Scene
                 Debug.Log("Tutorial Clear!");
 
                 GameManager.OutGameData.Data.TutorialClear = true;
-                if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Tutorial) == false)
-                    SceneChanger.SceneChangeToCutScene(CutSceneType.Tutorial);
+
+                if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Tubalcain_Enter)
+                    && GameManager.Data.GameData.CurrentAct == 1)
+                {
+                    GameManager.OutGameData.SetCutSceneData(CutSceneType.Tubalcain_Enter, true);
+                    SceneChanger.SceneChangeToCutScene(CutSceneType.Tubalcain_Enter);
+                }
                 else
+                {
                     SceneChanger.SceneChange("StageSelectScene");
+                }
 
                 GameManager.OutGameData.SaveData();
 
@@ -68,7 +75,7 @@ public class UI_BattleOver : UI_Scene
             {
                 GameObject.Find("RatterBoxCanvas").transform.Find("FadeOut").gameObject.SetActive(true);
 
-                BattleManager.Instance.PlayAfterCoroutine(() => {
+                GameManager.Instance.PlayAfterCoroutine(() => {
                     SceneChanger.SceneChange("StageSelectScene");
                 }, 1f);
 

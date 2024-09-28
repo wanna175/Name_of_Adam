@@ -74,6 +74,8 @@ public class LocaleManager : MonoBehaviour
 
     public string GetLocalizedSelectStageScene(string system) => GetLocalizedString("SelectStageSceneTable", system);
 
+    public string GetLocalizedActSelect(string system) => GetLocalizedString("ActSelectTable", system);
+
     private string GetLocalizedString(string tableName, string key)
     {
         string str = LocalizationSettings.StringDatabase.GetLocalizedString(tableName, key, currentLocale);

@@ -90,6 +90,30 @@ MonoBehaviour:
     m_Localized: Yohrn corrupted
     m_Metadata:
       m_Items: []
+  - m_Id: 76794071113420800
+    m_Localized: 'First preparation: Unit mana reduced by 50%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810187797843968
+    m_Localized: <No Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810163152113664
+    m_Localized: <Special Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810120638648320
+    m_Localized: <Frontal Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810095137280000
+    m_Localized: <Area Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76809918225731584
+    m_Localized: <Single Attack>
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

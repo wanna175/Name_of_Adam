@@ -11,7 +11,7 @@ public class StigmaController
         LoadStigmaList();
     }
 
-    public readonly float[] StigmaProbability = new float[] { 0.9f, 0.1f, 0f };
+    public readonly float[] StigmaProbability = new float[] { 0.85f, 0.15f, 0f };
 
     private List<Stigma> _tier1StigmaList = new();
     private List<Stigma> _tier2StigmaList = new();

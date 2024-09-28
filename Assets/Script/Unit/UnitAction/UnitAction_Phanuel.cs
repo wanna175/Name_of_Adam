@@ -258,7 +258,7 @@ public class UnitAction_Phanuel : UnitAction
                 BattleManager.Instance.SetTlieClickCoolDown(4f);
 
                 _phanuel_Animation.SetBool("isCorrupt", true);
-                BattleManager.Instance.PlayAfterCoroutine(() =>
+                GameManager.Instance.PlayAfterCoroutine(() =>
                 {
                     caster.UnitFallEvent();
                 }, 2f);

@@ -68,7 +68,7 @@ public class UnitAction_Yohrn_Scale : UnitAction
 
     public IEnumerator UnitMoveFieldPosition(Vector3 moveDestination, Vector2 coord)
     {
-        _moveCoroutine = _yohrnAction.MoveFieldPositionCoroutine(_ownerUnit, moveDestination, _moveSpeed);
+        _moveCoroutine = MoveFieldPositionCoroutine(_ownerUnit, moveDestination, _moveSpeed);
         yield return BattleManager.Instance.StartCoroutine(_moveCoroutine);
         _ownerUnit.SetLocation(coord);
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE, _ownerUnit);
@@ -93,11 +93,42 @@ public class UnitAction_Yohrn_Scale : UnitAction
         _ownerUnit.transform.position = moveStartPosition;
         _ownerUnit.UnitRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
 
-        _moveCoroutine = _yohrnAction.MoveFieldPositionCoroutine(_ownerUnit, moveEndPosition, _moveSpeed * 1.5f);
+        _moveCoroutine = MoveFieldPositionCoroutine(_ownerUnit, moveEndPosition, _moveSpeed * 1.5f);
         yield return BattleManager.Instance.StartCoroutine(_moveCoroutine);
 
         _ownerUnit.UnitRenderer.maskInteraction = SpriteMaskInteraction.None;
         _ownerUnit.SetLocation(_ownerUnit.Location);
     }
 
+
+    public IEnumerator MoveFieldPosition(BattleUnit unit, Vector3 moveDestination, Vector2 coord)
+    {
+        _moveCoroutine = MoveFieldPositionCoroutine(unit, moveDestination, _moveSpeed);
+        yield return BattleManager.Instance.StartCoroutine(_moveCoroutine);
+        unit.SetLocation(coord);
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE, unit);
+    }
+
+    public IEnumerator MoveFieldPositionCoroutine(BattleUnit unit, Vector3 moveDestination, float moveSpeed)
+    {
+        //잠재적 버그 가능성(스케일 안 바뀌기 확인해보기)
+        float addScale = unit.transform.localScale.x;
+
+        unit.SetFlipX(((unit.Team == Team.Enemy) ? Vector2.left : Vector2.right) == Vector2.left);
+
+        Vector3 pVel = Vector3.zero;
+        Vector3 sVel = Vector3.zero;
+
+        float moveTime = 1f / moveSpeed;
+
+        while (Vector3.Distance(moveDestination, unit.transform.position) >= 0.03f)
+        {
+            unit.transform.position = Vector3.SmoothDamp(unit.transform.position, moveDestination, ref pVel, moveTime);
+            unit.transform.localScale = Vector3.SmoothDamp(unit.transform.localScale, new(addScale, addScale, 1), ref sVel, moveTime);
+
+            yield return null;
+        }
+
+        pVel = Vector3.zero;
+    }
 }

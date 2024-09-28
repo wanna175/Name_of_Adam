@@ -26,6 +26,15 @@ public class ProgressShopManager : MonoBehaviour
         selectedID = 0;
         ProgressCoin.text = GameManager.OutGameData.Data.ProgressCoin.ToString();
         SetNodeImage();
+
+        if (!GameManager.OutGameData.Data.IsOnTooltipForSanctum)
+        {
+            GameManager.OutGameData.Data.IsOnTooltipForSanctum = true;
+            UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+            systemInfo.Init("TooltipForSanctum", "");
+
+            GameManager.OutGameData.SaveData();
+        }
     }
 
     public void OnClickShopNode(int id)
