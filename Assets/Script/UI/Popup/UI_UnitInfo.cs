@@ -212,6 +212,8 @@ public class UI_UnitInfo : UI_Popup
 
     public void Select()
     {
+        Debug.Log("시");
+        
         if (CurrentSceneName().Equals("EventScene") && _currentEvent == CurrentEvent.Heal_Faith_Select)
         {
             GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
