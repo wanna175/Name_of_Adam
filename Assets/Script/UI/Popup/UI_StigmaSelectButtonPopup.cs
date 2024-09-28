@@ -25,7 +25,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
 
     public void Init(DeckUnit targetUnit, bool isStigmataFull, List<Stigma> stigmataSelectList, Action afterPopupAction = null)
     {
-        _targetUnit = targetUnit;//πﬁ¿ª ¿Ø¥÷
+        _targetUnit = targetUnit;//Î∞õÏùÑ Ïú†Îãõ
 
         _isStigmataFull = isStigmataFull;
 
@@ -109,7 +109,7 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         }
         else
         {
-            if (TutorialManager.Instance.IsEnable())
+            if (TutorialManager.Instance.IsEnableUpdate())
                 TutorialManager.Instance.ShowNextTutorial();
 
             if (SceneChanger.GetSceneName() == "BattleScene")

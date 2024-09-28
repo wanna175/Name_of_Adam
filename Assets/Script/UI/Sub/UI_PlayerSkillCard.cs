@@ -72,7 +72,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (TutorialManager.Instance.IsEnable())
+            if (TutorialManager.Instance.IsEnableUpdate())
                 TutorialManager.Instance.ShowNextTutorial();
 
             if (BattleManager.BattleUI.UI_playerSkill.Used)

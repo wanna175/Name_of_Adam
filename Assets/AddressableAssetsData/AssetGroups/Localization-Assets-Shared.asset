@@ -107,8 +107,8 @@ MonoBehaviour:
     m_Address: Assets/Locale/Tables/System/SystemTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
-  - m_GUID: d50ff4dbed03888499f7fbb807ee48d1
-    m_Address: Assets/Locale/Tables/ActSelect/ActSelectTable Shared Data.asset
+  - m_GUID: 6266471e11f4cbd4c9baa09ac7ed7ff8
+    m_Address: Assets/Locale/Tables/Tutorial/TutorialImage Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
   m_ReadOnly: 1

@@ -15,10 +15,10 @@ public class ActionPhase : Phase
         if (_nowUnit.Team == Team.Player)
             BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
 
-        if (_nowUnit.Team == Team.Player && TutorialManager.Instance.IsEnable())
+        if (_nowUnit.Team == Team.Player && TutorialManager.Instance.IsEnableUpdate())
             TutorialManager.Instance.ShowNextTutorial();
 
-        //∞¯∞› ≈œ Ω√¿€ Ω√ √º≈©
+        //Í≥µÍ≤© ÌÑ¥ ÏãúÏûë Ïãú Ï≤¥ÌÅ¨
         _nowUnit.NextAttackSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_START, _nowUnit);
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
@@ -44,7 +44,7 @@ public class ActionPhase : Phase
     {
         BattleManager.Field.ClearAllColor();
 
-        //∞¯∞› ≈œ ¡æ∑· Ω√ √º≈©
+        //Í≥µÍ≤© ÌÑ¥ Ï¢ÖÎ£å Ïãú Ï≤¥ÌÅ¨
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END, _nowUnit);
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_ATTACK_TURN_END);
         

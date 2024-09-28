@@ -69,6 +69,9 @@ public class SteamClientManager : MonoBehaviour
             { SteamAchievementType.KILL_YANA, new SteamAchievementData("KILL_YANA", "STAT_KILL_YANA", 0, 1) },
             { SteamAchievementType.KILL_APPAIM, new SteamAchievementData("KILL_APPAIM", "STAT_KILL_APPAIM", 0, 1) },
             { SteamAchievementType.KILL_THESAVIOR, new SteamAchievementData("KILL_THESAVIOR", "STAT_KILL_THESAVIOR", 0, 1) },
+            { SteamAchievementType.KILL_LIBIEL, new SteamAchievementData("KILL_LIBIEL", "STAT_KILL_LIBIEL", 0, 1) },
+            { SteamAchievementType.KILL_ARABELLA, new SteamAchievementData("KILL_ARABELLA", "STAT_KILL_ARABELLA", 0, 1) },
+            { SteamAchievementType.KILL_YOHRN, new SteamAchievementData("KILL_YOHRN", "STAT_KILL_YOHRN", 0, 1) },
 
             { SteamAchievementType.CORRUPT_TUBALCAIN, new SteamAchievementData("CORRUPT_TUBALCAIN", "STAT_CORRUPT_TUBALCAIN", 0, 1) },
             { SteamAchievementType.CORRUPT_RAHELLEA, new SteamAchievementData("CORRUPT_RAHELLEA", "STAT_CORRUPT_RAHELLEA", 0, 1) },
@@ -77,6 +80,9 @@ public class SteamClientManager : MonoBehaviour
             { SteamAchievementType.CORRUPT_YANA, new SteamAchievementData("CORRUPT_YANA", "STAT_CORRUPT_YANA", 0, 1) },
             { SteamAchievementType.CORRUPT_APPAIM, new SteamAchievementData("CORRUPT_APPAIM", "STAT_CORRUPT_APPAIM", 0, 1) },
             { SteamAchievementType.CORRUPT_THESAVIOR, new SteamAchievementData("CORRUPT_THESAVIOR", "STAT_CORRUPT_THESAVIOR", 0, 1) },
+            { SteamAchievementType.CORRUPT_LIBIEL, new SteamAchievementData("CORRUPT_LIBIEL", "STAT_CORRUPT_LIBIEL", 0, 1) },
+            { SteamAchievementType.CORRUPT_ARABELLA, new SteamAchievementData("CORRUPT_ARABELLA", "STAT_CORRUPT_ARABELLA", 0, 1) },
+            { SteamAchievementType.CORRUPT_YOHRN, new SteamAchievementData("CORRUPT_YOHRN", "STAT_CORRUPT_YOHRN", 0, 1) },
 
             { SteamAchievementType.CORRUPT_NPC_UPGRADE, new SteamAchievementData("CORRUPT_NPC_UPGRADE", "STAT_CORRUPT_NPC_UPGRADE", 0, 1) },
             { SteamAchievementType.CORRUPT_NPC_STIGMATA, new SteamAchievementData("CORRUPT_NPC_STIGMATA", "STAT_CORRUPT_NPC_STIGMATA", 0, 1) },
@@ -90,8 +96,6 @@ public class SteamClientManager : MonoBehaviour
 
     public void IncreaseAchievement(SteamAchievementType type)
     {
-        return;
-
         if (!SteamManager.Initialized)
         {
             GameManager.Instance.SetSystemInfoText($"Steam is not connected.");
@@ -116,7 +120,7 @@ public class SteamClientManager : MonoBehaviour
         if (achievementCompleted)
         {
             GameManager.Instance.SetSystemInfoText($"The steam acheivement is done : {data.achievementAPIKey}");
-            return; // ÀÌ¹Ì ¿Ï·áµÈ ¾÷Àû
+            return; // ï¿½Ì¹ï¿½ ï¿½Ï·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
 
         SteamUserStats.GetStat(data.statAPIKey, out data.curCount);
@@ -124,11 +128,11 @@ public class SteamClientManager : MonoBehaviour
         SteamUserStats.SetStat(data.statAPIKey, data.curCount);
         SteamUserStats.StoreStats();
 
-        GameManager.Instance.SetSystemInfoText($"½ºÆÀ ¾÷Àû Áõ°¡ : {data.achievementAPIKey}/{data.curCount}/{data.maxCount}");
+        GameManager.Instance.SetSystemInfoText($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : {data.achievementAPIKey}/{data.curCount}/{data.maxCount}");
 
         if (data.curCount >= data.maxCount) 
         {
-            GameManager.Instance.SetSystemInfoText($"½ºÆÀ ¾÷Àû ´Þ¼º! : {data.achievementAPIKey}/{data.curCount}/{data.maxCount}/{achievementCompleted}");
+            GameManager.Instance.SetSystemInfoText($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½! : {data.achievementAPIKey}/{data.curCount}/{data.maxCount}/{achievementCompleted}");
             SteamUserStats.SetAchievement(data.achievementAPIKey);
             SteamUserStats.StoreStats();
         }
