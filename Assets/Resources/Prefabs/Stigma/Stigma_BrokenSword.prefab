@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 38
   _name: Broken Sword
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
+  _sprite_28: {fileID: 21300000, guid: 0e0a3086cad2949449260ce0fb325512, type: 3}
+  _sprite_88: {fileID: 21300000, guid: c849cece9b3b6324898557e587154b6f, type: 3}
+  _sprite_164: {fileID: 21300000, guid: ff92e60c0767e5c4fb849c787be9b54d, type: 3}
   _description: Broken Sword Info
   _activeTiming: 2
   _tier: 1

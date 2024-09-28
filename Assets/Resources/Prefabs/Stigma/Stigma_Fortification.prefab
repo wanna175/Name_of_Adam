@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 36
   _name: Fortification
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
+  _sprite_28: {fileID: 21300000, guid: 8cc472fa779c38a42a781dbc47b2ac58, type: 3}
+  _sprite_88: {fileID: 21300000, guid: b6f3b927b21b4d64caa88c80edafb844, type: 3}
+  _sprite_164: {fileID: 21300000, guid: f82578c4465b8fd45bffa5ded32c8ea1, type: 3}
   _description: Fortification Info
   _activeTiming: 2
   _tier: 1
