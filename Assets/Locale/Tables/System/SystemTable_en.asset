@@ -176,6 +176,36 @@ MonoBehaviour:
     m_Localized: "\u203B Press 'New Game' to face your next challenge."
     m_Metadata:
       m_Items: []
+  - m_Id: 69564355734294528
+    m_Localized: "Within the Divine Hall, you can see the units you inducted throughout
+      your journey. At the journey\u2019s end, you may induct one among the units
+      you earned into the Divine Hall. Inducted units can fo llow you in your journeys
+      to come."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564334360121344
+    m_Localized: In the Sanctum, the 'Souls' you have gathered on your journey can
+      be spent to permanently enhance your abilities or to unlock new incarnations.
+      Souls can be earned by vanquishing foes or by fulfilling certain conditions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564840516145152
+    m_Localized: You can induct one unit into the 'Divine Hall'. An inducted unit
+      can accompany you from the outset of your following journey. Existing units
+      become overwritten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564838670651392
+    m_Localized: "These are the 'Souls' you collected during this jo urney. Souls
+      can be earned by vanquishing foes or by fulfilling certain conditions. Souls
+      can be us ed in the \u2018Sanctum\u2019 at the main menu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72060608274817024
+    m_Localized: You have not selected any units to register in the Divine Hall.
+      Will you not register any units in this journey?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

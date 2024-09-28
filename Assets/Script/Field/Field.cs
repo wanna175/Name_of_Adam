@@ -343,6 +343,12 @@ public class Field : MonoBehaviour
 
     private bool CheckSpawnTile(DeckUnit deckUnit, Vector2 spawnTile) => !deckUnit.CanSpawnInEnemyField && !IsPlayerRange(spawnTile);
 
+    public void SetActiveAllTiles(bool isActive)
+    {
+        foreach (Tile tile in TileDict.Values)
+            tile.SetActiveCollider(isActive);
+    }
+
     private bool IsPlayerRange(Vector2 coord) => ((int)coord.x < MaxFieldX / 2 && IsInRange(coord));
 
     private UI_Info _hoverInfo;

@@ -7,42 +7,32 @@ public class UI_TurnNotify : UI_Scene
     const float fadeTime = 0.75f;
     const float displayTime = 1.0f;
 
-    private Sprite _playerTurn;
-    private Sprite _unitTurn;
+    [SerializeField] private Sprite _preparationPhase;
+    [SerializeField] private Sprite _battlePhase;
 
     private bool _displayFlag;
-    private bool _isFirstTurn;
 
     [SerializeField] private Image _image;
-    [SerializeField] private GameObject _firstPlayerTurnInfo;
     [SerializeField] private FadeController _fadeController;
     [SerializeField] private CanvasGroup _canvasGroup;
 
     private void Awake()
     {
-        _playerTurn = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
-        _unitTurn = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
-
         Hide();
     }
 
-    public void SetPlayerTurn(bool isFirst)
+    public void SetPlayerTurn()
     {
-        _isFirstTurn = isFirst;
-        _firstPlayerTurnInfo.SetActive(_isFirstTurn);
-
         _displayFlag = true;
 
         FadeIn();
         Invoke(nameof(FadeOut), fadeTime + displayTime);
 
-        _image.sprite = _playerTurn;
+        _image.sprite = _preparationPhase;
     }
 
     public void SetUnitTurn()
     {
-        _firstPlayerTurnInfo.SetActive(false);
-
         if (_displayFlag) 
         {
             Invoke(nameof(SetUnitTurn), fadeTime + displayTime + fadeTime);
@@ -53,7 +43,7 @@ public class UI_TurnNotify : UI_Scene
         FadeIn();
         Invoke(nameof(FadeOut), fadeTime + displayTime);
 
-        _image.sprite = _unitTurn;
+        _image.sprite = _battlePhase;
     }
 
     public void FadeIn()
@@ -77,7 +67,6 @@ public class UI_TurnNotify : UI_Scene
     {
         _canvasGroup.alpha = 0;
         _displayFlag = false;
-        _isFirstTurn = false;
     }
 
     public void Off()

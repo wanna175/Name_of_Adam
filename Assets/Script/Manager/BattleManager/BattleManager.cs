@@ -98,41 +98,45 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
-        PlayAfterCoroutine(() => {
+        GameManager.Instance.PlayAfterCoroutine(() => {
             _spawner.SpawnInitialUnit();
             SpawnDivineCheck();
         }, 0.5f);
 
-        PlayAfterCoroutine(() => {
+        GameManager.Instance.PlayAfterCoroutine(() => {
             StageData currentStageData = GameManager.Data.Map.GetCurrentStage();
 
-            if ((currentStageData.Name == StageName.EliteBattle ||
-            currentStageData.Name == StageName.BossBattle) &&
-            currentStageData.StageLevel % 100 < 90)
+            if ((currentStageData.Name == StageName.EliteBattle || currentStageData.Name == StageName.BossBattle) &&
+            GameManager.Data.GameData.CurrentAct != 99)
             {
                 string unitName = GameManager.Data.StageDatas[currentStageData.StageLevel][currentStageData.StageID].Units[0].Name;
-                List<Script> scripts = GameManager.Data.ScriptData[unitName];
-                GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts, true, true);
+
+                if (GameManager.OutGameData.DialogPlayCheck(unitName))
+                {
+                    List<Script> scripts = GameManager.Data.ScriptData[unitName];
+                    GameManager.UI.ShowPopup<UI_Conversation>().Init(scripts, true, true);
+                    GameManager.OutGameData.SetDialogData(unitName, true);
+
+                    return;
+                }
             }
-            else
-            {
-                _phase.ChangePhase(_phase.Prepare);
-            }
+
+            _phase.ChangePhase(_phase.Prepare);
         }, 1f);
     }
 
     public void SpawnDivineCheck()
     {
-        Dictionary<int, int> threshold = new() {
-            {0, 0},
-            {1, 0},
-            {2, 30},
-            {3, 50},
-            {4, 70}
-        };
-
-        if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle || GameManager.Data.Map.GetCurrentStage().Name == StageName.EliteBattle)
+        if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle || 
+            GameManager.Data.Map.GetCurrentStage().Name == StageName.EliteBattle)
             return;
+
+        Dictionary<int, int> threshold = new() {
+            {0, 0}, {11, 0}, {12, 0}, {13, 20}, {14, 40},
+            {21, 0}, {22, 20}, {23, 30}, {24, 50},
+            {31, 0}, {32, 3}, {33, 50}, {34, 70},
+            {91, 0}, {92, 50}, {93, 70}, {94, 100},
+        };
 
         BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
         Vector3 stageDivine = GameManager.Data.GameData.StageDivine;
@@ -154,7 +158,7 @@ public class BattleManager : MonoBehaviour
 
             GameManager.Data.GameData.StageDivine = new(1,0,0);
         }
-        else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 10])
+        else if (UnityEngine.Random.Range(0, 100) < threshold[GameManager.Data.Map.GetCurrentStage().StageLevel % 100])
         {
             buffUnit.SetBuff(new Buff_Divine());
             GameManager.Data.GameData.StageDivine = new(1, stageDivine.x, stageDivine.y);
@@ -204,7 +208,7 @@ public class BattleManager : MonoBehaviour
         _tileClickCooldown = true;
         _cooldownCounter++;
 
-        PlayAfterCoroutine(() => {
+        GameManager.Instance.PlayAfterCoroutine(() => {
             _cooldownCounter--;
             if (_cooldownCounter == 0)
             {
@@ -482,27 +486,30 @@ public class BattleManager : MonoBehaviour
                 {
                     case "바누엘":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_PHANUEL);
-                        //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
-                        //{
+                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Phanuel_Dead))
+                        {
+                            GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
                             GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
-                            GameManager.Data.GameData.Progress.PhanuelKill++;
-                        //}
+                        }
+                        GameManager.Data.GameData.Progress.PhanuelKill++;
                         break;
                     case "구원자":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_THESAVIOR);
-                        //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
-                        //{
+                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.TheSavior_Dead))
+                        {
+                            GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Dead, true);
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
-                        //}
+                        }
                         GameManager.Data.GameData.Progress.SaviorKill++;
                         break;
                     case "욘":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_YOHRN);
-                        //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Yohrn_Dead) == false)
-                        //{
-                            BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
-                        //}
+                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Yohrn_Dead))
+                        {
+                            GameManager.OutGameData.SetCutSceneData(CutSceneType.Yohrn_Dead, true);
+                            BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Yohrn_Dead);
+                        }
                         GameManager.Data.GameData.Progress.YohrnKill++;
                         break;
                     default: Debug.Log($"{unit.DeckUnit.Data.ID} 보스 컷씬 출력 실패"); break;
@@ -631,7 +638,7 @@ public class BattleManager : MonoBehaviour
         _battleData.OnBattleOver();
         Time.timeScale = 1f;
 
-        PlayAfterCoroutine(() =>
+        GameManager.Instance.PlayAfterCoroutine(() =>
         {
             StageData data = GameManager.Data.Map.GetCurrentStage();
 
@@ -665,8 +672,13 @@ public class BattleManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         Data.IsGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
-        GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
+        BattleManager.BattleUI.UI_controlBar.UI_PlayerHP.StartDestoryEffect();
         GameManager.SaveManager.DeleteSaveData();
+
+        GameManager.Instance.PlayAfterCoroutine(() =>
+        {
+            GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
+        }, 1.5f);
     }
 
     private void CheckBossCycle(StageData data)
@@ -867,14 +879,5 @@ public class BattleManager : MonoBehaviour
         skipNextAction |= caster.Action.ActionTimingCheck(activeTiming, caster, receiver);
 
         return skipNextAction;
-    }
-
-    public void PlayAfterCoroutine(Action action, float time) => StartCoroutine(PlayCoroutine(action, time));
-
-    private IEnumerator PlayCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        action();
     }
 }

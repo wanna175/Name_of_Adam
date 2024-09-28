@@ -28,7 +28,7 @@ public class Buff_Rahel : Buff
 
         if (_owner.AttackUnitNum == 1)
         {
-            BattleManager.Instance.PlayAfterCoroutine(() =>
+            GameManager.Instance.PlayAfterCoroutine(() =>
             {
                 Vector2 vec = caster.Location + (caster.Location - _owner.Location).normalized;
                 if (BattleManager.Field.IsInRange(vec) && !BattleManager.Field.TileDict[vec].UnitExist)

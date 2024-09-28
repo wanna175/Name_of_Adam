@@ -27,6 +27,15 @@ public class UI_ProgressSummary : UI_Popup
         _progress = GameManager.Data.GameData.Progress;
         _title.text = title;
         SetProgressText();
+
+        if (!GameManager.OutGameData.Data.IsOnTooltipForSanctumInBattle)
+        {
+            GameManager.OutGameData.Data.IsOnTooltipForSanctumInBattle = true;
+            UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+            systemInfo.Init("TooltipForSanctumInBattle", "");
+
+            GameManager.OutGameData.SaveData();
+        }
     }
 
     public void SetProgressText()
@@ -94,8 +103,10 @@ public class UI_ProgressSummary : UI_Popup
 
         if (isExist == false)
         {
-            GameManager.OutGameData.AddHallUnit(deckUnit);
-            SceneChanger.SceneChange("MainScene");
+
+            UI_CurrentHallUnit popup = GameManager.UI.ShowPopup<UI_CurrentHallUnit>();
+            popup.Init(deckUnit);
+            //SceneChanger.SceneChange("MainScene");
         }
     }
 }

@@ -123,6 +123,26 @@ MonoBehaviour:
     m_Key: SaviorTooltip
     m_Metadata:
       m_Items: []
+  - m_Id: 69564334360121344
+    m_Key: TooltipForSanctum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564355734294528
+    m_Key: TooltipForDivineHall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564838670651392
+    m_Key: TooltipForSanctumInBattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564840516145152
+    m_Key: TooltipForDivineHallInBattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72060608274817024
+    m_Key: DivineHallQuit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

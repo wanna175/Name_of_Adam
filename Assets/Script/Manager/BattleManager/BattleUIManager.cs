@@ -98,6 +98,11 @@ public class BattleUIManager : MonoBehaviour
         FillHand();
     }
 
+    public void SetFirstTurnNotify(bool isOn)
+    {
+        UI_controlBar.FirstTurnNotifyAnimator.SetBool("isFadeOut", !isOn);//true일 때 꺼지고, false일때 켜짐
+    }
+
     public void FillHand()
     {
         int curID = GameManager.Data.Map.CurrentTileID;

@@ -11,7 +11,7 @@ public class BattleCutSceneController : MonoBehaviour
     [Space(20f)]
 
     readonly float ZoomTime = 0.38f;
-
+    
     [Space(10f)]
     [Header("공격 이펙트(X, Y : 이동할 위치, Z : 머무를 시간")]
     [SerializeField] private List<Vector3> _shakeInfo;
@@ -82,7 +82,6 @@ public class BattleCutSceneController : MonoBehaviour
             {
                 GameManager.Sound.Play("PlayerHit/PlayerHitSFX");
                 BattleManager.BattleUI.UI_playerHP.DecreaseHP(1);
-                BattleManager.BattleUI.UI_playerHP.StartEffect();
                 BattleManager.Instance.BattleOverCheck();
             }
             

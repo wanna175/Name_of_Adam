@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +9,9 @@ public class Buff_Stigma_Cleanse : Buff
 
         _name = "Cleanse";
 
-        _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
+        _description = "Cleanse Info";
+
+        _buffActiveTiming = ActiveTiming.UNIT_TURN_START;
 
         _owner = owner;
 
@@ -19,8 +20,21 @@ public class Buff_Stigma_Cleanse : Buff
 
     public override bool Active(BattleUnit caster)
     {
-        if (caster != null && _owner.Buff.GetHasBuffNum() >= 2)
-            caster.ChangeFall(1, _owner, FallAnimMode.On);
+        List<Buff> debuffList = new();
+
+        foreach (Buff buff in _owner.Buff.BuffList)
+        {
+            if (buff.IsDebuff)
+                debuffList.Add(buff);
+        }
+
+        if (debuffList.Count > 0)
+        {
+            _owner.Buff.DeleteBuff(debuffList[Random.Range(0, debuffList.Count)].BuffEnum);
+            Debug.Log(debuffList[Random.Range(0, debuffList.Count)].BuffEnum);
+            GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Heal", BattleManager.Field.GetTilePosition(_owner.Location));
+            _owner.GetHeal(10, _owner);
+        }
 
         return false;
     }

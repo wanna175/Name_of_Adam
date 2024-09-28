@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private GameObject _incarnationProfile;
+
     [SerializeField] private Image profile;
     [SerializeField] private Image HPBackImage, HPEffectImage;
     [SerializeField] private GameObject[] HPJemImages;
@@ -18,6 +20,7 @@ public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
     {
         // 프로필 설정
         profile.sprite = GameManager.Data.GameData.Incarna.Sprite;
+        _incarnationProfile.GetComponent<Animator>().runtimeAnimatorController = GameManager.Data.GameData.Incarna.AnimatorController;
 
         // HP 설정
         for (int i = 0; i < HPJemImages.Length; i++)
@@ -42,9 +45,11 @@ public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
             }
             effect.StartDecreaseHPEffect();
         }
+
+        BattleManager.BattleUI.UI_animator.SetBool("isPlayerHit", true);
     }
 
-    public void StartEffect() => BattleManager.BattleUI.UI_animator.SetBool("isPlayerHit", true);
+    public void StartDestoryEffect() => _incarnationProfile.GetComponent<Animator>().SetBool("isDestroy", true);
 
     private bool _isHover = false;
     private bool _isHoverMessegeOn = false;
@@ -52,8 +57,8 @@ public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         _isHover = true;
-        BattleManager.Instance.PlayAfterCoroutine(() => {
-            if (_isHover)
+        GameManager.Instance.PlayAfterCoroutine(() => {
+            if (_isHover && !_isHoverMessegeOn)
             {
                 _isHoverMessegeOn = true;
                 GameManager.UI.ShowHover<UI_TextHover>().SetText(

@@ -19,6 +19,7 @@ public class SaveVersionController
         "1.0.2v",
         "1.0.3v",
         "1.0.4v",
+        "1.1.0v"
     };
 
     public bool IsValildVersion()
@@ -156,6 +157,8 @@ public class SaveVersionController
                     GameManager.OutGameData.Data.IsVisitBaptism = npcQuest.UpgradeQuest > 0;
                     GameManager.OutGameData.Data.IsVisitStigmata = npcQuest.StigmaQuest > 0;
                     GameManager.OutGameData.Data.IsVisitSacrifice = npcQuest.DarkshopQuest > 0;
+
+                    GameManager.OutGameData.InitCutSceneData();
 
                     break;
             }

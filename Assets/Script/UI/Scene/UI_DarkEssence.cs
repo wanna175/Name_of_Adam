@@ -28,8 +28,8 @@ public class UI_DarkEssence : UI_Scene, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         _isHover = true;
-        BattleManager.Instance.PlayAfterCoroutine(() => {
-            if (_isHover)
+        GameManager.Instance.PlayAfterCoroutine(() => {
+            if (_isHover && !_isHoverMessegeOn)
             {
                 _isHoverMessegeOn = true;
                 GameManager.UI.ShowHover<UI_TextHover>().SetText(

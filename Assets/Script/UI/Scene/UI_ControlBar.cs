@@ -12,7 +12,9 @@ public class UI_ControlBar : UI_Scene
     [SerializeField] public UI_ManaGauge UI_ManaGauge;
     [SerializeField] public Animator UI_Aniamtor;
     [SerializeField] private Image _active;
-    private List<CanvasGroup> canvasGroups;
+    [SerializeField] public Animator FirstTurnNotifyAnimator;
+
+    private List<CanvasGroup> _canvasGroups;
 
     private const float activeMaxAlpha = 1.0f;
     private const float fadeSpeed = 1.0f;
@@ -24,8 +26,11 @@ public class UI_ControlBar : UI_Scene
     {
         _active.color = new Color(1f, 1f, 1f, activeMaxAlpha);
 
-        canvasGroups = new List<CanvasGroup>();
-        canvasGroups.AddRange(GetComponentsInChildren<CanvasGroup>());
+        _canvasGroups = new List<CanvasGroup>();
+        _canvasGroups.AddRange(GetComponentsInChildren<CanvasGroup>());
+
+        FirstTurnNotifyAnimator.speed = 2;
+        FirstTurnNotifyAnimator.SetBool("isFadeOut", true);
     }
 
     public void EndPlayerHit()
@@ -83,7 +88,7 @@ public class UI_ControlBar : UI_Scene
 
     private void SetCanvasGroupAlpha(float alpha)
     {
-        foreach (var canvasGroup in canvasGroups)
+        foreach (var canvasGroup in _canvasGroups)
         {
             canvasGroup.alpha = alpha;
         }
@@ -91,7 +96,7 @@ public class UI_ControlBar : UI_Scene
 
     private IEnumerator FadeInCanvas()
     {
-        float alpha = canvasGroups[0].alpha;
+        float alpha = _canvasGroups[0].alpha;
         while (alpha < 1.0f)
         {
             alpha += Time.deltaTime * fadeSpeed;
@@ -103,7 +108,7 @@ public class UI_ControlBar : UI_Scene
 
     private IEnumerator FadeOutCanvas()
     {
-        float alpha = canvasGroups[0].alpha;
+        float alpha = _canvasGroups[0].alpha;
         while (alpha > fadeMinAlpha)
         {
             alpha -= Time.deltaTime * fadeSpeed;

@@ -265,7 +265,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SetTutorialField(TutorialStep step)
     {
-        SetActiveAllTiles(false);
+        BattleManager.Field.SetActiveAllTiles(false);
 
         switch (step)
         {
@@ -305,12 +305,6 @@ public class TutorialManager : MonoBehaviour
                 SetActiveAllTiles(true);
                 break;
         }
-    }
-
-    private void SetActiveAllTiles(bool isActive)
-    {
-        foreach (Tile tile in BattleManager.Field.TileDict.Values)
-            tile.SetActiveCollider(isActive);
     }
 
     private IEnumerator ClickCoolTime()

@@ -41,6 +41,7 @@ MonoBehaviour:
   _darkEssenseCost: 5
   _unitActionType: 12
   _unitMoveType: 0
+  _unitAttackType: 1
   _isBattleOnly: 0
   _isFlipFixed: 0
   _attackRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000

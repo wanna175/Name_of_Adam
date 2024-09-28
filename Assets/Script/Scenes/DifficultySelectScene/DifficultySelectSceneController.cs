@@ -67,12 +67,23 @@ public class DifficultySelectSceneController : MonoBehaviour
             GameManager.Data.GameDataMain.DarkEssence = 7;
         }
 
-        if (GameManager.Data.GameData.CurrentAct == 2)
+
+        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Tubalcain_Enter)
+            && GameManager.Data.GameData.CurrentAct == 1)
         {
+            GameManager.OutGameData.SetCutSceneData(CutSceneType.Tubalcain_Enter, true);
+            SceneChanger.SceneChangeToCutScene(CutSceneType.Tubalcain_Enter);
+        }
+        else if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Elieus_Enter)
+            && GameManager.Data.GameData.CurrentAct == 2)
+        {
+            GameManager.OutGameData.SetCutSceneData(CutSceneType.Elieus_Enter, true);
             SceneChanger.SceneChangeToCutScene(CutSceneType.Elieus_Enter);
         }
-        else if (GameManager.Data.GameData.CurrentAct == 3)
+        else if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Libiel_Enter)
+            && GameManager.Data.GameData.CurrentAct == 3)
         {
+            GameManager.OutGameData.SetCutSceneData(CutSceneType.Libiel_Enter, true);
             SceneChanger.SceneChangeToCutScene(CutSceneType.Libiel_Enter);
         }
         else

@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 41
   _name: Blind Faith
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
+  _sprite_28: {fileID: 21300000, guid: 99a72cd47263e1a4b888a87f02968c9b, type: 3}
+  _sprite_88: {fileID: 21300000, guid: a0ed357e7f085bc479e68eb2c88b4ce3, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 46c5d6cb8be2af640bbb18b0412b9e85, type: 3}
   _description: Blind Faith Info
   _activeTiming: 2
   _tier: 4

@@ -21,7 +21,9 @@ MonoBehaviour:
     FallMaxCount: 12
     ManaCost: 100
   _uniqueStigma:
-  - {fileID: -4331434750233731713, guid: 009dd1fb5fd28f346bdb6095c73ad5ec, type: 3}
+  - {fileID: -9158552929226033064, guid: 268e35bf37172a7459e9d5c52d907dcc, type: 3}
+  - {fileID: -6542212745367784185, guid: 74f1f4e3afeb9094ead31b3a34ae2a23, type: 3}
+  - {fileID: -7988383393209478176, guid: f6edbc25f254f864daa86127b417a5a2, type: 3}
   _id: "\uC698"
   _name: Yohrn
   _description: 
@@ -33,7 +35,7 @@ MonoBehaviour:
   _diaPortraitImage: {fileID: 21300000, guid: 08e314bd3c23c4144a486b10998a4d80, type: 3}
   _corruptDiaPortraitImage: {fileID: 21300000, guid: 08e314bd3c23c4144a486b10998a4d80, type: 3}
   _animatorController: {fileID: 9100000, guid: 9de81cea61c68ed4aa71cbc35361e553, type: 2}
-  _corruptionAnimatorController: {fileID: 9100000, guid: 9de81cea61c68ed4aa71cbc35361e553, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: 771883c4392f21942ba60d80a38637af, type: 2}
   _skillEffectAnim: {fileID: 7400000, guid: a0a9ba383690abe4ab8acc76e81b34c1, type: 2}
   _corruptionSkillEffectAnim: {fileID: 7400000, guid: a0a9ba383690abe4ab8acc76e81b34c1, type: 2}
   _animType: {fileID: 11400000, guid: 9c5500ed16c73bb4cb5cbb732dcaf0cb, type: 2}
@@ -41,6 +43,7 @@ MonoBehaviour:
   _darkEssenseCost: 10
   _unitActionType: 13
   _unitMoveType: 0
+  _unitAttackType: 1
   _isBattleOnly: 0
   _isFlipFixed: 0
   _attackRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000

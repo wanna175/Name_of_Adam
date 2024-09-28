@@ -130,13 +130,13 @@ public class DeckUnit
     {
         if (stigma == null)
         {
-            Debug.Log("추가하려는 낙인이 null입니다.");
+            Debug.Log("추가하려는 성흔이 null입니다.");
             return;
         }
 
         if (_stigma.Contains(stigma) || (Data.UniqueStigma != null && Data.UniqueStigma.Contains(stigma)))
         {
-            Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
+            Debug.Log($"이미 장착된 성흔입니다. : {stigma.Name}");
             return;
         }
 
