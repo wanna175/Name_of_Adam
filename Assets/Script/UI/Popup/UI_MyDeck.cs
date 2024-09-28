@@ -325,7 +325,16 @@ public class UI_MyDeck : UI_Popup
     public void Quit()
     {
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        if(_currentEvent == CurrentEvent.Hall_Select)
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("DivineHallQuit", QuitButtonSelect);
+        else
+        {
+            QuitButtonSelect();
+        }
+    }
 
+    private void QuitButtonSelect()
+    {
         if (_quit_txt.text == "Skip" || _quit_txt.text == "선택 안함")
         {
             SceneChanger.SceneChange("MainScene");

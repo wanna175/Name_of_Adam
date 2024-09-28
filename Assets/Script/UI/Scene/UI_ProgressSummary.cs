@@ -103,7 +103,6 @@ public class UI_ProgressSummary : UI_Popup
 
         if (isExist == false)
         {
-            GameManager.OutGameData.AddHallUnit(deckUnit);
 
             UI_CurrentHallUnit popup = GameManager.UI.ShowPopup<UI_CurrentHallUnit>();
             popup.Init(deckUnit);

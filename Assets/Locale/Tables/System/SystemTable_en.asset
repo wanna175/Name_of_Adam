@@ -201,6 +201,11 @@ MonoBehaviour:
       can be us ed in the \u2018Sanctum\u2019 at the main menu."
     m_Metadata:
       m_Items: []
+  - m_Id: 72060608274817024
+    m_Localized: You have not selected any units to register in the Divine Hall.
+      Will you not register any units in this journey?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

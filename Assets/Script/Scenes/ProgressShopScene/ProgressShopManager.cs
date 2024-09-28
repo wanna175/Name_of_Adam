@@ -106,7 +106,7 @@ public class ProgressShopManager : MonoBehaviour
         disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
         SetNodeImage();
 
-        // Ω∫∆¿ «ÿ±› √º≈©
+        // Ïä§ÌåÄ Ìï¥Í∏à Ï≤¥ÌÅ¨
         if (selectedID == 52 || selectedID == 53 || selectedID == 54)
             if (GameManager.Steam.IsDoneIncarnaUnlock01())
                 GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_1);
