@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stigmaEnum: 37
   _name: Armor Of Aeons
-  _sprite_28: {fileID: 0}
-  _sprite_88: {fileID: 0}
-  _sprite_164: {fileID: 0}
+  _sprite_28: {fileID: 21300000, guid: ebb39420ab212904d9f9891fa9759e0b, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 81714a3621bc76340b0dbf89a8a1d1e5, type: 3}
+  _sprite_164: {fileID: 21300000, guid: d728c514e3d573e458fa5b919b99ad12, type: 3}
   _description: Armor Of Aeons Info
   _activeTiming: 2
   _tier: 1
