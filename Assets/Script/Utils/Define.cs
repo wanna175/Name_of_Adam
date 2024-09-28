@@ -691,3 +691,37 @@ public enum SortMode
     Cost,
     Hall,       // 전당 유닛 + 나머지 유닛 (성흔 보유 수에 따라 정렬)
 }
+
+public enum SanctumUnlock
+{
+    Destiny = 1,
+    FaithRecovery = 2,
+    StartingDarkEssence1 = 3,
+    ApostleCreation = 5,
+    StartingDarkEssence2 = 6,
+    KillingSpree = 7,
+    EliteClearReward = 8,
+    MaximumUpgrade = 12,
+    StigmataTransfer = 11,
+    StartingMana1 = 15,
+    Teleport = 13,
+    UnlockingTheDivineHall1 = 14,
+    StartingMana2 = 18,
+    ForbiddenPact = 16,
+    UnlockingTheDivineHall2 = 17,
+    Sin = 20,
+    UnlockReselection1 = 21,
+    UnlockReselection2 = 22,
+    UnlockTheDarkProphet1 = 51,
+    UnlockTheDarkProphet2 = 52,
+    UnlockTheDarkProphet3 = 53,
+    UnlockTheDarkProphet4 = 54,
+    UnlockTheSaintessOfSins1 = 61,
+    UnlockTheSaintessOfSins2 = 62,
+    UnlockTheSaintessOfSins3 = 63,
+    UnlockTheSaintessOfSins4 = 64,
+    UnlockTheHeirOfVice = 71,
+    UnlockTheHeirOfVice2 = 72,
+    UnlockTheHeirOfVice3 = 73,
+    UnlockTheHeirOfVice4 = 74
+}
