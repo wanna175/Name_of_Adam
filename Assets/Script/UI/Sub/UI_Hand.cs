@@ -110,7 +110,10 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         IsSelected = b;
         _highlight.SetActive(b);
         if (!IsSelected)
+        {
             transform.localScale = new Vector3(1f, 1f, 1f);
+            BattleManager.BattleUI.SetFirstTurnNotify(false);
+        }
 
         /*
         if (IsSelected)
