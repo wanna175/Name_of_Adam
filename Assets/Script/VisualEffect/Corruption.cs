@@ -39,7 +39,7 @@ public class Corruption : MonoBehaviour
             {
                 var popup = BattleManager.Instance.ShowLastCorruptionPopup();
 
-                if (TutorialManager.Instance.IsEnable())
+                if (TutorialManager.Instance.IsEnableUpdate())
                 {
                     TutorialManager.Instance.ShowNextTutorial();
                     popup._titleGO.SetActive(false);

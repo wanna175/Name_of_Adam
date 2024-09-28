@@ -140,6 +140,13 @@ public class BattleManager : MonoBehaviour
 
         BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
         Vector3 stageDivine = GameManager.Data.GameData.StageDivine;
+        
+        // 튜토리얼 반영
+        if (TutorialManager.Instance.IsTutorialOn())
+        {
+            buffUnit = Data.BattleUnitList[0];
+            GameManager.Data.GameData.StageDivine = new(1,0,0);
+        }
 
         if (stageDivine.x == 1 && stageDivine.y == 1 && stageDivine.z == 1)
         {
@@ -244,7 +251,7 @@ public class BattleManager : MonoBehaviour
 
         DeckUnit unit = _battleUI.UI_hands.GetSelectedUnit();
 
-        if (TutorialManager.Instance.IsEnable())
+        if (TutorialManager.Instance.IsEnableUpdate())
             TutorialManager.Instance.ShowNextTutorial(); 
 
         _mana.ChangeMana(-unit.DeckUnitTotalStat.ManaCost); //마나 사용가능 체크
@@ -469,6 +476,8 @@ public class BattleManager : MonoBehaviour
                     case "엘리우스": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_ELIEUS); break;
                     case "야나": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_YANA); break;
                     case "압바임": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_APPAIM); break;
+                    case "리비엘": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_LIBIEL); break;
+                    case "아라벨라": GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_ARABELLA); break;
                 }
             }
             else if (unit.DeckUnit.Data.Rarity == Rarity.Boss)
@@ -833,6 +842,11 @@ public class BattleManager : MonoBehaviour
                 return;
             
             lastUnit.SetBuff(new Buff_Divine());
+            
+            if (TutorialManager.Instance.IsTutorialOn() && TutorialManager.Instance.CheckStep(TutorialStep.Popup_Last))
+            {
+                TutorialManager.Instance.ShowTutorial();
+            }
         }
     }
 

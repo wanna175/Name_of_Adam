@@ -1,114 +1,102 @@
-using Newtonsoft.Json.Bson;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
     /// <summary>
-    /// ÅøÆÁ¿¡ Ãâ·ÂµÉ ¹®ÀÚ¿­
-    /// [CTRL]·Î ³¡³ª´Â ¹®ÀÚ¿­Àº À¯Àú°¡ Á÷Á¢ ¾×¼ÇÀ» ÇÏ´Â ´Ü°è¸¦ ÀÇ¹Ì
-    /// Áï, À¯ÀúÀÇ Æ¯Á¤ Çàµ¿À¸·Î ´ÙÀ½ Æ©Åä¸®¾ó ÁøÇà °¡´É
+    /// íˆ´íŒì— ì¶œë ¥ë  ë¬¸ìì—´
+    /// [CTRL]ë¡œ ëë‚˜ëŠ” ë¬¸ìì—´ì€ ìœ ì €ê°€ ì§ì ‘ ì•¡ì…˜ì„ í•˜ëŠ” ë‹¨ê³„ë¥¼ ì˜ë¯¸
+    /// ì¦‰, ìœ ì €ì˜ íŠ¹ì • í–‰ë™ìœ¼ë¡œ ë‹¤ìŒ íŠœí† ë¦¬ì–¼ ì§„í–‰ ê°€ëŠ¥
     /// </summary>
     private readonly string[][] TooltipTexts =
     {
-        // ¿µ¹®
+        // ì˜ë¬¸
         new string[] {
-        // Æ©Åä¸®¾ó 1 ½ÃÀÛ
-        "During the <color=#FF9696>player turn<color=white>, you can summon units or use skills.",
-        "<color=#FF9696>Mana<color=white> is required for summoning units or using skills.\nMana recovers by <color=#FF9696>30<color=white> each player turn",
-        "These are the currently summonable units.\n<color=#FF9696>On the first player turn<color=white>, you can summon units using only <color=#FF9696>half of<color=white> the required mana.",
-        "These are the skills that aid you in combat.",
-        "Summon a Gravekeeper.[CTRL]",
-        "Summon a Gravekeeper.[CTRL]",
-        "When the player turn ends, the <color=#FF9696>unit turn<color=white> comes.[CTRL]",
-        "During the <color=#FF9696>unit turn<color=white>, units on the field move according to their speed.\nUnits at the top of the <color=#FF9696>speed bar<color=white> on the right act first.",
-        "Each unit can move one step and then attack the enemies.\nMove the Gravekeeper one step forward.[CTRL]",
-        "Attack the Swordsman.[CTRL]",
+        // íŠœí† ë¦¬ì–¼ 1 ì‹œì‘
+        "During the <color=#FF9696>Preparation Phase<color=white>, you can summon units or use skills",
+        "<color=#FF9696>Mana<color=white> is required to summon units or use skills\nMana regenerates by <color=#FF9696>30<color=white> at the start of each Preparation Phase",
+        "These are the units you can currently summon\nDuring the <color=#FF9696>first Preparation Phase<color=white>, you can summon units using only <color=#FF9696>half of the required mana<color=white>",
+        "These are the skills that aid you in combat",
+        "Summon a Gravekeeper[CTRL]",
+        "Summon a Gravekeeper[CTRL]",
+        "When the Preparation Phase ends, the <color=#FF9696>Battle Phase<color=white> comes[CTRL]",
+        "During the <color=#FF9696>Battle Phase<color=white>, units on the field move according to their speed\nUnits with the higher speed act first\nYou can check the order of the units in the <color=#FF9696>speed bar<color=white> above",
+        "Each unit can move on its turn\nMove the Gravekeeper one step forward[CTRL]",
+        "After the movement turn comes the attack turn\nAttack the Swordsman[CTRL]",
 
-        // Æ©Åä¸®¾ó 2 ½ÃÀÛ
-        "This is the <color=#FF9696>dark essence<color=white> needed for using specific units or skills.\nDark essence is obtained by defeating enemies",
-        "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
-        "The <color=#FF9696>dark knight<color=white> is a powerful unit that consumes both mana and <color=#FF9696>Dark Essence.<color=white>\nSummon the Dark Knight.[CTRL]",
-        "The <color=#FF9696>malevolence buff<color=white> reduces an enemy's <color=#FF9696>faith<color=white> when attacking.\nThe Dark Knight has the stigmata that provides the malevolence <color=#FF9696>buff twice.<color=white>\nEffectively utilize these instructions to corrupt enemies.",
-        "Click the <color=#FF9696>'Turn End' <color=white>button to move to the unit turn.[CTRL]",
-        "Press the <color=#FF9696>Turn End button<color=white> to skip to the next turn when moving is unnecessary.[CTRL]",
-        "Attack the swordsman to reduce <color=#FF9696>faith.<color=white>[CTRL]",
-        "Use the skill <color=#FF9696>Whisper<color=white> to reduce the enemy's faith and  corrupt them.[CTRL]",
-        "Use the skill <color=#FF9696>Whisper<color=white> to reduce the enemy's faith and  corrupt them.[CTRL]",
-        "When corrupting an enemy, you can choose a <color=#FF9696>stigmata<color=white> to apply and convert them into an ally.\nSelect a stigmata to bestow upon the swordsman.[CTRL]",
-        "The swordsman has become your unit. Now, click 'Turn End'.[CTRL]",
-        "When a unit moves to a position where an ally already exists, the two units change places.\nMove the dark knight.[CTRL]",
-        "Attack the Nun to remove her invincibility buff.[CTRL]",
-        "Move the Swordsman.[CTRL]",
-        "Finish off the Nun, now that the invincibility buff has disappeared.[CTRL]",
+        // íŠœí† ë¦¬ì–¼ 2 ì‹œì‘
+        "<color=#FF9696>Dark Essence<color=white> is required to summon powerful units or use skills\nDark Essence can be obtained by defeating enemies\nYou can earn one Dark Essence per enemy",
+        "The Dark Knight is a powerful unit that requires not only mana but also Dark Essence,\n and it has the <color=#FF9696>â€˜Malevolenceâ€™</color> Stigmata which is useful when corrupting enemies\nSelect the Dark Knight[CTRL]",
+        "The Dark Knight is a powerful unit that requires not only mana but also Dark Essence,\n and it has the <color=#FF9696>â€˜Malevolenceâ€™</color> Stigmata which is useful when corrupting enemies\nSelect the Dark Knight[CTRL]",
+        "The <color=#FF9696>malevolence buff<color=white> reduces an enemy's <color=#FF9696>faith<color=white> when attacking\nThe Dark Knight has the stigmata that provides the malevolence <color=#FF9696>buff twice<color=white>\nEffectively utilize these instructions to corrupt enemies",
+        "Click the <color=#FF9696>Phase End button</color> to move to the Battle Phase[CTRL]",
+        "You can press the <color=#FF9696>Skip Move button <color=white>to skip the movement turn.[CTRL]",
+        "Attack the swordsman to reduce <color=#FF9696>faith<color=white>[CTRL]",
+        "Now, it is the Preparation Phase\nUse the skill <color=#FF9696>'Whisper'</color> to reduce the enemy's faith and corrupt them[CTRL]",
+        "Now, it is the Preparation Phase\nUse the skill <color=#FF9696>'Whisper'</color> to reduce the enemy's faith and corrupt them[CTRL]",
+        "When corrupting an enemy, it becomes your ally, and you can choose a <color=#FF9696>stigmata</color> to bestow upon the unit\nSelect a stigmata to bestow upon the swordsman[CTRL]",
+        "The Swordsman is now your unit\nPress the end phase button to start the battle[CTRL]",
+        "When moving to a position already occupied by an ally, the two units swap places\nMove the Dark Knight to switch positions.[CTRL]",
+        "The Nun has an <color=#FF9696>'Invincibility'</color> stigmata that nullifies an attack once\nAttack the nun to remove the Invincibility buff[CTRL]",
+        "Move the swordsman again[CTRL]",
+        "Finish the Nun, now that her invincibility buff has been removed[CTRL]",
         "",
         },
 
-        // ÇÑ±¹
+        // í•œêµ­
         new string[] {
-        // Æ©Åä¸®¾ó 1 ½ÃÀÛ
-        "<color=#FF9696>ÇÃ·¹ÀÌ¾î ÅÏ<color=white>¿¡´Â À¯´ÖÀ» ¼ÒÈ¯ÇÏ°Å³ª ½ºÅ³À» ¾µ ¼ö ÀÖ½À´Ï´Ù.",
-        "À¯´ÖÀ» ¼ÒÈ¯ÇÏ°Å³ª ½ºÅ³À» »ç¿ëÇÒ¶§ ÇÊ¿äÇÑ <color=#FF9696>¸¶³ª<color=white>ÀÔ´Ï´Ù.\nÇÃ·¹ÀÌ¾î ÅÏÀÌ µÉ ¶§¸¶´Ù <color=#FF9696>30<color=white>¾¿ È¸º¹ÇÕ´Ï´Ù.",
-        "ÇöÀç ¼ÒÈ¯ÇÒ ¼ö ÀÖ´Â À¯´ÖµéÀÔ´Ï´Ù.\n<color=#FF9696>Ã¹¹øÂ° ÇÃ·¹ÀÌ¾î ÅÏ<color=white>¿¡´Â <color=#FF9696>Àı¹İÀÇ ¸¶³ª<color=white>¸¦ »ç¿ëÇÏ¿© À¯´ÖÀ» ¼ÒÈ¯ÇÒ ¼ö ÀÖ½À´Ï´Ù.",
-        "ÀüÅõ¸¦ º¸Á¶ÇÏ´Â ½ºÅ³µéÀÔ´Ï´Ù.",
-        "¹¦Áö±â¸¦ ¼ÒÈ¯ÇØº¸¼¼¿ä.[CTRL]",
-        "¹¦Áö±â¸¦ ¼ÒÈ¯ÇØº¸¼¼¿ä.[CTRL]",
-        "ÅÏÀ» Á¾·áÇÏ¸é <color=#FF9696>À¯´Ö ÅÏ<color=white>À¸·Î ³Ñ¾î°©´Ï´Ù.[CTRL]",
-        "<color=#FF9696>À¯´Ö ÅÏ<color=white>¿¡´Â ÇÊµå¿¡ ÀÖ´Â °¢ À¯´ÖµéÀÌ ¼Óµµ¿¡ µû¶ó ¿òÁ÷ÀÔ´Ï´Ù.\n¿ìÃøÀÇ <color=#FF9696>¼ÓµµÇ¥<color=white>¿¡¼­ »ó´Ü¿¡ ÀÖ´Â À¯´ÖÀÏ¼ö·Ï ¸ÕÀú Çàµ¿ÇÕ´Ï´Ù.",
-        "°¢ À¯´ÖÀº ÇÑÄ­ ÀÌµ¿ ÈÄ ÀûÀ» °ø°İÇÒ ¼ö ÀÖ½À´Ï´Ù.\n¹¦Áö±â¸¦ ¾ÕÀ¸·Î ÇÑÄ­ ÀÌµ¿½ÃÄÑº¸¼¼¿ä.[CTRL]",
-        "°Ëº´À» °ø°İÇØº¸¼¼¿ä.[CTRL]",
+        // íŠœí† ë¦¬ì–¼ 1 ì‹œì‘
+        "<color=#FF9696>ì¤€ë¹„ ë‹¨ê³„<color=white>ì—ëŠ” ìœ ë‹›ì„ ì†Œí™˜í•˜ê±°ë‚˜ ìŠ¤í‚¬ì„ ì“¸ ìˆ˜ ìˆìŠµë‹ˆë‹¤",
+        "<color=#FF9696>ë§ˆë‚˜<color=white>ëŠ” ìœ ë‹›ë“¤ ì†Œí™˜í•˜ê±°ë‚˜ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ë•Œ í•„ìš”í•©ë‹ˆë‹¤\nì¤€ë¹„ ë‹¨ê³„ê°€ ë  ë•Œë§ˆë‹¤ <color=#FF9696>30<color=white>ì”© íšŒë³µë©ë‹ˆë‹¤",
+        "í˜„ì¬ ì†Œí™˜í•  ìˆ˜ ìˆëŠ” ìœ ë‹›ë“¤ì…ë‹ˆë‹¤\n<color=#FF9696>ì²« ë²ˆì§¸ ì¤€ë¹„ ë‹¨ê³„<color=white>ì—ëŠ” <color=#FF9696>ì ˆë°˜ì˜ ë§ˆë‚˜<color=white>ë¥¼ ì‚¬ìš©í•˜ì—¬ ìœ ë‹›ì„ ì†Œí™˜í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤",
+        "ì „íˆ¬ë¥¼ ë³´ì¡°í•˜ëŠ” ìŠ¤í‚¬ë“¤ì…ë‹ˆë‹¤",
+        "ë¬˜ì§€ê¸°ë¥¼ ì†Œí™˜í•˜ì„¸ìš”[CTRL]",
+        "ë¬˜ì§€ê¸°ë¥¼ ì†Œí™˜í•˜ì„¸ìš”[CTRL]",
+        "ì¤€ë¹„ ë‹¨ê³„ë¥¼ ì¢…ë£Œí•˜ë©´ <color=#FF9696>ì „íˆ¬ ë‹¨ê³„<color=white>ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤[CTRL]",
+        "<color=#FF9696>ì „íˆ¬ ë‹¨ê³„<color=white>ì—ëŠ” ê° ìœ ë‹›ë“¤ì´ ìˆœì„œëŒ€ë¡œ ì›€ì§ì…ë‹ˆë‹¤\nì†ë„ê°€ ë†’ì€ ìœ ë‹›ì¼ìˆ˜ë¡ ë¨¼ì € í–‰ë™í•©ë‹ˆë‹¤\nìˆœì„œëŠ” ìƒë‹¨ì˜ <color=#FF9696>ì†ë„í‘œ<color=white>ì—ì„œ í™•ì¸í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤",
+        "ê° ìœ ë‹›ì€ ë³¸ì¸ í„´ì— ì´ë™í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤\në¬˜ì§€ê¸°ë¥¼ í•œ ì¹¸ ì•ìœ¼ë¡œ ì´ë™ì‹œí‚¤ì„¸ìš”[CTRL]",
+        "ì´ë™ í„´ í›„ì—ëŠ” ê³µê²© í„´ì…ë‹ˆë‹¤\nê²€ë³‘ì„ ê³µê²©í•˜ì„¸ìš”[CTRL]",
 
-        // Æ©Åä¸®¾ó 2 ½ÃÀÛ
-        "Æ¯Á¤ À¯´ÖÀ» »ç¿ëÇÏ°Å³ª ½ºÅ³À» »ç¿ëÇÒ ¶§ ÇÊ¿äÇÑ <color=#FF9696>°ËÀº Á¤¼ö<color=white>ÀÔ´Ï´Ù.\nÀûÀ» Ã³Ä¡ÇÒ ¶§¸¶´Ù ÇÏ³ª¾¿ ¾òÀ» ¼ö ÀÖ½À´Ï´Ù.",
-        "Èæ±â»ç´Â ÀûÀ» <color=#FF9696>Å¸¶ô<color=white>ÇÏ´Âµ¥ À¯¿ëÇÑ ¼ºÈçÀ» Áö´Ñ °­ÇÑ À¯´ÖÀÌ¸ç ¸¶³ª»Ó¸¸ ¾Æ´Ï¶ó \n<color=#FF9696>°ËÀº Á¤¼ö<color=white>±îÁö ¼Ò¸ğÇÕ´Ï´Ù. Èæ±â»ç¸¦ ¼±ÅÃÇÏ¼¼¿ä.[CTRL]",
-        "Èæ±â»ç´Â ÀûÀ» <color=#FF9696>Å¸¶ô<color=white>ÇÏ´Âµ¥ À¯¿ëÇÑ ¼ºÈçÀ» Áö´Ñ °­ÇÑ À¯´ÖÀÌ¸ç ¸¶³ª»Ó¸¸ ¾Æ´Ï¶ó \n<color=#FF9696>°ËÀº Á¤¼ö<color=white>±îÁö ¼Ò¸ğÇÕ´Ï´Ù. Èæ±â»ç¸¦ ¼±ÅÃÇÏ¼¼¿ä.[CTRL]",
-        "°ø°İ ½Ã ÀûÀÇ <color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®´Â <color=#FF9696>¾Ç¼º ¹öÇÁ<color=white>ÀÔ´Ï´Ù.\nÈæ±â»ç´Â ÀÌ ¾Ç¼º ¹öÇÁ¸¦ <color=#FF9696>2È¸<color=white> ¾ò´Â ¼ºÈçÀ» °¡Áö°í ÀÖ½À´Ï´Ù.\nÀß È°¿ëÇÏ¿© ÀûÀ» Å¸¶ô½ÃÄÑº¸¼¼¿ä.",
-        "<color=#FF9696>ÅÏ Á¾·á ¹öÆ°<color=white>À» ´­·¯ À¯´Ö ÅÏÀ¸·Î ³Ñ¾î°¡¼¼¿ä.[CTRL]",
-        "ÀÌµ¿ÀÌ ÇÊ¿ä°¡ ¾ø´Â °æ¿ì <color=#FF9696>ÅÏ Á¾·á ¹öÆ°<color=white>À» ´­·¯ ÅÏÀ» ³Ñ±æ ¼ö ÀÖ¾î¿ä.[CTRL]",
-        "°Ëº´À» °ø°İÇÏ¿© <color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®¼¼¿ä.[CTRL]",
-        "<color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®´Â ½ºÅ³ <color=#FF9696>¼Ó»èÀÓ<color=white>À» »ç¿ëÇÏ¿© ÀûÀ» Å¸¶ô½ÃÄÑ º¸¼¼¿ä.[CTRL]",
-        "<color=#FF9696>½Å¾Ó<color=white>À» ¶³¾î¶ß¸®´Â ½ºÅ³ <color=#FF9696>¼Ó»èÀÓ<color=white>À» »ç¿ëÇÏ¿© ÀûÀ» Å¸¶ô½ÃÄÑ º¸¼¼¿ä.[CTRL]",
-        "ÀûÀ» Å¸¶ô½ÃÅ³ °æ¿ì ÇØ´ç ÀûÀ» ¾Æ±ºÀ¸·Î ¸¸µé¸ç <color=#FF9696>¼ºÈç<color=white>À» ºÎ¿©ÇÒ ¼ö ÀÖ½À´Ï´Ù.\n°Ëº´¿¡°Ô ºÎ¿©ÇÒ ¼ºÈçÀ» ¼±ÅÃÇÏ¼¼¿ä.[CTRL]",
-        "ÀÌÁ¦ °Ëº´Àº ´ç½ÅÀÇ À¯´ÖÀÌ µÇ¾ú½À´Ï´Ù.\nÀÌÁ¦ ÅÏ Á¾·á¸¦ ´©¸£¼¼¿ä.[CTRL]",
-        "¾Æ±ºÀÌ ÀÌ¹Ì ÀÖ´Â À§Ä¡·Î ÀÌµ¿ÇÒ ½Ã µÎ À¯´ÖÀº ¼­·Î À§Ä¡¸¦ ¹Ù²ß´Ï´Ù.\nÈæ±â»ç¸¦ ÀÌµ¿½ÃÅ°¼¼¿ä.[CTRL]",
-        "¼ö³à¸¦ °ø°İÇÏ¿© ¹«Àû ¹öÇÁ¸¦ ¾ø¾Öº¸¼¼¿ä.[CTRL]",
-        "°Ëº´À» ÀÌµ¿½ÃÅ°¼¼¿ä.[CTRL]",
-        "ºÎÀû ¹öÇÁ°¡ »ç¶óÁø ¼ö³à¸¦ ¸¶¹«¸®ÇÏ¼¼¿ä.[CTRL]",
+        // íŠœí† ë¦¬ì–¼ 2 ì‹œì‘
+        "<color=#FF9696>ê²€ì€ ì •ìˆ˜<color=white>ëŠ” ê°•ë ¥í•œ ìœ ë‹›ì„ ì†Œí™˜í•˜ê±°ë‚˜ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ë•Œ í•„ìš”í•©ë‹ˆë‹¤\nì ì„ ì²˜ì¹˜í•˜ì—¬ í•˜ë‚˜ì”© ì–»ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.",
+        "í‘ê¸°ì‚¬ëŠ” ë§ˆë‚˜ ë¿ë§Œ ì•„ë‹ˆë¼ ê²€ì€ ì •ìˆ˜ë¥¼ ì†Œëª¨í•˜ëŠ” ê°•ë ¥í•œ ìœ ë‹›ìœ¼ë¡œ,\n ì ì„ íƒ€ë½ì‹œí‚¤ê¸°ì— ìœ ìš©í•œ ì„±í” <color=#FF9696>'ì•…ì„±'<color=white>ì„ ê°€ì¡ŒìŠµë‹ˆë‹¤\ní‘ê¸°ì‚¬ë¥¼ ì„ íƒí•˜ì„¸ìš”.[CTRL]",
+        "í‘ê¸°ì‚¬ëŠ” ë§ˆë‚˜ ë¿ë§Œ ì•„ë‹ˆë¼ ê²€ì€ ì •ìˆ˜ë¥¼ ì†Œëª¨í•˜ëŠ” ê°•ë ¥í•œ ìœ ë‹›ìœ¼ë¡œ,\n ì ì„ íƒ€ë½ì‹œí‚¤ê¸°ì— ìœ ìš©í•œ ì„±í” <color=#FF9696>'ì•…ì„±'<color=white>ì„ ê°€ì¡ŒìŠµë‹ˆë‹¤\ní‘ê¸°ì‚¬ë¥¼ ì„ íƒí•˜ì„¸ìš”.[CTRL]",
+        "ê³µê²© ì‹œ ì ì˜ <color=#FF9696>ì‹ ì•™<color=white>ì„ ë–¨ì–´ëœ¨ë¦¬ëŠ” <color=#FF9696>ì•…ì„± ë²„í”„<color=white>ì…ë‹ˆë‹¤\ní‘ê¸°ì‚¬ëŠ” ì´ ì•…ì„± ë²„í”„ë¥¼ <color=#FF9696>2íšŒ<color=white> ì–»ëŠ” ì„±í”ì„ ê°€ì§€ê³  ìˆìŠµë‹ˆë‹¤\nì˜ í™œìš©í•˜ì—¬ ì ì„ íƒ€ë½ì‹œì¼œë³´ì„¸ìš”",
+        "<color=#FF9696>ë‹¨ê³„ ì¢…ë£Œ ë²„íŠ¼<color=white>ì„ ëˆŒëŸ¬ ì „íˆ¬ ë‹¨ê³„ë¡œ ë„˜ì–´ê°€ì„¸ìš”[CTRL]",
+        "<color=#FF9696>ì´ë™ ìŠ¤í‚µ ë²„íŠ¼<color=white>ì„ ëˆŒëŸ¬ ì´ë™ í„´ì„ ë„˜ê¸¸ ìˆ˜ ìˆìŠµë‹ˆë‹¤[CTRL]",
+        "ê²€ë³‘ì„ ê³µê²©í•˜ì—¬ <color=#FF9696>ì‹ ì•™<color=white>ì„ ë–¨ì–´ëœ¨ë¦¬ì„¸ìš”[CTRL]",
+        "ì´ì œ ì¤€ë¹„ ë‹¨ê³„ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤\nì‹ ì•™ì„ ë–¨ì–´ëœ¨ë¦¬ëŠ” ìŠ¤í‚¬ <color=#FF9696>'ì†ì‚­ì„'<color=white>ì„ ì‚¬ìš©í•˜ì—¬ ì ì„ íƒ€ë½ì‹œí‚¤ì„¸ìš”[CTRL]",
+        "ì´ì œ ì¤€ë¹„ ë‹¨ê³„ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤\nì‹ ì•™ì„ ë–¨ì–´ëœ¨ë¦¬ëŠ” ìŠ¤í‚¬ <color=#FF9696>'ì†ì‚­ì„'<color=white>ì„ ì‚¬ìš©í•˜ì—¬ ì ì„ íƒ€ë½ì‹œí‚¤ì„¸ìš”[CTRL]",
+        "ì ì„ íƒ€ë½ì‹œí‚¬ ê²½ìš° í•´ë‹¹ ì ì€ ì•„êµ°ì´ ë˜ë©°, <color=#FF9696>ì„±í”</color>ì„ ë¶€ì—¬í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤\nê²€ë³‘ì—ê²Œ ë¶€ì—¬í•  ì„±í”ì„ ì„ íƒí•˜ì„¸ìš”[CTRL]",
+        "ì´ì œ ê²€ë³‘ì€ ë‹¹ì‹ ì˜ ìœ ë‹›ì´ ë˜ì—ˆìŠµë‹ˆë‹¤\në‹¨ê³„ ì¢…ë£Œë¥¼ ëˆŒëŸ¬, ì „íˆ¬ë¥¼ ì‹œì‘í•˜ì„¸ìš”[CTRL]",
+        "ì´ë¯¸ ì•„êµ°ì´ ìˆëŠ” ìœ„ì¹˜ë¡œ ì´ë™í•  ì‹œ, ë‘ ìœ ë‹›ì€ ì„œë¡œ ìœ„ì¹˜ë¥¼ ë°”ê¿‰ë‹ˆë‹¤\ní‘ê¸°ì‚¬ë¥¼ ì´ë™ì‹œì¼œ ìœ„ì¹˜ë¥¼ ë°”ê¾¸ì„¸ìš”[CTRL]",
+        "ìˆ˜ë…€ëŠ” ê³µê²©ì„ 1íšŒ ë§‰ì•„ì£¼ëŠ” <color=#FF9696>'ë¬´ì '</color> ì„±í”ì„ ê°€ì§€ê³  ìˆìŠµë‹ˆë‹¤\nìˆ˜ë…€ë¥¼ ê³µê²©í•˜ì—¬ ë¬´ì  ë²„í”„ë¥¼ ì—†ì• ì„¸ìš”[CTRL]",
+        "ê²€ë³‘ì„ ë‹¤ì‹œ ì´ë™ì‹œí‚¤ì„¸ìš”[CTRL]",
+        "ë¬´ì  ë²„í”„ê°€ ì‚¬ë¼ì§„ ìˆ˜ë…€ë¥¼ ë§ˆë¬´ë¦¬í•˜ì„¸ìš”[CTRL]",
         "",
         },
     };
 
-    public const int STEP_BOUNDARY = 100;
-
     private const float RECLICK_TIME = 0.5f;
 
-    private static TutorialManager _instance;
+    private static TutorialManager m_instance;
     public static TutorialManager Instance
     {
-        set
+        private set
         {
-            if (_instance == null)
-                _instance = value;
+            if (m_instance == null)
+                m_instance = value;
         }
-        get
-        {
-            return _instance;
-        }
+        get => m_instance;
     }
 
-    [SerializeField]
-    private UI_Tutorial UI;
-
-    [SerializeField] private TutorialStep _step;
-    public TutorialStep Step => _step;
-
+    [SerializeField] private UI_Tutorial UI;
+    
     private TooltipData _currentTooltip;
-
-    public bool IsTutorialactive;
-    private bool _isEnable;
+    private TutorialStep _step;
+    
+    private bool _isEnableUpdate;
     private bool _isCanClick;
 
     private void Awake()
@@ -118,21 +106,20 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        _isCanClick = true;
+        
         int curID = GameManager.Data.Map.CurrentTileID;
-
         switch (curID)
         {
-            case 1: _step = TutorialStep.UI_PlayerTurn; break;
-            case 2: _step = TutorialStep.UI_FallSystem; break;
-            case 3: _step = TutorialStep.UI_Divine; break;
+            case 1: _step = TutorialStep.Start_FirstStage; break;
+            case 2: _step = TutorialStep.Start_SecondStage; break;
+            case 3: _step = TutorialStep.Start_ThirdStage; break;
         }
-
-        _isCanClick = true;
     }
 
     private void Update()
     {
-        if (!_isEnable)
+        if (!_isEnableUpdate)
             return;
 
         if (UI.ValidToPassTooltip)
@@ -144,87 +131,56 @@ public class TutorialManager : MonoBehaviour
             }
         }
     }
+    
+    public bool CheckStep(TutorialStep step) => _step == step;
+    public bool IsTutorialOn() => !GameManager.OutGameData.Data.TutorialClear;
+    public bool IsEnableUpdate() => IsTutorialOn() && _isEnableUpdate;
+    public void SetNextStep() => _step++;
 
     public void ShowNextTutorial()
     {
-        if (CheckStep(TutorialStep.UI_Last))
-            return; // ¸¶Áö¸· UI Æ©Åä¸®¾ó °ü·Ã StepÀº Á¶°ÇºÎ µ¿ÀÛÀÌ±â ¶§¹®¿¡ ¿¹¿Ü Ã³¸®
+        if (CheckStep(TutorialStep.Popup_Last))
+            return; // ë§ˆì§€ë§‰ UI íŠœí† ë¦¬ì–¼ ê´€ë ¨ Stepì€ ì¡°ê±´ë¶€ ë™ì‘ì´ê¸° ë•Œë¬¸ì— ì˜ˆì™¸ ì²˜ë¦¬
 
-        SetNextStep();
+        _step++;
         ShowTutorial();
     }
 
     public void ShowPreviousTutorial()
     {
-        SetPreviousStep();
+        _step--;
         ShowTutorial();
     }
-
-    public bool IsEnable()
-        => !GameManager.OutGameData.Data.TutorialClear && _isEnable;
-
-    public void SetNextStep()
-    {
-        TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
-        int next = Array.IndexOf(steps, _step) + 1;
-        _step = (steps.Length == next) ? steps[0] : steps[next];
-    }
-
-    private void SetPreviousStep()
-    {
-        TutorialStep[] steps = (TutorialStep[])Enum.GetValues(typeof(TutorialStep));
-        int next = Array.IndexOf(steps, _step) - 1;
-        _step = (steps.Length == -1) ? steps[steps.Length - 1] : steps[next];
-    }
-
-    private bool IsToolTip(TutorialStep step)
-        => (int)step % STEP_BOUNDARY != 0;
-
-    private TooltipData AnalyzeTooltip(TutorialStep step)
-    {
-        TooltipData tooltip = new();
-        int indexToTooltip = (int)step % STEP_BOUNDARY - 1;
-
-        tooltip.Step = step;
-        tooltip.Info = TooltipTexts[GameManager.OutGameData.Data.Language][indexToTooltip].Replace("[CTRL]", "");
-        tooltip.IndexToTooltip = indexToTooltip;
-        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.Data.Language][indexToTooltip].Contains("[CTRL]");
-        tooltip.IsEnd = false;
-
-        if (CheckStep(TutorialStep.Tutorial_End_1) || 
-            CheckStep(TutorialStep.Tutorial_End_2) || 
-            CheckStep(TutorialStep.Tutorial_End_3))
-            tooltip.IsEnd = true;
-
-        return tooltip;
-    }
-
-    private int AnalyzeUI(TutorialStep step) => (int)step / STEP_BOUNDARY - 1;
-
-    public bool CheckStep(TutorialStep step) => this.Step == step;
-
+    
     public void ShowTutorial()
     {
-        Debug.Log(_step);
+        TutorialType type = GetTutorialType(_step);
+        Debug.Log($"<color=red>[Tutorial] Show Tutorial: {_step} ({type})</color>");
 
-        if (IsToolTip(_step))
+        switch (type)
         {
-            // Tooltip ¸ğµå
-            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
-
-            _currentTooltip = AnalyzeTooltip(_step);
-            if (_currentTooltip.IsEnd)
-                DisableToolTip();
-            else
-                EnableToolTip(_currentTooltip);
+            case TutorialType.Tooltip:  // Tooltip ëª¨ë“œ
+                
+                GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
+                
+                _currentTooltip = GetTooltipData(_step);
+                if (_currentTooltip.IsEnd)
+                    DisableToolTip();
+                else
+                    EnableToolTip(_currentTooltip);
+                
+                break;
+            
+            case TutorialType.Popup:    // Popup ëª¨ë“œ
+                
+                int indexToUI = GetPopupIndex(_step);
+                UI.TutorialActive(indexToUI);
+                _isEnableUpdate = true;
+                
+                break;
         }
-        else
-        {
-            // UI ¸ğµå
-            int indexToUI = AnalyzeUI(_step);
-            _isEnable = true;
-            UI.TutorialActive(indexToUI);
-        }
+        
+        SetTutorialField(_step);
     }
 
     public void DisableToolTip()
@@ -232,8 +188,7 @@ public class TutorialManager : MonoBehaviour
         UI.CloseToolTip();
         UI.SetUIMask(-1);
         UI.SetValidToPassToolTip(false);
-        BattleManager.Field.SetActiveAllTiles(true);
-        _isEnable = false;
+        _isEnableUpdate = false;
     }
 
     public void EnableToolTip(TooltipData data)
@@ -241,8 +196,71 @@ public class TutorialManager : MonoBehaviour
         UI.ShowTooltip(data.Info, data.IndexToTooltip);
         UI.SetUIMask(data.IndexToTooltip);
         UI.SetValidToPassToolTip(!data.IsCtrl);
-        SetTutorialField(data.Step);
-        _isEnable = true;
+        _isEnableUpdate = true;
+    }
+
+    private TooltipData GetTooltipData(TutorialStep step)
+    {
+        TooltipData tooltip = new();
+
+        int tooltipIndex = GetTooltipIndex(step);
+
+        tooltip.IndexToTooltip = tooltipIndex;
+        tooltip.Info = TooltipTexts[GameManager.OutGameData.Data.Language][tooltipIndex].Replace("[CTRL]", "");
+        tooltip.IsCtrl = TooltipTexts[GameManager.OutGameData.Data.Language][tooltipIndex].Contains("[CTRL]");
+        tooltip.IsEnd = step.ToString().Contains("End_");
+        
+        return tooltip;
+    }
+    
+    private int GetTooltipIndex(TutorialStep step)
+    {
+        int index = 0;
+        foreach (var enumElement in Enum.GetValues(typeof(TutorialStep)))
+        {
+            string enumStr = enumElement.ToString();
+            
+            if (enumStr.Equals(step.ToString()))
+                return index;
+            if (enumStr.Contains("Tooltip_"))
+                index++;
+        }
+
+        // íˆ´ì… íƒìƒ‰ ì‹¤íŒ¨
+        return -1;
+    }
+    
+    private int GetPopupIndex(TutorialStep step)
+    {
+        int index = 0;
+        foreach (var enumElement in Enum.GetValues(typeof(TutorialStep)))
+        {
+            string enumStr = enumElement.ToString();
+            
+            if (enumStr.Equals(step.ToString()))
+                return index;
+            if (enumStr.Contains("Popup_"))
+                index++;
+        }
+
+        // íŒì—… íƒìƒ‰ ì‹¤íŒ¨
+        return -1;
+    }
+    
+    private TutorialType GetTutorialType(TutorialStep step)
+    {
+        string stepStr = step.ToString();
+        
+        if (stepStr.Contains("Start_"))
+            return TutorialType.Start;
+        if (stepStr.Contains("Popup_"))
+            return TutorialType.Popup;
+        if (stepStr.Contains("Tooltip_"))
+            return TutorialType.Tooltip;
+        if (stepStr.Contains("End_"))
+            return TutorialType.End;
+        
+        return TutorialType.None;
     }
 
     private void SetTutorialField(TutorialStep step)
@@ -263,7 +281,7 @@ public class TutorialManager : MonoBehaviour
             case TutorialStep.Tooltip_BlackKnightSpawn:
                 BattleManager.Field.TileDict[new Vector2(2, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitAttack_2:
+            case TutorialStep.Tooltip_UnitAttack2:
                 BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
                 break;
             case TutorialStep.Tooltip_PlayerSkillUse:
@@ -272,14 +290,19 @@ public class TutorialManager : MonoBehaviour
             case TutorialStep.Tooltip_UnitSwap:
                 BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitAttack_3:
+            case TutorialStep.Tooltip_UnitAttack3:
                 BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitSwap_2:
+            case TutorialStep.Tooltip_UnitSwap2:
                 BattleManager.Field.TileDict[new Vector2(3, 1)].SetActiveCollider(true);
                 break;
-            case TutorialStep.Tooltip_UnitAttack_4:
+            case TutorialStep.Tooltip_UnitAttack4:
                 BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
+                break;
+            
+            case TutorialStep.Popup_Defeat:
+            case TutorialStep.Popup_Last:
+                SetActiveAllTiles(true);
                 break;
         }
     }

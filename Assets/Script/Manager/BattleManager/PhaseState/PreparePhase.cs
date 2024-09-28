@@ -21,36 +21,37 @@ public class PreparePhase : Phase
 
         BattleManager.Field.SetTileHighlightFrame(null, false);
 
-        if (!GameManager.OutGameData.Data.TutorialClear)
+        if (TutorialManager.Instance.IsTutorialOn())
         {
             GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
-            if (TutorialManager.Instance.CheckStep(TutorialStep.UI_PlayerTurn))
+            if (TutorialManager.Instance.CheckStep(TutorialStep.Start_FirstStage))
             {
-                // Ã¹¹øÂ° Æ©Åä¸®¾ó ¼³Á¤
+                // Ã¹ï¿½ï¿½Â° Æ©ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Stat stat = new();
                 stat.MaxHP = stat.CurrentHP = -20;
                 BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[0].HP.Init(10, 10);
-                TutorialManager.Instance.ShowTutorial();
-
             }
-            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_FallSystem))
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.Start_SecondStage))
             {
-                // µÎ¹øÂ° Æ©Åä¸®¾ó ¼³Á¤
+                // ï¿½Î¹ï¿½Â° Æ©ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Stat stat = new();
                 stat.MaxHP = stat.CurrentHP = -15;
                 stat.SPD = -50;
                 BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
                 BattleManager.Data.BattleUnitList[0].ChangeFall(1, null, FallAnimMode.Off);
-                TutorialManager.Instance.ShowTutorial();
             }
-            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Divine))
-                // ¼¼¹øÂ° Æ©Åä¸®¾ó ¼³Á¤
-                TutorialManager.Instance.ShowTutorial();
-            else
-                TutorialManager.Instance.ShowNextTutorial();
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.Start_ThirdStage))
+            {
+                Stat stat = new();
+                stat.MaxHP = stat.CurrentHP = -15;
+                BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
+                BattleManager.Data.BattleUnitList[0].HP.Init(5, 5);
+            }
+            
+            TutorialManager.Instance.ShowNextTutorial();
         }
 
         BattleManager.Data.BattleUnitActionReset();
