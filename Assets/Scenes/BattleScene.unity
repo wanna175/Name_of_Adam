@@ -155,7 +155,7 @@ MonoBehaviour:
   _cameraHandler: {fileID: 1688846949}
   _blur: {fileID: 1661568333}
   _shakeInfo:
-  - {x: -0.45, y: 0, z: 0.16}
+  - {x: -0.45, y: 0, z: 0.1}
   - {x: 0.35, y: 0, z: 0.12}
   - {x: -0.35, y: 0, z: 0.12}
   - {x: 0.3, y: 0, z: 0.12}

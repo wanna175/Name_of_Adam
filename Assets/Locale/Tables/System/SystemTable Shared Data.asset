@@ -139,6 +139,10 @@ MonoBehaviour:
     m_Key: TooltipForDivineHallInBattle
     m_Metadata:
       m_Items: []
+  - m_Id: 72060608274817024
+    m_Key: DivineHallQuit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
