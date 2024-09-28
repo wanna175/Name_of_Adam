@@ -15,7 +15,13 @@ public class UI_CurrentHallUnit: UI_Popup
         _currentCard.Init(currentUnit);
     }
 
+    public void Save()
+    {
+        GameManager.OutGameData.AddHallUnit(_currentUnit);
+        SceneChanger.SceneChange("MainScene");
+    }
+
     public void QuitButton() => GameManager.UI.ClosePopup(this);
 
-    public void SaveButton() => SceneChanger.SceneChange("MainScene");
+    public void SaveButton() => Save();
 }

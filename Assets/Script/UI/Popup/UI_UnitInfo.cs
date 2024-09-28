@@ -322,15 +322,45 @@ public class UI_UnitInfo : UI_Popup
     public void UIAttackRangeHover()
     {
         if (_unit.Data.UnitAttackType == UnitAttackType.SingleAttack)
-            UIMouseEnter("SingleAttack");
+            UIMouseEnter("SingleAttackHover");
         else if (_unit.Data.UnitAttackType == UnitAttackType.AreaAttack)
-            UIMouseEnter("AreaAttack");
+            UIMouseEnter("AreaAttackHover");
         else if (_unit.Data.UnitAttackType == UnitAttackType.FrontalAttack)
-            UIMouseEnter("FrontalAttack");
+            UIMouseEnter("FrontalAttackHover");
         else if (_unit.Data.UnitAttackType == UnitAttackType.SpecialAttack)
-            UIMouseEnter("SpecialAttack");
+            UIMouseEnter("SpecialAttackHover");
         else if (_unit.Data.UnitAttackType == UnitAttackType.NoAttack)
             UIMouseEnter("NoAttack");
+    }
+
+    public void GemHover()
+    {
+        UIMouseEnter("Gems that represent faith");
+    }
+
+    public void UIHpHover()
+    {
+        UIMouseEnter("Hphover");
+    }
+
+    public void UIAttackPowerHover()
+    {
+        UIMouseEnter("Attackpowerhover");
+    }
+
+    public void UICostHover()
+    {
+        UIMouseEnter("Costhover");
+    }
+
+    public void SpeedHover()
+    {
+        UIMouseEnter("Speedhover");
+    }
+
+    public void DarkEssenceHover()
+    {
+        UIMouseEnter("DarkEssencehover");
     }
 
     private bool _isHover = false;

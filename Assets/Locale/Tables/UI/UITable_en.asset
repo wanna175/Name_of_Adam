@@ -58,6 +58,29 @@ MonoBehaviour:
     m_Localized: Exile
     m_Metadata:
       m_Items: []
+  - m_Id: 86240723997089792
+    m_Localized: "Health: Represents the unit's health. When health is depleted,
+      the unit is destroyed\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86240880478183424
+    m_Localized: "Attack Power: Represents the unit's attack power\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241063295311872
+    m_Localized: "Speed: Represents the unit's speed. The higher the speed, the earlier
+      the unit acts.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241341595770880
+    m_Localized: "Cost: Represents the mana required to summon the unit\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241460206493696
+    m_Localized: " Dark Essence: Represents the Dark Essence required to summon the
+      unit\r"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

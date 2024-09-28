@@ -55,6 +55,26 @@ MonoBehaviour:
     m_Key: Exile
     m_Metadata:
       m_Items: []
+  - m_Id: 86240723997089792
+    m_Key: Hphover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86240880478183424
+    m_Key: Attackpowerhover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241063295311872
+    m_Key: Speedhover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241341595770880
+    m_Key: Costhover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241460206493696
+    m_Key: DarkEssencehover
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

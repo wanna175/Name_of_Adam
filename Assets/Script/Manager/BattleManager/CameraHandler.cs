@@ -68,13 +68,13 @@ public class CameraHandler : MonoBehaviour
         while (shakeInfo[0].z * 2.5f > shakeTime)
         {
             CutSceneCamera.transform.position = originPos + 
-                new Vector3( ((Random.Range(0.5f, 0.9f) - shakeTime * 4) * direction) * 0.25f, 0, 0);
+                new Vector3( ((Random.Range(1.2f, 1.4f) - shakeTime * 4) * direction) * 0.25f, 0, 0);
 
             direction *= -1;
 
             shakeTime += Time.deltaTime * 20;
 
-            yield return new WaitForSeconds(Time.deltaTime * 20);
+            yield return new WaitForSeconds(Time.deltaTime * 50);
         }
         /*
         foreach(Vector3 vec in shakeInfo)
