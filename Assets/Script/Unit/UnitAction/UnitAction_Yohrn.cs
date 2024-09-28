@@ -6,10 +6,12 @@ using System;
 
 public class UnitAction_Yohrn : UnitAction
 {
+    readonly private List<Vector2> _upDownCoord = new() { Vector2.down, Vector2.down * 2, Vector2.zero, Vector2.up, Vector2.up * 2 };
     const float _moveSpeed = 1.2f;
     private bool _firstMoveCheck = false;
+    private bool _isAppearLock = false;
+
     private int _isEvenTileAttackTurn = 0;//0ÀÌ¸é È¦¼ö, 1ÀÌ¸é Â¦¼ö Ä­À» °ø°Ý
-    readonly private List<Vector2> _upDownCoord = new() { Vector2.down, Vector2.down * 2, Vector2.zero, Vector2.up, Vector2.up * 2 };
 
     private IEnumerator _moveCoroutine;
 
@@ -34,7 +36,7 @@ public class UnitAction_Yohrn : UnitAction
     {
         if (_actionBlock)
         {
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 AISkillUse(attackUnit);
             }, 0.1f);
             return;
@@ -81,7 +83,7 @@ public class UnitAction_Yohrn : UnitAction
     {
         if (_actionBlock)
         {
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 UnitMoveAction(attackUnit);
             }, 0.1f);
             return;
@@ -98,7 +100,7 @@ public class UnitAction_Yohrn : UnitAction
                 frontUnit.UnitDiedEvent(false);
                 attackUnit.AnimatorSetBool("isMoveAttack", true);
                 GameManager.Sound.Play("Character/¿æ/¿æ_MoveAttack");
-                BattleManager.Instance.PlayAfterCoroutine(() => {
+                GameManager.Instance.PlayAfterCoroutine(() => {
                     attackUnit.AnimatorSetBool("isMoveAttack", false);
                 }, 1f);
                 //Á×ÀÌ±â
@@ -127,14 +129,14 @@ public class UnitAction_Yohrn : UnitAction
             {
                 //ÇÑ ¹ø ´õ Àç±ÍÀûÀ¸·Î ½ÇÇà
                 _firstMoveCheck = true;
-                BattleManager.Instance.PlayAfterCoroutine(() => {
+                GameManager.Instance.PlayAfterCoroutine(() => {
                     UnitMoveAction(attackUnit);
                 }, 3f);
             }
             else
             {
                 _firstMoveCheck = false;
-                BattleManager.Instance.PlayAfterCoroutine(() => {
+                GameManager.Instance.PlayAfterCoroutine(() => {
                     BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
                     BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
                 }, 3f);
@@ -150,7 +152,7 @@ public class UnitAction_Yohrn : UnitAction
     {
         if (_actionBlock)
         {
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 UnitChangeRow(attackUnit, isBackMove);
             }, 0.1f);
             return;
@@ -175,10 +177,10 @@ public class UnitAction_Yohrn : UnitAction
         if (frontUnit != null)
         {
             BattleManager.Field.ExitTile(frontUnit.Location);
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 frontUnit.UnitDiedEvent(false);
                 attackUnit.AnimatorSetBool("isMoveAttack", true);
-                BattleManager.Instance.PlayAfterCoroutine(() => {
+                GameManager.Instance.PlayAfterCoroutine(() => {
                     attackUnit.AnimatorSetBool("isMoveAttack", false);
                 }, 2f);
             }, 3f);
@@ -203,14 +205,14 @@ public class UnitAction_Yohrn : UnitAction
         {
             //ÇÑ ¹ø ´õ Àç±ÍÀûÀ¸·Î ½ÇÇà
             _firstMoveCheck = true;
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 UnitMoveAction(attackUnit);
             }, 2f);
         }
         else
         {
             _firstMoveCheck = false;
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 BattleManager.Phase.ChangePhase(BattleManager.Phase.Action);
                 BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
             }, 2f);
@@ -252,7 +254,7 @@ public class UnitAction_Yohrn : UnitAction
     {
         if (_actionBlock)
         {
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 UnitBackMove(unit);
             }, 0.1f);
             return;
@@ -278,6 +280,30 @@ public class UnitAction_Yohrn : UnitAction
         {
             UnitChangeRow(unit, true);
         }
+    }
+
+    private void UnitRefillAction(BattleUnit attackUnit)
+    {
+        if (_actionBlock)
+        {
+            GameManager.Instance.PlayAfterCoroutine(() => {
+                UnitRefillAction(attackUnit);
+            }, 0.1f);
+            return;
+        }
+
+        _actionBlock = true;
+
+        foreach (BattleUnit subUnit in _subUnitList)
+        {
+            _subUnitActionDict[subUnit].UnitMoveAction(false);
+        }
+
+        SubUnitSpawn(attackUnit);
+
+        GameManager.Instance.PlayAfterCoroutine(() => {
+            _actionBlock = false;
+        }, 2.7f);
     }
 
     private void SetMoveTileColor(BattleUnit unit)
@@ -341,7 +367,6 @@ public class UnitAction_Yohrn : UnitAction
 
     public IEnumerator UnitFirstAppearAnimation(BattleUnit unit)
     {
-        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         yield return BattleManager.Instance.StartCoroutine(UnitPortalMoveAnimationCoroutine(unit, false));
 
         UnitMoveAction(unit);
@@ -387,7 +412,7 @@ public class UnitAction_Yohrn : UnitAction
             {
                 frontUnit.UnitDiedEvent(false);
                 caster.AnimatorSetBool("isMoveAttack", true);
-                BattleManager.Instance.PlayAfterCoroutine(() => {
+                GameManager.Instance.PlayAfterCoroutine(() => {
                     caster.AnimatorSetBool("isMoveAttack", false);
                 }, 2f);
                 //Á×ÀÌ±â
@@ -397,6 +422,7 @@ public class UnitAction_Yohrn : UnitAction
             if (caster.Team == Team.Enemy)
             {
                 BattleManager.Instance.StartCoroutine(UnitFirstAppearAnimation(caster));
+                _isAppearLock = true;
             }
             else
             {
@@ -409,6 +435,12 @@ public class UnitAction_Yohrn : UnitAction
         }
         else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
+            if (_isAppearLock)
+            {
+                BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
+                _isAppearLock = false;
+            }
+
             SetAttackUnitBuff();
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
@@ -438,6 +470,7 @@ public class UnitAction_Yohrn : UnitAction
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
         {
             _actionBlock = false;
+            BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         }
         else if ((activeTiming & ActiveTiming.MOVE_TURN_START) == ActiveTiming.MOVE_TURN_START)
         {
@@ -458,7 +491,8 @@ public class UnitAction_Yohrn : UnitAction
             if (receiver.Team == caster.Team)
             {
                 caster.GetAttack(-receiver.BattleUnitTotalStat.MaxHP, null);
-                UnitBackMove(caster);
+                UnitRefillAction(caster);
+                //UnitBackMove(caster);
             }
         }
         else if ((activeTiming & ActiveTiming.FIELD_UNIT_FALLED) == ActiveTiming.FIELD_UNIT_FALLED)
@@ -471,7 +505,8 @@ public class UnitAction_Yohrn : UnitAction
             {
                 receiver.UnitDiedEvent(false);
                 caster.ChangeFall(1, caster, FallAnimMode.On);
-                UnitBackMove(caster);
+                UnitRefillAction(caster);
+                //UnitBackMove(caster);
             }
         }
         else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD)
@@ -496,7 +531,7 @@ public class UnitAction_Yohrn : UnitAction
                 BattleManager.Instance.SetTlieClickCoolDown(4f);
 
                 caster.AnimatorSetBool("isCorrupt", true);
-                BattleManager.Instance.PlayAfterCoroutine(() =>
+                GameManager.Instance.PlayAfterCoroutine(() =>
                 {
                     caster.UnitFallEvent();
                 }, 2f);

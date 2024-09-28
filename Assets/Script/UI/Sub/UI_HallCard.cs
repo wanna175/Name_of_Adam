@@ -8,25 +8,31 @@ using TMPro;
 
 public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private CanvasGroup _canvasGroup;
-    [SerializeField] private GameObject _highlight;
-    [SerializeField] private List<GameObject> _stigmaFrames;
+    [SerializeField] private GameObject _infoButton;
+    [SerializeField] private List<GameObject> _frameList;
     [SerializeField] private TMP_Text _nameText;
-    [SerializeField] private GameObject infoButton;
-    [SerializeField] private Image _frameImage;
 
-    public Image UnitImage;
+    [SerializeField] private Image _unitImage;
+
+    [SerializeField] private List<GameObject> _stigmataFrame;
+    [SerializeField] private List<Image> _stigmataImage;
+
+    [SerializeField] private GameObject _highlight;
+
+    [SerializeField] public int _hallSlotID;
+
+
+    private List<HallUnit> _hallUnitList;
+    private List<DeckUnit> _mainDeck;
 
     private List<Image> _stigmaImages;
-    private List<DeckUnit> _mainDeck;
-    private List<HallUnit> _hallUnitList;
+
+
     private DeckUnit _deckUnit;
 
     private bool _isEnable;
-    public bool _isElite;
-    public int HallUnitID; //���� ��Ī��ų ID
-    public Sprite NormalImage;
-    public Sprite EliteImage;
+    private bool _isElite;
+
 
     public void Init()
     {
@@ -34,7 +40,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         _mainDeck = GameManager.Data.GameDataMain.DeckUnits;
         _mainDeck.Sort((x, y) => x.HallUnitID.CompareTo(y.HallUnitID));
 
-        _deckUnit = _mainDeck.Find(x => x.HallUnitID == HallUnitID);
+        _deckUnit = _mainDeck.Find(x => x.HallUnitID == _hallSlotID);
         if (_deckUnit == null)
         {
             _isEnable = false;
@@ -42,51 +48,38 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return;
         }
 
-        _stigmaImages = new List<Image>();
-        foreach (var frame in _stigmaFrames)
-            _stigmaImages.Add(frame.GetComponentsInChildren<Image>()[1]);
-
-        foreach (var frame in _stigmaFrames)
-            frame.SetActive(true);
-
         _isEnable = true;
-        UnitImage.sprite = _deckUnit.Data.CorruptImage;
-        UnitImage.color = Color.white;
-        _nameText.SetText(_deckUnit.Data.Name);
-        infoButton.SetActive(true);
 
-        List<Stigma> stigmas = _deckUnit.GetStigma();
-        for (int i = 0; i < _stigmaImages.Count; i++)
+        _frameList[0].SetActive(_deckUnit.Data.Rarity == Rarity.Normal);
+        _frameList[1].SetActive(_deckUnit.Data.Rarity != Rarity.Normal);
+
+        _unitImage.sprite = _deckUnit.Data.CorruptImage;
+        _unitImage.gameObject.SetActive(true);
+
+        _nameText.SetText(_deckUnit.Data.Name);
+        _infoButton.SetActive(true);
+
+        List<Stigma> stigmaList = _deckUnit.GetStigma();
+        for (int i = 0; i < _stigmataImage.Count; i++)
         {
-            if (i < stigmas.Count)
+            if (i < stigmaList.Count)
             {
-                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetStigma(stigmas[i]);
-                _stigmaImages[i].sprite = stigmas[i].Sprite_28;
-                _stigmaImages[i].color = Color.white;
+                _stigmataFrame[i].GetComponent<UI_StigmaHover>().SetStigma(stigmaList[i]);
+                _stigmataImage[i].sprite = stigmaList[i].Sprite_28;
+                _stigmataImage[i].gameObject.SetActive(true);
             }
             else
             {
-                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
-                _stigmaImages[i].color = new Color(1f, 1f, 1f, 0f);            
+                _stigmataFrame[i].GetComponent<UI_StigmaHover>().SetEnable(false);
+                _stigmataImage[i].gameObject.SetActive(false);
             }
         }
 
-        if (_deckUnit.Data.Rarity == Rarity.Normal)
-        {
-            _frameImage.sprite = NormalImage;
-        }
-        else
-        {
-            _frameImage.sprite = EliteImage;
-        }
-
-        _canvasGroup.alpha = 1f;
         if (GameManager.OutGameData.IsUnlockedItem(14) == false)
         {
-            if (HallUnitID == 1 || HallUnitID == 2)
+            if (_hallSlotID == 1 || _hallSlotID == 2)
             {
                 _isEnable = false;
-                _canvasGroup.alpha = 0.7f;
             }
         }
 
@@ -95,16 +88,18 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void DisableUI()
     {
-        UnitImage.color = new Color(1f, 1f, 1f, 0f);
+        _unitImage.gameObject.SetActive(false);
         _nameText.SetText("");
-        infoButton.SetActive(false);
-        foreach (var frame in _stigmaFrames)
+        _infoButton.SetActive(false);
+        foreach (var frame in _stigmataFrame)
+        {
             frame.SetActive(false);
+        }
     }
 
     public void OnClick()
     {
-        if ((HallUnitID == 1 || HallUnitID == 2) && !GameManager.OutGameData.IsUnlockedItem(14))
+        if ((_hallSlotID == 1 || _hallSlotID == 2) && !GameManager.OutGameData.IsUnlockedItem(14))
         {
             GameManager.Sound.Play("UI/UISFX/UIFailSFX");
             return;
@@ -128,18 +123,18 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         DeckUnit afterDeckUnit = unit;
         HallUnit afterHallUnit = _hallUnitList.Find(x => x.ID == afterDeckUnit.HallUnitID);
 
-        if (_mainDeck.Find(x => x.HallUnitID == HallUnitID) == null)
+        if (_mainDeck.Find(x => x.HallUnitID == _hallSlotID) == null)
         {
             // 신규 유닛이면 추가
-            if (_mainDeck.Count < HallUnitID)
+            if (_mainDeck.Count < _hallSlotID)
                 _mainDeck.Add(unit);
             else
-                _mainDeck.Insert(HallUnitID, unit);
+                _mainDeck.Insert(_hallSlotID, unit);
         }
         else
         {
             // 이전 유닛이 있다면 스왑
-            DeckUnit beforeDeckUnit = GameManager.Data.GetDeck().Find(x => x.HallUnitID == HallUnitID);
+            DeckUnit beforeDeckUnit = GameManager.Data.GetDeck().Find(x => x.HallUnitID == _hallSlotID);
             HallUnit beforeHallUnit = _hallUnitList.Find(x => x.ID == beforeDeckUnit.HallUnitID);
 
             beforeDeckUnit.IsMainDeck = false;
@@ -147,14 +142,14 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             beforeDeckUnit.HallUnitID = afterDeckUnit.HallUnitID;
             beforeHallUnit.ID = afterHallUnit.ID;
 
-            _mainDeck[HallUnitID] = unit;
+            _mainDeck[_hallSlotID] = unit;
         }
 
         // GameData Deck 수정
         afterDeckUnit.IsMainDeck = true;
         afterHallUnit.IsMainDeck = true;
-        afterDeckUnit.HallUnitID = HallUnitID;
-        afterHallUnit.ID = HallUnitID;
+        afterDeckUnit.HallUnitID = _hallSlotID;
+        afterHallUnit.ID = _hallSlotID;
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
@@ -167,7 +162,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
 
-        ui.SetUnit(_mainDeck[HallUnitID]);
+        ui.SetUnit(_mainDeck[_hallSlotID]);
         ui.Init();
     }
 

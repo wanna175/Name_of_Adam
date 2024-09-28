@@ -15,7 +15,7 @@ public class UpgradeController
         LoadUpgradeList();
     }
 
-    public readonly float[] UpgradeProbability = new float[] { 0.92f, 0.07f, 0.01f };
+    public readonly float[] UpgradeProbability = new float[] { 0.90f, 0.08f, 0.02f };
 
     private List<UpgradeData> _tier1UpgradeList = new();
     private List<UpgradeData> _tier2UpgradeList = new();

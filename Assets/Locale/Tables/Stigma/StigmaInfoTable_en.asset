@@ -172,8 +172,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4027667247104
-    m_Localized: Upon attacking when this unit has two or more buff, Reduces the
-      enemy's faith by 1
+    m_Localized: 'Upon start of this unit''s turn, removes one debuff and heals 10
+      health.
+
+'
     m_Metadata:
       m_Items: []
   - m_Id: 4114728415232
@@ -422,13 +424,6 @@ MonoBehaviour:
       then gains <b>Stun\r</b> 5 time.\n(<b>Stun</b>: This unit can't move or attack.)"
     m_Metadata:
       m_Items: []
-  - m_Id: 72209247161700352
-    m_Localized: 'Upon start of this unit''s turn, removes one debuff and heals 10
-      health.
-
-'
-    m_Metadata:
-      m_Items: []
   - m_Id: 78864474912739328
     m_Localized: "Upon Libiel is attacked, the Glory count increases by 1, granting
       different effects based on the count:\n1. Taken Damage becomes halved.\r\n2.
@@ -478,6 +473,39 @@ MonoBehaviour:
       faith is fully lost, it is destroyed, and Yohrn's faith is reduced by 1 instead
       of taking damage.\r\n(<b>Immortality<b>: Withstands once with 1 health, when
       reaching death.)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84651608961601536
+    m_Localized: 'Upon summoning, Adds the stats of the strongest ally unit to own
+      stats. (The strongest unit : The unit with the highest total of attack power
+      and health.)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85301240905486336
+    m_Localized: Upon attacking when this unit has two or more buff, Reduces the
+      enemy's faith by 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85673016286138368
+    m_Localized: Instead of moving each turn, advances 2 tiles forward. Units hit
+      by Yorhn' advance are defeated. When reaching the edge of the field, changes
+      rows to continue moving. If the field is completely filled, the player loses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85673019381534720
+    m_Localized: "Every time Yohrn moves, he summons Scales. When a Scale is destroyed,
+      Yohrn takes damage equal to the Scale's health and moves backward. Yohrn\u2019s
+      Faith does not decrease, but if the Scales become corrupted, his Faith decreases
+      by 1."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85673018085494784
+    m_Localized: 'Upon attacking, targets all units in the top and bottom rows of
+      the attacking Scales. On the first turn, even-numbered Scales attack, and on
+      the next turn, odd-numbered Scales attack, alternating each turn. Attack reduces
+      the enemy''s faith by 1
+
+'
     m_Metadata:
       m_Items: []
   references:

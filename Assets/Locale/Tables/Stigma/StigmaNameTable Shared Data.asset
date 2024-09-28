@@ -132,7 +132,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138142068568064
-    m_Key: Cleanse
+    m_Key: Purification
     m_Metadata:
       m_Items: []
   - m_Id: 138245189726208
@@ -272,7 +272,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 72348824576872448
-    m_Key: Gluttony
+    m_Key: Cleanse
     m_Metadata:
       m_Items: []
   - m_Id: 72348828750204928
@@ -292,7 +292,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 75769790749364224
-    m_Key: Deep Sea
+    m_Key: Soulbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84791701789626368
+    m_Key: Distrust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85812546154680320
+    m_Key: Abyssal Steps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85812548360884224
+    m_Key: Repeating Surge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85812550235738112
+    m_Key: Fragments Of Birth
     m_Metadata:
       m_Items: []
   m_Metadata:

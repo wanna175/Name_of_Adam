@@ -18,12 +18,12 @@ public class UnitAction_Horus : UnitAction
         }
 
         attackUnit.AnimatorSetBool("isAttack", true);
-        BattleManager.Instance.PlayAfterCoroutine(() =>
+        GameManager.Instance.PlayAfterCoroutine(() =>
         {
             attackUnit.AnimatorSetBool("isAttack", false);
         }, 3f);
 
-        BattleManager.Instance.PlayAfterCoroutine(() =>
+        GameManager.Instance.PlayAfterCoroutine(() =>
         {
             SpawnUnitNearEnemy(attackUnit);
             SpawnUnitNearEnemy(attackUnit);
@@ -39,12 +39,12 @@ public class UnitAction_Horus : UnitAction
         _isSummon = true;
 
         attackUnit.AnimatorSetBool("isAttack", true);
-        BattleManager.Instance.PlayAfterCoroutine(() =>
+        GameManager.Instance.PlayAfterCoroutine(() =>
         {
             attackUnit.AnimatorSetBool("isAttack", false);
         }, 3f);
 
-        BattleManager.Instance.PlayAfterCoroutine(() =>
+        GameManager.Instance.PlayAfterCoroutine(() =>
         {
             SpawnUnit(coord, attackUnit);
             SpawnUnitNearEnemy(attackUnit);
@@ -92,13 +92,13 @@ public class UnitAction_Horus : UnitAction
                 _summonedUnit.Remove(receiver);
                 if (receiver.Team == caster.Team)
                 {
-                    BattleManager.Instance.PlayAfterCoroutine(() =>
+                    GameManager.Instance.PlayAfterCoroutine(() =>
                     {
                         caster.AnimatorSetBool("isHit", true);
                         caster.GetAttack(-500, null);
                     }, 1.5f);
 
-                    BattleManager.Instance.PlayAfterCoroutine(() =>
+                    GameManager.Instance.PlayAfterCoroutine(() =>
                     {
                         caster.AnimatorSetBool("isHit", false);
                     }, 1.8f);
@@ -121,7 +121,7 @@ public class UnitAction_Horus : UnitAction
                 BattleManager.Instance.SetTlieClickCoolDown(4f);
 
                 caster.AnimatorSetBool("isCorrupt", true);
-                BattleManager.Instance.PlayAfterCoroutine(() =>
+                GameManager.Instance.PlayAfterCoroutine(() =>
                 {
                     caster.UnitFallEvent();
                 }, 1.5f);

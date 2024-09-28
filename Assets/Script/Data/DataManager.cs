@@ -67,8 +67,6 @@ public class DataManager : MonoBehaviour
         GameData.IsVisitBaptism = GameManager.OutGameData.Data.IsVisitBaptism;
         GameData.IsVisitStigmata = GameManager.OutGameData.Data.IsVisitStigmata;
         GameData.IsVisitSacrifice = GameManager.OutGameData.Data.IsVisitSacrifice;
-
-        GameData.CurrentAct = GameManager.OutGameData.Data.Act;
     }
 
     public void DeckClear()

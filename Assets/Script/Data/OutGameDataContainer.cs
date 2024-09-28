@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +30,8 @@ public class OutGameData
     public bool IsStigmataCorrupt = false;
     public bool IsSacrificeCorrupt = false;
 
-    public Dictionary<string, bool> CutSceneViewData = new();
+    public List<string> CutSceneViewData = new();
+    public List<string> DialogViewData = new();
 
     public bool IsOnTooltipForDivineHallInBattle = false;
     public bool IsOnTooltipForDivineHall = false;
@@ -49,13 +49,12 @@ public class OutGameData
     public float MasterSoundPower; // 0 ~ 1
     public float BGMSoundPower; // 0 ~ 1
     public float SESoundPower; // 0 ~ 1
-
-    public int Act = 1;
+    public bool IsReplayCutScene;
+    public bool IsReplayDialog;
 
     //예전 데이터(세이브 파일 관리 용도로만 이용됨)
     public bool HorusClear = false; //SaviorClear로 수정됨
     public NPCQuest NpcQuest; //BaptismCorruptValue, StigmataCorruptValue, SacrificeCorruptValue로 수정됨
-    public bool[] cutSceneData = new bool[Enum.GetValues(typeof(CutSceneType)).Length]; //Dict 형태로 수정됨
 }
 
 [Serializable]
@@ -207,6 +206,7 @@ public class OutGameDataContainer : MonoBehaviour
 
         SetProgressInit();
         ResetOption();
+        InitCutSceneData();
         SaveData();
     }
 
@@ -357,14 +357,53 @@ public class OutGameDataContainer : MonoBehaviour
         Data.IsWindowed = false;
         Data.MasterSoundPower = Data.BGMSoundPower = Data.SESoundPower = 0.5f;
         Data.BattleSpeed = 1f;
-        Data.Language = GameManager.Steam.GetCurrentGameLanguage();
+        //Data.Language = GameManager.Steam.GetCurrentGameLanguage();
+        Data.IsReplayCutScene = false;
+        Data.IsReplayDialog = false; ;
+    }
+
+    public void InitCutSceneData()
+    {
+        foreach (CutSceneType cutScene in Enum.GetValues(typeof(CutSceneType)))
+        {
+            SetCutSceneData(cutScene, false);
+        }
     }
 
     public List<Resolution> GetAllResolution() => _resolutions;
 
     public Resolution GetResolution() => _resolutions[Data.Resolution];
 
-    public bool GetCutSceneData(CutSceneType cutSceneType) => Data.CutSceneViewData[cutSceneType.ToString()];
+    public void SetCutSceneData(CutSceneType cutSceneType, bool isDone)
+    {
+        string cutSceneKey = cutSceneType.ToString();
 
-    public void SetCutSceneData(CutSceneType cutSceneType, bool isDone) => Data.CutSceneViewData[cutSceneType.ToString()] = isDone;
+        if (Data.CutSceneViewData.Contains(cutSceneKey) && !isDone)
+        {
+            Data.CutSceneViewData.Remove(cutSceneKey);
+        }
+        else if (isDone)
+        {
+            Data.CutSceneViewData.Add(cutSceneKey);
+        }
+
+        SaveData();
+    }
+
+    public bool CutScenePlayCheck(CutSceneType cutSceneType) => !Data.CutSceneViewData.Contains(cutSceneType.ToString()) || Data.IsReplayCutScene;
+
+    public void SetDialogData(string unitName, bool isDone)
+    {
+        if (Data.DialogViewData.Contains(unitName) && !isDone)
+        {
+            Data.DialogViewData.Remove(unitName);
+        }
+        else if (isDone)
+        {
+            Data.DialogViewData.Add(unitName);
+        }
+        SaveData();
+    }
+
+    public bool DialogPlayCheck(string unitName) => !Data.DialogViewData.Contains(unitName) || Data.IsReplayDialog;
 }

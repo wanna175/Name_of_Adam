@@ -44,6 +44,13 @@ public class UI_UnitInfo : UI_Popup
     [SerializeField] private Transform _unitInfoSkillRangeGrid;
     [SerializeField] private Image _unitImage;
 
+    [SerializeField] private Image _insignia;
+
+    [SerializeField] private Image _apostleInsignia;
+    [SerializeField] private Image _eliteInsignia;
+    [SerializeField] private Image _bossInsignia;
+
+    [SerializeField] private TextMeshProUGUI _attackType;
     //public AnimationClip _unitAnimationClip;
 
     private DeckUnit _unit;
@@ -53,6 +60,10 @@ public class UI_UnitInfo : UI_Popup
     private CurrentEvent _currentEvent = CurrentEvent.None;
 
     readonly Color _attackRangeColor = new(0.6f, 0.05f, 0.05f);
+    readonly Color _unitRangeColor = new(0.77f, 0.45f, 0.45f);
+
+    readonly Color _playerInsigniaColor = new(0.35f, 0.09f, 0.05f);
+    readonly Color _enemyInsigniaColor = new(0.54f, 0.5f, 0.34f);
 
     readonly Color _upColor = new(1f, 0.22f, 0.22f);
     readonly Color _downColor = new(0.35f, 0.35f, 1f);
@@ -65,6 +76,11 @@ public class UI_UnitInfo : UI_Popup
     public void Init(Action<DeckUnit> onSelect = null, CurrentEvent currentEvent = CurrentEvent.None, Action endEvent=null)
     {
         _unitImage.sprite = _unit.Data.CorruptImage;
+        _insignia.color = _playerInsigniaColor;
+
+        _apostleInsignia.gameObject.SetActive(_unit.Data.Rarity == Rarity.Original);
+        _eliteInsignia.gameObject.SetActive(_unit.Data.Rarity == Rarity.Elite);
+        _bossInsignia.gameObject.SetActive(_unit.Data.Rarity == Rarity.Boss);
 
         _onSelect = onSelect;
         _endEvent = endEvent;
@@ -89,7 +105,6 @@ public class UI_UnitInfo : UI_Popup
         }
 
         _unitInfoName.text = _unit.Data.Name;
-
 
         _statHealth.text = _unit.DeckUnitStat.MaxHP.ToString();
         _statAttack.text = _unit.DeckUnitStat.ATK.ToString();
@@ -164,14 +179,18 @@ public class UI_UnitInfo : UI_Popup
                 ui.EnableUI(false);
         }
 
-        foreach (bool range in _unit.Data.AttackRange)
+        for (int i = 0; i < _unit.Data.AttackRange.Length; i++)
         {
             Image block = GameObject.Instantiate(_squarePrefab, _unitInfoSkillRangeGrid).GetComponent<Image>();
-            if (range)
+            if (i == 27)
+                block.color = _unitRangeColor;
+            else if (_unit.Data.AttackRange[i])
                 block.color = _attackRangeColor;
             else
                 block.color = Color.grey;
         }
+
+        _attackType.text = GameManager.Locale.GetLocalizedBattleScene(_unit.Data.UnitAttackType.ToString());
 
         if (GameManager.OutGameData.IsUnlockedItem(12))
         {
@@ -287,6 +306,61 @@ public class UI_UnitInfo : UI_Popup
 
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
     }
+
+    public void UIInsigniaHover()
+    {
+        if (_unit.Data.Rarity == Rarity.Original)
+            UIMouseEnter("Apostle");
+        else if (_unit.Data.Rarity == Rarity.Elite)
+            UIMouseEnter("Elite");
+        else if (_unit.Data.Rarity == Rarity.Boss)
+            UIMouseEnter("Boss");
+        else
+            UIMouseEnter("Normal");
+    }
+
+    public void UIAttackRangeHover()
+    {
+        if (_unit.Data.UnitAttackType == UnitAttackType.SingleAttack)
+            UIMouseEnter("SingleAttack");
+        else if (_unit.Data.UnitAttackType == UnitAttackType.AreaAttack)
+            UIMouseEnter("AreaAttack");
+        else if (_unit.Data.UnitAttackType == UnitAttackType.FrontalAttack)
+            UIMouseEnter("FrontalAttack");
+        else if (_unit.Data.UnitAttackType == UnitAttackType.SpecialAttack)
+            UIMouseEnter("SpecialAttack");
+        else if (_unit.Data.UnitAttackType == UnitAttackType.NoAttack)
+            UIMouseEnter("NoAttack");
+    }
+
+    private bool _isHover = false;
+    private bool _isHoverMessegeOn = false;
+
+    public void UIMouseEnter(string key)
+    {
+        _isHover = true;
+        GameManager.Instance.PlayAfterCoroutine(() =>
+        {
+            if (_isHover && !_isHoverMessegeOn)
+            {
+                _isHoverMessegeOn = true;
+                GameManager.UI.ShowHover<UI_TextHover>().SetText(
+                    $"{GameManager.Locale.GetLocalizedUI(key)}", Input.mousePosition);
+            }
+        }, 0.8f);
+    }
+
+    public void UIMouseExit()
+    {
+        _isHover = false;
+
+        if (_isHoverMessegeOn)
+        {
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
+        }
+    }
+
 
     public override bool ESCAction()
     {

@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProgressShopScene.unity
     guid: 892586cb541b8d14f8c9ee5036d3f3e9
+  - enabled: 1
+    path: Assets/Scenes/ActSelectScene.unity
+    guid: fa5478a2f06b05048808a290934cbece
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 6f8dbae9d8820864390e2653c566630e, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: e5205da6931b44d45962ce38fea2b621, type: 2}

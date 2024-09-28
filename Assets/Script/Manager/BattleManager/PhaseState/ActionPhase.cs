@@ -24,7 +24,7 @@ public class ActionPhase : Phase
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
 
         if (_nowUnit.Team == Team.Enemy)
-            BattleManager.Instance.PlayAfterCoroutine(() => {
+            GameManager.Instance.PlayAfterCoroutine(() => {
                 _nowUnit.Action.AISkillUse(_nowUnit);
             }, 1f);
     }

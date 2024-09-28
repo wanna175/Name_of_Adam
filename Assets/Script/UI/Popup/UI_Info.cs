@@ -6,7 +6,15 @@ using TMPro;
 
 public class UI_Info : UI_Scene
 {
+    [SerializeField] private Image _unitImage;
+
     [SerializeField] private TextMeshProUGUI _name;
+
+    [SerializeField] private Image _insignia;
+
+    [SerializeField] private Image _apostleInsignia;
+    [SerializeField] private Image _eliteInsignia;
+    [SerializeField] private Image _bossInsignia;
 
     [SerializeField] private TextMeshProUGUI _statAttack;
     [SerializeField] private TextMeshProUGUI _statSpeed;
@@ -20,9 +28,10 @@ public class UI_Info : UI_Scene
     [SerializeField] private TextMeshProUGUI _statCostChange;
 
     [SerializeField] private UI_HPBar _hpBar;
-    [SerializeField] private Transform _stigmaGrid;
+    [SerializeField] private TextMeshProUGUI _hpText;
 
     [SerializeField] private Transform _rangeGrid;
+    [SerializeField] private TextMeshProUGUI _attackType;
     [SerializeField] private GameObject _squarePrefab;
 
     [SerializeField] private Transform _unitInfoFallGrid;
@@ -30,19 +39,21 @@ public class UI_Info : UI_Scene
     [SerializeField] private Transform _buffDescriptionGrid;
     [SerializeField] private GameObject _buffDescriptionPrefab;
 
+    [SerializeField] private Transform _stigmaGrid;
     [SerializeField] private Transform _stigmaDescriptionGrid;
     [SerializeField] private GameObject _stigmaDescriptionPrefab;
     [SerializeField] private GameObject _stigmaDescriptionFirstImage;
     [SerializeField] private GameObject _stigmaDescriptionLastImage;
-
-    [SerializeField] private TextMeshProUGUI _hpText;
-    [SerializeField] private Image _unitImage;
 
     //색상은 UI에서 정해주는대로
     readonly Color _upColor = new(1f, 0.22f, 0.22f);
     readonly Color _downColor = new(0.35f, 0.35f, 1f);
 
     readonly Color _attackRangeColor = new(0.6f, 0.05f, 0.05f);
+    readonly Color _unitRangeColor = new(0.77f, 0.45f, 0.45f);
+
+    readonly Color _playerInsigniaColor = new(0.35f, 0.09f, 0.05f);
+    readonly Color _enemyInsigniaColor = new(0.54f, 0.5f, 0.34f);
 
     public void SetInfo(BattleUnit battleUnit)
     {
@@ -55,11 +66,17 @@ public class UI_Info : UI_Scene
         if (battleUnit.Team == Team.Player)
         {
             _unitImage.sprite = unit.Data.CorruptDiaPortraitImage;
+            _insignia.color = _playerInsigniaColor;
         }
         else
         {
             _unitImage.sprite = unit.Data.DiaPortraitImage;
+            _insignia.color = _enemyInsigniaColor;
         }
+
+        _apostleInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Original);
+         _eliteInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Elite);
+        _bossInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Boss);
 
         string hpText = battleUnit.BattleUnitTotalStat.CurrentHP.ToString() + "/" + battleUnit.BattleUnitTotalStat.MaxHP.ToString();
 
@@ -129,11 +146,15 @@ public class UI_Info : UI_Scene
         for (int i = 0; i < unit.Data.AttackRange.Length; i++)
         {
             Image block = GameObject.Instantiate(_squarePrefab, _rangeGrid).GetComponent<Image>();
-            if (rangeIntegerList.Contains(i))
+            if (i == 27)
+                block.color = _unitRangeColor;
+            else if (rangeIntegerList.Contains(i))
                 block.color = _attackRangeColor;
             else
                 block.color = Color.grey;
         }
+
+        _attackType.text = GameManager.Locale.GetLocalizedBattleScene(unit.Data.UnitAttackType.ToString());
 
         StartCoroutine(nameof(UpdateUIWithDelay));
     }
@@ -148,11 +169,17 @@ public class UI_Info : UI_Scene
         if (team == Team.Player)
         {
             _unitImage.sprite = unit.Data.CorruptDiaPortraitImage;
+            _insignia.color = _playerInsigniaColor;
         }
         else
         {
             _unitImage.sprite = unit.Data.DiaPortraitImage;
+            _insignia.color = _enemyInsigniaColor;
         }
+
+        _apostleInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Original);
+        _eliteInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Elite);
+        _bossInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Boss);
 
         string hpText = unit.DeckUnitTotalStat.CurrentHP.ToString() + "/" + unit.DeckUnitTotalStat.MaxHP.ToString();
 
@@ -205,14 +232,18 @@ public class UI_Info : UI_Scene
             _stigmaDescriptionLastImage.transform.SetSiblingIndex(_stigmaDescriptionGrid.childCount - 1);
         }
 
-        foreach (bool range in unit.Data.AttackRange)
+        for (int i = 0; i < unit.Data.AttackRange.Length; i++)
         {
             Image block = GameObject.Instantiate(_squarePrefab, _rangeGrid).GetComponent<Image>();
-            if (range)
+            if (i == 27)
+                block.color = _unitRangeColor;
+            else if (unit.Data.AttackRange[i])
                 block.color = _attackRangeColor;
             else
                 block.color = Color.grey;
         }
+
+        _attackType.text = GameManager.Locale.GetLocalizedBattleScene(unit.Data.UnitAttackType.ToString());
 
         StartCoroutine(nameof(UpdateUIWithDelay));
     }

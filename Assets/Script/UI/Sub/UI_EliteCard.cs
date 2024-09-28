@@ -100,46 +100,52 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             switch (unitName)
             {
                 case "투발카인": // 투발카인 -> 라헬레아 넘어가기
-                    //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.RahelLea_Enter) == false)
-                    //{
+                    if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.RahelLea_Enter))
+                    {
                         isGoToCutScene = true;
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.RahelLea_Enter, true);
                         SceneChanger.SceneChangeToCutScene(CutSceneType.RahelLea_Enter);
-                    //}
+                    }
                     break;
                 case "라헬&레아": // 라헬레아 -> 바누엘 넘어가기
-                    //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Enter) == false)
-                    //{
+                    if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Phanuel_Enter))
+                    {
                         isGoToCutScene = true;
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Enter, true);
                         SceneChanger.SceneChangeToCutScene(CutSceneType.Phanuel_Enter);
-                    //}
+                    }
                     break;
                 case "엘리우스": // 엘리우스 -> 압바임 넘어가기
-                    //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Appaim_Enter) == false)
-                    //{
+                    if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Appaim_Enter))
+                    {
                         isGoToCutScene = true;
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.Appaim_Enter, true);
                         SceneChanger.SceneChangeToCutScene(CutSceneType.Appaim_Enter);
-                    //}
+                    }
                     break;
                 case "압바임": // 압바임 -> 구원자 넘어가기
-                    //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Enter) == false)
-                    //{
+                    if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.TheSavior_Enter))
+                    {
                         isGoToCutScene = true;
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Enter, true);
                         SceneChanger.SceneChangeToCutScene(CutSceneType.TheSavior_Enter);
-                    //}
+                    }
                     break;
                 case "리비엘": // 리비엘 -> 아라벨라 넘어가기
-                    //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Arabella_Enter) == false)
-                    //{
+                    if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Arabella_Enter))
+                    {
                         isGoToCutScene = true;
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.Arabella_Enter, true);
                         SceneChanger.SceneChangeToCutScene(CutSceneType.Arabella_Enter);
-                    //}
+                    }
                     break;
                 case "아라벨라": // 아라벨라 -> 욘 넘어가기
-                    //if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Yohrn_Enter) == false)
-                    //{
+                    if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Yohrn_Enter))
+                    {
                         isGoToCutScene = true;
+                        GameManager.OutGameData.SetCutSceneData(CutSceneType.Yohrn_Enter, true);
                         SceneChanger.SceneChangeToCutScene(CutSceneType.Yohrn_Enter);
-                    //}
+                    }
                     break;
             }
         }

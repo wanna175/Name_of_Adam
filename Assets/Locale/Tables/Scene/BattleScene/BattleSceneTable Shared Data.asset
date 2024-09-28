@@ -87,6 +87,30 @@ MonoBehaviour:
     m_Key: Yohrn corrupted
     m_Metadata:
       m_Items: []
+  - m_Id: 76794071113420800
+    m_Key: FirstManaInfoHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76809918225731584
+    m_Key: SingleAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810095137280000
+    m_Key: AreaAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810120638648320
+    m_Key: FrontalAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810163152113664
+    m_Key: SpecialAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810187797843968
+    m_Key: NoAttack
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

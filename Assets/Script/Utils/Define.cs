@@ -277,7 +277,7 @@ public enum StigmaEnum
     Bishops_Praise,
     Blessing,
     BloodBlessing,
-    Cleanse,
+    Purification,
     DeathStrike,
     Destiny,
     Dispel,
@@ -309,7 +309,7 @@ public enum StigmaEnum
     ArmorOfAeons,
     BrokenSword,
     BloodOath,
-    Gluttony,
+    Cleanse,
     BlindFaith,
 
     //Unique stigmata 
@@ -332,10 +332,10 @@ public enum StigmaEnum
     Glory = 116,
     ThornsOfOblivion = 117,
     GardenOfOblivion = 118,
-    StormSurge = 119,
-    StormSurge2 = 120,
-    StormSurge3 = 121,
-    DeepSea = 122,
+    AbyssalSteps = 119,
+    RepeatingSurge = 120,
+    FragmentsOfBirth = 121,
+    Soulbound = 122,
     Distrust = 123,
     Despair = 124,
     Hatred = 125,
@@ -385,7 +385,7 @@ public enum BuffEnum
     Stigmata_BishopsPraise,
     Stigmata_Blessing,
     Stigmata_BloodBlessing,
-    Stigmata_Cleanse,
+    Stigmata_Purification,
     Stigmata_Destiny,
     Stigmata_Dispel,
     Stigmata_Expand,
@@ -412,7 +412,7 @@ public enum BuffEnum
     Stigmata_ArmorOfAeons,
     Stigmata_BrokenSword,
     Stigmata_BloodOath,
-    Stigmata_Gluttony,
+    Stigmata_Cleanse,
     Stigmata_BlindFaith,
 
     //unique stigma buff (no image)
@@ -432,10 +432,10 @@ public enum BuffEnum
     Stigmata_Glory,
     Stigmata_ThornsOfOblivion,
     Stigmata_GardenOfOblivion,
-    Stigmata_StormSurge,
-    Stigmata_StormSurge2,
-    Stigmata_StormSurge3,
-    Stigmata_DeepSea,
+    Stigmata_AbyssalSteps,
+    Stigmata_RepeatingSurge,
+    Stigmata_FragmentsOfBirth,
+    Stigmata_Soulbound,
 
     Stigmata_Distrust,
     Stigmata_Despair,
@@ -471,6 +471,15 @@ public enum UnitMoveType
 {
     UnitMove,
     UnitMove_None
+}
+
+public enum UnitAttackType
+{
+    SingleAttack,
+    AreaAttack,
+    FrontalAttack,
+    SpecialAttack,
+    NoAttack
 }
 
 public enum EffectTileType
@@ -538,13 +547,14 @@ public struct TooltipData
 public enum CutSceneType
 {
     Main,
-    Tutorial,
 
     // 엘리트
+    Tubalcain_Enter,
     Elieus_Enter,
+    Libiel_Enter,
+
     RahelLea_Enter,
     Appaim_Enter,
-    Libiel_Enter,
     Arabella_Enter,
 
     // 보스

@@ -58,7 +58,7 @@ public class UnitAction_Arabella : UnitAction
     {
         attackUnit.AnimatorSetBool("isMove", true);
         BattleManager.Instance.SetTlieClickCoolDown(1.1f);
-        BattleManager.Instance.PlayAfterCoroutine(() => {
+        GameManager.Instance.PlayAfterCoroutine(() => {
             attackUnit.AnimatorSetBool("isMove", false);
 
             if (coord != attackUnit.Location)
@@ -82,7 +82,7 @@ public class UnitAction_Arabella : UnitAction
                 if (unit.Data.ID == "¸Á°¢ÀÇ_´ýºÒ" && unit.Team == attackUnit.Team)
                 {
                     unit.AnimatorSetBool("isAttack", true);
-                    BattleManager.Instance.PlayAfterCoroutine(() => {
+                    GameManager.Instance.PlayAfterCoroutine(() => {
                         unit.AnimatorSetBool("isAttack", false);
                     }, 1.5f);
                     hitUnits.AddRange(BattleManager.Field.GetUnitsInRange(unit.Location, UDLR, unit.Team == Team.Player ? Team.Enemy : Team.Player));
