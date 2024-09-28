@@ -154,8 +154,6 @@ public class TutorialManager : MonoBehaviour
     
     public void ShowTutorial()
     {
-        Debug.Log($"<color=white>Current Stage : {_step}</color>");
-
         TutorialType type = GetTutorialType(_step);
 
         switch (type)
@@ -170,8 +168,6 @@ public class TutorialManager : MonoBehaviour
                 else
                     EnableToolTip(_currentTooltip);
                 
-                Debug.Log($"<color=blue>Current Tooltip : {_currentTooltip.IndexToTooltip}</color>");
-                
                 break;
             
             case TutorialType.Popup:    // Popup 모드
@@ -179,8 +175,6 @@ public class TutorialManager : MonoBehaviour
                 int indexToUI = GetPopupIndex(_step);
                 UI.TutorialActive(indexToUI);
                 _isEnableUpdate = true;
-                
-                Debug.Log($"<color=red>Current Popup : {indexToUI}</color>");
                 
                 break;
         }
