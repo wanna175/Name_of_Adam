@@ -664,6 +664,7 @@ public class BattleManager : MonoBehaviour
         Data.IsGameDone = true;
         _phase.ChangePhase(new BattleOverPhase());
         GameManager.UI.ShowSingleScene<UI_BattleOver>().SetImage("lose");
+        BattleManager.BattleUI.UI_controlBar.UI_PlayerHP.StartDestoryEffect();
         GameManager.SaveManager.DeleteSaveData();
     }
 
