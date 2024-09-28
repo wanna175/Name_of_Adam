@@ -43,6 +43,13 @@ public class PreparePhase : Phase
                 BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
                 BattleManager.Data.BattleUnitList[0].ChangeFall(1, null, FallAnimMode.Off);
             }
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.Start_ThirdStage))
+            {
+                Stat stat = new();
+                stat.MaxHP = stat.CurrentHP = -15;
+                BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
+                BattleManager.Data.BattleUnitList[0].HP.Init(5, 5);
+            }
             
             TutorialManager.Instance.ShowNextTutorial();
         }

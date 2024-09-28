@@ -136,6 +136,13 @@ public class BattleManager : MonoBehaviour
 
         BattleUnit buffUnit = Data.BattleUnitList[UnityEngine.Random.Range(0, Data.BattleUnitList.Count)];
         Vector3 stageDivine = GameManager.Data.GameData.StageDivine;
+        
+        // 튜토리얼 반영
+        if (TutorialManager.Instance.IsTutorialOn())
+        {
+            buffUnit = Data.BattleUnitList[0];
+            GameManager.Data.GameData.StageDivine = new(1,0,0);
+        }
 
         if (stageDivine.x == 1 && stageDivine.y == 1 && stageDivine.z == 1)
         {
@@ -823,6 +830,11 @@ public class BattleManager : MonoBehaviour
                 return;
             
             lastUnit.SetBuff(new Buff_Divine());
+            
+            if (TutorialManager.Instance.IsTutorialOn() && TutorialManager.Instance.CheckStep(TutorialStep.Popup_Last))
+            {
+                TutorialManager.Instance.ShowTutorial();
+            }
         }
     }
 

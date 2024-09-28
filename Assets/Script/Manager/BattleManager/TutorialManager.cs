@@ -139,7 +139,7 @@ public class TutorialManager : MonoBehaviour
 
     public void ShowNextTutorial()
     {
-        if (CheckStep(TutorialStep.Pupup_Last))
+        if (CheckStep(TutorialStep.Popup_Last))
             return; // 마지막 UI 튜토리얼 관련 Step은 조건부 동작이기 때문에 예외 처리
 
         _step++;
@@ -155,6 +155,7 @@ public class TutorialManager : MonoBehaviour
     public void ShowTutorial()
     {
         TutorialType type = GetTutorialType(_step);
+        Debug.Log($"<color=red>[Tutorial] Show Tutorial: {_step} ({type})</color>");
 
         switch (type)
         {
@@ -298,7 +299,9 @@ public class TutorialManager : MonoBehaviour
             case TutorialStep.Tooltip_UnitAttack4:
                 BattleManager.Field.TileDict[new Vector2(4, 1)].SetActiveCollider(true);
                 break;
+            
             case TutorialStep.Popup_Defeat:
+            case TutorialStep.Popup_Last:
                 SetActiveAllTiles(true);
                 break;
         }

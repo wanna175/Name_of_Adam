@@ -533,7 +533,7 @@ public enum TutorialStep
     Start_ThirdStage,
     Popup_Divine,
     Popup_Defeat,
-    Pupup_Last,
+    Popup_Last,
     End_ThirdStage,
 }
 

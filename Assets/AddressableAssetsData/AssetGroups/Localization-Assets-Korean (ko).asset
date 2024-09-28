@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: eedafab76620d6344a71c2e36e0702fc
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: abc6ed26a5d30e04295b6167cef85449
+    m_Address: Stig_Kor
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: e59d82e1cf12e914686d0061a6f4ed71, type: 2}
   m_SchemaSet:

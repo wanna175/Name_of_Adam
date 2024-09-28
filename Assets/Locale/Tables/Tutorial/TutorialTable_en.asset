@@ -70,9 +70,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1485860405833728
-    m_Localized: Enemies with the <color=#FF9696>Divine buff<color=white> reduce
-      faith when attacking. <color=#FF9696>If only one enemy remains,<color=white>
-      it gains the Divine buff, and some enemies start with the buff from the beginning.
+    m_Localized: Enemy units with the <color=#FF9696>Divine</color> buff reduce faith
+      when they attack. Some enemies have the Divine buff from the start.
     m_Metadata:
       m_Items: []
   - m_Id: 1487027324121088
@@ -80,10 +79,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1487393277145088
-    m_Localized: 'If there are no ally units on the field, enemies will directly
-      attack the player.
-
-      If a player reaches 0 lives, player lose.'
+    m_Localized: If there are no allied units on the field, the enemy will directly
+      attack the player. The player has a total of three lives, and if the lives
+      reach zero, the player loses.
     m_Metadata:
       m_Items: []
   - m_Id: 4670637067112448
@@ -93,6 +91,15 @@ MonoBehaviour:
   - m_Id: 4670673779855360
     m_Localized: The nun possesses an <color=#FF9696>Invincibility</color> Stigmata
       that nullifies one attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86263409782091776
+    m_Localized: Divine (2)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86263524408225792
+    m_Localized: If only one enemy remains on the field, the enemy will automatically
+      earn the Divine buff.
     m_Metadata:
       m_Items: []
   references:

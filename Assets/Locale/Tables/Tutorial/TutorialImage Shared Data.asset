@@ -15,17 +15,13 @@ MonoBehaviour:
   m_TableCollectionName: TutorialImage
   m_TableCollectionNameGuidString: 6266471e11f4cbd4c9baa09ac7ed7ff8
   m_Entries:
-  - m_Id: 7670132736
-    m_Key: Stigmata
-    m_Metadata:
-      m_Items: []
   - m_Id: 2714237726720
-    m_Key: New Entry
+    m_Key: Stigmata
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items:
-    - rid: 7577034334222680071
+    - rid: 7577034334222680072
   m_KeyGenerator:
     rid: 7577034334222680070
   references:
@@ -35,12 +31,13 @@ MonoBehaviour:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
         m_CustomEpoch: 1727516499249
-    - rid: 7577034334222680071
+    - rid: 7577034334222680072
       type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Entries:
-        - m_KeyId: 7670132736
+        - m_KeyId: 2714237726720
           m_TableCodes:
+          - en
           - ko
         m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
