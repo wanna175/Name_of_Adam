@@ -71,7 +71,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1485860405833728
     m_Localized: Enemy units with the <color=#FF9696>Divine</color> buff reduce faith
-      when they attack. Some enemies have the Divine buff from the start.
+      when they attack. Some enemies have the Divine buff from the battle start.
     m_Metadata:
       m_Items: []
   - m_Id: 1487027324121088
