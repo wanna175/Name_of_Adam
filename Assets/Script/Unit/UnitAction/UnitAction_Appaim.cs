@@ -182,7 +182,7 @@ public class UnitAction_Appaim : UnitAction
         }
         else if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
         {
-            if (receiver != null)
+            if (receiver != null && _appaimState == 1)
                 receiver.ChangeFall(1, caster, FallAnimMode.On);
         }
 
