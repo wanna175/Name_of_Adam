@@ -143,6 +143,10 @@ MonoBehaviour:
     m_Key: DivineHallQuit
     m_Metadata:
       m_Items: []
+  - m_Id: 73098784771559424
+    m_Key: NewUnitHallSaveConfirm
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

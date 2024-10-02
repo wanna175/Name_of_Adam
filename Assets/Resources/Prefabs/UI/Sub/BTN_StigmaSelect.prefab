@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4042490167289937595}
   - component: {fileID: 2626586861109699119}
   m_Layer: 5
-  m_Name: Stigma_Name
+  m_Name: Stigmata_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 5486631718434718594}
   - component: {fileID: 3792984746770493185}
   m_Layer: 5
-  m_Name: Stigma_Image
+  m_Name: Stigmata_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -514,8 +514,9 @@ GameObject:
   - component: {fileID: 3305760747035302201}
   - component: {fileID: 5867063512813499315}
   - component: {fileID: 2699545509730243088}
+  - component: {fileID: 6124172775451448668}
   m_Layer: 5
-  m_Name: Stigma_Red_Frame
+  m_Name: Stigmata_Red_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,6 +580,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6124172775451448668
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448427753778008288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3bb71b4febe056f42a47bd44c780f9be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6605512514329541382
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,8 +611,9 @@ GameObject:
   - component: {fileID: 6391262523836955063}
   - component: {fileID: 9077932014193415642}
   - component: {fileID: 8210710189158768155}
+  - component: {fileID: 7752058857796322579}
   m_Layer: 5
-  m_Name: Stigma_Frame
+  m_Name: Stigmata_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,6 +677,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7752058857796322579
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6605512514329541382}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5d26a60f13b83654ba6bd3e180918789, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6935195338255484261
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +709,7 @@ GameObject:
   - component: {fileID: 1516669295446194080}
   - component: {fileID: 4059241955805655343}
   m_Layer: 5
-  m_Name: Stigma_Description
+  m_Name: Stigmata_Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +733,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 260, y: 260}
+  m_SizeDelta: {x: 280, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1516669295446194080
 CanvasRenderer:
@@ -803,8 +845,9 @@ GameObject:
   - component: {fileID: 7031872838523902816}
   - component: {fileID: 3508455663096504969}
   - component: {fileID: 1553152258245827125}
+  - component: {fileID: 20059937610421417}
   m_Layer: 5
-  m_Name: Stigma_Gold_Frame
+  m_Name: Stigmata_Gold_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -868,3 +911,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &20059937610421417
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9001325808220634018}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9759f2253e1bb04a801a6a7d85b09c5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

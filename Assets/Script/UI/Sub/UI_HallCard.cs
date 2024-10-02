@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,6 +6,9 @@ using TMPro;
 
 public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private TMP_Text _slotName;
+    [SerializeField] private TMP_Text _slotDescription;
+
     [SerializeField] private GameObject _infoButton;
     [SerializeField] private List<GameObject> _frameList;
     [SerializeField] private TMP_Text _nameText;
@@ -21,21 +22,42 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     [SerializeField] public int _hallSlotID;
 
+    [SerializeField] private Image _insignia;
+
+    [SerializeField] private Image _apostleInsignia;
+    [SerializeField] private Image _eliteInsignia;
+    [SerializeField] private Image _bossInsignia;
+
+    readonly Color _playerInsigniaColor = new(0.35f, 0.09f, 0.05f);
+    readonly Color _enemyInsigniaColor = new(0.54f, 0.5f, 0.34f);
+
+    private SlotRank _slotRank;
 
     private List<HallUnit> _hallUnitList;
     private List<DeckUnit> _mainDeck;
 
-    private List<Image> _stigmaImages;
-
-
     private DeckUnit _deckUnit;
-
-    private bool _isEnable;
-    private bool _isElite;
-
 
     public void Init()
     {
+        if (GameManager.OutGameData.IsUnlockedItem(SanctumUnlock.UnlockingTheDivineHall2))
+        {
+            _slotRank = (_hallSlotID == 0) ? SlotRank.Divine : SlotRank.Advanced;
+        }
+        else if (GameManager.OutGameData.IsUnlockedItem(SanctumUnlock.UnlockingTheDivineHall1))
+        {
+            _slotRank = (_hallSlotID == 0 || _hallSlotID == 1) ? SlotRank.Advanced : SlotRank.Normal;
+        }
+        else
+        {
+            _slotRank = (_hallSlotID == 0) ? SlotRank.Advanced : SlotRank.Normal;
+        }
+
+        _slotName.text = GameManager.Locale.GetLocalizedEventScene(_slotRank.ToString() + "_Name");
+        _slotDescription.text = GameManager.Locale.GetLocalizedEventScene(_slotRank.ToString() + "_Description");
+
+        _slotDescription.GetComponent<Animator>().speed = 3f;
+
         _hallUnitList = GameManager.OutGameData.FindHallUnitList();
         _mainDeck = GameManager.Data.GameDataMain.DeckUnits;
         _mainDeck.Sort((x, y) => x.HallUnitID.CompareTo(y.HallUnitID));
@@ -43,12 +65,9 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         _deckUnit = _mainDeck.Find(x => x.HallUnitID == _hallSlotID);
         if (_deckUnit == null)
         {
-            _isEnable = false;
             DisableUI();
             return;
         }
-
-        _isEnable = true;
 
         _frameList[0].SetActive(_deckUnit.Data.Rarity == Rarity.Normal);
         _frameList[1].SetActive(_deckUnit.Data.Rarity != Rarity.Normal);
@@ -75,15 +94,13 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
         }
 
-        if (GameManager.OutGameData.IsUnlockedItem(14) == false)
-        {
-            if (_hallSlotID == 1 || _hallSlotID == 2)
-            {
-                _isEnable = false;
-            }
-        }
-
         _highlight.SetActive(false);
+
+        _insignia.color = _playerInsigniaColor;
+
+        _apostleInsignia.gameObject.SetActive(_deckUnit.Data.Rarity == Rarity.Original);
+        _eliteInsignia.gameObject.SetActive(_deckUnit.Data.Rarity == Rarity.Elite);
+        _bossInsignia.gameObject.SetActive(_deckUnit.Data.Rarity == Rarity.Boss);
     }
 
     private void DisableUI()
@@ -91,6 +108,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         _unitImage.gameObject.SetActive(false);
         _nameText.SetText("");
         _infoButton.SetActive(false);
+        _insignia.gameObject.SetActive(false);
         foreach (var frame in _stigmataFrame)
         {
             frame.SetActive(false);
@@ -99,22 +117,8 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnClick()
     {
-        if ((_hallSlotID == 1 || _hallSlotID == 2) && !GameManager.OutGameData.IsUnlockedItem(14))
-        {
-            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
-            return;
-        }
-
         GameManager.Sound.Play("UI/UISFX/UISelectSFX");
-
-        if (GameManager.OutGameData.IsUnlockedItem(17))
-        {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallEliteDeckInit(_isElite, OnSelect);
-        }
-        else
-        {
-            GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").HallDeckInit(_isElite, OnSelect);
-        }
+        GameManager.UI.ShowPopup<UI_MyDeck>().HallDeckInit(_slotRank, OnSelect);
     }
 
     //������ ���� GameDataMain �� ����ǰ� �ϱ�
@@ -160,7 +164,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnInfoButton()
     {
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
-        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
+        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
 
         ui.SetUnit(_mainDeck[_hallSlotID]);
         ui.Init();
@@ -168,13 +172,14 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_isEnable)
-            _highlight.SetActive(true);
+        _highlight.SetActive(true);
+        _slotDescription.gameObject.SetActive(true);
+        _slotDescription.GetComponent<Animator>().SetBool("isFadeIn", true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (_isEnable)
-            _highlight.SetActive(false);
+        _highlight.SetActive(false);
+        _slotDescription.GetComponent<Animator>().SetBool("isFadeIn", false);
     }
 }

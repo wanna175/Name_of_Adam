@@ -62,7 +62,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _highlight.SetActive(true);
+        //_highlight.SetActive(true);
         transform.localScale = new Vector3 (1.15f, 1.15f, 1.15f);
         _hoverInfo = BattleManager.BattleUI.ShowInfo();
         _hoverInfo.SetInfo(_handUnit, Team.Player);
@@ -77,7 +77,7 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         if (IsSelected)
             return;
         transform.localScale = new Vector3(1f, 1f, 1f);
-        _highlight.SetActive(false);
+        //_highlight.SetActive(false);
 
         if (_handUnit.IsDiscount())
             BattleManager.BattleUI.SetFirstTurnNotify(false);

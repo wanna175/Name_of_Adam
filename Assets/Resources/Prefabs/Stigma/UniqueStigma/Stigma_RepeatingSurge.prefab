@@ -49,7 +49,7 @@ MonoBehaviour:
   _sprite_28: {fileID: 21300000, guid: 2a5c4fff44c677d45883e6e6a428a3f1, type: 3}
   _sprite_88: {fileID: 21300000, guid: 517d4a35da2729846a43c2da0df784f8, type: 3}
   _sprite_164: {fileID: 21300000, guid: 42e9bbdeddea09949844441443176ad3, type: 3}
-  _description: RepeatingSurge Info
+  _description: Repeating Surge Info
   _activeTiming: 2
   _tier: 3
   _isLock: 0

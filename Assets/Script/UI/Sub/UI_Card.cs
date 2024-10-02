@@ -23,10 +23,19 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     [SerializeField] private List<Image> _stigmataImages;
 
+    [SerializeField] private Image _insignia;
+
+    [SerializeField] private Image _apostleInsignia;
+    [SerializeField] private Image _eliteInsignia;
+    [SerializeField] private Image _bossInsignia;
+
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
 
     private Action _disableClickAction;
+
+    readonly Color _playerInsigniaColor = new(0.35f, 0.09f, 0.05f);
+    readonly Color _enemyInsigniaColor = new(0.54f, 0.5f, 0.34f);
 
     private void Start()
     {
@@ -41,7 +50,13 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
 
-        if(unit.Data.Rarity == Rarity.Normal)
+        _insignia.color = _playerInsigniaColor;
+
+        _apostleInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Original);
+        _eliteInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Elite);
+        _bossInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Boss);
+
+        if (unit.Data.Rarity == Rarity.Normal)
         {
             _frameImage.sprite = _normalFrame;
         }

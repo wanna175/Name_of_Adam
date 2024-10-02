@@ -48,7 +48,15 @@ public class BattleCutSceneManager : MonoBehaviour
         cutSceneGO.SetActive(true);
         IsCutScenePlaying = true;
 
-        GameManager.Sound.Play($"CutScene/{cutSceneToDisplay}", Sounds.BGM);
+        GameManager.Sound.Clear();
+
+        if (cutSceneType == CutSceneType.Phanuel_Dead ||
+            cutSceneType == CutSceneType.TheSavior_Dead ||
+            cutSceneType == CutSceneType.Yohrn_Dead)
+            GameManager.Sound.Play("CutScene/Boss_Dead", Sounds.BGM);
+        else
+            GameManager.Sound.Play($"CutScene/{cutSceneToDisplay}", Sounds.BGM);
+
         video.clip = videoClip;
         video.loopPointReached += EndReached;
         video.Play();

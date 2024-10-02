@@ -9,7 +9,7 @@ public class Buff_Grudge : Buff
 
         _name = "Grudge";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Raise_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_AttackBoost_Sprite");
 
         _description = "Grudge Info";
 

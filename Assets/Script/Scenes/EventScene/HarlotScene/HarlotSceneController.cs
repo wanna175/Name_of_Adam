@@ -47,7 +47,6 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     private bool _isStigmataPreSet = false;
 
     private bool _isStigmataFull = false;
-    private bool _isNPCFall = false;
     private bool _isDarkEssenceUsed = false;
 
     private int _revertUnitDarkEssence;
@@ -61,12 +60,52 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
     private void Init()
     {
-
         Debug.Log($"횟수: {GameManager.OutGameData.Data.SacrificeCorruptValue}");
 
-        int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 12.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 20f), 4);
+        if (questLevel == 4 && GameManager.OutGameData.Data.SaviorClear && !GameManager.OutGameData.Data.IsBaptismCorrupt)
+        {
+            GameManager.OutGameData.Data.IsBaptismCorrupt = true;
+            /*
+            DeckUnit unit = new()
+            {
+                Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자"),
+                IsMainDeck = false,
+                PrivateKey = "Origin_Betrayer_Of_Faith",
+                HallUnitID = -1
+            };
 
-        if (!GameManager.Data.GameData.IsVisitStigmata && questLevel != 4)
+            GameManager.OutGameData.AddHallUnit(unit);
+            GameManager.Data.AddDeckUnit(unit);
+            GameManager.Data.GameData.FallenUnits.Add(unit);
+            */
+        }
+
+        if (GameManager.OutGameData.Data.IsBaptismCorrupt)
+        {
+            _normalBackground.SetActive(false);
+            _corruptBackground.SetActive(true);
+            _revertUnitDarkEssence = 2;
+            _stigmataBestowalDarkEssence = 8;
+            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit_Corrupt"));
+            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
+            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
+        }
+        else
+        {
+            _normalBackground.SetActive(true);
+            _corruptBackground.SetActive(false);
+            _revertUnitDarkEssence = 1;
+            _stigmataBestowalDarkEssence = 12;
+            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit"));
+            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
+            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
+        }
+
+        //_apostleCreationDarkEssence = (_isNPCFall) ? 10 : 15;
+        _apostleCreationDarkEssence = 15;
+
+        if (!GameManager.OutGameData.Data.IsVisitSacrifice)
         {
             _scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
@@ -77,13 +116,6 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
             _scripts = GameManager.Data.ScriptData[$"탕녀_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].script));
             _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
-
-            if (questLevel == 4)
-            {
-                _normalBackground.SetActive(false);
-                _corruptBackground.SetActive(true);
-                _isNPCFall = true;
-            }
         }
 
         for (int i = 0; i < 3; i++)
@@ -97,25 +129,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         int current_DarkEssense = GameManager.Data.GameData.DarkEssence;
 
-        _revertUnitDarkEssence = (_isNPCFall) ? 2 : 1;
-        //_apostleCreationDarkEssence = (_isNPCFall) ? 10 : 15;
-        _apostleCreationDarkEssence = 15;
-        _stigmataBestowalDarkEssence = (_isNPCFall) ? 8 : 12;
-
-        if (_isNPCFall)
-        {
-            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit_Corrupt"));
-            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
-            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
-        }
-        else
-        {
-            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit"));
-            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
-            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
-        }
-
-        if (!GameManager.OutGameData.IsUnlockedItem(5))
+        if (!GameManager.OutGameData.IsUnlockedItem(SanctumUnlock.ApostleCreation))
         {
             _apostleCreationButton.SetActive(false);
         }
@@ -137,7 +151,7 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
     //사도 연성 버튼 클릭
     public void OnApostleCreationButtonClick()
     {
-        string corruption = (_isNPCFall) ? "Corrupt" : "Normal";
+        string corruption = (GameManager.OutGameData.Data.IsBaptismCorrupt) ? "Corrupt" : "Normal";
 
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.ShowPopup<UI_SystemSelect>().Init($"ApostleCreation_{corruption}", YesApostleCreationButtonClick);
@@ -366,10 +380,9 @@ public class HarlotSceneController : MonoBehaviour, StigmaInterface
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (!GameManager.Data.GameData.IsVisitStigmata)
+        if (!GameManager.OutGameData.Data.IsVisitSacrifice)
         {
             GameManager.OutGameData.Data.IsVisitSacrifice = true;
-            GameManager.Data.GameData.IsVisitSacrifice = true;
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else 

@@ -18,6 +18,7 @@ public class UI_CurrentHallUnit: UI_Popup
     public void Save()
     {
         GameManager.OutGameData.AddHallUnit(_currentUnit);
+        GameManager.Data.GameData.FallenUnits.Clear();
         SceneChanger.SceneChange("MainScene");
     }
 

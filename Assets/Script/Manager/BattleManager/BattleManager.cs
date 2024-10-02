@@ -305,7 +305,7 @@ public class BattleManager : MonoBehaviour
         List<BattleUnit> unitList = new();
         attackCoords.Add(coord);
         
-        if (nowUnit.DeckUnit.CheckStigma(StigmaEnum.AdditionalPunishment))
+        if (nowUnit.DeckUnit.CheckStigma(StigmaEnum.DamnationsWeight))
         {
             BattleUnit selectUnit = _field.GetUnit(coord);
             if (selectUnit == null || selectUnit.Team == Team.Player)
@@ -486,7 +486,7 @@ public class BattleManager : MonoBehaviour
                 {
                     case "바누엘":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_PHANUEL);
-                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Phanuel_Dead))
+                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Phanuel_Dead) && GameManager.Data.GameData.CurrentAct != 99)
                         {
                             GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
@@ -496,7 +496,7 @@ public class BattleManager : MonoBehaviour
                         break;
                     case "구원자":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_THESAVIOR);
-                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.TheSavior_Dead))
+                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.TheSavior_Dead) && GameManager.Data.GameData.CurrentAct != 99)
                         {
                             GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Dead, true);
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
@@ -505,7 +505,7 @@ public class BattleManager : MonoBehaviour
                         break;
                     case "욘":
                         GameManager.Steam.IncreaseAchievement(SteamAchievementType.KILL_YOHRN);
-                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Yohrn_Dead))
+                        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Yohrn_Dead) && GameManager.Data.GameData.CurrentAct != 99)
                         {
                             GameManager.OutGameData.SetCutSceneData(CutSceneType.Yohrn_Dead, true);
                             BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Yohrn_Dead);

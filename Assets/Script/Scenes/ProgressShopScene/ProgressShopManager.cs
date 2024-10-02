@@ -17,9 +17,9 @@ public class ProgressShopManager : MonoBehaviour
     [SerializeField] private TMP_Text ProgressCoin;
     private int selectedID;
 
-    public List<ShopNode> ShopNodes;
-    public GameObject ItemInfo;
-    
+    [SerializeField] public List<ShopNode> ShopNodes;
+    [SerializeField] public GameObject ItemInfo;
+    [SerializeField] public GameObject ItemInfoSoul;
 
     public void Start()
     {
@@ -70,23 +70,26 @@ public class ProgressShopManager : MonoBehaviour
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
+                ItemInfoSoul.SetActive(false);
             }
             else if (!GameManager.OutGameData.GetBuyable(id) && !GameManager.OutGameData.IsUnlockedItem(id))
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
-
+                ItemInfoSoul.SetActive(true);
             }
             else if (GameManager.OutGameData.Data.ProgressCoin < GameManager.OutGameData.GetProgressItem(id).Cost)
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
                 disabled_info_cost.color = Color.gray;
+                ItemInfoSoul.SetActive(true);
             }
             else
             {
                 ChangeBtnImage(true);
                 active_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
+                ItemInfoSoul.SetActive(true);
             }
         }
     }
@@ -103,6 +106,7 @@ public class ProgressShopManager : MonoBehaviour
         GameManager.OutGameData.BuyProgressItem(selectedID);
         ProgressCoin.text = GameManager.OutGameData.Data.ProgressCoin.ToString();
         ChangeBtnImage(false);
+        ItemInfoSoul.SetActive(false);
         disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
         SetNodeImage();
 

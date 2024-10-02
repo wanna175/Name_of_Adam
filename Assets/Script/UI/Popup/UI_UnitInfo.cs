@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using System;
 using UnityEngine.Localization.Components;
 using UnityEngine.Localization;
@@ -172,7 +170,7 @@ public class UI_UnitInfo : UI_Popup
             UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
             if (i < upgrades.Count)
             {
-                ui.Set(upgrades[i].UpgradeImage88, "<size=150%>" + upgrades[i].UpgradeDescription + "</size>");
+                ui.Set(upgrades[i].UpgradeImage88, GameManager.Data.UpgradeController.GetUpgradeFullDescription(upgrades[i]));
                 ui.EnableUI(true);
             }
             else
@@ -330,48 +328,20 @@ public class UI_UnitInfo : UI_Popup
         else if (_unit.Data.UnitAttackType == UnitAttackType.SpecialAttack)
             UIMouseEnter("SpecialAttackHover");
         else if (_unit.Data.UnitAttackType == UnitAttackType.NoAttack)
-            UIMouseEnter("NoAttack");
-    }
-
-    public void GemHover()
-    {
-        UIMouseEnter("Gems that represent faith");
-    }
-
-    public void UIHpHover()
-    {
-        UIMouseEnter("Hphover");
-    }
-
-    public void UIAttackPowerHover()
-    {
-        UIMouseEnter("Attackpowerhover");
-    }
-
-    public void UICostHover()
-    {
-        UIMouseEnter("Costhover");
-    }
-
-    public void SpeedHover()
-    {
-        UIMouseEnter("Speedhover");
-    }
-
-    public void DarkEssenceHover()
-    {
-        UIMouseEnter("DarkEssencehover");
+            UIMouseEnter("NoAttackHover");
     }
 
     private bool _isHover = false;
     private bool _isHoverMessegeOn = false;
+    private string _hoverText;
 
     public void UIMouseEnter(string key)
     {
         _isHover = true;
+        _hoverText = key;
         GameManager.Instance.PlayAfterCoroutine(() =>
         {
-            if (_isHover && !_isHoverMessegeOn)
+            if (_isHover && !_isHoverMessegeOn && key == _hoverText)
             {
                 _isHoverMessegeOn = true;
                 GameManager.UI.ShowHover<UI_TextHover>().SetText(

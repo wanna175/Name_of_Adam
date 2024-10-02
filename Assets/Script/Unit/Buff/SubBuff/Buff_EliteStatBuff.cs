@@ -33,7 +33,7 @@ public class Buff_EliteStatBuff : Buff
         else if (_bossNum == 3)
         {
             _name = "Blessing Of Yorhn";
-            _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_BlessingOfYorhn_Sprite");
+            _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_BlessingOfYohrn_Sprite");
         }
     }
 

@@ -169,6 +169,13 @@ public enum Rarity
     Boss
 }
 
+public enum SlotRank
+{
+    Normal,
+    Advanced,
+    Divine
+}
+
 [SerializeField]
 public enum CutSceneMoveType
 {
@@ -266,44 +273,45 @@ public enum PlayerSkillTargetType
     NotBattleOnly
 }
 
+//세이브가 순서에 영향 받음, 순서 바꾸지 말기
 public enum StigmaEnum
 {
     //normal stigmata
     Absorption,
-    AdditionalPunishment,
+    DamnationsWeight,
     Assasination,
     Benevolence,
-    Berserker,
-    Bishops_Praise,
+    Berserk,
+    BishopsPraise,
     Blessing,
-    BloodBlessing,
+    CrimsonBlessing,
     Purification,
     DeathStrike,
     Destiny,
     Dispel,
-    Expand,
+    Expansion,
     ForbiddenPact,
     Hook,
     Immortality,
     Invincibility,
-    Killing_Spree,
+    KillingSpree,
     Martyrdom,
     Mercy,
-    PrayInAid,
-    Raise,
+    Intercession,
+    Exaltation,
     Regeneration,
     Repetance,
     Sadism,
-    ShadowStep,
-    Sin,
+    StepsOfShadow,
+    DeadlySin,
     Tailwind,
-    Teleport,
+    PassageOfShadows,
     ShadowCloak,
     Rearmament,
     Solitude,
     Grudge,
     HandOfGrace,
-    Aid,
+    VeiledSupport,
     DeathsThreshold,
     Fortification,
     ArmorOfAeons,
@@ -318,7 +326,7 @@ public enum StigmaEnum
     Charge = 102,
     Collapse = 103,
     Dusk = 104,
-    Funeral = 105,
+    Requiem = 105,
     Karma = 106,
     LegacyOfBabel = 107,
     Advent = 108,
@@ -339,6 +347,7 @@ public enum StigmaEnum
     Distrust = 123,
     Despair = 124,
     Hatred = 125,
+    Atonement = 126,
 }
 
 public enum BuffEnum
@@ -348,7 +357,7 @@ public enum BuffEnum
 
     Appaim,
     Divine,
-    Berserker,
+    Berserk,
     Curse,
     DeathStrike,
     Edified,
@@ -358,7 +367,7 @@ public enum BuffEnum
     Lea,
     MarkOfBeast,
     Rahel,
-    Sin,
+    Sin,// 안 쓰는 듯?
     Stun,
     SpeedIncrease,
     Dusk,
@@ -380,33 +389,33 @@ public enum BuffEnum
 
     //stigmata buff (no image)
     Stigmata_Absorption,
-    Stigmata_AdditionalPunishment,
+    Stigmata_DamnationsWeight,
     Stigmata_Assasination,
     Stigmata_BishopsPraise,
     Stigmata_Blessing,
-    Stigmata_BloodBlessing,
+    Stigmata_CrimsonBlessing,
     Stigmata_Purification,
     Stigmata_Destiny,
     Stigmata_Dispel,
-    Stigmata_Expand,
+    Stigmata_Expansion,
     Stigmata_ForbiddenPact,
     Stigmata_Hook,
     Stigmata_KillingSpree,
     Stigmata_Martyrdom,
     Stigmata_Mercy,
     Stigmata_Misdeed,
-    Stigmata_PrayInAid,
+    Stigmata_Intercession,
     Stigmata_Regeneration,
     Stigmata_Repetance,
     Stigmata_Sadism,
-    Stigmata_ShadowStep,
+    Stigmata_StepsOfShadow,
     Stigmata_Rearmament,
     Stigmata_Solitude,
     Stigmata_Grudge,
-    Stigmata_Aid,
+    Stigmata_VeiledSupport,
     Stigmata_ShadowCloak,
     Stigmata_HandOfGrace,
-    Stigmata_Teleport,
+    Stigmata_PassageOfShadows,
     Stigmata_DeathsThreshold,
     Stigmata_Fortification,
     Stigmata_ArmorOfAeons,
@@ -436,6 +445,7 @@ public enum BuffEnum
     Stigmata_RepeatingSurge,
     Stigmata_FragmentsOfBirth,
     Stigmata_Soulbound,
+    Stigmata_Atonement,
 
     Stigmata_Distrust,
     Stigmata_Despair,
@@ -702,4 +712,38 @@ public enum SortMode
     Speed,
     Cost,
     Hall,       // 전당 유닛 + 나머지 유닛 (성흔 보유 수에 따라 정렬)
+}
+
+public enum SanctumUnlock
+{
+    Destiny = 1,
+    FaithRecovery = 2,
+    StartingDarkEssence1 = 3,
+    ApostleCreation = 5,
+    StartingDarkEssence2 = 6,
+    KillingSpree = 7,
+    EliteClearReward = 8,
+    MaximumUpgrade = 12,
+    StigmataTransfer = 11,
+    StartingMana1 = 15,
+    PassageOfShadows = 13,
+    UnlockingTheDivineHall1 = 14,
+    StartingMana2 = 18,
+    ForbiddenPact = 16,
+    UnlockingTheDivineHall2 = 17,
+    Sin = 20,
+    UnlockReselection1 = 21,
+    UnlockReselection2 = 22,
+    UnlockTheDarkProphet1 = 51,
+    UnlockTheDarkProphet2 = 52,
+    UnlockTheDarkProphet3 = 53,
+    UnlockTheDarkProphet4 = 54,
+    UnlockTheSaintessOfSins1 = 61,
+    UnlockTheSaintessOfSins2 = 62,
+    UnlockTheSaintessOfSins3 = 63,
+    UnlockTheSaintessOfSins4 = 64,
+    UnlockTheHeirOfVice = 71,
+    UnlockTheHeirOfVice2 = 72,
+    UnlockTheHeirOfVice3 = 73,
+    UnlockTheHeirOfVice4 = 74
 }

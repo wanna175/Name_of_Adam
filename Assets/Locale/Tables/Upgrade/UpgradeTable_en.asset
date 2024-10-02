@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4769091584
-    m_Localized: Attack (ATK)
+    m_Localized: Attack Power (ATK)
     m_Metadata:
       m_Items: []
   - m_Id: 54329837678592
@@ -48,6 +48,54 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 19263811629150208
     m_Localized: Cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350389920419840
+    m_Localized: Gem Of Fury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350393934368768
+    m_Localized: Gem Of Rage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350396627111936
+    m_Localized: Gem Of Wrath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350399600873472
+    m_Localized: Gem Of Mercy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350401442172928
+    m_Localized: Gem Of Compassion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350403317026816
+    m_Localized: Gem Of Forgiveness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350405288349696
+    m_Localized: Gem Of Moment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350407133843456
+    m_Localized: Gem Of Ephemera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350408878673920
+    m_Localized: Gem Of Transience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350410594144256
+    m_Localized: Gem Of Illusion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350412594827264
+    m_Localized: Gem Of Fantasia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350415736360960
+    m_Localized: Gem Of Elysium
     m_Metadata:
       m_Items: []
   references:

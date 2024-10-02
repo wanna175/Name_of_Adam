@@ -4,73 +4,37 @@ using UnityEngine.UI;
 
 public class UI_TurnNotify : UI_Scene
 {
-    const float fadeTime = 0.75f;
-    const float displayTime = 1.0f;
-
-    [SerializeField] private Sprite _preparationPhase;
-    [SerializeField] private Sprite _battlePhase;
+    [SerializeField] private GameObject _preparationPhase;
+    [SerializeField] private GameObject _battlePhase;
 
     private bool _displayFlag;
 
-    [SerializeField] private Image _image;
-    [SerializeField] private FadeController _fadeController;
-    [SerializeField] private CanvasGroup _canvasGroup;
-
-    private void Awake()
-    {
-        Hide();
-    }
-
-    public void SetPlayerTurn()
+    public void SetPreparationPhaseDisplay()
     {
         _displayFlag = true;
 
-        FadeIn();
-        Invoke(nameof(FadeOut), fadeTime + displayTime);
+        _battlePhase.SetActive(false);
+        _preparationPhase.SetActive(true);
 
-        _image.sprite = _preparationPhase;
-    }
-
-    public void SetUnitTurn()
-    {
-        if (_displayFlag) 
+        GameManager.Instance.PlayAfterCoroutine(() =>
         {
-            Invoke(nameof(SetUnitTurn), fadeTime + displayTime + fadeTime);
+            _displayFlag = false;
+        }, 2f);
+    }
 
-            return;
+    public void SetBattlePhaseDisplay()
+    {
+        if (_displayFlag)
+        {
+            GameManager.Instance.PlayAfterCoroutine(() =>
+            {
+                SetBattlePhaseDisplay();
+            }, 0.1f);
         }
-
-        FadeIn();
-        Invoke(nameof(FadeOut), fadeTime + displayTime);
-
-        _image.sprite = _battlePhase;
-    }
-
-    public void FadeIn()
-    {
-        if (!gameObject.activeSelf)
-            return;
-
-        _fadeController.StartFadeIn();
-    }
-
-    public void FadeOut()
-    {
-        if (!gameObject.activeSelf)
-            return;
-
-        _fadeController.StartFadeOut();
-        Invoke(nameof(Hide), fadeTime);
-    }
-
-    private void Hide()
-    {
-        _canvasGroup.alpha = 0;
-        _displayFlag = false;
-    }
-
-    public void Off()
-    {
-        gameObject.SetActive(false);
+        else
+        {
+            _preparationPhase.SetActive(false);
+            _battlePhase.SetActive(true);
+        }
     }
 }

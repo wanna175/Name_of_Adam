@@ -30,7 +30,7 @@ public class UI_ControlBar : UI_Scene
         _canvasGroups.AddRange(GetComponentsInChildren<CanvasGroup>());
 
         FirstTurnNotifyAnimator.speed = 2;
-        FirstTurnNotifyAnimator.SetBool("isFadeOut", true);
+        FirstTurnNotifyAnimator.SetBool("isFadeIn", false);
     }
 
     public void EndPlayerHit()

@@ -36,6 +36,7 @@ public class UnitAction_Libiel : UnitAction
             _libielCount = _libielCount % 3 + 1;
             _libielBuff.SetValue(_libielCount);
             caster.SetAttackRange(_libielCount == 3 ? _rageRange : _normalRange);
+            caster.ResetHPBarPosition();
         }
         else if ((activeTiming & ActiveTiming.BEFORE_ATTACKED) == ActiveTiming.BEFORE_ATTACKED)
         {
@@ -53,6 +54,7 @@ public class UnitAction_Libiel : UnitAction
             {
                 receiver.ChangeFall(1, caster, FallAnimMode.On);
             }
+            caster.ResetHPBarPosition();
         }
 
         return false;
@@ -63,20 +65,23 @@ public class UnitAction_Libiel : UnitAction
         if (hits.Count != 1)
             return false;
 
+        int direction = attackUnit.Location.x - hits[0].Location.x > 0 ? -1 : 1;
+        if (attackUnit.Location.x - hits[0].Location.x == 0)
+            direction = attackUnit.GetFlipX() ? 1 : -1;
+
         foreach (Vector2 vec in attackUnit.GetAttackRange())
         {
-            if ((coord.x - attackUnit.Location.x > 0) == (vec.x > 0))
-            {
-                BattleUnit unit = BattleManager.Field.GetUnit(vec + attackUnit.Location);
+            Vector2 targetLocation = vec + attackUnit.Location;
 
-                if (unit != null && unit.Team != attackUnit.Team)
+            if (BattleManager.Field.IsInRange(targetLocation))
+            {
+                BattleUnit unit = BattleManager.Field.GetUnit(targetLocation);
+
+                if (unit != null && unit.Team != attackUnit.Team &&
+                    ((vec.x * direction > 0) || (attackUnit.GetFlipX() == (direction == 1) && vec.x * direction == 0)))
                 {
                     hits.Add(unit);
                 }
-            }
-            else if (vec.x * (coord.x - attackUnit.Location.x) == 0)
-            { 
-            
             }
         }
 
@@ -89,9 +94,14 @@ public class UnitAction_Libiel : UnitAction
         List<Vector2> splashRangeList = new();
         Vector2 target = BattleManager.Field.GetCoordByTile(targetTile);
 
+        int direction = caster.x - target.x > 0 ? -1 : 1;
+        if (caster.x - target.x == 0)
+            direction = unit.GetFlipX() ? 1 : -1;
+
         foreach (Vector2 vec in unit.GetAttackRange())
         {
-            if ((target.x - unit.Location.x > 0) == (vec.x > 0) && BattleManager.Field.IsInRange(vec + caster))
+            if (((vec.x * direction > 0) || (unit.GetFlipX() == (direction == 1) && 
+                (vec.x * direction == 0))) && BattleManager.Field.IsInRange(vec + caster))
             {
                 splashRangeList.Add(vec + caster);
             }

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: "02.\uC131\uB140"
   _name: Saintess Of Sins
-  _sprite: {fileID: 21300000, guid: fd284ad3e5407db4e894ce1133906ae7, type: 3}
+  _sprite: {fileID: 1898737972, guid: 215be6ce4e97e1d458e0db2fc31551d9, type: 3}
   _playerSkillList:
   - {fileID: 4925856778809104441, guid: b3fc180a5fda0074e9e14deac46a69cc, type: 3}
   - {fileID: 3233695130252107697, guid: d7c1eb92d8fbd87418d73002f3cfb65f, type: 3}
   - {fileID: 5396263994288018817, guid: d1c2e3217eab69d42b0dfeb8f6ac55d6, type: 3}
+  _incarnationAnimatorController: {fileID: 9100000, guid: 14ee17dbe5c90234e8d651f1e3d7fcf5, type: 2}

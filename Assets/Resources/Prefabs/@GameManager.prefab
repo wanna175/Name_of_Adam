@@ -260,6 +260,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a5dc79b15000546b423d56e24bd485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data:
+    Version: 
+    ProgressCoin: 0
+    ProgressSaves: []
+    HallUnit: []
+    TutorialClear: 0
+    PhanuelClear: 0
+    SaviorClear: 0
+    YohrnClear: 0
+    IsVisitBaptism: 0
+    IsVisitStigmata: 0
+    IsVisitSacrifice: 0
+    BaptismCorruptValue: 0
+    StigmataCorruptValue: 0
+    SacrificeCorruptValue: 0
+    IsBaptismCorrupt: 0
+    IsStigmataCorrupt: 0
+    IsSacrificeCorrupt: 0
+    CutSceneViewData: []
+    DialogViewData: []
+    IsOnTooltipForDivineHallInBattle: 0
+    IsOnTooltipForDivineHall: 0
+    IsOnTooltipForSanctumInBattle: 0
+    IsOnTooltipForSanctum: 0
+    IsOnMainTooltipForYohrn: 0
+    IsOnMainTooltipForSavior: 0
+    IsOnMainTooltipForPhanuel: 0
+    BattleSpeed: 1
+    Language: 0
+    Resolution: 0
+    IsWindowed: 0
+    MasterSoundPower: 0
+    BGMSoundPower: 0
+    SESoundPower: 0
+    IsReplayCutScene: 0
+    IsReplayDialog: 0
+    HorusClear: 0
+    NpcQuest:
+      UpgradeQuest: 0
+      StigmaQuest: 0
+      DarkshopQuest: 0
 --- !u!1 &3488865272558495583
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Map:
     MapObject: {fileID: 0}
+    MapDataContainer: {fileID: 0}
     StageList: []
     CurrentTileID: 0
     ClearTileID: 

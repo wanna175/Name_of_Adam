@@ -130,6 +130,14 @@ MonoBehaviour:
     m_Localized: Blessing Of Yorhn
     m_Metadata:
       m_Items: []
+  - m_Id: 86339396765372416
+    m_Localized: Glory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86359543811035136
+    m_Localized: Awakening
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 48146583552
-    m_Localized: Reduces the enemy's faith by 1
+    m_Localized: Reduces the targeted enemy's faith by 1
     m_Metadata:
       m_Items: []
   - m_Id: 152433758208
@@ -27,20 +27,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 185921081344
-    m_Localized: Deals 20 damage in a massive cross range near the designated enemy.
-      It also reduces the enemy's faith by 1.
+    m_Localized: Deals 20 damage in a massive cross range near the designated enemy,
+      and reduces the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 333950652416
     m_Localized: 'Moves an ally unit 1 tile and gives <b>Speed Boost</b>.
 
       (<b>Speed
-      Boost</b>: Speed incresase by 100.)'
+      Boost</b>: Speed increase by 100.)'
     m_Metadata:
       m_Items: []
   - m_Id: 435905794048
-    m_Localized: 'Heals the ally unit''s health by 20 and gives <b>Malevolence</b>
-      for 1 times.
+    m_Localized: 'Heals one ally unit''s health by 20 and gives <b>Malevolence</b>
+      for 1 time.
 
       (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
       faith by 1)'
@@ -48,7 +48,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 472060694528
     m_Localized: 'Heals the ally unit''s health by 15 and gives <b>Malevolence</b>
-      for 1 times.
+      for 1 time.
 
       (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
       faith by 1)'
@@ -61,18 +61,18 @@ MonoBehaviour:
   - m_Id: 694547550208
     m_Localized: 'Inflicts <b>Curse</b> to an enemy unit.
 
-      (<b>Curse</b>: When
-      this unit''s turn end, decrease faith by 1.)'
+      (<b>Curse</b>:
+      When the cursed unit''s turn end, its faith decrease by 1.)'
     m_Metadata:
       m_Items: []
   - m_Id: 717616222208
     m_Localized: 'Inflicts an enemy unit <b>Curse and <b>Attack Boost</b> for 3 times
 
       (<b>Curse</b>:
-      When this unit''s turn end, decrease faith by 1.
+      When the cursed unit''s turn end, its faith decrease by 1.
 
-      <b>Attack Boost</b>:
-      Attack power increase by 50%.)'
+      <b>Attack
+      Boost</b>: Attack power increase by 50%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 823568535552
@@ -80,23 +80,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 890564153344
-    m_Localized: 'Gives <b>Malevolence</b> for 4 times and reduces health by 10 to
-      an ally unit.
+    m_Localized: 'Bestows <b>Malevolence</b> for 4 times to an allied unit, but reduces
+      its health by 10.
 
-      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
-      faith by 1)'
+      (<b>Malevolence</b>: Upon attacking, reduces the
+      enemy''s faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 953277386752
-    m_Localized: Summons the Apostle onto the field.
+    m_Localized: Summons the 'Apostle of Vice' onto the field.
     m_Metadata:
       m_Items: []
   - m_Id: 34640079277412352
-    m_Localized: 'Gives <b>Malevolence</b> for 6 times and reduces health by 10 to
-      an ally unit.
+    m_Localized: 'Gives <b>Malevolence</b> for 6 times to an allied unit, but reduces
+      its health by 10.
 
-      (<b>Malevolence</b>: Upon attacking, reduces the enemy''s
-      faith by 1)'
+      (<b>Malevolence</b>: Upon attacking, reduces the
+      enemy''s faith by 1)'
     m_Metadata:
       m_Items: []
   references:

@@ -2,8 +2,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.TextCore;
 
 public class ActSelectSceneController : MonoBehaviour
 {
@@ -28,6 +26,7 @@ public class ActSelectSceneController : MonoBehaviour
     private void Start()
     {
         GameManager.Sound.Clear();
+        GameManager.Sound.SceneBGMPlay("DifficultySelectScene");
         _isReplayCutScene.isOn = GameManager.OutGameData.Data.IsReplayCutScene;
         _isReplayDialog.isOn = GameManager.OutGameData.Data.IsReplayDialog;
         ActLockCheck();
@@ -41,6 +40,8 @@ public class ActSelectSceneController : MonoBehaviour
 
     public void ActInfoSelect(int act)
     {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
         _actSelector.SetActive(false);
         _actInfo.SetActive(true);
 
@@ -89,11 +90,13 @@ public class ActSelectSceneController : MonoBehaviour
     public void CutSceneToggle(bool isOn)
     {
         GameManager.OutGameData.Data.IsReplayCutScene = isOn;
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
     }
 
     public void ConversationToggle(bool isOn)
     {
         GameManager.OutGameData.Data.IsReplayDialog = isOn;
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
     }
 
     public void Quit()

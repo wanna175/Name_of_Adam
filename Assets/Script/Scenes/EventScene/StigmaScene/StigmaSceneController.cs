@@ -35,7 +35,6 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
     private bool _isStigmataPreSet = false;
 
     private bool _isStigmataFull = false;
-    private bool _isNPCFall = false;
 
     void Start()
     {
@@ -78,9 +77,39 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
 
         Debug.Log($"횟수: {GameManager.OutGameData.Data.StigmataCorruptValue}");
 
-        int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.StigmataCorruptValue / 7.5f), 4);
+        int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.StigmataCorruptValue / 10f), 4);
+        if (questLevel == 4 && !GameManager.OutGameData.Data.IsStigmataCorrupt && GameManager.OutGameData.Data.YohrnClear)
+        {
+            GameManager.OutGameData.Data.IsStigmataCorrupt = true;
+            /*
+            DeckUnit unit = new()
+            {
+                Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자"),
+                IsMainDeck = false,
+                PrivateKey = "Origin_Betrayer_Of_Faith",
+                HallUnitID = -1
+            };
 
-        if (!GameManager.Data.GameData.IsVisitStigmata && questLevel != 4)
+            GameManager.OutGameData.AddHallUnit(unit);
+            GameManager.Data.AddDeckUnit(unit);
+            GameManager.Data.GameData.FallenUnits.Add(unit);
+            */
+        }
+
+        if (GameManager.OutGameData.Data.IsStigmataCorrupt)
+        {
+            _normalBackground.SetActive(false);
+            _corruptBackground.SetActive(true);
+            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal_Corrupt"));
+        }
+        else
+        {
+            _normalBackground.SetActive(true);
+            _corruptBackground.SetActive(false);
+            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal"));
+        }
+
+        if (!GameManager.OutGameData.Data.IsVisitStigmata)
         {
             _scripts = GameManager.Data.ScriptData["낙인소_입장_최초"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["낙인소_선택_0"][0].script));
@@ -91,19 +120,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
             _scripts = GameManager.Data.ScriptData[$"낙인소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"낙인소_선택_{25 * questLevel}"][0].script));
             _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"낙인소_선택_{25 * questLevel}"][0].name));
-
-            if (questLevel == 4)
-            {
-                _normalBackground.SetActive(false);
-                _corruptBackground.SetActive(true);
-                _isNPCFall = true;
-            }
         }
-
-        if (_isNPCFall)
-            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal_Corrupt"));
-        else
-            _stigmaBestowalButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Stigmata Bestowal"));
 
         for (int i = 0; i < 3; i++)
         {
@@ -275,7 +292,7 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
     public List<Stigma> ResetStigmataList(DeckUnit stigmataTargetUnit)
     {
         _stigmataList.Clear();
-        if (_isNPCFall)
+        if (GameManager.OutGameData.Data.IsStigmataCorrupt)
             _stigmataList = GameManager.Data.StigmaController.GetRandomStigmaList(stigmataTargetUnit, 4);
         else
             _stigmataList = GameManager.Data.StigmaController.GetRandomStigmaList(stigmataTargetUnit, 3);
@@ -318,10 +335,9 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (!GameManager.Data.GameData.IsVisitStigmata)
+        if (!GameManager.OutGameData.Data.IsVisitStigmata)
         {
             GameManager.OutGameData.Data.IsVisitStigmata = true;
-            GameManager.Data.GameData.IsVisitStigmata = true;
             quitScript.Init(GameManager.Data.ScriptData["낙인소_퇴장_최초"], false);
         }
         else

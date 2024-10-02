@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CameraHandler : MonoBehaviour
 {
@@ -62,19 +64,19 @@ public class CameraHandler : MonoBehaviour
     {
         Vector3 originPos = CutSceneCamera.transform.position;
 
-        float shakeTime = 0f;
-        int direction = 1;
+        float shakeTime = 0.7f;
+        float shakeCurrentTime = 0f;
 
-        while (shakeInfo[0].z * 2.5f > shakeTime)
+        while (shakeTime > shakeCurrentTime)
         {
-            CutSceneCamera.transform.position = originPos + 
-                new Vector3( ((Random.Range(1.2f, 1.4f) - shakeTime * 4) * direction) * 0.25f, 0, 0);
+            CutSceneCamera.transform.position = originPos + new Vector3(0.3f - shakeCurrentTime / 2, 0, 0);
 
-            direction *= -1;
+            yield return new WaitForSeconds(0.15f);
 
-            shakeTime += Time.deltaTime * 20;
+            CutSceneCamera.transform.position = originPos + new Vector3(-1 * (0.3f - shakeCurrentTime / 2), 0, 0);
 
-            yield return new WaitForSeconds(Time.deltaTime * 50);
+            shakeCurrentTime += 0.3f;
+            yield return new WaitForSeconds(0.15f);
         }
         /*
         foreach(Vector3 vec in shakeInfo)

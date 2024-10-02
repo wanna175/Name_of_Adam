@@ -47,7 +47,7 @@ MonoBehaviour:
   originalmanaCost: 11
   originaldarkEssence: 1
   playerSkillName: Advent
-  playerSkillID: 9
+  playerSkillID: 6
   manaCost: 66
   darkEssence: 6
   skillImage: {fileID: 21300000, guid: bd2cb3b394d47cc4c9ef278ebf043b0b, type: 3}
@@ -61,7 +61,6 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
     DeckUnitChangedStat:
       MaxHP: 0
       CurrentHP: 0
@@ -70,6 +69,5 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-      CurrentUpgradeCount: 0
-    HallUnitID: 0
+    hallUnitID: -1
     IsMainDeck: 0

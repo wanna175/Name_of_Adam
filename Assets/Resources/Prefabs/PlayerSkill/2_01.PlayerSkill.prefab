@@ -47,7 +47,7 @@ MonoBehaviour:
   originalmanaCost: 30
   originaldarkEssence: 1
   playerSkillName: Divine Punishment
-  playerSkillID: 7
-  manaCost: 30
+  playerSkillID: 4
+  manaCost: 20
   darkEssence: 1
   skillImage: {fileID: 21300000, guid: afbbdeb183faa014f81f212522c063de, type: 3}

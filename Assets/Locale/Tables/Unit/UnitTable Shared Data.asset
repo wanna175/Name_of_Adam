@@ -175,6 +175,10 @@ MonoBehaviour:
     m_Key: Vines Of Oblivion
     m_Metadata:
       m_Items: []
+  - m_Id: 87204495734493184
+    m_Key: Betrayer Of Faith
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

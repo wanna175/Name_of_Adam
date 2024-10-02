@@ -36,7 +36,8 @@ public class StageChanger
 
         if (stageName == StageName.Baptism)
         {
-            if (!GameManager.OutGameData.Data.IsBaptismCorrupt && GameManager.OutGameData.Data.BaptismCorruptValue >= 300)
+            if (!GameManager.OutGameData.Data.IsBaptismCorrupt && 
+                GameManager.OutGameData.Data.BaptismCorruptValue >= 120 && GameManager.OutGameData.Data.PhanuelClear)
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Baptism_Corrupt);
@@ -45,7 +46,8 @@ public class StageChanger
         }
         else if (stageName == StageName.Stigmata)
         {
-            if (!GameManager.OutGameData.Data.IsStigmataCorrupt && GameManager.OutGameData.Data.StigmataCorruptValue >= 30)
+            if (!GameManager.OutGameData.Data.IsStigmataCorrupt && 
+                GameManager.OutGameData.Data.StigmataCorruptValue >= 40 && GameManager.OutGameData.Data.YohrnClear)
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Stigmata_Corrupt);
@@ -54,7 +56,8 @@ public class StageChanger
         }
         else if (stageName == StageName.Sacrifice)
         {
-            if (!GameManager.OutGameData.Data.IsSacrificeCorrupt && GameManager.OutGameData.Data.SacrificeCorruptValue >= 50)
+            if (!GameManager.OutGameData.Data.IsSacrificeCorrupt && 
+                GameManager.OutGameData.Data.SacrificeCorruptValue >= 80 && GameManager.OutGameData.Data.SaviorClear)
             {
                 isCutScene = true;
                 SceneChanger.SceneChangeToCutScene(CutSceneType.NPC_Sacrifice_Corrupt);

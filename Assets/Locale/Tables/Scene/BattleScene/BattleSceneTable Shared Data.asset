@@ -111,6 +111,22 @@ MonoBehaviour:
     m_Key: NoAttack
     m_Metadata:
       m_Items: []
+  - m_Id: 78353087539073024
+    m_Key: ManaGauge UI Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353151351214080
+    m_Key: PlayerHP UI Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353197320785920
+    m_Key: WaitingPlayer UI Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353335799926784
+    m_Key: DarkEssence UI Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

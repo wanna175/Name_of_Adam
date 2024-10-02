@@ -148,71 +148,29 @@ public class UI_MyDeck : UI_Popup
         SetPageAllUI();
     }
 
-    public void HallDeckInit(bool isBoss = false, Action<DeckUnit> onSelectAction = null)
+    public void HallDeckInit(SlotRank slotRank, Action<DeckUnit> onSelectAction = null)
     {
-        List<DeckUnit> eliteDeck = new();
-        List<DeckUnit> normalDeck = new();
-        _hallDeck = GameManager.Data.GetSortedDeck(SortMode.Default);
+        List<DeckUnit> hallSettingDeck = new();
 
         _sortButton.gameObject.SetActive(false);
-        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
-
-        foreach (DeckUnit unit in _hallDeck)
-        {
-            if (unit.Data.Rarity == Rarity.Normal)
-            {
-                normalDeck.Add(unit);
-            }
-            else
-            {
-                eliteDeck.Add(unit);
-            }
-        }
-
-        if (isBoss)
-        {
-            _playerDeck = eliteDeck;
-        }
-        else
-        {
-            _playerDeck = normalDeck;
-        }
-
-        _onSelectAction = onSelectAction;
-
-        _currentPageIndex = 0;
-        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
-
-        ClearCard();
-        SetCard();
-        SetPageAllUI();
-    }
-
-    public void HallEliteDeckInit(bool isBoss = false, Action<DeckUnit> onSelectAction = null)
-    {
-        List<DeckUnit> eliteDeck = new();
-
-        _sortButton.gameObject.SetActive(false);
-        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("HallSelect");
 
         _hallDeck = GameManager.Data.GetSortedDeck(SortMode.Default);
 
-        foreach (DeckUnit unit in _hallDeck)
+        if (slotRank == SlotRank.Divine)
         {
-            if (unit.Data.Rarity != Rarity.Boss)
-            {
-                eliteDeck.Add(unit);
-            }
-        }
-
-        if (isBoss)
-        {
-            _playerDeck = _hallDeck;
+            hallSettingDeck = _hallDeck;
         }
         else
         {
-            _playerDeck = eliteDeck;
+            foreach (DeckUnit unit in _hallDeck)
+            {
+                if (unit.Data.Rarity != Rarity.Boss && (unit.Data.Rarity == Rarity.Normal || slotRank == SlotRank.Advanced))
+                    hallSettingDeck.Add(unit);
+            }
         }
+
+        _playerDeck = hallSettingDeck;
         _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;

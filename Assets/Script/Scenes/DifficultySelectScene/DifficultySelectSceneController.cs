@@ -33,7 +33,6 @@ public class DifficultySelectSceneController : MonoBehaviour
     private void Init()
     {
         GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
-        GameManager.Sound.SceneBGMPlay("DifficultySelectScene");
 
         _incarnaSelectUI.SetActive(true);
         _hallSelectUI.SetActive(false);

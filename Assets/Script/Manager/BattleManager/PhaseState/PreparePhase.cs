@@ -15,8 +15,9 @@ public class PreparePhase : Phase
         BattleManager.Data.TurnPlus();
         BattleManager.BattleUI.UI_playerSkill.InableSkill(false);
         BattleManager.Mana.ManaInableCheck();
-        BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
+        BattleManager.BattleUI.UI_turnNotify.SetPreparationPhaseDisplay();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
+        BattleManager.BattleUI.UI_TurnChangeButton.SetButtonSprite();
         BattleManager.BattleUI.UI_controlBar.ControlBarActive();
 
         BattleManager.Field.SetTileHighlightFrame(null, false);
@@ -89,7 +90,6 @@ public class PreparePhase : Phase
         GameManager.Sound.Play("UI/UISFX/UIUnitTurnSFX");
 
         BattleManager.BattleUI.CancelAllSelect();
-        BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         BattleManager.PlayerSkillController.SetSkillDone();
         BattleManager.BattleUI.UI_playerSkill.InableSkill(true);
