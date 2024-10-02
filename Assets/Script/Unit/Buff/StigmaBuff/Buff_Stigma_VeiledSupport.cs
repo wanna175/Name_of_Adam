@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Buff_Stigma_Aid : Buff
+public class Buff_Stigma_VeiledSupport: Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_Aid;
+        _buffEnum = BuffEnum.Stigmata_VeiledSupport;
 
-        _name = "Aid";
+        _name = "VeiledSupport";
 
         _buffActiveTiming = ActiveTiming.AFTER_SWITCH;
 

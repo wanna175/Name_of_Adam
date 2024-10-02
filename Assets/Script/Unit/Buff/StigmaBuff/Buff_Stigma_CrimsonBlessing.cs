@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class Buff_Stigma_BloodBlessing : Buff
+public class Buff_Stigma_CrimsonBlessing : Buff
 {
     private int _heal;
 
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_BloodBlessing;
+        _buffEnum = BuffEnum.Stigmata_CrimsonBlessing;
 
-        _name = "BloodBlessing";
+        _name = "CrimsonBlessing";
 
         _buffActiveTiming = ActiveTiming.FIELD_UNIT_DEAD;
 

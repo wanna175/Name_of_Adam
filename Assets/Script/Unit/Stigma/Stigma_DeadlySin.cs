@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Stigma_Sin : Stigma
+public class Stigma_DeadlySin : Stigma
 {
     public override void Use(BattleUnit caster)
     {

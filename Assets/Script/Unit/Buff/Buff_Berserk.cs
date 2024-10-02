@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_Berserker : Buff
+public class Buff_Berserk : Buff
 {
     private int _attackUp;
 
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Berserker;
+        _buffEnum = BuffEnum.Berserk;
 
         _name = "Attack Boost";
 

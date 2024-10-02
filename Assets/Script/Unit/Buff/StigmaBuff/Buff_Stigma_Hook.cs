@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class Buff_Stigma_Hook : Buff
 {
-    private readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
-
     public override void Init(BattleUnit owner)
     {
         _buffEnum = BuffEnum.Stigmata_Hook;
@@ -21,6 +19,9 @@ public class Buff_Stigma_Hook : Buff
     public override bool Active(BattleUnit caster)
     {
         if (caster == null)
+            return false;
+
+        if (caster.Data.ID == "¿æ_¸öÃ¼" || caster.Data.Rarity == Rarity.Boss || caster.Data.ID == "¸®ºñ¿¤")
             return false;
 
         Vector2 hookDir = (_owner.Location - caster.Location).normalized;

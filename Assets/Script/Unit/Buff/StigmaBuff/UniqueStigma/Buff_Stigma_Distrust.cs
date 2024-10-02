@@ -34,11 +34,11 @@ public class Buff_Stigma_Distrust : Buff
         foreach (BattleUnit unit in BattleManager.Data.BattleUnitList)
         {
             if (unit.Team == _owner.Team && unit != _owner &&
-                unit.BattleUnitTotalStat.ATK + unit.BattleUnitTotalStat.MaxHP > statTotal)
+                unit.DeckUnit.DeckUnitTotalStat.ATK + unit.DeckUnit.DeckUnitTotalStat.MaxHP > statTotal)
             {
-                _unitStat = unit.BattleUnitTotalStat;
+                _unitStat = unit.DeckUnit.DeckUnitTotalStat;
                 _unitStat.CurrentHP = _unitStat.MaxHP;
-                statTotal = unit.BattleUnitTotalStat.ATK + unit.BattleUnitTotalStat.MaxHP;
+                statTotal = unit.DeckUnit.DeckUnitTotalStat.ATK + unit.DeckUnit.DeckUnitTotalStat.MaxHP;
             }
         }
         _unitStat.ManaCost = 0;

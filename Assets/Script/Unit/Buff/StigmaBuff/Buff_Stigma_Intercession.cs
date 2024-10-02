@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_Stigma_PrayInAid : Buff
+public class Buff_Stigma_Intercession : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_PrayInAid;
+        _buffEnum = BuffEnum.Stigmata_Intercession;
 
-        _name = "PrayInAid";
+        _name = "Intercession";
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 

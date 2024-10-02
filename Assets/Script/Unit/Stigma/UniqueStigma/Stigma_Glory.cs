@@ -16,10 +16,10 @@ public class Stigma_Glory : Stigma
 
             Stat buffedStat = new();
 
-            buffedStat.MaxHP = 45;
-            buffedStat.CurrentHP = 45;
+            buffedStat.MaxHP = 25;
+            buffedStat.CurrentHP = 25;
 
-            buffedStat.ATK = 10;
+            buffedStat.ATK = 5;
 
             statBuff.SetStat(buffedStat);
 

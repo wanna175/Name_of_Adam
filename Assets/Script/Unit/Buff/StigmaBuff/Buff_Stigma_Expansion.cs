@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Buff_Stigma_Expand : Buff
+public class Buff_Stigma_Expansion : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_Expand;
+        _buffEnum = BuffEnum.Stigmata_Expansion;
 
-        _name = "Expand";
+        _name = "Expansion";
 
         _buffActiveTiming = ActiveTiming.MOVE_TURN_START;
 

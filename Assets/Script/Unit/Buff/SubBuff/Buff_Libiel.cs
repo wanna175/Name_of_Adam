@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Buff_Libiel : Buff
@@ -21,4 +22,21 @@ public class Buff_Libiel : Buff
 
     public override void SetValue(int num) => _libielCount = num;
     public override int GetBuffDisplayNumber() => _libielCount;
+
+    private Dictionary<int, string> _descriptionDict = new() {
+        { 1, "Glory1 Info" },
+        { 2, "Glory2 Info" },
+        { 3, "Glory3 Info" }
+    };
+
+
+    public override string GetDescription(int spacing = 1)
+    {
+        string desc = "<size=110%><b>" + GameManager.Locale.GetLocalizedBuffName("Glory") + "</b></size>";
+        for (int i = 0; i < spacing; i++)
+            desc += "\n";
+        desc += GameManager.Locale.GetLocalizedBuffInfo(_descriptionDict[_libielCount]);
+
+        return desc;
+    }
 }

@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Buff_Stigma_Teleport : Buff
+public class Buff_Stigma_PassageOfShadows : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_Teleport;
+        _buffEnum = BuffEnum.Stigmata_PassageOfShadows;
 
-        _name = "Teleport";
+        _name = "PassageOfShadows";
 
         _buffActiveTiming = ActiveTiming.UNIT_KILL | ActiveTiming.STIGMA;
 

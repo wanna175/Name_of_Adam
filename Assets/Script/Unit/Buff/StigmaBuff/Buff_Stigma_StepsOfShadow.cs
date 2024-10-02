@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Buff_Stigma_ShadowStep: Buff
+public class Buff_Stigma_StepsOfShadow : Buff
 {
     private readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Stigmata_ShadowStep;
+        _buffEnum = BuffEnum.Stigmata_StepsOfShadow;
 
-        _name = "ShadowStep";
+        _name = "Steps Of Shadow";
 
         _buffActiveTiming = ActiveTiming.BEFORE_ATTACK;
 

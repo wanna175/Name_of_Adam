@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stigma_Raise : Stigma
+public class Stigma_Exaltation : Stigma
 {
     public override void Use(BattleUnit caster)
     {
