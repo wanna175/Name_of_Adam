@@ -12,11 +12,11 @@ public class Mana : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.OutGameData.IsUnlockedItem(18))
+        if (GameManager.OutGameData.IsUnlockedItem(SanctumUnlock.StartingMana2))
         {
             _startMana = 60;
         }
-        else if (GameManager.OutGameData.IsUnlockedItem(15))
+        else if (GameManager.OutGameData.IsUnlockedItem(SanctumUnlock.StartingMana1))
         {
             _startMana = 55;
         }
