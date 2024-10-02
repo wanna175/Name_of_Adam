@@ -49,6 +49,8 @@ public class PreparePhase : Phase
                 stat.MaxHP = stat.CurrentHP = -15;
                 BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[0].HP.Init(5, 5);
+                BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
+                BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
             }
             
             TutorialManager.Instance.ShowNextTutorial();
