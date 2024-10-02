@@ -43,8 +43,8 @@ public class UpgradeSceneController : MonoBehaviour
 
         Debug.Log($"횟수: {GameManager.OutGameData.Data.BaptismCorruptValue}");
 
-        int questLevel = Mathf.Min(GameManager.OutGameData.Data.BaptismCorruptValue / 75, 4);
-        if (questLevel == 4 && !GameManager.OutGameData.Data.IsBaptismCorrupt)
+        int questLevel = Mathf.Min(GameManager.OutGameData.Data.BaptismCorruptValue / 30, 4);
+        if (questLevel == 4 && GameManager.OutGameData.Data.PhanuelClear && !GameManager.OutGameData.Data.IsBaptismCorrupt)
         {
             GameManager.OutGameData.Data.IsBaptismCorrupt = true;
             DeckUnit unit = new()
@@ -74,7 +74,7 @@ public class UpgradeSceneController : MonoBehaviour
             _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade"));
         }
 
-        if (!GameManager.Data.GameData.IsVisitBaptism)
+        if (!GameManager.OutGameData.Data.IsVisitBaptism)
         {
             _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
             _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
@@ -237,10 +237,9 @@ public class UpgradeSceneController : MonoBehaviour
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (!GameManager.Data.GameData.IsVisitBaptism)
+        if (!GameManager.OutGameData.Data.IsVisitBaptism)
         {
             GameManager.OutGameData.Data.IsVisitBaptism = true;
-            GameManager.Data.GameData.IsVisitBaptism = true;
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
         }
         else

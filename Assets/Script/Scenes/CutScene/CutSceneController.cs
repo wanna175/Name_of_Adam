@@ -20,8 +20,30 @@ public class CutSceneController : MonoBehaviour
 
         _cutSceneToDisplay = GameManager.Data.CutSceneToDisplay;
         _videoClip = GameManager.Resource.Load<VideoClip>($"Video/VideoClip/{_cutSceneToDisplay}_{language}");
+        GameManager.Sound.Clear();
 
-        GameManager.Sound.Play($"CutScene/{_cutSceneToDisplay}", Sounds.BGM);
+        if (_cutSceneToDisplay == CutSceneType.Tubalcain_Enter ||
+            _cutSceneToDisplay == CutSceneType.Elieus_Enter || 
+            _cutSceneToDisplay == CutSceneType.Libiel_Enter ||
+            _cutSceneToDisplay == CutSceneType.RahelLea_Enter ||
+            _cutSceneToDisplay == CutSceneType.Appaim_Enter ||
+            _cutSceneToDisplay == CutSceneType.Arabella_Enter)
+            GameManager.Sound.Play("CutScene/Elite_Enter", Sounds.BGM);
+        else if (_cutSceneToDisplay == CutSceneType.Phanuel_Enter ||
+            _cutSceneToDisplay == CutSceneType.TheSavior_Enter ||
+            _cutSceneToDisplay == CutSceneType.Yohrn_Enter)
+            GameManager.Sound.Play("CutScene/Boss_Enter", Sounds.BGM);
+        else if (_cutSceneToDisplay == CutSceneType.Phanuel_Dead ||
+            _cutSceneToDisplay == CutSceneType.TheSavior_Dead ||
+            _cutSceneToDisplay == CutSceneType.Yohrn_Dead)
+            GameManager.Sound.Play("CutScene/Boss_Dead", Sounds.BGM);
+        else if (_cutSceneToDisplay == CutSceneType.NPC_Baptism_Corrupt ||
+            _cutSceneToDisplay == CutSceneType.NPC_Sacrifice_Corrupt ||
+            _cutSceneToDisplay == CutSceneType.NPC_Stigmata_Corrupt)
+            GameManager.Sound.Play("CutScene/NPC_Corrupt", Sounds.BGM);
+        else if (_cutSceneToDisplay == CutSceneType.Main)
+            GameManager.Sound.Play($"CutScene/Main", Sounds.BGM);
+
         video.clip = _videoClip;
         video.loopPointReached += EndReached;
         video.Play();

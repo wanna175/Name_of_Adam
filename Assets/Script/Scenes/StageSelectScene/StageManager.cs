@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -36,6 +37,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] private GameObject _saviorBackground;
     [SerializeField] private GameObject _phanuelBackground;
     [SerializeField] private GameObject _defaultBackground;
+
+    [SerializeField] private TextMeshProUGUI _chapterText;
 
     private StageChanger _stageChanger;
 
@@ -97,6 +100,22 @@ public class StageManager : MonoBehaviour
 
         GameManager.VisualEffect.StartFadeEffect(true);
         SetBackground();
+        SetChapterText();
+    }
+
+    private void SetChapterText()
+    {
+        string chapter = "";
+        if (GameManager.Data.GameData.CurrentAct == 99)
+            chapter += "Trial";
+        else
+            chapter += "Act " + GameManager.Data.GameData.CurrentAct.ToString();
+        
+        chapter += ". ";
+
+        chapter += "Chapter " + (GameManager.Data.StageAct + 1).ToString() + ".";
+
+        _chapterText.SetText(chapter);
     }
 
     private void SetBackground()
