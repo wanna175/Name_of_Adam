@@ -30,7 +30,19 @@ public class UnitAction_FlowerOfSacrifice : UnitAction
 
     public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver)
     {
-        if (activeTiming == ActiveTiming.TURN_START)
+        if ((activeTiming & ActiveTiming.SUMMON) == ActiveTiming.SUMMON)
+        {
+            caster.SetBuff(new Buff_Divine());
+            if (_parentUnit == null)
+            {
+                _parentUnit = BattleManager.Data.BattleUnitList.Find(x => x.Data.ID == "±¸¿øÀÚ" && x.Team == caster.Team);
+            }
+
+            Stat stat = new();
+            stat.ATK = _parentUnit.BattleUnitTotalStat.ATK;
+            caster.DeckUnit.DeckUnitUpgradeStat += stat;
+        }
+        else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
             _turnCount--;
 

@@ -149,6 +149,14 @@ public class UnitAction_Horus : UnitAction
                 return false;
             }
         }
+        else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
+        {
+            foreach (Tile tile in BattleManager.Field.TileDict.Values)
+            {
+                tile.IsColored = true;
+                tile.SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+            }
+        }
 
         return false;
     }
