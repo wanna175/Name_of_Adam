@@ -11,7 +11,7 @@ public class StigmaController
         LoadStigmaList();
     }
 
-    public readonly float[] StigmaProbability = new float[] { 0.85f, 0.15f, 0f };
+    public readonly float[] StigmaProbability = new float[] { 0.8f, 0.2f, 0f };
 
     private List<Stigma> _tier1StigmaList = new();
     private List<Stigma> _tier2StigmaList = new();
@@ -66,7 +66,7 @@ public class StigmaController
 
         _lockStigmaDic.Add(StigmaEnum.Hook, new string[] { "흑기사", "쌍생아", "그을린 자", "묘지기", "검병",
             "노동자", "중갑병", "처형자", "암살자", "습격자", "괴인", "엘리우스", "투발카인", "아라벨라", "욘" });
-        _lockStigmaDic.Add(StigmaEnum.AdditionalPunishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "전령", "투발카인", "아라벨라", "리비엘", "욘"});
+        _lockStigmaDic.Add(StigmaEnum.DamnationsWeight, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "전령", "투발카인", "아라벨라", "리비엘", "욘"});
     }
 
     // probability는 { 99, 89 } 처럼 2개 인자를 보유
@@ -166,10 +166,10 @@ public class StigmaController
 
     public void CheckUnlockedStigma(Stigma stigma)
     {
-        UnlockStigma(stigma, 20, StigmaEnum.Sin);
+        UnlockStigma(stigma, 20, StigmaEnum.DeadlySin);
         UnlockStigma(stigma, 16, StigmaEnum.ForbiddenPact);
-        UnlockStigma(stigma, 13, StigmaEnum.Teleport);
-        UnlockStigma(stigma, 7, StigmaEnum.Killing_Spree);
+        UnlockStigma(stigma, 13, StigmaEnum.PassageOfShadows);
+        UnlockStigma(stigma, 7, StigmaEnum.KillingSpree);
         UnlockStigma(stigma, 1, StigmaEnum.Destiny);
     }
 

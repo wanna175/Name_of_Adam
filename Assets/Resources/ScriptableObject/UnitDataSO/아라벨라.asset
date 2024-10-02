@@ -15,7 +15,7 @@ MonoBehaviour:
   _rawStat:
     MaxHP: 60
     CurrentHP: 60
-    ATK: 17
+    ATK: 15
     SPD: 56
     FallCurrentCount: 0
     FallMaxCount: 10
@@ -26,12 +26,12 @@ MonoBehaviour:
   _name: Arabella
   _description: 
   _rarity: 1
-  _image: {fileID: 21300000, guid: e996d3c666686904386f1702e68c5e6a, type: 3}
-  _corruptImage: {fileID: 21300000, guid: e996d3c666686904386f1702e68c5e6a, type: 3}
-  _portraitImage: {fileID: 21300000, guid: 59266406d3b21ca49bdc28aae65647a1, type: 3}
-  _corruptPortraitImage: {fileID: 21300000, guid: 59266406d3b21ca49bdc28aae65647a1, type: 3}
-  _diaPortraitImage: {fileID: 21300000, guid: 08e314bd3c23c4144a486b10998a4d80, type: 3}
-  _corruptDiaPortraitImage: {fileID: 21300000, guid: 08e314bd3c23c4144a486b10998a4d80, type: 3}
+  _image: {fileID: 21300000, guid: ec531957d45c92d4b946e9a8d1ff9238, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 6cacdb7c2b91d4b48ad2a836a22977e7, type: 3}
+  _portraitImage: {fileID: 21300000, guid: dfae5eb087aac5f469b09f65147c66ec, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: e1d370e824ead374885b58c24478a589, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: facf56ea9b4bef04e8f7dcbbce85e3d6, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 88722d6ebbf0e3e4f86b18a994f77a61, type: 3}
   _animatorController: {fileID: 9100000, guid: f0f82627d83b55e45aed76a28d363e4f, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: a2927fe9172e3054ebda63dd96e82500, type: 2}
   _skillEffectAnim: {fileID: 7400000, guid: c09eea340e8a6144ca88b2a4ed41b4f3, type: 2}

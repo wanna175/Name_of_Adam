@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: "01.\uACC4\uC2B9\uC790"
   _name: Heir Of Vice
-  _sprite: {fileID: 21300000, guid: a01fe99c6c033de40b897c9c4cab49cd, type: 3}
+  _sprite: {fileID: -331595826, guid: 21927c8ebff0fc64eaaf1dae7b7c3f7f, type: 3}
   _playerSkillList:
   - {fileID: 922919656849917402, guid: 4e8bd04c086e4934194b05a5aaf8ecc2, type: 3}
   - {fileID: 3750906278982967589, guid: bc4a3f2c21cc5f245ad91cde30abce1c, type: 3}
   - {fileID: 362795749532635904, guid: adda00f58c0d1bb418b104656282e7fd, type: 3}
+  _incarnationAnimatorController: {fileID: 9100000, guid: b6fa30b68ae6f524493248bb6de499f8, type: 2}

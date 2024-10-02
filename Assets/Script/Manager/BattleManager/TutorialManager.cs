@@ -302,7 +302,7 @@ public class TutorialManager : MonoBehaviour
             
             case TutorialStep.Popup_Defeat:
             case TutorialStep.Popup_Last:
-                SetActiveAllTiles(true);
+                BattleManager.Field.SetActiveAllTiles(true);
                 break;
         }
     }

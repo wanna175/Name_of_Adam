@@ -100,7 +100,7 @@ public class BattleUIManager : MonoBehaviour
 
     public void SetFirstTurnNotify(bool isOn)
     {
-        UI_controlBar.FirstTurnNotifyAnimator.SetBool("isFadeOut", !isOn);//true일 때 꺼지고, false일때 켜짐
+        UI_controlBar.FirstTurnNotifyAnimator.SetBool("isFadeIn", isOn);//true일 때 꺼지고, false일때 켜짐
     }
 
     public void FillHand()
@@ -161,6 +161,11 @@ public class BattleUIManager : MonoBehaviour
     {
         foreach (UI_Info info in infoList)
         {
+            info.InfoDestroy();
+            infoList.Remove(info);
+
+            break;
+
             if (info == close)
             {
                 info.InfoDestroy();
