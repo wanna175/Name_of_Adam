@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 79409508352
-    m_Key: Shadow Step
+    m_Key: Steps Of Shadow
     m_Metadata:
       m_Items: []
   - m_Id: 101656096768
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 293079937024
-    m_Key: Additional Punishment
+    m_Key: Damnation's Weight
     m_Metadata:
       m_Items: []
   - m_Id: 2496133918720
@@ -44,11 +44,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2552828325888
-    m_Key: Raise I
+    m_Key: Exaltation I
     m_Metadata:
       m_Items: []
   - m_Id: 136906908954624
-    m_Key: Raise II
+    m_Key: Exaltation II
     m_Metadata:
       m_Items: []
   - m_Id: 136938819219456
@@ -64,11 +64,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137166058221568
-    m_Key: Blood Blessing I
+    m_Key: Crimson Blessing I
     m_Metadata:
       m_Items: []
   - m_Id: 137241786380288
-    m_Key: Blood Blessing II
+    m_Key: Crimson Blessing II
     m_Metadata:
       m_Items: []
   - m_Id: 137273327546368
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137774911778816
-    m_Key: Expand
+    m_Key: Expansion
     m_Metadata:
       m_Items: []
   - m_Id: 137816326336512
@@ -104,7 +104,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137873012355072
-    m_Key: Berserker
+    m_Key: Berserk
     m_Metadata:
       m_Items: []
   - m_Id: 137905929252864
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138073625915392
-    m_Key: Teleport
+    m_Key: PassageOfShadows
     m_Metadata:
       m_Items: []
   - m_Id: 138109344608256
@@ -148,11 +148,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138386491633664
-    m_Key: Pray In Aid
+    m_Key: Intercession
     m_Metadata:
       m_Items: []
   - m_Id: 138448022073344
-    m_Key: Sin
+    m_Key: Deadly Sin
     m_Metadata:
       m_Items: []
   - m_Id: 1406610193575936
@@ -200,7 +200,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1444587946962944
-    m_Key: Funeral
+    m_Key: Requiem
     m_Metadata:
       m_Items: []
   - m_Id: 8008119182225408
@@ -248,7 +248,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 52527534567477248
-    m_Key: Aid
+    m_Key: Veiled Support
     m_Metadata:
       m_Items: []
   - m_Id: 72348813554241536
@@ -309,6 +309,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 85812550235738112
     m_Key: Fragments Of Birth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87222195554766848
+    m_Key: Atonement
     m_Metadata:
       m_Items: []
   m_Metadata:

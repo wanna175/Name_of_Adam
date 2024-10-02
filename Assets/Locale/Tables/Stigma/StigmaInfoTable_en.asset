@@ -19,31 +19,31 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 17036013568
-    m_Localized: Upon attacking, Pulls the enemy one tile closer.
+    m_Localized: During attack, pulls the enemy one tile closer.
     m_Metadata:
       m_Items: []
   - m_Id: 1062504034304
-    m_Localized: Upon attacking, Removes all buffs and debuffs from the enemy
+    m_Localized: During attack, removes all buffs and debuffs from the enemy.
     m_Metadata:
       m_Items: []
   - m_Id: 1089838313472
-    m_Localized: Upon attacking, Moves behind the attacked enemy if there is only
+    m_Localized: During attack, moves behind the attacked enemy if there is only
       one enemy attacked.
     m_Metadata:
       m_Items: []
   - m_Id: 1175741853696
-    m_Localized: 'Upon summoning, Gains <b>Death Strike</b>.
+    m_Localized: 'Upon summoning, gains <b>Death Strike</b>.
 
       (<b>Death Strike</b>:
-      Damage triples, but dies after attacking.)'
+      Attacks have triple damage, but the attacker dies after the attack)'
     m_Metadata:
       m_Items: []
   - m_Id: 1213641584640
-    m_Localized: Upon attacking, Recovers health by 30% of the damage dealt.
+    m_Localized: Upon attacking, recovers health by 30% of the damage dealt
     m_Metadata:
       m_Items: []
   - m_Id: 1262668804096
-    m_Localized: Upon attacking, Attacks an additional enemy within the attack range.
+    m_Localized: Upon attacking, attacks an additional enemy within the attack range.
     m_Metadata:
       m_Items: []
   - m_Id: 1312883011584
@@ -75,37 +75,37 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2000841142272
-    m_Localized: 'Upon attacking, Attack power increases by 2 for each attack target.
+    m_Localized: 'Upon attacking, Attack Power increases by 2 for each enemy attacked.
 
       (Resets
-      at the end of the battle.)'
+      at the end of the stage.)'
     m_Metadata:
       m_Items: []
   - m_Id: 2181942800384
-    m_Localized: 'Upon attacking, Attack power increases by 3 for each attack target.
+    m_Localized: 'Upon attacking, Attack Power increases by 3 for each enemy attacked.
 
       (Resets
       at the end of the battle.)'
     m_Metadata:
       m_Items: []
   - m_Id: 2236426809344
-    m_Localized: Upon enemy or ally unit dying, Recovers 10 health.
+    m_Localized: When an enemy or ally unit dying, recovers 10 health.
     m_Metadata:
       m_Items: []
   - m_Id: 2356740419584
-    m_Localized: Upon enemy or ally unit dying, Recovers 15 health.
+    m_Localized: When an enemy or ally dies, recovers 15 health.
     m_Metadata:
       m_Items: []
   - m_Id: 2420078604288
-    m_Localized: Upon end of this unit's turn, Recovers 5 health.
+    m_Localized: When this unit's turn ends, recovers 5 health.
     m_Metadata:
       m_Items: []
   - m_Id: 2460759158784
-    m_Localized: Upon end of this unit's turn, Recovers 10 health.
+    m_Localized: When this unit's turn ends, recovers 10 health.
     m_Metadata:
       m_Items: []
   - m_Id: 2549326082048
-    m_Localized: Upon summoning, Recovers 30 health to ally units within adjacent
+    m_Localized: Upon summoning, recovers 30 health to ally units within adjacent
       4 tiles.
     m_Metadata:
       m_Items: []
@@ -113,7 +113,7 @@ MonoBehaviour:
     m_Localized: 'Upon summoning, Gains <b>Immortality<b> for 1 times.
 
       (<b>Immortality<b>:
-      Withstands once with 1 health, when reaching death.)'
+      Withstands death with 1 health., when reaching death.)'
     m_Metadata:
       m_Items: []
   - m_Id: 2745237827584
@@ -124,42 +124,43 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2911923662848
-    m_Localized: Gains 1 tile of additional move range in the cross direction.
+    m_Localized: Allows an additional move of one tile in the vertical or horizontal
+      direction
     m_Metadata:
       m_Items: []
   - m_Id: 3085446213632
-    m_Localized: Gains 1 tile of additional move range in the diagonal direction.
+    m_Localized: Allows an additional move of one tile in the diagonal direction
     m_Metadata:
       m_Items: []
   - m_Id: 3199489339392
-    m_Localized: 'Upon summoning, faith becomes fixed to 1, but gains <b>Attack Boost</b>.
+    m_Localized: 'Upon summoning, faith becomes fixed to 1, but gains <b>Attack Boost</b>
+      for 5 times.
 
-      (<b>Attack
-      Boost</b>: Attack power increase by 50%.)'
+      (<b>Attack Boost</b>: Attack power increase by 30%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 3269714571264
     m_Localized: 'Upon summoning, Gains <b>Attack Decrease</b> for 1 times, but the
-      mana cost of the next skill becomes 0.
+      Mana Cost of the next skill becomes 0.
 
       (<b>Attack Decrease</b>: Attack
       power decrease by 50%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 3422802472960
-    m_Localized: Upon attacking, there is a 50% chance to double damage and a 50%
-      chance to halve damage
+    m_Localized: Upon attacking, there is a 50% chance of double damage and a 50%
+      chance of half damage.
     m_Metadata:
       m_Items: []
   - m_Id: 3515362373632
-    m_Localized: 'Upon defeating an enemy, Gains an extra turn.
+    m_Localized: 'Upon defeating an enemy, gains an extra turn.
 
       (Once per
       turn)'
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
-    m_Localized: 'Upon summoning and defeating an enemy, Gains <b>Sacred Step</b>
+    m_Localized: 'Upon summoning and defeating an enemy, gains <b>Sacred Step</b>
       for 1 times.
 
       (<b>Sacred Step</b>: Can move any tile regradless move
@@ -167,34 +168,32 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
-    m_Localized: Upon attacking when the faith of enemy unit is below half, Reduces
-      the enemy's faith by 1
+    m_Localized: Upon attacking, if the faith of the enemy unit is below half, reduces
+      the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 4027667247104
-    m_Localized: 'Upon start of this unit''s turn, removes one debuff and heals 10
-      health.
-
-'
+    m_Localized: Upon the start of this unit's turn, it removes one debuff and heals
+      10 health.
     m_Metadata:
       m_Items: []
   - m_Id: 4114728415232
-    m_Localized: Upon attacking when the faith of this unit is below half, Reduces
-      the enemy's faith by 1
+    m_Localized: Upon attacking, if the faith of this unit is below 2, reduces the
+      enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 4198899707904
-    m_Localized: Upon attacking when the health of enemy unit is full, Reduces the
-      enemy's faith by 1
+    m_Localized: Upon attacking, if the health of the enemy unit is full, reduces
+      the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 4454450262016
-    m_Localized: Upon attacking two or more enemies at once, Reduces the enemy's
-      faith by 1 upon attacking.
+    m_Localized: When attacking two or more enemies at once, reduces the enemy's
+      faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 4568623411200
-    m_Localized: 'Upon summoning, Gains <b>Malevolence</b> for 66 times.
+    m_Localized: 'Upon summoning, gains <b>Malevolence</b> for 66 times.
 
       (<b>Malevolence</b>:
       Upon attacking, Reduces the enemy''s faith by 1)'
@@ -204,83 +203,88 @@ MonoBehaviour:
     m_Localized: 'Upon attacking, Inflicts <b>Dusk</b>.
 
       (<b>Dusk</b>: Gains
-      additional effects with each stack,
+      additional effects when units are stacked,
 
-      1 stack: When attacked by Elieus
-      or Yana, ally units in adjacent 4 tiles are also attacked.
+      1 stack: When attacked by
+      Elieus or Yana, ally units in adjacent 4 tiles are also attacked.
 
-      2 stacks:
-      When attacked by Elieus or Yana, faith decreases by 1.)'
+      2
+      stacks: When attacked by Elieus or Yana, faith decreases by 1.)'
     m_Metadata:
       m_Items: []
   - m_Id: 1304862808403968
-    m_Localized: "When attacking an enemy two or more tiles away, Tubalcain charges
-      and attacks.\r\nTubalcain cannot attack if there is another unit between the
-      target unit and Tubalcain.\r\nWhen charge, Tubalcain's attack doubles in damage,
-      reduces faith by 1, but Tubalcain gains <b>Stun\r</b> 1 time.\n(<b>Stun</b>:
-      This unit can't move or attack.)"
+    m_Localized: 'When attacking an enemy two or more tiles away, Tubalcain charges
+      and attacks.
+
+      Tubalcain cannot attack if there is another unit between
+      the target unit and Tubalcain.
+
+      When charging, Tubalcain''s attack doubles
+      in damage, reduces faith by 1, but Tubalcain gains <b>Stun
+
+      </b> for
+      one turn.
+
+      (<b>Stun</b>: This unit can''t move or attack.)'
     m_Metadata:
       m_Items: []
   - m_Id: 1304919460868096
-    m_Localized: 'Upon summoning, gains <b>Karma</b> for 3 times.
+    m_Localized: 'Upon summoning, gains <b>Karma</b> for 3 times. This unit is not
+      edified if all faith is lost, instead it dies.
 
-      This unit
-      does not edified if all faith is lost, instead it dies.
-
-      (<b>Karma</b>:
-      When attacked, reduces the faith of the attacking enemy unit by 1.)'
+      (<b>Karma</b>: When attacked,
+      reduces the faith of the attacking enemy unit by 1.)'
     m_Metadata:
       m_Items: []
   - m_Id: 1304965082312704
-    m_Localized: 'Phanuel''s attack range is marked on the tile
+    m_Localized: 'Phanuel''s attack range is marked on the tiles.
 
-      Phanuel attacks
-      the tiles where the enemy unit was on the player turn, or adjacent 4 tiles
-      of the obelisk.'
+      Phanuel
+      attacks the tiles that the enemy unit was standing on during the Preparation
+      Phase, or the adjacent 4 tiles of the obelisk.'
     m_Metadata:
       m_Items: []
   - m_Id: 1305009692930048
-    m_Localized: 'After Phanuel attacks, he sets up an Obelisk in one of marked tile.
+    m_Localized: 'After Phanuel attacks, he sets up an Obelisk in one of the marked
+      tiles.
 
-      Obelisk
-      can''t attack or move, and is destroyed if all faith is lost or Phanuel defeated.'
+      Obelisks can''t attack or move, and are destroyed if all faith
+      is lost or  if Phanuel is defeated.'
     m_Metadata:
       m_Items: []
   - m_Id: 1305046195957760
     m_Localized: When there are 6 or more Obelisks on the field, Phanuel will attack
-      all tiles except the tiles with the obelisk.
+      all tiles except the tiles with the Obelisk.
     m_Metadata:
       m_Items: []
   - m_Id: 1305080719273984
-    m_Localized: This unit dies if all faith is lost or Phanuel defeated.
+    m_Localized: This unit dies if all faith is lost or Phanuel is defeated.
     m_Metadata:
       m_Items: []
   - m_Id: 1305124482641920
-    m_Localized: 'Upon summoning, Gains <b>Malevolence</b> for 2 times.
-
-      This
-      unit does not edified if all faith is lost, instead it dies.
+    m_Localized: 'Upon summoning, Gains <b>Malevolence</b> for 2 times. This unit
+      is not edified if all faith is lost, instead it dies.
 
       (<b>Malevolence</b>:
       Upon attacking, reduces the enemy''s faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 1305174239670272
-    m_Localized: 'Rahel and Lea coexists in one body, each hava own turn.
+    m_Localized: 'Rahel and Lea coexists in one body, and each has its own turn.
 
       Upon
       attacking, Rahel Inflicts <b>Mark Of The Beast</b> and moves behind the attacked
       enemy if there is only one enemy attacked.
 
       Lea can''t move, and attacks
-      enemies within adjacent 4 tiles.
+      all enemies within adjacent 4 tiles.
 
-      (<b>Mark Of The Beast</b>: When attacked
-      by Rahel or Lea, faith decreases by 1.)'
+      (<b>Mark Of The Beast</b>: When
+      attacked by Rahel or Lea, faith decreases by 1.)'
     m_Metadata:
       m_Items: []
   - m_Id: 1305214752452608
-    m_Localized: 'Upon summoning, Gains <b>Malevolence</b> for 1 times and returns
+    m_Localized: 'Upon summoning, gains <b>Malevolence</b> for 1 time  and returns
       to the deck after attacking.
 
       This unit does not edified if all faith
@@ -295,96 +299,94 @@ MonoBehaviour:
       ranges and effects.
 
       (<b>Book</b>: Attack all enemy unit except within
-      adjacent 8 tiles of Appaim but can''t move. Reduces the enemy''s faith by 1.)
+      adjacent 8 tiles of Appaim but can''t move.)
 
-      <b>Staff</b>:
-      Attack enemy unit within adjacent 8 tiles of Appaim. Reduces the enemy''s faith
-      by 1.
+      <b>Staff</b>: Attack enemy
+      unit within adjacent 8 tiles of Appaim. Reduces enemy''s faith by 1.
 
-      <b>Sword</b>: Attack range become unlimited and attack 1 enemy
-      unit. Reduces the enemy''s faith by 1.)'
+      <b>Sword</b>:
+      Attack range become unlimited and attack 1 enemy unit.)'
     m_Metadata:
       m_Items: []
   - m_Id: 1305281299279872
-    m_Localized: 'Upon summoning, summon servant 2 tile ahead, after that this unit
-      and servant gain <b>Malevolence</b> for 1 times.
+    m_Localized: 'Upon summoning, summons servants 2 tiles ahead of it. After summoning,
+      this unit and the servants gain <b>Malevolence</b> for 1 times.
 
-      This unit does not
-      edified if all faith is lost, instead it dies.
+      This
+      unit does not edified if all faith is lost, instead it dies.
 
       (<b>Malevolence</b>:
       Upon attacking, reduces the enemy''s faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 7868905148968960
-    m_Localized: "Summons 2 the Flower of Sacrifice instead attacking.\r\nThe Flower
-      of Sacrifice bloom on the next Savior's turn, dealing damage equal to the Savior's
-      \r\nattack power to enemies within adjacent 4 tiles and reduces the enemy's
-      faith by 1."
+    m_Localized: The Savior remains outside the field and does not move. Instead
+      of attacking, he summons two Flowers of Sacrifice. The Flowers of Sacrifice
+      bloom on the next turn, attacking the surrounding 4 tiles.
     m_Metadata:
       m_Items: []
   - m_Id: 7868980851961856
     m_Localized: 'When the Flower of Sacrifice blooms, it becomes the servant of
-      the Savior and servant gains <b>Divine.
+      the Savior and gains <b>Divine</b>.
 
-      (<b>Divine: Upon attacking,
+      (<b>Divine</b>: Upon attacking,
       reduces the enemy''s faith by 1)'
     m_Metadata:
       m_Items: []
   - m_Id: 7869015077482496
-    m_Localized: 'The Savior takes damage whenever the Savior''s servant or the Flower
-      of Sacrifice dies,
-
-      and the Savior''s faith decreases each time when
-      they get corrupted.'
+    m_Localized: The Savior takes damage whenever the Savior's servant or the Flower
+      of Sacrifice dies, and the Savior's faith decreases by 1 each time they get
+      corrupted.
     m_Metadata:
       m_Items: []
   - m_Id: 35651046761189376
-    m_Localized: Apostle Of Vice disappears from the field after one turn. Upon attacking,
-      also dealing damage to enemies within adjacent 8 tiles.
+    m_Localized: The Apostle of Vice disappears from the field after one turn. When
+      attacking, he deals damage to the target, along with enemies within adjacent
+      8 tiles.
     m_Metadata:
       m_Items: []
   - m_Id: 38887124866600960
-    m_Localized: When attacked, there is a 30% chance to invalidates damage.
+    m_Localized: When attacked, there is a 30% chance to invalidate damage.
     m_Metadata:
       m_Items: []
   - m_Id: 38895353000529920
-    m_Localized: 'When skip turn without attacking, Gains <b>Attack Boost</b> and
-      <b>Speed Boost</b> for 1 times.
+    m_Localized: 'When a turn is skipped without attacking, gains  <b>Attack Boost</b>
+      and <b>Speed Boost</b> for 1 times.
 
-      (<b>Attack Boost</b>: Increases attack
-      power by 50%.
+      (<b>Attack Boost</b>: Increases
+      attack power by 30%.
 
-      (<b>Speed Boost</b>: Speed incresase by 100.)'
+      <b>Speed Boost</b>: Speed incresase by 100.)'
     m_Metadata:
       m_Items: []
   - m_Id: 42853855059398656
-    m_Localized: Upon attacking, Recovers 15 mana.
+    m_Localized: Upon attacking, recovers 15 Mana.
     m_Metadata:
       m_Items: []
   - m_Id: 42853852555399168
-    m_Localized: Upon attacking, Recovers 10 mana.
+    m_Localized: Upon attacking, recovers 10 Mana.
     m_Metadata:
       m_Items: []
   - m_Id: 51142579702616064
-    m_Localized: 'Upon end of this unit''s turn when there are no ally unit within
-      adjacent 8 tiles, Gains <b>Attack Boost</b> for 1 times.
+    m_Localized: 'Upon end of this unit''s turn, if there are no ally units within
+      the 8 adjacent tiles, Gains <b>Attack Boost</b> for 1 times.
 
       (<b>Attack
-      Boost</b>: Increases attack power by 50%.)'
+      Boost</b>: Increases attack power by 30%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 51142824608026624
-    m_Localized: If ally unit corrupted/edified, Increases attack power by 15
+    m_Localized: If an ally unit is corrupted/edified, increases Attack Power by
+      15.
     m_Metadata:
       m_Items: []
   - m_Id: 51142828772970496
-    m_Localized: Upon attacking, Recovers 30 health to ally units within attack range.
+    m_Localized: Upon attacking, ally units within attack range recover 10 health.
     m_Metadata:
       m_Items: []
   - m_Id: 51142830366806016
-    m_Localized: Upon switching locations with ally unit, Recovers 15 health that
-      ally unit.
+    m_Localized: Upon switching locations with an ally unit, the ally unit recovers
+      15 health.
     m_Metadata:
       m_Items: []
   - m_Id: 72209245211348992
@@ -399,15 +401,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 72209241214177280
-    m_Localized: 'Upon summoning, Gains <b>Invincibility</b> for 2 times. If a unit
-      has <b>Invincibility</b>, unit cannot move.
+    m_Localized: 'Upon summoning, gains <b>Invincibility</b> for 2 times. While this
+      unit has <b>Invincibility</b>, it cannot move.
 
-      (<b>Invincibility</b>: Invalidates
-      damage.)'
+      (<b>Invincibility</b>:
+      Invalidates damage.)'
     m_Metadata:
       m_Items: []
   - m_Id: 72209235002413056
-    m_Localized: 'When health falls below 15, Gains <b>Sacred Step</b> for 1 times.
+    m_Localized: 'When health falls below 15, gains <b>Sacred Step</b> for 1 times.
       (Once per battle)
 
       (<b>Sacred Step</b>: Can move any tile regradless
@@ -415,13 +417,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 72209239154774016
-    m_Localized: Upon summoning, Spawns an Obelisk with 10 health in a random empty
-      tile within adjacent 4 tiles.
+    m_Localized: Upon summoning, spawns an Obelisk with 10 health in a random empty
+      tile within adjacent 4 tiles of the unit.
     m_Metadata:
       m_Items: []
   - m_Id: 72209243240026112
-    m_Localized: "Upon summoning, gains 50% increased attack power for 2 turns, but
-      then gains <b>Stun\r</b> 5 time.\n(<b>Stun</b>: This unit can't move or attack.)"
+    m_Localized: 'Upon summoning, gains 50% increased Attack Power for 2 turns, but
+      then receives <b>Stun </b> for 5 turns.
+
+      (<b>Stun</b>: This unit can''t
+      move or attack.)'
     m_Metadata:
       m_Items: []
   - m_Id: 78864474912739328
@@ -432,9 +437,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 78864595775803392
-    m_Localized: Arabella cannot move during moving turns but can move to nearby
-      4 tiles of an enemy during attack turns. When moving, she leaves a Vines of
-      Oblivion at her original position, which attacks together with Arabella.
+    m_Localized: Arabella cannot move during movement turns but can move to any of
+      the nearby 4 tiles of an enemy during attack turns. When moving, she leaves
+      a Vine of Oblivion at her original position, which attacks together with Arabella.
     m_Metadata:
       m_Items: []
   - m_Id: 78864714545909760
@@ -446,66 +451,46 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 78865099960504320
-    m_Localized: 'Instead of moving each turn, advances 2 tiles forward. Units hit
-      by Yorhn are instantly defeated. When reaching the edge of the field, changes
-      rows to continue moving. If the field is completely filled, the player loses.
-
-'
+    m_Localized: Yohrn advances 2 tiles forward each turn. Units hit by Yorhn are
+      instantly defeated. When reaching the edge of the field, Yohrn changes rows
+      to continue moving.
     m_Metadata:
       m_Items: []
   - m_Id: 78865195338977280
-    m_Localized: When attacking, targets all units in the top and bottom rows of
-      the attacking Scales. On the first turn, even-numbered scales attack, and on
-      the next turn, odd-numbered scales attack, alternating each turn. Units hit
-      by the attack lose Faith by 1.
+    m_Localized: Yohrn's scales are divided into open-eyed and closed-eyed scales.
+      The scales alternate between opening and closing their eyes, and the open-eyed
+      scales attack. The attack of the scales reduces the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 78865196878286848
-    m_Localized: "Every time Yohrn moves, he summons Scales. When a scale is destroyed,
-      Yohrn takes damage equal to the Scale's health and moves backward. Yohrn\u2019s
-      Faith does not decrease, but if the Scales become corrupted, his Faith decreases
-      by 1.\r\n"
+    m_Localized: "Every time Yohrn advances, he summons scales. When a scale is destroyed,
+      Yohrn takes damage equal to the Scale's health. Yohrn does not lose faith directly,
+      but if a scale becomes corrupted, Yohrn\u2019s Faith decreases by 1."
     m_Metadata:
       m_Items: []
   - m_Id: 78865540756688896
-    m_Localized: "Upon summoning, Gains <b>Immortality<b> for 1 times. When destroyed,
-      deals damage to Yohrn equal to the scale\u2019s health. If the scale\u2019s
-      faith is fully lost, it is destroyed, and Yohrn's faith is reduced by 1 instead
-      of taking damage.\r\n(<b>Immortality<b>: Withstands once with 1 health, when
-      reaching death.)"
+    m_Localized: "Upon summoning, gains <b>Immortality</b> once. When destroyed,
+      deals damage to Yohrn equal to this scale\u2019s health. If the scale\u2019s
+      faith is fully lost, it is destroyed, and Yohrn's faith is reduced by 1.\n(<b>Immortality</b>:
+      Withstands once with 1 health, when reaching death.)"
     m_Metadata:
       m_Items: []
   - m_Id: 84651608961601536
-    m_Localized: 'Upon summoning, Adds the stats of the strongest ally unit to own
-      stats. (The strongest unit : The unit with the highest total of attack power
-      and health.)'
+    m_Localized: 'When summoned, adds the stats of the strongest ally unit on the
+      field to his own. (The strongest unit : The unit with the highest total of
+      attack power and health.) This unit is not edified if all faith is lost, instead
+      it dies.'
     m_Metadata:
       m_Items: []
   - m_Id: 85301240905486336
-    m_Localized: Upon attacking when this unit has two or more buff, Reduces the
-      enemy's faith by 1
+    m_Localized: Upon attacking, if this unit has two or more buff, reduces the enemy's
+      faith by 1.
     m_Metadata:
       m_Items: []
-  - m_Id: 85673016286138368
-    m_Localized: Instead of moving each turn, advances 2 tiles forward. Units hit
-      by Yorhn' advance are defeated. When reaching the edge of the field, changes
-      rows to continue moving. If the field is completely filled, the player loses.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85673019381534720
-    m_Localized: "Every time Yohrn moves, he summons Scales. When a Scale is destroyed,
-      Yohrn takes damage equal to the Scale's health and moves backward. Yohrn\u2019s
-      Faith does not decrease, but if the Scales become corrupted, his Faith decreases
-      by 1."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85673018085494784
-    m_Localized: 'Upon attacking, targets all units in the top and bottom rows of
-      the attacking Scales. On the first turn, even-numbered Scales attack, and on
-      the next turn, odd-numbered Scales attack, alternating each turn. Attack reduces
-      the enemy''s faith by 1
-
-'
+  - m_Id: 87082343500763136
+    m_Localized: The Flower of Sacrifice blooms on the next turn, dealing damage
+      equal to the Savior's Attack Power to enemies within adjacent 4 tiles and reduces
+      the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   references:

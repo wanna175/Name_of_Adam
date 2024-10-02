@@ -143,6 +143,30 @@ MonoBehaviour:
     m_Key: HallEdit
     m_Metadata:
       m_Items: []
+  - m_Id: 81629787643334656
+    m_Key: Normal_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629926340579328
+    m_Key: Advanced_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629957806247936
+    m_Key: Divine_Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629992493142016
+    m_Key: Normal_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629994401550336
+    m_Key: Advanced_Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629995643064320
+    m_Key: Divine_Description
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

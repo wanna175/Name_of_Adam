@@ -139,6 +139,22 @@ MonoBehaviour:
     m_Key: HP
     m_Metadata:
       m_Items: []
+  - m_Id: 86338941318483968
+    m_Key: Glory1 Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338942937485312
+    m_Key: Glory2 Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338946267762688
+    m_Key: Glory3 Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86357560219815936
+    m_Key: Scale Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -27,11 +27,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5593952256
-    m_Localized: 'Congratulations, the very incarnation of darkness.
+    m_Localized: 'Congratulations, incarnation of darkness.
 
 
-      You
-      have finally defeated the king of all mortals.
+      You have finally
+      succeeded in defeating the King of all Mortals.
+
 
 
       However, your journey
@@ -40,12 +41,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3364736528384
-    m_Localized: 'Congratulations, you have overcome everything above you. But the
-      real challenge begins now.
+    m_Localized: 'Congratulations, incarnation of darkness.
 
 
-      Test your limits whilst challenging ever-changing
-      battles awaiting you.'
+
+      You have overcome
+      everything set against you. But the real challenge begins now.
+
+
+
+      Test
+      your limits against ever-changing challenges and battles awaiting you.'
     m_Metadata:
       m_Items: []
   - m_Id: 3408147574784
@@ -92,15 +98,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 21708852642877440
-    m_Localized: Would you like to create an apostle using 15 dark essences?
+    m_Localized: Would you like to create an apostle using 15 Dark Essences?
     m_Metadata:
       m_Items: []
   - m_Id: 21709489623437312
-    m_Localized: Would you like to create an apostle using 15 dark essences?
+    m_Localized: Would you like to create an apostle using 15 Dark Essences?
     m_Metadata:
       m_Items: []
   - m_Id: 22708740248719360
-    m_Localized: '<b>Every progress will be deleted if you reset the game.</b>
+    m_Localized: '<b>All progress will be deleted if you reset the game.</b>
+
 
 
       Would
@@ -116,27 +123,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 28538600321863680
-    m_Localized: 'The selected unit already possesses corruption stigmata.
+    m_Localized: 'The selected unit already possesses a Corruption Stigmata.
 
 
       Would
-      you like to destroy an existing corruption stigmata and select a new one?'
+      you like to destroy an existing Corruption Stigmata and select a new one?'
     m_Metadata:
       m_Items: []
   - m_Id: 30018410514280448
-    m_Localized: 'The unit brought from the Divine Hall
-
-
-      ncannot be the target
-      of Stigma Transfer.'
+    m_Localized: Units brought from the Divine Hall cannot be the target of Stigmata
+      Transfer.
     m_Metadata:
       m_Items: []
   - m_Id: 32499517643460608
-    m_Localized: You cannot grant stigmata to boss units.
+    m_Localized: You cannot bestow stigmata upon boss units.
     m_Metadata:
       m_Items: []
   - m_Id: 32501236473434112
-    m_Localized: This unit has already been placed in the hall.
+    m_Localized: This unit has already been placed in the journey.
     m_Metadata:
       m_Items: []
   - m_Id: 32564546820542464
@@ -144,32 +148,34 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 37980186224685056
-    m_Localized: It's low on Mana.
+    m_Localized: You do not have enough Mana.
     m_Metadata:
       m_Items: []
   - m_Id: 37980301891006464
-    m_Localized: It's low on Dark Essence.
+    m_Localized: You do not have enough Dark Essence.
     m_Metadata:
       m_Items: []
   - m_Id: 37980338062684160
     m_Localized: Units can only be summoned or skills can only be used during the
-      preparation phase.
+      Preparation Phase
     m_Metadata:
       m_Items: []
   - m_Id: 47438182506188800
-    m_Localized: You cannot revert every units.
+    m_Localized: You cannot revert every unit.
     m_Metadata:
       m_Items: []
   - m_Id: 63829019011993600
-    m_Localized: 'Congratulations.
+    m_Localized: 'Congratulations,incarnation of darkness.
 
 
-      You have finally defeated the Divine.
+
+      You have finally
+      defeated the Divine.
 
 
-      However,
-      a new light is rising from the abyss. Destroy the newly born light with your
-      own hands.'
+
+      However, a new light is rising from the abyss.
+      Destroy the newly born chaos with your own hands.'
     m_Metadata:
       m_Items: []
   - m_Id: 63829099735568384
@@ -204,6 +210,10 @@ MonoBehaviour:
   - m_Id: 72060608274817024
     m_Localized: You have not selected any units to register in the Divine Hall.
       Will you not register any units in this journey?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73098784771559424
+    m_Localized: "Would you like to register this unit at the Divine Hall?\r"
     m_Metadata:
       m_Items: []
   references:

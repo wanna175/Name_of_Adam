@@ -43,6 +43,18 @@ MonoBehaviour:
     m_Key: Select Incarna
     m_Metadata:
       m_Items: []
+  - m_Id: 87816530339975168
+    m_Key: The Dark Prophet Hover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87816532051251200
+    m_Key: The Saintess of Sins Hover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87816533615726592
+    m_Key: The Heir of Vice Hover
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

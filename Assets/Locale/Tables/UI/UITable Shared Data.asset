@@ -79,6 +79,42 @@ MonoBehaviour:
     m_Key: FaithGemHover
     m_Metadata:
       m_Items: []
+  - m_Id: 86310734917685248
+    m_Key: SingleAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310737144860672
+    m_Key: AreaAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310738684170240
+    m_Key: FrontalAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310740051513344
+    m_Key: SpecialAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310783034740736
+    m_Key: NoAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312205277089792
+    m_Key: Apostle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312206401163264
+    m_Key: Elite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312248780410880
+    m_Key: Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312249229201408
+    m_Key: Normal
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

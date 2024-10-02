@@ -178,6 +178,10 @@ MonoBehaviour:
     m_Localized: Vines Of Oblivion
     m_Metadata:
       m_Items: []
+  - m_Id: 87204495734493184
+    m_Localized: Betrayer Of Faith
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

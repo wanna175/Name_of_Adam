@@ -82,8 +82,56 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 86304739613102080
-    m_Localized: Gems that represent faith. Once all the gems are exhausted, the
-      unit edify and turn into an enemy unit.
+    m_Localized: "Gems that represent faith. Once all the gems are exhausted,  the
+      unit becomes edified and turns into an enemy unit.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310734917685248
+    m_Localized: '<b>Single Attack</b>: Targets and attacks one unit within the attack
+      range.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310738684170240
+    m_Localized: '<b>Frontal Attack</b>: Attacks all units in the front within the
+      attack range
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310737144860672
+    m_Localized: '<b>Area Attack</b>: Attacks all units within the attack range
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310740051513344
+    m_Localized: '<b>Special Attack</b>: Attacks in a special manner
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310783034740736
+    m_Localized: '<b>No Attack</b>: Can''t attack.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312249229201408
+    m_Localized: "<b>Normal</b>: This is a \u2018Normal Unit\u2019"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312248780410880
+    m_Localized: "<b>Boss</b>: This is a \u2018Boss Unit\u2019. It possesses overwhelming
+      abilities but cannot gain additional stigmata."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312206401163264
+    m_Localized: "<b>Elite</b>: This is an \u2018Elite Unit\u2019. It possesses powerful
+      stigmata and has high stats"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312205277089792
+    m_Localized: "<b>Apostle</b>: This is an \u2018Apostle Unit\u2019. It possesses
+      special stigmata and has high stats. It can be obtained through \u2018Apostle
+      Creation\u2019 in the <Sacrifice> stage"
     m_Metadata:
       m_Items: []
   references:

@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 79409508352
-    m_Localized: Shadow Step
+    m_Localized: Steps Of Shadow
     m_Metadata:
       m_Items: []
   - m_Id: 101656096768
@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 293079937024
-    m_Localized: Additional Punishment
+    m_Localized: Damnation's Weight
     m_Metadata:
       m_Items: []
   - m_Id: 2496133918720
@@ -51,11 +51,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2552828325888
-    m_Localized: Raise I
+    m_Localized: Exaltation I
     m_Metadata:
       m_Items: []
   - m_Id: 136906908954624
-    m_Localized: Raise II
+    m_Localized: Exaltation II
     m_Metadata:
       m_Items: []
   - m_Id: 136938819219456
@@ -71,11 +71,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137166058221568
-    m_Localized: Blood Blessing I
+    m_Localized: Crimson Blessing I
     m_Metadata:
       m_Items: []
   - m_Id: 137241786380288
-    m_Localized: Blood Blessing II
+    m_Localized: Crimson Blessing II
     m_Metadata:
       m_Items: []
   - m_Id: 137273327546368
@@ -103,7 +103,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137774911778816
-    m_Localized: Expand
+    m_Localized: Expansion
     m_Metadata:
       m_Items: []
   - m_Id: 137816326336512
@@ -111,7 +111,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137873012355072
-    m_Localized: Berserker
+    m_Localized: Berserk
     m_Metadata:
       m_Items: []
   - m_Id: 137905929252864
@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138073625915392
-    m_Localized: Teleport
+    m_Localized: PassageOfShadows
     m_Metadata:
       m_Items: []
   - m_Id: 138109344608256
@@ -155,11 +155,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138386491633664
-    m_Localized: Pray In Aid
+    m_Localized: Intercession
     m_Metadata:
       m_Items: []
   - m_Id: 138448022073344
-    m_Localized: Sin
+    m_Localized: Deadly Sin
     m_Metadata:
       m_Items: []
   - m_Id: 1406610193575936
@@ -207,7 +207,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1444587946962944
-    m_Localized: Funeral
+    m_Localized: Requiem
     m_Metadata:
       m_Items: []
   - m_Id: 8008119182225408
@@ -251,7 +251,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 52527534567477248
-    m_Localized: Aid
+    m_Localized: Veiled Support
     m_Metadata:
       m_Items: []
   - m_Id: 72348813554241536
@@ -312,6 +312,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 85812550235738112
     m_Localized: Fragments Of Birth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87222195554766848
+    m_Localized: Atonement
     m_Metadata:
       m_Items: []
   references:

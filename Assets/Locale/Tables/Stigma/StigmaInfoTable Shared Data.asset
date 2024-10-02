@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1089838313472
-    m_Key: Shadow Step Info
+    m_Key: Steps Of Shadow Info
     m_Metadata:
       m_Items: []
   - m_Id: 1175741853696
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1262668804096
-    m_Key: Additional Punishment Info
+    m_Key: Damnation's Weight Info
     m_Metadata:
       m_Items: []
   - m_Id: 1312883011584
@@ -44,11 +44,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1751317803008
-    m_Key: Raise I Info
+    m_Key: Exaltation I Info
     m_Metadata:
       m_Items: []
   - m_Id: 1873627901952
-    m_Key: Raise II Info
+    m_Key: Exaltation II Info
     m_Metadata:
       m_Items: []
   - m_Id: 1890304454656
@@ -64,11 +64,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2236426809344
-    m_Key: Blood Blessing I Info
+    m_Key: Crimson Blessing I Info
     m_Metadata:
       m_Items: []
   - m_Id: 2356740419584
-    m_Key: Blood Blessing II Info
+    m_Key: Crimson Blessing II Info
     m_Metadata:
       m_Items: []
   - m_Id: 2420078604288
@@ -92,7 +92,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2911923662848
-    m_Key: Expand Info
+    m_Key: Expansion Info
     m_Metadata:
       m_Items: []
   - m_Id: 3085446213632
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3199489339392
-    m_Key: Berserker Info
+    m_Key: Berserk Info
     m_Metadata:
       m_Items: []
   - m_Id: 3269714571264
@@ -116,7 +116,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
-    m_Key: Teleport Info
+    m_Key: PassageOfShadows Info
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
@@ -136,11 +136,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4454450262016
-    m_Key: Pray In Aid Info
+    m_Key: Intercession Info
     m_Metadata:
       m_Items: []
   - m_Id: 4568623411200
-    m_Key: Sin Info
+    m_Key: Deadly Sin Info
     m_Metadata:
       m_Items: []
   - m_Id: 1304750413639680
@@ -188,7 +188,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1305281299279872
-    m_Key: Funeral Info
+    m_Key: Requiem Info
     m_Metadata:
       m_Items: []
   - m_Id: 7868905148968960
@@ -236,7 +236,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51142830366806016
-    m_Key: Aid Info
+    m_Key: Veiled Support Info
     m_Metadata:
       m_Items: []
   - m_Id: 72209235002413056
@@ -280,11 +280,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 78865195338977280
-    m_Key: Sharp Surge Info
+    m_Key: Repeating Surge Info
     m_Metadata:
       m_Items: []
   - m_Id: 78865196878286848
-    m_Key: Fragments of Birth Info
+    m_Key: Fragments Of Birth Info
     m_Metadata:
       m_Items: []
   - m_Id: 78865540756688896
@@ -299,16 +299,8 @@ MonoBehaviour:
     m_Key: Purification Info
     m_Metadata:
       m_Items: []
-  - m_Id: 85673016286138368
-    m_Key: AbyssalSteps Info
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85673018085494784
-    m_Key: RepeatingSurge Info
-    m_Metadata:
-      m_Items: []
-  - m_Id: 85673019381534720
-    m_Key: FragmentsOfBirth Info
+  - m_Id: 87082343500763136
+    m_Key: Atonement Info
     m_Metadata:
       m_Items: []
   m_Metadata:

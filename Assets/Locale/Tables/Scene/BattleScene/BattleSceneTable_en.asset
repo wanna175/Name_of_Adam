@@ -114,6 +114,27 @@ MonoBehaviour:
     m_Localized: <Single Attack>
     m_Metadata:
       m_Items: []
+  - m_Id: 78353335799926784
+    m_Localized: "<b>Dark Essence</b> can be obtained by defeating enemies. Dark
+      Essence is used to activate skills or summon powerful units.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353197320785920
+    m_Localized: Current Phase is <b>The Preparation Phase</b> where actions such
+      as summoning units or using skills are taken to prepare for battle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353151351214080
+    m_Localized: If there are no ally units on the field, the enemy will directly
+      attack the Player. The Player has three lives, and if it reaches 0, the Player
+      loses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353087539073024
+    m_Localized: 'Current Mana: Mana is restored by 30 at the start of each Preparation
+      Phase.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

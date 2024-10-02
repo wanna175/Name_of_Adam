@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 227742486528
-    m_Localized: Heal faith
+    m_Localized: Restore faith
     m_Metadata:
       m_Items: []
   - m_Id: 374228553728
@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2862491013120
-    m_Localized: Possessed units
+    m_Localized: "Owned Units\r"
     m_Metadata:
       m_Items: []
   - m_Id: 2867352211456
@@ -63,7 +63,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2882816610304
-    m_Localized: Select a unit to bring to the Divine Hall.
+    m_Localized: Select a unit to register at the Divine Hall.
     m_Metadata:
       m_Items: []
   - m_Id: 1931057719734272
@@ -107,7 +107,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9460599405473792
-    m_Localized: Select a desired Upgrade.
+    m_Localized: Select a desired upgrade.
     m_Metadata:
       m_Items: []
   - m_Id: 9460638387335168
@@ -139,11 +139,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 34346192196505600
-    m_Localized: Select the units to bring on this mission.
+    m_Localized: Select units to bring on this mission.
     m_Metadata:
       m_Items: []
   - m_Id: 34363969619791872
-    m_Localized: Select the units to delete.
+    m_Localized: Select units to delete.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629787643334656
+    m_Localized: Normal Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629926340579328
+    m_Localized: Advanced Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629957806247936
+    m_Localized: Divine Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629992493142016
+    m_Localized: Can place Normal units
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629994401550336
+    m_Localized: Can place Elite, Apostle, and Normal units
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629995643064320
+    m_Localized: Can place Boss, Elite, Apostle, and Normal units
     m_Metadata:
       m_Items: []
   references:

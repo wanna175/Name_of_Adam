@@ -127,18 +127,18 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7621575226593280
-    m_Localized: Teleport
+    m_Localized: Passage Of Shadows
     m_Metadata:
       m_Items: []
   - m_Id: 7621801735786496
-    m_Localized: 'Stigmata ''Teleport'' appears from now on.
+    m_Localized: 'Stigmata ''Passage Of Shadows'' appears from now on.
 
 
-      Teleport - Upon
-      summoning and defeating an enemy, Gains Sacred Step for 1 times.
+      Passage
+      Of Shadows - Upon summoning and defeating an enemy, Gains Sacred Step for 1
+      times.
 
-      (Sacred
-      Step: Can move any tile regradless move range.)'
+      (Sacred Step: Can move any tile regradless move range.)'
     m_Metadata:
       m_Items: []
   - m_Id: 7622009710350336
@@ -146,8 +146,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7622098679926784
-    m_Localized: You can now organize units from the Divine Hall in the slots of
-      the Gravekeeper and Prisoner at the beginning.
+    m_Localized: One Normal Slot is upgraded to an Advanced Slot. You can place one
+      additional Elite or Apostle unit using the Advanced Slot.
     m_Metadata:
       m_Items: []
   - m_Id: 7622169010016256
@@ -167,8 +167,8 @@ MonoBehaviour:
 
 
       Forbidden
-      Pact - Upon summoning, the unit becomes stunned once, but the mana cost of
-      the next skill is eliminated.'
+      Pact - Upon summoning, Gains Attack Decrease for 1 times, but the mana cost
+      of the next skill becomes 0.(Attack Decrease: Attack power decrease by 50%.)'
     m_Metadata:
       m_Items: []
   - m_Id: 7622878182936576
@@ -176,8 +176,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7622950396268544
-    m_Localized: You can now organize apostles or elites into normal unit slots in
-      the beginning.
+    m_Localized: All Common slots are upgraded to Advanced slots and first slot are
+      upgraded to Divine Slot, where you can place all units including Boss units.
     m_Metadata:
       m_Items: []
   - m_Id: 7623054620528640
@@ -185,8 +185,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7623070651158528
-    m_Localized: Stigmata 'Deadly Sin' appears in the 'Sacrifice' stage from now
-      on.
+    m_Localized: "Stigmata ''Deadly Sin'' appears in the Sacrifice from now on. \n\nDeadly
+      Sin - Upon summoning, Gains Malevolence for 66 times. (Malevolence: Upon attacking,
+      Reduces the enemy's faith by 1) "
     m_Metadata:
       m_Items: []
   - m_Id: 7624341659488256
