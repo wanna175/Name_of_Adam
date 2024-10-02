@@ -59,14 +59,7 @@ public class DataManager : MonoBehaviour
         GameData.PlayerHP = GameDataMain.PlayerHP;
         GameData.DeckUnits = GameDataMain.DeckUnits;
         GameData.FallenUnits = GameDataMain.FallenUnits;
-        GameData.IsVisitBaptism = GameDataMain.IsVisitBaptism;
-        GameData.IsVisitStigmata = GameDataMain.IsVisitStigmata;
-        GameData.IsVisitSacrifice = GameDataMain.IsVisitSacrifice;
         GameData.Progress.ClearProgress();
-
-        GameData.IsVisitBaptism = GameManager.OutGameData.Data.IsVisitBaptism;
-        GameData.IsVisitStigmata = GameManager.OutGameData.Data.IsVisitStigmata;
-        GameData.IsVisitSacrifice = GameManager.OutGameData.Data.IsVisitSacrifice;
     }
 
     public void DeckClear()
@@ -76,9 +69,6 @@ public class DataManager : MonoBehaviour
         GameData.PlayerHP = GameDataTutorial.PlayerHP;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
         GameData.FallenUnits.Clear();
-        GameData.IsVisitBaptism = GameDataTutorial.IsVisitBaptism;
-        GameData.IsVisitStigmata = GameDataTutorial.IsVisitStigmata;
-        GameData.IsVisitSacrifice = GameDataTutorial.IsVisitSacrifice;
         GameData.Progress.ClearProgress();
         GameData.StageDivine = new();
 
@@ -101,9 +91,6 @@ public class DataManager : MonoBehaviour
         GameDataMain.PlayerHP = GameDataMainLayout.PlayerHP;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
-        GameDataMain.IsVisitBaptism = GameDataMainLayout.IsVisitBaptism;
-        GameDataMain.IsVisitStigmata = GameDataMainLayout.IsVisitStigmata;
-        GameDataMain.IsVisitSacrifice = GameDataMainLayout.IsVisitSacrifice;
         GameDataMain.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameDataMain.DeckUnits)

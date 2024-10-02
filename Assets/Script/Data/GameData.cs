@@ -10,9 +10,6 @@ public class GameData : ScriptableObject
     public int PlayerHP;
     public List<DeckUnit> DeckUnits = new();
     public List<DeckUnit> FallenUnits = new();
-    public bool IsVisitBaptism = false;
-    public bool IsVisitStigmata = false;
-    public bool IsVisitSacrifice = false;
     public Progress Progress;
     public Vector3 StageDivine;
     public int CurrentAct;
@@ -59,6 +56,7 @@ public class Progress
     }
 }
 
+//제거된 값, 업데이트를 위해서만 이용됨
 [Serializable]
 public class NPCQuest
 {

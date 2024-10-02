@@ -116,6 +116,7 @@ public class OutGameDataContainer : MonoBehaviour
 
     //정식용
     private const string OutGameDataFileName = "126634399756.dat";
+    //private const string OutGameDataFileNameReadable = "readable.dat";
 
     private SaveVersionController _versionController;
     public Dictionary<int, ProgressItem> ProgressItems = new();
@@ -161,6 +162,7 @@ public class OutGameDataContainer : MonoBehaviour
     {
         string json = JsonUtility.ToJson(Data, true);
         File.WriteAllText(_path, EncryptAndDecrypt(json));
+        //File.WriteAllText(Path.Combine(Application.persistentDataPath, OutGameDataFileNameReadable), json);
     }
 
     public void LoadData()
@@ -206,7 +208,6 @@ public class OutGameDataContainer : MonoBehaviour
 
         SetProgressInit();
         ResetOption();
-        InitCutSceneData();
         SaveData();
     }
 
@@ -215,6 +216,7 @@ public class OutGameDataContainer : MonoBehaviour
     public ProgressSave GetProgressSave(int ID) => Data.ProgressSaves.Find(x => x.ID == ID);
 
     public bool IsUnlockedItem(int ID) => GetProgressSave(ID).isUnLock;
+    public bool IsUnlockedItem(SanctumUnlock ID) => GetProgressSave(ID.GetHashCode()).isUnLock;
 
     // 현재 확인하는 아이템이 구매 가능한 아이템인지 확인
     public bool GetBuyable(int ID)
@@ -246,20 +248,19 @@ public class OutGameDataContainer : MonoBehaviour
         Debug.Log($"{unit.Data.Name} Unit Get");
         unit.DeckUnitUpgradeStat.FallCurrentCount = 0;
 
-        HallUnit newUnit = new();
-
-        newUnit.ID = GameManager.Data.GetHallUnitID();
-        newUnit.PrivateKey = unit.PrivateKey;
-        newUnit.UnitName = unit.Data.ID;
-        newUnit.UpgradedStat = unit.DeckUnitUpgradeStat;
-        newUnit.IsMainDeck = false;
-        newUnit.Stigmata = unit.GetStigmaSaveData();
-        newUnit.Upgrades = unit.GetUpgradeData();
+        HallUnit newUnit = new()
+        {
+            ID = GameManager.Data.GetHallUnitID(),
+            PrivateKey = unit.PrivateKey,
+            UnitName = unit.Data.ID,
+            UpgradedStat = unit.DeckUnitUpgradeStat,
+            IsMainDeck = false,
+            Stigmata = unit.GetStigmaSaveData(),
+            Upgrades = unit.GetUpgradeData()
+        };
 
         Data.HallUnit.Add(newUnit);
         SaveData();
-
-        GameManager.Data.GameData.FallenUnits.Clear();
     }
 
     public void CoverHallUnit(DeckUnit unit)
@@ -357,17 +358,10 @@ public class OutGameDataContainer : MonoBehaviour
         Data.IsWindowed = false;
         Data.MasterSoundPower = Data.BGMSoundPower = Data.SESoundPower = 0.5f;
         Data.BattleSpeed = 1f;
+        Data.Language = 0;
         //Data.Language = GameManager.Steam.GetCurrentGameLanguage();
         Data.IsReplayCutScene = false;
         Data.IsReplayDialog = false; ;
-    }
-
-    public void InitCutSceneData()
-    {
-        foreach (CutSceneType cutScene in Enum.GetValues(typeof(CutSceneType)))
-        {
-            SetCutSceneData(cutScene, false);
-        }
     }
 
     public List<Resolution> GetAllResolution() => _resolutions;
@@ -382,7 +376,7 @@ public class OutGameDataContainer : MonoBehaviour
         {
             Data.CutSceneViewData.Remove(cutSceneKey);
         }
-        else if (isDone)
+        else if (!Data.CutSceneViewData.Contains(cutSceneKey) && isDone)
         {
             Data.CutSceneViewData.Add(cutSceneKey);
         }
@@ -398,7 +392,7 @@ public class OutGameDataContainer : MonoBehaviour
         {
             Data.DialogViewData.Remove(unitName);
         }
-        else if (isDone)
+        else if (!Data.DialogViewData.Contains(unitName) && isDone)
         {
             Data.DialogViewData.Add(unitName);
         }

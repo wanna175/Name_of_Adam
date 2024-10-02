@@ -158,7 +158,59 @@ public class SaveVersionController
                     GameManager.OutGameData.Data.IsVisitStigmata = npcQuest.StigmaQuest > 0;
                     GameManager.OutGameData.Data.IsVisitSacrifice = npcQuest.DarkshopQuest > 0;
 
-                    GameManager.OutGameData.InitCutSceneData();
+                    foreach (var hallUnit in GameManager.OutGameData.FindHallUnitList())
+                    {
+                        List<UpgradeData> updateUpgrades = new();
+
+                        foreach (UpgradeData upgrade in hallUnit.Upgrades)
+                        {
+                            GameManager.Data.Init();
+                            switch (upgrade.ID)
+                            {
+                                case "UP101" :
+                                    if (upgrade.ATK == "4")
+                                    {
+                                        upgrade.ID = "UP105";
+                                    }
+                                break;
+                                case "UP102" :
+                                    if (upgrade.HP == "10" || upgrade.HP == "11")
+                                    {
+                                        upgrade.ID = "UP106";
+                                    }
+                                    break;
+                                case "UP103" :
+                                    if (upgrade.SPD == "30")
+                                    {
+                                        upgrade.SPD = "40";
+                                    }
+                                    else if (upgrade.SPD == "50")
+                                    {
+                                        upgrade.ID = "UP107";
+                                    }
+                                    break;
+                                case "UP211":
+                                    upgrade.ATK = "3";
+                                    break;
+
+                                case "UP301":
+                                    upgrade.ATK = "6";
+                                    upgrade.HP = "6";
+                                    break;
+                                case "UP302":
+                                    upgrade.ATK = "7";
+                                    break;
+                                case "UP303":
+                                    upgrade.ATK = "8";
+                                    upgrade.HP = "-6";
+                                    break;
+                            }
+
+                            updateUpgrades.Add(GameManager.Data.UpgradeController.UpgradeUpdateCheck(upgrade));
+                        }
+
+                        hallUnit.Upgrades = updateUpgrades;
+                    }
 
                     break;
             }
