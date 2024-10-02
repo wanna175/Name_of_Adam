@@ -47,7 +47,7 @@ MonoBehaviour:
   originalmanaCost: 20
   originaldarkEssence: 2
   playerSkillName: Trade of Souls
-  playerSkillID: 8
+  playerSkillID: 5
   manaCost: 20
   darkEssence: 2
   skillImage: {fileID: 21300000, guid: 71466f33b18541a488c92aedfad8a5b9, type: 3}

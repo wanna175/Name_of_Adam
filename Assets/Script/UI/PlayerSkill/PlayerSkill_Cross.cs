@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerSkill_Cross : PlayerSkill
@@ -25,6 +26,8 @@ public class PlayerSkill_Cross : PlayerSkill
             }
         });
 
+        List<BattleUnit> hits = new();
+
         foreach (Vector2 target in targetCoords)
         {
             GameManager.VisualEffect.StartVisualEffect(
@@ -34,18 +37,23 @@ public class PlayerSkill_Cross : PlayerSkill
 
             if (targetUnit != null && targetUnit.Team == Team.Enemy)
             {
-                BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
-
-                if (GameManager.OutGameData.IsUnlockedItem(54))
-                {
-                    targetUnit.ChangeFall(1, null, FallAnimMode.On, 0.4f);
-                }
-
-                if (!targetUnit.FallEvent)
-                    targetUnit.GetAttack(-20, null);
+                hits.Add(targetUnit);
             }
         }
-        return false;
+
+        foreach (BattleUnit target in hits.Distinct().ToList())
+        {
+            BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(target));
+
+            if (GameManager.OutGameData.IsUnlockedItem(54))
+            {
+                target.ChangeFall(1, null, FallAnimMode.On, 0.4f);
+            }
+
+            if (!target.FallEvent)
+                target.GetAttack(-20, null);
+        }
+            return false;
     }
 
     public override void CancelSelect()
