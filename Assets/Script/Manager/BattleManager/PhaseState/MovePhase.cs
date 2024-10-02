@@ -19,7 +19,9 @@ public class MovePhase : Phase
         
         if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.Data.TutorialClear)
             TutorialManager.Instance.ShowNextTutorial();
-        
+
+        BattleManager.BattleUI.UI_TurnChangeButton.SetButtonSprite();
+
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TURN_START, _nowUnit);
         _nowUnit.NextMoveSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE_TURN_START, _nowUnit);
 

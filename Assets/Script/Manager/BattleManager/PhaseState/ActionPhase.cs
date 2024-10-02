@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class ActionPhase : Phase
@@ -17,6 +15,8 @@ public class ActionPhase : Phase
 
         if (_nowUnit.Team == Team.Player && TutorialManager.Instance.IsEnableUpdate())
             TutorialManager.Instance.ShowNextTutorial();
+
+        BattleManager.BattleUI.UI_TurnChangeButton.SetButtonSprite();
 
         //공격 턴 시작 시 체크
         _nowUnit.NextAttackSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_START, _nowUnit);
