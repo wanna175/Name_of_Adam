@@ -10,33 +10,17 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
     [SerializeField] private Image _buttonImage;
     [SerializeField] private Image _lightImage;
 
-    private readonly float _lightMaxAlpha = 0.7f;
-    private readonly float _lightMinAlpha = 0.2f;
-    private readonly float _lightFadeSpeed = 0.5f;
-
-    private readonly Vector3 _initSize = Vector3.one;
-    private readonly Vector3 _goalSize = Vector3.one * 1.1f;
+    [SerializeField] private Sprite _endPhaseSprite;
+    [SerializeField] private Sprite _skipAttackSprite;
+    [SerializeField] private Sprite _skipMoveSprite;
+    [SerializeField] private Sprite _enemyTurnSprite;
 
     private bool _isCanCtrl;
 
     public void SetEnable(bool enable)
     {
         _isCanCtrl = enable;
-        Debug.Log("Turn Change Button : " + enable);
-        // 턴엔드 빛 일시 잠금
-        //_lightImage.color = new Color(1, 1, 1, _lightMinAlpha);
-        //_lightImage.transform.localScale = _initSize;
-
-        //if (_isCanCtrl)
-        //{
-        //    StartCoroutine(nameof(FadeLight));
-        //    StartCoroutine(nameof(SizeUp));
-        //}
-        //else
-        //{
-        //    StopCoroutine(nameof(FadeLight));
-        //    StopCoroutine(nameof(SizeUp));
-        //}
+        //Debug.Log("Turn Change Button : " + enable);
     }
 
 
@@ -46,79 +30,58 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
 
         if (_isCanCtrl)
         {
-            PhaseController _phase = BattleManager.Phase;
+            PhaseController phase = BattleManager.Phase;
             _isCanCtrl = false;
 
-            if (_phase.CurrentPhaseCheck(_phase.Prepare))
-                _phase.ChangePhase(_phase.Engage);
-            else if (_phase.CurrentPhaseCheck(_phase.Move))
-                _phase.ChangePhase(_phase.Action);
-            else if (_phase.CurrentPhaseCheck(_phase.Action))
+            if (phase.CurrentPhaseCheck(phase.Prepare))
+            {
+                phase.ChangePhase(phase.Engage);
+                _buttonImage.sprite = _skipMoveSprite;
+            }
+            else if (phase.CurrentPhaseCheck(phase.Move))
+            {
+                phase.ChangePhase(phase.Action);
+                _buttonImage.sprite = _skipAttackSprite;
+            }
+            else if (phase.CurrentPhaseCheck(phase.Action))
             {
                 BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnitOrder());
-                _phase.ChangePhase(_phase.Engage);
+                phase.ChangePhase(phase.Engage);
             }
         }
     }
-    /*
-    IEnumerator SizeUp()
+
+    public void SetButtonSprite()
     {
-        float time = 0.0f;
-
-        while (time < 1.0f)
+        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
         {
-            time += Time.deltaTime;
-            _lightImage.transform.localScale = Vector3.Lerp(_initSize, _goalSize, time);
-            yield return null;
+            _buttonImage.sprite = _endPhaseSprite;
+        }
+        else if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Action) || BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Move))
+        {
+            if (BattleManager.Data.GetNowUnit().Team == Team.Player)
+            {
+                _buttonImage.sprite = BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Move)
+                                      ? _skipMoveSprite : _skipAttackSprite;
+            }
+            else
+            {
+                _buttonImage.sprite = _enemyTurnSprite;
+                _changeButton.interactable = false;
+                return;
+            }
         }
 
-        _lightImage.transform.localScale = _goalSize;
-        time = 1.0f;
-
-        while (time > 0.0f)
-        {
-            time -= Time.deltaTime;
-            _lightImage.transform.localScale = Vector3.Lerp(_initSize, _goalSize, time);
-            yield return null;
-        }
-
-        _lightImage.transform.localScale = _initSize;
-        
-        StartCoroutine(nameof(SizeUp));
+        _changeButton.interactable = true;
     }
 
-    IEnumerator FadeLight()
-    {
-        Color color = _lightImage.color;
-
-        while (color.a < _lightMaxAlpha)
-        {
-            color.a += Time.deltaTime * _lightFadeSpeed;
-            _lightImage.color = color;
-            yield return null;
-        }
-
-        color.a = _lightMaxAlpha;
-        _lightImage.color = color;
-        
-        while (color.a > _lightMinAlpha)
-        {
-            color.a -= Time.deltaTime * _lightFadeSpeed;
-            _lightImage.color = color;
-            yield return null;
-        }
-
-        color.a = _lightMinAlpha;
-        _lightImage.color = color;
-
-        StartCoroutine(nameof(FadeLight));
-    }
-    */
     private bool _isHover = false;
     private bool _isHoverMessegeOn = false;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        return;
+
         _isHover = true;
         GameManager.Instance.PlayAfterCoroutine(() => {
             if (_isHover && !_isHoverMessegeOn)
@@ -132,6 +95,8 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        return;
+
         _isHover = false;
 
         if (_isHoverMessegeOn)

@@ -10,8 +10,8 @@ public class UI_WaitingUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private Vector2? _prevHighlightLocation;
 
-    private Color32 _enemy = new(166, 148, 93, 255);
-    private Color32 _player = new(65, 57, 69, 255);
+    private Color32 _enemy = new(204, 172, 81, 255);
+    private Color32 _player = new(128, 45, 39, 255);
 
     public void SetUnitOrder((BattleUnit, int?) unitOrder)
     {

@@ -7,6 +7,7 @@ using TMPro;
 
 public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [SerializeField] private Image _playerSkillImage;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _inactive;
     [SerializeField] private GameObject _skillCard;
@@ -32,7 +33,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         _playerSkill = ps;
         _skill = skill;
         //_text.text = skill.GetName();
-        GetComponent<Image>().sprite = skill.GetSkillImage();
+        _playerSkillImage.sprite = skill.GetSkillImage();
         _ManaCost.text = skill.GetManaCost().ToString();
         _essenceCost.text = skill.GetDarkEssenceCost().ToString();
         _cannotEffect.Init(Vector3.one, Vector3.one * 1.2f, 1.5f);
@@ -48,7 +49,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
     {
         _skillCard.transform.localScale = new Vector3(1.15f, 1.15f, 1.15f);
         GameManager.UI.ShowHover<UI_SkillHover>().SetSkillHover(_skill.GetName(), _skill.GetManaCost(), _skill.GetDarkEssenceCost(), _skill.GetDescription(), eventData.position);
-        _highlight.SetActive(true);
+        //_highlight.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -57,7 +58,7 @@ public class UI_PlayerSkillCard : UI_Base, IPointerEnterHandler, IPointerExitHan
         if (IsSelected)
             return;
         _skillCard.transform.localScale = new Vector3(1f, 1f, 1f);
-        _highlight.SetActive(false);
+        //_highlight.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)

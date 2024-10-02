@@ -15,15 +15,37 @@ public class UI_HallUnitSaveCard : MonoBehaviour
     [SerializeField] private Image unitImage;
     [SerializeField] private TextMeshProUGUI unitName;
 
-    [SerializeField] private TextMeshProUGUI _statInfo;
-    [SerializeField] private TextMeshProUGUI _statNumber;
+    [SerializeField] private TextMeshProUGUI _statHealth;
+    [SerializeField] private TextMeshProUGUI _statAttack;
+    [SerializeField] private TextMeshProUGUI _statSpeed;
+    [SerializeField] private TextMeshProUGUI _statCost;
+
+    [SerializeField] private GameObject _statDarkEssence;
+    [SerializeField] private TextMeshProUGUI _statDarkEssenceCost;
+
+    [SerializeField] private TextMeshProUGUI _statHealthChange;
+    [SerializeField] private TextMeshProUGUI _statAttackChange;
+    [SerializeField] private TextMeshProUGUI _statSpeedChange;
+    [SerializeField] private TextMeshProUGUI _statCostChange;
 
     [SerializeField] private GameObject _stigmaPrefab;
     [SerializeField] private GameObject _upgradeCountPrefab;
     [SerializeField] private Transform _unitInfoStigmaGrid;
     [SerializeField] private Transform _unitInfoUpgradeCountGrid;
 
+    [SerializeField] private Image _insignia;
+
+    [SerializeField] private Image _apostleInsignia;
+    [SerializeField] private Image _eliteInsignia;
+    [SerializeField] private Image _bossInsignia;
+
     private DeckUnit _deckUnit;
+
+    readonly Color _upColor = new(1f, 0.22f, 0.22f);
+    readonly Color _downColor = new(0.35f, 0.35f, 1f);
+
+    readonly Color _playerInsigniaColor = new(0.35f, 0.09f, 0.05f);
+    readonly Color _enemyInsigniaColor = new(0.54f, 0.5f, 0.34f);
 
     public void Init(DeckUnit deckUnit)
     {
@@ -55,47 +77,53 @@ public class UI_HallUnitSaveCard : MonoBehaviour
             UI_HoverImageBlock ui = GameObject.Instantiate(_upgradeCountPrefab, _unitInfoUpgradeCountGrid).GetComponent<UI_HoverImageBlock>();
             if (i < upgrades.Count)
             {
-                ui.Set(upgrades[i].UpgradeImage88, "<size=150%>" + upgrades[i].UpgradeDescription + "</size>");
+                ui.Set(upgrades[i].UpgradeImage88, GameManager.Data.UpgradeController.GetUpgradeFullDescription(upgrades[i]));
                 ui.EnableUI(true);
             }
             else
                 ui.EnableUI(false);
         }
 
-        _statInfo.text = $"{GameManager.Locale.GetLocalizedUpgrade("HP")}\n" +
-            $"{GameManager.Locale.GetLocalizedUpgrade("Cost")}\n" +
-            $"{GameManager.Locale.GetLocalizedUpgrade("Attack")}\n" +
-            $"{GameManager.Locale.GetLocalizedUpgrade("Speed")}\n";
+        _statHealth.text = deckUnit.DeckUnitStat.MaxHP.ToString();
+        _statAttack.text = deckUnit.DeckUnitStat.ATK.ToString();
+        _statSpeed.text = deckUnit.DeckUnitStat.SPD.ToString();
+        _statCost.text = deckUnit.DeckUnitStat.ManaCost.ToString();
 
-        string hpChange = "";
-        if (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP > 0)
-            hpChange = " <color=\"" + UpColorStr + "\">(+" + (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP).ToString() + ")</color>";
-        else if (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP < 0)
-            hpChange = " <color=\"" + DownColorStr + "\">(" + (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP).ToString() + ")</color>";
+        _statDarkEssence.SetActive(deckUnit.Data.DarkEssenseCost > 0);
+        _statDarkEssenceCost.text = deckUnit.Data.DarkEssenseCost.ToString();
 
-        string costChange = "";
-        if (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost > 0)
-            costChange = " <color=\"" + DownColorStr + "\">(+" + (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost).ToString() + ")</color>";
-        else if (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost < 0)
-            costChange = " <color=\"" + UpColorStr + "\">(" + (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost).ToString() + ")</color>";
+        _statHealthChange.text = (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP > 0) ? "+" : "";
+        if (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP != 0)
+        {
+            _statHealthChange.text += (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP).ToString();
+            _statHealthChange.color = (deckUnit.DeckUnitStat.MaxHP - deckUnit.Data.RawStat.MaxHP > 0) ? _upColor : _downColor;
+        }
 
-        string attackChange = "";
-        if (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK > 0)
-            attackChange = " <color=\"" + UpColorStr + "\">(+" + (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK).ToString() + ")</color>";
-        else if (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK < 0)
-            attackChange = " <color=\"" + DownColorStr + "\">(" + (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK).ToString() + ")</color>";
+        _statAttackChange.text = (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK > 0) ? "+" : "";
+        if (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK != 0)
+        {
+            _statAttackChange.text += (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK).ToString();
+            _statAttackChange.color = (deckUnit.DeckUnitStat.ATK - deckUnit.Data.RawStat.ATK > 0) ? _upColor : _downColor;
+        }
 
-        string speedChange = "";
-        if (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD > 0)
-            speedChange = " <color=\"" + UpColorStr + "\">(+" + (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD).ToString() + ")</color>";
-        else if (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD < 0)
-            speedChange = " <color=\"" + DownColorStr + "\">(" + (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD).ToString() + ")</color>";
+        _statSpeedChange.text = (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD > 0) ? "+" : "";
+        if (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD != 0)
+        {
+            _statSpeedChange.text += (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD).ToString();
+            _statSpeedChange.color = (deckUnit.DeckUnitStat.SPD - deckUnit.Data.RawStat.SPD > 0) ? _upColor : _downColor;
+        }
 
-        string darkEssenseCost = (deckUnit.Data.DarkEssenseCost > 0) ? " / " + deckUnit.Data.DarkEssenseCost.ToString() : "";
+        _statCostChange.text = (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost > 0) ? "+" : "";
+        if (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost != 0)
+        {
+            _statCostChange.text += (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost).ToString();
+            _statCostChange.color = (deckUnit.DeckUnitStat.ManaCost - deckUnit.Data.RawStat.ManaCost > 0) ? _downColor : _upColor;
+        }
 
-        _statNumber.text = deckUnit.DeckUnitTotalStat.MaxHP.ToString() + hpChange + "\n" +
-                           deckUnit.DeckUnitTotalStat.ManaCost.ToString() + costChange + darkEssenseCost + "\n" +
-                           deckUnit.DeckUnitTotalStat.ATK.ToString() + attackChange + "\n" +
-                           deckUnit.DeckUnitTotalStat.SPD.ToString() + speedChange;
+        _insignia.color =  _playerInsigniaColor;
+
+        _apostleInsignia.gameObject.SetActive(deckUnit.Data.Rarity == Rarity.Original);
+        _eliteInsignia.gameObject.SetActive(deckUnit.Data.Rarity == Rarity.Elite);
+        _bossInsignia.gameObject.SetActive(deckUnit.Data.Rarity == Rarity.Boss);
     }
 }

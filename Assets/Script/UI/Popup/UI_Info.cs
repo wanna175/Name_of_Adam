@@ -135,20 +135,39 @@ public class UI_Info : UI_Scene
             _stigmaDescriptionLastImage.transform.SetSiblingIndex(_stigmaDescriptionGrid.childCount - 1);
         }
 
-        List<int> rangeIntegerList = new();
+        List<int> attackRangeIntList = new();
+        List<int> unitRangeIntList = new();
 
-        foreach (Vector2 vec in battleUnit.GetAttackRange())
+        for (int i = 0; i < unit.Data.AttackRange.Length; i++)
         {
-            int rangeInteger = 27 + (int)vec.x + (int)vec.y * 11;
-            rangeIntegerList.Add(rangeInteger);
+            if (unit.Data.AttackRange[i])
+                attackRangeIntList.Add(i);
+        }
+
+        for (int i = 0; i < unit.Data.UnitSize.Length; i++)
+        {
+            if (unit.Data.UnitSize[i])
+            {
+                int convertIndex = (i / 5) * 6 + 3 + i;
+
+                unitRangeIntList.Add(convertIndex);
+                List<int> attackRange = new();
+                foreach (int range in attackRangeIntList)
+                {
+                    int unitRange = range + convertIndex - 27;
+                    attackRange.Add(unitRange);
+                }
+
+                attackRangeIntList.AddRange(attackRange);
+            }
         }
 
         for (int i = 0; i < unit.Data.AttackRange.Length; i++)
         {
             Image block = GameObject.Instantiate(_squarePrefab, _rangeGrid).GetComponent<Image>();
-            if (i == 27)
+            if (unitRangeIntList.Contains(i))
                 block.color = _unitRangeColor;
-            else if (rangeIntegerList.Contains(i))
+            else if (attackRangeIntList.Contains(i))
                 block.color = _attackRangeColor;
             else
                 block.color = Color.grey;
@@ -232,12 +251,39 @@ public class UI_Info : UI_Scene
             _stigmaDescriptionLastImage.transform.SetSiblingIndex(_stigmaDescriptionGrid.childCount - 1);
         }
 
+        List<int> attackRangeIntList = new();
+        List<int> unitRangeIntList = new();
+
+        for (int i = 0; i < unit.Data.AttackRange.Length; i++)
+        {
+            if (unit.Data.AttackRange[i])
+                attackRangeIntList.Add(i);
+        }
+
+        for (int i = 0; i < unit.Data.UnitSize.Length; i++)
+        {
+            if (unit.Data.UnitSize[i])
+            {
+                int convertIndex = (i / 5) * 6 + 3 + i;
+
+                unitRangeIntList.Add(convertIndex);
+                List<int> attackRange = new();
+                foreach (int range in attackRangeIntList) 
+                {
+                    int unitRange = range + convertIndex - 27;
+                    attackRange.Add(unitRange);
+                }
+
+                attackRangeIntList.AddRange(attackRange);
+            }
+        }
+
         for (int i = 0; i < unit.Data.AttackRange.Length; i++)
         {
             Image block = GameObject.Instantiate(_squarePrefab, _rangeGrid).GetComponent<Image>();
-            if (i == 27)
+            if (unitRangeIntList.Contains(i))
                 block.color = _unitRangeColor;
-            else if (unit.Data.AttackRange[i])
+            else if (attackRangeIntList.Contains(i))
                 block.color = _attackRangeColor;
             else
                 block.color = Color.grey;

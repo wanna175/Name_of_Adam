@@ -44,7 +44,7 @@ public class UI_UpgradeSelectButtonPopup : UI_Popup
         int createButtonCount = upgrades.Count;
 
         if (createButtonCount == 4)
-            _grid.spacing = new Vector2(80, 10);
+            _grid.spacing = new Vector2(120, 10);
         else
             _grid.spacing = new Vector2(200, 10);
 

@@ -23,8 +23,10 @@ public class UI_TextHover : UI_Hover
         else
             posX = position.x;
 
-        if (position.y < 160 / ratio)
-            posY = 160 / ratio;
+        if (position.y < 60 / ratio)
+            posY = 60 / ratio;
+        else if (position.y > 900 / ratio)
+            posY = 900 / ratio;
         else
             posY = position.y;
 

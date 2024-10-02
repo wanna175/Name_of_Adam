@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
+public class UI_PlayerHP : UI_Scene
 {
     [SerializeField] private GameObject _incarnationProfile;
 
@@ -20,7 +20,7 @@ public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
     {
         // 프로필 설정
         profile.sprite = GameManager.Data.GameData.Incarna.Sprite;
-        _incarnationProfile.GetComponent<Animator>().runtimeAnimatorController = GameManager.Data.GameData.Incarna.AnimatorController;
+        _incarnationProfile.GetComponent<Animator>().runtimeAnimatorController = GameManager.Data.GameData.Incarna.IncarnationAnimatorController;
 
         // HP 설정
         for (int i = 0; i < HPJemImages.Length; i++)
@@ -54,7 +54,7 @@ public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
     private bool _isHover = false;
     private bool _isHoverMessegeOn = false;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnHPHoverEnter()
     {
         _isHover = true;
         GameManager.Instance.PlayAfterCoroutine(() => {
@@ -67,7 +67,7 @@ public class UI_PlayerHP : UI_Scene, IPointerEnterHandler, IPointerExitHandler
         }, 0.5f);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnHPHoverExit()
     {
         _isHover = false;
 
