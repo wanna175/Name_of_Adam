@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2432704560239607529
+--- !u!1 &6516491720742692485
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2694755718641220787}
-  - component: {fileID: 4784613263288014970}
+  - component: {fileID: 2950990188252653416}
+  - component: {fileID: 8727338131681478004}
   m_Layer: 0
-  m_Name: "Stigma_BloodBlessing\u2160"
+  m_Name: Stigma_VeiledSupport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2694755718641220787
+--- !u!4 &2950990188252653416
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2432704560239607529}
+  m_GameObject: {fileID: 6516491720742692485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,24 +32,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4784613263288014970
+--- !u!114 &8727338131681478004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2432704560239607529}
+  m_GameObject: {fileID: 6516491720742692485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bfddb4a54b923747b3e6a6276a679a6, type: 3}
+  m_Script: {fileID: 11500000, guid: dc75cf531a61d0b4eb2b0b17a3a50a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stigmaEnum: 7
-  _name: Blood Blessing I
-  _sprite_28: {fileID: 21300000, guid: 21428d3e7db99ce4b8062f6260c1dbc6, type: 3}
-  _sprite_88: {fileID: 21300000, guid: 2468b4aef330fb94e9824da04356d89c, type: 3}
-  _sprite_164: {fileID: 21300000, guid: c76e07437b2998f49984802863cefec1, type: 3}
-  _description: Blood Blessing I Info
+  _stigmaEnum: 34
+  _name: Veiled Support
+  _sprite_28: {fileID: 21300000, guid: 4ff69c7a1e49b894c8d84d8eb6357024, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 6afc2e38f92ceb640969bb7ba5bbe03c, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 90523647d7ad504419f83cbb2e1fb15a, type: 3}
+  _description: Veiled Support Info
   _activeTiming: 2
   _tier: 0
   _isLock: 0
