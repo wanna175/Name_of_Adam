@@ -131,4 +131,23 @@ public class UnitAction_Yohrn_Scale : UnitAction
 
         pVel = Vector3.zero;
     }
+
+    public override bool ActionTimingCheck(ActiveTiming activeTiming, BattleUnit caster, BattleUnit receiver)
+    {
+        if ((activeTiming & ActiveTiming.TURN_END) == ActiveTiming.TURN_END)
+        {
+            if (caster.Buff.CheckBuff(BuffEnum.Scale))
+            {
+                caster.DeleteBuff(BuffEnum.Scale);
+                caster.AnimatorSetBool("isClose", true);
+            }
+            else
+            {
+                caster.SetBuff(new Buff_Scale());
+                caster.AnimatorSetBool("isClose", false);
+            }
+        }
+
+            return false;
+    }
 }
