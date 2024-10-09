@@ -67,8 +67,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1890304454656
-    m_Localized: 'Upon summoning, This unit and ally units within the same row gain
-      <b>Speed Boost</b> for n times
+    m_Localized: 'Upon summoning, This unit and ally units within the same colum
+      gain <b>Speed Boost</b> for n times
 
       (<b>Speed Boost</b>: Speed incresase
       by 100.)'
