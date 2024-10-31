@@ -20,7 +20,8 @@ public class SaveVersionController
         "1.0.3v",
         "1.0.4v",
         "1.1.0v",
-        "1.1.0.1v"
+        "1.1.0.1v",
+        "1.1.0.2v"
     };
 
     public bool IsValildVersion()
