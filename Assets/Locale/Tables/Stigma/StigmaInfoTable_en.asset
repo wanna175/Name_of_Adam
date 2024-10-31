@@ -68,9 +68,9 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1890304454656
     m_Localized: 'Upon summoning, This unit and ally units within the same colum
-      gain <b>Speed Boost</b> for n times
+      gain <b>Speed Boost</b> for 1 times
 
-      (<b>Speed Boost</b>: Speed incresase
+      (<b>Speed Boost</b>: Speed increases
       by 100.)'
     m_Metadata:
       m_Items: []
