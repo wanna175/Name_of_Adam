@@ -219,17 +219,17 @@ public class SaveVersionController
                     foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
                         if (unit.UnitName == "믿음을_저버린_자")
                             unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
-
-                    SaveData saveData110 = GameManager.SaveManager.GetSaveData();
-                    foreach (SaveUnit unit in saveData110.DeckUnitData)
-                        if (unit.UnitDataID == "믿음을_저버린_자")
-                            unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
-
-                    foreach (SaveUnit unit in saveData110.FallenUnitsData)
-                        if (unit.UnitDataID == "믿음을_저버린_자")
-                            unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
-
-                    GameManager.SaveManager.SaveData(saveData110);
+                    
+                    //SaveData saveData110 = GameManager.SaveManager.GetSaveData();
+                    //foreach (SaveUnit unit in saveData110.DeckUnitData)
+                    //    if (unit.UnitDataID == "믿음을_저버린_자")
+                    //        unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
+                    //
+                    //foreach (SaveUnit unit in saveData110.FallenUnitsData)
+                    //    if (unit.UnitDataID == "믿음을_저버린_자")
+                    //        unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
+                    //
+                    //GameManager.SaveManager.SaveData(saveData110);
                     break;
             }
 
