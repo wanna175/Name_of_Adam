@@ -81,19 +81,18 @@ public class StigmaSceneController : MonoBehaviour, StigmaInterface
         if (questLevel == 4 && !GameManager.OutGameData.Data.IsStigmataCorrupt && GameManager.OutGameData.Data.YohrnClear)
         {
             GameManager.OutGameData.Data.IsStigmataCorrupt = true;
-            /*
+            
             DeckUnit unit = new()
             {
-                Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자"),
+                Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/소망을_저버린_자"),
                 IsMainDeck = false,
-                PrivateKey = "Origin_Betrayer_Of_Faith",
+                PrivateKey = "OnlyUnit_Betrayer_Of_Hope",
                 HallUnitID = -1
             };
 
             GameManager.OutGameData.AddHallUnit(unit);
             GameManager.Data.AddDeckUnit(unit);
             GameManager.Data.GameData.FallenUnits.Add(unit);
-            */
         }
 
         if (GameManager.OutGameData.Data.IsStigmataCorrupt)

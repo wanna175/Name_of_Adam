@@ -23,7 +23,6 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
         //Debug.Log("Turn Change Button : " + enable);
     }
 
-
     public void TurnChange()
     {
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
@@ -75,13 +74,13 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
         _changeButton.interactable = true;
     }
 
-    private bool _isHover = false;
-    private bool _isHoverMessegeOn = false;
+    //private bool _isHover = false;
+    //private bool _isHoverMessegeOn = false;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         return;
-
+        /*
         _isHover = true;
         GameManager.Instance.PlayAfterCoroutine(() => {
             if (_isHover && !_isHoverMessegeOn)
@@ -91,12 +90,13 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
                     $"{GameManager.Locale.GetLocalizedBattleScene("TurnChange UI Info")}", Input.mousePosition);
             }
         }, 0.5f);
+        */
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         return;
-
+        /*
         _isHover = false;
 
         if (_isHoverMessegeOn)
@@ -104,5 +104,6 @@ public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitH
             _isHoverMessegeOn = false;
             GameManager.UI.CloseHover();
         }
+        */
     }
 }

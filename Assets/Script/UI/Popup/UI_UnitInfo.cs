@@ -10,7 +10,6 @@ public class UI_UnitInfo : UI_Popup
 {
     [SerializeField] private GameObject _selectButton;
     [SerializeField] private GameObject _quitButton;
-    [SerializeField] private TextMeshProUGUI _quitButtonTxt;
     [SerializeField] private GameObject _eventButton;
     [SerializeField] private GameObject _completeButton;
     [SerializeField] private GameObject _fallGaugePrefab;
@@ -52,7 +51,7 @@ public class UI_UnitInfo : UI_Popup
     //public AnimationClip _unitAnimationClip;
 
     private DeckUnit _unit;
-    UnitDataSO Data => _unit.Data;
+
     private Action<DeckUnit> _onSelect;
     private Action _endEvent;
     private CurrentEvent _currentEvent = CurrentEvent.None;
@@ -61,7 +60,6 @@ public class UI_UnitInfo : UI_Popup
     readonly Color _unitRangeColor = new(0.77f, 0.45f, 0.45f);
 
     readonly Color _playerInsigniaColor = new(0.35f, 0.09f, 0.05f);
-    readonly Color _enemyInsigniaColor = new(0.54f, 0.5f, 0.34f);
 
     readonly Color _upColor = new(1f, 0.22f, 0.22f);
     readonly Color _downColor = new(0.35f, 0.35f, 1f);
@@ -210,7 +208,7 @@ public class UI_UnitInfo : UI_Popup
 
     public void Select()
     {
-        if (CurrentSceneName().Equals("EventScene") && _currentEvent == CurrentEvent.Heal_Faith_Select)
+        if (_currentEvent == CurrentEvent.Heal_Faith_Select)
         {
             GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
         }

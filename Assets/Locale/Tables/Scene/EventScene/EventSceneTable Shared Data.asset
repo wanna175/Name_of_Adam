@@ -167,6 +167,10 @@ MonoBehaviour:
     m_Key: Divine_Description
     m_Metadata:
       m_Items: []
+  - m_Id: 88440306064838656
+    m_Key: EmptySlot
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

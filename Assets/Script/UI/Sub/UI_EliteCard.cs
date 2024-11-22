@@ -7,16 +7,13 @@ using TMPro;
 
 public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
-    private GameObject _highlight;
+    [SerializeField] private GameObject _highlight;
 
-    [SerializeField]
-    private List<GameObject> _stigmaFrames;
+    [SerializeField] private List<GameObject> _stigmaFrames;
 
-    private List<Image> _stigmaImages;
+    private List<Image> _stigmataImages;
 
-    [SerializeField]
-    private TMP_Text _nameText;
+    [SerializeField] private TMP_Text _nameText;
 
     public Image UnitImage;
     private DeckUnit _deckUnit;
@@ -25,9 +22,9 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         _deckUnit = deckUnit;
 
-        _stigmaImages = new List<Image>();
+        _stigmataImages = new List<Image>();
         foreach (var frame in _stigmaFrames)
-            _stigmaImages.Add(frame.GetComponentsInChildren<Image>()[1]);
+            _stigmataImages.Add(frame.GetComponentsInChildren<Image>()[1]);
 
         foreach (var frame in _stigmaFrames)
             frame.SetActive(true);
@@ -37,18 +34,18 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         _nameText.SetText(_deckUnit.Data.Name);
 
         List<Stigma> stigmas = _deckUnit.GetStigma();
-        for (int i = 0; i < _stigmaImages.Count; i++)
+        for (int i = 0; i < _stigmataImages.Count; i++)
         {
             if (i < stigmas.Count)
             {
                 _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetStigma(stigmas[i]);
-                _stigmaImages[i].sprite = stigmas[i].Sprite_28;
-                _stigmaImages[i].color = Color.white;
+                _stigmataImages[i].sprite = stigmas[i].Sprite_28;
+                _stigmataImages[i].color = Color.white;
             }
             else
             {
                 _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
-                _stigmaImages[i].color = new Color(1f, 1f, 1f, 0f);
+                _stigmataImages[i].color = new Color(1f, 1f, 1f, 0f);
             }
         }
 
@@ -59,14 +56,21 @@ public class UI_EliteCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         GameManager.Sound.Play("UI/UISFX/UISelectSFX");
 
-        GameManager.Data.GameData.DeckUnits.Add(_deckUnit);
-        GameManager.Data.GameData.FallenUnits.Add(_deckUnit);
-        GameManager.OutGameData.SaveData();
-        GameManager.SaveManager.SaveGame(); 
+        GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmEliteReward", () =>
+        {
+            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
-        bool isGoToCutScene = CheckAndGoToCutScene();
-        if (!isGoToCutScene)
-            SceneChanger.SceneChange("StageSelectScene");
+            GameManager.Data.GameData.DeckUnits.Add(_deckUnit);
+            GameManager.Data.GameData.FallenUnits.Add(_deckUnit);
+            GameManager.OutGameData.SaveData();
+            GameManager.SaveManager.SaveGame();
+
+            bool isGoToCutScene = CheckAndGoToCutScene();
+            if (!isGoToCutScene)
+                SceneChanger.SceneChange("StageSelectScene");
+        });
+
+
     }
 
     public void OnInfoButton()

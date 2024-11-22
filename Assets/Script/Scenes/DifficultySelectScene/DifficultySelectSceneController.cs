@@ -53,6 +53,14 @@ public class DifficultySelectSceneController : MonoBehaviour
 
     public void Confirm()
     {
+        if (GameManager.Data.GameDataMain.DeckUnits.Count < 1)
+        {
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
+
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CanStartWithZeroUnitInfo", "");
+            return;
+        }
+
         GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
 
         GameManager.Data.MainDeckSet();

@@ -157,7 +157,7 @@ public class UI_HPBar : UI_Base
 
         foreach (UI_Buff listedBuff in _buffBlockList)
         {
-            if (buff.BuffEnum == listedBuff.BuffInBlock.BuffEnum)
+            if (buff.BuffEnum == listedBuff.BuffInBlock.BuffEnum && buff.BuffEnum != BuffEnum.Despair)
             {
                 return;
             }

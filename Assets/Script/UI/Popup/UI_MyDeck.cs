@@ -148,7 +148,7 @@ public class UI_MyDeck : UI_Popup
         SetPageAllUI();
     }
 
-    public void HallDeckInit(SlotRank slotRank, Action<DeckUnit> onSelectAction = null)
+    public void HallDeckInit(SlotRank slotRank, bool isEmptySlot, Action<DeckUnit> onSelectAction = null)
     {
         List<DeckUnit> hallSettingDeck = new();
 
@@ -177,9 +177,21 @@ public class UI_MyDeck : UI_Popup
         _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
         ClearCard();
-        SetCard();
+
+        if (!isEmptySlot)
+        {
+            _cancelCard = GameManager.Resource.Instantiate("UI/Sub/CancelCard", _grid).GetComponent<UI_CancelCard>();
+            _cancelCard.transform.SetAsFirstSibling();
+            _cancelCard.Init(onSelectAction);
+
+            _currentEvent = CurrentEvent.Hall_Journey_Select;
+        }
+
+        SetCard(CurrentEvent.Hall_Journey_Select);
         SetPageAllUI();
     }
+
+    private UI_CancelCard _cancelCard;
 
     public void SelectCard(DeckUnit unit)
     {
@@ -198,6 +210,24 @@ public class UI_MyDeck : UI_Popup
     private void SetCard(CurrentEvent currentEvent = CurrentEvent.None)
     {
         ClearCard();
+
+        if (_currentEvent == CurrentEvent.Hall_Journey_Select)
+        {
+            _cancelCard.gameObject.SetActive(_currentPageIndex == 0);
+
+            for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
+            {
+                if (_currentPageIndex == 0 && i == (_currentPageIndex + 1) * 10 - 1)
+                    continue;
+
+                if (_currentPageIndex != 0 && _playerDeck.Count > i - 1)
+                    AddCard(_playerDeck[i-1]);
+                else if (_playerDeck.Count > i)
+                    AddCard(_playerDeck[i]);
+            }
+
+            return;
+        }
 
         for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
         {

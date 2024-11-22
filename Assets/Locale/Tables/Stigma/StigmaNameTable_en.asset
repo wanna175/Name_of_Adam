@@ -318,6 +318,22 @@ MonoBehaviour:
     m_Localized: Atonement
     m_Metadata:
       m_Items: []
+  - m_Id: 98229890332119040
+    m_Localized: Repulsion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98229892320219136
+    m_Localized: Chain Of Fate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98229893872111616
+    m_Localized: Heavy Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106067211207200768
+    m_Localized: Despair
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -303,6 +303,22 @@ MonoBehaviour:
     m_Key: Atonement Info
     m_Metadata:
       m_Items: []
+  - m_Id: 98090200085975040
+    m_Key: Repulsion Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090201407180800
+    m_Key: Chain Of Fate Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090202564808704
+    m_Key: Heavy Armor Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105927576103571456
+    m_Key: Despair Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
