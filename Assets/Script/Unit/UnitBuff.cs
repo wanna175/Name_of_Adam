@@ -11,7 +11,7 @@ public class UnitBuff : MonoBehaviour
     {
         foreach (Buff listedBuff in _buffList)
         {
-            if (buff.BuffEnum == listedBuff.BuffEnum)
+            if (buff.BuffEnum == listedBuff.BuffEnum && buff.BuffEnum != BuffEnum.Despair)
             {
                 listedBuff.Stack();
 
