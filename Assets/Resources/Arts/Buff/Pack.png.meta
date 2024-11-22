@@ -650,7 +650,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -658,6 +658,69 @@ TextureImporter:
       bones: []
       spriteID: 933832eade4ee0f48b038882acbeb78d
       internalID: -131538214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad1ba9ba67913254ab212927749ac6a1
+      internalID: 2040681873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_27
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47fc7dbba56544b4fb960ecf28299e8a
+      internalID: 680483655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pack_28
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5177300ff8309b44c82b64308dc0d05c
+      internalID: -496545958
       vertices: []
       indices: 
       edges: []
@@ -680,9 +743,12 @@ TextureImporter:
       Pack_18: 1262183457
       Pack_13: -25878651
       Pack_0: 1117110858
+      Pack_26: 2040681873
       Pack_19: 789911020
       Pack_16: -1253353846
+      Pack_28: -496545958
       Pack_3: -1981869237
+      Pack_27: 680483655
       Pack_24: -1410000731
       Pack_12: -43556425
       Pack_21: -2054636419
