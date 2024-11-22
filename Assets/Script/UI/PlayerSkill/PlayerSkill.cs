@@ -34,7 +34,6 @@ public abstract class PlayerSkill : MonoBehaviour
     public int GetID() => playerSkillID;
     public virtual string GetDescription() => GameManager.Locale.GetLocalizedPlayerSkillInfo(playerSkillID);
     public Sprite GetSkillImage() => skillImage;
-
     public abstract bool Use(Vector2 coord);
     public virtual bool Action(ActiveTiming activeTiming, Vector2 coord) => false;
     public abstract void CancelSelect();

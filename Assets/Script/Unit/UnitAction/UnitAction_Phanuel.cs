@@ -187,7 +187,8 @@ public class UnitAction_Phanuel : UnitAction
 
     private void TileAdd(Vector2 coord)
     {
-        _attackTile.Add(coord);
+        if (BattleManager.Field.IsInRange(coord))
+            _attackTile.Add(coord);
     }
 
     private void TileClear(Team team)
