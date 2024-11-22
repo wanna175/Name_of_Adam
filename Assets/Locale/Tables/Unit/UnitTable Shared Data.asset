@@ -179,6 +179,10 @@ MonoBehaviour:
     m_Key: Betrayer Of Faith
     m_Metadata:
       m_Items: []
+  - m_Id: 98961946074828800
+    m_Key: Betrayer Of Hope
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

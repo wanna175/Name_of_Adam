@@ -182,6 +182,10 @@ MonoBehaviour:
     m_Localized: Betrayer Of Faith
     m_Metadata:
       m_Items: []
+  - m_Id: 98961946074828800
+    m_Localized: Betrayer Of Hope
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
