@@ -20,7 +20,9 @@ public class SaveVersionController
         "1.0.3v",
         "1.0.4v",
         "1.1.0v",
-        "1.1.0.1v"
+        "1.1.0.1v",
+        "1.1.0.2v",
+        "1.1.1v",
     };
 
     public bool IsValildVersion()
@@ -219,7 +221,8 @@ public class SaveVersionController
                     foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
                         if (unit.UnitName == "믿음을_저버린_자")
                             unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
-
+                    /*
+                     이 코드는 세이브 파일을 초기화시키는 대참사를 유발했음, 최악의 상황을 기억하기 위해...
                     SaveData saveData110 = GameManager.SaveManager.GetSaveData();
                     foreach (SaveUnit unit in saveData110.DeckUnitData)
                         if (unit.UnitDataID == "믿음을_저버린_자")
@@ -230,6 +233,10 @@ public class SaveVersionController
                             unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
 
                     GameManager.SaveManager.SaveData(saveData110);
+                    */
+                    break;
+                case "1.1.0.2v":
+                    GameManager.OutGameData.Data.IsStigmataCorrupt = false;
                     break;
             }
 
