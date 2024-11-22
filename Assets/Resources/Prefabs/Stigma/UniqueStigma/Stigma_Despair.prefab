@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6516491720742692485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2950990188252653416}
+  - component: {fileID: 6165163330186981985}
+  m_Layer: 0
+  m_Name: Stigma_Despair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2950990188252653416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516491720742692485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6165163330186981985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516491720742692485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98fc1f3946eb70d4cb8413985e805e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stigmaEnum: 124
+  _name: Despair
+  _sprite_28: {fileID: 21300000, guid: 1e51939380abf3d4b8309c29a01ccc1b, type: 3}
+  _sprite_88: {fileID: 21300000, guid: a116edadeb0018b438b29d55cede7c92, type: 3}
+  _sprite_164: {fileID: 21300000, guid: d48e973707c9c224d806586f40091a92, type: 3}
+  _description: Despair Info
+  _activeTiming: 2
+  _tier: 3
+  _isLock: 0
