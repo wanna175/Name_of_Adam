@@ -113,6 +113,7 @@ public class UI_BattleOver : UI_Scene
 
         }
     }
+
     public void BattleOverDestroy()
     {
         GameManager.Resource.Destroy(this.gameObject);
