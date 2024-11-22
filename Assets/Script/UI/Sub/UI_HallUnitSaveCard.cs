@@ -6,9 +6,6 @@ using TMPro;
 
 public class UI_HallUnitSaveCard : MonoBehaviour
 {
-    readonly string UpColorStr = "red";
-    readonly string DownColorStr = "blue";
-
     [SerializeField] private GameObject _eliteFrame;
     [SerializeField] private GameObject _normalFrame;
 

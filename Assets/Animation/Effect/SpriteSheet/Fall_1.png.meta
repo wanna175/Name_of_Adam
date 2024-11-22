@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -664,8 +664,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      CorruptionEffect_3: 1691537236
       CorruptionEffect_10: -407232880
-      CorruptionEffect_16: 27048775
       CorruptionEffect_1: -1983577626
       CorruptionEffect_15: -907242081
       CorruptionEffect_22: -1601690530
@@ -688,7 +688,7 @@ TextureImporter:
       CorruptionEffect_17: -353410879
       CorruptionEffect_14: 1686456210
       CorruptionEffect_0: 231202617
-      CorruptionEffect_3: 1691537236
+      CorruptionEffect_16: 27048775
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

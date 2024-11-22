@@ -9620,6 +9620,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -88.195
       objectReference: {fileID: 0}
+    - target: {fileID: 4957270675499990165, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b9ba599656a07f54db1efdbcdb1ce73d, type: 3}
     - target: {fileID: 6120569129842296732, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
       propertyPath: m_text
       value: Upgrade Name
@@ -9712,6 +9716,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.69803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.69803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.69803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b063c405ee0d57d4691ebbbc993dcbd5, type: 3}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 68e21237fe1b9da4d841272df9dbd8ec, type: 3}
+    - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b9ba599656a07f54db1efdbcdb1ce73d, type: 3}
     - target: {fileID: 6614575710527905334, guid: 6d336fac0bd59f04eb63ce1cc4e2bbad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

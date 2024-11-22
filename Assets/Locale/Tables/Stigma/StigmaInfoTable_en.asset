@@ -110,9 +110,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2613922557952
-    m_Localized: 'Upon summoning, Gains <b>Immortality<b> for 1 times.
+    m_Localized: 'Upon summoning, Gains <b>Immortality</b> for 1 times.
 
-      (<b>Immortality<b>:
+      (<b>Immortality</b>:
       Withstands death with 1 health., when reaching death.)'
     m_Metadata:
       m_Items: []
@@ -438,7 +438,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 78864595775803392
     m_Localized: Arabella cannot move during movement turns but can move to any of
-      the nearby 4 tiles of an enemy during attack turns. When moving, she leaves
+      the adjacent 4 tiles of an enemy during attack turns. When moving, she leaves
       a Vine of Oblivion at her original position, which attacks together with Arabella.
     m_Metadata:
       m_Items: []
@@ -476,7 +476,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 84651608961601536
-    m_Localized: 'When summoned, adds the stats of the strongest ally unit on the
+    m_Localized: 'Upon summoning, adds the stats of the strongest ally unit on the
       field to his own. (The strongest unit : The unit with the highest total of
       attack power and health.) This unit is not edified if all faith is lost, instead
       it dies.'
@@ -491,6 +491,30 @@ MonoBehaviour:
     m_Localized: The Flower of Sacrifice blooms on the next turn, dealing damage
       equal to the Savior's Attack Power to enemies within adjacent 4 tiles and reduces
       the enemy's faith by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090200085975040
+    m_Localized: 'Upon summoning, Gains <b>Smite</b> for 1 times.
+
+      (<b>Smite</b>:
+      Pushes the enemy back by 1 tile.)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090201407180800
+    m_Localized: 'During attack, Inflicts <b>Bind</b> for 1 times on the attacked
+      enemy with a 30% chance.
+
+      (<b>Bind</b>: This unit cannot move.)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090202564808704
+    m_Localized: When attacked outside of the adjacent 8 tiles, damage taken is reduced
+      by 40%.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105927576103571456
+    m_Localized: Upon summoning, gains random Stigmata effects for each ally unit
+      currently on the field.
     m_Metadata:
       m_Items: []
   references:

@@ -21,7 +21,7 @@ public class Buff_Stigma_Hook : Buff
         if (caster == null)
             return false;
 
-        if (caster.Data.ID == "¿æ_¸öÃ¼" || caster.Data.Rarity == Rarity.Boss || caster.Data.ID == "¸®ºñ¿¤")
+        if (caster.Data.ID == "¿æ_¸öÃ¼" || caster.Data.Rarity == Rarity.Boss || caster.DeckUnit.GetUnitSize() > 1)
             return false;
 
         Vector2 hookDir = (_owner.Location - caster.Location).normalized;

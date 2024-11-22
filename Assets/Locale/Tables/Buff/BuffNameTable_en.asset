@@ -142,6 +142,22 @@ MonoBehaviour:
     m_Localized: Glory
     m_Metadata:
       m_Items: []
+  - m_Id: 97337023501848576
+    m_Localized: Despair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97337021689909248
+    m_Localized: Distrust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104773133970591744
+    m_Localized: Bind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104773134952058880
+    m_Localized: Smite
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

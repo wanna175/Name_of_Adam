@@ -319,6 +319,9 @@ public enum StigmaEnum
     BloodOath,
     Cleanse,
     BlindFaith,
+    Repulsion,
+    ChainOfFate,
+    HeavyArmor,
 
     //Unique stigmata 
     Birth = 100,
@@ -380,6 +383,11 @@ public enum BuffEnum
     Libiel,
     Scale,
     EliteStatBuff,
+    Bind,
+    Smite,
+    Distrust,
+    Despair,
+    Hatred,
 
     //systemic buff (no image)
     AfterAttackBounce,
@@ -423,6 +431,9 @@ public enum BuffEnum
     Stigmata_BloodOath,
     Stigmata_Cleanse,
     Stigmata_BlindFaith,
+    Stigmata_Repulsion,
+    Stigmata_ChainOfFate,
+    Stigmata_HeavyArmor,
 
     //unique stigma buff (no image)
     Stigmata_Birth,
@@ -619,6 +630,7 @@ public enum CurrentEvent
 
     Hall_Delete,
     Hall_Select,
+    Hall_Journey_Select
 };
 
 [Serializable]

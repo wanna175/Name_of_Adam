@@ -159,6 +159,10 @@ MonoBehaviour:
     m_Key: HallDeleteCannotOnlyUnitTooltip
     m_Metadata:
       m_Items: []
+  - m_Id: 92006031882866688
+    m_Key: CanStartWithZeroUnitInfo
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

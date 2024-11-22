@@ -7,9 +7,6 @@ using Unity.VisualScripting;
 
 public class UpgradeController
 {
-    readonly string UpColorStr = "#FF4848"; // ¹àÀº »¡°­
-    readonly string DownColorStr = "#7676FF"; // ¹àÀº ÆÄ¶û
-
     public UpgradeController()
     {
         LoadUpgradeList();

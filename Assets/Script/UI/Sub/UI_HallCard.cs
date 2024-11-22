@@ -118,42 +118,61 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnClick()
     {
         GameManager.Sound.Play("UI/UISFX/UISelectSFX");
-        GameManager.UI.ShowPopup<UI_MyDeck>().HallDeckInit(_slotRank, OnSelect);
+        GameManager.UI.ShowPopup<UI_MyDeck>().HallDeckInit(_slotRank, (_mainDeck.Find(x => x.HallUnitID == _hallSlotID) == null), OnSelect);
     }
 
-    //������ ���� GameDataMain �� ����ǰ� �ϱ�
     public void OnSelect(DeckUnit unit)
     {
-        DeckUnit afterDeckUnit = unit;
-        HallUnit afterHallUnit = _hallUnitList.Find(x => x.ID == afterDeckUnit.HallUnitID);
-
-        if (_mainDeck.Find(x => x.HallUnitID == _hallSlotID) == null)
+        if (unit == null)
         {
-            // 신규 유닛이면 추가
-            if (_mainDeck.Count < _hallSlotID)
-                _mainDeck.Add(unit);
+            DeckUnit removeDeckUnit = _mainDeck.Find(x => x.HallUnitID == _hallSlotID);
+            HallUnit removeHallUnit = _hallUnitList.Find(x => x.ID == removeDeckUnit.HallUnitID);
+
+            DeckUnit removeMainDeckUnit = GameManager.Data.GameData.DeckUnits.Find(x => x.PrivateKey == removeDeckUnit.PrivateKey);
+
+            removeDeckUnit.IsMainDeck = false;
+            removeHallUnit.IsMainDeck = false;
+            removeMainDeckUnit.IsMainDeck = false;
+            removeDeckUnit.HallUnitID = -1;
+            removeHallUnit.ID = -1;
+            removeMainDeckUnit.HallUnitID = -1;
+
+            _mainDeck.Remove(removeDeckUnit);
+            Debug.Log(removeDeckUnit.Data.Name);
+        }
+        else 
+        {
+            DeckUnit afterDeckUnit = unit;
+            HallUnit afterHallUnit = _hallUnitList.Find(x => x.ID == afterDeckUnit.HallUnitID);
+
+            if (_mainDeck.Find(x => x.HallUnitID == _hallSlotID) == null)
+            {
+                // 신규 유닛이면 추가
+                if (_mainDeck.Count < _hallSlotID)
+                    _mainDeck.Add(unit);
+                else
+                    _mainDeck.Insert(_hallSlotID, unit);
+            }
             else
-                _mainDeck.Insert(_hallSlotID, unit);
+            {
+                // 이전 유닛이 있다면 스왑
+                DeckUnit beforeDeckUnit = GameManager.Data.GetDeck().Find(x => x.HallUnitID == _hallSlotID);
+                HallUnit beforeHallUnit = _hallUnitList.Find(x => x.ID == beforeDeckUnit.HallUnitID);
+
+                beforeDeckUnit.IsMainDeck = false;
+                beforeHallUnit.IsMainDeck = false;
+                beforeDeckUnit.HallUnitID = afterDeckUnit.HallUnitID;
+                beforeHallUnit.ID = afterHallUnit.ID;
+
+                _mainDeck[_hallSlotID] = unit;
+            }
+
+            // GameData Deck 수정
+            afterDeckUnit.IsMainDeck = true;
+            afterHallUnit.IsMainDeck = true;
+            afterDeckUnit.HallUnitID = _hallSlotID;
+            afterHallUnit.ID = _hallSlotID;
         }
-        else
-        {
-            // 이전 유닛이 있다면 스왑
-            DeckUnit beforeDeckUnit = GameManager.Data.GetDeck().Find(x => x.HallUnitID == _hallSlotID);
-            HallUnit beforeHallUnit = _hallUnitList.Find(x => x.ID == beforeDeckUnit.HallUnitID);
-
-            beforeDeckUnit.IsMainDeck = false;
-            beforeHallUnit.IsMainDeck = false;
-            beforeDeckUnit.HallUnitID = afterDeckUnit.HallUnitID;
-            beforeHallUnit.ID = afterHallUnit.ID;
-
-            _mainDeck[_hallSlotID] = unit;
-        }
-
-        // GameData Deck 수정
-        afterDeckUnit.IsMainDeck = true;
-        afterHallUnit.IsMainDeck = true;
-        afterDeckUnit.HallUnitID = _hallSlotID;
-        afterHallUnit.ID = _hallSlotID;
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
@@ -166,7 +185,7 @@ public class UI_HallCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
 
-        ui.SetUnit(_mainDeck[_hallSlotID]);
+        ui.SetUnit(_mainDeck.Find(x => x.HallUnitID == _hallSlotID));
         ui.Init();
     }
 

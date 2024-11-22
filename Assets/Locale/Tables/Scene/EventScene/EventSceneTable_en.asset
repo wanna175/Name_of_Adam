@@ -170,6 +170,10 @@ MonoBehaviour:
     m_Localized: Can place Boss, Elite, Apostle, and Normal units
     m_Metadata:
       m_Items: []
+  - m_Id: 88440306064838656
+    m_Localized: Empty Slot
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -155,6 +155,22 @@ MonoBehaviour:
     m_Key: Scale Info
     m_Metadata:
       m_Items: []
+  - m_Id: 97335273600471040
+    m_Key: Distrust Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97335275580182528
+    m_Key: Despair Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104770754797785088
+    m_Key: Bind Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104770755900887040
+    m_Key: Smite Info
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

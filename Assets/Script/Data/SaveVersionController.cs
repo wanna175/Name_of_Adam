@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// °ÔÀÓ ¹öÀü¿¡ µû¶ó ¼¼ÀÌºê µ¥ÀÌÅÍÀÇ ¹«°á¼ºÀ» Ã¼Å©ÇÏ´Â Å¬·¡½º
+// ê²Œì„ ë²„ì „ì— ë”°ë¼ ì„¸ì´ë¸Œ ë°ì´í„°ì˜ ë¬´ê²°ì„±ì„ ì²´í¬í•˜ëŠ” í´ë˜ìŠ¤
 
 public class SaveVersionController
 {
-    // ¡Ø Unity Version¿¡ µû¶ó History¸¦ ¹İµå½Ã ±â¾ïÇØ¾ß ÇÕ´Ï´Ù!
-    // µû¶ó¼­ °ÔÀÓ ·±ÄªÀ» ÇÒ ¶§ ¹İµå½Ã ¹öÀüÀ» Ã¼Å©ÇÏ°í, ¾÷µ¥ÀÌÆ®°¡ ÇÊ¿äÇÑ °æ¿ì¿¡¸¸ ¸¶ÀÌ±×·¹ÀÌ¼ÇÀ» ÁøÇàÇØ¾ß ÇÕ´Ï´Ù.
+    // â€» Unity Versionì— ë”°ë¼ Historyë¥¼ ë°˜ë“œì‹œ ê¸°ì–µí•´ì•¼ í•©ë‹ˆë‹¤!
+    // ë”°ë¼ì„œ ê²Œì„ ëŸ°ì¹­ì„ í•  ë•Œ ë°˜ë“œì‹œ ë²„ì „ì„ ì²´í¬í•˜ê³ , ì—…ë°ì´íŠ¸ê°€ í•„ìš”í•œ ê²½ìš°ì—ë§Œ ë§ˆì´ê·¸ë ˆì´ì…˜ì„ ì§„í–‰í•´ì•¼ í•©ë‹ˆë‹¤.
 
     private List<string> versionHistory = new List<string>
     {
@@ -20,7 +20,9 @@ public class SaveVersionController
         "1.0.3v",
         "1.0.4v",
         "1.1.0v",
-        "1.1.0.1v"
+        "1.1.0.1v",
+        "1.1.0.2v",
+        "1.1.1v",
     };
 
     public bool IsValildVersion()
@@ -49,16 +51,16 @@ public class SaveVersionController
             return;
         }
 
-        // ¹öÀüÀº ¼øÂ÷Àû(Linearly)À¸·Î ¾÷µ¥ÀÌÆ® µÇ¾î¾ß ÇÕ´Ï´Ù.
+        // ë²„ì „ì€ ìˆœì°¨ì (Linearly)ìœ¼ë¡œ ì—…ë°ì´íŠ¸ ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.
         while (userVersion.Equals(Application.version) == false)
         {
             switch (userVersion)
             {
-                // ÀÌÈÄ ¾÷µ¥ÀÌÆ®¿¡¼­ ±¸Çö ÇÊ¿ä ½Ã Ãß°¡
+                // ì´í›„ ì—…ë°ì´íŠ¸ì—ì„œ êµ¬í˜„ í•„ìš” ì‹œ ì¶”ê°€
                 case "1.0.0-release":
                     GameManager.SaveManager.DeleteSaveData();
 
-                    // Àü´ç À¯´Ö °íÀ¯Å°(PrivateKey) Ãß°¡
+                    // ì „ë‹¹ ìœ ë‹› ê³ ìœ í‚¤(PrivateKey) ì¶”ê°€
                     foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
                     {
                         if (string.IsNullOrEmpty(unit.PrivateKey))
@@ -68,19 +70,19 @@ public class SaveVersionController
 
                 case "1.0.1-release":
 
-                    // È£·ç½º ÀÌ¸§ º¯°æ
+                    // í˜¸ë£¨ìŠ¤ ì´ë¦„ ë³€ê²½
                     foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
-                        if (unit.UnitName == "È£·ç½º")
-                            unit.UnitName = "±¸¿øÀÚ";
+                        if (unit.UnitName == "í˜¸ë£¨ìŠ¤")
+                            unit.UnitName = "êµ¬ì›ì";
 
                     SaveData saveData = GameManager.SaveManager.GetSaveData();
                     foreach (SaveUnit unit in saveData.DeckUnitData)
-                        if (unit.UnitDataID == "È£·ç½º")
-                            unit.UnitDataID = "±¸¿øÀÚ";
+                        if (unit.UnitDataID == "í˜¸ë£¨ìŠ¤")
+                            unit.UnitDataID = "êµ¬ì›ì";
 
                     foreach (SaveUnit unit in saveData.FallenUnitsData)
-                        if (unit.UnitDataID == "È£·ç½º")
-                            unit.UnitDataID = "±¸¿øÀÚ";
+                        if (unit.UnitDataID == "í˜¸ë£¨ìŠ¤")
+                            unit.UnitDataID = "êµ¬ì›ì";
 
                     GameManager.SaveManager.SaveData(saveData);
 
@@ -104,22 +106,22 @@ public class SaveVersionController
                         unit.ID = 4 + i;
                     }
 
-                    HallUnit darkKnight = hallUnits.Find(x => x.PrivateKey == "Èæ±â»ç_Origin");
+                    HallUnit darkKnight = hallUnits.Find(x => x.PrivateKey == "í‘ê¸°ì‚¬_Origin");
                     darkKnight.IsMainDeck = true;
                     darkKnight.ID = 0;
 
-                    HallUnit prisoner = hallUnits.Find(x => x.PrivateKey == "ÁË¼ö_Origin");
+                    HallUnit prisoner = hallUnits.Find(x => x.PrivateKey == "ì£„ìˆ˜_Origin");
                     prisoner.IsMainDeck = true;
                     prisoner.ID = 1;
 
-                    HallUnit gravekeeper = hallUnits.Find(x => x.PrivateKey == "¹¦Áö±â_Origin");
+                    HallUnit gravekeeper = hallUnits.Find(x => x.PrivateKey == "ë¬˜ì§€ê¸°_Origin");
                     gravekeeper.IsMainDeck = true;
                     gravekeeper.ID = 2;
 
                     break;
 
                 case "1.0.2v":
-                    // »õ·Î¿î ÁøÃ´µµ ±â´É Ãß°¡
+                    // ìƒˆë¡œìš´ ì§„ì²™ë„ ê¸°ëŠ¥ ì¶”ê°€
                     List<ProgressSave> progressSaves = GameManager.OutGameData.Data.ProgressSaves;
                     foreach (var progressItem in GameManager.OutGameData.ProgressItems)
                     {
@@ -127,7 +129,7 @@ public class SaveVersionController
                             progressSaves.Add(new ProgressSave(progressItem.Value.ID, false));
                     }
 
-                    // ÁøÃ´µµ »óÁ¡ ±â´É ÃÊ±âÈ­ ¹× È¯¿ø
+                    // ì§„ì²™ë„ ìƒì  ê¸°ëŠ¥ ì´ˆê¸°í™” ë° í™˜ì›
                     int sum = 0;
                     foreach (var progressSave in progressSaves)
                     {
@@ -138,13 +140,13 @@ public class SaveVersionController
                             sum += progressItem.Cost;
                         }
                     }
-                    Debug.Log($"ÁøÃ´µµ ÃÊ±âÈ­ ¹× ÄÚÀÎ '{sum}' È¹µæ");
+                    Debug.Log($"ì§„ì²™ë„ ì´ˆê¸°í™” ë° ì½”ì¸ '{sum}' íšë“");
                     GameManager.OutGameData.Data.ProgressCoin += sum;
                     GameManager.OutGameData.SetProgressInit();
 
                     break;
                 case "1.0.4v":
-                    // ±âÁ¸ µ¥ÀÌÅÍ ¸íÄª º¯°æ
+                    // ê¸°ì¡´ ë°ì´í„° ëª…ì¹­ ë³€ê²½
                     GameManager.SaveManager.DeleteSaveData();
                     GameManager.OutGameData.ResetOption();
                     if (GameManager.OutGameData.Data.HorusClear)
@@ -217,19 +219,24 @@ public class SaveVersionController
                 case "1.1.0v":
                     Debug.Log("Betrayer_Of_Faith Key Check");
                     foreach (HallUnit unit in GameManager.OutGameData.FindHallUnitList())
-                        if (unit.UnitName == "¹ÏÀ½À»_Àú¹ö¸°_ÀÚ")
+                        if (unit.UnitName == "ë¯¿ìŒì„_ì €ë²„ë¦°_ì")
                             unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
-                    
-                    //SaveData saveData110 = GameManager.SaveManager.GetSaveData();
-                    //foreach (SaveUnit unit in saveData110.DeckUnitData)
-                    //    if (unit.UnitDataID == "¹ÏÀ½À»_Àú¹ö¸°_ÀÚ")
-                    //        unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
-                    //
-                    //foreach (SaveUnit unit in saveData110.FallenUnitsData)
-                    //    if (unit.UnitDataID == "¹ÏÀ½À»_Àú¹ö¸°_ÀÚ")
-                    //        unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
-                    //
-                    //GameManager.SaveManager.SaveData(saveData110);
+                    /*
+                     ì´ ì½”ë“œëŠ” ì„¸ì´ë¸Œ íŒŒì¼ì„ ì´ˆê¸°í™”ì‹œí‚¤ëŠ” ëŒ€ì°¸ì‚¬ë¥¼ ìœ ë°œí–ˆìŒ, ìµœì•…ì˜ ìƒí™©ì„ ê¸°ì–µí•˜ê¸° ìœ„í•´...
+                    SaveData saveData110 = GameManager.SaveManager.GetSaveData();
+                    foreach (SaveUnit unit in saveData110.DeckUnitData)
+                        if (unit.UnitDataID == "ë¯¿ìŒì„_ì €ë²„ë¦°_ì")
+                            unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
+
+                    foreach (SaveUnit unit in saveData110.FallenUnitsData)
+                        if (unit.UnitDataID == "ë¯¿ìŒì„_ì €ë²„ë¦°_ì")
+                            unit.PrivateKey = "OnlyUnit_Betrayer_Of_Faith";
+
+                    GameManager.SaveManager.SaveData(saveData110);
+                    */
+                    break;
+                case "1.1.0.2v":
+                    GameManager.OutGameData.Data.IsStigmataCorrupt = false;
                     break;
             }
 
@@ -237,8 +244,8 @@ public class SaveVersionController
 
             if (userVersionIndex >= versionHistory.Count)
             {
-                Debug.LogError($"¹öÀü È÷½ºÅä¸®¸¦ µî·ÏÇÏ¼¼¿ä! »õ·Î¿î ¹öÀüÀ» SaveVersionController.cs »ó´Ü¿¡ ±â·ÏÇÏ¼¼¿ä.");
-                Debug.LogError($"ÇöÀç ¹öÀü: {versionHistory[versionHistory.Count - 1]}");
+                Debug.LogError($"ë²„ì „ íˆìŠ¤í† ë¦¬ë¥¼ ë“±ë¡í•˜ì„¸ìš”! ìƒˆë¡œìš´ ë²„ì „ì„ SaveVersionController.cs ìƒë‹¨ì— ê¸°ë¡í•˜ì„¸ìš”.");
+                Debug.LogError($"í˜„ì¬ ë²„ì „: {versionHistory[versionHistory.Count - 1]}");
                 return;
             }
 
