@@ -223,6 +223,10 @@ MonoBehaviour:
     m_Localized: This unit can only get once.
     m_Metadata:
       m_Items: []
+  - m_Id: 92006031882866688
+    m_Localized: Cannot start because there are no units selected.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
