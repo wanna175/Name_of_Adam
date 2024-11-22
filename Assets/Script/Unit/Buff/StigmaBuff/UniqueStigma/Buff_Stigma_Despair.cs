@@ -33,7 +33,7 @@ public class Buff_Stigma_Despair : Buff
             stigmata.Use(_owner);
             Buff_Despair despair = new();
             despair.SetStigmata(stigmata);
-            Debug.Log(stigmata.Name);
+
             _owner.SetBuff(despair);
         }
     }
