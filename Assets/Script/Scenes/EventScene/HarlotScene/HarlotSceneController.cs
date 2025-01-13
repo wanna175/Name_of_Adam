@@ -3,39 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
-public class HarlotSceneController : MonoBehaviour,StigmaInterface
+public class HarlotSceneController : MonoBehaviour, StigmaInterface
 {
     private readonly int[] enterDialogNums = { 3, 3, 3, 3, 3 };
     private readonly int[] exitDialogNums = { 1, 1, 1, 1, 1 };
 
-    private DeckUnit _stigmatizeUnit;
-    private List<Stigma> _stigmaList; //타락낙인 저장하는 곳
-    private List<DeckUnit> _RestorationUnits;
+    [SerializeField] private GameObject _normalBackground;
+    [SerializeField] private GameObject _corruptBackground;
+    [SerializeField] private List<GameObject> _fogImageList;
 
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject fall_background;
-    [SerializeField] private Image foogyImg;
+    [SerializeField] private GameObject _stigmataBestowalButton;
+    [SerializeField] private GameObject _disabledStigmataBestowalButton;
+    [SerializeField] private GameObject _apostleCreationButton;
+    [SerializeField] private GameObject _disabledApostleCreationButton;
+    [SerializeField] private GameObject _selectMenuUI;
 
-    [SerializeField] private GameObject _SelectStigmaButton;
-    [SerializeField] private GameObject _SelectStigmaButton_disabled;
-    [SerializeField] private GameObject _getOriginUnitButton;
-    [SerializeField] private GameObject _getOriginUnitButton_disabled;
-    [SerializeField] private GameObject _ui_SelectMenu;
     [SerializeField] private List<DeckUnit> _originUnits = null;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text descriptionText;
 
-    [SerializeField] private TMP_Text unitRestoration_txt;
-    [SerializeField] private TMP_Text originUnit_txt;
-    [SerializeField] private TMP_Text selectStigma_txt;
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
 
-    [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
+    [SerializeField] private TextMeshProUGUI _revertUnitDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _apostleCreationDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _disabledApostleCreationDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _stigmataBestowalDarkEssenceText;
+    [SerializeField] private TextMeshProUGUI _disabledStigmataBestowalDarkEssenceText;
 
-    private List<Script> _scripts = null;
-    private bool _isStigmaFull;
-    private bool _isNPCFall = false;
+    [SerializeField] private TextMeshProUGUI _revertUnitButtonText;
+    [SerializeField] private TextMeshProUGUI _stigmataBestowalButtonText_enable;
+    [SerializeField] private TextMeshProUGUI _stigmataBestowalButtonText_disable;
+
     private UI_Conversation _conversationUI;
+
+    private List<Script> _scripts = new();
+
+    private DeckUnit _stigmataBestowalUnit;
+    private List<Stigma> _stigmataList = new();
+    private List<DeckUnit> _revertUnits = new();
+
+    private Stigma _preSelectedStigmata;
+    private bool _isStigmataPreSet = false;
+
+    private bool _isStigmataFull = false;
+    private bool _isDarkEssenceUsed = false;
+
+    private int _revertUnitDarkEssence;
+    private int _stigmataBestowalDarkEssence;
+    private int _apostleCreationDarkEssence;
 
     void Start()
     {
@@ -44,176 +60,281 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
 
     private void Init()
     {
-        _scripts = new List<Script>();
-        _isStigmaFull = false;
-        _RestorationUnits = new List<DeckUnit>();
+        Debug.Log($"횟수: {GameManager.OutGameData.Data.SacrificeCorruptValue}");
 
-        Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.DarkshopQuest}");
-
-        if (GameManager.OutGameData.GetVisitDarkshop() == false)
+        int questLevel = Mathf.Min((int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 20f), 4);
+        if (questLevel == 4 && GameManager.OutGameData.Data.SaviorClear && !GameManager.OutGameData.Data.IsSacrificeCorrupt)
         {
-            _scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["탕녀_선택_0"][0].name));
-            //GameManager.OutGameData.setVisitDarkshop(true);
+            GameManager.OutGameData.Data.IsSacrificeCorrupt = true;
+            /*
+            DeckUnit unit = new()
+            {
+                Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자"),
+                IsMainDeck = false,
+                PrivateKey = "Origin_Betrayer_Of_Faith",
+                HallUnitID = -1
+            };
+
+            GameManager.OutGameData.AddHallUnit(unit);
+            GameManager.Data.AddDeckUnit(unit);
+            GameManager.Data.GameData.FallenUnits.Add(unit);
+            */
+        }
+
+        if (GameManager.OutGameData.Data.IsSacrificeCorrupt)
+        {
+            _normalBackground.SetActive(false);
+            _corruptBackground.SetActive(true);
+            _revertUnitDarkEssence = 2;
+            _stigmataBestowalDarkEssence = 8;
+            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit_Corrupt"));
+            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
+            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal_Corrupt"));
         }
         else
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f);
-            if (questLevel > 4) questLevel = 4;
-            _scripts = GameManager.Data.ScriptData[$"탕녀_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
+            _normalBackground.SetActive(true);
+            _corruptBackground.SetActive(false);
+            _revertUnitDarkEssence = 1;
+            _stigmataBestowalDarkEssence = 12;
+            _revertUnitButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Revert Unit"));
+            _stigmataBestowalButtonText_enable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
+            _stigmataBestowalButtonText_disable.SetText(GameManager.Locale.GetLocalizedEventScene("Corruption Stigmata Bestowal"));
+        }
 
-            if (questLevel == 4)
-            {   
-                background.SetActive(false);
-                fall_background.SetActive(true);
-                _isNPCFall = true;
-            }
-            else if (questLevel >= 0)
-            {
-                Color color = this.foogyImg.color;
-                color.a = questLevel * 0.25f;
-                this.foogyImg.color = color;
-            }
+        //_apostleCreationDarkEssence = (_isNPCFall) ? 10 : 15;
+        _apostleCreationDarkEssence = 15;
+
+        if (!GameManager.OutGameData.Data.IsVisitSacrifice)
+        {
+            _scripts = GameManager.Data.ScriptData["탕녀_입장_최초"];
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["탕녀_선택_0"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["탕녀_선택_0"][0].name));
+        }
+        else
+        {
+            _scripts = GameManager.Data.ScriptData[$"탕녀_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"탕녀_선택_{25 * questLevel}"][0].name));
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            _fogImageList[i].gameObject.SetActive(questLevel > i);
         }
 
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
         _conversationUI = FindObjectOfType<UI_Conversation>();
         _conversationUI.ConversationEnded += OnConversationEnded;
 
-        _stigmaList = GameManager.Data.StigmaController.GetHarlotStigmaList();
+        int current_DarkEssense = GameManager.Data.GameData.DarkEssence;
 
-        int current_DarkEssense = GameManager.Data.DarkEssense;
-
-        if (!GameManager.OutGameData.IsUnlockedItem(5))
+        if (!GameManager.OutGameData.IsUnlockedItem(SanctumUnlock.ApostleCreation))
         {
-            _getOriginUnitButton.SetActive(false);
+            _apostleCreationButton.SetActive(false);
         }
-        else if (current_DarkEssense < ((_isNPCFall) ? 8 : 10)) 
+        else if (current_DarkEssense < _apostleCreationDarkEssence) 
         {
-            _getOriginUnitButton_disabled.SetActive(true);
-            _getOriginUnitButton.SetActive(false);
+            _disabledApostleCreationButton.SetActive(true);
+            _apostleCreationButton.SetActive(false);
         }
 
-        if (current_DarkEssense < ((_isNPCFall) ? 8 : 10))
+        if (current_DarkEssense < _stigmataBestowalDarkEssence)
         {
-            _SelectStigmaButton_disabled.SetActive(true);
-            _SelectStigmaButton.SetActive(false);
+            _disabledStigmataBestowalButton.SetActive(true);
+            _stigmataBestowalButton.SetActive(false);
         }
-        SetMenuText(_isNPCFall);
-        /*
-        if(GameManager.Data.GameData)
-        {
-            _forbiddenButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            _forbiddenButton.gameObject.SetActive(false);
-        }
-        */
+
+        SetMenuText();
     }
-    //오리지날 유닛 연성하기
-    public void OnMakeOriginUnitClick()
+
+    //사도 연성 버튼 클릭
+    public void OnApostleCreationButtonClick()
     {
-        //연출하기 애니매이션 끝나면 
-        //Debug.Log(GameManager.Data.GameData.DeckUnits);
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        string corruption = (GameManager.OutGameData.Data.IsSacrificeCorrupt) ? "Corrupt" : "Normal";
 
-        int unitidx = Random.Range(0, 3);
-        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
-
-        ui.SetUnit(_originUnits[unitidx]);
-        ui.Init(OnSelectMakeUnit, CUR_EVENT.COMPLETE_HAELOT, OnQuitClick);
-
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        GameManager.UI.ShowPopup<UI_SystemSelect>().Init($"ApostleCreation_{corruption}", YesApostleCreationButtonClick);
     }
-    public void OnSelectMakeUnit(DeckUnit unit)
+
+    private void YesApostleCreationButtonClick()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        _selectMenuUI.SetActive(false);
+
+        DeckUnit originalUnit = new();
+        originalUnit.Data = _originUnits[Random.Range(0, 3)].Data;
+        originalUnit.IsMainDeck = false;
+        originalUnit.HallUnitID = -1;
+
+        UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+        unitInfo.SetUnit(originalUnit);
+        unitInfo.Init(OnApostleSelect, CurrentEvent.Complate_Apostle, OnQuitClick);
+    }
+
+    public void OnApostleSelect(DeckUnit unit)
     {
         GameManager.Data.AddDeckUnit(unit);
-        GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
+        GameManager.Data.DarkEssenseChage(-_apostleCreationDarkEssence);
         GameManager.Data.GameData.FallenUnits.Add(unit);
     }
 
     //유닛을 검은 정수로 환원하는 버튼
-    public void OnUnitRestorationClick()
+    public void OnRevertUnitButtonClick()
     {
-        _RestorationUnits.Clear();
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>();
-        ui.Init(false, OnSelectRestoration, CUR_EVENT.HARLOT_RESTORATION, RestorationQuitClick);
-        ui.SetEventMenu(_ui_SelectMenu);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        _revertUnits.Clear();
+
+        UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
+        myDeck.Init();
+        myDeck.EventInit(OnSelectRevertUnit, CurrentEvent.Revert_Unit_Select, _selectMenuUI, RevertUnitQuitClick);
     }
 
-    public void OnSelectRestoration(DeckUnit unit)
+    public void OnSelectRevertUnit(DeckUnit unit)
     {
-        if (!_RestorationUnits.Contains(unit))
-            _RestorationUnits.Add(unit);
-        else
-            _RestorationUnits.Remove(unit);
-
-        GameManager.UI.ClosePopup();
-    }
-
-    // 유닛 선택 후 타락 관련 낙인 부여 버튼
-    public void OnStigmaButtonClick()
-    {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        ui.Init(false, OnSelectStigmatization, CUR_EVENT.STIGMA);
-        ui.SetEventMenu(_ui_SelectMenu);
-    }
-    public void IsStigmaFull()
-    {
-        Debug.Log("스티그마 꽉 찼을 때 예외처리");
-        _isStigmaFull = true;
-        GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(null, _stigmatizeUnit.GetStigma(true), 0, null, this);
-    }
-
-    public void OnSelectStigmatization(DeckUnit unit)
-    {
-        _stigmatizeUnit = unit;
-
-        if (_stigmatizeUnit.GetStigmaCount() < _stigmatizeUnit._maxStigmaCount)
+        if (!_revertUnits.Contains(unit))
         {
-            Debug.Log("유닛이 스티그마를 더 받을 수 잇는 상태입니다.");
-            //GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, null, 3, null, this);
-            GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>().Init(_stigmatizeUnit, _stigmaList, 2, null, this);
+            _revertUnits.Add(unit);
         }
         else
         {
-            Debug.Log("유닛 스티그마 더 받을 수 없으니 하나를 선택하여 지워야 합니다.");
-            IsStigmaFull();
+            _revertUnits.Remove(unit);
         }
-        GameManager.Data.DarkEssenseChage(((_isNPCFall) ? -8 : -10));
+
+        GameManager.UI.ClosePopup();
     }
 
-    private void SetUnitStigma(Stigma stigma)
+    public void RevertUnitQuitClick()
     {
-        _stigmatizeUnit.AddStigma(stigma);
-
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        GameManager.UI.ClosePopup();
-        GameManager.UI.ClosePopup();
-        GameManager.UI.ClosePopup();
-        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        ui.SetUnit(_stigmatizeUnit);
-        ui.Init(null, CUR_EVENT.COMPLETE_STIGMA, OnQuitClick);
-    }
-
-    public void OnStigmaSelected(Stigma stigma)
-    {
-        if (_isStigmaFull)//스티그마 예외처리
+        if (_revertUnits.Count == GameManager.Data.GetDeck().Count)
         {
-            _isStigmaFull = false;
-            _stigmatizeUnit.DeleteStigma(stigma);
-            GameManager.UI.CloseAllPopup();
-            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-            unitInfo.SetUnit(_stigmatizeUnit);
-            unitInfo.Init(OnSelectStigmatization, CUR_EVENT.STIGMA_EXCEPTION);
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("RevertAll", "");
             return;
         }
-        SetUnitStigma(stigma);
+        else if (_revertUnits.Count != 0)
+        {
+            GameManager.Data.DarkEssenseChage(_revertUnitDarkEssence * _revertUnits.Count);
+            foreach (DeckUnit delunit in _revertUnits)
+                GameManager.Data.RemoveDeckUnit(delunit);
+        }
+
+        GameManager.UI.ClosePopup();
+        OnQuitClick();
+    }
+
+    //타락 성흔 부여 버튼 클릭
+    public void OnStigmataBestowalButtonClick()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
+        myDeck.Init();
+        myDeck.EventInit(OnSelectStigmataBestowalUnit, CurrentEvent.Corrupt_Stigmata_Select, _selectMenuUI);
+    }
+
+    public void UnitStigmataFull()
+    {
+        UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
+        popup.Init(null, true, _stigmataBestowalUnit.GetStigma(true));
+        popup.EventInit(this, CurrentEvent.Stigmata_Full_Exception);
+
+        _isStigmataFull = true;
+    }
+
+    public void OnSelectStigmataBestowalUnit(DeckUnit unit)
+    {
+        if (unit.CheckHaveAnyCorruptStigmata() && !_isStigmataPreSet)
+        {
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmAlreadyHaveCorruptStigmata", () =>
+            {
+                GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+                List<Stigma> stigmataList = new();
+                _stigmataBestowalUnit = unit;
+
+                foreach (Stigma stigmata in unit.GetStigma())
+                {
+                    if (stigmata.Tier == StigmaTier.Harlot)
+                        stigmataList.Add(stigmata);
+                }
+
+                UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
+                popup.Init(null, true, stigmataList);
+                popup.EventInit(this, CurrentEvent.Stigmata_Full_Exception);
+
+                _isStigmataFull = true;
+            }, () => {
+                GameManager.UI.CloseAllPopup();
+                OnStigmataBestowalButtonClick();
+                return;
+            });
+        }
+        else if (unit.GetStigmaCount() < unit.MaxStigmaCount || _isStigmataPreSet)
+        {
+            _stigmataBestowalUnit = unit;
+
+            ResetStigmataList(unit);
+
+            if (_isDarkEssenceUsed == false)
+            {
+                _isDarkEssenceUsed = true;
+                GameManager.Data.DarkEssenseChage(-_stigmataBestowalDarkEssence);
+            }
+
+            UI_StigmaSelectButtonPopup popup = GameManager.UI.ShowPopup<UI_StigmaSelectButtonPopup>();
+            popup.Init(_stigmataBestowalUnit, false, _stigmataList);
+            popup.EventInit(this, CurrentEvent.Stigmata_Select);
+        }
+        else
+        {
+            _stigmataBestowalUnit = unit;
+
+            UnitStigmataFull();
+        }
+
+        //선 저장
+        GameManager.Data.Map.SetCurrentTileClear();
+        GameManager.SaveManager.SaveGame();
+    }
+
+    private void BestowalStigmata(Stigma stigma)
+    {
+        if (_isStigmataPreSet)
+        {
+            _stigmataBestowalUnit.DeleteStigma(_preSelectedStigmata);
+            _isStigmataPreSet = false;
+        }
+        _stigmataBestowalUnit.AddStigma(stigma);
+
+        GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
+        GameManager.UI.ClosePopup();
+        GameManager.UI.ClosePopup();
+        GameManager.UI.ClosePopup();
+        UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+        unitInfo.SetUnit(_stigmataBestowalUnit);
+        unitInfo.Init(null, CurrentEvent.Complate_Stigmata, OnQuitClick);
+    }
+
+    public void OnStigmataSelected(Stigma stigmata)
+    {
+        if (_isStigmataFull)
+        {
+            _isStigmataFull = false;
+            _stigmataBestowalUnit.DeleteStigma(stigmata);
+
+            GameManager.UI.CloseAllPopup();
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(_stigmataBestowalUnit);
+
+            ResetStigmataList(_stigmataBestowalUnit);
+            unitInfo.Init(OnSelectStigmataBestowalUnit, CurrentEvent.Stigmata_Full_Exception);
+        }
+        else
+        {
+            BestowalStigmata(stigmata);
+        }
     }
 
     //대화하기 버튼을 클릭했을 경우
@@ -222,77 +343,74 @@ public class HarlotSceneController : MonoBehaviour,StigmaInterface
         GameManager.UI.ShowPopup<UI_Conversation>().Init(_scripts);
     }
 
-    //나가기 버튼을 클릭했을 경우
-    public void RestorationQuitClick()
+    public List<Stigma> ResetStigmataList(DeckUnit stigmataTargetUnit)
     {
-        if (_RestorationUnits.Count == GameManager.Data.GetDeck().Count)
+        _stigmataList.Clear();
+        _stigmataList = GameManager.Data.StigmaController.GetRandomHarlotStigmaList(stigmataTargetUnit, 2);
+
+        //선 적용된 성흔 리셋
+        if (_isStigmataPreSet)
         {
-            Debug.Log("유닛은 하나 이상 남겨야 합니다.");//여기다가 경고창 띄우면 될듯
-            return;
-        }
-        else if (_RestorationUnits.Count != 0)
-        {
-            int cost = _isNPCFall ? 2 * _RestorationUnits.Count : _RestorationUnits.Count;
-            GameManager.Data.DarkEssenseChage(cost);
-            foreach (DeckUnit delunit in _RestorationUnits)
-                GameManager.Data.RemoveDeckUnit(delunit);
+            _stigmataBestowalUnit.DeleteStigma(_preSelectedStigmata);
         }
 
-        GameManager.UI.ClosePopup();
-        OnQuitClick();
-    } 
+        _preSelectedStigmata = _stigmataList[Random.Range(0, _stigmataList.Count)];
+
+        if (_stigmataBestowalUnit.GetStigmaCount() < _stigmataBestowalUnit.MaxStigmaCount)
+        {
+            _stigmataBestowalUnit.AddStigma(_preSelectedStigmata);
+            GameManager.SaveManager.SaveGame();
+
+            _isStigmataPreSet = true;
+        }
+
+        return _stigmataList;
+    }
 
     public void OnQuitClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         StartCoroutine(QuitScene());
     }
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        if (GameManager.Data.GameData.IsVisitDarkShop == false)
-        {
-            GameManager.Data.GameData.IsVisitDarkShop = true;
-        }
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.GetVisitDarkshop()==false)
+        if (!GameManager.OutGameData.Data.IsVisitSacrifice)
         {
-            GameManager.OutGameData.SetVisitDarkshop(true);
+            GameManager.OutGameData.Data.IsVisitSacrifice = true;
             quitScript.Init(GameManager.Data.ScriptData["탕녀_퇴장_최초"], false);
         }
         else 
         {
-            int questLevel = (int)(GameManager.Data.GameData.NpcQuest.DarkshopQuest / 7.5f);
+            int questLevel = (int)(GameManager.OutGameData.Data.SacrificeCorruptValue / 12.5f);
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"탕녀_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
         
         yield return StartCoroutine(quitScript.PrintScript());
-        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
+        GameManager.OutGameData.SaveData();
         SceneChanger.SceneChange("StageSelectScene");
     }
-    private void SetMenuText(bool _isnpcfall)
+
+    private void SetMenuText()
     {
-        if (_isnpcfall)
-        {
-            unitRestoration_txt.text = "2";
-            selectStigma_txt.text = "8";
-            originUnit_txt.text = "8";
-        }
-        else
-        {
-            unitRestoration_txt.text = "1";
-            selectStigma_txt.text = "10";
-            originUnit_txt.text = "10";
-        }
+        _revertUnitDarkEssenceText.text = _revertUnitDarkEssence.ToString();
+        _stigmataBestowalDarkEssenceText.text = _stigmataBestowalDarkEssence.ToString();
+        _disabledStigmataBestowalDarkEssenceText.text = _stigmataBestowalDarkEssence.ToString();
+
+        _apostleCreationDarkEssenceText.text = _apostleCreationDarkEssence.ToString();
+        _disabledApostleCreationDarkEssenceText.text = _apostleCreationDarkEssence.ToString();
     }
+
     private void OnConversationEnded()
     {
-        _ui_SelectMenu.SetActive(true);
+        _selectMenuUI.SetActive(true);
     }
 }

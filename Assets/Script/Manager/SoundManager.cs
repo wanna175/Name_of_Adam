@@ -91,9 +91,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private float GetBGMVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetBGMSoundPower();
+    private float GetBGMVolume() => GameManager.OutGameData.Data.MasterSoundPower * GameManager.OutGameData.Data.BGMSoundPower;
 
-    private float GetSEVolume() => GameManager.OutGameData.GetMasterSoundPower() * GameManager.OutGameData.GetSESoundPower();
+    private float GetSEVolume() => GameManager.OutGameData.Data.MasterSoundPower * GameManager.OutGameData.Data.SESoundPower;
 
     AudioClip GetOrAddAudioClip(string path, Sounds type = Sounds.Effect)
     {
@@ -127,17 +127,23 @@ public class SoundManager : MonoBehaviour
         {
             Clear();
             Play("Stage_Transition/Stage_Enter/Stage_EnterSFX");
-            if(GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
+            if (GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
             {
-                if(GameManager.Data.Map.GetCurrentStage().StageID == 0)
-                {
-                    Play(scenename + "/BossBattle/Horus_BGM", Sounds.BGM);
-                }
-                else if(GameManager.Data.Map.GetCurrentStage().StageID == 1)
-                {
-                    //호루스 브금
-                }
+                StageData data = GameManager.Data.Map.GetStage(99);
+                string unitName = GameManager.Data.StageDatas[data.StageLevel][data.StageID].Units[0].Name;
 
+                if (unitName == "바누엘")
+                {
+                    Play(scenename + "/BossBattle/Phanuel_BGM", Sounds.BGM);
+                }
+                else if (unitName == "구원자")
+                {
+                    Play(scenename + "/BossBattle/TheSavior_BGM", Sounds.BGM);
+                }
+                else if (unitName == "욘")
+                {
+                    Play(scenename + "/BossBattle/Yohrn_BGM", Sounds.BGM);
+                }
             }
             else
             {
@@ -147,15 +153,15 @@ public class SoundManager : MonoBehaviour
         else if (scenename == "DifficultySelectScene")
         {
             Clear();
-            Play(scenename + "/" + scenename + "BGM", Sounds.BGM);
+            Play("DifficultySelectScene/" + scenename + "BGM", Sounds.BGM);
         }
-        else if(scenename == "EventScene")
+        else if (scenename == "EventScene")
         {
             Clear();
             string storeName = GameManager.Data.Map.GetCurrentStage().Name.ToString();
-            Play(scenename + "/" + storeName + "/" + storeName + "BGM", Sounds.BGM);
+            Play("EventScene/" + storeName + "BGM", Sounds.BGM);
         }
-        else if(scenename == "StageSelectScene")
+        else if (scenename == "StageSelectScene")
         {
             Clear();
             Play(scenename + "/" + scenename + "BGM", Sounds.BGM);

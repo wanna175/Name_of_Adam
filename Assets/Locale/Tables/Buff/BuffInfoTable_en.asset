@@ -19,27 +19,27 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4755091456
-    m_Localized: Decreases the enemy's faith upon attacking. (Unable to remove)
+    m_Localized: Upon attack, reduces enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 54424039424
-    m_Localized: Attacks with a 50% increase in damage.
+    m_Localized: Attack Power increases by 30%.
     m_Metadata:
       m_Items: []
   - m_Id: 87252856832
-    m_Localized: Attacks first regardless of speed.
+    m_Localized: Speed incresase by 100.
     m_Metadata:
       m_Items: []
   - m_Id: 115275001856
-    m_Localized: Damage triples, but dies after attacking.
+    m_Localized: Attacks have triple damage, but the attacker dies after the attack
     m_Metadata:
       m_Items: []
   - m_Id: 143120986112
-    m_Localized: Currently attack has increased by n
+    m_Localized: Currently Attack Power has been increased by n
     m_Metadata:
       m_Items: []
   - m_Id: 252978196480
-    m_Localized: Withstands once with the health of 1, when reaching death.
+    m_Localized: Withstands death with 1 health., when reaching death.
     m_Metadata:
       m_Items: []
   - m_Id: 286473908224
@@ -47,29 +47,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 315448160256
-    m_Localized: Becomes able to move to any desired position.
+    m_Localized: Can move to any tile regardless of range.
     m_Metadata:
       m_Items: []
   - m_Id: 347706552320
-    m_Localized: Unable to move.
+    m_Localized: This unit cannot move or attack.
     m_Metadata:
       m_Items: []
   - m_Id: 374298439680
-    m_Localized: Decreases the enemy's faith by 1 upon attacking.
+    m_Localized: Upon attacking, reduces the enemy's faith by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 403427880960
-    m_Localized: Faith decreases by 1 upon being attacked by Rahel and Lea.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 429461925888
-    m_Localized: 'Provides additional effects with each stack
-
-      1 stack: When
-      attacked by Elieus or Yana, adjacent allies are also attacked.
-
-      2 stacks:
-      When attacked by Elieus or Yana, one''s faith decreases by 1.'
+    m_Localized: When the cursed unit's turn end, its faith decrease by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 483732025344
@@ -78,42 +68,126 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 527289872384
-    m_Localized: Attacks in an area effect
+    m_Localized: 'Attack enemy unit within adjacent 8 tiles of Appaim.
+
+      Reduces
+      the enemy''s faith by 1.'
     m_Metadata:
       m_Items: []
   - m_Id: 587926925312
-    m_Localized: Attacking range becomes infinite.
+    m_Localized: Attack range become unlimited and attack 1 enemy unit.
     m_Metadata:
       m_Items: []
   - m_Id: 606004375552
-    m_Localized: Attacks in an area effect, and becomes immobile but decreases the
-      enemy's faith by 1.
+    m_Localized: Attack all enemy unit except within adjacent 8 tiles of Appaim but
+      can't move.
     m_Metadata:
       m_Items: []
   - m_Id: 645355335680
-    m_Localized: The enemy attacks the tile it was standing at the player turn.
+    m_Localized: Phanuel attacks the tiles where the enemy unit was during the Preparation
+      Phase
     m_Metadata:
       m_Items: []
   - m_Id: 695686983680
-    m_Localized: Attacks the adjacent 4 tiles near all obelisks.
+    m_Localized: Attacks 4 tiles adjacent to the obelisks.
     m_Metadata:
       m_Items: []
   - m_Id: 728159285248
-    m_Localized: Attacks every area.
+    m_Localized: Attacks all areas except the tile with the obelisk.
     m_Metadata:
       m_Items: []
   - m_Id: 754625343488
-    m_Localized: Faith decreases by 1 after every turn of this unit.
+    m_Localized: Upon the end of this unit's turn, its faith decreases by 1.
     m_Metadata:
       m_Items: []
   - m_Id: 743255583133696
-    m_Localized: 'Dusk: Provides additional effects with each stack
+    m_Localized: 'Gains additional effects with each stack.
 
-      1 stack:
-      When attacked by Elieus or Yana, adjacent allies are also attacked.
+      1 stack: When
+      attacked by Elieus or Yana, ally units in adjacent 4 tiles are also attacked.
 
       2
-      stacks: When attacked by Elieus or Yana, one''s faith decreases by 1.'
+      stack: When attacked by Elieus or Yana, faith decreases by 1.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11610392982515712
+    m_Localized: Upon attacking, Rahel Inflicts Mark Of The Beast and moves behind
+      the attacked enemy if there is only one enemy attacked.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11610555104948224
+    m_Localized: Lea cannot move, and attacks all enemies within adjacent 4 tiles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12313325871452160
+    m_Localized: 'This Unit is Edified.
+
+      It no longer loses faith.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16322966016118784
+    m_Localized: When attacked by Rahel or Lea, faith decreases by 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51286104792518656
+    m_Localized: Attack Power increases by 15.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55424615405735936
+    m_Localized: Attack Power decreases by 50%.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55754218309570560
+    m_Localized: Gains an extra turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267511090434048
+    m_Localized: At this stage the unit's stats increase.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267973940269056
+    m_Localized: <b>Attack Power:</b>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267995981336576
+    m_Localized: '<b>Speed:</b> '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71268008954318848
+    m_Localized: '<b>HP:</b> '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338941318483968
+    m_Localized: "<b>Glory Count 1:</b> Taken Damage becomes halved.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338942937485312
+    m_Localized: "<b>Glory Count 2:</b> Attack Power becomes doubled.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338946267762688
+    m_Localized: "<b>Glory Count 3:</b> Attack range becomes greatly increased. Attack
+      Power is doubled, and decreases enemies\u2019 faith by 1."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86357560219815936
+    m_Localized: This unit attacks this turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97335273600471040
+    m_Localized: 'Gained a stat from this unit: '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97335275580182528
+    m_Localized: (Gained this stigmata effects by Despair Stigmata.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104770754797785088
+    m_Localized: This unit cannot move.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104770755900887040
+    m_Localized: Pushes the enemy back by 1 tile.
     m_Metadata:
       m_Items: []
   references:

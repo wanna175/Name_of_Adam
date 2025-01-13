@@ -2,19 +2,13 @@ using UnityEngine;
 
 public class Buff_Stigma_Sadism : Buff
 {
-    private int attackUp;
-    private int totalUp = 0;
+    private int _attackUp = 0;
+    private int _totalUp = 0;
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Sadism;
+        _buffEnum = BuffEnum.Stigmata_Sadism;
 
-        _name = "가학";
-
-        _description = "공격 후 공격력이 3 증가합니다.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "Sadism";
 
         _buffActiveTiming = ActiveTiming.ATTACK_TURN_END;
 
@@ -22,14 +16,12 @@ public class Buff_Stigma_Sadism : Buff
 
         _statBuff = true;
 
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)
     {
-        totalUp += _owner.AttackUnitNum * attackUp;
+        _totalUp += _owner.AttackUnitNum * _attackUp;
 
         return false;
     }
@@ -37,13 +29,13 @@ public class Buff_Stigma_Sadism : Buff
     public override Stat GetBuffedStat()
     {
         Stat stat = new();
-        stat.ATK += totalUp;
+        stat.ATK += _totalUp;
 
         return stat;
     }
 
     public override void SetValue(int num)
     {
-        attackUp = num;
+        _attackUp += num;
     }
 }

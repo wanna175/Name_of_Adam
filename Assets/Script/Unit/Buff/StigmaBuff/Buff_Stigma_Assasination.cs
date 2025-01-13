@@ -6,25 +6,13 @@ public class Buff_Stigma_Assasination : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.Assasination;
+        _buffEnum = BuffEnum.Stigmata_Assasination;
 
-        _name = "암살";
-
-        _description = "맵 어디든 소환 가능합니다.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
-
-        _buffActiveTiming = ActiveTiming.NONE;
+        _name = "Assasination";
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

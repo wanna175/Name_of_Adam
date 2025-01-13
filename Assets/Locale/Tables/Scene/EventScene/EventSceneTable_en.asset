@@ -22,12 +22,12 @@ MonoBehaviour:
     m_Localized: Select.
     m_Metadata:
       m_Items: []
-  - m_Id: 189452685312
+  - m_Id: 32301871560192000
     m_Localized: Upgrade
     m_Metadata:
       m_Items: []
   - m_Id: 227742486528
-    m_Localized: Heal faith
+    m_Localized: Restore faith
     m_Metadata:
       m_Items: []
   - m_Id: 374228553728
@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2862491013120
-    m_Localized: Possessed units
+    m_Localized: "Owned Units\r"
     m_Metadata:
       m_Items: []
   - m_Id: 2867352211456
@@ -63,7 +63,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2882816610304
-    m_Localized: Select a unit to bring to the Divine Hall.
+    m_Localized: Select a unit to register at the Divine Hall.
     m_Metadata:
       m_Items: []
   - m_Id: 1931057719734272
@@ -74,19 +74,11 @@ MonoBehaviour:
     m_Localized: Stigmata Transfer
     m_Metadata:
       m_Items: []
-  - m_Id: 2927087455473664
-    m_Localized: Stigmata Bestowal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2931150150602752
+  - m_Id: 32341507846238208
     m_Localized: Apostle Creation
     m_Metadata:
       m_Items: []
-  - m_Id: 2931125311934464
-    m_Localized: Corruption Stigmata Bestowal
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2931107607777280
+  - m_Id: 32305284532465664
     m_Localized: Revert Unit
     m_Metadata:
       m_Items: []
@@ -96,6 +88,90 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7696932615811072
     m_Localized: Per Unit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200786528333824
+    m_Localized: Select a desired stigmata.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200807118172160
+    m_Localized: Select a stigmata to destroy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200825912848384
+    m_Localized: "Select a stigmata to move.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200866241081344
+    m_Localized: Please select which unit to move the stigmata to.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9460599405473792
+    m_Localized: Select a desired upgrade.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9460638387335168
+    m_Localized: Select a upgrade to destroy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32301906284834816
+    m_Localized: Upgrade <style=Corruption>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32302655819542528
+    m_Localized: Stigmata Bestowal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32302748144562176
+    m_Localized: Stigmata Bestowal <style=Corruption>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32305303109038080
+    m_Localized: Revert Unit <style=Corruption>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32341523792982016
+    m_Localized: Corruption Stigmata Bestowal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32349076962734080
+    m_Localized: Corruption Stigmata Bestowal <style=Corruption>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34346192196505600
+    m_Localized: Select units to bring on this mission.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34363969619791872
+    m_Localized: Select units to delete.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629787643334656
+    m_Localized: Normal Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629926340579328
+    m_Localized: Advanced Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629957806247936
+    m_Localized: Divine Slot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629992493142016
+    m_Localized: Can place Normal units
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629994401550336
+    m_Localized: Can place Elite, Apostle, and Normal units
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81629995643064320
+    m_Localized: Can place Boss, Elite, Apostle, and Normal units
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88440306064838656
+    m_Localized: Empty Slot
     m_Metadata:
       m_Items: []
   references:

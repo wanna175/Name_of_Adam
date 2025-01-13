@@ -62,10 +62,13 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _highlight.SetActive(true);
+        //_highlight.SetActive(true);
         transform.localScale = new Vector3 (1.15f, 1.15f, 1.15f);
         _hoverInfo = BattleManager.BattleUI.ShowInfo();
         _hoverInfo.SetInfo(_handUnit, Team.Player);
+
+        if (_handUnit.IsDiscount())
+            BattleManager.BattleUI.SetFirstTurnNotify(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -74,18 +77,28 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         if (IsSelected)
             return;
         transform.localScale = new Vector3(1f, 1f, 1f);
-        _highlight.SetActive(false);
+        //_highlight.SetActive(false);
+
+        if (_handUnit.IsDiscount())
+            BattleManager.BattleUI.SetFirstTurnNotify(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        PhaseController _phase = BattleManager.Phase;
-        if (!_phase.CurrentPhaseCheck(_phase.Prepare))
+        PhaseController phase = BattleManager.Phase;
+        if (!phase.CurrentPhaseCheck(phase.Prepare))
+        {
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
+            BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("CannotInUnitTurn"));
+            return;
+        }
+
+        if (BattleManager.PlayerSkillController.IsSkillOn)
             return;
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (TutorialManager.Instance.IsEnable())
+            if (TutorialManager.Instance.IsEnableUpdate())
                 TutorialManager.Instance.ShowNextTutorial();
 
             _hands.OnClickHand(this);
@@ -97,7 +110,10 @@ public class UI_Hand : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         IsSelected = b;
         _highlight.SetActive(b);
         if (!IsSelected)
+        {
             transform.localScale = new Vector3(1f, 1f, 1f);
+            BattleManager.BattleUI.SetFirstTurnNotify(false);
+        }
 
         /*
         if (IsSelected)

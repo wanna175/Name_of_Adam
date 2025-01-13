@@ -1,81 +1,197 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 
 public class UI_WaitingLine : UI_Scene
 {
-    [SerializeField] private Transform _grid;
-    [SerializeField] private GameObject _buttonDown;
-    [SerializeField] private GameObject _buttonUp;
+    [SerializeField] private Transform _waitingUnitGrid;
+
+    [SerializeField] private GameObject _upButton;
+    [SerializeField] private GameObject _downButton;
+
+    [SerializeField] private UI_WaitingPlayer _waitingPlayer;
+
+    [SerializeField] private GameObject _waitingUnitPrefab;
 
     private List<UI_WaitingUnit> _waitingUnitList = new();
-    private bool _turned = false;
+    //private List<(BattleUnit, int?)> _waitingBattleUnitOrderList = new();
+
+    private int _waitingLinePage = 0;
+    const int _waitingUnitMaxCount = 6;
 
     public void Start()
     {
-        _buttonDown.SetActive(false);
-        _buttonUp.SetActive(false);
+        _downButton.SetActive(false);
+        _upButton.SetActive(false);
     }
 
-    private void ButtonActive()
+    private void ButtonActiveCheck()
     {
-        if (_waitingUnitList.Count > 5)
+        if (_waitingUnitList.Count + (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare) ? 1 : 0) > _waitingUnitMaxCount)
         {
-            if (_turned && _waitingUnitList.Count > 5)
-            {
-                _buttonUp.SetActive(true);
-                _buttonDown.SetActive(false);
-            }
-            else if (!_turned && _waitingUnitList.Count > 5)
-            {
-                _buttonDown.SetActive(true);
-                _buttonUp.SetActive(false);
-            }
+            _upButton.SetActive(_waitingLinePage != 0);
+            _downButton.SetActive(_waitingUnitList.Count / _waitingUnitMaxCount != _waitingLinePage);
         }
         else
         {
-            _buttonDown.SetActive(false);
-            _buttonUp.SetActive(false);
+            _downButton.SetActive(false);
+            _upButton.SetActive(false);
+            _waitingLinePage = 0;
         }
+
+        CheckWaitingLineActive();
     }
 
-    private void AddUnit(BattleUnit addUnit)
+    public void AddUnitOrder((BattleUnit, int?) addUnitOrder)
     {
-        UI_WaitingUnit newUnit = GameManager.Resource.Instantiate("UI/Sub/WaitingUnit", _grid).GetComponent<UI_WaitingUnit>();
-        newUnit.SetUnit(addUnit, _turned);
-        _waitingUnitList.Add(newUnit);
+        int insertIndex = 0;
+
+        foreach (UI_WaitingUnit waitingUnit in _waitingUnitList)
+        {
+            var existingOrder = waitingUnit.GetUnitOrder();
+
+            int existingSpeed = existingOrder.Item2 ?? existingOrder.Item1.BattleUnitTotalStat.SPD;
+            int newSpeed = addUnitOrder.Item2 ?? addUnitOrder.Item1.BattleUnitTotalStat.SPD;
+
+            if (newSpeed > existingSpeed) break;
+            if (newSpeed < existingSpeed) { insertIndex++; continue; }
+
+            if (addUnitOrder.Item1.Team < existingOrder.Item1.Team) break;
+            if (addUnitOrder.Item1.Team > existingOrder.Item1.Team) { insertIndex++; continue; }
+
+            if (addUnitOrder.Item1.Location.y > existingOrder.Item1.Location.y) break;
+            if (addUnitOrder.Item1.Location.y < existingOrder.Item1.Location.y) { insertIndex++; continue; }
+
+            if (addUnitOrder.Item1.Location.x < existingOrder.Item1.Location.x) break;
+
+            insertIndex++;
+        }
+
+        UI_WaitingUnit newUnit = GameObject.Instantiate(_waitingUnitPrefab, _waitingUnitGrid).GetComponent<UI_WaitingUnit>();
+        newUnit.SetUnitOrder(addUnitOrder);
+        newUnit.transform.SetSiblingIndex(insertIndex+1);
+        _waitingUnitList.Insert(insertIndex, newUnit);
+
+        ButtonActiveCheck();
     }
 
-    public void SetWaitingLine(List<BattleUnit> orderList)
+    public void RemoveUnitOrder((BattleUnit, int?) removeUnitOrder)
+    {
+        bool isInLine = true;
+
+        foreach (UI_WaitingUnit waitingUnit in _waitingUnitList)
+        {
+            if (waitingUnit.GetUnitOrder() == removeUnitOrder)
+            {
+                _waitingUnitList.Remove(waitingUnit);
+                waitingUnit.SetAnimatorBool(isInLine ? "isRemove" : "isRemoveInLine", true);
+
+                break;
+            }
+
+            isInLine = false;
+        }
+
+        ButtonActiveCheck();
+    }
+
+    public void RefreshWaitingUnit()
+    {
+        foreach (UI_WaitingUnit waitingUnit in _waitingUnitList)
+        {
+            waitingUnit.SetUnitOrder(waitingUnit.GetUnitOrder());
+        }
+
+        ButtonActiveCheck();
+    }
+
+    public void ResetWaitingLine(List<(BattleUnit, int?)> orderList)
     {
         ClearWaitingLine();
 
-        foreach (BattleUnit unit in orderList)
-            AddUnit(unit);
+        foreach (var unit in orderList)
+            AddUnitOrder(unit);
 
-        ButtonActive();
+        ButtonActiveCheck();
+    }
+
+    public void UnitOrderChangeCheck(List<(BattleUnit, int?)> orderList)
+    {
+        bool isChange = false;
+
+        for (int i = 0; i < _waitingUnitList.Count; i++)
+        {
+            if (_waitingUnitList[i].GetUnitOrder() != orderList[i])
+            {
+                _waitingUnitList[i].gameObject.SetActive(false);
+                isChange = true;
+            }
+        }
+
+        if (isChange)
+        {
+            List<UI_WaitingUnit> waitingUnitNewList = new();
+
+            for (int i = 0; i < orderList.Count; i++)
+            {
+                UI_WaitingUnit waitingUnit = _waitingUnitList.Find(unit => unit.GetUnitOrder() == orderList[i]);
+                waitingUnit.transform.SetSiblingIndex(i+1);
+                waitingUnit.gameObject.SetActive(true);
+                waitingUnitNewList.Add(waitingUnit);
+            }
+
+            RefreshWaitingUnit();
+
+            _waitingUnitList = waitingUnitNewList;
+
+            ButtonActiveCheck();
+        }
     }
 
     private void ClearWaitingLine()
     {
-        for (int i = 0; i < _waitingUnitList.Count; i++)
+        foreach (UI_WaitingUnit unit in transform.GetComponentsInChildren<UI_WaitingUnit>())
         {
-            UI_WaitingUnit unit = _waitingUnitList[i];
-            _waitingUnitList.Remove(unit);
             Destroy(unit.gameObject);
-            i--;
         }
+        _waitingUnitList.Clear();
     }
 
-    public void OnClickSeeNextUnits()
+    private void CheckWaitingLineActive()
     {
-        ButtonActive();
+        for (int i = 0; i < _waitingUnitList.Count; i++)
+        {
+            if (i + (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare) ? 1 : 0) < _waitingLinePage * _waitingUnitMaxCount)
+                _waitingUnitList[i].SetAnimatorBool("isDisable", true);
+            else
+                _waitingUnitList[i].gameObject.SetActive(true);
+        }
 
-        _grid.eulerAngles += new Vector3(0f, 180f, 0f);
-        if (_turned == false)
-            _turned = true;
+        SetWaitingPlayer(_waitingLinePage == 0);
+    }
+
+    public void OnClickUpButton()
+    {
+        _waitingLinePage--;
+        ButtonActiveCheck();
+    }
+
+    public void OnClickDownButton()
+    {
+        _waitingLinePage++;
+        ButtonActiveCheck();
+    }
+
+    public void SetWaitingPlayer(bool on)
+    {
+        if (on && BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
+        {
+            _waitingPlayer.gameObject.SetActive(true);
+        }
         else
-            _turned = false;
+        {
+            _waitingPlayer.SetAnimatorBool("isRemove", true);
+        }
     }
 }

@@ -8,20 +8,22 @@ public class MovePhase : Phase
 
     public override void OnStateEnter()
     {
-        if (BattleManager.Data.isGameDone)
+        if (BattleManager.Data.IsGameDone)
             return;
 
         _nowUnit = BattleManager.Data.GetNowUnit();
+        BattleManager.Field.SetTileHighlightFrame(_nowUnit.Location, true);
 
         if (_nowUnit.Team == Team.Player)
             BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
         
-        if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.IsTutorialClear())
+        if (_nowUnit.Team == Team.Player && !GameManager.OutGameData.Data.TutorialClear)
             TutorialManager.Instance.ShowNextTutorial();
 
-        //�̵� �� ���� �� üũ
+        BattleManager.BattleUI.UI_TurnChangeButton.SetButtonSprite();
+
+        BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TURN_START, _nowUnit);
         _nowUnit.NextMoveSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE_TURN_START, _nowUnit);
-        _nowUnit.NextMoveSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Move);
 

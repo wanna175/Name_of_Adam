@@ -5,14 +5,13 @@ using UnityEngine;
 public class UnitBuff : MonoBehaviour
 {
     [SerializeField] private List<Buff> _buffList;
+    public List<Buff> BuffList => _buffList;
 
-    public void SetBuff(Buff buff, BattleUnit owner)
+    public void SetBuff(Buff buff)
     {
-        buff.Init(owner);
-
         foreach (Buff listedBuff in _buffList)
         {
-            if (buff.BuffEnum == listedBuff.BuffEnum)
+            if (buff.BuffEnum == listedBuff.BuffEnum && buff.BuffEnum != BuffEnum.Despair)
             {
                 listedBuff.Stack();
 
@@ -104,8 +103,7 @@ public class UnitBuff : MonoBehaviour
     {
         for (int i = 0; i < _buffList.Count; i++)
         {
-            Debug.Log(_buffList[i].Name + " / " + _buffList[i].Dispellable);
-            if (_buffList[i].Dispellable)
+            if (_buffList[i].Dispellable && !_buffList[i].IsDebuff)
             {
                 _buffList[i].Owner.DeleteBuff(_buffList[i].BuffEnum);
             }
@@ -118,13 +116,25 @@ public class UnitBuff : MonoBehaviour
 
         for (int i = 0; i < _buffList.Count; i++)
         {
-            if (!_buffList[i].StigmaBuff)
+            if (!_buffList[i].StigmataBuff)
             {
                 buffNum++;
             }
         }
 
         return buffNum;
+    }
+
+    public Buff GetBuff(BuffEnum buffEnum)
+    {
+        foreach (Buff buff in _buffList)
+        {
+            if (buff.BuffEnum == buffEnum)
+            {
+                return buff;
+            }
+        }
+        return null;
     }
 
     public int GetBuffStack(BuffEnum buffEnum)
@@ -137,5 +147,23 @@ public class UnitBuff : MonoBehaviour
             }
         }
         return 0;
+    }
+
+    public void ClearBuffByCorruption()
+    {
+        while (_buffList.Count > 0)
+        {
+            Buff buff = _buffList.Find(x => !x.StigmataBuff && !x.IsSystemBuff);
+
+            if (buff is null)
+                break;
+
+            buff.Owner.DeleteBuff(buff.BuffEnum);
+        }
+
+        foreach (Buff buff in _buffList)
+        {
+            buff.IsActive = false;
+        }
     }
 }

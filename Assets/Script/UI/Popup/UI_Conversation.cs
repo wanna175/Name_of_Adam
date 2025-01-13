@@ -7,7 +7,7 @@ using TMPro;
 
 public class UI_Conversation : UI_Popup
 {
-    private float _typingSpeed = 0.05f;
+    private float _typingSpeed = 0.04f;
     private Coroutine co_typing = null;
     private List<Script> scripts = new();
     private bool _battleConversation;
@@ -53,7 +53,7 @@ public class UI_Conversation : UI_Popup
             co_typing = StartCoroutine(TypingEffect(dialog));
             if (_battleConversation)
             {
-                _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + name);
+                _unitImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/Conversation/" + script.name);
             }
 
             _nameText.text = name;
@@ -69,7 +69,7 @@ public class UI_Conversation : UI_Popup
 
             yield return new WaitUntil(() => GameManager.InputManager.Click);
 
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIUnimportantButtonSFX");
         }
 
         if (_battleConversation)

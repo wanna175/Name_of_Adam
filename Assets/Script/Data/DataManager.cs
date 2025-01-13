@@ -37,7 +37,6 @@ public class DataManager : MonoBehaviour
     public StigmaController StigmaController;
     public UpgradeController UpgradeController;
 
-
     public void Init()  
     {
         // StatDict = LoadJson<StatData, int, Stat>("StatData").MakeDict();
@@ -46,12 +45,11 @@ public class DataManager : MonoBehaviour
 
         StigmaController = new StigmaController();
         UpgradeController = new UpgradeController();
-        Map = new MapData();
+        Map = new MapData();    
+        StageAct = 0;
 
         if (GameManager.SaveManager.SaveFileCheck())
             GameManager.SaveManager.LoadGame();
-
-        _darkEssense = GameData.DarkEssence;
     }
 
     public void MainDeckSet()
@@ -61,12 +59,7 @@ public class DataManager : MonoBehaviour
         GameData.PlayerHP = GameDataMain.PlayerHP;
         GameData.DeckUnits = GameDataMain.DeckUnits;
         GameData.FallenUnits = GameDataMain.FallenUnits;
-        GameData.IsVisitUpgrade = GameDataMain.IsVisitUpgrade;
-        GameData.IsVisitStigma = GameDataMain.IsVisitStigma;
-        GameData.IsVisitDarkShop = GameDataMain.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
-        NPCQuestSet();
-        _darkEssense = GameData.DarkEssence;
     }
 
     public void DeckClear()
@@ -76,13 +69,11 @@ public class DataManager : MonoBehaviour
         GameData.PlayerHP = GameDataTutorial.PlayerHP;
         GameData.DeckUnits = GameDataTutorial.DeckUnits;
         GameData.FallenUnits.Clear();
-        GameData.IsVisitUpgrade = GameDataTutorial.IsVisitUpgrade;
-        GameData.IsVisitStigma = GameDataTutorial.IsVisitStigma;
-        GameData.IsVisitDarkShop = GameDataTutorial.IsVisitDarkShop;
         GameData.Progress.ClearProgress();
-        GameData.StageBenediction = new();
+        GameData.StageDivine = new();
 
         //GameData.npcQuest.ClearQuest();
+        GameData.CurrentAct = 1;
 
         foreach (DeckUnit unit in GameData.DeckUnits)
         {
@@ -100,9 +91,6 @@ public class DataManager : MonoBehaviour
         GameDataMain.PlayerHP = GameDataMainLayout.PlayerHP;
         GameDataMain.DeckUnits = GameDataMainLayout.DeckUnits;
         GameDataMain.FallenUnits = GameDataMainLayout.FallenUnits;
-        GameDataMain.IsVisitUpgrade = GameDataMainLayout.IsVisitUpgrade;
-        GameDataMain.IsVisitStigma = GameDataMainLayout.IsVisitStigma;
-        GameDataMain.IsVisitDarkShop = GameDataMainLayout.IsVisitDarkShop;
         GameDataMain.Progress.ClearProgress();
 
         foreach (DeckUnit unit in GameDataMain.DeckUnits)
@@ -113,42 +101,34 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void HallSelectedDeckSet()
+    public int GetHallUnitID()
     {
-        List<DeckUnit> EliteHallHandDeck = new();
-        List<DeckUnit> NormalHallHandDeck = new();
+        int hallUnitID = -1;
+        List<HallUnit> hallUnits = GameManager.OutGameData.FindHallUnitList();
 
-        foreach (DeckUnit unit in GameData.DeckUnits)
+        for (int i = 4; i < Mathf.Infinity; i++)
         {
-            if (unit.IsMainDeck)
+            if (hallUnits.Find(x => x.ID == i) == null)
             {
-                if(unit.Data.Rarity != Rarity.Normal)
-                {
-                    EliteHallHandDeck.Add(unit);
-                }
-                else
-                {
-                    NormalHallHandDeck.Add(unit);
-                }
+                hallUnitID = i;
+                break;
             }
         }
 
-        EliteHallHandDeck.AddRange(NormalHallHandDeck);
-
-        GameDataMain.DeckUnits = EliteHallHandDeck;
+        return hallUnitID;
     }
 
     public void HallDeckSet()
     {
-        GameData.DeckUnits = GameManager.OutGameData.SetHallDeck();
-    }
-
-    public void NPCQuestSet()
-    {
-        GameData.IsVisitUpgrade = GameManager.OutGameData.GetVisitUpgrade();
-        GameData.IsVisitStigma = GameManager.OutGameData.GetVisitStigma();
-        GameData.IsVisitDarkShop = GameManager.OutGameData.GetVisitDarkshop();
-        GameData.NpcQuest = GameManager.OutGameData.GetNPCQuest();
+        GameDataMain.DeckUnits.Clear();
+        GameManager.OutGameData.DataIntegrityCheck();
+        foreach (var hallUnit in GameManager.OutGameData.FindHallUnitList())
+        {
+            if (hallUnit.IsMainDeck)
+            {
+                GameDataMain.DeckUnits.Add(hallUnit.ConvertToDeckUnit());
+            }
+        }
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
@@ -182,30 +162,101 @@ public class DataManager : MonoBehaviour
         return GameData.DeckUnits;
     }
 
+    public List<DeckUnit> GetSortedDeck(SortMode sortMode)
+    {
+        List<DeckUnit> returnUnits = new List<DeckUnit>();
+
+        // 정렬 방식은 SortMode Enum 참고
+
+        switch (sortMode)
+        {
+            case SortMode.Hall:
+                List<DeckUnit> mainDecks = GameData.DeckUnits.FindAll(x => x.IsMainDeck);
+                List<DeckUnit> notMainDecks = GameData.DeckUnits.FindAll(x => !x.IsMainDeck);
+
+                mainDecks.Sort((a, b) => a.HallUnitID.CompareTo(b.HallUnitID));
+                notMainDecks.Sort((a, b) => b.GetStigmaCount().CompareTo(a.GetStigmaCount()));
+
+                returnUnits.AddRange(mainDecks);
+                returnUnits.AddRange(notMainDecks);
+                break;
+
+            case SortMode.HP:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => b.DeckUnitTotalStat.MaxHP.CompareTo(a.DeckUnitTotalStat.MaxHP));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.MaxHP}");
+                }
+                break;
+
+            case SortMode.Attack:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => b.DeckUnitTotalStat.ATK.CompareTo(a.DeckUnitTotalStat.ATK));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.ATK}");
+                }
+                break;
+
+            case SortMode.Speed:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => b.DeckUnitTotalStat.SPD.CompareTo(a.DeckUnitTotalStat.SPD));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.SPD}");
+                }
+                break;
+
+            case SortMode.Cost:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) => a.DeckUnitTotalStat.ManaCost.CompareTo(b.DeckUnitTotalStat.ManaCost));
+
+                foreach (DeckUnit unit in returnUnits)
+                {
+                    Debug.Log($"{unit.Data.Name} : {unit.DeckUnitTotalStat.ManaCost}");
+                }
+                break;
+
+            default:
+                returnUnits = GameData.DeckUnits;
+                returnUnits.Sort((a, b) =>
+                {
+                    if (a.Data.Rarity == b.Data.Rarity)
+                        return b.GetStigmaCount().CompareTo(a.GetStigmaCount());
+                    else 
+                        return b.Data.Rarity.CompareTo(a.Data.Rarity);
+                });
+                break;
+        }
+
+        return returnUnits;
+    }
+
     public void SetDeck(List<DeckUnit> deck)
     {
         GameData.DeckUnits = deck;
     }
 
-    private int _darkEssense = 0;
-    public int DarkEssense => _darkEssense;
-
     public bool DarkEssenseChage(int cost)
     {
-        if (_darkEssense + cost < 0)
+        if (GameData.DarkEssence + cost < 0)
         {
             return false;
         }
         else
         {
-            _darkEssense += cost;
+            GameData.DarkEssence += cost;
             return true;
         }
     }
 
     public bool CanUseDarkEssense(int value)
     {
-        if (_darkEssense >= value)
+        if (GameData.DarkEssence >= value)
             return true;
 
         Debug.Log("not enough Dark Essense");
@@ -249,15 +300,6 @@ public class DataManager : MonoBehaviour
                 playerSkill.ChangeCost(playerSkill.GetOriginalManaCost(), playerSkill.GetOriginalDarkEssenceCost());
             }
         }
-    }
-
-    public List<int> GetProbability()
-    {
-        List<int> probability = new();
-        probability.Add(99);
-        probability.Add(89);
-
-        return probability;
     }
 
     public MapDataSaveData GetMapSaveData()

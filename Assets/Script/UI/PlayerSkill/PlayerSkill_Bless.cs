@@ -7,7 +7,7 @@ public class PlayerSkill_Bless : PlayerSkill
 {
     public override bool Use(Vector2 coord)
     {
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Bless");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Prayer");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Prayer", BattleManager.Field.GetTilePosition(coord));
 
         BattleUnit unit = BattleManager.Field.GetUnit(coord);
@@ -15,9 +15,9 @@ public class PlayerSkill_Bless : PlayerSkill
 
         if (!GameManager.OutGameData.IsUnlockedItem(64))
         {
-            unit.SetBuff(new Buff_Raise());
-            unit.SetBuff(new Buff_Raise());
-            unit.SetBuff(new Buff_Raise());
+            unit.SetBuff(new Buff_AttackBoost());
+            unit.SetBuff(new Buff_AttackBoost());
+            unit.SetBuff(new Buff_AttackBoost());
         }
 
         return false;

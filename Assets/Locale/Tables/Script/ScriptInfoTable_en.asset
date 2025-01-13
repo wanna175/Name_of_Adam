@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 3794595840
-    m_Localized: You do not belong within this paradise.
+    m_Localized: You do not belong in this paradise.
     m_Metadata:
       m_Items: []
   - m_Id: 256878899200
@@ -28,21 +28,22 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 326152024064
-    m_Localized: In the name of the divine.
+    m_Localized: In the name of the Divine.
     m_Metadata:
       m_Items: []
   - m_Id: 497464176640
-    m_Localized: This is it. This is the true beauty I sought!
+    m_Localized: Beauty is just a midsummer night's dream, and in the end only shame
+      remains. I shall embrace even your darkest shame as well. Come, my dear.
     m_Metadata:
       m_Items: []
   - m_Id: 457081417728
-    m_Localized: A true knight does not yield to fear. En garde! Shall you be vanquished
-      in no time.
+    m_Localized: A true knight does not yield to fear. En garde! You shall be vanquished
+      in the blink of an eye.
     m_Metadata:
       m_Items: []
   - m_Id: 557933457408
     m_Localized: Wisdom, power, and might. The power of the trinity can subjugate
-      all
+      all.
     m_Metadata:
       m_Items: []
   - m_Id: 3107023696859136
@@ -63,13 +64,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5998479260422144
-    m_Localized: Even if your hands were stained with the blood of 200 people, I
-      shall still believe in you.
+    m_Localized: Even if your hands were stained with the blood of numerous people,
+      I shall still believe in you.
     m_Metadata:
       m_Items: []
   - m_Id: 5998562815152128
     m_Localized: With strong faith, one can overcome any difficulty. May the sacred
-      faith also dwell within your eyes.
+      faith dwell in your eyes.
     m_Metadata:
       m_Items: []
   - m_Id: 5998599762776064
@@ -94,8 +95,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5998728813121536
-    m_Localized: The divine instructed to love your neighbors. With love for mankind
-      and hatred of sins, I shall not reproach you as well.
+    m_Localized: The Divine instructed to love your neighbors. Despite your sins,
+      I shall hate the sins, not the sinner.
     m_Metadata:
       m_Items: []
   - m_Id: 5998823914770432
@@ -126,9 +127,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5999112872955904
-    m_Localized: Although I have never reproached you, you have committed sins so
-      immense that are hard for me to even imagine. No. It was I who didn't realize
-      that I was never redeemed in the first place.
+    m_Localized: No. It was I who didn't realize that I was never redeemed in the
+      first place.
     m_Metadata:
       m_Items: []
   - m_Id: 5999161807900672
@@ -142,8 +142,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5999485109047296
-    m_Localized: I believe in the love that the divine has taught us. May you also
-      receive grace within the belief.
+    m_Localized: I believe in the love that the Divine has taught us. May you also
+      receive the holy grace.
     m_Metadata:
       m_Items: []
   - m_Id: 5999533851054080
@@ -165,21 +165,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6001818073206784
-    m_Localized: The divine has bestowed upon me the ability to respond to your earnest
+    m_Localized: The Divine has bestowed upon me the ability to respond to your earnest
       prayers in the form of the stigmata. O wanderer, may I be able to pray for
-      the grace I can bestow.
+      all the grace I can bestow.
     m_Metadata:
       m_Items: []
   - m_Id: 6002220726390784
     m_Localized: People offer prayers for various reasons, each important in its
-      own way. When praying to the divine, people believe that countless wrongdoings
-      in this world will be forgiven. Do you, I, or anyone else belong within that
-      world?
+      own way. When praying to the Divine, people believe that countless wrongdoings
+      in this world will be forgiven.Could you, I or anyone else be forgiven?
     m_Metadata:
       m_Items: []
   - m_Id: 6002222970343424
-    m_Localized: I have a wish. The thing people call 'hope.' However, true hope
-      is something I couldn't pray for. It's as confusing as facing oneself directly
+    m_Localized: I have a wish. The thing people call 'Hope.' However, true hope
+      is something I couldn't pray for. It's as confusing as facing yourself directly
       in the eye.
     m_Metadata:
       m_Items: []
@@ -207,8 +206,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6003273026932736
-    m_Localized: I have witnessed something. It has all begun after I met you. You
-      must be the savior who has come to rescue us.
+    m_Localized: I have witnessed something. It all began after I met you. You must
+      be the savior who has come to rescue us.
     m_Metadata:
       m_Items: []
   - m_Id: 6003931603963904
@@ -216,8 +215,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6003966269886464
-    m_Localized: The aspirations of others now seem foolish. Their prayers all appear
-      meaningless.
+    m_Localized: I feel tired... I just want to rest.
     m_Metadata:
       m_Items: []
   - m_Id: 6003968379621376
@@ -227,12 +225,12 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6004312241246208
     m_Localized: My wish has finally been answered. I have finally put my true wish
-      into my prayer.
+      into my prayers.
     m_Metadata:
       m_Items: []
   - m_Id: 6004314275483648
     m_Localized: I have seen something again. This time, the form was not vague but
-      clear. It's all thanks to you.
+      clear. It was all thanks to your blessing.
     m_Metadata:
       m_Items: []
   - m_Id: 6004316834009088
@@ -240,7 +238,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6004786990321664
-    m_Localized: May the prayers of the divine always accompany you on your journey.
+    m_Localized: May the prayers of the Divine always accompany you on your journey.
     m_Metadata:
       m_Items: []
   - m_Id: 6005074073653248
@@ -259,14 +257,10 @@ MonoBehaviour:
     m_Localized: I pray for peace and tranquility on your journey.
     m_Metadata:
       m_Items: []
-  - m_Id: 6008600271163392
-    m_Localized: In His grace, I shall be eternally beautiful. Step aside, you mortal.
-    m_Metadata:
-      m_Items: []
   - m_Id: 6017586315825152
     m_Localized: Sometimes it feels like they're hiding grotesque and vicious monsters
       within them. I can sense it with my instinct. But at the same time, I hope
-      I'm wrong. I want to believe and love them for who they show me they are.
+      I'm wrong. I want to believe in them and love them for what they are.
     m_Metadata:
       m_Items: []
   - m_Id: 6017796731473920
@@ -281,7 +275,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6017794885980160
     m_Localized: I don't want to die. Death is sad. I also hate pain. I wish others
-      don't have to suffer either.
+      don't have to suffer.
     m_Metadata:
       m_Items: []
   - m_Id: 6018304066097152
@@ -304,7 +298,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6019330760413184
-    m_Localized: Please don't prove it to me. No, please prove it.
+    m_Localized: Please don't prove it to me. No... please prove it.
     m_Metadata:
       m_Items: []
   - m_Id: 6019332433940480
@@ -319,12 +313,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6019585551798272
-    m_Localized: I want to rest.
+    m_Localized: I feel tired... I just want to rest.
     m_Metadata:
       m_Items: []
   - m_Id: 6019587254685696
     m_Localized: Perhaps I no longer want to know the truth. Was there even a truth?
-      What's true and what's false? What's good and what's evil?
+      What's true and what's false? What is good and what is evil?
     m_Metadata:
       m_Items: []
   - m_Id: 6019787771777024
@@ -357,21 +351,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6020264043384832
-    m_Localized: May more people awaken to your love.
+    m_Localized: May more people realize your love.
     m_Metadata:
       m_Items: []
   - m_Id: 6030584996597760
-    m_Localized: The divine spoke, "Rise and go, as your faith has saved you." As
-      such, I believe salvation lies within faith.
+    m_Localized: The Divine spoke, Rise and go, as your faith has saved you. As such,
+      I believe salvation lies within faith.
     m_Metadata:
       m_Items: []
   - m_Id: 6030698637070336
-    m_Localized: There is not a single falsehood in the teachings of the divine.
-      I hope more people will awaken to this truth.
+    m_Localized: There is not a single falsehood in the teachings of the Divine.
+      I hope more people will realize this truth.
     m_Metadata:
       m_Items: []
   - m_Id: 6030810947948544
-    m_Localized: I dared to doubt the teachings of the divine. As a believer, I am
+    m_Localized: I dared to doubt the teachings of the Divine. As a believer, I am
       deeply ashamed.
     m_Metadata:
       m_Items: []
@@ -385,8 +379,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6036756487114752
-    m_Localized: Although the divine has granted me the mercy to bestow stigmata,
-      I am just a mere sinner. If I could do something with the grace I've received...
+    m_Localized: Although the Divine has granted me the mercy to bestow stigmata,
+      I am just a mere sinner. If I could only do something with the grace I have
+      received...
     m_Metadata:
       m_Items: []
   - m_Id: 6037087182819328
@@ -420,23 +415,38 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6041822803693568
-    m_Localized: My heart feels stuffy. If it were you, could you alleviate this
-      feeling?
+    m_Localized: My heart feels stuffy. Can you alleviate this feeling?
     m_Metadata:
       m_Items: []
   - m_Id: 6041927627739136
     m_Localized: I will continue to love this world in my own way. The power you've
-      given me is my true way. Yes, even if it's like this, if I can help the world...
+      given me is my true way. Yes, even if it's like this, if I can help this world...
     m_Metadata:
       m_Items: []
   - m_Id: 6135992028033024
-    m_Localized: You intruder! How dare you bring the vile shadow of evil to the
-      kingdom! Face the might of the royal, and vanish into the darkness.
+    m_Localized: I sense an vile intruder who dares to challenge my throne... Nonetheless,
+      the might of my power transcending mortality will render you powerless. You
+      shall soon vanish into the darkness.
     m_Metadata:
       m_Items: []
   - m_Id: 6136047711612928
     m_Localized: A being that should never have been born has come into existence.
       Now, it is time to set things right.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641770771992576
+    m_Localized: ... ... ... ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641769324957696
+    m_Localized: O wretched soul, let your scarred memories slumber amongst the roses.
+      I shall guide you to the solace of oblivion,...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76641766804180992
+    m_Localized: I am the executor of divine judgment, the herald of celestial light.
+      You who tread upon this sinful ground. Will you repent and kneel upon the divine,
+      or walk into the path of eternal suffering?
     m_Metadata:
       m_Items: []
   references:

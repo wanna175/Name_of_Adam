@@ -47,6 +47,74 @@ MonoBehaviour:
     m_Key: Start
     m_Metadata:
       m_Items: []
+  - m_Id: 35828918950989824
+    m_Key: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39057564390035456
+    m_Key: Exile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86240723997089792
+    m_Key: HPHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86240880478183424
+    m_Key: AttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241063295311872
+    m_Key: SpeedHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241341595770880
+    m_Key: CostHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241460206493696
+    m_Key: DarkEssenceHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86304739613102080
+    m_Key: FaithGemHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310734917685248
+    m_Key: SingleAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310737144860672
+    m_Key: AreaAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310738684170240
+    m_Key: FrontalAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310740051513344
+    m_Key: SpecialAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310783034740736
+    m_Key: NoAttackHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312205277089792
+    m_Key: Apostle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312206401163264
+    m_Key: Elite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312248780410880
+    m_Key: Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312249229201408
+    m_Key: Normal
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

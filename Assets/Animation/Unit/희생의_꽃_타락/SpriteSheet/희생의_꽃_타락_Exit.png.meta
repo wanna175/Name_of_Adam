@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,12 +117,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_0"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -138,12 +138,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_1"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_1"
       rect:
         serializedVersion: 2
-        x: 246
+        x: 256
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -159,12 +159,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_2"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_2"
       rect:
         serializedVersion: 2
-        x: 492
+        x: 512
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -180,12 +180,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_3"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_3"
       rect:
         serializedVersion: 2
-        x: 738
+        x: 768
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -201,12 +201,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_4"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_4"
       rect:
         serializedVersion: 2
-        x: 984
+        x: 1024
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -222,12 +222,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_5"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_5"
       rect:
         serializedVersion: 2
-        x: 1230
+        x: 1280
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -243,12 +243,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_6"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_6"
       rect:
         serializedVersion: 2
-        x: 1476
+        x: 1536
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -264,12 +264,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_7"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_xit_7"
       rect:
         serializedVersion: 2
-        x: 1722
+        x: 1792
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -285,12 +285,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_8"
+      name: "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_8"
       rect:
         serializedVersion: 2
-        x: 1968
+        x: 2048
         y: 0
-        width: 246
+        width: 256
         height: 256
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -316,15 +316,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_0": 1301438090
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_7": -230934891
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_1": -1793336685
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_3": -1621779589
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_5": -1217406050
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_6": 643232131
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_8": 1755379359
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_2": 2130732443
-      "\uD638\uB8E8\uC2A4_\uC5F0\uAF43_Exit_4": 400382780
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_4": 400382780
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_8": 1755379359
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_1": -1793336685
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_3": -1621779589
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_xit_7": -230934891
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_6": 643232131
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_5": -1217406050
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_2": 2130732443
+      "\uD76C\uC0DD\uC758_\uAF43_\uD0C0\uB77D_Exit_0": 1301438090
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

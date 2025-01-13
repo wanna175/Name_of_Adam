@@ -39,7 +39,7 @@ public class UI_RewardUnit : MonoBehaviour
 
             faithObject.InitFall(Team.Player, 0);
             if (i >= maxFaith - curFaith)
-                faithObject.DecreaseGauge();
+                faithObject.DecreaseGauge(0.0f);
         }
     }
 

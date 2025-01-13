@@ -15,7 +15,6 @@ public static class SceneChanger
 
         SceneManager.LoadScene(scenename);
         GameManager.Sound.SceneBGMPlay(scenename);
-        
     }
 
     public static string GetSceneName()
@@ -27,7 +26,6 @@ public static class SceneChanger
     {
         Time.timeScale = 1.0f;
         GameManager.Data.CutSceneToDisplay = cutSceneType;
-        GameManager.OutGameData.SetCutSceneData(cutSceneType, true);
         GameManager.OutGameData.SaveData();
 
         SceneChange("CutScene");

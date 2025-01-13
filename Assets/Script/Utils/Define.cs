@@ -42,6 +42,25 @@ public struct Stat
         return result;
     }
 
+    public bool Compare(Stat other)
+    {
+        if (MaxHP != other.MaxHP)
+            return false;
+        if (CurrentHP != other.CurrentHP)
+            return false;
+        if (ATK != other.ATK)
+            return false;
+        if (SPD != other.SPD)
+            return false;
+        if (FallCurrentCount != other.FallCurrentCount)
+            return false;
+        if (FallMaxCount != other.FallMaxCount)
+            return false;
+        if (ManaCost != other.ManaCost)
+            return false;
+        return true;
+    }
+
     public void ClearStat()
     {
         MaxHP = 0;
@@ -56,12 +75,14 @@ public struct Stat
 
 public struct RewardUnit
 {
+    public string PrivateKey;
     public string Name;
     public int PreFall;
     public Sprite Image;
 
-    public RewardUnit(string name, int preFall, Sprite image)
+    public RewardUnit(string privateKey, string name, int preFall, Sprite image)
     {
+        PrivateKey = privateKey;
         Name = name;
         PreFall = preFall;
         Image = image;
@@ -126,10 +147,10 @@ public enum StageName
 {
     none,
 
-    StigmaStore = 1,
-    UpgradeStore = 2,
+    Stigmata = 1,
+    Baptism = 2,
     MoneyStore,
-    Harlot,
+    Sacrifice,
     RandomEvent,
     CommonBattle,
     EliteBattle,
@@ -146,6 +167,13 @@ public enum Rarity
     Elite,
     Original,
     Boss
+}
+
+public enum SlotRank
+{
+    Normal,
+    Advanced,
+    Divine
 }
 
 [SerializeField]
@@ -166,7 +194,7 @@ public enum Sounds
 [Flags]
 public enum ActiveTiming
 {
-    STIGMA = 1 << 1, //낙인 발동(소환 시, 낙인 부여 시)
+    STIGMA = 1 << 1, //성흔 발동(소환 시, 성흔 부여 시)
 
     FIELD_UNIT_SUMMON = 1 << 2,//필드에 유닛이 소환 시
     SUMMON = 1 << 3, //소환 후
@@ -174,7 +202,7 @@ public enum ActiveTiming
     TURN_START = 1 << 4, //턴 시작 시
     TURN_END = 1 << 5, //턴 종료 시
 
-    ACTION_TURN_START = 1 << 6, //이동턴 전, 공격턴 전 통합
+    UNIT_TURN_START = 1 << 6, //유닛턴 전
 
     MOVE_TURN_START = 1 << 7, //이동턴 전
 
@@ -195,20 +223,23 @@ public enum ActiveTiming
     ATTACK_TURN_END = 1 << 16, //공격턴 후
     FIELD_ATTACK_TURN_END = 1 << 17, //필드 유닛의 공격턴 후
 
-    FALL = 1 << 18, //타락시켰을 때, 그 후
-    FALLED = 1 << 19, //타락되었을 때 그 전
-    FIELD_UNIT_FALLED = 1 << 20, //필드 유닛이 타락 시
+    BEFORE_CHANGE_FALL = 1 << 18, //타락시켰을 때, 그 후
 
-    BEFORE_UNIT_DEAD = 1 << 21, //자신이 사망 전
-    AFTER_UNIT_DEAD = 1 << 22, //자신이 사망 후
-    FIELD_UNIT_DEAD = 1 << 23, //필드 유닛이 사망 시
+    FALL = 1 << 19, //타락시켰을 때, 그 후
+    FALLED = 1 << 20, //타락되었을 때 그 전
+    FIELD_UNIT_FALLED = 1 << 21, //필드 유닛이 타락 시
 
-    UNIT_KILL = 1 << 24, //다른 유닛을 죽일 시
-    UNIT_TERMINATE = 1 << 25, //다른 유닛을 제거 시(타락시켰을 때, 죽였을 때)
+    BEFORE_UNIT_DEAD = 1 << 22, //자신이 사망 전
+    AFTER_UNIT_DEAD = 1 << 23, //자신이 사망 후
+    FIELD_UNIT_DEAD = 1 << 24, //필드 유닛이 사망 시
+
+    UNIT_KILL = 1 << 25, //다른 유닛을 죽일 시
 
     ATTACK_MOTION_END = 1 << 26, //공격 모션이 끝난 뒤
+    AFTER_SWITCH = 1 << 27, //유닛 간 스위치 후
+    BEFORE_BUFFED = 1 << 28, //버프를 얻기 전
 
-    NONE = 1 << 27 //없음
+    NONE = 1 << 29 //없음
 };
 
 public enum StigmaTier
@@ -242,38 +273,55 @@ public enum PlayerSkillTargetType
     NotBattleOnly
 }
 
+//세이브가 순서에 영향 받음, 순서 바꾸지 말기
 public enum StigmaEnum
 {
     //normal stigmata
     Absorption,
-    Additional_Punishment,
+    DamnationsWeight,
     Assasination,
     Benevolence,
-    Berserker,
-    Bishops_Praise,
+    Berserk,
+    BishopsPraise,
     Blessing,
-    Blood_Blessing,
-    Cleanse,
-    Death_Strike,
+    CrimsonBlessing,
+    Purification,
+    DeathStrike,
     Destiny,
     Dispel,
-    Expand,
-    Forbidden_Pact,
+    Expansion,
+    ForbiddenPact,
     Hook,
-    Immortal,
-    Invincible,
-    Killing_Spree,
+    Immortality,
+    Invincibility,
+    KillingSpree,
     Martyrdom,
     Mercy,
-    Pray_In_Aid,
-    Raise,
+    Intercession,
+    Exaltation,
     Regeneration,
     Repetance,
     Sadism,
-    Shadow_Step,
-    Sin,
-    Tail_Wind,
-    Teleport,
+    StepsOfShadow,
+    DeadlySin,
+    Tailwind,
+    PassageOfShadows,
+    ShadowCloak,
+    Rearmament,
+    Solitude,
+    Grudge,
+    HandOfGrace,
+    VeiledSupport,
+    DeathsThreshold,
+    Fortification,
+    ArmorOfAeons,
+    BrokenSword,
+    BloodOath,
+    Cleanse,
+    BlindFaith,
+    Repulsion,
+    ChainOfFate,
+    HeavyArmor,
 
     //Unique stigmata 
     Birth = 100,
@@ -281,10 +329,10 @@ public enum StigmaEnum
     Charge = 102,
     Collapse = 103,
     Dusk = 104,
-    Funeral = 105,
+    Requiem = 105,
     Karma = 106,
-    Legacy_Of_Babel = 107,
-    Lucifer = 108,
+    LegacyOfBabel = 107,
+    Advent = 108,
     Misdeed = 109,
     PermanenceOfBabel = 110,
     Rebirth = 111,
@@ -292,81 +340,132 @@ public enum StigmaEnum
     Symbiosis = 113,
     Trinity = 114,
     WrathOfBabel = 115,
+    Glory = 116,
+    ThornsOfOblivion = 117,
+    GardenOfOblivion = 118,
+    AbyssalSteps = 119,
+    RepeatingSurge = 120,
+    FragmentsOfBirth = 121,
+    Soulbound = 122,
+    Distrust = 123,
+    Despair = 124,
+    Hatred = 125,
+    Atonement = 126,
 }
 
 public enum BuffEnum
 {
     //normal buff (image)
+    None,
+
     Appaim,
-    Benediction,
-    Berserker,
+    Divine,
+    Berserk,
     Curse,
     DeathStrike,
     Edified,
-    Immortal,
-    Invincible,
+    Immortality,
+    Invincibility,
     Karma,
-    Leah,
+    Lea,
     MarkOfBeast,
-    Raise,
-    Raquel,
-    Sin,
+    Rahel,
+    Sin,// 안 쓰는 듯?
     Stun,
-    Tailwind,
-    Teleport,
-    TraceOfDust,
-    Vice,
+    SpeedIncrease,
+    Dusk,
+    Malevolence,
+    Grudge,
+    SacredStep,
+    AttackDecrease,
+    AttackBoost,
+    KillingSpree,
+    Libiel,
+    Scale,
+    EliteStatBuff,
+    Bind,
+    Smite,
+    Distrust,
+    Despair,
+    Hatred,
 
     //systemic buff (no image)
     AfterAttackBounce,
     AfterAttackDead,
     AfterMotionTransparent,
+    StatBuff,
 
-    //stigma buff (no image)
-    Absorption,
-    Additional_Punishment,
-    Assasination,
-    BishopsPraise,
-    Blessing,
-    BloodBlessing,
-    Cleanse,
-    Destiny,
-    Dispel,
-    Expand,
-    ForbiddenPact,
-    Hook,
-    KillingSpree,
-    Martyrdom,
-    Mercy,
-    Misdeed,
-    PrayInAid,
-    Regeneration,
-    Repetance,
-    Sadism,
-    ShadowStep,
+    //stigmata buff (no image)
+    Stigmata_Absorption,
+    Stigmata_DamnationsWeight,
+    Stigmata_Assasination,
+    Stigmata_BishopsPraise,
+    Stigmata_Blessing,
+    Stigmata_CrimsonBlessing,
+    Stigmata_Purification,
+    Stigmata_Destiny,
+    Stigmata_Dispel,
+    Stigmata_Expansion,
+    Stigmata_ForbiddenPact,
+    Stigmata_Hook,
+    Stigmata_KillingSpree,
+    Stigmata_Martyrdom,
+    Stigmata_Mercy,
+    Stigmata_Misdeed,
+    Stigmata_Intercession,
+    Stigmata_Regeneration,
+    Stigmata_Repetance,
+    Stigmata_Sadism,
+    Stigmata_StepsOfShadow,
+    Stigmata_Rearmament,
+    Stigmata_Solitude,
+    Stigmata_Grudge,
+    Stigmata_VeiledSupport,
+    Stigmata_ShadowCloak,
+    Stigmata_HandOfGrace,
+    Stigmata_PassageOfShadows,
+    Stigmata_DeathsThreshold,
+    Stigmata_Fortification,
+    Stigmata_ArmorOfAeons,
+    Stigmata_BrokenSword,
+    Stigmata_BloodOath,
+    Stigmata_Cleanse,
+    Stigmata_BlindFaith,
+    Stigmata_Repulsion,
+    Stigmata_ChainOfFate,
+    Stigmata_HeavyArmor,
 
     //unique stigma buff (no image)
-    Birth,
-    Blooming,
-    Charge,
-    Collapse,
-    Dust,
-    LegacyOfBabel,
-    Lucifer,
-    PermanenceOfBabel,
-    Rebirth,
-    Sacrifice,
-    Symbiosis,
-    Trinity,
-    WrathOfBabel,
+    Stigmata_Birth,
+    Stigmata_Blooming,
+    Stigmata_Charge,
+    Stigmata_Collapse,
+    Stigmata_Dusk,
+    Stigmata_LegacyOfBabel,
+    Stigmata_Advent,
+    Stigmata_PermanenceOfBabel,
+    Stigmata_Rebirth,
+    Stigmata_Sacrifice,
+    Stigmata_Symbiosis,
+    Stigmata_Trinity,
+    Stigmata_WrathOfBabel,
+    Stigmata_Glory,
+    Stigmata_ThornsOfOblivion,
+    Stigmata_GardenOfOblivion,
+    Stigmata_AbyssalSteps,
+    Stigmata_RepeatingSurge,
+    Stigmata_FragmentsOfBirth,
+    Stigmata_Soulbound,
+    Stigmata_Atonement,
 
+    Stigmata_Distrust,
+    Stigmata_Despair,
+    Stigmata_Hatred,
 
-
-
-    BloodFest,
-    Thirst,
-    TraceOfSolar,
-    TraceOfLunar,
+    Stigmata_BloodFest,
+    Stigmata_Thirst,
+    Stigmata_TraceOfSolar,
+    Stigmata_TraceOfLunar,
 }
 
 public enum UnitActionType
@@ -378,17 +477,30 @@ public enum UnitActionType
     UnitAction_Phanuel,
     UnitAction_Appaim,
     UnitAction_Tubalcain,
-    UnitAction_Horus,
-    UnitAction_Horus_Egg,
+    UnitAction_Savior,
+    UnitAction_FlowerOfSacrifice,
     UnitAction_Laser,
-    UnitAction_RaquelLeah,
-    UnitAction_CenteredSplash
+    UnitAction_RahelLea,
+    UnitAction_CenteredSplash,
+    UnitAction_Libiel,
+    UnitAction_Arabella,
+    UnitAction_Yohrn,
+    UnitAction_Yohrn_Body,
 }
 
 public enum UnitMoveType
 {
     UnitMove,
     UnitMove_None
+}
+
+public enum UnitAttackType
+{
+    SingleAttack,
+    AreaAttack,
+    FrontalAttack,
+    SpecialAttack,
+    NoAttack
 }
 
 public enum EffectTileType
@@ -398,11 +510,21 @@ public enum EffectTileType
     Phanuel_Attack_Friendly
 }
 
+public enum TutorialType
+{
+    None,
+    Start,
+    Popup,
+    Tooltip,
+    End
+}
+
 public enum TutorialStep
 {
-    UI_PlayerTurn = TutorialManager.STEP_BOUNDARY,
-    UI_UnitTurn = UI_PlayerTurn + TutorialManager.STEP_BOUNDARY,
-
+    // 첫번째 스테이지 시작
+    Start_FirstStage,
+    Popup_PlayerTurn,
+    Popup_UnitTurn,
     Tooltip_PlayerTurn,
     Tooltip_ManaInfo,
     Tooltip_UnitInfo,
@@ -413,40 +535,42 @@ public enum TutorialStep
     Tooltip_SpeedTable,
     Tooltip_UnitMove,
     Tooltip_UnitAttack,
-    Tutorial_End_1,
+    End_FirstStage,
 
-    UI_FallSystem = UI_UnitTurn + TutorialManager.STEP_BOUNDARY,
-    UI_DarkEssenceInfo = UI_FallSystem + TutorialManager.STEP_BOUNDARY,
-    UI_Stigma_1 = UI_DarkEssenceInfo + TutorialManager.STEP_BOUNDARY,
-    UI_Stigma_2 = UI_Stigma_1 + TutorialManager.STEP_BOUNDARY,
-
-    Tooltip_DarkEssenceInfo = UI_Stigma_2 + Tutorial_End_1 % TutorialManager.STEP_BOUNDARY,
+    // 두번째 스테이지 시작
+    Start_SecondStage,
+    Popup_FallSystem,
+    Popup_DarkEssenceInfo,
+    Popup_Stigma1,
+    Popup_Stigma2,
+    Tooltip_DarkEssenceInfo,
     Tooltip_BlackKnightDeck,
     Tooltip_BlackKnightSpawn,
     Tooltip_BuffInfo,
-    Tooltip_TurnEnd_2,
-    Tooltip_TurnEnd_3,
-    Tooltip_UnitAttack_2,
+    Tooltip_TurnEnd2,
+    Tooltip_TurnEnd3,
+    Tooltip_UnitAttack2,
     Tooltip_PlayerSkillDeck,
     Tooltip_PlayerSkillUse,
     Tooltip_FallSelect,
-    Tooltip_TurnEnd_4,
+    Tooltip_TurnEnd4,
     Tooltip_UnitSwap,
-    Tooltip_UnitAttack_3,
-    Tooltip_UnitSwap_2,
-    Tooltip_UnitAttack_4,
-    Tutorial_End_2,
+    Tooltip_UnitAttack3,
+    Tooltip_UnitSwap2,
+    Tooltip_UnitAttack4,
+    End_SecondStage,
 
-    UI_Defeat = UI_Stigma_2 + TutorialManager.STEP_BOUNDARY,
-    UI_Devine = UI_Defeat + TutorialManager.STEP_BOUNDARY,
-    UI_Last = UI_Devine + TutorialManager.STEP_BOUNDARY,
-
-    Tutorial_End_3 = UI_Last + Tutorial_End_2 % TutorialManager.STEP_BOUNDARY,
+    Start_ThirdStage,
+    Popup_Divine,
+    Popup_Defeat,
+    Popup_Last,
+    End_ThirdStage,
 }
 
 public struct TooltipData
 {
-    public TutorialStep Step;
+    public static TooltipData Empty = new TooltipData();
+
     public string Info;
     public int IndexToTooltip;
     public bool IsCtrl;
@@ -456,27 +580,182 @@ public struct TooltipData
 public enum CutSceneType
 {
     Main,
-    Tutorial,
 
     // 엘리트
+    Tubalcain_Enter,
     Elieus_Enter,
-    LahelRea_Enter,
+    Libiel_Enter,
+
+    RahelLea_Enter,
     Appaim_Enter,
+    Arabella_Enter,
 
     // 보스
     Phanuel_Enter,
     Phanuel_Dead,
     TheSavior_Enter,
     TheSavior_Dead,
+    Yohrn_Enter,
+    Yohrn_Dead,
 
     // NPC
-    NPC_Upgrade_Corrupt,
-    NPC_Stigma_Corrupt,
-    NPC_Harlot_Corrupt,
+    NPC_Baptism_Corrupt,
+    NPC_Stigmata_Corrupt,
+    NPC_Sacrifice_Corrupt,
 }
 
-public enum FallAnimType
+public enum FallAnimMode
 {
-    AnimOn,
-    AnimOff
+    On,
+    Off
+}
+
+public enum CurrentEvent
+{
+    None,
+    Upgrade_Select,
+    Upgrade_Full_Exception,
+    Heal_Faith_Select,
+    Stigmata_Select,
+    Stigmata_Give,
+    Stigmata_Receive,
+    Stigmata_Full_Exception,
+    Revert_Unit_Select,
+    Corrupt_Stigmata_Select,
+
+    Complete_Upgrade,
+    Complete_Heal_Faith,
+    Complate_Stigmata,
+    Complate_Apostle,
+
+    Hall_Delete,
+    Hall_Select,
+    Hall_Journey_Select
+};
+
+[Serializable]
+public class Script
+{
+    public string name;
+    public string script;
+}
+
+[Serializable]
+public class Content
+{
+    public string title;
+    public List<Script> contents = new List<Script>();
+}
+
+[Serializable]
+public class StageList
+{
+    public int Level;
+    public List<StageSpawnData> StageData;
+}
+
+[Serializable]
+public class StageSpawnData
+{
+    public int ID;
+    public List<StageUnitData> Units;
+}
+
+[Serializable]
+public class StageUnitData
+{
+    public string Name;
+    public Vector2 Location;
+}
+
+
+[Serializable]
+public class ScriptLoader : ILoader<string, List<Script>>
+{
+    public List<Content> scripts = new List<Content>();
+
+    public Dictionary<string, List<Script>> MakeDict()
+    {
+        Dictionary<string, List<Script>> dic = new Dictionary<string, List<Script>>();
+        foreach (Content content in scripts)
+        {
+            dic.Add(content.title, content.contents);
+        }
+        return dic;
+    }
+
+}
+[Serializable]
+public class StageLoader : ILoader<int, List<StageSpawnData>>
+{
+    public List<StageList> StageList = new List<StageList>();
+
+    public Dictionary<int, List<StageSpawnData>> MakeDict()
+    {
+        Dictionary<int, List<StageSpawnData>> dic = new Dictionary<int, List<StageSpawnData>>();
+        foreach (StageList stage in StageList)
+        {
+            dic.Add(stage.Level, stage.StageData);
+        }
+        return dic;
+    }
+}
+
+public class ProgressLoader : ILoader<int, ProgressItem>
+{
+    public List<ProgressItem> ProgressItems = new List<ProgressItem>();
+
+    public Dictionary<int, ProgressItem> MakeDict()
+    {
+        Dictionary<int, ProgressItem> dic = new Dictionary<int, ProgressItem>();
+        foreach (ProgressItem progressItem in ProgressItems)
+        {
+            dic.Add(progressItem.ID, progressItem);
+        }
+        return dic;
+    }
+}
+
+public enum SortMode
+{
+    Default,    // 계급 (성흔 보유 수에 따라 내부 정렬)
+    Attack,
+    HP,
+    Speed,
+    Cost,
+    Hall,       // 전당 유닛 + 나머지 유닛 (성흔 보유 수에 따라 정렬)
+}
+
+public enum SanctumUnlock
+{
+    Destiny = 1,
+    FaithRecovery = 2,
+    StartingDarkEssence1 = 3,
+    ApostleCreation = 5,
+    StartingDarkEssence2 = 6,
+    KillingSpree = 7,
+    EliteClearReward = 8,
+    MaximumUpgrade = 12,
+    StigmataTransfer = 11,
+    StartingMana1 = 15,
+    PassageOfShadows = 13,
+    UnlockingTheDivineHall1 = 14,
+    StartingMana2 = 18,
+    ForbiddenPact = 16,
+    UnlockingTheDivineHall2 = 17,
+    Sin = 20,
+    UnlockReselection1 = 21,
+    UnlockReselection2 = 22,
+    UnlockTheDarkProphet1 = 51,
+    UnlockTheDarkProphet2 = 52,
+    UnlockTheDarkProphet3 = 53,
+    UnlockTheDarkProphet4 = 54,
+    UnlockTheSaintessOfSins1 = 61,
+    UnlockTheSaintessOfSins2 = 62,
+    UnlockTheSaintessOfSins3 = 63,
+    UnlockTheSaintessOfSins4 = 64,
+    UnlockTheHeirOfVice = 71,
+    UnlockTheHeirOfVice2 = 72,
+    UnlockTheHeirOfVice3 = 73,
+    UnlockTheHeirOfVice4 = 74
 }

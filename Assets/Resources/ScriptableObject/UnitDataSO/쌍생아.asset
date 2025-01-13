@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: "\uC30D\uC0DD\uC544"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 70
-    CurrentHP: 70
+    MaxHP: 60
+    CurrentHP: 60
     ATK: 10
     SPD: 25
     FallCurrentCount: 0
     FallMaxCount: 4
-    ManaCost: 70
+    ManaCost: 50
   _uniqueStigma:
   - {fileID: -8096215998959275874, guid: 779a956cb397b6646955c2d17cb88908, type: 3}
   _id: "\uC30D\uC0DD\uC544"
-  _name: The conjoined twins
+  _name: The Conjoined Twins
   _description: 
   _rarity: 2
   _image: {fileID: 21300000, guid: 259003894ea8a8746894db0a3e317d84, type: 3}

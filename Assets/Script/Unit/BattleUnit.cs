@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
@@ -24,8 +23,9 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] public UnitFall Fall;
     [SerializeField] public UnitBuff Buff;
     [SerializeField] public UnitAction Action;
-    [SerializeField] private UI_HPBar _hpBar;
-    [SerializeField] private UI_FloatingDamage _floatingDamage;
+    [SerializeField] public UI_HPBar _hpBar;
+    
+    [SerializeField] private GameObject _floatingDamagePrefab;
 
     [SerializeField] public List<Stigma> StigmaList => DeckUnit.GetStigma();
 
@@ -38,15 +38,17 @@ public class BattleUnit : MonoBehaviour
 
     private bool[] _moveRangeList;
     private bool[] _attackRangeList;
-    private bool _isTeleportOn => Buff.CheckBuff(BuffEnum.Teleport);
+    private bool _isTeleportOn => Buff.CheckBuff(BuffEnum.SacredStep);
 
-    private IEnumerator moveCoro;
+    private IEnumerator _moveCoro;
 
     public bool IsConnectedUnit;
     public List<ConnectedUnit> ConnectedUnits;
 
     public bool NextMoveSkip = false;
     public bool NextAttackSkip = false;
+    public bool IsDoneMove = false;     // (한턴 기준) 이동을 수행한 유닛인가?
+    public bool IsDoneAttack = false;   // (한턴 기준) 공격을 수행한 유닛인가?
     public int AttackUnitNum;
 
     public void Init(Team team)
@@ -60,14 +62,12 @@ public class BattleUnit : MonoBehaviour
         HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
 
-        ConnectedUnits = new();
-
         Action = BattleManager.Data.GetUnitAction(Data.UnitActionType);
         Action.Init();
 
         SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.Off);
 
         _scale = transform.localScale.x;
 
@@ -89,6 +89,7 @@ public class BattleUnit : MonoBehaviour
         SetLocation(coord);
 
         IsConnectedUnit = isConnectedUnit;
+        ConnectedUnits = new();
 
         if (!isConnectedUnit)
         {
@@ -122,11 +123,10 @@ public class BattleUnit : MonoBehaviour
     public void SetFlipX(bool flip)
     {
         //true -> look left, false -> look right
-        if (UnitRenderer.flipX == flip || Data.UnitMoveType == UnitMoveType.UnitMove_None)
+        if (UnitRenderer.flipX == flip || Data.IsFlipFixed)
             return;
 
         UnitRenderer.flipX = flip;
-        _floatingDamage.DirectionChange(flip);
 
         if (ConnectedUnits.Count > 0)
         {
@@ -143,12 +143,14 @@ public class BattleUnit : MonoBehaviour
 
             int size = maxX - minX + 1;
 
+            Dictionary<BattleUnit, Vector2> flipLocationDict = new();
+
             for (int i = 0; i < size; i++)
             {
                 if ((int)_location.x == minX + i)
                 {
                     BattleManager.Field.ExitTile(_location);
-                    SetLocation(new(maxX - i, _location.y));
+                    flipLocationDict.Add(this, new(maxX - i, _location.y));
                 }
 
                 foreach (ConnectedUnit unit in ConnectedUnits)
@@ -156,14 +158,19 @@ public class BattleUnit : MonoBehaviour
                     if ((int)unit.Location.x == minX + i)
                     {
                         BattleManager.Field.ExitTile(unit.Location);
-                        unit.SetLocation(new(maxX - i, unit.Location.y));
+                        flipLocationDict.Add(unit, new(maxX - i, unit.Location.y));
                     }
                 }
             }
 
             foreach (ConnectedUnit unit in ConnectedUnits)
-                BattleManager.Field.EnterTile(unit, unit.Location);
-            BattleManager.Field.EnterTile(this, this.Location);
+            {
+                unit.SetLocation(flipLocationDict[unit]);
+                BattleManager.Field.EnterTile(unit, flipLocationDict[unit]);
+            }
+
+            SetLocation(flipLocationDict[this]);
+            BattleManager.Field.EnterTile(this, flipLocationDict[this]);
         }
     }
 
@@ -179,7 +186,7 @@ public class BattleUnit : MonoBehaviour
     public void RefreshHPBar()
     {
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
         _hpBar.RefreshBuff();
     }
 
@@ -193,6 +200,9 @@ public class BattleUnit : MonoBehaviour
         _location = coord;
 
         float scale = GetModifiedScale();
+        
+        if (_moveCoro != null)
+            StopCoroutine(_moveCoro);
 
         transform.position = BattleManager.Field.GetTilePosition(coord);
         transform.localScale = new(scale, scale, 1);
@@ -207,33 +217,19 @@ public class BattleUnit : MonoBehaviour
                 return;
         }
 
-        // 컷씬 관련
-        if (DeckUnit.Data.Rarity == Rarity.Boss)
+        if (FallEvent)
         {
-             switch (DeckUnit.Data.ID)
-            {
-                case "바누엘": 
-                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Phanuel_Dead) == false)
-                    {
-                        GameManager.OutGameData.SetCutSceneData(CutSceneType.Phanuel_Dead, true);
-                        BattleCutSceneManager.Instance.StartCutScene(CutSceneType.Phanuel_Dead);
-                        GameManager.Sound.Play("CutScene/Phanuel_Dead", Sounds.BGM);
-                    }
-                    break;
-
-                case "호루스":
-                    if (GameManager.OutGameData.GetCutSceneData(CutSceneType.TheSavior_Dead) == false)
-                    {
-                        GameManager.OutGameData.SetCutSceneData(CutSceneType.TheSavior_Dead, true);
-                        BattleCutSceneManager.Instance.StartCutScene(CutSceneType.TheSavior_Dead);
-                    }
-                    break;
-
-                default: Debug.Log($"{DeckUnit.Data.ID} 보스 컷씬 출력 실패"); break;
-            }
+            return;
         }
 
         BattleManager.Instance.UnitDeadEvent(this);
+        if (IsConnectedUnit)
+        {
+            BattleUnit originalUnit = this.GetOriginalUnit();
+            if (originalUnit != null)
+                originalUnit.UnitDiedEvent(isDeathAvoidable);
+        }
+
         foreach (ConnectedUnit unit in ConnectedUnits)
         {
             BattleManager.Instance.UnitDeadEvent(unit);
@@ -273,9 +269,35 @@ public class BattleUnit : MonoBehaviour
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALLED, this))
             return;
 
-        //타락 이벤트 시작
+        // 스팀 업적: 타락
+        if (Team == Team.Enemy)
+        {
+            switch (Data.ID)
+            {
+                case "투발카인": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_TUBALCAIN); break;
+                case "라헬&레아": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_RAHELLEA); break;
+                case "엘리우스": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_ELIEUS); break;
+                case "야나": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_YANA); break;
+                case "압바임": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_APPAIM); break;
+                case "바누엘": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_PHANUEL); break;
+                case "구원자": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_THESAVIOR); break;
+                case "리비엘": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_LIBIEL); break;
+                case "아라벨라": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_ARABELLA); break;
+                case "욘": GameManager.Steam.IncreaseAchievement(SteamAchievementType.CORRUPT_YOHRN); break; 
+            }
+        }
+
         FallEvent = true;
+
+        Buff.ClearBuffByCorruption();
+
         DeckUnit.UnitID = BattleManager.UnitIDManager.GetID();
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
+        Invoke(nameof(CreateCorruptEffect), 0.5f);
+    }
+
+    void CreateCorruptEffect()
+    {
         GameManager.Sound.Play("UI/FallSFX/Fall");
         GameManager.VisualEffect.StartCorruptionEffect(this, transform.position);
     }
@@ -283,39 +305,37 @@ public class BattleUnit : MonoBehaviour
     public void Corrupted()
     {
         //타락 이벤트 종료
-        BattleManager.Instance.UnitFallEvent(this);
         FallEvent = false;
+        BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
+
+        foreach (ConnectedUnit unit in ConnectedUnits)
+        {
+            unit.ChangeTeam();
+        }
+
+        BattleManager.Instance.UnitFallEvent(this);
 
         if (ChangeTeam() == Team.Enemy)
         {
             Fall.Editfy();
             SetBuff(new Buff_Edified());
         }
-
-        foreach (ConnectedUnit unit in ConnectedUnits)
-        {
-            unit.ChangeTeam();
-        }
         
         DeckUnit.DeckUnitChangedStat.CurrentHP = 0;
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount = 0;
-
-        Debug.Log($"{BattleUnitTotalStat.FallCurrentCount} / {BattleUnitTotalStat.FallMaxCount}");
+        if (_team.Equals(Team.Player) && DeckUnit.DeckUnitTotalStat.FallMaxCount >= 4)
+            DeckUnit.DeckUnitUpgradeStat.FallMaxCount = 4 - DeckUnit.DeckUnitTotalStat.FallMaxCount; // 타락 4개 이상인 적이 타락됐을 경우 조정
 
         HP.Init(DeckUnit.DeckUnitTotalStat.MaxHP, DeckUnit.DeckUnitTotalStat.MaxHP);
         Fall.Init(BattleUnitTotalStat.FallCurrentCount, BattleUnitTotalStat.FallMaxCount);
-        Buff.DispelBuff();
 
         SetHPBar();
         _hpBar.RefreshHPBar(HP.FillAmount());
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOff);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimMode.On);
 
+        BattleManager.Data.BattleUnitOrderSorting();
+        BattleManager.BattleUI.WaitingLineRefresh();
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.STIGMA, this);
-
-        if (Buff.CheckBuff(BuffEnum.Benediction))
-        {
-            DeleteBuff(BuffEnum.Benediction);
-        }
     }
 
     //애니메이션에서 직접 실행시킴
@@ -372,10 +392,10 @@ public class BattleUnit : MonoBehaviour
         }
     }
     
-    public IEnumerator CutSceneMove(Vector3 moveVec, float moveTime)
+    public IEnumerator CutSceneMove(Vector3 moveDestination, float moveTime)
     {
-        if (moveCoro != null)
-            StopCoroutine(moveCoro);
+        if (_moveCoro != null)
+            StopCoroutine(_moveCoro);
 
         Vector3 originVec = transform.position;
         float time = 0;
@@ -385,59 +405,62 @@ public class BattleUnit : MonoBehaviour
             time += Time.deltaTime;
             float t = time / moveTime;
 
-            transform.position = Vector3.Lerp(originVec, moveVec, t);
+            transform.position = Vector3.Lerp(originVec, moveDestination, t);
             yield return null;
         }
     }
 
-    public void UnitMove(Vector2 coord, float moveSpeed)
+    public void UnitMove(Vector2 coord, float moveSpeed, bool isFilpFix)
     {
-        bool backMove = ((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0);
+        bool flip = (((_location - coord).x > 0) ^ GetFlipX() && ((_location - coord).x != 0)) && !(isFilpFix || Data.IsFlipFixed);
         //왼쪽으로 가면 거짓, 오른쪽으로 가면 참
         //지금 왼쪽 보면 참, 지금 오른쪽 보면 거짓
-        if (moveCoro != null)
-            StopCoroutine(moveCoro);
+        if (_moveCoro != null)
+            StopCoroutine(_moveCoro);
 
-        moveCoro = MoveFieldPosition(coord, backMove, moveSpeed);
-        StartCoroutine(moveCoro);
+        _moveCoro = MoveFieldPosition(BattleManager.Field.GetTilePosition(coord), coord, flip, moveSpeed);
+        StartCoroutine(_moveCoro);
+    }
 
+    public IEnumerator MoveFieldPosition(Vector3 moveDestination, Vector2 coord, bool flip, float moveSpeed)
+    {
+        _location = coord;
+        yield return MoveFieldPositionCoroutine(moveDestination, flip, moveSpeed);
+        SetLocation(_location);
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.MOVE, this);
     }
 
-    public IEnumerator MoveFieldPosition(Vector2 coord, bool backMove, float moveSpeed)
+    public IEnumerator MoveFieldPositionCoroutine(Vector3 moveDestination, bool flip, float moveSpeed)
     {
-        Vector3 dest = BattleManager.Field.GetTilePosition(coord);
-
-        float moveTime = 0.2f / moveSpeed;
-        float backMoveTime = 0.2f / moveSpeed;
-        Vector3 overDistance = (dest - transform.position) * 0.03f;
-        Vector3 pVel = Vector3.zero;
-        Vector3 sVel = Vector3.zero;
-        
-        _location = coord;
         //GetModifiedScale check location.y
         float addScale = GetModifiedScale();
 
-        if (backMove)
+        if (flip)
             SetFlipX(!GetFlipX());
 
-        while (Vector3.Distance(dest + overDistance, transform.position) >= 0.03f)
+        Vector3 pVel = Vector3.zero;
+        Vector3 sVel = Vector3.zero;
+        Vector3 overDistance = (moveDestination - transform.position) * 0.03f;
+
+        float moveTime = 0.18f / moveSpeed;
+        float backMoveTime = 0.2f / moveSpeed;
+
+        while (Vector3.Distance(moveDestination + overDistance, transform.position) >= 0.03f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, dest + overDistance, ref pVel, moveTime);
+            transform.position = Vector3.SmoothDamp(transform.position, moveDestination + overDistance, ref pVel, moveTime);
             transform.localScale = Vector3.SmoothDamp(transform.localScale, new(addScale, addScale, 1), ref sVel, moveTime);
+
             yield return null;
         }
 
         pVel = Vector3.zero;
 
-        while (Vector3.Distance(dest, transform.position) >= 0.01f)
+        while (Vector3.Distance(moveDestination, transform.position) >= 0.05f)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, dest, ref pVel, backMoveTime);
+            transform.position = Vector3.SmoothDamp(transform.position, moveDestination, ref pVel, backMoveTime);
 
             yield return null;
         }
-
-        SetLocation(coord);
     }
 
     //엑티브 타이밍에 대미지 바꿀 때용
@@ -460,7 +483,6 @@ public class BattleUnit : MonoBehaviour
             {
                 //타락시켰을 시 체크
                 BattleManager.Instance.ActiveTimingCheck(ActiveTiming.FALL, this, unit);
-                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
 
                 attackSkip = true;
             }
@@ -476,7 +498,6 @@ public class BattleUnit : MonoBehaviour
             if (unit.GetHP() <= 0)
             {
                 BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_KILL, this, unit);
-                BattleManager.Instance.ActiveTimingCheck(ActiveTiming.UNIT_TERMINATE, this, unit);
             }
 
             ChangedDamage = 0;
@@ -486,12 +507,13 @@ public class BattleUnit : MonoBehaviour
     public virtual void GetAttack(int value, BattleUnit caster)
     {
         //피격 전 체크
+        ChangedDamage = value;
         if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_ATTACKED, this, caster))
         {
             return;
         }
-        _floatingDamage.Init(value);
 
+        DisplayFloatingDamage(ChangedDamage);
         ChangeHP(value);
 
         //피격 후 체크
@@ -500,8 +522,13 @@ public class BattleUnit : MonoBehaviour
 
     public virtual void GetHeal(int value, BattleUnit caster)
     {
-        _floatingDamage.Init(value);
+        DisplayFloatingDamage(value);
         ChangeHP(value);
+    }
+
+    public void DisplayFloatingDamage(int value)
+    {
+        GameObject.Instantiate(_floatingDamagePrefab, this.transform).GetComponent<UI_FloatingDamage>().Init(value, UnitRenderer.flipX);
     }
 
     public void ChangeHP(int value)
@@ -516,30 +543,51 @@ public class BattleUnit : MonoBehaviour
 
     public virtual int GetHP() => HP.GetCurrentHP();
 
-    public void ChangeFall(int value)
+    public void ChangeFall(int value, BattleUnit caster, FallAnimMode fallAnimMode = FallAnimMode.On, float fallAnimDelay = 0.75f)
     {
-        if (Fall.IsEdified)
+        if (FallEvent || Fall.IsEdified)
         {
             Debug.Log($"{Data.Name} is Edified.");
+            return;
+        }
+
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_CHANGE_FALL, this, caster))
+        {
             return;
         }
 
         if (value < 0 && Fall.GetCurrentFallCount() + value < 0)
             value = -Fall.GetCurrentFallCount(); // 음수 방지
 
+        if (value > 0 && Fall.GetCurrentFallCount() + value >= Fall.GetMaxFallCount())
+            value = Fall.GetMaxFallCount() - Fall.GetCurrentFallCount(); // 최대치 방지
+
         Fall.ChangeFall(value);
         DeckUnit.DeckUnitUpgradeStat.FallCurrentCount += value;
-        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), FallAnimType.AnimOn);
+        _hpBar.RefreshFallBar(Fall.GetCurrentFallCount(), fallAnimMode, fallAnimDelay);
     }
 
     public virtual BattleUnit GetOriginalUnit() => this;
 
     public virtual void SetBuff(Buff buff)
     {
-        Buff.SetBuff(buff, this);
+        buff.Init(this);
+
+        if (BattleManager.Instance.ActiveTimingCheck(ActiveTiming.BEFORE_BUFFED, this, null))
+        {
+            foreach (Buff activeBuff in Buff.CheckActiveTiming(ActiveTiming.BEFORE_BUFFED))
+            {
+                if (activeBuff.Active(buff))
+                    return;
+            }
+        }
+
+        Buff.SetBuff(buff);
         BattleUnitChangedStat = Buff.GetBuffedStat();
         _hpBar.AddBuff(buff);
         _hpBar.RefreshBuff();
+
+        HP.Init(BattleUnitTotalStat.MaxHP, BattleUnitTotalStat.CurrentHP);
     }
 
     public void DeleteBuff(BuffEnum buffEnum)
@@ -616,7 +664,7 @@ public class BattleUnit : MonoBehaviour
             UnitRangeList.Add(new Vector2(0, 0));
             return UnitRangeList;
         }
-        if (_isTeleportOn)
+        else if (_isTeleportOn)
         {
             UnitRangeList = BattleManager.Field.GetUnitAllCoord();
             return UnitRangeList;
@@ -647,7 +695,8 @@ public class BattleUnit : MonoBehaviour
         {
             foreach (Vector2 vec in RangeList)
             {
-                UnitRangeList.Add(unit.Location - _location  + vec);
+                if (!UnitRangeList.Contains(unit.Location - _location + vec))
+                    UnitRangeList.Add(unit.Location - _location  + vec);
             }
         }
 

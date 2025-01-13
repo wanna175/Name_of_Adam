@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1089838313472
-    m_Key: Shadow Step Info
+    m_Key: Steps Of Shadow Info
     m_Metadata:
       m_Items: []
   - m_Id: 1175741853696
@@ -36,23 +36,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1262668804096
-    m_Key: Additional Punishment Info
+    m_Key: Damnation's Weight Info
     m_Metadata:
       m_Items: []
   - m_Id: 1312883011584
     m_Key: Assasination Info
     m_Metadata:
       m_Items: []
-  - m_Id: 1502159368192
-    m_Key: Blessing Info
-    m_Metadata:
-      m_Items: []
   - m_Id: 1751317803008
-    m_Key: Raise I Info
+    m_Key: Exaltation I Info
     m_Metadata:
       m_Items: []
   - m_Id: 1873627901952
-    m_Key: Raise II Info
+    m_Key: Exaltation II Info
     m_Metadata:
       m_Items: []
   - m_Id: 1890304454656
@@ -68,11 +64,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2236426809344
-    m_Key: Blood Blessing I Info
+    m_Key: Crimson Blessing I Info
     m_Metadata:
       m_Items: []
   - m_Id: 2356740419584
-    m_Key: Blood Blessing II Info
+    m_Key: Crimson Blessing II Info
     m_Metadata:
       m_Items: []
   - m_Id: 2420078604288
@@ -88,23 +84,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2613922557952
-    m_Key: Immortality I Info
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2705945587712
-    m_Key: Immortality II Info
+    m_Key: Immortality Info
     m_Metadata:
       m_Items: []
   - m_Id: 2745237827584
-    m_Key: Invinciblity I Info
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2856676290560
-    m_Key: Invinciblity II Info
+    m_Key: Invinciblity Info
     m_Metadata:
       m_Items: []
   - m_Id: 2911923662848
-    m_Key: Expand Info
+    m_Key: Expansion Info
     m_Metadata:
       m_Items: []
   - m_Id: 3085446213632
@@ -112,7 +100,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3199489339392
-    m_Key: Berserker Info
+    m_Key: Berserk Info
     m_Metadata:
       m_Items: []
   - m_Id: 3269714571264
@@ -128,7 +116,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3607628673024
-    m_Key: Teleport Info
+    m_Key: PassageOfShadows Info
     m_Metadata:
       m_Items: []
   - m_Id: 3932058087424
@@ -148,19 +136,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4454450262016
-    m_Key: Pray In Aid Info
+    m_Key: Intercession Info
     m_Metadata:
       m_Items: []
   - m_Id: 4568623411200
-    m_Key: Sin Info
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7908400885760
-    m_Key: Earns malevolence two times upon summoning.
+    m_Key: Deadly Sin Info
     m_Metadata:
       m_Items: []
   - m_Id: 1304750413639680
-    m_Key: Dust Info
+    m_Key: Dusk Info
     m_Metadata:
       m_Items: []
   - m_Id: 1304862808403968
@@ -204,7 +188,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1305281299279872
-    m_Key: Funeral Info
+    m_Key: Requiem Info
     m_Metadata:
       m_Items: []
   - m_Id: 7868905148968960
@@ -217,6 +201,122 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7869015077482496
     m_Key: Sacrifice Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35651046761189376
+    m_Key: Advent Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38887124866600960
+    m_Key: ShadowCloak Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38895353000529920
+    m_Key: Rearmament Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853852555399168
+    m_Key: "Blessing \u2160 Info"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42853855059398656
+    m_Key: "Blessing \u2161 Info"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142579702616064
+    m_Key: Solitude Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142824608026624
+    m_Key: Grudge Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142828772970496
+    m_Key: HandOfGrace Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51142830366806016
+    m_Key: Veiled Support Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209235002413056
+    m_Key: Death's Threshold Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209239154774016
+    m_Key: Fortification Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209241214177280
+    m_Key: Armor Of Aeons Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209243240026112
+    m_Key: Broken Sword Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209245211348992
+    m_Key: Blood Oath Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72209248940085248
+    m_Key: Blind Faith Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864474912739328
+    m_Key: Glory Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864595775803392
+    m_Key: Thorns Of Oblivion Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78864714545909760
+    m_Key: Garden Of Oblivion Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865099960504320
+    m_Key: Abyssal Steps Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865195338977280
+    m_Key: Repeating Surge Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865196878286848
+    m_Key: Fragments Of Birth Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78865540756688896
+    m_Key: Soulbound Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84651608961601536
+    m_Key: Distrust Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85301240905486336
+    m_Key: Purification Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87082343500763136
+    m_Key: Atonement Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090200085975040
+    m_Key: Repulsion Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090201407180800
+    m_Key: Chain Of Fate Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98090202564808704
+    m_Key: Heavy Armor Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 105927576103571456
+    m_Key: Despair Info
     m_Metadata:
       m_Items: []
   m_Metadata:

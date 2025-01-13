@@ -9,6 +9,9 @@ public class EngagePhase : Phase
         GameManager.Sound.Play("Stage_Transition/Engage/EngageEnter");
 
         BattleManager.BattleUI.CloseInfo(_engageInfo);
+        BattleManager.BattleUI.UI_turnNotify.SetBattlePhaseDisplay();
+
+        BattleManager.Data.BattleUnitOrderSorting();
 
         if (BattleManager.Data.OrderUnitCount <= 0)
         {

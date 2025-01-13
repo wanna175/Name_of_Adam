@@ -45,6 +45,7 @@ public class UnitSpawner : MonoBehaviour
             GameObject go = GetUnit();
             BattleUnit unit = go.GetComponent<BattleUnit>();
             unit.DeckUnit.Data = spawndata.unitData;
+            unit.DeckUnit.HallUnitID = -1;
 
             unit.Init(spawndata.team);
             unit.UnitSetting(spawndata.location);
@@ -59,7 +60,6 @@ public class UnitSpawner : MonoBehaviour
                     GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/VisualEffect/UnitSpawnEffect", unit.transform.position);
                 }
             }
-
 
             return unit;
         }
@@ -110,10 +110,6 @@ public class UnitSpawner : MonoBehaviour
 
     public void SpawnInitialUnit()
     {
-        // TestScene일 경우 예외처리
-        if (SceneChanger.GetSceneName() == "BattleTestScene")
-            return;
-
         if (GameManager.Data.Map.MapObject == null)
             return;
 
@@ -129,6 +125,19 @@ public class UnitSpawner : MonoBehaviour
 
             SpawnDataSpawn(sd);
         }
+    }
+
+    public BattleUnit OutFieldUnitSpawn(SpawnData spawndata)
+    {
+        GameObject go = GetUnit();
+        BattleUnit unit = go.GetComponent<BattleUnit>();
+        unit.DeckUnit.Data = spawndata.unitData;
+        unit.DeckUnit.HallUnitID = -1;
+
+        unit.Init(spawndata.team);
+        unit.UnitSetting(spawndata.location);
+
+        return unit;
     }
 
     private void CreateUnit()

@@ -1,52 +1,109 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
 
 
 public class UI_TurnChangeButton : UI_Scene, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Button _changeButton;
-    [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private Image _buttonImage;
-    [SerializeField] private Sprite buttonEnterSprite;
-    [SerializeField] private Sprite buttonExitSprite;
+    [SerializeField] private Image _lightImage;
 
-    private bool isCanCtrl;
+    [SerializeField] private Sprite _endPhaseSprite;
+    [SerializeField] private Sprite _skipAttackSprite;
+    [SerializeField] private Sprite _skipMoveSprite;
+    [SerializeField] private Sprite _enemyTurnSprite;
+
+    private bool _isCanCtrl;
+
+    public void SetEnable(bool enable)
+    {
+        _isCanCtrl = enable;
+        //Debug.Log("Turn Change Button : " + enable);
+    }
+
+    public void TurnChange()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        if (_isCanCtrl)
+        {
+            PhaseController phase = BattleManager.Phase;
+            _isCanCtrl = false;
+
+            if (phase.CurrentPhaseCheck(phase.Prepare))
+            {
+                phase.ChangePhase(phase.Engage);
+                _buttonImage.sprite = _skipMoveSprite;
+            }
+            else if (phase.CurrentPhaseCheck(phase.Move))
+            {
+                phase.ChangePhase(phase.Action);
+                _buttonImage.sprite = _skipAttackSprite;
+            }
+            else if (phase.CurrentPhaseCheck(phase.Action))
+            {
+                BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnitOrder());
+                phase.ChangePhase(phase.Engage);
+            }
+        }
+    }
+
+    public void SetButtonSprite()
+    {
+        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
+        {
+            _buttonImage.sprite = _endPhaseSprite;
+        }
+        else if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Action) || BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Move))
+        {
+            if (BattleManager.Data.GetNowUnit().Team == Team.Player)
+            {
+                _buttonImage.sprite = BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Move)
+                                      ? _skipMoveSprite : _skipAttackSprite;
+            }
+            else
+            {
+                _buttonImage.sprite = _enemyTurnSprite;
+                _changeButton.interactable = false;
+                return;
+            }
+        }
+
+        _changeButton.interactable = true;
+    }
+
+    //private bool _isHover = false;
+    //private bool _isHoverMessegeOn = false;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _buttonImage.sprite = buttonEnterSprite;
+        return;
+        /*
+        _isHover = true;
+        GameManager.Instance.PlayAfterCoroutine(() => {
+            if (_isHover && !_isHoverMessegeOn)
+            {
+                _isHoverMessegeOn = true;
+                GameManager.UI.ShowHover<UI_TextHover>().SetText(
+                    $"{GameManager.Locale.GetLocalizedBattleScene("TurnChange UI Info")}", Input.mousePosition);
+            }
+        }, 0.5f);
+        */
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _buttonImage.sprite = buttonExitSprite;
-    }
+        return;
+        /*
+        _isHover = false;
 
-    public void SetEnable(bool enable)
-        => isCanCtrl = enable;
-
-    public void TurnChange()
-    {
-        GameManager.Sound.Play("Stage_Transition/Engage/EngageEnter");
-        
-        if (isCanCtrl)
+        if (_isHoverMessegeOn)
         {
-            PhaseController _phase = BattleManager.Phase;
-            isCanCtrl = false;
-
-            if (_phase.CurrentPhaseCheck(_phase.Prepare))
-                _phase.ChangePhase(_phase.Engage);
-            else if (_phase.CurrentPhaseCheck(_phase.Move))
-                _phase.ChangePhase(_phase.Action);
-            else if (_phase.CurrentPhaseCheck(_phase.Action))
-            {
-                BattleManager.Data.BattleOrderRemove(BattleManager.Data.GetNowUnit());
-                _phase.ChangePhase(_phase.Engage);
-            }
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
         }
+        */
     }
 }

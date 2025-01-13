@@ -10,32 +10,37 @@ public class BattleDataManager : MonoBehaviour
         Init();
     }
 
-    [SerializeField] private List<DeckUnit> _playerDeck = new();
     public List<DeckUnit> PlayerDeck => _playerDeck;
+    [SerializeField] private List<DeckUnit> _playerDeck = new();
 
-    [SerializeField] private List<DeckUnit> _playerHands = new();
     public List<DeckUnit> PlayerHands => _playerHands;
+    [SerializeField] private List<DeckUnit> _playerHands = new();
 
     // 전투를 진행중인 캐릭터가 들어있는 리스트
-    private List<BattleUnit> _battleUnitList = new();
     public List<BattleUnit> BattleUnitList => _battleUnitList;
+    private List<BattleUnit> _battleUnitList = new();
 
     // 중복 타락을 처리하기 위한 팝업 리스트
-    private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
     public List<UI_StigmaSelectButtonPopup> CorruptionPopups => _corruptionPopups;
+    private List<UI_StigmaSelectButtonPopup> _corruptionPopups = new();
 
-    [SerializeField] private BattleUnit incarnaUnit;
+    public bool IsCorruptionPopupOn { get; set; }
+
     public BattleUnit IncarnaUnit => incarnaUnit;
+    [SerializeField] private BattleUnit incarnaUnit;
 
-    private Dictionary<int, RewardUnit> _battlePrevUnitDict;
     public Dictionary<int, RewardUnit> BattlePrevUnitDict => _battlePrevUnitDict;
-    
-    private int _battlePrevDarkEssence;
+    private Dictionary<int, RewardUnit> _battlePrevUnitDict;
+
     public int BattlePrevDarkEssence => _battlePrevDarkEssence;
+    private int _battlePrevDarkEssence;
 
-    public bool isDiscount = false;
+    public (BattleUnit, int?) CurrentTurnUnitOrder => _currentTurnUnitOrder;
+    private (BattleUnit, int?) _currentTurnUnitOrder = new();
 
-    public bool isGameDone = false;
+    public bool IsDiscount = false;
+
+    public bool IsGameDone = false;
 
     private void Init()
     {
@@ -46,11 +51,11 @@ public class BattleDataManager : MonoBehaviour
         }
 
         _battlePrevUnitDict = new Dictionary<int, RewardUnit>();
-        _battlePrevDarkEssence = GameManager.Data.DarkEssense;
+        _battlePrevDarkEssence = GameManager.Data.GameData.DarkEssence;
 
         foreach (DeckUnit unit in _playerDeck)
         {
-            _battlePrevUnitDict.Add(unit.UnitID, new RewardUnit(unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, unit.Data.CorruptPortraitImage));
+            _battlePrevUnitDict.Add(unit.UnitID, new RewardUnit(unit.PrivateKey, unit.Data.Name, unit.DeckUnitStat.FallCurrentCount, unit.Data.CorruptPortraitImage));
         }
     }
 
@@ -67,13 +72,14 @@ public class BattleDataManager : MonoBehaviour
 
         _battleUnitList.Clear();
 
-        foreach (DeckUnit unit in PlayerHands)
+        foreach (DeckUnit unit in _playerHands)
         {
             unit.DeckUnitChangedStat.ClearStat();
             AddDeckUnit(unit);
         }
 
-        PlayerHands.Clear();
+        _playerHands.Clear();
+        _playerHands = ShuffleList(_playerHands);
 
         if (GameManager.OutGameData.IsUnlockedItem(8))
         {
@@ -89,9 +95,27 @@ public class BattleDataManager : MonoBehaviour
         }
 
         GameManager.Data.SetDeck(_playerDeck);
-        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.OutGameData.SaveData();
         GameManager.SaveManager.SaveGame();
+    }
+
+    private List<T> ShuffleList<T>(List<T> list)
+    {
+        int random1, random2;
+        T temp;
+
+        for (int i = 0; i < list.Count; ++i)
+        {
+            random1 = Random.Range(0, list.Count);
+            random2 = Random.Range(0, list.Count);
+
+            temp = list[random1];
+            list[random1] = list[random2];
+            list[random2] = temp;
+        }
+
+        return list;
     }
 
     private int _turnCount = 0;
@@ -154,87 +178,114 @@ public class BattleDataManager : MonoBehaviour
         {
             return null;
         }
-        int randNum = Random.Range(0, PlayerDeck.Count);
 
-        DeckUnit unit = PlayerDeck[randNum];
-        _playerDeck.RemoveAt(randNum);
+        DeckUnit unit = PlayerDeck[0];
+        _playerDeck.RemoveAt(0);
 
         return unit;
     }
 
-    #region OrderedList
-    private List<(BattleUnit, int?)> _battleUnitOrderUnits = new();
-    private List<BattleUnit> _battleUnitOrderList = new();
-    public int OrderUnitCount => _battleUnitOrderList.Count;
-
-    public void BattleUnitOrderReplace()
+    public void BattleUnitActionReset()
     {
-        if (!BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Prepare))
-            return;
+        foreach (BattleUnit unit in _battleUnitList)
+        {
+            unit.IsDoneMove = false;
+            unit.IsDoneAttack = false;
+        }
+    }
 
-        _battleUnitOrderUnits.Clear();
-        _battleUnitOrderList.Clear();
+    #region OrderedList
+    private List<(BattleUnit, int?)> _battleUnitOrders = new();
+    public int OrderUnitCount => _battleUnitOrders.Count;
+
+    public void BattleUnitOrderReset()
+    {
+        _battleUnitOrders.Clear();
 
         foreach (BattleUnit unit in _battleUnitList)
         {
-            if (unit.IsConnectedUnit ||
-                unit.Data.UnitActionType == UnitActionType.UnitAction_None ||
-                unit.Data.UnitActionType == UnitActionType.UnitAction_Horus_Egg
-            )
+            if (unit.IsConnectedUnit || unit.Data.UnitActionType == UnitActionType.UnitAction_None || unit.Data.UnitActionType == UnitActionType.UnitAction_FlowerOfSacrifice)
                 continue;
 
-            _battleUnitOrderUnits.Add(new(unit, null));
-            _battleUnitOrderList.Add(unit);
+            _battleUnitOrders.Add(new(unit, null));
         }
 
         BattleUnitOrderSorting();
+        BattleManager.BattleUI.WaitingLineReset(_battleUnitOrders);
     }
 
     public void BattleUnitOrderSorting()
     {
-        List<(BattleUnit, int?)> tempOrderList = new(_battleUnitOrderUnits);
-
-        _battleUnitOrderList = _battleUnitOrderList.OrderByDescending(unit => {
-            (BattleUnit, int?) result = tempOrderList.FirstOrDefault(item => item.Item1 == unit);
-
-            if (result.Item2 == null)
-            {
-                tempOrderList.Remove(result);
-                return unit.BattleUnitTotalStat.SPD;
-            }
-            else
-            {
-                tempOrderList.Remove(result);
-                return result.Item2;
-            }
-        })
-            .ThenBy(unit => unit.Team)
-            .ThenByDescending(unit => unit.Location.y)
-            .ThenBy(unit => unit.Location.x)
+        _battleUnitOrders = _battleUnitOrders
+            .OrderByDescending(unit => unit.Item2 ?? unit.Item1.BattleUnitTotalStat.SPD)
+            .ThenBy(unit => unit.Item1.Team)
+            .ThenByDescending(unit => unit.Item1.Location.y)
+            .ThenBy(unit => unit.Item1.Location.x)
             .ToList();
 
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        BattleManager.BattleUI.WaitingLineChangeCheck(_battleUnitOrders);
     }
 
-    public void BattleOrderRemove(BattleUnit removedUnit)
+    public void BattleUnitRemoveFromOrder(BattleUnit removeUnit)
     {
-        _battleUnitOrderList.Remove(removedUnit);
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        while (true)
+        {
+            (BattleUnit, int?) removeUnitOrder = _battleUnitOrders.Find(unit => unit.Item1 == removeUnit);
+            if (removeUnitOrder == (null, null))
+                break;
+
+            _battleUnitOrders.Remove(removeUnitOrder);
+            BattleManager.BattleUI.WaitingLineRemoveOrder(removeUnitOrder);
+        }
+    }
+
+    public void BattleOrderRemove((BattleUnit, int?) removeUnitOrder)
+    {
+        _battleUnitOrders.Remove(removeUnitOrder);
+        BattleManager.BattleUI.WaitingLineRemoveOrder(removeUnitOrder);
     }
 
     public void BattleOrderInsert(int index, BattleUnit addUnit, int? speed = null)
     {
-        _battleUnitOrderList.Insert(index, addUnit);
-        _battleUnitOrderUnits.Add(new(addUnit, speed));
-        BattleManager.BattleUI.RefreshWaitingLine(_battleUnitOrderList);
+        if (addUnit.IsConnectedUnit || addUnit.Data.UnitActionType == UnitActionType.UnitAction_None || addUnit.Data.UnitActionType == UnitActionType.UnitAction_FlowerOfSacrifice)
+            return;
+
+        _battleUnitOrders.Insert(index, (addUnit, speed));
+        
+        if (BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Spawn))
+            return;
+
+        BattleManager.BattleUI.WaitingLineAddOrder((addUnit, speed));
+    }
+
+    public void SetCurrentTurnOrder()
+    {
+        _currentTurnUnitOrder = GetNowUnitOrder();
+    }
+
+    public void RemoveCurrentTurnOrder()
+    {
+        if (_currentTurnUnitOrder.Item1 != null)
+        {
+            BattleOrderRemove(_currentTurnUnitOrder);
+            _currentTurnUnitOrder = new();
+        }
     }
 
     public BattleUnit GetNowUnit()
     {
-        if (_battleUnitOrderList.Count > 0)
-            return _battleUnitOrderList[0];
+        if (_battleUnitOrders.Count > 0)
+            return _battleUnitOrders[0].Item1;
         return null;
     }
+
+    public (BattleUnit, int?) GetNowUnitOrder()
+    {
+        if (_battleUnitOrders.Count > 0)
+            return _battleUnitOrders[0];
+        return (null, null);
+    }
+
     #endregion
 
     public UnitAction GetUnitAction(UnitActionType actionType)
@@ -251,10 +302,6 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_CenteredSplash();
         }
-        else if (actionType == UnitActionType.UnitAction_Iana)
-        {
-            return new UnitAction_Iana();
-        }
         else if (actionType == UnitActionType.UnitAction_Phanuel)
         {
             return new UnitAction_Phanuel();
@@ -267,17 +314,33 @@ public class BattleDataManager : MonoBehaviour
         {
             return new UnitAction_Tubalcain();
         }
-        else if (actionType == UnitActionType.UnitAction_Horus)
+        else if (actionType == UnitActionType.UnitAction_Savior)
         {
             return new UnitAction_Horus();
         }
-        else if (actionType == UnitActionType.UnitAction_Horus_Egg)
+        else if (actionType == UnitActionType.UnitAction_FlowerOfSacrifice)
         {
-            return new UnitAction_Horus_Egg();
+            return new UnitAction_FlowerOfSacrifice();
         }
-        else if (actionType == UnitActionType.UnitAction_RaquelLeah)
+        else if (actionType == UnitActionType.UnitAction_RahelLea)
         {
-            return new UnitAction_RaquelLeah();
+            return new UnitAction_RahelLea();
+        }
+        else if (actionType == UnitActionType.UnitAction_Libiel)
+        {
+            return new UnitAction_Libiel();
+        }
+        else if (actionType == UnitActionType.UnitAction_Arabella)
+        {
+            return new UnitAction_Arabella();
+        }
+        else if (actionType == UnitActionType.UnitAction_Yohrn)
+        {
+            return new UnitAction_Yohrn();
+        }
+        else if (actionType == UnitActionType.UnitAction_Yohrn_Body)
+        {
+            return new UnitAction_Yohrn_Scale();
         }
         else
         {

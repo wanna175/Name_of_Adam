@@ -21,7 +21,9 @@ public class UnitAction_Tubalcain : UnitAction
             Attack(attackUnit, MinHPUnit[Random.Range(0, MinHPUnit.Count)]);
         }
         else
+        {
             BattleManager.Instance.EndUnitAction();
+        }
     }
 
     private Dictionary<Vector2, int> ChargeAttackSearch(BattleUnit caster)
@@ -60,7 +62,7 @@ public class UnitAction_Tubalcain : UnitAction
         if ((activeTiming & ActiveTiming.BEFORE_ATTACK) == ActiveTiming.BEFORE_ATTACK)
         {
             if (_isMove)
-                receiver.ChangeFall(1);
+                receiver.ChangeFall(1, caster, FallAnimMode.On);
         }
         else if ((activeTiming & ActiveTiming.DAMAGE_CONFIRM) == ActiveTiming.DAMAGE_CONFIRM)
         {
@@ -118,8 +120,20 @@ public class UnitAction_Tubalcain : UnitAction
 
         attackUnit.AnimatorSetBool("isAttackStart", true);
         BattleManager.Instance.MoveUnit(attackUnit, moveVector, 5f);
+        GameManager.Sound.Play("Character/투발카인/투발카인_Move");
+
         BattleManager.Instance.AttackStart(attackUnit, hits);
 
         return true;
+    }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
+    {
+        List<Vector2> splashRangeList = new();
+        Vector2 target = BattleManager.Field.GetCoordByTile(targetTile);
+        if (ChargeAttackSearch(unit).ContainsKey(target))
+            splashRangeList.Add(target);
+
+        return splashRangeList;
     }
 }

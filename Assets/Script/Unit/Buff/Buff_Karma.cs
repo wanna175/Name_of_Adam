@@ -9,11 +9,11 @@ public class Buff_Karma : Buff
 
         _name = "Karma";
 
-        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Vice_Sprite");
+        _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Malevolence_Sprite");
 
-        _description = "When attacked, reduces the faith of the attacking enemy unit by 1.";
+        _description = "Karma Info";
 
-        _count = 2;
+        _count = 1;
 
         _countDownTiming = ActiveTiming.AFTER_ATTACKED;
 
@@ -21,18 +21,19 @@ public class Buff_Karma : Buff
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)
     {
         if (caster != null)
-            caster.ChangeFall(1);
+            caster.ChangeFall(1, _owner, FallAnimMode.On);
 
         return false;
+    }
+
+    public override void Stack()
+    {
+        _count += 1;
     }
 }

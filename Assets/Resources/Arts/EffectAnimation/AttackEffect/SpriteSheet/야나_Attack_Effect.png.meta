@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -132,7 +132,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_0"
       rect:
         serializedVersion: 2
-        x: 348
+        x: 0
         y: 0
         width: 348
         height: 256
@@ -153,7 +153,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_1"
       rect:
         serializedVersion: 2
-        x: 696
+        x: 348
         y: 0
         width: 348
         height: 256
@@ -174,7 +174,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_2"
       rect:
         serializedVersion: 2
-        x: 1044
+        x: 696
         y: 0
         width: 348
         height: 256
@@ -195,7 +195,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_3"
       rect:
         serializedVersion: 2
-        x: 1392
+        x: 1044
         y: 0
         width: 348
         height: 256
@@ -216,7 +216,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_4"
       rect:
         serializedVersion: 2
-        x: 1740
+        x: 1392
         y: 0
         width: 348
         height: 256
@@ -237,7 +237,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_5"
       rect:
         serializedVersion: 2
-        x: 2088
+        x: 1740
         y: 0
         width: 348
         height: 256
@@ -258,7 +258,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_6"
       rect:
         serializedVersion: 2
-        x: 2436
+        x: 2088
         y: 0
         width: 348
         height: 256
@@ -279,7 +279,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_7"
       rect:
         serializedVersion: 2
-        x: 2784
+        x: 2436
         y: 0
         width: 348
         height: 256
@@ -300,7 +300,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_8"
       rect:
         serializedVersion: 2
-        x: 3132
+        x: 2784
         y: 0
         width: 348
         height: 256
@@ -321,7 +321,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_9"
       rect:
         serializedVersion: 2
-        x: 3480
+        x: 3132
         y: 0
         width: 348
         height: 256
@@ -342,7 +342,7 @@ TextureImporter:
       name: "\uC57C\uB098_Attack_Effect_10"
       rect:
         serializedVersion: 2
-        x: 3828
+        x: 3480
         y: 0
         width: 348
         height: 256

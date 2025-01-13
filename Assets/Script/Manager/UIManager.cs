@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public const int ESCOrder = 999;
+
     private int _order = 10;
     private Stack<UI_Popup> _popupStack = new();
     private UI_Hover _hover;
 
-    public bool IsCanESC = true;
-    public bool IsOnESCOption = false;
-    private UI_ESCOption ESCOption;
+    public Stack<UI_Popup> ESCOPopups = new();
+    public bool IsOnESCOption => ESCOPopups.Count != 0;
 
     public GameObject Root
     {
@@ -26,20 +27,48 @@ public class UIManager : MonoBehaviour
 
     public void OnOffESCOption()
     {
-        if (!IsCanESC)
+        if (SceneManager.GetActiveScene().name == "MainScene" ||
+            SceneManager.GetActiveScene().name == "LogoScene")
             return;
 
-        IsOnESCOption = !IsOnESCOption;
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         if (IsOnESCOption)
         {
+            ClosePopup(ESCOPopups.Pop());
+            if (!IsOnESCOption)
+            {
+                if (SceneManager.GetActiveScene().name == "BattleScene")
+                {
+                    Time.timeScale = GameManager.OutGameData.Data.BattleSpeed;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                }
+            }
+                
+        }
+        else
+        {
+            var ESCOption = ShowPopup<UI_ESCOption>();
+            ESCOption.GetComponent<Canvas>().sortingOrder = ESCOrder;
+            ESCOPopups.Push(ESCOption);
             Time.timeScale = 0;
-            ESCOption = ShowPopup<UI_ESCOption>();
+        }
+    }
+
+    public void CloseAllOption()
+    {
+        while (ESCOPopups.Count > 0)
+            ClosePopup(ESCOPopups.Pop());
+        if (SceneManager.GetActiveScene().name == "BattleScene")
+        {
+            Time.timeScale = GameManager.OutGameData.Data.BattleSpeed;
         }
         else
         {
             Time.timeScale = 1;
-            ClosePopup(ESCOption);
         }
     }
 
@@ -193,11 +222,15 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().name == "MainScene")
-                return;
-
-            GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
-            OnOffESCOption();
+            if (_popupStack.Count > 0)
+            {
+                if (ESCOPopups.Contains(_popupStack.Peek()) || !_popupStack.Peek().ESCAction())
+                    OnOffESCOption();
+            }
+            else
+            {
+                OnOffESCOption();
+            }
         }
     }
 }

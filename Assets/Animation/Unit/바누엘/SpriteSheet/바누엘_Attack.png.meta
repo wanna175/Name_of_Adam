@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -121,9 +121,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 342
-        width: 246
-        height: 171
+        y: 320
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Attack_1"
       rect:
         serializedVersion: 2
-        x: 246
-        y: 342
-        width: 246
-        height: 171
+        x: 256
+        y: 320
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Attack_2"
       rect:
         serializedVersion: 2
-        x: 492
-        y: 342
-        width: 246
-        height: 171
+        x: 512
+        y: 320
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Attack_3"
       rect:
         serializedVersion: 2
-        x: 738
-        y: 342
-        width: 246
-        height: 171
+        x: 768
+        y: 320
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,9 +205,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 171
-        width: 246
-        height: 171
+        y: 160
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,10 +225,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Attack_5"
       rect:
         serializedVersion: 2
-        x: 246
-        y: 171
-        width: 246
-        height: 171
+        x: 256
+        y: 160
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,10 +246,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Attack_6"
       rect:
         serializedVersion: 2
-        x: 492
-        y: 171
-        width: 246
-        height: 171
+        x: 512
+        y: 160
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -267,10 +267,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Attack_7"
       rect:
         serializedVersion: 2
-        x: 738
-        y: 171
-        width: 246
-        height: 171
+        x: 768
+        y: 160
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,8 +290,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 246
-        height: 171
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,10 +309,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_Attack_9"
       rect:
         serializedVersion: 2
-        x: 246
+        x: 256
         y: 0
-        width: 246
-        height: 171
+        width: 256
+        height: 160
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

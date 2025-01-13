@@ -45,10 +45,10 @@ MonoBehaviour:
   - m_Id: 7238332881629184
     m_Localized: 'Abandon saved journey?
 
+      
 
-
-      You have an existing journey. Are
-      you sure you want to abandon it and start a new journey?'
+      You have an existing journey.
+      Are you sure you want to abandon your current journey and start once again?'
     m_Metadata:
       m_Items: []
   - m_Id: 7238564579176448

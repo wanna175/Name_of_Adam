@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_0"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_1"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_1"
       rect:
         serializedVersion: 2
         x: 256
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_2"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_2"
       rect:
         serializedVersion: 2
         x: 512
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_3"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_3"
       rect:
         serializedVersion: 2
         x: 768
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_4"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_4"
       rect:
         serializedVersion: 2
         x: 1024
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_5"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_5"
       rect:
         serializedVersion: 2
         x: 1280
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_6"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_6"
       rect:
         serializedVersion: 2
         x: 1536
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_7"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_7"
       rect:
         serializedVersion: 2
         x: 1792
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Exit_8"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Exit_8"
       rect:
         serializedVersion: 2
         x: 2048
@@ -316,15 +316,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uD638\uB8E8\uC2A4_Exit_5": 741765320
-      "\uD638\uB8E8\uC2A4_Exit_8": -115944301
-      "\uD638\uB8E8\uC2A4_Exit_4": 1834109777
-      "\uD638\uB8E8\uC2A4_Exit_6": 1672072413
-      "\uD638\uB8E8\uC2A4_Exit_2": 1749717602
-      "\uD638\uB8E8\uC2A4_Exit_0": 1774297743
-      "\uD638\uB8E8\uC2A4_Exit_7": -376968803
-      "\uD638\uB8E8\uC2A4_Exit_1": 1989447009
-      "\uD638\uB8E8\uC2A4_Exit_3": 1594564345
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_0": 1774297743
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_4": 1834109777
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_1": 1989447009
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_2": 1749717602
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_7": -376968803
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_8": -115944301
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_3": 1594564345
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_5": 741765320
+      "\uD76C\uC0DD\uC758_\uAF43_Exit_6": 1672072413
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

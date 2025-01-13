@@ -11,6 +11,8 @@ public class StigmaController
         LoadStigmaList();
     }
 
+    public readonly float[] StigmaProbability = new float[] { 0.8f, 0.2f, 0f };
+
     private List<Stigma> _tier1StigmaList = new();
     private List<Stigma> _tier2StigmaList = new();
     private List<Stigma> _tier3StigmaList = new();
@@ -63,35 +65,29 @@ public class StigmaController
         }
 
         _lockStigmaDic.Add(StigmaEnum.Hook, new string[] { "흑기사", "쌍생아", "그을린 자", "묘지기", "검병",
-            "노동자", "중갑병", "처형자", "암살자", "습격자", "괴인", "엘리우스", "투발카인" });
-        _lockStigmaDic.Add(StigmaEnum.Additional_Punishment, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "투발카인"});
+            "노동자", "중갑병", "처형자", "암살자", "습격자", "괴인", "엘리우스", "투발카인", "아라벨라", "욘" });
+        _lockStigmaDic.Add(StigmaEnum.DamnationsWeight, new string[] { "그을린 자", "전령", "괴인", "주시자", "압바임", "라헬&레아", "전령", "투발카인", "아라벨라", "리비엘", "욘"});
     }
 
     // probability는 { 99, 89 } 처럼 2개 인자를 보유
-    public Stigma GetRandomStigma(int[] probability)
+    public Stigma GetRandomStigma(float[] probability)
     {
-        Stigma stigma;
-        int randNum = Random.Range(0, 100);
+        Stigma stigma = null;
+        int randIndex = RandomManager.GetElement(probability);
 
-        /*
-        if (_tier3StigmaList.Count > 0 && randNum >= probability[0] )
+        switch (randIndex)
         {
-            stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)];
-        }현재 3티어 낙인은 없음
-        */
-        if (_tier2StigmaList.Count > 0 && randNum >= probability[1])
-        {
-            stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)];
-        }
-        else
-        {
-            stigma = _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)];
+            case 0: stigma = _tier1StigmaList[Random.Range(0, _tier1StigmaList.Count)]; break;
+            case 1: stigma = _tier2StigmaList[Random.Range(0, _tier2StigmaList.Count)]; break;
+            case 2: stigma = _tier3StigmaList[Random.Range(0, _tier3StigmaList.Count)]; break;
         }
 
+        if (stigma == null)
+            Debug.LogError("StigmaController.GetRandomStigma() : Stigma is null");
         return stigma;
     }
 
-    public Stigma GetRandomStigmaAsUnit(int[] probability, string unitName)
+    public Stigma GetRandomStigmaAsUnit(float[] probability, string unitName)
     {
         Stigma stigma;
 
@@ -103,12 +99,27 @@ public class StigmaController
         return stigma;
     }
 
+    public List<Stigma> GetRandomStigmaList(DeckUnit targetUnit, int stigmaCount)
+    {
+        List<Stigma> result = new();
+        List<Stigma> existStigma = targetUnit.GetStigma();
+
+        while (result.Count < stigmaCount)
+        {
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(StigmaProbability, targetUnit.Data.name);
+            if (!existStigma.Contains(stigma) && !result.Contains(stigma))
+                result.Add(stigma);
+        }
+
+        return result;
+    }
+
     private bool IsLockStigmaAsUnit(Stigma stigma, string unitName)
     {
         // 검병 튜토리얼 특수 케이스
         if (unitName.Equals("검병"))
         {
-            if (stigma.StigmaEnum == StigmaEnum.Tail_Wind && !GameManager.OutGameData.IsTutorialClear())
+            if (stigma.StigmaEnum == StigmaEnum.Tailwind && !GameManager.OutGameData.Data.TutorialClear)
             {
                 Debug.Log($"검병 튜토리얼: {stigma.StigmaEnum} 차단");
                 return true;
@@ -138,12 +149,27 @@ public class StigmaController
 
     public List<Stigma> GetHarlotStigmaList() => _harlotStigmaList;
 
+    public List<Stigma> GetRandomHarlotStigmaList(DeckUnit targetUnit, int stigmaCount)
+    {
+        List<Stigma> result = new();
+        List<Stigma> existStigma = targetUnit.GetStigma();
+
+        while (result.Count < stigmaCount)
+        {
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomHarlotStigma();
+            if (!existStigma.Contains(stigma) && !result.Contains(stigma))
+                result.Add(stigma);
+        }
+
+        return result;
+    }
+
     public void CheckUnlockedStigma(Stigma stigma)
     {
-        UnlockStigma(stigma, 20, StigmaEnum.Sin);
-        UnlockStigma(stigma, 16, StigmaEnum.Forbidden_Pact);
-        UnlockStigma(stigma, 13, StigmaEnum.Teleport);
-        UnlockStigma(stigma, 7, StigmaEnum.Killing_Spree);
+        UnlockStigma(stigma, 20, StigmaEnum.DeadlySin);
+        UnlockStigma(stigma, 16, StigmaEnum.ForbiddenPact);
+        UnlockStigma(stigma, 13, StigmaEnum.PassageOfShadows);
+        UnlockStigma(stigma, 7, StigmaEnum.KillingSpree);
         UnlockStigma(stigma, 1, StigmaEnum.Destiny);
     }
 

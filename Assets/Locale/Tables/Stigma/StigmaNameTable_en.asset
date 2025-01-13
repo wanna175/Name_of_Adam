@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 79409508352
-    m_Localized: Shadow Step
+    m_Localized: Steps Of Shadow
     m_Metadata:
       m_Items: []
   - m_Id: 101656096768
@@ -39,23 +39,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 293079937024
-    m_Localized: Additional Punishment
+    m_Localized: Damnation's Weight
     m_Metadata:
       m_Items: []
   - m_Id: 2496133918720
     m_Localized: Assasination
     m_Metadata:
       m_Items: []
-  - m_Id: 2525573738496
-    m_Localized: Blessing
+  - m_Id: 42993097530036224
+    m_Localized: "Blessing \u2160"
     m_Metadata:
       m_Items: []
   - m_Id: 2552828325888
-    m_Localized: Raise I
+    m_Localized: Exaltation I
     m_Metadata:
       m_Items: []
   - m_Id: 136906908954624
-    m_Localized: Raise II
+    m_Localized: Exaltation II
     m_Metadata:
       m_Items: []
   - m_Id: 136938819219456
@@ -71,11 +71,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137166058221568
-    m_Localized: Blood Blessing I
+    m_Localized: Crimson Blessing I
     m_Metadata:
       m_Items: []
   - m_Id: 137241786380288
-    m_Localized: Blood Blessing II
+    m_Localized: Crimson Blessing II
     m_Metadata:
       m_Items: []
   - m_Id: 137273327546368
@@ -91,19 +91,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137394207387648
-    m_Localized: Immortality I
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137444568395776
-    m_Localized: Immortality II
+    m_Localized: Immortality
     m_Metadata:
       m_Items: []
   - m_Id: 137491657846784
-    m_Localized: Invinciblity I
-    m_Metadata:
-      m_Items: []
-  - m_Id: 137710671818752
-    m_Localized: Invinciblity II
+    m_Localized: Invinciblity
     m_Metadata:
       m_Items: []
   - m_Id: 137737045602304
@@ -111,7 +103,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137774911778816
-    m_Localized: Expand
+    m_Localized: Expansion
     m_Metadata:
       m_Items: []
   - m_Id: 137816326336512
@@ -119,7 +111,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137873012355072
-    m_Localized: Berserker
+    m_Localized: Berserk
     m_Metadata:
       m_Items: []
   - m_Id: 137905929252864
@@ -139,7 +131,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138073625915392
-    m_Localized: Teleport
+    m_Localized: Passage Of Shadows
     m_Metadata:
       m_Items: []
   - m_Id: 138109344608256
@@ -147,7 +139,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138142068568064
-    m_Localized: Cleanse
+    m_Localized: Purification
     m_Metadata:
       m_Items: []
   - m_Id: 138245189726208
@@ -163,11 +155,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138386491633664
-    m_Localized: Pray In Aid
+    m_Localized: Intercession
     m_Metadata:
       m_Items: []
   - m_Id: 138448022073344
-    m_Localized: Sin
+    m_Localized: Deadly Sin
     m_Metadata:
       m_Items: []
   - m_Id: 1406610193575936
@@ -180,10 +172,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1443988576727040
     m_Localized: Charge
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1444059020062720
-    m_Localized: Karma
     m_Metadata:
       m_Items: []
   - m_Id: 1444226800611328
@@ -219,11 +207,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1444587946962944
-    m_Localized: Funeral
+    m_Localized: Requiem
     m_Metadata:
       m_Items: []
   - m_Id: 8008119182225408
-    m_Localized: Bitrh
+    m_Localized: Birth
     m_Metadata:
       m_Items: []
   - m_Id: 8008157530746880
@@ -232,6 +220,118 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 8008219941990400
     m_Localized: Sacrifice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35790860311482368
+    m_Localized: Advent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39027246400442368
+    m_Localized: Shadow Cloak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39036450616020992
+    m_Localized: Rearmament
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42993527597191168
+    m_Localized: "Blessing \u2161"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51315765480148992
+    m_Localized: Grudge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51315763550769152
+    m_Localized: Solitude
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51332653350277120
+    m_Localized: Hand Of Grace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52527534567477248
+    m_Localized: Veiled Support
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348813554241536
+    m_Localized: Death's Threshold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348817182314496
+    m_Localized: Fortification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348819241717760
+    m_Localized: Armor Of Aeons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348821196263424
+    m_Localized: Broken Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348822861402112
+    m_Localized: Blood Oath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348824576872448
+    m_Localized: Cleanse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72348828750204928
+    m_Localized: Blind Faith
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769720071147520
+    m_Localized: Glory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769787096125440
+    m_Localized: Thorns Of Oblivion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769789029699584
+    m_Localized: Garden Of Oblivion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75769790749364224
+    m_Localized: Soulbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84791701789626368
+    m_Localized: Distrust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85812546154680320
+    m_Localized: Abyssal Steps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85812548360884224
+    m_Localized: Repeating Surge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 85812550235738112
+    m_Localized: Fragments Of Birth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87222195554766848
+    m_Localized: Atonement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98229890332119040
+    m_Localized: Repulsion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98229892320219136
+    m_Localized: Chain Of Fate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98229893872111616
+    m_Localized: Heavy Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 106067211207200768
+    m_Localized: Despair
     m_Metadata:
       m_Items: []
   references:

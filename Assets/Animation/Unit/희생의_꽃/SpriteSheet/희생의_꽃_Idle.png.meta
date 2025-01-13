@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_0"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_1"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_1"
       rect:
         serializedVersion: 2
         x: 256
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_2"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_2"
       rect:
         serializedVersion: 2
         x: 512
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_3"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_3"
       rect:
         serializedVersion: 2
         x: 768
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_4"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_4"
       rect:
         serializedVersion: 2
         x: 1024
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_5"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_5"
       rect:
         serializedVersion: 2
         x: 1280
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_6"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_6"
       rect:
         serializedVersion: 2
         x: 1536
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uD638\uB8E8\uC2A4_Idle_7"
+      name: "\uD76C\uC0DD\uC758_\uAF43_Idle_7"
       rect:
         serializedVersion: 2
         x: 1792
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uD638\uB8E8\uC2A4_Idle_4": 1639901249
-      "\uD638\uB8E8\uC2A4_Idle_1": -1531239005
-      "\uD638\uB8E8\uC2A4_Idle_7": 760682854
-      "\uD638\uB8E8\uC2A4_Idle_3": -1617956393
-      "\uD638\uB8E8\uC2A4_Idle_0": -122227957
-      "\uD638\uB8E8\uC2A4_Idle_2": 997754961
-      "\uD638\uB8E8\uC2A4_Idle_5": -1675694932
-      "\uD638\uB8E8\uC2A4_Idle_6": 119174190
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_7": 760682854
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_5": -1675694932
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_3": -1617956393
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_0": -122227957
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_2": 997754961
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_6": 119174190
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_1": -1531239005
+      "\uD76C\uC0DD\uC758_\uAF43_Idle_4": 1639901249
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

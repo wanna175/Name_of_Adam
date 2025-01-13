@@ -1,78 +1,40 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_TurnNotify : UI_Scene
 {
-    const float fadeTime = 0.5f;
-    const float displayTime = 0.5f;
-
-    private Sprite _playerTurn;
-    private Sprite _unitTurn;
+    [SerializeField] private GameObject _preparationPhase;
+    [SerializeField] private GameObject _battlePhase;
 
     private bool _displayFlag;
 
-    private CanvasGroup _canvasGroup;
-
-    private void Awake()
-    {
-        _playerTurn = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/PlayerTurnText");
-        _unitTurn = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/UnitTurnText");
-
-        _canvasGroup = GetComponent<CanvasGroup>();
-
-        Hide();
-    }
-
-    public void SetPlayerTurn()
+    public void SetPreparationPhaseDisplay()
     {
         _displayFlag = true;
 
-        FadeIn();
-        Invoke(nameof(FadeOut), fadeTime + displayTime);
+        _battlePhase.SetActive(false);
+        _preparationPhase.SetActive(true);
 
-        GetComponent<Image>().sprite = _playerTurn;
-    }
-
-    public void SetUnitTurn()
-    {
-        if (_displayFlag) 
+        GameManager.Instance.PlayAfterCoroutine(() =>
         {
-            Invoke(nameof(SetUnitTurn), fadeTime + displayTime + fadeTime);
+            _displayFlag = false;
+        }, 2f);
+    }
 
-            return;
+    public void SetBattlePhaseDisplay()
+    {
+        if (_displayFlag)
+        {
+            GameManager.Instance.PlayAfterCoroutine(() =>
+            {
+                SetBattlePhaseDisplay();
+            }, 0.1f);
         }
-
-        FadeIn();
-        Invoke(nameof(FadeOut), fadeTime + displayTime);
-
-        GetComponent<Image>().sprite = _unitTurn;
-    }
-
-    public void FadeIn()
-    {
-        if (!gameObject.activeSelf)
-            return;
-
-        GetComponent<FadeController>().StartFadeIn();
-    }
-
-    public void FadeOut()
-    {
-        if (!gameObject.activeSelf)
-            return;
-
-        GetComponent<FadeController>().StartFadeOut();
-        Invoke(nameof(Hide), fadeTime);
-    }
-
-    private void Hide()
-    {
-        _canvasGroup.alpha = 0;
-        _displayFlag = false;
-    }
-
-    public void Off()
-    {
-        gameObject.SetActive(false);
+        else
+        {
+            _preparationPhase.SetActive(false);
+            _battlePhase.SetActive(true);
+        }
     }
 }

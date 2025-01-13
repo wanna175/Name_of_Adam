@@ -4,47 +4,57 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class UI_UpgradeSelectButton : UI_Popup
+public class UI_UpgradeSelectButton : UI_Base
 {
-    [SerializeField] private List<TextMeshProUGUI> _buttonTextList;
-    [SerializeField] private List<Image> _buttonGemImageList;
-    [SerializeField] private List<GameObject> _button;
+    [SerializeReference] private Image _upgradeImage;
+    [SerializeReference] private TextMeshProUGUI _upgradeName;
+    [SerializeReference] private TextMeshProUGUI _upgradeDescription;
+    [SerializeReference] private GameObject _frame;
+    [SerializeReference] private GameObject _goldFrame;
+    [SerializeReference] private Button _button;
 
-    private UpgradeSceneController _uc;
+    readonly Color _goldTextColor = new(0.82f, 0.65f, 0.27f);
+    readonly Color _orangeTextColor = new(1f, 0.55f, 0f);
 
-    public void Init(UpgradeSceneController uc, List<Upgrade> upgrades)
+    private UI_UpgradeSelectButtonPopup _popup;
+    private Upgrade _upgrade;
+    private int _selectIndex;
+
+    public void Init(Upgrade upgrade, int selectIndex, UI_UpgradeSelectButtonPopup popup)
     {
-        _uc = uc;
+        _popup = popup;
+        _selectIndex = selectIndex;
+        _upgrade = upgrade;
+        _button.onClick.AddListener(OnClick);
 
-        for (int i = 0; i < 3; i++)
-        {
-            if (i < upgrades.Count)
-            {
-                _buttonTextList[i].text = upgrades[i].UpgradeDescription;
-                _buttonGemImageList[i].sprite = upgrades[i].UpgradeImage160;
-            }
-            else
-            {
-                _button[i].SetActive(false);
-            }
-        }
+        _upgradeImage.sprite = upgrade.UpgradeImage160;
+
+        if (upgrade.UpgradeData.Rarity == 2)
+            _upgradeName.color = _goldTextColor;
+        else if (upgrade.UpgradeData.Rarity == 3)
+            _upgradeName.color = _orangeTextColor;
+
+        _upgradeName.text = GameManager.Locale.GetLocalizedUpgrade(upgrade.UpgradeName);
+
+        _upgradeDescription.SetText(GameManager.Data.UpgradeController.GetUpgradeDescription(upgrade));
+        _goldFrame.SetActive(upgrade.UpgradeData.Rarity > 1);
     }
 
-    public void ResetUpgradeSelectButtons()
+    public void OnHoverEnter()
     {
-        var upgradeList = _uc.ResetUpgrade();
-        Init(_uc, upgradeList);
+        _frame.GetComponent<Image>().color = new(0.8f, 0.8f, 0.8f);
+        _goldFrame.GetComponent<Image>().color = new(0.8f, 0.8f, 0.8f);
     }
 
-    public void OnClick(int select)
+    public void OnHoverExit()
     {
-        _uc.OnUpgradeSelect(select);
+        _frame.GetComponent<Image>().color = new(1f, 1f, 1f);
+        _goldFrame.GetComponent<Image>().color = new(1f, 1f, 1f);
     }
 
-    public void QuitBtn()
+    public void OnClick()
     {
-        this.transform.SetAsFirstSibling();
-        this.gameObject.SetActive(false);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        _popup.OnClickUpgradeButton(_selectIndex);
     }
-
 }

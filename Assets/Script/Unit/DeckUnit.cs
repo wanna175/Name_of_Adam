@@ -7,6 +7,21 @@ using UnityEngine;
 [Serializable]
 public class DeckUnit
 {
+    private string _privateKey;
+    public string PrivateKey
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(_privateKey))
+                _privateKey = GameManager.CreatePrivateKey();
+            return _privateKey;
+        }
+        set
+        {
+            _privateKey = value;
+        }
+    }
+
     public int UnitID { get; set; }
     public UnitDataSO Data; // 유닛 기초 정보
 
@@ -31,66 +46,97 @@ public class DeckUnit
 
     public Stat DeckUnitTotalStat => DeckUnitStat + DeckUnitChangedStat;//일시적 변경된 스탯
 
-    public readonly int UpgradedMaxUpgradeCount = 3;
-    public readonly int MaxUpgradeCount = 2;
-
     private List<Stigma> _stigma = new();
 
-    public readonly int _maxStigmaCount = 3;
+    public readonly int MaxStigmaCount = 3;
     private int _stigmaCount => _stigma.Count;
 
-    [HideInInspector] public int HallUnitID;  //전당 내 유닛 구분을 위한 식별 ID
+    [SerializeField] private int hallUnitID;
+    public int HallUnitID
+    {
+        get
+        {
+            return hallUnitID;
+        }
+        set
+        {
+            hallUnitID = value;
+        }
+    }
+
     public bool IsMainDeck = false;
     public bool CanSpawnInEnemyField => CheckStigma(StigmaEnum.Assasination);
     
     public DeckUnit()
     {
         this.UnitID = -1;
-        //this.UnitID = GameManager.UnitIDController.GetID();
+        this.HallUnitID = -1;
     }
 
-    public bool CheckStigma(StigmaEnum findStigma)
+    public bool CheckStigma(StigmaEnum findStigmata, StigmaTier? stigmataTier = null)
     {
-        foreach (Stigma stigma in GetStigma())
+        foreach (Stigma stigmata in GetStigma())
         {
-            if (findStigma == stigma.StigmaEnum)
+            if (findStigmata == stigmata.StigmaEnum && (stigmataTier == null || stigmataTier == stigmata.Tier))
                 return true;
         }
 
         return false;
     }
 
-    public List<Stigma> GetStigma(bool isEventScene = false)
+    public bool CheckHaveAnyCorruptStigmata()
     {
-        List<Stigma> stigmata = new();
+        foreach (Stigma stigmata in GetStigma())
+        {
+            if (stigmata.Tier == StigmaTier.Harlot)
+                return true;
+        }
 
-        if (!isEventScene)
+        return false;
+    }
+
+    public bool CheckUpgrade(Upgrade findUpgrade)
+    {
+        foreach (Upgrade upgrade in DeckUnitUpgrade)
+        {
+            if (upgrade.UpgradeStat.Compare(findUpgrade.UpgradeStat) == true)
+                return true;
+        }
+
+        return false;
+    }
+
+    public List<Stigma> GetStigma(bool notGetUniqueStigmata = false)
+    {
+        List<Stigma> stigmataList = new();
+
+        if (!notGetUniqueStigmata)
         {
             foreach (Stigma stigma in Data.UniqueStigma)
             {
-                stigmata.Add(stigma);
+                stigmataList.Add(stigma);
             }
         }
 
         foreach (Stigma stigma in _stigma)
         {
-            stigmata.Add(stigma);
+            stigmataList.Add(stigma);
         }
 
-        return stigmata;
+        return stigmataList;
     }
 
     public void AddStigma(Stigma stigma)
     {
         if (stigma == null)
         {
-            Debug.Log("추가하려는 낙인이 null입니다.");
+            Debug.Log("추가하려는 성흔이 null입니다.");
             return;
         }
 
         if (_stigma.Contains(stigma) || (Data.UniqueStigma != null && Data.UniqueStigma.Contains(stigma)))
         {
-            Debug.Log($"이미 장착된 낙인입니다. : {stigma.Name}");
+            Debug.Log($"이미 장착된 성흔입니다. : {stigma.Name}");
             return;
         }
 
@@ -98,7 +144,7 @@ public class DeckUnit
         if (Data.UniqueStigma != null)
             uniqueStigmaCount = Data.UniqueStigma.Count;
 
-        if(_stigma.Count + uniqueStigmaCount >= _maxStigmaCount)
+        if(_stigma.Count + uniqueStigmaCount >= MaxStigmaCount)
         {
             Debug.Log("최대 낙인 개수");
             return;
@@ -229,5 +275,26 @@ public class DeckUnit
     public int GetStigmaCount()
     {
         return _stigmaCount + Data.UniqueStigma.Count;
+    }
+
+    public static string CreatePrivateKey()
+        => Guid.NewGuid().ToString();
+
+    public bool IsEqual(DeckUnit another)
+        => this.PrivateKey == another.PrivateKey;
+
+    public SaveUnit ConventToSaveUnit()
+    {
+        SaveUnit saveUnit = new();
+
+        saveUnit.PrivateKey = PrivateKey;
+        saveUnit.UnitDataID = Data.ID;
+        saveUnit.UnitStat = DeckUnitUpgradeStat;
+        saveUnit.Stigmata = GetStigmaSaveData();
+        saveUnit.Upgrades = GetUpgradeData();
+        saveUnit.HallID = HallUnitID;
+        saveUnit.IsMainDeck = IsMainDeck;
+
+        return saveUnit;
     }
 }

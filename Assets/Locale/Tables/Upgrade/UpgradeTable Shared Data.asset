@@ -31,6 +31,70 @@ MonoBehaviour:
     m_Key: Cost (COST)
     m_Metadata:
       m_Items: []
+  - m_Id: 19263673565245440
+    m_Key: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263729957662720
+    m_Key: HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263775021264896
+    m_Key: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19263811629150208
+    m_Key: Cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350389920419840
+    m_Key: GemOfFury
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350393934368768
+    m_Key: GemOfRage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350396627111936
+    m_Key: GemOfWrath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350399600873472
+    m_Key: GemOfMercy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350401442172928
+    m_Key: GemOfCompassion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350403317026816
+    m_Key: GemOfForgiveness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350405288349696
+    m_Key: GemOfMoment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350407133843456
+    m_Key: GemOfEphemera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350408878673920
+    m_Key: GemOfTransience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350410594144256
+    m_Key: GemOfIllusion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350412594827264
+    m_Key: GemOfFantasia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82350415736360960
+    m_Key: GemOfElysium
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -10,21 +10,13 @@ public class Buff_DeathStrike : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_DeathStrike_Sprite");
 
-        _description = "Damage triples, but dies after attacking.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _description = "Death Strike Info";
 
         _buffActiveTiming = ActiveTiming.DAMAGE_CONFIRM;
 
         _owner = owner;
 
-        _statBuff = false;
-
         _dispellable = true;
-
-        _stigmaBuff = false;
     }
 
     public override bool Active(BattleUnit caster)

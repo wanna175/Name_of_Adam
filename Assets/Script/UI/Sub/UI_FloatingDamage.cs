@@ -10,26 +10,19 @@ public class UI_FloatingDamage : UI_Base
     readonly private float _displayTime = 0.3f;
     readonly private float _fadeOutTime = 0.3f;
     //1.2
-    readonly private int _startSize = 190;
-    readonly private int _endSize = 220;
+    readonly private int _startSize = 35;
+    readonly private int _endSize = 40;
 
     private float _accumTime;
-
-    private bool _direction = false;
 
     private void Awake()
     {
         _damageNumber.alpha = 0f;
     }
 
-    public void DirectionChange(bool direction)
+    public void Init(int damage, bool direction)
     {
-        _direction = direction;
-    }
-
-    public void Init(int damage)
-    {
-        if (_direction)
+        if (direction)
         {
             _damageNumber.alignment = TextAlignmentOptions.BottomRight;
         }
@@ -38,7 +31,7 @@ public class UI_FloatingDamage : UI_Base
             _damageNumber.alignment = TextAlignmentOptions.BottomLeft;
         }
 
-        if (damage < 0)
+        if (damage <= 0)
         {
             _damageNumber.color = Color.red;
             damage *= -1;
@@ -103,7 +96,6 @@ public class UI_FloatingDamage : UI_Base
             yield return null;
         }
 
-        _damageNumber.alpha = 0f;
-        _damageNumber.transform.localPosition = new Vector3(0,-100,0);
+        Destroy(this.gameObject);
     }
 }

@@ -8,11 +8,11 @@ public class PlayerSkill_Move : PlayerSkill
 
     public override bool Use(Vector2 coord)
     {
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Move");
+        GameManager.Sound.Play("UI/PlayerSkillSFX/Swiftness");
         GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Tailwind", BattleManager.Field.GetTilePosition(coord));
 
         selectedUnit = BattleManager.Field.GetUnit(coord);
-        selectedUnit.SetBuff(new Buff_Tailwind());
+        selectedUnit.SetBuff(new Buff_SpeedIncrease());
         BattleManager.Field.SetNextActionTileColor(selectedUnit, FieldColorType.Move);
 
         return true;
@@ -23,7 +23,7 @@ public class PlayerSkill_Move : PlayerSkill
         switch (activeTiming)
         {
             case ActiveTiming.TURN_START:
-                if (BattleManager.Instance.MoveUnit(selectedUnit, coord))
+                if (BattleManager.Instance.MoveUnit(selectedUnit, coord) || selectedUnit.Location == coord)
                 {
                     BattleManager.Field.ClearAllColor();
                     BattleManager.PlayerSkillController.SetSkillDone();

@@ -1,14 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class UnitAction_Phanuel : UnitAction
 {
-    //0 index is vary last face, 1 index is second last face
     private int[] _recentState = {-1, -1};
-    //0 = smile, 1 = weep, 2 = mad
+
     private int _phanuelState = 0;
     private List<Vector2> _attackTile = new();
     private Phanuel_Animation _phanuel_Animation = null;
+    private bool _isFall = false;
 
     public override void AIMove(BattleUnit attackUnit)
     {
@@ -52,9 +53,9 @@ public class UnitAction_Phanuel : UnitAction
         if (targetUnits.Count > 0)
         {
             _phanuel_Animation.SetBool("isAttack", true);
-            BattleManager.Instance.AttackStart(attackUnit, targetUnits);
+            BattleManager.Instance.AttackStart(attackUnit, targetUnits.Distinct().ToList());
         }
-        else
+        else if (!DirectAttackCheck())
         {
             BattleManager.Instance.EndUnitAction();
         }
@@ -186,7 +187,8 @@ public class UnitAction_Phanuel : UnitAction
 
     private void TileAdd(Vector2 coord)
     {
-        _attackTile.Add(coord);
+        if (BattleManager.Field.IsInRange(coord))
+            _attackTile.Add(coord);
     }
 
     private void TileClear(Team team)
@@ -207,8 +209,12 @@ public class UnitAction_Phanuel : UnitAction
             {
                 GameManager.Sound.Play("PhanuelSummon/Phanuel_Summon");
                 _phanuel_Animation = GameManager.Resource.Instantiate("BattleUnits/Phanuel_Animation", caster.transform).GetComponent<Phanuel_Animation>();
+                _phanuel_Animation.SetAnimator(caster.Team);
             }
-            _phanuel_Animation.ChangeAnimator(caster.Team);
+            else
+            {
+                _phanuel_Animation.ChangeAnimator(caster.Team);
+            }
         }
         else if ((activeTiming & ActiveTiming.TURN_START) == ActiveTiming.TURN_START)
         {
@@ -229,24 +235,69 @@ public class UnitAction_Phanuel : UnitAction
                 SetAttackTile(caster);
             }
         }
-        else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD || (activeTiming & ActiveTiming.FALLED) == ActiveTiming.FALLED)
+        else if ((activeTiming & ActiveTiming.AFTER_UNIT_DEAD) == ActiveTiming.AFTER_UNIT_DEAD)
         {
-            for (int i = 0; i < BattleManager.Data.BattleUnitList.Count; i++)
+            if (BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "바누엘" && findUnit != caster) != null)
             {
-                BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "오벨리스크" && findUnit.Team == caster.Team);
-                if (remainUnit == null)
-                    break;
+                while (true)
+                {
+                    BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "오벨리스크" && findUnit.Team == caster.Team);
+                    if (remainUnit == null)
+                        break;
 
-                remainUnit.UnitDiedEvent(false);
+                    remainUnit.UnitDiedEvent(false);
+                }
+
+                TileClear(caster.Team);
             }
+        }
+        else if ((activeTiming & ActiveTiming.FALLED) == ActiveTiming.FALLED)
+        {
+            if (!_isFall && caster.Team == Team.Enemy)
+            {
+                BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
+                BattleManager.Instance.SetTlieClickCoolDown(4f);
 
-            TileClear(caster.Team);
+                _phanuel_Animation.SetBool("isCorrupt", true);
+                GameManager.Instance.PlayAfterCoroutine(() =>
+                {
+                    caster.UnitFallEvent();
+                }, 2f);
+
+                _isFall = true;
+
+                return true;
+            }
+            else
+            {
+                if (BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "바누엘" && findUnit != caster) != null)
+                {
+                    while (true)
+                    {
+                        BattleUnit remainUnit = BattleManager.Data.BattleUnitList.Find(findUnit => findUnit.Data.ID == "오벨리스크" && findUnit.Team == caster.Team);
+                        if (remainUnit == null)
+                            break;
+
+                        remainUnit.UnitDiedEvent(false);
+                    }
+
+                    TileClear(caster.Team);
+                }
+
+                _isFall = false;
+
+                return false;
+            }
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_START) == ActiveTiming.ATTACK_TURN_START)
         {
             foreach (Vector2 tile in _attackTile)
             {
-                BattleManager.Field.TileDict[tile].IsColored = true;
+                if (BattleManager.Field.IsInRange(tile))
+                {
+                    BattleManager.Field.TileDict[tile].IsColored = true;
+                    BattleManager.Field.TileDict[tile].SetColor(BattleManager.Field.ColorList(FieldColorType.Attack));
+                }
             }
         }
         else if ((activeTiming & ActiveTiming.ATTACK_TURN_END) == ActiveTiming.ATTACK_TURN_END)
@@ -257,7 +308,7 @@ public class UnitAction_Phanuel : UnitAction
         {
             if (receiver != null)
             {
-                receiver.ChangeFall(1);
+                receiver.ChangeFall(1, caster, FallAnimMode.On);
             }
         }
 
@@ -290,7 +341,6 @@ public class UnitAction_Phanuel : UnitAction
         sd.unitData = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/오벨리스크");
         sd.team = attackUnit.Team;
 
-
         if (hits.Count == 0)
         {
             sd.location = coord;
@@ -305,7 +355,7 @@ public class UnitAction_Phanuel : UnitAction
         if (targetUnits.Count > 0)
         {
             _phanuel_Animation.SetBool("isAttack", true);
-            BattleManager.Instance.AttackStart(attackUnit, targetUnits);
+            BattleManager.Instance.AttackStart(attackUnit, targetUnits.Distinct().ToList());
         }
         else
         {
@@ -315,5 +365,10 @@ public class UnitAction_Phanuel : UnitAction
         TileClear(attackUnit.Team);
 
         return true;
+    }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
+    {
+        return _attackTile;
     }
 }

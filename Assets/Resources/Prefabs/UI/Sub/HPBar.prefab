@@ -286,7 +286,7 @@ RectTransform:
   m_GameObject: {fileID: 1612470229354298786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.05, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5618693097886891062}
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -329433467, guid: 181a5bcdd297e29438b82a235e64591e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 181a5bcdd297e29438b82a235e64591e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -373,7 +373,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 335, y: 20}
+  m_SizeDelta: {x: 330, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8711518902318429325
 CanvasRenderer:
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 897230729, guid: 22eb3ff3e8c99ea46b01e746708abfb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a55a00552a4013419d604a80c517d03, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -631,7 +631,6 @@ GameObject:
   - component: {fileID: 6913700447399924222}
   - component: {fileID: 3051833336369639759}
   - component: {fileID: 4904455930949447026}
-  - component: {fileID: 6106013448291803824}
   - component: {fileID: 31148991419210464}
   m_Layer: 5
   m_Name: HPBar
@@ -709,24 +708,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
---- !u!114 &6106013448291803824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8078627109196648211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  m_PresetInfoIsWorld: 0
 --- !u!114 &31148991419210464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +767,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 335, y: 20}
+  m_SizeDelta: {x: 330, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2193557503131393619
 CanvasRenderer:
@@ -815,7 +797,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 897230729, guid: 22eb3ff3e8c99ea46b01e746708abfb4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22eb3ff3e8c99ea46b01e746708abfb4, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

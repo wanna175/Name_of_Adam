@@ -14,212 +14,255 @@ public class UI_MyDeck : UI_Popup
     [SerializeField] private TMP_Text _pageText;
     [SerializeField] private GameObject _prePageButton;
     [SerializeField] private GameObject _postPageButton;
+    [SerializeField] private GameObject _myDeckButton;
+    [SerializeField] private UI_SortDropdown _sortButton;
 
     private List<DeckUnit> _playerDeck = new();
     private List<DeckUnit> _hallDeck = new();
-    private Dictionary<DeckUnit, UI_Card> _card_dic = new();//선택된 유닛
-    private Action<DeckUnit> _onSelect;
-    private Action _endEvent;
-    private CUR_EVENT _eventNum = CUR_EVENT.NONE;
-    private bool _isBossClear;
+    private Dictionary<DeckUnit, UI_Card> _unitCardDictionary = new();//선택된 유닛
+
+    private List<DeckUnit> _selectedUnitList = new();
+
+    private Action<DeckUnit> _onSelectAction;
+    private CurrentEvent _currentEvent = CurrentEvent.None;
     private GameObject _eventMenu = null;
+    private Action _endEvent;
+
     private int _currentPageIndex;
     private int _maxPageIndex;
 
-    public void Init(bool battle = false, Action<DeckUnit> onSelect = null, CUR_EVENT eventNum = CUR_EVENT.NONE, Action endEvent=null)
+    public void Init(bool isDeckButtonClick = false)
     {
         _setButton.SetActive(false);
+        _sortButton.gameObject.SetActive(false);
+        _myDeckButton.SetActive(isDeckButtonClick);//내 덱 보기 버튼으로 진입했을 경우
 
-        if (eventNum == CUR_EVENT.RECEIVE_STIGMA)
-            _quitButton.SetActive(false);
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
 
-        if (battle)
-            _playerDeck = BattleManager.Data.PlayerDeck;
-        else
-            _playerDeck = GameManager.Data.GetDeck();
+        _playerDeck = GameManager.Data.GetSortedDeck(SortMode.Default);
 
         _currentPageIndex = 0;
-        _maxPageIndex = (_playerDeck.Count - 1) / 10;
-        
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
-        ClearCard();
         SetPageAllUI();
-
-        if (onSelect != null)
-            _onSelect = onSelect;
-        if (endEvent != null)
-            _endEvent = endEvent;
-
-        _eventNum = eventNum;
-
-        EventSceneCheck(_eventNum);
-
-        if (_eventNum == CUR_EVENT.GIVE_STIGMA || _eventNum == CUR_EVENT.STIGMA)
-            SetCard(_eventNum);
-        else
-            SetCard();
+        SetCard();
     }
 
-    public void HallSaveInit(bool isBossClear, Action<DeckUnit> onSelect = null)
+    public void EventInit(Action<DeckUnit> onSelectAction = null, CurrentEvent currentEvent = CurrentEvent.None, GameObject eventMenu = null, Action endEvent = null)
     {
-        _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
-        _isBossClear = isBossClear;
+        _currentEvent = currentEvent;
+        _onSelectAction = onSelectAction;
+        _eventMenu = eventMenu;
+        _endEvent = endEvent;
 
-        List<DeckUnit> normalDeck = new();
+        string titleTextKey = "";
+
+        if (_currentEvent == CurrentEvent.Upgrade_Select)
+        {
+            titleTextKey = "Select a unit to upgrade.";
+        }
+        else if (_currentEvent == CurrentEvent.Heal_Faith_Select)
+        {
+            titleTextKey = "Select a unit to restore faith.";
+        }
+        else if (_currentEvent == CurrentEvent.Stigmata_Select || _currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
+        {
+            titleTextKey = "Select a unit to bestow stigmata.";
+        }
+        else if (_currentEvent == CurrentEvent.Stigmata_Receive)
+        {
+            titleTextKey = "Select a unit to bestow stigmata.";
+            _quitButton.SetActive(false);
+        }
+        else if (_currentEvent == CurrentEvent.Stigmata_Give)
+        {
+            titleTextKey = "Select a unit to sacrifice.";
+        }
+        else if (_currentEvent == CurrentEvent.Revert_Unit_Select)
+        {
+            titleTextKey = "Select units to revert.";
+            _setButton.SetActive(true);
+        }
+        else if (_currentEvent == CurrentEvent.Hall_Delete)
+        {
+            titleTextKey = "Possessed units";
+            _sortButton.gameObject.SetActive(true);
+            _sortButton.Init(this);
+
+            if (!GameManager.OutGameData.Data.IsOnTooltipForDivineHall)
+            {
+                GameManager.OutGameData.Data.IsOnTooltipForDivineHall = true;
+                UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+                systemInfo.Init("TooltipForDivineHall", "");
+
+                GameManager.OutGameData.SaveData();
+            }
+        }
+
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene(titleTextKey);
+
+        SetCard(_currentEvent);
+    }
+
+    public void RefreshDecks(SortMode sortMode)
+    {
+        _playerDeck = GameManager.Data.GetSortedDeck(sortMode);
+        _currentPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
+
+        SetCard();
+        SetPageAllUI();
+    }
+
+    public void HallSaveInit(Action<DeckUnit> onSelectAction = null)
+    {
+        if (!GameManager.OutGameData.Data.IsOnTooltipForDivineHallInBattle)
+        {
+            GameManager.OutGameData.Data.IsOnTooltipForDivineHallInBattle = true;
+            UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+            systemInfo.Init("TooltipForDivineHallInBattle", "");
+
+            GameManager.OutGameData.SaveData();
+        }
+
+        _quit_txt.text = GameManager.Locale.GetLocalizedEventScene("Skip");
+        _currentEvent = CurrentEvent.Hall_Select;
+
         List<DeckUnit> totalDeck = new();
         _hallDeck = GameManager.Data.GameData.FallenUnits;
 
-        _currentPageIndex = 0;
-        _maxPageIndex = (_hallDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
-
-        ClearCard();
-        SetPageAllUI();
-
+        _sortButton.gameObject.SetActive(false);
         _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
 
         foreach (DeckUnit unit in _hallDeck)
-        {
             totalDeck.Add(unit);
 
-            if (unit.Data.Rarity == Rarity.Normal)
-            {
-                normalDeck.Add(unit);
-            }
-        }
+        _playerDeck = totalDeck;
+        _onSelectAction = onSelectAction;
 
-        if (isBossClear)
+        _currentPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
+
+        ClearCard();
+        SetCard();
+        SetPageAllUI();
+    }
+
+    public void HallDeckInit(SlotRank slotRank, bool isEmptySlot, Action<DeckUnit> onSelectAction = null)
+    {
+        List<DeckUnit> hallSettingDeck = new();
+
+        _sortButton.gameObject.SetActive(false);
+        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("HallSelect");
+
+        _hallDeck = GameManager.Data.GetSortedDeck(SortMode.Default);
+
+        if (slotRank == SlotRank.Divine)
         {
-            _playerDeck = totalDeck;
+            hallSettingDeck = _hallDeck;
         }
         else
         {
-            _playerDeck = normalDeck;
+            foreach (DeckUnit unit in _hallDeck)
+            {
+                if (unit.Data.Rarity != Rarity.Boss && (unit.Data.Rarity == Rarity.Normal || slotRank == SlotRank.Advanced))
+                    hallSettingDeck.Add(unit);
+            }
         }
 
-        if (onSelect != null)
-            _onSelect = onSelect;
-
-        SetCard();
-    }
-
-    public void HallDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
-    {
-        List<DeckUnit> eliteDeck = new();
-        List<DeckUnit> normalDeck = new();
-
-        _hallDeck = GameManager.Data.GetDeck();
+        _playerDeck = hallSettingDeck;
+        _onSelectAction = onSelectAction;
 
         _currentPageIndex = 0;
-        _maxPageIndex = (_hallDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
+        _maxPageIndex = Mathf.Max((_playerDeck.Count - 1) / 10, 0);
 
         ClearCard();
-        SetPageAllUI();
 
-        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
-
-        foreach (DeckUnit unit in _hallDeck)
+        if (!isEmptySlot)
         {
-            if (unit.Data.Rarity == Rarity.Normal)
+            _cancelCard = GameManager.Resource.Instantiate("UI/Sub/CancelCard", _grid).GetComponent<UI_CancelCard>();
+            _cancelCard.transform.SetAsFirstSibling();
+            _cancelCard.Init(onSelectAction);
+
+            _currentEvent = CurrentEvent.Hall_Journey_Select;
+        }
+
+        SetCard(CurrentEvent.Hall_Journey_Select);
+        SetPageAllUI();
+    }
+
+    private UI_CancelCard _cancelCard;
+
+    public void SelectCard(DeckUnit unit)
+    {
+        if (_selectedUnitList.Contains(unit))
+        {
+            _selectedUnitList.Remove(unit);
+            _unitCardDictionary[unit].SetSelectHighlight(false);
+        }
+        else
+        {
+            _selectedUnitList.Add(unit);
+            _unitCardDictionary[unit].SetSelectHighlight(true);
+        }
+    }
+
+    private void SetCard(CurrentEvent currentEvent = CurrentEvent.None)
+    {
+        ClearCard();
+
+        if (_currentEvent == CurrentEvent.Hall_Journey_Select)
+        {
+            _cancelCard.gameObject.SetActive(_currentPageIndex == 0);
+
+            for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
             {
-                normalDeck.Add(unit);
+                if (_currentPageIndex == 0 && i == (_currentPageIndex + 1) * 10 - 1)
+                    continue;
+
+                if (_currentPageIndex != 0 && _playerDeck.Count > i - 1)
+                    AddCard(_playerDeck[i-1]);
+                else if (_playerDeck.Count > i)
+                    AddCard(_playerDeck[i]);
+            }
+
+            return;
+        }
+
+        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
+        {
+            if (i >= _playerDeck.Count)
+                break;
+
+            if (currentEvent == CurrentEvent.Stigmata_Give)
+            {
+                if (_playerDeck[i].GetStigma(true).Count != 0)
+                {
+                    AddCard(_playerDeck[i]);
+                    if (_playerDeck[i].IsMainDeck)
+                    {
+                        _unitCardDictionary[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_MainDeck", string.Empty));
+                    }
+                }
+            }
+            else if (currentEvent == CurrentEvent.Stigmata_Receive)
+            {
+                if (_playerDeck[i].Data.Rarity != Rarity.Boss)
+                    AddCard(_playerDeck[i]);
+            }
+            else if (currentEvent == CurrentEvent.Stigmata_Select ||
+                currentEvent == CurrentEvent.Corrupt_Stigmata_Select)
+            {
+                AddCard(_playerDeck[i]);
+                if (_playerDeck[i].Data.Rarity == Rarity.Boss)
+                {
+                    _unitCardDictionary[_playerDeck[i]].SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CantGiveStigmata_Boss", string.Empty));
+                }
             }
             else
             {
-                eliteDeck.Add(unit);
-            }
-        }
-
-        if (isBoss)
-        {
-            _playerDeck = eliteDeck;
-        }
-        else
-            _playerDeck = normalDeck;
-
-        if (onSelect != null)
-            _onSelect = onSelect;
-
-        SetCard();
-    }
-
-    public void HallEliteDeckInit(bool isBoss = false, Action<DeckUnit> onSelect = null)
-    {
-        List<DeckUnit> eliteDeck = new();
-
-        _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bring to the Divine Hall.");
-
-        _hallDeck = GameManager.Data.GetDeck();
-
-        _currentPageIndex = 0;
-        _maxPageIndex = (_playerDeck.Count - 1) / 10;
-        if (_maxPageIndex < 0)
-            _maxPageIndex = 0;
-
-        ClearCard();
-        SetPageAllUI();
-
-        foreach (DeckUnit unit in _hallDeck)
-        {
-            if (unit.Data.Rarity != Rarity.Boss)
-            {
-                eliteDeck.Add(unit);
-            }
-        }
-
-        if (isBoss)
-        {
-            _playerDeck = _hallDeck;
-        }
-        else
-        {
-            _playerDeck = eliteDeck;
-        }
-
-        if (onSelect != null)
-            _onSelect = onSelect;
-
-        SetCard();
-    }
-
-    public void SetCard() 
-    {
-        ClearCard();
-
-        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
-        {
-            if (i >= _playerDeck.Count)
-                break;
-
-            AddCard(_playerDeck[i]);
-        }
-    }
-
-    private void SetCard(CUR_EVENT eventNum)
-    {
-        ClearCard();
-
-        for (int i = 10 * _currentPageIndex; i < (_currentPageIndex + 1) * 10; i++)
-        {
-            if (i >= _playerDeck.Count)
-                break;
-
-            if (eventNum == CUR_EVENT.GIVE_STIGMA)
-            {
-                if (_playerDeck[i].GetStigma(true).Count != 0)
-                    AddCard(_playerDeck[i]);
-            }
-            else if (eventNum == CUR_EVENT.STIGMA)
-            {
                 AddCard(_playerDeck[i]);
-                _card_dic[_playerDeck[i]].SetDisable(_playerDeck[i].Data.Rarity == Rarity.Boss);
             }
-
         }
     }
 
@@ -234,79 +277,55 @@ public class UI_MyDeck : UI_Popup
     {
         UI_Card newCard = GameObject.Instantiate(_cardPrefabs, _grid).GetComponent<UI_Card>();
         newCard.SetCardInfo(this, unit);
+        newCard.SetSelectHighlight(_selectedUnitList.Contains(unit));
 
-        _card_dic[unit] = newCard;
+        _unitCardDictionary[unit] = newCard;
     }
 
     public void OnClickCard(DeckUnit unit)
     {
-        UI_UnitInfo ui = GameManager.UI.ShowPopup<UI_UnitInfo>("UI_UnitInfo");
-        ui.SetUnit(unit);
+        if (_currentEvent == CurrentEvent.Stigmata_Give)
+        {
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("CorfirmGiveStigmata", () =>
+            {
+                GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
-        if (_eventNum == CUR_EVENT.HARLOT_RESTORATION)
-            ui.Restoration(_onSelect, _eventNum, OnSelectRestorationUnit);
+                UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+                unitInfo.SetUnit(unit);
+                unitInfo.Init(_onSelectAction, _currentEvent);
+                GameManager.Data.RemoveDeckUnit(unit);
+            });
+        }
         else
-            ui.Init(_onSelect, _eventNum);
+        {
+            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+            unitInfo.SetUnit(unit);
+            unitInfo.Init(_onSelectAction, _currentEvent);
+        }
     }
 
-    public void OnSelectRestorationUnit(DeckUnit unit)
-    {
-        _card_dic[unit].SelectCard();
-    }
-
-    //���� ȯ�� �� ������ư...
     public void SetButtonClick()
     {
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
         _endEvent.Invoke();
-    }
-
-    public void SetEventMenu(GameObject obj)
-    {
-        _eventMenu = obj;
-    }
-
-    private void EventSceneCheck(CUR_EVENT EventScene)
-    {
-        string sceneName = currentSceneName();
-        if (sceneName.Equals("EventScene"))
-        {
-            //Quit_btn.SetActive(false);
-
-            if (EventScene == CUR_EVENT.UPGRADE)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to upgrade.");
-            else if (EventScene == CUR_EVENT.RELEASE)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to restore faith.");
-            else if (EventScene == CUR_EVENT.STIGMA || EventScene == CUR_EVENT.RECEIVE_STIGMA)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to bestow stigmata.");
-            else if (EventScene == CUR_EVENT.GIVE_STIGMA)
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select a unit to sacrifice.");
-            else if (EventScene == CUR_EVENT.HARLOT_RESTORATION)
-            {
-                _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Select units to revert.");
-                _setButton.SetActive(true);
-            }
-        }
-        else
-        {
-            _title_txt.text = GameManager.Locale.GetLocalizedEventScene("Possessed units");
-        }
     }
 
     public void Quit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        if(_currentEvent == CurrentEvent.Hall_Select)
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("DivineHallQuit", QuitButtonSelect);
+        else
+        {
+            QuitButtonSelect();
+        }
+    }
 
+    private void QuitButtonSelect()
+    {
         if (_quit_txt.text == "Skip" || _quit_txt.text == "선택 안함")
         {
-            if (_isBossClear)
-            {
-                SceneChanger.SceneChange("MainScene");
-            }
-            else
-            {
-                SceneChanger.SceneChange("MainScene");
-            }
+            SceneChanger.SceneChange("MainScene");
         }
         else
         {
@@ -319,37 +338,19 @@ public class UI_MyDeck : UI_Popup
 
     private void SetPageAllUI()
     {
-        SetPageText();
-        SetPreButtonUI();
-        SetPostButtonUI();
-    }
-
-    private void SetPageText()
-    {
         if (_maxPageIndex == 0)
             _pageText.SetText("");
         else
-            _pageText.SetText($"( {_currentPageIndex + 1} / {_maxPageIndex + 1} )");
-    }
+            _pageText.SetText($"{_currentPageIndex + 1} / {_maxPageIndex + 1}");
 
-    private void SetPreButtonUI()
-    {
-        if (_currentPageIndex == 0)
-            _prePageButton.SetActive(false);
-        else
-            _prePageButton.SetActive(true);
-    }
-
-    private void SetPostButtonUI()
-    {
-        if (_currentPageIndex == _maxPageIndex)
-            _postPageButton.SetActive(false);
-        else
-            _postPageButton.SetActive(true);
+        _prePageButton.SetActive(_currentPageIndex != 0);
+        _postPageButton.SetActive(_currentPageIndex != _maxPageIndex);
     }
 
     public void OnPrePageButton()
     {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
         _currentPageIndex--;
         SetCard();
         SetPageAllUI();
@@ -357,8 +358,34 @@ public class UI_MyDeck : UI_Popup
 
     public void OnPostPageButton()
     {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
         _currentPageIndex++;
         SetCard();
         SetPageAllUI();
+    }
+
+    public override bool ESCAction()
+    {
+        if (_currentEvent == CurrentEvent.None)
+        {
+            GameManager.UI.ClosePopup();
+            GameManager.Sound.Play("UI/UISFX/UICloseSFX");
+
+            return true;
+        }
+        else if (_currentEvent == CurrentEvent.Heal_Faith_Select ||
+            _currentEvent == CurrentEvent.Upgrade_Select ||
+            _currentEvent == CurrentEvent.Stigmata_Select ||
+            _currentEvent == CurrentEvent.Corrupt_Stigmata_Select ||
+            _currentEvent == CurrentEvent.Revert_Unit_Select ||
+            _currentEvent == CurrentEvent.Stigmata_Give ||
+            _currentEvent == CurrentEvent.Hall_Delete)
+        {
+            Quit();
+            return true;
+        }
+
+        return false;
     }
 }

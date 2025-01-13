@@ -22,12 +22,12 @@ public class ShopNode : MonoBehaviour
 
     public void SetImage()
     {
-        if (!GameManager.OutGameData.GetBuyable(ItemID) && GameManager.OutGameData.GetProgressItem(ItemID).IsLock) // 구매 불가능한 노드
+        if (!GameManager.OutGameData.GetBuyable(ItemID) && !GameManager.OutGameData.IsUnlockedItem(ItemID)) // 구매 불가능한 노드
         {
             NodeImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/ProgressShop/wlscjreh_icon_02_lock");
             Block.SetActive(true);
         }
-        else if (GameManager.OutGameData.GetProgressItem(ItemID).IsUnlocked) // 구매한 노드
+        else if (GameManager.OutGameData.IsUnlockedItem(ItemID)) // 구매한 노드
         {
             NodeImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/ProgressShop/wlscjreh_icon_01");
             NodeLine.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/ProgressShop/line_02");

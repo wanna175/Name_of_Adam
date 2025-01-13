@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -15,20 +16,30 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
     [SerializeField] private Image _frameImage;
     [SerializeField] private TextMeshProUGUI _name;
 
-    [SerializeField] private List<GameObject> _stigmaFrames;
+    [SerializeField] private List<GameObject> _stigmataFrames;
 
-    private List<Image> _stigmaImages;
+    [SerializeField] private Sprite _normalFrame;
+    [SerializeField] private Sprite _eliteFrame;
 
-    [SerializeField] public Sprite NormalFrame;
-    [SerializeField] public Sprite EliteFrame;
+    [SerializeField] private List<Image> _stigmataImages;
+
+    [SerializeField] private Image _insignia;
+
+    [SerializeField] private Image _apostleInsignia;
+    [SerializeField] private Image _eliteInsignia;
+    [SerializeField] private Image _bossInsignia;
+
     private UI_MyDeck _myDeck;
     private DeckUnit _cardUnit = null;
-    private CUR_EVENT evNum = CUR_EVENT.NONE;
+
+    private Action _disableClickAction;
+
+    readonly Color _playerInsigniaColor = new(0.35f, 0.09f, 0.05f);
+    readonly Color _enemyInsigniaColor = new(0.54f, 0.5f, 0.34f);
 
     private void Start()
     {
         _highlight.SetActive(false);
-        _selectHighlight.SetActive(false);
     }
 
     public void SetCardInfo(UI_MyDeck myDeck, DeckUnit unit)
@@ -39,54 +50,54 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
         _unitImage.sprite = unit.Data.CorruptImage;
         _name.text = unit.Data.Name;
 
-        if(unit.Data.Rarity == Rarity.Normal)
+        _insignia.color = _playerInsigniaColor;
+
+        _apostleInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Original);
+        _eliteInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Elite);
+        _bossInsignia.gameObject.SetActive(unit.Data.Rarity == Rarity.Boss);
+
+        if (unit.Data.Rarity == Rarity.Normal)
         {
-            _frameImage.sprite = NormalFrame;
+            _frameImage.sprite = _normalFrame;
         }
         else
         {
-            _frameImage.sprite = EliteFrame;
+            _frameImage.sprite = _eliteFrame;
         }
 
-        if(SceneManager.GetActiveScene().name == "DifficultySelectScene")
+        if (SceneManager.GetActiveScene().name == "DifficultySelectScene")
         {
-            SetDisable(unit.IsMainDeck);
+            if (unit.IsMainDeck)
+                SetDisable(() => GameManager.UI.ShowPopup<UI_SystemInfo>().Init("TeamBuild_MainDeck", string.Empty));
         }
 
-        _stigmaImages = new List<Image>();
-        foreach (var frame in _stigmaFrames)
-            _stigmaImages.Add(frame.GetComponentsInChildren<Image>()[1]);
-
-        foreach (var frame in _stigmaFrames)
+        foreach (var frame in _stigmataFrames)
             frame.SetActive(true);
 
-        List<Stigma> stigmas = unit.GetStigma();
-        for (int i = 0; i < _stigmaImages.Count; i++)
+        List<Stigma> unitStigmaList = unit.GetStigma();
+        for (int i = 0; i < _stigmataImages.Count; i++)
         {
-            if (i < stigmas.Count)
+            if (i < unitStigmaList.Count)
             {
-                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetStigma(stigmas[i]);
-                _stigmaImages[i].sprite = stigmas[i].Sprite_28;
-                _stigmaImages[i].color = Color.white;
+                _stigmataFrames[i].GetComponent<UI_StigmaHover>().SetStigma(unitStigmaList[i]);
+                _stigmataImages[i].sprite = unitStigmaList[i].Sprite_28;
+                _stigmataImages[i].color = Color.white;
             }
             else
             {
-                _stigmaFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
-                _stigmaImages[i].color = new Color(1f, 1f, 1f, 0f);
+                _stigmataFrames[i].GetComponent<UI_StigmaHover>().SetEnable(false);
+                _stigmataImages[i].color = new Color(1f, 1f, 1f, 0f);
             }
         }
     }
-    public void SelectCard()
-    {
-        if (!_selectHighlight.activeInHierarchy)
-            this._selectHighlight.SetActive(true);
-        else
-            this._selectHighlight.SetActive(false);
-    }
 
-    public void SetDisable(bool disable)
+    public void SetSelectHighlight(bool active) => _selectHighlight.SetActive(active);
+
+
+    public void SetDisable(Action disableClickAction)
     {
-        _disable.SetActive(disable);
+        _disable.SetActive(true);
+        _disableClickAction = disableClickAction;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -115,12 +126,10 @@ public class UI_Card : UI_Base, IPointerEnterHandler, IPointerExitHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UISelectSFX");
         if (_disable.activeSelf)
-        {
-            return;
-        }
-
-        _myDeck.OnClickCard(_cardUnit);
+            _disableClickAction();
+        else
+            _myDeck.OnClickCard(_cardUnit);
     }
 }

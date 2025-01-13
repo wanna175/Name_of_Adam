@@ -10,8 +10,8 @@ public class BattleCutSceneController : MonoBehaviour
     [SerializeField] private GameObject _blur;
     [Space(20f)]
 
-    readonly float ZoomTime = 0.5f;
-
+    readonly float ZoomTime = 0.38f;
+    
     [Space(10f)]
     [Header("공격 이펙트(X, Y : 이동할 위치, Z : 머무를 시간")]
     [SerializeField] private List<Vector3> _shakeInfo;
@@ -24,6 +24,7 @@ public class BattleCutSceneController : MonoBehaviour
             return;
 
         BattleManager.Field.ClearAllColor();
+        BattleManager.Field.SetTileHighlightFrame(null, false);
         _cameraHandler.SetCutSceneCamera();
 
         SetUnitRayer(CSData.AttackUnit, CSData.HitUnits, 5);
@@ -49,6 +50,7 @@ public class BattleCutSceneController : MonoBehaviour
         ExitBattleCutScene(CSData);
 
         yield return new WaitUntil(() => FallCheck(CSData.HitUnits));
+        yield return new WaitUntil(() => FallCheck(new() { CSData.AttackUnit }));
 
         //yield return new WaitForSeconds(1);
 
@@ -80,7 +82,6 @@ public class BattleCutSceneController : MonoBehaviour
             {
                 GameManager.Sound.Play("PlayerHit/PlayerHitSFX");
                 BattleManager.BattleUI.UI_playerHP.DecreaseHP(1);
-                BattleManager.BattleUI.UI_playerHP.StartEffect();
                 BattleManager.Instance.BattleOverCheck();
             }
             
@@ -102,6 +103,9 @@ public class BattleCutSceneController : MonoBehaviour
 
     private void UnitFlip(BattleCutSceneData CSData)
     {
+        if (CSData.IsFlipFixed)
+            return;
+
         bool flip = CSData.AttackUnitFlipX;
 
         CSData.AttackUnit.SetFlipX(!flip);
@@ -149,7 +153,7 @@ public class BattleCutSceneController : MonoBehaviour
 
         StartCoroutine(_cameraHandler.CameraMove(CSData.ZoomLocation, ZoomTime));
         StartCoroutine(_cameraHandler.CameraZoom(CSData.ZoomSize, ZoomTime));
-        StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.MovePosition, ZoomTime));
+        StartCoroutine(CSData.AttackUnit.CutSceneMove(CSData.MovePosition, ZoomTime + 0.1f));
 
         yield return new WaitForSeconds(ZoomTime);
     }

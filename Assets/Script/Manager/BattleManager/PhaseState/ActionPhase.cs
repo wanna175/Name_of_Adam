@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class ActionPhase : Phase
@@ -9,28 +7,26 @@ public class ActionPhase : Phase
     public override void OnStateEnter()
     {
         _nowUnit = BattleManager.Data.GetNowUnit();
+        BattleManager.Data.SetCurrentTurnOrder();
+        BattleManager.Field.SetTileHighlightFrame(_nowUnit.Location, true);
 
         if (_nowUnit.Team == Team.Player)
             BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
 
-        if (_nowUnit.Team == Team.Player && TutorialManager.Instance.IsEnable())
+        if (_nowUnit.Team == Team.Player && TutorialManager.Instance.IsEnableUpdate())
             TutorialManager.Instance.ShowNextTutorial();
 
-        //∞¯∞› ≈œ Ω√¿€ Ω√ √º≈©
+        BattleManager.BattleUI.UI_TurnChangeButton.SetButtonSprite();
+
+        //Í≥µÍ≤© ÌÑ¥ ÏãúÏûë Ïãú Ï≤¥ÌÅ¨
         _nowUnit.NextAttackSkip = BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_START, _nowUnit);
-        _nowUnit.NextAttackSkip |= BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ACTION_TURN_START, _nowUnit);
 
         BattleManager.Field.SetNextActionTileColor(_nowUnit, FieldColorType.Attack);
 
         if (_nowUnit.Team == Team.Enemy)
-            BattleManager.Instance.StartCoroutine(NowUnitAction());
-    }
-
-    private IEnumerator NowUnitAction()
-    {
-        yield return new WaitForSeconds(1.5f);
-
-        _nowUnit.Action.AISkillUse(_nowUnit);
+            GameManager.Instance.PlayAfterCoroutine(() => {
+                _nowUnit.Action.AISkillUse(_nowUnit);
+            }, 1f);
     }
 
     public override void OnStateUpdate()
@@ -48,7 +44,7 @@ public class ActionPhase : Phase
     {
         BattleManager.Field.ClearAllColor();
 
-        //∞¯∞› ≈œ ¡æ∑· Ω√ √º≈©
+        //Í≥µÍ≤© ÌÑ¥ Ï¢ÖÎ£å Ïãú Ï≤¥ÌÅ¨
         BattleManager.Instance.ActiveTimingCheck(ActiveTiming.ATTACK_TURN_END, _nowUnit);
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.FIELD_ATTACK_TURN_END);
         

@@ -53,9 +53,24 @@ public class UI_Hands : UI_Scene
 
     public void OnClickHand(UI_Hand hand)
     {
-        if (BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost) && GameManager.Data.CanUseDarkEssense(hand.GetUnit().Data.DarkEssenseCost))
+        bool isCanUseMana = BattleManager.Mana.CanUseMana(hand.GetUnit().DeckUnitTotalStat.ManaCost);
+        bool isCanUseDarkEssense = GameManager.Data.CanUseDarkEssense(hand.GetUnit().Data.DarkEssenseCost);
+
+        if (!isCanUseMana)
         {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            BattleManager.BattleUI.UI_manaGauge.CannotEffect.Create();
+            BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("ManaIsLow"));
+        }
+
+        if (!isCanUseDarkEssense)
+        {
+            BattleManager.BattleUI.UI_darkEssence.CannotEffect.Create();
+            BattleManager.BattleUI.UI_controlBar.CreateSystemInfo(GameManager.Locale.GetLocalizedSystem("DarkEssenceIsLow"));
+        }
+
+        if (isCanUseMana && isCanUseDarkEssense)
+        {
+            GameManager.Sound.Play("UI/UISFX/UIInGameSelectSFX");
 
             if (BattleManager.BattleUI.UI_playerSkill.GetSelectedCard() != null)
             {
@@ -69,8 +84,7 @@ public class UI_Hands : UI_Scene
         }
         else
         {
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX"); 
-            Debug.Log("Can't");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
         }
     }
 
@@ -113,6 +127,14 @@ public class UI_Hands : UI_Scene
             {
                 card.ChangeInable(true);
             }
+        }
+    }
+
+    public void InableCard(bool isInable)
+    {
+        foreach (UI_Hand card in _handList)
+        {
+            card.ChangeInable(isInable);
         }
     }
 }

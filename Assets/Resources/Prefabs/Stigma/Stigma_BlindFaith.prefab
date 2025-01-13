@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6516491720742692485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2950990188252653416}
+  - component: {fileID: -6578988833906904235}
+  m_Layer: 0
+  m_Name: Stigma_BlindFaith
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2950990188252653416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516491720742692485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6578988833906904235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516491720742692485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54af7b16cb133c442a0d8cc2c87539b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stigmaEnum: 41
+  _name: Blind Faith
+  _sprite_28: {fileID: 21300000, guid: 99a72cd47263e1a4b888a87f02968c9b, type: 3}
+  _sprite_88: {fileID: 21300000, guid: a0ed357e7f085bc479e68eb2c88b4ce3, type: 3}
+  _sprite_164: {fileID: 21300000, guid: 46c5d6cb8be2af640bbb18b0412b9e85, type: 3}
+  _description: Blind Faith Info
+  _activeTiming: 2
+  _tier: 4
+  _isLock: 0

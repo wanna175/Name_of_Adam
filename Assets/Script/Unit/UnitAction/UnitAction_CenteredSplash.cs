@@ -20,4 +20,16 @@ public class UnitAction_CenteredSplash : UnitAction
         BattleManager.Instance.AttackStart(attackUnit, units.Distinct().ToList());
         return true;
     }
+
+    public override List<Vector2> GetSplashRangeForField(BattleUnit unit, Tile targetTile, Vector2 caster)
+    {
+        List<Vector2> splashRangeList = new();
+        foreach (Vector2 vec in unit.GetAttackRange())
+        {
+            if (BattleManager.Field.IsInRange(vec + caster))
+                splashRangeList.Add(vec + caster);
+        }
+
+        return splashRangeList;
+    }
 }

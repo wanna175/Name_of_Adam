@@ -1,148 +1,167 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
 public class DifficultySelectSceneController : MonoBehaviour
 {
-    [SerializeField] GameObject UI_Difficulty;
-    [SerializeField] GameObject UI_IncarnaSelect;
-    [SerializeField] GameObject UI_HallSelect;
-    [SerializeField] GameObject UI_ConfirmBtn;
+    [SerializeField] private GameObject _incarnaSelectUI;
+    [SerializeField] private GameObject _hallSelectUI;
+    [SerializeField] private GameObject _confirmButtonUI;
+    [SerializeField] private GameObject _incarnaListUI;
 
-    public GameObject UI_Incarna_List;
-    public List<GameObject> Incarna_Card;
-    public List<GameObject> Incarna_Info;
+    [SerializeField] private List<GameObject> _incarnaBlocker;
+    [SerializeField] private List<GameObject> _incarnaInfo;
 
-    private Incarna incarnaData;
-    private bool DifficultySelected;
-    private Color cardColor;
+    [SerializeField] private List<TextMeshProUGUI> _incarnaPlayerSkillInfo;
+
+    [SerializeField] private UI_HallCard[] _hallCards;
+
+    private enum CurrentUI  
+    {
+        IncarnationSelect,
+        IncarnationInfo,
+        HallSelect,
+    }
+
+    private CurrentUI _currentUI = CurrentUI.IncarnationSelect;
 
     void Start()
     {
         Init();
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
-        GameManager.Sound.SceneBGMPlay("DifficultySelectScene");
     }
 
     private void Init()
     {
-        UI_Difficulty.SetActive(false);//추후 순서대로 수정
-        UI_IncarnaSelect.SetActive(true);
-        UI_HallSelect.SetActive(false);
-        UI_ConfirmBtn.SetActive(false);
-        DifficultySelected = false;
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
 
-        LockIncarna(61, 1);
-        LockIncarna(71, 2);
+        _incarnaSelectUI.SetActive(true);
+        _hallSelectUI.SetActive(false);
+        _confirmButtonUI.SetActive(false);
+
+        _incarnaBlocker[0].SetActive(!GameManager.OutGameData.IsUnlockedItem(71));
+        _incarnaBlocker[1].SetActive(!GameManager.OutGameData.IsUnlockedItem(61));
+
+        GameManager.OutGameData.DataIntegrityCheck();
+
+        foreach (UI_HallCard card in _hallCards)
+        {
+            card.Init();
+        }
+
+        _currentUI = CurrentUI.IncarnationSelect;
     }
 
     public void Confirm()
     {
-        if (UI_IncarnaSelect.activeSelf == true)
+        if (GameManager.Data.GameDataMain.DeckUnits.Count < 1)
         {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
 
-            if (GameManager.OutGameData.IsUnlockedItem(6))
-            {
-                GameManager.Data.GameDataMain.DarkEssence = 10;
-            }
-            else if (GameManager.OutGameData.IsUnlockedItem(3))
-            {
-                GameManager.Data.GameDataMain.DarkEssence = 7;
-            }
-
-            GameManager.Data.GameDataMain.Incarna = incarnaData;
-            UI_IncarnaSelect.SetActive(false);
-            UI_HallSelect.SetActive(true);
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("CanStartWithZeroUnitInfo", "");
+            return;
         }
-        else if (UI_HallSelect.activeSelf == true)
+
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
+
+        GameManager.Data.MainDeckSet();
+        GameManager.Data.GameData.FallenUnits.Clear();
+        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
+
+        if (GameManager.OutGameData.IsUnlockedItem(6))
         {
-            GameManager.Sound.Play("UI/ClickSFX/UIClick2");
+            GameManager.Data.GameDataMain.DarkEssence = 10;
+        }
+        else if (GameManager.OutGameData.IsUnlockedItem(3))
+        {
+            GameManager.Data.GameDataMain.DarkEssence = 7;
+        }
 
-            GameManager.Data.MainDeckSet();
-            GameManager.Data.GameData.FallenUnits.Clear();
-            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
 
-            if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Elieus_Enter) == false)
-            {
-                if (GameManager.OutGameData.IsPhanuelClear())
-                {
-                    SceneChanger.SceneChangeToCutScene(CutSceneType.Elieus_Enter);
-                    return;
-                }
-            }
-
+        if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Tubalcain_Enter)
+            && GameManager.Data.GameData.CurrentAct == 1)
+        {
+            GameManager.OutGameData.SetCutSceneData(CutSceneType.Tubalcain_Enter, true);
+            SceneChanger.SceneChangeToCutScene(CutSceneType.Tubalcain_Enter);
+        }
+        else if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Elieus_Enter)
+            && GameManager.Data.GameData.CurrentAct == 2)
+        {
+            GameManager.OutGameData.SetCutSceneData(CutSceneType.Elieus_Enter, true);
+            SceneChanger.SceneChangeToCutScene(CutSceneType.Elieus_Enter);
+        }
+        else if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Libiel_Enter)
+            && GameManager.Data.GameData.CurrentAct == 3)
+        {
+            GameManager.OutGameData.SetCutSceneData(CutSceneType.Libiel_Enter, true);
+            SceneChanger.SceneChangeToCutScene(CutSceneType.Libiel_Enter);
+        }
+        else
+        {
             SceneChanger.SceneChange("StageSelectScene");
         }
     }
 
-    public void OnIncarnaClick(int i)
+    public void OnIncarnaClick(int incarnaIndex)
     {
-        if (i == 1 && !GameManager.OutGameData.IsUnlockedItem(61))
+        if ((incarnaIndex == 1 && _incarnaBlocker[0].activeSelf) || 
+            (incarnaIndex == 2 && _incarnaBlocker[1].activeSelf))
         {
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+            GameManager.Sound.Play("UI/UISFX/UIFailSFX");
             return;
         }
 
-        if(i == 2 && !GameManager.OutGameData.IsUnlockedItem(71))
-        {
-            GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
-            return;
-        }
-        GameManager.Sound.Play("UI/ClickSFX/UIClick2");
-        UI_Incarna_List.SetActive(false);
-        UI_ConfirmBtn.SetActive(true);
-        Incarna_Info[i].SetActive(true);
-        incarnaData = GameManager.Resource.Load<Incarna>($"ScriptableObject/Incarna/{Incarna_Info[i].name}");
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
 
-        List<TMP_Text> texts = new List<TMP_Text>();
-        for (int j = 0; j < Incarna_Info[i].transform.childCount; j++)
-        {
-            TMP_Text text = Incarna_Info[i].transform.GetChild(j).GetComponent<TMP_Text>();
-            if (text != null)
-                texts.Add(text);
-        }
+        GameManager.Data.GameDataMain.Incarna = GameManager.Resource.Load<Incarna>($"ScriptableObject/Incarna/{_incarnaInfo[incarnaIndex].name}");
 
-        for (int j = 2; j < texts.Count; j++)
-        {
-            texts[j].SetText(GameManager.Locale.GetLocalizedPlayerSkillInfo(3 * i + j - 1));
-        }
+        _incarnaListUI.SetActive(false);
+        _incarnaSelectUI.SetActive(false);
+        _hallSelectUI.SetActive(true);
+        _confirmButtonUI.SetActive(true);
+
+        _currentUI = CurrentUI.HallSelect;
     }
 
-    public void LockIncarna(int progressID, int incarnaID)
+    public void OnIncarnaInfoClick(int incarnaIndex)
     {
-        if (!GameManager.OutGameData.IsUnlockedItem(progressID))
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        _incarnaListUI.SetActive(false);
+        _incarnaInfo[incarnaIndex].SetActive(true);
+
+        for (int i = 0; i < 3; i++)
         {
-            Incarna_Card[incarnaID].transform.Find("Blocker").gameObject.SetActive(true);
+            _incarnaPlayerSkillInfo[3 * incarnaIndex + i].SetText(GameManager.Locale.GetLocalizedPlayerSkillInfo(3 * incarnaIndex + i + 1));
         }
+
+        _currentUI = CurrentUI.IncarnationInfo;
     }
 
     public void Quit()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
-        if (UI_IncarnaSelect.activeSelf == true)
+        if (_currentUI == CurrentUI.IncarnationSelect)
         {
-            if (UI_ConfirmBtn.activeSelf == false)
-            {
-                SceneChanger.SceneChange("MainScene");
-            }
-            else
-            {
-                Incarna_Info.ForEach(obj => { obj.SetActive(false); });
-                UI_ConfirmBtn.SetActive(false);
-                UI_Incarna_List.SetActive(true);
-            }
+            SceneChanger.SceneChange("ActSelectScene");
         }
-        else if (UI_HallSelect.activeSelf == true)
+        else if (_currentUI == CurrentUI.IncarnationInfo)
         {
-            UI_HallSelect.SetActive(false);
-            UI_IncarnaSelect.SetActive(true);
-            Incarna_Info.ForEach(obj => { obj.SetActive(false); });
-            UI_ConfirmBtn.SetActive(false);
-            UI_Incarna_List.SetActive(true);
+            _incarnaInfo.ForEach(obj => { obj.SetActive(false); });
+            _confirmButtonUI.SetActive(false);
+            _incarnaListUI.SetActive(true);
+
+            _currentUI = CurrentUI.IncarnationSelect;
+        }
+        else if (_currentUI == CurrentUI.HallSelect)
+        {
+            _hallSelectUI.SetActive(false);
+            _incarnaSelectUI.SetActive(true);
+            _incarnaInfo.ForEach(obj => { obj.SetActive(false); });
+            _confirmButtonUI.SetActive(false);
+            _incarnaListUI.SetActive(true);
+
+            _currentUI = CurrentUI.IncarnationSelect;
         }
     }
 }

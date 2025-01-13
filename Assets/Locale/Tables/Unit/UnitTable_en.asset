@@ -83,7 +83,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 139713363898368
-    m_Localized: The Triad
+    m_Localized: Appaim
     m_Metadata:
       m_Items: []
   - m_Id: 139767420088320
@@ -123,7 +123,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 138458386198528
-    m_Localized: The conjoined twins
+    m_Localized: The Conjoined Twins
     m_Metadata:
       m_Items: []
   - m_Id: 2490169618432
@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 140613729972224
-    m_Localized: Lucifer
+    m_Localized: Apostle Of Vice
     m_Metadata:
       m_Items: []
   - m_Id: 1412190752796672
@@ -139,7 +139,51 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8229095526428672
-    m_Localized: Oblation
+    m_Localized: Flower of Sacrifice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16953456901378048
+    m_Localized: Specter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16953496776626176
+    m_Localized: Revenant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35022263515500544
+    m_Localized: Savior's Swordsman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35022278405279744
+    m_Localized: Savior's Archer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35022287599194112
+    m_Localized: Savior's Nun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62182582629060608
+    m_Localized: Libiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73568076625498112
+    m_Localized: Arabella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75775101023440896
+    m_Localized: Yohrn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78451044309422080
+    m_Localized: Vines Of Oblivion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 87204495734493184
+    m_Localized: Betrayer Of Faith
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98961946074828800
+    m_Localized: Betrayer Of Hope
     m_Metadata:
       m_Items: []
   references:

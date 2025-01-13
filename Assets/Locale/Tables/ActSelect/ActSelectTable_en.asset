@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ActSelectTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d50ff4dbed03888499f7fbb807ee48d1, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 19848646656
+    m_Localized: Select Act
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39405109792768
+    m_Localized: 'ACT I
+
+      <size="10"> </size>
+
+      <size="30">Prelude of Demise</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39473065906176
+    m_Localized: 'ACT II
+
+      <size="10"> </size>
+
+      <size="30">The Fall of
+      Heaven</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39486466707456
+    m_Localized: "ACT III\n<size=\"10\"> </size>\n<size=\"30\">Eternal Darkness\r</size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39500148527104
+    m_Localized: 'Trial
+
+      <size="10"> </size>
+
+      <size="30">of Revelation</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39929162911744
+    m_Localized: ACT I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40022498758656
+    m_Localized: ACT II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40066358595584
+    m_Localized: ACT III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40145656107008
+    m_Localized: Trial of Revelation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39979301621760
+    m_Localized: Prelude of Demise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50340587261952
+    m_Localized: Replay Cut Scene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50426448859136
+    m_Localized: Replay Dialog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 742426562560
+    m_Localized: "\u2022 <b>Chapter 1</b> - Valiant Paladin"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 745249329152
+    m_Localized: "\u2022 <b>Chapter 2</b> - Sinful Ecstasy"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 747795271680
+    m_Localized: "\u2022 <b>Chapter 3</b> - King of Mortals"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 848567619584
+    m_Localized: "\u2022 <b>Chapter 1</b> - Celestial Siblings"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 870872928256
+    m_Localized: "\u2022 <b>Chapter 2</b> - Resonating Trinity"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 872085082112
+    m_Localized: "\u2022 <b>Chapter 3</b> - Savior of Light"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 903483641856
+    m_Localized: "\u2022 <b>Chapter 1</b> - Arbiter of Fate"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 924744568832
+    m_Localized: "\u2022 <b>Chapter 2</b> - Rose of Oblivion"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 937193263104
+    m_Localized: "\u2022 <b>Chapter 3</b> - Chaos from the Abyss"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40024419749888
+    m_Localized: The Fall of Heaven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40108544905216
+    m_Localized: "Eternal Darkness\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 594371825664
+    m_Localized: On the night the crimson star rises, the primal darkness is born.
+      The holy kingdom is already consumed by the desires of the people, who writhe
+      between beast and human. One by one, you corrupt holiness into darkness. At
+      last, even the king is plagued by anxiety and desire, heralding the onset of
+      a war from which no god can save.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 670536192000
+    m_Localized: "The darkness who vanquished the king of mortals now strides toward
+      the savior of light. In the sacred realm, the power of the divine is an absolute
+      decree, and the zealous vassals, blinded by unwavering faith, stand against
+      the encroaching darkness. Countless lives are sacrificed in noble devotion
+      to safeguard their deity, while the gods themselves suppress the shadows with
+      the radiant might of light. In the final judgment, who shall emerge victorious\u2014light
+      or darkness?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 674025852928
+    m_Localized: The power of darkness, which even brought the Savior of Light to
+      ruin, now engulfs the world. A world trapped in eternal slumber stirs by the
+      birth of a faint light from the abyssal depths. In the heart of the deep, where
+      light and darkness become one, a new chaos is born. The long dormant celestial
+      guardians and the ancient beings that cradle the light of chaos rise to protect
+      the newly born life. Will the light born amidst chaos ignite the flame to end
+      the darkness?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700353499136
+    m_Localized: 'The Trial of Revelation is an unavoidable stage of fate where you
+      confront your true self in the depths of darkness. Here, you will face two
+      powerful elite foes, whose random appearances conceal hidden dangers that further
+      test your resolve. At the end of this trial, a formidable boss awaits. In this
+      world shrouded in darkness, enemies appear in a more powerful form, strengthened
+      by the trials of destiny that you must overcome.
+
+
+      However, this place
+      is not just a battlefield. The Trial of Revelation is where you hone your inner
+      self and awaken your true power within the darkness. As you surpass the limits
+      of the enemies you encounter, you can refine your strength through endless
+      challenges. With each trial you overcome, you sharpen your dark power and empower
+      your followers. Finally, through the Trial of Revelation, you seize your world
+      of darkness in your hands.
+
+
+
+      This trial is not merely a stage to prove
+      your strength; it is a grand finale where you discover your true essence and
+      forge your destiny with your own hands.
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40173288181760
+    m_Localized: ' '
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

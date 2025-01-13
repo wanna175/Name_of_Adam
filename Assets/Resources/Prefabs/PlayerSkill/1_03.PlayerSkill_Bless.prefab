@@ -47,7 +47,7 @@ MonoBehaviour:
   originalmanaCost: 50
   originaldarkEssence: 3
   playerSkillName: Prayer
-  playerSkillID: 6
+  playerSkillID: 9
   manaCost: 50
   darkEssence: 3
   skillImage: {fileID: 21300000, guid: 9e3e3bec60a89ad42862d5474b1cf195, type: 3}

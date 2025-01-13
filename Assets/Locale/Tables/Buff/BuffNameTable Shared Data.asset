@@ -20,7 +20,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51949400064
-    m_Key: Attack Increase
+    m_Key: Attack Boost
     m_Metadata:
       m_Items: []
   - m_Id: 83377319936
@@ -85,6 +85,74 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 503696912384
     m_Key: Curse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11612092443193344
+    m_Key: Rahel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11612109350432768
+    m_Key: Lea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12314845094498304
+    m_Key: Edified
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16324934008721408
+    m_Key: MarkOfTheBeast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51287601982885888
+    m_Key: Grudge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55422904335224832
+    m_Key: Attack Decrease
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55755748567830528
+    m_Key: Killing Spree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71273951603609600
+    m_Key: Blessing Of Phanuel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71273984533090304
+    m_Key: Blessing Of Savior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71273990568693760
+    m_Key: Blessing Of Yorhn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86339396765372416
+    m_Key: Libiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86359543811035136
+    m_Key: Scale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86405420864917504
+    m_Key: Glory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97337021689909248
+    m_Key: Distrust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97337023501848576
+    m_Key: Despair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104773133970591744
+    m_Key: Bind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104773134952058880
+    m_Key: Smite
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -70,6 +70,42 @@ MonoBehaviour:
     m_Localized: Credit
     m_Metadata:
       m_Items: []
+  - m_Id: 36911645931491328
+    m_Localized: Game Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44342578477420544
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44342601382514688
+    m_Localized: Game Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50380412143071232
+    m_Localized: Sort Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387093921001472
+    m_Localized: Class
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387213802598400
+    m_Localized: Cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387203237146624
+    m_Localized: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387181808447488
+    m_Localized: HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50387140863651840
+    m_Localized: Attack Power
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

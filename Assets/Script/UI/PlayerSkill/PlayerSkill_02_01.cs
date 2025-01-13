@@ -13,15 +13,10 @@ public class PlayerSkill_02_01 : PlayerSkill
         targetUnit.GetAttack(-25, null);
         BattleManager.BattleCutScene.StartCoroutine(BattleManager.BattleCutScene.SkillHitEffect(targetUnit));
 
-        GameManager.Sound.Play("UI/PlayerSkillSFX/Punishment");
-        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/DarkThunder", BattleManager.Field.GetTilePosition(coord));
+        GameManager.Sound.Play("UI/PlayerSkillSFX/DivinePunishment");
+        GameManager.VisualEffect.StartVisualEffect("Arts/EffectAnimation/PlayerSkill/Punishment", BattleManager.Field.GetTilePosition(coord));
                 
-        return true;
-    }
-
-    public override bool Action(ActiveTiming activeTiming, Vector2 coord)
-    {
-        return base.Action(activeTiming, coord);
+        return false;
     }
 
     public override void CancelSelect()

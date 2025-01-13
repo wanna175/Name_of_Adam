@@ -39,7 +39,7 @@ public class BattleCutSceneManager : MonoBehaviour
     public void StartCutScene(CutSceneType cutSceneType)
     {
         string language = "EN";
-        if (GameManager.OutGameData.GetLanguage() == 1)
+        if (GameManager.OutGameData.Data.Language == 1)
             language = "KR";
 
         cutSceneToDisplay = cutSceneType;
@@ -48,6 +48,15 @@ public class BattleCutSceneManager : MonoBehaviour
         cutSceneGO.SetActive(true);
         IsCutScenePlaying = true;
 
+        GameManager.Sound.Clear();
+
+        if (cutSceneType == CutSceneType.Phanuel_Dead ||
+            cutSceneType == CutSceneType.TheSavior_Dead ||
+            cutSceneType == CutSceneType.Yohrn_Dead)
+            GameManager.Sound.Play("CutScene/Boss_Dead", Sounds.BGM);
+        else
+            GameManager.Sound.Play($"CutScene/{cutSceneToDisplay}", Sounds.BGM);
+
         video.clip = videoClip;
         video.loopPointReached += EndReached;
         video.Play();
@@ -55,7 +64,11 @@ public class BattleCutSceneManager : MonoBehaviour
         Debug.Log($"{cutSceneToDisplay}_{language} ÄÆ¾À ½ÃÀÛ");
     }
 
-    public void SkipButton() => EndReached(video);
+    public void SkipButton()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
+        EndReached(video);
+    }
 
     private void EndReached(VideoPlayer vp)
     {
@@ -65,6 +78,7 @@ public class BattleCutSceneManager : MonoBehaviour
         cutSceneGO.SetActive(false);
         IsCutScenePlaying = false;
 
+        GameManager.OutGameData.SetCutSceneData(cutSceneToDisplay, true);
         BattleManager.Instance.BattleOverCheck();
     }
 }

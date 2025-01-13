@@ -15,11 +15,11 @@ MonoBehaviour:
   _rawStat:
     MaxHP: 20
     CurrentHP: 20
-    ATK: 10
+    ATK: 5
     SPD: 20
     FallCurrentCount: 0
     FallMaxCount: 3
-    ManaCost: 60
+    ManaCost: 40
   _uniqueStigma:
   - {fileID: -7328026603544270719, guid: 2e3ccb2560a3b684dbae583d1d5a8815, type: 3}
   _id: "\uC7A5\uC758\uC0AC"
@@ -30,8 +30,8 @@ MonoBehaviour:
   _corruptImage: {fileID: 21300000, guid: 3faeab71a81d98144a4ad0a233fbb63b, type: 3}
   _portraitImage: {fileID: 21300000, guid: bc9bf1cbae8b4f04ab45507435141fd7, type: 3}
   _corruptPortraitImage: {fileID: 21300000, guid: bc9bf1cbae8b4f04ab45507435141fd7, type: 3}
-  _diaPortraitImage: {fileID: 21300000, guid: bc9bf1cbae8b4f04ab45507435141fd7, type: 3}
-  _corruptDiaPortraitImage: {fileID: 21300000, guid: bc9bf1cbae8b4f04ab45507435141fd7, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: 9b3343e04e8108e4bb37f80a56c38e4c, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 9b3343e04e8108e4bb37f80a56c38e4c, type: 3}
   _animatorController: {fileID: 9100000, guid: a2f42ca3fbea86b4ab7dfe5f5ff1d05c, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: a2f42ca3fbea86b4ab7dfe5f5ff1d05c, type: 2}
   _skillEffectAnim: {fileID: 0}
@@ -41,8 +41,10 @@ MonoBehaviour:
   _darkEssenseCost: 2
   _unitActionType: 0
   _unitMoveType: 0
+  _unitAttackType: 0
   _isBattleOnly: 0
+  _isFlipFixed: 0
   _attackRange: 00000000000100000000000000000000010000000000000001010101010101000000000000000100000000000000000000010000000000
   _moveRange: 00000000000000010000000101010000000100000000000000
   _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
-  _unitSize: 00000000000000000000000001010100000000000000000000
+  _unitSize: 00000000000000000000000001000000000000000000000000

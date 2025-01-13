@@ -1,19 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainSceneController : MonoBehaviour
 {
     [SerializeField] GameObject Canvas;
     [SerializeField] GameObject ContinueBox;
-    [SerializeField] GameObject UI_ResetAlert;
-    [SerializeField] GameObject SystemInfo;
-
-    [SerializeField] private TMP_Text systemInfoText;
-    [SerializeField] private TMP_Text systemTooltip;
 
     private void Start()
     {
@@ -22,147 +13,168 @@ public class MainSceneController : MonoBehaviour
         else
             ContinueBox.SetActive(false);
 
-        systemInfoText = SystemInfo.GetComponentInChildren<TMP_Text>();
-        SystemInfo.SetActive(false);
-
-        if (GameManager.OutGameData.IsPhanuelClear() && GameManager.OutGameData.GetIsOnMainTooltipForPhanuel() == false)
+        if (GameManager.OutGameData.Data.YohrnClear && !GameManager.OutGameData.Data.IsOnMainTooltipForYohrn)
         {
-            GameManager.OutGameData.SetIsOnMainTooltipForPhanuel(true);
-            GameManager.OutGameData.SaveData();
-            SetSystemInfo("축하합니다, 어둠의 선지자여. \r\n\r\n그러나 당신의 여정은 아직 끝나지 않았습니다. \r\n<color=yellow>새로운 빛<color=white>이 지평선 너머에서 당신을 기다리고 있습니다.");
-            SetSystemTooltip("※ '새로하기'를 눌러 도전하세요.");
+            GameManager.OutGameData.Data.IsOnMainTooltipForYohrn = true;
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("YohrnClear", "YohrnTooltip");
+        }
+        else if (GameManager.OutGameData.Data.SaviorClear && !GameManager.OutGameData.Data.IsOnMainTooltipForSavior)
+        {
+            GameManager.OutGameData.Data.IsOnMainTooltipForSavior = true;
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("SaviorClear", "SaviorTooltip");
+        }
+        else if (GameManager.OutGameData.Data.PhanuelClear && !GameManager.OutGameData.Data.IsOnMainTooltipForPhanuel)
+        {
+
+            GameManager.OutGameData.Data.IsOnMainTooltipForPhanuel = true;
+            GameManager.UI.ShowPopup<UI_SystemInfo>().Init("PhanuelClear", "PhanuelTooltip");
         }
 
-        if (GameManager.OutGameData.IsHorusClear() && GameManager.OutGameData.GetIsOnMainTooltipForHorus() == false)
-        {
-            GameManager.OutGameData.SetIsOnMainTooltipForHorus(true);
-            GameManager.OutGameData.SaveData();
-            SetSystemInfo("축하합니다, 당신은 모든 것을 이겨냈습니다.\r\n하지만 진정한 시험은 이제부터입니다. \r\n\r\n매 판 새로운 전투를 마주하며 당신의 한계를 시험해보세요.");
-            SetSystemTooltip("※ '새로하기'를 눌러 도전하세요.");
-        }
+        GameManager.OutGameData.SaveData();
     }
 
-    public void StartButton()
+    public void NewGameButton()
     {
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
+
         if (GameManager.SaveManager.SaveFileCheck())
         {
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-            UI_ResetAlert.SetActive(true);
+            GameManager.UI.ShowPopup<UI_SystemSelect>().Init("Restart", ResetAlertYesButton);
         }
         else
         {
             GameManager.Data.DeckClear();
-            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
-            Destroy(GameManager.Instance.gameObject);
+            GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
 
-            GameManager.SaveManager.DeleteSaveData();
-            GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-
-            /*if (GameManager.OutGameData.IsGameOverCheck()==false)
-            {
-                //npc관련 데이터 초기화
-                GameManager.OutGameData.ResetNPCQuest();
-            }
-            else
-            {
-                GameManager.OutGameData.SetIsGameOverCheck(false);
-            }*/
-
-            if (GameManager.OutGameData.IsTutorialClear())
+            if (GameManager.OutGameData.Data.TutorialClear)
             {
                 GameManager.Data.HallDeckSet();
-                GameManager.Data.HallSelectedDeckSet();
-                SceneChanger.SceneChange("DifficultySelectScene");
+                SceneChanger.SceneChange("ActSelectScene");
             }
             else
             {
+                GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
                 SceneChanger.SceneChangeToCutScene(CutSceneType.Main);
             }
+
+            GameManager.SaveManager.DeleteSaveData();
+            GameManager.Data.Init();
         }
     }
 
     public void ContinueBotton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
+
         if (GameManager.SaveManager.SaveFileCheck())
+        {
             SceneChanger.SceneChange("StageSelectScene");
-    }
-    public void ProgressButton()
-    {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        SceneChanger.SceneChange("ProgressShopScene");
+            GameManager.SaveManager.LoadGame();
+        }
     }
 
-    public void HallButton()
+    public void DivineHallButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.Data.HallDeckSet();
-        GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck").Init(false);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
+        UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
+        myDeck.Init();
+        myDeck.EventInit((DeckUnit) =>
+        {
+            string infoTooltipKey = null;
+
+            if (DeckUnit.PrivateKey.Contains("Origin"))
+            {
+                infoTooltipKey = "HallDeleteCannotOriginTooltip";
+            }
+            else if (GameManager.OutGameData.Data.HallUnit.Find(unit => unit.PrivateKey == DeckUnit.PrivateKey).IsMainDeck)
+            {
+                infoTooltipKey = "HallDeleteCannotSelectedTooltip";
+            }
+            else if (DeckUnit.PrivateKey.Contains("OnlyUnit"))
+            {
+                infoTooltipKey = "HallDeleteCannotOnlyUnitTooltip";
+            }
+
+            if (infoTooltipKey != null)
+            {
+                UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+                systemInfo.Init("HallDeleteCannotInfo", infoTooltipKey);
+            }
+            else
+            {
+                UI_SystemSelect systemSelect = GameManager.UI.ShowPopup<UI_SystemSelect>();
+                systemSelect.Init("HallDeleteInfo", () =>
+                {
+                    GameManager.OutGameData.RemoveHallUnit(DeckUnit.PrivateKey);
+                    GameManager.OutGameData.SaveData();
+                    GameManager.UI.ClosePopup();
+
+                    GameManager.Data.GetDeck().Remove(DeckUnit);
+                    myDeck.Init();
+
+                    GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+                });
+            }
+        }, CurrentEvent.Hall_Delete);
+    }
+
+    public void SanctumButton()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        SceneChanger.SceneChange("ProgressShopScene");
     }
 
     public void OptionButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        UI_Option go = GameManager.UI.ShowPopup<UI_Option>();
-        //GameObject go = Resources.Load<GameObject>("Prefabs/UI/Popup/UI_Option");
-        //GameObject.Instantiate(go, Canvas.transform);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        GameManager.UI.ShowPopup<UI_Option>();
     }
 
     public void ResetAlertYesButton()
     {
         // 게임오브젝트를 생성해서 보내주기 & 생성한 오브젝트가 맵 선택 씬에 도달했을 때 활성화되서 튜토 이미지 띄우고 자신 삭제하기
+        GameManager.Sound.Play("UI/UISFX/UIImportantButtonSFX");
+
         GameManager.Data.DeckClear();
-        GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameDataMain.DeckUnits);
-        Destroy(GameManager.Instance.gameObject);
+        GameManager.Data.SetDeck(GameManager.OutGameData.SetHallDeck());
 
-        GameManager.SaveManager.DeleteSaveData();
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        /*if (GameManager.OutGameData.IsGameOverCheck() == false)
-        {
-            //npc관련 데이터 초기화
-            GameManager.OutGameData.ResetNPCQuest();
-        }
-        else
-        {
-            GameManager.OutGameData.SetIsGameOverCheck(false);
-        }*/
-
-        if (GameManager.OutGameData.IsTutorialClear())
+        if (GameManager.OutGameData.Data.TutorialClear)
         {
             GameManager.Data.HallDeckSet();
-            GameManager.Data.HallSelectedDeckSet();
-            SceneChanger.SceneChange("DifficultySelectScene");
+            SceneChanger.SceneChange("ActSelectScene");
         }
         else
         {
+            GameManager.Data.GameData.FallenUnits.AddRange(GameManager.Data.GameData.DeckUnits);
             SceneChanger.SceneChange("CutScene");
         }
+
+        GameManager.SaveManager.DeleteSaveData();
+        GameManager.Data.Init();
     }
 
-    public void ResetAlertNoButton()
+    public void DiscordButton()
     {
-        UI_ResetAlert.SetActive(false);
+        Application.OpenURL("https://discord.com/invite/DhN6RRYxy5");
     }
 
+    public void XButton()
+    {
+        Application.OpenURL("https://x.com/Revelatio_");
+    }
 
     public void ExitButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         Application.Quit();
     }
 
-    public void SetSystemInfo(string info, float fadeTime = 2.0f, float idleTime = 4.0f)
+    public void ButtonHover()
     {
-        SystemInfo.SetActive(true);
-        systemInfoText.text = info;
-        //StartCoroutine(FadeSystemInfo(fadeTime, idleTime));
-    }
-
-    public void SetSystemTooltip(string tooltip) => systemTooltip.SetText(tooltip);
-
-    public void OnSystemInfoClose()
-    {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        SystemInfo.SetActive(false);
+        GameManager.Sound.Play("UI/UISFX/UIHoverSFX");
     }
 }

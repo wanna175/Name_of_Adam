@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_0
+      name: Phanuel_EffectTile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_1
+      name: Phanuel_EffectTile_1
       rect:
         serializedVersion: 2
         x: 158
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_2
+      name: Phanuel_EffectTile_2
       rect:
         serializedVersion: 2
         x: 316
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_3
+      name: Phanuel_EffectTile_3
       rect:
         serializedVersion: 2
         x: 474
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21a04e48e10f9fd4c81993c20300926f
-      internalID: -101232136
+      spriteID: d9ac620cd76559d479d7d0ee58607a5f
+      internalID: -267441598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_4
+      name: Phanuel_EffectTile_4
       rect:
         serializedVersion: 2
         x: 632
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dfe40252ac4ce049a17d51317721235
-      internalID: 1825222460
+      spriteID: 2c9840d632e9f9a45807d9a08832159f
+      internalID: -704193880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_5
+      name: Phanuel_EffectTile_5
       rect:
         serializedVersion: 2
         x: 790
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 841ac0e4e8ee1864688ba0d1e139d2bc
-      internalID: 608714326
+      spriteID: f793e302903658f4dacae7a1154c20f5
+      internalID: -572309182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_6
+      name: Phanuel_EffectTile_6
       rect:
         serializedVersion: 2
         x: 948
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed227d428fb90fa4785d7428c3c6a8ba
-      internalID: 1579173137
+      spriteID: a139bbb4df0c4fa46aef92f321deaf98
+      internalID: 714240147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_7
+      name: Phanuel_EffectTile_7
       rect:
         serializedVersion: 2
         x: 1106
@@ -278,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91ab99ad53681c448aa8c2ff9b9da541
-      internalID: -1387576831
+      spriteID: d10acd0484e569d40b4bb662cda731ec
+      internalID: 1187684149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_8
+      name: Phanuel_EffectTile_8
       rect:
         serializedVersion: 2
         x: 1264
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc8fca761b91645449957cc9a80eed8f
-      internalID: 403416768
+      spriteID: fa9c3dc799d8fdd47bf161773f2ca92f
+      internalID: 1400750130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_9
+      name: Phanuel_EffectTile_9
       rect:
         serializedVersion: 2
         x: 1422
@@ -320,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 859806a5b2adda04ea4a1dee25b5555e
-      internalID: 980820631
+      spriteID: ffd3aa5ef7d5ce34189f26933cec0f56
+      internalID: -1646203846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_10
+      name: Phanuel_EffectTile_10
       rect:
         serializedVersion: 2
         x: 1580
@@ -341,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b40a6de60feb1f47a804f1738a2e36c
-      internalID: -1531141121
+      spriteID: 6d486fa9afe07f94081acf4bdcfa1fbe
+      internalID: -1523778423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_11
+      name: Phanuel_EffectTile_11
       rect:
         serializedVersion: 2
         x: 1738
@@ -362,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fa92d5c4640cc8489d6d5abd7d91771
-      internalID: 1698524290
+      spriteID: 34ceb34578992864285bea548625a762
+      internalID: -1290519406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_12
+      name: Phanuel_EffectTile_12
       rect:
         serializedVersion: 2
         x: 1896
@@ -383,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bba39fbef3dd5a4488f8376de0a7b7c
-      internalID: -2055491431
+      spriteID: 6af15366fbdcadb49a5899184257c847
+      internalID: -1301641728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_13
+      name: Phanuel_EffectTile_13
       rect:
         serializedVersion: 2
         x: 2054
@@ -404,14 +404,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b4d2e2020639ae48bffb9e13e13309b
-      internalID: 1073531507
+      spriteID: 4f45eea6198568f43a123973f0b86881
+      internalID: -1805095899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_14
+      name: Phanuel_EffectTile_14
       rect:
         serializedVersion: 2
         x: 2212
@@ -425,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8131169770c5cb7458a605b8a6a42b40
-      internalID: -931206956
+      spriteID: 56d9c6ba7743ba74dad4cc532a45f468
+      internalID: 1210759157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_15
+      name: Phanuel_EffectTile_15
       rect:
         serializedVersion: 2
         x: 2370
@@ -446,14 +446,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad7b5b10fc3025f41af16b1e1a71bddd
-      internalID: -1498637415
+      spriteID: 94cc37ed9a0b64947b5a69709a9e1166
+      internalID: -1124312650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_16
+      name: Phanuel_EffectTile_16
       rect:
         serializedVersion: 2
         x: 2528
@@ -467,14 +467,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d245173ec09223d4da159a5d82df3990
-      internalID: 496810260
+      spriteID: 626b7adde0b13984abe1177699a38977
+      internalID: -506125173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: nimurot_circle-Sheet (7)_17
+      name: Phanuel_EffectTile_17
       rect:
         serializedVersion: 2
         x: 2686
@@ -488,8 +488,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54afaa5556a7b2f4781f3c516a3fc229
-      internalID: 313077073
+      spriteID: 04b3beab203faef45a6551a588167cf1
+      internalID: 1267531259
       vertices: []
       indices: 
       edges: []
@@ -505,24 +505,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      nimurot_circle-Sheet (7)_10: -1531141121
-      nimurot_circle-Sheet (7)_15: -1498637415
-      nimurot_circle-Sheet (7)_16: 496810260
-      nimurot_circle-Sheet (7)_12: -2055491431
-      nimurot_circle-Sheet (7)_9: 980820631
-      nimurot_circle-Sheet (7)_0: -1805750382
-      nimurot_circle-Sheet (7)_7: -1387576831
-      nimurot_circle-Sheet (7)_8: 403416768
-      nimurot_circle-Sheet (7)_5: 608714326
-      nimurot_circle-Sheet (7)_11: 1698524290
-      nimurot_circle-Sheet (7)_4: 1825222460
-      nimurot_circle-Sheet (7)_1: -1765285874
-      nimurot_circle-Sheet (7)_6: 1579173137
-      nimurot_circle-Sheet (7)_13: 1073531507
-      nimurot_circle-Sheet (7)_17: 313077073
-      nimurot_circle-Sheet (7)_14: -931206956
-      nimurot_circle-Sheet (7)_3: -101232136
-      nimurot_circle-Sheet (7)_2: 344036128
+      Phanuel_EffectTile_15: -1124312650
+      Phanuel_EffectTile_5: -572309182
+      Phanuel_EffectTile_17: 1267531259
+      Phanuel_EffectTile_11: -1290519406
+      Phanuel_EffectTile_10: -1523778423
+      Phanuel_EffectTile_4: -704193880
+      Phanuel_EffectTile_9: -1646203846
+      Phanuel_EffectTile_1: -1765285874
+      Phanuel_EffectTile_3: -267441598
+      Phanuel_EffectTile_7: 1187684149
+      Phanuel_EffectTile_8: 1400750130
+      Phanuel_EffectTile_14: 1210759157
+      Phanuel_EffectTile_2: 344036128
+      Phanuel_EffectTile_0: -1805750382
+      Phanuel_EffectTile_12: -1301641728
+      Phanuel_EffectTile_6: 714240147
+      Phanuel_EffectTile_16: -506125173
+      Phanuel_EffectTile_13: -1805095899
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

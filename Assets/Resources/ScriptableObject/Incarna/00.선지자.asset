@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: "00.\uC120\uC9C0\uC790"
   m_EditorClassIdentifier: 
   _id: "00.\uC120\uC9C0\uC790"
-  _name: "\uAC80\uC740\uC120\uC9C0\uC790"
-  _sprite: {fileID: 21300000, guid: 7ab8058382bc6a54dbe4f5811c1437c6, type: 3}
+  _name: Dark Prophet
+  _sprite: {fileID: 1782815430, guid: c7450bf8a4ff9d5409cccdb063e1f116, type: 3}
   _playerSkillList:
   - {fileID: 5395026236160498702, guid: 63388be1b1c6f2f4e99351a5ce301eff, type: 3}
   - {fileID: 2617580477930891123, guid: 0f0f13b0029d95f41a480ee9aafb89d8, type: 3}
   - {fileID: 6495282118563126077, guid: 9f208a0132df5fa49830d87a6943ae81, type: 3}
+  _incarnationAnimatorController: {fileID: 9100000, guid: 10e93445e3ba8204499b9627722527b8, type: 2}

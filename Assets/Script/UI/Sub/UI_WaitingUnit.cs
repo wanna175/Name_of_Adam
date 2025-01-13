@@ -1,38 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UI_WaitingUnit : MonoBehaviour
+public class UI_WaitingUnit : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private BattleUnit _unit;
+    private (BattleUnit, int?) _unitOrder;
     [SerializeField] private Image _unitImage;
     [SerializeField] private Image _background;
 
-    private Color32 _enemy = new Color32(130, 123, 56, 60);
-    private Color32 _player = new Color32(48, 12, 69, 60);
+    private Vector2? _prevHighlightLocation;
 
-    public void SetUnit(BattleUnit unit, bool turned)
+    private Color32 _enemy = new(204, 172, 81, 255);
+    private Color32 _player = new(128, 45, 39, 255);
+
+    public void SetUnitOrder((BattleUnit, int?) unitOrder)
     {
-        _unit = unit;
-        if (unit.Team == Team.Player)
+        _unitOrder = unitOrder;
+        if (_unitOrder.Item1.Team == Team.Player)
         {
-            _unitImage.sprite = unit.Data.CorruptPortraitImage;
+            _unitImage.sprite = _unitOrder.Item1.Data.CorruptPortraitImage;
             _background.color = _player;
         }
         else
         {
-            _unitImage.sprite = unit.Data.PortraitImage;
+            _unitImage.sprite = _unitOrder.Item1.Data.PortraitImage;
             _background.color = _enemy;
 
             _unitImage.transform.eulerAngles += new Vector3(0f, 180f, 0f);
         }
+    }
 
-        if(turned)
+    public (BattleUnit, int?) GetUnitOrder() => _unitOrder;
+
+    public void SetAnimatorBool(string name, bool on)
+    {
+        GetComponent<Animator>().SetBool(name, on);
+    }
+
+    public void RemoveAnimationEnd()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void DisableAnimationEnd()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _prevHighlightLocation = BattleManager.Field.NowHighlightFrameOnLocation;
+        if (!_unitOrder.Item1.Location.Equals(new Vector2(-1, -1)))
         {
-            _unitImage.transform.eulerAngles += new Vector3(0f, 180f, 0f);
+            BattleManager.Field.SetTileHighlightFrame(_unitOrder.Item1.Location, true);
+            BattleManager.Field.FieldShowInfo(BattleManager.Field.TileDict[_unitOrder.Item1.Location]);
         }
     }
 
-    public BattleUnit GetUnit() => _unit;
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!_unitOrder.Item1.Location.Equals(new Vector2(-1, -1)))
+        {
+            BattleManager.Field.SetTileHighlightFrame(_prevHighlightLocation, true);
+            BattleManager.Field.FieldCloseInfo(BattleManager.Field.TileDict[_unitOrder.Item1.Location]);
+        }
+    }
 }

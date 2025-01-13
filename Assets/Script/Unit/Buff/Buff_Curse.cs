@@ -10,26 +10,18 @@ public class Buff_Curse : Buff
 
         _sprite = GameManager.Resource.Load<Sprite>($"Arts/Buff/Buff_Curse_Sprite");
 
-        _description = "Faith decreases by 1 after every turn of this unit.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _description = "Curse Info";
 
         _buffActiveTiming = ActiveTiming.TURN_START;
 
         _owner = owner;
 
-        _statBuff = true;
-
-        _dispellable = false;
-
-        _stigmaBuff = false;
+        _isDebuff = true;
     }
 
     public override bool Active(BattleUnit caster)
     {
-        _owner.ChangeFall(1);
+        _owner.ChangeFall(1, null);
 
         return false;
     }

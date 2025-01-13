@@ -23,46 +23,62 @@ public class UI_BattleOver : UI_Scene
         if (result == "win") 
         {
             _rewardScene.gameObject.SetActive(true);
-            _rewardScene.Init(GameManager.Data.GetDeck());
+            _rewardScene.Init(GameManager.Data.GetSortedDeck(SortMode.Hall));
             _textImage.gameObject.SetActive(false);
-            //_textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/WinText");
+
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
+            GameManager.Sound.Play("Result/WinBGM", Sounds.BGM);
         }
         else if (result == "elite win")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/EliteWinText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("Win/WinBGM", Sounds.BGM);
+            GameManager.Sound.Play("Result/WinBGM", Sounds.BGM);
         }
         else if (result == "lose")
         {
             _textImage.sprite = GameManager.Resource.Load<Sprite>($"Arts/UI/Battle_UI/Text/LoseText");
             GameManager.Sound.Clear();
-            GameManager.Sound.Play("Lose/LoseBGM", Sounds.BGM);
+            GameManager.Sound.Play("Result/LoseBGM", Sounds.BGM);
         }
     }
 
     public void OnClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
         if (_result == "win")
         {
-            if (!GameManager.OutGameData.IsTutorialClear() && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
+            if (!GameManager.OutGameData.Data.TutorialClear && GameManager.Data.StageAct == 0 && GameManager.Data.Map.CurrentTileID == 3)
             {
-                GameManager.OutGameData.DoneTutorial(true);
-                if (GameManager.OutGameData.GetCutSceneData(CutSceneType.Tutorial) == false)
-                    SceneChanger.SceneChangeToCutScene(CutSceneType.Tutorial);
-                else
-                    SceneChanger.SceneChange("StageSelectScene");
                 Debug.Log("Tutorial Clear!");
+
+                GameManager.OutGameData.Data.TutorialClear = true;
+
+                if (GameManager.OutGameData.CutScenePlayCheck(CutSceneType.Tubalcain_Enter)
+                    && GameManager.Data.GameData.CurrentAct == 1)
+                {
+                    GameManager.OutGameData.SetCutSceneData(CutSceneType.Tubalcain_Enter, true);
+                    SceneChanger.SceneChangeToCutScene(CutSceneType.Tubalcain_Enter);
+                }
+                else
+                {
+                    SceneChanger.SceneChange("StageSelectScene");
+                }
+
+                GameManager.OutGameData.SaveData();
+
                 return;
             }
 
-            if (_rewardScene.IsFadeEnd)
+            if (_rewardScene.IsEndCreate)
             {
-                SceneChanger.SceneChange("StageSelectScene");
+                GameObject.Find("RatterBoxCanvas").transform.Find("FadeOut").gameObject.SetActive(true);
+
+                GameManager.Instance.PlayAfterCoroutine(() => {
+                    SceneChanger.SceneChange("StageSelectScene");
+                }, 1f);
+
             }
             else
             {
@@ -74,8 +90,7 @@ public class UI_BattleOver : UI_Scene
             if(GameManager.Data.Map.GetCurrentStage().Name == StageName.BossBattle)
             {
                 BattleOverDestroy();
-                GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
-                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Victory";
+                GameManager.UI.ShowPopup<UI_ProgressSummary>().Init("VICTORY");
             }
             else
             {
@@ -87,10 +102,9 @@ public class UI_BattleOver : UI_Scene
         {
             BattleOverDestroy();
 
-            if (GameManager.OutGameData.IsTutorialClear())
+            if (GameManager.OutGameData.Data.TutorialClear)
             {
-                GameObject.Find("@UI_Root").transform.Find("UI_ProgressSummary").gameObject.SetActive(true);
-                GameObject.Find("Result List").GetComponent<UI_ProgressSummary>().Title.text = "Defeat";
+                GameManager.UI.ShowPopup<UI_ProgressSummary>().Init("DEFEAT");
             }
             else
             {
@@ -99,6 +113,7 @@ public class UI_BattleOver : UI_Scene
 
         }
     }
+
     public void BattleOverDestroy()
     {
         GameManager.Resource.Destroy(this.gameObject);

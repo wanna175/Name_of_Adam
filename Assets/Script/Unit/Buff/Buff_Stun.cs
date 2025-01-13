@@ -9,21 +9,17 @@ public class Buff_Stun : Buff
 
         _name = "Stun";
 
-        _description = "Unable to move.";
+        _description = "Stun Info";
 
         _count = 1;
 
         _countDownTiming = ActiveTiming.ATTACK_TURN_END;
 
-        _buffActiveTiming = ActiveTiming.ACTION_TURN_START;
+        _buffActiveTiming = ActiveTiming.MOVE_TURN_START | ActiveTiming.ATTACK_TURN_START;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = true;
-
-        _stigmaBuff = false;
+        _isDebuff = true;
     }
 
     public override bool Active(BattleUnit caster)

@@ -1,51 +1,90 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_ESCOption : UI_Popup
 {
-    [SerializeField] private GameObject ConfirmToMain;
-
-    private void Start()
+    public void ContinueButton()
     {
-        ConfirmToMain.SetActive(false);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        GameManager.UI.OnOffESCOption();
+    }
+
+    public void SettingButton()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        var option = GameManager.UI.ShowPopup<UI_Option>();
+        option.GetComponent<Canvas>().sortingOrder = UIManager.ESCOrder + 1;
+        GameManager.UI.ESCOPopups.Push(option);
+    }
+
+    public void MainMenuButton()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName != "BattleScene" && sceneName != "EventScene" && sceneName != "CutScene" 
+            && sceneName != "ActSelectScene" && sceneName != "DifficultySelectScene")
+        {
+            GameManager.SaveManager.SaveGame();
+        }
+
+        Time.timeScale = 1;
+        GameManager.VisualEffect.ClearAllEffect();
+        GameManager.UI.CloseAllOption();
+
+        SceneChanger.SceneChange("MainScene");
     }
 
     public void QuitButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        Application.Quit();
+    }
+
+    public void ButtonHover()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIHoverSFX");
+    }
+
+    public void Quit2Button()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         GameManager.UI.OnOffESCOption();
     }
 
     public void OptionButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.UI.ShowPopup<UI_Option>();
-        GameManager.UI.IsCanESC = false;
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+        var option = GameManager.UI.ShowPopup<UI_Option>();
+        option.GetComponent<Canvas>().sortingOrder = UIManager.ESCOrder + 1;
+        GameManager.UI.ESCOPopups.Push(option);
     }
 
     public void GoToMainButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        ConfirmToMain.SetActive(true);
-    }
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
 
-    public void YesGoToMain()
-    {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        GameManager.SaveManager.DeleteSaveData();
-        SceneChanger.SceneChange("MainScene");
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName != "BattleScene" && sceneName != "EventScene" && sceneName != "CutScene")
+        {
+            GameManager.SaveManager.SaveGame();
+        }
+
         Time.timeScale = 1;
-    }
+        GameManager.VisualEffect.ClearAllEffect();
+        GameManager.UI.CloseAllOption();
 
-    public void NoGoToMain()
-    {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        ConfirmToMain.SetActive(false);
+        SceneChanger.SceneChange("MainScene");
     }
 
     public void ExitButton()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         Application.Quit();
     }
 }

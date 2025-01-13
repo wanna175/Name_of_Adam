@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1404437696512
-    m_Localized: Stigma
+    m_Localized: Stigmata
     m_Metadata:
       m_Items: []
   - m_Id: 1446535925760
@@ -48,6 +48,90 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7653527031808
     m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35828918950989824
+    m_Localized: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39057564390035456
+    m_Localized: Exile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86240723997089792
+    m_Localized: "<b>Health</b>: Represents the unit's health. When health is depleted,
+      the unit is destroyed\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86240880478183424
+    m_Localized: "<b>Attack Power</b>: Represents the unit's attack power\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241063295311872
+    m_Localized: "<b>Speed</b>: Represents the unit's speed. The higher the speed,
+      the earlier the unit acts.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241341595770880
+    m_Localized: "<b>Cost</b>: Represents the mana required to summon the unit\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86241460206493696
+    m_Localized: "<b>Dark Essence</b>: Represents the Dark Essence required to summon
+      the unit\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86304739613102080
+    m_Localized: "Gems that represent faith. Once all the gems are exhausted,  the
+      unit becomes edified and turns into an enemy unit.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310734917685248
+    m_Localized: '<b>Single Attack</b>: Targets and attacks one unit within the attack
+      range.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310738684170240
+    m_Localized: '<b>Frontal Attack</b>: Attacks all units in the front within the
+      attack range
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310737144860672
+    m_Localized: '<b>Area Attack</b>: Attacks all units within the attack range
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310740051513344
+    m_Localized: '<b>Special Attack</b>: Attacks in a special manner
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86310783034740736
+    m_Localized: '<b>No Attack</b>: Can''t attack.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312249229201408
+    m_Localized: "<b>Normal</b>: This is a \u2018Normal Unit\u2019"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312248780410880
+    m_Localized: "<b>Boss</b>: This is a \u2018Boss Unit\u2019. It possesses overwhelming
+      abilities but cannot gain additional stigmata."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312206401163264
+    m_Localized: "<b>Elite</b>: This is an \u2018Elite Unit\u2019. It possesses powerful
+      stigmata and has high stats"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86312205277089792
+    m_Localized: "<b>Apostle</b>: This is an \u2018Apostle Unit\u2019. It possesses
+      special stigmata and has high stats. It can be obtained through \u2018Apostle
+      Creation\u2019 in the <Sacrifice> stage"
     m_Metadata:
       m_Items: []
   references:

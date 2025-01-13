@@ -47,11 +47,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1756527128576
-    m_Localized: Banuel defeated
+    m_Localized: Phanuel defeated
     m_Metadata:
       m_Items: []
   - m_Id: 1835245826048
-    m_Localized: Horus defeated
+    m_Localized: Savior defeated
     m_Metadata:
       m_Items: []
   - m_Id: 1892590350336
@@ -63,15 +63,76 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1983220871168
-    m_Localized: Banuel corrupted
+    m_Localized: Phanuel corrupted
     m_Metadata:
       m_Items: []
   - m_Id: 2020399181824
-    m_Localized: Horus corrupted
+    m_Localized: Savior corrupted
     m_Metadata:
       m_Items: []
   - m_Id: 2050497507328
     m_Localized: times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35074391050194944
+    m_Localized: "\u203B During the first player's turn, unit mana costs are halved."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71322972762296320
+    m_Localized: All Chapter Clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323306352070656
+    m_Localized: Yohrn defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323406742736896
+    m_Localized: Yohrn corrupted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76794071113420800
+    m_Localized: 'First preparation: Unit mana reduced by 50%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810187797843968
+    m_Localized: <No Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810163152113664
+    m_Localized: <Special Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810120638648320
+    m_Localized: <Frontal Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810095137280000
+    m_Localized: <Area Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76809918225731584
+    m_Localized: <Single Attack>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353335799926784
+    m_Localized: "<b>Dark Essence</b> can be obtained by defeating enemies. Dark
+      Essence is used to activate skills or summon powerful units.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353197320785920
+    m_Localized: Current Phase is <b>The Preparation Phase</b> where actions such
+      as summoning units or using skills are taken to prepare for battle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353151351214080
+    m_Localized: If there are no ally units on the field, the enemy will directly
+      attack the Player. The Player has three lives, and if it reaches 0, the Player
+      loses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353087539073024
+    m_Localized: 'Current Mana: Mana is restored by 30 at the start of each Preparation
+      Phase.'
     m_Metadata:
       m_Items: []
   references:

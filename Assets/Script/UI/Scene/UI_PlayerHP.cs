@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_PlayerHP : MonoBehaviour
+public class UI_PlayerHP : UI_Scene
 {
+    [SerializeField] private GameObject _incarnationProfile;
+
     [SerializeField] private Image profile;
     [SerializeField] private Image HPBackImage, HPEffectImage;
     [SerializeField] private GameObject[] HPJemImages;
@@ -20,6 +20,7 @@ public class UI_PlayerHP : MonoBehaviour
     {
         // 프로필 설정
         profile.sprite = GameManager.Data.GameData.Incarna.Sprite;
+        _incarnationProfile.GetComponent<Animator>().runtimeAnimatorController = GameManager.Data.GameData.Incarna.IncarnationAnimatorController;
 
         // HP 설정
         for (int i = 0; i < HPJemImages.Length; i++)
@@ -44,8 +45,36 @@ public class UI_PlayerHP : MonoBehaviour
             }
             effect.StartDecreaseHPEffect();
         }
+
+        BattleManager.BattleUI.UI_animator.SetBool("isPlayerHit", true);
     }
 
-    public void StartEffect()
-        => BattleManager.BattleUI.UI_animator.SetBool("isPlayerHit", true);
+    public void StartDestoryEffect() => _incarnationProfile.GetComponent<Animator>().SetBool("isDestroy", true);
+
+    private bool _isHover = false;
+    private bool _isHoverMessegeOn = false;
+
+    public void OnHPHoverEnter()
+    {
+        _isHover = true;
+        GameManager.Instance.PlayAfterCoroutine(() => {
+            if (_isHover && !_isHoverMessegeOn)
+            {
+                _isHoverMessegeOn = true;
+                GameManager.UI.ShowHover<UI_TextHover>().SetText(
+                    $"{GameManager.Locale.GetLocalizedBattleScene("PlayerHP UI Info")}", Input.mousePosition);
+            }
+        }, 0.5f);
+    }
+
+    public void OnHPHoverExit()
+    {
+        _isHover = false;
+
+        if (_isHoverMessegeOn)
+        {
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
+        }
+    }
 }

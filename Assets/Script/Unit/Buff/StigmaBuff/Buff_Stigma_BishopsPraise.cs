@@ -4,25 +4,15 @@ public class Buff_Stigma_BishopsPraise : Buff
 {
     public override void Init(BattleUnit owner)
     {
-        _buffEnum = BuffEnum.BishopsPraise;
+        _buffEnum = BuffEnum.Stigmata_BishopsPraise;
 
-        _name = "주교의 축복";
-
-        _description = "주교의 축복.";
-
-        _count = -1;
-
-        _countDownTiming = ActiveTiming.NONE;
+        _name = "BishopsPraise";
 
         _buffActiveTiming = ActiveTiming.MOVE_TURN_START;
 
         _owner = owner;
 
-        _statBuff = false;
-
-        _dispellable = false;
-
-        _stigmaBuff = true;
+        _stigmataBuff = true;
     }
 
     public override bool Active(BattleUnit caster)

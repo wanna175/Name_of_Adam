@@ -6,7 +6,8 @@ public class PreparePhase : Phase
 
     public override void OnStateEnter()
     {
-        //GameManager.Sound.Play("Stage_Transition/Prepare/Prepare_Enter_2nd");
+        GameManager.Sound.Play("UI/UISFX/UIPlayerTurnSFX");
+
         if (!_isFirst)
         { 
             BattleManager.Mana.ChangeMana(30);
@@ -14,40 +15,51 @@ public class PreparePhase : Phase
         BattleManager.Data.TurnPlus();
         BattleManager.BattleUI.UI_playerSkill.InableSkill(false);
         BattleManager.Mana.ManaInableCheck();
-        BattleManager.BattleUI.UI_turnNotify.SetPlayerTurn();
+        BattleManager.BattleUI.UI_turnNotify.SetPreparationPhaseDisplay();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(true);
+        BattleManager.BattleUI.UI_TurnChangeButton.SetButtonSprite();
+        BattleManager.BattleUI.UI_controlBar.ControlBarActive();
 
-        if (!GameManager.OutGameData.IsTutorialClear())
+        BattleManager.Field.SetTileHighlightFrame(null, false);
+
+        if (TutorialManager.Instance.IsTutorialOn())
         {
-            if (TutorialManager.Instance.CheckStep(TutorialStep.UI_PlayerTurn))
+            GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+
+            if (TutorialManager.Instance.CheckStep(TutorialStep.Start_FirstStage))
             {
-                // Ã¹¹øÂ° Æ©Åä¸®¾ó ¼³Á¤
-                Stat stat = new Stat();
+                // Ã¹ï¿½ï¿½Â° Æ©ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                Stat stat = new();
                 stat.MaxHP = stat.CurrentHP = -20;
                 BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[0].HP.Init(10, 10);
-                TutorialManager.Instance.ShowTutorial();
-
             }
-            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_FallSystem))
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.Start_SecondStage))
             {
-                // µÎ¹øÂ° Æ©Åä¸®¾ó ¼³Á¤
-                Stat stat = new Stat();
+                // ï¿½Î¹ï¿½Â° Æ©ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                Stat stat = new();
                 stat.MaxHP = stat.CurrentHP = -15;
                 stat.SPD = -50;
                 BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
                 BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
-                BattleManager.Data.BattleUnitList[0].ChangeFall(1);
-                TutorialManager.Instance.ShowTutorial();
+                BattleManager.Data.BattleUnitList[0].ChangeFall(1, null, FallAnimMode.Off);
             }
-            else if (TutorialManager.Instance.CheckStep(TutorialStep.UI_Defeat))
-                // ¼¼¹øÂ° Æ©Åä¸®¾ó ¼³Á¤
-                TutorialManager.Instance.ShowTutorial();
-            else
-                TutorialManager.Instance.ShowNextTutorial();
+            else if (TutorialManager.Instance.CheckStep(TutorialStep.Start_ThirdStage))
+            {
+                Stat stat = new();
+                stat.MaxHP = stat.CurrentHP = -15;
+                BattleManager.Data.BattleUnitList[0].DeckUnit.DeckUnitChangedStat += stat;
+                BattleManager.Data.BattleUnitList[0].HP.Init(5, 5);
+                BattleManager.Data.BattleUnitList[1].DeckUnit.DeckUnitChangedStat += stat;
+                BattleManager.Data.BattleUnitList[1].HP.Init(5, 5);
+            }
+            
+            TutorialManager.Instance.ShowNextTutorial();
         }
 
-        BattleManager.Data.BattleUnitOrderReplace();
+        BattleManager.Data.BattleUnitActionReset();
+        BattleManager.Data.BattleUnitOrderReset();
+        BattleManager.BattleUI.SetWaitingPlayer(true);
         BattleManager.Instance.FieldActiveEventCheck(ActiveTiming.TURN_START);
     }
 
@@ -75,9 +87,14 @@ public class PreparePhase : Phase
             _isFirst = false;
         }
 
+        GameManager.Sound.Play("UI/UISFX/UIUnitTurnSFX");
+
         BattleManager.BattleUI.CancelAllSelect();
-        BattleManager.BattleUI.UI_turnNotify.SetUnitTurn();
         BattleManager.BattleUI.UI_TurnChangeButton.SetEnable(false);
         BattleManager.PlayerSkillController.SetSkillDone();
+        BattleManager.BattleUI.UI_playerSkill.InableSkill(true);
+        BattleManager.BattleUI.UI_hands.InableCard(true);
+        BattleManager.BattleUI.UI_controlBar.ControlBarInactive();
+        BattleManager.BattleUI.SetWaitingPlayer(false);
     }
 }

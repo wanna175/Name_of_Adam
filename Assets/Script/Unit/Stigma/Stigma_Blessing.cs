@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Stigma_Blessing : Stigma
@@ -7,6 +6,19 @@ public class Stigma_Blessing : Stigma
     {
         base.Use(caster);
 
-        caster.SetBuff(new Buff_Stigma_Blessing());
+        Buff_Stigma_Blessing blessing = new();
+        if (caster.Buff.CheckBuff(BuffEnum.Stigmata_Blessing))
+            blessing = caster.Buff.GetBuff(BuffEnum.Stigmata_Blessing) as Buff_Stigma_Blessing;
+
+        if (Tier == StigmaTier.Tier1)
+        {
+            blessing.SetValue(10);
+        }
+        else if (Tier == StigmaTier.Tier2)
+        {
+            blessing.SetValue(15);
+        }
+
+        caster.SetBuff(blessing);
     }
 }

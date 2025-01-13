@@ -17,20 +17,30 @@ public class ProgressShopManager : MonoBehaviour
     [SerializeField] private TMP_Text ProgressCoin;
     private int selectedID;
 
-    public List<ShopNode> ShopNodes;
-    public GameObject ItemInfo;
-    
+    [SerializeField] public List<ShopNode> ShopNodes;
+    [SerializeField] public GameObject ItemInfo;
+    [SerializeField] public GameObject ItemInfoSoul;
 
     public void Start()
     {
         selectedID = 0;
-        ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
+        ProgressCoin.text = GameManager.OutGameData.Data.ProgressCoin.ToString();
         SetNodeImage();
+
+        if (!GameManager.OutGameData.Data.IsOnTooltipForSanctum)
+        {
+            GameManager.OutGameData.Data.IsOnTooltipForSanctum = true;
+            UI_SystemInfo systemInfo = GameManager.UI.ShowPopup<UI_SystemInfo>();
+            systemInfo.Init("TooltipForSanctum", "");
+
+            GameManager.OutGameData.SaveData();
+        }
     }
 
     public void OnClickShopNode(int id)
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UISelectSFX");
+
         ShopNode foundNode = ShopNodes.FirstOrDefault(node => node.ItemID == selectedID);
         ShopNode newfoundNode = ShopNodes.FirstOrDefault(node => node.ItemID == id);
 
@@ -56,44 +66,62 @@ public class ProgressShopManager : MonoBehaviour
             info_name.text = GameManager.Locale.GetLocalizedProgress(GameManager.OutGameData.GetProgressItem(id).Name);
             info_description.text = GameManager.Locale.GetLocalizedProgress(GameManager.OutGameData.GetProgressItem(id).Description).Replace("\\n", "\n");
 
-            if (!GameManager.OutGameData.GetBuyable(id) && !GameManager.OutGameData.GetProgressItem(id).IsLock)
+            if (!GameManager.OutGameData.GetBuyable(id) && GameManager.OutGameData.IsUnlockedItem(id))
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
+                ItemInfoSoul.SetActive(false);
             }
-            else if (!GameManager.OutGameData.GetBuyable(id) && GameManager.OutGameData.GetProgressItem(id).IsLock)
+            else if (!GameManager.OutGameData.GetBuyable(id) && !GameManager.OutGameData.IsUnlockedItem(id))
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
-
+                ItemInfoSoul.SetActive(true);
             }
-            else if (GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(id).Cost)
+            else if (GameManager.OutGameData.Data.ProgressCoin < GameManager.OutGameData.GetProgressItem(id).Cost)
             {
                 ChangeBtnImage(false);
                 disabled_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
                 disabled_info_cost.color = Color.gray;
+                ItemInfoSoul.SetActive(true);
             }
             else
             {
                 ChangeBtnImage(true);
                 active_info_cost.text = GameManager.OutGameData.GetProgressItem(id).Cost.ToString();
+                ItemInfoSoul.SetActive(true);
             }
         }
     }
 
     public void OnBuyBtnClick()
     {
-        if (!GameManager.OutGameData.GetBuyable(selectedID) || GameManager.OutGameData.GetProgressCoin() < GameManager.OutGameData.GetProgressItem(selectedID).Cost)
+        if (!GameManager.OutGameData.GetBuyable(selectedID) || GameManager.OutGameData.Data.ProgressCoin < GameManager.OutGameData.GetProgressItem(selectedID).Cost)
         {
             return;
         }
 
-        GameManager.Sound.Play("UI/ButtonSFX/UnlockSFX");
+        GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
+
         GameManager.OutGameData.BuyProgressItem(selectedID);
-        ProgressCoin.text = GameManager.OutGameData.GetProgressCoin().ToString();
+        ProgressCoin.text = GameManager.OutGameData.Data.ProgressCoin.ToString();
         ChangeBtnImage(false);
+        ItemInfoSoul.SetActive(false);
         disabled_info_cost.text = GameManager.Locale.GetLocalizedProgress("Purchased");
         SetNodeImage();
+
+        // 스팀 해금 체크
+        if (selectedID == 52 || selectedID == 53 || selectedID == 54)
+            if (GameManager.Steam.IsDoneIncarnaUnlock01())
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_1);
+
+        if (selectedID == 71 || selectedID == 72 || selectedID == 73 || selectedID == 74)
+            if (GameManager.Steam.IsDoneIncarnaUnlock02())
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_2);
+
+        if (selectedID == 61 || selectedID == 62 || selectedID == 63 || selectedID == 64)
+            if (GameManager.Steam.IsDoneIncarnaUnlock03())
+                GameManager.Steam.IncreaseAchievement(SteamAchievementType.UNLOCK_INCARNA_3);
     }
 
     public void ChangeBtnImage(bool isActive)
@@ -112,7 +140,7 @@ public class ProgressShopManager : MonoBehaviour
 
     public void OnDisabledBtnClick()
     {
-        GameManager.Sound.Play("UI/ClickSFX/ClickFailSFX");
+        GameManager.Sound.Play("UI/UISFX/UIFailSFX");
     }
 
     public void OnMenuBtnClick()

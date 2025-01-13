@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: "\uC804\uB839"
   m_EditorClassIdentifier: 
   _rawStat:
-    MaxHP: 5
-    CurrentHP: 5
-    ATK: 10
+    MaxHP: 30
+    CurrentHP: 30
+    ATK: 8
     SPD: 10
     FallCurrentCount: 0
     FallMaxCount: 4
     ManaCost: 60
-  _uniqueStigma: []
+  _uniqueStigma:
+  - {fileID: 1435144401005168298, guid: 47696acaee0417241a8b459ff7e0e018, type: 3}
   _id: "\uC804\uB839"
   _name: Messenger
   _description: 
@@ -33,15 +34,17 @@ MonoBehaviour:
   _corruptDiaPortraitImage: {fileID: 21300000, guid: 79ed09083b9dc6545bef866b964290c4, type: 3}
   _animatorController: {fileID: 9100000, guid: 70f198f4dadf40d40abc9652ea8281df, type: 2}
   _corruptionAnimatorController: {fileID: 9100000, guid: 9b85c2559191c664d87401b63e149777, type: 2}
-  _skillEffectAnim: {fileID: 0}
-  _corruptionSkillEffectAnim: {fileID: 0}
+  _skillEffectAnim: {fileID: 7400000, guid: 01adab0bf468ac84f88f85d401bf3c60, type: 2}
+  _corruptionSkillEffectAnim: {fileID: 7400000, guid: 01adab0bf468ac84f88f85d401bf3c60, type: 2}
   _animType: {fileID: 11400000, guid: c7db3f2b8da849e4fa22273ff79d7938, type: 2}
   _darkEssenseDrop: 1
   _darkEssenseCost: 0
-  _unitActionType: 10
+  _unitActionType: 8
   _unitMoveType: 0
+  _unitAttackType: 2
   _isBattleOnly: 0
-  _attackRange: 00000000000100000000000000000000010000000000000101010101010101010000000000000100000000000000000000010000000000
+  _isFlipFixed: 0
+  _attackRange: 00000000000000000000000000000001000100000000000000010101010100000000000000010001000000000000000000000000000000
   _moveRange: 00000000000000010000000101010000000100000000000000
   _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
   _unitSize: 00000000000000000000000001000000000000000000000000

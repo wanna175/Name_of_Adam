@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bavel_fourhands_effect-Sheet_0
+      name: "\uC9D1\uC815\uAD00_Attack_Effect_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 297
-        height: 181
+        width: 296
+        height: 180
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99f4fa50c30dc6149931703b91a249d3
-      internalID: -396120299
+      spriteID: d57f31e994f0e04448991181dae5c5fc
+      internalID: -1652849143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_effect-Sheet_1
+      name: "\uC9D1\uC815\uAD00_Attack_Effect_1"
       rect:
         serializedVersion: 2
-        x: 297
+        x: 296
         y: 0
-        width: 297
-        height: 181
+        width: 296
+        height: 180
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1eb6595687a3de84e8697579afaa9ba7
-      internalID: -112547223
+      spriteID: f87baff0a5f00d342a687412ec506f47
+      internalID: 1859647989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_effect-Sheet_2
+      name: "\uC9D1\uC815\uAD00_Attack_Effect_2"
       rect:
         serializedVersion: 2
-        x: 594
+        x: 592
         y: 0
-        width: 297
-        height: 181
+        width: 296
+        height: 180
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c5b112ede3868c42b6ba623975dbf29
-      internalID: 1285877267
+      spriteID: 592386082673ea642a4d28cf850bb366
+      internalID: 767184809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_effect-Sheet_3
+      name: "\uC9D1\uC815\uAD00_Attack_Effect_3"
       rect:
         serializedVersion: 2
-        x: 891
+        x: 888
         y: 0
-        width: 297
-        height: 181
+        width: 296
+        height: 180
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e655476793171be478bfe9b009d415c9
-      internalID: 551915012
+      spriteID: 1b6acc45c1bf90a4e9c52d7280629ff5
+      internalID: -1461826593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_effect-Sheet_4
+      name: "\uC9D1\uC815\uAD00_Attack_Effect_4"
       rect:
         serializedVersion: 2
-        x: 1188
+        x: 1184
         y: 0
-        width: 297
-        height: 181
+        width: 296
+        height: 180
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 932dfea0b04e0164bb80bdcb7d961849
-      internalID: 2023242782
+      spriteID: aaed5734327bc6c4ab0e2e030406d900
+      internalID: -64844405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bavel_fourhands_effect-Sheet_5
+      name: "\uC9D1\uC815\uAD00_Attack_Effect_5"
       rect:
         serializedVersion: 2
-        x: 1485
+        x: 1480
         y: 0
-        width: 297
-        height: 181
+        width: 296
+        height: 180
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,8 +248,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17920ca33e2a47e41b255253891fb690
-      internalID: -2016595309
+      spriteID: 7f16177bd316b43409b1b779dff1b131
+      internalID: -509633109
       vertices: []
       indices: 
       edges: []
@@ -265,12 +265,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bavel_fourhands_effect-Sheet_5: -2016595309
-      bavel_fourhands_effect-Sheet_3: 551915012
-      bavel_fourhands_effect-Sheet_1: -112547223
-      bavel_fourhands_effect-Sheet_0: -396120299
-      bavel_fourhands_effect-Sheet_4: 2023242782
-      bavel_fourhands_effect-Sheet_2: 1285877267
+      "\uC9D1\uC815\uAD00_Attack_Effect_4": -64844405
+      "\uC9D1\uC815\uAD00_Attack_Effect_0": -1652849143
+      "\uC9D1\uC815\uAD00_Attack_Effect_1": 1859647989
+      "\uC9D1\uC815\uAD00_Attack_Effect_5": -509633109
+      "\uC9D1\uC815\uAD00_Attack_Effect_2": 767184809
+      "\uC9D1\uC815\uAD00_Attack_Effect_3": -1461826593
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

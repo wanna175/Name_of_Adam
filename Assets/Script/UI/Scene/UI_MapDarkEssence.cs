@@ -7,8 +7,8 @@ public class UI_MapDarkEssence : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
 
-    private void Update()
+    private void Start()
     {
-        text.text = GameManager.Data.DarkEssense.ToString();
+        text.text = GameManager.Data.GameData.DarkEssence.ToString();
     }
 }

@@ -3,24 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class UI_ManaGauge : UI_Scene
+public class UI_ManaGauge : UI_Scene, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Animator ManaAnimator;
     [SerializeField] TextMeshProUGUI _currentMana;
+    [SerializeField] UI_CannotEffect cannotEffect;
+    public UI_CannotEffect CannotEffect => cannotEffect;
 
+    public void Init()
+    {
+        cannotEffect.Init(Vector3.one, Vector3.one * 1.2f, 1.5f);
+    }
 
-    //enum Objects
-    //{
-    //    Fill,
-    //    ManaCostText,
-    //}
-
-    //private void Awake()
-    //{
-    //    Bind<GameObject>(typeof(Objects));
-    //}
-    
     public void DrawGauge(int max, int current)
     {
         //_bluemanaIMG.fillAmount = (float)current / max;
@@ -30,49 +26,35 @@ public class UI_ManaGauge : UI_Scene
 
     public void SetGauge(int mana)
     {
-        if(mana == 0)
+        int manaLevel = Mathf.Clamp(mana / 10 * 10, 0, 100);
+        string triggerName = "Mana" + manaLevel;
+        ManaAnimator.SetTrigger(triggerName);
+    }
+
+    private bool _isHover = false;
+    private bool _isHoverMessegeOn = false;
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _isHover = true;
+        GameManager.Instance.PlayAfterCoroutine(() => {
+            if (_isHover && !_isHoverMessegeOn)
+            {
+                _isHoverMessegeOn = true;
+                GameManager.UI.ShowHover<UI_TextHover>().SetText(
+                    $"{GameManager.Locale.GetLocalizedBattleScene("ManaGauge UI Info")}", Input.mousePosition);
+            }
+        }, 0.5f);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _isHover = false;
+
+        if (_isHoverMessegeOn)
         {
-            ManaAnimator.SetTrigger("Mana0");
-        }
-        else if(0 < mana && mana < 15)
-        {
-            ManaAnimator.SetTrigger("Mana10");
-        }
-        else if (15 <= mana && mana < 25)
-        {
-            ManaAnimator.SetTrigger("Mana20");
-        }
-        else if (25 <= mana && mana < 35)
-        {
-            ManaAnimator.SetTrigger("Mana30");
-        }
-        else if (35 <= mana && mana < 45)
-        {
-            ManaAnimator.SetTrigger("Mana40");
-        }
-        else if (45 <= mana && mana < 55)
-        {
-            ManaAnimator.SetTrigger("Mana50");
-        }
-        else if (55 <= mana && mana < 65)
-        {
-            ManaAnimator.SetTrigger("Mana60");
-        }
-        else if (65 <= mana && mana < 75)
-        {
-            ManaAnimator.SetTrigger("Mana70");
-        }
-        else if (75 <= mana && mana < 85)
-        {
-            ManaAnimator.SetTrigger("Mana80");
-        }
-        else if (85 <= mana && mana < 100)
-        {
-            ManaAnimator.SetTrigger("Mana90");
-        }
-        else if (mana == 100)
-        {
-            ManaAnimator.SetTrigger("Mana100");
+            _isHoverMessegeOn = false;
+            GameManager.UI.CloseHover();
         }
     }
 }

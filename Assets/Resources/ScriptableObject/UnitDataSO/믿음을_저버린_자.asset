@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uBBFF\uC74C\uC744_\uC800\uBC84\uB9B0_\uC790"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    MaxHP: 6
+    CurrentHP: 6
+    ATK: 6
+    SPD: 6
+    FallCurrentCount: 0
+    FallMaxCount: 4
+    ManaCost: 60
+  _uniqueStigma:
+  - {fileID: 8588131048775324500, guid: bc71dc4a3594efa4bbfef2eab5c0bf40, type: 3}
+  _id: "\uBBFF\uC74C\uC744_\uC800\uBC84\uB9B0_\uC790"
+  _name: Betrayer Of Faith
+  _description: 
+  _rarity: 2
+  _image: {fileID: 21300000, guid: 74a490eef7c1a214aaaf6c6ac3c0c2ee, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 74a490eef7c1a214aaaf6c6ac3c0c2ee, type: 3}
+  _portraitImage: {fileID: 21300000, guid: f44c3f5a0876ce74891497ac727f7ad9, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: f44c3f5a0876ce74891497ac727f7ad9, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: a2f1a72b6bb8f9e42ac0b9e1347b84f8, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: a2f1a72b6bb8f9e42ac0b9e1347b84f8, type: 3}
+  _animatorController: {fileID: 9100000, guid: 1a889b3c3ef3254418fbc2e0c68f5a41, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: 1a889b3c3ef3254418fbc2e0c68f5a41, type: 2}
+  _skillEffectAnim: {fileID: 0}
+  _corruptionSkillEffectAnim: {fileID: 0}
+  _animType: {fileID: 11400000, guid: 555a1753a8aa54e44a23372a3b71365d, type: 2}
+  _darkEssenseDrop: 0
+  _darkEssenseCost: 1
+  _unitActionType: 0
+  _unitMoveType: 0
+  _unitAttackType: 0
+  _isBattleOnly: 0
+  _isFlipFixed: 0
+  _attackRange: 00000000000000000000000000000000010000000000000000000101010000000000000000000100000000000000000000000000000000
+  _moveRange: 00000000000000010000000101010000000100000000000000
+  _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+  _unitSize: 00000000000000000000000001000000000000000000000000

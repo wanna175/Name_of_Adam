@@ -18,24 +18,49 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 1380868485120
-    m_Localized: LEGEND
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1419825180672
-    m_Localized: Enemy
-    m_Metadata:
-      m_Items: []
   - m_Id: 1464662290432
-    m_Localized: Baptism
+    m_Localized: '<size=150%><b>Baptism</b></size>
+
+
+      <size=120%>Upgrade units.</size>'
     m_Metadata:
       m_Items: []
   - m_Id: 1494324408320
-    m_Localized: Stigmata
+    m_Localized: '<size=150%><b>Stigmata</b></size>
+
+
+      <size=120%>Bestow stigmata
+      upon units.</size>'
     m_Metadata:
       m_Items: []
   - m_Id: 1522430439424
-    m_Localized: Sacrifice
+    m_Localized: "<size=150%><b>Sacrifice</b></size>\n\n<size=110%>Sacrifice units
+      to obtain Dark Essence or bestow \u2018Corruption Stigmata\u2019 specialized
+      in corrupting enemies.</size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736400215265280
+    m_Localized: '<size=150%><b>Battle</b></size>
+
+
+      <size=120%>Engage in battles
+      with enemies.</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736407521742848
+    m_Localized: '<size=150%><b>Elite Battle</b></size>
+
+
+      <size=120%>Engage
+      in battles with Elite enemies.</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72736418489847808
+    m_Localized: '<size=150%><b>Boss Battle</b></size>
+
+
+      <size=120%>Engage
+      in battles with Boss enemies.</size>'
     m_Metadata:
       m_Items: []
   references:

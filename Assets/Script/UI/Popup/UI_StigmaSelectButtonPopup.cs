@@ -3,81 +3,77 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class UI_StigmaSelectButtonPopup : UI_Popup
 {
     [SerializeField] private UI_StigmaSelectButton _buttonPrefab;
-    [SerializeField] private Transform _grid;
+    [SerializeField] private GridLayoutGroup _grid;
+    [SerializeField] private TextMeshProUGUI _titleText;
+    [SerializeField] private UI_RerollButton _rerollButton;
+    public GameObject _titleGO;
+
+    private DeckUnit _targetUnit;
+    private int _stigmataCount;
 
     private Action _afterPopupAction;
-    private DeckUnit _targetUnit;
-    private StigmaInterface _sc;
-    private int _stigmaCount;
+    private StigmaInterface _stigmataController;
+    private CurrentEvent _currentEvent;
 
-    public void Init(DeckUnit targetUnit, List<Stigma> stigmata = null, int stigmaCount = 0, Action afterPopupAction = null, StigmaInterface sc = null)
+    private bool _isStigmataFull;
+
+    public void Init(DeckUnit targetUnit, bool isStigmataFull, List<Stigma> stigmataSelectList, Action afterPopupAction = null)
     {
-        _afterPopupAction = afterPopupAction;
-        _targetUnit = targetUnit;
-        _sc = sc;
-        _stigmaCount = stigmaCount;
+        _targetUnit = targetUnit;//받을 유닛
 
-        if (targetUnit == null)
+        _isStigmataFull = isStigmataFull;
+
+        _afterPopupAction = afterPopupAction;
+
+        _rerollButton.Init(Reroll);
+        bool isRerollUnlocked;
+        if (!isStigmataFull)
         {
-            SetStigmaSelectButtons(stigmata);
+            if (SceneManager.GetActiveScene().name.Equals("BattleScene"))
+                isRerollUnlocked = GameManager.OutGameData.GetProgressSave(21).isUnLock;
+            else
+                isRerollUnlocked = GameManager.OutGameData.GetProgressSave(22).isUnLock;
+
+            _rerollButton.gameObject.SetActive(isRerollUnlocked);
+            if (isRerollUnlocked)
+                _rerollButton.SetActive(true);
         }
         else
+            _rerollButton.gameObject.SetActive(false);
+
+        _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Select Stigma"));
+        SetStigmaSelectButtons(stigmataSelectList);
+    }
+
+    public void EventInit(StigmaInterface stigmataController, CurrentEvent currentEvent = CurrentEvent.None)
+    {
+        _stigmataController = stigmataController;
+        _currentEvent = currentEvent;
+        if (currentEvent == CurrentEvent.Stigmata_Full_Exception)
         {
-            List<Stigma> stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
-            /*if (stigmata != null)
-            {
-                List<Stigma> existStigma = targetUnit.GetStigma();
-
-                foreach (Stigma stigma in stigmata)
-                {
-                    if (!existStigma.Contains(stigma) && stigma != null)
-                    {
-                        stigmaList.Add(stigma);
-                    }
-                }
-            }
-            else
-            {
-                stigmaList = CreateStigmaList(_targetUnit, stigmaCount);
-            }*/
-
-            SetStigmaSelectButtons(stigmaList);
+            _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Full Stigma"));
+        }
+        else if (currentEvent == CurrentEvent.Stigmata_Give)
+        {
+            _titleText.SetText(GameManager.Locale.GetLocalizedEventScene("Transfer Stigma Give"));
         }
     }
 
-    private List<Stigma> CreateStigmaList(DeckUnit targetUnit, int stigmaCount)
+    public void ResetStigmataSelectButtons()
     {
-        List<Stigma> result = new();
-        List<Stigma> existStigma = targetUnit.GetStigma();
+        List<Stigma> stigmaList;
 
-        while (result.Count < stigmaCount)
-        {
-            Stigma stigma;
-            if (_sc != null && _sc.GetType() == typeof(HarlotSceneController))
-            {
-                stigma = GameManager.Data.StigmaController.GetRandomHarlotStigma();
-            }
-            else
-            {
-                stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(new int[] { 99, 89 }, targetUnit.Data.name);
-            }
+        if (_stigmataController != null)
+            stigmaList = _stigmataController.ResetStigmataList(_targetUnit);
+        else
+            stigmaList = GameManager.Data.StigmaController.GetRandomStigmaList(_targetUnit, 2);
 
-            if (!existStigma.Contains(stigma) && !result.Contains(stigma))
-                result.Add(stigma);
-        }
-
-        return result;
-    }
-
-    public void ResetStigmaSelectButtons()
-    {
-        List<Stigma> stigmaList = CreateStigmaList(_targetUnit, _stigmaCount);
-        
         var buttons = _grid.GetComponentsInChildren<UI_StigmaSelectButton>();
         foreach (var button in buttons)
             Destroy(button.gameObject);
@@ -85,42 +81,72 @@ public class UI_StigmaSelectButtonPopup : UI_Popup
         SetStigmaSelectButtons(stigmaList);
     }
 
-    private void SetStigmaSelectButtons(List<Stigma> stigmaList)
+    private void SetStigmaSelectButtons(List<Stigma> stigmataList)
     {
-        foreach (Stigma stigma in stigmaList)
+        if (stigmataList.Count == 4)
+            _grid.spacing = new Vector2(80, 10);
+        else
+            _grid.spacing = new Vector2(200, 10);
+
+        if (stigmataList.Count == 2)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(525, -350);
+        else if (stigmataList.Count == 3)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(775, -350);
+        else if(stigmataList.Count == 4)
+            _rerollButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(850, -350);
+
+        foreach (Stigma stigmata in stigmataList)
         {
-            GameObject.Instantiate(_buttonPrefab, _grid).GetComponent<UI_StigmaSelectButton>().Init(stigma, _sc, this);
+            GameObject.Instantiate(_buttonPrefab, _grid.transform).GetComponent<UI_StigmaSelectButton>().Init(stigmata, this);
         }
     }
 
-    public void OnClick(Stigma stigma)
+    public void OnClickStigmataButton(Stigma stigmata)
     {
-        if (SceneChanger.GetSceneName() == "BattleScene")
+        if (_stigmataController != null)
         {
-            BattleManager.Data.CorruptionPopups.RemoveAt(BattleManager.Data.CorruptionPopups.Count - 1);
-            GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(false);
+            _stigmataController.OnStigmataSelected(stigmata);
         }
-        
-        if (_targetUnit != null)
-            _targetUnit.AddStigma(stigma);
-
-        GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
-        if (_afterPopupAction != null)
+        else
         {
-            _afterPopupAction.Invoke();
-        }
+            if (TutorialManager.Instance.IsEnableUpdate())
+                TutorialManager.Instance.ShowNextTutorial();
 
-        GameManager.UI.ClosePopup();
+            if (SceneChanger.GetSceneName() == "BattleScene")
+            {
+                GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(false);
+                BattleManager.Data.CorruptionPopups.RemoveAt(BattleManager.Data.CorruptionPopups.Count - 1);
+                BattleManager.Data.IsCorruptionPopupOn = false;
+            }
+
+            if (_targetUnit != null)
+                _targetUnit.AddStigma(stigmata);
+
+            GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
+            if (_afterPopupAction != null)
+            {
+                _afterPopupAction.Invoke();
+            }
+
+            GameManager.UI.ClosePopup();
+        }
     }
 
     public void QuitBtn()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         if (SceneChanger.GetSceneName() == "BattleScene")
         {
             GameObject.Find("@UI_Root").transform.Find("UI_StigmaSelectBlocker").gameObject.SetActive(true);
         }
         this.transform.SetAsFirstSibling();
         this.gameObject.SetActive(false);
+    }
+
+    public void Reroll()
+    {
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        ResetStigmataSelectButtons();
+        _rerollButton.SetActive(false);
     }
 }

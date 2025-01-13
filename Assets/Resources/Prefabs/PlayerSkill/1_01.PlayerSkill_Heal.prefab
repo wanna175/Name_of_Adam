@@ -47,7 +47,7 @@ MonoBehaviour:
   originalmanaCost: 20
   originaldarkEssence: 1
   playerSkillName: Recovery
-  playerSkillID: 4
+  playerSkillID: 7
   manaCost: 20
   darkEssence: 1
   skillImage: {fileID: 21300000, guid: 96aded495cee0064580992bc169851a6, type: 3}

@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,8 +122,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 310
-        height: 262
+        width: 320
+        height: 256
       alignment: 9
       pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Attack_1"
       rect:
         serializedVersion: 2
-        x: 310
+        x: 320
         y: 0
-        width: 310
-        height: 262
+        width: 320
+        height: 256
       alignment: 9
       pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Attack_2"
       rect:
         serializedVersion: 2
-        x: 620
+        x: 640
         y: 0
-        width: 310
-        height: 262
+        width: 320
+        height: 256
       alignment: 9
       pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Attack_3"
       rect:
         serializedVersion: 2
-        x: 930
+        x: 960
         y: 0
-        width: 310
-        height: 262
+        width: 320
+        height: 256
       alignment: 9
       pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Attack_4"
       rect:
         serializedVersion: 2
-        x: 1240
+        x: 1280
         y: 0
-        width: 310
-        height: 262
+        width: 320
+        height: 256
       alignment: 9
       pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,10 +225,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Attack_5"
       rect:
         serializedVersion: 2
-        x: 1550
+        x: 1600
         y: 0
-        width: 310
-        height: 262
+        width: 320
+        height: 256
       alignment: 9
       pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,10 +246,10 @@ TextureImporter:
       name: "\uBC14\uB204\uC5D8_\uC2EC\uC7A5_Attack_6"
       rect:
         serializedVersion: 2
-        x: 1860
+        x: 1920
         y: 0
-        width: 310
-        height: 262
+        width: 320
+        height: 256
       alignment: 9
       pivot: {x: 0.25, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}

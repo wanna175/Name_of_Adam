@@ -15,7 +15,7 @@ public class Fixed : MonoBehaviour
 
         int deviceWidth = Screen.width; // 기기 너비 저장
         int deviceHeight = Screen.height; // 기기 높이 저장
-        bool isWindowed = GameManager.OutGameData.IsWindowed();
+        bool isWindowed = GameManager.OutGameData.Data.IsWindowed;
 
         Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), !isWindowed); // SetResolution 함수 제대로 사용하기
 

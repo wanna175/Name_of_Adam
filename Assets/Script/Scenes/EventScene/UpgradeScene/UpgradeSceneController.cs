@@ -9,24 +9,25 @@ public class UpgradeSceneController : MonoBehaviour
     private readonly int[] enterDialogNums = { 3, 3, 3, 3, 3 };
     private readonly int[] exitDialogNums = { 1, 1, 1, 1, 1 };
 
-    private DeckUnit _unit;
+    [SerializeField] private GameObject _normalBackground;
+    [SerializeField] private GameObject _corruptBackground;
+    [SerializeField] private List<GameObject> _fogImageList;
 
-    [SerializeField] private GameObject background;
-    [SerializeField] private GameObject fall_background;
-    [SerializeField] private Image foogyImg;
+    [SerializeField] private GameObject _healFaithButton;
+    [SerializeField] private GameObject _selectMenuUI;
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
 
-    [SerializeField] private Button _forbiddenButton; // 접근 금지 버튼
-    [SerializeField] private GameObject _restoreFall_Btn;
-    [SerializeField] private GameObject _ui_SelectMenu;
-    [SerializeField] private TMP_Text nameText;
-    [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private TextMeshProUGUI _upgradeButtonText;
 
-    private List<Script> _scripts;
+    private List<Script> _scripts = new();
     private UI_Conversation _conversationUI;
-    private List<Upgrade> _upgradeList = new();
 
-    private bool _isUpgradeFull = false;
-    private bool _isNPCFall = false;
+    private DeckUnit _selectedUnit;
+
+    private List<Upgrade> _upgradeList = new();
+    private Upgrade _preSelectedUpgrade;
+    private bool _isUpgradePreSet = false;
 
     void Start()
     {
@@ -37,40 +38,58 @@ public class UpgradeSceneController : MonoBehaviour
     {
         if (!GameManager.OutGameData.IsUnlockedItem(2))
         {
-            _restoreFall_Btn.SetActive(false);
+            _healFaithButton.SetActive(false);
         }
 
-        _scripts = new ();
+        Debug.Log($"횟수: {GameManager.OutGameData.Data.BaptismCorruptValue}");
 
-        Debug.Log($"횟수: {GameManager.Data.GameData.NpcQuest.UpgradeQuest}");
-
-        if (GameManager.OutGameData.GetVisitUpgrade() == false)
+        int questLevel = Mathf.Min(GameManager.OutGameData.Data.BaptismCorruptValue / 30, 4);
+        if (questLevel == 4 && GameManager.OutGameData.Data.PhanuelClear && !GameManager.OutGameData.Data.IsBaptismCorrupt)
         {
-            _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["강화소_선택_0"][0].name));
-            //GameManager.OutGameData.setVisitUpgrade(true);
+            GameManager.OutGameData.Data.IsBaptismCorrupt = true;
+            DeckUnit unit = new()
+            {
+                Data = GameManager.Resource.Load<UnitDataSO>($"ScriptableObject/UnitDataSO/믿음을_저버린_자"),
+                IsMainDeck = false,
+                PrivateKey = "OnlyUnit_Betrayer_Of_Faith",
+                HallUnitID = -1
+            };
+
+            GameManager.OutGameData.AddHallUnit(unit);
+            GameManager.Data.AddDeckUnit(unit);
+            GameManager.Data.GameData.FallenUnits.Add(unit);
+        }
+
+        if (GameManager.OutGameData.Data.IsBaptismCorrupt)
+        {
+            _normalBackground.SetActive(false);
+            _corruptBackground.SetActive(true);
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade_Corrupt"));
+
         }
         else
         {
-            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
-            if (questLevel > 4) questLevel = 4;
-            _scripts = GameManager.Data.ScriptData[$"강화소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
-            descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
-            nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
+            _normalBackground.SetActive(true);
+            _corruptBackground.SetActive(false);
+            _upgradeButtonText.SetText(GameManager.Locale.GetLocalizedEventScene("Upgrade"));
+        }
 
-            if (questLevel == 4)
-            {
-                background.SetActive(false);
-                fall_background.SetActive(true);
-                _isNPCFall = true;
-            }
-            else if (questLevel >= 0)
-            {
-                Color color = this.foogyImg.color;
-                color.a = questLevel * 0.25f;
-                this.foogyImg.color = color;
-            }
+        if (!GameManager.OutGameData.Data.IsVisitBaptism)
+        {
+            _scripts = GameManager.Data.ScriptData["강화소_입장_최초"];
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData["강화소_선택_0"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData["강화소_선택_0"][0].name));
+        }
+        else
+        {
+            _scripts = GameManager.Data.ScriptData[$"강화소_입장_{25 * questLevel}_랜덤코드:{Random.Range(0, enterDialogNums[questLevel])}"];
+            _descriptionText.SetText(GameManager.Locale.GetLocalizedScriptInfo(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].script));
+            _nameText.SetText(GameManager.Locale.GetLocalizedScriptName(GameManager.Data.ScriptData[$"강화소_선택_{25 * questLevel}"][0].name));
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            _fogImageList[i].gameObject.SetActive(questLevel > i);
         }
 
         _conversationUI = GameManager.UI.ShowPopup<UI_Conversation>();
@@ -78,24 +97,26 @@ public class UpgradeSceneController : MonoBehaviour
         _conversationUI.ConversationEnded += OnConversationEnded;
     }
 
-    // 업그레이드 할 유닛을 고릅니다.
+    //강화 버튼 클릭, 업그레이드 할 유닛을 고릅니다.
     public void OnUpgradeUnitButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        _ui_SelectMenu.SetActive(false);
-        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        ui.Init(false, OnSelectUpgrade, CUR_EVENT.UPGRADE, null);
-        ui.SetEventMenu(_ui_SelectMenu);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        _selectMenuUI.SetActive(false);
+
+        UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
+        myDeck.Init();
+        myDeck.EventInit(OnSelectUpgradeUnit, CurrentEvent.Upgrade_Select, _selectMenuUI);
     }
 
-    // 교화를 풀 유닛을 고릅니다.
-    public void OnReleaseUnitButtonClick()
+    // 신앙 회복 버튼 클릭, 신앙을 회복할 유닛을 고릅니다.
+    public void OnHealFaithButtonClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/UIButtonClickSFX");
-        _ui_SelectMenu.SetActive(false);
-        UI_MyDeck ui = GameManager.UI.ShowPopup<UI_MyDeck>("UI_MyDeck");
-        ui.Init(false, OnSelectRelease, CUR_EVENT.RELEASE);
-        ui.SetEventMenu(_ui_SelectMenu);
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
+        _selectMenuUI.SetActive(false);
+
+        UI_MyDeck myDeck = GameManager.UI.ShowPopup<UI_MyDeck>();
+        myDeck.Init();
+        myDeck.EventInit(OnSelectHealFaithUnit, CurrentEvent.Heal_Faith_Select, _selectMenuUI);
     }
 
     //대화하기 버튼
@@ -108,131 +129,136 @@ public class UpgradeSceneController : MonoBehaviour
     {
         _upgradeList.Clear();
 
-        while (_upgradeList.Count < 3)
+        int createUpgradeCount = (GameManager.OutGameData.Data.IsBaptismCorrupt) ? 4 : 3;
+
+        while (_upgradeList.Count < createUpgradeCount)
         {
-            Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade(_unit);
+            Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade(_selectedUnit);
 
             if (!_upgradeList.Contains(upgrade))
             {
                 _upgradeList.Add(upgrade);
             }
+        }
+
+        //선 적용된 강화 리셋
+        if (_isUpgradePreSet)
+        {
+            _selectedUnit.DeckUnitUpgrade.Remove(_preSelectedUpgrade);
+        }
+
+        _preSelectedUpgrade = _upgradeList[Random.Range(0, _upgradeList.Count)];
+
+        if ((_selectedUnit.DeckUnitUpgrade.Count == 3 || (_selectedUnit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12))) == false)
+        {
+            _selectedUnit.DeckUnitUpgrade.Add(_preSelectedUpgrade);
+            GameManager.SaveManager.SaveGame();
+
+            _isUpgradePreSet = true;
         }
 
         return _upgradeList;
     }
 
-    public void OnSelectUpgrade(DeckUnit unit)
+    public void OnSelectUpgradeUnit(DeckUnit unit)
     {
-        _unit = unit;
+        //강화할 유닛을 선택함
+        _selectedUnit = unit;
 
-        while (_upgradeList.Count < 3)
+        if (_selectedUnit.DeckUnitUpgrade.Count == 3 || (_selectedUnit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
         {
-            Upgrade upgrade = GameManager.Data.UpgradeController.GetRandomUpgrade(unit);
-
-            if (!_upgradeList.Contains(upgrade))
-            {
-                _upgradeList.Add(upgrade);
-            }
-        }
-
-        if (_unit.DeckUnitUpgrade.Count == 3 || (_unit.DeckUnitUpgrade.Count == 2 && !GameManager.OutGameData.IsUnlockedItem(12)))
-        {
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _unit.DeckUnitUpgrade);
-            _isUpgradeFull = true;
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButtonPopup>().Init(this, _selectedUnit.DeckUnitUpgrade, true);
         }
         else
         {
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
-            _isUpgradeFull = false;
+            ResetUpgrade();
+            GameManager.UI.ShowPopup<UI_UpgradeSelectButtonPopup>().Init(this, _upgradeList, false);
         }
+
+        //선 저장
+        GameManager.Data.Map.SetCurrentTileClear();
+        GameManager.SaveManager.SaveGame();
     }
 
-    public void OnSelectRelease(DeckUnit unit)
+    public void OnSelectHealFaithUnit(DeckUnit unit)
     {
-        _unit = unit;
+        _selectedUnit = unit;
 
         GameManager.UI.ClosePopup();
         GameManager.UI.ClosePopup();
-        
-        int releaseVal = (_isNPCFall) ? 4 : 2;
-        if (_unit.DeckUnitStat.FallCurrentCount - releaseVal > 0)
-            _unit.DeckUnitUpgradeStat.FallCurrentCount -= releaseVal;
+
+        int releaseVal = 2;
+        if (_selectedUnit.DeckUnitStat.FallCurrentCount - releaseVal > 0)
+            _selectedUnit.DeckUnitUpgradeStat.FallCurrentCount -= releaseVal;
         else
-            _unit.DeckUnitUpgradeStat.FallCurrentCount = -_unit.Data.RawStat.FallCurrentCount;
+            _selectedUnit.DeckUnitUpgradeStat.FallCurrentCount = -_selectedUnit.Data.RawStat.FallCurrentCount;
 
         UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-        unitInfo.SetUnit(_unit);
-        unitInfo.Init(null, CUR_EVENT.COMPLETE_RELEASE,OnQuitClick);
+        unitInfo.SetUnit(_selectedUnit);
+        unitInfo.Init(null, CurrentEvent.Complete_Heal_Faith, OnQuitClick);
     }
 
     public void OnUpgradeSelect(int select)
     {
         GameManager.UI.CloseAllPopup();
 
-        if (_isUpgradeFull)
-        {
-            _isUpgradeFull = false;
+        _selectedUnit.DeckUnitUpgrade.Remove(_preSelectedUpgrade);
+        _selectedUnit.DeckUnitUpgrade.Add(_upgradeList[select]);
+        GameManager.Sound.Play("UI/UISFX/UISuccessSFX");
 
-            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-            unitInfo.SetUnit(_unit);
-            unitInfo.Init(null, CUR_EVENT.UPGRADE_EXCEPTION);
+        UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+        unitInfo.SetUnit(_selectedUnit);
+        unitInfo.Init(null, CurrentEvent.Complete_Upgrade, OnQuitClick);
+    }
 
-            _unit.DeckUnitUpgrade.Remove(_unit.DeckUnitUpgrade[select]);
-            GameManager.UI.ShowPopup<UI_UpgradeSelectButton>().Init(this, _upgradeList);
-        }
-        else
-        {
-            _unit.DeckUnitUpgrade.Add(_upgradeList[select]);
-            GameManager.Sound.Play("UI/UpgradeSFX/UpgradeSFX");
+    public void OnDestroyUpgradeSelect(int select)
+    {
+        GameManager.UI.CloseAllPopup();
 
-            UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
-            unitInfo.SetUnit(_unit);
-            unitInfo.Init(null, CUR_EVENT.COMPLETE_UPGRADE, OnQuitClick);
+        UI_UnitInfo unitInfo = GameManager.UI.ShowPopup<UI_UnitInfo>();
+        unitInfo.SetUnit(_selectedUnit);
+        unitInfo.Init(null, CurrentEvent.Upgrade_Full_Exception);
 
-        }
+        _selectedUnit.DeckUnitUpgrade.Remove(_selectedUnit.DeckUnitUpgrade[select]);
+        ResetUpgrade();
+        GameManager.UI.ShowPopup<UI_UpgradeSelectButtonPopup>().Init(this, _upgradeList, false);
     }
 
     public void OnQuitClick()
     {
-        GameManager.Sound.Play("UI/ButtonSFX/BackButtonClickSFX");
+        GameManager.Sound.Play("UI/UISFX/UIButtonSFX");
         StartCoroutine(QuitScene());
-        if (GameManager.Data.GameData.IsVisitUpgrade == false)
-        {
-            GameManager.Data.GameData.IsVisitUpgrade = true;
-        }
     }
 
     private IEnumerator QuitScene(UI_Conversation eventScript = null)
     {
-        if (GameManager.Data.GameData.IsVisitUpgrade == false)
-        {
-            GameManager.Data.GameData.IsVisitUpgrade = true;
-        }
-
         if (eventScript != null)
             yield return StartCoroutine(eventScript.PrintScript());
 
         UI_Conversation quitScript = GameManager.UI.ShowPopup<UI_Conversation>();
 
-        if (GameManager.OutGameData.GetVisitUpgrade() == false)
+        if (!GameManager.OutGameData.Data.IsVisitBaptism)
         {
-            GameManager.OutGameData.SetVisitUpgrade(true);
+            GameManager.OutGameData.Data.IsVisitBaptism = true;
             quitScript.Init(GameManager.Data.ScriptData["강화소_퇴장_최초"], false);
         }
         else
         {
-            int questLevel = GameManager.Data.GameData.NpcQuest.UpgradeQuest / 25;
+            int questLevel = GameManager.OutGameData.Data.BaptismCorruptValue / 75;
             if (questLevel > 4) questLevel = 4;
             quitScript.Init(GameManager.Data.ScriptData[$"강화소_퇴장_{25 * questLevel}_랜덤코드:{Random.Range(0, exitDialogNums[questLevel])}"], false);
         }
+
         yield return StartCoroutine(quitScript.PrintScript());
-        GameManager.Data.Map.ClearTileID.Add(GameManager.Data.Map.CurrentTileID);
+
+        GameManager.Data.Map.SetCurrentTileClear();
         GameManager.SaveManager.SaveGame();
+        GameManager.OutGameData.SaveData();
         SceneChanger.SceneChange("StageSelectScene");
     }
 
     private void OnConversationEnded()
     {
-        _ui_SelectMenu.SetActive(true);
+        _selectMenuUI.SetActive(true);
     }
 }

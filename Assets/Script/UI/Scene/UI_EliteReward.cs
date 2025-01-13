@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UI_EliteReward : UI_Popup
 {
-    private readonly int[] probabilityAsStage = new int[] { 99, 89 };
-
     [SerializeField]
     private GameObject backPanel;
 
@@ -16,19 +14,20 @@ public class UI_EliteReward : UI_Popup
 
     private DeckUnit GetRandomUnit(List<UnitDataSO> unitLists, List<int> selectedUnitNumbers)
     {
-        DeckUnit deckUnit = new DeckUnit();
-        
         int unitNumber = Random.Range(0, unitLists.Count);
 
         while (selectedUnitNumbers.Contains(unitNumber))
         {
+            Debug.Log($"'{unitNumber}번 유닛'은(는) 중복된 유닛입니다.");
             unitNumber = Random.Range(0, unitLists.Count);
         }
 
+        DeckUnit deckUnit = new DeckUnit();
         deckUnit.Data = unitLists[unitNumber];
-        selectedUnitNumbers.Add(unitNumber);
+        deckUnit.HallUnitID = -1;
 
         SetRandomStigmas(deckUnit);
+        selectedUnitNumbers.Add(unitNumber);
 
         return deckUnit;
     }
@@ -45,7 +44,7 @@ public class UI_EliteReward : UI_Popup
 
         for (int i = 0; i < addStigmaNum; i++)
         {
-            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(probabilityAsStage, deckUnit.Data.name);
+            Stigma stigma = GameManager.Data.StigmaController.GetRandomStigmaAsUnit(GameManager.Data.StigmaController.StigmaProbability, deckUnit.Data.name);
             deckUnit.AddStigma(stigma);
         }
     }

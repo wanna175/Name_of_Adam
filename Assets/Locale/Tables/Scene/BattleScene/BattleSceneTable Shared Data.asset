@@ -44,11 +44,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1756527128576
-    m_Key: Banuel defeated
+    m_Key: Phanuel defeated
     m_Metadata:
       m_Items: []
   - m_Id: 1835245826048
-    m_Key: Horus defeated
+    m_Key: Savior defeated
     m_Metadata:
       m_Items: []
   - m_Id: 1892590350336
@@ -60,15 +60,71 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1983220871168
-    m_Key: Banuel corrupted
+    m_Key: Phanuel corrupted
     m_Metadata:
       m_Items: []
   - m_Id: 2020399181824
-    m_Key: Horus corrupted
+    m_Key: Savior corrupted
     m_Metadata:
       m_Items: []
   - m_Id: 2050497507328
     m_Key: times_corrupted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35074391050194944
+    m_Key: FirstManaInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71322972762296320
+    m_Key: All chapter clear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323306352070656
+    m_Key: Yohrn defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71323406742736896
+    m_Key: Yohrn corrupted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76794071113420800
+    m_Key: FirstManaInfoHover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76809918225731584
+    m_Key: SingleAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810095137280000
+    m_Key: AreaAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810120638648320
+    m_Key: FrontalAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810163152113664
+    m_Key: SpecialAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 76810187797843968
+    m_Key: NoAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353087539073024
+    m_Key: ManaGauge UI Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353151351214080
+    m_Key: PlayerHP UI Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353197320785920
+    m_Key: WaitingPlayer UI Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 78353335799926784
+    m_Key: DarkEssence UI Info
     m_Metadata:
       m_Items: []
   m_Metadata:

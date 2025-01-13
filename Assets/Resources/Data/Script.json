@@ -14,64 +14,91 @@
       ]
     },
     {
-      "title": "엘리우스_야나전_입장",
-      "contents": [
-        {
-          "name": "Elieus",
-          "script": "You do not belong within this paradise."
-        },
-        {
-          "name": "Elieus",
-          "script": "With the sun and moon both rising above you, you shall be submerged in eternal darkness."
-        },
-        {
-          "name": "Yana",
-          "script": "In the name of the divine."
-        }
-      ]
-    },
-    {
-      "title": "투발카인전_입장",
+      "title": "투발카인",
       "contents": [
         {
           "name": "Tubalcain",
-          "script": "A true knight does not yield to fear. En garde! Shall you be vanquished in no time."
+          "script": "Tubalcain Script"
         }
       ]
     },
     {
-      "title": "라헬레아전_입장",
+      "title": "라헬&레아",
       "contents": [
         {
           "name": "Rahel&Lea",
-          "script": "In His grace, I shall be eternally beautiful. Step aside, you mortal."
+          "script": "Rahel&Lea Script"
         }
       ]
     },
     {
-      "title": "압바임전_입장",
-      "contents": [
-        {
-          "name": "The Triad",
-          "script": "Wisdom, power, and might. The power of the trinity can subjugate all"
-        }
-      ]
-    },
-    {
-      "title": "바누엘전_입장",
+      "title": "바누엘",
       "contents": [
         {
           "name": "Phanuel",
-          "script": "You intruder! How dare you bring the vile shadow of evil to the kingdom! Face the might of the royal, and vanish into the darkness."
+          "script": "Phanuel Script"
         }
       ]
     },
     {
-      "title": "호루스전_입장",
+      "title": "엘리우스",
+      "contents": [
+        {
+          "name": "Elieus",
+          "script": "Elieus Script_1"
+        },
+        {
+          "name": "Elieus",
+          "script": "Elieus Script_2"
+        },
+        {
+          "name": "Yana",
+          "script": "Yana Script"
+        }
+      ]
+    },
+    {
+      "title": "압바임",
+      "contents": [
+        {
+          "name": "Appaim",
+          "script": "Appaim Script"
+        }
+      ]
+    },
+    {
+      "title": "구원자",
       "contents": [
         {
           "name": "The Savior",
-          "script": "A being that should never have been born has come into existence. Now, it is time to set things right."
+          "script": "The Savior Script"
+        }
+      ]
+    },
+    {
+      "title": "리비엘",
+      "contents": [
+        {
+          "name": "Libiel",
+          "script": "Libiel Script"
+        }
+      ]
+    },
+    {
+      "title": "아라벨라",
+      "contents": [
+        {
+          "name": "Arabella",
+          "script": "Arabella Script"
+        }
+      ]
+    },
+    {
+      "title": "욘",
+      "contents": [
+        {
+          "name": "Yohrn",
+          "script": "Yohrn Script"
         }
       ]
     },
@@ -80,7 +107,7 @@
       "contents": [
         {
           "name": "",
-          "script": "In this world devoid of light, I now realize its beauty."
+          "script": ""
         }
       ]
     },
@@ -89,7 +116,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Even if your hands were stained with the blood of 200 people, I shall still believe in you."
+          "script": "Messenger of faith First Entrance Script"
         }
       ]
     },
@@ -98,7 +125,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "With strong faith, one can overcome any difficulty. May the sacred faith also dwell within your eyes."
+          "script": "Messenger of faith 0 0"
         }
       ]
     },
@@ -107,7 +134,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "A true believer who knows how to practice genuine faith and love may..."
+          "script": "Messenger of faith 0 1"
         }
       ]
     },
@@ -116,7 +143,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Do you know the story of the Good Samaritan? I wish to become such a presence for someone. To do so, one must fundamentally have unwavering faith in this world."
+          "script": "Messenger of faith 0 2"
         }
       ]
     },
@@ -125,7 +152,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "It feels like there's something else hiding within your faith. Is it just my delusion?"
+          "script": "Messenger of faith 25 0"
         }
       ]
     },
@@ -134,7 +161,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Your sins have become heavier, but it will all be fine. Perhaps what you need is an even deeper faith."
+          "script": "Messenger of faith 25 1"
         }
       ]
     },
@@ -143,7 +170,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "The divine instructed to love your neighbors. With love for mankind and hatred of sins, I shall not reproach you as well."
+          "script": "Messenger of faith 25 2"
         }
       ]
     },
@@ -152,7 +179,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Since when did your hands become so stained with blood? Nevertheless, it will be fine. I... will trust you."
+          "script": "Messenger of faith 50 0"
         }
       ]
     },
@@ -161,7 +188,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I am uncertain... Could belief and love save everyone?"
+          "script": "Messenger of faith 50 1"
         }
       ]
     },
@@ -170,7 +197,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I am now no longer sure if belief and love can truly save you."
+          "script": "Messenger of faith 50 2"
         }
       ]
     },
@@ -179,7 +206,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Perhaps I may have never been saved."
+          "script": "Messenger of faith 75 0"
         }
       ]
     },
@@ -188,7 +215,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "What you give them is not belief and love. Yet they still follow you."
+          "script": "Messenger of faith 75 1"
         }
       ]
     },
@@ -197,7 +224,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Your eyes always seem to be looking into the distance, without any doubt."
+          "script": "Messenger of faith 75 2"
         }
       ]
     },
@@ -206,7 +233,7 @@
       "contents": [
         {
           "name": "Betrayer of faith",
-          "script": "Although I have never reproached you, you have committed sins so immense that are hard for me to even imagine. No. It was I who didn't realize that I was never redeemed in the first place."
+          "script": "Betrayer of faith 100 0"
         }
       ]
     },
@@ -215,7 +242,7 @@
       "contents": [
         {
           "name": "Betrayer of faith",
-          "script": "Does this world even exist in the first place? Or, is the world a marionette of the unknown?"
+          "script": "Betrayer of faith 100 1"
         }
       ]
     },
@@ -224,7 +251,7 @@
       "contents": [
         {
           "name": "Betrayer of faith",
-          "script": "Now, I can't trust anything, not even myself. Even my own thoughts are terrifying. Could salvation ever be seeked?"
+          "script": "Betrayer of faith 100 2"
         }
       ]
     },
@@ -233,7 +260,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I believe in the love that the divine has taught us. May you also receive grace within the belief."
+          "script": "Messenger of faith First Exit Script"
         }
       ]
     },
@@ -242,7 +269,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I believe in the love that the divine has taught us. May you also receive grace within the belief."
+          "script": "Messenger of faith Exit 0 0"
         }
       ]
     },
@@ -251,7 +278,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "May the path of your faith lead you to the right way."
+          "script": "Messenger of faith Exit 25 0"
         }
       ]
     },
@@ -260,7 +287,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Your path and mine. Which path shall be the answer? I... I'm not sure anymore."
+          "script": "Messenger of faith Exit 50 0"
         }
       ]
     },
@@ -269,7 +296,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "If I take one more step, will a new path of faith appear? I await your answer."
+          "script": "Messenger of faith Exit 75 0"
         }
       ]
     },
@@ -278,7 +305,7 @@
       "contents": [
         {
           "name": "Betrayer of faith",
-          "script": "May you show us a new path of salvation."
+          "script": "Betrayer of faith Exit 100 0"
         }
       ]
     },
@@ -287,7 +314,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "The divine spoke, Rise and go, as your faith has saved you. As such, I believe salvation lies within faith."
+          "script": "Messenger of faith Select 0"
         }
       ]
     },
@@ -296,7 +323,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "There is not a single falsehood in the teachings of the divine. I hope more people will awaken to this truth."
+          "script": "Messenger of faith Select 25"
         }
       ]
     },
@@ -305,7 +332,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "I dared to doubt the teachings of the divine. As a believer, I am deeply ashamed."
+          "script": "Messenger of faith Select 50"
         }
       ]
     },
@@ -314,7 +341,7 @@
       "contents": [
         {
           "name": "Messenger of faith",
-          "script": "Your way seems to be closer to the path of salvation than my practice of belief and love."
+          "script": "Messenger of faith Select 75"
         }
       ]
     },
@@ -323,7 +350,7 @@
       "contents": [
         {
           "name": "Betrayer of faith",
-          "script": "You are the blind shepherd, and I am the lost sheep."
+          "script": "Betrayer of faith Select 100"
         }
       ]
     },
@@ -332,7 +359,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "The divine has bestowed upon me the ability to respond to your earnest prayers in the form of the stigmata. O wanderer, may I be able to pray for the grace I can bestow."
+          "script": "Messenger of hope First Entrance"
         }
       ]
     },
@@ -341,7 +368,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "People offer prayers for various reasons, each important in its own way. When praying to the divine, people believe that countless wrongdoings in this world will be forgiven. Do you, I, or anyone else belong within that world?"
+          "script": "Messenger of hope 0 0"
         }
       ]
     },
@@ -350,7 +377,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "I have a wish. The thing people call 'hope.' However, true hope is something I couldn't pray for. It's as confusing as facing oneself directly in the eye."
+          "script": "Messenger of hope 0 1"
         }
       ]
     },
@@ -359,7 +386,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "Everyone has their own pain. I do too. Perhaps the reason I offer my prayer is to find liberation, to find peace and serenity."
+          "script": "Messenger of hope 0 2"
         }
       ]
     },
@@ -368,7 +395,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "You... must be the wanderer that carried a special aspiration. What do you pray for this time?"
+          "script": "Messenger of hope 25 0"
         }
       ]
     },
@@ -377,7 +404,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "My wish is... my wish is... my wish is...."
+          "script": "Messenger of hope 25 1"
         }
       ]
     },
@@ -386,7 +413,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "You have already offered half of your prayers. It won't be long until all the grace within my reach is bestowed upon you."
+          "script": "Messenger of hope 50 0"
         }
       ]
     },
@@ -395,7 +422,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "May there be an end to all my struggles and suffering."
+          "script": "Messenger of hope 50 1"
         }
       ]
     },
@@ -404,7 +431,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "I have witnessed something. It has all begun after I met you. You must be the savior who has come to rescue us."
+          "script": "Messenger of hope 50 2"
         }
       ]
     },
@@ -413,7 +440,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "Now I am certain. You are the deity capable of fulfilling my wish."
+          "script": "Messenger of hope 75 0"
         }
       ]
     },
@@ -422,7 +449,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "The aspirations of others now seem foolish. Their prayers all appear meaningless."
+          "script": "Messenger of hope 75 1"
         }
       ]
     },
@@ -431,7 +458,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "I will only follow your prayers. I no longer wish to hear the foolish prayers of others."
+          "script": "Messenger of hope 75 2"
         }
       ]
     },
@@ -440,7 +467,7 @@
       "contents": [
         {
           "name": "Betrayer of hope",
-          "script": "My wish has finally been answered. I have finally put my true wish into my prayer."
+          "script": "Betrayer of hope 100 0"
         }
       ]
     },
@@ -449,7 +476,7 @@
       "contents": [
         {
           "name": "Betrayer of hope",
-          "script": "I have seen something again. This time, the form was not vague but clear. It's all thanks to you."
+          "script": "Betrayer of hope 100 2"
         }
       ]
     },
@@ -458,7 +485,7 @@
       "contents": [
         {
           "name": "Betrayer of hope",
-          "script": "Ah, finally, my prayers have been answered!"
+          "script": "Betrayer of hope 100 2"
         }
       ]
     },
@@ -467,7 +494,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "May the prayers of the divine always accompany you on your journey."
+          "script": "Messenger of hope Exit 0 0"
         }
       ]
     },
@@ -476,7 +503,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "May the prayers of the divine always accompany you on your journey."
+          "script": "Messenger of hope Exit 0 0"
         }
       ]
     },
@@ -485,7 +512,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "I hope light shines upon your aspirations as well."
+          "script": "Messenger of hope Exit 25 0"
         }
       ]
     },
@@ -494,7 +521,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "May your aspirations and mine become one."
+          "script": "Messenger of hope Exit 50 0"
         }
       ]
     },
@@ -503,7 +530,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "May your aspirations bring salvation to us all."
+          "script": "Messenger of hope Exit 75 0"
         }
       ]
     },
@@ -512,7 +539,7 @@
       "contents": [
         {
           "name": "Betrayer of hope",
-          "script": "I pray for peace and tranquility on your journey."
+          "script": "Betrayer of hope Exit 100 0"
         }
       ]
     },
@@ -521,7 +548,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "Although the divine has granted me the mercy to bestow stigmata, I am just a mere sinner. If I could do something with the grace I've received..."
+          "script": "Messenger of hope Select 0"
         }
       ]
     },
@@ -530,7 +557,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "You are an intriguing individual. The more I look into those eyes, the more certainty arises."
+          "script": "Messenger of hope Select 25"
         }
       ]
     },
@@ -539,7 +566,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "With the power you wield, it seems any wish can come true."
+          "script": "Messenger of hope Select 50"
         }
       ]
     },
@@ -548,7 +575,7 @@
       "contents": [
         {
           "name": "Messenger of hope",
-          "script": "It feels like I have found my own hope."
+          "script": "Messenger of hope Select 75"
         }
       ]
     },
@@ -557,7 +584,7 @@
       "contents": [
         {
           "name": "Betrayer of hope",
-          "script": "You are my new deity. May my abilities be of assistance to you."
+          "script": "Betrayer of hope Select 100"
         }
       ]
     },
@@ -566,7 +593,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "Sometimes it feels like they're hiding grotesque and vicious monsters within them. I can sense it with my instinct. But at the same time, I hope I'm wrong. I want to believe and love them for who they show me they are."
+          "script": "Messenger of love First Entrance"
         }
       ]
     },
@@ -575,7 +602,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "Why is the world so full of hate? Why can't everyone just love each other...?"
+          "script": "Messenger of love 0 0"
         }
       ]
     },
@@ -584,7 +611,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "I don't want to die. Death is sad. I also hate pain. I wish others don't have to suffer either."
+          "script": "Messenger of love 0 1"
         }
       ]
     },
@@ -593,7 +620,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "When I hear the birds chirping in the morning, my heart warms up. Every morning, they give me a reason to live and love this world."
+          "script": "Messenger of love 0 2"
         }
       ]
     },
@@ -602,7 +629,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "How many people are showing their true selves in this world?"
+          "script": "Messenger of love 25 0"
         }
       ]
     },
@@ -611,7 +638,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "You seem very tired. Are you hurt?"
+          "script": "Messenger of love 25 1"
         }
       ]
     },
@@ -620,7 +647,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "Isn't there a way for no one to suffer? If we love each other, wounds can heal without pain, can't they? I want to believe that, but to do so, I first need to strive to be such a warm person."
+          "script": "Messenger of love 25 2"
         }
       ]
     },
@@ -629,7 +656,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "After seeing their true selves, I realized that I was right, but I'm not happy at all. Something's wrong."
+          "script": "Messenger of love 50 0"
         }
       ]
     },
@@ -638,7 +665,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "Please don't prove it to me. No, please prove it."
+          "script": "Messenger of love 50 1"
         }
       ]
     },
@@ -647,7 +674,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "It feels like the more you use your power, the deeper you fall. Maybe I'm afraid I won't be able to escape. Is it because I still don't know something?"
+          "script": "Messenger of love 50 2"
         }
       ]
     },
@@ -656,7 +683,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "The sound of birds chirping in the morning no longer reaches my ears."
+          "script": "Messenger of love 75 0"
         }
       ]
     },
@@ -665,7 +692,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "I want to rest."
+          "script": "Messenger of love 75 1"
         }
       ]
     },
@@ -674,7 +701,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "Perhaps I no longer want to know the truth. Was there even a truth? What's true and what's false? What's good and what's evil?"
+          "script": "Messenger of love 75 2"
         }
       ]
     },
@@ -683,7 +710,7 @@
       "contents": [
         {
           "name": "Betrayer of love",
-          "script": "You're not a sinner. You were a savior. Yes, the warmth and love I believed before were all lies."
+          "script": "Betrayer of love 100 0"
         }
       ]
     },
@@ -692,7 +719,7 @@
       "contents": [
         {
           "name": "Betrayer of love",
-          "script": "I don't deserve to love others. Including myself."
+          "script": "Betrayer of love 100 1"
         }
       ]
     },
@@ -701,7 +728,7 @@
       "contents": [
         {
           "name": "Betrayer of love",
-          "script": "I like the new way of love you taught me."
+          "script": "Betrayer of love 100 2"
         }
       ]
     },
@@ -710,7 +737,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "May you also be able to love this world."
+          "script": "Messenger of love Exit 0"
         }
       ]
     },
@@ -719,7 +746,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "May you also be able to love this world."
+          "script": "Messenger of love Exit 0"
         }
       ]
     },
@@ -728,7 +755,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "May the power of love also reach you."
+          "script": "Messenger of love Exit 25"
         }
       ]
     },
@@ -737,7 +764,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "May your love come to me as well."
+          "script": "Messenger of love Exit 50"
         }
       ]
     },
@@ -746,7 +773,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "Now I can see your path of love."
+          "script": "Messenger of love Exit 75"
         }
       ]
     },
@@ -755,7 +782,7 @@
       "contents": [
         {
           "name": "Betrayer of love",
-          "script": "May more people awaken to your love."
+          "script": "Betrayer of love Exit 100"
         }
       ]
     },
@@ -764,7 +791,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "If there's love, anything is possible."
+          "script": "Messenger of love Select 0"
         }
       ]
     },
@@ -773,7 +800,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "I don't see love in your eyes. What's behind them?"
+          "script": "Messenger of love Select 25"
         }
       ]
     },
@@ -782,7 +809,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "Now that I think about it, are you a sinner? Was I trying to believe and love a sinner?"
+          "script": "Messenger of love Select 50"
         }
       ]
     },
@@ -791,7 +818,7 @@
       "contents": [
         {
           "name": "Messenger of love",
-          "script": "My heart feels stuffy. If it were you, could you alleviate this feeling?"
+          "script": "Messenger of love Select 75"
         }
       ]
     },
@@ -800,7 +827,7 @@
       "contents": [
         {
           "name": "Betrayer of love",
-          "script": "I will continue to love this world in my own way. The power you've given me is my true way. Yes, even if it's like this, if I can help the world..."
+          "script": "Betrayer of love Select 100"
         }
       ]
     }

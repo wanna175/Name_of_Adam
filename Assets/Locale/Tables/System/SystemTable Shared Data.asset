@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: SystemTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: SystemTable
+  m_TableCollectionNameGuidString: e3a7006d7d035524c8c730bd01538f89
+  m_Entries:
+  - m_Id: 5593952256
+    m_Key: PhanuelClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3364736528384
+    m_Key: YohrnClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3408147574784
+    m_Key: PhanuelTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3412371238912
+    m_Key: YohrnTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7268882771968
+    m_Key: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17209785905152
+    m_Key: StigmaMax
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17261312929792
+    m_Key: UpgradeMax
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17279610286936064
+    m_Key: CorfirmGiveStigmata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17295328403427328
+    m_Key: AlreadyExistStigmataInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17295573321420800
+    m_Key: AlreadyExistStigmataTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17307259352813568
+    m_Key: HallSaveConfirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21708852642877440
+    m_Key: ApostleCreation_Corrupt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21709489623437312
+    m_Key: ApostleCreation_Normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22708740248719360
+    m_Key: GameResetInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24926722298384384
+    m_Key: HallDeleteInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24928961360465920
+    m_Key: HallDeleteCannotInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28538600321863680
+    m_Key: CorfirmAlreadyHaveCorruptStigmata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30018410514280448
+    m_Key: CantGiveStigmata_MainDeck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32499517643460608
+    m_Key: CantGiveStigmata_Boss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32501236473434112
+    m_Key: TeamBuild_MainDeck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32564546820542464
+    m_Key: PlayerSkillisUsed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37980186224685056
+    m_Key: ManaIsLow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37980301891006464
+    m_Key: DarkEssenceIsLow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37980338062684160
+    m_Key: CannotInUnitTurn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47438182506188800
+    m_Key: RevertAll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63829019011993600
+    m_Key: SaviorClear
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63829099735568384
+    m_Key: SaviorTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564334360121344
+    m_Key: TooltipForSanctum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564355734294528
+    m_Key: TooltipForDivineHall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564838670651392
+    m_Key: TooltipForSanctumInBattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69564840516145152
+    m_Key: TooltipForDivineHallInBattle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72060608274817024
+    m_Key: DivineHallQuit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73098784771559424
+    m_Key: NewUnitHallSaveConfirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75748344421568512
+    m_Key: HallDeleteCannotSelectedTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75748872299892736
+    m_Key: HallDeleteCannotOriginTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 75749561084301312
+    m_Key: HallDeleteCannotOnlyUnitTooltip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 92006031882866688
+    m_Key: CanStartWithZeroUnitInfo
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4174612857794068482
+  references:
+    version: 2
+    RefIds:
+    - rid: 4174612857794068482
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1710326755325

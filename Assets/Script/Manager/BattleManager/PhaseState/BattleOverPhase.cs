@@ -12,8 +12,6 @@ public class BattleOverPhase : Phase
 
         BattleManager.BattleUI.RefreshHand();
         BattleManager.Field.ClearAllColor();
-
-        BattleManager.BattleUI.UI_turnNotify.Off();
     }
 
     public override void OnStateUpdate()

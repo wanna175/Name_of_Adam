@@ -16,19 +16,19 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 854d29d828bd5fa44b2570785eca7734
   m_Entries:
   - m_Id: 4755091456
-    m_Key: Decreases the enemy's faith upon attacking. (Unable to remove)
+    m_Key: Divine Info
     m_Metadata:
       m_Items: []
   - m_Id: 54424039424
-    m_Key: Attacks with a 50% increase in damage.
+    m_Key: Attack Boost Info
     m_Metadata:
       m_Items: []
   - m_Id: 87252856832
-    m_Key: Attacks first regardless of speed.
+    m_Key: Speed Increase Info
     m_Metadata:
       m_Items: []
   - m_Id: 115275001856
-    m_Key: Damage triples, but dies after attacking.
+    m_Key: Death Strike Info
     m_Metadata:
       m_Items: []
   - m_Id: 143120986112
@@ -36,54 +36,43 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 252978196480
-    m_Key: Withstands once with the health of 1, when reaching death.
+    m_Key: Immortality Info
     m_Metadata:
       m_Items: []
   - m_Id: 286473908224
-    m_Key: Invalidates damage.
+    m_Key: Invincibility Info
     m_Metadata:
       m_Items: []
   - m_Id: 315448160256
-    m_Key: Becomes able to move to any desired position.
+    m_Key: Sacred Step Info
     m_Metadata:
       m_Items: []
   - m_Id: 347706552320
-    m_Key: Unable to move.
+    m_Key: Stun Info
     m_Metadata:
       m_Items: []
   - m_Id: 374298439680
-    m_Key: Decreases the enemy's faith by 1 upon attacking.
+    m_Key: Malevolence Info
     m_Metadata:
       m_Items: []
   - m_Id: 403427880960
-    m_Key: Faith decreases by 1 upon being attacked by Rahel and Lea.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 429461925888
-    m_Key: 'Provides additional effects with each stack
-
-      1 stack: When attacked
-      by Elieus or Yana, adjacent allies are also attacked.
-
-      2 stacks: When
-      attacked by Elieus or Yana, one''s faith decreases by 1.'
+    m_Key: Curse Info
     m_Metadata:
       m_Items: []
   - m_Id: 483732025344
-    m_Key: When attacked, reduces the faith of the attacking enemy unit by 1.
+    m_Key: Karma Info
     m_Metadata:
       m_Items: []
   - m_Id: 527289872384
-    m_Key: Attacks in an area effect.
+    m_Key: Staff Info
     m_Metadata:
       m_Items: []
   - m_Id: 587926925312
-    m_Key: Attacking range becomes infinite.
+    m_Key: Sword Info
     m_Metadata:
       m_Items: []
   - m_Id: 606004375552
-    m_Key: Attacks in an area effect, and becomes immobile but decreases the enemy's
-      faith by 1.
+    m_Key: Book Info
     m_Metadata:
       m_Items: []
   - m_Id: 645355335680
@@ -103,7 +92,83 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 743255583133696
-    m_Key: Dust Info
+    m_Key: Dusk Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11610392982515712
+    m_Key: Rahel Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11610555104948224
+    m_Key: Lea Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12313325871452160
+    m_Key: Edified Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16322966016118784
+    m_Key: MarkOfTheBeast Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51286104792518656
+    m_Key: Grudge Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55424615405735936
+    m_Key: Attack Decrease Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 55754218309570560
+    m_Key: Killing Spree Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267511090434048
+    m_Key: EliteStatBuff Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267973940269056
+    m_Key: ATK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71267995981336576
+    m_Key: SPD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 71268008954318848
+    m_Key: HP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338941318483968
+    m_Key: Glory1 Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338942937485312
+    m_Key: Glory2 Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86338946267762688
+    m_Key: Glory3 Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 86357560219815936
+    m_Key: Scale Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97335273600471040
+    m_Key: Distrust Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97335275580182528
+    m_Key: Despair Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104770754797785088
+    m_Key: Bind Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 104770755900887040
+    m_Key: Smite Info
     m_Metadata:
       m_Items: []
   m_Metadata:

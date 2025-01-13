@@ -13,29 +13,9 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   Incarna: {fileID: 11400000, guid: 8f107784ecc1ae64c827a89a87b95263, type: 2}
-  Money: 0
   DarkEssence: 5
   PlayerHP: 3
   DeckUnits:
-  - Data: {fileID: 11400000, guid: f95af65aca8848443bf5067ca5e54506, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -53,27 +33,8 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
-  - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
+    hallUnitID: 0
+    IsMainDeck: 1
   - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -91,9 +52,9 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
-  - Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
+    hallUnitID: 1
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
       CurrentHP: 0
@@ -110,8 +71,27 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
+    hallUnitID: 2
+    IsMainDeck: 1
+  - Data: {fileID: 11400000, guid: f95af65aca8848443bf5067ca5e54506, type: 2}
+    DeckUnitUpgradeStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    DeckUnitChangedStat:
+      MaxHP: 0
+      CurrentHP: 0
+      ATK: 0
+      SPD: 0
+      FallCurrentCount: 0
+      FallMaxCount: 0
+      ManaCost: 0
+    hallUnitID: 3
+    IsMainDeck: 1
   FallenUnits:
   - Data: {fileID: 11400000, guid: 603f616d232afb64087646cca9b70364, type: 2}
     DeckUnitUpgradeStat:
@@ -130,8 +110,8 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
+    hallUnitID: 0
+    IsMainDeck: 1
   - Data: {fileID: 11400000, guid: 27b54eeec5c6e364c8d20046d9508d64, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -149,8 +129,8 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 1
-    IsMainDeck: 0
+    hallUnitID: 1
+    IsMainDeck: 1
   - Data: {fileID: 11400000, guid: fe1a880de4b579946a1955a8c6326fcb, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -168,27 +148,8 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 2
-    IsMainDeck: 0
-  - Data: {fileID: 11400000, guid: 2be96e3640c6c1545b821e6c23be7363, type: 2}
-    DeckUnitUpgradeStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    DeckUnitChangedStat:
-      MaxHP: 0
-      CurrentHP: 0
-      ATK: 0
-      SPD: 0
-      FallCurrentCount: 0
-      FallMaxCount: 0
-      ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
+    hallUnitID: 2
+    IsMainDeck: 1
   - Data: {fileID: 11400000, guid: f95af65aca8848443bf5067ca5e54506, type: 2}
     DeckUnitUpgradeStat:
       MaxHP: 0
@@ -206,21 +167,21 @@ MonoBehaviour:
       FallCurrentCount: 0
       FallMaxCount: 0
       ManaCost: 0
-    HallUnitID: 0
-    IsMainDeck: 0
-  IsVisitUpgrade: 0
+    hallUnitID: 3
+    IsMainDeck: 1
+  IsVisitUpgrade: 1
   IsVisitStigma: 0
   IsVisitDarkShop: 0
   Progress:
-    NormalWin: 3
+    NormalWin: 0
     EliteWin: 0
     BossWin: 0
-    NormalKill: 3
+    NormalKill: 0
     EliteKill: 0
     PhanuelKill: 0
     HorusKill: 0
     FishKill: 0
-    NormalFall: 2
+    NormalFall: 0
     EliteFall: 0
     PhanuelFall: 0
     HorusFall: 0
@@ -230,8 +191,4 @@ MonoBehaviour:
     SurvivedNormal: 0
     SurvivedElite: 0
     SurvivedBoss: 0
-  NpcQuest:
-    UpgradeQuest: 0
-    StigmaQuest: 0
-    DarkshopQuest: 0
-  StageBenediction: {x: 0, y: 0}
+  StageBenediction: {x: 0, y: 0, z: 0}

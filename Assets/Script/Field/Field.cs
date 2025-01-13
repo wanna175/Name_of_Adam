@@ -23,10 +23,13 @@ public class Field : MonoBehaviour
 
     readonly List<Vector2> UDLR = new() { Vector2.right, Vector2.up, Vector2.left, Vector2.down };
 
-    private Color ColorList(FieldColorType color)
+    public Vector2? NowHighlightFrameOnLocation;
+
+    public Color ColorList(FieldColorType color)
     {
         return color switch
         {
+            FieldColorType.UnitSpawn => new Color32(23, 114, 102, 40),
             FieldColorType.Move => new Color32(23, 114, 102, 40),
             FieldColorType.Attack => new Color32(220, 20, 60, 40),
             FieldColorType.PlayerSkill => new Color32(220, 20, 60, 40),
@@ -163,12 +166,19 @@ public class Field : MonoBehaviour
     // 지정한 위치에 있는 타일의 좌표를 반환
     public Vector3 GetTilePosition(Vector2 coord)
     {
-        Vector3 position = TileDict[coord].transform.position;
-        
-        float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
-        position.y -= sizeY;
+        if (IsInRange(coord))
+        {
+            Vector3 position = TileDict[coord].transform.position;
 
-        return position;
+            float sizeY = TileDict[coord].transform.lossyScale.y * 0.2f;
+            position.y -= sizeY;
+
+            return position;
+        }
+        else
+        {
+            return new(0, 0, 0);
+        }
     }
 
     public void SetNextActionTileColor(BattleUnit unit, FieldColorType fieldType)
@@ -194,7 +204,8 @@ public class Field : MonoBehaviour
     {
         foreach (Vector2 vec in vectorList)
         {
-            _tileDict[vec].SetEffect(effectType);
+            if (IsInRange(vec))
+                _tileDict[vec].SetEffect(effectType);
         }
     }
 
@@ -212,7 +223,7 @@ public class Field : MonoBehaviour
         {
             if (CheckSpawnTile(deckUnit, spawnTile))
                 continue;
-            if (TileDict[spawnTile].UnitExist || TileDict[spawnTile].IsColored)
+            if (TileDict[spawnTile].UnitExist)
                 continue;
 
             List<Vector2> tempList = new();
@@ -290,6 +301,26 @@ public class Field : MonoBehaviour
         {
             tile.SetColor(Color.white);
         }
+
+        FieldCloseSplashRange();
+    }
+
+    public void SetTileHighlightFrame(Vector2? location, bool highlightOn)
+    {
+        if (location.Equals(new Vector2(-1, -1)))
+            return;
+
+        if (NowHighlightFrameOnLocation != null)
+        {
+            TileDict[(Vector2)NowHighlightFrameOnLocation].SetHightlightFrame(false);
+        }
+
+        NowHighlightFrameOnLocation = location;
+
+        if (location != null)
+        {
+            TileDict[(Vector2)location].SetHightlightFrame(highlightOn);
+        }
     }
 
     public bool UnitSizeCheck(Vector2 spawnLocation, DeckUnit deckUnit)
@@ -313,6 +344,12 @@ public class Field : MonoBehaviour
 
     private bool CheckSpawnTile(DeckUnit deckUnit, Vector2 spawnTile) => !deckUnit.CanSpawnInEnemyField && !IsPlayerRange(spawnTile);
 
+    public void SetActiveAllTiles(bool isActive)
+    {
+        foreach (Tile tile in TileDict.Values)
+            tile.SetActiveCollider(isActive);
+    }
+
     private bool IsPlayerRange(Vector2 coord) => ((int)coord.x < MaxFieldX / 2 && IsInRange(coord));
 
     private UI_Info _hoverInfo;
@@ -320,11 +357,15 @@ public class Field : MonoBehaviour
     public void MouseEnterTile(Tile tile)
     {
         FieldShowInfo(tile);
+
+        if (tile.IsColored)
+            FieldShowSplashRange(tile);
     }
 
     public void MouseExitTile(Tile tile)
     {
         FieldCloseInfo(tile);
+        FieldCloseSplashRange();
     }
 
     public void FieldShowInfo(Tile tile)
@@ -349,6 +390,35 @@ public class Field : MonoBehaviour
         if (_hoverInfo != null)
         {
             BattleManager.BattleUI.CloseInfo(_hoverInfo);
+        }
+    }
+
+    public void FieldShowSplashRange(Tile tile)
+    {
+        if (!BattleManager.Phase.CurrentPhaseCheck(BattleManager.Phase.Action))
+        {
+            FieldCloseSplashRange();
+            return;
+        }
+
+        BattleUnit currentUnit = BattleManager.Data.GetNowUnit();
+        if (currentUnit == null || currentUnit.Team != Team.Player)
+        {
+            return;
+        }
+
+        foreach (Vector2 range in currentUnit.Action.GetSplashRangeForField(currentUnit, tile, currentUnit.Location))
+        {
+            if (BattleManager.Field.IsInRange(range))
+                BattleManager.Field.TileDict[range].SetRangeHightlight(true);
+        }
+    }
+
+    public void FieldCloseSplashRange()
+    {
+        foreach (Tile tile in TileDict.Values)
+        {
+            tile.SetRangeHightlight(false);
         }
     }
 }

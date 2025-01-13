@@ -25,7 +25,7 @@ public class PhaseController
 
     public void ChangePhase(Phase nextPhase)
     {
-        if (_currentPhase != null)
+        if (_currentPhase != null && nextPhase != BattleOver)
             _currentPhase.OnStateExit();
 
         _currentPhase = nextPhase;

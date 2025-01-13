@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85372292a323f1f4492fe2d270acc616, type: 3}
+  m_Name: "\uC698"
+  m_EditorClassIdentifier: 
+  _rawStat:
+    MaxHP: 400
+    CurrentHP: 400
+    ATK: 40
+    SPD: 0
+    FallCurrentCount: 0
+    FallMaxCount: 12
+    ManaCost: 100
+  _uniqueStigma:
+  - {fileID: -9158552929226033064, guid: 268e35bf37172a7459e9d5c52d907dcc, type: 3}
+  - {fileID: -6542212745367784185, guid: 74f1f4e3afeb9094ead31b3a34ae2a23, type: 3}
+  - {fileID: -7988383393209478176, guid: f6edbc25f254f864daa86127b417a5a2, type: 3}
+  _id: "\uC698"
+  _name: Yohrn
+  _description: 
+  _rarity: 3
+  _image: {fileID: 21300000, guid: 584dd9a2f5f8f234fa03269a5ab2af97, type: 3}
+  _corruptImage: {fileID: 21300000, guid: 0ab612279335010419092076fcfb7460, type: 3}
+  _portraitImage: {fileID: 21300000, guid: 61c1c95e4db16774eb876e7ffe0919a9, type: 3}
+  _corruptPortraitImage: {fileID: 21300000, guid: 0969136dc93e82742a9c09ff5fc16d08, type: 3}
+  _diaPortraitImage: {fileID: 21300000, guid: fe2c4eddf5839df46b92812ac6008a3f, type: 3}
+  _corruptDiaPortraitImage: {fileID: 21300000, guid: 9ccba858bba0c58418fdafccbe3a3d5c, type: 3}
+  _animatorController: {fileID: 9100000, guid: 9de81cea61c68ed4aa71cbc35361e553, type: 2}
+  _corruptionAnimatorController: {fileID: 9100000, guid: 771883c4392f21942ba60d80a38637af, type: 2}
+  _skillEffectAnim: {fileID: 7400000, guid: a0a9ba383690abe4ab8acc76e81b34c1, type: 2}
+  _corruptionSkillEffectAnim: {fileID: 7400000, guid: a0a9ba383690abe4ab8acc76e81b34c1, type: 2}
+  _animType: {fileID: 11400000, guid: 9c5500ed16c73bb4cb5cbb732dcaf0cb, type: 2}
+  _darkEssenseDrop: 5
+  _darkEssenseCost: 10
+  _unitActionType: 13
+  _unitMoveType: 0
+  _unitAttackType: 1
+  _isBattleOnly: 0
+  _isFlipFixed: 0
+  _attackRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+  _moveRange: 00000000000000000000000001000000000000000000000000
+  _splashRange: 00000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000
+  _unitSize: 00000000000000000000000001000000000000000000000000

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6516491720742692485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2950990188252653416}
+  - component: {fileID: 700662523564253776}
+  m_Layer: 0
+  m_Name: Stigma_DeathsThreshold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2950990188252653416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516491720742692485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &700662523564253776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516491720742692485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823e697f0b66cba4ba19e1a923a5cf06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stigmaEnum: 35
+  _name: Death's Threshold
+  _sprite_28: {fileID: 21300000, guid: 14b5174f25aa17743a7e6753f73b7e85, type: 3}
+  _sprite_88: {fileID: 21300000, guid: 6bff4232d00a04a40a30c79ccf478217, type: 3}
+  _sprite_164: {fileID: 21300000, guid: ff97be22c4cf2944e8865dff517563d7, type: 3}
+  _description: Death's Threshold Info
+  _activeTiming: 2
+  _tier: 0
+  _isLock: 0

@@ -13,38 +13,45 @@ public abstract class Buff : MonoBehaviour
 
     protected string _description;
 
-    protected int _count;
+    protected int _count = -1;
     public int Count => _count;
 
-    protected ActiveTiming _countDownTiming;
+    protected ActiveTiming _countDownTiming = ActiveTiming.NONE;
     public ActiveTiming CountDownTiming => _countDownTiming;
 
-    protected ActiveTiming _buffActiveTiming;
+    protected ActiveTiming _buffActiveTiming = ActiveTiming.NONE;
     public ActiveTiming BuffActiveTiming => _buffActiveTiming;
 
     protected BattleUnit _owner;
     public BattleUnit Owner => _owner;
 
-    protected bool _statBuff;
-
+    protected bool _statBuff = false;
     public bool StatBuff => _statBuff;
 
-    protected bool _dispellable;
-
+    protected bool _dispellable = false;
     public bool Dispellable => _dispellable;
 
-    protected bool _stigmaBuff;
+    protected bool _stigmataBuff = false;
+    public bool StigmataBuff => _stigmataBuff;
 
-    public bool StigmaBuff => _stigmaBuff;
+    protected bool _isDebuff = false;
+    public bool IsDebuff => _isDebuff;
 
+    protected bool _isSystemBuff = false;
+    public bool IsSystemBuff => _isSystemBuff;
+
+    public bool IsActive = false;
 
     public abstract void Init(BattleUnit owner);
 
     public virtual bool Active(BattleUnit caster = null) => false;
+    public virtual bool Active(Buff buff = null) => false;
 
     public virtual Stat GetBuffedStat() => new Stat();
 
     public virtual void SetValue(int num) { }
+
+    public virtual void SetStat(Stat stat) { }
 
     public virtual void Stack() { }
 
@@ -53,16 +60,19 @@ public abstract class Buff : MonoBehaviour
         if (_count > 0) 
             return _count;
         else 
-            return 0;
+            return -1;
     }
 
     public virtual void Destroy() { }
 
     public void CountChange(int num) => _count += num;
 
-    public virtual string GetDescription()
+    public virtual string GetDescription(int spacing = 1)
     {
-        string desc = "<color=#FF9696><size=110%><b>" + Name + "</b><color=white></size>\n<size=30%>\n</size>" + GameManager.Locale.GetLocalizedBuffInfo(_description); ;
+        string desc = "<color=#FF9696><size=110%><b>" + Name + "</b><color=white></size>";
+        for (int i = 0; i < spacing; i++)
+            desc += "\n";
+        desc += GameManager.Locale.GetLocalizedBuffInfo(_description);
 
         if (_countDownTiming != ActiveTiming.NONE)
         {
